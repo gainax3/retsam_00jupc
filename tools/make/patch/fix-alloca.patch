@@ -1,0 +1,10 @@
++++ glob/glob.c
+@@ -207,7 +207,7 @@
+ #endif /* __GNU_LIBRARY__ */
+ 
+ 
+-#if !defined __alloca && !defined __GNU_LIBRARY__
++#if !defined __alloca
+ 
+ # ifdef	__GNUC__
+ #  undef alloca
