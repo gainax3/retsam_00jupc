@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBParentBssDesc</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBParentBssDesc</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef	struct
+{
+    u16   length;
+    u16   rssi;
+    u16   bssid[3];
+    u16   ssidLength;
+    u8    ssid[32];
+    u16   capaInfo;
+    struct
+    {
+        u16  basic;
+        u16  support;
+    } rateSet;
+    u16   beaconPeriod;
+    u16   dtimPeriod;
+    u16   channel;
+    u16   cfpPeriod;
+    u16   cfpMaxDuration;
+} MBParentBssDesc;
+</PRE>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>マルチブート子機にとっての親機情報が格納された構造体です。<BR>
+これは、<a href="../wm/wm/WMBssDesc.html">WMBssDesc</a>構造体からgameInfoを除いた部分と同じものです。<br>
+ssid[0],ssid[1],ssid[2],ssid[3]には、マルチブート親機から設定されたGGIDがリトルエンディアンで格納されています。<BR>
+<BR>
+この構造体はシステムがひとつだけ保持し、<A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>関数で取得できます。<BR>
+また、<A href="child/MB_ReadMultiBootParentBssDesc.html">MB_ReadMultiBootParentBssDesc</A>関数で接続親機情報を取得する際にも内部で参照されます。<br>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="mb_game_registry_type.html">MBGameRegistry</A> <br>
+<A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+2004/10/06 リンク修正<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

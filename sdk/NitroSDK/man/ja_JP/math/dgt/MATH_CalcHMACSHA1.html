@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_CalcHMACSHA1</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_CalcHMACSHA1</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/dgt.h&gt;
+
+static inline void MATH_CalcHMACSHA1( void* digest, const void* data, u32 dataLength, const void* key, u32 keyLength );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">digest</font></strong></em></TD>
+      <TD width="670">計算した鍵付ハッシュ値を格納するメモリへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="670">入力データへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">dataLength</font></strong></em></TD>
+      <TD width="670">入力データのサイズ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">key</font></strong></em></TD>
+      <TD width="670">鍵へのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">keyLength</font></strong></em></TD>
+      <TD width="670">鍵のサイズ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、SHA-1 を利用した HMAC の計算を行います。<BR>
+生成される鍵付ハッシュ値の長さは  160 bit、すなわち MATH_SHA1_DIGEST_SIZE (= 20) バイトです。このサイズが格納できる領域を digest 引数に渡すようにしてください。<BR>
+入力データも鍵も任意のサイズ・任意のアラインメント位置のものが使用できます。しかし、鍵に関しては、MATH_SHA1_DIGEST_SIZE より小さいと強度が弱くなり、MATH_SHA1_DIGEST_SIZE より大きくても強度の向上にはあまり寄与しません。<BR>
+<BR>
+内部で <A href="MATHSHA1Context.html">MATHSHA1Context</A> 構造体の大きさに100バイト程度を加えたサイズのスタックを使用します。スタックに十分な余裕がある状態で呼び出してください。<BR>
+<BR>
+SHA-1 はメッセージダイジェスト値を求めるためのアルゴリズムです。詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 3174 を参照してください。<BR>
+HMAC はメッセージ認証のための鍵付ハッシングのアルゴリズムです。内部でハッシュ関数として SHA-1 を使用するものは HMAC-SHA-1 と呼ばれます。詳細は RFC 2104 を参照してください。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_CalcHMACMD5.html">MATH_CalcHMACMD5</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 説明の修正<BR>
+2005/04/01 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_DmaFill</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_DmaFill*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_DmaFill32( u32 dmaNo, void* dest, u32 data, u32 size );</CODE><BR>
+  <CODE>void MI_DmaFill16( u32 dmaNo, void* dest, u32 data, u32 size );<BR>
+  </CODE><BR>
+  <CODE>void MI_DmaFill32Async( u32 dmaNo, void* dest, u32 data, u32 size,</CODE><BR>　　　<CODE> 　　　　　　　　 MIDmaCallback callback, void* arg );</CODE><BR>
+  <CODE>void MI_DmaFill16Async( u32 dmaNo, void* dest, u32 data, u32 size,</CODE><BR>　　　<CODE> 　　　　　　　　 MIDmaCallback callback, void* arg );</CODE>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dmaNo</STRONG></EM></TD>
+      <TD width="87%">使用DMAチャンネル</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dest</STRONG></EM></TD>
+      <TD width="87%">転送先アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data</STRONG></EM></TD>
+      <TD width="87%">転送データ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>転送サイズ
+      </TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>callback</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>arg</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>DMA を用いて、メモリを指定のデータで埋めます。</P>
+<P><CODE>MI_DmaFill16()</CODE>, <CODE>MI_DmaFill16Async()</CODE> は 16ビット単位でメモリを指定のデータで埋めます。転送先アドレスは2バイトアラインメントする必要があります。<BR>
+<CODE>MI_DmaFill32()</CODE>, <CODE>MI_DmaFill32Async()</CODE> は 32ビット単位でメモリを指定のデータで埋めます。転送先アドレスは4バイトアラインメントする必要があります。</P>
+<P><CODE>MI_DmaFill16()</CODE>, <CODE>MI_DmaFill32()</CODE> はDMAの終了を関数内で待ちます。<BR>
+<CODE>MI_DmaFill16Async()</CODE>, <CODE>MI_DmaFill32Async()</CODE> は、DMA終了時にコールバック <B><I>callback</I></B> を呼びます。コールバックは MIDmaCallback 型 ( void* 引数1つを取る void 型関数 ) です。<B><I>callback</I></B> は システムのDMA割り込みハンドラ内から呼び出されますので、割り込み禁止状態で呼び出されます。</P>
+<h2>内部動作</h2>
+<P>IOレジスタのDMAnソースレジスタ(0x40000B0 + 12n)、DMAnデスティネーションレジスタ(0x40000B4
++ 12n)、DMAnコントロールレジスタ(0x40000B8 + 12n)を使用します。( n は 使用するDMAチャンネルです。)<BR>
+また、フィルのために HW_DMA_CLEAR_DATA_BUF 領域を使用しています。これは、TEG
+では Shared Memory に取られていますが、TSではIOレジスタにマッピングされます。</P>
+<h2>参照</h2>
+<p><CODE><A href="MI_DmaCopy.html">MI_DmaCopy*</A>, <A href="MI_DmaClear.html">MI_DmaClear*</A>, <A href="MI_DmaSend.html">MI_DmaSend*</A>,<A href="../memory/MI_CpuFill.html">MI_CpuFill*</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/22 callback の呼び出しについての記述を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_FndOpenArchiveFileByIndex</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_FndOpenArchiveFileByIndex</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL NNS_FndOpenArchiveFileByIndex(FSFile* file, NNSFndArchive&amp; archive, u32 index);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>archive</STRONG></EM></TD>
+      <TD width="87%">NNSFndArchive構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>index</STRONG></EM></TD>
+      <TD width="87%">ファイルのインデックス値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>ファイルのオープンに成功すれば真を返します。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>archive</CODE>と<CODE>index</CODE>により指定されたファイルを、ファイルシステムを用いてオープンします。
+オープンに成功すれば、ファイルシステムのAPIを使用してファイルの読み出しを行う事が出来ます。
+ファイルのクローズには、ファイルシステムのAPI（FS_Close）を使用します。
+</P>
+
+<PRE><CODE>
+    extern void* archiveBinary;
+
+    NNSFndArchive archive;
+
+    if (NNS_FndMountArchive(&amp;archive, &quot;ARC&quot;, archiveBinary))
+    {
+        FSFile file;
+
+        FS_InitFile(&amp;file);
+        NNS_FndOpenArchiveFileByIndex(&amp;file, &amp;archive, 10);
+
+        ......
+        ......
+    }
+</CODE></PRE>
+<BR>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_FndGetArchiveFileByIndex.html">NNS_FndGetArchiveFileByIndex</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/05/14 初版</P>
+</BODY>
+
+</HTML>

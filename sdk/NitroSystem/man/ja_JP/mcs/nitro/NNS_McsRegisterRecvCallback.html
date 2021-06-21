@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsRegisterRecvCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsRegisterRecvCallback</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>void NNS_McsRegisterRecvCallback(
+         NNSMcsRecvCBInfo*   pInfo,
+         u16                 channel,
+         NNSMcsRecvCallback  cbFunc,
+         u32                 userData);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">pInfo</font></strong></em></td>
+  <td width="87%">コールバック関数の情報を保持する構造体へのポインタ。</td>
+ </tr>
+ <tr>
+  <td width="13%"><em><strong><font face="Courier New">channel</font></strong></em></td>
+  <td width="87%">ストリームを識別するための値。0～0x3FFFの値を指定できます。0x4000～0x7FFFはNITRO-Systemアプリケーション用、0x8000～0xFFFFはmcsシステム用に予約しています。</td>
+ </tr>
+ <tr>
+  <td width="13%"><em><strong><font face="Courier New">cbFunc</font></strong></em></td>
+  <td width="87%">登録するコールバック関数。</td>
+ </tr>
+ <tr>
+  <td width="13%"><em><strong><font face="Courier New">userData</font></strong></em></td>
+  <td width="87%">ユーザー任意の値。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<p>データを受信したときにコールバックされる関数を登録します。</p>
+<p>cbFuncの型<CODE>NNSMcsRecvCallback</CODE>は次のように定義されています。登録する関数の定義は次のとおりです。</p>
+<blockquote>
+<pre><code>typedef void (*NNSMcsRecvCallback)(
+                   const void* recv,
+                   u32         recvSize,
+                   u32         userData,
+                   u32         offset,
+                   u32         totalSize);</code></pre>
+</blockquote>
+<table>
+	<tr>
+		<td><em><strong><font face="Courier New">recv</font></strong></em></td>
+		<td>受信したデータの一部あるいは全部を格納しているバッファへのポインタ。</td>
+	</tr>
+	<tr>
+		<td><em><strong><font face="Courier New">recvSize</font></strong></em></td>
+		
+  <td><em><strong><font face="Courier New">recv</font></strong></em>によって示されるバッファに格納されているデータのサイズ。</td>
+	</tr>
+    <tr>
+      <td><em><strong><font face="Courier New">userData</font></strong></em></td>
+      <td><CODE>NNS_McsRegisterRecvCallback()</CODE>の引数<em><strong><font face="Courier New">userData</font></strong></em>で指定した値。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">offset</font></strong></em></td>
+      <td>受信したデータの全部が<em><strong><font face="Courier New">recv</font></strong></em>によって示されるバッファに格納されている場合は0。<br>
+      受信したデータの一部が格納されている場合は、受信したデータ全体に対する0を基準としたオフセット位置。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">totalSize</font></strong></em></td>
+      <td>受信したデータの全体のサイズ。</td>
+    </tr>
+  </table>
+<p>受信したデータが大きい場合は、複数回に分けてコールバック関数が呼び出されます。このとき、<em><strong><font face="Courier New">recv</font></strong></em>が指すバッファには一部のデータが格納され、<em><strong><font face="Courier New">offset</font></strong></em>には格納されているデータの全体からのオフセット値が入ります。<em><strong><font face="Courier New">totalSize</font></strong></em>には、常に受信したデータの全体のサイズが入ります。</p>
+<p><font color="#ff0000">登録するコールバック関数内ではデータの送受信を行わないでください。
+また、割り込みが禁止されている場合があるため、割り込み待ちループも行わないでください。</font></p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_McsRegisterStreamRecvBuffer.html">NNS_McsRegisterStreamRecvBuffer</A>, 
+<A href="NNS_McsUnregisterRecvResource.html">NNS_McsUnregisterRecvResource</A></CODE></p>
+<H2>履歴</H2>
+<P>2004/11/29 コールバック関数の解説を追加。<br>
+2004/10/08 引数channelの解説を追加。また、参照にNNS_McsUnregisterRecvResourceを追加。<br>
+ 2004/08/26 引数channelの型の変更。<br>
+ 2004/06/01 初版</P>
+</body>
+</html>

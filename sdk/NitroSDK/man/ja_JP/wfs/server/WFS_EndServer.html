@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_EndServer</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_EndServer</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_EndServer(WFSServerContext *context);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">解放するWFSServerContext構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p><a href="WFS_InitServer.html">WFS_InitServer</a>関数で初期化したWFSサーバコンテキスト構造体を解放します。<br />
+WFSライブラリ内部で動的に確保したメモリがあればこの関数呼び出しによって自動的に解放されます。<br />
+この関数はWFSServerContext構造体の内容を解放するだけなのでOSやワイヤレスの状態には一切影響を及ぼしません。<br />
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="WFS_InitServer.html">WFS_InitServer</a> 
+<br /></code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

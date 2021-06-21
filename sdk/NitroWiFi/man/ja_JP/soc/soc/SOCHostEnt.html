@@ -1,0 +1,50 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOCHostEnt</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOCHostEnt</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_PF_INET   2  // ARPA Internet protocols</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct SOCHostEnt
+{
+    char*  name;        // official name of host
+    char** aliases;     // alias list (zero-terminated)
+    s16    addrType;    // always SOC_PF_INET
+    s16    length;      // length of address
+    u8**   addrList;    // list of addresses
+} SOCHostEnt;
+</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p><strong><em>注意</em></strong>： DS ソケットライブラリの実装では、<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code> 
+および<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code> 
+はエイリアスのリストを取得しません。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr</a></code>,
+<code><a href="SOC_GetHostByName.html">SOC_GetHostByName</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
+</body>
+</html>

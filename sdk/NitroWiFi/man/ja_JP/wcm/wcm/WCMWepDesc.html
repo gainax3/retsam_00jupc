@@ -1,0 +1,93 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCMWepDesc.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCMWepDesc.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCMWepDesc</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCMWepDesc</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+typedef struct
+{
+    u8   mode;
+    u8   keyId;
+    u8   key[80];
+
+} WCMWepDesc;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			無線アクセスポイントと DCF 通信する際に使用する WEP 暗号化設定を定義する構造体です。WEP 暗号化種別、データ送信時に使用される
+			WEP キー番号、及び WEP キーデータ列を定義します。
+		</P>
+
+
+		<H2>要素</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>mode</CODE></STRONG></EM></TD>
+					<TD width="75%">WEP 暗号化種別を指定します。<CODE>WCM_WEPMODE_NONE</CODE> を指定すると暗号化しない設定となります。
+					その他の暗号化設定を指定すると、それぞれの設定に従い <EM><STRONG><CODE>key</CODE></STRONG></EM> に指定されたデータ列を用いた WEP 暗号化を行う設定となります。
+					詳細については <A href="WCM_CONSTANT_NUMBER.html#wep">WCM ライブラリ定数</A>を参照して下さい。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>keyId</CODE></STRONG></EM></TD>
+					<TD>データ送信時に使用する WEP キー番号を 0 ～ 3 の範囲で指定します。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>key</CODE></STRONG></EM></TD>
+					<TD>80 バイトからなる WEP キーデータ列を指定します。20 バイトずつ 4 つの WEP キーデータ列を繋げたデータ列として下さい。
+					暗号化種別によっては使用されない無駄なデータもありますが、その部分は単に無視されます。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_ConnectAsync.html">WCM_ConnectAsync</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

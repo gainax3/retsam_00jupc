@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_GetUncompressedSize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_GetUncompressedSize</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32 MI_GetUncompressedSize( const void *srcp );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">圧縮データが格納されているソースアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>展開後サイズです。</p>
+
+<H2>説明</H2>
+<P>圧縮データを展開した後の展開サイズを取得します。<BR>
+実際にデータを展開するわけではなく、圧縮データの先頭に格納された展開後サイズを読んで返します。</P>
+<P>この関数はNITRO-SDKでサポートしている全ての圧縮形式のデータに対応しています。</P>
+<h2>内部動作</h2>
+<P>データの先頭４バイトを読み、その値を8ビットシフトダウンしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, <A href="MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="MI_UncompressRL.html">MI_UncompressRL*</A><BR>
+<A href="MI_GetCompressionType.html">MI_GetCompressionType</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/18 初版</P>
+</body>
+</html>

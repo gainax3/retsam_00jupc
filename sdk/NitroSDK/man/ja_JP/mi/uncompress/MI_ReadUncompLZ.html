@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_ReadUncompLZ*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_ReadUncompLZ*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mi/uncomp_stream.h&gt;</CODE><BR>
+
+<CODE>s32 MI_ReadUncompLZ8(  <A href="MIUncompContextLZ.html">MIUncompContextLZ</A> *context,  
+                          const u8* data, 
+                          u32 len );</CODE><br>
+<CODE>s32 MI_ReadUncompLZ16( <A href="MIUncompContextLZ.html">MIUncompContextLZ</A> *context,
+                          const u8* data, 
+                          u32 len  );</CODE></PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>context</STRONG></EM></TD>
+      <TD width="87%">LZ77圧縮されたデータの展開用コンテキスト構造体へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data</STRONG></EM></TD>
+      <TD width="87%">展開するデータの一部へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>len</STRONG></EM></TD>
+      <TD>第二引数で与えたデータのデータサイズです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>展開されるデータの残りバイト数が返されます。<BR>
+すべてのデータを展開し終えた場合には0となります。</p>
+
+<H2>説明</H2>
+<P>LZ77圧縮されたデータを、与えられたデータサイズ分だけ順次ストリーミング展開し、<BR>
+<A href="MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>関数で設定されたバッファへコピーします。<BR>
+展開速度は、<A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>関数で一度に展開する場合に比べると低速です。</P>
+<P><CODE>MI_ReadUncompLZ8()</CODE> は、8bit単位で書き込みます。<BR>
+VRAMに直接展開することは出来ません。<BR>
+<BR>
+<CODE>MI_ReadUncompLZ16()</CODE>は、16bit単位で書き込みます。<BR>
+VRAMにも直接展開できますが、<CODE>MI_ReadUncompLZ8()</CODE> より低速です。<BR>
+圧縮データは一致文字列を2byte以前より検索したものにしてください。</P>
+
+<P><A href="../../tools/ntrcomp.html">ntrcompツール</A>や<A href="MI_CompressLZ.html">MI_CompressLZ*()</A>関数で
+圧縮されたLZ77圧縮、LZ77拡張圧縮フォーマットのデータを展開します。</P>
+
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, 
+<A href="MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>, 
+<A href="MIUncompContextLZ.html">MIUncompContextLZ</A>,
+<A href="MI_ReadUncompRL.html">MI_ReadUncompRL*</A>, 
+<A href="MI_ReadUncompHuffman.html">MI_ReadUncompHuffman</A>,
+<A href="MI_CompressLZ.html">MI_CompressLZ*</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/11/01 LZ77拡張圧縮に関する記述を追加<BR>
+2004/11/30 初版</P>
+</body>
+</html>

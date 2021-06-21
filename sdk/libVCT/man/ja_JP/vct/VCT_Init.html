@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_Init</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_Init</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL VCT_Init( <A href="VCTConfig.html">VCTConfig</A> *config );</CODE></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>config</STRONG></EM></TD>
+      <TD width="87%" height="17">VCTConfig構造体</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TRUE</CODE></TD>
+      <TD width="70%">初期化成功</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>FALSE</CODE></TD>
+      <TD width="70%">初期化失敗</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>VoiceChatライブラリ初期化の関数です。<CODE><A href="VCTConfig.html">VCTConfig</A></CODE>構造体を正しくセットアップする必要があります。</P>
+<P><a href="VCTMode.html">ライブラリの動作モード</a>を変更したい場合は、一旦<CODE><A href="VCT_Cleanup.html">VCT_Cleanup</A></CODE>を呼び出し、再度<CODE>VCT_Init</CODE>を呼び出します。</P>
+<h2>参照</h2>
+<p><CODE><A href="VCT_Cleanup.html">VCT_Cleanup</A></CODE>, <CODE><A href="VCTConfig.html">VCTConfig</A></CODE></p>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

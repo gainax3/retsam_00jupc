@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dAllocRecBufferMat</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dAllocRecBufferMat</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/mem.h&gt;</CODE></PRE>
+  <PRE><CODE>NNSG3dMatAnmResult*
+NNS_G3dAllocRecBufferMat(
+    NNSFndAllocator*    pAlloc,
+    const NNSG3dResMdl* pResMdl
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pAlloc</STRONG></EM></TD>
+      <TD width="87%">メモリアロケータへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+確保したヒープ領域へのポインタを返します。
+領域の確保に失敗した場合<CODE>NULL</CODE>を返します。
+</P>
+
+<H2>説明</H2>
+<P>レンダリングオブジェクトにアタッチすることができるマテリアルの計算結果を保持するための
+レコードバッファ領域を確保します。領域の大きさは<I><B>pResMdl</B></I>で示されるモデルリソースに存在するマテリアルの数によって決まります。</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dFreeRecBufferMat.html">NNS_G3dFreeRecBufferMat</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

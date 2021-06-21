@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTCAlarmStatus</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTCAlarmStatus</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum
+{ 
+	RTC_ALARM_STATUS_OFF = 0 ,
+	RTC_ALARM_STATUS_ON ,
+	RTC_ALARM_STATUS_MAX
+
+} RTCAlarmStatus;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">RTC_ALARM_STATUS_OFF</font></strong></em></TD>
+      <TD width="700">アラーム割り込みは禁止されている状態</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">RTC_ALARM_STATUS_ON</font></strong></em></TD>
+      <TD width="700">アラーム割り込みが許可されている状態</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>リアルタイムクロックに登録しておくことのできるアラームの動作状態です。<BR>
+アラーム割り込みが許可されている場合は、分の桁上げ処理の度にアラーム設定値と現在値が比較され、一致した場合に割り込みが発生します。<BR>
+なお、割り込み禁止の状態でアラーム設定値の読み出し、書き込みを行うことはできません。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTCAlarmParam.html">RTCAlarmParam</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/03/08 用語統一 [割込み] → [割り込み]<br>
+Ver. 2004/05/18 初版</P>
+</body>
+</html>

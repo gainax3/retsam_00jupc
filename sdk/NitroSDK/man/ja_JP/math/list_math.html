@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>数学関数(MATH) API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>数学関数(MATH) API 機能一覧</H1>
+<H3><A name="Utility">ユーティリティ関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="utility.html" target="_self">MATH_IAbs</A></TH>
+      <TD>int型引数の絶対値を返します。(インライン関数)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_IMin</A></TH>
+      <TD>2つの int 同士を比較して小さいほうを返します。（インライン関数）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_IMax</A></TH>
+      <TD>2つの int 同士を比較して大きいほうを返します。（インライン関数）</TD>
+    </TR>
+    <TR>
+      <TH><A href="utility.html" target="_self">MATH_ABS</A></TH>
+      <TD>引数の絶対値を返します。(関数マクロ・副作用有り)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_MIN</A></TH>
+      <TD>2つの数値を比較して小さいほうを返します。（関数マクロ・副作用有り）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_MAX</A></TH>
+      <TD>2つの数値を比較して大きいほうを返します。（関数マクロ・副作用有り）</TD>
+    </TR>
+    <TR>
+      <TH><A href="utility.html" target="_self">MATH_CLAMP</A></TH>
+      <TD>第1引数をlowからhighの範囲に収めた値を返します。(関数マクロ・副作用有り)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_ROUNDUP</A></TH>
+      <TD>第1引数を第2引数の倍数に切り上げた値を返します。（関数マクロ）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_ROUNDDOWN</A></TH>
+      <TD>第1引数を第2引数の倍数に切り下げた値を返します。（関数マクロ）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_ROUNDUP32</A></TH>
+      <TD>引数を32の倍数に切り上げた値を返します。（関数マクロ）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="utility.html" target="_self">MATH_ROUNDDOWN32</A></TH>
+      <TD>引数を32の倍数に切り下げた値を返します。（関数マクロ）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="IntegerOperation">整数演算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="int/MATH_ILog2.html" target="_self">MATH_ILog2</A></TH>
+      <TD>u32値に対し、2を底とした対数の整数部分を返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BitOperation">ビット演算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_CountLeadingZeros.html" target="_self">MATH_CountLeadingZeros</A></TH>
+      <TD>2進数32ビット表現で先頭からの0の個数を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_CountLeadingZeros.html" target="_self">MATH_CLZ</A></TH>
+      <TD>MATH_CountLeadingZeros の別名です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_CountTrailingZeros.html" target="_self">MATH_CountTrailingZeros</A></TH>
+      <TD>2進数32ビット表現で末尾からの0の個数を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_CountTrailingZeros.html" target="_self">MATH_CTZ</A></TH>
+      <TD>MATH_CountTrailingZeros の別名です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_GetLeastSignificantBit.html" target="_self">MATH_GetLeastSignificantBit</A></TH>
+      <TD>2進数32ビット表現で1になっている最下位ビットを求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_GetLeastSignificantBit.html" target="_self">MATH_LSB</A></TH>
+      <TD>MATH_GetLeastSignificantBit の別名です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_GetMostSignificantBit.html" target="_self">MATH_GetMostSignificantBit</A></TH>
+      <TD>2進数32ビット表現で1になっている最上位ビットを求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_GetMostSignificantBit.html" target="_self">MATH_MSB</A></TH>
+      <TD>MATH_GetMostSignificantBit の別名です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="bit/MATH_CountPopulation.html" target="_self">MATH_CountPopulation</A></TH>
+      <TD>2進数32ビット表現で1が立っている個数を求めます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Random">乱数関連</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="rand/MATH_InitRand.html">MATH_InitRand*</A></TD>
+      <TD>線形合同法による乱数の初期化を行ないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="rand/MATH_Rand.html">MATH_Rand*</A></TD>
+      <TD>線形合同法による乱数を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="rand/MATHRandContext.html">MATHRandContext*</A></TD>
+      <TD>線形合同法による乱数のコンテキスト構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Random">ソート関連</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="sort/MATH_QSort.html">MATH_QSort</A></TD>
+      <TD>クイックソートをおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="sort/MATH_QSortStackSize.html">MATH_QSortStackSize</A></TD>
+      <TD>クイックソートの際に必要なバッファサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="sort/MATHCompareFunc.html">MATHCompareFunc</A></TD>
+      <TD>クイックソートの際に設定する比較関数型です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="FFT">高速フーリエ変換関連</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="fft/MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A></TD>
+      <TD>高速フーリエ変換のための sin 値のテーブルを作成します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fft/MATH_FFT.html">MATH_FFT</A></TD>
+      <TD>複素数列の高速フーリエ変換をおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fft/MATH_IFFT.html">MATH_IFFT</A></TD>
+      <TD>複素数列の高速フーリエ変換の逆変換をおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fft/MATH_FFTReal.html">MATH_FFTReal</A></TD>
+      <TD>実数列の高速フーリエ変換をおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fft/MATH_IFFTReal.html">MATH_IFFTReal</A></TD>
+      <TD>実数列の高速フーリエ変換の逆変換をおこないます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Hash">ハッシュ値関連</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="hash/MATH_ChecksumInit.html">MATH_Checksum*Init</A></TD>
+      <TD>各種 Checksum によるハッシュ計算を行うためのコンテキスト構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_ChecksumUpdate.html">MATH_Checksum*Update</A></TD>
+      <TD>各種 Checksum によるハッシュ値を入力データで更新します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_ChecksumGetHash.html">MATH_Checksum*GetHash</A></TD>
+      <TD>各種 Checksum によるハッシュ値をコンテキスト構造体から取り出します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATHChecksumContext.html">MATHChecksum*Context</A></TD>
+      <TD>各種 Checksum によるハッシュ計算を行うためのコンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CalcChecksum.html">MATH_CalcChecksum*</A></TD>
+      <TD>各種 Checksum によるハッシュ値を1関数で計算する関数です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CRCInitTable.html">MATH_CRC*InitTable</A></TD>
+      <TD>各種 CRC によるハッシュ計算を行うためのテーブルを初期化します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CRCInit.html">MATH_CRC*Init</A></TD>
+      <TD>各種 CRC によるハッシュ計算を行うためのコンテキスト構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CRCUpdate.html">MATH_CRC*Update</A></TD>
+      <TD>各種 CRC によるハッシュ値を入力データで更新します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CRCGetHash.html">MATH_CRC*GetHash</A></TD>
+      <TD>各種 CRC によるハッシュ値をコンテキスト構造体から取り出します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATHCRCTable.html">MATHCRC*Table</A></TD>
+      <TD>各種 CRC によるハッシュ計算を行うためのテーブルの構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATHCRCContext.html">MATHCRC*Context</A></TD>
+      <TD>各種 CRC によるハッシュ計算を行うためのコンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="hash/MATH_CalcCRC.html">MATH_CalcCRC*</A></TD>
+      <TD>各種 CRC によるハッシュ値を1関数で計算するユーティリティ関数です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Digest">メッセージダイジェスト関連</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="dgt/MATH_MD5Init.html">MATH_MD5Init</A></TD>
+      <TD>MD5 によるメッセージダイジェスト計算を行うためのコンテキスト構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_MD5Update.html">MATH_MD5Update</A></TD>
+      <TD>MD5 によるメッセージダイジェスト値を入力データで更新します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_MD5GetHash.html">MATH_MD5GetHash</A></TD>
+      <TD>MD5 によるメッセージダイジェスト値をコンテキスト構造体から取り出します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATHMD5Context.html">MATHMD5Context</A></TD>
+      <TD>MD5 によるメッセージダイジェスト計算を行うためのコンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_CalcMD5.html">MATH_CalcMD5</A></TD>
+      <TD>MD5 によるメッセージダイジェスト値を1関数で計算するユーティリティ関数です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_SHA1Init.html">MATH_SHA1Init</A></TD>
+      <TD>SHA1 によるメッセージダイジェスト計算を行うためのコンテキスト構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_SHA1Update.html">MATH_SHA1Update</A></TD>
+      <TD>SHA1 によるメッセージダイジェスト値を入力データで更新します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_SHA1GetHash.html">MATH_SHA1GetHash</A></TD>
+      <TD>SHA1 によるメッセージダイジェスト値をコンテキスト構造体から取り出します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATHSHA1Context.html">MATHSHA1Context</A></TD>
+      <TD>SHA1 によるメッセージダイジェスト計算を行うためのコンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_CalcSHA1.html">MATH_CalcSHA1</A></TD>
+      <TD>SHA1 によるメッセージダイジェスト値を1関数で計算するユーティリティ関数です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_CalcHMACMD5.html">MATH_CalcHMACMD5</A></TD>
+      <TD>HMAC-MD5 による鍵付ハッシュ値を計算します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="dgt/MATH_CalcHMACSHA1.html">MATH_CalcHMACSHA1</A></TD>
+      <TD>HMAC-SHA1 による鍵付ハッシュ値を計算します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

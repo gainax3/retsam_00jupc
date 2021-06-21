@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dCharCanvasInitForBG</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dCharCanvasInitForBG</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+void NNS_G2dCharCanvasInitForBG(
+	NNSG2dCharCanvas* pCC,
+	void* charBase,
+	int areaWidth,
+	int areaHeight,
+	NNSG2dCharaColorMode colorMode
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCC</STRONG></EM></TD>
+      <TD width="87%"> [OUT] CharCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>charBase</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas に割り当てるキャラクタの始点へのポインタ。4バイトアライメントされていなければなりません。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaWidth</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas の水平方向キャラクタ数 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaHeight</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas の垂直方向キャラクタ数 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>colorMode</STRONG></EM></TD>
+      <TD width="87%"> [IN] 対象 BG のカラーモード </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	キャラクタBG面上に CharCanvas を構築するように NNSG2dCharCanvas 構造体を初期化します。
+</P>
+<P>
+	この関数では構築された CharCanvas は <EM><STRONG>charBase</STRONG></EM> から
+	<EM><STRONG>areaWidth</STRONG></EM> * <EM><STRONG>areaHeight</STRONG></EM> 個のキャラクタを
+	CharCanvas に割り当てられたものとして扱います。<br>
+	アフィンBGでは最大256個、
+	テキストBGとアフィン拡張BGでは最大1024個のキャラクタ数制限があることに注意してください。
+</P>
+<P>
+	<img src="BG.png" alt="概念図">
+</P>
+<P>
+	<EM><STRONG>colorMode</STRONG></EM> には以下のいずれかの値を指定します。
+</P>
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="13%">NNS_G2D_CHARA_COLORMODE_16</TD>
+	      <TD width="87%"> 16色カラーのキャラクタを使用します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="13%">NNS_G2D_CHARA_COLORMODE_256</TD>
+	      <TD width="87%"> 256色カラーのキャラクタを使用します。 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+
+<H2>サンプルコード</H2>
+<CODE><pre>
+    const int width = 24;
+    const int height = 8;
+    const int offset = 0x40;
+
+    NNSG2dCharCanvas cc;
+    GXCharFmt16* pCharBase = (GXCharFmt16*)G2_GetBG0CharPtr();
+
+
+    // メイン BG0 のキャラクタで CharCanvas を構築します。
+    NNS_G2dCharCanvasInitForBG(
+        &cc,                            // 
+        pCharBase + offset              // キャラクタベースからoffset 番目のキャラクタを基点に
+        width,                          // width * height 個のキャラクタで CharCanvas を
+        height,                         // 構築します。
+        NNS_G2D_CHARA_COLORMODE_16      // 
+    );
+</pre></CODE>
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/01/11 第5引数の型が NNSG2dColorMode になっていたのを NNSG2dCharaColorMode に修正<br>
+2005/09/29 引数のIN/OUT表示を修正<br>
+2005/05/25 初版</P>
+</BODY>
+
+</HTML>

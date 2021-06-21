@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Programming Guide</TITLE>
+<BASE target="main">
+<LINK rel="stylesheet" href="css/titles.css">
+</HEAD>
+<BODY>
+
+<P class="toc">
+</P>
+
+<H3><A target=_self name="OS">オペレーティングシステム(OS)</A></H3>
+<DL>
+  <DD>[<A href="os/os.html" target="_self">全リスト</A>/<A href="os/list_os.html">機能一覧</A>
+/<A href="os/overview_os.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="os/list_os.html#Init" target="main">初期化</A>
+  <DD><A href="os/list_os.html#Reset" target="main">リセット</A>
+  <DD><A href="os/list_os.html#Cpsr" target="main">システム状態</A>
+  <DD><A href="os/list_os.html#Tcm" target="main">TCM</A>
+  <DD><A href="os/list_os.html#ProtectionUnit" target="main">プロテクションユニット</A>
+  <DD><A href="os/list_os.html#Exception" target="main">例外</A>
+  <DD><A href="os/list_os.html#Irq" target="main">割り込み</A>
+  <DD><A href="os/list_os.html#Timer" target="main">タイマー</A>
+  <DD><A href="os/list_os.html#Alarm" target="main">アラーム</A>
+  <DD><A href="os/list_os.html#VAlarm" target="main">Vカウントアラーム</A>
+  <DD><A href="os/list_os.html#Time" target="main">時間</A>
+  <DD><A href="os/list_os.html#Thread" target="main">スレッド</A>
+  <DD><A href="os/list_os.html#Mutex" target="main">排他制御</A>
+  <DD><A href="os/list_os.html#Context" target="main">コンテキスト</A>
+  <DD><A href="os/list_os.html#Message" target="main">メッセージ</A>
+  <DD><A href="os/list_os.html#Cache" target="main">キャッシュ</A>
+  <DD><A href="os/list_os.html#Arena" target="main">アリーナ</A>
+  <DD><A href="os/list_os.html#Alloc" target="main">メモリ割り当て</A>
+  <DD><A href="os/list_os.html#Owner">本体情報</A>
+</DL>
+<DL>
+  <DT><A target=_self>- デバッグ</A>
+  <DD><A href="os/list_os.html#Debug-Environment" target="main">動作環境</A>
+  <DD><A href="os/list_os.html#Debug-Print" target="main">文字列表示</A>
+  <DD><A href="os/list_os.html#Debug-Assert" target="main">アサート</A>
+  <DD><A href="os/list_os.html#Debug-CallTrace" target="main">関数コールトレース</A>
+  <DD><A href="os/list_os.html#Debug-FunctionCost" target="main">関数コスト計測</A>
+  <DD><A href="os/list_os.html#Debug-Stack" target="main">スタック溢れチェック</A>
+  <DD><A href="os/list_os.html#Debug-Argument" target="main">引数</A>
+</DL>
+
+<H3>グラフィクス (GX/G2/G3/G3X)</H3>
+<DL>
+  <DD>[<A href="gx/gx.html" target="_self">全リスト</A>/<A href="gx/list_gx.html">機能一覧</A>]
+</DL>
+<DL>
+  <DT><A target=_self name="GX">- 2D/3Dグラフィクス一般(GX)</A>
+  <DD>
+  <DL>
+    <DT>&lt; 2Dグラフィックスエンジン共通 &gt;
+    <DD><A href="gx/list_gx.html#Power">パワーコントロール</A>
+    <DD><A href="gx/list_gx.html#Init2D">初期化</A>
+    <DD><A href="gx/list_gx.html#VRAM1">VRAMバンクの割り当て</A>
+    <DD><A href="gx/list_gx.html#VRAM1_1">VRAMバンクの取得</A>
+    <DD><A href="gx/list_gx.html#VRAM2">LCDCへの切り替え</A>
+    <DD><A href="gx/list_gx.html#VRAM3">割り当ての解除</A>
+    <DD><A href="gx/list_gx.html#Interrupt">割り込み・その他</A>
+  </DL>
+  <DL>
+    <DT>&lt; メイン2Dグラフィックスエンジン &gt;
+    <DD><A href="gx/list_gx.html#GraphicsMode">表示モード</A>
+    <DD><A href="gx/list_gx.html#Visibility">表示・非表示</A>
+    <DD><A href="gx/list_gx.html#OffsetMem">オフセット</A>
+    <DD><A href="gx/list_gx.html#MappingMode">OBJマッピングモード</A>
+    <DD><A href="gx/list_gx.html#ResLoadG2Util">各種リソースのロード(2D)</A>
+    <DD><A href="gx/list_gx.html#ResLoadG3Util">各種リソースのロード(3D)</A>
+    <DD><A href="gx/list_gx.html#MiscA">その他</A>
+  </DL>
+  <DL>
+    <DT>&lt; サブ2Dグラフィックスエンジン &gt;
+    <DD><A href="gx/list_gx.html#GraphicsModeB">表示モード</A>
+    <DD><A href="gx/list_gx.html#VisibilityB">表示・非表示</A>
+    <DD><A href="gx/list_gx.html#MappingModeB">OBJマッピングモード</A>
+    <DD><A href="gx/list_gx.html#ResLoadB">各種リソースのロード</A>
+    <DD><A href="gx/list_gx.html#MiscB">その他</A>
+  </DL>
+</DL>
+<DL>
+  <DT><A target=_self name="G2">- 2Dグラフィクス(G2)</A>
+  <DD><BR>
+  [<A href="gx/gx.html#g2" target="_self">全リスト</A>/<A href="gx/list_gx.html#g2">機能一覧</A>]
+</DL>
+<DL>
+  <DT>&lt; 2Dグラフィックスエンジン共通 &gt;
+  <DD><A href="gx/list_gx.html#OAM">OAM</A>
+  <DT>&lt; メイン2Dグラフィックスエンジン &gt;
+  <DD><A href="gx/list_gx.html#BGCNT">BGコントロール</A>
+  <DD><A href="gx/list_gx.html#BGPriority">BGの表示優先度の設定</A>
+  <DD><A href="gx/list_gx.html#BGMosaicApply">BGのモザイク</A>
+  <DD><A href="gx/list_gx.html#GetPointer">ポインタの取得</A>
+  <DD><A href="gx/list_gx.html#Offset2D">BG平面のオフセット</A>
+  <DD><A href="gx/list_gx.html#BGAffine">BG平面のアフィン変換</A>
+  <DD><A href="gx/list_gx.html#Window">ウィンドウの設定</A>
+  <DD><A href="gx/list_gx.html#BGMosaic">モザイク</A>
+  <DD><A href="gx/list_gx.html#Effect">カラー特殊効果</A>
+  <DT>&lt; サブ2Dグラフィックスエンジン &gt;
+  <DD><A href="gx/list_gx.html#BGCNTB">BGコントロール</A>
+  <DD><A href="gx/list_gx.html#BGPriorityB">BGの表示優先度の設定</A>
+  <DD><A href="gx/list_gx.html#BGMosaicApplyB">BGのモザイク</A>
+  <DD><A href="gx/list_gx.html#GetPointerB">ポインタの取得</A>
+  <DD><A href="gx/list_gx.html#Offset2DB">BG平面のオフセット</A>
+  <DD><A href="gx/list_gx.html#BGAffineB">BG平面のアフィン変換</A>
+  <DD><A href="gx/list_gx.html#WindowB">ウィンドウの設定</A>
+  <DD><A href="gx/list_gx.html#BGMosaicB">モザイク</A>
+  <DD><A href="gx/list_gx.html#EffectB">カラー特殊効果</A>
+</DL>
+<DL>
+  <DT><A target=_self name="G3">- 3Dジオメトリ(G3*)</A>
+  <DD><BR>
+  [<A href="gx/gx.html#g3" target="_self">全リスト</A>/<A href="gx/list_gx.html#g3">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="gx/list_gx.html#GeometryCommandCycle">ジオメトリコマンドサイクル一覧</A>
+  <DD><A href="gx/list_gx.html#GeometryAndVertices" target="main">ジオメトリと頂点</A>
+  <DD><A href="gx/list_gx.html#MatrixAndViewport" target="main">行列とビューポート</A>
+  <DD><A href="gx/list_gx.html#Lighting" target="main">ライティング</A>
+  <DD><A href="gx/list_gx.html#Texture" target="main">テクスチャ</A>
+  <DD><A href="gx/list_gx.html#GeometryEngine" target="main">コントロール</A>
+  <DD><A href="gx/list_gx.html#ViewingTest" target="main">ジオメトリ可視判定</A>
+  <DD><A href="gx/list_gx.html#DirectWrite">ダイレクト書き込み</A>
+  <DD><A href="gx/list_gx.html#MatrixG3Util">ユーティリティ</A>
+  <DD><A href="gx/list_gx.html#DL">動的ディスプレイリスト生成</A>
+</DL>
+<DL>
+  <DT><A target=_self name="G3X">- 3Dグラフィクス制御(G3X)</A>
+  <DD><BR>[<A href="gx/gx.html#g3x" target="_self">全リスト</A>/<A href="gx/list_gx.html#g3x">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="gx/list_gx.html#Init3D">初期化</A>
+  <DD><A href="gx/list_gx.html#Funcs3D">各種機能の有効／無効</A>
+  <DD><A href="gx/list_gx.html#Toon">トゥーン／ハイライト</A>
+  <DD><A href="gx/list_gx.html#EdgeColor">エッジカラー</A>
+  <DD><A href="gx/list_gx.html#Fog">フォグ</A>
+  <DD><A href="gx/list_gx.html#Offset3D">オフセットの設定</A>
+  <DD><A href="gx/list_gx.html#ClearColor">クリアカラー</A>
+  <DD><A href="gx/list_gx.html#Test3D">テスト結果・演算結果</A>
+  <DD><A href="gx/list_gx.html#Misc3D">その他</A>
+  <DD><A href="gx/list_gx.html#Type">主要な型とマクロ</A>
+</DL>
+<H3><A target=_self name="MI">メモリインターフェイス(MI)</A></H3>
+<DL>
+  <DD>[<A href="mi/mi.html" target="_self">全リスト</A>/<A href="mi/list_mi.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="mi/list_mi.html#memory" target="main">CPUによるメモリ操作</A>
+  <DD><A href="mi/list_mi.html#dma" target="main">DMAによるメモリ操作</A>
+  <DD><A href="mi/list_mi.html#exMemory" target="main">外部メモリ制御</A>
+  <DD><A href="mi/list_mi.html#wram" target="main">ワークRAM設定</A>
+  <DD><A href="mi/list_mi.html#swap" target="main">メモリスワップ</A>
+  <DD><A href="mi/list_mi.html#uncompress" target="main">圧縮データ展開</A>
+
+  <DD><A href="mi/list_mi.html#byteAccess" target="main">バイトアクセス</A>
+  <DD><A href="mi/list_mi.html#struct" target="main">型・構造体</A>
+</DL>
+<H3><A target=_self name="FX">固定小数(FX)</A></H3>
+<DL>
+  <DD>[<A href="fx/fx.html" target="_self">全リスト</A>/<A href="fx/list_fx.html">機能一覧</A>]
+</DL>
+<DL>
+  <DT>- データ型
+  <DD><A href="fx/list_fx.html#TypeFixed">固定小数型</A>
+  </DL>
+
+<DL>
+  <DT>- 初期化
+  <DD><A href="fx/list_fx.html#Init">初期化</A>
+</DL>
+<DL>
+  <DT>- 計算
+  <DD><A href="fx/list_fx.html#CalcSync">固定小数の計算</A>
+  <DD><A href="fx/list_fx.html#CalcAsync">固定小数の計算（非同期版）</A>
+</DL>
+<DL>
+  <DT>- マクロ
+  <DD><A href="fx/fx16_macros.html">fx16型用のマクロ</A>
+  <DD><A href="fx/fx32_macros.html">fx32型用のマクロ</A>
+  <DD><A href="fx/fx64_macros.html">fx64型用のマクロ</A>
+  <DD><A href="fx/fx64c_macros.html">fx64c型用のマクロ</A>
+</DL>
+<DL>
+  <DT>- 定数
+  <DD><A href="fx/fx16_const.html">fx16型の定数マクロ</A>
+  <DD><A href="fx/fx32_const.html">fx32型の定数マクロ</A>
+  <DD><A href="fx/fx64c_const.html">fx64c型の定数マクロ</A>
+</DL>
+<P><B><A target="_self" name="MTX">- 行列(MTX)</A></B></P>
+<DL>
+  <DD><B>- データ型</B>
+  <DD><A href="fx/list_fx.html#TypeMtxVec">行列型</A>
+  <DD>
+<B>- 行列計算</B>
+  <DD><A href="fx/list_fx.html#Calc2x2Mtx">2x2行列計算</A>
+  <DD><A href="fx/list_fx.html#Calc3x3Mtx">3x3行列計算</A>
+  <DD><A href="fx/list_fx.html#Calc4x3Mtx">4x3行列計算</A>
+  <DD><A href="fx/list_fx.html#Calc4x4Mtx">4x4行列計算</A>
+</DL>
+<P><B><A target="_self" name="VEC">- ベクトル(VEC)</A></B></P>
+<DL>
+  <DD><B>- データ型</B>
+  <DD><A href="fx/list_fx.html#TypeMtxVec">ベクトル型</A>
+  <DD><B>- ベクトル計算</B>
+  <DD><A href="fx/list_fx.html#CalcVec">ベクトル計算</A>
+</DL>
+<P>
+<BR>
+</P>
+<H3><A target=_self name="CP">コプロセッサ(CP)</A></H3>
+<DL>
+  <DD>[<A href="cp/cp.html" target="_self">全リスト</A>/<A href="cp/list_cp.html">機能一覧</A>
+/<A href="cp/overview_cp.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="cp/list_cp.html#divider">除算器</A>
+  <DD><A href="cp/list_cp.html#sqrt">平方根演算器</A>
+  <DD><A href="cp/list_cp.html#context">コンテキスト操作</A>
+</DL>
+<H3><A target=_self name="MATH">数学演算(MATH)</A></H3>
+<DL>
+  <DD>[<A href="math/math.html" target="_self">全リスト</A>/<A href="math/list_math.html">機能一覧</A>
+/<A href="math/overview_math.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="math/list_math.html#Utility">ユーティリティ関数</A>
+  <DD><A href="math/list_math.html#IntegerOperation">整数演算</A>
+  <DD><A href="math/list_math.html#BitOperation">ビット演算</A>
+  <DD><A href="math/list_math.html#Random">乱数関連</A>
+  <DD><A href="math/list_math.html#Random">ソート関連</A>
+  <DD><A href="math/list_math.html#FFT">高速フーリエ変換関連</A>
+  <DD><A href="math/list_math.html#Hash">ハッシュ値関連</A>
+  <DD><A href="math/list_math.html#Digest">メッセージダイジェスト関連</A>
+</DL>
+<H3><A target=_self name="PAD">コントローラ(PAD)</A></H3>
+<DL>
+  <DD>[<A href="pad/pad.html" target="_self">全リスト</A>/<A href="pad/list_pad.html">機能一覧</A>]
+</DL>
+
+<H3>ARM7プロセッサ周辺装置(SPI)</H3>
+<DL>
+  <DD>[<A href="spi/spi.html" target="_self">全リスト</A>/<A href="spi/list_spi.html">機能一覧</A>]
+</DL>
+<DL>
+  <DT><A target=_self name="TP">- タッチパネル(TP)</A>
+</DL>
+<DL>
+  <DD><A href="spi/list_spi.html#TP_Init">初期化</A>
+  <DD><A href="spi/list_spi.html#TP_SamplingNow">リクエストによるサンプリング</A>
+  <DD><A href="spi/list_spi.html#TP_SamplingAuto">オートサンプリング</A>
+  <DD><A href="spi/list_spi.html#TP_Calibration">キャリブレーション</A>
+  <DD><A href="spi/list_spi.html#TP_Check">成否判定</A>
+  <DD><A href="spi/list_spi.html#TP_Struct">型・構造体</A>
+</DL>
+<DL>
+  <DT><A target=_self name="NVRAM">- 不揮発メモリ(NVRAM)</A>
+</DL>
+
+<DL>
+</DL>
+<DL>
+  <DT><A target=_self name="MIC">- マイク(MIC)</A>
+</DL>
+<DL>
+  <DD><A href="spi/list_spi.html#MIC_Init">初期化</A>
+  <DD><A href="spi/list_spi.html#MIC_Sampling">サンプリング</A>
+  <DD><A href="spi/list_spi.html#MIC_Auto">自動サンプリング</A>
+  <DD><A href="spi/list_spi.html#MIC_Type">型・構造体</A>
+</DL>
+
+<DL>
+  <DT><A target=_self name="PM">- パワー制御(PM)</A>
+</DL>
+<DL>
+  <DD><A href="spi/list_spi.html#PM_Init">初期化</A>
+  <DD><A href="spi/list_spi.html#PM_Utility">PMIC操作</A>
+  <DD><A href="spi/list_spi.html#PM_GetPMIC">PMIC状態</A>
+  <DD><A href="spi/list_spi.html#PM_Sleep">スリープ</A>
+</DL>
+
+
+
+<H3><A target=_self name="PRC">図形認識(PRC)</A></H3>
+<DL>
+  <DD>[<A href="prc/prc.html" target="_self">全リスト</A>/<A href="prc/list_prc.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="prc/list_prc.html#Init" target="main">初期化</A>
+  <DD><A href="prc/list_prc.html#Stroke" target="main">入力点処理</A>
+  <DD><A href="prc/list_prc.html#PrototypeList" target="main">図形見本DB操作</A>
+  <DD><A href="prc/list_prc.html#Input" target="main">入力パターン操作</A>
+  <DD><A href="prc/list_prc.html#Recognize" target="main">図形認識</A>
+  <DD><A href="prc/list_prc.html#type" target="main">型・構造体</A>
+</DL>
+
+<H3><A target=_self name="RTC">リアルタイムクロック(RTC)</A></H3>
+<DL>
+  <DD>[<A href="rtc/rtc.html" target="_self">全リスト</A>/<A href="rtc/list_rtc.html" target="main">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="rtc/list_rtc.html#Init" target="main">初期化</A>
+  <DD><A href="rtc/list_rtc.html#Time" target="main">日付・時刻</A>
+  <DD><A href="rtc/list_rtc.html#Alarm" target="main">アラーム</A>
+  <DD><A href="rtc/list_rtc.html#Convert" target="main">変換</A>
+  <DD><A href="rtc/list_rtc.html#Type" target="main">型・構造体</A>
+</DL>
+
+<H3><A target=_self name="SND">サウンド(SND)</A></H3>
+<DL>
+  <DD>[<A href="snd/snd.html" target="_self">全リスト</A>/<A href="snd/list_snd.html">機能一覧</A>]
+</DL>
+<DL>
+
+  <DD><A href="snd/list_snd.html#Init" target="main">初期化</A>
+  <DD><A href="snd/list_snd.html#Command" target="main">ARM7コマンド処理</A>
+  <DD><A href="snd/list_snd.html#Seq_Command" target="main">シーケンスコマンド</A>
+  <DD><A href="snd/list_snd.html#Channel_Command" target="main">チャンネルコマンド</A>
+  <DD><A href="snd/list_snd.html#Capture_Command" target="main">キャプチャコマンド</A>
+  <DD><A href="snd/list_snd.html#Alarm_Command" target="main">アラームコマンド</A>
+  <DD><A href="snd/list_snd.html#Timer_Command" target="main">タイマーコマンド</A>
+  <DD><A href="snd/list_snd.html#Global_Command" target="main">グローバル設定コマンド</A>
+  <DD><A href="snd/list_snd.html#Invalidate_Command" target="main">データ無効化コマンド</A>
+  <DD><A href="snd/list_snd.html#DriverInfo_Command" target="main">ドライバ情報コマンド</A>
+  <DD><A href="snd/list_snd.html#Bank" target="main">バンク</A>
+  <DD><A href="snd/list_snd.html#GetInfo" target="main">情報取得</A>
+  <DD><A href="snd/list_snd.html#Utility" target="main">ユーティリティ</A>
+</DL>
+
+<H3><A target=_self name="FS">ROM ファイルシステム(FS)</A></H3>
+<DL>
+  <DD>[<A href="fs/fs.html" target="_self">全リスト</A>/<A href="fs/list_fs.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="fs/list_fs.html#Init" target="main">初期化</A>
+  <DD><A href="fs/list_fs.html#File" target="main">ファイルアクセス</A>
+  <DD><A href="fs/list_fs.html#Directory" target="main">ディレクトリアクセス</A>
+  <DD><A href="fs/list_fs.html#Overlay" target="main">オーバーレイ</A>
+  <DD><A href="fs/list_fs.html#Archive" target="main">アーカイブ</A>
+  <DD><A href="fs/list_fs.html#const" target="main">定数</A>
+  <DD><A href="fs/list_fs.html#type" target="main">型・構造体</A>
+</DL>
+
+<H3><A target=_self name="SVC">スーパバイザコール(SVC)</A></H3>
+<DL>
+  <DD>[<A href="svc/svc.html" target="_self">全リスト</A>/<A href="svc/list_svc.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="svc/list_svc.html#IntrWait" target="main">割り込みウェイト</A>
+  <DD><A href="svc/list_svc.html#Wait" target="main">ウェイト</A>
+  <DD><A href="svc/list_svc.html#Memory" target="main">メモリ操作</A>
+  <DD><A href="svc/list_svc.html#Uncompress" target="main">圧縮データ展開</A>
+  <DD><A href="svc/list_svc.html#Calc" target="main">算術演算</A>
+  <DD><A href="svc/list_svc.html#Other" target="main">その他</A>
+</DL>
+<H3><A target=_self name="CARD">CARD モジュール(CARD)</A></H3>
+<DL>
+  <DD>[<A href="card/card.html" target="_self">全リスト</A>/<A href="card/list_card.html">機能一覧</A>/<A href="card/overview_card.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="card/list_card.html#Init" target="main">初期化</A>
+  <DD><A href="card/list_card.html#Common" target="main">共通</A>
+  <DD><A href="card/list_card.html#Backup" target="main">バックアップ全般</A>
+  <DD><A href="card/list_card.html#Eeprom" target="main">EEPROM デバイス</A>
+  <DD><A href="card/list_card.html#FLASH" target="main">FLASH デバイス</A>
+  <DD><A href="card/list_card.html#FRAM" target="main">FRAM デバイス</A>
+  <DD><A href="card/list_card.html#Rom" target="main">ROM アクセス</A>
+  <DD><A href="card/list_card.html#pulledOut" target="main">抜き検出</A>
+  <DD><A href="card/list_card.html#const" target="main">定数</A>
+  <DD><A href="card/list_card.html#struct" target="main">構造体</A>
+</DL>
+
+<H3><A target=_self name="CTRDG">カートリッジモジュール(CTRDG)</A></H3>
+<DL>
+  <DD>[<A href="ctrdg/ctrdg.html" target="_self">全リスト</A>/<A href="ctrdg/list_ctrdg.html">機能一覧</A>]
+
+</DL>
+<DL>
+  <DD><A href="ctrdg/list_ctrdg.html#Init" target="main">初期化</A>
+  <DD><A href="ctrdg/list_ctrdg.html#PulledOut" target="main">抜き検出</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Cart" target="main">カートリッジ種別</A>
+  <DD><A href="ctrdg/list_ctrdg.html#AgbInfo" target="main">AGBカートリッジ情報</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Copy" target="main">データ転送</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Backup" target="main">AGB バックアップ全般</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Flash" target="main">FLASH デバイス</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Sram" target="main">SRAM デバイス</A>
+  <DD><A href="ctrdg/list_ctrdg.html#Phi" target="main">PHI 出力端子</A>
+</DL>
+
+<H3><A target=_self name="VIB">振動カートリッジ(VIB)</A></H3>
+<DL>
+  <DD>[<A href="vib/vib.html" target="_self">全リスト</A>/<A href="vib/list_vib.html">機能一覧</A>/<A href="vib/about_vib.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="vib/list_vib.html#function" target="main">関数</A>
+  <DD><A href="vib/list_vib.html#struct" target="main">構造体</A>
+  <DD><A href="vib/list_vib.html#macro" target="main">定数</A>
+</DL>
+
+<H3><A target=_self name="WVR">無線ドライバ駆動制御ライブラリ(WVR)</A></H3>
+<DL>
+
+  <DD>[<A href="wvr/wvr.html" target="_self">全リスト</A>/<A href="wvr/list_wvr.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="wvr/list_wvr.html#Drive" target="main">ドライバ駆動制御</A>
+  <DD><A href="wvr/list_wvr.html#const" target="main">定数・型</A>
+</DL>
+
+<H3><A target=_self name="WM">ワイヤレスマネージャ(WM)</A></H3>
+<DL>
+
+  <DD>[<A href="wm/wm.html" target="_self">全リスト</A>/<A href="wm/list_wm.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="wm/list_wm.html#Init" target="main">初期化</A>
+  <DD><A href="wm/list_wm.html#Config" target="main">初期設定</A>
+  <DD><A href="wm/list_wm.html#MP" target="main">MP通信</A>
+  <DD><A href="wm/list_wm.html#DCF" target="main">インフラストラクチャモード通信</A>
+  <DD><A href="wm/list_wm.html#Other" target="main">その他</A>
+  <DD><A href="wm/list_wm.html#const" target="main">定数</A>
+  <DD><A href="wm/list_wm.html#Type" target="main">型・構造体</A>
+  <DD><A href="wm/list_wm.html#Misc" target="main">図表・情報</A>
+</DL>
+
+<H3><A target=_self name="WBT">WMブロック転送ライブラリ(WBT)</A></H3>
+<DL>
+
+  <DD>[<A href="wbt/wbt.html" target="_self">全リスト</A>/<A href="wbt/list_wbt.html">機能一覧</A>/<A href="wbt/overview_wbt.html">概要</A>]
+</DL>
+<DL>
+  <DD><A href="wbt/list_wbt.html#Init" target="main">初期化</A>
+  <DD><A href="wbt/list_wbt.html#Common" target="main">共通</A>
+  <DD><A href="wbt/list_wbt.html#Parent" target="main">親機設定</A>
+  <DD><A href="wbt/list_wbt.html#Child" target="main">子機設定</A>
+  <DD><A href="wbt/list_wbt.html#Command" target="main">コマンド</A>
+  <DD><A href="wbt/list_wbt.html#const" target="main">定数・マクロ</A>
+  <DD><A href="wbt/list_wbt.html#struct" target="main">構造体</A>
+</DL>
+
+<h3><a target="_self" name="WFS" id="WFS">ワイヤレスファイルシステムライブラリ(WFS)</a></h3>
+<dl>
+  <dd>[<a href="wfs/wfs.html" target="_self">全リスト</a>/<a href="wfs/list_wfs.html">機能一覧</a>/<a href="wfs/overview_wfs.html">概要</a>]</dd>
+</dl>
+<dl>
+  <dd><a href="wfs/list_wfs.html#server" target="main">親機</a></dd>
+  <dd><a href="wfs/list_wfs.html#client" target="main">子機</a></dd>
+  <dd><a href="wfs/list_wfs.html#struct" target="main">型・構造体</a></dd>
+</dl>
+
+<H3><A target=_self name="MB">マルチブートライブラリ(MB)</A></H3>
+<DL>
+
+  <DD>[<A href="mb/mb.html" target="_self">全リスト</A>/<A href="mb/list_mb.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="mb/list_mb.html#Init" target="main">初期化</A>
+  <DD><A href="mb/list_mb.html#Child" target="main">子機(マルチブート後)</A>
+  <DD><A href="mb/list_mb.html#Parent" target="main">親機</A>
+  <DD><A href="mb/list_mb.html#FakeChild" target="main">擬似マルチブート子機</A>
+  <DD><A href="mb/list_mb.html#const" target="main">定数・構造体</A>
+</DL>
+
+<H3><A target=_self name="CHT">ピクトチャットライブラリ(CHT)</A></H3>
+<DL>
+  <DD>[<A href="cht/cht.html" target="_self">全リスト</A>/<A href="cht/list_cht.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="cht/list_cht.html#catch" target="main">ピクトチャットサーチ</A>
+</DL>
+
+<H3><A target=_self name="EXT">その他のライブラリ（EXT）</A></H3>
+<DL>
+  <DD>[<A href="ext/ext.html" target="_self">全リスト</A>/<A href="ext/list_ext2.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="ext/list_ext2.html" target="main">自動テスト</A>
+</DL>
+
+<H3><A target=_self name="ENV">環境リソース管理ライブラリ（ENV）</A></H3>
+<DL>
+  <DD>[<A href="env/env.html" target="_self">全リスト</A>/<A href="env/list_env.html">機能一覧</A>/<A href="env/about_env.html">概要</A> ]
+</DL>
+<DL>
+  <DD><A href="env/list_env.html#Init" target="main">初期化</A>
+  <DD><A href="env/list_env.html#ResSet" target="main">リソースセット設定</A>
+  <DD><A href="env/list_env.html#Res" target="main">リソース取得</A>
+  <DD><A href="env/list_env.html#Class" target="main">クラス設定</A>
+  <DD><A href="env/list_env.html#Iter" target="main">条件検索</A>
+</DL>
+
+<H3><A target=_self name="STD">スタンダードライブラリ（STD）</A></H3>
+<DL>
+  <DD>[<A href="std/std.html" target="_self">全リスト</A>/<A href="std/list_std.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="std/list_std.html#String" target="main">文字列関数</A>
+  <DD><A href="std/list_std.html#Unicode" target="main">文字コード変換関数</A>
+  <DD><A href="std/list_std.html#Type" target="main">型・構造体</A>
+</DL>
+
+<H3><A target=_self name="HOSTIO">ホストI/Oライブラリ</A></H3>
+<DL>
+  <DD>NITRO-SYSTEM パッケージの<BR>MCS ライブラリでサポート
+</DL>
+<H3><A target=_self name="SAMPLE">サンプルデモ</A></H3>
+<DL>
+  <DD><A href="demos/os/osdemos.html">OSサンプルデモ</A>
+  <DD><A href="demos/gx/gxdemos.html">グラフィックスサンプルデモ</A>
+  <DD><A href="demos/mi/midemos.html">MIサンプルデモ</A>
+  <DD><A href="demos/fx/fxdemos.html">FXサンプルデモ</A>
+  <DD><A href="demos/cp/cpdemos.html">CPサンプルデモ</A>
+  <DD><A href="demos/math/mathdemos.html">MATHサンプルデモ</A>
+  <DD><A href="demos/pad/paddemos.html">PADサンプルデモ</A>
+  <DD><A href="demos/spi/spidemos.html">SPIサンプルデモ</A>
+  <DD><A href="demos/prc/prcdemos.html">PRCサンプルデモ</A>
+  <DD><A href="demos/rtc/rtcdemos.html">RTCサンプルデモ</A>
+  <DD><A href="demos/snd/snddemos.html">SNDサンプルデモ</A>
+  <DD><A href="demos/fs/fsdemos.html">FSサンプルデモ</A>
+  <DD><A href="demos/card/carddemos.html">CARDサンプルデモ</A>
+  <DD><A href="demos/ctrdg/ctrdgdemos.html">CTRDGサンプルデモ</A>
+  <DD><A href="demos/vib/vibdemos.html">VIBサンプルデモ</A>
+  <DD><A href="demos/wvr/wvrdemos.html">WVRサンプルデモ</A>
+  <DD><A href="demos/wm/wmdemos.html">WMサンプルデモ</A>
+  <DD><A href="demos/wbt/wbtdemos.html">WBTサンプルデモ</A>
+  <DD><A href="demos/wfs/wfsdemos.html">WFSサンプルデモ</A>
+  <DD><A href="demos/mb/mbdemos.html">MBサンプルデモ</A>
+  <DD><A href="demos/cht/chtdemos.html">CHTサンプルデモ</A>
+  <DD><A href="demos/env/envdemos.html">ENVサンプルデモ</A>
+  <DD><A href="demos/std/stddemos.html">STDサンプルデモ</A>
+  <DD><A href="demos/tips/tipsdemos.html">その他のサンプルデモ</A>
+</DL>
+<H3><A target=_self name="TOOL">ツール/コマンド</A></H3>
+<DL>
+  <DD>[<A href="tools/tools.html" target="_self">全リスト</A>/<A href="tools/list_tools.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="tools/list_tools.html#Rom"  target="main">ROM イメージ関連</A>
+  <DD><A href="tools/list_tools.html#Conv" target="main">データ変換関連</A>
+  <DD><A href="tools/list_tools.html#Demo" target="main">デモ用ツール関連</A>
+</DL>
+
+<H3><A target=_self name="ROMFILES">ビルド済みプログラム</A></H3>
+<DL>
+  <DD>[<A href="romfiles/romfiles.html" target="_self">全リスト</A>/<A href="romfiles/list_romfiles.html">機能一覧</A>]
+</DL>
+<DL>
+  <DD><A href="romfiles/list_romfiles.html#Wireless"  target="main">ワイヤレス関連</A>
+</DL>
+
+<H3><A target=_self name="HAEADERFILES">関連情報</A></H3>
+<DL>
+  <DD><A href="information/list_information.html#HeaderFiles" target="main">ヘッダファイル解説</A>
+  <DD><A href="information/list_information.html#CompileTarget" target="main">コンパイルターゲット解説</A>
+</DL>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

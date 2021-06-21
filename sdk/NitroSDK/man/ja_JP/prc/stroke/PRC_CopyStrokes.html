@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRC_CopyStrokes</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRC_CopyStrokes</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+BOOL PRC_CopyStrokes(
+    const <A href="PRCStrokes.html">PRCStrokes</A>*   srcStrokes,
+    <A href="PRCStrokes.html">PRCStrokes</A>*         dstStrokes );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">srcStrokes</FONT></STRONG></EM></TD>
+      <TD width="87%">コピー元の <CODE><A href="PRCStrokes.html">PRCStrokes</A></CODE> 構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">dstStrokes</FONT></STRONG></EM></TD>
+      <TD width="87%">コピー先の <CODE><A href="PRCStrokes.html">PRCStrokes</A></CODE> 構造体へのポインタ</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>コピーに成功したら TRUE。</p>
+
+<H2>説明</H2>
+<P><CODE><A href="PRCStrokes.html">PRCStrokes</A></CODE> 構造体をディープコピーします。コピー先の容量がコピー元のサイズより小さい場合はコピーに失敗します。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_InitStrokes.html">PRC_InitStrokes</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/04 返り値の型を修正<BR>
+2004/07/19 仕様変更<BR>
+2004/06/25 初版
+</P>
+</body>
+</html>

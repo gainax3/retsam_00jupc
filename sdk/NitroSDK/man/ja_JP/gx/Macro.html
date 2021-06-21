@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Macro</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">マクロ</h1>
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left">GX_FX16PAIR(a, b)</TD>
+      <TD width="573">fx16型の固定小数２つをu32型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GX_RGB(r, g, b)</TD>
+      <TD width="573">それぞれ5bitのrgb値をGXRgb型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GX_RGBA(r, g, b, a)</TD>
+      <TD width="573">それぞれ5bitのrgb値と1ビットのα値をGXRgba型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GX_VECFX10(x, y, z)</TD>
+      <TD width="573">法線や光線のベクトル情報をVecFx10型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GX_VECVTX10(x, y, z)</TD>
+      <TD width="573">s3.6の3次元ベクトルをVecVtx10型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GX_ST(s, t)</TD>
+      <TD width="573">テクスチャ座標をパックします。</TD>
+    </TR>
+    <TR>
+      <TD>GX_COMP4x4_PLTT_IDX(image)</TD>
+      <TD>COMP4x4テクスチャのイメージアドレスからパレットインデックスのアドレスを計算します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロの定義</H2>
+<PRE><CODE>#define GX_FX16PAIR(a, b)              ((u32)((u32)(u16)(a) | ((u32)(u16)(b) &lt;&lt; 16)))
+
+#define GX_RGB(r, g, b)           ((GXRgb)(((r) &lt;&lt; GX_RGB_R_SHIFT) | \
+                                                 ((g) &lt;&lt; GX_RGB_G_SHIFT) | \
+                                                 ((b) &lt;&lt; GX_RGB_B_SHIFT)))
+
+#define GX_RGBA(r, g, b, a)       ((GXRgba)(((r) &lt;&lt; GX_RGBA_R_SHIFT) | \
+                                                  ((g) &lt;&lt; GX_RGBA_G_SHIFT) | \
+                                                  ((b) &lt;&lt; GX_RGBA_B_SHIFT) | \
+                                                  ((a) &lt;&lt; GX_RGBA_A_SHIFT)))
+
+#define GX_VECFX10(x, y, z) \
+    ((VecFx10)(((((x) &gt;&gt; (FX32_DEC_SIZE - GX_FX10_DEC_SIZE)) &amp; GX_FX10_MASK) &lt;&lt; GX_VEC_FX10_X_SHIFT) | \
+               ((((y) &gt;&gt; (FX32_DEC_SIZE - GX_FX10_DEC_SIZE)) &amp; GX_FX10_MASK) &lt;&lt; GX_VEC_FX10_Y_SHIFT) | \
+               ((((z) &gt;&gt; (FX32_DEC_SIZE - GX_FX10_DEC_SIZE)) &amp; GX_FX10_MASK) &lt;&lt; GX_VEC_FX10_Z_SHIFT)))
+
+#define GX_VECVTX10(x, y, z) \
+    ((VecVtx10) (((((x) &gt;&gt; (FX32_DEC_SIZE - GX_VTX10_DEC_SIZE)) &amp; GX_VTX10_MASK) &lt;&lt; GX_VEC_VTX10_X_SHIFT) | \
+                 ((((y) &gt;&gt; (FX32_DEC_SIZE - GX_VTX10_DEC_SIZE)) &amp; GX_VTX10_MASK) &lt;&lt; GX_VEC_VTX10_Y_SHIFT) | \
+                 ((((z) &gt;&gt; (FX32_DEC_SIZE - GX_VTX10_DEC_SIZE)) &amp; GX_VTX10_MASK) &lt;&lt; GX_VEC_VTX10_Z_SHIFT)))
+
+#define GX_FX16ST(x)                   ((s16)((x) &gt;&gt; 8))
+// s: fx32/fx16, t: fx32/fx16
+#define GX_ST(s, t)                    ((GXSt)((u16)GX_FX16ST(s) | ((u16)GX_FX16ST(t) &lt;&lt; 16)))
+
+#define GX_COMP4x4_PLTT_IDX(image) \
+    ((u32)(0x20000 + (((image) &amp; 0x1ffff) &gt;&gt; 1) + (((image) &amp; 0x40000) &gt;&gt; 2)))</CODE></PRE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/23</P>
+</body>
+</html>

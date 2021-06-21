@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_KillThread*</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_KillThread*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_KillThread( OSThread* thread, void* arg );</CODE></PRE>
+  <PRE><CODE>void OS_KillThreadWithPriority( OSThread* thread, void* arg, u32 prio );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><EM><B>thread</B></EM></TD>
+      <TD>終了させるスレッドへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>arg</B></EM></TD>
+      <TD>スレッドデストラクタに渡される値</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>prio</B></EM></TD>
+      <TD>スレッド優先度</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>指定のスレッドを終了し、次に実行可能なスレッドに切り替えます。</P>
+<P><CODE>OS_KillThread*()</CODE> が呼ばれると、<CODE><A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor()</A></CODE> でスレッドデストラクタを予め設定していた場合は、そのデストラクタ関数が呼び出されます。デストラクタ関数は、</P>
+<BLOCKQUOTE><CODE>typedef void (*OSThreadDestructor)( void* );</CODE></BLOCKQUOTE>
+<P>で定義される <CODE>OSThreadDestructor</CODE> 型の関数です。</P>
+<P><EM><B>thread</B></EM> は終了するスレッドです。<EM><B>arg</B></EM> はデストラクタ関数の第一引数としてデストラクタ関数に渡されます。</P>
+<P><EM><B>thread</B></EM> にカレントスレッドが指定されると <CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> を呼ぶことと同様になります。</P>
+<P>スレッド thread が mutex をロックしている場合は、それらロックしている全ての mutex をアンロックします。</P>
+<P><CODE>OS_KillThreadWithPriority()</CODE> では、終了するスレッドの優先度を <EM><B>prio</B></EM> に変更します。</P>
+<P><CODE>OS_KillThread*()</CODE> と<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> との違いは、<CODE>OS_KillThread*()</CODE> ではデストラクタ関数が呼び出されますが、<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> ではデストラクタ関数が呼び出されない、という点です。</P>
+<P><CODE>OS_KillThread*()</CODE> は指定のスレッド <EM><B>thread</B></EM> を予告なく突然終了させるという少々危険な関数です。スレッドの動作構造を理解して使用するようにしてください。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_ExitThread.html">OS_ExitThread</A>, <A href="OS_DestroyThread.html">OS_DestroyThread</A>, <A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/07/07 初版</P>
+</BODY>
+</HTML>

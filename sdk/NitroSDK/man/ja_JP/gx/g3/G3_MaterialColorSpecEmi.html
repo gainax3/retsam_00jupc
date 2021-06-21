@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_MaterialColorSpecEmi</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_MaterialColorSpecEmi</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_MaterialColorSpecEmi(GXRgb specular, GXRgb emission, BOOL IsShininess);
+
+// 以下ディスプレイリスト（コマンド列）作成用API
+void G3B_MaterialColorSpecEmi(
+    <A href="../gx/GXDLInfo.html">GXDLInfo</A>* info,
+    GXRgb specular,
+    GXRgb emission,
+    BOOL IsShininess);
+
+void G3C_MaterialColorSpecEmi(
+    <A href="../gx/GXDLInfo.html">GXDLInfo</A>* info,
+    GXRgb specular,
+    GXRgb emission,
+    BOOL IsShininess);
+
+void G3BS_MaterialColorSpecEmi(
+    <A href="../gx/GXDLInfo.html">GXDLInfo</A>* info,
+    GXRgb specular,
+    GXRgb emission,
+    BOOL IsShininess);
+
+void G3CS_MaterialColorSpecEmi(
+    <A href="../gx/GXDLInfo.html">GXDLInfo</A>* info,
+    GXRgb specular,
+    GXRgb emission,
+    BOOL IsShininess);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">specular</font></strong></em></td>
+    <td width="87%">鏡面反射色</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">emission</font></strong></em></td>
+    <td width="87%">放射光色</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">IsShininess</font></strong></em></td>
+    <td width="87%">鏡面反射輝度テーブルのディセーブル/イネーブルフラグ</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>材質の鏡面反射色(<B><I>specular</I></B>)と放射光色(<B><I>emission</I></B>)を設定します。また、鏡面反射輝度テーブルフラグは、鏡面反射テーブルを使用しない(FALSE)か、鏡面反射テーブルを使用する(FALSE以外)かを選択することができます。鏡面反射テーブルについては、<A href="G3_Shininess.html" target="_self">G3*_Shininess</A>を参照してください。<BR>
+<BR>
+<B>(注意)</B> 鏡面反射テーブルを用いて変換を行わない場合、スペキュラ（法線ベクトルＮと逆方向半角ベクトルＨの内積と0の大きい方の値）がそのまま使われることになります。通常、鏡面反射テーブルをスペキュラのn乗に設定することにより意図した鏡面反射効果を得ることになります。</P>
+<h2>参照</h2>
+<P><A href="G3_MaterialColorDiffAmb.html">G3_MaterialColorDiffAmb</A>, <A href="G3_Shininess.html" target="_self">G3*_Shininess</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>鏡面反射輝度テーブルフラグについての説明追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

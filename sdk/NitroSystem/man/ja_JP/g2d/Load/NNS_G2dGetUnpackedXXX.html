@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>NNS_G2dGetUnpacked*</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">NNS_G2dGetUnpacked*</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nnsys/g2d/g2d_load.h&gt;</CODE>
+</DL>
+<DL>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedCellBank( void* pNcerFile, NNSG2dCellDataBank** ppCellBank );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedAnimBank( void* pNanrFile, NNSG2dAnimBankData** ppAnimBank );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedMCAnimBank( void* pNanrFile, NNSG2dAnimBankData** ppAnimBank );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedPaletteData( void* pNclrFile, NNSG2dPaletteData** ppPltData );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedPaletteCompressInfo( void* pNclrFile, NNSG2dPaletteCompressInfo** ppPltCmpInfo );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedEntityBank( void* pNenrFile, NNSG2dEntityDataBank** ppEntityBank );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedMultiCellBank( void* pNmcrFile, NNSG2dMultiCellDataBank** ppMCBank );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedBGCharacterData( void* pNcgrFile, NNSG2dCharacterData** ppCharData );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedScreenData( void* pNscrFile, NNSG2dScreenData** ppScrData );</CODE>
+  <DD><CODE>BOOL NNS_G2dGetUnpackedCharacterPosInfo( void* pNcgrFile, NNSG2dCharacterPosInfo** ppCharPosInfo );</CODE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNcerFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NCER ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNanrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NANR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNcgrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NCGR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNclrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NCLR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNenrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NENR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNmcrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NMCR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pNscrFile</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] NSCR ファイルロード結果</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppCellBank</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] セルデータバンク</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppAnimBank</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] アニメーション定義データバンク</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppCharData</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] キャラクタデータ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppPltData</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] パレットデータ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppPltCmpInfo</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] パレット圧縮データ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppEntityBank</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] エンティティ定義データバンク</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppMCBank</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] マルチセルデータバンク</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppScrData</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] スクリーンデータ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">ppCharPosInfo</FONT></STRONG></EM></TD>
+      <TD width="87%">[OUT] キャラクタ領域位置データ</TD>
+    </TR>
+    
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>データ取得の成否<BR>
+</P>
+<H2>説明</H2>
+<P>バイナリファイルから、各種データを展開した状態で取得します。<BR>
+取得できなかった場合はFALSEを返します。<BR>
+各種バイナリデータを使用する前に必ず実行してください。<BR>
+また、データに対して、一度のみ実行するようにしてください。<BR>
+内部でメモリオフセット値のポインタ値への復元を行っています。<BR>
+<H2>注意</H2>
+<H4>NNS_G2dGetUnpackedCharacterData()と<BR>NNS_G2dGetUnpackedBGCharacterData()の使い分けについて</H4>
+キャラクタデータの展開を処理する関数として、NNS_G2dGetUnpackedCharacterData()と NNS_G2dGetUnpackedBGCharacterData()が存在します。<BR>
+NNS_G2dGetUnpackedCharacterData()はOBJ用キャラクタデータを処理する関数で、NNS_G2dGetUnpackedBGCharacterData()はBG用キャラクタデータを処理する関数です。<BR>
+処理内容に関しては、ほとんど同一ですが、不正なデータをチェックするアサート文の条件が異なります。そのため、誤って使用すると、デバックビルド時に正しく動作しないことになります。
+ご注意ください。<BR>
+
+</P>
+<H2>参照</H2>
+<P>なし<BR>
+</P>
+<H2>履歴</H2>
+<P>
+2005/09/01 NNS_G2dGetUnpackedCharacterPosInfo の追加, 注意書きの追加<BR>
+2004/10/04 NNS_G2dGetUnpackedPaletteCompressInfo の追加<BR>
+2004/09/02 NNS_G2dGetUnpackedBGCharacterData, NNS_G2dGetUnpackedScreenData の追加<BR>
+2004/05/28 初版
+</P>
+</BODY>
+</HTML>

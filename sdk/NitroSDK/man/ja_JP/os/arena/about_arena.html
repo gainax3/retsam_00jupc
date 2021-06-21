@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>アリーナ (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">アリーナ (overview)</H1>
+<H2>説明</H2>
+<P>NitroSDK では、メインメモリ(ARM9用、ARM7用)、メインメモリ拡張部分、ITCM、DTCM、共有メモリユーザ部分、共用ワークRAM(ARM9用、ARM7用)、ARM7専用ワークRAM
+の9つのアリーナ領域を設定することが出来ます。それぞれの領域にはIDが振られており、OSArenaId
+列挙型で以下のように定義されています。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>OS_ARENA_MAIN</TD>
+      <TD>メインメモリ上のアリーナ(ARM9専用)</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_MAIN_SUBPRIV</TD>
+      <TD>メインメモリ上のアリーナ(ARM7専用)</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_MAINEX</TD>
+      <TD>メインメモリ上の拡張アリーナ</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_ITCM</TD>
+      <TD>ICTM上のアリーナ</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_DTCM</TD>
+      <TD>DTCM上のアリーナ</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_SHARED</TD>
+      <TD>共有メモリ上のユーザ領域のアリーナ</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_MAIN</TD>
+      <TD>共有ワークRAM上のアリーナ(ARM9用)</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_SUB</TD>
+      <TD>共有ワークRAM上のアリーナ(ARM7用)</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_SUBPRIV</TD>
+      <TD>ARM7専用ワークRAM上のアリーナ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>　</P>
+<P>これらは <CODE><A href="OS_InitArena.html">OS_InitArena()</A></CODE> で初期化されます。ARM7専用のメインメモリ上のアリーナと、ARM7用共有ワークRAM上アリーナと、ARM7専用ワークRAMアリーナを
+ARM7 が、残りを ARM9 が設定します。以下、開発時の標準的なメモリマップで説明します。</P>
+<BLOCKQUOTE>　　　　<IMG src="image_arenaMap.gif" border="0">　　　</BLOCKQUOTE>
+<P><BR>
+<BR>
+</P>
+<P><B>ITCM上のアリーナ</B></P>
+<BLOCKQUOTE>ITCM部分について説明します。</BLOCKQUOTE>
+<BLOCKQUOTE>ITCMの下位部分にSDKのプログラムコードが格納されています。次にユーザが設定していればオーバレイモジュールが配置されます。オーバレイで使用する最大のアドレスを考慮し、それ以降を
+ITCM アリーナとします。オーバレイが無い場合は、SDK_AUTOLOAD_ITCM_BSS_END
+からが ITCM アリーナとなります。</BLOCKQUOTE>
+<BLOCKQUOTE>この ITCM アリーナの始まるアドレスは、SDK_SECTION_ARENA_ITCM_START として
+lcf ファイルで自動的に決定されます。</BLOCKQUOTE>
+<BLOCKQUOTE>ITCMに配置されるコードは、割り込みハンドラとDMA関数の一部です。この部分はautoload 機能によって<CODE>NitroMain()</CODE> が始まる前にITCMに転送されます。転送される部分はユーザが追加で指定することも可能です。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_arenaITCM.gif" border="0"><BR>
+<BR>
+</BLOCKQUOTE>
+<P><B>メインメモリ、拡張メインメモリ、DTCM、共有領域上のアリーナ</B></P>
+<BLOCKQUOTE>メインメモリ、拡張メインメモリ、DTCM、共有領域のアリーナについて説明します。</BLOCKQUOTE>
+<BLOCKQUOTE><CODE><A href="OS_EnableMainExArena.html">OS_EnalbeMainExArena関数</A></CODE>によってメインメモリのサイズ設定が8MByteになっている場合には、メインメモリ上の拡張アリーナを使用することができますが、
+<CODE><A href="OS_DisableMainExArena.html">OS_DisableMainExArena関数</A></CODE>によってメインメモリのサイズ設定が4MByteになっている場合や実機で動作させる場合にはメインメモリ上の拡張アリーナは使用できません。
+( これらのメインメモリ拡張アリーナの使用/不使用を宣言する関数は<CODE><A href="../init/OS_Init.html">OS_Init関数</A></CODE>や<CODE><A href="OS_InitArena.html">OS_InitArena関数</A></CODE>よりも前に呼び出す必要があります。)</BLOCKQUOTE>
+<BLOCKQUOTE>下の２つの図は、メインメモリサイズが 8MByte に設定されている場合と、4MByte
+に設定されている場合を説明したものです。この中の、SDK_ で始まるシンボルは
+lcf ファイルで自動的に決定されます。</BLOCKQUOTE>
+<BLOCKQUOTE>DTCMの下位アドレスには、割り込み処理で使用するデータ領域が確保されます。ユーザが追加で領域を確保することも可能です。ただし、DTCMにはプログラムコードは配置できません。　ITCM　と同様に、オーバーレイモジュールを配置した場合、それを考慮して
+DTCM アリーナの開始アドレス SDK_SECTION_ARENA_DTCM_START が決定されます。オーバーレイが無い場合、SDK_AUTOLOAD_DTCM_BSS_END
+と同値になります。</BLOCKQUOTE>
+<BLOCKQUOTE>HW_MAIN_ARENA_LO については後述します。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_arenaMainRAM_8m.gif" border="0"><BR>
+<BR>
+<BR>
+<BR>
+<IMG src="image_arenaMainRAM_4m.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><BR>
+<BR>
+SDK_MAIN_ARENA_LO は、メインメモリのスタティック部分と、overlayでロードされるプログラムやそのoverlay部分のBSS領域のもっとも後ろの位置になります。　ITCM
+や DTCM や 拡張メインメモリの overlay と同様です。<BR>
+<BR>
+<IMG src="image_arenaMainRAM_ol.gif" border="0"></BLOCKQUOTE>
+<P><B>ワークRAM上のアリーナ</B></P>
+<BLOCKQUOTE>ワークRAMは標準では全てARM7に割り当てられていますので、アリーナもARM7で使用することを想定しています。<BR>
+共用ワークRAM、ARM7専用ワークRAMは連続領域に割り当てられます。従って、ここに格納されるプログラムコードなどの大きさによってワークRAMアリーナが確保できるかどうかが変わってきます。<BR>
+<BR>
+以下は格納するプログラムが大きくなりARM7専用ワークRAMまで入っている場合と、共有ワークRAMで収まった例です。どちらも共用ワークRAM上のアリーナは
+ARM9側に存在しません。プログラムがARM7専用ワークARMまで入っている場合は、ARM7の共用ワークRAM上のアリーナは存在しません。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_arenaWRAM1.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<IMG src="image_arenaWRAM2.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>アリーナの管理とメモリ確保</B></P>
+<BLOCKQUOTE>アリーナ領域は、その先頭と末尾のポインタを示すことで存在しています。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_arenaArea1.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE>システムではこの２つのポインタと、アリーナが初期化されているかどうかの情報しか保持していません。つまりアリーナがどれだけ使用されているか、初期のポインタ位置がどこであったか、アリーナの中身がどうなっているか、といった情報はありません。</BLOCKQUOTE>
+<BLOCKQUOTE>アリーナ領域の先頭と末尾ポインタ、そして初期化されているかの情報はそれぞれのアリーナにあり、まとめてシステム共有領域に置かれています。</BLOCKQUOTE>
+<BLOCKQUOTE>アリーナからメモリブロックを確保するときは、領域の先頭からか、末尾からのいずれからのみ確保することが出来ます。メモリ領域の境界は自分で移動することになります。例えば領域の先頭(下位)から
+size1 バイト確保するときは、<CODE><A href="OS_GetArenaLo.html">OS_GetArenaLo()</A></CODE> を呼んだ後、返り値を境界に設定するために <CODE><A href="OS_SetArenaLo.html">OS_SetArenaLo() </A></CODE>を呼びます。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_arenaArea2.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+ここから領域の末尾(上位)から size2 バイト確保すると以下のようになります。</P>
+<BLOCKQUOTE><IMG src="image_arenaArea3.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><BR>
+<BR>
+なお、これら一連の作業を自動で行い、領域の先頭(下位)及び末尾(上位)から領域を確保することができる <CODE><A href="OS_AllocFromArenaLo.html">OS_AllocFromArenaLo()</A></CODE>、<CODE><A href="OS_AllocFromArenaHi.html">OS_AllocFromArenaHi()</A></CODE> が存在します。<BR>
+アリーナを利用する際には、こちらの関数を使用することを推奨します。
+<BR>
+<BR>
+このように、アリーナはゲーム中に頻繁にメモリを確保したり開放したりする用途には向いていません。多くは、初期化時に目的別に一括して領域を確保するといった大局的な割り当てのために使用されます。ゲーム中に確保や開放を繰り返すためには
+OS に <CODE><A href="../alloc/OS_AllocFromHeap.html">OS_AllocFromHeap()</A></CODE> といったメモリ割り当てシステムが用意されていますので、そちらを参照してください。</BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Arena">OS関数一覧(Arena)</A>, <A href="../list_os.html#Alloc">OS関数一覧(Alloc)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2006/03/16 アリーナの管理とメモリ確保の図の修正、及び説明の追加<BR>
+2005/08/27 ITCM, DTCM, 拡張メインメモリアリーナの overlay 対応に伴う修正<BR>
+2005/07/28 ミスの修正<BR>
+2005/04/15 メインメモリ、DTCM上のアリーナの位置を変更<BR>
+2004/12/13 用語や語尾など修正<BR>
+2004/10/25 初版。<CODE>OS_InitArena()</CODE> から独立</P>
+</BODY>
+</HTML>

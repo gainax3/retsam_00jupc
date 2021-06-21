@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetRendererOverwriteEnable/Disable</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetRendererOverwriteEnable/Disable</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+<pre><CODE>
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwriteEnable
+    ( 
+        NNSG2dRendererInstance*         pRnd, 
+        NNSG2dRendererOverwriteParam    flag 
+    )
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwriteDisable
+    ( 
+        NNSG2dRendererInstance*         pRnd, 
+        NNSG2dRendererOverwriteParam    flag 
+    )
+
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">[OUT] レンダラ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">flag</font></strong></em></td>
+    <td width="87%">[IN] 設定を行うパラメータ項目を表す列挙子（NNSG2dRendererOverwriteParam）</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+レンダラが上書きをおこなう、OAMパラメータを設定します。<BR>
+<BR>
+NNS_G2dSetRendererOverwriteEnable()で上書き機能が有効になり、<BR>
+NNS_G2dSetRendererOverwriteDisable()で無効になります。<BR>
+本関数で有効に設定されたパラメータは、NNS_G2dGetRendererOverwrite*()関数で設定された値にパラメータが上書きされます。<BR>
+なお、アフィン変換モードの上書きは本関数の設定に関係なく実行されます。<BR>
+
+<BR>
+設定を行うパラメータ項目を表す列挙子NNSG2dRendererOverwriteParamの定義は以下のとおりです。<BR>
+<BR>
+<pre><CODE>
+    typedef enum NNSG2dRendererOverwriteParam
+    {
+        NNS_G2D_RND_OVERWRITE_NONE          = 0x0, // OBJアトリビュート上書きを行わない
+        NNS_G2D_RND_OVERWRITE_PRIORITY      = 0x1, // 描画優先度
+        NNS_G2D_RND_OVERWRITE_PLTTNO        = 0x2, // パレット番号
+        NNS_G2D_RND_OVERWRITE_MOSAIC        = 0x4, // モザイクON OFF
+        NNS_G2D_RND_OVERWRITE_OBJMODE       = 0x8, // オブジェモード
+        NNS_G2D_RND_OVERWRITE_MAX
+        
+    }NNSG2dRendererOverwriteParam;
+</CODE></pre>
+
+<BR>
+
+<BR>
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dGetRendererOverwriteXXX.html">NNS_G2dGetRendererOverwrite*</A><br>
+</CODE></p>
+<H2>履歴</H2>
+
+<P>
+2004/11/10 NNSG2dRendererOverwriteParamに新項目を追加<BR>
+2004/10/12 初版<BR>
+</P>
+</body>
+</html>

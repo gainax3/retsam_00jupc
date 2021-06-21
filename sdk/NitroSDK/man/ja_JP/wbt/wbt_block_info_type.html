@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTBlockInfo</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTBlockInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+<pre>
+typedef struct {
+  u32 id;
+  s32 block_size;
+  u8  user_id[WBT_USER_ID_LEN];
+} WBTBlockInfo;
+</pre>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>登録ブロックの情報を表す構造体です。<BR>
+これらは<a href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</a>関数で相手から受信します。<br>
+<br>
+各メンバの内容は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>id</TD>
+      <TD>ユーザが一意に割り当てたブロックIDです。</TD>
+    </TR>
+    <TR>
+      <TD>block_size</TD>
+      <TD>データサイズです。</TD>
+    </TR>
+    <TR>
+      <TD>user_id</TD>
+      <TD>ユーザ定義情報です。<br>
+	  指定されたデータがWBT_USER_ID_LENバイトに満たない分は0で埋められます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR></P>
+</body>
+</html>

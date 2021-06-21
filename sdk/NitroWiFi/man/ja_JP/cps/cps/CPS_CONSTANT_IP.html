@@ -1,0 +1,66 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_NOIP_REASON_*</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_NOIP_REASON_*</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>enum {
+	CPS_NOIP_REASON_NONE = 0,
+	CPS_NOIP_REASON_LINKOFF,
+	CPS_NOIP_REASON_DHCPDISCOVERY,
+	CPS_NOIP_REASON_LEASETIMEOUT,
+	CPS_NOIP_REASON_COLLISION
+};</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>CPSNoIpReasonに設定する定数。CPSMyIpが0、つまりIPアドレスが設定されていない時、その理由を示す。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>CPS_NOIP_REASON_NONE</CODE></STRONG></EM></TD>
+			<TD width="75%">特に理由がない(CPSライブラリが初期化されていない等)を示す。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_NOIP_REASON_LINKOFF</CODE></STRONG></EM></TD>
+			<TD>リンクがオフ(アクセスポイントと接続されていない等)を示す。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_NOIP_REASON_DHCPDISCOVERY</CODE></STRONG></EM></TD>
+			<TD>最初のDHCPディスカバリの最中であることを示す。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_NOIP_REASON_LEASETIMEOUT</CODE></STRONG></EM></TD>
+			<TD>DHCPリースが期限切れになったことを示す。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_NOIP_REASON_COLLISION</CODE></STRONG></EM></TD>
+			<TD>手動設定IPの重複が検出されたことを示す。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<p>CPSMyIpが再設定され非0になったときでも、CPSNoIpReasonはクリアされない。</p>
+
+<h2>参照</h2>
+
+<p>
+</p>
+<H2>履歴</H2>
+<P>
+Ver. 2005/09/13 初版</P>
+</body>
+</html>

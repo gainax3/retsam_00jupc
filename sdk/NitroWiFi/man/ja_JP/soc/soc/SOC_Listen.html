@@ -1,0 +1,76 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SO_Listen</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Listen</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Listen ( int <em><strong>s</strong></em>, int <em><strong>backlog</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td>ソケット記述子。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>backlog</strong></em></code></td>
+    <td>ソケットのリッスン バックログ キューに保持する未処理の接続の最大数を指定します。<!-- <code><strong><em>backlog</em></strong></code>が 
+    0 または負の場合、最大数は 1 に設定されます。--> </td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINVAL</code></td>
+    <td>無効な処理。(接続処理を開始しています、TCPソケットではありません、など)</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENETRESET</code></td>
+    <td>ソケットライブラリが初期化されていません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EWOULDBLOCK</code></td>
+    <td>要求した操作は封鎖しないと実行できません。</td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>この関数は互換性のため用意されており、実際にはコネクションモードのソケットを接続受付中にしません。</p>
+
+
+<h2>参照</h2>
+<p>
+<code><a href="SOC_Socket.html">SOC_Socket</a></code>,
+<code><a href="SOC_Bind.html">SOC_Bind</a></code>,
+<code><a href="SOC_Connect.html">SOC_Connect</a></code>,
+<code><a href="SOC_Accept.html">SOC_Accept</a></code></p>
+<H2>履歴</H2>
+<P>
+2005/12/12 説明、返り値の記述変更<BR>
+2005/09/13 初版</P>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SocWho</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SocWho</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>CPSInAddr CPS_SocWho(u16 *remote_port, CPSInAddr *local_ip);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>remote_port</strong></em></code></td>
+    <td>相手ポート。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>local_ip</strong></em></code></td>
+    <td>相手が実際に送信先としてきた自IPv4アドレス。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>相手のIPv4アドレス</P>
+
+<h2>説明</h2>
+
+<p>通信相手に関する情報を取得します。<BR>
+	返り値として相手のIPv4アドレスを返します。<BR>
+	remote_portが非NULLなら、相手ポートが設定されます。<BR>
+	local_ipが非NULLなら、相手が実際に送信先としてきた自IPv4アドレスが設定されます。これにより、ユニキャストかマルチキャストなのかの区別することが出来ます。<BR>
+	ブロックはしません。
+</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

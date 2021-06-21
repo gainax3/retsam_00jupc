@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMStateCode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMStateCode</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum WMStateCode
+{
+    WM_STATECODE_PARENT_START             = 0 ,
+    WM_STATECODE_BEACON_SENT              = 2 ,
+
+    WM_STATECODE_SCAN_START               = 3 ,
+    WM_STATECODE_PARENT_NOT_FOUND         = 4 ,
+    WM_STATECODE_PARENT_FOUND             = 5 ,
+
+    WM_STATECODE_CONNECT_START            = 6 ,
+    WM_STATECODE_BEACON_LOST              = 8 ,
+
+    WM_STATECODE_CONNECTED                = 7 ,
+    WM_STATECODE_CHILD_CONNECTED          = 7 ,
+    WM_STATECODE_DISCONNECTED             = 9 ,
+    WM_STATECODE_DISCONNECTED_FROM_MYSELF = 26 ,
+
+    WM_STATECODE_MP_START                 = 10 ,
+    WM_STATECODE_MPEND_IND                = 11 ,
+    WM_STATECODE_MP_IND                   = 12 ,
+    WM_STATECODE_MPACK_IND                = 13 ,
+
+    WM_STATECODE_DCF_START                = 14 ,
+    WM_STATECODE_DCF_IND                  = 15 ,
+
+    WM_STATECODE_BEACON_RECV              = 16 ,
+    WM_STATECODE_DISASSOCIATE             = 17 ,
+    WM_STATECODE_REASSOCIATE              = 18 ,
+    WM_STATECODE_AUTHENTICATE             = 19 ,
+
+    WM_STATECODE_PORT_INIT                = 25 ,
+    WM_STATECODE_PORT_SEND                = 20 ,
+    WM_STATECODE_PORT_RECV                = 21 ,
+
+    WM_STATECODE_FIFO_ERROR               = 22 ,
+    WM_STATECODE_INFORMATION              = 23 ,
+    WM_STATECODE_UNKNOWN                  = 24 ,
+
+} WMStateCode;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PARENT_START</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>に対するコールバックとして発生します。<BR>
+      親機として通信処理を開始した時に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_BEACON_SENT</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>に対するコールバックとして発生します。<BR>
+      子機に対するビーコンを送信完了する度に発生します。<BR>
+      ビーコンを用いた特殊な処理を行わない場合は、この通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_SCAN_START</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartScan.html">WM_StartScan</A>の仕様変更に伴い、発生することはなくなりました。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PARENT_NOT_FOUND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartScan.html">WM_StartScan</A>に対するコールバックとして発生します。<BR>
+      親機を探索した結果、指定時間内では親機が見つからなかったことを示します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PARENT_FOUND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartScan.html">WM_StartScan</A>に対するコールバックとして発生します。<BR>
+      親機を探索した結果、一台以上の親機を発見したことを示します。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_CONNECT_START</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartConnect.html">WM_StartConnect</A>に対するコールバックとして発生します。<BR>
+      子機として接続処理を開始した時に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_BEACON_LOST</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartConnect.html">WM_StartConnect</A>に対するコールバックとして発生します。<BR>
+      通信の同期を取るために親機が定期的に発信するビーコンを一定時間受信できなかった場合に発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_CONNECTED</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>、もしくは<A href="WM_StartConnect.html">WM_StartConnect</A>に対するコールバックとして発生します。<BR>
+      通信相手との接続が確立された場合に発生します。親機の場合、複数の子機が接続してくる度に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_CHILD_CONNECTED</font></strong></em></TD>
+      <TD width="800">WM_STATECODE_CONNECTED に統合されました。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_DISCONNECTED</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>、もしくは<A href="WM_StartConnect.html">WM_StartConnect</A>に対するコールバックとして発生します。<BR>
+      通信相手との接続が相手から切断された場合に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_DISCONNECTED_FROM_MYSELF</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>、もしくは<A href="WM_StartConnect.html">WM_StartConnect</A>に対するコールバックとして発生します。<BR>
+      通信相手との接続を自分から切断した場合に発生します。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_MP_START</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartMP.html">WM_StartMP</A>に対するコールバックとして発生します。<BR>
+      MP通信を開始した時に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_MPEND_IND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartMP.html">WM_StartMP</A>に対するコールバックとして発生します。<BR>
+      MPシーケンスが一回完了する度に発生します。<BR>
+      親機として通信している場合にのみ発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_MP_IND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartMP.html">WM_StartMP</A>に対するコールバックとして発生します。<BR>
+      MPシーケンスの前半のステップで発生します。<BR>
+      子機として通信している場合にのみ発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_MPACK_IND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartMP.html">WM_StartMP</A>に対するコールバックとして発生します。<BR>
+      MPシーケンスが一回完了する度に発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_DCF_START</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartDCF.html">WM_StartDCF</A>に対するコールバックとして発生します。<BR>
+      DCF通信を開始した時に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_DCF_IND</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartDCF.html">WM_StartDCF</A>に対するコールバックとして発生します。<BR>
+      DCF通信によりデータを受信する度に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_BEACON_RECV</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で指定したコールバックとして発生します。
+      子機としてビーコンを受信する度に発生します。<BR>
+      ビーコンを用いた特殊な処理を行わない場合は、この通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_DISASSOCIATE</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で指定したコールバックとして発生します。
+      切断処理の途中経過として発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_REASSOCIATE</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で指定したコールバックとして発生します。
+      一旦切断されていた子機が再接続された時に発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_AUTHENTICATE</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で指定したコールバックとして発生します。
+      接続処理の途中経過として発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PORT_INIT</font></strong></em></TD>
+      <TD width="800">ポートの初期化が完了した際に発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PORT_SEND</font></strong></em></TD>
+      <TD width="800">ポートへのデータ送信が完了した際に発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_PORT_RECV</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetPortCallback.html">WM_SetPortCallback</A>で指定したコールバックとして発生します。
+      ポートへのデータ受信時、及び子機の接続、切断を感知した時に発生します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_FIFO_ERROR</font></strong></em></TD>
+      <TD width="800">ARM7側で発生した自動処理をキューに登録することができなかった際に発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_INFORMATION</font></strong></em></TD>
+      <TD width="800">内部で何かの事象が発生した際の情報提供として発生します。<BR>
+      通常はこの通知に対してアプリケーション側で処理を行う必要はありません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_STATECODE_UNKNOWN</font></strong></em></TD>
+      <TD width="800">内部で何かの不特定事象が発生した際に発生します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+WM非同期処理関数のコールバック関数に渡される各構造体の<CODE>state</CODE>メンバに共通に使用される、
+コールバックの種別を示す列挙型です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2007/11/13 通常はアプリケーション側で処理を行う必要のない通知についての記述を追記<BR>
+2005/10/31 WM_STATECODE_DISCONNECTED_FROM_MYSELF, WM_STATECODE_PORT_INIT, WM_STATECODE_UNKNOWN の追加<BR>
+2005/07/29 WM_STATECODE_INFORMATION を追加<BR>
+2004/11/02 下記統合に伴う変更漏れを修正<BR>
+2004/09/13 WM_STATECODE_CHILD_CONNECTED を WM_STATECODE_CONNECTED に統合<BR>
+2004/08/20 スキャン関数の仕様変更に伴う修正<BR>
+2004/08/11 WM仕様追加に伴う追記<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

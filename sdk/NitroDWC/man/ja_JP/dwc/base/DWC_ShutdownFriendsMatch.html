@@ -1,0 +1,58 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_ShutdownFriendsMatch</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_ShutdownFriendsMatch</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_ShutdownFriendsMatch( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  マッチメイクや友達管理のための機能群である<A href="FriendsMatch.html">FriendsMatchライブラリ</A>を終了し、ライブラリ内部で確保していたメモリを解放します。
+		</P>
+		<p>
+		本関数を、<a href="FriendsMatch.html">FriendsMatchライブラリ</a>のコールバック関数内から呼び出さないようにしてください。
+		</p>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>
+				<A href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2007/07/24 呼び出しに関する注意を追記<br/>
+		  2006/01/31 「FriendsMatchライブラリ」へのリンクを設定し、用語の説明を削除<br/>
+		  2005/12/16 FriendsMatchライブラリの説明を追加<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

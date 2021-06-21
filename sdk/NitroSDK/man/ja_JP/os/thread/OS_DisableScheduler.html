@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_DisableScheduler</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_DisableScheduler</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>u32 OS_DisableScheduler( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+
+<H2>返り値</H2>
+<P>スケジューラの動作を抑制した後の、内部カウンタ値です。</P>
+<P>この値が 0 より大きい場合、スケジューラ動作が抑制されています。(なので、本関数では必ず
+0 より大きい値が返ります。)</P>
+
+<H2>説明</H2>
+<P>　スレッドシステムのスケジューラの動作を抑制します。すなわち、リスケジューリングを一時停止します。</P>
+<P><CODE>　<A href="OS_WakeupThread.html">OS_WakeupThread()</A></CODE> や <CODE><A href="OS_SetThreadPriority.html">OS_SetThreadPriority()</A></CODE> など、スレッドのリスケジュールが発生する可能性のある関数が呼ばれても、スレッドのリスケジュールが行なわれないようになります。</P>
+<P><CODE>　この OS_DisableScheduler()</CODE> に対して、スケジューラ動作の抑制を解く関数は <CODE><A href="OS_EnableScheduler.html">OS_EnableScheduler()</A></CODE> となります。通常、２つの関数をペアで使用してください。</P>
+<P>　<CODE>OS_DisableScheduler()</CODE> や <CODE><A href="OS_EnableScheduler.html">OS_EnableScheduler()</A></CODE> は、割り込みを禁止状態にして呼び出してください。</P>
+<P>　スケジューラは内部でカウンタを持っています。通常は 0 であるそのカウンタは、<CODE>OS_DisableSchrduler()</CODE> で 1 カウント増加し、<CODE><A href="OS_EnableScheduler.html">OS_EnableSchduler()</A></CODE> で 1 カウント減少します。そして、0 より大きい場合にはリスケジュールしないようにします。本関数からの戻り値はカウンタを変更した後の値です。従って、この関数を呼んだ後は必ず
+0 より大きい値が返ります。</P>
+<P>　<CODE>OS_DisableScheduler()</CODE> と <CODE><A href="OS_EnableScheduler.html">OS_EnableScheduler()</A></CODE> のペアをネストさせる(入れ子構造にする)ことが出来ます。</P>
+<BLOCKQUOTE>(例)<BR>
+　　　　　　　　　　　　：<BR>
+<CODE>(void)OS_DisableRescheduler();<BR>
+　　　　　　　　：　　　　　　　　　　　// リスケジュール禁止<BR>
+(void)OS_DisableRescheduler();<BR>
+　　　　　　　　：<BR>
+(void)OS_EnableRescheduler();<BR>
+　　　　　　　　：　　　　　　　　　　　// ここではまだリスケジュール禁止<BR>
+(void)OS_EnableRescheduler();<BR>
+　　　　　　　　：　　　　　　　　　　　// リスケジュール可<BR>
+</CODE></BLOCKQUOTE>
+<P>(注意)<BR>
+　使用状況によっては何も動作するスレッドがなくてプログラムが停止するかもしれません。例えば、<CODE>OS_DisableScheduler()</CODE> でリスケジュールしないように設定して <CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> を呼ぶと、カレントスレッドを終えた後に他のスレッドに実行権を移すことが出来ません。このような状況にならないように注意が必要です。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_SelectThread.html">OS_SelectThread</A>, <A href="OS_RescheduleThread.html">OS_RescheduleThread</A>, <A href="OS_EnableScheduler.html">OS_EnableScheduler</A></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2005/01/21 初版</P>
+</BODY>
+</HTML>

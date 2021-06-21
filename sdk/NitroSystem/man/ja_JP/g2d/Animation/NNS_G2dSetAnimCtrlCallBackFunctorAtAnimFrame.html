@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Animation.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame( 
+                      NNSG2dAnimController*   pAnimCtrl, 
+                      u32                     param, 
+                      NNSG2dAnmCallBackPtr    pFunc 
+                      u16                     frameIdx );</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAnimCtrl </font></strong></em></td>
+    <td width="87%">[OUT] NNSG2dAnimController 実体</td>
+  </tr>
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">param</font></strong></em></td>
+    <td width="87%">[IN] コールバック関数の引数となる u32 データ</td>
+  </tr>
+
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pFunc </font></strong></em></td>
+    <td width="87%">[IN] コールバック関数ポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">frameIdx </font></strong></em></td>
+    <td width="87%">[IN] コールバックを呼び出すAnimFrameのインデックス</td>
+  </tr>
+
+    </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>アニメーションコントローラにコールバックを設定します。<BR>
+コールバックはコントローラ実体毎に1種類のみ登録可能です。<BR>
+<BR>
+本関数の引数 <CODE>type </CODE><CODE>に </CODE>NNS_G2D_ANMCALLBACKTYPE_SPEC_FRM 以外を指定するのは不正です。<BR>
+その場合は NNS_G2dSetAnimCtrlCallBackFunctor() を 使用する必要があります。<BR>
+<BR>
+再生フレームが変更になったタイミングで新しい再生フレームのインデックスを<CODE>frameIdxと比較し<BR>
+同一であればコールバックが</CODE>呼び出されます。<BR>
+<BR>
+</p>
+
+<P>NNS_G2dSetCallBackFunctorAtAnimFrame()から改名されました。以前の関数名は別名として残されています。<BR></p>
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dSetCallBackFunctorAtAnimFrame.html">NNS_G2dSetCallBackFunctorAtAnimFrame</A><br></CODE>
+<CODE><A href="NNS_G2dSetAnimCtrlCallBackFunctor.html">NNS_G2dSetAnimCtrlCallBackFunctor</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/08/02 関数改名の実施</P><P>2004/05/28 初版</P>
+</body>
+</html>

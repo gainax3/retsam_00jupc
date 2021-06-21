@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dLoadPaletteEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dLoadPaletteEx</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Image.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_G2dLoadPaletteEx(
+                                    const NNSG2dPaletteData*            pSrcData,
+                                    const NNSG2dPaletteCompressInfo*    pCmpInfo,
+                                    u32                                 addr,
+                                    NNS_G2D_VRAM_TYPE                   type, 
+                                    NNSG2dImagePaletteProxy*            pPltProxy);
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pSrcData</font></strong></em></td>
+    <td width="87%">[IN] 入力パレットデータソース</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pCmpInfo</font></strong></em></td>
+    <td width="87%">[IN] パレット圧縮情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">addr</font></strong></em></td>
+    <td width="87%">[IN] 読み込み先アドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">type</font></strong></em></td>
+    <td width="87%">[IN] VRAM利用の種類(3D 2D-Main 2D-Sub )</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pPltProxy</font></strong></em></td>
+    <td width="87%">[OUT] 読み込み結果を格納する画像パレットプロクシ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+圧縮されたパレットデータをハードウエアにロードし、画像パレットプロクシにロード結果、画像フォーマットを設定します。<BR>
+圧縮されたパレットデータでは未使用パレット番号（すべてのパレット色が RGB(0,0,0) ）のデータは破棄され、必要なパレット番号のデータのみが格納されています。
+したがって、圧縮パレット機能は、256色パレットでは、効果がありませんのでご注意ください。<BR>
+本関数を使用してロードすることによって、元通りのパレット番号位置にパレットデータがロードされます。<BR>
+<BR>
+（圧縮されたパレットデータは-pcm オプションを指定してコンバートすることで出力します。）
+<pre>
+<code>
+    (コード例)
+    NNSG2dPaletteData*          pPltData    = NULL;
+    NNSG2dPaletteCompressInfo*  pPltCmpData = NULL;
+    void*  pFile = NULL;
+    
+    if( MyLoadFileToMainMem_( "test_data.NCLR", &pFile ) )
+    {
+        //
+        // 圧縮情報ブロックの初期化を試みる
+        //
+        const BOOL bCmpLoaded = NNS_G2dGetUnpackedPaletteCompressInfo( pFile, &pPltCmpData );
+               
+        
+        if( NNS_G2dGetUnpackedPaletteData( pFile, &pPltData ) )
+        {
+            if( bCmpLoaded )
+            {
+                //
+                // 本関数を利用する
+                //
+                NNS_G2dLoadPaletteEx( pPltData, pPltCmpData, myPlttAddr, myVramType, &myPltProxy_ );         
+            }else{
+                //
+                // 通常のパレットロード関数を利用する
+                //
+                NNS_G2dLoadPalette( pPltData, myPlttAddr, myVramType, &myPltProxy_ );         
+            }
+        }
+    }
+</code>
+</pre>
+</p>
+
+<h2>参照</h2>
+<p>なし</p>
+<H2>履歴</H2>
+<P>2004/10/04 初版</P>
+</body>
+</html>

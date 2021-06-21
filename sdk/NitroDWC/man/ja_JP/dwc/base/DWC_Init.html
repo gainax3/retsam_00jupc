@@ -1,0 +1,91 @@
+<HTML lang="ja">
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_Init</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_Init</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><code>#include &lt;dwc.h&gt;
+
+int DWC_Init( void* work );</code></PRE>
+			</DD>
+		</DL>
+		<H2>説明</H2>
+		<P>
+		  DWC ライブラリを初期化する関数です。DS本体に保存するユーザIDのチェック・作成などを行います。
+		  DWC ライブラリに含まれる他の API を呼び出す前に一回呼び出して下さい。
+		</P>
+		<P>
+		  戻り値に応じて、適切なメッセージを表示するようにしてください。
+		  メッセージについては、「Nitendo Wi-Fi Connection プログラミングガイドライン」をご確認ください。
+		</P>
+		<P>
+		  workに指定したバッファは、この関数終了後、解放しても構いません。<BR>
+		  <FONT color=red>このバッファはARM7からアクセスするため、メインメモリ等のARM7からアクセス可能な領域に指定してください。</FONT>
+		</P>
+		<P>
+		  本関数を呼び出す前に、OS_Init関数、OS_InitTick関数、OS_InitAlarm関数、RTC_Init関数を呼んでおく必要があります。
+		</P>
+		<P>
+		<FONT color=red>この関数は同期を取る為にPXI割り込みを待ちますので、PXI割り込みを禁止した状態で呼び出さないようにして下さい。</FONT>
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>work</CODE></STRONG></EM></TD>
+					<TD width="75%">初期化用バッファのポインタ<br>
+						32BytesアライメントされたDWC_INIT_WORK_SIZE分のバッファを指定してください。<!-- <BR>バッファはゼロクリアされている必要があります。--></TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><em><strong><code>DWC_INIT_RESULT_NOERROR</code></strong></em></TD>
+					<TD width="75%">初期化成功。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><em><strong><code>DWC_INIT_RESULT_CREATE_USERID</code></strong></em></TD>
+					<TD width="75%">DS本体に仮のユーザIDを生成しました。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><em><strong><code>DWC_INIT_RESULT_DESTROY_USERID</code></strong></em></TD>
+					<TD width="75%">DS本体のユーザIDが破壊されていた可能性があるので、仮のユーザIDを生成しました。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><em><strong><code>DWC_INIT_RESULT_DESTROY_OTHER_SETTING</code></strong></em></TD>
+					<TD width="75%">DS本体の接続先設定が破壊された可能性があります。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_CreateUserData.html">DWC_CreateUserData</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/08/02 初期化用バッファとPXI割り込みに関する注意を追記<BR>
+		  2006/03/07 予め呼び出す必要のある関数について追記<BR>
+		  2006/02/24 参照先の文書名を変更<BR>
+		  <!-- 2005/01/18 workバッファのゼロクリアの必要性を追記<BR> -->
+		  2005/12/16 改訂<BR>
+		  2005/10/20 改訂<BR>
+		  2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

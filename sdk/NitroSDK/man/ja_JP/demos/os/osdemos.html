@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>OS Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>オペレーティングシステムサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/os</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/os</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/os/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/os/thread-1/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/os/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<BR>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>alarm-1</CODE></STRONG></EM></TD>
+      <TD width="525">ワンショットのアラームを１つ使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>alarm-2</CODE></STRONG></EM></TD>
+      <TD width="525">周期的なアラームと、ワンショットのアラームを使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>arena-1</CODE></STRONG></EM></TD>
+      <TD width="525">アリーナを設定しメモリを取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>argument-1</CODE></STRONG></EM></TD>
+      <TD width="525">引数データをROMイメージに埋め込み表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>argument-2</CODE></STRONG></EM></TD>
+      <TD width="525">文字列からその場で引数データを作成して設定します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>callTrace-1</CODE></STRONG></EM></TD>
+      <TD>スレッドシステムを使用せずに、関数コールトレース表示を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>callTrace-2</CODE></STRONG></EM></TD>
+      <TD>スレッドシステムを使用して、関数コールトレース表示を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>cplusplus-1</CODE></STRONG></EM></TD>
+      <TD>C++の実装のためにスタティックイニシャライザを呼ぶ前にメモリ管理の初期化を行います。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>entropy-1</CODE></STRONG></EM></TD>
+      <TD width="525">OS_GetLowEntropyData 関数を使用するデモです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>exceptionDisplay-1</CODE></STRONG></EM></TD>
+      <TD width="525">例外表示を行い、例外コールバックを使用します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>exceptionDisplay-2</CODE></STRONG></EM></TD>
+      <TD>0除算で擬似的に例外を発生させます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>exceptionDisplay-3</CODE></STRONG></EM></TD>
+      <TD>例外発生時に、関数コールトレース情報を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>favorite-color</CODE></STRONG></EM></TD>
+      <TD>本体情報に含まれる「お気に入りの色」を画面にテスト表示するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>forChina-1</CODE></STRONG></EM></TD>
+      <TD>中国向けアプリケーションを作成する簡易サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>forChina-fs</CODE></STRONG></EM></TD>
+      <TD>forChina-1と同様ですが、OS_ShowAttentionChina 関数を独自に定義して画像データをファイルシステムから取得します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>forKorea-1</CODE></STRONG></EM></TD>
+      <TD>韓国向けアプリケーションを作成する簡易サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>functionCost-1</CODE></STRONG></EM></TD>
+      <TD>関数のコストを計測して表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>functionCost-2</CODE></STRONG></EM></TD>
+      <TD>複数のスレッドで関数のコストを計測して表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>functionCost-3</CODE></STRONG></EM></TD>
+      <TD>複数のスレッドで計測した関数コストを全体で集計して表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>heap-1</CODE></STRONG></EM></TD>
+      <TD width="525">一つのヒープを設定して使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>heap-2</CODE></STRONG></EM></TD>
+      <TD width="525">複数のヒープを設定して使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>heap-3</CODE></STRONG></EM></TD>
+      <TD width="525">複数のヒープを設定し、一方から確保した領域を他方の不連続領域とします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>mutex-1</CODE></STRONG></EM></TD>
+      <TD width="525">複数のスレッドから1つの関数をアクセスする際にmutexで排他制御します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>mutex-2</CODE></STRONG></EM></TD>
+      <TD width="525">スレッドが終了するときに mutex をアンロックします。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>reset-1</CODE></STRONG></EM></TD>
+      <TD>ソフトウェアリセットをかけます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>sleep-1</CODE></STRONG></EM></TD>
+      <TD width="525">一定時間スレッドをスリープします。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>spinwait-1</CODE></STRONG></EM></TD>
+      <TD><CODE><A href="../../os/system/OS_SpinWait.html">OS_SpinWait()</A></CODE> のデモです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>thread-1</CODE></STRONG></EM></TD>
+      <TD width="525">２つのスレッドを作成し、一方がもう一方を直接起こします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>thread-2</CODE></STRONG></EM></TD>
+      <TD width="525">２つのスレッドを作成し、アイドルスレッドがそれぞれを起こします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>thread-3</CODE></STRONG></EM></TD>
+      <TD width="525">メッセージキューを使用してスレッドを切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>thread-4</CODE></STRONG></EM></TD>
+      <TD width="525">IRQハンドラ内でスレッドを起こします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>thread-5</CODE></STRONG></EM></TD>
+      <TD>スレッドの終了待ちを行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>thread-6</CODE></STRONG></EM></TD>
+      <TD><CODE><A href="../../os/thread/OS_YieldThread.html">OS_YieldThread()</A></CODE> のデモです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>thread-7</CODE></STRONG></EM></TD>
+      <TD>スレッドデストラクタのデモです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>thread-8</CODE></STRONG></EM></TD>
+      <TD>スレッドを大量に作成するデモその1です。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>thread-9</CODE></STRONG></EM></TD>
+      <TD><CODE><A href="../../os/thread/OS_KillThread.html">OS_KillThread()</A></CODE> と <CODE><A href="../../os/thread/OS_KillThread.html">OS_KillThreadWithPriority()</A></CODE> を比較するデモです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>thread-10</CODE></STRONG></EM></TD>
+      <TD>スレッドを大量に作成するデモその2です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>tick-1</CODE></STRONG></EM></TD>
+      <TD width="525">チックシステムを使い、チック値を読んで表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>timer-1</CODE></STRONG></EM></TD>
+      <TD width="525">タイマを用いた割り込みを使用します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>valarm-1</CODE></STRONG></EM></TD>
+      <TD>Vカウントを用いたアラームを使用します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>waitIrq-1</CODE></STRONG></EM></TD>
+      <TD>別スレッドを動作させながらVブランクの発生を待ちます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>waitIrq-2</CODE></STRONG></EM></TD>
+      <TD><CODE><A href="../../os/irq/OS_WaitIrq.html">OS_WaitIrq()</A></CODE> と <CODE><A href="../../os/irq/OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE> の動作の違いを示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>動作</H2>
+<P><CODE>ensata では exceptionDisplay-1, exceptionDisplay-2, exceptionDisplay-3,
+reset-1 は正常動作をしません。IS-NITRO-DEBUGGER では、exceptionDisplay-1,
+exceptionDisplay-2 exceptionDisplay-3 は例外が発生したコードで停止します。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../os/list_os.html"><CODE>OS関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>2006/10/19 forKorea-1 サンプルの説明を追加。<br>
+2005/09/09 argument-2 を追加<BR>
+2005/07/22 functionCost-1 の記載漏れを修正<BR>
+2005/07/21 argument-1 を追加<BR>
+2005/07/14 thread-10 を追加<BR>
+2005/07/13 thread-6, thread-7, thread-8, thread-9 を追加。<BR>
+2005/07/11 forChina-1、forChina-fsサンプルの説明を追加。<br>
+2005/05/10 favorite-colorサンプルの説明を追加。<br>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正。<BR>
+2004/12/08 interrupt-key-1 を削除。動作を修正。<BR>
+2004/09/01 reset-1 を追加。<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一。<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/06/25 thread-5を追加。<BR>
+2004/06/08 profile関連のデモをデフォルトでMakefileに入れるようにした。<BR>
+2004/05/24 functionCost-1,2,3, waitIrq-1,2 を追加。必要なprofile機能についての記述を追加。<BR>
+2004/04/15 callTrace-1, callTrace-2, cplusplus-1, exceptionDisplay-3 の記述を追加。<BR>
+2004/04/05 mutex-2, sleep-1, timer-1 の記述を追加。systemClock-1 を tick-1
+に修正。<BR>
+2004/03/17 exceptionDisplay-2, valarm-1, spinWait-1 の記述を追加。<BR>
+2004/02/05 alarm-1,alarm-2,exceptionDisplay-1,systemClock-1 の記述を追加。<BR>
+2004/01/18 interrupt-dma-1 サンプルはdmaCallback-1 としてMIに移した。<BR>
+2004/01/09 初版</P>
+</BODY>
+</HTML>

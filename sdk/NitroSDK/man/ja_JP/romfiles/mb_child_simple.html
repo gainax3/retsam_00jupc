@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>mb_child_simple</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">mb_child_simple</H1>
+<H2>概要</H2>
+mb_child_simple はいくつかのデバッグ情報を表示してDSダウンロードプレイを行うテスト用プログラムです。<br>
+このプログラムは認証コードのチェックを行わずにプログラムをダウンロードしますので、開発時のテストなどにご使用ください。<br>
+<br>
+このプログラムにはRelease版とRom版が用意されていますが、相違点はデバッガへのテキスト出力の有無のみです。<br>
+また、DSダウンロードプレイ処理の子機側内部状態を詳細に追跡する必要がない場合には、<br>
+より製品版に近い同様のテストプログラムである<a href="mb_child.html">mb_child</a>もおすすめします。<br>
+<H2>操作方法</H2>
+起動すると、「PUSH A TO START」と表示されます。<br>
+Aボタンを押すと、DSダウンロードプレイ親機をスキャンしながら発見済みのゲーム情報を一覧表示します。<br>
+画面の各項目については以下の通りです。
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">USERNAME<br>GAMENAME</font></strong></TD>
+      <TD width="800">
+		上段が親機プレイヤー名、下段がゲーム名を表します。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">PERSON</font></strong></TD>
+      <TD width="800">
+		分母が最大プレイヤー数、分子が現在の参加プレイヤー数を表します。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">L</font></strong></TD>
+      <TD width="800">
+		このゲーム情報を発信している親機のリンク強度の最新状態を表します。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Introduction</font></strong></TD>
+      <TD width="800">
+		現在カーソルが選択しているゲームに関する説明文が表示されます。
+	  </TD>
+	</TR>
+  </TBODY>
+</TABLE>
+
+<br>
+上下キーでゲームを選択し、Aボタンでダウンロードを決定します。<br>
+<br>
+その後は、ダウンロードの完了と親機からの再起動要求を受信するまで、適宜進捗状況が表示されます。<br>
+このときにBボタンを押すとダウンロードはキャンセルされ、最初の「PUSH A TO START」表示画面へ戻ります。<br>
+<br>
+親機からの再起動要求にともない自動的に再起動し、ダウンロードしたゲームを起動します。<br>
+<br>
+一連の処理を通して、サブ画面には子機内部状態とMBライブラリのデバッグ出力がログとして表示されます。<br>
+<br>
+<H2>場所</H2>
+<P><CODE>
+$NitroSDK/bin/ARM9-TS/Release/mb_child_simple.srl<br>
+$NitroSDK/bin/ARM9-TS/Rom/mb_child_simple.srl
+</CODE></P>
+
+<H2>参照</H2>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 初版作成<br>
+</P>
+</BODY>
+</HTML>

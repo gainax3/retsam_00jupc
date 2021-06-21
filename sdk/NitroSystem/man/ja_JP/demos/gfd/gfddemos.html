@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>Snd Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>Gfdサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/gfd/</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSystem/build/demos/gfd/</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/gfd/samples/VramManager/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/gfd/samples/VramManager/FrameTexVramMan/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSystem/build/demos/gfd/samples/VramManager/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/　</CODE>ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+<!--  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。-->
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<H4>サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/gfd/samples/VRamManager/FrameTexVramMan/src/main.c">FrameTexVramMan</A></CODE></STRONG></EM></TD>
+      <TD width="576">フレームVRAMマネージャ(テクスチャイメージ)を使用するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/gfd/samples/VRamManager/FramePlttVramMan/src/main.c">FramePlttVramMan</A></CODE></STRONG></EM></TD>
+      <TD width="576">フレームVRAMマネージャ(テクスチャパレット)を使用するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/gfd/samples/VRamManager/LinkedListTexVramMan/src/main.c">LinkedListTexVramMan</A></CODE></STRONG></EM></TD>
+      <TD width="576">リンクドリストVRAMマネージャの内部モジュールの動作をテストします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATORでの正常動作を確認しています。</P>
+<p>現バージョンの ensata では動作させることができません。</p>
+<H2>参照</H2>
+<P><A href="../../gfd/list_gfd.html"><CODE>Gfd関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2006/05/29 初版
+</P>
+</BODY>
+</HTML>
+

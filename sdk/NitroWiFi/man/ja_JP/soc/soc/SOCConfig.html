@@ -1,0 +1,196 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOCConfig</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOCConfig</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_VENDOR_NINTENDO  0x0000      // Nintendo TCP/IP stack
+#define SOC_VERSION          0x0100      // Version 1.0
+
+// Name for SOCConfig.alloc() and SOCConfig.free()
+#define SOC_MEM_TCP_INFO         0
+#define SOC_MEM_TCP_SENDBUF      1
+#define SOC_MEM_TCP_RECVBUF      2
+#define SOC_MEM_UDP_INFO         3
+#define SOC_MEM_UDP_RECVBUF      4
+#define SOC_MEM_TIMEWAITBUF      5
+#define SOC_MEM_REASSEMBLYBUF    6
+
+// Flags for SOCConfig{}.flag
+#define SOC_FLAG_DHCP            0x0001  // Use DHCP
+#define SOC_FLAG_PPPoE           0x0002  // Use PPPoE</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct SOCConfig
+{
+    u16         vendor;             // SOC_VENDOR_NINTENDO
+    u16         version;            // SOC_VERSION
+
+    //
+    // vendor specific section
+    //
+    void*    (* alloc )(u32 name, s32 size);
+    void     (* free ) (u32 name, void* ptr, s32 size);
+
+    u32          flag;              // ORed SOC_FLAG_*
+    SOCInAddr    addr;
+    SOCInAddr    netmask;
+    SOCInAddr    router;
+    SOCInAddr    dns1;
+    SOCInAddr    dns2;
+
+    s32         timeWaitBuffer;     // time wait buffer size
+    s32         reassemblyBuffer;   // reassembly buffer size
+    s32         mtu;                // maximum transmission unit size
+
+    // TCP
+    s32         rwin;               // default TCP receive window size (default 2 x MSS)
+    SOCTime     r2;                 // default TCP total retransmit timeout value
+
+    // PPP
+    const char* peerid;
+    const char* passwd;
+
+    // PPPoE
+    const char* serviceName;        // UTF-8 string
+
+    // DHCP
+    const char* hostName;           // DHCP host name
+    s32         rdhcp;              // DHCP retransmit times
+
+    // UDP
+    s32         udpSendBuff;        // default UDP send buffer size
+    s32         udpRecvBuff;        // defualt UDP receive buffer size
+} SOCConfig;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<h3><code>SOC_VENDOR_NINTENDO</code>の実装:</h3>
+
+<p>ソケット層が新たなメモリーブロックを要求したとき、関数<code>alloc</code>を呼びます。引数<code>name</code>は、使われるメモリーブロックのタイプを示す<code>SOC_MEM_*</code>の1つです。関数<code>alloc</code>は<code>size</code>バイトのメモリーブロックを割り当て、割り当てられたメモリーブロックへのポインタを返す必要があります。スタック層が割り当てられたメモリーブロックを解放することができる場合、関数<code>free</code>を呼びます。関数<code>free</code>は引数<code>ptr</code>によってポイントされたメモリーブロックを解放する必要があります。他の引数<code>name</code>や<code>size</code>も関数<code>alloc</code>において同様です。<strong><em>スレッド間の相互排他については関数</em><code><em>alloc</em></code><em>と<code>free</code>側で実装する必要があります。 </em></strong>
+関数<code>alloc</code>や
+関数<code>free</code>は、コールバック関数から直接呼び出されることがないので、<code>OS_LockMutex()</code>のようなスレッドレベルの同期プリミティブを
+使用することができます。</p>
+
+<table width="100%" height="77">
+      <tr>
+        <th><strong>メンバ</strong></th>
+        <th><strong>説明</strong></th>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>vendor</code></em></strong></td>
+        <td><font size="-1"color="#808080">ベンダー名を指定します。このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>version</code></em></strong></td>
+        <td><font size="-1"color="#808080">バージョンを指定します。このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>alloc</code></em></strong></td>
+        <td>プロジェクト内で使用するメモリを確保する関数。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>free</code></em></strong></td>
+        <td>プロジェクト内で使用したメモリを開放する関数。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>flags</code></em></strong></td>
+        <td>ホストの設定方法を指定します。<br>
+        <table width="100%">
+          <tr>
+            <td valign="top"><code>SOC_FLAG_DHCP</code></td>
+            <td>ホストはDHCPを用いて設定されます。</td>
+          </tr>
+          </table>
+        SOC_FLAG_DHCPがFALSEなら、構造体メンバのaddr、netmask、routerがホスト設定に使われます。
+        </td>
+      </tr>
+        <td valign="top"><strong><em><code>dns1</code></em></strong></td>
+        <td>DNSサーバーアドレスを構造体のメンバに指定します。<br>
+	この構造体のメンバは<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>と<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>で使われます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>dns2</code></em></strong></td>
+        <td>DNSサーバーアドレスを構造体のメンバに指定します。<br>
+	この構造体のメンバは<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr()</a></code>と<code><a href="SOC_GetHostByName.html">SOC_GetHostByName()</a></code>で使われます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>timeWaitBuffer</code></em></strong></td>
+        <td><font size="-1"color="#808080">タイムウェイトバッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>reassemblyBuffer</code></em></strong></td>
+        <td><font size="-1"color="#808080">フラグメント パケットの再構成バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>mtu</code></em></strong></td>
+        <td>デフォルトのインターフェースMTUサイズを指定します。<br>
+	0が指定されると、インターフェースのデフォルトのMTUサイズが設定されます。<br>
+	また、ホストをDHCPによって設定する場合には、ホストはDHCPサーバーと通信してMTUサイズを調節します。<br>
+	この場合、指定したサイズよりも小さなMTUサイズが使用される場合があります。実際のMTUサイズは<code><a href="SOC_GetMtu.html">SOC_GetMtu()</a></code> で調べられます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><strong><em><code>rwin</code></em></strong></td>
+        <td>デフォルトTCP受信ウィンドウサイズを指定します。0が指定されると、2 x MSS (最大セグメント長)に設定されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>r2</code></em></strong></td>
+        <td><font size="-1"color="#808080">TCP接続が確立した後のデフォルトの合計再転送タイムアウト時間を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>serviceName</code></em></strong></td>
+        <td><font size="-1"color="#808080">PPPoEで接続する際に利用するサービス名を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>hostName</code></em></strong></td>
+        <td><font size="-1"color="#808080">DHCPで接続する際に利用するクライアントのホスト名を指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>rdhcp</code></em></strong></td>
+        <td><font size="-1"color="#808080">DHCPパケット送信のリトライ回数を設定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>udpSendBuff</code></em></strong></td>
+        <td><font size="-1"color="#808080">デフォルトのUDP送信バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+      <tr>
+        <td valign="top"><font size="-1"color="#808080"><strong><em><code>udpRecvBuff</code></em></strong></td>
+        <td><font size="-1"color="#808080">デフォルトのUDP受信バッファサイズを指定します。<br>
+	このメンバは互換性のため残されており、実際には無視されます。</td>
+      </tr>
+    </table>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_GetHostByAddr.html">SOC_GetHostByAddr</a></code>,
+<code><a href="SOC_GetHostByName.html">SOC_GetHostByName</a></code>,
+<code><a href="SOC_GetMtu.html">SOC_GetMtu</a></code>,
+<code><a href="SOC_Startup.html">SOC_Startup</a></code>,
+<code><a href="SOCInAddr.html">SOCInAddr</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

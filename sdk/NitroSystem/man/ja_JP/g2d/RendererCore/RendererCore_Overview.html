@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Renderer_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">レンダラコア概要</h1>
+<H2>概念図</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'></span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><IMG width="431" height="254" src="clip_image0021.gif" v:shapes="_x0000_i1025"></span></P>
+<H2>説明</H2>
+レンダラコアは、キャラクタを画面に描画するためのＡＰＩを提供します。<BR>
+レンダタコアモジュールはレンダラモジュールの描画処理を担当し、
+レンダラモジュールの下請けモジュールとして動作しています。<BR>
+ユーザはレンダラコアモジュールを直接利用することも可能です。<BR>
+具体的には以下のような処理を行います。
+<pre>
+･レンダーターゲットに対応した、セルのビューイング処理
+･セルのアフィン変換（倍角アフィン）
+･セルのフリップ処理
+･セルが参照する画像データに合わせた、画像参照位置オフセットの調整
+･セルVRAM転送状態オブジェクトの処理
+
+また、以下のような処理をレンダラコアモジュールを使用する場合にユーザが自分で実行する必要があります。
+
+･行列スタック管理
+･アフィンパラメータのロード処理
+･OAMアトリビュート内のパラメータ書き換え
+･可視カリング
+
+</pre>
+
+<H2>レンダラモジュールとの違い</H2>
+<pre>
+レンダラモジュールとの違いを以下に列挙します。
+･行列スタックを管理しない
+･複数のサーフェスをサポートしない
+･描画方法を隠蔽しない( 2D or 3D )
+</pre>
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_CRC*Init</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_CRC*Init</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/crc.h&gt;
+
+static inline void MATH_CRC8Init( <A href="MATHCRCContext.html">MATHCRC8Context</A> *context );
+static inline void MATH_CRC16Init( <A href="MATHCRCContext.html">MATHCRC16Context</A> *context );
+static inline void MATH_CRC16CCITTInit( <A href="MATHCRCContext.html">MATHCRC16Context</A> *context );
+static inline void MATH_CRC32Init( <A href="MATHCRCContext.html">MATHCRC32Context</A> *context );
+static inline void MATH_CRC32POSIXInit( <A href="MATHCRCContext.html">MATHCRC32Context</A> *context );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
+      <TD width="670">初期化する各種 CRC 計算用のコンテキスト構造体へのポインタ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、各種 CRC を計算する際に使用する <A href="MATHCRCContext.html">MATHCRC*Context</A> 型のコンテキスト構造体を初期化します。
+<A href="MATH_CRCUpdate.html">MATH_CRC*Update</A> 関数・<A href="MATH_CRCGetHash.html">MATH_CRC*GetHash</A> 関数を使用する前に必ず呼び出すようにしてください。<BR>
+また、初期化済みのコンテキスト構造体にこの関数を再適用しても構いません。その場合は、コンテキスト構造体は初期状態に戻ります。<BR>
+<BR>
+CRC-8 は 8bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-16, CRC-16/CCITT は 16bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-32, CRC-32/POSIX は 32bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-16 は圧縮プログラムの ARC, LHA などで使用されているアルゴリズムです。先頭に 0 のバイトを追加してもハッシュ値が変わらないという制限があります。<BR>
+CRC-16/CCITT は様々なデータリンク層の規格で FCS (Frame Check Sequence) として使用されているアルゴリズムです。CCITT (Comite Consultatif International Telegraphique et Telephonique) の X.25 などで規定されています。<BR>
+CRC-32 は圧縮プログラムの PKZIP や画像フォーマットの PNG などで使用されているアルゴリズムです。詳細は ISO 3309, RFC 2083 などを参照してください。<BR>
+CRC-32/POSIX は POSIX 準拠の Unix に標準で入っている cksum コマンドで使用されているアルゴリズムです。POSIX 1003.2 で規定されています。なお、cksum コマンドでは、入力ファイルの最後にファイル長を加えてから CRC をとります。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_CRCUpdate.html">MATH_CRC*Update</A>, <A href="MATH_CRCGetHash.html">MATH_CRC*GetHash</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 初版<BR>
+</P>
+</body>
+</html>

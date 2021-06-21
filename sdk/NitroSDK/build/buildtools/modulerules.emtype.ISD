@@ -1,0 +1,101 @@
+#! make -f
+#----------------------------------------------------------------------------
+#  Project:  NitroSDK - buildtools - debugger dependant settings for ISDbgr
+#  File:     modulerules.emtype.ISD
+#
+#  Copyright 2003-2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules.emtype.ISD,v $
+# Revision 1.20  2005/06/22 00:49:14  yasu
+# 著作年度修正
+#
+# Revision 1.19  2005/06/21 06:36:27  yasu
+# 使用ツールを切り替え可能にする
+#
+# Revision 1.18  2004/09/10 06:21:03  yasu
+# Fix make run
+#
+# Revision 1.17  2004/09/04 10:38:15  yasu
+# Support nitload in "make run"
+#
+# Revision 1.16  2004/07/01 09:40:31  yasu
+# add TARGET_ROM
+#
+# Revision 1.15  2004/05/27 09:17:53  takano_makoto
+# autotest.log の切り出し方法を変更
+#
+# Revision 1.14  2004/03/30 07:39:39  yasu
+# set autotest log file limit to 30 lines
+#
+# Revision 1.13  2004/03/30 07:16:48  yasu
+# fix autotest log sequence
+#
+# Revision 1.12  2004/03/30 06:34:28  yasu
+# limit log file length
+#
+# Revision 1.11  2004/02/17 13:15:55  yasu
+# Don't make run if no binary
+#
+# Revision 1.10  2004/02/09 11:05:29  kitani_toshikazu
+# Work around IS-IRIS-EMU => IS=NITRO-EMU.
+#
+# Revision 1.9  2004/02/06 12:42:10  yasu
+# delete IS_IRIS_DIR
+#
+# Revision 1.8  2004/02/06 09:18:58  kitani_toshikazu
+# Fix set-logfile 's script filename.
+#
+# Revision 1.7  2004/02/06 01:06:05  yasu
+# add command for autotest
+#
+# Revision 1.6  2004/02/05 07:29:20  yasu
+# rollback IS_NITRO_SDK -> IS_IRIS_SDK
+#
+# Revision 1.5  2004/02/05 07:09:01  yasu
+# change SDK prefix iris -> nitro
+#
+# Revision 1.4  2004/02/05 00:12:38  yasu
+# call jscript for autotest
+#
+# Revision 1.3  2004/02/03 07:37:04  yasu
+# Add target "autotest"
+#
+# Revision 1.2  2004/01/15 10:49:01  yasu
+# execute make run as background job
+#
+# Revision 1.1  2003/12/29 01:37:16  yasu
+# Support a target "make run"
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+#----------------------------------------------------------------------------
+#  Run command for IS-NITRO-EMULATOR
+#----------------------------------------------------------------------------
+ifneq	($(TARGET_ROM),)
+
+.PHONY: run test-run
+run:
+	@if [ -e "$(ISD_NITLOAD_GCC)" ];	\
+	then					\
+		$(ISD_NITLOAD_GCC) -p $(BINDIR)/$(firstword $(TARGET_BIN)); \
+	else					\
+		$(ISD_NITLOAD) -p $(BINDIR)/$(firstword $(TARGET_BIN)); \
+	fi
+
+#test-run:
+#	@echo ==== $(CURDIR)                                       >  $(AUTOTESTLOG).tmp
+#	@echo :TEST-TARGET: [$(BINDIR)/$(firstword $(TARGET_BIN))] >> $(AUTOTESTLOG).tmp
+#	@echo                                                      >> $(AUTOTESTLOG).tmp
+#	cscript $(NITRO_TOOLSDIR)/bin/runEmu.js //Nologo //T:60 $(BINDIR)/$(firstword $(TARGET_BIN)) $(AUTOTESTLOG).tmp
+#	@gawk '/<AUTO-TEST> / || NR <= 30' $(AUTOTESTLOG).tmp >> $(AUTOTESTLOG)
+#	@echo                         >> $(AUTOTESTLOG)
+endif
+
+#----- End of modulerules.emtype.ISD -----

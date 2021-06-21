@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_InitTick</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_InitTick</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_InitTick( void );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>チック用にタイマを割り当てて初期化します。<BR>
+<BR>
+チックとは、ハードウェアタイマを利用してu64 のインクリメントカウントを生成するその仕組み及び取得値です。値は特にチック値と表記することもあります。タイマ自体は16bitですが、16bit一回りを１単位としてさらに内部でカウンタを持ち、結果、チック値として64bit
+の値を作り出しています。チックの1カウントはハードウェアのシステムクロックの64分周です。(システムクロックは
+OS_SYSTEM_CLOCK Hz ですので、チックは OS_SYSTEM_CLOCK / 64 Hz です))<BR>
+<BR>
+OS_InitTick() 内部でチック値は０にセットされます。従ってOS_GetTick() で得られる値は
+OS_InitTick() からの時間と見なすこともできます。<BR>
+<BR>
+チックに割り当てられたタイマはシステム予約となり、OS_SetTimer() などでユーザがタイマとして使用することは出来ません。すべてのタイマをユーザが使用したい場合は
+OS_InitTick() を呼び出さないで下さい。<BR>
+<BR>
+チックはアラームシステムを使用する場合は必須となります。アラームシステムの初期化宣言
+OS_InitAlarm() より前に、OS_InitTick() を呼んでおいてください。<BR>
+</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_GetTick.html">OS_GetTick</A>, <A href="OS_GetTickLo.html">OS_GetTickLo</A>, <A href="OS_SetTick.html">OS_SetTick</A>, <A href="../alarm/OS_InitAlarm.html">OS_InitAlarm</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/02/25 systemClock→tickに変更<BR>
+2004/02/04 初版</P>
+</BODY>
+</HTML>

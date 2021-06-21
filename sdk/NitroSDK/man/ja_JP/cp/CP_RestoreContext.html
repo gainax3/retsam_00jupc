@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_RestoreContext</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_RestoreContext</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <dd><CODE>void CP_RestoreContext( CPContext* context );</CODE></dd>
+</dd>
+</dl>
+
+<h2>引数</h2>
+<p>復元する除算器・平方根演算器の状態構造体へのポインタ。</p>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P><CODE><A href="CP_SaveContext.html">CP_SaveContext</A></CODE>で退避した除算器と平方根演算器の状態(コンテキスト)をこの関数で復元します。</P>
+<P>
+割り込み内で除算器または平方根演算器を使用する場合には、これらの関数によって除算器と平方根演算器を使用する前のコンテキストを保存してください。<BR>
+この関数の内部で状態の復元に最低限必要なウェイト処理がおこなわれます。
+</P>
+
+<P>スレッドの切り替え時には自動的にコンテキストが切り替えられるため、本関数によって明示的に保存処理をする必要はありません。</P>
+
+<BLOCKQUOTE style="background-color : #eeeeee;">
+<B>例</B>　割り込み内で除算器/平方根演算器を使用する<BR>
+<P><CODE>void intr_func( void ) <BR>
+{<BR>
+　CPContext context;<BR>
+　<BR>
+　CP_SaveContext( &amp;context );<BR>
+　CP_SetDiv32_32( 1000, 5 );<BR>
+　CP_WaitDiv();<BR>
+　result = CP_GetDivResult();<BR>
+　CP_RestoreContext( &amp;context );<BR>
+}</CODE></P>
+</BLOCKQUOTE>
+
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SaveContext.html">CP_SaveContext</A>, <A href="div/CP_SetDiv.html">CP_SetDiv*</A>, <A href="sqrt/CP_SetSqrt.html">CP_SetSqrt*</A></CODE></p>
+
+<H2>履歴</H2>
+<P>2006/08/09 サンプルコード片を追加、状態の復元完了待ちが不要になった変更による記述の修正<BR>
+2004/05/06 初版</P>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_WaitVBlankIntr</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_WaitVBlankIntr</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_WaitVBlankIntr( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>Ｖブランク割り込みが発生するまで待ちます。<BR>
+<CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr()</A></CODE> と違い、空き時間にはCPUが<FONT color="#ff0000">他のスレッドへ切り替わります。</FONT></P>
+<P>Vブランク割り込みハンドラにて <CODE><A href="../irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>( OS_IE_V_BLANK )</CODE> で Vブランクのチェックフラグをセットしてください。<CODE>OS_WaitVBlankIntr()</CODE> 内部では IRQ 割り込み後にこのフラグがセットされたことで Vブランクが発生したと見なします。</P>
+<P>複数のスレッドが同時期に<CODE>OS_WaitVBlankIntr()</CODE> を呼び出す場合には動作に注意が必要です。<CODE>OS_WaitVBlankIntr()</CODE> では最初にVブランクのチェックフラグをクリアしているからです。例えば、ある2つのスレッドが <CODE>OS_WaitVBlankIntr()</CODE> でVブランク待ちを行なっていた場合、まず復帰した片側のスレッドが何らかの処理を行なってもう一度 <CODE>OS_WaitVBlankIntr()</CODE> に出会うと、その時点でフラグがクリアされてしまいますので、他方のスレッドが復帰することが出来ません。</P>
+<H2>参照</H2>
+<P><CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/10/07 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_InitChild</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_InitChild</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void WBT_InitChild(WBTCallback callback);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">特定のコマンドとは別に発生するイベントを通知する<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数<br>
+	  この関数には、<A href="../wbt_command_type_const.html">WBT_CMD_SYSTEM_CALLBACK</A>コマンドとしてコールバックが通知されます。
+	  <br>このコールバックは<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>WBT ライブラリを子機として初期化します。<BR>
+この関数は無線の子機でのみ使用することができます。<br>
+<br>
+無線ライブラリの状態など、この関数の呼び出しに関する条件は特にありません。<br>
+<br>
+<h2>参照</h2>
+<p>
+<A href="WBT_InitParent.html">WBT_InitParent
+<A href="WBT_End.html">WBT_End
+<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>
+<BR>
+<A href="../wbt_callback_type.html">WBTCallback</A>
+</P>
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックがWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

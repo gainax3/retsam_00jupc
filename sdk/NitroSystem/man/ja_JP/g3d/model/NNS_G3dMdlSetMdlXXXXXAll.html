@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dMdlSetMdlXXXXXAll</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dMdlSetMdlXXXXXAll</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/model.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G3dMdlSetMdlDiffAll(NNSG3dResMdl* pMdl, GXRgb col);
+void NNS_G3dMdlSetMdlAmbAll(NNSG3dResMdl* pMdl, GXRgb col);
+void NNS_G3dMdlSetMdlSpecAll(NNSG3dResMdl* pMdl, GXRgb col);
+void NNS_G3dMdlSetMdlEmiAll(NNSG3dResMdl* pMdl, GXRgb col);
+void NNS_G3dMdlSetMdlLightEnableFlagAll(NNSG3dResMdl* pMdl, int light);
+void NNS_G3dMdlSetMdlPolygonModeAll(NNSG3dResMdl* pMdl, GXPolygonMode polyMode);
+void NNS_G3dMdlSetMdlCullModeAll(NNSG3dResMdl* pMdl, GXCull cullMode);
+void NNS_G3dMdlSetMdlPolygonIDAll(NNSG3dResMdl* pMdl, int polygonID);
+void NNS_G3dMdlSetMdlAlphaAll(NNSG3dResMdl* pMdl, int alpha);
+void NNS_G3dMdlSetMdlFogEnableFlagAll(NNSG3dResMdl* pMdl, BOOL flag);
+void NNS_G3dMdlSetMdlDepthTestCondAll(NNSG3dResMdl* pMdl, BOOL flag);
+void NNS_G3dMdlSetMdl1DotAll(NNSG3dResMdl* pMdl, BOOL flag);
+void NNS_G3dMdlSetMdlFarClipAll(NNSG3dResMdl* pMdl, BOOL flag);
+void NNS_G3dMdlSetMdlXLDepthUpdateAll(NNSG3dResMdl* pMdl, BOOL flag);</CODE></PRE>
+</DL>
+
+<H2>共通の引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><I><B>pMdl</B></I>で指定されるモデルの描画にモデルリソース内で設定されている値を使用するよう設定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlDiffAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのdiffuse色を<I><B>col </B></I>に設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlAmbAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのambient色を<I><B>col </B></I>に設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlSpecAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのspecular色を<I><B>col </B></I>に設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlEmiAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのemission色を<I><B>col </B></I>に設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlLightEnableFlagAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのライトイネーブルフラグを<B><I>light </I></B>に設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlPolygonModeAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのポリゴンモードを<I><B>polyMode </B></I>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlCullModeAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのカルモードを<B><I>cullMode </I></B>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlPolygonIDAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのポリゴンIDを<B><I>polygonID </I></B>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlAlphaAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのα値を<I><B>alpha </B></I>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlFogEnableFlagAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのフォグイネーブルフラグを<I><B>flag </B></I>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlDepthTestCondAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのデプステスト条件を<I><B>flag </B></I>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdl1DotAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全ての１ドットポリゴン表示指定を<B><I>flag </I></B>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlFarClipAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全てのFAR面交差ポリゴン表示指定を<B><I>flag </I></B>に指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlSetMdlXLDepthUpdateAll</CODE></TD>
+      <TD width="1078">モデルリソース内マテリアル全ての半透明ポリゴンのデプス値更新イネーブルフラグを<B><I>flag </I></B>に指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><CODE><A href="NNS_G3dMdlSetMdlXXXXX.html">NNS_G3dMdlSetMdlXXXXX </A><A href="NNS_G3dMdlGetMdlXXXXX.html">NNS_G3dMdlGetMdlXXXXX</A></CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</BODY>
+
+</HTML>

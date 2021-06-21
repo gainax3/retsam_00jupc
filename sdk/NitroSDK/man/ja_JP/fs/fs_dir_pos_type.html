@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSDirPos</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSDirPos</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE><pre>
+typedef   struct
+{
+<font color="#008000">/* private: (except direct operation with FSArchive) */</font>
+    struct  FSArchive   *arc;    <font color="#008000">/* attached archive */</font>
+    u16     own_id;              <font color="#008000">/* own directory id */</font>
+    u16     index;               <font color="#008000">/* if next FSDirEntry is file, its id */</font>
+    u32     pos;                 <font color="#008000">/* seek offset to next FSDirEntry */</font>
+} FSDirPos;<br>
+  <br></pre></code>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ディレクトリおよびその列挙中の位置を含んだ値を表現する型です。<BR>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_dir_entry_type.html">FSDirEntry</A> 
+<A href="file/FS_TellDir.html">FS_TellDir</A> 
+<A href="file/FS_SeekDir.html">FS_SeekDir</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+2004/05/20 FSDirPos型変更による記述修正<BR>
+2004/05/14 FSDirPos型変更による記述修正<BR>
+2004/04/08 FSDirPos型変更による記述修正<BR>
+2004/04/01 初版<BR>
+</P>
+</body>
+</html>

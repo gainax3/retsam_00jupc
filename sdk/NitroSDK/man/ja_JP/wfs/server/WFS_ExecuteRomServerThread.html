@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_ExecuteRomServerThread</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_ExecuteRomServerThread</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_ExecuteRomServerThread(WFSServerContext *context, <a href="../../fs/fs_file_type.html">FSFile</a> *file, BOOL sharedFS);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>file</strong></em></td>
+      <td style="width:87%">登録すべきファイルシステムを保持するSRLファイルを開いた状態の<a href="../../fs/fs_file_type.html">FSFile</a>オブジェクト<br />
+      親機自身のファイルシステムを登録する場合はNULLを指定します。</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>sharedFS</strong></em></td>
+      <td style="width:87%">ファイルシステムを親子で共有させるかどうかのフラグ<br />
+      TRUEを指定した場合, 親機自身のファイルシステムにfile内のオーバーレイだけが追加された混合ファイルシステムを構築します。<br />
+      fileにNULLを指定した場合はこの引数は無視されます。(常にTRUEとして解釈されます)</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>ROMファイルテーブルの登録処理と内部スレッド生成に成功すればTRUEを、それらいずれかに失敗すればFALSEを返します。</p>
+
+<h2>説明</h2>
+<p>指定したSRLファイルのファイルテーブルを標準的な設定で登録し、読み込みリクエストに応答する内部スレッドも自動的に生成します。<br />
+この関数呼び出しが成功すると優先度15のスレッドが1個生成され、<a href="WFS_EndServer.html">WFS_EndServer</a>関数を呼び出すまで実行します。
+子機からの読み込みリクエストに対してこのスレッドが自動的に応答するので、<a href="../WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUEST</a>イベント通知は発生しなくなります。<br />
+ファイルテーブルの設定や読み込みリクエストの応答に特別な処理を必要としない場合、
+この関数を使用することによって<a href="WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>関数よりも格段に容易にサーバ処理を実現することが出来ます。</p>
+<p>
+この関数は、MBライブラリとWFSライブラリを組み合わせてよく利用される標準的な3つの登録パターンをサポートしています。<br />
+各引数の組み合わせと主な用途は以下の通りです。</p>
+<table style="border:solid 1px black">
+<tr><td>file</td><td>sharedFS</td><td>タイプ</td><td>用途</td></tr>
+<tr><td style="background-color:white" rowspan="2">有効なファイル</td><td style="background-color:white">FALSE</td><td style="background-color:white">単体型</td>
+<td style="width:80%;background-color:white">配信するダウンロードプログラムの構成が親機と無関係である場合に有効です。<br />
+単体で完結した簡単なダウンロードプログラムを作成するのに向いています。</td></tr>
+<tr><td style="background-color:white">TRUE</td><td style="background-color:white">FS共有型</td>
+<td style="width:80%;background-color:white">配信するダウンロードプログラムの構成は親機と異なるがファイルシステムの内容がほとんど同一である場合に有効です。<br />
+ダウンロードプログラムのために重複したデータを用意する必要がなくなるため、ROMサイズを節約することができます。</td></tr>
+<tr><td style="background-color:white">NULL</td><td style="background-color:white">-</td><td style="background-color:white">クローンブート型</td>
+<td style="width:80%;background-color:white">配信するダウンロードプログラムが親機自身のクローンブートである場合に有効です。</td></tr>
+</table>
+<p>
+これらのいずれでもないカスタマイズされた設定でファイルテーブルを登録したい場合、
+<a href="WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>関数を使用してください。
+この関数と<a href="WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>関数の作用は排他的で、どちらか一方のみ使用可能です。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="../WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUEST</a>
+<br />
+<a href="WFS_RegisterServerTable.html">WFS_RegisterServerTable</a> 
+<br /></code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/14 初版<br />
+</p>
+</body>
+</html>

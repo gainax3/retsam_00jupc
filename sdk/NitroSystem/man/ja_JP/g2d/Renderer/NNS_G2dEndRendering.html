@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dEndRendering</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dEndRendering</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_G2dEndRendering();
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+  <p>なし<BR>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+レンダラ 描画後に呼び出してください。<BR>
+レンダラ 描画メソッド( NNS_G2dDrawXXX )を呼んだ後に呼んでください。<BR>
+Begin End Rendering 内 で 呼び出さないでください(入れ子呼び出しの禁止)。<BR>
+<BR>
+描画後に変更された内部状態を元に戻します。<BR>
+最適化ヒントが指定されている(NNS_G2dBeginRenderingEx()を使用する)
+場合には、最適化処理の後処理を行います。<BR>
+                
+最適化ヒントフラグは本関数によってリセットされます。<BR>
+つまり、最適化ヒントフラグ は レンダラの Begin - End Rendering 
+ブロック内でのみ有効となります。<BR>
+<BR>
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dBeginRendering.html">NNS_G2dBeginRendering</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/11/10 説明の修正</P>
+<P>2004/05/28 初版</P>
+</body>
+</html>

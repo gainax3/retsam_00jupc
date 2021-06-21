@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_InitArena</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_InitArena</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_InitArena( void );
+</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>アリーナの下位境界、上位境界を設定します。</P>
+<P>この関数は、Alloc関数や他のArena関数よりも先に一度だけ呼んでください。但し、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼ぶ場合、その内部から呼ばれていますのでそれ以降の呼び出しは意味がありません。この関数の二度目以降の呼び出しは無視されます。</P>
+<P><CODE>OS_InitArena()</CODE> を呼び出した後に <A href="OS_SetArenaLo.html"><CODE>OS_SetArenaLo()</CODE></A> や <CODE><A href="OS_SetArenaHi.html">OS_SetArenaHi()</A></CODE> でアリーナの境界を変更することが可能です。</P>
+<P>NitroSDK では、メインメモリ(ARM9用、ARM7用)、メインメモリ拡張部分、ITCM、DTCM、共有メモリユーザ部分、共用ワークRAM(ARM9用、ARM7用)、ARM7専用ワークRAM
+の9つのアリーナ領域を設定することが出来ます。それぞれの領域にはIDが振られており、OSArenaId
+列挙型で以下のように定義されています。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>アリーナID</TH>
+      <TH>アリーナ</TH>
+      <TH>初期化</TH>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_MAIN</TD>
+      <TD>メインメモリ上のアリーナ(ARM9専用)</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_MAIN_SUBPRIV</TD>
+      <TD>メインメモリ上のアリーナ(ARM7専用)</TD>
+      <TD>ARM7から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_MAINEX</TD>
+      <TD>メインメモリ上の拡張アリーナ</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_ITCM</TD>
+      <TD>ICTM上のアリーナ</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_DTCM</TD>
+      <TD>DTCM上のアリーナ</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_SHARED</TD>
+      <TD>共有メモリ上のユーザ領域のアリーナ</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_MAIN</TD>
+      <TD>共有ワークRAM上のアリーナ(ARM9用)</TD>
+      <TD>ARM9から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_SUB</TD>
+      <TD>共有ワークRAM上のアリーナ(ARM7用)</TD>
+      <TD>ARM7から</TD>
+    </TR>
+    <TR>
+      <TD>OS_ARENA_WRAM_SUBPRIV</TD>
+      <TD>ARM7専用ワークRAM上のアリーナ</TD>
+      <TD>ARM7から</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>　</P>
+<P>ARM9の<CODE>OS_InitArena()</CODE>では９つあるアリーナのうち、ARM7専用のメインメモリ上のアリーナと、ARM7用共有ワークRAM上アリーナと、ARM7専用ワークRAMアリーナを除く6つを、ARM7の<CODE>OS_InitArena()</CODE>ではARM9で除いた3つのアリーナについて設定します。</P>
+<P>両プロセッサから　<CODE>OS_InitArena()</CODE> を呼ぶことで、各アリーナの上位境界・下位境界は以下のように設定されます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH bgcolor="#cccccc">アリーナ</TH>
+      <TH bgcolor="#cccccc">下位</TH>
+      <TH bgcolor="#cccccc">上位</TH>
+    </TR>
+    <TR>
+      <TD>メインメモリ上のアリーナ(ARM9専用)</TD>
+      <TD>SDK_MAIN_ARENA_LO (lcf から取得)</TD>
+      <TD>HW_MAIN_MEM_MAIN_END( 0x023e0000 )</TD>
+    </TR>
+    <TR>
+      <TD>メインメモリ上のアリーナ(ARM7専用)</TD>
+      <TD>SDK_SUBPRIV_ARENA_LO(lcf から取得)</TD>
+      <TD>ARM7専用メインメモリ領域最上位</TD>
+    </TR>
+    <TR>
+      <TD>メインメモリ上の拡張アリーナ</TD>
+      <TD>0 または <BR>
+      SDK_SECTION_ARENA_EX_START<BR>
+      (lcf から取得) 　<B><FONT color="#ff0000">*1 </FONT></B></TD>
+      <TD>0 または<BR>
+      デバッガ領域の前<BR>
+      <B><FONT color="#ff0000">*1</FONT></B></TD>
+    </TR>
+    <TR>
+      <TD>ITCM上のアリーナ</TD>
+      <TD>SDK_SECTION_ARENA_ITCM_START<BR>
+      (lcf から取得)</TD>
+      <TD>ITCM最上位 (0x02000000)</TD>
+    </TR>
+    <TR>
+      <TD>DTCM上のアリーナ</TD>
+      <TD>SDK_SECTION_ARENA_DTCM_START<BR>
+      (lcf から取得)</TD>
+      <TD>システムモード用スタックの前 <B><FONT color="#ff0000">*2</FONT></B></TD>
+    </TR>
+    <TR>
+      <TD>共有メモリ上のユーザ領域のアリーナ</TD>
+      <TD>共有メモリ最下位</TD>
+      <TD>共有メモリシステム領域の前</TD>
+    </TR>
+    <TR>
+      <TD>共有ワークRAM上のアリーナ(ARM9用)</TD>
+      <TD>共有ワークRAM最下位</TD>
+      <TD>共有ワークRAM最下位 <B><FONT color="#ff0000">*3</FONT></B></TD>
+    </TR>
+    <TR>
+      <TD>共有ワークRAM上のアリーナ(ARM7用)</TD>
+      <TD><B><FONT color="#ff0033">*4</FONT></B></TD>
+      <TD>共有ワークRAM最上位</TD>
+    </TR>
+    <TR>
+      <TD>ARM7専用ワークRAM上のアリーナ</TD>
+      <TD><B><FONT color="#ff0033">*5</FONT></B></TD>
+      <TD>システムモード用スタックの前</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<B><FONT color="#ff0000">*1</FONT></B> 　メインメモリ拡張アリーナは、<CODE><A href="OS_EnableMainExArena.html">OS_EnableMainEx()</A></CODE> で使用を宣言しないと使用できません。使用できない場合はメインメモリ拡張アリーナの下位・上位アドレスは 0 となります。また、製品版DSでは、拡張メインメモリはありませんので、メインメモリ上の拡張アリーナはありません。この場合も下位・上位アドレスともに 0 となります。</P>
+<P><B><FONT color="#ff0000">*2</FONT></B>　スタックを最大まで使用するようにしている場合、DTCMアリーナ用に領域がとれません。この場合、DTCMアリーナの上位と下位アドレスは同じ値になります。</P>
+<P><B><FONT color="#ff0000">*3</FONT></B>　共用ワークRAM上のアリーナ(ARM9用)は下位と上位が同じアドレスになっています。つまりデフォルトで大きさは0です。</P>
+<P><FONT color="#ff0033"><B>*4　</B></FONT> ARM7のスタティックモジュールの最終アドレスと、共有ワーク最上位アドレスのうち小さい方となります。すなわち、ARM7のスタティックモジュールが共有ワークに収まりきれば、空き領域がARM7用共有ワークRAM上アリーナとなり、収まりきらなければARM7用共有アリーナの開始アドレスと終了アドレスはともに共有ワーク最上位アドレスとなりアリーナの大きさは0となります。</P>
+<P><FONT color="#ff0033"><B>*5</B></FONT> 　ARM7のスタティックモジュールの最終アドレスと、ARM7専用ワークRAMの再開アドレスのうち大きい方となります。すなわち、ARM7のスタティックモジュールがARM7専用ワークRAMにまで及ぶようならば、それを除いた空き部分をARM7専用ワークRAMアリーナとし、モジュールがそこまで大きくなくてARM7専用ワークRAMに及ぶことがないのなら、ARM7専用ワークRAM先頭からをアリーナとする、ということになります。</P>
+<P>詳細は、<A href="about_arena.html">アリーナの概要</A> の説明をご覧下さい。</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="OS_SetArenaHi.html">OS_SetArenaHi</A>,
+<A href="OS_SetArenaLo.html">OS_SetArenaLo</A>,
+<A href="OS_GetArenaHi.html">OS_GetArenaHi</A>,
+<A href="OS_GetArenaLo.html">OS_GetArenaLo</A>,
+<BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/08/27 DTCM, ITCM, 拡張メインメモリアリーナの初期設定アドレス変更<BR>
+2004/11/02 初期化するアリーナ個数の誤りを訂正<BR>
+2004/10/26 アリーナについての図解説明を分離<BR>
+2004/10/01 overlayを絡めて説明<BR>
+2004/09/29 図を入れてアリーナ領域を説明<BR>
+2004/05/28 ARM7のアリーナについての記述変更<BR>
+2004/02/19 アリーナ個数が6→9個に。両プロセッサへの対応<BR>
+2004/01/16 MainEx について追加<BR>
+2004/01/06 初版</P>
+</BODY>
+</HTML>

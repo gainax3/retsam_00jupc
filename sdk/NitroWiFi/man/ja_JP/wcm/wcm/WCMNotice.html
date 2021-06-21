@@ -1,0 +1,95 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCMNotice.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCMNotice.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCMNotice</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCMNotice</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+typedef struct
+{
+    s16     notify;
+    s16     result;
+    union
+    {
+        s32     n;
+        void*   p;
+
+    }       parameter[3];
+
+} WCMNotice;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			<A href="WCMNotify.html"><CODE>WCMNotify</CODE> 型</A>の WCM ライブラリからの通知関数に渡される通知の詳細を示す構造体です。
+			通知種別、処理結果コード、及び詳細パラメータを含みます。
+		</P>
+
+		<H2>要素</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>notify</CODE></STRONG></EM></TD>
+					<TD width="75%">通知の原因となった処理種別が格納されます。詳細については <A href="WCM_CONSTANT_NUMBER.html#notify">WCM ライブラリ定数</A>を参照して下さい。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>result</CODE></STRONG></EM></TD>
+					<TD>ライブラリ内部で自動的に非同期に行われた処理の結果が格納されます。詳細については<A href="WCM_CONSTANT_NUMBER.html#result">WCM ライブラリ定数</A>を参照して下さい。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>parameter</CODE></STRONG></EM></TD>
+					<TD>主にデバッグ用のパラメータが格納されます。WCM ライブラリを使用するにあたって特に意識して頂く必要はありません。<BR>
+					なお、<CODE><EM><STRONG>parameter</STRONG></EM>[2]</CODE> には、通知を発行する原因となった箇所がソースコード( system.c )上の行数として格納されます。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCMNotify.html">WCMNotify</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

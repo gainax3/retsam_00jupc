@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdDumpLnkPlttVramManagerEx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdDumpLnkPlttVramManagerEx</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>
+void NNS_GfdDumpLnkPlttVramManagerEx( 
+        NNSGfdLnkDumpCallBack   pFunc, 
+        void*                   pUserData );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pFunc</STRONG></EM></TD>
+      <TD width="87%">デバック出力処理関数(通常テクスチャ用)</TD>
+    </TR>
+    
+    <TR>
+      <TD width="13%"><EM><STRONG>pUserData</STRONG></EM></TD>
+      <TD width="87%">デバック出力処理関数に引数として渡される、デバック出力処理用データ</TD>
+    </TR>
+    
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+リンクドリストパレットVRAMマネージャの状態をデバック出力します。<br>
+VRAMマネージャの内部管理リストのパタメータをを引数にして、指定された、デバック出力処理関数を呼び出します。<br> 
+<br>
+以下に、デバック出力処理関数の宣言と、実装例を示します。<br>
+
+<PRE><CODE>
+
+//------------------------------------------------------
+// NNSGfdLnkDumpCallBack 宣言
+//------------------------------------------------------
+typedef void (*NNSGfdLnkDumpCallBack)( 
+    u32                             addr, 
+    u32                             szByte, 
+    void*                           pUserData );
+    
+
+//------------------------------------------------------
+// NNSGfdLnkDumpCallBack 実装例
+//------------------------------------------------------
+void DumpCallBack_( u32 addr, u32 szByte, void* pUserData )
+{
+    // 合計サイズを計算。
+    (*((u32*)pUserData)) += szByte;
+    
+    // 情報をデバックコンソールに出力
+    OS_Printf("0x%08x:  0x%08x    \n", addr, szByte );   
+}
+
+</PRE></CODE>
+
+</P>
+
+<H2>参照</H2>
+<P>なし。</P>
+
+<H2>履歴</H2>
+<P>2007/01/31 初版</P>
+</BODY>
+
+</HTML>

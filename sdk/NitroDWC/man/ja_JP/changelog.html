@@ -1,0 +1,1879 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--
+ ==========================================================================
+  Project:  NitroDWC - man
+  File:     changelog.html
+
+  Copyright 2005-2008 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+ ==========================================================================
+-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>NITRO-DWC 変更履歴</TITLE>
+<BASE target="main">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFCC">
+<HR>
+<H1>NITRO-DWC[-DL]ライブラリ 変更履歴</H1>
+<HR>
+
+<DL>
+  <DT><A href="#sdk_2_02plus8">■NITRO-DWC[-DL] 2.2 plus8</A> (2008/06/30)
+  <DD><A href="#note25-01">Note 25-01: 無線切断検出時の処理の仕様変更</A>
+  <DD><A href="#KnownIssues_2_02plus8">NITRO-DWC[-DL] 2.2 plus8 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus7">■NITRO-DWC[-DL] 2.2 plus7</A> (2008/06/27)
+  <DD><A href="#note24-01">Note 24-01: マッチメイクをキャンセルした際に稀にスタックのバッファが溢れる問題を修正</A>
+  <DD><A href="#KnownIssues_2_02plus7">NITRO-DWC[-DL] 2.2 plus7 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus6">■NITRO-DWC[-DL] 2.2 plus6</A> (2008/06/24)
+  <DD><A href="#note23-01">Note 23-01: DWC_CleanupInetAsync[Async]関数が特定の条件で処理が終わらない問題を修正</A>
+  <DD><A href="#note23-02">Note 23-02: DWC_DebugConnectInetAsync関数が必ずデータアクセス例外になる問題を修正</A>
+  <DD><A href="#note23-03">Note 23-03: NITRO-Cryptoライブラリの組み込みに関する利便性の向上</A>
+  <DD><A href="#KnownIssues_2_02plus6">NITRO-DWC[-DL] 2.2 plus6 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus5">■NITRO-DWC[-DL] 2.2 plus5</A> (2008/06/12)
+  <DD><A href="#note22-01">Note 22-01: AOSSやらくらく無線スタートを使用した場合の接続性の改善修正の取り止め</A>
+  <DD><A href="#KnownIssues_2_02plus5">NITRO-DWC[-DL] 2.2 plus5 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus4">■NITRO-DWC[-DL] 2.2 plus4</A> (2008/06/09)
+  <DD><A href="#note21-01">Note 21-01: インターネットへの自動接続処理がnintendo spotの仕様変更に対応</A>
+  <DD><A href="#note21-02">Note 21-02: DWC_CheckInet関数の不具合を修正</A>
+  <DD><A href="#note21-03">Note 21-03: インターネットへの自動接続処理中のメモリ確保に関する問題を修正</A>
+  <DD><A href="#KnownIssues_2_02plus4">NITRO-DWC[-DL] 2.2 plus4 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus3">■NITRO-DWC[-DL] 2.2 plus3</A> (2008/06/04)
+  <DD><A href="#note20-01">Note 20-01: RELEASEビルド時のデバッグ出力を抑制してコードサイズを削減</A>
+  <DD><A href="#KnownIssues_2_02plus3">NITRO-DWC[-DL] 2.2 plus3 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus2">■NITRO-DWC[-DL] 2.2 plus2</A> (2008/06/01)
+  <DD><A href="#note19-01">Note 19-01: インターネットへの自動接続処理が nintendo spot に対応</A>
+  <DD><A href="#KnownIssues_2_02plus2">NITRO-DWC[-DL] 2.2 plus2 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02plus">■NITRO-DWC[-DL] 2.2 plus</A> (2008/05/16)
+  <DD><A href="#note18-04">Note 18-04: マッチメイク中のタイムアウト処理の不具合を修正</A>
+  <DD><A href="#note18-06">Note 18-06: HTTPプロトコルスタックのチャンク転送コーディングに関する不具合の修正</A>
+  <DD><A href="#note16-03">Note 16-03: 「NitroSDK4.2」に対応</A>
+  <DD><A href="#note16-04">Note 16-04: Wi-Fiコネクション設定内のメッセージに含まれるURLの変更</A>
+  <DD><A href="#note16-08">Note 16-08: Wi-Fiコネクション設定での不具合修正</A>
+  <DD><A href="#note16-15">Note 16-15: Reliable通信中にUnReliable通信をした場合の不具合修正・仕様変更</A>
+  <DD><A href="#note16-16">Note 16-16: ダウンロードライブラリでファイルリストを取得するときの不具合修正</A>  
+  <DD><A href="#note16-17">Note 16-17: NAT越えできない環境でP2P接続を行う際の不具合を修正</A>
+  <DD><A href="#KnownIssues_2_02plus">NITRO-DWC[-DL] 2.2 plus での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02">■NITRO-DWC[-DL] 2.2 正式版</A> (2007/08/24)
+  <DD><A href="#note15-01">Note 15-01: DWC_Realloc[Ex]関数の不具合を修正</A>
+  <DD><A href="#note15-02">Note 15-02: マッチメイク中の通信エラーに関する不具合を修正</A>
+  <DD><A href="#note15-03">Note 15-03: 汎用ランキング管理ツールで不正なデータを取得した際の不具合を修正</A>
+  <DD><A href="#note15-04">Note 15-04: 不正文字列チェックライブラリで動的に確保するメモリサイズを変更</A>
+  <DD><A href="#note15-05">Note 15-05: 関数リファレンスを修正</A>
+  <DD><A href="#KnownIssues_2_02">NITRO-DWC[-DL] 2.2 正式版 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02rc">■NITRO-DWC[-DL] 2.2 RC</A> (2007/07/24)
+  <DD><A href="#note14-01">Note 14-01: 汎用ランキングライブラリの定数を変更</A>
+  <DD><A href="#note14-02">Note 14-02: 汎用ランキングライブラリの取得モードを追加</A>
+  <DD><A href="#note14-03">Note 14-03: 汎用ランキング管理ツールをプロキシサーバに対応</A>
+  <DD><A href="#note14-04">Note 14-04: 汎用ランキング管理ツールの前/後表示ボタンの不具合を修正</A>
+  <DD><A href="#note14-05">Note 14-05: 不正文字列チェックライブラリのメモリ破壊の問題を修正</A>
+  <DD><A href="#note14-06">Note 14-06: DWC_CanncelMatching関数のメモリ解放の不具合を修正</A>
+  <DD><A href="#note14-07">Note 14-07: DWC_LoginToStorageServerAsync関数の通信エラーに関する不具合を修正</A>
+  <DD><A href="#note14-08">Note 14-08: 友達関係成立コールバック関数の呼び出し不具合を修正</A>
+  <DD><A href="#note14-09">Note 14-09: ピア・ツー・ピア接続に関わるプライベートIPアドレスの判定の不具合を修正</A>
+  <DD><A href="#note14-10">Note 14-10: プログラミングマニュアルを改訂</A>
+  <DD><A href="#note14-11">Note 14-11: 関数リファレンスを修正</A>
+  <DD><A href="#KnownIssues_2_02rc">NITRO-DWC[-DL] 2.2 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_01">■NITRO-DWC[-DL] 2.1 正式版</A> (2007/05/18)
+  <DD><A href="#note13-01">Note 13-01: 汎用ランキングで使用できるユーザー定義データの最大サイズを変更</A>
+  <DD><A href="#note13-02">Note 13-02: 汎用ランキングで使用するリージョンコードに韓国を追加</A>
+  <DD><A href="#note13-03">Note 13-03: 通信エラー(DNSエラー)時にメモリが解放されないことがある問題を修正</A>
+  <DD><A href="#note13-04">Note 13-04: 通信エラー時にNULLポインタを参照することがある問題を修正</A>
+  <DD><A href="#note13-05">Note 13-05: HTTP通信(GHTTPライブラリ)が使用するスタックの問題を修正</A>
+  <DD><A href="#note13-06">Note 13-06: プログラミングマニュアルを改訂</A>
+  <DD><A href="#note13-07">Note 13-07: 関数リファレンスの修正</A>
+  <DD><A href="#KnownIssues_2_01">NITRO-DWC[-DL] 2.1 正式版 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_01rc">■NITRO-DWC[-DL] 2.1 RC</A> (2007/04/09)
+  <DD><A href="#note12-01">Note 12-01: 不正文字列をチェックする関数を追加</A>
+  <DD><A href="#note12-02">Note 12-02: Wi-Fiコネクション設定の英語メッセージの仕様を変更</A>
+  <DD><A href="#note12-03">Note 12-03: DWC_GetDateTime関数でリアルタイムクロックが 2099/12/31 23:59:59 を超えた場合の処理を見直し</A>
+  <DD><A href="#note12-04">Note 12-04: プログラミングマニュアルを改訂</A>
+  <DD><A href="#note12-05">Note 12-05: 関数リファレンスを追加・修正</A>
+  <DD><A href="#KnownIssues_2_01rc">NITRO-DWC[-DL] 2.1 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_00">■NITRO-DWC[-DL] 2.0 正式版</A> (2007/03/12)
+  <DD><A href="#note11-01">Note 11-01: 認証済みユーザIDを取得する関数を追加</A>
+  <DD><A href="#note11-02">Note 11-02: 友達登録鍵と文字列の間を相互変換する関数を追加</A>
+  <DD><A href="#note11-03">Note 11-03: 各種アイコンのNITRO-CHARACTERデータファイルを追加</A>
+  <DD><A href="#note11-04">Note 11-04: ダウンロードライブラリでのソケットのクローズ処理を見直し</A>
+  <DD><A href="#note11-05">Note 11-05: DWC_NdCleanupAsync関数でブロックしてしまう問題を修正</A>
+  <DD><A href="#note11-06">Note 11-06: サンプルデモで非公開関数が使用されていた問題等を修正</A>
+  <DD><A href="#note11-07">Note 11-07: プログラミングマニュアルを改訂</A>
+  <DD><A href="#note11-08">Note 11-08: 関数リファレンスを追加・修正</A>
+  <DD><A href="#KnownIssues_2_00">NITRO-DWC[-DL] 2.0 正式版 での既知の問題点</A>
+</DL>
+※ NITRO-DWC[-DL] 2.0 正式版は NITRO-DWC[-DL] 1.3 正式版 plus までの変更内容を全て含んでいます。
+
+<DL>
+  <DT><A href="#sdk_2_00rc">■NITRO-DWC[-DL] 2.0 RC</A> (2007/02/02)
+  <DD><A href="#note10-01">Note 10-01: AOSS/らくらく無線スタートライブラリのビルドに使用する CodeWarrior のバージョン変更</A>
+  <DD><A href="#note10-02">Note 10-02: DWC_ProcessFriendsMatch関数のエラー処理に関する不具合の修正</A>
+  <DD><A href="#note10-03">Note 10-03: 友達関係の成立条件に関する不具合の修正</A>
+  <DD><A href="#note10-04">Note 10-04: プログラミングマニュアルの改訂</A>
+  <DD><A href="#note10-05">Note 10-05: 関数リファレンスの修正</A>
+  <DD><A href="#KnownIssues_2_00rc">NITRO-DWC[-DL] 2.0 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_00pr">■NITRO-DWC[-DL] 2.0 PR</A> (2007/01/05)
+  <DD><A href="#note9-01">Note 9-01: NITRO-DWC パッケージのビルドに使用する CodeWarrior のバージョン変更</A>
+  <DD><A href="#KnownIssues_2_00pr">NITRO-DWC[-DL] 2.0 PR での既知の問題点</A>
+</DL>
+
+<H4>NITRO-DWC[-DL] 2.0シリーズと NITRO-DWC[-DL] 1.3シリーズは、NITRO-DWC[-DL] 1.3 RC を基点として枝分かれしていて、並列的にバージョン管理しています。<br>
+ただし 1.3シリーズでの変更はすべて 2.0シリーズに含まれています。<!--<br>
+1.3シリーズの詳細は<A href="changelog1.3branch.html">こちら</A>--></H4>
+
+<DL>
+  <DT><A href="#sdk_1_03rc">■NITRO-DWC[-DL] 1.3 RC</A> (2006/12/29)
+  <DD><A href="#note8-01">Note 8-01: Wi-Fiコネクション設定の韓国語対応</A>
+  <DD><A href="#note8-02">Note 8-02: インターネットへの接続テストを行う関数の追加</A>
+  <DD><A href="#note8-03">Note 8-03: HTTP通信(GHTTPライブラリ)の機能追加</A>
+  <DD><A href="#note8-04">Note 8-04: DWC_NdCleanupAsync関数の仕様変更</A>
+  <DD><A href="#note8-05">Note 8-05: DWC_SetMemFunc関数に指定するメモリ解放関数の仕様変更</A>
+  <DD><A href="#note8-06">Note 8-06: 汎用ランキングライブラリで使用するサーバのURLの変更</A>
+  <DD><A href="#note8-07">Note 8-07: 汎用ランキング管理ツール(DWCRankingAdmin.exe)の変更</A>
+  <DD><A href="#note8-08">Note 8-08: マッチメイク中のGameSpyサーバとの通信でタイムアウトが無い部分への対策</A>
+  <DD><A href="#note8-09">Note 8-09: 無線リンク切断時に発生するエラーのエラーコードの不具合の修正</A>
+  <DD><A href="#note8-10">Note 8-10: 使用する任天堂認証サーバのデフォルト設定に関する不具合の修正</A>
+  <DD><A href="#note8-11">Note 8-11: DWC_NASLoginProcess関数の通信エラーに関する不具合の修正</A>
+  <DD><A href="#note8-12">Note 8-12: 多人数でのマッチメイク中に稀に停止する不具合の修正</A>
+  <DD><A href="#note8-13">Note 8-13: DWC_ShutdownFriendsMatch関数のメモリ解放に関する不具合の修正</A>
+  <DD><A href="#note8-14">Note 8-14: DWCUpdateServersCallback関数の引数isChangedの不具合の修正</A>
+  <DD><A href="#note8-15">Note 8-15: DWC_LoginToStorageServerAsync関数の通信エラーに関する不具合の修正</A>
+  <DD><A href="#note8-16">Note 8-16: HTTP通信/汎用ランキングのメモリ解放に関する不具合の修正</A>
+  <DD><A href="#note8-17">Note 8-17: DWC_NdCleanupAsync関数のメモリ解放に関する不具合の修正</A>
+  <DD><A href="#note8-18">Note 8-18: ダウンロードライブラリのソケットのクローズ処理に関する不具合の修正</A>
+  <DD><A href="#note8-19">Note 8-19: ダウンロードライブラリのキャンセル処理に関する不具合の修正</A>
+  <DD><A href="#note8-20">Note 8-20: Wi-Fiコネクション設定のサウンド不具合の修正</A>
+  <DD><A href="#note8-21">Note 8-21: Wi-Fiコネクション設定でWi-Fiユーザー情報を移動する際の不具合の修正</A>
+  <DD><A href="#note8-22">Note 8-22: 問題のある定義の削除</A>
+  <DD><A href="#note8-23">Note 8-23: コメントの文字コードをSJISに統一</A>
+  <DD><A href="#note8-24">Note 8-24: サンプルデモの修正</A>
+  <DD><A href="#note8-25">Note 8-25: プログラミングマニュアルの改訂</A>
+  <DD><A href="#note8-26">Note 8-26: 関数リファレンスの修正</A>
+  <DD><A href="#KnownIssues_1_03rc">NITRO-DWC[-DL] 1.3 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdkDL_1_02">■NITRO-DWC 1.2 正式版 plus3／NITRO-DWC-DL 1.2 正式版</A> (2006/08/02)
+  <DD><A href="#note7-01">Note 7-01: ダウンロード機能のセキュリティを改善</A>
+  <DD><A href="#note7-02">Note 7-02: エラーコード540XXの新設</A>
+  <DD><A href="#note7-03">Note 7-03: DWC_UpdateConnection関数の不具合の修正</A>
+  <DD><A href="#note7-04">Note 7-04: DWC_LoginToStorageServerAsync関数の不具合の修正</A>
+  <DD><A href="#note7-05">Note 7-05: サンプルデモの修正</A>
+  <DD><A href="#note7-06">Note 7-06: プログラミングマニュアルの改訂</A>
+  <DD><A href="#note7-07">Note 7-07: 関数リファレンスの修正</A>
+  <DD><A href="#note7-08">Note 7-08: 汎用ランキング管理ツール(DWCRankingAdmin.exe)の不具合の修正</A>
+  <DD><A href="#KnownIssuesDL_1_02">NITRO-DWC 1.2 正式版 plus3／NITRO-DWC-DL 1.2 正式版 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdkDL_1_02rc">■NITRO-DWC-DL 1.2 RC</A> (2006/07/03)
+  <DD><A href="#note6-01">Note 6-01: 任天堂認証サーバへの認証処理関数の追加</A>
+  <DD><A href="#note6-02">Note 6-02: アクセスポイントとの接続確認関数の追加</A>
+  <DD><A href="#note6-03">Note 6-03: 各サンプルデモのゲーム名/シークレットキー/プロダクトIDの変更</A>
+  <DD><A href="#note6-04">Note 6-04: Wi-Fiコネクション設定の初期化に関する不具合の修正</A>
+  <DD><A href="#note6-05">Note 6-05: 関数リファレンスの修正</A>
+  <DD><A href="#KnownIssuesDL_1_02rc">NITRO-DWC-DL Version 1.2 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_1_02">■NITRO-DWC 1.2 正式版</A> (2006/06/22)
+  <DD><A href="#note5-01">Note 5-01: 友達関係が成立したときに呼び出されるDWCBuddyFriendCallback関数の呼び出し条件の変更</A>
+  <DD><A href="#note5-02">Note 5-02: インターネット自動接続時のアクセスポイントへの認証処理に関する修正</A>
+  <DD><A href="#note5-03">Note 5-03: プログラミングマニュアルの改訂</A>
+  <DD><A href="#note5-04">Note 5-04: 関数リファレンスの修正</A>
+  <DD><A href="#note5-05">Note 5-05: サンプルデモ rank_sample の変更</A>
+  <DD><A href="#note5-06">Note 5-06: 汎用ランキングライブラリでユーザー定義データを使わない場合を考慮した変更</A>
+  <DD><A href="#note5-07">Note 5-07: ダウンロードライブラリでダウンロードサーバがエラーを際の不具合の修正</A>
+  <DD><A href="#KnownIssues_1_02">Version 1.2 正式版 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_1_02rc2">■NITRO-DWC 1.2 RC2</A> (2006/06/08)
+  <DD><A href="#note4-01">Note 4-01: サービスロケータ情報取得処理の内部動作を変更</A>
+  <DD><A href="#KnownIssues_1_02rc2">Version 1.2 RC2 での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_1_02rc">■NITRO-DWC 1.2 RC</A> (2006/06/06)
+  <DD><A href="#note3-01">Note 3-01: 汎用ランキングライブラリの追加</A>
+  <DD><A href="#note3-02">Note 3-02: ダウンロードライブラリの追加</A>
+  <DD><A href="#note3-03">Note 3-03: DWC_GetLastError関数、DWC_GetLastErrorEx関数で取得できるエラー情報の追加・変更</A>
+  <DD><A href="#note3-04">Note 3-04: 設定ユーティリティで接続先1～3のSSIDに「FREESPOT」を設定した時の不具合を修正</A>
+  <DD><A href="#note3-05">Note 3-05: DS本体のオーナー情報に含まれるニックネームが10文字の場合に発生する不具合の修正</A>
+  <DD><A href="#note3-06">Note 3-06: ゲームを途中切断した後にマッチメイクを開始するとマッチメイクが終了しない不具合の修正</A>
+  <DD><A href="#note3-07">Note 3-07: 受信タイムアウトコールバックが呼び出されない不具合の修正</A>
+  <DD><A href="#note3-08">Note 3-08: 一部のホットスポットに接続できない不具合の修正</A>
+  <DD><A href="#note3-09">Note 3-09: 認証サーバでチェックできるスクリーンネームの長さを25文字に拡張</A>
+  <DD><A href="#note3-10">Note 3-10: DWCFriendStatusCallback関数、DWCBuddyFriendCallback関数の引数の不具合の修正</A>
+  <DD><A href="#note3-11">Note 3-11: プログラミングマニュアルの追加・改訂</A>
+  <DD><A href="#note3-12">Note 3-12: 関数リファレンスの追加・修正</A>
+  <DD><A href="#note3-13">Note 3-13: サンプルデモの追加・修正</A>
+  <DD><A href="#note3-14">Note 3-14: add-ins ディレクトリの削除</A>
+  <DD><A href="#KnownIssues_1_02rc">Version 1.2 RC での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_1_01">■NITRO-DWC 1.1 正式版</A> (2006/03/10)
+  <DD><A href="#note2-01">Note 2-01: DWC_StopScMatchingAsync関数の追加</A>
+  <DD><A href="#note2-02">Note 2-02: DWC_CancelGHTTPRequest関数の追加</A>
+  <DD><A href="#note2-03">Note 2-03: DWC_GetApInfo関数の追加</A>
+  <DD><A href="#note2-04">Note 2-04: DWC_GetDateTime関数の追加</A>
+  <DD><A href="#note2-05">Note 2-05: DWC_SetConnectApType関数(デバッグ用)の追加</A>
+  <DD><A href="#note2-06">Note 2-06: DWC_DebugConnectInetAsync関数(デバッグ用)の追加</A>
+  <DD><A href="#note2-07">Note 2-07: dwc_connect_inet_sample サンプルデモの追加</A>
+  <DD><A href="#note2-08">Note 2-08: DWC_SetSendSplitMax関数の修正</A>
+  <DD><A href="#note2-09">Note 2-09: Wi-Fiコネクション設定のメッセージ変更</A>
+  <DD><A href="#note2-10">Note 2-10: Wi-Fiコネクション設定に含まれるWi-Fiユーザー情報移動用子機プログラムのバージョンアップ</A>
+  <DD><A href="#note2-11">Note 2-11: Wi-Fiコネクション設定の不具合修正</A>
+  <DD><A href="#note2-12">Note 2-12: インターネット自動接続処理の不具合修正（１）</A>
+  <DD><A href="#note2-13">Note 2-13: インターネット自動接続処理の不具合修正（２）</A>
+  <DD><A href="#note2-14">Note 2-14: DWC_GetInetStatus関数の不具合修正</A>
+  <DD><A href="#note2-15">Note 2-15: DWC_ProcessInet関数の不具合修正</A>
+  <DD><A href="#note2-16">Note 2-16: DWC_CleanupInet関数の不具合修正</A>
+  <DD><A href="#note2-17">Note 2-17: DWC_CreateUserData関数の修正</A>
+  <DD><A href="#note2-18">Note 2-18: サンプルデモの修正</A>
+  <DD><A href="#note2-19">Note 2-19: ドキュメント「ユーザ情報管理・友達接続概要」の廃止</A>
+  <DD><A href="#note2-20">Note 2-20: ドキュメント「NITRO-DWC プログラミングマニュアル」と関数リファレンスの見直し</A>
+  <DD><A href="#KnownIssues_1_01">Version 1.1 正式版での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_1_00">■NITRO-DWC 1.0 正式版</A> (2006/01/30)
+  <DD><A href="#note1-01">Note 1-01: DWC_SetFriendStatusCallback関数の追加</A>
+  <DD><A href="#note1-02">Note 1-02: DWC_IsSendableReliable関数がFALSEを返す条件を修正</A>
+  <DD><A href="#note1-03">Note 1-03: 最大接続人数チェックの追加</A>
+  <DD><A href="#note1-04">Note 1-04: 友達リスト最大長チェックの追加</A>
+  <DD><A href="#note1-05">Note 1-05: データ送受信用デバッグ設定関数のエラー処理を修正</A>
+  <DD><A href="#note1-06">Note 1-06: GHTTPライブラリ関数に失敗の返り値を追加</A>
+  <DD><A href="#note1-07">Note 1-07: いくつかの関数の返り値をvoidからBOOLに変更</A>
+  <DD><A href="#note1-08">Note 1-08: Base64エンコード・デコード関数の追加</A>
+  <DD><A href="#note1-09">Note 1-09: 親機DS通信切断による子機DSはまり不具合修正</A>
+  <DD><A href="#note1-10">Note 1-10: DWC_CheckFriendKey関数の不具合修正</A>
+  <DD><A href="#note1-11">Note 1-11: データストレージサーバから自分のデータをロードする関数を追加</A>
+  <DD><A href="#note1-12">Note 1-12: 友達指定ピアマッチメイクで友達の友達との接続を完全には禁止できない不具合を修正</A>
+  <DD><A href="#note1-13">Note 1-13: Fatal Error 71002 が発生する不具合を修正</A>
+  <DD><A href="#note1-14">Note 1-14: サンプルソースのコメント、リファレンスの用語を統一</A>
+  <DD><A href="#note1-15">Note 1-15: dwc_frienddata_sample, dwc_friend_match_sample サンプルデモ修正</A>
+  <DD><A href="#note1-16">Note 1-16: dwc_sample サンプルデモの受信バッファサイズ変更</A>
+  <DD><A href="#KnownIssues_1_00">Version 1.0 正式版での既知の問題点</A>
+</DL>
+
+<DL>
+  <!--<DT><A href="changelog-oldver.html">→ 過去の変更履歴</A>-->
+  <DT><A href="changelog_old.txt">→ 正式リリース前の変更履歴</A>
+</DL>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus8" id="sdk_2_02plus8">■ NITRO-DWC[-DL] 2.2 plus8</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/30)</P>
+</DIV>
+
+<HR>
+<H3><A name="note25-01" id="note25-01">Note 25-01:  無線切断検出時の処理の仕様変更</A></H3>
+<P>
+DWC_ProcessFriendsMatch関数やDWC_UpdateConnection関数で無線切断を検出した場合は、内部でDWC_CleanupInet関数を呼び出し、
+切断処理を行っていましたが、これを取り止めました。切断処理は明示的にアプリケーションから行う必要があります。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus8" id="KnownIssues_2_02plus8">NITRO-DWC[-DL] 2.2 plus8 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus7" id="sdk_2_02plus7">■ NITRO-DWC[-DL] 2.2 plus7</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/27)</P>
+</DIV>
+
+<HR>
+<H3><A name="note24-01" id="note24-01">Note 24-01:  マッチメイクをキャンセルした際に稀にスタックのバッファが溢れる問題を修正</A></H3>
+<P>
+マッチメイクをキャンセルした際に稀にスタックのバッファが溢れることがある問題を修正しました。バッファ溢れのチェックとそれを
+引き起こす可能性のある内部の管理情報の更新チェックが追加されています。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus7" id="KnownIssues_2_02plus7">NITRO-DWC[-DL] 2.2 plus7 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus6" id="sdk_2_02plus6">■ NITRO-DWC[-DL] 2.2 plus6</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/24)</P>
+</DIV>
+
+<HR>
+<H3><A name="note23-01" id="note23-01">Note 23-01:  DWC_CleanupInetAsync[Async]関数が特定の条件で処理が終わらない問題を修正</A></H3>
+<P>
+nintendo spot が存在しない環境でインターネットへの自動接続に失敗したあと、DWC_CleanupInetAsync[Async]関数を呼び出すと処理が終わらなく
+なることがある問題を修正しました。これは、NITRO-DWC[-DL] 2.2 plus2 から発生していた問題です。
+</P>
+
+<HR>
+<H3><A name="note23-02" id="note23-02">Note 23-02:  DWC_DebugConnectInetAsync関数が必ずデータアクセス例外になる問題を修正</A></H3>
+<P>
+DWC_DebugConnectInetAsync関数が必ずデータアクセス例外になる問題を修正しました。これは、NITRO-DWC[-DL] 2.2 plus2 から発生していた問題です。
+</P>
+
+<HR>
+<H3><A name="note23-03" id="note23-03">Note 23-03:  NITRO-Cryptoライブラリの組み込みに関する利便性の向上</A></H3>
+<P>
+NITRO-DWCからNITRO-Cryptoを使用するには、make attach を実行してNITRO-CryptoをNITRO-SDKに組み込む必要がありましたが、
+その処理を行わなくてもビルドできるようにNITRO-DWCのビルドツリーを修正しました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus6" id="KnownIssues_2_02plus6">NITRO-DWC[-DL] 2.2 plus6 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus5" id="sdk_2_02plus5">■ NITRO-DWC[-DL] 2.2 plus5</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/12)</P>
+</DIV>
+
+<HR>
+<H3><A name="note22-01" id="note22-01">Note 22-01:  AOSSやらくらく無線スタートを使用した場合の接続性の改善修正の取り止め</A></H3>
+<P>
+AOSSやらくらく無線スタートを使用して設定した場合の接続性を改善する修正が NITRO-DWC 2.2 plus に含まれていましたが取り止めになりました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus5" id="KnownIssues_2_02plus5">NITRO-DWC[-DL] 2.2 plus5 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus4" id="sdk_2_02plus4">■ NITRO-DWC[-DL] 2.2 plus4</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/09)</P>
+</DIV>
+
+<HR>
+<H3><A name="note21-01" id="note21-01">Note 21-01: インターネットへの自動接続処理がnintendo spotの仕様変更に対応</A></H3>
+<P>
+<A href="#note19-01">Note 19-01</A>で行ったnintendo spotへの対応後に行われたnintendo spotの仕様変更に対応しました。
+</P>
+
+<HR>
+<H3><A name="note21-02" id="note21-02">Note 21-02: DWC_CheckInet関数の不具合を修正</A></H3>
+<P>
+DWC_GetInetStatus関数をDWC_CheckInet関数がTRUEを返す前に呼び出した場合に、DWC_CheckInet関数がTRUEを返さなくなることがある問題を修正しました。この問題は、<A href="#note19-01">Note 19-01</A>に起因した問題です。
+</P>
+
+<HR>
+<H3><A name="note21-03" id="note21-03">Note 21-03: インターネットへの自動接続処理中のメモリ確保に関する問題を修正</A></H3>
+<P>
+インターネットへの自動接続処理中に想定外のサイズのメモリを確保してしまうことがある問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus4" id="KnownIssues_2_02plus4">NITRO-DWC[-DL] 2.2 plus4 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus3" id="sdk_2_02plus3">■ NITRO-DWC[-DL] 2.2 plus3</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/04)</P>
+</DIV>
+
+<HR>
+<H3><A name="note20-01" id="note20-01">Note 20-01: RELEASEビルド時のデバッグ出力を抑制してコードサイズを削減</A></H3>
+<P>
+RELEASEビルド時のデバッグ出力を一部抑制してRELEASEビルドのコードサイズを削減しました。<br/>
+削減した項目は、nintendo spot関連の一部、認証関連の一部、GameSpy SDK関連になります。DEBUGビルドでは、これらのデバッグ出力
+は従来通り行われます。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus3" id="KnownIssues_2_02plus3">NITRO-DWC[-DL] 2.2 plus3 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus2" id="sdk_2_02plus2">■ NITRO-DWC[-DL] 2.2 plus2</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/06/01)</P>
+</DIV>
+
+<HR>
+<H3><A name="note19-01" id="note19-01">Note 19-01: インターネットへの自動接続処理が nintendo spot に対応</A></H3>
+<P>
+インターネットへの自動接続処理が nintendo spot に対応しました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus2" id="KnownIssues_2_02plus2">NITRO-DWC[-DL] 2.2 plus2 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02plus" id="sdk_2_02plus">■ NITRO-DWC[-DL] 2.2 plus</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/05/16)</P>
+</DIV>
+
+<HR>
+<H3><A name="note18-04" id="note18-04">Note 18-04: マッチメイク中のタイムアウト処理の不具合を修正</A></H3>
+<P>
+マッチメイク中のタイムアウト処理の不具合のために、正しく通信処理が行なわれている場合でも稀に85010エラーが発生してしまう不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note18-06" id="note18-06">Note 18-06: HTTPプロトコルスタックのチャンク転送コーディングに関する不具合の修正</A></H3>
+<P>
+ダウンロードライブラリの内部で使用されているHTTPプロトコルスタック(HTTP通信ライブラリとは異なります)でチャンク転送コーディングの受信に失敗してしまうことがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note16-03" id="note16-03">Note 16-03: 「NitroSDK4.2」に対応</A></H3>
+<P>
+NitroSDK4.2ビルドで、Wi-Fiコネクション設定終了時にフリーズする問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note16-04" id="note16-04">Note 16-04: Wi-Fiコネクション設定内のメッセージに含まれるURLの変更</A></H3>
+<P>
+Wi-Fiコネクション設定内のメッセージに含まれるURLを新しいものに更新しました。
+</P>
+
+<HR>
+<H3><A name="note16-08" id="note16-08">Note 16-08: Wi-Fiコネクション設定での不具合修正</A></H3>
+<P>
+Wi-Fiコネクション設定で蓋閉じ時の動作に不具合があったため修正しました。
+</P>
+
+<HR>
+<H3><A name="note16-15" id="note16-15">Note 16-15: Reliable通信中にUnReliable通信をした場合の不具合修正・仕様変更</A></H3>
+<P>
+<A href="dwc/base/DWC_SetSendSplitMax.html">DWC_SetSendSplitMax関数</A>で指定したサイズを超えるようなデータをReliable通信で受信時に、UnReliableで送信されたデータを受信したときに発生する不具合を修正し、
+ReliabeとUnReliableの送受信の混在が可能になりました。
+</P>
+
+<HR>
+<H3><A name="note16-16" id="note16-16">Note 16-16: ダウンロードライブラリでファイルリストを取得するときの不具合修正</A></H3>
+<P>
+ダウンロードサーバに、ファイル名、ファイルの説明文、属性文字列のいずれかが最大文字列数であるファイルがあるとき、
+ファイルリストの取得に失敗する不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note16-17" id="note16-17">Note 16-17: NAT越えできない環境でP2P接続を行う際の不具合を修正</A></H3>
+<P>
+NAT越えできない環境でP2P接続を行う際、稀に85010エラーが出る不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02plus" id="KnownIssues_2_02plus">NITRO-DWC[-DL] 2.2 plus での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02" id="sdk_2_02">■ NITRO-DWC[-DL] 2.2 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/08/24)</P>
+</DIV>
+
+<HR>
+<H3><A name="note15-01" id="note15-01">Note 15-01: DWC_Realloc[Ex]関数の不具合を修正</A></H3>
+<P>
+元のメモリから新しく確保したメモリにコピーを行う際の読み出しサイズに問題があり、不正なアクセスを行うことがあった不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note15-02" id="note15-02">Note 15-02: マッチメイク中の通信エラーに関する不具合を修正</A></H3>
+<P>
+マッチメイク中に通信エラーが発生した際にデータアクセス例外が発生することがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note15-03" id="note15-03">Note 15-03: 汎用ランキング管理ツールで不正なデータを取得した際の不具合を修正</A></H3>
+<P>
+不正なデータを取得した際に汎用ランキング管理ツールが異常終了してしまう不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note15-04" id="note15-04">Note 15-04: 不正文字列チェックライブラリで動的に確保するメモリサイズを変更</A></H3>
+<P>
+不正文字列チェックライブラリ内部で動的に確保するメモリサイズをサーバ側の仕様変更にあわせて512バイト大きくしました。<br/>
+これまでのライブラリでも読み捨てられる部分があるだけで、動作に問題はありません。
+</P>
+
+<HR>
+<H3><A name="note15-05" id="note15-05">Note 15-05: 関数リファレンスの修正</A></H3>
+<P>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="dwc/base/DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync関数</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02" id="KnownIssues_2_02">NITRO-DWC[-DL] 2.2 正式版 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02rc" id="sdk_2_02rc">■ NITRO-DWC[-DL] 2.2 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/07/24)</P>
+</DIV>
+
+<HR>
+<H3><A name="note14-01" id="note14-01">Note 14-01: 汎用ランキングライブラリの定数を変更</A></H3>
+<P>
+汎用ランキングライブラリで使用する定数を次の通り変更しました。
+<ul>
+<li>取得するランキングリストの最大数の上限値 ( DWC_RNK_GET_MAX ) を 10 から 30 に増やしました。</li>
+<li>カテゴリーとして指定できる最大値 ( DWC_RNK_CATEGORY_MAX ) を 100 から 1000 に変更しました。</li>
+</ul>
+</P>
+
+<HR>
+<H3><A name="note14-02" id="note14-02">Note 14-02: 汎用ランキングライブラリの取得モードを追加</A></H3>
+<P>
+汎用ランキングライブラリで取得モードを次の通り追加しました。
+<ul>
+<li>DWC_RNK_GET_MODE_NEAR_HI<br/> 周辺ランキングリスト(自分より順位が高いもの)取得モード</li>
+<li>DWC_RNK_GET_MODE_NEAR_LOW<br/> 周辺ランキングリスト(自分より順位が低いもの)取得モード</li>
+</ul>
+</P>
+
+<HR>
+<H3><A name="note14-03" id="note14-03">Note 14-03: 汎用ランキング管理ツールをプロキシサーバに対応</A></H3>
+<P>
+汎用ランキング管理ツールがプロキシサーバ対応になりました。ツール内で設定可能です。
+</P>
+
+<HR>
+<H3><A name="note14-04" id="note14-04">Note 14-04: 汎用ランキング管理ツールの前/後表示ボタンの不具合を修正</A></H3>
+<P>
+汎用ランキング管理ツールで、現在表示しているデータの前や後を表示するボタンが動作しない不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-05" id="note14-05">Note 14-05: 不正文字列チェックライブラリのメモリ破壊の問題を修正</A></H3>
+<P>
+不正文字列チェックライブラリで不正文字列のチェックを行うと内部的にヒープから確保したメモリ領域を 2 バイト超えて書き変えてしまう不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-06" id="note14-06">Note 14-06: DWC_CanncelMatching関数のメモリ解放の不具合を修正</A></H3>
+<P>
+DWC_InitFriendsMatch関数で友達リストへのポインタを NULL に指定し、DWC_ConnectToAnybodyAsync関数にてマッチメイクを開始後、DWC_CanncelMatching関数を呼び出すと一部のメモリが解放されない不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-07" id="note14-07">Note 14-07: DWC_LoginToStorageServerAsync関数の通信エラーに関する不具合を修正</A></H3>
+<P>
+DWC_LoginToStorageServerAsync関数で通信エラーが発生すると、データアクセス例外が発生することがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-08" id="note14-08">Note 14-08: 友達関係が成立したときに呼び出されるDWCBuddyFriendCallback関数の不具合を修正</A></H3>
+<P>
+友達関係が成立しても、友達関係成立コールバック関数が呼び出されないことがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-09" id="note14-09">Note 14-09: ピア・ツー・ピア接続に関わるプライベートIPアドレスの判定の不具合を修正</A></H3>
+<P>
+ピア・ツー・ピア接続に関わるプライベートIPアドレスの判定条件の一部に問題があったため、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note14-10" id="note14-10">Note 14-10: プログラミングマニュアルを改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる次のプログラミングマニュアルを改訂しました。
+<ul>
+<li>「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」</li>
+<li>「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」</li>
+</ul>
+詳しくはドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note14-11" id="note14-11">Note 14-11: 関数リファレンスの修正</A></H3>
+<P>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="dwc/base/DWC_CanChangeFriendList.html">DWC_CanChangeFriendList関数</A></LI>
+		<LI><A href="dwc/base/DWC_CreateFriendKeyToken.html">DWC_CreateFriendKeyToken関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendReliable.html">DWC_SendReliable関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendReliableBitmap.html">DWC_SendReliableBitmap関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendUnreliable.html">DWC_SendUnreliable関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendUnreliableBitmap.html">DWC_SendUnreliableBitmap関数</A></LI>
+		<LI><A href="dwc/base/DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch関数</A></LI>
+		<LI><A href="dwc/base/DWC_UpdateServersAsync.html">DWC_UpdateServersAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_Rnk_Constant_Number.html">汎用ランキング定数</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetMode.html">DWCRnkGetMode型</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetParam.html">DWCRnkGetParam型</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02rc" id="KnownIssues_2_02rc">NITRO-DWC[-DL] 2.2 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_01" id="sdk_2_01">■ NITRO-DWC[-DL] 2.1 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/05/18)</P>
+</DIV>
+
+<HR>
+<H3><A name="note13-01" id="note13-01">Note 13-01: 汎用ランキングで使用できるユーザー定義データの最大サイズを変更</A></H3>
+<P>
+汎用ランキングで使用できるユーザー定義データの最大サイズを 768B から 764B に変更しました。
+</P>
+
+<HR>
+<H3><A name="note13-02" id="note13-02">Note 13-02: 汎用ランキングで使用するリージョンコードに韓国を追加</A></H3>
+<P>
+汎用ランキングで使用するリージョンコードに韓国(DWC_RNK_REGION_KR)を追加しました。<br/>
+それに伴って、汎用ランキング管理ツールのリージョン指定にも韓国が追加されています。
+</P>
+
+<HR>
+<H3><A name="note13-03" id="note13-03">Note 13-03: 通信エラー(DNSエラー)時にメモリが解放されないことがある問題を修正</A></H3>
+<P>
+内部関数のDWCi_QR2Startup関数でDNSエラーが発生した際に、その関数内で確保したメモリが解放されない問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note13-04" id="note13-04">Note 13-04: 通信エラー時にNULLポインタを参照することがある問題を修正</A></H3>
+<P>
+マッチメイク中の限られたあるタイミングで通信エラーが発生した際に、NULLポインタを参照する問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note13-05" id="note13-05">Note 13-05: HTTP通信(GHTTPライブラリ)が使用するスタックの問題を修正</A></H3>
+<P>
+HTTP通信(GHTTPライブラリ)で最大8kBをスタックから確保していたため、ヒープから確保するように修正しました。
+</P>
+
+<HR>
+<H3><A name="note13-06" id="note13-06">Note 13-06: プログラミングマニュアルを改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」を改訂しました。<br/>
+詳しくはドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note13-07" id="note13-07">Note 13-07: 関数リファレンスの修正</A></H3>
+<P>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="dwc/base/DWC_CheckProfanityProcess.html">DWC_CheckProfanityProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_LogoutFromStorageServer.html">DWC_LogoutFromStorageServer関数</A></LI>
+		<LI><A href="dwc/base/DWCStorageLoginCallback.html">DWCStorageLoginCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCSaveToServerCallback.html">DWCSaveToServerCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCLoadFromServerCallback.html">DWCLoadFromServerCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkRegion.html">DWCRnkRegion型</A></LI>
+		<LI><A href="dwc/base/DWC_Rnk_Constant_Number.html">汎用ランキング定数</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_01" id="KnownIssues_2_01">NITRO-DWC[-DL] 2.1 正式版 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_01rc" id="sdk_2_01rc">■ NITRO-DWC[-DL] 2.1 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/04/09)</P>
+</DIV>
+
+<HR>
+<H3><A name="note12-01" id="note12-01">Note 12-01: 不正文字列をチェックする関数を追加</A></H3>
+<P>
+オンラインで不正文字列をチェックする以下の関数を追加しました。
+<UL>
+<LI><A href="dwc/base/DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync関数</A></LI>
+<LI><A href="dwc/base/DWC_CheckProfanityProcess.html">DWC_CheckProfanityProcess関数</A></LI>
+</UL>
+詳しくは関数リファレンスと追加されたサンプルデモ dwc_prof_sample をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note12-02" id="note12-02">Note 12-02: Wi-Fiコネクション設定の英語メッセージの仕様を変更</A></H3>
+<P>
+Wi-Fiコネクション設定で仕向地「北米」、言語「英語」の組み合わせで表示されていたサポート用電話番号がなくなりました。<br/>
+この仕様変更により、仕向地によって表示されるメッセージの違いはなくなりました。
+</P>
+
+<HR>
+<H3><A name="note12-03" id="note12-03">Note 12-03: DWC_GetDateTime関数でリアルタイムクロックが 2099/12/31 23:59:59 を超えた場合の処理を見直し</A></H3>
+<P>
+これまで <a href="dwc/base/DWC_GetDateTime.html">DWC_GetDateTime関数</a>は認証サーバの時刻を取得した後で
+リアルタイムクロックが 2099年12月31日23時59分59秒を超えた場合に
+日付と時刻の取得に失敗していましたが、このような場合でも取得できるように修正しました。
+</P>
+
+<HR>
+<H3><A name="note12-04" id="note12-04">Note 12-04: プログラミングマニュアルを改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」を改訂しました。<br/>
+詳しくはドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note12-05" id="note12-05">Note 12-05: 関数リファレンスの追加・修正</A></H3>
+<P>
+下記の項目について追加・修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_CheckProfanityProcess.html">DWC_CheckProfanityProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError*関数</A></LI>
+		<LI><A href="dwc/base/DWC_StartUtility.html">DWC_StartUtility*関数</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_01rc" id="KnownIssues_2_01rc">NITRO-DWC[-DL] 2.1 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_00" id="sdk_2_00">■ NITRO-DWC[-DL] 2.0 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/03/12)</P>
+</DIV>
+
+<HR>
+<H3><A name="note11-01" id="note11-01">Note 11-01: 認証済みユーザIDを取得する関数を追加</A></H3>
+<P>
+DS本体に保存されている認証済みユーザIDを取得する関数として、<A href="dwc/base/DWC_GetAuthenticatedUserId.html">DWC_GetAuthenticatedUserId関数</A>を追加しました。
+</P>
+
+<HR>
+<H3><A name="note11-02" id="note11-02">Note 11-02: 友達登録鍵と文字列の間を相互変換する関数を追加</A></H3>
+<P>
+友達登録鍵と10進12桁の文字列を相互変換する関数として、<A href="dwc/base/DWC_FriendKeyToString.html">DWC_FriendKeyToString関数</A>と<A href="dwc/base/DWC_StringToFriendKey.html">DWC_StringToFriendKey関数</A>を追加しました。
+</P>
+
+<HR>
+<H3><A name="note11-03" id="note11-03">Note 11-03: 各種アイコンのNITRO-CHARACTERデータファイルの追加</A></H3>
+<P>
+$NITRODWC_ROOT/data/Wi-Fi_icons/ に「Wi-Fiコネクション対応アイコン」と「Wi-Fi受信強度アイコン」の NITRO-CHARACTERデータファイルを追加しました。Wi-Fiコネクション対応タイトルに組み込む際にご利用ください。
+</P>
+
+<HR>
+<H3><A name="note11-04" id="note11-04">Note 11-04: ダウンロードライブラリでのソケットのクローズ処理を見直し</A></H3>
+<P>
+ダウンロードライブラリでのソケットのクローズ処理を見直し、ソケットのクローズ処理が完了するのを待たずに、非同期処理の完了を通知するコールバックが発生するように修正しました。
+</P>
+
+<HR>
+<H3><A name="note11-05" id="note11-05">Note 11-05: DWC_NdCleanupAsync関数でブロックしてしまう問題を修正</A></H3>
+<P>
+DWC_NdCleanupAsync関数内の処理で、数秒間ブロックしてしまうことがある問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note11-06" id="note11-06">Note 11-06: サンプルデモで非公開関数が使用されていた問題等を修正</A></H3>
+<P>
+サンプルデモに非公開関数が使用されていた問題を修正しました。その他にも細かい点で修正を行っています。
+</P>
+
+<HR>
+<H3><A name="note11-07" id="note11-07">Note 11-07: プログラミングマニュアルを改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」を改訂しました。<br/>
+詳しくはドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note11-08" id="note11-08">Note 11-08: 関数リファレンスの追加・修正</A></H3>
+<P>
+下記の項目について追加・修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_FriendKeyToString.html">DWC_FriendKeyToString関数</A></LI>
+		<LI><A href="dwc/base/DWC_StringToFriendKey.html">DWC_StringToFriendKey関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetAuthenticatedUserId.html">DWC_GetAuthenticatedUserId関数</A></LI>
+		<LI><A href="dwc/base/DWC_StartUtility.html">DWC_StartUtilityEx関数</A></LI>
+		<LI><A href="dwc/base/DWCApInfo.html">DWCApInfo構造体</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_00" id="KnownIssues_2_00">NITRO-DWC[-DL] 2.0 正式版 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_00rc" id="sdk_2_00rc">■ NITRO-DWC[-DL] 2.0 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/02/02)</P>
+</DIV>
+
+<HR>
+<H3><A name="note10-01" id="note10-01">Note 10-01: AOSS/らくらく無線スタートライブラリのビルドに使用する CodeWarrior のバージョン変更</A></H3>
+<P>
+Wi-Fiコネクション設定で使用されるAOSS/らくらく無線スタートライブラリについて、 CodeWarrior のバージョンが 2.0 SP1 に変更されました。<br/>
+これによって、NITRO-DWC パッケージのビルドに使用する CodeWarrior のバージョンが全て 2.0 SP1 に変更されました。
+</P>
+
+<HR>
+<H3><A name="note10-02" id="note10-02">Note 10-02: DWC_ProcessFriendsMatch関数のエラー処理に関する不具合の修正</A></H3>
+<P>
+DWC_ProcessFriendsMatch関数の処理中にエラーが発生した後、そのまま内部処理を継続してしまうことで、DWC_GetLastError[Ex]関数で取得できるエラーに意図せず DWC_ERROR_FATAL がセットされる不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note10-03" id="note10-03">Note 10-03: 友達関係の成立条件に関する不具合の修正</A></H3>
+<P>
+DWC_CreateUserData関数で異なるイニシャルコードを指定したタイトル間でも友達関係が成立してしまう不具合を修正しました。<br/>
+具体的には、双方が一度でもWi-Fiコネクションに接続したことがある状態で、DSワイヤレス通信で交換するための友達情報を作成/交換した場合にこの不具合が発生していました。
+</P>
+
+<HR>
+<H3><A name="note10-04" id="note10-04">Note 10-04: プログラミングマニュアルの改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」を改訂しました。<br/>
+詳しくはドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note10-05" id="note10-05">Note 10-05: 関数リファレンスの修正</A></H3>
+<P>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<br/>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_ClearError.html">DWC_ClearError関数</A></LI>
+		<LI><A href="dwc/base/DWC_CreateExchangeToken.html">DWC_CreateExchangeToken関数</A></LI>
+		<LI><A href="dwc/base/DWC_CreateFriendKey.html">DWC_CreateFriendKey関数</A></LI>
+		<LI><A href="dwc/base/DWC_CreateUserData.html">DWC_CreateUserData関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetFriendKey.html">DWC_GetFriendKey関数</A></LI>
+		<LI><A href="dwc/base/DWC_IsBuddyFriendData.html">DWC_IsBuddyFriendData関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCancelAsync.html">DWC_NdCancelAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileAsync.html">DWC_NdGetFileAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListAsync.html">DWC_NdGetFileListAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListNumAsync.html">DWC_NdGetFileListNumAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdInitAsync.html">DWC_NdInitAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_TestInetProcess.html">DWC_TestInetProcess関数</A></LI>
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_00rc" id="KnownIssues_2_00rc">NITRO-DWC[-DL] 2.0 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_00pr" id="sdk_2_00pr">■ NITRO-DWC[-DL] 2.0 PR</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/01/05)</P>
+</DIV>
+
+<HR>
+<H3><A name="note9-01" id="note9-01">Note 9-01: NITRO-DWC パッケージのビルドに使用する CodeWarrior のバージョン変更</A></H3>
+<P>
+NITRO-DWC パッケージのビルドに使用する CodeWarrior のバージョンを一部を残して 2.0 SP1 に変更しました。<br>
+2.0 SP1 に変更されていない部分については、<A href="#KnownIssues_2_00pr">NITRO-DWC[-DL] 2.0 PR での既知の問題点</A>を参照してください。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_00pr" id="KnownIssues_2_00pr">NITRO-DWC[-DL] 2.0 PR での既知の問題点</A></H3>
+<P>
+Wi-Fiコネクション設定で使用されるAOSS/らくらく無線スタートライブラリについては、CodeWarrior のバージョンが 2.0 SP1 に変更されていませんので、この部分のみが NITRO-SDK 4.0シリーズに対応していません。<br>
+この問題は次のバージョンで修正される予定です。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_03rc" id="sdk_1_03rc">■ NITRO-DWC[-DL] 1.3 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/12/29)</P>
+</DIV>
+
+<HR>
+<H3><A name="note8-01" id="note8-01">Note 8-01: Wi-Fiコネクション設定の韓国語対応</A></H3>
+<P>
+Wi-Fiコネクション設定が韓国語に対応しました。DWC_StartUtility関数/DWC_StartUtilityEx関数に指定できる言語にDWC_LANGUAGE_HANGULが追加されています。
+</P>
+
+<HR>
+<H3><A name="note8-02" id="note8-02">Note 8-02: インターネットへの接続テストを行う関数の追加</A></H3>
+<P>
+接続テスト用サーバと通信することによってインターネットへの接続テストを行う以下の関数を追加しました。
+<UL>
+<LI><A href="dwc/base/DWC_TestInetAsync.html">DWC_TestInetAsync関数</A></LI>
+<LI><A href="dwc/base/DWC_TestInetProcess.html">DWC_TestInetProcess関数</A></LI>
+</UL>
+</P>
+
+<HR>
+<H3><A name="note8-03" id="note8-03">Note 8-03: HTTP通信(GHTTPライブラリ)の機能追加</A></H3>
+<P>
+HTTP通信(GHTTPライブラリ)に以下の機能を追加しました。
+<UL>
+<LI><A href="dwc/base/DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2関数</A><BR>データのアップロード／ダウンロードをまとめて行う関数で、これまではアップロードを行った際にそのレスポンスのメッセージボディを受信できる関数がありませんでした。<BR></LI>
+<LI><A href="dwc/base/DWC_GHTTPPostAddFileFromMemory.html">DWC_GHTTPPostAddFileFromMemory関数</A><BR>メモリ上のデータをファイルとしてアップロードするための関数です。</LI>
+</UL>
+</P>
+
+<HR>
+<H3><A name="note8-04" id="note8-04">Note 8-04: DWC_NdCleanupAsync関数の仕様変更</A></H3>
+<P>
+返り値が void から BOOL に変更になり、ダウンロードライブラリの終了処理の開始に成功したかどうかを返すようになりました。<BR>
+サンプルデモ dwc_nd_sample もこの変更にあわせて修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-05" id="note8-05">Note 8-05: DWC_SetMemFunc関数に指定するメモリ解放関数の仕様変更</A></H3>
+<P>
+これまで、DWC_SetMemFunc関数に指定するメモリ解放関数の引数ptrにはNULLが渡されることもある仕様でしたが、これをライブラリ側で吸収し、アプリケーションが指定したメモリ解放関数の引数ptrにNULLが渡されることはなくなりました。
+</P>
+
+<HR>
+<H3><A name="note8-06" id="note8-06">Note 8-06: 汎用ランキングライブラリで使用するサーバのURLの変更</A></H3>
+<P>
+新しいGameSpyサーバに合わせて汎用ランキングライブラリで使用するサーバのURLを変更しました。
+</P>
+
+<HR>
+<H3><A name="note8-07" id="note8-07">Note 8-07: 汎用ランキング管理ツール(DWCRankingAdmin.exe)の変更</A></H3>
+<P>
+開発向けサーバについて、全てのPIDの削除ができるようになりました。<BR>
+また、GameSpyサーバのURLを変更しました。
+</P>
+
+<HR>
+<H3><A name="note8-08" id="note8-08">Note 8-08: マッチメイク中のGameSpyサーバとの通信でタイムアウトが無い部分への対策</A></H3>
+<P>
+マッチメイク中のGameSpyサーバとの通信で、一部タイムアウトが存在しない部分があったため、サーバから応答がなかった場合の対策のためにタイムアウトを設けました。
+</P>
+
+<HR>
+<H3><A name="note8-09" id="note8-09">Note 8-09: 無線リンク切断時に発生するエラーのエラーコードの不具合の修正</A></H3>
+<P>
+無線リンク切断時にエラーコード"0"が返されることがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-10" id="note8-10">Note 8-10: 使用する任天堂認証サーバのデフォルト設定に関する不具合の修正</A></H3>
+<P>
+DWC_InitInet/DWC_InitInetEx関数の呼び出し前は、デフォルトで製品向け認証サーバが使用されていた不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-11" id="note8-11">Note 8-11: DWC_NASLoginProcess関数の通信エラーに関する不具合の修正</A></H3>
+<P>
+DWC_NASLoginAsync関数で認証処理を開始した後、特定のタイミングで通信エラーが発生すると、DWC_NASLoginProcess関数から取得できるステートが DWC_NASLOGIN_STATE_IDLE から変わらなくなり、そのまま処理が終わらないという不具合を修正しました。<BR>
+この修正に伴って、DWC_NASLOGIN_STATE_IDLE というステートはなくなりましたのでご注意ください。
+</P>
+
+<HR>
+<H3><A name="note8-12" id="note8-12">Note 8-12: 多人数でのマッチメイク中に稀に停止する不具合の修正</A></H3>
+<P>
+多人数でのマッチメイク中に稀にフリーズする不具合を修正しました。これは、4人以上でのマッチメイクで発生する可能性がありますが、4人ではほとんど発生せず、人数が増えるほど発生する可能性が高くなります。
+</P>
+
+<HR>
+<H3><A name="note8-13" id="note8-13">Note 8-13: DWC_ShutdownFriendsMatch関数のメモリ解放に関する不具合の修正</A></H3>
+<P>
+DWC_LoginAsync関数でWi-Fiコネクションに接続した後で非常に電波状況が悪いことが原因で通信エラーが発生したときに、DWC_ShutdownFriendsMatch関数で解放されるはずのメモリが解放されないことがある不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-14" id="note8-14">Note 8-14: DWCUpdateServersCallback関数の引数isChangedの不具合の修正</A></H3>
+<P>
+友達情報のデータタイプがDWC_FRIENDDATA_LOGIN_IDの場合、友達リストの更新の有無に関わらず、常にDWCUpdateServersCallbackコールバック関数の引数isChangedがTRUEになる不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-15" id="note8-15">Note 8-15: DWC_LoginToStorageServerAsync関数の通信エラーに関する不具合の修正</A></H3>
+<P>
+DWC_LoginToStorageServerAsync関数の処理中に通信エラーが発生した場合に停止する不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-16" id="note8-16">Note 8-16: HTTP通信/汎用ランキングのメモリ解放に関する不具合の修正</A></H3>
+<P>
+HTTP通信（GHTTP）ライブラリに起因する問題で、リクエスト発行時（DWC_GetGHTTPData関数、DWC_GetGHTTPDataEx関数、DWC_PostGHTTPData関数)に確保されるメモリが、完了コールバック発生時に解放されていたため、DWC_CancelGHTTPRequest関数を呼び出すと完了コールバックが発生せず、メモリが解放されない不具合がありました。<BR>
+これは完了コールバックを待たずに、DWC_ShutdownGHTTP関数を呼び出しても発生します。<BR>
+上記の不具合を、キャンセル時やライブラリの解放時に正しく行なわれるよう修正しました。
+</P>
+<P>
+さらにDWC_GetGHTTPDataEx関数については、次のいずれかの条件で受信バッファが解放されない不具合があり、これも修正しました。
+<UL>
+<LI>引数bufferlenが0より大きい値、引数buffer_clearがTRUEという組み合わせで呼び出した場合</LI>
+<LI>通信エラーが発生した場合（引数bufferlenが0、引数buffer_clearがTRUEという組み合わせで呼び出した場合を除く）</LI>
+</UL>
+※汎用ランキングライブラリは、内部でGHTTPライブラリを使用していますので、同じ不具合がありました。
+</P>
+
+<HR>
+<H3><A name="note8-17" id="note8-17">Note 8-17: DWC_NdCleanupAsync関数のメモリ解放に関する不具合の修正</A></H3>
+<P>
+DWC_NdInitAsync関数の非同期処理中にエラーが発生した場合、既にライブラリがメモリを確保しているにも関わらず、DWC_NdCleanupAsync関数を呼び出すことができない（呼び出すとASSERTされる）不具合を修正しました。<BR>
+また、関連する関数リファレンスに、ライブラリの解放に関する注意を追記しました。
+</P>
+
+<HR>
+<H3><A name="note8-18" id="note8-18">Note 8-18: ダウンロードライブラリのソケットのクローズ処理に関する不具合の修正</A></H3>
+<P>
+ソケットのクローズ処理で、解放済みのメモリ領域にアクセスしてしまう不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-19" id="note8-19">Note 8-19: ダウンロードライブラリのキャンセル処理に関する不具合の修正</A></H3>
+<P>
+ダウンロードライブラリでサーバとの接続完了からデータの送受信を行うまでの間にキャンセルを行った場合に、ソケットがクローズされない不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-20" id="note8-20">Note 8-20: Wi-Fiコネクション設定のサウンド不具合の修正</A></H3>
+<P>
+Wi-Fiコネクション設定で、AOSSによる設定中に本体を閉じるとヘッドフォンから異音が発生する不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-21" id="note8-21">Note 8-21: Wi-Fiコネクション設定でWi-Fiユーザー情報を移動する際の不具合の修正</A></H3>
+<P>
+Wi-Fiコネクション設定でWi-Fiユーザー情報を移動する際にはDSダウンロードプレイが使用されますが、子機側がダウンロードを完了して再起動を試行するタイミングで抜けた場合、まれに親機側がその状態を検出できずに待ち続ける不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-22" id="note8-22">Note 8-22: 問題のある定義の削除</A></H3>
+<P>
+dwc.hをインクルードすることで printf/vprintf/SCREEN_WIDTH/SCREEN_HEIGHT等の汎用的な名称が定義される問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-23" id="note8-23">Note 8-23: コメントの文字コードをSJISに統一</A></H3>
+<P>
+一部のソース等のコメントで文字コードにSJIS以外が使われていたものを修正しSJISに統一しました。
+</P>
+
+<HR>
+<H3><A name="note8-24" id="note8-24">Note 8-24: サンプルデモの修正</A></H3>
+<P>
+ghttp_sample について受信バッファの解放にOS_Free()を使用していた部分をDWC_Free()に修正しました。<BR>
+dwc_nd_sample についてエラー発生時の処理を修正しました。また、readme.txtからダウンロードサーバの仮運用中の記述を削除しました。<BR>
+rank_sample についてユーザー定義データの取り扱いに問題があったため、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note8-25" id="note8-25">Note 8-25: プログラミングマニュアルの改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる各プログラミングマニュアルを改訂しました。<BR>
+詳しくは各ドキュメントの改訂履歴をご確認ください。
+</P>
+
+<HR>
+<H3><A name="note8-26" id="note8-26">Note 8-26: 関数リファレンスの修正</A></H3>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<BR>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。 
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/list_dwc.html">機能一覧</A></LI>
+		<LI><A href="dwc/base/DWC_CancelGHTTPRequest.html">DWC_CancelGHTTPRequest関数</A></LI>
+		<LI><A href="dwc/base/DWC_CreateUserData.html">DWC_CreateUserData関数</A></LI>
+		<LI><A href="dwc/base/DWC_DebugConnectInetAsync.html">DWC_DebugConnectInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_GHTTPNewPost.html">DWC_GHTTPNewPost関数</A></LI>
+		<LI><A href="dwc/base/DWC_GHTTPPostAddFileFromMemory.html">DWC_GHTTPPostAddFileFromMemory関数</A></LI>
+		<LI><A href="dwc/base/DWC_GHTTPPostAddString.html">DWC_GHTTPPostAddString関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetGHTTPData.html">DWC_GetGHTTPData関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetGHTTPState.html">DWC_GetGHTTPState関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError関数</A></LI>
+		<LI><A href="dwc/base/DWC_NASLoginProcess.html">DWC_NASLoginProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCleanupAsync.html">DWC_NdCleanupAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileAsync.html">DWC_NdGetFileAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdInitAsync.html">DWC_NdInitAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_PostGHTTPData.html">DWC_PostGHTTPData関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessGHTTP.html">DWC_ProcessGHTTP関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessInet.html">DWC_ProcessInet関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkInitialize.html">DWC_RnkInitialize関数</A></LI>
+		<LI><A href="dwc/base/DWC_StartUtility.html">DWC_StartUtility関数</A></LI>
+		<LI><A href="dwc/base/DWC_StartUtility.html">DWC_StartUtilityEx関数</A></LI>
+		<LI><A href="dwc/base/DWC_TestInetAsync.html">DWC_TestInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_TestInetProcess.html">DWC_TestInetProcess関数</A></LI>
+		<LI><A href="dwc/base/DWCMatchedSCCallback.html">DWCMatchedSCCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdCallback.html">DWCNdCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdCleanupCallback.html">DWCNdCleanupCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkData.html">DWCRnkData関数</A></LI>
+		<LI><A href="dwc/base/DWCNasLoginState.html">DWCNasLoginState定数</A></LI>
+	</UL>
+<HR>
+<H3><A name="KnownIssues_1_03rc" id="KnownIssues_1_03rc">NITRO-DWC[-DL] 1.3 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdkDL_1_02" id="sdkDL_1_02">■ NITRO-DWC 1.2 正式版 plus3／NITRO-DWC-DL 1.2 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/08/02)</P>
+</DIV>
+<HR>
+<H3><A name="note7-01" id="note7-01">Note 7-01:ダウンロード機能のセキュリティを改善</A></H3>
+<P>
+これまで、仮運用中のダウンロードサーバに接続するために、セキュリティレベルが下げられていましたが、ダウンロードサーバの本運用の開始に伴って、この点を改善しました。
+</P>
+<HR>
+<H3><A name="note7-02" id="note7-02">Note 7-02:エラーコード540XXの新設</A></H3>
+<P>
+アクセスポイントから切断された場合のエラーコード540XX（下2桁は接続していたアクセスポイントの種類）を追加しました。
+</P>
+<HR>
+<H3><A name="note7-03" id="note7-03">Note 7-03:DWC_UpdateConnection関数の不具合の修正</A></H3>
+<P>
+DWC_UpdateConnection関数を使ってアクセスポイントからの切断を検知したときにセットされるエラーコードに問題があった不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note7-04" id="note7-04">Note 7-04:DWC_LoginToStorageServerAsync関数の不具合の修正</A></H3>
+<P>
+DWC_LoginToStorageServerAsync関数でエラーが発生した場合、コールバックが発生しないことがある不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note7-05" id="note7-05">Note 7-05:サンプルデモの修正</A></H3>
+<UL>
+<LI>各サンプルデモで使用しているプロダクトIDを修正しました。</LI>
+<LI>rank_sample について使用されていなかったファイル"ARM9-TS-inet.lsf"を削除しました。</LI>
+<LI>dwc_sample について動作中にテキストアニメーションを表示するように変更しました。</LI>
+<LI>dwc_connect_inet についてDWC_UpdateConnection関数を使って、アクセスポイントとの接続を確認するように変更しました。</LI>
+</UL>
+<HR>
+<H3><A name="note7-06" id="note7-06">Note 7-06:プログラミングマニュアルの改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる下記のドキュメントを改訂しました。詳しくは各ドキュメントの改訂履歴をご確認ください。<BR>
+「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」<BR>
+「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －ダウンロード編－」<BR>
+「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」
+</P>
+<HR>
+<H3><A name="note7-07" id="note7-07">Note 7-07: 関数リファレンスの修正</A></H3>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<BR>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。 
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_Base64Decode.html">DWC_Base64Decode関数</A></LI>
+		<LI><A href="dwc/base/DWC_Base64Encode.html">DWC_Base64Encode関数</A></LI>
+		<LI><A href="dwc/base/DWC_CheckUserData.html">DWC_CheckUserData関数</A></LI>
+		<LI><A href="dwc/base/DWC_Debug_DWCInitError.html">DWC_Debug_DWCInitError関数</A></LI>
+		<LI><A href="dwc/base/DWC_DebugConnectInetAsync.html">DWC_DebugConnectInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError*関数</A></LI>
+		<LI><A href="dwc/base/DWC_Init.html">DWC_Init関数</A></LI>
+		<LI><A href="dwc/base/DWC_IsEqualFriendData.html">DWC_IsEqualFriendData関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoadOthersDataAsync.html">DWC_LoadOthersDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoginAsync.html">DWC_LoginAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NASLoginAbort.html">DWC_NASLoginAbort関数</A></LI>
+		<LI><A href="dwc/base/DWC_NASLoginAsync.html">DWC_NASLoginAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NASLoginProcess.html">DWC_NASLoginProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCancelAsync.html">DWC_NdCancelAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCleanupAsync.html">DWC_NdCleanupAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileAsync.html">DWC_NdGetFileAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListAsync.html">DWC_NdGetFileListAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListNumAsync.html">DWC_NdGetFileListNumAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetProgress.html">DWC_NdGetProgress関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdInitAsync.html">DWC_NdInitAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdSetAttr.html">DWC_NdSetAttr関数</A></LI>
+		<LI><A href="dwc/base/DWCNasLoginState.html">DWCNasLoginState関数</A></LI>
+		<LI><A href="dwc/base/DWCNdCallback.html">DWCNdCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdFileInfo.html">DWCNdFileInfo関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessGHTTP.html">DWC_ProcessGHTTP関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkInitialize.html">DWC_RnkInitialize関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetOrder.html">DWC_RnkResGetOrder関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetRow.html">DWC_RnkResGetRow関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetTotal.html">DWC_RnkResGetTotal関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkData.html">DWCRnkData関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkError.html">DWCRnkError関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetMode.html">DWCRnkGetMode関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetParam.html">DWCRnkGetParam関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetReportLevel.html">DWC_SetReportLevel関数</A></LI>
+		<LI><A href="dwc/base/DWC_UpdateConnection.html">DWC_UpdateConnection関数</A></LI>
+	</UL>
+<HR>
+<H3><A name="note7-08" id="note7-08">Note 7-08:汎用ランキング管理ツール(DWCRankingAdmin.exe)の不具合の修正</A></H3>
+<P>
+ユーザー定義データが正常に取得できない不具合を修正しました。<BR>
+Version 1.00 → Version 1.01
+</P>
+<HR>
+<H3><A name="KnownIssuesDL_1_02" id="KnownIssuesDL_1_02">NITRO-DWC 1.2 正式版 plus3／NITRO-DWC-DL 1.2 正式版 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdkDL_1_02rc" id="sdkDL_1_02rc">■ NITRO-DWC-DL Version 1.2 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/07/03)</P>
+</DIV>
+<HR>
+<H3><A name="note6-01" id="note6-01">Note 6-01:任天堂認証サーバへの認証処理関数の追加</A></H3>
+<P>任天堂認証への認証処理を行なうDWC_NASLogin*関数を追加しました。これまで、DWC_LoginAsync関数の中で行なわれていた処理ですが、友達管理・マッチメイク等のFriendsMatchライブラリの機能を使わない場合は、代わりにこの関数で認証処理を行います。<BR>
+あわせて、dwc_naslogin_sampleサンプルデモを追加しました。<BR>
+※NITRO-DWC-DLにはFriendsMatchライブラリは含まれていないため、必ずこの関数によって認証処理を行なう必要があります。</P>
+<HR>
+<H3><A name="note6-02" id="note6-02">Note 6-02:アクセスポイントとの接続確認関数の追加</A></H3>
+<P>アクセスポイントの接続が正常に維持されていることを確認する関数を追加しました。これは、DWC_ProcessFriendsMatch関数の中で行なわれていた処理ですが、友達管理・マッチメイク等のFriendsMatchライブラリの機能を使わない場合は、代わりにこの関数で接続確認を行います。<BR>
+※NITRO-DWC-DLにはFriendsMatchライブラリは含まれていないため、必ずこの関数によって接続確認を行なう必要があります。</P>
+<HR>
+<H3><A name="note6-03" id="note6-03">Note 6-03:各サンプルデモのゲーム名/シークレットキー/プロダクトIDの変更</A></H3>
+<P>これまでサンプルデモでは、"gmtest"というゲーム名が使われていましたが、一般にGameSpyを使用した開発者が共通して使用していたため、開発中のゲームに関する情報が垣間見られたり、バックエンドサーバ上のデータが不意に変更される可能性がありました。そのため、NITRO-DWCのサンプルデモ専用に用意した"dwctest"を使うように変更しました。</P>
+<HR>
+<H3><A name="note6-04" id="note6-04">Note 6-04: Wi-Fiコネクション設定の初期化に関する不具合の修正</A></H3>
+<P>Wi-Fiコネクション設定の初期化時に GX_SetBGScrOffset関数/GX_SetBGCharOffset関数 を明示的に呼び出していなかったため、これらの関数でオフセットを変更していた場合、画面表示が崩れる不具合を修正しました。</P>
+<HR>
+<H3><A name="note6-05" id="note6-05">Note 6-05: 関数リファレンスの修正</A></H3>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<BR>
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_GetDateTime.html">DWC_GetDateTime関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetGHTTPState.html">DWC_GetGHTTPState関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError*関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoginAsync.html">DWC_LoginAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetConnectApType.html">DWC_SetConnectApType関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetReportLevel.html">DWC_SetReportLevel関数</A></LI>
+		<LI><A href="dwc/base/DWC_UpdateConnection.html">DWC_UpdateConnection関数</A></LI>
+	</UL>
+<HR>
+<H3><A name="KnownIssuesDL_1_02rc" id="KnownIssuesDL_1_02rc">NITRO-DWC-DL Version 1.2 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_02" id="sdk_1_02">■ NITRO-DWC Version 1.2 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/06/22)</P>
+</DIV>
+<HR>
+<H3><A name="note5-01" id="note5-01">Note 5-01:友達関係が成立したときに呼び出されるDWCBuddyFriendCallback関数の呼び出し条件の変更</A></H3>
+<P>
+友達関係が成立したときに呼び出されるDWCBuddyFriendCallback関数は、友達関係を成立させるための通信が成功した際に呼び出されるようになっています。この友達関係を成立させるための通信は、タイミングによって2回行なわれることがあり、この場合、その都度コールバックが発生していました。<BR>
+この対策として、既に友達関係が成立している場合はコールバックを呼び出さないように変更しました。
+</P>
+<HR>
+<H3><A name="note5-02" id="note5-02">Note 5-02:インターネット自動接続時のアクセスポイントへの認証処理に関する修正</A></H3>
+<P>
+アクセスポイントへの認証処理で、オープンシステム認証しか受け付けないアクセスポイントへの接続性を向上させるために、インターネット自動接続処理を修正しました。
+</P>
+<HR>
+<H3><A name="note5-03" id="note5-03">Note 5-03:プログラミングマニュアルの改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる下記のドキュメントを改訂しました。詳しくは各ドキュメントの改訂履歴をご確認ください。<BR>
+「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」<BR>
+「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル －汎用ランキング編－」</P>
+<HR>
+<H3><A name="note5-04" id="note5-04">Note 5-04:関数リファレンスの修正</A></H3>
+下記の項目について修正を行いました。詳しくは各項目の履歴をご確認ください。<BR>
+	<UL>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError*関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileAsync.html">DWC_NdGetFileAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetState.html">DWC_RnkGetState関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetupGameServer.html">DWC_SetupGameServer関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetupGameServerAsync.html">DWC_SetupGameServerAsync関数</A></LI>
+		<LI><A href="dwc/base/DWCRnkError.html">DWCRnkError関数</A></LI>
+	</UL>
+<HR>
+<H3><A name="note5-05" id="note5-05">Note 5-05:サンプルデモ rank_sample の変更</A></H3>
+<P>
+ユーザー定義データにCRCを付加し、改竄をチェックするように変更しました。
+</P>
+<HR>
+<H3><A name="note5-06" id="note5-06">Note 5-06:汎用ランキングライブラリでユーザー定義データを使わない場合を考慮した変更</A></H3>
+<P>
+汎用ランキングライブラリで、ユーザー定義データを使わない場合を考慮して、DWC_RnkPutScoreAsync関数の引数dataにNULL、sizeに0を指定することで対応できるように変更しました。
+</P>
+<HR>
+<H3><A name="note5-07" id="note5-07">Note 5-07:ダウンロードライブラリでダウンロードサーバがエラーを返した際の不具合の修正</A></H3>
+<P>
+ダウンロードライブラリで、ダウンロードサーバがエラーを返した際に受信バッファが足りなくなり、プログラムが停止してしまうことがある不具合を修正しました。<BR>
+この修正に伴って、受信バッファが足りなかった場合のエラーコード 31030 が追加され、DWC_NdGetFileAsync関数に渡すバッファの最低サイズが 128バイトと規定されました。ダウンロードするデータがこのサイズより小さい場合でも、128バイト以上のバッファを指定する必要があります。
+</P>
+<HR>
+<H3><A name="KnownIssues_1_02" id="KnownIssues_1_02">Version 1.2 正式版 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_02rc2" id="sdk_1_02rc2">■ NITRO-DWC Version 1.2 RC2</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/06/08)</P>
+</DIV>
+<HR>
+<H3><A name="note4-01" id="note4-01">Note 4-01:サービスロケータ情報取得処理の内部動作を変更</A></H3>
+<P>
+ダウンロード機能で使用しているサービスロケータ情報取得処理の内部動作を変更しました。
+</P>
+<HR>
+<H3><A name="KnownIssues_1_02rc2" id="KnownIssues_1_02rc2">Version 1.2 RC2 での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_02rc" id="sdk_1_02rc">■ NITRO-DWC Version 1.2 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/06/06)</P>
+</DIV>
+<HR>
+<H3><A name="note3-01" id="note3-01">Note 3-01:汎用ランキングライブラリの追加</A></H3>
+<P>
+汎用のランキングライブラリを追加しました。<BR>
+詳しくは、$NITRODWC_ROOT/docs に含まれるドキュメントをご確認ください。
+</P>
+<HR>
+<H3><A name="note3-02" id="note3-02">Note 3-02:ダウンロードライブラリの追加</A></H3>
+<P>
+任天堂が提供するダウンロードサーバからコンテンツをダウンロードするためのライブラリを追加しました。<BR>
+詳しくは、$NITRODWC_ROOT/docs に含まれるドキュメントをご確認ください。
+</P>
+<HR>
+<H3><A name="note3-03" id="note3-03">Note 3-03:DWC_GetLastError関数、DWC_GetLastErrorEx関数で取得できるエラー情報の追加・変更</A></H3>
+<P>
+DWC_GetLastError関数、DWC_GetLastErrorEx関数で取得できるエラーの情報について次の追加・変更を行ないました。
+<UL>
+<LI>ダウンロードライブラリの追加に伴って、関連するエラーコード・エラータイプ(DWCErrorType)・エラー種別(DWCError)を追加しました。</LI>
+<LI>HTTP通信(GameSpy HTTP)に関するエラーに、エラー種別 DWC_ERROR_GHTTP_ANY、エラータイプ DWC_ETYPE_SHUTDOWN_GHTTP を追加したことに伴って、取得できるエラー情報が変更されました。</LI>
+</UL>
+</P>
+<HR>
+<H3><A name="note3-04" id="note3-04">Note 3-04:設定ユーティリティで接続先1～3のSSIDに「FREESPOT」を設定した時の不具合を修正</A></H3>
+<P>
+設定ユーティリティで接続先1～3のSSIDに「FREESPOT」を設定し、接続テストでエラーが発生した場合、エラーコードが 5XX00～5XX02 になるべきところ 5XX05 となっていた不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note3-05" id="note3-05">Note 3-05:DS本体のオーナー情報に含まれるニックネームが10文字の場合に発生する不具合の修正</A></H3>
+<P>
+DS本体に保存されているエンドユーザーが入力したオーナー情報のニックネームが10文字の場合に、Wi-Fiコネクションに接続しようとするとエラーコード20109が発生する問題を修正しました。<BR>
+※この問題はNITRO-DWC 1.0以前では発生しません。<BR>
+※NITRO-DWC 1.1 PLUSパッチで修正された問題です。
+</P>
+<HR>
+<H3><A name="note3-06" id="note3-06">Note 3-06:ゲームを途中切断した後にマッチメイクを開始するとマッチメイクが終了しない不具合の修正</A></H3>
+<P>
+ゲームを途中切断で終了した後にそのままマッチメイクを開始すると、そのマッチメイクが終了しない場合がある問題を修正しました。<BR>
+この問題は、ピア・ツー・ピアの通信切断時にReliable送信の受信ステートがリセットされないことによって発生していました。<BR>
+※NITRO-DWC 1.1 PLUSパッチで修正された問題です。
+</P>
+<HR>
+<H3><A name="note3-07" id="note3-07">Note 3-07:受信タイムアウトコールバックが呼び出されない不具合の修正</A></H3>
+<P>
+DWC_SetUserRecvTimeoutCallback関数で指定した受信タイムアウトコールバックが呼び出されないことがある問題を修正しました。<BR>
+DWC_SendReliable*関数で送信したデータが、送信先からの受信確認応答が届かないなどの理由で送信バッファに溜まり、送信バッファに空きがなくなった状態が続いている間は、受信タイムアウトコールバックが呼び出されていませんでした。<BR>
+※NITRO-DWC 1.1 PLUS2パッチで修正された問題です。
+</P>
+<HR>
+<H3><A name="note3-08" id="note3-08">Note 3-08:一部のホットスポットに接続できない不具合の修正</A></H3>
+<P>
+ホットスポット接続時に必要な情報が認証サーバに送られていなかった問題を修正しました。<BR>
+この問題によって、一部のホットスポットに接続できませんでした。<BR>
+※この問題はNITRO-DWC 1.0以前では発生しません。<BR>
+※NITRO-DWC 1.1 PLUS2パッチで修正された問題です。
+</P>
+<HR>
+<H3><A name="note3-09" id="note3-09">Note 3-09:認証サーバでチェックできるスクリーンネームの長さを25文字に拡張</A></H3>
+<P>
+DWC_LoginAsync関数を使って認証サーバに送信するゲーム内スクリーンネームの長さを10文字から25文字に拡張しました。<BR>
+あわせて、DWC_LoginAsync関数のリファレンスマニュアルについて、引数ingamesnに関する説明を変更・追加しました。<BR>
+※NITRO-DWC 1.1 PLUS2パッチで行なわれた変更です。
+</P>
+<HR>
+<H3><A name="note3-10" id="note3-10">Note 3-10:DWCFriendStatusCallback関数、DWCBuddyFriendCallback関数の引数の不具合の修正</A></H3>
+<P>
+下記の3つの関数
+<UL>
+<LI>DWC_UpdateServerAsync関数</LI>
+<LI>DWC_SetFriendStatusCallback関数</LI>
+<LI>DWC_SetBuddyFriendCallback関数</LI>
+</UL>
+で設定できる下記の2つのコールバック関数
+<UL>
+<LI>DWCFriendStatusCallback関数</LI>
+<LI>DWCBuddyFriendCallback関数</LI>
+</UL>
+の引数 index の値に想定外の -1 が入ることがある問題を修正しました。<BR>
+この問題は、友達リスト配列の最後に登録されている友達について友達関係が成立した時に、上記2つのコールバック関数で発生します。<BR>
+特に DWCFriendStatusCallback関数については、index が -1 の場合、その他の引数(status/statusString)も正常なものではありませんでした。<BR>
+※NITRO-DWC 1.1 PLUS3パッチで修正された問題です。
+</P>
+<HR>
+<H3><A name="note3-11" id="note3-11">Note 3-11:プログラミングマニュアルの追加・改訂</A></H3>
+<P>
+$NITRODWC_ROOT/docs に含まれる「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル」を改訂しました。<BR>
+また、汎用ランキング機能、ダウンロード機能に関するプログラミングマニュアルを追加しました。
+</P>
+<HR>
+<H3><A name="note3-12" id="note3-12">Note 3-12:関数リファレンスの追加・修正</A></H3>
+<P>
+下記の項目について追加・修正を行いました。詳しくは各項目の履歴をご確認ください。<BR>
+※用語等の軽微な修正は、特に履歴に反映させていないものもあります。
+	<UL>
+		<LI><A href="main.html">TOP</A></LI>
+		<LI><A href="dwc/base/DWC_AddCommonKeyValueString.html">DWC_AddCommonKeyValueString関数</A></LI>
+		<LI><A href="dwc/base/DWC_AddMatchKey.html">DWC_AddMatchKey*関数</A></LI>
+		<LI><A href="dwc/base/DWC_Base64Encode.html">DWC_Base64Encode関数</A></LI>
+		<LI><A href="dwc/base/DWC_CleanupInet.html">DWC_CleanupInet関数</A></LI>
+		<LI><A href="dwc/base/DWC_CleanupInetAsync.html">DWC_CleanupInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_ClearBuddyFlagFriendData.html">DWC_ClearBuddyFlagFriendData関数</A></LI>
+		<LI><A href="dwc/base/DWC_ClearError.html">DWC_ClearError関数</A></LI>
+		<LI><A href="dwc/base/DWC_ConnectInetAsync.html">DWC_ConnectInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_DebugConnectInetAsync.html">DWC_DebugConnectInetAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetCommonValueString.html">DWC_GetCommonValueString関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetFriendStatus.html">DWC_GetFriendStatus関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetFriendStatusSC.html">DWC_GetFriendStatusSC関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetInetStatus.html">DWC_GetInetStatus関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetIngamesnCheckResult.html">DWC_GetIngamesnCheckResult関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetLastError.html">DWC_GetLastError*関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetMatch_Value.html">DWC_GetMatch*Value関数</A></LI>
+		<LI><A href="dwc/base/DWC_GetOwnStatusString.html">DWC_GetOwnStatusString関数</A></LI>
+		<LI><A href="dwc/base/DWC_GHTTPPostAddString.html">DWC_GHTTPPostAddString関数</A></LI>
+		<LI><A href="dwc/base/DWC_Init.html">DWC_Init関数</A></LI>
+		<LI><A href="dwc/base/DWC_InitFriendsMatch.html">DWC_InitFriendsMatch関数</A></LI>
+		<LI><A href="dwc/base/DWC_InitInet.html">DWC_InitInet関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoadOthersDataAsync.html">DWC_LoadOthersDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoadOwnPrivateDataAsync.html">DWC_LoadOwnPrivateDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoadOwnPublicDataAsync.html">DWC_LoadOwnPublicDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_LoginAsync.html">DWC_LoginAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCancelAsync.html">DWC_NdCancelAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdCleanupAsync.html">DWC_NdCleanupAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileAsync.html">DWC_NdGetFileAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListAsync.html">DWC_NdGetFileListAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetFileListNumAsync.html">DWC_NdGetFileListNumAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdGetProgress.html">DWC_NdGetProgress関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdInitAsync.html">DWC_NdInitAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_NdSetAttr.html">DWC_NdSetAttr関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch関数</A></LI>
+		<LI><A href="dwc/base/DWC_ProcessInet.html">DWC_ProcessInet関数</A></LI>
+		<LI><A href="dwc/base/DWC_Rnk_Constant_Number.html">DWC_Rnk_Constant_Number関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkCancelProcess.html">DWC_RnkCancelProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkGetState.html">DWC_RnkGetState関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkInitialize.html">DWC_RnkInitialize関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkProcess.html">DWC_RnkProcess関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetOrder.html">DWC_RnkResGetOrder関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetRow.html">DWC_RnkResGetRow関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkResGetTotal.html">DWC_RnkResGetTotal関数</A></LI>
+		<LI><A href="dwc/base/DWC_RnkShutdown.html">DWC_RnkShutdown関数</A></LI>
+		<LI><A href="dwc/base/DWC_SavePrivateDataAsync.html">DWC_SavePrivateDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_SavePublicDataAsync.html">DWC_SavePublicDataAsync関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendReliable.html">DWC_SendReliable関数</A></LI>
+		<LI><A href="dwc/base/DWC_SendReliableBitmap.html">DWC_SendReliableBitmap関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetCommonKeyValueString.html">DWC_SetCommonKeyValueString関数</A></LI>
+		<LI><A href="dwc/base/DWC_SetOwnStatusString.html">DWC_SetOwnStatusString関数</A></LI>
+		<LI><A href="dwc/base/DWCConnectionClosedCallback.html">DWCConnectionClosedCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCEvalPlayerCallback.html">DWCEvalPlayerCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCGHTTPCompletedCallback.html">DWCGHTTPCompletedCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCLoginCallback.html">DWCLoginCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCMatchedCallback.html">DWCMatchedCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCMatchedSCCallback.html">DWCMatchedSCCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdCallback.html">DWCNdCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdCallbackReason.html">DWCNdCallbackReason</A></LI>
+		<LI><A href="dwc/base/DWCNdCleanupCallback.html">DWCNdCleanupCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCNdError.html">DWCNdError</A></LI>
+		<LI><A href="dwc/base/DWCNdFileInfo.html">DWCNdFileInfo</A></LI>
+		<LI><A href="dwc/base/DWCRnkData.html">DWCRnkData</A></LI>
+		<LI><A href="dwc/base/DWCRnkError.html">DWCRnkError</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetMode.html">DWCRnkGetMode</A></LI>
+		<LI><A href="dwc/base/DWCRnkGetParam.html">DWCRnkGetParam</A></LI>
+		<LI><A href="dwc/base/DWCRnkRegion.html">DWCRnkRegion</A></LI>
+		<LI><A href="dwc/base/DWCRnkState.html">DWCRnkState</A></LI>
+		<LI><A href="dwc/base/DWCStorageLoginCallback.html">DWCStorageLoginCallback関数</A></LI>
+		<LI><A href="dwc/base/DWCUpdateServersCallback.html">DWCUpdateServersCallback関数</A></LI>
+	</UL>
+</P>
+<HR>
+<H3><A name="note3-13" id="note3-13">Note 3-13:サンプルデモの追加・修正</A></H3>
+<P>
+	<UL>
+		<LI>汎用ランキング機能のサンプル rank_sample を追加しました。</LI>
+		<LI>ダウンロード機能のサンプル dwc_nd_sample を追加しました。</LI>
+		<LI>各サンプルについて SVC_WaitVBlankIntr関数を OS_WaitVBlankIntr関数に変更しました。</LI>
+		<LI>各サンプルについてビルド時に出力されていた警告(warning)が出ないように修正しました。</LI>
+		<LI>dwc_connect_inet_sample について、必要のない関数の呼び出しを削除しました。</LI>
+		<LI>dwc_sample、friend_match について、GAME_MAX_FRIEND_LIST を4の倍数以外に設定しても問題がないように修正しました。</LI>
+		<LI>ghttp_sample について、"ARM9-TS-inet.lsf" を削除しました。</LI>
+	</UL>
+</P>
+<HR>
+<H3><A name="note3-14" id="note3-14">Note 3-14:add-ins ディレクトリの削除</A></H3>
+<P>
+$NITRODWC_ROOT/add-ins ディレクトリをパッケージから削除しました。
+</P>
+<HR>
+<H3><A name="KnownIssues_1_02rc" id="KnownIssues_1_02rc">Version 1.2 RC での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_01" id="sdk_1_01">■ NITRO-DWC Version 1.1 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/03/10)</P>
+</DIV>
+<HR>
+<H3><A name="note2-01" id="note2-01">Note 2-01: DWC_StopScMatchingAsync関数の追加</A></H3>
+<P>
+サーバクライアントマッチメイクを締め切る関数として、DWC_StopScMatchingAsyncを追加しました。
+</P>
+<HR>
+<H3><A name="note2-02" id="note2-02">Note 2-02: DWC_CancelGHTTPRequest関数の追加</A></H3>
+<P>
+HTTP通信をキャンセルする関数として、DWC_CancelGHTTPRequestを追加しました。
+</P>
+<HR>
+<H3><A name="note2-03" id="note2-03">Note 2-03: DWC_GetApInfo関数の追加</A></H3>
+<P>
+インターネットへの接続処理完了後、接続したアクセスポイントに関する情報を取得する関数として、DWC_GetApInfoを追加しました。接続先の候補(接続先1～3や、ニンテンドーWi-Fi USBコネクタなど)のうち、どのアクセスポイントに接続したのかや、アクセスポイントのSSID、BSSIDを取得できます。さらにニンテンドーWi-Fiステーションに限って、設置場所の情報を取得することができます。
+</P>
+<HR>
+<H3><A name="note2-04" id="note2-04">Note 2-04: DWC_GetDateTime関数の追加</A></H3>
+<P>
+認証処理時に認証サーバから取得した時間情報を元に、現在の日付と時刻をGMTで取得する関数DWC_GetDateTimeを追加しました。認証処理完了後は、この関数を用いて日付と時刻をGMTで取得することができます。但し、分秒単位程度の誤差を考慮してください。
+</P>
+<HR>
+<H3><A name="note2-05" id="note2-05">Note 2-05: DWC_SetConnectApType関数(デバッグ用)の追加</A></H3>
+<P>
+インターネットへの接続処理の前に接続先の候補を(接続先1～3、ニンテンドーWi-Fiステーションなど)明示的に指定することができる関数DWC_SetConnectApTypeを追加しました。その後に行なうDWC_ConnectInetAsync関数では、指定した候補にしか接続しません。デバッグ時にご使用ください。FINALROM版では、この指定は無視されます。
+</P>
+<HR>
+<H3><A name="note2-06" id="note2-06">Note 2-06: DWC_DebugConnectInetAsync関数(デバッグ用)の追加</A></H3>
+<P>
+インターネットへの接続処理の際にDWC_ConnectInetAsync関数の代わりにこの関数を使うと、接続するアクセスポイントのSSIDとWEPキーを明示的に指定することができます。デバッグ時にご使用ください。
+</P>
+<HR>
+<H3><A name="note2-07" id="note2-07">Note 2-07: dwc_connect_inet_sample サンプルデモの追加</A></H3>
+<P>
+インターネット接続までの流れを示した単純なサンプルを追加しました。追加された関数、DWC_SetConnectApType、DWC_DebugConnectInetAsyncの使用方法も含まれています。
+</P>
+<HR>
+<H3><A name="note2-08" id="note2-08">Note 2-08: DWC_SetSendSplitMax関数の修正</A></H3>
+<P>
+DWC_TRANSPORT_SEND_MAX で定義される値より大きい値を設定しようとすると、DWC_TRANSPORT_SEND_MAX に設定され、返り値としてTRUE を返していましたが、アサートされるように変更しました。
+</P>
+<HR>
+<H3><A name="note2-09" id="note2-09">Note 2-09: Wi-Fiコネクション設定のメッセージ変更</A></H3>
+<P>
+Wi-Fiコネクション設定の接続テスト失敗時に表示されるメッセージのいくつかを見直しました。
+</P>
+<HR>
+<H3><A name="note2-10" id="note2-10">Note 2-10: Wi-Fiコネクション設定に含まれるWi-Fiユーザー情報移動用子機プログラムのバージョンアップ</A></H3>
+<P>
+Wi-Fiコネクション設定に含まれるWi-Fiユーザー情報移動子機プログラムを、NITRO-SDK 3.0でビルドし直しました。
+</P>
+<HR>
+<H3><A name="note2-11" id="note2-11">Note 2-11: Wi-Fiコネクション設定の不具合修正</A></H3>
+<P>
+Wi-Fiコネクション設定のAOSSによる設定をキャンセルする際、Bボタンを押している期間、効果音がループしてしまう不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note2-12" id="note2-12">Note 2-12: インターネット自動接続処理の不具合修正（１）</A></H3>
+<P>
+Wi-Fiコネクション設定でニンテンドーWi-Fi USBコネクタの接続テスト失敗時に停止することがあった不具合を修正しました。<BR>※ Wi-Fiコネクション設定の接続テストは、ゲームから使用するインターネット自動接続処理と同じものです。
+</P>
+<HR>
+<H3><A name="note2-13" id="note2-13">Note 2-13: インターネット自動接続処理の不具合修正（２）</A></H3>
+<P>
+インターネット接続処理においてホットスポットに接続する場合、ホットスポット認証のためのURLが長すぎる場合に停止してしまう不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note2-14" id="note2-14">Note 2-14: DWC_GetInetStatus関数の不具合修正</A></H3>
+<P>
+DWC_InitInet関数を呼び出してから、DWC_ConnectInetAsync関数を呼び出すまでの間に、DWC_GetInetStatus関数を呼び出すと停止する不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note2-15" id="note2-15">Note 2-15: DWC_ProcessInet関数の不具合修正</A></H3>
+<P>
+インターネット接続の自動接続制御オブジェクトが初期化されていない状態（DWC_InitInet関数を呼んでいない状態）でDWC_ProcessInet関数を呼び出すと停止する不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note2-16" id="note2-16">Note 2-16: DWC_CleanupInet関数の不具合修正</A></H3>
+<P>
+DWC_InitInet関数を呼び出してから、DWC_ConnectInetAsync関数を呼び出すまでの間に、DWC_CleanupInet関数を呼び出すと停止する不具合を修正しました。
+</P>
+<HR>
+<H3><A name="note2-17" id="note2-17">Note 2-17: DWC_CreateUserData関数の修正</A></H3>
+<P>
+ユーザーデータを作成する際に使用する乱数の生成方法を見直しました。これまで、乱数コンテキストのSEED値にチック値を使用しており、OS_InitTick関数の呼び出しから同じようなタイミングでDWC_CreateUserData関数を呼び出すと、同じログインIDが作成されることがありました。このため、SEED値としてOS_GetLowEntropyData関数から取得した値を基にしたものを使用するようにしました。
+</P>
+<HR>
+<H3><A name="note2-18" id="note2-18">Note 2-18: サンプルデモの修正</A></H3>
+<P>
+使われていなかったファイルや不要な記述の削除等を行いました。
+</P>
+<HR>
+<H3><A name="note2-19" id="note2-19">Note 2-19: ドキュメント「ユーザ情報管理・友達接続概要」の廃止</A></H3>
+<P>
+ドキュメント「ユーザ情報管理・友達接続概要」の内容を「プログラミングガイドライン」、「NITRO-DWC プログラミングマニュアル」に移行し、「ユーザ情報管理・友達接続概要」を廃止しました。
+</P>
+<HR>
+<H3><A name="note2-20" id="note2-20">Note 2-20: ドキュメント「NITRO-DWC プログラミングマニュアル」と関数リファレンスの見直し</A></H3>
+<P>
+ドキュメント「NITRO-DWC プログラミングマニュアル」と関数リファレンスの内容について、説明不足を補う修正などの見直しを行ないました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_1_01" id="KnownIssues_1_01">Version 1.1 正式版での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<HR>
+<H2 style="line-height: 0"><A name="sdk_1_00" id="sdk_1_00">■ NITRO-DWC Version 1.0 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/01/30)</P>
+</DIV>
+
+
+<HR>
+<H3><A name="note1-01" id="note1-01">Note 1-01: DWC_SetFriendStatusCallback関数の追加</A></H3>
+<P>
+	友達の通信状態が変化した時に呼び出されるコールバック関数を設定する関数として、DWC_SetFriendStatusCallbackを追加しました。 <BR>
+	上記コールバック関数は、通常は友達リスト同期処理のDWC_UpdateServersAsync関数の引数としてセットしますが、友達リスト同期処理が必要ない場合でも友達の通信状態をリアルタイムで把握したい場合に、本関数を用いてコールバック関数を設定してください。
+</P>
+<HR>
+<H3><A name="note1-02" id="note1-02">Note 1-02: DWC_IsSendableReliable関数がFALSEを返す条件を修正</A></H3>
+<P>
+	エラー発生中にDWC_IsSendableReliable関数を呼ぶとTRUEを返し、DWC_SendReliable*関数を呼ぶとFALSEを返すという不具合がありました。<BR>
+	このような場合に、DWC_IsSendableReliable関数がFALSEを返すように修正しました。
+</P>
+<HR>
+<H3><A name="note1-03" id="note1-03">Note 1-03: 最大接続人数チェックの追加</A></H3>
+<P>
+	DWCライブラリでは、マッチメイクによる最大接続人数は32なので、DWC_ConnectToAnybodyAsync, DWC_ConnectToFriendsAsync, DWC_SetupGameServerの各関数の接続人数の引数が、32を越えていないかどうかをチェックするASSERTを追加しました。
+</P>
+<HR>
+<H3><A name="note1-04" id="note1-04">Note 1-04: 友達リスト最大長チェックの追加</A></H3>
+<P>
+	DWCライブラリで扱える友達の最大人数は64なので、DWC_InitFriendsMatch, DWC_ConnectToFriendsAsyncの各関数の友達リスト長の引数が、64を越えていないかどうかをチェックするASSERTを追加しました。
+</P>
+<HR>
+<H3><A name="note1-05" id="note1-05">Note 1-05: データ送受信用デバッグ設定関数のエラー処理を修正</A></H3>
+<P>
+	DWC_SetSendDelay, DWC_SetRecvDelay, DWC_SetSendDrop, DWC_SetRecvDropの各関数内で、メモリ確保エラーが発生した場合にDWCエラーがセットされていませんでした。<BR>
+	これを正しく DWC_ECODE_TYPE_ALLOC の FATAL ERROR をセットするように修正しました。
+</P>
+<HR>
+<H3><A name="note1-06" id="note1-06">Note 1-06: GHTTPライブラリ関数に失敗の返り値を追加</A></H3>
+<P>
+	以下のGHTTPライブラリ関数に失敗の返り値を追加しました。
+	<UL>
+		<LI>DWC_ProcessGHTTP：今までは必ずTRUEを返していましたが、エラー発生中はFALSEを返すように変更しました。
+		<LI>DWC_GHTTPPostAddString：今までは返り値がありませんでしたが、パラメータエラー、もしくはメモリ確保エラーの場合はFALSEを返すように変更しました。
+		<LI>DWC_PostGHTTPData：エラー発生中に本関数を呼び出した場合、今まではそのまま処理を続けていましたが、何もせずに新設したエラーDWC_GHTTP_IN_ERRORを返すように変更しました。
+		<LI>DWC_GetGHTTPData：エラー発生中に本関数を呼び出した場合、今まではそのまま処理を続けていましたが、何もせずに新設したエラーDWC_GHTTP_IN_ERRORを返すように変更しました。
+		<LI>DWC_GetGHTTPDataEx：エラー発生中に本関数を呼び出した場合、今まではそのまま処理を続けていましたが、何もせずに新設したエラーDWC_GHTTP_IN_ERRORを返すように変更しました。
+	</UL>
+</P>
+<HR>
+<H3><A name="note1-07" id="note1-07">Note 1-07: いくつかの関数の返り値をvoidからBOOLに変更</A></H3>
+<P>
+	<UL>
+		<LI>DWC_SetBuddyFriendCallback
+		<LI>DWC_SetConnectionClosedCallback
+		<LI>DWC_SetStorageServerCallback
+		<LI>DWC_SetUserSendCallback
+		<LI>DWC_SetUserRecvCallback
+		<LI>DWC_SetUserRecvTimeoutCallback
+		<LI>DWC_SetUserPingCallback
+		<LI>DWC_SetSendSplitMax
+		<LI>DWC_SetRecvTimeoutTime
+		<LI>DWC_SetSendDrop
+		<LI>DWC_SetRecvDrop
+		<LI>DWC_SetSendDelay
+		<LI>DWC_SetRecvDelay
+		<LI>DWC_Ping
+	</UL>
+上記の各関数は、今までは返り値がありませんでしたが、失敗の場合はFALSEを返すように変更しました。<BR>
+	失敗の原因は主にFriendsMatchライブラリ非動作中の関数呼び出しなので、DWC_InitFriendsMatch関数呼出し後に使っていれば、FALSEを返すことはありません。<BR>
+	ただし、DWC_SetSendDrop, DWC_SetRecvDrop, DWC_SetSendDelay, DWC_SetRecvDelay, DWC_Ping の各関数においては、メモリ確保失敗や無効なAIDの指定なども失敗の原因となります。
+</P>
+<HR>
+<H3><A name="note1-08" id="note1-08">Note 1-08: Base64エンコード・デコード関数の追加</A></H3>
+<P>
+	Base64のエンコードを行うDWC_Base64Encode関数と、Base64のデコードを行うDWC_Base64Decode関数を追加しました。<BR>
+	今まではDWC_SetOwnStatusData関数でstatusデータを設定した場合、友達状態変化通知コールバックDWCFriendStatusCallbackの引数statusStringの文字列を利用することができませんでしたが、DWC_Base64Decode関数を使えば、statusStringの文字列（Base64文字列）をデコードして参照することができます。
+</P>
+<HR>
+<H3><A name="note1-09" id="note1-09">Note 1-09: 親機DS通信切断による子機DSはまり不具合修正</A></H3>
+<P>
+	マッチメイク中は接続中のDS間で一時的な親子関係が構築されます。<BR>
+	ここで親機となったDSが電源を切断するなどして通信できなくなった場合、接続済みであった子機DSがはまり状態となってしまう（マッチメイクのキャンセルはできる）という不具合がありました。<BR>
+	このような状態になった子機DSは、一定時間親機DSと通信できなければマッチメイクをやり直すように修正しました。<BR>
+</P>
+<HR>
+<H3><A name="note1-10" id="note1-10">Note 1-10: DWC_CheckFriendKey関数の不具合修正</A></H3>
+<P>
+	DWC_CheckFriendKey関数では、CRCで友達登録鍵の正当性をチェックしていましたが、友達登録鍵に含まれるGSプロファイルIDが負の値で、かつCRCも正しい友達登録鍵が入力された場合、本関数はTRUEを返すのに、友達リストの同期処理時にパラメータエラーが発生してしまうという不具合がありました。<BR>
+	これを、GSプロファイルIDが負の値の友達登録鍵に対しては、FALSEを返すように修正しました。
+</P>
+<HR>
+<H3><A name="note1-11" id="note1-11">Note 1-11: データストレージサーバから自分のデータをロードする関数を追加</A></H3>
+<P>
+	データストレージサーバから自分のデータをロードするDWC_LoadOwnDataAsync関数は、Privateデータしかロードできませんでした。<BR>
+	そのため、Publicデータをロードする DWC_LoadOwnPublicDataAsync関数、Privateデータをロードする DWC_LoadOwnPrivateDataAsync関数を追加しました。
+</P>
+<HR>
+<H3><A name="note1-12" id="note1-12">Note 1-12: 友達指定ピアマッチメイクで友達の友達との接続を完全には禁止できない不具合を修正</A></H3>
+<P>
+	DWC_ConnectToFriendsAsync関数の引数distantFriendにFALSEを指定しても、引数friendIdxListで指定した以外の友達と接続してしまうという不具合がありました。<BR>
+	これを、distantFriendにFALSEを指定した場合は、必ずfriendIdxListで指定した友達（friendIdxList = NULL なら友達全員）としか接続しないように修正しました。
+</P>
+<HR>
+<H3><A name="note1-13" id="note1-13">Note 1-13: Fatal Error 71002 が発生する不具合を修正</A></H3>
+<P>
+	通信状況が不安定になるなどでDWCのエラーが発生した後、内部処理を続けてしまい、エラーコード71002のFatal Errorが発生するという不具合がありました。<BR>
+	これを、Fatal Errorが発生しないように修正しました。
+</P>
+<HR>
+<H3><A name="note1-14" id="note1-14">Note 1-14: サンプルソースのコメント、リファレンスの用語を統一</A></H3>
+<P>
+	サンプルソースのコメントとリファレンスに使用している用語を、統一感を持たせるために変更しました。<BR>
+	具体的には、用語集で使用禁止とされた「マッチング」を「マッチメイク」に変えるといった変更です。
+</P>
+<HR>
+<H3><A name="note1-15" id="note1-15">Note 1-15: dwc_frienddata_sample, dwc_friend_match_sample サンプルデモ修正</A></H3>
+<P>
+	$NITRODWC_ROOT/build/demos/dwc_frienddata_sample サンプルデモおよび $NITRODWC_ROOT/build/demos/dwc_friend_match_sample サンプルデモに以下の修正を行いました。
+	<UL>
+		<LI>s_logined = TRUE （Wi-Fiコネクションへの接続完了を確定する処理）の記述が２箇所ありましたが、cb_login関数内の記述は間違いでしたので削除しました。<BR>
+			友達リストの同期処理が完了してから接続完了と判定します。
+	</UL>
+</P>
+<HR>
+<H3><A name="note1-16" id="note1-16">Note 1-16: dwc_sample サンプルデモの受信バッファサイズ変更</A></H3>
+<P>
+	$NITRODWC_ROOT/build/demos/dwc_sample サンプルデモに以下の修正を行いました。
+	<UL>
+		<LI>５人以上でマッチメイクを行うと、接続完了後のデータ受信用バッファを４人分しか用意していないためにアクセス例外で停止してしまうという不具合がありましたが、これを修正しました。
+	</UL>
+</P>
+
+<HR>
+<H3><A name="KnownIssues_1_00" id="KnownIssues_1_00">Version 1.0 正式版での既知の問題点</A></H3>
+<P>
+ありません。
+</P>
+
+<HR>
+<P style="text-align: right">NINTENDO Technical Support Center</P>
+</BODY>
+</HTML>

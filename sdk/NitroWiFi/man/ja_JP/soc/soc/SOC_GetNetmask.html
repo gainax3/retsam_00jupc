@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_GetNetmask</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_GetNetmask</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void SOC_GetNetmask ( SOCInterface* <em><strong>interface</strong></em>, u8* <em><strong>addr</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><font size="-1"color="#808080"><code><em><strong>interface</strong></em></code></td>
+    <td><font size="-1"color="#808080">ネットマスクを取得するSOCInterfaceへのポインタ。この引数は互換性のため用意されていますが、実際には無視されます。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>addr</strong></em></code></td>
+    <td>ソケットにバインドされるアドレスを格納したソケットアドレス構造体へのポインタ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<p>なし。</p>
+
+<h2>説明</h2>
+
+<p>指定されたインターフェースのネットマスクを取得します。</p>
+
+<h2>参照</h2>
+
+<H2>履歴</H2>
+<P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
+</body>
+</html>

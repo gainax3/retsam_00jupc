@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_YieldThread</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_YieldThread</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_YieldThread( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スレッドのリスケジューリングを行ないます。</P>
+<P>カレントスレッドと同じ優先度を持つスレッドに実行機会を与えるため、現在のスレッドは
+CPU を譲渡しようとします。</P>
+<P>通常は、カレントスレッドよりも高い優先度のスレッドが実行可能状態にあるのなら、それは既に実行されているはずですので、カレントスレッドと同じ優先度の実行可能状態のスレッドがない場合、この関数を呼んでも結果的に何もしないことになります。
+( ただし、スケジューリングを禁止にしてスレッド操作を行ったりすると、カレントスレッドより高い優先度のスレッドが実行可能状態になっているにも関わらず実行されていない、という状況が発生する場合があります。
+)</P>
+<P>内部動作的には以下の通りです。スレッドはリストで管理されており、優先度の高いものから低いものの順にソートされています。(リスト先頭がもっとも優先度が高い。)　実行可能状態になっているスレッドが複数あった場合には、よりリスト先頭に近いものが選択されるルールとなっていますが、これだと同じ優先度のものが複数あっても、リストの順序に依存して、先頭に近いものが常に選ばれることになります。この <CODE>OS_YieldThread()</CODE> は、カレントスレッドと同じ優先度で実行可能なスレッドが複数あった場合に、カレントスレッドをリスト内の(同じ優先度内で)後ろに追いやり、別のスレッドが前になるようにすることで他のスレッドへ実行機会を与えています。このスレッドの順序入れ替えを行なった後に、<CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> を実行しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_EnableScheduler.html">OS_EnableScheduler</A>, <A href="OS_DisableScheduler.html">OS_DisableScheduler</A>, <A href="OS_RescheduleThread.html">OS_RescheduleThread</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/06/20 初版</P>
+</BODY>
+</HTML>

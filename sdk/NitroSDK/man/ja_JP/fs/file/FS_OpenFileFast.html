@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_OpenFileFast</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_OpenFileFast</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_OpenFileFast( FSFile *p_file, FSFileID file_id );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>file_id</STRONG></EM></TD>
+      <TD width="87%">FSDirEntry構造体のfile_idで指定されるファイルID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ファイルが正しく開ければ TRUE を, そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したファイルIDでファイルを開きます。<BR>
+このIDは<A href="FS_ReadDir.html">FS_ReadDir</A>関数によって取得します。<BR>
+<BR>
+</P>
+<h2>注意</h2>
+<P>アプリケーションは、シンボル NITRO_MAKEROM
+を有効にしてROMファイルシステムを含んでいる必要があります。<br>
+<br>
+<font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_id_type.html">FSFileID</A> 
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="FS_OpenFile.html">FS_OpenFile</A> 
+<A href="FS_CloseFile.html">FS_CloseFile</A> 
+<A href="FS_GetLength.html">FS_GetLength</A> 
+<A href="FS_ReadFile.html">FS_ReadFile</A> 
+<A href="FS_SeekFile.html">FS_SeekFile</A> 
+<A href="FS_SeekFileToBegin.html">FS_SeekFileToBegin</A> 
+<A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+<A href="FS_ReadDir.html">FS_ReadDir</A> 
+<A href="../fs_dir_entry_type.html">FSDirEntry</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 引数名をヘッダファイルと同一に訂正<br>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/05/14 idの型をu32からFSFileIDへ変更<BR>
+2004/04/02 ファイルシステム → ROM ファイルシステム<BR>
+2004/04/01 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_GetCartridgeRomCycle1st</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_GetCartridgeRomCycle1st</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>MICartridgeRomCycle1st MI_GetCartridgeRomCycle1st( void )</CODE></dd>
+</dl>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>ROMカートリッジへの1stアクセスサイクルの設定。</p>
+
+<H2>説明</H2>
+<P>ROMカートリッジへの1stアクセスサイクルの設定を取得します。</P>
+<P>返り値は、<CODE>MICartridgeRomCycle1st </CODE>列挙型で、以下の意味を持ちます。<BR>
+</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_6</CODE></TD>
+      <TD bgcolor="#eeeeee">6サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_8</CODE></TD>
+      <TD bgcolor="#eeeeee">8サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_10</CODE></TD>
+      <TD bgcolor="#eeeeee">10サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_18</CODE></TD>
+      <TD bgcolor="#eeeeee">18サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<BR>
+なお、AGBカートリッジにアクセスする際の設定として、<CODE><A href="MI_SetAgbCartridgeFastestRomCycle.html">MI_SetAgbCartridgeFastestRomCycle()</A></CODE> が用意されています。</P>
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_SetCartridgeRomCycle1st.html">MI_SetCartridgeRomCycle1st</A>, <A href="MI_SetCartridgeRomCycle2nd.html">MI_SetCartridgeRomCycle2nd</A>,<BR>
+<A href="MI_GetCartridgeRomCycle2nd.html">MI_GetCartridgeRomAccess2nd</A><br>
+<A href="MI_SetAgbCartridgeFastestRomCycle.html">MI_SetAgbCartridgeFastestRomCycle</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/02/10 <CODE>MI_SetAgbCartridgeFastestRomCycle</CODE> の記述を追加<BR>
+2004/07/01 名称変更。1→1st<BR>
+2004/05/25 名前変更。Cartridge をつけた。<BR>
+2003/12/18 初版</P>
+</body>
+</html>

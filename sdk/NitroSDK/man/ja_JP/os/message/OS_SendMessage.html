@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SendMessage</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SendMessage</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL OS_SendMessage(
+     OSMessageQueue*   mq,
+     OSMessage         msg,
+     s32               flag );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>mq</STRONG></EM></TD>
+      <TD width="87%">メッセージキューへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>msg</STRONG></EM></TD>
+      <TD width="87%">送信するメッセージ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>flag</STRONG></EM></TD>
+      <TD>OS_MESSAGE_BLOCKを設定した場合、OS_SendMessage関数は、キューが一杯の時ブロックします。
+      OS_MESSAGE_NOBLOCKを設定した場合、OS_SendMessage関数は、キューが一杯であろうとなかろうと、
+      すぐに返ります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+メッセージがうまく送られた場合、TRUEを返します。<br>
+OS_MESSAGE_NOBLOCK が指定され、キューが一杯であった場合、FALSE を返します。
+</P>
+
+<H2>説明</H2>
+<P>指定したメッセージキューの末尾にメッセージを挿入します。 
+また、このメッセージキューで待ち状態のスレッドを実行可能状態にします。
+受信スレッドは、優先順位の順に実行されます。</P>
+
+<P><STRONG><EM><FONT face="Courier New">flag</FONT></EM></STRONG> 
+に<CODE>OS_MESSAGE_BLOCK</CODE>を設定した場合、キューが一杯 (full) 
+であれば、この関数を呼び出したスレッドを一時停止します。受信スレッドが動作して、
+キューからメッセージを取り出すとすぐに再開されます。
+より高い優先順位の送信スレッドが他にあった場合、それらが最初に動作し、
+再度メッセージキューが一杯になるかもしれない点に注意してください。
+これが起こった場合、受信スレッドがメッセージキューに空をつくるまで、
+このスレッドは、再び一時停止します。</P>
+
+<P><STRONG><EM><FONT face="Courier New">flag</FONT></EM></STRONG> 
+に<CODE>OS_MESSAGE_NOBLOCK</CODE>を設定した場合、呼び出したスレッドにすぐに返ります。 
+キューが一杯でない場合、<CODE>TRUE</CODE>が返されます。キューが一杯であった場合、
+<CODE>FALSE</CODE>が返されます。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_InitMessageQueue.html">OS_InitMessageQueue</A>, <A href="OS_ReceiveMessage.html">OS_ReceiveMessage</A>, <A href="OS_JamMessage.html">OS_JamMessage</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2003/12/05 初版</P>
+</BODY>
+</HTML>

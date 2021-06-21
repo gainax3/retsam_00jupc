@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TPData</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TPData</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct {
+        u16         x;
+        u16         y;
+        u16         touch;
+        u16         validity;
+} TPData;</CODE></PRE>
+  </dd>
+</dl>
+<h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">x</font></strong></em></TD>
+      <TD width="700">x座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD>y座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">touch</font></strong></em></TD>
+      <TD>接触判定フラグ </TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">validity</font></strong></em></TD>
+      <TD>座標値の有効性フラグ。INVALIDの場合でもtouchの値は有効です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>タッチパネルの座標を表す構造体です。<BR>
+この構造体は、生のタッチパネル値にも画面座標値にも使用されます。</P>
+<P>touchは以下の値をとり、タッチパネルに触れられているかどうかを示します。</P>
+<PRE><I>TP_TOUCH_OFF      0      //  タッチパネルに触れていない
+TP_TOUCH_ON       1      //  タッチパネルに触れている</I></PRE>
+<P>validityは以下の値をとり、チャタリング対策処理の結果得られた値の有効性を示します。<BR>
+このフラグがINVALIDとなっている場合でもtouchの値は有効ですのでON/OFF判定は行なってください。</P>
+<PRE><I>TP_VALIDITY_VALID         0        // 有効なデータ
+TP_VALIDITY_INVALID_X     1        // X座標が無効なデータ
+TP_VALIDITY_INVALID_Y     2        // Y座標が無効なデータ
+TP_VALIDITY_INVALID_XY   (TP_VALIDITY_INVALID_X | TP_VALIDITY_INVALID_Y)   // XY座標共に無効なデータ</I></PRE>
+<P>アプリケーション作成の際にはINVALID値が格納される場合を考慮する必要があります。<BR>
+INVALIDな値を取得した場合でも異常な動作を行なわないように、<BR>
+最後にVALID値として取得された座標データを使用するなどの対策をとられることを推奨します。</P>
+<P><IMG src="touch_panel.gif" width="561" height="343" border="0"></P>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
+</body>
+</html>

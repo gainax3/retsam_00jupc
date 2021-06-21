@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMDataSet</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMDataSet</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMDataSet
+{
+    u16 aidBitmap;
+    u16 receivedBitmap;
+    u16 data[WM_DS_DATA_SIZE/sizeof(u16)];
+
+} WMDataSet;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">aidBitmap</font></strong></em></TD>
+      <TD width="800">データシェアリングを行っている機器のAIDのビットマップです。<BR>
+      dataのデータ構造を決定します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">receivedBitmap</font></strong></em></TD>
+      <TD width="800">dataの中で有効なデータが入ってるAIDのビットマップです。<BR>
+      未接続の子機に相当するビットが0になっています。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="800">シェアされているデータの配列です。<BR>
+      aidBitmapの立っている機器の共有データがAIDの低い順に共有サイズずつパックされています。<BR>
+      なお、WMDataSet内には共有サイズが保持されていませんので、分割する際には別に共有サイズを得る必要があります。
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+WMのデータシェアリング機能により取得するシェアされたデータを示す構造体です。<BR>
+通常は<A href="WM_GetSharedDataAddress.html">WM_GetSharedDataAddress</A>でアクセスしてください。
+</P>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

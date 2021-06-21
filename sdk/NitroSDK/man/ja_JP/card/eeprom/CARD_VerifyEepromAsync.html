@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_VerifyEepromAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_VerifyEepromAsync</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>static inline void	CARD_VerifyEepromAsync(
+	u32 dst, const void *src, u32 len, MIDmaCallback callback, void *arg);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="87%">比較先の EEPROM アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">比較元のメモリアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">比較するデータのバイト長</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">完了時のコールバック関数<BR>
+	  必要ない場合は NULL を指定します<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>arg</STRONG></EM></TD>
+      <TD width="87%">完了時のコールバック関数に与える引数<BR>
+	  callback に NULL を指定した場合は単に無視されます</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>EEPROM デバイスのデータを指定のメモリと非同期的に比較します。<BR>
+この関数はただちに制御を返します。<BR>
+<BR>
+この関数を使用する場合、事前にアクセスバスを<A href="../backup/CARD_LockBackup.html">CARD_LockBackup</A>関数でロックしている必要があります。<BR>
+<BR>
+処理の完了を待つには<A href="../backup/CARD_WaitBackupAsync.html">CARD_WaitBackupAsync</A>関数を使用します。<BR>
+処理の結果を判定するには、完了後に<A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A>関数を呼び出してください。<BR>
+<BR>
+<font color="#800000">この関数は内部でPXIを介してARM7プロセッサと通信しています。<br>
+PXIの割り込みが有効でないと処理が完了しない点に注意してください。<br></font>
+<br>
+</P>
+<h2>内部動作</h2>
+<p>
+この関数は、内部のスレッドを使用して非同期処理を実行します。<BR>
+このスレッドに関しては<A href="../common/CARD_GetThreadPriority.html">CARD_GetThreadPriority</A>関数の説明を参照ください。<BR>
+</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="CARD_IsBackupEeprom.html">CARD_IsBackupEeprom</A> 
+<A href="../backup/CARD_WaitBackupAsync.html">CARD_WaitBackupAsync</A>
+<A href="../common/CARD_GetResultCode.html">CARD_GetResultCode</A>
+<A href="CARD_ReadEeprom.html">CARD_ReadEeprom</A> 
+<A href="CARD_WriteEeprom.html">CARD_WriteEeprom</A> 
+<A href="CARD_VerifyEeprom.html">CARD_VerifyEeprom</A> 
+<A href="CARD_WriteAndVerifyEeprom.html">CARD_WriteAndVerifyEeprom</A> 
+<A href="../common/CARD_GetThreadPriority.html">CARD_GetThreadPriority</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/12/09 記述修正 「IOプロセッサ」→「ARM7プロセッサ」<br>
+2004/11/02 リンク先訂正<br>
+2004/08/18 PXI割り込みについての記述を追加<br>
+2004/07/28 初版<BR>
+</P>
+</body>
+</html>

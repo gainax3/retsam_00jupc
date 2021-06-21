@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerCreateHeap</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerCreateHeap</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndPlayerCreateHeap(
+        int <var>playerNo</var>,
+        NNSSndHeapHandle <var>heap</var>,
+        u32 <var>size</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>playerNo</code></strong></em></td>
+<td>プレイヤー番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>プレイヤーヒープを確保するためのヒープです。</td>
+</tr>
+<tr>
+<td><em><strong><code>size</code></strong></em></td>
+<td>プレイヤーヒープのサイズです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>プレイヤーヒープの作成に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+プレイヤーヒープを作成します。
+</p>
+      <p>
+サウンドヒープ<em><strong><code>heap</code></strong></em>上に、サイズ<em><strong><code>size</code></strong></em>のプレイヤーヒープを作成します。
+プレイヤーヒープの管理領域が必要なため、実際にはサイズ<em><strong><code>size</code></strong></em>より多くのメモリを消費します。
+元のサウンドヒープ<em><strong><code>heap</code></strong></em>に十分な空き容量が無い場合、関数は失敗します。
+</p>
+      <p>
+作成されたサウンドヒープは、指定したプレイヤー<em><strong><code>playerNo</code></strong></em>に接続されます。
+<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq</a></tt>関数を使って、
+指定プレイヤー<em><strong><code>playerNo</code></strong></em>でシーケンスを再生しようとしたときに、
+このプレイヤーヒープが使用されます。
+</p>
+      <p>
+この関数を繰り返し呼びだすと、指定したプレイヤー<em><strong><code>playerNo</code></strong></em>に対し、
+プレイヤーヒープが追加されていきます。通常、プレイヤー毎のシーケンス同時再生最大数と
+同じだけのプレイヤーヒープを作成します。
+（ただし、再生に必要なサウンドデータがサウンドヒープ上にある場合は、プレイヤーヒープを
+作成する必要はありません。）
+</p>
+      <p>
+元のサウンドヒープ<em><strong><code>heap</code></strong></em>のヒープ操作によって、
+プレイヤーヒープを確保した領域が開放されたとき、自動的にプレイヤーからプレイヤーヒープが
+切り離されます。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>関数内で、
+呼びだされています。再度、この関数を呼びだすと、サウンドアーカイブでの設定に加える形で、プレイヤーヒープが追加されます。
+</p>
+<p>
+プレイヤーヒープのサイズ<var>size</var>は、各プレイヤー毎に同じ値を指定してください。
+１つのプレイヤーに、異なるサイズのプレイヤーヒープが接続されていると、
+データのロードに成功したり失敗したりといった不安定な動作をするようになります。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq</a>, <a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

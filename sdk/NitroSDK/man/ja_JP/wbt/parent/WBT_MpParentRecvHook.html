@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_MpParentRecvHook</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_MpParentRecvHook</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void WBT_MpParentRecvHook(const void *recv_buf, int recv_size, int aid);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>recv_buf</STRONG></EM></TD>
+      <TD width="87%">WBTのために<a href="../../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>関数などでMP通信している親機受信バッファ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>recv_size</STRONG></EM></TD>
+      <TD width="87%">recv_bufのサイズ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%">recv_bufを受信した対象機器のaid</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>WBT ライブラリの親機がMP通信で受信したデータをWBTライブラリに通知します。<br>
+受信バッファからWBTライブラリのプロトコルに基づいたデータが抽出され、<br>
+MP通信のたびにこれを繰り返すことによって各種コマンドが実行されます。<br>
+<br>
+（注：この関数ではWBTのプロトコルに基づいてデータの処理をするだけです。<br>
+<A href="../../wm/wm/WM_SetPortCallback.html">WM_SetPortCallback</A>などで指定したMPデータ受信コールバック内で、<br>
+この関数を呼び出して下さい。）<br>
+<br>
+
+何らかのコマンドを実行した場合、完了コールバックはこの呼び出しの中で発生します。<br>
+また、通信先から何らかのコマンドを受信した場合、この呼び出しの中で<br>
+<A href="../wbt_command_type_const.html">WBT_CMD_SYSTEM_CALLBACK</A>コールバックが発生することがあります。<br>
+<br>
+<h2>参照</h2>
+<p><BR></P>
+<H2>履歴</H2>
+<P>
+2005/03/14 リンク先の不具合を訂正<br>
+2005/02/18 WMライブラリとの関係について注意事項の追加<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>NITRO コンポーザ (Snd) API 機能一覧</title>
+<link rel="stylesheet" href="../css/apilist.css">
+</head>
+<body>
+<h1>NITRO コンポーザ (Snd) API 機能一覧</h1>
+<h3><a name="System">システム</a></h3>
+<h4><a name="System_Basic">基本関数</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndInit.html" target="_self">NNS_SndInit</a></th>
+<td>サウンドを初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndMain.html" target="_self">NNS_SndMain</a></th>
+<td>サウンドのフレーム処理を行います。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="System_Setting">システム設定</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndSetMasterVolume.html" target="_self">NNS_SndSetMasterVolume</a></th>
+<td>マスターボリュームを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndSetMonoFlag.html" target="_self">NNS_SndSetMonoFlag</a></th>
+<td>モノラルフラグを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndBeginSleep.html" target="_self"><s>NNS_SndBeginSleep</s></a></th>
+<td>（削除）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndEndSleep.html" target="_self"><s>NNS_SndEndSleep</s></a></th>
+<td>（削除）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStopSoundAll.html" target="_self">NNS_SndStopSoundAll</a></th>
+<td>全てのサウンドを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStopChannelAll.html" target="_self">NNS_SndStopChannelAll</a></th>
+<td>全チャンネルを停止します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="System_DriverInfo">ドライバ情報</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndUpdateDriverInfo.html" target="_self">NNS_SndUpdateDriverInfo</a></th>
+<td>サウンドドライバ情報を更新します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndReadDriverChannelInfo.html" target="_self">NNS_SndReadDriverChannelInfo</a></th>
+<td>チャンネル情報を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="System_Resource">リソース管理</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndLockChannel.html" target="_self">NNS_SndLockChannel</a></th>
+<td>チャンネルをロックします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndUnlockChannel.html" target="_self">NNS_SndUnlockChannel</a></th>
+<td>チャンネルのロックを解除します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndLockCapture.html" target="_self">NNS_SndLockCapture</a></th>
+<td>サウンドキャプチャをロックします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndUnlockCapture.html" target="_self">NNS_SndUnlockCapture</a></th>
+<td>サウンドキャプチャのロックを解除します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndAllocAlarm.html" target="_self">NNS_SndAllocAlarm</a></th>
+<td>サウンドアラームを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndFreeAlarm.html" target="_self">NNS_SndFreeAlarm</a></th>
+<td>サウンドアラームを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="SndArcPlayer">サウンドアーカイブプレイヤー</a></h3>
+<h4><a name="SndArcPlayer_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcPlayerSetup.html" target="_self">NNS_SndArcPlayerSetup</a></th>
+<td>サウンドアーカイブを使って、プレイヤーをセットアップします。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArcPlayer_StartSeq">シーケンス再生</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcPlayerStartSeq.html" target="_self">NNS_SndArcPlayerStartSeq</a></th>
+<td>シーケンスを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcPlayerStartSeqArc.html" target="_self">NNS_SndArcPlayerStartSeqArc</a></th>
+<td>シーケンスアーカイブを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcPlayerStartSeq.html" target="_self">NNS_SndArcPlayerStartSeqEx</a></th>
+<td>いくつかのパラメータを指定して、シーケンスを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcPlayerStartSeqArc.html" target="_self">NNS_SndArcPlayerStartSeqArcEx</a></th>
+<td>いくつかのパラメータを指定して、シーケンスアーカイブを再生します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Player">プレイヤー</a></h3>
+<h4><a name="Player_StopSeq">シーケンス停止</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeq</a></th>
+<td>シーケンスを停止します。（サウンドハンドル指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeqByPlayerNo</a></th>
+<td>シーケンスを停止します。（プレイヤー番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeqBySeqNo</a></th>
+<td>シーケンスを停止します。（シーケンス番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeqBySeqArcNo</a></th>
+<td>シーケンスを停止します。（シーケンスアーカイブ番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeqBySeqArcIdx</a></th>
+<td>シーケンスを停止します。（シーケンスアーカイブ番号及びインデックス番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerStopSeq.html" target="_self">NNS_SndPlayerStopSeqAll</a></th>
+<td>全シーケンスを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerPause.html" target="_self">NNS_SndPlayerPause</a></th>
+<td>シーケンスを一時停止または再開します。（サウンドハンドル指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerPause.html" target="_self">NNS_SndPlayerPauseByPlayerNo</a></th>
+<td>シーケンスを一時停止または再開します。（プレイヤー番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerPause.html" target="_self">NNS_SndPlayerPauseAll</a></th>
+<td>全シーケンスを一時停止または再開します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_SeqParam">シーケンスパラメータ</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTempoRatio.html" target="_self">NNS_SndPlayerSetTempoRatio</a></th>
+<td>シーケンスのテンポを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetVolume.html" target="_self">NNS_SndPlayerSetVolume</a></th>
+<td>シーケンスのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetInitialVolume.html" target="_self">NNS_SndPlayerSetInitialVolume</a></th>
+<td>シーケンスの初期ボリューム値を設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerMoveVolume.html" target="_self">NNS_SndPlayerMoveVolume</a></th>
+<td>シーケンスのボリュームを徐々に変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetPlayerPriority.html" target="_self">NNS_SndPlayerSetPlayerPriority</a></th>
+<td>シーケンスのプレイヤープライオリティを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetChannelPriority.html" target="_self">NNS_SndPlayerSetChannelPriority</a></th>
+<td>シーケンスの発音プライオリティを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_TrackParam">トラックパラメータ</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackMute.html" target="_self">NNS_SndPlayerSetTrackMute</a></th>
+<td>シーケンストラックをミュートしたり、やめたりします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackMute.html" target="_self">NNS_SndPlayerSetTrackMuteEx</a></th>
+<td>ミュート設定を指定して、シーケンストラックをミュートしたり、やめたりします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackVolume.html" target="_self">NNS_SndPlayerSetTrackVolume</a></th>
+<td>シーケンストラックのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackPitch.html" target="_self">NNS_SndPlayerSetTrackPitch</a></th>
+<td>シーケンストラックの音程を変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackPan.html" target="_self">NNS_SndPlayerSetTrackPan</a></th>
+<td>シーケンストラックのパン（定位）を変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackPanRange.html" target="_self">NNS_SndPlayerSetTrackPanRange</a></th>
+<td>シーケンストラックのパンレンジを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackModDepth.html" target="_self">NNS_SndPlayerSetTrackModDepth</a></th>
+<td>シーケンストラックのモジュレーションデプスを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackModSpeed.html" target="_self">NNS_SndPlayerSetTrackModSpeed</a></th>
+<td>シーケンストラックのモジュレーションスピードを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetTrackAllocatableChannel.html" target="_self">NNS_SndPlayerSetTrackAllocatableChannel</a></th>
+<td>シーケンストラックの確保可能チャンネルを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_GetStatus">状態取得</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerGetTick.html" target="_self">NNS_SndPlayerGetTick</a></th>
+<td>シーケンスの現在のティック数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerCountPlayingSeq.html" target="_self">NNS_SndPlayerCountPlayingSeqByPlayerNo</a></th>
+<td>再生中のシーケンスの数を数えます。（プレイヤー番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerCountPlayingSeq.html" target="_self">NNS_SndPlayerCountPlayingSeqBySeqNo</a></th>
+<td>再生中のシーケンスの数を数えます。（シーケンス番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerCountPlayingSeq.html" target="_self">NNS_SndPlayerCountPlayingSeqBySeqArcNo</a></th>
+<td>再生中のシーケンスの数を数えます。（シーケンスアーカイブ番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerCountPlayingSeq.html" target="_self">NNS_SndPlayerCountPlayingSeqBySeqArcIdx</a></th>
+<td>再生中のシーケンスの数を数えます。（シーケンスアーカイブ番号及びインデックス番号指定）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerReadDriverPlayerInfo.html" target="_self">NNS_SndPlayerReadDriverPlayerInfo</a></th>
+<td>サウンドドライバのプレイヤー情報を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerReadDriverTrackInfo.html" target="_self">NNS_SndPlayerReadDriverTrackInfo</a></th>
+<td>サウンドドライバのトラック情報を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_SeqNo">シーケンス番号</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetSeqNo.html" target="_self">NNS_SndPlayerSetSeqNo</a></th>
+<td>シーケンス番号を設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetSeqArcNo.html" target="_self">NNS_SndPlayerSetSeqArcNo</a></th>
+<td>シーケンスアーカイブ番号を設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerGetSeqType.html" target="_self">NNS_SndPlayerGetSeqType</a></th>
+<td>シーケンスデータの種類を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerGetSeqNo.html" target="_self">NNS_SndPlayerGetSeqNo</a></th>
+<td>シーケンス番号を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerGetSeqArcNo.html" target="_self">NNS_SndPlayerGetSeqArcNo</a></th>
+<td>シーケンスアーカイブ番号を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerGetSeqArcIdx.html" target="_self">NNS_SndPlayerGetSeqArcIdx</a></th>
+<td>シーケンスアーカイブのインデックス番号を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_SeqVariable">シーケンス変数</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerReadVariable.html" target="_self">NNS_SndPlayerReadVariable</a></th>
+<td>シーケンスローカル変数を読みとります。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerWriteVariable.html" target="_self">NNS_SndPlayerWriteVariable</a></th>
+<td>シーケンスローカル変数に書き込みます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerReadGlobalVariable.html" target="_self">NNS_SndPlayerReadGlobalVariable</a></th>
+<td>シーケンスグローバル変数を読みとります。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerWriteGlobalVariable.html" target="_self">NNS_SndPlayerWriteGlobalVariable</a></th>
+<td>シーケンスグローバル変数に書き込みます。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_PlayerSetting">プレイヤー設定</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetPlayableSeqCount.html" target="_self">NNS_SndPlayerSetPlayableSeqCount</a></th>
+<td>指定プレイヤーのシーケンス最大同時再生数を設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetPlayerVolume.html" target="_self">NNS_SndPlayerSetPlayerVolume</a></th>
+<td>指定プレイヤーのボリュームを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerSetAllocatableChannel.html" target="_self">NNS_SndPlayerSetAllocatableChannel</a></th>
+<td>指定プレイヤーで確保可能なチャンネルを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndPlayerCreateHeap.html" target="_self">NNS_SndPlayerCreateHeap</a></th>
+<td>プレイヤーヒープを作成します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Player_SoundHandle">サウンドハンドル</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndHandleInit.html" target="_self">NNS_SndHandleInit</a></th>
+<td>サウンドハンドルを初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHandleIsValid.html" target="_self">NNS_SndHandleIsValid</a></th>
+<td>サウンドハンドルが有効かどうか調べます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHandleReleaseSeq.html" target="_self">NNS_SndHandleReleaseSeq</a></th>
+<td>サウンドハンドルに結びつけられているシーケンスを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="SndArcStrm">サウンドアーカイブストリーム</a></h3>
+<h4><a name="SndArcStrm_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmInit.html" target="_self">NNS_SndArcStrmInit</a></th>
+<td>サウンドアーカイブストリームライブラリを初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmCreatePrepareThread.html" target="_self">NNS_SndArcStrmCreatePrepareThread</a></th>
+<td>ストリームプリペアスレッドを起動します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmSetupPlayer.html" target="_self">NNS_SndArcStrmSetupPlayer</a></th>
+<td>ストリームプレイヤーをセットアップします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmAllocChannel.html" target="_self">NNS_SndArcStrmAllocChannel</a></th>
+<td>ストリーム再生用のチャンネルを確保します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmFreeChannel.html" target="_self">NNS_SndArcStrmFreeChannel</a></th>
+<td>ストリーム再生用のチャンネルを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArcStrm_Start">再生・停止</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStart.html" target="_self">NNS_SndArcStrmStart</a></th>
+<td>ストリームを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStartEx.html" target="_self">NNS_SndArcStrmStartEx</a></th>
+<td>プレイヤー番号などを指定して、ストリームを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStartEx2.html" target="_self">NNS_SndArcStrmStartEx2</a></th>
+<td>コールバック関数を登録して、ストリームを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStop.html" target="_self">NNS_SndArcStrmStop</a></th>
+<td>ストリームを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStopAll.html" target="_self">NNS_SndArcStrmStopAll</a></th>
+<td>全ストリームを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmPrepare.html" target="_self">NNS_SndArcStrmPrepare</a></th>
+<td>ストリームの準備を行います。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmPrepareEx.html" target="_self">NNS_SndArcStrmPrepareEx</a></th>
+<td>プレイヤー番号などを指定して、ストリームの準備を行います。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmPrepareEx2.html" target="_self">NNS_SndArcStrmPrepareEx2</a></th>
+<td>コールバック関数を登録して、ストリームの準備を行います。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmStartPrepared.html" target="_self">NNS_SndArcStrmStartPrepared</a></th>
+<td>準備が完了したストリームを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmIsPrepared.html" target="_self">NNS_SndArcStrmIsPrepared</a></th>
+<td>ストリームの準備が完了したかどうかを調べます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmGetChannelCount.html" target="_self">NNS_SndArcStrmGetChannelCount</a></th>
+<td>ストリームデータのチャンネル数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmGetCurrentPlayingPos.html" target="_self">NNS_SndArcStrmGetCurrentPlayingPos</a></th>
+<td>ストリームの現在の再生位置を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmGetTimeLength.html" target="_self">NNS_SndArcStrmGetTimeLength</a></th>
+<td>ストリームデータ全体の時間長を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArcStrm_Param">パラメータ</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmSetVolume.html" target="_self">NNS_SndArcStrmSetVolume</a></th>
+<td>ストリームのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmMoveVolume.html" target="_self">NNS_SndArcStrmMoveVolume</a></th>
+<td>ストリームのボリュームを徐々に変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmSetChannelVolume.html" target="_self">NNS_SndArcStrmSetChannelVolume</a></th>
+<td>ストリームのチャンネルボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcStrmSetChannelPan.html" target="_self">NNS_SndArcStrmSetChannelPan</a></th>
+<td>ストリームのチャンネルパンを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArcStrm_Handle">ストリームハンドル</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndStrmHandleInit.html" target="_self">NNS_SndStrmHandleInit</a></th>
+<td>ストリームハンドルを初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmHandleIsValid.html" target="_self">NNS_SndStrmHandleIsValid</a></th>
+<td>ストリームハンドルが有効かどうか調べます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmHandleRelease.html" target="_self">NNS_SndStrmHandleRelease</a></th>
+<td>ストリームハンドルに結びつけられているストリームを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Strm_type">型・構造体</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNSSndArcStrmCallback.html" target="_self">NNSSndArcStrmCallback</a></th>
+<td>サウンドアーカイブストリームコールバック関数です。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Strm">ストリーム</a></h3>
+<h4><a name="Strm_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndStrmInit.html" target="_self">NNS_SndStrmInit</a></th>
+<td>ストリームを初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmAllocChannel.html" target="_self">NNS_SndStrmAllocChannel</a></th>
+<td>ストリーム再生用のチャンネルを確保します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmFreeChannel.html" target="_self">NNS_SndStrmFreeChannel</a></th>
+<td>ストリーム再生用のチャンネルを解放します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmBeginSleep.html" target="_self"><s>NNS_SndStrmBeginSleep</s></a></th>
+<td>（削除）</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmEndSleep.html" target="_self"><s>NNS_SndStrmEndSleep</s></a></th>
+<td>（削除）</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Strm_Start">再生・停止</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndStrmSetup.html" target="_self">NNS_SndStrmSetup</a></th>
+<td>ストリームのセットアップを行います。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmStart.html" target="_self">NNS_SndStrmStart</a></th>
+<td>ストリームの再生を開始します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmStop.html" target="_self">NNS_SndStrmStop</a></th>
+<td>ストリームの再生を停止します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Strm_Param">パラメータ</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndStrmSetVolume.html" target="_self">NNS_SndStrmSetVolume</a></th>
+<td>ストリームのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmSetChannelVolume.html" target="_self">NNS_SndStrmSetChannelVolume</a></th>
+<td>ストリームのチャンネルボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndStrmSetChannelPan.html" target="_self">NNS_SndStrmSetChannelPan</a></th>
+<td>ストリームのチャンネルパンを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Strm_type">型・構造体</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNSSndStrmCallback.html" target="_self">NNSSndStrmCallback</a></th>
+<td>ストリームコールバック関数です。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="SndArc">サウンドアーカイブ</a></h3>
+<h4><a name="SndArc_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcInit.html" target="_self">NNS_SndArcInit</a></th>
+<td>サウンドアーカイブ構造体を初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcInit.html" target="_self">NNS_SndArcInitWithResult</a></th>
+<td>サウンドアーカイブ構造体を初期化して、結果を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcInitOnMemory.html" target="_self">NNS_SndArcInitOnMemory</a></th>
+<td>メモリ上のサウンドアーカイブデータを使って、サウンドアーカイブ構造体を初期化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcSetup.html" target="_self">NNS_SndArcSetup</a></th>
+<td>サウンドアーカイブ構造体をセットアップします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCurrent.html" target="_self">NNS_SndArcGetCurrent</a></th>
+<td>カレントサウンドアーカイブを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcSetCurrent.html" target="_self">NNS_SndArcSetCurrent</a></th>
+<td>カレントサウンドアーカイブを設定します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArc_DataLoad">データロード</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadGroup.html" target="_self">NNS_SndArcLoadGroup</a></th>
+<td>サウンドデータをグループ単位でヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadSeq.html" target="_self">NNS_SndArcLoadSeq</a></th>
+<td>シーケンスデータをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadSeqArc.html" target="_self">NNS_SndArcLoadSeqArc</a></th>
+<td>シーケンスアーカイブをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadBank.html" target="_self">NNS_SndArcLoadBank</a></th>
+<td>バンクデータをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadWaveArc.html" target="_self">NNS_SndArcLoadWaveArc</a></th>
+<td>波形アーカイブをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadSeq.html" target="_self">NNS_SndArcLoadSeqEx</a></th>
+<td>ロードするデータの種類を指定して、シーケンスデータをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcLoadBank.html" target="_self">NNS_SndArcLoadBankEx</a></th>
+<td>ロードするデータの種類を指定して、バンクデータをヒープにロードします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcSetLoadBlockSize.html" target="_self">NNS_SndArcSetLoadBlockSize</a></th>
+<td>データ読み込み時のロードブロックサイズを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetLoadBlockSize.html" target="_self">NNS_SndArcGetLoadBlockSize</a></th>
+<td>データ読み込み時のロードブロックサイズを取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArc_GetInfo">情報取得</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSeqParam.html" target="_self">NNS_SndArcGetSeqParam</a></th>
+<td>シーケンスに対するシーケンスパラメータ構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSeqArcParam.html" target="_self">NNS_SndArcGetSeqArcParam</a></th>
+<td>シーケンスアーカイブに対するシーケンスパラメータ構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetSeqCount</a></th>
+<td>サウンドアーカイブ中のシーケンスの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetSeqArcCount</a></th>
+<td>サウンドアーカイブ中のシーケンスアーカイブの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetBankCount</a></th>
+<td>サウンドアーカイブ中のバンクの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetWaveArcCount</a></th>
+<td>サウンドアーカイブ中の波形アーカイブの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetGroupCount</a></th>
+<td>サウンドアーカイブ中のグループの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetCount.html" target="_self">NNS_SndArcGetStrmCount</a></th>
+<td>サウンドアーカイブ中のストリームの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSeqArcSeqCount.html" target="_self">NNS_SndArcGetSeqArcSeqCount</a></th>
+<td>シーケンスアーカイブ中のシーケンスの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSeqInfo.html" target="_self">NNS_SndArcGetSeqInfo</a></th>
+<td>シーケンス情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSeqArcInfo.html" target="_self">NNS_SndArcGetSeqArcInfo</a></th>
+<td>シーケンスアーカイブ情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetBankInfo.html" target="_self">NNS_SndArcGetBankInfo</a></th>
+<td>バンク情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetWaveArcInfo.html" target="_self">NNS_SndArcGetWaveArcInfo</a></th>
+<td>波形アーカイブ情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetGroupInfo.html" target="_self">NNS_SndArcGetGroupInfo</a></th>
+<td>グループ情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetPlayerInfo.html" target="_self">NNS_SndArcGetPlayerInfo</a></th>
+<td>プレイヤー情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetStrmInfo.html" target="_self">NNS_SndArcGetStrmInfo</a></th>
+<td>ストリーム情報構造体を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetStrmPlayerInfo.html" target="_self">NNS_SndArcGetStrmPlayerInfo</a></th>
+<td>ストリームプレイヤー情報構造体を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArc_GetSymbol">シンボル名取得</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetSeqSymbol</a></th>
+<td>シーケンスシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetSeqArcSymbol</a></th>
+<td>シーケンスアーカイブシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetSeqArcIdxSymbol</a></th>
+<td>シーケンスアーカイブ中のシーケンスのシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetBankSymbol</a></th>
+<td>バンクシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetWaveArcSymbol</a></th>
+<td>波形アーカイブシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetStrmSymbol</a></th>
+<td>ストリームシンボル名を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetSymbol.html" target="_self">NNS_SndArcGetGroupSymbol</a></th>
+<td>グループシンボル名を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArc_FileAccess">ファイルアクセス</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndArcSetFileAddress.html" target="_self">NNS_SndArcSetFileAddress</a></th>
+<td>サウンドアーカイブ中のファイルのファイルアドレスをセットします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetFileAddress.html" target="_self">NNS_SndArcGetFileAddress</a></th>
+<td>サウンドアーカイブ中のファイルのファイルアドレスを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetFileID.html" target="_self">NNS_SndArcGetFileID</a></th>
+<td>サウンドアーカイブのファイルIDを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetFileSize.html" target="_self">NNS_SndArcGetFileSize</a></th>
+<td>サウンドアーカイブ中のファイルのファイルサイズを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcGetFileOffset.html" target="_self">NNS_SndArcGetFileOffset</a></th>
+<td>サウンドアーカイブ中のファイルのファイルオフセットを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndArcReadFile.html" target="_self">NNS_SndArcReadFile</a></th>
+<td>サウンドアーカイブ中のファイルを読み込みます。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndArc_type">型・構造体</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNSSndSeqParam.html" target="_self">NNSSndSeqParam</a></th>
+<td>シーケンスパラメータ構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcSeqInfo.html" target="_self">NNSSndArcSeqInfo</a></th>
+<td>サウンドアーカイブ中のシーケンス情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcSeqArcInfo.html" target="_self">NNSSndArcSeqArcInfo</a></th>
+<td>サウンドアーカイブ中のシーケンスアーカイブ情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcBankInfo.html" target="_self">NNSSndArcBankInfo</a></th>
+<td>サウンドアーカイブ中のバンク情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcWaveArcInfo.html" target="_self">NNSSndArcWaveArcInfo</a></th>
+<td>サウンドアーカイブ中の波形アーカイブ情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcGroupInfo.html" target="_self">NNSSndArcGroupInfo</a></th>
+<td>サウンドアーカイブ中のグループ情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcGroupItem.html" target="_self">NNSSndArcGroupItem</a></th>
+<td>グループ情報構造体中のグループ項目構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcPlayerInfo.html" target="_self">NNSSndArcPlayerInfo</a></th>
+<td>サウンドアーカイブ中のプレイヤー情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcStrmInfo.html" target="_self">NNSSndArcStrmInfo</a></th>
+<td>サウンドアーカイブ中のストリーム情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNSSndArcStrmPlayerInfo.html" target="_self">NNSSndArcStrmPlayerInfo</a></th>
+<td>サウンドアーカイブ中のストリームプレイヤー情報構造体です。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="SndHeap">サウンドヒープ</a></h3>
+<h4><a name="SndHeap_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndHeapCreate.html" target="_self">NNS_SndHeapCreate</a></th>
+<td>サウンドヒープを作成します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHeapDestroy.html" target="_self">NNS_SndHeapDestroy</a></th>
+<td>サウンドヒープを破棄します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndHeap_Alloc">メモリ確保・解放</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndHeapAlloc.html" target="_self">NNS_SndHeapAlloc</a></th>
+<td>メモリを確保します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHeapClear.html" target="_self">NNS_SndHeapClear</a></th>
+<td>全てのメモリを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndHeap_State">階層管理</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndHeapSaveState.html" target="_self">NNS_SndHeapSaveState</a></th>
+<td>メモリの状態を保存します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHeapLoadState.html" target="_self">NNS_SndHeapLoadState</a></th>
+<td>メモリの状態を復元します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHeapGetCurrentLevel.html" target="_self">NNS_SndHeapGetCurrentLevel</a></th>
+<td>現在の階層レベルを取得します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="SndHeap_GetInfo">情報取得</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndHeapGetSize.html" target="_self">NNS_SndHeapGetSize</a></th>
+<td>ヒープサイズを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndHeapGetFreeSize.html" target="_self">NNS_SndHeapGetFreeSize</a></th>
+<td>空き容量サイズを取得します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="WaveOut">波形再生</a></h3>
+<h4><a name="WaveOut_Channel">チャンネル確保・解放</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutAllocChannel.html" target="_self">NNS_SndWaveOutAllocChannel</a></th>
+<td>波形再生用にチャンネルを確保します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutFreeChannel.html" target="_self">NNS_SndWaveOutFreeChannel</a></th>
+<td>波形再生用のチャンネルを解放します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="WaveOut_Start">波形再生・停止</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutStart.html" target="_self">NNS_SndWaveOutStart</a></th>
+<td>波形データを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutStop.html" target="_self">NNS_SndWaveOutStop</a></th>
+<td>波形データの再生を停止します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="WaveOut_Parameter">パラメータ設定</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutSetVolume.html" target="_self">NNS_SndWaveOutSetVolume</a></th>
+<td>波形再生のボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutSetSpeed.html" target="_self">NNS_SndWaveOutSetSpeed</a></th>
+<td>波形再生のスピードを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutSetPan.html" target="_self">NNS_SndWaveOutSetPan</a></th>
+<td>波形再生のパン（定位）を変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="WaveOut_Misc">その他</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutIsPlaying.html" target="_self">NNS_SndWaveOutIsPlaying</a></th>
+<td>波形データを再生中かどうか調べます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndWaveOutWaitForChannelStop.html" target="_self">NNS_SndWaveOutWaitForChannelStop</a></th>
+<td>チャンネルが完全に停止するまで待ちます。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Capture">キャプチャ</a></h3>
+<h4><a name="Capture_Init">初期化</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureCreateThread.html" target="_self">NNS_SndCaptureCreateThread</a></th>
+<td>キャプチャースレッドを起動します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureDestroyThread.html" target="_self">NNS_SndCaptureDestroyThread</a></th>
+<td>キャプチャースレッドを破棄します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Capture_Reverb">リバーブ</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStartReverb.html" target="_self">NNS_SndCaptureStartReverb</a></th>
+<td>リバーブを開始します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStopReverb.html" target="_self">NNS_SndCaptureStopReverb</a></th>
+<td>リバーブを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureSetReverbVolume.html" target="_self">NNS_SndCaptureSetReverbVolume</a></th>
+<td>リバーブ成分のボリュームを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Capture_Effect">エフェクト</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStartEffect.html" target="_self">NNS_SndCaptureStartEffect</a></th>
+<td>エフェクトを開始します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStopEffect.html" target="_self">NNS_SndCaptureStopEffect</a></th>
+<td>エフェクトを停止します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Capture_Sampling">サンプリング</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStartSampling.html" target="_self">NNS_SndCaptureStartSampling</a></th>
+<td>サンプリングを開始します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStopSampling.html" target="_self">NNS_SndCaptureStopSampling</a></th>
+<td>サンプリングを停止します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Capture_OutputEffect">出力エフェクト</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStartOutputEffect.html" target="_self">NNS_SndCaptureStartOutputEffect</a></th>
+<td>出力エフェクト処理を開始します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureStopOutputEffect.html" target="_self">NNS_SndCaptureStopOutputEffect</a></th>
+<td>出力エフェクト処理を停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureChangeOutputEffect.html" target="_self">NNS_SndCaptureChangeOutputEffect</a></th>
+<td>出力エフェクト処理を変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureSetOutputEffectCallback.html" target="_self">NNS_SndCaptureSetOutputEffectCallback</a></th>
+<td>出力エフェクトの前処理コールバックを登録します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureSetPostOutputEffectCallback.html" target="_self">NNS_SndCaptureSetPostOutputEffectCallback</a></th>
+<td>出力エフェクトの後処理コールバックを登録します。</td>
+</tr>
+</tbody>
+</table>
+<h4><a name="Capture_GetInfo">情報取得</a></h4>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureIsActive.html" target="_self">NNS_SndCaptureIsActive</a></th>
+<td>キャプチャーが実行中かどうかを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="NNS_SndCaptureGetCaptureType.html" target="_self">NNS_SndCaptureGetCaptureType</a></th>
+<td>実行中のキャプチャーの種類を取得します。</td>
+</tr>
+</tbody>
+</table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></body>
+</html>

@@ -1,0 +1,34 @@
+#! /bin/bash -f
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - tools - wifiindent
+# File:     wifiindent.dis
+#
+# Copyright 2006 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: wifiindent.dis,v $
+# Revision 1.1  2006/03/15 09:53:13  kitase_hirotake
+# Initial Upload
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+if [ -z "$CWFOLDER_NITRO" ]; then
+	export CWFOLDER_NITRO=C:/Program\ Files/Metrowerks/CodeWarrior\ for\ NITRO\ V0.6.1
+fi
+
+export PATH=`cygpath "$CWFOLDER_NITRO/ARM_Tools/Command_Line_Tools"`
+
+case "$1" in \
+	*".nef" )
+	mwldarm.exe -w off -dis -nostdlib -show only,comments,code,data,source,names,hex -proc arm9tdmi $1
+	;;
+	* )
+	mwldarm.exe -w off -dis -nostdlib -show only,comments,code,data,source,hex -proc arm9tdmi $1
+	;;
+esac

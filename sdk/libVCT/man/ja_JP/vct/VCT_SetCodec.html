@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_SetCodec</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_SetCodec</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>BOOL VCT_SetCodec( <a href="VCTCodec.html">VCTCodec</a> codec );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>codec</STRONG></EM></TD>
+      <TD width="87%" height="17">変更するコーデックタイプ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>設定に成功した場合、TRUE、失敗した場合はFALSE</p>
+
+<H2>説明</H2>
+<P>音声ストリーミングに用いるコーデックを変更します。ストリーミング中でも変更することが出来ます。</P>
+
+<P>トランシーバー、およびカンファレンスモード時は帯域が足りなくなるため、8bit 8KHz RAWフォーマットと、G.711 u-Lawフォーマットは利用できません。トランシーバー、およびカンファレンスモード時にこれらのコーデックを設定すると、この関数はエラーを返します。</P>
+
+<h2>参照</h2>
+<p><code><a href="VCT_GetCodec.html">VCT_GetCodec</a></code></p>
+<H2>履歴</H2>
+<P>2006/04/10 トランシーバー、カンファレンスモード時のコーデックの制限について追記</P>
+<P>2006/01/25 初版</P>
+</body>
+</html>

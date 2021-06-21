@@ -1,0 +1,65 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_CanChangeFriendList</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_CanChangeFriendList</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_CanChangeFriendList( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <a href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</a>関数で指定した友達リストを編集しても良いかどうかを確認します。
+		</P>
+		<p>
+		  この関数がFALSEを返す場合は、<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>関数を呼び出し、
+		  本関数がTRUEを返すようになるまで待機してください。FALSEを返す状態が60秒程度続くとタイムアウトしてDWCライブラリ
+		  のエラーが発生します。
+		</P>
+
+		<H2>引数</H2>
+		<p>なし</p>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">編集可能。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD width="75%">編集不可。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		  <CODE>
+			<a href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</a>,
+			<a href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</a>
+			<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>
+		   </CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2007/07/21 タイムアウトに関する記述を追加<br/>
+			2005/12/16 改訂<BR>
+			2005/10/20 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

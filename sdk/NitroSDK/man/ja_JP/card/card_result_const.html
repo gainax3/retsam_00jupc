@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARDResult</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARDResult</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>typedef	enum<br>
+{<br>
+    CARD_RESULT_SUCCESS = 0,<br>
+    CARD_RESULT_FAILURE,<br>
+    CARD_RESULT_INVALID_PARAM,<br>
+    CARD_RESULT_UNSUPPORTED,<br>
+    CARD_RESULT_TIMEOUT,<br>
+    CARD_RESULT_ERROR,<br>
+    CARD_RESULT_NO_RESPONSE,<br>
+    CARD_RESULT_CANCELED<br>
+} CARDResult;<br>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>CARD ROM デバイスおよびバックアップデバイスへアクセスする関数の処理結果を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_SUCCESS</TD>
+      <TD>関数の処理が、正しく完了したことを表します。<BR>
+	  また、CARD_VerifyBackup関数のように処理の結果が真理値で得られる場合の「真」を表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_FAILURE</TD>
+      <TD>関数の処理が、予想される範囲内において失敗したことを表します。<BR>
+	  これは、CARD_VerifyBackup関数のように処理の結果が真理値で得られる場合の「偽」を表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_INVALID_PARAM</TD>
+      <TD>関数に与えられた引数が異常なために処理が行われなかったことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_UNSUPPORTED</TD>
+      <TD>現在CARD_IdentifyBackup関数で特定されているデバイスに搭載されていない<BR>
+	  機能を使用した関数のため、処理が行われなかったことを表します。<BR>
+	  これは、デバイスタイプを指定していないかCARD_BACKUP_TYPE_NOT_USEを指定した場合に発生します。
+      </TD>
+    <TR>
+      <TD>CARD_RESULT_TIMEOUT</TD>
+      <TD>待ち時間を伴う関数が規定の時間を越えて中止されたことを表します。<BR>
+	  これは、搭載デバイスの寿命または故障によって発生する場合があります。<br>
+	  <font color="#800000">
+	  待ち時間を伴う全ての関数は内部で充分な回数の再試行を行いますので、<br>
+	  この返り値を受けてユーザアプリケーション側で改めて再試行する必要はありません。</font>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_NO_RESPONSE</TD>
+      <TD>搭載デバイスが状態応答すら返さないために処理が失敗したことを表します。<BR>
+	  これは、NITRO-CARDと本体の間での接触不良かまたは搭載デバイスの故障によって発生する場合があります。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_CANCELED</TD>
+      <TD>待ち時間を伴う関数の処理が<a href="backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a>関数によって中止されたことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>CARD_RESULT_ERROR</TD>
+      <TD>上記いずれにも該当しないその他の異常で処理が失敗したことを表します。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="common/CARD_IdentifyBackup.html">CARD_IdentifyBackup</A> 
+<A href="common/CARD_GetResultCode.html">CARD_GetResultCode</A> 
+<A href="rom/CARD_ReadRom.html">CARD_ReadRom</A> 
+<A href="eeprom/CARD_ReadEeprom.html">CARD_ReadEeprom</A> 
+<A href="eeprom/CARD_WriteEeprom.html">CARD_WriteEeprom</A> 
+<A href="eeprom/CARD_VerifyEeprom.html">CARD_VerifyEeprom</A> 
+<A href="eeprom/CARD_WriteAndVerifyEeprom.html">CARD_WriteAndVerifyEeprom</A> 
+<a href="backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/09/02 CARD_RESULT_NO_RESPONSEおよびCARD_RESULT_CANCELEDを追加<BR>
+2005/04/05 CARD_RESULT_TIMEOUTの説明にCARD自体の接触不良についての記述を追加<BR>
+2004/08/23 ライブラリ内部で再試行する旨の説明を追加<BR>
+2004/07/28 初版<BR>
+</P>
+</body>
+</html>

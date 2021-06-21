@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetOamSoftEmuSpriteParamCache</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetOamSoftEmuSpriteParamCache</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OamSoftwareSpriteDraw.h&gt;</CODE></pre>
+  <pre><CODE>
+    void NNS_G2dSetOamSoftEmuSpriteParamCache
+    ( 
+        const GXOamAttr*                pOam, 
+        const NNSG2dImageAttr*          pTexImageAttr,
+        u32                             texBaseAddr,
+        u32                             pltBaseAddr
+    );
+                            
+</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[IN] OAMアトリビュート</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pTexImageAttr</font></strong></em></td>
+    <td width="87%">[IN] テクスチャ属性</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">texBaseAddr</font></strong></em></td>
+    <td width="87%">[IN] テクスチャベースアドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pltBaseAddr</font></strong></em></td>
+    <td width="87%">[IN] パレットベースアドレス</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+ソフトウエアスプライト描画に使用する、パラメータのキャッシュを設定します。<BR>
+<BR>
+キャッシュを利用した描画は、NNS_G2dDrawOneOam3DDirectUsingParamCacheFast()関数で行います。<BR>
+<BR>
+パラメータとはUVパラメータのことなので、同一のテクスチャを参照する
+スプライトを大量に書く際に、UV値の計算、設定を一度にまとめ 効率よく処理を行うことが可能となります。<BR>
+<BR>
+<PRE>
+    NNS_G2dDrawOneOam3DDirectUsingParamCache()の描画
+        処理 = UVパラメータ設定 x 1 + 描画 x N
+    通常の描画
+        処理 = ( UVパラメータ設定 + 描画 ) x N</p>
+</PRE>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="NNS_G2dDrawOneOam3DDirectUsingParamCacheFast.html">NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/11/10 初版</P>
+</body>
+</html>

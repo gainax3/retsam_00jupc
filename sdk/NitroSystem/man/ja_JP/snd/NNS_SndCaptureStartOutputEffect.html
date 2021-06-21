@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndCaptureStartOutputEffect</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndCaptureStartOutputEffect</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndCaptureStartOutputEffect(
+        void* <var>buffer_p</var>,
+        u32 <var>bufSize</var>,
+        NNSSndCaptureOutputEffectType <var>type</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>buffer_p</code></strong></em></td>
+<td>エフェクトバッファのポインタです。32バイトアライメントされている必要があります。</td>
+</tr>
+<tr>
+<td><em><strong><code>bufSize</code></strong></em></td>
+<td>エフェクトバッファのサイズです。128の倍数で無ければなりません。</td>
+</tr>
+<tr>
+<td><em><strong><code>type</code></strong></em></td>
+<td>出力エフェクト処理のタイプです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDANNWT"></a>
+      <h2>返り値</h2>
+
+      <p>出力エフェクト処理の開始に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAUNWT"></a>
+      <h2>説明</h2>
+      <p>
+出力エフェクト処理を開始します。
+</p>
+      <p>
+キャプチャー機能を使ってミキサー出力をキャプチャし、コールバック関数でエフェクト処理を行った後、
+最終音声として出力します。
+エフェクト動作中は、16チャンネル中の2チャンネル（チャンネル1及びチャンネル3）を消費します。
+チャンネル1またはチャンネル3が、シーケンスによって使用中の場合、発音中の音は強制的に停止させられます。
+</p>
+      <p>
+エフェクトを使うためには、エフェクトバッファが必要になります。
+先頭アドレス<em><strong><code>buffer_p</code></strong></em>は、32バイトアライメントされている必要があります。
+また、バッファサイズ<em><strong><code>bufSize</code></strong></em>は、128の倍数で無ければなりません。
+エフェクトバッファが小さいほど頻繁にエフェクト処理が実行され、
+逆にエフェクトバッファが大きいほど、１回あたりのエフェクト処理の時間が長くかかります。
+エフェクトバッファが４ＫＢの時、１ビデオフレームにほぼ１回の割合で、エフェクト処理が行われるようになります。
+</p>
+      
+      <p>
+出力エフェクトのタイプ<em><strong><code>type</code></strong></em>は、下記の値から選択します。
+</p>
+      <div class="table"><a name="IDAIOWT"></a><p class="title"><b>表 . NNSSndCaptureOutputEffectType</b></p>
+<table summary="NNSSndCaptureOutputEffectType" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL</td>
+<td>何も処理しません（通常のステレオモード）</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO</td>
+<td>モノラルモード</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND</td>
+<td>サラウンドモード</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE</td>
+<td>ヘッドフォンモード</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      <p>
+サラウンドモードは、DSステレオスピーカーから再生したときに、
+スピーカー位置より広がって感じられるエフェクトをかけます。
+ヘッドフォンモードは、ヘッドフォンで聴いているときに
+耳の負担を軽減するエフェクトをかけます。
+</p>
+
+        <p>
+<tt class="function"><a href="NNS_SndCaptureCreateThread.html">NNS_SndCaptureCreateThread</a></tt>関数で
+キャプチャースレッドを起動しているときは、エフェクト処理はキャプチャースレッドで実行されます。
+キャプチャースレッドを起動していない場合は、IRQハンドラで実行されます。
+</p>
+      <p>
+出力エフェクト開始の失敗には、以下の原因が考えられます。 
+</p>
+      <div class="itemizedlist">
+<ul type="disc">
+<li>キャプチャがエフェクト以外の用途で使用中</li>
+<li>チャンネル１またはチャンネル３が、エフェクトやシーケンスによる発音以外の用途で使用中 </li>
+</ul>
+</div>
+
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+長期間の割り込み禁止など、エフェクト処理が定期的に実行できなくなると、
+正常な音声が出力されなくなります。
+</p>
+<p>
+音声を再生しながらこの関数を呼びだすと、再生される音が途切れます。
+</p>
+<p>
+サラウンドモードでは、その他のモードより、音が割れて聞こえる場合があります。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndCaptureCreateThread.html">NNS_SndCaptureCreateThread</a></p>
+<h2>履歴</h2>
+<p>2005/06/27 関数失敗の原因を追加<br>2004/11/19 サラウンドモード時の音割れに関する注意書き追加<br>2004/10/04 初版<br></p>
+</div>
+</body>
+</html>

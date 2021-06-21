@@ -1,0 +1,44 @@
+#! /bin/bash -f
+#-----------------------------------------------------------------------
+# $Id: makepatch-dis,v 1.6 2004/10/18 14:27:55 yasu Exp $
+#
+# WRAPPER for CodeWarrior Disassember
+#-----------------------------------------------------------------------
+
+if [ -z "$CWFOLDER_NITRO" ]; then
+	export CWFOLDER_NITRO=C:/Program\ Files/Metrowerks/CodeWarrior\ for\ NITRO\ V0.6.1
+fi
+
+export PATH=`cygpath "$CWFOLDER_NITRO/ARM_Tools/Command_Line_Tools"`
+
+case "$1" in \
+	*".nef" )
+	mwldarm.exe -w off -dis -nostdlib -show only,comments,code,data,source,names,hex -proc arm9tdmi $1
+	;;
+	* )
+	mwldarm.exe -w off -dis -nostdlib -show only,comments,code,data,source,hex -proc arm9tdmi $1
+	;;
+esac
+
+
+#-----------------------------------------------------------------------
+# $Log: makepatch-dis,v $
+# Revision 1.6  2004/10/18 14:27:55  yasu
+# ライブラリの変更比較判定を追加した
+#
+# Revision 1.5  2004/10/15 16:01:21  yasu
+# Support nef
+#
+# Revision 1.4  2004/10/15 14:24:49  yasu
+# add names option for dis
+#
+# Revision 1.3  2004/10/08 14:27:29  yasu
+# fix for data section
+#
+# Revision 1.2  2004/10/07 09:03:46  seiki_masashi
+# 逆アセンブル出力中の ARCHIVE HEADER を無視するように変更
+#
+# Revision 1.1  2004/10/05 12:43:19  yasu
+# patch maker
+#
+#-----------------------------------------------------------------------

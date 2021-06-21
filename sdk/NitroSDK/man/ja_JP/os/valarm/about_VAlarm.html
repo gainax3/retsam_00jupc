@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>VAlarm (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">Vカウントアラーム (overview)</H1>
+<H2>説明</H2>
+<P>Vカウントアラームは、LCDの走査ステータスであるVカウンタレジスタの値と Vカウンタ一致割り込みを用いて、任意のVカウントで指定のハンドラを呼ぶよう設定することの出来る機能です。チック(内部でハードウェアタイマを使用しています)
+を用いたアラームとは仕組みが全く異なります。</P>
+<HR>
+<P><B>初期化</B></P>
+<P>Ｖカウントアラームシステムを使用するときは、最初に <A href="OS_InitVAlarm.html"><CODE>OS_InitVAlarm()</CODE></A> を呼んでください。</P>
+<P>Vカウントアラームシステムが使用可能かどうかは <CODE><A href="OS_IsVAlarmAvailable.html">OS_IsVAlarmAvailable()</A></CODE> で調べることが出来ます。</P>
+<P>Vカウントアラームシステムを終了するには、<CODE><A href="OS_EndVAlarm.html">OS_EndVAlarm()</A></CODE> を呼んでください。</P>
+<HR>
+<P><B>Vカウントアラームの設定</B></P>
+<P>Vカウントアラームを設定するには OSVAlarm 構造体オブジェクトを用意してください。このオブジェクト1つに対し、1つのVカウントアラームを設定することが出来ます。オブジェクトは
+<CODE><A href="OS_CreateVAlarm.html">OS_CreateVAlarm()</A></CODE> で初期化してください。</P>
+<P>Vカウントアラームの設定は <CODE><A href="OS_SetVAlarm.html">OS_SetVAlarm()</A></CODE> 関数を用います。一定の周期でVカウントアラームハンドラが呼ばれる周期Vカウントアラームを設定するには
+<CODE><A href="OS_SetPeriodicVAlarm.html">OS_SetPeriodicVAlarm()</A></CODE> 関数を呼んでください。</P>
+<HR>
+<P><B>Vカウントアラームのキャンセル</B></P>
+<P>設定した Vカウントアラームをキャンセルする場合は <CODE><A href="OS_CancelVAlarm.html">OS_CancelVAlarm()</A></CODE> を呼んでください。これは指定した 1つのVカウントアラームをキャンセルします。</P>
+<P>すべてのVカウントアラームをキャンセルする場合は <CODE><A href="OS_CancelAllVAlarms.html">OS_CancelAllVAlarm()</A></CODE> となります。</P>
+<P>タグ値を指定してキャンセルする方法もあります。(後述)</P>
+<HR>
+<P><B>Vカウントアラームタグについて</B></P>
+<P>Vカウントアラームには、1～255のタグ値を与えることができます。この値は、あるタグ値のVカウントアラームをすべてキャンセルする、という用途に使用します。</P>
+<P>タグ値はすでにセットされたVカウントアラームに対し <CODE><A href="OS_SetVAlarmTag.html">OS_SetVAlarmTag()</A></CODE> でセットします。</P>
+<P>タグ値を指定してキャンセルする関数は<CODE><A href="OS_CancelVAlarms.html"> OS_CancelVAlarms()</A></CODE> となります。( 複数形の「s」が付いています。)　</P>
+<HR>
+<P><B>内部データ構造</B></P>
+<P>Vカウントアラーム構造体 OSVAlarm は、Vカウントアラームの発生順にリンクリストで繋がっています。</P>
+<P>従って、そのVカウントアラーム構造体がまだリストに繋がっている(すなわち、まだVカウントアラームが発生していない)ものを使って別のVカウントアラームをセットしようとすると、リンク構造が崩れることになってしまいますのでこのようなことは行なわないでください。これを検出すると、ライブラリではビルドに関係なく
+<A href="../debug/OS_Panic.html"><CODE>OS_Panic()</CODE></A> で停止します。</P>
+<P><IMG src="image_valarmLink.gif" border="0"></P>
+<P>また、まだリストに繋がっている状態で(すなわち、まだVカウントアラームが発生していない状態で)、Vカウントアラーム構造体に対し
+<CODE><A href="OS_CreateVAlarm.html">OS_CreateVAlarm()</A></CODE> で初期化を行なうこともリンク構造の破綻につながるため禁じられています。この場合、動作は不定となります。</P>
+<HR>
+<P><B>Vカウントアラームの遅れについて</B></P>
+<P>前述の通り、Vカウントアラームの設定は <CODE><A href="OS_SetVAlarm.html">OS_SetVAlarm()</A></CODE> 関数を用います。設定は、指定のハンドラを呼ばせたいVカウントタイミングと、遅れの許容範囲(ここではディレイと呼びます)のVカウント差分を指定します。これは、他の割り込み処理やストールなどで指定のVカウントでアラームハンドラを呼ぶことが出来ないときに、どのぐらいの時間まで遅延を許容するかを指定するものです。</P>
+<P>「必ず指定のタイミングでのみ呼ばせたい」という場合は遅れの許容範囲は0となり、OS_VALARM_DELAY_MAX
+を指定すると、「指定タイミング以降でVカウントアラームを発生できるならいつでもよい」という意味になります。ディレイはこの範囲で指定します。</P>
+<P>下の命令では、Vカウント=100、ディレイ=30でアラームを指定しています。システムは出来るだけVカウント=100の時にハンドラを呼び出そうとしますが、それに間に合わなければ
+Vカウント=130までなら呼び出しを行ないます。</P>
+<BLOCKQUOTE><IMG src="image_valarm1.gif" border="0"></BLOCKQUOTE>
+<P>Vカウントアラームには周期アラームも用意されており、これは指定のVカウントで、毎フレームVカウントアラームを発生させるものです。設定関数は
+<A href="OS_SetPeriodicVAlarm.html"><CODE>OS_SetPeriodicVAlarm()</CODE></A> となります。</P>
+<BLOCKQUOTE><IMG src="image_valarm2.gif" border="0"></BLOCKQUOTE>
+<P>複数のVカウントアラームが同じタイミングのVカウントで設定されていたり、そのタイミングやディレイの範囲が重なっていても構いません。</P>
+<HR>
+<P><B>例</B></P>
+<P>例えば、次のような３つのVカウントアラームを考えます。</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex1.gif" border="0"></BLOCKQUOTE>
+<P>Vカウントアラームを邪魔するほどの負荷が他に無い場合は指定のタイミング ( Vカウント=50、Vカウント=60、Vカウント=130 ) でそれぞれのVカウントアラームハンドラが呼び出されます。すなわち、下の図の赤い矢印「↓」で示した個所がVカウントアラームの発生する場所となります。</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex2.gif" border="0"></BLOCKQUOTE>
+<P>1番目のVカウントアラームの後、割り込みが入り、２番目のVカウントアラーム発生時刻を少し越えるまで処理が及んだ場合、以下のようにディレイ範囲であればずらしてそのVカウントアラームを発生させます。</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex3.gif" border="0"></BLOCKQUOTE>
+<P>さらに処理が長く、ディレイの範囲にもVカウントアラームを発生させることが出来なかった場合、そのVカウントアラームは次のフレームに回されます。（このVカウントアラームが周期Vカウントアラームだった場合は、そのフレームでの処理は行なわないということになります。)</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex4.gif" border="0"></BLOCKQUOTE>
+<P>このようにVカウントアラームが次のフレームに回されるような事例はVカウントアラーム以外の割り込みが重かったという要因以外にも、Vカウントアラームハンドラの処理自体が重過ぎる場合にも発生することがあります。下の図では矢印「→」でそのVカウントアラームハンドラ処理の経過時間を表します。これはすべて短時間でハンドラの処理が終り、他のVカウントアラームに影響を与えない例です。</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex5.gif" border="0"></BLOCKQUOTE>
+<P>それに対し、1つ目のVカウントアラームの処理が非常に重く、2つ目のVカウントアラームを発生する期間さえ過ぎるような場合、2番目のVカウントアラームは次のフレームに回されます。</P>
+<BLOCKQUOTE><IMG src="image_valarm_ex6.gif" border="0"></BLOCKQUOTE>
+<P>通常は、割り込みハンドラはすぐに終わるような処理を行なうように推奨されています。</P>
+<HR>
+<P><B>MP通信のVブランク同期による Vカウンタレジスタ値の変化</B></P>
+<P>MP通信を行なっている際、親機と子機とでVブランク同期を取った結果、202 から
+210 の間で Vカウンタレジスタの値が変更される場合があります。変更は常に元の値より小さい値がセットされます。(
+208 をより小さい 205 に変更する、というように。)　この間で Vカウントアラームを設定する場合は注意して下さい。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#VAlarm">OS関数一覧(Vカウントアラーム)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2007/10/16 用語統一 [ワイヤレス同期]→[MP通信のVブランク同期]<br>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/13 用語や語尾など修正<BR>
+2004/11/24 ワイヤレス同期による vcount の変化を追記<BR>
+2004/10/25 初版 (<CODE>OS_InitVAlarm()</CODE> から分離)</P>
+</BODY>
+</HTML>

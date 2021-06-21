@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_ARCHIVE_PROC_*</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_ARCHIVE_PROC_*</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+<PRE>
+#define	FS_ARCHIVE_PROC_READFILE		(1 << FS_COMMAND_READFILE)
+#define	FS_ARCHIVE_PROC_WRITEFILE		(1 << FS_COMMAND_WRITEFILE)
+#define	FS_ARCHIVE_PROC_ASYNC	\
+	(FS_ARCHIVE_PROC_READFILE | FS_ARCHIVE_PROC_WRITEFILE)
+<BR>
+#define	FS_ARCHIVE_PROC_SEEKDIR			(1 << FS_COMMAND_SEEKDIR)
+#define	FS_ARCHIVE_PROC_READDIR			(1 << FS_COMMAND_READDIR)
+#define	FS_ARCHIVE_PROC_FINDPATH		(1 << FS_COMMAND_FINDPATH)
+#define	FS_ARCHIVE_PROC_GETPATH			(1 << FS_COMMAND_GETPATH)
+#define	FS_ARCHIVE_PROC_OPENFILEFAST	(1 << FS_COMMAND_OPENFILEFAST)
+#define	FS_ARCHIVE_PROC_OPENFILEDIRECT	(1 << FS_COMMAND_OPENFILEDIRECT)
+#define	FS_ARCHIVE_PROC_CLOSEFILE		(1 << FS_COMMAND_CLOSEFILE)
+#define	FS_ARCHIVE_PROC_SYNC	\
+	(FS_ARCHIVE_PROC_SEEKDIR | FS_ARCHIVE_PROC_READDIR |	\
+	 FS_ARCHIVE_PROC_FINDPATH | FS_ARCHIVE_PROC_GETPATH |	\
+	FS_ARCHIVE_PROC_OPENFILEFAST | FS_ARCHIVE_PROC_OPENFILEDIRECT | FS_ARCHIVE_PROC_CLOSEFILE)
+<BR>
+#define	FS_ARCHIVE_PROC_ACTIVATE		(1 << FS_COMMAND_ACTIVATE)
+#define	FS_ARCHIVE_PROC_IDLE			(1 << FS_COMMAND_IDLE)
+#define	FS_ARCHIVE_PROC_STATUS	\
+	(FS_ARCHIVE_PROC_ACTIVATE | FS_ARCHIVE_PROC_IDLE)
+<BR>
+#define	FS_ARCHIVE_PROC_ALL	(~0)
+</PRE>
+<br>
+  </CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>FS_SetArchiveProc関数でユーザプロシージャに指定するフラグビットの定義です。<BR>
+これらは、それぞれ同名のコマンドを指定するための意味を持ちます。<BR>
+FSCommandType列挙値への対応は以下のとおりです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_ACTIVATE</TD>
+      <TD><A href="command/fs_command_activate_spec.html">FS_COMMAND_ACTIVATE</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_IDLE</TD>
+      <TD><A href="command/fs_command_idle_spec.html">FS_COMMAND_IDLE</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_STATUS</TD>
+      <TD>FS_COMMAND_STATUS_BEGIN以上、FS_COMMAND_STATUS_END未満の全て</TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_READFILE</TD>
+      <TD><A href="command/fs_command_readfile_spec.html">FS_COMMAND_READFILE</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_WRITEFILE</TD>
+      <TD><A href="command/fs_command_writefile_spec.html">FS_COMMAND_WRITEFILE</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_ASYNC</TD>
+      <TD>FS_COMMAND_ASYNC_BEGIN以上、FS_COMMAND_ASYNC_END未満の全て</TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_SEEKDIR</TD>
+      <TD><A href="command/fs_command_seekdir_spec.html">FS_COMMAND_SEEKDIR</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_READDIR</TD>
+      <TD><A href="command/fs_command_readdir_spec.html">FS_COMMAND_READDIR</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_OPENFILEFAST</TD>
+      <TD><A href="command/fs_command_openfilefast_spec.html">FS_COMMAND_OPENFILEFAST</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_OPENFILEDIRECT</TD>
+      <TD><A href="command/fs_command_openfiledirect_spec.html">FS_COMMAND_OPENFILEDIRECT</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_FINDPATH</TD>
+      <TD><A href="command/fs_command_findpath_spec.html">FS_COMMAND_FINDPATH</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_GETPATH</TD>
+      <TD><A href="command/fs_command_getpath_spec.html">FS_COMMAND_GETPATH</A></TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_CLOSEFILE</TD>
+      <TD><A href="command/fs_command_closefile_spec.html">FS_COMMAND_CLOSEFILE</TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_SYNC</TD>
+      <TD>FS_COMMAND_SYNC_BEGIN以上、FS_COMMAND_SYNC_END未満の全て</TD>
+    </TR>
+    <TR>
+      <TD>FS_ARCHIVE_PROC_ALL</TD>
+      <TD>コマンド全て</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<BR>
+
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_archive_type.html">FSArchive</A>
+<A href="fs_command_type_const.html">FSCommandType</A>
+<A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<BR>
+<A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/07/12 コマンド追加<BR>
+2004/06/30 初版<BR>
+</P>
+</body>
+</html>

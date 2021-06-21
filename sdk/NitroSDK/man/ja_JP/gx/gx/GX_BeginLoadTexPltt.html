@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_BeginLoadTexPltt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_BeginLoadTexPltt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_load.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_BeginLoadTexPltt(void);</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>テクスチャパレットをテクスチャパレットスロットに転送する前に呼び出します。内部では、テクスチャパレットスロットに割り当てられているバンクをLCDCに割り当てて、<A href="GX_LoadTexPltt.html">GX_LoadTexPltt</A>によってテクスチャパレットをDMA転送するための準備をします。</P>
+<P><B>(注意)</B> 予め<A href="GX_SetBankForTexPltt.html">GX_SetBankTexPltt</A>でVRAMバンクをテクスチャパレットスロットに割り当てておく必要があります。</P>
+<h2>参照</h2>
+<P><A href="GX_LoadTexPltt.html">GX_LoadTexPltt</A>, <A href="GX_EndLoadTexPltt.html">GX_EndLoadTexPltt</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>説明の修正と追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

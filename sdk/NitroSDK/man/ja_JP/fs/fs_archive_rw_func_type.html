@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_ARCHIVE_READ_FUNC, FS_ARCHIVE_WRITE_FUNC</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_ARCHIVE_READ_FUNC, FS_ARCHIVE_WRITE_FUNC</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+typedef	FSResult	(*FS_ARCHIVE_READ_FUNC)(struct FSArchive *p, void *dst, u32 pos, u32 size);<BR>
+typedef	FSResult	(*FS_ARCHIVE_WRITE_FUNC)(struct FSArchive *p, const void *src, u32 pos, u32 size);<BR>
+</CODE><BR>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブに指定する基本アクセスコールバックの関数形式を定義します。<BR>
+ファイルシステムはこの２つのコールバックとFATおよびFNT情報を使用することにより、<BR>
+NitroROMフォーマットに基づいたリニアなメモリ空間の存在を仮定します。<BR>
+ファイルシステムの全てのコマンドのデフォルト実装は、このコールバックで構築されています。<BR>
+<BR>
+FS_ARCHIVE_READ_FUNCには、アーカイブオフセット pos の位置から size BYTE だけを<BR>
+メモリバッファ dst へ読み出すための処理を行う関数を指定します。<BR>
+FS_ARCHIVE_WRITE_FUNCには、アーカイブオフセット pos の位置から size BYTE だけを<BR>
+メモリバッファ src の内容で書き込むための処理を行う関数を指定します。<BR>
+いずれのコールバックも、呼び出しの中で処理が同期的に完了すれば FS_RESULT_SUCCESS を返し、<BR>
+関数の外で非同期的に完了する場合は FS_RESULT_PROC_ASYNC を返す必要があります。<BR>
+また、FS_RESULT_PROC_ASYNC を返した場合は、完了時に必ずFS_NotifyArchiveAsyncEnd関数を呼び出す必要があります。<BR>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_result_const.html">FSResult</A>
+<A href="fs_archive_type.html">FSArchive</A>
+<BR>
+<A href="archive/FS_LoadArchive.html">FS_LoadArchive</A> 
+<A href="archive/FS_NotifyArchiveAsyncEnd.html">FS_NotifyArchiveAsyncEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/07/12 戻り値の型を変更<BR>
+2004/06/30 初版<BR>
+</P>
+</body>
+</html>

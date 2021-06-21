@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_GetPlayerLocalVariable</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_GetPlayerLocalVariable</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">s16 SND_GetPlayerLocalVariable( int <var>playerNo</var>, int <var>varNo</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><font face="Courier New">playerNo</font></strong></em></td>
+<td>プレイヤー番号です。値の範囲は0～15です。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">varNo</font></strong></em></td>
+<td>変数番号です。値の範囲は0～15です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>シーケンスローカル変数の値を返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスローカル変数の値を取得します。
+</p>
+      <p>
+シーケンスローカル変数の初期値は-1です。変数の初期化はシステム起動時及び、
+シーケンスのスタート時に行われます。
+</p>
+      <p>
+この関数は、ARM7コマンド関数とは非同期に実行されます。
+同期を取るためには、<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数などで、
+ARM7コマンドの処理が完了したことを確認する必要があります。
+</p>      
+    </div>
+<h2>参照</h2>
+<p><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

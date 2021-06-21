@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_HTo*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_HTo*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+#define MI_HToLE8(val)  (val)<br>
+#define MI_HToBE8(val)  MI_SwapEndian8(val)<br>
+#define MI_HToLE16(val) (val)<br>
+#define MI_HToBE16(val) MI_SwapEndian16(val)<br>
+#define MI_HToLE32(val) (val)<br>
+#define MI_HToBE32(val) MI_SwapEndian32(val)<br>
+</CODE><br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>val</STRONG></EM></TD>
+      <TD width="87%">エンディアンを変換する値<br>
+マクロのため、複数回評価される点に注意してください。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>指定のエンディアンに変換した値(<CODE>u16またはu32</CODE>)</p>
+
+<H2>説明</H2>
+<P>指定された値を、現在の環境から指定のエンディアンへ変換します。LEはリトルエンディアン、BEはビッグエンディアンを示します。<br>
+ニンテンドーDSはリトルエンディアン環境のため、LEの場合には何もしないマクロになります。<br>
+<br>
+マクロのため、引数が複数回評価される点に注意してください。</P>
+<p>これらのうち8bit版は実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</p>
+<H2>参照</H2>
+<P><A href="MI_SwapEndian.html">MI_SwapEndian*</A> <A href="MI_Load.html">MI_Load*</A> <A href="MI_Store.html">MI_Store*</A> <A href="MI_ToH.html">MI_*ToH*</A></P>
+<H2>履歴</H2>
+<P>
+2006/06/13 8bit版の記述を追加<br>
+2006/04/05 初版<br>
+</P>
+</body>
+</html>

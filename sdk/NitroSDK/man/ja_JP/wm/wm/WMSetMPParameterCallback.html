@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMSetMPParameterCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMSetMPParameterCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMSetMPParameterCallback
+{
+    u16       apiid;
+    u16       errcode;
+    u32       mask
+    WMMPParam oldParam;
+
+} WMSetMPParameterCallback;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_SET_MP_PARAMETERに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">mask</font></strong></em></TD>
+      <TD width="800">今回の実行で設定した mask 値です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">oldParam</font></strong></em></TD>
+      <TD width="800">今回の実行で設定される前の MP 通信の各種パラメータです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+WM_SetMPParameterに対するコールバック関数に渡される構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/11/24 初版<BR>
+</P>
+</body>
+</html>

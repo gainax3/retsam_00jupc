@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MIAllocator</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MIAllocator</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <pre><code>#include &lt;nitro/mi.h&gt;</code><br />
+typedef struct MIAllocator
+{
+<span style="color:#008000">/* private: */</span>
+    void                       *userdata;
+    MIAllocatorAllocFunction    Alloc;
+    MIAllocatorFreeFunction     Free;
+}
+MIAllocator;</pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p>
+メモリアロケータの機能をラップするためのインタフェース構造体です。<br />
+メモリアロケータの標準的なプロトタイプ形式として利用することが出来ます。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MIAllocatorAllocFunction.html">MIAllocatorAllocFunction</a>
+<a href="MIAllocatorFreeFunction.html">MIAllocatorFreeFunction</a>
+<br />
+<a href="MI_InitAllocator.html">MI_InitAllocator</a>
+<a href="MI_CallAlloc.html">MI_CallAlloc</a>
+<a href="MI_CallFree.html">MI_CallFree</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/06/12 初版<br />
+</p>
+</body>
+</html>

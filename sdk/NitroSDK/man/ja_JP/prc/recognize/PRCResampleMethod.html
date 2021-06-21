@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCResampleMethod</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCResampleMethod</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef enum PRCResampleMethod
+{
+    PRC_RESAMPLE_METHOD_NONE = 0,
+    PRC_RESAMPLE_METHOD_DISTANCE,
+    PRC_RESAMPLE_METHOD_ANGLE,
+    PRC_RESAMPLE_METHOD_RECURSIVE,
+} PRCResampleMethod;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">PRC_RESAMPLE_METHOD_NONE</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプルしない</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">PRC_RESAMPLE_METHOD_DISTANCE</FONT></STRONG></EM></TD>
+      <TD width="87%">シティブロック距離が threshold を超えたら次の点を採用</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">PRC_RESAMPLE_METHOD_ANGLE</FONT></STRONG></EM></TD>
+      <TD width="87%">角度が直前に採用した辺より threshold 以上離れていたら次の点を採用（角度は2π/65536ラジアン単位）</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">PRC_RESAMPLE_METHOD_RECURSIVE</FONT></STRONG></EM></TD>
+      <TD width="87%">再帰的処理により、リサンプル前の全ての点がリサンプル後の各辺より threshold 以下しか離れていないようになる点を採用</TD>
+    </TR>
+  </tbody>
+</table>
+
+<H2>説明</H2>
+<P><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPatternEx</A></CODE> の引数の <CODE><A href="PRCInputPatternParam.html">PRCInputPatternParam</A></CODE> に含まれる列挙型です。</P>
+<P>生の入力点列はそのまま用いると点の数が多すぎ、また手の震えによるノイズも多く乗っているため、特徴的な点だけを残すリサンプリング処理が必要となります。この列挙型はリサンプリングに用いるアルゴリズムを指定するためのものです。</P>
+<dl>
+  <dt>PRC_RESAMPLE_METHOD_NONE</dt>
+  <dd>リサンプルせず、連続する同一座標値の除去のみを行います。<BR>
+  リサンプル処理はもっとも高速ですが、リサンプルによる処理対象の点数の削減が行われませんので、総合的には処理が重くなることがほとんどです。</dd>
+  <dt>PRC_RESAMPLE_METHOD_DISTANCE</dt>
+  <dd>各画の始点をまず採用し、その後、移動距離の合計が threshold を超えた時点で次の点を採用します。各画の終点も必ず採用します。なお、距離値には通常のユークリッド距離ではなく、シティブロック距離（x座標の差とy座標の差の和）が用いられます。<BR>
+  処理は高速ですが、あまりよい特徴点抽出ができない傾向にあります。</dd>
+  <dt>PRC_RESAMPLE_METHOD_ANGLE</dt>
+  <dd>各画の始点をまず採用し、書き出しの方向を『直前の方向』として記憶します。その後、画内の線分を順に辿っていき、『直前の方向』との角度の差が
+  threshold 以上になったときにその線分の始点を採用し、その線分の方向を直前の方向として記憶する、ということを繰り返します。各画の終点も必ず採用します。<BR>
+  角度の算出に各入力点に対して <A href="../../fx/FX_Atan2Idx.html">FX_Atan2Idx</A> を用います。そのため、threshold には1周をu16の範囲で表したときの値を用います(例：直角＝16384)。処理速度は中程度です。</dd>
+  <dt>PRC_RESAMPLE_METHOD_RECURSIVE</dt>
+  <dd>各画の始点と終点をまず採用し、それぞれ、点Aと点Bと置きます。点Aと点Bの間の全ての点について、点Aと点Bとを結ぶ直線との距離を求め、距離が最大になる点Cを求めます。その距離が threshold 以上であれば採用し、未満であれば点の選択を止めます。点Cを採用した場合は、点Aと点C、点Cと点Bを2組の新しい点Aと点Bとして、以上の処理を再帰的に繰り返します。<br>線分と点の距離の計算は各点について積算数回で済みますが、最悪の場合にはその距離の計算が各画につき画を構成する点の数の二乗のオーダーで発生するため、非常に遅くなる可能性があります。しかし、通常は画を構成する点数の数倍程度で終了し、またリサンプリングの結果もほかのアルゴリズムに比べると少ない点で特徴をよくとらえたものが得られます。</dd>
+</dl>
+<P>リサンプルアルゴリズムの詳細は、docs/TechnicalNotes/AboutPatternRecognition.pdf を参照してください。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRCInputPatternParam.html">PRCInputPatternParam</A>, <A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A>, <A href="PRC_ResampleStrokes.html">PRC_ResampleStrokes*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/02/18 解説ドキュメントのファイル名を修正<BR>
+2004/06/23 初版</P>
+</body>
+</html>

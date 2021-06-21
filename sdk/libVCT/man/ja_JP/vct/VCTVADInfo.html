@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTVADInfo</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTVADInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef struct _VCTVADInfo
+{
+    BOOL        activity;
+    int         scale;
+    int         releaseCount;
+    int         releaseTime;
+} VCTVADInfo;
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>activity</I></B></TD>
+      <TD>VADが音声を検出した場合TRUE, そうでなければFALSE</TD>
+    </TR>
+    <TR>
+      <TD><B><I>scale</I></B></TD>
+      <TD>VADが検出した現在の音量のスケール値（0-127)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>releaseCount</I></B></TD>
+      <TD>現在設定されている無音検出後のリリース時間(<code><a href="VCT_SetVADReleaseTime.html">VCT_SetVADReleaseTime</a></code>で設定した値）</TD>
+    </TR>
+    <TR>
+      <TD><B><I>releaseTime</I></B></TD>
+      <TD>現在設定されている無音検出後のリリース時間(<code><a href="VCT_SetVADReleaseTime.html">VCT_SetVADReleaseTime</a></code>で設定した値 * フレーム時間）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>VADの内部情報を保存する構造体です。</P>
+<P><B><I>scale</I></B>にはVADアルゴリズムが検出した、現在の音量のスケール値が入ります。NITRO-SDKのSND_CalcDecibel関数を用いてデシベル値を計算できるよう、0から127の範囲で出力されるようになっています。</P>
+
+<h2>参照</h2>
+<P><code>
+<A href="VCT_GetVADInfo.html">VCT_GetVADInfo</A>,
+<A href="VCT_SetVADReleaseTime.html">VCT_VADReleaseTime</A>
+</code></P>
+<H2>履歴</H2>
+<P>
+2006/04/25 VADの検出レベルの記述を削除
+2006/01/25 初版<BR>
+</P>
+</body>
+</html>

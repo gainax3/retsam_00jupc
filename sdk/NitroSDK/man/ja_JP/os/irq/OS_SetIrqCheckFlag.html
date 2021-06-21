@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetIrqCheckFlag</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetIrqCheckFlag</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_SetIrqCheckFlag( OSIrqMask intr );</CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>intr</I></B></TD>
+      <TD>チェックフラグをセットしたい IRQ割り込み要因を論理和で示したもの。(通常、１要因しか扱わない)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>IRQ割り込みのチェックフラグをセットします。<BR>
+このフラグは通常は各割り込みの割り込みハンドラで呼ばれます。個別の割り込み処理が終わったときに、その割り込みで呼ばれたことを示すためにチェックフラグをセットします。例えば、Ｖブランク割り込みで呼び出される関数では</P>
+<BLOCKQUOTE><CODE> OS_SetIrqCheckFlag( OS_IE_V_BLANK ); </CODE></BLOCKQUOTE>
+<P>のように呼んでチェックフラグをセットします。フラグについては下に表を記載します。</P>
+<P>ここでセットしたフラグは、<A href="OS_WaitIrq.html"><CODE>OS_WaitIntr()</CODE></A> や <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> や <A href="../../svc/SVC_WaitVBlankIntr.html"><CODE>SVC_WaitVBlankIntr()</CODE></A> で割り込みがあったかどうかをチェックするために使用されます。従って、それらの関数で待つことがない割り込みの場合、セットしてもどこからも使用されないので必ずしもセットする必要はありませんが、個別に対応していると実際に必要な個所でも書き忘れることもありますので、問題がなければ常に割り込みに対してはセットすることをお奨めします。</P>
+<P>複数のスレッドで同じ割り込みに対して<CODE><A href="OS_WaitIrq.html">OS_WaitIntr()</A></CODE> や <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> や <CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr()</A></CODE> を行なっている場合、1回の割り込みに対してはいずれか１つのスレッドでしか復帰出来ませんので、注意して下さい。</P>
+<P><B>　　割り込みのチェックフラグ</B></P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_V_BLANK</TD>
+      <TD bgcolor="#eeeeee">Vブランク割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_H_BLANK</TD>
+      <TD bgcolor="#eeeeee">Hブランク割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_V_COUNT</TD>
+      <TD bgcolor="#eeeeee">Vカウンター割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER0</TD>
+      <TD bgcolor="#eeeeee">タイマー0割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER1</TD>
+      <TD bgcolor="#eeeeee">タイマー1割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER2</TD>
+      <TD bgcolor="#eeeeee">タイマー2割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER3</TD>
+      <TD bgcolor="#eeeeee">タイマー3割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA0</TD>
+      <TD bgcolor="#eeeeee">DMA0割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA1</TD>
+      <TD bgcolor="#eeeeee">DMA1割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA2</TD>
+      <TD bgcolor="#eeeeee">DMA2割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA3</TD>
+      <TD bgcolor="#eeeeee">DMA3割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_KEY</TD>
+      <TD bgcolor="#eeeeee">キー割り込み <B><FONT color="#ff0033">*1</FONT></B></TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARTRIDGE</TD>
+      <TD bgcolor="#eeeeee">カートリッジIREQ/DREQ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SUBP</TD>
+      <TD bgcolor="#eeeeee">ARM7割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SPFIFO_SEND</TD>
+      <TD bgcolor="#eeeeee">ARM9・ARM7間送信FIFOエンプティ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SPFIFO_RECV</TD>
+      <TD bgcolor="#eeeeee">ARM9・ARM7間受信FIFOノットエンプティ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARD_DATA</TD>
+      <TD bgcolor="#eeeeee">カードデータ転送終了割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARD_IREQ</TD>
+      <TD bgcolor="#eeeeee">カードIREQ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_GXFIFO</TD>
+      <TD bgcolor="#eeeeee">ジオメトリコマンドFIFO割り込み</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B><FONT color="#ff0033"><BR>
+<BR>
+*1</FONT></B>　キー割り込みはハードウェアの仕様上、使用しないで下さい。ただし、スリープからの復帰に使用することは可能です。</P>
+<P>またハードウェアの割り込み要因に対応するフラグ以外に以下のようなダミーのチェックフラグが用意されており、アプリケーション内で自由に使うことができます。これにより、コールバック関数との同期を取るために
+volatile 変数によるポーリングを行なっていた処理を <CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE> の組み合わせで置き換えることができます。<BR>
+</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_USER_FLAG0</TD>
+      <TD bgcolor="#eeeeee">アプリケーション内で自由に使えるチェックフラグ 0</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_USER_FLAG1</TD>
+      <TD bgcolor="#eeeeee">アプリケーション内で自由に使えるチェックフラグ 1</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag</A>, <A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag</A><BR>
+</CODE></P>
+<H2>内部動作</H2>
+<P>ARM9では、DTCM内のあらかじめ決められた位置(DTCM_END - 8)がチェックフラグ用の領域と決められており、そこを操作します。ARM7では、ARM7専用WRAMの予め決められた位置(最上位アドレス
+- 8)がチェックフラグ用の領域と決められており、そこを操作します。</P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/08 OS_IE_KEY についての注意を追加<BR>
+2004/11/24 OS_IE_SIO を削除<BR>
+2004/11/02 参照から <CODE>SVC_WaitIntr()</CODE> を削除<BR>
+2004/09/01 「サブプロセッサ」を「ARM7」に、「サブプロセッサ間」を「ARM9・ARM7間」に変更<BR>
+2004/04/22 複数スレッドで使用する場合の注意を追加<BR>
+2003/01/09 初版</P>
+</body>
+</html>

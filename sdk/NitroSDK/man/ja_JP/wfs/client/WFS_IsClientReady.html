@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_IsClientReady</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_IsClientReady</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>BOOL WFS_IsClientReady(const WFSClientContext *context);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>クライアント側の準備が完了していればTRUEを、そうでなければFALSEを返します。</p>
+
+<h2>説明</h2>
+<p>WFSクライアント側の準備が完了しているか判定します。<br />
+サーバからROMファイルテーブルの受信が完了して<a href="../WFSEventType.html">WFS_EVENT_CLIENT_READY</a>が通知された以降は、この関数はTRUEを返します。<br />
+準備が完了しない限り<a href="WFS_GetTableFormat.html">WFS_GetTableFormat</a>関数や<a href="WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数、
+<a href="WFS_ReplaceRomArchive.html">WFS_ReplaceRomArchive</a>関数などは使用することが出来ません。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="../WFSEventType.html">WFSEventType</a>
+<br />
+<a href="WFS_GetTableFormat.html">WFS_GetTableFormat</a>
+<a href="WFS_RequestClientRead.html">WFS_RequestClientRead</a>
+<a href="WFS_ReplaceRomArchive.html">WFS_ReplaceRomArchive</a>
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/11 初版<br />
+</p>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>メモリ割り当て (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">メモリ割り当て (overview)</H1>
+<H2>説明</H2>
+<P><BR>
+<FONT color="#ff0000">(便宜上、このページのメモリマップ図は、上を下位アドレス、下を上位アドレスとしています)</FONT></P>
+<P><B>初期化</B></P>
+<P>NitroSDKでは、アリーナ上にヒープシステムを構築して、ゲームで使用するメモリブロックの割り当てや開放を行なうことが出来ます。<CODE><A href="../arena/OS_InitArena.html">OS_InitArena()</A></CODE> で初期化が終わったばかりのアリーナは、アリーナ境界を表す ArenaLo ポインタは領域先頭を差し、ArenaHi
+ポインタは領域末尾を差しています。</P>
+<BLOCKQUOTE><IMG src="image_alloc1.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+メモリ割り当てシステムは複数あるアリーナそれぞれに対して作成することが可能です。また、一つのアリーナには複数のヒープ領域を設定することが可能です。</P>
+<P>上図の状態のアリーナに対し <CODE><A href="OS_InitAlloc.html">OS_InitAlloc()</A></CODE> でメモリ割り当てシステムの初期化を行なうと、下図のようにさきほどまでアリーナ領域だったメモリの最下位部分にヒープの情報ブロックが作成されます。<CODE><A href="OS_InitAlloc.html">OS_InitAlloc()</A></CODE> の返り値を使って、アリーナの境界アドレス ArenaLoアドレスは情報ブロックの分だけずらす必要があります。</P>
+<P>一つのアリーナに作成できる最大ヒープ数は <CODE><A href="OS_InitAlloc.html">OS_InitAlloc()</A></CODE> の引数で指定しておく必要があります。これはヒープの情報ブロックの中に、最大数分のヒープデスクリプタが予め作成されるからです。ヒープデスクリプタには下図のようにデータ領域のサイズ、フリーブロックの先頭のアドレス、使用ブロックの先頭のアドレスが格納されます。</P>
+<BLOCKQUOTE><BR>
+<IMG src="image_alloc2.gif" border="0"></BLOCKQUOTE>
+<P>なお、メモリ割り当てシステムの情報を破棄するには、<CODE><A href="OS_ClearAlloc.html">OS_ClearAlloc()</A></CODE> を呼んでください。</P>
+<HR>
+<P><B>ヒープの作成</B></P>
+<P>ヒープを作成するには <CODE><A href="OS_CreateHeap.html">OS_CreateHeap()</A></CODE> を呼んでください。このとき、ヒープに使用する領域を指定します。領域は図中の topAddr から bottomAddr の範囲内になければなりません。</P>
+<P>ヒープが作成されると、ヒープデスクリプタにはヒープの情報が格納されます。</P>
+<BLOCKQUOTE><IMG src="image_alloc3.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>ヒープの破棄・再初期化</B></P>
+<P>作成したヒープを破棄するときは <CODE><A href="OS_DestroyHeap.html">OS_DestroyHeap()</A></CODE> を呼んでください。但し、これによって ArenaLo や ArenaHi のポインタは変化しません。</P>
+<P>ヒープを再初期化するときは <CODE><A href="OS_ClearHeap.html">OS_ClearHeap()</A></CODE> を呼んでください。</P>
+<HR>
+<P><B>カレントヒープ</B></P>
+<P>アリーナごとに、カレントヒープを設定することが出来ます。カレントヒープを設定しておくと、いくつかのマクロ関数でヒープハンドルを指定する必要がなくなります。また、ヒープハンドルを指定する関数であっても、OS_CURRENT_HEAP_HANDLE
+でヒープを指定することが出来るようになります。</P>
+<P>カレントヒープを設定する関数は <CODE><A href="OS_SetCurrentHeap.html">OS_SetCurrentHeap()</A></CODE> です。</P>
+<HR>
+<P><B>ヒープの拡張</B></P>
+<P>一旦ヒープを作成した後、ヒープ領域を拡張することが出来ます。拡張される領域を指定して <CODE><A href="OS_AddToHeap.html">OS_AddToHeap()</A></CODE> を呼んでください。</P>
+<P>一旦拡張されたヒープ領域は、ヒープを破棄するまで別の用途に使用しないで下さい。</P>
+<P><CODE><A href="OS_AddToHeap.html">OS_AddToHeap()</A></CODE> によって、次のようにヒープの&quot;飛び地&quot; が発生する可能性があります。</P>
+<BLOCKQUOTE><IMG src="image_alloc4.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>メモリブロックの確保</B></P>
+<P>ヒープからメモリブロックを確保する関数として <CODE><A href="OS_AllocFromHeap.html">OS_AllocFromHeap()</A></CODE> が用意されています。この関数は、アリーナを指定する必要がありますが、簡便化のためにアリーナ名を関数名に含んだマクロが用意されています。詳しくは<CODE><A href="OS_AllocFromHeap.html"> OS_AllocFromHeap()</A></CODE> のリファレンスを参照してください。</P>
+<P>また、領域を指定してメモリブロックを確保するための関数 <CODE><A href="OS_AllocFixed.html">OS_AllocFixed()</A></CODE>も用意されています。この関数で確保したメモリブロックはヒープ管理から除外されます。従って、この関数で確保したメモリブロックを引数として <CODE><A href="OS_AddToHeap.html">OS_AddToHeap()</A></CODE> で他のヒープを拡張しても構いません。</P>
+<HR>
+<P><B>メモリブロックの解放</B></P>
+<P>確保されていたメモリブロックを解放する関数として <CODE><A href="OS_FreeToHeap.html">OS_FreeToHeap()</A></CODE> が用意されています。この関数は、アリーナを指定する必要がありますが、簡便化のためにアリーナ名を関数名に含んだマクロが用意されています。マクロについては <CODE><A href="OS_FreeToHeap.html">OS_FreeToHeap()</A></CODE> のリファレンスを参照してください。</P>
+<P>また、すべてのメモリブロックを解放する関数 <CODE><A href="OS_FreeAllToHeap.html">OS_FreeAllToHeap()</A></CODE> も用意されています。こちらもアリーナ名を関数名に含んだマクロが用意されています。マクロについては <CODE><A href="OS_FreeAllToHeap.html">OS_FreeAllToHeap()</A></CODE> のリファレンスを参照してください。</P>
+<HR>
+<P><B>メモリブロックの管理方法</B></P>
+<P>ヒープはフリーメモリ、使用中メモリの両方ともブロック単位で管理されていて、双方向リストでリンクされています。ヒープを作成した直後は、ヒープ用の全ての領域をフリーブロックとみなします。</P>
+<P>データエリアのサイズはヒープ用に確保した領域の大きさが入ります。通常の使用ではこの値は変化しませんが、<CODE><A href="OS_AllocFixed.html">OS_AllocFixed()</A></CODE> を行なったときに、指定の領域が含まれるヒープでは、そのブロック分の大きさが減少します。また、このヒープに元々含まれていたものではないメモリブロックを
+<A href="OS_AddToHeap.html"><CODE>OS_AddToHeap()</CODE></A> で追加したときに、そのブロック分大きさが増加します。</P>
+<P>次の図は、ある時点のヒープとヒープデスクリプタの状態です。この例では、FreeBlockList
+が addr1 を差しており、そこから next リンクを辿ると この addr1 と、addr5
+と addr3 から始まるブロックが空き領域であることがわかります。同様に Allocated
+Block List を辿ると、addr2 と addr4 と addr6 から始まるブロックが使用中であることがわかります。</P>
+<BLOCKQUOTE><IMG src="image_alloc5.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>メモリブロックサイズに関する情報</B></P>
+<P>以下の関数が用意されています。</P>
+<P>・使用されているメモリブロック(ヘッダサイズ含まない)の合計サイズを取得する関数
+<CODE><A href="OS_GetTotalAllocSize.html">OS_GetTotalAllocSize()</A></CODE></P>
+<P>・使用されているメモリブロック(ヘッダサイズ含む)の合計サイズを取得する関数
+<CODE><A href="OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize()</A></CODE></P>
+<P>・フリーメモリブロックの合計サイズを取得する関数 <CODE><A href="OS_GetTotalFreeSize.html">OS_GetTotalFreeSize()</A></CODE></P>
+<P>・フリーメモリブロックの中で最も大きいもののサイズを取得する関数 <CODE><A href="OS_GetMaxFreeSize.html">OS_GetMaxFreeSize()</A></CODE></P>
+<P>・メモリブロックを指定して、そのブロックのサイズを取得する関数 <CODE><A href="OS_ReferentSize.html">OS_ReferentSize()</A></CODE></P>
+<P>これらの関数は、メモリブロックのデータが格納される部分についてのみ考慮しています。つまり、メモリを管理する部分のサイズは含みません。合計を取得する関数であっても、データ領域部分だけの合計となります。</P>
+<P><IMG src="image_allocBlockSize.gif" border="0"></P>
+<HR>
+<P><B>デバッグのための関数</B></P>
+<P>ヒープの内容を <CODE><A href="../debug/OS_Printf.html">OS_Printf()</A></CODE> を用いて表示する関数 <CODE><A href="OS_DumpHeap.html">OS_DumpHeap()</A></CODE> が用意されています。これはデバッグ用の関数です。</P>
+<P>また、ヒープの内容が正当なものかどうかをチェックする関数 <CODE><A href="OS_CheckHeap.html">OS_CheckHeap()</A></CODE> も用意されています。</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Arena">OS関数一覧(Arena)</A>, <A href="../list_os.html#Alloc">OS関数一覧(Alloc)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/10/07 <CODE>OS_GetTotalOccupiedSize()</CODE> 追加<BR>
+2005/03/14 リンク先のミスを訂正<BR>
+2005/03/03 リンク先のミスを訂正<BR>
+2004/12/13 用語や語尾など修正<BR>
+2004/10/26 初版</P>
+</BODY>
+</HTML>

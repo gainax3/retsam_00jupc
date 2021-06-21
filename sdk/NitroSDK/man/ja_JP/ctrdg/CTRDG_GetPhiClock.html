@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CTRDG_GetPhiClock</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CTRDG_GetPhiClock</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/ctrdg.h&gt;</CODE><BR>
+  <BR>
+  <CODE>CTRDGPhiClock CTRDG_GetPhiClock( void )</CODE></dd>
+</dl>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>PHI端子出力制御の設定。</p>
+
+<H2>説明</H2>
+<P>PHI端子出力制御の設定を取得します。</P>
+<P>返り値 は <CODE>CTRDGPhiClock</CODE> 列挙型で、以下の意味を持ちます。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_LOW</CODE></TD>
+      <TD bgcolor="#eeeeee">Lowレベル出力</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_4MHZ</CODE></TD>
+      <TD bgcolor="#eeeeee">4.19MHzクロック出力</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_8MHZ</CODE></TD>
+      <TD bgcolor="#eeeeee">8.38MHzクロック出力</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>CTRDG_PHI_CLOCK_16MHZ</CODE></TD>
+      <TD bgcolor="#eeeeee">16.76MHzクロック出力</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+この関数では ARM9 の設定値を読み取って値を返します。(通常は ARM9 と ARM7 は同じ設定値で使用します。<CODE><A href="CTRDG_SetPhiClock.html">CTRDG_SetPhiClock()</A></CODE> は両プロセッサの設定を同時に行う関数です。)</P>
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="CTRDG_SetPhiClock.html">CTRDG_SetPhiClock</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2006/04/28 MI_ から CTRDG_ に移動<BR>
+2003/12/18 初版</P>
+</body>
+</html>

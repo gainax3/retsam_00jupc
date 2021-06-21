@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FX_Mul32x64c</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FX_Mul32x64c</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/fx/fx.h&gt;
+
+fx32 FX_Mul32x64c(fx32 v32, fx64c v64c)</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">v32</font></strong></em></TD>
+      <TD width="593"><A href="fx32.html">fx32</A>型の固定小数</TD>
+    </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">v64c</font></strong></em></TD>
+      <TD><A href="fx64c.html">fx64c</A>型の固定小数</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p><B><I>v32</I></B>と<B><I>v64c</I></B>の乗算の結果</p>
+<H2>説明</H2>
+<P><A href="fx32.html">fx32</A>型と<A href="fx64c.html">fx64c</A>型の乗算を行います。結果を<A href="fx32.html">fx32</A>型で返します。1/4096未満の値は丸められます。この関数が書かれた部分がTHUMBコードの場合は、関数呼び出しになり、ARMコードの場合は inline 宣言された関数として処理されます。</P>
+
+<h2>参照</h2>
+<P><A href="FX_DivFx64c.html">FX_DivFx64c</A>, <A href="FX_InvFx64c.html">FX_InvFx64c</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

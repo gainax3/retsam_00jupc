@@ -1,0 +1,72 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCM_GetLinkLevel.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCM_GetLinkLevel.html,v $
+  Revision 1.1  2005/09/10 03:11:18  terui
+  Initial upload.
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCM_GetLinkLevel</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCM_GetLinkLevel</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+WMLinkLevel  WCM_GetLinkLevel( void );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			無線アクセスポイントとの接続リンク強度を取得する同期関数です。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+			ありません。
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+			<CODE>WMLinkLevel</CODE> 列挙型という形で、無線アクセスポイントとの接続リンク強度 ( 通信電波強度 ) を返します。
+			WCM ライブラリが初期化前であったり、無線アクセスポイントに接続されていない状態 ( 内部状態が <CODE>WCM_PHASE_DCF</CODE> でない場合 ) には
+			<CODE>WM_LINK_LEVEL_0</CODE> を返します。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_PointApListLinkLevel.html">WCM_PointApListLinkLevel</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/09/10 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

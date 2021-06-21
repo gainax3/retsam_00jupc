@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_OpenFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_OpenFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_OpenFile( FSFile *p_file, const char *path );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>path</STRONG></EM></TD>
+      <TD width="87%">ファイルのパス名</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ファイルが正しく開ければ TRUE を, そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したパス名でファイルを開きます。<BR>
+<BR>
+パス名は以下の形式で指定できます。<BR>
+<BR>
+・ '/' で始まる絶対パス (カレントディレクトリを無視します)<BR>
+・ '/' 以外で始まる相対パス (カレントディレクトリを基準にします)<BR>
+<BR>
+また、パス名に使用できる文字は、ASCIIコードのみです。<BR>
+さらに、次の文字は禁止されています。 【 \ / : ; * ? " < > | 】<BR>
+<BR>
+ファイル名およびディレクトリ名の文字数は FS_FILE_NAME_MAX を越えてはいけません。<BR>
+<BR>
+ディレクトリ名のうち、以下のものは予約されています。<BR>
+<BR>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><EM><STRONG>.</STRONG></EM></TD>
+      <TD>現在のディレクトリを示します。(無視されます。)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>..</STRONG></EM></TD>
+      <TD>1階層上のディレクトリを示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>注意</h2>
+<P>アプリケーションは、シンボル NITRO_MAKEROM
+を有効にして ROMファイルシステムを含んでいる必要があります。<br>
+<br>
+<font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="FS_OpenFileFast.html">FS_OpenFileFast</A> 
+<A href="FS_CloseFile.html">FS_CloseFile</A> 
+<A href="FS_GetLength.html">FS_GetLength</A> 
+<A href="FS_ReadFile.html">FS_ReadFile</A> 
+<A href="FS_SeekFile.html">FS_SeekFile</A> 
+<A href="FS_SeekFileToBegin.html">FS_SeekFileToBegin</A> 
+<A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/04/02 パス名の長さ制限廃止に伴い記述修正<BR>
+2004/04/01 初版
+</P>
+</body>
+</html>

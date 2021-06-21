@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MIUncompContextHuffman</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MIUncompContextHuffman</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mi/uncomp_stream.h&gt;</CODE><BR>
+typedef struct
+{
+    u8* destp;        // 4B
+    s32 destCount;    // 4B
+    u8* treep;        // 4B
+    u32 srcTmp;       // 4B
+    u32 destTmp;      // 4B
+    s16 treeSize;     // 2B
+    u8  srcTmpCnt;    // 1B
+    u8  destTmpCnt;   // 1B
+    u8  bitSize;      // 1B
+    u8  _padding2[3]; // 3B
+    u8  tree[0x200];  // 512B  
+                   // 計 540B
+} MIUncompContextHuffman;</PRE>
+  </dd>
+</dl>
+<h2>説明</h2>
+<P>ハフマン圧縮されたデータをカードから読み込みながら順次ストリーミング展開をおこなう際に、<BR>
+データ展開状況を保存しておくためのコンテキスト構造体です。<BR>
+<A href="MI_InitUncompContextHuffman.html">MI_InitUncompContextHuffman</A>関数でコンテキストの初期化をおこない、<A href="MI_ReadUncompHuffman.html">MI_ReadUncompHuffman</A>関数でこのコンテキストを使用して展開状況を保管します。<BR>
+<BR>
+圧縮データが4bit符号化されたものであれば、treeメンバの配列サイズが32バイトあれば問題ありませんので、sizeof(
+MIUncompContextHufffman ) よりも、480バイト少ない領域しか与えていなくても構いません。<BR>
+8bit符号化されたものであれば512バイト必要ですので構造体のサイズを削ることはできません。<BR>
+<BR>
+</P>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開したデータの書き込み先領域へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destCount</STRONG></EM></TD>
+      <TD>残り書き込みサイズ </TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>treep</STRONG></EM></TD>
+      <TD>ハフマン符号テーブル、カレントポインタ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>srcTmp</STRONG></EM></TD>
+      <TD>読み込み途中のデータの退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destTmp</STRONG></EM></TD>
+      <TD>書き込み途中のデータ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>treeSize</STRONG></EM></TD>
+      <TD>ハフマン符号テーブルサイズの退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>srcTmpCnt</STRONG></EM></TD>
+      <TD>読み込み途中のデータサイズ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destTmpCnt</STRONG></EM></TD>
+      <TD>書き込み途中のデータサイズ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>bitSize</STRONG></EM></TD>
+      <TD>符号化ビットサイズ                     </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>tree</STRONG></EM></TD>
+      <TD width="87%">ハフマン符号テーブルの読み込み用バッファ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>参照</h2>
+<p><CODE><A href="MI_InitUncompContextHuffman.html">MI_InitUncompContextHuffman</A>, <A href="MI_ReadUncompHuffman.html">MI_ReadUncompHuffman</A>, <A href="MIUncompContextLZ.html">MIUncompContextLZ</A>,<A href="MIUncompContextRL.html">MIUncompContextRL</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/11/30 初版</P>
+</body>
+</html>

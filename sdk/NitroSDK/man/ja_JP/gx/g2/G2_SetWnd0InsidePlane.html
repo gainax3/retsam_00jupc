@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_SetWnd0InsidePlane</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_SetWnd0InsidePlane</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g2.h&gt;
+
+void G2_SetWnd0InsidePlane(int wnd /* GXWndPlaneMask */, BOOL effect );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">wnd</font></strong></em></TD>
+      <TD width="593">ウィンドウに表示される面の指定</TD>
+    </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">effect</font></strong></em></TD>
+      <TD>カラー特殊効果(αブレンディングと輝度調整)の有無</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ウィンドウ0の内側に表示される面を指定します。<CODE>GXWndPlaneMask</CODE>型の値の論理和をとってください。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_NONE</CODE></TD>
+      <TD>どの面も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_BG0</CODE></TD>
+      <TD>BG0を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_BG1</CODE></TD>
+      <TD>BG1を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_BG2</CODE></TD>
+      <TD>BG2を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_BG3</CODE></TD>
+      <TD>BG3を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_WND_PLANEMASK_OBJ</CODE></TD>
+      <TD>OBJを指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXWndPlaneMask</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_WND_PLANEMASK_NONE = 0x0000,
+    GX_WND_PLANEMASK_BG0 = 0x0001,
+    GX_WND_PLANEMASK_BG1 = 0x0002,
+    GX_WND_PLANEMASK_BG2 = 0x0004,
+    GX_WND_PLANEMASK_BG3 = 0x0008,
+    GX_WND_PLANEMASK_OBJ = 0x0010
+}
+GXWndPlaneMask;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G2_SetWnd1InsidePlane.html">G2_SetWnd1InsidePlane</A>, <A href="G2_SetWndOutsidePlane.html">G2_SetWndOutsidePlane</A>, <A href="G2_SetWndOBJInsidePlane.html">G2_SetWndOBJInsidePlane</A>, <A href="G2_GetWnd0InsidePlane.html">G2_GetWnd0InsidePlane</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

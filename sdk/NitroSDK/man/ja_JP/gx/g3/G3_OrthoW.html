@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_OrthoW</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3_OrthoW</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g3_util.h&gt;</CODE><BR>
+<CODE>void G3_OrthoW(
+    fx32 t,
+    fx32 b,
+    fx32 l,
+    fx32 r,
+    fx32 n,
+    fx32 f,
+    fx32 scaleW,
+    MtxFx44* mtx
+);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">t</font></strong></em></TD>
+      <TD width="512">nearクリップ面上辺のy座標</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">b</font></strong></em></TD>
+      <TD width="512">nearクリップ面下辺のy座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">l</font></strong></em></TD>
+      <TD>nearクリップ面左辺のx座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">r</font></strong></em></TD>
+      <TD>nearクリップ面右辺のx座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">n</font></strong></em></TD>
+      <TD>視点からnearクリップ面までの距離</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">f</font></strong></em></TD>
+      <TD>視点からfarクリップ面までの距離</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">scaleW</font></strong></em></TD>
+      <TD>ビューボリュームの精度調整パラメータ</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">mtx</font></strong></em></TD>
+      <TD width="512">4x4行列へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>行列モードをProjectionモードに設定し、カレント行列に正射影行列をセットします。<B><I>mtx</I></B>がNULLでなければ*<B><I>mtx</I></B>にも正射影行列をセットします。セットされる行列は以下の通りです。</P>
+<P><B>(注意)</B> 正射影行列をセットする場合は、<A href="G3_SwapBuffers.html" target="_self">G3*_SwapBuffers</A>でＺ値によるバッファリングを選択する必要があります。W値によるバッファリングは常にデプス値が一定となるため正常に機能しません。</P>
+<P><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><span style='mso-text-raise:-58.0pt'><IMG width="205" height="163" src="geo_ortho.gif" align="middle" v:shapes="_x0000_i1025"></span></span>×<I>scaleW</I></P>
+<P>内部で除算器を使用します。割り込み内で使用される場合には<A href="../../cp/div/about_div.html#use_in_intr">除算器の注意事項</A>をご確認ください。</P>
+
+
+<h2>参照</h2>
+<P><A href="G3_Ortho.html">G3_Ortho</A>, <A href="G3_FrustumW.html">G3_FrustumW</A>,<A href="G3_PerspectiveW.html">G3_PerspectiveW</A>,</P>
+<H2>履歴</H2>
+
+<P>Ver. 2004/04/27 初版</P>
+</body>
+</html>

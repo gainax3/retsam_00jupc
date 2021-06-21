@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ntrcomp</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color  : #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">ntrcomp</H1>
+<H2>説明</H2>
+<P>　<CODE>ntrcomp</CODE> は、NITRO-SDKのMI_Uncompress*()コマンドで扱える形式の圧縮データを作成するツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% ntrcomp &lt;-d(8|16)|r|l|lex|h(4|8)&gt; [-s] [-&lt;t|T&gt;[width]] [-H] [-A(4|8|16|32)] [-o outputFile]
+&lt;inputFile&gt;<BR>
+<CODE>% ntrcomp -x [-o outputFile] [-s] &lt;inputFile&gt;<BR>
+</CODE></P>
+
+<P>　inputFileで指定された入力ファイルを、指定された形式で圧縮・変換します。<BR>
+ランレングス圧縮、LZ77拡張圧縮、ハフマン圧縮、差分フィルタの変換が可能です。</P>
+<P>-s オプションは、圧縮変換成功時に表示される成功メッセージを非表示にします。</P>
+<P>-H オプションは、データにヘッダ情報をつけて圧縮するため、展開後のデータにもデータサイズが付加されます。<BR>
+<BR>
+-Aオプションは、出力ファイルのサイズが引数nバイトにアライメントされるように末尾を0で埋めます。<BR>
+<BR>
+-o オプションで、出力ファイルのファイル名を指定できます。 何も指定しなかった場合には、(入力ファイル名本体部)_(圧縮方式).bin
+という名前の出力ファイルが作成されます。<BR>
+<BR>
+-t,-T オプションにより出力ファイルをc言語形式のテキストファイルとして出力可能です。<BR>
+オプションに(1|2|4)を付けることで、型をu8,u16,u32から選択することも可能です。(デフォルトはu8)<BR>
+u16,u32の場合に-tではリトルエンディアン、-Tではビッグエンディアンとして出力されます。<BR>
+<BR>
+-x オプションを使用すると、ntrcompを使用して圧縮したファイルをPC上で展開することができます。
+</P>
+
+<H3>圧縮方式指定オプション書式</H3>
+<P>圧縮方式として以下の形式が指定できます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH height="20">オプション</TH>
+      <TH height="20" width="101">変換方式</TH>
+      <TH height="20" width="244">パラメータ</TH>
+    </TR>
+    <TR>
+      <TD>-d</TD>
+      <TD width="101">差分フィルタ</TD>
+      <TD width="244">比較する単位ビットサイズを指定 <I>{ 8 | 16 </I>}</TD>
+    </TR>
+    <TR>
+      <TD>-r</TD>
+      <TD width="101">ランレングス圧縮</TD>
+      <TD width="244">なし</TD>
+    </TR>
+    <TR>
+      <TD>-h</TD>
+      <TD width="101">ハフマン圧縮</TD>
+      <TD width="244">符号化するビットサイズを指定 <I>{ 4 | 8 }</I></TD>
+    </TR>
+    <TR>
+      <TD>-lex</TD>
+      <TD width="101">LZ77拡張圧縮</TD>
+      <TD width="244">なし</I></TD>
+    </TR>
+    <TR>
+      <TD>-l</TD>
+      <TD width="101">LZ77圧縮(旧互換)</TD>
+      <TD width="244">なし</I></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+LZ77拡張圧縮(lex)はLZ77圧縮に比べてより高い圧縮率が期待できますが、旧互換の為に-lオプションが残されています。<BR>
+どちらも同一の<A href="../mi/uncompress/MI_UncompressLZ.html">MI_UncompressLZ*</A>関数で展開が可能ですが、NitroSDK 4.2より前のSDKを
+使用しているプログラムではLZ77拡張圧縮されたファイルを展開できませんのでご注意ください。
+</P>
+<P>
+拡張版のLZ圧縮(-lex)は、旧来のLZ圧縮(-l)に比べてワーストケースでの圧縮時間が数倍になることがあり、
+ランタイムで圧縮する場合には旧来版の方がデータによらず安定した速度での圧縮が期待できますが、展開速度は同等です。
+</P>
+
+
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/ntrcomp.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="../mi/uncompress/MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="../mi/uncompress/MI_UncompressRL.html">MI_UncompressRL*</A>, <A href="../mi/uncompress/MI_UncompressLZ.html">MI_UncompressLZ*</A></CODE></P>
+<H2>履歴</H2>
+<P>2007/11/01 解凍オプションを追加、LZ77拡張圧縮(lex)を追加、LZ77圧縮のオプションパラメータを削除、テキスト出力オプションにエンディアン指定を追加、アライメントに8byte,16byte,32byteを指定できるように修正<BR>
+2005/03/03 新設されたオプションの説明を追加<BR>
+2004/08/20 初版</P><BR>
+</BODY>
+</HTML>

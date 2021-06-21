@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerSetTrackModDepth</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerSetTrackModDepth</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetTrackModDepth(
+        NNSSndHandle* <var>handle</var>,
+        u16 <var>trackBitMask</var>,
+        int <var>depth</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAHMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>trackBitMask</code></strong></em></td>
+<td>トラックビットマスクです。</td>
+</tr>
+<tr>
+<td><em><strong><code>depth</code></strong></em></td>
+<td>モジュレーションデプスの値です。値の範囲は、0～255です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAENWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDALNWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンストラックのモジュレーションデプスを変更します。
+</p>
+      <p>
+サウンドハンドル<em><strong><code>handle</code></strong></em>に、結びつけられたシーケンスのモジュレーションデプスを変更します。
+サウンドハンドルが無効の場合は、何もしません。 
+</p>
+      <p>
+<em><strong><code>trackBitMask</code></strong></em>で、設定するトラックを指定します。
+下位ビットから順に、トラック0、トラック1、トラック2、、、を表し、ビットが立っているトラック全てに対して、
+モジュレーションデプスを変更します。
+例えば、トラック2とトラック5のモジュレーションデプスを変更したい場合は、 (1 &lt;&lt; 2) | (1 &lt;&lt; 5) すなわち、0x0024 とします。 
+</p>
+      <p>
+<em><strong><code>depth</code></strong></em>のデフォルトは0で、モジュレーション効果がかかりません。
+値が大きくなるほど効果が大きくなります。
+例えば、モジュレーションタイプが、デフォルトの「音程変化」だった場合、 127ではちょうど±１半音の深さになります。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+シーケンスデータ中でも、モジュレーションデプスを設定していた場合は、
+後から設定した方が有効になります。 
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/06/01 サウンドハンドルはシーケンスと結びつくように記述修正<br>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SslAddRandomSeed</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SslAddRandomSeed</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/ssl.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_SslAddRandomSeed(void *random_seed, u32 len);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>random_seed</strong></em></code></td>
+    <td>乱数プール</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>len</strong></em></code></td>
+    <td>乱数プールのサイズ</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>SSL用乱数発生器が使用する乱数プールを設定します。設定は現状の乱数プールにエントロピーを追加する形で行われます。<BR>
+	SSLが最初に乱数を必要とするとき、乱数プールが設定されているかを調べ、されていなかったら内部的に乱数プールを設定します。しかしこの乱数は暗号用としては質が悪いので、可能な限りCPS_SslAddRandomSeed()を使用して乱数を設定すべきです。<BR>
+	ブロックしません。<BR>
+	CPSライブラリが使用可能でなくても呼び出すことができます。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SetSsl.html">CPS_SetSsl</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

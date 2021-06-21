@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CARD_SetPulledOutCallback</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CARD_SetPulledOutCallback</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/card.h&gt;</CODE></PRE>
+  <PRE><CODE>void CARD_SetPulledOutCallback( CARDPulledOutCallback callback );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">カード抜きを検出したときに呼び出されるコールバック関数<br>このコールバックは割り込みハンドラ内か、<A href="CARD_CheckPulledOut.html">CARD_CheckPulledOut</A>関数の内部から呼び出されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>カード抜きを検出したときに呼び出されるコールバック関数を設定します。</P>
+<P>この関数を使用するためには、<CODE><A href="../common/CARD_Init.html">CARD_Init()</A></CODE> が予め呼ばれている必要があります。</P>
+<P><CODE>CARDPulledOutCallback</CODE> は</P>
+<BLOCKQUOTE><CODE>typedef BOOL ( *CARDPulledOutCallback )( void );</CODE></BLOCKQUOTE>
+<P><CODE>で定義されるコールバック関数</CODE> <B><I>callback</I></B> <CODE>の型です。</CODE></P>
+<P><B><I>callback</I></B> に NULL が指定されると、コールバックの呼び出しは行いません。</P>
+<H3><BR>
+<BR>
+<BR>
+<B>コールバックについて</B></H3>
+<P>コールバックの<CODE>返り値には、コールバックから抜けてすぐに停止(か、蓋が閉じられていれば電源オフ)する場合
+TRUE を指定してください。FALSEを指定すると停止しません。必要な処理の後停止する場合は後から
+<A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut()</A> を呼び出してください。</CODE>ただし<CODE>停止処理はPXIを使用してARM7に通達するので、割り込み禁止状態であるコールバックの中からは呼び出せません。</CODE></P>
+<P>例えば、抜けを検出したときに「DON'T PULL OUT CARD」と表示して停止するには以下のようにします。</P>
+<BLOCKQUOTE><B>Example:</B><BR>
+<CODE><BR>
+void NitroMain( void )<BR>
+{<BR>
+　initializeRoutine();<BR>
+　<FONT color="#ff0000">CARD_SetPulledOutCallback( myCallback );</FONT> <FONT color="#0066ff">// set callback</FONT><BR>
+<BR>
+　while(1)<BR>
+　{<BR>
+　　　usualGameProcedure();<BR>
+　　　if ( <FONT color="#ff0033">CARD_IsPulledOut()</FONT> ) <FONT color="#0066ff">// check if card is pulled out</FONT><BR>
+　　　{<BR>
+　　　　　drawMessageRoutine( &quot;DON'T PULL OUT CARD&quot; );<BR>
+　　　　　<FONT color="#ff0000">CARD_TerminateForPulledOut();</FONT> <FONT color="#0066ff">// termination</FONT><BR>
+　　　　　<FONT color="#0066ff">// program halted. never reached here.</FONT><BR>
+　　　}<BR>
+　}<BR>
+}<BR>
+<BR>
+<FONT color="#0066ff">//---- callback for card pulled out</FONT><BR>
+BOOL myCallback( void )<BR>
+{<BR>
+　return FALSE; <FONT color="#0066ff">// means that not terminate</FONT><BR>
+}<BR>
+<BR>
+</CODE></BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE><A href="../common/CARD_Init.html">CARD_Init</A>,
+<A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut</A>,
+<A href="CARD_IsPulledOut.html">CARD_IsPulledOut</A>,
+<A href="CARD_CheckPulledOut.html">CARD_CheckPulledOut</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/12/16 サンプルコードを <CODE>CARD_IsPulledOut()</CODE> を使うように修正<BR>
+2004/11/10 コールバックから戻った後の停止処理で蓋が閉じられていれば電源オフと追記<BR>
+2004/09/16 初版</P>
+</BODY>
+</HTML>

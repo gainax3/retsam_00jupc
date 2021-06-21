@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>エラーコード一覧</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">エラーコード一覧</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+#define VCT_ERROR_NONE                  0
+#define VCT_ERROR_BAD_PARAM            -1
+#define VCT_ERROR_BAD_MODE             -2
+#define VCT_ERROR_BAD_REQUEST          -3
+#define VCT_ERROR_SEND_FAIL            -4
+#define VCT_ERROR_TRANSCEIVER_BUSY     -5
+#define VCT_ERROR_EXHAUST_CLIENTS      -6
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_NONE</I></B></TD>
+      <TD width="70%">エラーなし</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_BAD_PARAM</I></B></TD>
+      <TD width="70%">不正な関数パラメータ</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_BAD_MODE</I></B></TD>
+      <TD width="70%">不正なモード（電話モードでトランシーバー関数を呼び出した、など）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_BAD_REQUEST</I></B></TD>
+      <TD width="70%">不正なリクエスト</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_SEND_FAIL</I></B></TD>
+      <TD width="70%">送信処理に失敗</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_TRANSCEIVER_BUSY</I></B></TD>
+      <TD width="70%">トランシーバーが現在BUSY（他のクライアントが会話中）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_ERROR_EXHAUST_CLIENTS</I></B></TD>
+      <TD width="70%">クライアント数が上限に達した</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>VoiceChatライブラリのエラーコードです。
+
+<h2>参照</h2>
+<P>なし</P>
+<H2>履歴</H2>
+<P>2006/04/17 初版</P>
+</body>
+</html>

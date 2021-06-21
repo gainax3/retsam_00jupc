@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_CancelAlarm</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_Init</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>void CTRDG_Init( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>カートリッジライブラリの初期化を行います。<BR>
+カートリッジ関数を呼ぶ前に一度だけ呼べば結構ですが、<A href="../os/init/OS_Init.html">OS_Init</A>関数を呼び出している場合はその中から呼び出されていますのでアプリケーションで呼ぶ必要はありません。<br>
+<br>
+</P>
+<H2>注意</H2>
+<P><font color="#800000">
+ライブラリはこの初期化処理の中で最初にカートリッジ有無の判定およびその情報取得を行い、<br>
+以降はそれらの値が <a href="CTRDG_GetAgbMakerCode.html">CTRDG_GetAgbMakerCode</a> 関数および <a href="CTRDG_GetAgbMakerCode.html">CTRDG_GetAgbGameCode</a> 関数内での正当性判定に使用されます。<br>
+よって、カートリッジを使用する場合にはこの関数を呼び出す前にカートリッジを「有効な状態」にしておく必要があるという点に注意してください。<br>
+<br>
+「有効な状態」とは、IS-NITRO-DEBUGGER などの開発機材においてはカートリッジ電源がＯＮであることを意味します。
+<br><br>
+また、この関数を呼ぶと AGB バックアップアクセス関数の非同期関数を実行するためのスレッドが作成されますので事前に <CODE><A href="../os/thread/OS_InitThread.html">OS_InitThread</A></CODE> 関数を呼んでおく必要があります。</font>
+</P>
+
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_SetPulledOutCallback.html">CTRDG_SetPulledOutCallback</A>, <A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2006/04/05 事前に OS_InitThread 関数を呼ばなければならなくなった点を記述追加<br>
+2005/04/12 CTRDG_GetAgbMakerCode関数およびCTRDG_GetAgbGameCode関数と初回取得情報との関係について記述を訂正<br>
+2005/03/03 カートリッジ有無の判定が初期化時のみ行われる点について記述追加<br>
+2004/09/15 初版<br>
+</P>
+</BODY>
+</HTML>

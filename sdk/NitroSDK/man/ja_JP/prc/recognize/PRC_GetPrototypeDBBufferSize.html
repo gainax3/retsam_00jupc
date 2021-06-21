@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRC_GetPrototypeDBBufferSize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRC_GetPrototypeDBBufferSize*</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+u32 PRC_GetPrototypeDBBufferSize(
+    const <A href="PRCPrototypeList.html">PRCPrototypeList</A>*     prototypeList );
+
+u32 PRC_GetPrototypeDBBufferSizeEx(
+    const <A href="PRCPrototypeList.html">PRCPrototypeList</A>*     prototypeList,
+    u32                         kindMask,
+    BOOL                        ignoreDisabledEntries,
+    const <A href="PRCPrototypeDBParam.html">PRCPrototypeDBParam</A>*  param );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">prototypeList</font></strong></em></td>
+    <td width="87%">見本パターンの一覧へのポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">kindMask</font></strong></em></td>
+    <td width="87%">見本DBに取り込む見本DBエントリの図形種をビットフィールドで選択</td>
+  </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">ignoreDisabledEntries</font></strong></em></td>
+      <td width="87%">enabled フラグが偽の見本DBエントリは無視するか</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">param</font></strong></em></td>
+      <td width="87%">認識アルゴリズム依存のその他のパラメータ値　（NULL でデフォルト値を使用）</td>
+    </tr>
+  </table>
+
+<h2>返り値</h2>
+<p>見本DBを作成するのに必要なワークエリアのメモリサイズを返します。</p>
+
+<H2>説明</H2>
+<P><CODE><A href="PRCPrototypeList.html">PRCPrototypeList</A></CODE>型の見本パターンの一覧を認識で使う際には<CODE><A href="PRCPrototypeDB.html">PRCPrototypeDB</A></CODE>型の見本DBに展開する必要がありますが、その際に必要なワークエリアのメモリサイズを返します。この返り値以上のサイズのメモリを確保した上で、<CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB</A></CODE>を呼び出してください。</P>
+<P><CODE>kindMask</CODE> 値は、<CODE>prototypeList</CODE> 中の各見本DBエントリの <CODE>kind</CODE> 値と AND がとられ、結果が非0であれば見本DBに取り込まれます。<CODE>kindMask</CODE> に <CODE>PRC_KIND_ALL</CODE> を指定すると全種類を選択します。<CODE>ignoreDisabledEntries</CODE> が真の場合、<CODE>enabled</CODE> フラグが偽の見本DBエントリは <CODE>kind</CODE> 値が合致していても見本DBには組み込まれません。</P>
+<P><CODE>PRC_GetPrototypeDBBufferSize(prototypeList)</CODE> は <CODE>PRC_GetPrototypeDBBufferSizeEx(prototypeList, PRC_KIND_ALL, FALSE, NULL)</CODE> と同等です。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB</A>, <A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDBEx</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
+</body>
+</html>

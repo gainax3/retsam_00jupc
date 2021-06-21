@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_IsTickAvailable</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_IsTickAvailable</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL OS_IsTickAvailable( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>チックが初期化され使用できるかどうかを返します。TRUE ならば使用可能です。</P>
+<H2>説明</H2>
+<P>チックがOS_InitTick() で初期化され、使用可能かどうかを返します。<BR>
+返り値がFALSE の場合、OS_GetTick() でチック値を取得することは出来ません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitTick.html">OS_InitTick</A>, <A href="OS_GetTick.html">OS_GetTick</A>,  <A href="OS_GetTickLo.html">OS_GetTickLo</A>, <A href="OS_SetTick.html">OS_SetTick</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/02/25 systemClock→tickに<BR>
+2004/02/04 初版</P>
+</BODY>
+</HTML>

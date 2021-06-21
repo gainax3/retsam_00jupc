@@ -1,0 +1,110 @@
+<HTML lang="ja">
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_SetAuthServer</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_SetAuthServer</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_SetAuthServer( DWCInetAuthType type );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  この関数は、ニンテンドーDSに設定されたWi-Fi Connection IDを認証し、GameSpy社のサーバに接続する為の情報を発行する任天堂の認証サーバを設定します。
+		</P>
+		<P>
+		  認証サーバは、開発向けと製品向けの２種類のものを提供しています。
+		</P>
+		<P>
+		  開発・デバッグ時には開発向け認証サーバを使用し、最終ROM作成時に製品向け認証サーバに切り替えて動作確認を行ってください。
+		  開発中のテスト段階では製品向け認証サーバを使用しないようにしてください。
+		</P>
+		<P>
+		  なお、開発向け認証サーバを指定した場合は、ホットスポットからの認証サーバへの接続ができません。
+		</P>
+		<P>
+		  認証サーバを選択するために、この関数を以下のタイミングで呼び出すようにしてください。
+		</P>
+		<H3>インターネット接続前</H3>
+		<PRE class="sample"><CODE>...
+DWC_InitInet( &stConnCtrl );
+DWC_SetAuthServer( DWC_CONNECTINET_AUTH_RELEASE ); // DWC_InitInet()の後に呼び出す。
+...</CODE></PRE>
+		<H3>Wi-Fiコネクション設定使用前</H3>
+		<PRE class="sample"><CODE>...
+DWC_SetAuthServer( DWC_CONNECTINET_AUTH_RELEASE ); // DWC_StartUtility()の前に呼び出す。
+DWC_StartUtility( ... );
+...</CODE></PRE>
+
+		<h3>認証サーバの稼働状況</h3>
+		  <p>各認証サーバの稼働状況の確認は、下記のリンクを参照し、「AuthServer is up」という文字列が表示されれば稼動中と判断出来ます。</p>
+		<table width="80%" border="1" cellspacing="2" cellpadding="0" align="center">
+			<tr>
+				<td align="center" width="50%"><a href="https://nas.nintendowifi.net/nastest.jsp" target="_blank">製品向け認証サーバ</a></td>
+				<td align="center"><a href="https://nas.test.nintendowifi.net/nastest.jsp" target="_blank">開発向け認証サーバ</a></td>
+			</tr>
+		</table>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>type</CODE></STRONG></EM></TD>
+					<TD width="75%">使用する認証サーバの種類を設定します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<p>認証サーバの種類typeは以下のいずれかを指定してください。</p>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_AUTH_TEST</CODE></STRONG></EM></TD>
+					<TD width="75%">開発向け認証サーバを使用します。（デフォルト）</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_AUTH_RELEASE</CODE></STRONG></EM></TD>
+					<TD width="75%">製品向け認証サーバを使用します。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_AUTH_DEVELOP</CODE></STRONG></EM></TD>
+					<TD width="75%">ライブラリの開発用に使用します。アプリケーションは使用しないでください。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_InitInet.html">DWC_InitInet</A>,
+				<A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>,
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_ProcessInet.html">DWC_ProcessInet</A>,
+				<A href="DWC_GetInetStatus.html">DWC_GetInetStatus</A>,
+				<A href="DWC_CleanupInet.html">DWC_CleanupInet</A>
+				<A href="DWC_CleanupInetAsync.html">DWC_CleanupInetAsync</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 引数の説明にDWC_CONNECTINET_AUTH_DEVELOPと開発向け認証サーバの説明を追加<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

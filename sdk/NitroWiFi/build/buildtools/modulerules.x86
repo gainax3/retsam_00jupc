@@ -1,0 +1,24 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - buildtools
+# File:     modulerules.x86
+#
+# Copyright 2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules.x86,v $
+# Revision 1.1  2006/01/23 06:42:27  seiki_masashi
+# PC 用ツールのビルド環境を追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+include  $(NITROSDK_ROOT)/build/buildtools/modulerules.x86
+include  $(NITROWIFI_ROOT)/build/buildtools/modulerules.x86.WiFi
+
+#===== End of modulerules =====

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_InitDevice</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_InitDevice</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  void MI_InitDevice(MIDevice *device, void *userdata,
+                   <a href="./MIDeviceReadFunction.html">MIDeviceReadFunction</a> read,
+                   <a href="./MIDeviceWriteFunction.html">MIDeviceWriteFunction</a> write);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>device</strong></em></td>
+      <td width="87%">初期化する<a href="./MIDevice.html">MIDevice</a>構造体へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>userdata</strong></em></td>
+      <td width="87%">構造体に関連付ける任意のユーザ定義値</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>read</strong></em></td>
+      <td width="87%">読み込みアクセスに使用するコールバック関数へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>device</strong></em></td>
+      <td width="87%">書き込みアクセスに使用するコールバック関数へのポインタ</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<h2>説明</h2>
+<p>読み込み・書き込みアクセスに使用するコールバックと任意の引数を指定して<a href="./MIDevice.html">MIDevice</a>構造体を初期化します。<br />
+この構造体を使用して<a href="./MI_ReadDevice.html">MI_ReadDevice</a>関数および<a href="./MI_WriteDevice.html">MI_WriteDevice</a>関数を呼び出すと、
+それぞれのコールバック関数が直接呼び出されます。<br />
+</p>
+<p>
+この機能は、モジュール設計からデバイス制御部分を分離するためのユーティリティです。<br />
+詳細は<a href="MIDevice.html">MIDevice</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_ReadDevice.html">MI_ReadDevice</a>,
+<a href="MI_WriteDevice.html">MI_WriteDevice</a><br />
+<a href="MIDevice.html">MIDevice</a>,
+<a href="MIDeviceReadFunction.html">MIDeviceReadFunction</a>,
+<a href="MIDeviceWriteFunction.html">MIDeviceWriteFunction</a><br />
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/09 初版<br />
+</p>
+</body>
+</html>

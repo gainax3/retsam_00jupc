@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcSetFileAddress</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcSetFileAddress</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcSetFileAddress( u32 <var>fileId</var>, void* <var>address</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>fileId</code></strong></em></td>
+<td>ファイルIDです。</td>
+</tr>
+<tr>
+<td><em><strong><code>address</code></strong></em></td>
+<td>ファイルアドレスです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ中のファイルのファイルアドレスをセットします。
+セットしたアドレス値は、ファイルID<em><strong><code>fileId</code></strong></em>をキーにして
+<tt class="function"><a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a></tt>関数を呼びだして、
+取得することができます。
+</p>
+      <p>
+ファイルID<em><strong><code>fileId</code></strong></em>は、
+<tt class="function"><a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a></tt>関数などで
+得たサウンドデータの情報構造体から取得することができます。
+</p>
+      <p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcLoadSeq.html">NNS_SndArcLoadSeq</a></tt>関数などで、
+ロードしたサウンドデータのアドレスをセットするために、呼びだされています。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a>, <a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a>, <a href="NNS_SndArcLoadSeq.html">NNS_SndArcLoadSeq</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

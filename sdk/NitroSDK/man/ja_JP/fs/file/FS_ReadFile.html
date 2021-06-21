@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_ReadFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_ReadFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>s32 FS_ReadFile( FSFile *p_file, void *dst, s32 len );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="87%">格納先バッファのアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">読み出すデータのバイト長</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>データが正しく読み出せればバイト数を, そうでないなら -1 を返します。</p>
+
+<H2>説明</H2>
+<P>ファイルポインタの現在位置から指定サイズのデータを読み出します。<BR>
+終端を越えるようにサイズ指定した場合、終端まで読み出してそのサイズを返します。<BR>
+<BR>
+<A href="../archive_rom_spec.html">ROM アーカイブ</A>を使用してカードデータを読み出す際には、
+<a href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>関数の説明も参照ください。<BR>
+</P>
+<H2>注意</H2>
+<p><font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font></p>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="FS_OpenFile.html">FS_OpenFile</A> 
+<A href="FS_OpenFileFast.html">FS_OpenFileFast</A> 
+<A href="FS_CloseFile.html">FS_CloseFile</A> 
+<A href="FS_GetLength.html">FS_GetLength</A> 
+<A href="FS_SeekFile.html">FS_SeekFile</A> 
+<A href="FS_SeekFileToBegin.html">FS_SeekFileToBegin</A> 
+<A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/08/28 説明文にCARD_ReadRomAsync関数へのリンクを追加<br>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/04/01 初版
+</P>
+</body>
+</html>

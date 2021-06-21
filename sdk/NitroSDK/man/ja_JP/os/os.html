@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>OS 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H3>オペレーティングシステム(OS)</H3>
+<P>[<B><A href="list_os.html">機能一覧</A></B>]</P>
+<DL>
+  <DT>初期化
+  <DD><A href="init/OS_Init.html">OS_Init</A>
+  <DD><A href="init/OS_InitChina.html">OS_InitChina</A>
+  <DD><A href="init/OS_ShowAttentionChina.html">OS_ShowAttentionChina</A>
+  <DD><A href="init/NitroStartUp.html">NitroStartUp</A>
+  <DD><A href="init/NitroStaticInit.html">NitroStaticInit</A>
+</DL>
+<DL>
+  <DT>リセット
+  <DD><A href="reset/OS_InitReset.html">OS_InitReset</A>
+  <DD><A href="reset/OS_ResetSystem.html">OS_ResetSystem</A>
+  <DD><A href="reset/OS_GetResetParameter.html">OS_GetResetParameter</A>
+</DL>
+<DL>
+  <DT>システム状態
+  <DD><A href="system/OS_EnableInterrupts.html">OS_EnableInterrupts</A>
+  <DD><A href="system/OS_DisableInterrupts.html">OS_DisableInterrupts</A>
+  <DD><A href="system/OS_RestoreInterrupts.html">OS_RestoreInterrupts</A>
+  <DD><A href="system/OS_EnableInterrupts_IrqAndFiq.html">OS_EnableInterrupts_IrqAndFiq</A>
+  <DD><A href="system/OS_DisableInterrupts_IrqAndFiq.html">OS_DisableInterrupts_IrqAndFiq</A>
+  <DD><A href="system/OS_RestoreInterrupts_IrqAndFiq.html">OS_RestoreInterrupts_IrqAndFiq</A>
+  <DD><A href="system/OS_GetCpsrIrq.html">OS_GetCpsrIrq</A>
+  <DD><A href="system/OS_GetProcMode.html">OS_GetProcMode</A>
+  <DD><A href="system/OS_Halt.html">OS_Halt</A>
+  <DD><A href="system/OS_Terminate.html">OS_Terminate</A>
+  <DD><A href="system/OS_Exit.html">OS_Exit</A>
+  <DD><A href="system/OS_SpinWait.html">OS_SpinWait</A>
+</DL>
+
+<DL>
+  <DT>TCM
+  <DD><A href="tcm/OS_EnableITCM.html">OS_EnableITCM</A>
+  <DD><A href="tcm/OS_DisableITCM.html">OS_DisableITCM</A>
+  <DD><A href="tcm/OS_GetITCMAddress.html">OS_GetITCMAddress</A>
+  <DD><A href="tcm/OS_EnableDTCM.html">OS_EnableDTCM</A>
+  <DD><A href="tcm/OS_DisableDTCM.html">OS_DisableDTCM</A>
+  <DD><A href="tcm/OS_SetITCMParam.html">OS_SetITCMParam</A>
+  <DD><A href="tcm/OS_GetITCMParam.html">OS_GetITCMParam</A>
+  <DD><A href="tcm/OS_SetDTCMParam.html">OS_SetDTCMParam</A>
+  <DD><A href="tcm/OS_GetDTCMParam.html">OS_GetDTCMParam</A>
+  <DD><A href="tcm/OS_SetDTCMAddress.html">OS_SetDTCMAddress</A>
+  <DD><A href="tcm/OS_GetDTCMAddress.html">OS_GetDTCMAddress</A>
+</DL>
+
+<DL>
+  <DT>プロテクションユニット
+  <DD><A href="protectionUnit/OS_EnableProtectionUnit.html">OS_EnableProtectionUnit</A>
+  <DD><A href="protectionUnit/OS_DisableProtectionUnit.html">OS_DisableProtectionUnit</A>
+  <DD><A href="protectionUnit/OS_SetProtectionRegion.html">OS_SetProtectionRegion</A>
+  <DD><A href="protectionUnit/OS_SetProtectionRegion.html">OS_SetProtectionRegionParam</A>
+  <DD><A href="protectionUnit/OS_GetProtectionRegion.html">OS_GetProtectionRegionAddress</A>
+  <DD><A href="protectionUnit/OS_GetProtectionRegion.html">OS_GetProtectionRegionSize</A>
+  <DD><A href="protectionUnit/OS_GetProtectionRegion.html">OS_GetProtectionRegionParam</A>
+</DL>
+
+<DL>
+  <DT>例外
+  <DD><A href="exception/OS_InitException.html">OS_InitException</A>
+  <DD><A href="exception/OS_SetUserExceptionHandler.html">OS_SetUserExceptionHandler</A>
+  <DD><A href="exception/OS_SetExceptionVectorLower.html">OS_SetExceptionVectorLower</A>
+  <DD><A href="exception/OS_SetExceptionVectorUpper.html">OS_SetExceptionVectorUpper</A>
+</DL>
+<DL>
+  <DT>割り込み
+  <DD><A href="irq/OS_EnableIrq.html">OS_EnableIrq</A>
+  <DD><A href="irq/OS_DisableIrq.html">OS_DisableIrq</A>
+  <DD><A href="irq/OS_RestoreIrq.html">OS_RestoreIrq</A>
+  <DD><A href="irq/OS_SetIrqMask.html">OS_SetIrqMask</A>
+  <DD><A href="irq/OS_GetIrqMask.html">OS_GetIrqMask</A>
+  <DD><A href="irq/OS_EnableIrqMask.html">OS_EnableIrqMask</A>
+  <DD><A href="irq/OS_DisableIrqMask.html">OS_DisableIrqMask</A>
+  <DD><A href="irq/OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask</A>
+  <DD><A href="irq/OS_GetRequestIrqMask.html">OS_GetRequestIrqMask</A>
+  <DD><A href="irq/OS_InitIrqTable.html">OS_InitIrqTable</A>
+  <DD><A href="irq/OS_SetIrqFunction.html">OS_SetIrqFunction</A>
+  <DD><A href="irq/OS_GetIrqFunction.html">OS_GetIrqFunction</A>
+  <DD><A href="irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>
+  <DD><A href="irq/OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag</A>
+  <DD><A href="irq/OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag</A>
+  <DD><A href="irq/OS_WaitIrq.html">OS_WaitIrq</A>
+  <DD><A href="irq/OS_WaitAnyIrq.html">OS_WaitAnyIrq</A>
+  <DD><A href="system/OS_WaitInterrupt.html">OS_WaitInterrupt</A>
+  <DD><A href="system/OS_WaitVBlankIntr.html">OS_WaitVBlankIntr</A>
+  <DD><A href="irq/OS_GetVBlankCount.html">OS_GetVBlankCount</A>
+</DL>
+<DL>
+  <DT>タイマー
+  <DD><A href="timer/OS_StartTimer.html">OS_StartTimer</A>
+  <DD><A href="timer/OS_StartTimer.html">OS_StartTimer32</A>
+  <DD><A href="timer/OS_StartTimer.html">OS_StartTimer48</A>
+  <DD><A href="timer/OS_StartTimer.html">OS_StartTimer64</A>
+  <DD><A href="timer/OS_StopTimer.html">OS_StopTimer</A>
+  <DD><A href="timer/OS_StopTimer.html">OS_StopTimer32</A>
+  <DD><A href="timer/OS_StopTimer.html">OS_StopTimer48</A>
+  <DD><A href="timer/OS_StopTimer.html">OS_StopTimer64</A>
+</DL>
+
+<DL>
+  <DT>アラーム
+  <DD><A href="alarm/OS_InitAlarm.html">OS_InitAlarm</A>
+  <DD><A href="alarm/OS_EndAlarm.html">OS_EndAlarm</A>
+  <DD><A href="alarm/OS_IsAlarmAvailable.html">OS_IsAlarmAvailable</A>
+  <DD><A href="alarm/OS_CreateAlarm.html">OS_CreateAlarm</A>
+  <DD><A href="alarm/OS_SetAlarm.html">OS_SetAlarm</A>
+  <DD><A href="alarm/OS_SetPeriodicAlarm.html">OS_SetPeriodicAlarm</A>
+  <DD><A href="alarm/OS_SetAlarmTag.html">OS_SetAlarmTag</A>
+  <DD><A href="alarm/OS_CancelAlarm.html">OS_CancelAlarm</A>
+  <DD><A href="alarm/OS_CancelAlarms.html">OS_CancelAlarms</A>
+  <DD><A href="alarm/OS_CancelAllAlarms.html">OS_CancelAllAlarms</A>
+</DL>
+
+<DL>
+  <DT>Vカウントアラーム
+  <DD><A href="valarm/OS_InitVAlarm.html">OS_InitVAlarm</A>
+  <DD><A href="valarm/OS_EndVAlarm.html">OS_EndVAlarm</A>
+  <DD><A href="valarm/OS_IsVAlarmAvailable.html">OS_IsVAlarmAvailable</A>
+  <DD><A href="valarm/OS_CreateVAlarm.html">OS_CreateVAlarm</A>
+  <DD><A href="valarm/OS_SetVAlarm.html">OS_SetVAlarm</A>
+  <DD><A href="valarm/OS_SetOneTimeVAlarm.html">OS_SetOneTimeVAlarm</A>
+  <DD><A href="valarm/OS_SetPeriodicVAlarm.html">OS_SetPeriodicVAlarm</A>
+  <DD><A href="valarm/OS_SetVAlarmTag.html">OS_SetVAlarmTag</A>
+  <DD><A href="valarm/OS_CancelVAlarm.html">OS_CancelVAlarm</A>
+  <DD><A href="valarm/OS_CancelVAlarms.html">OS_CancelVAlarms</A>
+  <DD><A href="valarm/OS_CancelAllVAlarms.html">OS_CancelAllVAlarms</A>
+</DL>
+
+
+<DL>
+  <DT>時間
+  <DD><A href="time/OS_InitTick.html">OS_InitTick</A>
+  <DD><A href="time/OS_IsTickAvailable.html">OS_IsTickAvailable</A>
+  <DD><A href="time/OS_GetTick.html">OS_GetTick</A>
+  <DD><A href="time/OS_GetTickLo.html">OS_GetTickLo</A>
+  <DD><A href="time/OS_SetTick.html">OS_SetTick</A>
+  <DD><A href="time/OS_SecondsToTicks.html">OS_MicroSecondsToTicks*</A>
+  <DD><A href="time/OS_SecondsToTicks.html">OS_MilliSecondsToTicks*</A>
+  <DD><A href="time/OS_SecondsToTicks.html">OS_SecondsToTicks*</A>
+  <DD><A href="time/OS_TicksToSeconds.html">OS_TicksToMicroSeconds*</A>
+  <DD><A href="time/OS_TicksToSeconds.html">OS_TicksToMilliSeconds*</A>
+  <DD><A href="time/OS_TicksToSeconds.html">OS_TicksToSeconds*</A>
+</DL>
+<DL>
+  <DT>スレッド
+  <DD><A href="thread/OS_InitThread.html">OS_InitThread</A>
+  <DD><A href="thread/OS_IsThreadAvailable.html">OS_IsThreadAvailable</A>
+  <DD><A href="thread/OS_CreateThread.html">OS_CreateThread</A>
+  <DD><A href="thread/OS_InitThreadQueue.html">OS_InitThreadQueue</A>
+  <DD><A href="thread/OS_ExitThread.html">OS_ExitThread</A>
+  <DD><A href="thread/OS_KillThread.html">OS_KillThread</A>
+  <DD><A href="thread/OS_KillThread.html">OS_KillThreadWithPriority</A>
+  <DD><A href="thread/OS_DestroyThread.html">OS_DestroyThread</A>
+  <DD><A href="thread/OS_JoinThread.html">OS_JoinThread</A>
+  <DD><A href="thread/OS_IsThreadTerminated.html">OS_IsThreadTerminated</A>
+  <DD><A href="thread/OS_SelectThread.html">OS_SelectThread</A>
+  <DD><A href="thread/OS_SetSwitchThreadCallback.html">OS_SetSwitchThreadCallback</A>
+  <DD><A href="thread/OS_RescheduleThread.html">OS_RescheduleThread</A>
+  <DD><A href="thread/OS_YieldThread.html">OS_YieldThread</A>
+  <DD><A href="thread/OS_SleepThread.html">OS_SleepThread</A>
+  <DD><A href="thread/OS_SleepThreadDirect.html">OS_SleepThreadDirect</A>
+  <DD><A href="thread/OS_Sleep.html">OS_Sleep</A>
+  <DD><A href="thread/OS_WakeupThread.html">OS_WakeupThread</A>
+  <DD><A href="thread/OS_WakeupThreadDirect.html">OS_WakeupThreadDirect</A>
+  <DD><A href="thread/OS_SetThreadPriority.html">OS_SetThreadPriority</A>
+  <DD><A href="thread/OS_GetThreadPriority.html">OS_GetThreadPriority</A>
+  <DD><A href="thread/OS_GetCurrentThread.html">OS_GetCurrentThread</A>
+  <DD><A href="thread/OS_GetNumberOfThread.html">OS_GetNumberOfThread</A>
+  <DD><A href="thread/OS_DisableScheduler.html">OS_DisableScheduler</A>
+  <DD><A href="thread/OS_EnableScheduler.html">OS_EnableScheduler</A>
+  <DD><A href="thread/OS_SetThreadParameter.html">OS_SetThreadParameter</A>
+  <DD><A href="thread/OS_GetThreadParameter.html">OS_GetThreadParameter</A>
+  <DD><A href="thread/OS_SetThreadDestructor.html">OS_SetThreadDestructor</A>
+  <DD><A href="thread/OS_GetThreadDestructor.html">OS_GetThreadDestructor</A>
+  <DD><A href="thread/OS_SetThreadDestructorStack.html">OS_SetThreadDestructorStack</A>
+  <DD><A href="thread/OS_DumpThreadList.html">OS_DumpThreadList</A>
+</DL>
+<DL>
+  <DT>排他制御
+  <DD><A href="mutex/OS_InitMutex.html">OS_InitMutex</A>
+  <DD><A href="mutex/OS_LockMutex.html">OS_LockMutex</A>
+  <DD><A href="mutex/OS_UnlockMutex.html">OS_UnlockMutex</A>
+  <DD><A href="mutex/OS_TryLockMutex.html">OS_TryLockMutex</A>
+  <DD><A href="spinLock/OS_InitLock.html">OS_InitLock</A>
+  <DD><A href="spinLock/OS_LockCard.html">OS_LockCard</A>
+  <DD><A href="spinLock/OS_LockCartridge.html">OS_LockCartridge</A>
+  <DD><A href="spinLock/OS_UnlockCard.html">OS_UnlockCard</A>
+  <DD><A href="spinLock/OS_UnlockCartridge.html">OS_UnlockCartridge</A>
+  <DD><A href="spinLock/OS_TryLockCard.html">OS_TryLockCard</A>
+  <DD><A href="spinLock/OS_TryLockCartridge.html">OS_TryLockCartridge</A>
+  <DD><A href="spinLock/OS_GetLockID.html">OS_GetLockID</A>
+  <DD><A href="spinLock/OS_ReleaseLockID.html">OS_ReleaseLockID</A>
+</DL>
+<DL>
+  <DT>コンテキスト
+  <DD><A href="context/OS_InitContext.html">OS_InitContext</A>
+  <DD><A href="context/OS_SaveContext.html">OS_SaveContext</A>
+  <DD><A href="context/OS_LoadContext.html">OS_LoadContext</A>
+  <DD><A href="context/OS_DumpContext.html">OS_DumpContext</A>
+</DL>
+<DL>
+  <DT>メッセージ
+  <DD><A href="message/OS_InitMessageQueue.html">OS_InitMessageQueue</A>
+  <DD><A href="message/OS_SendMessage.html">OS_SendMessage</A>
+  <DD><A href="message/OS_JamMessage.html">OS_JamMessage</A>
+  <DD><A href="message/OS_ReceiveMessage.html">OS_ReceiveMessage</A>
+  <DD><A href="message/OS_ReadMessage.html">OS_ReadMessage</A>
+</DL>
+<DL>
+  <DT>キャッシュ
+  <DD><A href="cache/DC_Enable.html">DC_Enable</A>
+  <DD><A href="cache/DC_Disable.html">DC_Disable</A>
+  <DD><A href="cache/DC_Restore.html">DC_Restore</A>
+  <DD><A href="cache/DC_InvalidateAll.html">DC_InvalidateAll</A>
+  <DD><A href="cache/DC_StoreAll.html">DC_StoreAll</A>
+  <DD><A href="cache/DC_StoreAll.html">DC_CleanAll</A>
+  <DD><A href="cache/DC_FlushAll.html">DC_FlushAll</A>
+  <DD><A href="cache/DC_FlushAll.html">DC_CleanAndInvalidateAll</A>
+  <DD><A href="cache/DC_InvalidateRange.html">DC_InvalidateRange</A>
+  <DD><A href="cache/DC_StoreRange.html">DC_StoreRange</A>
+  <DD><A href="cache/DC_StoreRange.html">DC_CleanRange</A>
+  <DD><A href="cache/DC_FlushRange.html">DC_FlushRange</A>
+  <DD><A href="cache/DC_FlushRange.html">DC_CleanAndInvalidateRange</A>
+  <DD><A href="cache/DC_TouchRange.html"><font color="#808080">DC_TouchRange</font></A>
+  <DD><A href="cache/DC_LockdownRange.html">DC_LockdownRange</A>
+  <DD><A href="cache/DC_Unlockdown.html">DC_Unlockdown</A>
+  <DD><A href="cache/DC_UnlockdownAll.html">DC_UnlockdownAll</A>
+
+  <DD><A href="cache/DC_WaitWriteBufferEmpty.html">DC_WaitWriteBufferEmpty</A>
+  <DD><A href="cache/IC_Enable.html">IC_Enable</A>
+  <DD><A href="cache/IC_Disable.html">IC_Disable</A>
+  <DD><A href="cache/IC_Restore.html">IC_Restore</A>
+  <DD><A href="cache/IC_InvalidateAll.html">IC_InvalidateAll</A>
+  <DD><A href="cache/IC_InvalidateRange.html">IC_InvalidateRange</A>
+  <DD><A href="cache/IC_PrefetchRange.html">IC_PrefetchRange</A>
+  <DD><A href="cache/IC_LockdownRange.html">IC_LockdownRange</A>
+  <DD><A href="cache/IC_Unlockdown.html">IC_Unlockdown</A>
+  <DD><A href="cache/IC_UnlockdownAll.html">IC_UnlockdownAll</A>
+</DL>
+<DL>
+  <DT>アリーナ
+  <DD><A href="arena/OS_InitArena.html">OS_InitArena</A>
+  <DD><A href="arena/OS_EnableMainExArena.html">OS_EnableMainExArena</A>
+  <DD><A href="arena/OS_DisableMainExArena.html">OS_DisableMainExArena</A>
+  <DD><A href="arena/OS_SetArenaHi.html">OS_SetArenaHi</A>
+  <DD><A href="arena/OS_SetArenaHi.html">OS_Set*ArenaHi</A>
+  <DD><A href="arena/OS_SetArenaLo.html">OS_SetArenaLo</A>
+  <DD><A href="arena/OS_SetArenaLo.html">OS_Set*ArenaLo</A>
+  <DD><A href="arena/OS_GetArenaHi.html">OS_GetArenaHi</A>
+  <DD><A href="arena/OS_GetArenaHi.html">OS_Get*ArenaHi</A>
+  <DD><A href="arena/OS_GetArenaLo.html">OS_GetArenaLo</A>
+  <DD><A href="arena/OS_GetArenaLo.html">OS_Get*ArenaLo</A>
+  <DD><A href="arena/OS_AllocFromArenaHi.html">OS_AllocFromArenaHi</A>
+  <DD><A href="arena/OS_AllocFromArenaHi.html">OS_AllocFrom*ArenaHi</A>
+  <DD><A href="arena/OS_AllocFromArenaLo.html">OS_AllocFromArenaLo</A>
+  <DD><A href="arena/OS_AllocFromArenaLo.html">OS_AllocFrom*ArenaLo</A>
+</DL>
+<DL>
+  <DT>メモリ割り当て
+  <DD><A href="alloc/OS_InitAlloc.html">OS_InitAlloc</A>
+  <DD><A href="alloc/OS_ClearAlloc.html">OS_ClearAlloc</A>
+  <DD><A href="alloc/OS_CreateHeap.html">OS_CreateHeap</A>
+  <DD><A href="alloc/OS_DestroyHeap.html">OS_DestroyHeap</A>
+  <DD><A href="alloc/OS_ClearHeap.html">OS_ClearHeap</A>
+  <DD><A href="alloc/OS_AddToHeap.html">OS_AddToHeap</A>
+  <DD><A href="alloc/OS_SetCurrentHeap.html">OS_SetCurrentHeap</A>
+  <DD><A href="alloc/OS_AllocFromHeap.html">OS_AllocFromHeap</A>
+  <DD><A href="alloc/OS_AllocFromHeap.html">OS_AllocFrom*</A>
+  <DD><A href="alloc/OS_AllocFromHeap.html">OS_Alloc</A>
+  <DD><A href="alloc/OS_AllocFixed.html">OS_AllocFixed</A>
+  <DD><A href="alloc/OS_FreeToHeap.html">OS_FreeToHeap</A>
+  <DD><A href="alloc/OS_FreeToHeap.html">OS_FreeTo*</A>
+  <DD><A href="alloc/OS_FreeToHeap.html">OS_Free</A>
+  <DD><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAllToHeap</A>
+  <DD><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAllTo*</A>
+  <DD><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAll</A>
+  <DD><A href="alloc/OS_CheckHeap.html">OS_CheckHeap</A>
+  <DD><A href="alloc/OS_DumpHeap.html">OS_DumpHeap</A>
+  <DD><A href="alloc/OS_ReferentSize.html">OS_ReferentSize</A>
+  <DD><A href="alloc/OS_VisitAllocated.html">OS_VisitAllocated</A>
+  <DD><A href="alloc/OS_GetTotalAllocSize.html">OS_GetTotalAllocSize</A>
+  <DD><A href="alloc/OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize</A>
+  <DD><A href="alloc/OS_GetTotalFreeSize.html">OS_GetTotalFreeSize</A>
+  <DD><A href="alloc/OS_GetMaxFreeSize.html">OS_GetMaxFreeSize</A>
+</DL>
+<DL>
+  <DT>本体情報
+  <DD><A href="ownerInfo/OS_GetOwnerInfo.html">OS_GetOwnerInfo</A>
+  <DD><A href="ownerInfo/OSOwnerInfo.html">OSOwnerInfo</A>
+  <DD><A href="ownerInfo/OS_GetOwnerRtcOffset.html">OS_GetOwnerRtcOffset</A>
+  <DD><A href="ownerInfo/OS_GetMacAddress.html">OS_GetMacAddress</A>
+  <DD><A href="ownerInfo/OS_GetFavoriteColorTable.html">OS_GetFavoriteColorTable</A>
+  <DD><A href="ownerInfo/OS_GetFavoriteColor.html">OS_GetFavoriteColor</A>
+  <DD><A href="ownerInfo/os_favorite_color_const.html">OS_FAVORITE_COLOR_*</A>
+  <DD><A href="entropy/OS_GetLowEntropyData.html">OS_GetLowEntropyData</A>
+</DL>
+<DL>
+  <DT>デバッグ(動作環境)
+  <DD><A href="debug/OS_IsRunOnEmulator.html">OS_IsRunOnEmulator</A>
+  <DD><A href="debug/OS_GetConsoleType.html">OS_GetConsoleType</A>
+</DL>
+<DL>
+  <DT>デバッグ(文字列表示)
+  <DD><A href="debug/OS_PutString.html">OS_PutString</A>
+  <DD><A href="debug/OS_Printf.html">OS_Printf</A>
+  <DD><A href="debug/OS_TPrintf.html">OS_TPrintf</A>
+  <DD><A href="debug/OS_VPrintf.html">OS_VPrintf</A>
+  <DD><A href="debug/OS_TVPrintf.html">OS_TVPrintf</A>
+  <DD><A href="debug/OS_SPrintf.html">OS_SPrintf</A>
+  <DD><A href="debug/OS_VSPrintf.html">OS_VSPrintf</A>
+  <DD><A href="debug/OS_SNPrintf.html">OS_SNPrintf</A>
+  <DD><A href="debug/OS_VSNPrintf.html">OS_VSNPrintf</A>
+  <DD><A href="debug/OS_TPrintfEx.html">OS_TPrintfEx</A>
+  <DD><A href="debug/OS_TVPrintfEx.html">OS_TVPrintfEx</A>
+  <DD><A href="debug/OS_VSNPrintfEx.html">OS_VSNPrintfEx</A>
+  <DD><A href="debug/OS_Warning.html">OS_Warning</A>
+  <DD><A href="debug/OS_TWarning.html">OS_TWarning</A>
+  <DD><A href="debug/OS_InitPrintServer.html"><font color="#808080">OS_InitPrintServer</font></A>
+  <DD><A href="debug/OS_PrintServer.html"><font color="#808080">OS_PrintServer</font></A>
+</DL>
+<DL>
+  <DT>デバッグ(アサート)
+  <DD><A href="debug/SDK_ASSERT.html">SDK_ASSERT*</A>
+  <DD><A href="debug/SDK_WARNING.html">SDK_WARNING</A>
+  <DD><A href="debug/OS_Panic.html">OS_Panic</A>
+  <DD><A href="debug/OS_TPanic.html">OS_TPanic</A>
+  <DD><A href="debug/SDK_COMPILER_ASSERT.html">SDK_COMPILER_ASSERT</A>
+</DL>
+<DL>
+  <DT>デバッグ(関数コールトレース)
+  <DD><A href="callTrace/OS_InitCallTrace.html">OS_InitCallTrace</A>
+  <DD><A href="callTrace/OS_DumpCallTrace.html">OS_DumpCallTrace</A>
+  <DD><A href="callTrace/OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace</A>
+  <DD><A href="callTrace/OS_CalcCallTraceLines.html">OS_CalcCallTraceLines</A>
+  <DD><A href="callTrace/OS_CalcCallTraceBufferSize.html">OS_CalcCallTraceBufferSize</A>
+
+  <DD><A href="callTrace/OS_ClearCallTraceBuffer.html">OS_ClearCallTraceBuffer</A>
+  <DD><A href="callTrace/OS_EnableCallTrace.html">OS_EnableCallTrace</A>
+  <DD><A href="callTrace/OS_DisableCallTrace.html">OS_DisableCallTrace</A>
+  <DD><A href="callTrace/OS_RestoreCallTrace.html">OS_RestoreCallTrace</A>
+</DL>
+<DL>
+  <DT>デバッグ(関数コスト計測)
+  <DD><A href="functionCost/OS_InitFunctionCost.html">OS_InitFunctionCost</A>
+  <DD><A href="functionCost/OS_CalcFunctionCostLines.html">OS_CalcFunctionCostLines</A>
+  <DD><A href="functionCost/OS_CalcFunctionCostBufferSize.html">OS_CalcFunctionCostBufferSize</A>
+  <DD><A href="functionCost/OS_ClearFunctionCostBuffer.html">OS_ClearFunctionCostBuffer</A>
+  <DD><A href="functionCost/OS_CheckFunctionCostBuffer.html">OS_CheckFunctionCostBuffer</A>
+  <DD><A href="functionCost/OS_EnableFunctionCost.html">OS_EnableFunctionCost</A>
+  <DD><A href="functionCost/OS_DisableFunctionCost.html">OS_DisableFunctionCost</A>
+  <DD><A href="functionCost/OS_RestoreFunctionCost.html">OS_RestoreFunctionCost</A>
+  <DD><A href="functionCost/OS_InitStatistics.html">OS_InitStatistics</A>
+  <DD><A href="functionCost/OS_CheckStatisticsBuffer.html">OS_CheckStatisticsBuffer</A>
+  <DD><A href="functionCost/OS_CalcStatistics.html">OS_CalcStatistics</A>
+  <DD><A href="functionCost/OS_CalcThreadStatistics.html">OS_CalcThreadStatistics</A>
+  <DD><A href="functionCost/OS_DumpStatistics.html">OS_DumpStatistics</A>
+</DL>
+
+<DL>
+  <DT>デバッグ(スタックチェック)
+  <DD><A href="stack/OS_SetThreadStackWarningOffset.html">OS_SetThreadStackWarningOffset</A>
+  <DD><A href="stack/OS_CheckStack.html">OS_CheckStack</A>
+  <DD><A href="stack/OS_GetStackStatus.html">OS_GetStackStatus</A>
+  <DD><A href="stack/OS_SetIrqStackChecker.html">OS_SetIrqStackChecker</A>
+  <DD><A href="stack/OS_SetIrqStackWarningOffset.html">OS_SetIrqStackWarningOffset</A>
+  <DD><A href="stack/OS_CheckIrqStack.html">OS_CheckIrqStack</A>
+  <DD><A href="stack/OS_GetIrqStackStatus.html">OS_GetIrqStackStatus</A>
+</DL>
+
+<DL>
+  <DT>デバッグ(引数)
+  <DD><A href="argument/OS_GetArgc.html">OS_GetArgc</A>
+  <DD><A href="argument/OS_GetArgv.html">OS_GetArgv</A>
+  <DD><A href="argument/OS_GetOpt.html">OS_GetOpt*</A>
+  <DD><A href="argument/OS_ConvertToArguments.html">OS_ConvertToArguments</A>
+  <DD><A href="argument/OS_SetArgumentBuffer.html">OS_SetArgumentBuffer</A>
+  <DD><A href="argument/OS_GetArgumentBuffer.html">OS_GetArgumentBuffer</A>
+</DL>
+
+</BODY>
+</HTML>

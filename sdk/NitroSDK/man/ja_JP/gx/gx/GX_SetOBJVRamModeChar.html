@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetOBJVRamModeChar</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetOBJVRamModeChar</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/gx.h&gt;<BR>
+void GX_SetOBJVRamModeChar(GXOBJVRamModeChar mode);</CODE>
+</PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+    <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
+    <td width="87%">マッピングモード</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>キャラクタOBJのOBJ-VRAM容量とマッピングモードを設定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OBJVRAMMODE_CHAR_2D</CODE></TD>
+      <TD>2次元マッピングモードを選択します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OBJVRAMMODE_CHAR_1D_32K</CODE></TD>
+      <TD>１次元マッピングモードで、先頭キャラクタ境界を32バイトとします。利用可能なOBJ-VRAMの最大容量は32KBになります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OBJVRAMMODE_CHAR_1D_64K</CODE></TD>
+      <TD>１次元マッピングモードで、先頭キャラクタ境界を64バイトとします。利用可能なOBJ-VRAMの最大容量は64KBになります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OBJVRAMMODE_CHAR_1D_128K</CODE></TD>
+      <TD>１次元マッピングモードで、先頭キャラクタ境界を128バイトとします。利用可能なOBJ-VRAMの最大容量は128KBになります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OBJVRAMMODE_CHAR_1D_256K</CODE></TD>
+      <TD>１次元マッピングモードで、先頭キャラクタ境界を256バイトとします。利用可能なOBJ-VRAMの最大容量は256KBになります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>マッピングモードは、先頭キャラクタの境界のバイトサイズを指定するもので、実際に割り当てられているVRAMのバンク容量とは関係ありません。</P>
+<P>以下に<CODE>GXOBJVRamModeChar</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_OBJVRAMMODE_CHAR_2D = (0 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT),
+    GX_OBJVRAMMODE_CHAR_1D_32K = (1 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT) | (0 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT),
+    GX_OBJVRAMMODE_CHAR_1D_64K = (1 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT) | (1 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT),
+    GX_OBJVRAMMODE_CHAR_1D_128K = (1 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT) | (2 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT),
+    GX_OBJVRAMMODE_CHAR_1D_256K = (1 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT) | (3 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT)
+}
+GXOBJVRamModeChar;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_SetOBJVRamModeBmp.html">GX_SetOBJVRamModeBmp</A>, <A href="GX_GetOBJVRamModeChar.html">GX_GetOBJVRamModeChar</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/08/03</P>
+<UL>
+  <LI>1次元マッピングに関する説明の修正。
+</UL>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>2次元マッピングに関する説明の修正。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

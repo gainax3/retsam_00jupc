@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GXOamAttr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GXOamAttr</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/g2_oam.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct
+{
+    union
+    {
+        u32 attr01;
+        struct
+        {
+            u16 attr0;
+            u16 attr1;
+        };
+        struct
+        {
+            u32 y:8;
+            u32 rsMode:2;
+            u32 objMode:2;
+            u32 mosaic:1;
+            u32 colorMode:1;
+            u32 shape:2;
+
+            u32 x:9;
+            u32 rsParam:5;
+            u32 size:2;
+        };
+        struct
+        {
+            u32 _0:28;
+            u32 flipH:1;
+            u32 flipV:1;
+            u32 _1:2;
+        };
+    };
+    union
+    {
+        struct
+        {
+            u16 attr2;
+            u16 _3;
+        };
+        u32 attr23;
+        struct
+        {
+            u32 charNo:10;
+            u32 priority:2;
+            u32 cParam:4;
+            u32 _2:16;
+        };
+    };
+}
+GXOamAttr;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD colspan="2">Y座標</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">rsMode</font></strong></em></TD>
+      <TD colspan="2">アフィン変換フラグ(アフィン変換のON/OFF, 倍角のON/OFF)</TD>
+    </TR>
+    <TR>
+      <TD width="200" rowspan="5"><em><strong><font face="Courier New">objMode</font></strong></em></TD>
+      <TD colspan="2">OBJモード</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">GX_OAM_MODE_NORMAL</font></strong></em></TD>
+      <TD>ノーマルOBJ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">GX_OAM_MODE_XLU</font></strong></em></TD>
+      <TD>半透明OBJ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">GX_OAM_MODE_OBJWND</font></strong></em></TD>
+      <TD>OBJウィンドウ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">GX_OAM_MODE_BITMAPOBJ</font></strong></em></TD>
+      <TD>ビットマップOBJ</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">mosaic</font></strong></em></TD>
+      <TD colspan="2">モザイクの有無</TD>
+    </TR>
+    <TR>
+      <TD rowspan="3"><em><strong><font face="Courier New">colorMode</font></strong></em></TD>
+      <TD width="106" colspan="2">カラーモード</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">GX_OAM_COLORMODE_16</font></strong></em></TD>
+      <TD>16色モード</TD>
+    </TR>
+    <TR>
+      <TD width="106"><em><strong><font face="Courier New">GX_OAM_COLORMODE_256</font></strong></em></TD>
+      <TD width="232">256色モード</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">shape</font></strong></em></TD>
+      <TD colspan="2">OBJの形状</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">x</font></strong></em></TD>
+      <TD colspan="2">X座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">rsParam</font></strong></em></TD>
+      <TD colspan="2">アフィン変換パラメータの選択</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">size</font></strong></em></TD>
+      <TD colspan="2">OBJサイズ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">flipH</font></strong></em></TD>
+      <TD colspan="2">Hフリップフラグ(アフィン変換がOFFの場合)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">flipV</font></strong></em></TD>
+      <TD colspan="2">Vフリップフラグ(アフィン変換がOFFの場合)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">charNo</font></strong></em></TD>
+      <TD colspan="2">先頭キャラクタネーム</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">priority</font></strong></em></TD>
+      <TD colspan="2">表示優先順位</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">cParam</font></strong></em></TD>
+      <TD colspan="2">カラーパラメータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>OAMのOBJアトリビュート0-2を操作するための構造体です。</P>
+<P>u16及びu32のビットフィールドとして定義されていますので、実体がVRAM上に配置されている場合のメンバへのアクセスも問題ありません。</P>
+<H2>参照</H2>
+<P><A href="../g2/G2_SetOBJAttr.html">G2_SetOBJAttr</A></P>
+<H2>履歴</H2>
+<P>2004/11/05 初版<BR>
+</P>
+</body>
+</html>

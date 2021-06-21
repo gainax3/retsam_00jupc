@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3D_SBC_RET</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css"   type="text/css">
+	<LINK rel="stylesheet" href="../../css/apilist.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<h1 align="left">NNS_G3D_SBC_RET</h1>
+<H2>命令のフォーマット</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="157">オフセット（バイト単位）</TH>
+      <TH width="801">説明</TH>
+    </TR>
+    <TR>
+      <TD width="157">0</TD>
+      <TD width="801"><CODE>NNS_G3D_SBC_RET</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>説明</h2>
+<P><CODE>NNS_G3D_SBC_RET</CODE>命令は、<CODE>NNS_G3dRS</CODE>構造体が持つフラグの<CODE>NNS_G3D_RSFLAG_RETURN</CODE>ビットを立てることによってSBCの処理を終了させます。コールバック処理は1回だけ入れることが可能で、どのようなタイミングを指定しても同様の場所でコールバック関数が実行されます。1バイト長の命令でオペランドは持ちません。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="256">コールバック関数の呼び出しタイミング</TH>
+      <TH width="588">用途</TH>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_A</CODE></TD>
+      <TD width="588" rowspan="3">どのタイミングを指定しても同じ場所でコールバック関数が呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_B</CODE></TD>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_C</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+
+
+<H2>履歴</H2>
+<P>2004/10/14 記述の追加<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

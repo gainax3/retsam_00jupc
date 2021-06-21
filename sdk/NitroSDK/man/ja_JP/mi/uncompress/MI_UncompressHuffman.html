@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_UncompressHuffman</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_UncompressHuffman</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_UncompressHuffman( const void* srcp, void* destp );</CODE><BR>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">ハフマン圧縮データの格納されているソースアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開するディスティネーションアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>ハフマン圧縮データを展開し、指定のメモリ領域に32bit単位で書き込みます。<BR>
+ソースアドレスは4byte 境界に合わせてください。<BR>
+</P>
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, <A href="MI_UncompressRL.html">MI_UncompressRL*</A>, <A href="MI_UnfilterDiff.html">MI_UnfilterDiff*</A><A href="../../svc/SVC_UncompressHuffmanFromDevice.html">SVC_UncompressHuffmanFromDevice</A>, <A href="MI_ReadUncompHuffman.html">MI_ReadUncompHuffman</A>, <A href="MI_CompressHuffman.html">MI_CompressHuffman</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/03/02 データサイズの4バイトアライメント推奨に関する記述を削除<BR>
+2004/05/28 内部動作記述修正<BR>
+2004/02/10 初版</P>
+</body>
+</html>

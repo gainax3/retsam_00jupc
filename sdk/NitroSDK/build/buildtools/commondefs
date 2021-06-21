@@ -1,0 +1,1166 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - commondefs - common definitions for build system
+# File:     commondefs
+#
+#  Copyright 2003-2007 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: commondefs,v $
+# Revision 1.218  2007/05/14 09:37:20  okubata_ryoma
+# Update Wireless Library version 2.78.00 -> 2.83.00
+#
+# Revision 1.217  2007/04/15 23:58:00  yosizaki
+# copyrightを更新.
+#
+# Revision 1.216  2007/04/13 09:09:00  yosizaki
+# add libwfs.a
+#
+# Revision 1.215  2006/12/11 09:24:46  okubata_ryoma
+# NitroSDKのメジャーバージョンアップによる変更
+#
+# Revision 1.214  2006/06/13 08:29:27  seiki_masashi
+# Update Wireless Library version 2.74.00 -> 2.78.00
+#
+# Revision 1.213  2006/03/30 08:11:29  yosizaki
+# Update Wireless Library version 2.73.00 -> 2.74.00
+#
+# Revision 1.212  2006/03/29 00:19:06  yosizaki
+# Update Wireless Library version 2.71.00 -> 2.73.00
+#
+# Revision 1.211  2006/01/13 05:57:36  yasu
+# 年度変更 2005->2006
+#
+# Revision 1.210  2006/01/12 09:02:24  seiki_masashi
+# Update Wireless Library version 2.68.00 -> 2.71.00
+#
+# Revision 1.209  2005/12/21 00:41:48  yosizaki
+# Update Wireless Library version 2.65.00 -> 2.68.00
+#
+# Revision 1.208  2005/11/21 02:20:12  terui
+# Delete NITRO_WEAK_SVC_WAITVBLANKINTR definition.
+#
+# Revision 1.207  2005/10/25 04:13:19  terui
+# SVC_WaitVBlankIntrが弱シンボル化されたことを示す変数定義を追加
+#
+# Revision 1.206  2005/10/14 08:19:06  seiki_masashi
+# Update Wireless Library version 2.64.00 -> 2.65.00
+#
+# Revision 1.205  2005/09/16 10:15:29  terui
+# Update Wireless Library version 2.63.00 -> 2.64.00
+#
+# Revision 1.204  2005/09/09 06:56:24  seiki_masashi
+# Update Wireless Library version 2.61.00 -> 2.63.00
+#
+# Revision 1.203  2005/09/05 01:25:58  yada
+# add libenv.a
+#
+# Revision 1.202  2005/08/19 12:50:32  yada
+# add STD library
+#
+# Revision 1.201  2005/08/17 07:29:21  yada
+# NEFの扱いの修正
+#
+# Revision 1.200  2005/08/09 11:23:45  seiki_masashi
+# Update Wireless Library version 2.60.00 -> 2.61.00
+#
+# Revision 1.199  2005/08/08 00:06:56  yasu
+# mongoose のビルド対策のため TARGET_BIN_BASENAME を定義し、TARGET_NAME と使い分ける
+#
+# Revision 1.198  2005/08/07 13:15:48  yasu
+# ライブラリパスを vpath に設定
+#
+# Revision 1.197  2005/08/05 12:39:49  seiki_masashi
+# Update Wireless Library version 2.57.00 -> 2.60.00
+#
+# Revision 1.196  2005/07/29 04:05:30  seiki_masashi
+# Update Wireless Library version 2.47.00 -> 2.57.00
+#
+# Revision 1.195  2005/07/15 09:51:01  yasu
+# SDK のデフォルトのメジャーバージョンを 3 に指定
+#
+# Revision 1.194  2005/07/01 09:25:07  yasu
+# NITRO_LIBVPATH_ のドライブパラメータ表記の変更
+#
+# Revision 1.193  2005/07/01 09:21:48  yasu
+# NITRO_LIBVPATH_ のドライブパラメータ表記の変更
+#
+# Revision 1.192  2005/06/24 02:16:18  yasu
+# add-ins の読み込み処理を追加
+#
+# Revision 1.191  2005/06/21 09:56:03  yasu
+# NITRO_UTEST の追加
+#
+# Revision 1.190  2005/06/17 03:12:06  yasu
+# small fix in comment
+#
+# Revision 1.189  2005/06/15 10:15:10  yasu
+# ProDG 対応
+#
+# Revision 1.188  2005/06/13 08:53:52  yasu
+# bin2obj 追加
+#
+# Revision 1.187  2005/04/13 13:04:23  terui
+# Change DEFAULT_ADDRESS_DTCM 0x027c0000 -> 0x027e0000
+#
+# Revision 1.186  2005/04/11 01:05:31  terui
+# Update Marionea version 2.39.00 -> 2.47.00
+#
+# Revision 1.185  2005/04/05 11:29:45  yosizaki
+# add NITRO_ROMSPEED.
+#
+# Revision 1.184  2005/03/04 11:35:07  yasu
+# NITRO_BUILD_TYPE/_DIR の設定を ?= に変更
+#
+# Revision 1.183  2005/03/04 10:27:49  terui
+# Update Marionea version 2.37.00 -> 2.39.00
+#
+# Revision 1.182  2005/02/22 06:39:54  terui
+# Update Marionea version 2.36.00 -> 2.37.00
+#
+# Revision 1.181  2005/02/21 00:49:20  terui
+# Update Marionea version 2.33.00 -> 2.36.00
+#
+# Revision 1.180  2005/02/15 01:02:12  terui
+# Update Marionea version 2.32.00 -> 2.33.00
+#
+# Revision 1.179  2005/02/08 09:54:39  yasu
+# Make LCFILE_AUTOGEN and LDRES_AUTOGEN redefinable
+#
+# Revision 1.178  2005/02/07 05:57:51  terui
+# Change Marionea version 2.21.00 -> 2.32.00
+#
+# Revision 1.177  2005/01/13 10:05:55  yada
+# fix copyright header
+#
+# Revision 1.176  2005/01/13 02:46:13  yada
+# add linking wvr lib in ARM7
+# back to 1.174
+#
+# Revision 1.175  2005/01/13 02:30:29  yada
+# remove linking wvr lib in ARM7
+#
+# Revision 1.174  2004/12/22 10:31:08  terui
+# 直前のWIRELESSに関する設定変更を戻しました。
+#
+# Revision 1.173  2004/12/22 07:03:00  terui
+# NITRO_WIRELESS_LIBDIRの定義をARM9側でも有効に。
+#
+# Revision 1.172  2004/12/22 02:46:01  terui
+# Add libcht.a in NITRO_LIBS of ARM9
+#
+# Revision 1.171  2004/12/20 00:56:22  terui
+# Update Marionea version 2.11.00 -> 2.21.00
+# Add wvrlib.a to NITRO_LIBS in ARM7
+#
+# Revision 1.170  2004/12/14 10:52:42  seiki_masashi
+# MATH ジャンルを追加
+#
+# Revision 1.169  2004/11/24 10:15:36  yasu
+# Add EMUCHILD and ATTACHSIGN
+#
+# Revision 1.168  2004/10/05 09:29:24  seiki_masashi
+# Change Marionea version 2.05.00 -> 2.11.00
+#
+# Revision 1.167  2004/10/01 02:52:42  terui
+# Change Marionea version 2.05.00 -> 2.10.00
+#
+# Revision 1.166  2004/09/27 04:57:47  seiki_masashi
+# Change Marionea version 2.04.00 -> 2.05.00
+#
+# Revision 1.165  2004/09/24 00:28:42  yasu
+# Default libsyscall.a moved into lib/ARM9-XX/etc
+#
+# Revision 1.164  2004/09/24 00:28:11  seiki_masashi
+# Change Marionea version 2.01.00 -> 2.04.00
+#
+# Revision 1.163  2004/09/21 03:26:02  yasu
+# Support LIBSYSCALL
+#
+# Revision 1.162  2004/09/21 03:04:41  seiki_masashi
+# Change Marionea version 1.98.00 -> 2.01.00
+#
+# Revision 1.161  2004/09/17 09:37:22  yasu
+# Add addbanner and makebanner-default
+#
+# Revision 1.160  2004/09/15 09:13:30  terui
+# Change Marionea version 1.94.00 -> 1.98.00
+#
+# Revision 1.159  2004/09/15 09:11:20  yasu
+# Add ntexconv
+#
+# Revision 1.158  2004/09/15 07:21:58  yasu
+# Add NITROSYSTEM_LIBS
+#
+# Revision 1.157  2004/09/13 10:56:56  yada
+# add ctrdg library link
+#
+# Revision 1.156  2004/09/13 07:05:04  terui
+# Change Marionea version 1.90.00 -> 1.94.00
+#
+# Revision 1.155  2004/09/13 05:37:28  yasu
+# merged with NitroSDK_2_00pr6_branch
+#
+# Revision 1.154.2.1  2004/09/13 04:39:30  yasu
+# build libos for TS_VERSION=0,100 and 200
+#
+# Revision 1.154  2004/09/10 07:40:46  terui
+# Change Marionea version 1.87.01 -> 1.90.00
+#
+# Revision 1.153  2004/09/09 11:41:32  yasu
+# Support NITRO_DIGEST
+#
+# Revision 1.152  2004/09/09 06:22:47  terui
+# Change Marionea version 1.75.00 -> 1.87.01
+#
+# Revision 1.151  2004/09/09 01:23:48  yasu
+# Fix '-s/-w/-k' option searching method
+#
+# Revision 1.150  2004/09/08 11:57:54  yasu
+# Add ETCDIR instead of LIBSYSCALLDIR
+#
+# Revision 1.149  2004/09/08 00:12:34  yasu
+# NITRO_STDOUT moves to commondefs
+#
+# Revision 1.148  2004/09/07 06:41:05  yasu
+# Add libdgt.a
+#
+# Revision 1.147  2004/09/06 08:50:52  yasu
+# Add LIBSYSCALLDIR
+#
+# Revision 1.146  2004/09/06 05:34:38  yasu
+# Add -a option on compstatic
+#
+# Revision 1.145  2004/09/03 12:28:48  sato_masaki
+# ARM7ビルド時のNITRO_LIBSからlibmb_sp$(NITRO_LIBSUFFIX).aの記述を削除。
+#
+# Revision 1.144  2004/09/02 09:49:51  yasu
+# Support X86 libraries
+#
+# Revision 1.143  2004/09/01 09:11:00  miya
+# add TARGET_SIGN_BIN
+#
+# Revision 1.142  2004/09/01 07:50:54  yasu
+# Fix DEFAULT_LCFILE
+#
+# Revision 1.141  2004/09/01 07:25:38  yasu
+# Support NITRO_COMPRESS
+#
+# Revision 1.140  2004/08/27 08:48:01  yasu
+# Switch some libraries by TS_VERSION
+#
+# Revision 1.139  2004/08/27 00:11:48  terui
+# Change Marionea version 1.71 -> 1.75
+#
+# Revision 1.138  2004/08/26 06:58:47  terui
+# Change Marionea version 1.69 -> 1.71
+#
+# Revision 1.137  2004/08/25 01:26:00  yasu
+# Add libraries to GLIBRARY
+#
+# Revision 1.136  2004/08/23 09:44:20  yosizaki
+# add WBT.
+#
+# Revision 1.135  2004/08/23 09:21:58  yasu
+# Update Marionea to 1.69.00
+#
+# Revision 1.134  2004/08/18 12:26:17  yasu
+# Support NITRO_TS_VERSION
+#
+# Revision 1.133  2004/08/09 11:30:41  yasu
+# Don't set default value of NITRO_TS_VERSION on commondefs to support CW
+#
+# Revision 1.132  2004/08/09 09:39:00  yasu
+# Support LNEWDIRS
+#
+# Revision 1.131  2004/08/09 00:54:51  yasu
+# Change marionea version 1.64.00 -> 1.67.00
+#
+# Revision 1.130  2004/08/07 09:22:58  yada
+# add profile lib to ARM7
+#
+# Revision 1.129  2004/08/07 07:03:07  yosizaki
+# add libmb
+#
+# Revision 1.128  2004/08/02 00:37:19  yasu
+# Change Wireless Comm libraries directory
+#
+# Revision 1.127  2004/07/31 02:57:38  yasu
+# support NITRO_TS_VERSION
+#
+# Revision 1.126  2004/07/27 09:56:07  yasu
+# Stop passing SDK_VERSION_WL value thru make option.
+#
+# Revision 1.125  2004/07/26 08:11:08  yasu
+# Rename ADDRESS_ARM7 -> ADDRESS_DTCM
+#
+# Revision 1.124  2004/07/26 07:12:56  yasu
+# Fix to support Mingw
+#
+# Revision 1.123  2004/07/26 04:59:02  yasu
+# Add ADDRESS_ARM7 on makelcf
+#
+# Revision 1.122  2004/07/26 02:03:37  terui
+# NITRO_LIBSにwmlib.aを追加
+#
+# Revision 1.121  2004/07/20 12:19:51  yasu
+# Change default Marionea library up to 1.62.00
+#
+# Revision 1.120  2004/07/20 03:21:55  yasu
+# Small fix
+#
+# Revision 1.119  2004/07/19 02:49:27  yasu
+# Fix around vpath for libraries
+#
+# Revision 1.118  2004/07/18 05:59:33  yasu
+# Update Marionea version to 1.61.00
+#
+# Revision 1.117  2004/07/16 01:31:22  yasu
+# Fix around NITRO_CODEGEN_ALL
+#
+# Revision 1.116  2004/07/15 05:28:10  yasu
+# Support vpath for Libraries
+#
+# Revision 1.115  2004/07/14 12:19:45  yasu
+# Fix ADD_INS -> ADDINS
+#
+# Revision 1.114  2004/07/14 11:54:43  yasu
+# Support NITRO_CODEGEN=ALL
+#
+# Revision 1.113  2004/07/13 12:34:40  yasu
+# Move marionea root directory
+#
+# Revision 1.112  2004/07/13 00:46:13  yasu
+# change default PLATFORM to TS
+#
+# Revision 1.111  2004/07/12 09:06:36  yasu
+# Set default ARM7's component to mongoose on TS console.
+# Arrange to variables around GLIBRARY re-definable.
+#
+# Revision 1.110  2004/07/10 10:21:29  yasu
+# Let Wireless Comm libraries disable with ARM9 build
+#
+# Revision 1.109  2004/07/10 10:14:08  yasu
+# Arrange some macros for Marionea Library
+#
+# Revision 1.108  2004/07/10 04:21:31  yasu
+# Use response file to support overlay group.
+# Stop building with NITRO_ELFTOBIN on NITRO_PLATFORM=TS
+#
+# Revision 1.107  2004/06/28 10:51:45  yasu
+# Move *.autogen.lcf under BINDIR
+#
+# Revision 1.106  2004/06/28 02:07:13  yosizaki
+# add libcard.
+#
+# Revision 1.105  2004/06/25 11:41:52  yasu
+# Exec linker whenever no SRCS defined
+#
+# Revision 1.104  2004/06/23 12:02:47  seiki_masashi
+# add libprc to NITRO_LIB
+#
+# Revision 1.103  2004/06/23 05:40:24  yasu
+# Don't overwrite LCFILE if specified it
+#
+# Revision 1.102  2004/06/18 06:16:19  yasu
+# support CXX_X86 and LD_X86
+#
+# Revision 1.101  2004/06/02 12:10:26  yada
+# add profile library (libos.xxxx.a) at link.
+# xxxx is CALLTRACE/FUNCTIONCOST
+#
+# Revision 1.100  2004/05/26 08:31:41  terui
+# NitroWireless用にリンク先を追加するように変更
+#
+# Revision 1.99  2004/05/25 00:53:03  terui
+# NITRO_LIBS for ARM7からlibspi、librtcを切り離し
+#
+# Revision 1.98  2004/05/19 00:49:06  yasu
+# move workaround TEG vblank problems to commondefs.cctype.CW
+#
+# Revision 1.97  2004/05/14 02:22:38  terui
+# NITRO_LIBS内libspiex_sp.aをlibspi_sp.aに名称変更
+#
+# Revision 1.96  2004/05/12 06:06:31  terui
+# Add spi and rtc libraries in NITRO_LIBS.
+#
+# Revision 1.95  2004/05/11 10:20:08  yasu
+# combine with 'ferret' as ARM7 component
+#
+# Revision 1.94  2004/05/06 03:00:43  takano_makoto
+# Add libcp.a
+#
+# Revision 1.93  2004/04/14 11:27:44  yasu
+# delete LIBRARIES_STATIC
+#
+# Revision 1.92  2004/04/14 10:51:34  yasu
+# delete group LIBRARIES
+#
+# Revision 1.91  2004/04/06 06:37:49  yasu
+# small fix
+#
+# Revision 1.90  2004/04/03 06:31:26  yasu
+# small change for MAKEROM
+#
+# Revision 1.89  2004/04/02 01:36:39  yasu
+# guard against re-including
+#
+# Revision 1.88  2004/04/01 12:54:38  yasu
+# support LIBRARIES_STATIC for makerom
+#
+# Revision 1.87  2004/04/01 11:02:56  yosizaki
+# add libraries -libfs*
+#
+# Revision 1.86  2004/03/30 07:07:17  yasu
+# change build/buildtools/soundlibdefs -> build/buildtools/nnslibdefs for include
+#
+# Revision 1.85  2004/03/29 08:17:14  yasu
+# include NITRO-SYSTEM path descriptions
+#
+# Revision 1.84  2004/03/29 01:23:26  yasu
+# no debug option for makerom
+#
+# Revision 1.83  2004/03/26 13:08:41  yasu
+# fully support makerom
+#
+# Revision 1.82  2004/03/26 05:38:23  yasu
+# add NITROSYSTEM_ROOTs
+#
+# Revision 1.81  2004/03/18 02:51:28  yasu
+# define default lsf
+#
+# Revision 1.80  2004/03/18 02:45:51  yasu
+# surpress directory of autogen.lcf file
+#
+# Revision 1.79  2004/03/09 00:17:03  yasu
+# make NITRO_ADDINS overwritable
+#
+# Revision 1.78  2004/03/04 12:37:30  yasu
+# add libpxi.a
+#
+# Revision 1.77  2004/03/04 07:01:49  yasu
+# add NITRO_ADDINS
+#
+# Revision 1.76  2004/02/28 09:49:03  yasu
+# add EXI functions for ARM7
+#
+# Revision 1.75  2004/02/25 12:45:34  yasu
+# Delete MAKEFILE.SRCS
+#
+# Revision 1.74  2004/02/25 09:14:03  yasu
+# add cw stubs
+#
+# Revision 1.73  2004/02/25 03:55:25  yasu
+# $(MAKEFILE.SRCS) made from value of $(MAKEFILE)
+#
+# Revision 1.72  2004/02/24 05:27:18  yasu
+# fix location of WA flags
+#
+# Revision 1.71  2004/02/24 04:30:53  yasu
+# add workaround for TEG HW bug at VBLANK
+#
+# Revision 1.70  2004/02/24 02:41:52  yasu
+# add "install" command option "-p" to hold timestamp
+#
+# Revision 1.69  2004/02/23 05:01:38  yasu
+# axf->nef
+#
+# Revision 1.68  2004/02/20 03:58:28  ida
+# add libsnd.a
+#
+# Revision 1.67  2004/02/18 11:37:56  yasu
+# support -w flag
+#
+# Revision 1.66  2004/02/18 01:27:02  yada
+# ARM7側は libpad_sp.a もリンクするよう修正
+#
+# Revision 1.65  2004/02/17 09:26:15  yasu
+# support "make -f" option
+#
+# Revision 1.64  2004/02/16 03:40:22  yasu
+# add @privatedefs
+#
+# Revision 1.63  2004/02/16 01:24:24  yasu
+# support file dependancies
+#
+# Revision 1.62  2004/02/16 00:02:41  yasu
+# set default NITRO_CODEGEN to ARM
+#
+# Revision 1.61  2004/02/14 08:21:41  yasu
+# add NITRO_INSTALL_COMPONENTSDIR
+#
+# Revision 1.60  2004/02/14 06:33:08  yasu
+# support "components" directory
+#
+# Revision 1.59  2004/02/13 09:00:09  yasu
+# setup ARM7 build flags
+#
+# Revision 1.58  2004/02/10 00:54:41  yasu
+# fix install settings
+#
+# Revision 1.57  2004/02/09 23:55:31  yasu
+# rename ARM7 libsyscall -> libsubpsyscall
+#
+# Revision 1.56  2004/02/09 13:04:52  yasu
+# fix libsyscall.thumb.a -> libsyscall.a
+#
+# Revision 1.55  2004/02/09 11:46:22  yasu
+# support thumb version library
+#
+# Revision 1.54  2004/02/09 11:18:48  yasu
+# support thumb version library
+#
+# Revision 1.53  2004/02/09 11:07:11  kitani_toshikazu
+# Work around IS-IRIS-EMU => IS=NITRO-EMU.
+#
+# Revision 1.52  2004/02/09 06:39:18  yasu
+# change CODEGEN_TYPE to NITRO_CODEGEN
+#
+# Revision 1.51  2004/02/09 01:24:25  yasu
+# add CODEGEN_TYPE
+#
+# Revision 1.50  2004/02/06 01:06:05  yasu
+# add command for autotest
+#
+# Revision 1.49  2004/02/05 07:09:01  yasu
+# change SDK prefix iris -> nitro
+#
+# Revision 1.48  2004/02/04 12:40:53  kitani_toshikazu
+# Added libext.a to NITRO_LIBS
+#
+# Revision 1.47  2004/02/04 10:07:44  yasu
+# Add -mno-cygwin to GCC_X86
+#
+# Revision 1.46  2004/01/30 13:29:11  yasu
+# delete all installed target by 'make clobber'
+#
+# Revision 1.45  2004/01/19 23:54:57  yasu
+# includes private flags
+#
+# Revision 1.44  2004/01/19 14:19:11  yasu
+# clean 周りの修正
+#
+# Revision 1.43  2004/01/19 06:53:24  yasu
+# weak-include _privatedefs
+#
+# Revision 1.42  2004/01/15 10:52:22  yasu
+# Support Overlay
+#
+# Revision 1.41  2004/01/08 01:38:24  yasu
+# add YACC/LEX/CC_X86
+#
+# Revision 1.40  2003/12/26 05:53:44  yada
+# ライブラリにMIを追加
+#
+# Revision 1.39  2003/12/22 04:04:52  ida
+# ARM7用 NITRO_LIBS に libos_sp.a libsnd_sp.a を追加
+#
+# Revision 1.38  2003/12/16 05:25:12  yasu
+# ARM7 版オプションの設定
+#
+# Revision 1.37  2003/12/10 12:20:04  yasu
+# ISD ライブラリの無い環境のための libstubsisd リンクの設定．
+#
+# Revision 1.36  2003/12/10 05:12:48  yasu
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
+#
+# Revision 1.35  2003/12/02 04:53:56  yasu
+# NITROSDK_ROOT のパス区切り文字の \ への対応
+#
+# Revision 1.34  2003/12/02 02:40:23  yasu
+# IS-NITRO-EMULATOR 用ライブラリの定義追加
+#
+# Revision 1.33  2003/12/01 12:38:48  yasu
+# バグ修正
+#
+# Revision 1.32  2003/12/01 12:36:16  yasu
+# CCTYPE の設定が古い make でも問題ないようにした
+#
+# Revision 1.31  2003/12/01 12:33:47  yasu
+# test コードを削除
+#
+# Revision 1.30  2003/12/01 12:27:34  yasu
+# test コードを追加
+#
+# Revision 1.29  2003/12/01 12:12:34  yasu
+# makefile のバージョンチェックを追加
+#
+# Revision 1.28  2003/11/30 09:35:19  yasu
+# コンパイル用 ROOT とインストール用 ROOT を独立させた
+#
+# Revision 1.27  2003/11/30 03:58:10  yasu
+# エラー出力に難があるため make -j オプションをデフォルトから外す
+#
+# Revision 1.26  2003/11/29 08:23:44  yasu
+# ライブラリの include/lib が選択される優先度を下げた
+#
+# Revision 1.25  2003/11/29 05:42:12  yasu
+# マルチスレッドでのビルド(-j)をデフォルトにした
+#
+# Revision 1.24  2003/11/28 02:02:52  yasu
+# libsyscall.a を commondefs へ移動
+#
+# Revision 1.23  2003/11/21 06:32:56  yasu
+# SDK_EMU を不使用にする
+#
+# Revision 1.22  2003/11/20 13:09:09  yasu
+# SDK_ARM を SDK_ADS へ変更
+#
+# Revision 1.21  2003/11/17 00:33:29  nishida_kenji
+# libfx.a追加
+#
+# Revision 1.20  2003/11/13 06:44:10  yasu
+# ARM モードと Thumb モードのコンパイル切り替えスイッチを追加
+#
+# Revision 1.19  2003/11/12 12:23:02  yasu
+# make clobber で INSTALL_TARGETS を削除
+# ARM7 の対応
+#
+# Revision 1.18  2003/11/12 04:19:41  yasu
+# ARM7 用の定義を追加．マクロスイッチ TARGET_PROC を使用する
+#
+# Revision 1.17  2003/11/11 03:06:31  yasu
+# base.a の位置の指定は lcf ファイルで行なうことにしたので前回の修正を無効にした
+#
+# Revision 1.16  2003/11/11 02:12:16  yasu
+# base.a を OBJS の前にリンクするように修正
+#
+# Revision 1.15  2003/11/11 01:22:49  yasu
+# make clean で bin/axf/lib ファイルを削除するように変更
+#
+# Revision 1.14  2003/11/10 13:08:36  yasu
+# typo 修正
+#
+# Revision 1.13  2003/11/10 05:24:18  yasu
+# 環境変数による build のコントロールの追加
+#
+# Revision 1.12  2003/11/07 08:55:18  yasu
+# INCLUDE パスを SRCDIR へも追加
+#
+# Revision 1.11  2003/11/06 10:40:24  yasu
+# コンパイルオプションの見直し
+# libgx.a/libsyscall.a/base.a をリンクライブラリに追加
+#
+# Revision 1.10  2003/11/05 09:58:08  yasu
+# FINALROM の追加
+# obj/lib/bin の出力ディレクトリに PLATFORM を反映
+#
+# Revision 1.9  2003/11/05 09:15:29  yasu
+# ライブラリ生成用ルール追加
+#
+# Revision 1.8  2003/11/05 08:43:27  yasu
+# GDIRT 関連のミスの修正
+#
+# Revision 1.7  2003/11/05 07:14:48  yasu
+# make 時の obj, bin 出力ディレクトリの設定
+#
+# Revision 1.6  2003/10/30 06:10:31  yasu
+# MAKEFLAGS から -r オプションを外す
+#
+# Revision 1.5  2003/10/30 05:50:44  yasu
+# 暗黙のルールを使用しないように MAKEFLAGS 追加
+#
+# Revision 1.4  2003/10/30 04:46:49  yasu
+# do-build/do-install の追加とそれに伴う修正
+#
+# Revision 1.3  2003/10/29 13:25:40  yasu
+# make の伝播のフレームワーク完成
+# all/install/clean/clobber が使える
+#
+# Revision 1.2  2003/10/29 06:47:28  yasu
+# Support "make clean/clobber" only
+#
+# Revision 1.1  2003/10/23 04:38:06  yasu
+# initial version
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+ifndef NITROSDK_COMMONDEFS_
+NITROSDK_COMMONDEFS_ = TRUE
+
+#
+# Check make version
+#
+ifneq	($(MAKE_VERSION),3.80)
+__version:
+	@echo ---- Sorry, this makefile is for \'make\' version 3.80
+	@make -v
+	@exit 1
+endif
+
+#
+# SDK root directory
+#
+
+NITROSDK_ROOT		?= C:/NitroSDK
+
+
+#
+# SDK Major Version
+#
+
+NITROSDK_VERSION_MAJOR	?= 4
+
+#
+# CodeGen Target
+#
+#	NITRO_PLATFORM  = [TEG/TS]
+#	NITRO_MEMSIZE   = [4M/8M]
+#	NITRO_CODEGEN	= [ARM/THUMB]
+#	NITRO_PROC      = [ARM9/ARM7]
+#
+
+NITRO_PLATFORM		?= TS
+NITRO_MEMSIZE		?= 4M
+NITRO_CODEGEN		?= ARM
+NITRO_PROC		?= ARM9
+
+ifndef	CODEGEN_PROC
+CODEGEN_PROC		:= $(NITRO_PROC)
+endif
+
+ifeq	($(NITRO_CODEGEN),ALL)
+NITRO_CODEGEN_ALL	?= TRUE
+override NITRO_CODEGEN	 = ARM
+endif
+
+ifeq	($(NITRO_CODEGEN),ARM)
+CODEGEN_ARCH		=
+else #	($(NITRO_CODEGEN),THUMB)
+CODEGEN_ARCH		= .thumb
+endif
+CODEGEN_CC		?= $(NITRO_CODEGEN)
+CODEGEN_AS		?= ARM
+
+TS_VERSION		= $(if $(NITRO_TS_VERSION),_TS$(NITRO_TS_VERSION))
+
+#
+# C Compiler type
+#
+#	NITRO_CCTYPE = [CW/SNC]
+#
+
+NITRO_CCTYPE		?= CW
+
+
+#
+# Binary build tool switch
+#
+
+ifeq	($(NITRO_ELFTOBIN),)
+NITRO_MAKEROM	?= TRUE
+endif
+
+ifeq	($(NITRO_MAKEROM)$(NITRO_PLATFORM),TS)
+__error:
+	@echo "---- Stop, Don't use ELFTOBIN with NITRO_PLATFORM=TS ----"
+	@exit 1
+endif
+
+#
+# RomSpeedType for makerom.exe
+#
+#	one of [MROM/1TROM/UNDEFINED]
+#
+
+NITRO_ROMSPEED	?= UNDEFINED
+
+#
+# SDK build type
+#
+#	one of [NITRO_DEBUG/NITRO_RELEASE/NITRO_FINALROM]
+#
+
+ifdef	NITRO_DEBUG
+NITRO_BUILD_TYPE	?= DEBUG
+NITRO_BUILD_DIR		?= Debug
+
+else
+ifdef	NITRO_FINALROM
+NITRO_BUILD_TYPE	?= FINALROM
+NITRO_BUILD_DIR		?= Rom
+
+else #	NITRO_RELEASE (default)
+NITRO_BUILD_TYPE	?= RELEASE
+NITRO_BUILD_DIR		?= Release
+
+endif
+endif
+
+
+#----------------------------------------------------------------------------
+#  Utilities
+#
+
+EMPTY	 		:=
+SPACE 			:= $(EMPTY) $(EMPTY)
+
+#----------------------------------------------------------------------------
+#  NITRO-SDK path settings
+#
+
+ROOT			:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSDK_ROOT)))
+NITRO_BUILDTOOLSDIR	:= $(ROOT)/build/buildtools
+NITRO_BUILDSETUPDIR	:= $(ROOT)/build/buildsetup
+NITRO_INCDIR		:= $(ROOT)/include
+NITRO_TOOLSDIR		:= $(ROOT)/tools
+NITRO_COMPONENTSDIR	:= $(ROOT)/components
+NITRO_ADDINS		?= $(ROOT)/add-ins
+
+NITRO_BUILDARCH		?= $(CODEGEN_PROC)-$(NITRO_PLATFORM)$(CODEGEN_ARCH)
+NITRO_BUILDARCH_ARM9	:= ARM9-$(NITRO_PLATFORM)$(CODEGEN_ARCH)
+NITRO_BUILDARCH_ARM7	:= ARM7-$(NITRO_PLATFORM)$(CODEGEN_ARCH)
+
+NITRO_BUILDTYPE		?= $(NITRO_BUILDARCH)/$(NITRO_BUILD_DIR)
+NITRO_BUILDTYPE_ARM9	:= $(NITRO_BUILDARCH_ARM9)/$(NITRO_BUILD_DIR)
+NITRO_BUILDTYPE_ARM7	:= $(NITRO_BUILDARCH_ARM7)/$(NITRO_BUILD_DIR)
+
+NITRO_LIBARCH		:= $(CODEGEN_PROC)-$(NITRO_PLATFORM)
+NITRO_LIBTYPE		:= $(NITRO_LIBARCH)/$(NITRO_BUILD_DIR)
+NITRO_LIBDIR		:= $(ROOT)/lib/$(NITRO_LIBTYPE)
+NITRO_LIBSYSCALLDIR	:= $(ROOT)/lib/$(NITRO_LIBARCH)/etc
+NITRO_LIBSUFFIX		:= $(CODEGEN_ARCH)
+
+
+#----------------------------------------------------------------------------
+#  NITRO-SYSTEM path settings
+#
+
+ifdef	NITROSYSTEM_ROOT
+NITROSYSTEM_ROOT_	:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_ROOT)))
+-include $(NITROSYSTEM_ROOT_)/build/buildtools/nnslibdefs
+endif
+
+NITROSYSTEM_LIBDIR	?= $(ROOT)/lib/NitroSystem/$(NITRO_LIBTYPE)
+NITROSYSTEM_INCDIR	?=
+
+
+#----------------------------------------------------------------------------
+#  NITRO-WIRELESS path settings
+#
+#	libraries should be in
+#		$(ROOT)/lib/NitroWireless
+#
+#	includes should be in
+#		$(ROOT)/include/nitro_wl/ARM7/*.h
+#
+#		access by #include <nitro_wl/ARM7/*.h>
+#
+#	SDK_VERSION_WL is defined in <nitro_wl/ARM7/version_wl.h>
+#
+
+NITROWIRELESS_VERSION	?= 2.83.00
+NITROWIRELESS_ROOT	?= $(ROOT)/add-ins/NitroWireless/Marionea-$(NITROWIRELESS_VERSION)
+NITROWIRELESS_ROOT_	 = $(subst $(SPACE),\ ,$(subst \,/,$(NITROWIRELESS_ROOT)))
+ifneq	($(NITRO_PROC),ARM9)
+NITROWIRELESS_LIBDIR	?= $(ROOT)/lib/NitroWireless/$(NITRO_LIBTYPE)
+NITROWIRELESS_INCDIR	?= $(ROOT)/include
+endif
+
+
+#----------------------------------------------------------------------------
+#  Compiler settings
+#
+
+NITRO_FORCE_BUILD	?= $(strip $(TARGET_BIN) $(TARGET_OBJ) $(TARGET_NEF) $(TARGET_LIB) $(TARGET_SIGN_BIN))
+
+ifneq	($(NITRO_FORCE_BUILD),)
+
+### module subdir src/ obj/ lib/ include/
+
+DEFAULT_SRCDIR		:= ./src
+DEFAULT_INCDIR		:= ./include
+DEFAULT_ETCDIR		:= ./etc
+
+LCF_SUFFIX_		:= $(if $(NITRO_DIGEST),-C)
+NITRO_SPECDIR		:= $(NITRO_INCDIR)/nitro/specfiles
+DEFAULT_LCFILE		:= $(NITRO_SPECDIR)/$(NITRO_LIBARCH).lcf
+DEFAULT_LCFILE_TEMPLATE	:= $(NITRO_SPECDIR)/$(NITRO_LIBARCH)$(LCF_SUFFIX_).lcf.template
+DEFAULT_LCFILE_SPEC	:= $(NITRO_SPECDIR)/$(NITRO_LIBARCH).lsf
+DEFAULT_ROM_SPEC	:= $(NITRO_SPECDIR)/ROM-$(NITRO_PLATFORM).rsf
+
+SRCDIR			?= $(DEFAULT_SRCDIR)
+INCDIR			?= $(DEFAULT_INCDIR)
+ETCDIR			?= $(DEFAULT_ETCDIR)
+OBJDIR			?= ./obj/$(NITRO_BUILDTYPE)
+BINDIR			?= ./bin/$(NITRO_BUILDTYPE)
+LIBDIR			?= ./lib/$(NITRO_BUILDTYPE)
+DEPENDDIR		?= ./depend/$(NITRO_BUILDTYPE)
+
+LIBSYSCALL_		 = $(if $(LIBSYSCALL),$(LIBSYSCALL),$(NITRO_LIBSYSCALLDIR)/libsyscall.a)
+
+### Compiler & Linker settings
+
+-include $(NITRO_BUILDTOOLSDIR)/commondefs.cctype.$(NITRO_CCTYPE)
+
+ifneq	($(NITRO_MAKEROM),)
+LCFILE_TEMPLATE		?= $(DEFAULT_LCFILE_TEMPLATE)
+LCFILE_SPEC		?= $(DEFAULT_LCFILE_SPEC)
+LCFILE_AUTOGEN		?= $(BINDIR)/$(notdir $(LCFILE_SPEC:.lsf=.autogen.lcf))
+LCFILE			?= $(LCFILE_AUTOGEN)
+DEFAULT_LDRES_TEMPLATE	:= $(NITRO_SPECDIR)/$(basename $(notdir $(LD))).response.template
+LDRES_TEMPLATE		?= $(DEFAULT_LDRES_TEMPLATE)
+LDRES_AUTOGEN		?= $(BINDIR)/$(notdir $(LCFILE_SPEC:.lsf=.autogen.response))
+LDRES_FILE		?= $(LDRES_AUTOGEN)
+else
+LCFILE			?= $(DEFAULT_LCFILE)
+endif
+
+TARGETS			= $(addprefix $(BINDIR)/,$(TARGET_BIN) $(TARGET_NEF) $(TARGET_SIGN_BIN)) \
+			  $(addprefix $(OBJDIR)/,$(TARGET_OBJ)) 		\
+			  $(addprefix $(LIBDIR)/,$(TARGET_LIB))
+
+TARGET_BIN_BASENAME	 = $(notdir $(basename $(firstword $(TARGET_BIN) $(TARGET_NEF))))
+TARGET_NAME		?= $(TARGET_BIN_BASENAME)
+
+### Debugger settings
+
+ifndef	IS_NITRO_DIR
+ifdef	IS_IRIS_DIR
+IS_NITRO_DIR		= $(IS_IRIS_DIR)
+endif
+endif
+
+-include $(NITRO_BUILDTOOLSDIR)/commondefs.emtype.ISD
+
+
+### SDK Library settings
+
+CRT0_O			?=  crt0.o
+
+ifeq	($(CODEGEN_PROC),ARM9)
+
+NITRO_LIBS		?= libfx$(NITRO_LIBSUFFIX).a		\
+			   libgx$(NITRO_LIBSUFFIX).a 		\
+			   libos$(TS_VERSION)$(NITRO_LIBSUFFIX).a \
+			   libmi$(NITRO_LIBSUFFIX).a		\
+			   libsnd$(NITRO_LIBSUFFIX).a		\
+			   libpxi$(NITRO_LIBSUFFIX).a		\
+			   libext$(NITRO_LIBSUFFIX).a		\
+			   libfs$(NITRO_LIBSUFFIX).a		\
+			   libdgt$(NITRO_LIBSUFFIX).a		\
+			   libcp$(NITRO_LIBSUFFIX).a		\
+			   libspi$(TS_VERSION)$(NITRO_LIBSUFFIX).a \
+			   librtc$(NITRO_LIBSUFFIX).a		\
+			   libprc$(NITRO_LIBSUFFIX).a		\
+			   libcard$(NITRO_LIBSUFFIX).a		\
+			   libwm$(NITRO_LIBSUFFIX).a		\
+			   libwbt$(NITRO_LIBSUFFIX).a		\
+			   libwfs$(NITRO_LIBSUFFIX).a		\
+			   libmb$(NITRO_LIBSUFFIX).a		\
+			   libctrdg$(NITRO_LIBSUFFIX).a		\
+			   libmath$(NITRO_LIBSUFFIX).a		\
+			   libcht$(NITRO_LIBSUFFIX).a		\
+			   libstd$(NITRO_LIBSUFFIX).a		\
+			   libenv$(NITRO_LIBSUFFIX).a		\
+			   $(notdir $(LIBSYSCALL_))		\
+			   $(CRT0_O)
+
+ifdef		NITRO_PROFILE_TYPE
+NITRO_LIBS		+= libos.$(NITRO_PROFILE_TYPE)$(NITRO_LIBSUFFIX).a
+endif
+
+else #	($(CODEGEN_PROC),ARM7)
+
+NITRO_LIBS		?= libos_sp$(NITRO_LIBSUFFIX).a		\
+			   libmi_sp$(NITRO_LIBSUFFIX).a		\
+			   libsnd_sp$(NITRO_LIBSUFFIX).a	\
+			   libpxi_sp$(NITRO_LIBSUFFIX).a	\
+			   libpad_sp$(NITRO_LIBSUFFIX).a	\
+			   libexi_sp$(NITRO_LIBSUFFIX).a	\
+			   libfs_sp$(NITRO_LIBSUFFIX).a		\
+			   libcard_sp$(NITRO_LIBSUFFIX).a	\
+			   librtc_sp$(NITRO_LIBSUFFIX).a	\
+			   libspi_sp$(NITRO_LIBSUFFIX).a	\
+			   libtp_sp$(NITRO_LIBSUFFIX).a		\
+			   libnvram_sp$(NITRO_LIBSUFFIX).a	\
+			   libmic_sp$(TS_VERSION)$(NITRO_LIBSUFFIX).a \
+			   libpm_sp$(NITRO_LIBSUFFIX).a		\
+			   libctrdg_sp$(NITRO_LIBSUFFIX).a	\
+			   libwvr_sp$(NITRO_LIBSUFFIX).a	\
+			   libstd_sp$(NITRO_LIBSUFFIX).a	\
+			   libsubpsyscall.a			\
+			   $(CRT0_O)
+
+ifdef		NITRO_PROFILE_TYPE
+NITRO_LIBS		+= libos_sp.$(NITRO_PROFILE_TYPE)$(NITRO_LIBSUFFIX).a
+endif
+
+endif
+
+### Global Library settings
+
+DEFAULT_GINCLUDES	:= $(INCDIR) $(SRCDIR)					\
+			   $(NITROSYSTEM_INCDIR) $(NITROWIRELESS_INCDIR)	\
+			   $(NITRO_INCDIR) $(ISD_INCDIRS)
+
+DEFAULT_GLIBRARY_DIRS	:= $(LIBDIR) $(dir $(LIBSYSCALL_))			\
+			   $(NITROSYSTEM_LIBDIR) $(NITROWIRELESS_LIBDIR)	\
+			   $(NITRO_LIBDIR) $(ISD_LIBDIRS)
+
+DEFAULT_GLIBRARIES	:= $(NITROSYSTEM_LIBS) $(NITRO_LIBS) $(STUBS_LIBS) $(ISD_LIBS)
+
+GINCLUDES		?= $(DEFAULT_GINCLUDES)
+GLIBRARY_DIRS		?= $(DEFAULT_GLIBRARY_DIRS)
+GLIBRARIES		?= $(DEFAULT_GLIBRARIES)
+
+LINCLUDES		?=
+LLIBRARY_DIRS		?=
+LLIBRARIES		?=
+LNEWDIRS		?=
+
+NEWDIRS			?= $(if $(SRCS),$(OBJDIR) $(DEPENDDIR))		\
+			   $(if $(TARGET_LIB),$(LIBDIR))		\
+			   $(if $(TARGET_BIN)$(TARGET_NEF),$(BINDIR))	\
+			   $(LNEWDIRS)
+
+GDIRT_CLEAN_DIRS	:= ./obj ./bin ./lib ./depend
+GDIRT_CLOBBER_DIRS	:=
+
+endif
+
+#----------------------------------------------------------------------------
+#  MAKE COMMAND SETTINGS
+#
+#	--no-print-directory: 	No print directory when 'change directory'
+#	-r			no builtin rules
+#	-R			no builtin variables
+#	-j			do make with multi-thread (not used now)
+#
+MAKEFILE	= $(firstword $(MAKEFILE_LIST))
+MAKEFLAGS_SHORT	= $(filter -%,$(filter-out --%,$(MAKEFLAGS)))
+
+MAKEFLAGS	+= -R -r
+
+# Check -w option
+ifeq (,$(findstring w,$(MAKEFLAGS_SHORT)))
+MAKEFLAGS	+= --no-print-directory
+endif
+
+# Check -k option
+ifeq (,$(findstring k,$(MAKEFLAGS_SHORT)))
+AND		= &&
+else
+AND		= ;
+endif
+
+# Check -s option
+ifneq (,$(findstring s,$(MAKEFLAGS_SHORT)))
+NITRO_STDOUT	= > /dev/null
+endif
+
+#----------------------------------------------------------------------------
+#  CYGWIN TOOLS
+#
+
+CD		:= cd
+CP		:= cp -rf
+RM		:= rm -rf
+MV		:= mv
+MKDIRP		:= mkdir -p
+SED		:= sed
+INSTALL		:= install -p
+TOUCH		:= touch
+ECHO		:= echo
+PERL		:= perl
+OBJCOPY		:= objcopy -I elf32-little -O binary
+REMAKE		:= $(MAKE) -f $(MAKEFILE)
+
+LEX		:= flex
+YACC		:= bison -y
+CC_X86		:= gcc -mno-cygwin
+CXX_X86		:= g++ -mno-cygwin
+LD_X86		:= gcc -mno-cygwin
+AR_X86		:= ar ruc
+
+
+#----------------------------------------------------------------------------
+#  MY BUILD TOOLS
+#
+
+MAKELCF			 := $(NITRO_TOOLSDIR)/bin/makelcf.exe
+MAKEBANNER		 := $(NITRO_TOOLSDIR)/bin/makebanner.exe
+ADDBANNER		 := $(NITRO_TOOLSDIR)/bin/addbanner.exe
+NTEXCONV		 := $(NITRO_TOOLSDIR)/bin/ntexconv.exe
+COMPSTATIC		 := $(NITRO_TOOLSDIR)/bin/compstatic.exe
+MAKEROM			 := $(NITRO_TOOLSDIR)/bin/makerom.exe
+EMUCHILD		 := $(NITRO_TOOLSDIR)/bin/emuchild.exe
+ATTACHSIGN		 := $(NITRO_TOOLSDIR)/bin/attachsign.exe
+BIN2OBJ			 := $(NITRO_TOOLSDIR)/bin/bin2obj.exe
+
+MAKELCF_FLAGS	 	 ?=
+MAKEBANNER_FLAGS	 ?=
+MAKEROM_FLAGS	 	 ?=
+COMPSTATIC_FLAGS	 ?=
+DEFAULT_COMP_ARM7	 ?= $(if $(findstring TEG,$(NITRO_PLATFORM)),ferret,mongoose)
+DEFAULT_ADDRESS_DTCM	 ?= $(if $(findstring TEG,$(NITRO_PLATFORM)),0x02380000,0x027e0000)
+DEFAULT_COMPSUFFIX	 ?= _LZ
+DEFAULT_MAKEROM_ARM9	 := $(NITRO_COMPONENTSDIR)/printserver/$(NITRO_BUILDTYPE_ARM9)/main.nef
+DEFAULT_MAKEROM_ARM7	 := $(NITRO_COMPONENTSDIR)/$(DEFAULT_COMP_ARM7)/$(NITRO_BUILDTYPE_ARM7)/$(DEFAULT_COMP_ARM7)_sub$(TS_VERSION).nef
+
+DEFAULT_MAKEROM_ROMROOT	 := ./files
+DEFAULT_MAKEROM_ROMFILES :=
+DEFAULT_MAKEROM_ROMSPEED ?= $(NITRO_ROMSPEED)
+
+
+#----------------------------------------------------------------------------
+#  LIST OF JUNKS for "make 
+#
+
+GDIRT_CLEAN	= a.out core *~ *.bak \\\#*\\\# $(GDIRT_CLEAN_DIRS)
+
+GDIRT_CLOBBER	= $(GDIRT_CLOBBER_DIRS)
+
+GDIRT_INSTALLED	= $(addprefix $(INSTALL_DIR)/,$(notdir $(INSTALL_TARGETS)))
+
+
+#----------------------------------------------------------------------------
+#  NITROSDK_INSTALL_ROOT
+#
+
+ifdef	NITROSDK_INSTALL_ROOT
+NITROSDK_INSTALL_ROOT_ 	:= $(NITROSDK_INSTALL_ROOT)
+else
+NITROSDK_INSTALL_ROOT_ 	:= $(NITROSDK_ROOT)
+endif
+
+NITRO_INSTALL_ROOT	:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSDK_INSTALL_ROOT_)))
+NITRO_INSTALL_INCDIR	:= $(NITRO_INSTALL_ROOT)/include
+NITRO_INSTALL_TOOLSDIR	:= $(NITRO_INSTALL_ROOT)/tools
+NITRO_INSTALL_LIBDIR	:= $(NITRO_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
+NITRO_INSTALL_COMPONENTSDIR	:= $(NITRO_INSTALL_ROOT)/components
+NITRO_INSTALL_ADDINS	:= $(NITRO_INSTALL_ROOT)/add-ins
+
+
+#----------------------------------------------------------------------------
+#  PRIVATE FLAGS
+#
+-include $(NITRO_BUILDTOOLSDIR)/_privatedefs
+-include $(NITRO_BUILDTOOLSDIR)/@privatedefs
+
+
+#----------------------------------------------------------------------------
+#  Load add-ins' commondefs
+#
+-include $(NITRO_BUILDTOOLSDIR)/commondefs.add-ins.*
+
+
+#----------------------------------------------------------------------------
+#  DEFAULT TARGET
+#
+ifdef NITRO_UTEST
+default all:	utest
+else
+default all:	build
+endif
+
+#----------------------------------------------------------------------------
+endif	# NITROSDK_COMMONDEFS_
+#----- End of commondefs -----

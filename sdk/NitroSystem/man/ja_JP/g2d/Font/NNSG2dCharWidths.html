@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNSG2dCharWidths</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG2dCharWidths</H1>
+
+<H2>定義</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/fmt/g2d_Font_data.h&gt;
+
+typedef struct NNSG2dCharWidths
+{
+	s8 left;
+	u8 glyphWidth;
+	s8 charWidth;
+}
+NNSG2dCharWidths;
+</CODE></PRE>
+</DL>
+
+<H2>説明</H2>
+<P>
+	各文字が持つ3つの幅情報を格納します。<br>
+	NITROフォントでの3つの幅情報は通常、左スペース、グリフ幅、右スペース、が基準となりますが、
+	フォントリソースには使用頻度が低い右スペース幅のかわりに、
+	より使用頻度が高い文字幅を格納しています。右スペース幅の値が必要な場合は
+</p>
+<pre>int GetRightSpaceWidth(const NNSG2dCharWidths* pWidths)
+{
+    return pWidths->charWidth - (pWidths->left + pWidths->glyphWidth);
+}</pre>
+<p>
+	のように他の値から計算で求める事が出来ます。
+</p>
+
+</P>
+
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="13%"><EM><STRONG>left</STRONG></EM></TD>
+	      <TD width="87%"> 文字の左(前)スペース幅です。(ピクセル単位) </TD>
+	    </TR>
+	    <TR>
+	      <TD width="13%"><EM><STRONG>glyphWidth</STRONG></EM></TD>
+	      <TD width="87%"> 文字のグリフ幅です。(ピクセル単位) </TD>
+	    </TR>
+	    <TR>
+	      <TD width="13%"><EM><STRONG>charWidth</STRONG></EM></TD>
+	      <TD width="87%"> 文字の文字幅(=左スペース幅+グリフ幅+右スペース幅)です。(ピクセル単位) </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+<H2>参照</H2>
+<P><CODE>
+<a href="Font_Overview.html">フォント概要</a>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2005/05/25 初版</P>
+</BODY>
+
+</HTML>

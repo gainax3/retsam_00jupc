@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOCCaInfo</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOCCaInfo</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct {
+    char *dn;               // distinguished name
+    int modulus_len;        // lendth of modulus
+    u8 *modulus;            // modulus
+    int exponent_len;       // length of public exponent
+    u8 *exponent;           // public exponent
+} SOCCaInfo;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>認証局の証明書を保持するための構造体です。SSL 通信で使用します。</p>
+
+<table width="100%" height="77">
+  <tr>
+    <th><strong>メンバ</strong></th>
+    <th><strong>説明</strong></th>
+  </tr>
+  <tr>
+    <td valign="top"><font size="-1"><code><strong><em>dn</em></strong></code></td>
+    <td><font size="-1">証明書の distinguished name へのポインタを指定する。</td>
+  </tr>
+  <tr>
+    <td valign="top"><font size="-1"><code><strong><em>modulus_len</em></strong></code></td>
+    <td><font size="-1">証明書の modulus の長さを指定する。</td>
+  </tr>
+  <tr>
+    <td valign="top"><font size="-1"><code><strong><em>modulus</em></strong></code></td>
+    <td><font size="-1">証明書の modulus へのポインタを指定する。</td>
+  </tr>
+  <tr>
+    <td valign="top"><font size="-1"><code><strong><em>exponent_len</em></strong></code></td>
+    <td><font size="-1">証明書の exponent の長さを指定する。</td>
+  </tr>
+  <tr>
+    <td valign="top"><font size="-1"><code><strong><em>exponent</em></strong></code></td>
+    <td><font size="-1">証明書の exponent へのポインタを指定する。</td>
+  </tr>
+</table>
+
+<p>SSL 関連の用語については、市販の SSL に関する解説書を参照してください。</p>
+
+<p>なお、一般の SSL Tool Kit とは異なり、SSL ライブラリに与える証明書のデータは検証に必要な最低限のもののみとなっています。
+証明書のデータ形式を理解すれば一般的な証明書の形式から手動で変換することも可能ですが、
+DER 形式の X.509 証明書データからこの構造体のデータに変換したい場合は、
+<A href="../../tools/certconv.html"><code>certconv</code> ツール</A>を用いて変換することが可能です。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOCSslConnection.html">SOCSslConnection</a></code>,
+<code><a href="SOC_EnableSsl.html">SOC_EnableSsl</a></code>,
+<code><a href="../../tools/certconv.html">certconv</a></code>
+</p>
+
+<H2>履歴</H2>
+<P>
+2006/01/30 certconv ツールについての記述を追加</P>
+2005/12/21 初版</P>
+</body>
+</html>

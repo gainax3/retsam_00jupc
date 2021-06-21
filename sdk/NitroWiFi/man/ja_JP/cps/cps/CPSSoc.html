@@ -1,0 +1,114 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSSoc</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSSoc</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct _CPSSoc {
+    OSThread *thread;			// Owner of this socket
+    u32 block_type;
+    u8 state;				// socket state
+    u8 ssl;				// TCP if 0, SSL otherwise
+    u16 local_port;			// my port number
+    void *con;				// SSL connection information
+    u32 when;				// when this was created (SYN sent/recvd)
+    u32 local_ip_real;			// real IP that tha packet is sent to
+    u16 remote_port;			// his port number
+    u16 remote_port_bound;		// port number specified by CPS_SocBind()
+    CPSInAddr remote_ip;		// his IP address
+    CPSInAddr remote_ip_bound;		// IP address specified by CPS_SocBind()
+    u32 ackno;				// my ACK number (i.e., received so far)
+    u32 seqno;				// my SEQ number (i.e., sent so far)
+    u16 remote_win;			// his window size
+    u16 remote_mss;			// his MSS
+    u32 remote_ackno;			// his ACK number (i.e., acked so far)
+    u32 ackrcvd;			// # of ACKs received so far (for slow start)
+    int (*udpread_callback)(u8 *, u32, struct _CPSSoc *);
+    CPSSocBuf rcvbuf;			// Low level receive buffer (filled by TCP state machine or UDP)
+
+    u32 rcvbufp;			// index to rcvbuf.data[] (0 based)
+    CPSSocBuf sndbuf;			// Low level send buffer (used by packet sender)
+    CPSSocBuf linbuf;			// High level line input buffer
+    CPSSocBuf outbuf;			// High level output buffer for buffered-output
+    u32 outbufp;			// index to outbuf.data[]
+} CPSSoc;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>ソケットを定義する構造体です。OSThread内のフィールドからポイントされます。<BR>
+殆どのフィールドはシステムが設定しますが、バッファ領域等はアプリケーションが設定しなければいけません。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>rcvbuf</CODE></STRONG></EM></TD>
+			<TD width="75%">必須。<CODE><A href="CPS_SocRead.html">CPS_SocRead</A></CODE>()で返される受信バッファ領域<BR>
+                                       TCPのウィンドウサイズは、この領域のサイズに依存します。<BR>
+                                       これより大きなUDPパケット、ICMP echo replyパケットは切り詰められます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>sndbuf</CODE></STRONG></EM></TD>
+			<TD>必須。ARM7に渡す送信パケットバッファ<BR>
+                            スレッド毎にそのアプリケーションが出力するパケット(IPヘッダ等を含む)の最大長+14バイト用意する必要があります。<BR>
+                            通常は1514バイトにしてください。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>linbuf</CODE></STRONG></EM></TD>
+			<TD>任意。<CODE><A href="CPS_SocGets.html">CPS_SocGets</A></CODE>()を使用する場合のみ、扱う行の最大の長さ+1バイト用意する必要があります。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>outbuf</CODE></STRONG></EM></TD>
+			<TD>任意。<CODE><A href="CPS_SocPutChar.html">CPS_SocPutChar</A></CODE>()、<CODE><A href="CPS_SocPuts.html">CPS_SocPuts</A></CODE>()、<CODE><A href="CPS_SocPrintf.html">CPS_SocPrintf</A></CODE>()を使用する場合のみ、適当な大きさで確保します。<BR>
+                            mymssの2倍にすると効率が良く使用することができます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>con</CODE></STRONG></EM></TD>
+			<TD>SSLを使用する際は<CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>構造体へのポインタを設定します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<p>以下のフィールドは、UDP通信の際のポート・IPアドレスのバインド状態をコントロールするためにはudpread_callback()内で使用することが出来ます。<BR>
+詳細は<CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>()、<CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>()を参照してください。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD><EM><STRONG><CODE>remote_port</CODE></STRONG></EM></TD>
+			<TD>実際の相手ポート番号。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>remote_ip</CODE></STRONG></EM></TD>
+			<TD>実際の相手IPv4アドレス。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>remote_port_bound</CODE></STRONG></EM></TD>
+			<TD>CPS_SocBind()で指定した相手ポート番号。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>remote_ip_bound</CODE></STRONG></EM></TD>
+			<TD>CPS_SocBind()で指定した相手IPv4アドレス。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocRegister.html">CPS_SocRegister</A></CODE>, <CODE><A href="CPS_SocUse.html">CPS_SocUse</A></CODE>, <CODE><A href="CPS_SocRelease.html">CPS_SocRelease</A></CODE>, <CODE><A href="CPS_SetUdpCallback.html">CPS_SetUdpCallback</A></CODE>, <CODE><A href="CPS_SocBind.html">CPS_SocBind</A></CODE>, <CODE><A href="CPS_SocWrite.html">CPS_SocWrite</A></CODE>, <CODE><A href="CPSSocBuf.html">CPSSocBuf</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>, <CODE><A href="CPS_CONSTANT_TYPE.html">CPSライブラリ型</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

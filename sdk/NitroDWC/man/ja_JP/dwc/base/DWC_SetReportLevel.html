@@ -1,0 +1,88 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_SetReportLevel</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_SetReportLevel</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_SetReportLevel( u32 level );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  DWCライブラリがコンソールに表示するデバッグプリントの種別（デバッグレポートレベル）を調整する関数です。
+		  レポートレベルは、下記のように定義されています。
+		  デバッグ用途に応じて必要な表示のみをORをとって選択できます。<BR>
+		  なお、NITRO-DWC-DLでは<code>DWC_REPORTFLAG_GAMESPY</code>を指定しても該当の機能がないため意味がありません。
+		</P>
+		<P>
+		  デバッグレポートは何か問題が起きた時に解析するためのログとして使用されます。
+		</P>
+		<P>
+		  これはデバッグ用の関数です。
+		  最終ROM版（FINALROM）ライブラリでは何も動作を行いません。
+		</P>
+<p>
+  <pre>
+    DWC_REPORTFLAG_INFO        = 0x00000001
+    DWC_REPORTFLAG_ERROR       = 0x00000002
+    DWC_REPORTFLAG_DEBUG       = 0x00000004
+    DWC_REPORTFLAG_WARNING     = 0x00000008
+    DWC_REPORTFLAG_ACHECK      = 0x00000010
+    DWC_REPORTFLAG_LOGIN       = 0x00000020
+    DWC_REPORTFLAG_MATCH_NN    = 0x00000040
+    DWC_REPORTFLAG_MATCH_GT2   = 0x00000080
+    DWC_REPORTFLAG_TRANSPORT   = 0x00000100
+    DWC_REPORTFLAG_QR2_REQ     = 0x00000200
+    DWC_REPORTFLAG_SB_UPDATE   = 0x00000400
+    DWC_REPORTFLAG_SEND_INFO   = 0x00008000
+    DWC_REPORTFLAG_RECV_INFO   = 0x00010000
+    DWC_REPORTFLAG_UPDATE_SV   = 0x00020000
+    DWC_REPORTFLAG_CONNECTINET = 0x00040000
+    DWC_REPORTFLAG_AUTH        = 0x01000000
+    DWC_REPORTFLAG_AC          = 0x02000000
+    DWC_REPORTFLAG_BM          = 0x04000000
+    DWC_REPORTFLAG_UTIL        = 0x08000000
+    DWC_REPORTFLAG_GAMESPY     = 0x80000000
+    DWC_REPORTFLAG_ALL         = 0xffffffff
+</pre>
+</p>
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>level</CODE></STRONG></EM></TD>
+					<TD width="75%">DWCライブラリのデバッグ表示を行う項目の選択。ORで複数の条件を選択できます。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+			なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/07/03 関数説明にFriendsMatchライブラリを使用しない場合の説明を挿入<BR>
+			2005/12/16 詳細な関数説明を追加<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

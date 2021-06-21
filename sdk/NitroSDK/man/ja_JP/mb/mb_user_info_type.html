@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBUserInfo</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBUserInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef	struct
+{
+    u8   favoriteColor   : 4;
+    u8   playerNo        : 4;
+    u8   nameLength;
+    u16  name[ MB_USER_NAME_LENGTH ];
+} MBUserInfo;	/* 22byte */
+</PRE>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>親子ともマルチブート処理に使用するユーザデータの形式を規定する構造体です。<BR>
+各メンバの意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>メンバ</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>favoriteColor</TD>
+      <TD>プレイヤーの好きな色を表す色セット番号です。
+	  </TD>
+    </TR>
+     <TR>
+      <TD>playerNo</TD>
+      <TD>プレイヤー番号です。親機は0に固定され、子機は1から15になります。<br>
+	  <font color="#800000">NITRO-SDK 2.0 PR5 以前のバージョンから親機の番号が変更されましたので注意してください。</font>
+	  </TD>
+    </TR>
+   <TR>
+      <TD>nameLength</TD>
+      <TD>プレイヤーのニックネーム長です。<BR>
+	  nameの有効文字数を指定します。
+	  </TD>
+    </TR>
+   <TR>
+      <TD>name</TD>
+      <TD>プレイヤーのニックネームです。<BR>
+	  UTF-16LEおよびIPL定義の特殊文字が使用可能で、主に本体から取得した名前を設定します。<br>
+	  MB_USER_NAME_LENGTH 文字以内の有効文字数をnameLengthで指定します。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="common/MB_Init.html">MB_Init</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正、説明追加<br>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

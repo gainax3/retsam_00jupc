@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>makebanner</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">makebanner</H1>
+<H2>説明</H2>
+<P><CODE>　makebanner</CODE> は、バナーファイルと呼ばれる NITRO 起動時のメニューで表示するアプリケーションの識別画像情報などをまとめたファイルを作成するためのツールです。</P>
+<P>　バナーファイルには画像データと各言語毎のゲームタイトル名の情報が含まれており、バナースペックファイル（BSF）と呼ばれるファイルの記述を元に生成されます。生成されたバナーファイルは
+<CODE>makerom</CODE> によってアプリケーション ROM イメージへ格納されます。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% makebanner [-d] [-N ICON_BASENAME] SPECFILE [BANNERFILE]</CODE></P>
+<P><CODE>　SPECFILE</CODE> で指定されたバナースペックファイル(後述)の記述にしたがってファイルを結合し、
+<CODE>BANNERFILE</CODE> という名前で作成します。<CODE>BANNERFILE</CODE> は省略可能です。省略時には <CODE>SPECFILE</CODE> で指定されたファイル名の拡張子部分を <CODE>.bnr</CODE> としたファイル名が使用されます。</P>
+<P>　<CODE>-N</CODE> オプションによって通常バナースペックファイルで指定するバナーのアイコンファイルをコマンドラインから指定できます。<CODE>ICON_BASENAME</CODE> に指定されたベース名に拡張子 <CODE>.nbfc</CODE> および <CODE>.nbfp</CODE> を付けたものをそれぞれ画像イメージファイルおよび画像パレットファイル名とします。これはバナースペックファイル内で
+<CODE>ImageFile:</CODE> および <CODE>PlttFile:</CODE> パラメータで指定する値を上書きします。</P>
+<P>　<CODE>-d</CODE> オプションは <CODE>makebanner</CODE> のデバグ用メッセージ出力用のオプションで実行時にデバグ用メッセージを出力します。普段は必要ありません。</P>
+<H3>バナースペックファイルフォーマット</H3>
+<P>　バナースペックファイルは画像データのファイルや各言語のゲームタイトル名を指定するテキストファイルです。Unicode
+(UTF-16LE BOM 付き) で記述、保存する必要があります。MS-Windows 2000/XP
+のメモ帳 (US版:NotePad) は Unicode に対応しています。保存時の文字コード
+(US版:Encoding) 指定タブで <I>Unicode</I> を選択してください。</P>
+<H3>パラメータ</H3>
+<P>　パラメータの指定と値は <CODE>':'</CODE>(コロン)で区切ります。</P>
+<H4>画像ファイルパラメータ</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>ImageFile: </CODE><I>[画像イメージファイル名]</I>
+  <DD class="command_desc">32×32の16色の画像イメージのバイナリを指定します。<BR>
+  キャラクタデータを1次元マッピングで格納して下さい。<BR>
+  先頭の512バイトがバナーファイルへ書き込まれます。
+  <DT class="command_item"><CODE>PlttFile: </CODE><I>[画像パレットファイル名]</I>
+  <DD class="command_desc">画像パレットのバイナリを指定します。<BR>
+  先頭の32バイトがバナーファイルへ書き込まれます。
+</DL>
+</BLOCKQUOTE>
+<P><CODE>ntexconv (-no -bg -bgb -bgnc)</CODE> などを使用して画像ファイルからイメージとパレットのバイナリデータを作成して下さい。</P>
+<P><CODE>-N</CODE> オプションによってコマンドラインから画像ファイルパラメータを指定することもできます。</P>
+<H4>バージョンパラメータ</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>Version: </CODE><I>[バナーバージョン]</I>
+  <DD class="command_desc">バナーバージョンを指定します。<BR>
+  このパラメータは中国、または韓国向けアプリケーションの場合のみ必要です。<BR>
+  中国向けアプリケーションの場合は<CODE>'2'</CODE>を、韓国向けアプリケーションの場合は<CODE>'3'</CODE>を指定します。
+</DL>
+</BLOCKQUOTE>
+<H4>言語パラメータ</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>JP: </CODE><I>[日本語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[フランス語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[ドイツ語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[イタリア語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[スペイン語ゲームタイトル名]</I>
+  <DD class="command_desc">各言語毎のゲームタイトル名を記述します。最大で3行128文字まで指定できます（改行文字を含みます）。<BR>
+  1行目には必ず文字列を指定して下さい。スペースまたはタブから始めた場合、前の行の続きの行となります。<BR>
+  空行をはさんだ場合には次の言語パラメータまでの内容は破棄されます。1行目または2行目を空欄にして3行目に記述したい場合は、空欄にしたい行の内容を
+  &quot; &quot; としてください。<BR>
+  記述の順番に関わらず、日本語/英語/フランス語/ドイツ語/イタリア語/スペイン語の順にバナーファイルへ格納されます。
+  格納フォーマットはバナースペックファイルと同じ UTF-16LE (ただしBOM無し)
+  となります。<BR>
+  <BR>
+  <DT class="command_item"><CODE>JP: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <CODE>CN: </CODE><I>[中国語ゲームタイトル名]</I><BR>
+  <DD class="command_desc">中国向けアプリケーションの場合は上記のように標準のバナー指定に加えて中国語のバナーを指定します。<BR>
+  このときゲームタイトル名はすべて中国語で記述します。
+  <DT class="command_item"><CODE>JP: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>EN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>FR: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>GE: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>IT: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>SP: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>CN: </CODE><I>[英語ゲームタイトル名]</I><BR>
+  <CODE>HN: </CODE><I>[韓国語ゲームタイトル名]</I>
+  <DD class="command_desc">韓国向けアプリケーションの場合は上記のように中国向けアプリケーションのバナー指定に加えて韓国語のバナーを指定します。<BR>
+  このとき韓国語用のゲームタイトル名以外は、すべて英語で記述します。
+</DL>
+  使用可能な文字や文字コードなどに関しては DS バナーに関するドキュメントを別途ご参照ください。ただし UTF-16LE 文字コードの表示が可能なエディタが必要です。
+</BLOCKQUOTE>
+<H3>書式について</H3>
+<P>　パラメータ指定は各行の初めから記述する必要があります。'#' から始まる行はコメントとして扱われます。<BR>
+　先頭以外の空白は文字列へ含まれますが、<CODE>&quot;</CODE> (ダブルクォーテーション) で囲むことで、先頭の空白や文字列中の <CODE>&quot;</CODE> を含むことができます。</P>
+<BLOCKQUOTE>
+<PRE class="sample_source"><CODE>#BSF --- Banner Spec File
+
+ImageFile:  banner.nbfc
+PlttFile:   banner.nbfp
+
+JP:  ニトロ
+     &quot; にほんご&quot;
+EN:  Nitro1
+     English
+FR:  Nitro2
+GE:  Nitro3
+IT:  Nitro4
+SP:  &quot; Nitro5&quot;
+</CODE></PRE>
+</BLOCKQUOTE>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/makebanner.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="makerom.html">makerom</A></CODE></P>
+<H2>履歴</H2>
+<P>2007/01/12 中国、韓国向けアプリケーションのための説明追加<BR>
+2004/09/10 使用可能文字一覧テキストへリンク追加<BR>
+2004/08/28 初版作成</P>
+</BODY>
+</HTML>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_SendAudio</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_SendAudio</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>BOOL VCT_SendAudio( void* audio_data, u32 length );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>audio_data</STRONG></EM></TD>
+      <TD width="87%" height="17"> オーディオデータ</TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>length</STRONG></EM></TD>
+      <TD width="87%" height="17">データサイズ（バイト数）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<TABLE border="1" id="table1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TRUE</CODE></TD>
+      <TD width="70%">音声データを送信用バッファへキューイングした</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>FALSE</CODE></TD>
+      <TD width="70%">音声データを送信用バッファにキューイングしなかった（ストリーミングが開始されていない、ライブラリが初期化されていない）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<p>送信用バッファに音声データをキューイングします。VAD処理、音声のエンコードとパケットの送信処理は<code><a href="VCT_Main.html">VCT_Main</a></code>関数内で行われます。</p>
+
+<p><em><strong>audio_data</strong></em>は16bit/8KHzでサンプリングされたデータで、かつ４バイト境界にアライメントされている必要があります。また、<em><strong>length</strong></em>は現在1088（16bit/8KHzで68ms分のデータ）以外の値は受け付けていません。</p>
+
+<p>この関数は、現在音声ストリーミングが開始されている・いないにかかわらず呼び出すことが可能です。音声ストリーミングが開始されていなければ、この関数は何も実行しません。</p>
+
+<p>この関数の呼び出し間隔にばらつきがあると、送信パケットのタイムスタンプにばらつきが発生し、受信側端末の誤差が増えるため、可能な限り正確に68ms単位で呼び出すようにしてください（音声ストリーミング再生の割り込みコールバックから呼び出してください）。</p>
+   
+<p><b>注：</b>Version 1.0.1までは、この関数の戻り値を利用してVADの判定結果を知ることができましたが、Version 1.1以降はこの関数内部でVAD判定を行っていないため、VADの判定結果を知ることは出来ません。VADの判定結果は<code><a href="VCT_GetVADInfo.html">VCT_GetVADInfo</a></code>関数を利用して取得してください。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="VCT_Init.html">VCT_Init</a>,
+<a href="VCT_StartStreaming.html">VCT_StartStreaming</a>,
+<a href="VCT_ReceiveAudio.html">VCT_ReceiveAudio</a>
+</code></p>
+<H2>履歴</H2>
+<P>
+2006/08/31 VAD処理と戻り値に関する記述を修正<BR>
+2006/04/13 送信間隔を64msから68msへ変更。戻り値の説明を「送信が成功した」から「送信バッファにキューイングした」に変更。<BR>
+2006/04/06 送信間隔の調整に関する記述を修正 <BR>
+2006/03/24 VADに関する記述を追記<BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

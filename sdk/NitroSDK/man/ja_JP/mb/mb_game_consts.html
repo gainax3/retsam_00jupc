@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_ICON_*,MB_GAME_*,MB_USER_*</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_ICON_*,MB_GAME_*,MB_USER_*</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+#define MB_ICON_COLOR_NUM        16                       // アイコン色数
+#define MB_ICON_PALETTE_SIZE     (MB_ICON_COLOR_NUM * 2)  // アイコンデータサイズ (16bitカラー×色数)
+#define MB_ICON_DATA_SIZE        512                      // アイコンデータサイズ (32×32dot 16色)
+#define MB_GAME_NAME_LENGTH      48                       // ゲームネーム長   (2byte単位) ※最大で左記文字数でかつ、横幅185ドット以内に収まる範囲で指定。
+#define MB_GAME_INTRO_LENGTH     96                       // ゲーム説明長     (2byte単位) ※最大で左記文字数でかつ、横幅199ドット×2に収まる範囲で指定。
+#define MB_USER_NAME_LENGTH      10                       // ユーザーネーム長 (2byte単位)
+</PRE>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>MBライブラリでゲーム情報やユーザ情報について規定された各種定数です。<BR>
+
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>MB_ICON_COLOR_NUM</TD>
+      <TD>ダウンロードゲーム表示用アイコンのパレット色数最大値です。<br>
+	  これは16色に固定されます。<br>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_ICON_PALETTE_SIZE</TD>
+      <TD>ダウンロードゲーム表示用アイコンのパレットデータサイズです。<br>
+	  これは実際に使用している色数によらず16色分の<a href="../gx/Type.html">GXRgb</a>型が格納された配列になります。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_ICON_DATA_SIZE</TD>
+      <TD>ダウンロードゲーム表示用アイコンのイメージデータサイズです。<br>
+	  これは縦32ピクセル、横32ピクセルの16色インデックスカラービットマップに固定されます。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_GAME_NAME_LENGTH</TD>
+      <TD>ダウンロードゲーム名の最大文字数です。<br>
+	  これは48文字に固定されます。<br>
+	  <font color="#800000">文字列は UTF16-LE のワイド文字列で扱われるので、文字数はバイト数のsizeof(wchar_t)倍となります。<br>
+	  また、IPL表示時に横幅185ピクセル以内におさまる長さである必要があります。<br>
+	  ※</font>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_GAME_INTRO_LENGTH</TD>
+      <TD>ダウンロードゲーム説明文の最大文字数です。<br>
+	  これは96文字に固定されます。<br>
+	  <font color="#800000">文字列は UTF16-LE のワイド文字列で扱われるので、文字数はバイト数のsizeof(wchar_t)倍となります。<br>
+	  また、IPL表示時に2行の横幅199ピクセル以内におさまる長さである必要があります。<br>
+	  ※</font>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_USER_NAME_LENGTH</TD>
+      <TD>ユーザ名の最大文字数です。<br>
+	  これは10文字に固定されます。<br>
+	  <font color="#800000">文字列は UTF16-LE のワイド文字列で扱われるので、文字数はバイト数のsizeof(wchar_t)倍となります。<br>
+	  </font>
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="mb_game_registry_type.html">MBGameRegistry</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/05 リンク修正<BR>
+2004/09/27 初版<BR>
+</P>
+</body>
+</html>

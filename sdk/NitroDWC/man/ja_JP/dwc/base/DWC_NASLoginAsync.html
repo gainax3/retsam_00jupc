@@ -1,0 +1,66 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_NASLoginAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_NASLoginAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_NASLoginAsync(void);</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  任天堂認証サーバで認証を行いWi-Fiコネクションへ接続します。本関数を呼び出した後、<a href="DWC_NASLoginProcess.html"><code>DWC_NASLoginProcess</code></a>関数を呼び出して処理を進行させる必要があります。
+		</P>
+
+		<P>
+		  本関数を呼び出すには、インターネット接続が完了している必要があります。<BR>
+		  また、<a href="FriendsMatch.html">FriendsMatchライブラリ</a>を使用する場合は、<a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数で同様の処理を行ないますので、本関数を呼び出す必要はありません。
+		</P>
+		<H2>引数</H2>
+		<P>
+		なし
+		</P>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+				  <TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+				  <TD width="75%">認証処理を開始した。</TD>
+				</TR>
+				<TR>
+				  <TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+				  <TD>認証処理を開始できなかった。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<p>
+		<code>
+		<a href="DWC_NASLoginProcess.html">DWC_NASLoginProcess</a>,
+		<a href="FriendsMatch.html">FriendsMatchライブラリ</a>,
+		<a href="DWC_LoginAsync.html">DWC_LoginAsync</a>
+		</code>
+		</p>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/07/24 説明を見直し<BR>
+		  2006/03/27 関数名修正、用途についての注意書き追加<BR>
+		  2006/03/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

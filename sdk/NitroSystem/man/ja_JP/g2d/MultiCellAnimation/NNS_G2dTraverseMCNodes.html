@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dTraverseMCNodes</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dTraverseMCNodes</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_MultiCellAnimation.h&gt;</CODE></pre>
+  <pre><CODE>
+void NNS_G2dTraverseMCNodes
+( 
+    NNSG2dMultiCellInstance*        pMCellInst,
+    NNSG2dMCTraverseNodeCallBack    pCBFunc,
+    u32                             userParamater
+);
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMCellInst</font></strong></em></td>
+    <td width="87%">[IN] マルチセル実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pCBFunc</font></strong></em></td>
+    <td width="87%">[IN] マルチセル内の各ノードについて呼び出されるコールバック関数</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">userParamater</font></strong></em></td>
+    <td width="87%">[IN] コールバック関数の第１引数として渡される、ユーザが自由に使用するパラメータ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+マルチセルを構成するノードについて、それらを巡回しながら、<BR>
+各ノード情報、セルアニメーション、ノード番号を引数にコールバック関数呼び出しを行います。<BR>
+セルアニメーション単位で巡回を行う、NNS_G2dTraverseMCCellAnims()も用意されています。<BR>
+<BR>
+NNSG2dMCTraverseNodeCallBack の定義を以下にしめします。<BR>
+<pre>
+typedef BOOL (*NNSG2dMCTraverseNodeCallBack)
+( 
+    u32                                 userParamater,
+    const NNSG2dMultiCellHierarchyData* pNodeData,
+    NNSG2dCellAnimation*                pCellAnim, 
+    u16                                 nodeIdx 
+); 
+コールバック呼び出しを中断したい場合は、コールバック関数内でFALSEを返すようにしてください。
+
+</pre>
+<BR>
+注意：<BR>
+実体の種類がNNS_G2D_MCTYPE_DONOT_SHARE_CELLANIMで初期化されたマルチセルの場合、<BR>
+ユーザがノード情報のSRT（スケール、回転、移動）情報などに変更を加えることが出来ます。<BR>
+しかし、本関数のコールバック呼び出しで引数として渡されるノード情報は、静的データリソースであり、<BR>
+そういったユーザ変更が反映されていないデータとなります。<BR>
+
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dTraverseMCCellAnims.html">NNS_G2dTraverseMCCellAnims</A><br></CODE>
+
+</p>
+<H2>履歴</H2>
+<P>2005/09/01 初版</P>
+</body>
+</html>

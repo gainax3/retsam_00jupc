@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PM_GoSleepMode</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">PM_GoSleepMode</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/spi.h&gt;</CODE></PRE>
+  <PRE><CODE>void PM_GoSleepMode( PMWakeUpTrigger trigger, PMLogic logic, u16 keyPattern );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>trigger</STRONG></EM></TD>
+      <TD width="87%">スリープ状態からの復帰要因</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>logic</STRONG></EM></TD>
+      <TD width="87%">キー割り込みで復帰する場合のキーの組み合わせ論理</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>keyPattern</STRONG></EM></TD>
+      <TD width="87%">キー割り込みで復帰する場合のキー</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>ARM9、ARM7 ともにスリープ状態に移行します。<BR>
+<BR>
+ARM7にスリープコマンドを送り、ARM9自身も<A href="../../os/system/OS_Halt.html"><CODE>OS_Halt()</CODE></A> でホールト状態に入ります。<B><I>trigger</I></B> は <CODE>PMWakeUpTrigger</CODE> 列挙型で、スリープ状態からの復帰要因を指定します。要因は論理和を取ることで複数のものを指定することが出来ます。以下のものが指定可能です。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>PM_TRIGGER_KEY</TD>
+      <TD>キー割り込み発生</TD>
+    </TR>
+    <TR>
+      <TD>PM_TRIGGER_RTC_ALARM</TD>
+      <TD>RTCのアラーム割り込み発生 　　　　　　　　　　　　　　　　　　　</TD>
+    </TR>
+    <TR>
+      <TD>PM_TRIGGER_COVER_OPEN</TD>
+      <TD>ふたを開く</TD>
+    </TR>
+    <TR>
+      <TD>PM_TRIGGER_CARD</TD>
+      <TD>カード割り込み発生 またはカードを抜く</TD>
+    </TR>
+    <TR>
+      <TD>PM_TRIGGER_CARTRIDGE</TD>
+      <TD>カートリッジ割り込み発生 またはカートリッジを抜く</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<FONT color="red">(注意)カートリッジ抜けによってスリープから復帰する方法はガイドラインで禁止されています。</FONT>
+<BLOCKQUOTE>
+(例)　スリープして、ふたを開くか、カードを抜くと復帰する場合<BR>
+<CODE>PM_GoSleepMode( PM_TRIGGER_COVER_OPEN | PM_TRIGGER_CARD );</CODE></BLOCKQUOTE>
+<P>ハード上の仕様で言えばこれらの復帰要因はレベルトリガであり、エッジトリガではありません。PM_TRIGGER_CARTRIDGE
+を例に取ると、正確に言えば「カートリッジを抜いたこと」を検知するのではなく「抜かれている状態」を検知して復帰します。(もっと正確にいえば、OS_IE_CARTRIDGE_IREQ
+割り込みが掛かっているという状態を検知します。)　従って、カートリッジがささっていない状態でカートリッジ割り込みを復帰要因としてスリープに入ろうとしても(すでに抜かれているとみなして)
+即座に復帰します。<BR>
+ただし、カードとカートリッジ割り込みについては、実際に刺さっているかどうかを関数内部で調べますので、ささっていない状態で復帰要因に入れようとしてもそのトリガは破棄されます。</P>
+<P>キー割り込みを復帰要因に含めた場合、復帰するためのキーとその組み合わせ論理を <B><I>keyPattern</I></B> と <B><I>logic</I></B> で指定します。組み合わせ論理は<CODE>PM_PAD_LOGIC_AND</CODE> (すべてのキー入力が行われた) 、 <CODE>PM_PAD_LOGIC_OR</CODE> (いずれかのキー入力が行われた) のどちらかです。<BR>
+<BR>
+例えば、AボタンとSTARTボタンを同時に押さなければ復帰出来ないようにするには</P>
+<P><CODE>PM_GoSleepMode( PM_TRIGGER_KEY, <FONT color="#ff3300">PM_PAD_LOGIC_AND</FONT>, PAD_BUTTON_A | PAD_BUTTON_START );</CODE></P>
+<P>となり、AボタンとSTARTボタンのいずれかを押せば復帰するようにするには</P>
+<P><CODE>PM_GoSleepMode( PM_TRIGGER_KEY, <FONT color="#ff3300">PM_PAD_LOGIC_OR</FONT>, PAD_BUTTON_A | PAD_BUTTON_START );</CODE></P>
+<P>となります。</P>
+<P>キー割り込みを復帰要因に含めない場合、<B><I>keyPattern</I></B> および <B><I>logic</I></B> の指定には意味がありません。また、キーの指定が一つしかない場合は<CODE>組み合わせ論理は PM_PAD_LOGIC_AND とPM_PAD_LOGIC_OR</CODE> のどちらでも構いません</P>
+<P>この関数を使用する際は、あらかじめ <CODE><A href="PM_Init.html">PM_Init()</A></CODE> で PMライブラリを初期化してください。(一度呼べば結構です。また、<CODE><A href="../../os/init/OS_Init.html">OS_Init()</A></CODE> 
+を呼ぶ場合は、その中から呼ばれますので必要ありません。)</P>
+
+<P><BR>
+<B>コールバック関数</B></P>
+<P>スリープモードに移行する前と、スリープモードから復帰したときに呼ばれるコールバック関数を設定することが出来ます。スリープモードに移行するときのコールバック関数は
+<CODE>PM_GoSleepMode()</CODE> の先頭で、復帰したときのコールバック関数は <CODE>PM_GoSleepMode()</CODE> の末尾で呼び出されますので、実質的に <CODE>PM_GoSleepMode()</CODE> の直前・直後で呼び出すのと変わりません。</P>
+<P>コールバック関数は <CODE>PMSleepCallback</CODE> 型 ( void* 引数を１つとる、返り値を持たない関数型 ) で、複数の関数を登録することが出来ます。登録された複数の関数は順に呼ばれますので、順序の依存関係があるものを登録する際には注意が必要です。</P>
+<P>コールバックを登録する際には、コールバック関数やその引数を含んだコールバック情報で指定します。詳細は <CODE><A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback()</A></CODE> のリファレンスを参照してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="PM_Init.html">PM_Init</A>,<BR>
+<A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback</A>, <A href="PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback</A>, <BR>
+<A href="PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback</A>, <A href="PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback</A>, <BR>
+<A href="PM_DeletePreSleepCallback.html">PM_DeletePreSleepCallback</A>, <A href="PM_DeletePreSleepCallback.html">PM_DeletePostSleepCallback</A>,</CODE><BR>
+<CODE><A href="PM_SetSleepCallbackInfo.html">PM_SetSleepCallbackInfo</A></CODE></P>
+
+<H2>履歴</H2>
+<P>2006/05/16 復帰要因のカートリッジ抜けについての説明変更<BR>
+2005/09/14 <CODE>PM_SetSleepCallback</CODE> → <CODE>PM_SetSleepCallbackInfo<BR>
+</CODE>2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/10/06 コールバックを複数登録できるように修正<BR>
+2004/10/05 コールバックについての記述を追加<BR>
+2004/08/07 組み合わせ論理を引数に分離<BR>
+2004/08/02 初版</P>
+</BODY>
+</HTML>

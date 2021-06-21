@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_CheckPulledOut</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_CheckPulledOut</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>void CTRDG_CheckPulledOut( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>
+カートリッジ抜け検出処理をARM9から直接実行します。<BR>
+この検出処理はARM7が定期的に行いPXIを経由して検出通知されるため通常はARM9にとって必要ありませんが、<BR>
+この関数を呼び出すことにより検出通知までの遅延時間を無しに即時判定することができます。<BR>
+<BR>
+カートリッジ抜けを検出した場合、ARM7から通知を受けた場合と同様にユーザコールバック関数と<A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut</A>関数が<BR>
+この関数の内部から呼び出されます。<BR>
+<BR>
+この関数を使用するためには、<CODE><A href="CTRDG_Init.html">CTRDG_Init</A></CODE> 関数が予め呼ばれている必要があります。
+</P>
+<H2>参照</H2>
+<P>
+<CODE>
+<A href="CTRDG_Init.html">CTRDG_Init</A>, 
+<A href="CTRDG_IsPulledOut.html">CTRDG_IsPulledOut</A>, 
+<A href="CTRDG_SetPulledOutCallback.html">CTRDG_SetPulledOutCallback</A>, 
+<A href="CTRDG_TerminateForPulledOut.html">CTRDG_TerminateForPulledOut</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/02/07 初版<BR>
+</P>
+</BODY>
+</HTML>

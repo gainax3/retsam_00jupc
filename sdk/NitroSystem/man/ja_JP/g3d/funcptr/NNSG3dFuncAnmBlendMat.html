@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dFuncAnmBlendMat</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dFuncAnmBlendMat</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;
+
+typedef BOOL (*NNSG3dFuncAnmBlendMat)(struct NNSG3dMatAnmResult_* pAnmResult,
+                                      const NNSG3dAnmObj* pAnmObj,
+                                      u32 matID);</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="197"><I><B>pAnmResult</B></I></TD>
+      <TD width="647">マテリアルアニメーションの結果へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="197"><B><I>pAnmObj</I></B></TD>
+      <TD width="647">アニメーションオブジェクトへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="197"><B><I>matID</I></B></TD>
+      <TD width="647">マテリアルID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>関数が<B><I>pAnmResult</I></B>に計算結果を書き出しているなら<CODE>TRUE</CODE>, そうでなければ<CODE>FALSE</CODE>を返します。</P>
+<H2>説明</H2>
+<P><B><I>matID</I></B>に対応するマテリアルアニメーションを<I><B>pAnmObj</B></I>からリストをたどりつつ計算し、結果をブレンドして<B><I>pAnmResult</I></B>に格納します。<B><I>matID</I></B>に対応するアニメーションが無効である等、この関数がマテリアルアニメーションの結果を出力しない場合は、<CODE>FALSE</CODE>を返します。この場合、モデルリソースからマテリアルデータを取得します。</P>
+<H2>参照</H2>
+<P><CODE><A href="NNSG3dFuncAnmBlendJnt.html" target="_self">NNSG3dFuncAnmBlendJnt</A> <A href="NNSG3dFuncAnmBlendVis.html" target="_self">NNSG3dFuncAnmBlendVis</A> <A href="../struct/NNSG3dMatAnmResult.html" target="_self">NNSG3dMatAnmResult</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/10/19 初版</P>
+</BODY>
+
+</HTML>

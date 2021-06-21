@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>fx64型用のマクロ</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">fx64型用のマクロ</h1>
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="154">FX64_SHIFT</TD>
+      <TD width="438">fx64型のためのシフト数(12)が定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_INT_SIZE</TD>
+      <TD width="438">fx64型の整数部分のビット幅(51)が定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_DEC_SIZE</TD>
+      <TD width="438">fx64型の小数部分のビット幅(12)が定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_INT_MASK</TD>
+      <TD width="438">fx64型の整数部分のマスクが定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_DEC_MASK</TD>
+      <TD width="438">fx64型の小数部分のマスク(0x0fff)が定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_SIGN_MASK</TD>
+      <TD width="438">fx64型の符号部分のマスクが定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_MAX</TD>
+      <TD width="438">fx64型が取りうる最大値が定義されています。</TD>
+    </TR>
+    <TR>
+      <TD width="154">FX64_MIN</TD>
+      <TD width="438">fx64型が取りうる最小値が定義されています。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロの定義</H2>
+<PRE><CODE>#define FX64_SHIFT          12
+#define FX64_INT_SIZE       51
+#define FX64_DEC_SIZE       12
+
+#define FX64_INT_MASK       ((fx64)0x7ffffffffffff000)
+#define FX64_DEC_MASK       ((fx64)0x0000000000000fff)
+#define FX64_SIGN_MASK      ((fx64)0x8000000000000000)
+
+#define FX64_MAX            ((fx64)0x7fffffffffffffff)
+#define FX64_MIN            ((fx64)0x8000000000000000)
+#define FX_FX64_TO_F32(x)   ((f32)((x) / (f32)(1 &lt;&lt; FX64_SHIFT)))
+#define FX_F32_TO_FX64(x)   ((fx64)(((x) &gt; 0) ? \
+                                    ((x) * (1 &lt;&lt; FX32_SHIFT) + 0.5f ) : \
+                                    ((x) * (1 &lt;&lt; FX32_SHIFT) - 0.5f )))
+
+#define FX64_CONST(x)       FX_F32_TO_FX64(x)
+</CODE></PRE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/25</P>
+</body>
+</html>

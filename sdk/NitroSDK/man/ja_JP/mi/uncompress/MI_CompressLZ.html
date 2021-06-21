@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_CompressLZ*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_CompressLZ*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+    u32 MI_CompressLZ( const u8 *srcp, u32 size, u8 *dstp );<BR>
+    u32 MI_CompressLZFast( const u8 *srcp, u32 size, u8 *dstp, u8* work );<BR>
+    <BR>
+    u32 MI_CompressLZEx( const u8 *srcp, u32 size, u8 *dstp );<BR>
+    u32 MI_CompressLZExFast( const u8 *srcp, u32 size, u8 *dstp, u8* work );<BR>
+</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">圧縮するデータが格納されているソースアドレス。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>圧縮するソースデータサイズ。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstp</STRONG></EM></TD>
+      <TD width="87%">圧縮先バッファへのポインタ、ソースデータサイズ以上の領域が必要です。要4バイトアライン。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>work</STRONG></EM></TD>
+      <TD>MI_CompressLZ*Fast()系の関数で必要となる圧縮用の一時ワークバッファ。<BR>
+          MI_LZ_FAST_COMPRESS_WORK_SIZEバイトのサイズが必要です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>圧縮データのサイズを返します。<BR>
+もしも圧縮後のデータがソースファイルよりも大きくなる場合には、圧縮を行なわずに0を返します。</p>
+
+<H2>説明</H2>
+<P>データをLZ77圧縮し、指定のメモリ領域に書き込みます。<BR>
+圧縮先のバッファにはソースデータと同じサイズの領域を用意する必要があります。<BR>
+</P>
+<P>
+サフィックスにFastの付いたAPIでは、スライド辞書の検索時にワークバッファを利用することで、通常の関数と比較して数倍高速に処理されます。<BR>
+ワークバッファを指定しない形式のAPIではスライド辞書を単純検索していますので、ソースデータによっては完了までに時間がかかる場合があります。
+</P>
+<P>
+LZ77拡張圧縮( MI_CompressLZEx*関数 )では、通常のLZ77圧縮に比べてより高い圧縮率が期待できますが、最悪の場合の圧縮時間が通常のMI_CompressLZFast関数での
+ワーストケースと比較して数倍長くなる事が考えられ、MI_CompressLZFastを使用した方が安定した処理時間での圧縮が可能です。<BR>
+展開時の速度はどちらの方式でも同程度です。<BR>
+<BR>
+どちらの圧縮形式でも<A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>関数や、<A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ</A>関数で展開することが
+可能ですが、NitroSDK4.2より前のSDKを使用しているプログラムでは、LZ77拡張圧縮されたファイルを展開できませんので、ご注意ください。
+</P>
+
+<P>
+8bit単位で書き込みますので、dstpにVRAM上のアドレスを指定することはできません。<BR>
+srcpにはVRAM上のアドレスを指定することが可能です。<BR>
+</P>
+
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>,
+<A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ</A>,
+<A href="MI_CompressRL.html">MI_CompressRL</A>, 
+<A href="MI_CompressHuffman.html">MI_CompressHuffman</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/11/01 LZ77拡張圧縮を追加, MI_CompressLZ*系のAPIリファレンスを統合<BR>
+2005/02/01 初版
+</P>
+</body>
+</html>

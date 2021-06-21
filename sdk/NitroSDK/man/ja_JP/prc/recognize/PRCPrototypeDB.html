@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCPrototypeDB</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCPrototypeDB</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef struct PRCPrototypeDB
+{
+    ...
+} PRCPrototypeDB;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<P>各要素には直接アクセスしないでください。</P>
+
+<H2>説明</H2>
+<P>図形認識で用いるための見本DBです。各見本パターンの点列データのみ保持する <CODE><A href="PRCPrototypeList.html">PRCPrototypeList</A></CODE> 構造体を元に、各見本パターンを構成する線分の長さや角度、バウンディングボックスなどを事前計算した結果がこの構造体です。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB*</A>, <A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
+</body>
+</html>

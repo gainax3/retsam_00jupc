@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>SVC_WaitByLoop</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">SVC_WaitByLoop</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os/systemCall.h&gt;</CODE></PRE>
+  <PRE><CODE>void SVC_WaitByLoop( s32 count );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>count</I></B></TD>
+      <TD>ループを行うを回数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>システムROM上で指定回数ループ処理を行います。<BR>
+<BR>
+1回のループに必要とするサイクル数は 4 サイクルです。通常時のARM7プロセッサがメインメモリへの優先権を持っている状態においては、ARM7プロセッサをシステムROM上でプログラムを動作させることによってARM9プロセッサがストールするのを軽減することができます。<BR>
+<BR>
+メインメモリ表示モードなどARM9プロセッサへ優先権を与える必要がある場合には、ARM9プロセッサ側で呼び出すことが有効な状況がある場合もありますが、ほとんどの期間がキャッシュやTCM上で動作していればARM9プロセッサから呼び出す必要はありません。</P>
+<H2>参照</H2>
+<P><A href="../os/system/OS_SpinWait.html"><CODE>OS_SpinWait()</CODE></A></P>
+<H2>履歴</H2>
+<P>2004/07/20 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,178 @@
+#! make -f
+#----------------------------------------------------------------------------
+#  Project:  NitroSDK - buildtools - compiler dependant settings for ProDG
+#  File:     modulerules.cctype.SNC
+#
+#  Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules.cctype.SNC,v $
+# Revision 1.3  2005/08/08 00:06:56  yasu
+# mongoose のビルド対策のため TARGET_BIN_BASENAME を定義し、TARGET_NAME と使い分ける
+#
+# Revision 1.2  2005/08/07 13:15:48  yasu
+# ライブラリパスを vpath に設定
+#
+# Revision 1.1  2005/06/15 10:15:10  yasu
+# ProDG 対応
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+AINCLUDE_DIRS		= $(LINCLUDES)	   $(EINCLUDES)     $(GINCLUDES)     $(SN_INCDIRS)
+ALIBRARY_DIRS		= $(LLIBRARY_DIRS) $(ELIBRARY_DIRS) $(GLIBRARY_DIRS) $(SN_LIBDIRS)
+ALIBRARIES		= $(LLIBRARIES)	   $(ELIBRARIES)    $(GLIBRARIES)
+
+#
+# (make version 3.80)
+# 
+# VPATH does not support the path name included white space like "C:/Program Files"
+#	Please, be careful !!!
+#
+ifdef	MSYSTEM
+NITRO_LIBVPATH_		 = $(subst \:,\ ,$(subst $(SPACE),:,$(ALIBRARY_DIRS)))
+else
+CYGDRV			?= $(shell cygpath -u c:)/..
+ALIBVPATH		 = $(subst : ,,$(patsubst %:,$(CYGDRV)/%:,$(subst :,: ,$(ALIBRARY_DIRS))))
+endif
+
+vpath	%.a		$(ALIBVPATH)
+vpath	%.o		$(ALIBVPATH)
+
+INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(AINCLUDE_DIRS)))
+LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(ALIBRARY_DIRS)))
+LIBRARIES		= $(subst \ -l,\ ,$(addprefix -l,$(ALIBRARIES)))
+
+INCLUDES		= -I. $(INCLUDE_DIRS)
+
+ifdef	MSYSTEM		# for MinGW32
+QUOTE			='
+else
+QUOTE			="
+endif
+
+#----------------------------------------------------------------------------
+
+.PRECIOUS:	$(OBJDIR)/%.o $(BINDIR)/%.nef $(LCFILE)
+
+ifdef	NO_DEPENDFILES
+#
+#  Don't generate dependency files
+#
+
+# .c
+$(OBJS_CC):%.o:
+	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+
+# .cpp
+$(OBJS_CXX):%.o:
+	$(CC) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+# .s
+$(OBJS_AS):%.o:
+	$(AS) $(ASFLAGS) $(INCLUDES) -c $< -o $@
+
+else
+#
+# Generate dependency files
+#
+define MOVE_DEPEND
+	@$(SED) -e $(QUOTE)s/\\([^:]\\) /\\1\\\\ /g;s/\\\"//g;$(QUOTE) $*.d > $(DEPENDDIR)/$(*F).d
+	@$(RM) $*.d
+endef
+
+# .c
+$(OBJS_CC):%.o:
+	$(CC) $(CCFLAGS) $(INCLUDES) -c $< -MD -o $@
+	$(MOVE_DEPEND)
+
+# .cpp
+$(OBJS_CXX):%.o:
+	$(CC) $(CXXFLAGS) $(INCLUDES) -c $< -MD -o $@
+	$(MOVE_DEPEND)
+
+# .s
+$(OBJS_AS):%.o:
+	$(AS) $(ASFLAGS) $(INCLUDES) -c $< -MD -o $@
+	$(MOVE_DEPEND)
+
+endif
+
+# .lcf .par
+ifdef	LCFILE_SPEC
+
+ADDRESS_DTCM	?= $(DEFAULT_ADDRESS_DTCM)
+
+# exporting
+MAKELCF_DEFS	= -DNITROSDK_ROOT='$(ROOT)'			\
+		  -DTARGET_NAME='$(TARGET_NAME)'		\
+		  -DOBJS_STATIC='$(OBJS_STATIC)'		\
+		  -DOBJS_AUTOLOAD='$(OBJS_AUTOLOAD)'		\
+		  -DOBJS_OVERLAY='$(OBJS_OVERLAY)'		\
+		  -DGLIBS='$(GLIBRARIES)'			\
+		  -DLLIBS='$(LLIBRARIES)'			\
+		  -DCW_LIBS='$(SN_LIBS)'			\
+		  -DOBJDIR='$(OBJDIR)'				\
+		  -DLIBDIR='$(LIBDIR)'				\
+		  -DBINDIR='$(BINDIR)'				\
+		  -DPROC='$(CODEGEN_PROC)'			\
+		  -DPLATFORM='$(NITRO_PLATFORM)'		\
+		  -DCODEGEN='$(CODEGEN_ARCH)'			\
+		  -DBUILD='$(NITRO_BUILD_DIR)'			\
+		  -DADDRESS_DTCM='$(ADDRESS_DTCM)'
+
+MAKELCF_OPTS	= $(MAKELCF_FLAGS) $(MAKELCF_DEFS)
+
+
+$(LCFILE_AUTOGEN): $(LCFILE_SPEC) $(LCFILE_TEMPLATE) $(MAKEFILE) $(NITRO_BUILDTOOLSDIR)/commondefs
+	$(MAKELCF) $(MAKELCF_OPTS)  $< $(LCFILE_TEMPLATE) $@
+
+$(LDRES_AUTOGEN):  $(LCFILE_SPEC) $(LDRES_TEMPLATE)  $(MAKEFILE) $(NITRO_BUILDTOOLSDIR)/commondefs
+	$(MAKELCF) $(MAKELCF_OPTS)  $< $(LDRES_TEMPLATE)  $@
+
+endif
+
+
+# compress/digest
+ifeq	($(CODEGEN_PROC),ARM9)
+ifdef	NITRO_COMPRESS
+COMPSTATIC_CMDS		= -9 -c
+#COMPSTATIC_CMDS	= -7 -c
+endif
+ifdef	NITRO_DIGEST
+COMPSTATIC_CMDS		+= -a
+endif
+endif
+
+ifdef	COMPSTATIC_CMDS
+COMPSUFFIX		?= $(DEFAULT_COMPSUFFIX)
+ifneq	($(COMPSUFFIX),)
+COMPSTATIC_FLAGS	+= -e$(COMPSUFFIX)
+endif
+endif
+
+
+# .nef
+ifndef	USE_MY_RULE_NEF
+$(BINDIR)/$(TARGET_BIN_BASENAME).nef: $(OBJS) $(MAKEFILE) $(LDEPENDS_NEF) $(LDRES_FILE) $(ALIBRARIES)
+#	$(LD) $(LDFLAGS) -T $(SN_LD_SCRIPT) -LSF $(LCFILE_SPEC) -Map $@.xMAP $(LIBRARY_DIRS) @$(LDRES_FILE) -o $@
+	$(LD) $(LDFLAGS) -T $(SN_LD_SCRIPT) -Map $@.xMAP $(LIBRARY_DIRS) @$(LDRES_FILE) -o $@
+ifdef	COMPSTATIC_CMDS
+	$(COMPSTATIC) $(COMPSTATIC_CMDS) $(COMPSTATIC_FLAGS) -f $(BINDIR)/component.files $(NITRO_STDOUT)
+endif
+endif
+
+
+# .a
+ifndef	USE_MY_RULE_A
+$(LIBDIR)/$(TARGET_LIB): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $(OBJS)
+endif
+
+
+#----- End of modulerules.cctype.SNC -----

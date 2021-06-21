@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSPacketBuffer</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSPacketBuffer</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+typedef struct WFSPacketBuffer
+{
+    u8     *buffer;         <font color="#008000">/* 送信用バッファまたは受信バッファ */</font>
+    int     length;         <font color="#008000">/* 送信可能最大サイズまたは受信サイズ */</font>
+    int     bitmap;         <font color="#008000">/* AID ビットマップ */</font>
+}
+WFSPacketBuffer;
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>buffer</td>
+      <td>送信用バッファまたは受信バッファ</td>
+    </tr>
+    <tr>
+      <td>length</td>
+      <td>送信可能最大サイズまたは受信サイズ</td>
+    </tr>
+    <tr>
+      <td>bitmap</td>
+      <td>送信元または送信先を示すビットマップ</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>説明</h2>
+<p>WFSライブラリのMP通信パケット送受信フック関数で使用するパケット情報をあらわす構造体です。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="server/WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a> 
+<a href="server/WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a> 
+<a href="client/WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a> 
+<a href="client/WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

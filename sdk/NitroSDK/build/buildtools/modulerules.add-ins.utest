@@ -1,0 +1,73 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - UnitTest Tool
+# File:     modulerules.add-ins.utest
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules.add-ins.utest,v $
+# Revision 1.2  2005/07/05 09:12:21  yasu
+# TESTEE リストのバグ修正
+#
+# Revision 1.1  2005/06/24 02:16:40  yasu
+# ユニットテスト用 add-in を追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+.PHONY: utest
+
+#
+# UNIT TEST on ARM9
+#
+ifeq	($(CODEGEN_PROC),ARM9)
+
+UTEST_MAKEOPTS	= \
+		SRCS="$(SRCS) $(UTEST_MAIN_SRC)" \
+		LIBRARIES_UNLINK=$(TARGET_LIB) \
+		TARGET_BIN=$(UTEST_MAIN_BIN) \
+		TARGET_NEF= \
+		TARGET_LIB= \
+		TARGET_OBJ= \
+		TARGET_SIGN_BIN= \
+		UTEST_OBJS_TESTEE="$(OBJS)" \
+		UTEST_CHECKASSERT=True \
+		NITRO_UTEST=True
+
+utest:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+ifneq	($(strip $(TARGET_LIB)),)
+ifneq	($(strip $(NEWDIRS)),)
+	@$(MKDIRP) $(NEWDIRS) $(BINDIR)
+endif
+	@$(REMAKE) -s $(UTEST_MAIN_SRC) $(UTEST_MAKEOPTS)
+	@if [ -e $(UTEST_MAIN_SRC) ]; \
+	then \
+		$(REMAKE) -s do-build $(UTEST_MAKEOPTS) &&	\
+		$(REMAKE) -s run TARGET_BIN=$(UTEST_MAIN_BIN);	\
+	fi
+endif
+
+$(UTEST_MAIN_SRC): $(UTEST_OBJS_TESTEE)
+	@$(MAKE_UTEST_MAIN) -c $(UTEST_MAIN_SRC) $(UTEST_OBJS_TESTEE)
+
+
+#
+# UNIT TEST on ARM7
+#
+else #	($(CODEGEN_PROC),ARM7)
+
+utest:
+	@	# Not support unit test on ARM7
+
+endif
+
+
+#===== End of modulerules.add-ins.utest =====

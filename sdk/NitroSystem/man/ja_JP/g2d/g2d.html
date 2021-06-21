@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<BASE target="main">
+	<TITLE>G2D 機能一覧</TITLE>
+	<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+
+<BODY>
+
+<H3>Graphics 2D ライブラリ(G2d)</H3>
+<P>[<B><A href="list_g2d.html">機能一覧</A></B>]</P>
+
+<DL>
+	<DT>モジュール依存関係
+    <DD><A href="etc/module_draw.html"		>描画関連モジュール</A>
+    <DD><A href="etc/module_data.html"		>アニメーションデータ構造関連モジュール</A>
+</DL>
+
+<DL>
+	<DT>データ構造 
+	<DD><A href="types/Cell/NNS_G2dGetCellDataByIdx.html" >NNS_G2dGetCellDataByIdx</A>
+	<DD><A href="types/Cell/NNS_G2dCellDataBankHasVramTransferData.html" >NNS_G2dCellDataBankHasVramTransferData</A>
+	<DD><A href="types/Cell/NNS_G2dGetSizeRequiredVramTransferCellDataBank.html" >NNS_G2dGetSizeRequiredVramTransferCellDataBank</A>
+	
+	<DD><A href="types/Animation/NNS_G2dGetAnimSequenceByIdx.html" >NNS_G2dGetAnimSequenceByIdx</A>
+	<DD><A href="types/Animation/NNS_G2dCalcAnimSequenceTotalVideoFrames.html" >NNS_G2dCalcAnimSequenceTotalVideoFrames</A>
+	
+	
+	<DD><A href="types/Cell/NNS_G2dCellHasBR.html" >NNS_G2dCellHasBR</A>
+	<DD><A href="types/Cell/NNS_G2dGetCellBoundingRect.html" >NNS_G2dGetCellBoundingRect</A>
+	<DD><A href="types/Cell/NNS_G2dGetCellBoundingSphereR.html" >NNS_G2dGetCellBoundingSphereR</A>
+	
+	<DD><A href="types/Cell/NNS_G2dGetOAMSize.html" >NNS_G2dGetOAMSize*</A>
+	<DD><A href="types/Cell/NNS_G2dRepeatXinCellSpace.html" >NNS_G2dRepeatXinCellSpace / NNS_G2dRepeatYinCellSpace</A>
+	
+	
+	<DD><A href="types/Cell/NNS_G2dGetUserExCellAttrBankFromCellBank.html" >NNS_G2dGetUserExCellAttrBankFromCellBank</A>
+	<DD><A href="types/Cell/NNS_G2dGetUserExCellAttr.html" >NNS_G2dGetUserExCellAttr</A>
+	<DD><A href="types/Cell/NNS_G2dGetUserExCellAttrValue.html" >NNS_G2dGetUserExCellAttrValue</A>
+	
+	
+	
+	
+	<DD><A href="types/Animation/NNS_G2dGetAnimSequenceIndex.html" >NNS_G2dGetAnimSequenceIndex</A>
+	
+	<DD><A href="types/Animation/NNS_G2dGetUserExAnimAttrBank.html" >NNS_G2dGetUserExAnimAttrBank</A>
+	<DD><A href="types/Animation/NNS_G2dGetUserExAnimSequenceAttr.html" >NNS_G2dGetUserExAnimSequenceAttr</A>
+	<DD><A href="types/Animation/NNS_G2dGetUserExAnimFrameAttr.html" >NNS_G2dGetUserExAnimFrameAttr</A>
+	<DD><A href="types/Animation/NNS_G2dGetUserExAnimSeqAttrValue.html" >NNS_G2dGetUserExAnimSeqAttrValue</A>
+	<DD><A href="types/Animation/NNS_G2dGetUserExAnimFrmAttrValue.html" >NNS_G2dGetUserExAnimFrmAttrValue</A>
+	
+	
+</DL>
+<DL>
+	<DT>ファイル読み込み<A href="Load/RuntimeBinary_Overview.html">(概要)</A>
+	<DD><A href="Load/NNS_G2dIsBinFileValid.html" >NNS_G2dIsBinFileValid</A>
+    <DD><A href="Load/NNS_G2dFindBinaryBlock.html" >NNS_G2dFindBinaryBlock</A>
+        
+	<DD><A href="Load/NNS_G2dPrintXXX.html">NNS_G2dPrint*</A>
+	<DD><A href="Load/NNS_G2dUnPackXXX.html">NNS_G2dUnPack*</A>
+	<DD><A href="Load/NNS_G2dGetUnpackedXXX.html">NNS_G2dGetUnpacked*</A>
+	
+</DL>
+
+<DL> 
+ <DT>アニメーションコントローラ<A href="Animation/AnimationController_Overview.html">(概要)</A>
+    <DD><A href="Animation/Animation_Overview.html">アニメーションの種類について</A>
+    <DD><A href="Animation/AnimPlayType.html">アニメーション再生方法について</A>
+    
+    <DD><A href="Animation/NNS_G2dBindAnimCtrl.html">NNS_G2dBindAnimCtrl</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlType.html">NNS_G2dGetAnimCtrlType</A>
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlCurrentElement.html">NNS_G2dGetAnimCtrlCurrentElement</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlNextElement.html">NNS_G2dGetAnimCtrlNextElement</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlNormalizedTime.html">NNS_G2dGetAnimCtrlNormalizedTime</A>	
+	<DD><A href="Animation/NNS_G2dInitAnimCtrl.html">NNS_G2dInitAnimCtrl</A>	
+	<DD><A href="Animation/NNS_G2dInitAnimCtrlCallBackFunctor.html">NNS_G2dInitAnimCtrlCallBackFunctor</A>	
+	<DD><A href="Animation/NNS_G2dInitAnimCallBackFunctor.html">NNS_G2dInitAnimCallBackFunctor</A>
+	
+	<DD><A href="Animation/NNS_G2dIsAnimCtrlActive.html">NNS_G2dIsAnimCtrlActive</A>
+	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlPlayModeOverridden.html">NNS_G2dSetAnimCtrlPlayModeOverridden</A>
+	<DD><A href="Animation/NNS_G2dResetAnimCtrlPlayModeOverridden.html">NNS_G2dResetAnimCtrlPlayModeOverridden</A>
+	
+	<DD><A href="Animation/NNS_G2dStartAnimCtrl.html">NNS_G2dStartAnimCtrl</A>
+	<DD><A href="Animation/NNS_G2dStopAnimCtrl.html">NNS_G2dStopAnimCtrl</A>
+	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlSpeed.html">NNS_G2dSetAnimCtrlSpeed</A>
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlSpeed.html">NNS_G2dGetAnimCtrlSpeed</A>
+		
+	<DD><A href="Animation/NNS_G2dResetAnimCtrlState.html">NNS_G2dResetAnimCtrlState</A>	
+	
+	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlCurrentFrame.html">NNS_G2dSetAnimCtrlCurrentFrame</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlCurrentFrame.html">NNS_G2dGetAnimCtrlCurrentFrame</A>	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlCurrentTime.html">NNS_G2dSetAnimCtrlCurrentTime</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlCurrentTime.html">NNS_G2dGetAnimCtrlCurrentTime</A>	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime.html">NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime</A>	
+	
+	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlCallBackFunctor.html">NNS_G2dSetAnimCtrlCallBackFunctor</A>	
+	<DD><A href="Animation/NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame.html">NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame</A>	
+	<DD><A href="Animation/NNS_G2dTickAnimCtrl.html">NNS_G2dTickAnimCtrl</A>	
+	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlCurrentAnimSequence.html">NNS_G2dGetAnimCtrlCurrentAnimSequence</A>	
+	<DD><A href="Animation/NNS_G2dGetAnimCtrlCurrentElemIdxVal.html">NNS_G2dGetAnimCtrlCurrentElemIdxVal</A>	
+	
+</DL>
+
+<DL>
+	<DT>セル<A href="CellAnimation/CellAnimation_Overview.html">(概要)</A>
+	<DD><A href="CellAnimation/NNS_G2dCopyCellAsOamAttr.html"			>NNS_G2dCopyCellAsOamAttr</A>
+	<DD><A href="CellAnimation/NNS_G2dInitCellAnimation.html"			>NNS_G2dInitCellAnimation</A>
+	<DD><A href="CellAnimation/NNS_G2dInitCellAnimationVramTransfered.html"			>NNS_G2dInitCellAnimationVramTransfered</A>
+	<DD><A href="CellAnimation/NNS_G2dMakeCellToOams.html"			>NNS_G2dMakeCellToOams</A>
+	<DD><A href="CellAnimation/NNS_G2dSetCellAnimationCurrentFrame.html">NNS_G2dSetCellAnimationCurrentFrame</A>	
+	<DD><A href="CellAnimation/NNS_G2dSetCellAnimationSequence.html"			>NNS_G2dSetCellAnimationSequence</A>
+	<DD><A href="CellAnimation/NNS_G2dSetCellAnimationSequenceNoReset.html"			>NNS_G2dSetCellAnimationSequenceNoReset</A>
+	
+	<DD><A href="CellAnimation/NNS_G2dSetCellAnimationSpeed.html">NNS_G2dSetCellAnimationSpeed</A>	
+	<DD><A href="CellAnimation/NNS_G2dGetCellAnimationAnimCtrl.html">NNS_G2dGetCellAnimationAnimCtrl</A>	
+	<DD><A href="CellAnimation/NNS_G2dGetCellAnimationCurrentCell.html">NNS_G2dGetCellAnimationCurrentCell</A>	
+	
+	<DD><A href="CellAnimation/NNS_G2dTickCellAnimation.html"			>NNS_G2dTickCellAnimation</A>
+	<DD><A href="CellAnimation/NNS_G2dRestartCellAnimation.html">NNS_G2dRestartCellAnimation</A>	
+</DL>
+
+<DL>
+	<DT>マルチセル<A href="MultiCellAnimation/MultiCellAnimation_Overview.html">(概要)</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dGetMCWorkAreaSize.html"			        >NNS_G2dGetMCWorkAreaSize</A>
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dInitMCAnimationInstance.html"			>NNS_G2dInitMCAnimationInstance</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dMakeSimpleMultiCellToOams.html"			>NNS_G2dMakeSimpleMultiCellToOams</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dSetAnimSequenceToMCAnimation.html"			>NNS_G2dSetAnimSequenceToMCAnimation</A>
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dGetMCAnimAnimCtrl.html"			>NNS_G2dGetMCAnimAnimCtrl</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dSetMCAnimationCurrentFrame.html"			>NNS_G2dSetMCAnimationCurrentFrame</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dSetMCAnimationCellAnimFrame.html"			>NNS_G2dSetMCAnimationCellAnimFrame</A>
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dResetMCCellAnimationAll.html"			>NNS_G2dResetMCCellAnimationAll</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dStartMCCellAnimationAll.html"			>NNS_G2dStartMCCellAnimationAll</A>
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dSetMCAnimationSpeed.html"			>NNS_G2dSetMCAnimationSpeed</A>
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dTickMCAnimation.html"			>NNS_G2dTickMCAnimation</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dTickMCInstance.html"			>NNS_G2dTickMCInstance</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dRestartMCAnimation.html"			>NNS_G2dRestartMCAnimation</A>
+	
+	
+	
+	<DD><A href="MultiCellAnimation/NNS_G2dTraverseMCCellAnims.html"			>NNS_G2dTraverseMCCellAnims</A>
+	<DD><A href="MultiCellAnimation/NNS_G2dTraverseMCNodes.html"			>NNS_G2dTraverseMCNodes</A>
+	
+</DL>
+
+<DL>
+	<DT>OAMマネージャ<A href="Oam/OAM_Overview.html">(概要)</A>
+	<DD><A href="Oam/NNS_G2dApplyOamManagerToHW.html"		>NNS_G2dApplyOamManagerToHW</A>
+	<DD><A href="Oam/NNS_G2dApplyOamManagerToHWSprite.html"		>NNS_G2dApplyOamManagerToHWSprite</A>
+	
+	
+	
+	<DD><A href="Oam/NNS_G2dEntryOamManagerOam.html"		>NNS_G2dEntryOamManagerOam</A>
+	<DD><A href="Oam/NNS_G2dEntryOamManagerAffine.html"		>NNS_G2dEntryOamManagerAffine</A>
+	<DD><A href="Oam/NNS_G2dEntryOamManagerOamWithAffineIdx.html"		>NNS_G2dEntryOamManagerOamWithAffineIdx</A>
+	<DD><A href="Oam/NNS_G2dSetOamManagerAffine.html"		>NNS_G2dSetOamManagerAffine</A>
+	<DD><A href="Oam/NNS_G2dGetNewOamManagerInstance.html"		>NNS_G2dGetNewOamManagerInstance</A>
+	<DD><A href="Oam/NNS_G2dGetNewOamManagerInstanceAsFastTransferMode.html"		>NNS_G2dGetNewOamManagerInstanceAsFastTransferMode</A>
+	
+	<DD><A href="Oam/NNS_G2dGetOamManagerAffineCapacity.html"		>NNS_G2dGetOamManagerAffineCapacity</A>
+	<DD><A href="Oam/NNS_G2dGetOamManagerOamCapacity.html"		>NNS_G2dGetOamManagerOamCapacity</A>
+	<DD><A href="Oam/NNS_G2dInitOamManagerModule.html"		>NNS_G2dInitOamManagerModule</A>
+	<DD><A href="Oam/NNS_G2dResetOamManagerBuffer.html"		>NNS_G2dResetOamManagerBuffer</A>
+	<DD><A href="Oam/NNS_G2dSetOamManagerSpriteZoffsetStep.html"		>NNS_G2dSetOamManagerSpriteZoffsetStep</A>
+	<DD><A href="Oam/NNS_G2dGetOamBuffer.html"		>NNS_G2dGetOamBuffer</A>
+	
+	
+	
+</DL>
+
+<DL>
+	<DT>拡張OAMマネージャ<A href="OamEx/OAMEx_Overview.html">(概要)</A>
+	<DD><A href="OamEx/NNS_G2dApplyOamManExToBaseModule.html"		>NNS_G2dApplyOamManExToBaseModule</A>
+	<DD><A href="OamEx/NNS_G2dEntryOamManExAffine.html"		>NNS_G2dEntryOamManExAffine</A>
+	
+	<DD><A href="OamEx/NNS_G2dEntryOamManExOam.html"		>NNS_G2dEntryOamManExOam</A>
+	<DD><A href="OamEx/NNS_G2dEntryOamManExOamWithAffineIdx.html"		>NNS_G2dEntryOamManExOamWithAffineIdx</A>
+	<DD><A href="OamEx/NNS_G2dGetOamManExInstance.html"		>NNS_G2dGetOamManExInstance</A>
+	
+	<DD><A href="OamEx/NNS_G2dResetOamManExBuffer.html"		>NNS_G2dResetOamManExBuffer</A>
+	
+	<DD><A href="OamEx/NNS_G2dSetOamManExEntryFunctions.html"		>NNS_G2dSetOamManExEntryFunctions</A>
+	<DD><A href="OamEx/NNSG2d_SetOamManExDrawOrderType.html"		>NNSG2d_SetOamManExDrawOrderType</A>
+	
+</DL>
+
+<DL>
+	<DT>ソフトウェアスプライト<A href="SoftwareSprite/SoftwareSprite_Overview.html">(概要)</A>
+	
+	<DD><A href="SoftwareSprite/NNS_G2dSetupSoftwareSpriteCamera.html"		>NNS_G2dSetupSoftwareSpriteCamera</A>
+	<DD><A href="SoftwareSprite/NNS_G2dSetupSoftwareSpriteMaterial.html"		>NNS_G2dSetupSoftwareSpriteMaterial</A>
+	<DD><A href="SoftwareSprite/NNS_G2dDrawSprite.html"		>NNS_G2dDrawSprite</A>
+	<DD><A href="SoftwareSprite/NNS_G2dDrawSpriteXXX.html"		>NNS_G2dDrawSprite*</A>
+	<DD><A href="SoftwareSprite/NNS_G2dDrawSpriteXXXFast.html"		>NNS_G2dDrawSprite*Fast</A>
+	
+	<DD><A href="SoftwareSprite/NNS_G2dGetSpriteDefaultAttr.html"		>NNS_G2dGetSpriteDefaultAttr</A>
+	<DD><A href="SoftwareSprite/NNS_G2dIsSpriteAttrEnable.html"		>NNS_G2dIsSpriteAttrEnable</A>
+	
+	<DD><A href="SoftwareSprite/NNS_G2dSetSpriteCurrentPolygonID.html"		>NNS_G2dSetSpriteCurrentPolygonID</A>
+	
+	<DD><A href="SoftwareSprite/NNS_G2dSetSpriteDefaultAttr.html"		>NNS_G2dSetSpriteDefaultAttr</A>
+	<DD><A href="SoftwareSprite/NNS_G2dSetSpriteAttrEnable.html"		>NNS_G2dSetSpriteAttrEnable</A>
+</DL>
+
+<DL>
+    <DT>OAMソフトウェアスプライト描画<A href="OamSoftEmu/OAMSoftEmu_Overview.html">(概要)</A>
+    <DD><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirect.html"		>NNS_G2dDrawOneOam3DDirect</A>
+    <DD><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectWithPos.html"		>NNS_G2dDrawOneOam3DDirectWithPos</A>
+    <DD><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectWithPosAffine.html"		>NNS_G2dDrawOneOam3DDirectWithPosAffine</A>
+    <DD><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectXXXFast.html"		>NNS_G2dDrawOneOam3DDirect*Fast</A>
+    
+    <DD><A href="OamSoftEmu/NNS_G2dSetOamSoftEmuSpriteParamCache.html"		    >NNS_G2dSetOamSoftEmuSpriteParamCache</A>
+    <DD><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectUsingParamCacheFast.html"	>NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</A>
+    
+    
+    
+    <DD><A href="OamSoftEmu/NNS_G2dSetOamSoftEmuUVFlipCorrectFunc.html"		>NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</A>
+    <DD><A href="OamSoftEmu/NNS_G2dResetOamSoftEmuUVFlipCorrectFunc.html"		>NNS_G2dResetOamSoftEmuUVFlipCorrectFunc</A>
+    
+    
+</DL>
+
+
+<DL>
+	<DT>エンティティ<A href="Entity/Entity_Overview.html">(概要)</A>
+	
+    <DD><A href="Entity/NNS_G2dInitEntity.html"		>NNS_G2dInitEntity</A>
+	<DD><A href="Entity/NNS_G2dIsEntityValid.html"		>NNS_G2dIsEntityValid</A>
+	<DD><A href="Entity/NNS_G2dIsEntityPaletteTblEnable.html"		>NNS_G2dIsEntityPaletteTblEnable</A>
+	<DD><A href="Entity/NNS_G2dResetEntityPaletteTable.html"		>NNS_G2dResetEntityPaletteTable</A>
+	
+	<DD><A href="Entity/NNS_G2dGetEntityAnimCtrl.html"		>NNS_G2dGetEntityAnimCtrl</A>
+	<DD><A href="Entity/NNS_G2dSetEntityCurrentAnimation.html"		>NNS_G2dSetEntityCurrentAnimation</A>
+	<DD><A href="Entity/NNS_G2dSetEntityCurrentFrame.html"		>NNS_G2dSetEntityCurrentFrame</A>
+	<DD><A href="Entity/NNS_G2dSetEntitySpeed.html"		>NNS_G2dSetEntitySpeed</A>
+	<DD><A href="Entity/NNS_G2dSetEntityPaletteTable.html"		>NNS_G2dSetEntityPaletteTable</A>
+	<DD><A href="Entity/NNS_G2dTickEntity.html"		>NNS_G2dTickEntity</A>
+</DL>
+
+<DL>
+	<DT>画像イメージロード関連<A href="Image/ImageProxy_Overview.html">(概要)</A>
+	    <DD><A href="Image/NNS_G2dInitImageProxy.html" >NNS_G2dInitImageProxy</A>
+	    <DD><A href="Image/NNS_G2dInitImagePaletteProxy.html" >NNS_G2dInitImagePaletteProxy</A>
+	    
+	    <DD><A href="Image/NNS_G2dLoadImage1DMapping.html" >NNS_G2dLoadImage1DMapping</A>
+	    <DD><A href="Image/NNS_G2dLoadImage2DMapping.html" >NNS_G2dLoadImage2DMapping</A>
+	    <DD><A href="Image/NNS_G2dLoadImageVramTransfer.html" >NNS_G2dLoadImageVramTransfer</A>
+        
+        
+	    <DD><A href="Image/NNS_G2dLoadPalette.html" >NNS_G2dLoadPalette</A>
+	    <DD><A href="Image/NNS_G2dLoadPaletteEx.html" >NNS_G2dLoadPaletteEx</A>
+	    
+	    
+	    <DD><A href="Image/NNS_G2dIsImageReadyToUse.html" >NNS_G2dIsImageReadyToUse</A>
+	    <DD><A href="Image/NNS_G2dIsImagePaletteReadyToUse.html" >NNS_G2dIsImagePaletteReadyToUse</A>
+	    <DD><A href="Image/NNS_G2dSetImageExtPaletteFlag.html" >NNS_G2dSetImageExtPaletteFlag</A>
+	    
+	    <DD><A href="Image/NNS_G2dSetImageLocation.html" >NNS_G2dSetImageLocation</A>
+	    <DD><A href="Image/NNS_G2dGetImageLocation.html" >NNS_G2dGetImageLocation</A>
+	    <DD><A href="Image/NNS_G2dSetImagePaletteLocation.html" >NNS_G2dSetImagePaletteLocation</A>
+	    <DD><A href="Image/NNS_G2dGetImagePaletteLocation.html" >NNS_G2dGetImagePaletteLocation</A>
+	    
+	    
+</DL>
+
+<DL>
+	<DT>セルVRAM転送状態マネージャ<A href="CellTransfer/CellTransfer_Overview.html">(概要)</A>
+	<DD><A href="CellTransfer/NNS_G2dInitCellTransferStateManager.html"	 >NNS_G2dInitCellTransferStateManager</A>
+	<DD><A href="CellTransfer/NNS_G2dFreeCellTransferStateHandle.html"	 >NNS_G2dFreeCellTransferStateHandle</A>
+	<DD><A href="CellTransfer/NNS_G2dGetNewCellTransferStateHandle.html" >NNS_G2dGetNewCellTransferStateHandle</A>
+	<DD><A href="CellTransfer/NNS_G2dSetCellTransferStateRequested.html">NNS_G2dSetCellTransferStateRequested</A>	
+	<DD><A href="CellTransfer/NNS_G2dUpdateCellTransferStateManager.html">NNS_G2dUpdateCellTransferStateManager</A>	
+</DL>
+
+<DL>
+	<DT>レンダラ<A href="Renderer/Renderer_Overview.html">(概要)</A>
+	<DD><A href="Renderer/NNS_G2dAddRendererTargetSurface.html"		>NNS_G2dAddRendererTargetSurface</A>
+	<DD><A href="Renderer/NNS_G2dBeginRendering.html"		>NNS_G2dBeginRendering</A>
+	<DD><A href="Renderer/NNS_G2dBeginRenderingEx.html"		>NNS_G2dBeginRenderingEx</A>
+	<DD><A href="Renderer/NNS_G2dEndRendering.html"		>NNS_G2dEndRendering</A>
+	<DD><A href="Renderer/NNS_G2dDrawCell.html"		>NNS_G2dDrawCell</A>
+	
+	<DD><A href="Renderer/NNS_G2dDrawCellAnimation.html"		>NNS_G2dDrawCellAnimation</A>
+	<DD><A href="Renderer/NNS_G2dDrawEntity.html"		>NNS_G2dDrawEntity</A>
+	<DD><A href="Renderer/NNS_G2dDrawMultiCell.html"		>NNS_G2dDrawMultiCell</A>
+	<DD><A href="Renderer/NNS_G2dDrawMultiCellAnimation.html"		>NNS_G2dDrawMultiCellAnimation</A>
+	
+	
+	<DD><A href="Renderer/NNS_G2dGetRendererPaletteTbl.html"		>NNS_G2dGetRendererPaletteTbl</A>
+	<DD><A href="Renderer/NNS_G2dInitRenderer.html"		>NNS_G2dInitRenderer</A>
+	<DD><A href="Renderer/NNS_G2dInitRenderSurface.html"		>NNS_G2dInitRenderSurface</A>
+	<DD><A href="Renderer/NNS_G2dOptimizeRenderer.html"		><S>NNS_G2dOptimizeRenderer</S></A>
+	
+	<DD><A href="Renderer/NNS_G2dPopMtx.html"		>NNS_G2dPopMtx</A>
+	<DD><A href="Renderer/NNS_G2dPushMtx.html"		>NNS_G2dPushMtx</A>
+	
+	<DD><A href="Renderer/NNS_G2dResetRendererPaletteTbl.html"		>NNS_G2dResetRendererPaletteTbl</A>
+	<DD><A href="Renderer/NNS_G2dTranslate.html"		>NNS_G2dTranslate</A>
+	<DD><A href="Renderer/NNS_G2dSetTrans.html"		>NNS_G2dSetTrans</A>
+	
+	<DD><A href="Renderer/NNS_G2dRotZ.html"		>NNS_G2dRotZ</A>
+	<DD><A href="Renderer/NNS_G2dScale.html"		>NNS_G2dScale</A>
+	<DD><A href="Renderer/NNS_G2dSetRendererFlipMode.html"		>NNS_G2dSetRendererFlipMode</A>
+	
+	<DD><A href="Renderer/NNS_G2dSetRendererSurfaceActiveFlag.html"		>NNS_G2dSetRendererSurfaceActiveFlag</A>
+	<DD><A href="Renderer/NNS_G2dGetRendererSurfaceActiveFlag.html"		>NNS_G2dGetRendererSurfaceActiveFlag</A>
+	
+	<DD><A href="Renderer/NNS_G2dSetRendererAffineOverwriteMode.html"		>NNS_G2dSetRendererAffineOverwriteMode</A>
+	<DD><A href="Renderer/NNS_G2dGetRendererAffineOverwriteMode.html"		>NNS_G2dGetRendererAffineOverwriteMode</A>
+	
+	
+	<DD><A href="Renderer/NNS_G2dSetRendererImageProxy.html"		>NNS_G2dSetRendererImageProxy</A>
+	<DD><A href="Renderer/NNS_G2dSetRendererPaletteTbl.html"		>NNS_G2dSetRendererPaletteTbl</A>
+	<DD><A href="Renderer/NNS_G2dSetRendererSpriteZoffset.html"		>NNS_G2dSetRendererSpriteZoffset</A>
+	
+	<DD><A href="Renderer/NNS_G2dSetRendererOverwriteEnable.html"		>NNS_G2dSetRendererOverwriteEnable / Disable</A>
+	<DD><A href="Renderer/NNS_G2dSetRendererOverwriteXXX.html"		>NNS_G2dSetRendererOverwrite*</A>
+	<DD><A href="Renderer/NNS_G2dGetRendererOverwriteXXX.html"		>NNS_G2dGetRendererOverwrite*</A>
+	
+</DL>
+
+<DL>
+	<DT>レンダラコア<A href="RendererCore/RendererCore_Overview.html">(概要)</A>
+	<DD><A href="RendererCore/NNS_G2dInitRndCore.html"		        >NNS_G2dInitRndCore</A>
+	<DD><A href="RendererCore/NNS_G2dInitRndCoreSurface.html"		>NNS_G2dInitRndCoreSurface</A>
+	<DD><A href="RendererCore/NNS_G2dInitRndCore2DMtxCache.html"		>NNS_G2dInitRndCore2DMtxCache</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCore2DMtxCacheMtxParams.html"		>NNS_G2dSetRndCore2DMtxCacheMtxParams</A>
+	
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreCurrentMtx2D.html"		>NNS_G2dSetRndCoreCurrentMtx2D</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreCurrentMtx3D.html"		>NNS_G2dSetRndCoreCurrentMtx3D</A>
+	
+	<DD><A href="RendererCore/NNS_G2dIsRndCoreFlipXXX.html"		>NNS_G2dIsRndCoreFlip*</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreFlipMode.html"		>NNS_G2dSetRndCoreFlipMode</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreImageProxy.html"		>NNS_G2dSetRndCoreImageProxy</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreOamRegisterFunc.html"		>NNS_G2dSetRndCoreOamRegisterFunc</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreSurface.html"		>NNS_G2dSetRndCoreSurface</A>
+	
+	
+	<DD><A href="RendererCore/NNS_G2dRndCoreBeginRendering.html"		>NNS_G2dRndCoreBeginRendering</A>
+	<DD><A href="RendererCore/NNS_G2dRndCoreEndRendering.html"		    >NNS_G2dRndCoreEndRendering</A>
+	<DD><A href="RendererCore/NNS_G2dRndCoreDrawCell.html"		        >NNS_G2dRndCoreDrawCell</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreCellCloneSource3D.html"	>NNS_G2dSetRndCoreCellCloneSource3D</A>
+	<DD><A href="RendererCore/NNS_G2dRndCoreDrawCellClone3D.html"		>NNS_G2dRndCoreDrawCellClone3D</A>
+	<DD><A href="RendererCore/NNS_G2dRndCoreDrawCellFast2D.html"		>NNS_G2dRndCoreDrawCellFast2D</A>
+	
+	<DD><A href="RendererCore/NNS_G2dSetRndCore3DSoftSpriteZvalue.html"		>NNS_G2dSetRndCore3DSoftSpriteZvalue</A>
+	<DD><A href="RendererCore/NNS_G2dSetRndCoreAffineOverwriteMode.html"		>NNS_G2dSetRndCoreAffineOverwriteMode</A>
+	
+</DL>
+
+<DL>
+	<DT>BG<A href="Bg/BG_Overview.html">(概要)</A>
+	<DD><A href="Bg/NNS_G2dBGSetupXXX.html"		    >NNS_G2dBGSetup</A>
+	<DD><A href="Bg/NNS_G2dBGSetupXXX.html"		    >NNS_G2dBGSetupEx</A>
+	<DD><A href="Bg/NNS_G2dBGLoadElementsXXX.html"	>NNS_G2dBGLoadElements</A>
+	<DD><A href="Bg/NNS_G2dBGLoadElementsXXX.html"	>NNS_G2dBGLoadElementsEx</A>
+	<DD><A href="Bg/NNS_G2dBGLoadScreenRect.html"	>NNS_G2dBGLoadScreenRect</A>
+
+	<DD><A href="Bg/NNS_G2dSetBGAreaOver.html"		>NNS_G2dSetBGAreaOver</A>
+	<DD><A href="Bg/NNS_G2dGetBGAreaOver.html"		>NNS_G2dGetBGAreaOver</A>
+</DL>
+
+<DL>
+	<DT>フォント<A href="Font/Font_Overview.html">(概要)</A>
+	<DD><A href="Font/NNS_G2dFontInitAuto.html">NNS_G2dFontInitAuto</A>
+	<DD><A href="Font/NNS_G2dFontInitXXX.html">NNS_G2dFontInitUTF8</A>
+	<DD><A href="Font/NNS_G2dFontInitXXX.html">NNS_G2dFontInitUTF16</A>
+	<DD><A href="Font/NNS_G2dFontInitXXX.html">NNS_G2dFontInitShiftJIS</A>
+	<DD><A href="Font/NNS_G2dFontInitXXX.html">NNS_G2dFontInitCP1252</A>
+	<DD><A href="Font/NNS_G2dFontGetType.html">NNS_G2dFontGetType</A>
+	<DD><A href="Font/NNS_G2dFontGetHeight.html">NNS_G2dFontGetHeight</A>
+	<DD><A href="Font/NNS_G2dFontGetCellHeight.html">NNS_G2dFontGetCellHeight</A>
+	<DD><A href="Font/NNS_G2dFontGetCellWidth.html">NNS_G2dFontGetCellWidth</A>
+	<DD><A href="Font/NNS_G2dFontGetBpp.html">NNS_G2dFontGetBpp</A>
+	<DD><A href="Font/NNS_G2dFontGetBaselinePos.html">NNS_G2dFontGetBaselinePos</A>
+	<DD><A href="Font/NNS_G2dFontGetMaxCharWidth.html">NNS_G2dFontGetMaxCharWidth</A>
+	<DD><A href="Font/NNS_G2dFontGetLineFeed.html">NNS_G2dFontGetLineFeed</A>
+	<DD><A href="Font/NNS_G2dFontSetLineFeed.html">NNS_G2dFontSetLineFeed</A>
+	<DD><A href="Font/NNS_G2dFontGetDefaultCharWidths.html">NNS_G2dFontGetDefaultCharWidths</A>
+	<DD><A href="Font/NNS_G2dFontSetDefaultCharWidths.html">NNS_G2dFontSetDefaultCharWidths</A>
+	<DD><A href="Font/NNS_G2dFontGetAlternateGlyphIndex.html">NNS_G2dFontGetAlternateGlyphIndex</A>
+	<DD><A href="Font/NNS_G2dFontSetAlternateGlyphIndex.html">NNS_G2dFontSetAlternateGlyphIndex</A>
+	<DD><A href="Font/NNS_G2dFontSetAlternateChar.html">NNS_G2dFontSetAlternateChar</A>
+	<DD><A href="Font/NNS_G2dFontGetGlyph.html">NNS_G2dFontGetGlyph</A>
+	<DD><A href="Font/NNS_G2dFontGetGlyphImage.html">NNS_G2dFontGetGlyphImage</A>
+	<DD><A href="Font/NNS_G2dFontGetCharWidth.html">NNS_G2dFontGetCharWidth</A>
+	<DD><A href="Font/NNS_G2dFontGetCharWidths.html">NNS_G2dFontGetCharWidths</A>
+	<DD><A href="Font/NNS_G2dFontFindGlyphIndex.html">NNS_G2dFontFindGlyphIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetGlyphIndex.html">NNS_G2dFontGetGlyphIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetGlyphImageFromIndex.html">NNS_G2dFontGetGlyphImageFromIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetGlyphFromIndex.html">NNS_G2dFontGetGlyphFromIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetCharWidthFromIndex.html">NNS_G2dFontGetCharWidthFromIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetCharWidthsFromIndex.html">NNS_G2dFontGetCharWidthsFromIndex</A>
+	<DD><A href="Font/NNS_G2dFontGetStringWidth.html">NNS_G2dFontGetStringWidth</A>
+	<DD><A href="Font/NNS_G2dFontGetTextWidth.html">NNS_G2dFontGetTextWidth</A>
+	<DD><A href="Font/NNS_G2dFontGetTextHeight.html">NNS_G2dFontGetTextHeight</A>
+	<DD><A href="Font/NNS_G2dFontGetTextRect.html">NNS_G2dFontGetTextRect</A>
+	<DD><A href="Font/NNSG2dCharWidths.html">NNSG2dCharWidths</A>
+	<DD><A href="Font/NNSG2dGlyph.html">NNSG2dGlyph</A>
+</DL>
+
+<DL>
+	<DT>文字描画<A href="CharCanvas/CharCanvas_Overview.html">(概要)</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasInitForBG.html">NNS_G2dCharCanvasInitForBG</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasInitForOBJ1D.html">NNS_G2dCharCanvasInitForOBJ1D</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasInitForOBJ2DRect.html">NNS_G2dCharCanvasInitForOBJ2DRect</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasCalcCellDataSizeXXX.html">NNS_G2dCharCanvasCalcCellDataSize1D</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasCalcCellDataSizeXXX.html">NNS_G2dCharCanvasCalcCellDataSize2DRect</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasMakeCellXXX.html">NNS_G2dCharCanvasMakeCell1D</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasMakeCellXXX.html">NNS_G2dCharCanvasMakeCell2DRect</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasDrawChar.html">NNS_G2dCharCanvasDrawChar</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasDrawGlyph.html">NNS_G2dCharCanvasDrawGlyph</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasClear.html">NNS_G2dCharCanvasClear</A>
+	<DD><A href="CharCanvas/NNS_G2dCharCanvasClearArea.html">NNS_G2dCharCanvasClearArea</A>
+	<DD><A href="CharCanvas/NNS_G2dMapScrToCharText.html">NNS_G2dMapScrToCharText</A>
+	<DD><A href="CharCanvas/NNS_G2dMapScrToCharAffine.html">NNS_G2dMapScrToCharAffine</A>
+	<DD><A href="CharCanvas/NNS_G2dMapScrToChar256x16Pltt.html">NNS_G2dMapScrToChar256x16Pltt</A>
+	<DD><A href="CharCanvas/NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequireOBJ1D</A>
+	<DD><A href="CharCanvas/NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequireOBJ2DRect</A>
+	<DD><A href="CharCanvas/NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ1D</A>
+	<DD><A href="CharCanvas/NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ2DRect</A>
+	<DD><A href="CharCanvas/RequiredOBJTable.html">NNS_G2dCalcRequireOBJ* の計算結果表</A>
+</DL>
+
+<DL>
+	<DT>文字列描画<A href="TextCanvas/TextCanvas_Overview.html">(概要)</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasInit.html">NNS_G2dTextCanvasInit</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetCharCanvas.html">NNS_G2dTextCanvasGetCharCanvas</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasSetCharCanvas.html">NNS_G2dTextCanvasSetCharCanvas</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetFont.html">NNS_G2dTextCanvasGetFont</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasSetFont.html">NNS_G2dTextCanvasSetFont</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetHSpace.html">NNS_G2dTextCanvasGetHSpace</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasSetHSpace.html">NNS_G2dTextCanvasSetHSpace</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetVSpace.html">NNS_G2dTextCanvasGetVSpace</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasSetVSpace.html">NNS_G2dTextCanvasSetVSpace</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetStringWidth.html">NNS_G2dTextCanvasGetStringWidth</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetTextWidth.html">NNS_G2dTextCanvasGetTextWidth</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetTextHeight.html">NNS_G2dTextCanvasGetTextHeight</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasGetTextRect.html">NNS_G2dTextCanvasGetTextRect</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasDrawString.html">NNS_G2dTextCanvasDrawString</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasDrawText.html">NNS_G2dTextCanvasDrawText</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasDrawTextRect.html">NNS_G2dTextCanvasDrawTextRect</A>
+	<DD><A href="TextCanvas/NNS_G2dTextCanvasDrawTaggedText.html">NNS_G2dTextCanvasDrawTaggedText</A>
+	<DD><A href="TextCanvas/NNSG2dTagCallback.html">NNSG2dTagCallback</A>
+	<DD><A href="TextCanvas/NNSG2dTagCallbackInfo.html">NNSG2dTagCallbackInfo</A>
+	<DD><A href="TextCanvas/NNS_G2D_UNICODE.html">NNS_G2D_UNICODE</A>
+</DL>
+</BODY>
+</HTML>

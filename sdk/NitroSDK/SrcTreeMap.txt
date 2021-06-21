@@ -1,0 +1,169 @@
+------------------------------------------------------------------------------
+$Id: SrcTreeMap.txt,v 1.22 2005/12/12 04:24:38 okubata_ryoma Exp $
+------------------------------------------------------------------------------
+
+●ソースツリーのディレクトリマップ
+
+以下はソースツリーの全体図です。
+まず docs/README 以下のファイルをご確認ください。
+
+$NitroSDK       NITRO-SDK の ROOT ディレクトリ
+ │
+ ├─bin            NITRO 実行バイナリ
+ │
+ ├─docs           ドキュメント
+ │  ├─README         - SDK リリースに関するドキュメント(まずこちらへ)
+ │  ├─SDKHowTo       -  -  SDK の使用方法の解説
+ │  ├─SDKRules       -  -  SDK に関するルールの解説
+ │  ├─SDKTools       -  -  SDK に関するツールの解説
+ │  └─TechnicalNotes -  -  SDK に関する技術説明
+ │
+ ├─build          ビルドディレクトリ
+ │  ├─buildtools     -  ビルドに必要なファイル
+ │  ├─buildsetup     -  動的に作成するヘッダファイルなど
+ │  ├─demos          -  デモアプリケーション
+ │  │  │
+ │  │  ├─gx         -  -  グラフィクス(GX)デモ
+ │  │  │  └─UnitTours  -  -  -  GX 機能テスト
+ │  │  │      ├─DEMOLib    -  -  -  -  GX 機能テストライブラリ
+ │  │  │      ├─2D_CharBg_1-  -  -  -  GX 機能テスト 2D_CharBG_1
+ │  │  │      ├─2D_CharBg_2-  -  -  -  GX 機能テスト 2D_CharBG_2
+ │  │  │      ├─2D_CharBg_3-  -  -  -  GX 機能テスト 2D_CharBG_3
+ │  │  │      ├─......         ...
+ │  │  │      ├─......         その他多数
+ │  │  │      └─......         ...
+ │  │  │
+ │  │  ├─os         -  - OS 機能デモコード
+ │  │  │  ├─thread-1   -  -  -  Thread テスト 1
+ │  │  │  ├─thread-2   -  -  -  Thread テスト 2
+ │  │  │  ├─......             ...
+ │  │  │  └─......             ...
+ │  │  │
+ │  │  ├─pad        -  - PAD 機能デモコード
+ │  │  │  └─padRead    -  -  -  PAD 読み込みテスト
+ │  │  │
+ │  │  └─template       -  - フレームワーク
+ │  │
+ │  ├─libraries      - ライブラリ
+ │  │
+ │  └─tools          - SDK 付属ツール
+ │      ├─makelcf        -  - makelcf ツールソースファイル
+ │      └─......             ...
+ │
+ ├─components         ビルド済みのコンポーネントファイル (主に ARM7 用)
+ │  ├─mongoose       - ARM7 標準コンポーネント mongoose
+ │  ├─ichneumon      - ARM7 無線機能拡張コンポーネント ichneumon
+ │  └─.....                  ...
+ │
+ ├─data           ライブラリ用データファイル
+ │  ├─wl_icons       - 無線強度表記用アイコンデータ
+ │  └─.....                  ...
+ │
+ ├─include            インクルードファイル
+ │  ├─nitro          - nitro 用サブヘッダファイル
+ │  │  ├─cp         -  -  CP  ヘッダファイル
+ │  │  ├─gx         -  -  GX/G2/G3 ヘッダファイル
+ │  │  ├─hw         -  -  ハードウェア関連定義ファイル
+ │  │  ├─init       -  -  crt0 初期化処理関連ヘッダファイル
+ │  │  ├─os         -  -  OS  ヘッダファイル
+ │  │  ├─pad        -  -  PAD ヘッダファイル
+ │  │  ├─......             ...
+ │  │  └─specfiles      -  -  LCF ファイルなど
+ │  └─nitro_wl       - nitro 無線用ヘッダファイル
+ │
+ ├─man            リファレンスマニュアル html
+ │  ├─en_US          -  英語(米)
+ │  └─ja_JP          -  日本語
+ │
+ ├─lib            ライブラリの作成先
+ │  ├─ARM9-TS        -  メインプロセッサ(ARM9)用ライブラリ
+ │  │  ├─Debug      -  -  debug   版
+ │  │  ├─Release    -  -  release 版
+ │  │  └─Rom        -  -  最終rom 版
+ │  │
+ │  └─NitroSystem        -  NITRO-SYSTEM ライブラリのコピー
+ │
+ └─tools          SDK 付属ツール
+     ├─bin            -  SDK 付属ツール一式
+     ├─lib            -  SDK 付属ツール用ライブラリ
+     ├─makerom        -  makerom  関連ファイル置き場
+     └─elftobin       -  elftobin 関連ファイル置き場
+
+------------------------------------------------------------------------------
+$Log: SrcTreeMap.txt,v $
+Revision 1.22  2005/12/12 04:24:38  okubata_ryoma
+fix log
+
+Revision 1.21  2005/12/12 04:15:10  okubata_ryoma
+全角ピリオドを"。"もしくは半角ピリオドに修正
+
+Revision 1.20  2005/03/11 02:26:46  terui
+2.0 リリースのため再度修正
+
+Revision 1.19  2004/10/05 09:19:42  yasu
+2.0 リリースのための修正
+
+Revision 1.18  2004/07/29 04:42:30  yasu
+TS 版ライブラリディレクトリの追加
+mongoose の記述追加
+
+Revision 1.17  2004/06/08 07:58:55  yasu
+add description for ferret
+
+Revision 1.16  2004/05/24 12:37:07  yasu
+add description for $NitroSDK/bin
+
+Revision 1.15  2004/03/30 06:35:50  yasu
+add NitroSystem lib dir
+
+Revision 1.14  2004/02/27 10:12:16  yasu
+docs/README ディレクトリへの変更
+
+Revision 1.13  2004/02/27 07:48:33  yasu
+ARM7 関連ディレクトリの統合
+
+Revision 1.12  2004/02/05 12:21:14  yasu
+change SDK prefix iris -> nitro
+
+Revision 1.11  2004/01/20 01:45:19  yasu
+040120 版対応修正
+
+Revision 1.10  2003/12/11 05:49:13  yasu
+_template/ -> template/ の修正
+
+Revision 1.9  2003/12/03 04:14:06  yasu
+GX の単体テストの記述追加
+
+Revision 1.8  2003/12/02 07:47:10  yasu
+doc ディレクトリを記述の先頭へ
+
+Revision 1.7  2003/12/01 11:34:50  yasu
+elftobin 関連の修正
+
+Revision 1.6  2003/11/13 07:10:27  yasu
+BB -> ARM9-BB などに修正
+
+Revision 1.5  2003/11/07 00:35:11  nishida
+ツール関係のツリー追加
+
+Revision 1.4  2003/11/05 09:59:51  yasu
+buildsetup/sp の追加
+PLATFORM 名の修正
+
+Revision 1.3  2003/10/30 12:07:40  yasu
+buildsetup における修正
+include 以下の細分化
+
+Revision 1.2  2003/10/29 13:21:59  yasu
+buildsetup 周りの追加。修正
+
+Revision 1.1  2003/10/28 01:24:20  yasu
+上位ディレクトリから $NitroSDK 内へ移動
+
+Revision 1.2  2003/10/24 13:17:56  yasu
+レジスタ定義ヘッダファイルのためのディレクトリ定義
+
+Revision 1.1  2003/10/24 06:23:23  yasu
+初版作成
+
+------------------------------------------------------------------------------

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_RequestAutoSamplingStartAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_RequestAutoSamplingStartAsync</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>void TP_RequestAutoSamplingStartAsync( 
+            u16 vcount, 
+            u16 frequence, 
+            <A href="TPData.html">TPData</A> samplingBufs[],
+            u16 bufSize );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">vcount</font></strong></em></TD>
+      <TD width="700">オートサンプリングのためのベースVカウント値。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">frequence</font></strong></em></TD>
+      <TD>１フレームの間にサンプリングする回数。（MAX4回)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">samplingBufs</font></strong></em></TD>
+      <TD>オートサンプリング値が格納されるバッファを設定するポインタ。最低でも<B><I>frequence</I></B>分の<A href="TPData.html">TPData</A>が入るだけの領域を確保する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">bufSize</font></strong></em></TD>
+      <TD>samplingBufsで渡されたバッファの要素数。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ARM7に対して非同期にタッチパネル値のオートサンプリング開始要求を出します。<BR>
+この要求が受け付けられると、以降定期的にサンプリングが実行され<B><I>samplingBufs</I></B>で指定された配列へ値が格納されていきます。<BR>
+オートサンプリングの間隔は<B>vcount</B>で設定された値をベースに1フレームにfrequence回のデータがVAlarmによって均等な間隔でサンプリングされます。<BR>
+ただし、Vカウント値が200から214までの時間帯はサンプリングに使用しません。GX_SetVCount でVカウント値が変更される可能性があるためです。
+サンプリングするVカウント値がこの期間に入っている場合は、215 ラインまでサンプリングが遅延されます。<BR>
+<A href="TP_SetCallback.html">TP_SetCallback</A>でユーザコールバックが設定されている場合には、値が格納されるごとにコールバックによって通知されます。<BR>
+<BR>
+この関数によって<B><I>samplingBufs</I></B>はクリアされ以後ループバッファとして使用されます。最後に格納されたデータのインデクスは、<A href="TP_GetLatestIndexInAuto.html">TP_GetLatestIndexInAuto</A>によって取得することが可能です。<BR>
+<BR>
+オートサンプリングでは(最新のインデックス+1)のサンプリング値は割り込みにより不意に書き換えられる可能性があります。
+１フレーム分のサンプリング値をまとめて利用する場合には<B><I>frequence+1</I></B>以上の領域を確保しておくことで回避可能です。<BR>
+<BR>
+<B><I>(注意)</I></B><BR>
+この関数ではARM7へのリクエストが正常に処理されたかを確認する必要があります。<BR>
+リクエストの成否は、<A href="TP_WaitBusy.html">TP_WaitBusy</A>で完了を待った後に<A href="TP_CheckError.html">TP_CheckError</A>で取得する、またはユーザコールバックの引数によって取得する必要があります。</P>
+<h2>参照</h2>
+<P><A href="TP_RequestAutoSamplingStop.html">TP_RequestAutoSamplingStop</A>、<A href="TP_GetLatestRawPointInAuto.html">TP_GetLatestRawPointInAuto</A>、<A href="TP_GetLatestCalibratedPointInAuto.html">TP_GetLatestCalibratedPointInAuto</A>、<A href="TP_GetLatestIndexInAuto.html">TP_GetLatestIndexInAuto</A>、<A href="TP_WaitBusy.html">TP_WaitBusy</A>、<A href="TP_CheckError.html">TP_CheckError</A>、<A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>, <A href="TPData.html">TPData</A></P>
+<H2>履歴</H2>
+<P>
+Ver. 2007/10/29 説明を追記<br>
+Ver. 2007/10/16 使用しないVカウント値の説明を追記<br>
+Ver. 2006/09/01 bufSizeの説明を修正<br>
+Ver. 2004/04/21 初版<br>
+</P>
+</body>
+</html>

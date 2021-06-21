@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_IsAgbCartridge</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_IsAgbCartridge</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CTRDG_IsAgbCartridge( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>AGBカートリッジが存在していればTRUEを、そうでない場合はFALSEを返します。<BR>
+また、一度カートリッジを抜くとその後は常にFALSE を返します。</P>
+<H2>説明</H2>
+<P>AGBカートリッジが存在しているかどうかを返します。</P>
+<P>ただし、(AGBカートリッジに限らず) カートリッジの抜きを検出した後は、常にFALSEを返します。<br>
+<br>
+この関数は、<a href="../os/spinLock/OS_LockCartridge.html">OS_LockCartridge</a>関数でカートリッジバスをロックした状態でも呼び出すことができます。<br>
+ただしバスがロックされている間は ARM7 による自動抜け検出処理が行われなくなりますので、<br>
+ゲームフレーム毎などのプレイヤーが再挿入できない間隔で<A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A>関数を定期的に呼び出して下さい。<br>
+(なお、この関数の内部でも<A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A>関数が呼び出されています)<br>
+</P>
+
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A>, <A href="CTRDG_IsOptionCartridge.html">CTRDG_IsOptionCartridge</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/04/12 カートリッジバスのロックに関する記述を追加<br>
+2004/09/17 初版</P>
+</BODY>
+</HTML>

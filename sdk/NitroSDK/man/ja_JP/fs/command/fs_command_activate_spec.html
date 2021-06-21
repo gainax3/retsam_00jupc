@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_COMMAND_ACTIVATE</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_COMMAND_ACTIVATE</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <BR>
+  <CODE>FSResult FS_ARCHIVE_PROC_FUNC(FSFile *p_file, FSCommandType command /*
+  = FS_COMMAND_ACTIVATE */);<br>
+  </CODE><br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_ACTIVATE の動作仕様を以下に示します</CODE>。<BR>
+<BR>
+<BR>
+
+<HR>
+<B>このコマンドに渡される引数</B>
+<BLOCKQUOTE>
+<PRE>このコマンドに引数はありません。
+p_file が指す FSFile 構造体は、一時的なものです。<BR></PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドに要求される動作</B>
+<BLOCKQUOTE>
+<PRE>アーカイブが最初のコマンドを処理する前に必要な特別な処理を行います。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>デフォルトの実装</B><BR>
+<BLOCKQUOTE>何も行いません。</BLOCKQUOTE>
+<HR>
+<B>コマンドの結果</B><BR>
+
+<BLOCKQUOTE>
+<PRE>コマンドの戻り値は無視されます。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドが使用される関数</B><BR>
+<BLOCKQUOTE>コマンドを使用する全てのFS関数</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<A href="../fs_command_type_const.html">FS_COMMAND_*</A>
+<BR>
+<A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/12 初版</P>
+</body>
+</html>

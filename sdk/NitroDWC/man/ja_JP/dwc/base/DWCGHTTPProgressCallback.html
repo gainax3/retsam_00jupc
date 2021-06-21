@@ -1,0 +1,87 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCGHTTPProgressCallback</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCGHTTPProgressCallback</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+typedef void (*DWCGHTTPProgressCallback)( DWCGHTTPState state, 
+                                          const char* buf, 
+                                          int   len, 
+                                          int   bytesReceived, 
+                                          int   totalSize, 
+                                          void* param);</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>関数を呼び出した後のGHTTPライブラリの現在の状態を通知します。
+		  リクエスト送信中、データ受信中など、ダウンロードシーケンスの状態が変化する度に呼び出されます。
+		</P>
+		<P>
+		  本コールバック関数は<A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>関数によって設定することができます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>state</CODE></STRONG></EM></TD>
+					<TD width="75%">GHTTPの通信状態<BR>
+					<A href="DWC_GetGHTTPState.html">DWC_GetGHTTPState</A> 関数
+					の返り値と同じ値を返す</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>buf</CODE></STRONG></EM></TD>
+					<TD>受信データ格納バッファ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>len</CODE></STRONG></EM></TD>
+					<TD>受信データのサイズ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>bytesReceived</CODE></STRONG></EM></TD>
+					<TD>受信された総バイト数</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>totalSize</CODE></STRONG></EM></TD>
+					<TD>ファイルのトータルサイズ。不明な場合は-1</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+					<TD><A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>関数で指定したコールバック用パラメータ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>,
+				<A href="DWC_GetGHTTPState.html">DWC_GetGHTTPState</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 関数説明を修正<BR>
+			2005/10/27 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

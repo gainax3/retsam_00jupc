@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_GetServerPacketLength</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_GetServerPacketLength</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>int WFS_GetServerPacketLength(const WFSServerContext *context);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>現在設定されているMP送信パケットサイズ上限値</p>
+
+<h2>説明</h2>
+<p>親機が<a href="WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a>関数で生成するMP送信パケットサイズの上限を取得します。<br />
+子機からの読み込みリクエストに応答する際、このパケットサイズが大きいほど転送効率は向上します。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="WFS_InitServer.html">WFS_InitServer</a> 
+<a href="WFS_SetServerPacketLength.html">WFS_SetServerPacketLength</a> 
+<br /></code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/11 初版<br />
+</p>
+</body>
+</html>
+
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>メッセージ (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">メッセージ (overview)</H1>
+<H2>説明</H2>
+<P>ここでは、、メッセージキューに値を送信したり、受信したりという操作で情報をやりとりすると同時に、安全にスレッド間の同期をとることの出来るメッセージの機構について説明します。</P>
+<HR>
+<P><B>メッセージキューの初期化</B></P>
+<P>メッセージキューの初期化は <CODE><A href="OS_InitMessageQueue.html">OS_InitMessageQueue()</A></CODE> で行ないます。</P>
+<P>メッセージは OSMessage 型で、これは void* 型に typedef されています。NitroSDK
+では 32bit のデータと考えても差し支えはありません。<CODE><A href="OS_InitMessageQueue.html">OS_InitMessageQueue()</A></CODE> には、メッセージを実際に格納する OSMessage の配列領域を与えます。</P>
+<P> メッセージキューは内部で以下のような構造になっています。</P>
+<P><IMG src="image_messageStruct.gif" border="0"></P>
+<P>図の &quot;message array&quot; は OSMessage の配列でメッセージ領域です。この大きさはユーザが初期化時に指定します。この領域は
+FIFO ( First In First Out ) のキューとして用いられます。内部では、実際はリングバッファになっていてその制御のための変数が存在しますが、このページの説明では省いています。</P>
+<P>図の &quot;number of message&quot; はメッセージ領域のなかの有効なメッセージ数です。初期化された直後は
+0 です。</P>
+<P>図の &quot;thread queue to send message&quot; と &quot;thread queue to receive message&quot; はメッセージ送信のためのスレッドキューとメッセージ受信のためのスレッドキューです。これについては後述します。</P>
+<HR>
+<P><B>メッセージの送信</B></P>
+<P>メッセージを送信する関数として、<CODE><A href="OS_SendMessage.html">OS_SendMessage()</A></CODE> が用意されています。</P>
+<P>下の図は thread1 がメッセージを２回送信する様子を表しています。</P>
+<BLOCKQUOTE><IMG src="image_messageSend1.gif" border="0"><BR>
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageSend2.gif" border="0"></BLOCKQUOTE>
+<P>送信の際、BLOCKモードと NOBLOCKモードのいずれかのモードを指定します。メッセージキューが一杯でなければ両者に違いはありません。上の図のようにキューにメッセージが登録されるのみです。異なるのは、すでに一杯であるメッセージキューにメッセージを送信しようとしたときの挙動です。</P>
+<P>・BLOCK モード</P>
+<BLOCKQUOTE>メッセージを送れるようになるまで、すなわちこのメッセージキューに対し他のスレッドが <CODE><A href="OS_ReceiveMessage.html">OS_ReceiveMessage()</A></CODE> でメッセージを受信し、メッセージキューに空きが出来るまで、スレッドを一時停止状態にして待ちます。この時必ずスレッドのリスケジューリングが発生し、他のスレッドが実行状態になります。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageSend_block.gif" border="0"></BLOCKQUOTE>
+<P>・NOBLOCK モード</P>
+<BLOCKQUOTE>メッセージを送れなくてもすぐに戻ります。関数からの返り値でメッセージを送れたかどうかを判断することが出来ます。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageSend_noblock.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>メッセージの受信</B></P>
+<P>メッセージを受信する関数として、<CODE><A href="OS_ReceiveMessage.html">OS_ReceiveMessage()</A></CODE> が用意されています。</P>
+<P>下の図は thread2 がメッセージを２回受信する様子を表しています。<FONT color="#ff0033">受信するメッセージの順序は、このメッセージキューに送信された順序と同じです。</FONT>すなわち、もっとも過去に送信されてまだメッセージキューに残っているものを受信します。</P>
+<BLOCKQUOTE><IMG src="image_messageRecv1.gif" border="0"><BR>
+<BR>
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageRecv2.gif" border="0"></BLOCKQUOTE>
+<P>受信の際、BLOCKモードと NOBLOCKモードのいずれかのモードを指定します。メッセージキューが空でなければ両者に違いはありません。上の図のようにキューからメッセージを読み込むだけです。異なるのは、空であるメッセージキューからメッセージを受信しようとしたときの挙動です。</P>
+<P>・BLOCK モード</P>
+<BLOCKQUOTE>メッセージを受け取れるようになるまで、すなわちこのメッセージキューに対し他のスレッドが <CODE><A href="OS_SendMessage.html">OS_SendMessage()</A></CODE> でメッセージを送信し、メッセージキューが空でなくなるまで、スレッドを一時停止状態にして待ちます。この時必ずスレッドのリスケジューリングが発生し、他のスレッドが実行状態になります。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageRecv_block.gif" border="0"></BLOCKQUOTE>
+<P>・NOBLOCK モード</P>
+<BLOCKQUOTE>メッセージを受け取れなくてもすぐに戻ります。関数からの返り値でメッセージを受け取れたかどうかを判断することが出来ます。</BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_messageRecv_noblock.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>送受信でスレッドがリスケジューリングされる仕組み</B></P>
+<P>下図は、thread1がメッセージキューに BLOCK モードでメッセージを送信しようとしましたが、メッセージキューが一杯であったために
+thread1 はスリープ状態になったところです。送信スレッドキューに thread1
+が登録されていることに注意して下さい。</P>
+<BLOCKQUOTE><IMG src="image_messageSwitchThread1.gif" border="0"></BLOCKQUOTE>
+<P>ここで、thread2 がメッセージを受信したとします。</P>
+<BLOCKQUOTE><IMG src="image_messageSwitchThread2.gif" border="0"></BLOCKQUOTE>
+<P>メッセージキューは、<CODE><A href="OS_ReceiveMessage.html">OS_ReceiveMessage()</A></CODE> の際には、送信スレッドキューにスレッドが登録されていないかをチェックします。そして登録されているものがあれば、それらをすべて実行可能状態にします。現在 thread1 が登録されていますので、thread1 を実行可能状態にします。</P>
+<BLOCKQUOTE>　　　<IMG src="image_messageSwitchThread.gif" border="0"></BLOCKQUOTE>
+<P>この状態でスレッドのリスケジューリングを行ないます。現在のスレッド(メッセージを受信しようとしているスレッド)と、実行可能状態にしたスレッドの中で最も優先度の高いスレッドが動作状態になります。図で、thread1 の方が thread2 より優先度が高ければ、メッセージを送り thread1 が実行状態になります。 </P>
+<P>逆に、<CODE><A href="OS_SendMessage.html">OS_SendMessage()</A></CODE> の際には、受信スレッドキューに登録されているスレッドを全て実行可能状態にしてリスケジューリングします。</P>
+<P>メッセージキューには複数のスレッドが登録されている場合もあります。この場合でも、スレッドキューの仕組みを利用して、登録されているものを同時に実行可能状態にしてリスケジューリングします。</P>
+<BLOCKQUOTE><IMG src="image_messageThreadslocked.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>送信メッセージの割り込み</B></P>
+<P><CODE><A href="OS_SendMessage.html">OS_SendMessage()</A></CODE> でメッセージキューにメッセージを送信すると、<CODE><A href="OS_ReceiveMessage.html">OS_ReceivedMessage()</A></CODE> で受信する際は送信された順に受け取ります。 しかし、送信時に、メッセージをメッセージキューの先頭に割り込ませる関数　<CODE><A href="OS_JamMessage.html">OS_JamMessage()</A></CODE> が用意されています。この関数にも、キューが一杯であった場合のモードを指定することが出来ます。</P>
+<P><CODE><A href="OS_JamMessage.html">OS_JamMessage()</A></CODE> に成功すると、そのメッセージが、次にこのメッセージキューから受信するメッセージということになります。</P>
+<BLOCKQUOTE><IMG src="image_messageJam.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>メッセージキューの参照</B></P>
+<P>メッセージキューの先頭 ( 次に受信されるもの ) を参照するだけで、メッセージをキューに残したままにするための関数
+<CODE><A href="OS_ReadMessage.html">OS_ReadMessage()</A></CODE> が用意されています。この関数が原因となってスレッドの切り替わりが発生することはありませんし、メッセージキューの内部状態は変化しません。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Message">OS関数一覧(メッセージ)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/15 用語や語尾など修正<BR>
+2004/11/10 初版</P>
+</BODY>
+</HTML>

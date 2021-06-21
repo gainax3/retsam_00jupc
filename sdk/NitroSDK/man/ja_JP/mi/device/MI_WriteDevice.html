@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_WriteDevice</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_WriteDevice</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  int MI_WriteDevice(<a href="./MIDevice.html">MIDevice</a> *device, const void *buffer, u32 offset, u32 length);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>device</strong></em></td>
+      <td width="87%">アクセスする<a href="./MIDevice.html">MIDevice</a>構造体へのポインタ<br />
+      <a href="./MI_InitDevice.html">MI_InitDevice</a>関数で初期化されている必要があります。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>buffer</strong></em></td>
+      <td width="87%">書き込むデータを保持している転送元メモリ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>offset</strong></em></td>
+      <td width="87%">データを書き込むべきデバイス上の先頭アドレス</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>length</strong></em></td>
+      <td width="87%">書き込むサイズ</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>成功すれば実際に書き込まれたデータサイズ、失敗すれば負の値。</p>
+
+<h2>説明</h2>
+<p><a href="./MIDevice.html">MIDevice</a>構造体を使用してデバイスへデータを書き込みます。<br />
+内部では、単に<a href="./MI_InitDevice.html">MI_InitDevice</a>関数で指定された書き込み用コールバック関数を呼び出します。</p>
+<p>
+この機能は、モジュール設計からデバイス制御部分を分離するためのユーティリティです。<br />
+詳細は<a href="MIDevice.html">MIDevice</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitDevice.html">MI_InitDevice</a>,
+<a href="MI_ReadDevice.html">MI_ReadDevice</a><br />
+<a href="MIDevice.html">MIDevice</a>,
+<a href="MIDeviceReadFunction.html">MIDeviceReadFunction</a>,
+<a href="MIDeviceWriteFunction.html">MIDeviceWriteFunction</a><br />
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/09 初版<br />
+</p>
+</body>
+</html>

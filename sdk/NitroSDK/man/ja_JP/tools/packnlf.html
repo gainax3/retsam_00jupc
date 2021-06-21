@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>packnlf</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">packnlf</H1>
+<H2>説明</H2>
+<P><CODE>　packnlf</CODE> は、nlf ファイルが参照している全てのファイル指定を相対パス化し、それら全てをまとめ ZIP ファイルとして出力するツールです。
+</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<PRE><CODE>% packnlf sample.nlf</CODE></PRE>
+<P><CODE>sample.nlf</CODE> で指定された nlf ファイルの内容を読み込み、参照している全てのファイル指定を相対パス化した sample.nlf ファイルと、参照されているファイル全てを<CODE> package </CODE>ディレクトリ以下に出力します。<br>
+また、この<CODE> package </CODE>ディレクトリの内容を ZIP 形式に圧縮したものが<CODE> package-yymmdd-hhmm.zip </CODE>として生成されます<br>
+参照されていたファイルは絶対パス、相対パスに関わらず全て<CODE> package </CODE>ディレクトリ以下にコピーされることに注意してください。
+</P>
+
+<BR>
+<P><B>nlf ファイルの変換例</B></P>
+<BR>
+<P>変換前の nlf ファイルデータ</P>
+<BLOCKQUOTE><CODE>#NLF --- NitroROM List File<BR>
+T,"d:/home/NitroSDK/build/demos/os/heap-1"<BR>
+V,1.1<BR>
+H,"bin/ARM9-TS/Debug/main_header.sbin","bin/ARM9-TS/Debug/main_files.sbin",0<BR>
+9,"bin/ARM9-TS/Debug/main.nef","bin/ARM9-TS/Debug/main.sbin","*","bin/ARM9-TS/Debug/main_defs.sbin","*"<BR>
+7,"D:/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.nef","D:/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.sbin","*","D:/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub_defs.sbin","*"<BR>
+<BR>
+# File Images<BR>
+F,00000000,00004000,00,ffff,ffff,"bin/ARM9-TS/Debug/main_header.sbin","*",43ccc89b,512,1<BR>
+F,00004000,00013324,00,ffff,0008,"bin/ARM9-TS/Debug/main.sbin","*",43ccc89b,512,1<BR>
+F,00013400,0003d748,00,ffff,000c,"D:/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.sbin","*",43c36b6a,512,1<BR>
+F,0003d800,0003d809,00,ffff,0010,"bin/ARM9-TS/Debug/main_files.sbin","*",43ccc89b,512,1<BR>
+F,0003da00,0003da00,00,ffff,0012,"*FILEALLOC","*",00000000,512,1<BR>
+F,0003da00,0003e240,00,ffff,001a,"D:/home/NitroSDK/include/nitro/specfiles/default.bnr","*",43c5bca2,512,1<BR>
+#
+</CODE></BLOCKQUOTE>
+<BR>
+<P>変換後の nlf ファイルデータ</P>
+<BLOCKQUOTE><CODE>#NLF --- NitroROM List File<BR>
+T,"."<BR>
+V,1.1<BR>
+H,"./bin/ARM9-TS/Debug/main_header.sbin","./bin/ARM9-TS/Debug/main_files.sbin",0<BR>
+9,"./bin/ARM9-TS/Debug/main.nef","./bin/ARM9-TS/Debug/main.sbin","*","./bin/ARM9-TS/Debug/main_defs.sbin","*"<BR>
+7,"./D_/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.nef","./D_/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.sbin","*","./D_/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub_defs.sbin","*"<BR>
+<BR>
+# File Images<BR>
+F,00000000,00004000,00,ffff,ffff,"./bin/ARM9-TS/Debug/main_header.sbin","*",43ccc89b,512,1<BR>
+F,00004000,00013324,00,ffff,0008,"./bin/ARM9-TS/Debug/main.sbin","*",43ccc89b,512,1<BR>
+F,00013400,0003d748,00,ffff,000c,"./D_/home/NitroSDK/components/mongoose/ARM7-TS/Debug/mongoose_sub.sbin","*",43c36b6a,512,1<BR>
+F,0003d800,0003d809,00,ffff,0010,"./bin/ARM9-TS/Debug/main_files.sbin","*",43ccc89b,512,1<BR>
+F,0003da00,0003da00,00,ffff,0012,"*FILEALLOC","*",00000000,512,1<BR>
+F,0003da00,0003e240,00,ffff,001a,"./D_/home/NitroSDK/include/nitro/specfiles/default.bnr","*",43c5bca2,512,1<BR>
+#
+</CODE></BLOCKQUOTE>
+
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/packnlf</CODE></P>
+<H2>参照</H2>
+<H2>履歴</H2>
+<P>2006/01/17 初版</P>
+</BODY>
+</HTML>

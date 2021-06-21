@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndCaptureChangeOutputEffect</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndCaptureChangeOutputEffect</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndCaptureChangeOutputEffect(
+        NNSSndCaptureOutputEffectType <var>type</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>type</code></strong></em></td>
+<td>出力エフェクト処理のタイプです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+出力エフェクト処理を変更します。
+</p>
+       <p>
+出力エフェクトのタイプ<em><strong><code>type</code></strong></em>は、下記の値から選択します。
+</p>
+      <div class="table"><a name="IDAXMWT"></a><p class="title"><b>表 . NNSSndCaptureOutputEffectType</b></p>
+<table summary="NNSSndCaptureOutputEffectType" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_NORMAL</td>
+<td>何も処理しません（通常のステレオモード）</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_MONO</td>
+<td>モノラルモード</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_SURROUND</td>
+<td>サラウンドモード</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_OUTPUT_EFFECT_HEADPHONE</td>
+<td>ヘッドフォンモード</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      <p>
+サラウンドモードは、DSステレオスピーカーから再生したときに、
+スピーカー位置より広がって感じられるエフェクトをかけます。
+ヘッドフォンモードは、ヘッドフォンで聴いているときに
+耳の負担を軽減するエフェクトをかけます。
+</p>
+
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/10/04 初版<br></p>
+</div>
+</body>
+</html>

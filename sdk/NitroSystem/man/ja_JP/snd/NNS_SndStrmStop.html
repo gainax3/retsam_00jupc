@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndStrmStop</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndStrmStop</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndStrmStop( NNSSndStrm* <var>stream</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA5LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>stream</code></strong></em></td>
+<td>ストリーム構造体のポインタです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAOMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAVMWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリーム再生を停止します。
+</p>
+<div class="note">
+<h3 class="title">注意</h3>
+<p>
+ストリーム再生を再開するためには、再び
+<tt class="function"><a href="NNS_SndStrmSetup.html">NNS_SndStrmSetup</a></tt>関数を
+呼びだす必要があります。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndStrmSetup.html">NNS_SndStrmSetup</a></p>
+<h2>履歴</h2>
+<p>2004/12/17 ストリーム再開時の注意書き追加<br>2004/08/10 初版<br></p>
+</div>
+</body>
+</html>

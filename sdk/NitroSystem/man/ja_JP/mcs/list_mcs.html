@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<BASE target="main">
+	<TITLE>Multiple Channel Stream API 機能一覧</TITLE>
+	<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+
+<BODY>
+
+<H1>Multiple Channel Stream (Mcs) API 機能一覧</H1>
+
+<H3><A name="Control">初期化と制御</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR>
+		<TH width="25%"><A href="nitro/NNS_McsInit.html" target="_self">NNS_McsInit</A></TH>
+		<TD>デバイスと通信するための初期化関数です。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsPollingIdle.html" target="_self">NNS_McsPollingIdle</A></TH>
+		<TD>コールバック関数を呼ぶためのIdle関数です。(メインループ内)</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsVBlankInterrupt.html" target="_self">NNS_McsVBlankInterrupt</A></TH>
+		<TD>コールバック関数を呼ぶためのIdle関数です。(VBlank割り込みハンドラ内)</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsCartridgeInterrupt.html" target="_self">NNS_McsCartridgeInterrupt</A></TH>
+		<TD>コールバック関数を呼ぶためのIdle関数です。(カートリッジ割り込みハンドラ内)</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsRegisterRecvCallback.html" target="_self">NNS_McsRegisterRecvCallback</A></TH>
+		<TD>データを受信したときにコールバックされる関数を登録します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsRegisterStreamRecvBuffer.html" target="_self">NNS_McsRegisterStreamRecvBuffer</A></TH>
+		<TD>データ受信用のバッファを登録します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsUnregisterRecvResource.html" target="_self">NNS_McsUnregisterRecvResource</A></TH>
+		
+  <TD>データ受信用のコールバック関数、バッファの登録を解除します。</TD>
+	</TR>
+	</TBODY> 
+</TABLE>
+
+<H3><A name="Device">デバイス制御</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR>
+		<TH width="25%"><A href="nitro/NNS_McsOpen.html" target="_self">NNS_McsOpen</A></TH>
+		<TD>デバイスをオープンします。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsClose.html" target="_self">NNS_McsClose</A></TH>
+		<TD>オープンしているデバイスをクローズします。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsGetMaxCaps.html" target="_self">NNS_McsGetMaxCaps</A></TH>
+		<TD>現在ターゲットに接続されている通信デバイスの総数を取得します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsIsServerConnect.html" target="_self">NNS_McsIsServerConnect</A></TH>
+		<TD>mcsサーバがNITROハードウェアに対して接続しているかどうかの状態を取得します。</TD>
+	</TR>
+	</TBODY> 
+</TABLE>
+
+<H3><A name="StreamIO">ストリーム入出力</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsReadStream.html" target="_self">NNS_McsReadStream</A></TH>
+		<TD>ストリームからデータを読み込みます。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsWriteStream.html" target="_self">NNS_McsWriteStream</A></TH>
+		<TD>ストリームにデータを書き込みます。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsGetStreamReadableSize.html" target="_self">NNS_McsGetStreamReadableSize</A></TH>
+		<TD>一度の関数NNS_McsReadStream()呼び出しで読み込めるデータのサイズを取得します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsGetStreamWritableLength.html" target="_self">NNS_McsGetStreamWritableLength</A></TH>
+		<TD>データ送信するためのバッファの最大長を取得します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsGetTotalStreamReadableSize.html" target="_self">NNS_McsGetTotalStreamReadableSize</A></TH>
+		<TD>受信用バッファにある読み込み可能なデータのサイズの合計を取得します。</TD>
+	</TR>
+	</TBODY> 
+</TABLE>
+
+
+<H3><A name="FileIO">ファイル入出力とディレクトリ検索</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR>
+		<TH width="25%"><A href="nitro/NNS_McsInitFileIO.html" target="_self">NNS_McsInitFileIO</A></TH>
+		<TD>ホスト(パソコン)側のファイルを読み書きするAPIのための初期化を行います。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsOpenFile.html" target="_self">NNS_McsOpenFile</A></TH>
+		<TD>既存のファイルのオープン、あるいは新規のファイルをオープンします。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsCloseFile.html" target="_self">NNS_McsCloseFile</A></TH>
+		<TD>開いているファイルをクローズします。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsReadFile.html" target="_self">NNS_McsReadFile</A></TH>
+		<TD>ファイルからデータを読み込みます。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsWriteFile.html" target="_self">NNS_McsWriteFile</A></TH>
+		<TD>ファイルへデータを書き込みます。</TD>
+	</TR>
+    <tr>
+      <th width="25%"><A href="nitro/NNS_McsSeekFile.html" target="_self">NNS_McsSeekFile</A></th>
+      <td>指定された位置にファイル ポインタを移動します。</td>
+    </tr>
+    <tr>
+      <th width="25%"><a href="nitro/NNS_McsGetFileSize.html" target="_self">NNS_McsGetFileSize</a></th>
+      <td>ファイルのサイズを取得します。</td>
+    </tr>
+    <TR>
+		<TH width="25%"><A href="nitro/NNS_McsFindFirstFile.html" target="_self">NNS_McsFindFirstFile</A></TH>
+		<TD>指定されたファイル名パターンに一致するファイルを、ディレクトリ内で検索します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsFindNextFile.html" target="_self">NNS_McsFindNextFile</A></TH>
+		<TD>NNS_McsFindFirstFile()で指定したパターンに一致するファイルの続きを検索します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsCloseFind.html" target="_self">NNS_McsCloseFind</A></TH>
+		<TD>NNS_McsFindFirstFile()で開始した検索を終了します。</TD>
+	</TR>
+    <TR>
+      <TH width="25%"><a href="nitro/NNS_McsGetServerErrorCode.html" target="_self">NNS_McsGetServerErrorCode</a></TH>
+      <TD>ファイル入出力やディレクトリ検索においてエラーが発生した場合のmcsサーバ側のエラーコードを取得します。</TD>
+    </TR>
+  </TBODY> 
+</TABLE>
+
+<H3><a name="Print">文字列出力</a></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR>
+		<TH width="25%"><A href="nitro/NNS_McsInitPrint.html" target="_self">NNS_McsInitPrint</A></TH>
+		<TD>文字列出力のための初期化を行います。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsPutString.html" target="_self">NNS_McsPutString</A></TH>
+		<TD>文字列を出力します。</TD>
+	</TR>
+	<TR> 
+		<TH width="25%"><A href="nitro/NNS_McsPrintf.html" target="_self">NNS_McsPrintf</A></TH>
+		<TD>書式指定付で文字列を出力します。</TD>
+	</TR>
+	</TBODY> 
+</TABLE>
+
+
+<H3><A name="Windows">Windows用</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY> 
+	<TR>
+		<TH width="25%"><A href="win/NNS_McsOpenStream.html" target="_self">NNS_McsOpenStream</A></TH>
+		<TD>Multiple Channel Stream用ストリームをオープンします。</TD>
+	</TR>
+	<TR>
+		<TH width="25%"><A href="win/NNS_McsOpenStreamEx.html" target="_self">NNS_McsOpenStreamEx</A></TH>
+		<TD>Multiple Channel Stream用ストリームをオープンします。(補足情報取得)</TD>
+	</TR>
+	</TBODY> 
+</TABLE>
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OAM_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">OAMマネージャ概要</h1>
+<H2>概念図</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:408pt;
+ height:178.2pt'>
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.emz"
+  o:title="図6"/>
+</v:shape><![endif]--><IMG width="544" height="238" src="clip_image002.gif" v:shapes="_x0000_i1025"></span><BR>
+<H2>説明</H2>
+ＯＡＭマネージャは、2DグラフィックスエンジンのOAMをラップし、ユーザに利用しやすいインタフェースを提供します。
+ＯＡＭマネージャを利用することで、OAMの使用位置や使用個数を制限してOAMを利用することが可能となります。
+また、ＯＡＭマネージャは、登録されたOBJを、ソフトウェアスプライト描画で描画することができます。
+描画方法については、OAMマネージャの作成時に指定します。<BR>
+<BR>
+なお、OAMマネージャはソフトウェアスプライト描画機能を実現するにあたり、
+OAMソフトウエアスプライト描画モジュールを下請けモジュールとして利用しています。<BR>
+<BR>
+
+<h2>OAM管理機能</h2>
+OAMマネージャは、2Dグラフィックスエンジンが持つ128個のOAMの中で、
+OAMマネージャが管理する領域を指定する事が出来ます。
+この機能により、OAMの中に、ユーザが独自で表示したいOBJと、
+OAMマネージャを使って表示するOBJを混在させる事ができます。<BR>
+<h2>拡張OAMマネージャ</h2>
+拡張OAMマネージャでは、OAMにセットするOBJを順番に入れ替えることにより、仮想的にＯＡＭの上限である128個以上のOBJを表示させる事が可能です。<BR>
+拡張OAMマネージャは、内部にNNSG2DOamProxy、NNSG2DAffineParamProxyという、OAMアトリビュート、Affineパラメータの代理役となるデータ構造のバッファを持ちます。
+マネージャに登録されたOAMデータは一旦、代理役へと姿を変え、前述のバッファへと格納されます。<BR>
+バッファ内容は最終的にハードウエアに適用され、描画処理が実現します。<BR>
+バッファ内容を時分割でハードウエアにコピーすることによって、ちらついた状態で、見た目上は2Dグラフィックスエンジンの最大限界数以上の多数OBJの表示を実現しています。OBJ自身はちらつきますが、重要ではないゲームオブジェクトなどの表示に使用することができます。<BR>
+なお、バッファ内容をハードウエアに適用する部分の処理を通常の関数ポインタによって外部モジュールに委譲しています。そのため、ユーザが独自に作成したOAMマネージャの上位モジュールとして機能することも可能となっています。<BR>
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_SetOBJAttr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_SetOBJAttr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2_oam.h&gt;<BR>
+void G2_SetOBJAttr(
+    <A href="../gx/GXOamAttr.html">GXOamAttr</A> * oam,
+    int x,
+    int y,
+    int priority,
+    GXOamMode mode,
+    BOOL mosaic,
+    GXOamEffect effect,
+    GXOamShape shape,
+    GXOamColorMode color,
+    int charName,
+    int cParam,
+    int rsParam
+);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="149"><em><strong><font face="Courier New">oam</font></strong></em></TD>
+      <TD width="706">OAMデータの格納場所へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">x</font></strong></em></TD>
+      <TD>X座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD>Y座標</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">priority</font></strong></em></TD>
+      <TD>表示優先順位(0～3)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">mode</font></strong></em></TD>
+      <TD>OBJモード</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">mosaic</font></strong></em></TD>
+      <TD>モザイクの有無</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">effect</font></strong></em></TD>
+      <TD>エフェクトの種類を指定</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">shape</font></strong></em></TD>
+      <TD>OBJの形状</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">color</font></strong></em></TD>
+      <TD>カラーモード(<I><B>mode</B></I>がビットマップOBJ時は16色モードのみ指定可能)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">charName</font></strong></em></TD>
+      <TD>先頭キャラクタネーム(2次元マッピングモードかつ256色モードの場合は、偶数である必要があります)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">cParam</font></strong></em></TD>
+      <TD>カラーパラメータ(<I><B>mode</B></I>がビットマップOBJ時はα値、それ以外の場合はカラーパレットNo)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">rsParam</font></strong></em></TD>
+      <TD>アフィン変換パラメータインデックス(<B><I>effect</I></B>がアフィン・アフィン倍角表示の場合のみ有効)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>OBJの属性を一括設定します。この関数でOBJアトリビュート0,1,2の全てのビットを設定することができます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OAM_MODE_NORMAL</CODE></TD>
+      <TD>ノーマルOBJ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_MODE_XLU</CODE></TD>
+      <TD>半透明OBJ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_MODE_OBJWND</CODE></TD>
+      <TD>OBJウィンドウ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_MODE_BITMAPOBJ</CODE></TD>
+      <TD>ビットマップOBJ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OAM_EFFECT_NONE</CODE></TD>
+      <TD>effectなし</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_FLIP_H</CODE></TD>
+      <TD>Hフリップ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_FLIP_V</CODE></TD>
+      <TD>Vフリップ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_FLIP_HV</CODE></TD>
+      <TD>HVフリップ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_AFFINE</CODE></TD>
+      <TD>アフィン</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_NODISPLAY</CODE></TD>
+      <TD>非表示</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_EFFECT_AFFINE_DOUBLE</CODE></TD>
+      <TD>アフィン(倍角表示)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OAM_SHAPE_8x8</CODE></TD>
+      <TD><CODE>8x8</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_16x16</CODE></TD>
+      <TD><CODE>16x16</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_32x32</CODE></TD>
+      <TD><CODE>32x32</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_64x64</CODE></TD>
+      <TD><CODE>64x64</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_16x8</CODE></TD>
+      <TD><CODE>16x8</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_32x8</CODE></TD>
+      <TD><CODE>32x8</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_32x16</CODE></TD>
+      <TD><CODE>32x16</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_64x32</CODE></TD>
+      <TD><CODE>64x32</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_8x16</CODE></TD>
+      <TD><CODE>8x16</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_8x32</CODE></TD>
+      <TD><CODE>8x32</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_16x32</CODE></TD>
+      <TD><CODE>16x32</CODE>ドット</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_SHAPE_32x64</CODE></TD>
+      <TD><CODE>32x64</CODE>ドット</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OAM_COLORMODE_16</CODE></TD>
+      <TD>16色モード</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_OAM_COLORMODE_256</CODE></TD>
+      <TD>256色モード</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>以下に引数に使用される列挙型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_OAM_MODE_NORMAL = 0,
+    GX_OAM_MODE_XLU = 1,
+    GX_OAM_MODE_OBJWND = 2,
+    GX_OAM_MODE_BITMAPOBJ = 3
+}
+GXOamMode;
+
+typedef enum
+{
+    GX_OAM_EFFECT_NONE =
+        (0 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_HF_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_VF_SHIFT),
+    GX_OAM_EFFECT_FLIP_H =
+        (0 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_HF_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_VF_SHIFT),
+    GX_OAM_EFFECT_FLIP_V =
+        (0 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_HF_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_VF_SHIFT),
+    GX_OAM_EFFECT_FLIP_HV =
+        (0 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_HF_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_VF_SHIFT),
+    GX_OAM_EFFECT_AFFINE = (1 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT),
+    GX_OAM_EFFECT_NODISPLAY = (2 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT),
+    GX_OAM_EFFECT_AFFINE_DOUBLE = (3 &lt;&lt; GX_OAM_ATTR01_RSENABLE_SHIFT)
+}
+GXOamEffect;
+
+typedef enum
+{
+    GX_OAM_SHAPE_8x8 = (0 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_16x16 = (0 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_32x32 = (0 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (2 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_64x64 = (0 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (3 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_16x8 = (1 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_32x8 = (1 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_32x16 = (1 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (2 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_64x32 = (1 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (3 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_8x16 = (2 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (0 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_8x32 = (2 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (1 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_16x32 = (2 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (2 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT),
+    GX_OAM_SHAPE_32x64 = (2 &lt;&lt; GX_OAM_ATTR01_SHAPE_SHIFT) | (3 &lt;&lt; GX_OAM_ATTR01_SIZE_SHIFT)
+}
+GXOamShape;
+
+typedef enum
+{
+    GX_OAM_COLORMODE_16 = 0,
+    GX_OAM_COLORMODE_256 = 1
+}
+GXOamColorMode;</CODE></PRE>
+
+<h2>参照</h2>
+<P><A href="../gx/GXOamAttr.html">GXOamAttr</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/13</P>
+<UL>
+  <LI>説明の追加。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

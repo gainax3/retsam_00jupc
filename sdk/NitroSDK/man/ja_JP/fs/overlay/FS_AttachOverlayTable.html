@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_AttachOverlayTable</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_AttachOverlayTable</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void*	FS_AttachOverlayTable(MIProcessor target, const void *ptr, u32 len);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">ロードする対象（ARM9/ARM7）</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>ptr</STRONG></EM></TD>
+      <TD width="87%">オーバーレイテーブルが格納されたメモリへのポインタ<br>
+	  呼び出し以降は再びこの関数で別のポインタを設定するまでの間、このメモリはライブラリ内部で参照されます。<br>
+	  NULL を指定するとCARD ROMに存在するデフォルトのテーブルを使用します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">メモリのバイトサイズ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>以前に設定されていたポインタを返します。</p>
+
+<H2>説明</H2>
+<P>ファイルシステム内部でオーバーレイ操作のためにアクセスするテーブルを設定します。<BR>
+この関数の呼び出し以降、オーバーレイテーブルを使用するAPIは全て<BR>
+指定されたメモリにアクセスするようになります。<BR>
+<br>
+このテーブルへNULLを指定した場合、CARD ROMに存在する本来のテーブルを使用します。<br>
+デフォルトではこの状態になっています。<br>
+<br>
+この関数はワイヤレスダウンロードで起動されたアプリケーションが<br>
+オーバーレイ処理を実行するために使用するものです。<br>
+<br>
+<font color="#800000">この関数で指定するオーバーレイテーブルは、そのサイズ・内容とも<br>
+ワイヤレスダウンロードで起動されたアプリケーション自身に含まれている<br>
+本来のオーバーレイテーブルと正確に一致している必要があります。<br>
+そうでない場合、プログラムは<a href="../../os/system/OS_Terminate.html">OS_Terminate</a>関数によって強制停止します。<br>
+<br>
+この関数を使用するプログラムは、NITRO_DIGESTオプションを指定してビルドされている必要があります。</font>
+<br>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A> 
+<A href="FS_LoadOverlay.html">FS_LoadOverlay</A> 
+<A href="FS_UnloadOverlay.html">FS_UnloadOverlay</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/08 指定するオーバーレイの条件に関する記述を追加<br>
+2004/09/24 初版<br>
+</P>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcLoadBank*</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcLoadBank*</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;
+
+#define NNS_SND_ARC_LOAD_BANK ( 1 &lt;&lt; 1 )
+#define NNS_SND_ARC_LOAD_WAVE ( 1 &lt;&lt; 2 )
+</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndArcLoadBank( int <var>bankNo</var>, NNSSndHeapHandle <var>heap</var> );</code><br><code class="funcprototype">BOOL NNS_SndArcLoadBankEx(
+        int <var>bankNo</var>,
+        u32 <var>loadFlag</var>,
+        NNSSndHeapHandle <var>heap</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDANMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>bankNo</code></strong></em></td>
+<td>バンク番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+<tr>
+<td><em><strong><code>loadFlag</code></strong></em></td>
+<td>どのデータをロードするかを指定するフラグです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAKNWT"></a>
+      <h2>返り値</h2>
+
+      <p>ロードに成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDARNWT"></a>
+      <h2>説明</h2>
+      <p>
+バンクデータをヒープへロードします。
+</p>
+      <p>
+<tt class="function">NNS_SndArcLoadBank</tt>関数は、バンクデータに関連づけられた波形アーカイブも同時にロードします。
+<tt class="function">NNS_SndArcLoadBankEx</tt>関数は、これら２つのデータの内、どちらをロードするかを<em><strong><code>loadFlag</code></strong></em>で指定します。
+<em><strong><code>loadFlag</code></strong></em>には、下記のマクロを入れます。
+</p>
+      <div class="table"><a name="IDACOWT"></a><p class="title"><b>表 . ロードフラグ</b></p>
+<table summary="ロードフラグ" border="1">
+<colgroup><col><col><col></colgroup>
+<thead>
+<tr>
+<th>マクロ</th>
+<th>値</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_ARC_LOAD_BANK</td>
+<td>1 &lt;&lt; 1</td>
+<td>バンクデータ</td>
+</tr>
+<tr>
+<td>NNS_SND_ARC_LOAD_WAVE</td>
+<td>1 &lt;&lt; 2</td>
+<td>波形アーカイブ</td>
+</tr>
+</tbody>
+</table>
+</div>
+      <p>
+ロードに必要なメモリは、サウンドヒープ<em><strong><code>heap</code></strong></em>から、
+<tt class="function"><a href="NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</a></tt>関数で自動的に確保されます。
+メモリの確保に失敗すると、処理を中断して、FALSEを返します。
+</p>
+      <p>
+既にメモリ上にあるサウンドデータについては、ロードは実行されません。
+サウンドデータがメモリ上にあるかどうかの判定は、
+<tt class="function"><a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a></tt>関数で行っています。
+また、ロードに成功したデータは、
+<tt class="function"><a href="NNS_SndArcSetFileAddress.html">NNS_SndArcSetFileAddress</a></tt>関数で、
+アドレスをセットしています。
+</p>
+      <p>
+一度に行う読み込みサイズを制限したい場合は、
+<tt class="function"><a href="NNS_SndArcSetLoadBlockSize.html">NNS_SndArcSetLoadBlockSize</a></tt>関数で、
+ロードブロックサイズを設定してください。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数で初期化されたサウンドアーカイブに対して使います。
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数で
+初期化されたサウンドアーカイブに対しては使えません。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</a>, <a href="NNS_SndArcGetFileAddress.html">NNS_SndArcGetFileAddress</a>, <a href="NNS_SndArcSetFileAddress.html">NNS_SndArcSetFileAddress</a>, <a href="NNS_SndArcSetLoadBlockSize.html">NNS_SndArcSetLoadBlockSize</a>, <a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></p>
+<h2>履歴</h2>
+<p>2007/10/17 NNS_SndArcSetLoadBlockSize関数に関する説明追加<br>
+  2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

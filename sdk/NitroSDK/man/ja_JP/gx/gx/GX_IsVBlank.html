@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_IsVBlank</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_IsVBlank</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+s32 GX_IsVBlank();<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>Vブランク期間中ではない(0)か、Vブランク期間中(0以外)</p>
+<H2>説明</H2>
+<P>Vブランク期間中かどうかテストします。Vブランク期間中であれば0以外、Vブランク期間中でなければ0を返します。</P>
+<H2>注意</H2>
+<P>ハードウェアによるVブランク期間フラグは192ラインに入った瞬間に1となり、262ラインに入った瞬間に0となります。<br>
+本関数はこのフラグ値によって判定するため、Vブランク期間はVカウンタ値が192～261の範囲となり262の場合を含まないことに注意してください。</P>
+
+<h2>参照</h2>
+<P><A href="GX_VBlankIntr.html">GX_VBlankIntr</A>, <A href="GX_IsHBlank.html">GX_IsHBlank</A></P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/02/17 Vブランク期間に関する注意事項を追加<br>
+Ver. 2004/01/19 初版<br>
+</P>
+</body>
+</html>

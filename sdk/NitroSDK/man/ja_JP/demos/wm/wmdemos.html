@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>WM Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>ワイヤレスマネージャ サンプルデモ</H1>
+
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/wm</CODE></P>
+
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/wm</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/wm/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/wm/simple-1/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/wm/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> ファイルを読み込んで実行する。
+</UL>
+
+<H2>説明</H2>
+<br>
+
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>simple-1</CODE></STRONG></EM></TD>
+      <TD width="525">MPプロトコルで通信を行う単機能サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>dataShare-1</CODE></STRONG></EM></TD>
+      <TD width="525">データシェアリング機能を使用してゲームフレーム値を共有します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>ball</CODE></STRONG></EM></TD>
+      <TD width="525">キーシェアリング機能を使用してOBJを動かします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>dataShare-Model</CODE></STRONG></EM></TD>
+      <TD width="525">チュートリアルドキュメント用に注釈の多く入ったサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>wep-1</CODE></STRONG></EM></TD>
+      <TD width="525">DS ワイヤレスプレイで接続認証に WEP を用いるサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>wireless-all</CODE></STRONG></EM></TD>
+      <TD width="525">DS ワイヤレスプレイの総合的なサンプルです。<br>
+MBライブラリのクローンブート機能でDSダウンロードプレイを行い、配信した子機プログラムとデータシェアリング通信を行います。
+また、接続した子機プログラムはワイヤレス経由でファイルシステムを使用して親機のカードからデータをリードします。<br>
+<br>
+このサンプルは以下のサンプルモジュールを組み合わせて使用しています。
+<ul>
+<li>$NitroSDK/build/demos/wireless_shared/wh</li>
+<li>$NitroSDK/build/demos/wireless_shared/mbp</li>
+<li>$NitroSDK/build/demos/wireless_shared/wfs</li>
+</ul>
+</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>wmPadRead-child</CODE></STRONG></EM></TD>
+      <TD width="525">Wii のネットワーク機能に関する開発キットである RevoEX に収録されている mpdldemo/mpdlntr2rvl デモが配信する子機プログラムです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>listenOnly</CODE></STRONG></EM></TD>
+      <TD width="525">受信専用モードで無線を初期化し、電源 LED を変速点滅させずにパッシブスキャンを行うサンプルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>動作</H2>
+<P>
+2007/11/12現在、ensataでは正常動作しません。また、IS-NITRO-EMULATORハードウェアでは標準で有線での通信のみサポートされていますが、WIRELESS OPTION を追加することで無線での通信もサポートされます。
+</P>
+
+<H2>参照</H2>
+<P><A href="../../wm/list_wm.html"><CODE>WM関数一覧</CODE></A></P>
+
+<H2>履歴</H2>
+<P>
+2007/11/12 listenOnly を追加<BR>
+2007/05/18 wmPadRead-child を追加<BR>
+2006/04/10 wireless-all を追加<BR>
+2005/04/01 wep-1 を追加<BR>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2004/08/17 初版<BR>
+</P>
+
+</BODY>
+</HTML>

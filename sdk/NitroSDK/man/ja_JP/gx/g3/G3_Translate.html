@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_Translate</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_Translate</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_Translate(fx32 x, fx32 y, fx32 z);
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR>void G3B_Translate(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 x, fx32 y, fx32 z);<BR>void G3C_Translate(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 x, fx32 y, fx32 z);<BR>void G3BS_Translate(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 x, fx32 y, fx32 z);<BR>void G3CS_Translate(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 x, fx32 y, fx32 z);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">x</font></strong></em></td>
+    <td width="87%">x軸方向の移動量</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD>y軸方向の移動量</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">z</font></strong></em></TD>
+      <TD>z軸方向の移動量</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>カレント行列に平行移動行列を左から乗算します。行列の各要素は、符号付き固定小数点数で、符号+整数部19ビット+
+小数部12ビットとなります。<BR>
+カレント行列をCとすると、新しいカレント行列C<SUB>new</SUB>は以下の式のとおりです。</P>
+<P><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><span style='mso-text-raise:-33.0pt'><IMG width="153" height="96" src="geo_trans.gif" v:shapes="_x0000_i1025"></span></span></P>
+<P>※G3OP_MTX_TRANSコマンドは通常22サイクル、Position&amp;Vectorモード時はには52サイクルの実行サイクルを必要とします。下のように3x3行列の乗算とセットにしする事によって、G3OP_MTX_TRANSを使用せずにより効率よく処理させることも可能です。
+なお<A href="G3_MultTransMtx33.html">G3_*MultTransMtx33</A>でも同様の処理を行ないます。</P>
+<PRE>struct { 
+   MtxFx33 mtx; 
+   VecFx32 trans; 
+} mtx43;</PRE>
+<PRE><A href="G3_MultMtx43.html">G3*_MultMtx43</A>( (MtxFx43*)(&amp;mtx43) ); 
+</PRE>
+<h2>参照</h2>
+<P><A href="G3_MtxMode.html" target="_self">G3*_MtxMode</A>, <A href="G3_Identity.html" target="_self">G3*_Identity</A>, <A href="G3_LoadMtx43.html" target="_self">G3*_LoadMtx43</A>, <A href="G3_LoadMtx44.html" target="_self">G3*_LoadMtx44</A>, <A href="G3_MultMtx43.html" target="_self">G3*_MultMtx43</A>, <A href="G3_MultMtx44.html" target="_self">G3*_MultMtx44</A>, <A href="G3_MultMtx33.html" target="_self">G3*_MultMtx33</A>, <A href="G3_PushMtx.html" target="_self">G3*_PushMtx</A>, <A href="G3_PopMtx.html" target="_self">G3*_PopMtx</A>, <A href="G3_StoreMtx.html" target="_self">G3*_StoreMtx</A>, <A href="G3_RestoreMtx.html" target="_self">G3*_RestoreMtx</A>, <A href="G3_Scale.html" target="_self">G3*_Scale</A>, <A href="G3_MultTransMtx33.html">G3_*MultTransMtx33</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/07/26 3x3行列乗算とのパックによる高速化についての記述を追加<BR>
+Ver. 2004/01/19 初版</P>
+</body>
+</html>

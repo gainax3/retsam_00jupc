@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>addbanner</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">addbanner</H1>
+<H2>説明</H2>
+<P>　<CODE>addbanner</CODE> は、<A href="makebanner.html"><CODE>makebanner</CODE></A> ツールで作成されたバナーファイルが実際どのように NITRO の画面に表示されるかどうかを確認するためのツールです。</P>
+<P>　本来、<CODE>addbanner</CODE> は、その名が示す通り、バナーファイルを ROM ファイルに挿し込むためのツールですが、通常は
+<A href="makerom.html"><CODE>makerom</CODE></A> ツールによってバナーファイルの挿し込み処理が行なわれるため、現在では挿し込みの用途として使う必要はありません。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% addbanner [-t VIEWER_TEMPLATE] BANNERFILE [VIEWER]</CODE></P>
+<P><CODE>　BANNERFILE</CODE> で指定されたバナーファイルを NITRO の画面上に表示するための実行 ROM ファイルを
+<CODE>VIEWER</CODE> というファイル名で出力します。<CODE>VIEWER</CODE> は省略可能です。省略時には <CODE>BANNERFILE</CODE> で指定されたファイル名の拡張子部分を <CODE>.srl</CODE> としたファイル名が使用されます。</P>
+<P>　<CODE>addbanner</CODE> は、<CODE>VIEWER</CODE> 生成の元ファイルとなるテンプレート ROM ファイルとして、<CODE>addbanner.exe</CODE> と同じディレクトリにある <CODE>BannerViewerTemplate.srl</CODE> を使用します。<CODE>addbanner</CODE> は、テンプレート ROM ファイルのバナーファイルを <CODE>BANNERFILE</CODE> で指定されたファイルに差し替え、<CODE>VIEWER</CODE> で指定された名前で出力しているだけです。</P>
+<P>　<CODE>-t</CODE> オプションによって VIEWER 生成の元となるテンプレート ROM ファイルを変更できます。普段は必要ありません。</P>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/addbanner.exe</CODE><BR>
+<CODE>$NitroSDK/tools/bin/BannerViewerTemplate.srl</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="makebanner.html">makebanner</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/09/21 初版作成</P>
+</BODY>
+</HTML>

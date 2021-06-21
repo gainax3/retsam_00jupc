@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_DumpHeap</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_DumpHeap</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_DumpHeap( OSArenaId id, OSHeapHandle heap );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><B><I>id</I></B></TD>
+      <TD width="87%">表示するヒープのあるアリーナのアリーナID</TD>
+    </TR>
+    <TR>
+      <TD><B><I>heap</I></B></TD>
+      <TD>表示するヒープのハンドル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>ヒープ内部の情報を表示します。<BR>
+これはデバッグ用の関数です。</P>
+<P>ヒープのあるアリーナを指定する必要があります。アリーナはアリーナID <B><I>id</I></B> で指定します。この値については <CODE><A href="../arena/OS_InitArena.html">OS_InitArena()</A></CODE> を参照してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="../arena/OS_InitArena.html">OS_InitArena</A>, <A href="OS_InitAlloc.html">OS_InitAlloc</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/01/06 初版</P>
+</BODY>
+</HTML>

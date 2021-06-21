@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSSegmentBuffer</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSSegmentBuffer</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+typedef struct WFSSegmentBuffer
+{
+    u32     offset;
+    u32     length;
+    void   *buffer;
+}
+WFSSegmentBuffer;
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>offset</td>
+      <td>読み込むべきデータのデバイス内アドレス</td>
+    </tr>
+    <tr>
+      <td>length</td>
+      <td>読み込むべきデータのサイズ</td>
+    </tr>
+    <tr>
+      <td>buffer</td>
+      <td>読み込んだデータを格納すべきバッファ<br />
+      <br />
+      このメンバがNULLである場合、指定されたデータセグメントが将来的に必要とされていることを示します。<br />
+      今回のコールバック内で該当データを準備する必要はありませんが、同じ内容のイベントコールバックが後で再び通知されますので、その時までにはデータを準備しておく必要があります。<br />
+      <br />
+      このメンバがNULLでない場合、指定されたデータセグメントが実際に必要とされています。<br />
+      該当データを準備してこのメンバの指すバッファに格納して返す必要があります。<br />
+      もしここで要求されたデータを準備できていない場合は、このメンバにNULLを代入して返します。<br />
+      同じ内容のイベントコールバックが後で再び通知されますので、その時までにはデータを準備しておく必要があります。
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>説明</h2>
+<p><a href="WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUEST</a>イベント通知の引数として渡される、データセグメント情報をあらわす構造体です。<br />
+親機は子機の読み込みリクエストに応答するために、この構造体で指定された領域のデータをデバイスから読み込む必要があります。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="server/WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a> 
+<a href="server/WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a> 
+<a href="client/WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a> 
+<a href="client/WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

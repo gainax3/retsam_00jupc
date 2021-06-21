@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_TrySetBankForLCDC</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_TrySetBankForLCDC</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL GX_TrySetBankForLCDC(int lcdc);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">lcdc</font></strong></em></td>
+    <td width="87%">LCDCに割り当てるVRAMバンクを指定</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>
+正常にVRAMバンクが割り当てられた場合にTRUEを返します。<BR>
+割り当てようとするVRAMバンクが別ライブラリによってロックされている場合にはFALSEを返します。
+</p>
+<H2>説明</H2>
+<P>LCDCへ指定されたVRAMバンクの割り当てを試みます。指定されたVRAMバンクがDisableになっている場合に、そのVRAMバンクをLCDCに割り当てます。GXVRamLCDC型の値の論理和が引数になります。<BR>
+また、指定したVRAMバンクが他のライブラリによって排他ロックされている場合は割り当てに失敗します。
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_NONE</CODE></TD>
+      <TD>LCDCにVRAMバンクを割り当てません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_A</CODE></TD>
+      <TD>LCDCにVRAM-Aを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_B</CODE></TD>
+      <TD>LCDCにVRAM-Bを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_C</CODE></TD>
+      <TD>LCDCにVRAM-Cを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_D</CODE></TD>
+      <TD>LCDCにVRAM-Dを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_E</CODE></TD>
+      <TD>LCDCにVRAM-Eを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_F</CODE></TD>
+      <TD>LCDCにVRAM-Fを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_G</CODE></TD>
+      <TD>LCDCにVRAM-Gを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_H</CODE></TD>
+      <TD>LCDCにVRAM-Hを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_I</CODE></TD>
+      <TD>LCDCにVRAM-Iを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_LCDC_ALL</CODE></TD>
+      <TD>LCDCに全てのVRAMバンクを割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXVRamLCDC</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_VRAM_LCDC_NONE = 0x0000,
+    GX_VRAM_LCDC_A = GX_VRAM_A,                    // ARM9: HW_LCDC_VRAM_A  --&gt;  HW_LCDC_VRAM_B
+    GX_VRAM_LCDC_B = GX_VRAM_B,                    // ARM9: HW_LCDC_VRAM_B  --&gt;  HW_LCDC_VRAM_C
+    GX_VRAM_LCDC_C = GX_VRAM_C,                    // ARM9: HW_LCDC_VRAM_C  --&gt;  HW_LCDC_VRAM_D
+    GX_VRAM_LCDC_D = GX_VRAM_D,                    // ARM9: HW_LCDC_VRAM_D  --&gt;  HW_LCDC_VRAM_E
+    GX_VRAM_LCDC_E = GX_VRAM_E,                    // ARM9: HW_LCDC_VRAM_E  --&gt;  HW_LCDC_VRAM_F
+    GX_VRAM_LCDC_F = GX_VRAM_F,                    // ARM9: HW_LCDC_VRAM_F  --&gt;  HW_LCDC_VRAM_G
+    GX_VRAM_LCDC_G = GX_VRAM_G,                    // ARM9: HW_LCDC_VRAM_G  --&gt;  HW_LCDC_VRAM_H
+    GX_VRAM_LCDC_H = GX_VRAM_H,                    // ARM9: HW_LCDC_VRAM_H  --&gt;  HW_LCDC_VRAM_I
+    GX_VRAM_LCDC_I = GX_VRAM_I,                    // ARM9: HW_LCDC_VRAM_I  --&gt;  HW_LCDC_VRAM_END
+    GX_VRAM_LCDC_ALL = 0x01ff                      // ARM9: HW_LCDC_VRAM_A  --&gt;  HW_LCDC_VRAM_END
+}
+GXVRamLCDC;</CODE></PRE>
+<h2>参照</h2>
+<P><CODE><A href="GX_SetBankForLCDC.html">GX_SetBankForLCDC</A>, <A href="GX_GetBankForLCDC.html">GX_GetBankForLCDC</A>, <A href="GX_DisableBankForLCDC.html">GX_DisableBankForLCDC</A></CODE></P>
+<H2>履歴</H2>
+<P>Ver. 2005/02/15 初版</P>
+</body>
+</html>

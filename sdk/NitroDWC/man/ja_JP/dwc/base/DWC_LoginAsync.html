@@ -1,0 +1,118 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_LoginAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_LoginAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_LoginAsync( const u16 * ingamesn,
+                     const char* reserved,
+                     <A href="DWCLoginCallback.html">DWCLoginCallback</A> callback,
+                     void* param );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  アプリケーションがGameSpyサーバを利用可能であるか調べ、リモート認証を行い、Wi-Fiコネクションへ接続します。
+		</P>
+		<P>
+		  本関数を呼び出すには、インターネット接続後、<A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>関数による<A href="FriendsMatch.html">FriendsMatchライブラリ</A>初期化処理まで完了している必要があります。
+		  本関数呼出し後、<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>関数を呼び続ければログイン処理が進行し、処理が完了すれば、ログイン完了コールバックが呼び出されます。
+		</P>
+		<P>
+		  認証サーバは、ゲーム内スクリーンネーム（ゲーム中でプレイヤーが使用する名前）がWi-Fiコネクション上で不適切なものでないかチェックします。
+		  Wi-Fiコネクションへの接続に成功した後、<A href="DWC_GetIngamesnCheckResult.html">DWC_GetIngamesnCheckResult</A>関数でそのチェック結果を取得してください。
+		  <!--
+		  ingamesnにゲーム中でプレイヤーが使用するゲーム内スクリーンネームを指定すれば、任天堂の認証サーバにこのスクリーンネームを送信します。
+		  プレイヤー名を認証サーバを通してネットワーク上で一意に管理したい場合などに利用できます。
+		  そのような必要がなければNULLを指定してください。
+		  -->
+		</P>
+		<P>
+		  なお、ROM内登録データのメーカーコードが未指定の場合、認証サーバとの通信でエラー（エラーコード 20109）が発生しますので、ご注意ください。
+		</P>
+		<P>
+		 また、<a href="FriendsMatch.html">FriendsMatchライブラリ</a>を使用しない場合は、本関数の代わりに<a href="DWC_NASLoginAsync.html">DWC_NASLoginAsync</a>関数を呼び出してください。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>ingamesn</CODE></STRONG></EM></TD>
+					<TD width="75%">認証サーバに送信するスクリーンネーム。
+						<UL class="sub">
+						<LI>文字コードは Unicode（リトルエンディアン UTF16）を使用してください。<BR>
+						それ以外の文字コードを使用している場合は、Unicode に変換してください。</LI>
+						<LI>スクリーンネームにUnicode及びIPLフォントにない独自の文字を使用している場合は、
+						スペースに置き換えてください。</LI>
+						<LI>終端は"\0\0"（u16で0x0000）である必要があります。</LI>
+						<LI>終端を除いて26文字以上の文字列を指定した場合は、先頭から25文字のみが認証サーバに送信されます。</LI>
+						</UL>
+						<!-- 認証サーバに渡す必要がなければNULLを指定してください。 -->
+					</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>reserved</CODE></STRONG></EM></TD>
+					<TD>通常は、NULLを指定してください。過去との互換性のために残されています。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>callback</CODE></STRONG></EM></TD>
+					<TD>ログイン完了コールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+					<TD>ログイン完了コールバック用パラメータ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">ログイン処理開始。コールバック関数で結果が通知されます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD>本関数を呼んで良い状態ではないか、もしくは引数ingamesnにNULLが指定されました。コールバック関数は呼ばれません。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		  <code>
+				<A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>,
+				<A href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</A>,
+				<A href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>,
+				<A href="DWCLoginCallback.html">DWCLoginCallback</A>,
+				<A href="DWC_GetIngamesnCheckResult.html">DWC_GetIngamesnCheckResult</A>,
+				<a href="DWC_NASLoginAsync.html">DWC_NASLoginAsync</a>
+			  </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/07/24 誤記修正<BR>
+			2006/07/03 関数説明にFriendsMatchライブラリを使用しない場合の説明を挿入<BR>
+			2006/05/30 ROM内登録データのメーカーコードに関する注意書きを追加<BR>
+			2006/04/26 ingamesnに指定できる文字列の長さの変更と説明の追加<BR>
+			2006/01/31 関数説明に「FriendsMatchライブラリ」という用語を挿入<BR>
+			2005/12/16 ゲーム内スクリーンネーム引数追加に対応。返り値の表記間違いを修正。<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

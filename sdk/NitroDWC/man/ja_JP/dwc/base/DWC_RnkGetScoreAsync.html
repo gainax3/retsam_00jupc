@@ -1,0 +1,148 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_RnkGetScoreAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_RnkGetScoreAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+DWCRnkError    DWC_RnkGetScoreAsync( DWCRnkGetMode   mode,
+                                     u32             category,
+                                     DWCRnkRegion    region,
+                                     DWCRnkGetParam* param );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  スコアを取得する非同期処理を開始します。同時に実行できる非同期処理は1つのみです。複数の非同期処理を実行しようとした場合はDWC_RNK_ERROR_PUT_NOTREADYが返されます。
+		</P>
+		<P>
+		  非同期処理中は、定期的に<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>関数を呼び出してください。処理中は<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>関数がDWC_RNK_SUCCESSを返します。
+		</P>
+		<P>
+		  非同期処理中の進行状況を取得するには、<a href="DWC_RnkGetState.html">DWC_RnkGetState</a>関数を呼び出してください。
+		</P>
+		<P>
+		  <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数で取得するDWCRnkData構造体内のメンバの一部は受信バッファを直接参照しているため、続けて非同期処理を行う場合は必要に応じて退避してください。
+		</P>
+		<P>
+		  <table>
+		    <tr><td colspan=2>引数modeに指定する値と取得できる情報</td></tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_ORDER</td>
+		  		<td>順位を取得します。結果は<a href="DWC_RnkResGetOrder.html">DWC_RnkResGetOrder</a>関数で取得します。</td>
+		  	</tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_TOPLIST</td>
+		  		<td>ランキング上位のリストを取得します。<a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>関数で取得したリストの行数を取得し、行ごとに<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数を呼び出してスコア情報を取得します。</td>
+		  	</tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_NEAR</td>
+		  		<td>自分の周辺のランキングのリストを取得します。<a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>関数で取得したリストの行数を取得し、行ごとに<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数を呼び出してスコア情報を取得します。自分のデータはリストの先頭に付加されます。</td>
+		  	</tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_FRIENDS</td>
+		  		<td>友達の中(最大DWC_RNK_FRIENDS_MAX(64)個のPIDを指定)でのランキングのリストを取得します。<a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>関数で取得したリストの行数を取得し、行ごとに<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数を呼び出してスコア情報を取得します。自分のデータはリストの先頭に付加されます。</td>
+		  	</tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_NEAR_HI</td>
+		  		<td>順位が自分よりも高い周辺のランキングのリストを取得します。<a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>関数で取得したリストの行数を取得し、行ごとに<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数を呼び出してスコア情報を取得します。自分のデータはリストの先頭に付加されます。</td>
+		  	</tr>
+		  	<tr>
+		  		<td>DWC_RNK_GET_MODE_NEAR_LOW</td>
+		  		<td>順位が自分よりも低い周辺のランキングのリストを取得します。<a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>関数で取得したリストの行数を取得し、行ごとに<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数を呼び出してスコア情報を取得します。自分のデータはリストの先頭に付加されます。</td>
+		  	</tr>
+		  </table>
+		</P>
+		<P>
+		  ユーザー定義データを利用して、フリーワードなどの友達同士限定の情報のやり取りをする場合は、ガイドラインに準拠し、友達関係が成立しているか確認した上で表示させる必要があります。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>mode</CODE></STRONG></EM></TD>
+					<TD width="75%">取得モード</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>category</CODE></STRONG></EM></TD>
+					<TD width="75%">ランキングを識別するためのカテゴリーID(0～DWC_RNK_CATEGORY_MAXまでの数値)</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>region</CODE></STRONG></EM></TD>
+					<TD width="75%">リージョンコード。<a href="DWCRnkRegion.html">DWCRnkRegion</a>の中から指定します。国をまたいで集計する場合はOR値を指定します(例：日本と欧州の場合(DWC_RNK_REGION_JP|DWC_RNK_REGION_EU))。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+					<TD width="75%">取得するための詳細情報を指定するパラメータ。取得モードによって構造体に指定する値が異なります。詳細は<a href="DWCRnkGetParam.html">DWCRnkGetParam構造体</a>を参照してください。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>DWC_RNK_SUCCESS</CODE></STRONG></EM></TD>
+					<TD width="75%">成功</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_RNK_IN_ERROR</CODE></STRONG></EM></TD>
+					<TD width="75%">エラー発生中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_GET_NOTREADY</CODE></STRONG></EM></TD>
+					<TD width="75%">通信準備ができていない</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_INVALID_PARAMETER</CODE></STRONG></EM></TD>
+					<TD width="75%">不正なパラメータ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_GET_INVALID_KEY</CODE></STRONG></EM></TD>
+					<TD width="75%">暗号化キーが不正</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_RNK_ERROR_GET_NOMEMORY</CODE></STRONG></EM></TD>
+					<TD width="75%">メモリー不足</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		  <code>
+		    <a href="DWCRnkGetMode.html">DWCRnkGetMode</a>
+		    <a href="DWCRnkGetParam.html">DWCRnkGetParam</a>
+		    <a href="DWC_RnkGetState.html">DWC_RnkGetState</a>
+		    <a href="DWC_RnkResGetOrder.html">DWC_RnkResGetOrder</a>
+		    <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>
+		    <a href="DWC_RnkResGetRowCount.html">DWC_RnkResGetRowCount</a>
+		    <a href="DWC_RnkProcess.html">DWC_RnkProcess</a>
+		    <a href="DWC_RnkCancelProcess.html">DWC_RnkCancelProcess</a>
+		  </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2007/07/31 DWC_RNK_GET_MODE_NEAR の列挙順も指定の並び順に準拠するように修正<br/>
+			2007/07/31 DWC_RNK_GET_MODE_NEAR_HI と DWC_RNK_GET_MODE_NEAR_LOW の列挙順の誤記修正<br/>
+			2007/07/21 DWC_RNK_GET_MODE_NEAR_HI と DWC_RNK_GET_MODE_NEAR_LOW についての記述を追加<br/>
+			2006/07/21 友達の最大数が32人になっていたのを修正。ガイドライン関連情報追記<BR>
+			2006/06/20 誤記訂正<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

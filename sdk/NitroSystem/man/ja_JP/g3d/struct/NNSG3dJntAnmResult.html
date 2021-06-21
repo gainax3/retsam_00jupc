@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dJntAnmResult</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dJntAnmResult</H1>
+<H2>構造体の定義</H2>
+<PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
+
+typedef enum
+{
+    NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE      = 0x00000001,
+    NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO       = 0x00000002,
+    NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO     = 0x00000004,
+    NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE   = 0x00000008,
+    NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE   = 0x00000010,
+    NNS_G3D_JNTANM_RESULTFLAG_MAYA_SSC       = 0x00000020
+}
+NNSG3dJntAnmResultFlag;
+
+typedef struct NNSG3dJntAnmResult_
+{
+    NNSG3dJntAnmResultFlag flag;
+    VecFx32                scale;
+    VecFx32                scaleEx0;
+    VecFx32                scaleEx1;
+    MtxFx33                rot;
+    VecFx32                trans;
+}
+NNSG3dJntAnmResult;</CODE></PRE>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dJntAnmResult</CODE>構造体は、ジョイントの位置や向きやスケールの情報を保持しています。G3Dはこの構造体に格納された情報を使用してジオメトリエンジンにコマンドを送信をします。この構造体は、<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>関数(SBCのNODEDESCコマンド処理時に呼び出される)の実行時に作成され、使用されます。<BR>
+<BR>
+ジョイントアニメーションは、この構造体に格納されているデータを<CODE>NNSi_G3dFuncSbc_NODEDESC</CODE>関数内部においてアニメーションデータに従い設定することにより実装されています。<BR>
+<BR>
+また、<CODE><A href="../sbc/SBC_NODEDESC.html">NNS_G3D_SBC_NODEDESC</A></CODE>にコールバックを設定することによって、<A href="../sbc/NNSG3dRS.html"><CODE>NNSG3dRS</CODE></A>構造体を通じて<CODE>NNSG3dJntAnmResult</CODE>構造体にアクセスすることにより、ジョイントの位置や向きやスケールをユーザープログラムからコントロールすることができます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="320">NNSG3dJntAnmResult構造体のメンバ</TH>
+      <TH align="center" width="717">説明</TH>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>flag</B></I></TD>
+      <TD width="717">NNSG3dJntAnmResultFlag型をもつフラグ</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>scale</B></I></TD>
+      <TD width="717">ジョイントにかかるスケール</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>scaleEx0</B></I></TD>
+      <TD width="717">補助スケール値。使用しているCGツールによって値の意味は異なります。通常この値を加工することはありません。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>scaleEx1</B></I></TD>
+      <TD width="717">補助スケール値。使用しているCGツールによって値の意味は異なります。通常この値を加工することはありません。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>rot</I></B></TD>
+      <TD width="717">ジョイントの3x3回転行列</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>trans</I></B></TD>
+      <TD width="717">ジョイントの平行移動成分</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="320"><CODE>NNSG3dJntAnmResultFlag</CODE>の値</TH>
+      <TH width="717">説明</TH>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALE_ONE</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scale</B></I>に格納されている値は無効です。スケール成分は全てFX32_ONEとして扱われます。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_ROT_ZERO</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>rot</B></I>に格納されている値は無効です。回転行列は単位行列として扱われます。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_TRANS_ZERO</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>trans</B></I>に格納されている値は無効です。平行移動成分は全て0として扱われます．</TD>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALEEX0_ONE</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scaleEx0</B></I>に格納されている値は無効です。成分は全てFX32_ONEとして扱われます。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_SCALEEX1_ONE</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、<I><B>scaleEx1</B></I>に格納されている値は無効です。成分は全てFX32_ONEとして扱われます。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><CODE>NNS_G3D_JNTANM_RESULTFLAG_MAYA_SSC</CODE></TD>
+      <TD width="717">このフラグがセットされている場合、このジョイントにはMayaのSegment Scale
+      Compensateがかかっています。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A> <A href="../list_g3d.html#SBC">描画エンジン</A></P>
+<H2>履歴</H2>
+<P>2004/10/13 初版</P>
+</BODY>
+
+</HTML>

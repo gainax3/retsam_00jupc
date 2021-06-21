@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_LoadTable</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_LoadTable</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_LoadTable( void *p_mem, u32 size );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_mem</STRONG></EM></TD>
+      <TD width="87%">テーブルのためにユーザが用意するメモリへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>size</STRONG></EM></TD>
+      <TD width="87%">メモリのバイトサイズ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>テーブルのロードに成功すれば TRUE を、そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>ファイルシステム内部で頻繁にアクセスされる各種テーブルのデータを<BR>
+前もってメモリにすべてロードし、アクセス効率の向上を図ります。<BR>
+
+<BR>
+指定したメモリサイズがテーブルを格納するのに充分であれば、<BR>
+各種テーブルのデータをメモリに読み込みます。<BR>
+このメモリは以降のファイルアクセスで内部的に使用されるので、<BR>
+ユーザはこれを使用することができなくなります。<BR>
+<BR>
+指定したメモリサイズが充分でない場合は、何も行いません。<BR>
+この場合、指定したメモリは使われずにユーザへ返されます。<BR>
+<BR>
+テーブルに対して充分なメモリサイズは、<A href="FS_GetTableSize.html">FS_GetTableSize</A>関数で取得することができます。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<p><font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font></p>
+<BR><h2>参照</h2>
+<p><CODE>
+<A href="FS_GetTableSize.html">FS_GetTableSize</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/04/22 初版
+</P>
+</body>
+</html>

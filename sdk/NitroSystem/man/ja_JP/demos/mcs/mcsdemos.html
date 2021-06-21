@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>Mcs Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>Multiple Channel Streamライブラリサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/mcs</CODE></P>
+<H2>コンパイル方法</H2>
+<h3>ニンテンドーDSプログラムの場合</h3>
+<P><CODE>$NitroSystem/build/demos/mcs</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/mcs/(サンプル名)/nitro/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/mcs/basic/nitro/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。
+<font color="#ff0000">mcsライブラリはデバッグ用のライブラリであるため、(プラットフォーム)ディレクトリが&quot;Rom&quot;の実行ファイルは正常に動作しません。</font></P>
+<h3>Windowsプログラムの場合</h3>
+<P><font color="#ff0000">Windowsプログラムをコンパイルするには「Visual C++ .NET 2003」以降が必要です。</font></P>
+<p><CODE>$NitroSystem/build/demos/mcs/(サンプル名)/win</CODE> ディレクトリに移り、(サンプル).slnファイルを開きます。そして、「Visual C++」にてビルドします。実行ファイルが</p>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/mcs/(サンプル名)/win/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/mcs/basic/win/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+<H2>実行方法</H2>
+<ol>
+<li><p>mcsサーバを起動し、ニンテンドーDSハードウェアと接続します。</p></li>
+<li><p><CODE>$NitroSystem/build/demos/mcs/(サンプル名)/nitro/bin/(プラットフォーム)/(ターゲット)</CODE>ディレクトリの*.srlファイルを開きます。しばらくすると、ニンテンドーDSハードウェア上でプログラムが起動します。</p>
+</li>
+  <li>
+<p>「basic」のサンプルの場合は、加えて<CODE>$NitroSystem/build/demos/mcs/basic/win/(ターゲット)</CODE>ディレクトリの下のWindowsプログラムを実行します。</p>
+</li>
+</ol>
+
+<H2>説明</H2>
+<BR>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>basic</CODE></STRONG></EM><BR>
+				(<A href="../../../../build/demos/mcs/basic/nitro/src/main.c">DS側ソース</A>)<BR>
+				(<A href="../../../../build/demos/mcs/basic/win/main.cpp">Windows側ソース</A>)</TD>
+      <TD width="525">Windowsプログラム側から送られた座標データに従ってニンテンドーDSのBG画面に表示された絵が移動します。Windowsプログラムを1つ起動した場合は、絵が横方向にスクロールします。2つ起動した場合は斜め方向にスクロールします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>file_io</CODE></STRONG></EM><BR>
+				(<A href="../../../../build/demos/mcs/file_io/nitro/src/main.c">DS側ソース</A>)</TD>
+      <TD width="525">PC上のファイルを読み込み、内容を反転した後PC上に新規ファイルとして書き込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATOR、ensata での正常動作を確認しています。</P>
+<H2>参照</H2>
+<P><A href="../../mcs/list_mcs.html"><CODE>mcs関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>2005/04/04 ディレクトリ名が間違っていたのを修正。<br>
+2005/01/28 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_RestoreIrq</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_RestoreIrq</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL OS_RestoreIrq( BOOL enable );</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="72"><B><I>enable</I></B></TD>
+      <TD>設定するIRQ割り込み許可状態</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>この関数を呼ぶ前のIRQ割り込み許可状態です。</p>
+<H2>説明</H2>
+<P>IRQ割り込み許可状態を設定します。<BR>
+多くの場合、<A href="OS_EnableIrq.html"><CODE>OS_EnableIrq()</CODE></A>または<A href="OS_DisableIrq.html"><CODE>OS_DisableIrq()</CODE></A>で許可状態を変更した後に、以前の状態に戻すために使われます。</P>
+<P>引数 <B><I>enable</I></B> が、TRUEの場合イネーブルに、FALSEの場合ディセーブルに設定されます。</P>
+<P>返り値はこの関数を呼ぶ前のIRQ割り込み許可状態です。</P>
+<BLOCKQUOTE>(例)<BR>
+<CODE>BOOL preIRQ = OS_DisableIrq();<BR>
+　　　：<BR>
+(void)RestoreIrq( preIRQ );</CODE></BLOCKQUOTE>
+
+<h2>内部動作</h2>
+<P>IOレジスタのIME(Interrupt Master Enable)を操作しています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="OS_EnableIrq.html">OS_EnableIrq</A>, <A href="OS_DisableIrq.html">OS_DisableIrq</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2003/12/01 初版</P>
+</body>
+</html>

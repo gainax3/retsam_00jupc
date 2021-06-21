@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_DisableBankForARM7</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_DisableBankForARM7</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>GXVRamARM7 GX_DisableBankForARM7(void);</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>ARM7メモリ空間に割り当てられていたVRAMバンクです。</p>
+<H2>説明</H2>
+<P>ARM7メモリ空間に割り当てられていたVRAMバンクをDisableにします。DisableにするとVRAMにアクセスできませんが、VRAMバンクの内容は失われません。また、いったん各リソースに割り当てられたVRAMバンクはこの関数でDisableしない限りDisableになることはありません。<CODE>GXVRamARM7</CODE>型については<A href="GX_SetBankForARM7.html">GX_SetBankForARM7</A>を参照してください。</P>
+<h2>参照</h2>
+<P><A href="GX_SetBankForARM7.html">GX_SetBankForARM7</A>, <A href="GX_GetBankForARM7.html">GX_GetBankForARM7</A>, <A href="GX_ResetBankForARM7.html">GX_ResetBankForARM7</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>説明の追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

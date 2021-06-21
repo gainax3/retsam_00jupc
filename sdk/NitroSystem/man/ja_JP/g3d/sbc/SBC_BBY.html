@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3D_SBC_BBY</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css"   type="text/css">
+</HEAD>
+
+<BODY>
+
+<h1 align="left">NNS_G3D_SBC_BBY</h1>
+<H2>命令のフォーマット</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="164">オフセット（バイト単位）</TH>
+      <TH width="672">説明（<CODE>NNS_G3D_SBCFLG_000の場合）</CODE></TH>
+    </TR>
+    <TR>
+      <TD width="164">0</TD>
+      <TD width="672"><CODE>NNS_G3D_SBC_BBY | NNS_G3D_SBCFLG_000</CODE></TD>
+    </TR>
+    <TR>
+      <TD width="164">1</TD>
+      <TD width="672">Ｙ軸ビルボード変換対象ノードのノードＩＤ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="164">オフセット（バイト単位）</TH>
+      <TH width="672">説明（<CODE>NNS_G3D_SBCFLG_001の場合）</CODE></TH>
+    </TR>
+    <TR>
+      <TD width="164">0</TD>
+      <TD width="672"><CODE>NNS_G3D_SBC_BBY | NNS_G3D_SBCFLG_001</CODE></TD>
+    </TR>
+    <TR>
+      <TD width="164">1</TD>
+      <TD width="672">Ｙ軸ビルボード変換対象ノードのノードＩＤ</TD>
+    </TR>
+    <TR>
+      <TD>2</TD>
+      <TD>計算結果がストアされる行列スタックID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="164">オフセット（バイト単位）</TH>
+      <TH width="672">説明（<CODE>NNS_G3D_SBCFLG_010の場合）</CODE></TH>
+    </TR>
+    <TR>
+      <TD width="164">0</TD>
+      <TD width="672"><CODE>NNS_G3D_SBC_BBY | NNS_G3D_SBCFLG_010</CODE></TD>
+    </TR>
+    <TR>
+      <TD width="164">1</TD>
+      <TD width="672">Ｙ軸ビルボード変換対象ノードのノードＩＤ</TD>
+    </TR>
+    <TR>
+      <TD>2</TD>
+      <TD>計算前にリストアされる行列スタックID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="164">オフセット（バイト単位）</TH>
+      <TH width="672">説明（<CODE>NNS_G3D_SBCFLG_011の場合）</CODE></TH>
+    </TR>
+    <TR>
+      <TD width="164">0</TD>
+      <TD width="672"><CODE>NNS_G3D_SBC_BBY | NNS_G3D_SBCFLG_011</CODE></TD>
+    </TR>
+    <TR>
+      <TD width="164">1</TD>
+      <TD width="672">Ｙ軸ビルボード変換対象ノードのノードＩＤ</TD>
+    </TR>
+    <TR>
+      <TD>2</TD>
+      <TD>計算結果がストアされる行列スタックID</TD>
+    </TR>
+    <TR>
+      <TD>3</TD>
+      <TD>計算前にリストアされる行列スタックID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>説明</h2>
+<P><CODE>NNS_G3D_SBC_BBY</CODE>命令は、Position/Vector行列にＹ軸ビルボード変換をかけるための命令です。この命令は、デフォルトではsbc.cの<CODE>NNSi_G3dFuncSbc_BBY</CODE>関数をコールします。関数の内部では以下のような処理が行われています。</P>
+<OL>
+  <LI>命令のバリエーションによっては、Position/Vector行列を行列スタックからカレント行列にリストアします。
+  <LI>タイミングAのコールバックをチェックします。この位置のコールバックは、Ｙ軸ビルボード変換の計算をコールバック関数に代行させたい場合に便利です。なお、コールバック関数内で<CODE>NNS_G3dRS</CODE>構造体の<CODE>NNS_G3D_RSFLAG_SKIP</CODE>フラグをセットしておくと、次のコールバックまでの処理をスキップします。
+  <LI>Ｙ軸ビルボード変換の計算を行い、Position/Vector行列のカレント行列にセットします。
+  <LI>タイミングCのコールバックをチェックします。この位置のコールバックは、この命令の終了後に何らかの動作をさせたい場合に利用します。
+  <LI>命令のバリエーションによっては、Position/Vector行列をカレント行列から行列スタックにストアします。
+</OL>
+<P><BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="256">コールバック関数の呼び出しタイミング</TH>
+      <TH width="588">用途</TH>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_A</CODE></TD>
+      <TD width="588">マテリアルの計算をユーザーのプログラムに代行させたい場合。</TD>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_B</CODE></TD>
+      <TD width="588">マテリアルの計算結果をユーザーのプログラムに加工させたい場合。</TD>
+    </TR>
+    <TR>
+      <TD width="256"><CODE>NNS_G3D_SBC_CALLBACK_TIMING_C</CODE></TD>
+      <TD width="588">この命令の終了後に何らかの処理を入れたい場合。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="315">オプションフラグ</TH>
+      <TH width="721">動作</TH>
+    </TR>
+    <TR>
+      <TD width="315"><CODE>NNS_G3D_SBCFLG_000</CODE></TD>
+      <TD width="721">カレント行列に対してＹ軸ビルボード変換を行う。計算結果は行列スタックにストアしない。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>NNS_G3D_SBCFLG_001</CODE></TD>
+      <TD>カレント行列に対してＹ軸ビルボード変換を行う。その後計算結果を行列スタックにストアする。</TD>
+    </TR>
+    <TR>
+      <TD width="315"><CODE>NNS_G3D_SBCFLG_010</CODE></TD>
+      <TD width="721">行列スタックからリストアしてからＹ軸ビルボード変換を行う。計算結果は行列スタックにストアしない。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>NNS_G3D_SBCFLG_011</CODE></TD>
+      <TD>行列スタックからリストアしてからＹ軸ビルボード変換を行う。の後計算結果を行列スタックにストアする。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+
+
+<H2>履歴</H2>
+<P>2004/10/14 記述の追加<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

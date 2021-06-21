@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MI_SendGXCommand</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">MI_SendGXCommand*</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_SendGXCommand( u32 dmaNo, const void* src, u32 commandLength );<BR>
+  <BR>
+  void MI_SendGXCommandAsync( u32 dmaNo, const void* src, u32 commandLength,<BR>
+  　　　　　　　　　　　　　　　　　MIDmaCallback callback, void* arg　);
+  </CODE>
+  <DD><CODE><BR>
+  void MI_SendGXCommandAsyncFast( u32 dmaNo, const void* src, u32 commandLength,<BR>
+  　　　　　　　　　　　　　　　　　MIDmaCallback callback, void* arg　);
+  </CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dmaNo</STRONG></EM></TD>
+      <TD width="87%">使用DMAチャンネル</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">転送元アドレス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>commandLength</STRONG></EM></TD>
+      <TD>転送コマンドサイズ(バイト数)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>callback</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>arg</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>DMA を用いてディスプレイリスト ( GXコマンド列 ) をコマンドFIFOに送ります。転送元アドレスは
+4バイトアラインメントする必要があります。</P>
+<P>同期版の <CODE>MI_SendGXCommand()</CODE> は DMA の終了を関数内で待ちます。非同期版の <CODE>MI_SendGXCommandAsync()</CODE> と <CODE>MI_SendGXCommandAsyncFast() </CODE>は、DMA 終了時にコールバック <B><I>callback</I></B> を呼びます。コールバックは <CODE>MIDmaCallback</CODE> 型 (<CODE> void*</CODE> 引数1つを取る <CODE>void </CODE>型関数 ) です。<B><I>callback</I></B> は システムのDMA割り込みハンドラ内から呼び出されますので、割り込み禁止状態で呼び出されます。</P>
+<P><CODE>MI_SendGXCommandAsync()</CODE> と <CODE>MI_SendGXCommandAsyncFast()</CODE> の違いは以下の通りです。前者は Geometry 転送 DMA を使用せず、通常の同期
+DMA のみを使用しています。GXFIFO のアンダーハーフ割り込みを利用して少量ずつの
+DMA を行っています。後者は Geometry 転送 DMA を使用していますので、GXFIFO
+が少なくなったときに自動起動で DMA がスタートします。自動起動 DMA はハードウェアの制限により複数のものを同時に起動できませんので注意が必要です。(
+但し同じタイプの自動起動 DMA は同時に複数起動することがハード的には可能です
+)</P>
+<P>NITRO-SDK ではグラフィクスコマンドの動作速度を優先する立場から <CODE>MI_SendGXCommandAsync*()</CODE>と他の <CODE>G3_ 系</CODE> API との排他処理を行なっておりません。このため <CODE>MI_SendGXCommandAsync*()</CODE>によりGX コマンドを転送している間に <CODE>G3_</CODE> コマンドによってコマンド FIFO へ直接GXコマンドを書き込んだ場合の動作は保証できません。API
+呼び出し側でこうした事態が起こらないように注意する必要があります。</P>
+<H2>内部動作</H2>
+<P>IOレジスタのDMAnソースレジスタ(0x40000B0 + 12n)、DMAnデスティネーションレジスタ(0x40000B4
++ 12n)、DMAnコントロールレジスタ(0x40000B8 + 12n)を使用します。( n は 使用するDMAチャンネルです。)<BR>
+また、IOレジスタの GXFIFO(0x4000400) にアクセスします。</P>
+<H2>参照</H2>
+<P><CODE><A href="MI_DmaCopy.html">MI_DmaCopy*</A>, <A href="../../gx/g3/G3_BeginMakeDL.html">G3_BeginMakeDL</A>, <A href="../../gx/g3/G3_EndMakeDL.html">G3_EndMakeDL</A></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/22 callback の呼び出しについての記述を追加<BR>
+2004/08/26 MI_SendGXCommandAsyncFast について記述を追加<BR>
+2004/07/18 callback がNULLの場合について記述追加<BR>
+2003/12/01 初版</P>
+</BODY>
+</HTML>

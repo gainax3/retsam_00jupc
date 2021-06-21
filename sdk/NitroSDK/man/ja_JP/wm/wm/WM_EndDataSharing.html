@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_EndDataSharing</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_EndDataSharing</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_EndDataSharing( WMDataSharingInfo*  dsInfo );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">dsInfo</FONT></STRONG></EM></TD>
+      <TD width="800">データシェアリング情報構造体へのポインタを指定します。
+      <A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にて指定した構造体を指定して下さい。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+データシェアリングを終了します。<A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にてデータシェアリングを開始している場合に実行可能です。
+この関数は同期関数ですので、処理に成功した場合即座にWM_ERRCODE_SUCCESSを返します。このAPIは<A href="WM_EndMP.html">WM_EndMP</A>の直前に呼び出すようにしてください。
+なお、このAPIは親子の同期を取って終了する処理を行いません。必要に応じて、アプリケーションのレベルで親子で終了することの同意を取ってから親子それぞれで実行してください。<BR>
+<BR>
+親機の場合は複数のグループに対して平行してデータシェアリングを行うことが可能ですが、
+この場合はグループごとに複数回この関数を呼び出して別々に停止する必要があります。
+</P>
+
+<h2>参照</h2>
+<P><CODE>
+<A href="WM_StartDataSharing.html">WM_StartDataSharing</A>, <A href="WM_StepDataSharing.html">WM_StepDataSharing</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/10/25 説明の追加<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

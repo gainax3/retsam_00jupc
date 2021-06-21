@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+    <TITLE>リソース名マクロ</TITLE>
+    <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">リソース名マクロ</H1>
+
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD align="left" width="270">NNS_G3D_DEFRESNAME(var, str)</TD>
+      <TD>文字列<CODE>str</CODE>で初期化されたリソース名<CODE>var</CODE>を定義します。</TD>
+    </TR>
+    <TR>
+      <TD width="270">NNS_G3D_GET_JNTID(pMdl, pJntID, literal)</TD>
+      <TD>
+        モデル<CODE>pMdl</CODE>から文字列<CODE>literal</CODE>をリソース名としてノードを探索し、
+        みつかったノードのインデックスを<CODE>*pJntID</CODE>に設定します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="270">NNS_G3D_GET_MATID(pMdl, pMatID, literal)</TD>
+      <TD>
+        モデル<CODE>pMdl</CODE>から文字列<CODE>literal</CODE>をリソース名としてマテリアルを探索し、
+        みつかったマテリアルのインデックスを<CODE>*pMatID</CODE>に設定します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="270">NNS_G3D_GET_SHPID(pMdl, pShpID, literal)</TD>
+      <TD>
+        モデル<CODE>pMdl</CODE>から文字列<CODE>literal</CODE>をリソース名としてシェイプを探索し、
+        みつかったシェイプのインデックスを<CODE>*pShpID</CODE>に設定します。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="270">NNS_G3D_GET_MDL(pMdlSet, pMdl, literal)</TD>
+      <TD>
+        モデルセット<CODE>pMdlSet</CODE>から文字列<CODE>literal</CODE>をリソース名としてモデルを探索し、
+        みつかったモデルへのポインタを<CODE>pMdl</CODE>に設定します。
+      </TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_GET_ANM(pRes, pResAnm, literal)</TD>
+      <TD>ロードされたアニメーションリソースファイルから文字列literalをリソース名としてアニメーションリソースを探索し、みつかったリソースへのポインタをpResAnmに設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>履歴</H2>
+<P>2004/08/10 NNS_G3D_GET_ANM追加<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

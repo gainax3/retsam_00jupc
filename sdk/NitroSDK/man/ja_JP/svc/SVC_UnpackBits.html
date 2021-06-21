@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>SVC_UnpackBits</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SVC_UnpackBits</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os/common/systemCall.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void SVC_UnpackBits( const void* srcp, void* destp, MIUnpackBitsParam *paramp
+  );</CODE><br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">圧縮データの格納されているソースアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開するディスティネーションアドレス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>paramp</STRONG></EM></TD>
+      <TD><CODE>MIUnpackBitsParam</CODE>構造体データのアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>0固定のビットを詰めたデータを展開します。<BR>
+デスティネーションアドレス <B><I>dest</I></B> は 4byte境界に合わせて下さい。</P>
+<P><B><I>paramp</I></B> は MI の <CODE>MIUnpackBitsParam</CODE> 構造体データのアドレスです。<CODE>MIUnpackBitsParam</CODE>構造体は、<BR>
+　・ソースデータバイト数(u16)<BR>
+　・1ソースデータ・ビット数(u16:8)<BR>
+　・1ディスティネーションデータ・ビット数(u16:8)<BR>
+　・ソースデータに加算するオフセット(u32:31)<BR>
+　・0のデータにオフセットを加算するかどうかのフラグ(u32:1)<BR>
+となっています。</P>
+<h2>参照</h2>
+<p><CODE><A href="../mi/uncompress/MI_UnpackBits.html">MI_UnpackBits</A>, 
+<A href="SVC_UncompressLZ.html">SVC_UncompressLZ*</A>, 
+<A href="SVC_UncompressHuffmanFromDevice.html">SVC_UncompressHuffmanFromDevice</A>, 
+<A href="SVC_UncompressRL.html">SVC_UncompressRL*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/22 初版</P>
+</body>
+</html>

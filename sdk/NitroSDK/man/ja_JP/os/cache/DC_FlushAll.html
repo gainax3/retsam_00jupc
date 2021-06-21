@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>DC_FlushAll</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">DC_FlushAll</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void DC_FlushAll( void );
+
+void DC_CleanAndInvalidateAll( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>すべてのデータキャッシュ領域のデータをフラッシュします。</P>
+<P>具体的には、データキャッシュへの書き込みが行なわれたがメインメモリには反映されていない状態（ダーティ状態）のキャッシュのライトバックを行ない、すべてのキャッシュのデータを破棄し、無効状態にします。</P>
+<P>DMA転送やグラフィクスコマンドの作成時などのように、他のデバイスとのメインメモリを使用したデータ送信のデータブロックを完成させるときに使用します。</P>
+<P><CODE>DC_CleanAndInvalidateAll()</CODE> は <CODE>DC_FlushAll()</CODE> の別名です。動作は全く同じです。<BR>
+<CODE>DC_Clean*/DC_CleanAndInvalidate*</CODE> は、プロトタイプ版の SDK からの移植作業のために用意されたものですので、通常は
+<CODE>DC_Store*/DC_Flush*</CODE> をお使いください。</P>
+<P>ARM プロセッサのオフィシャルドキュメントでは、データキャッシュを無効化する動作を
+&quot;Flush&quot;、データキャッシュをライトバックしてクリーン状態にする動作を
+&quot;Clean&quot;、ライトバックして無効化する動作を &quot;Clean and Flush&quot;
+と記述してる場合がありますが、本 SDK の API では GAMECUBE や Nintendo64
+などの API との統一性を重視するため、無効化を &quot;Invalidate&quot;、ライトバックを
+&quot;Store&quot;、ライトバックして無効化する動作を &quot;Flush&quot; で統一しています。ご注意ください。</P>
+<H2>内部動作</H2>
+<P>システム制御コプロセッサのレジスタ7を操作しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="IC_InvalidateAll.html">IC_InvalidateAll</A> <A href="IC_InvalidateRange.html">IC_InvalidateRange</A><BR>
+<A href="DC_InvalidateAll.html">DC_InvalidateAll</A> <A href="DC_InvalidateRange.html">DC_InvalidateRange</A><BR>
+<A href="DC_StoreAll.html">DC_StoreAll</A> <A href="DC_StoreRange.html">DC_StoreRange</A><BR>
+<A href="DC_FlushRange.html">DC_FlushRange</A></CODE></P>
+<H2>履歴</H2>
+<P>2003/12/22 初版</P>
+</BODY>
+</HTML>

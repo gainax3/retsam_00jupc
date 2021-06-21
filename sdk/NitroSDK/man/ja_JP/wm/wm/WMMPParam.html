@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMMPParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMMPParam</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMMPParam
+{
+    u32     mask;
+
+    u16     minFrequency;
+    u16     frequency;
+    u16     maxFrequency;
+    u16     parentSize;
+    u16     childSize
+    u16     parentInterval;
+    u16     childInterval;
+    u16     parentVCount;
+    u16     childVCount;
+    u16     defaultRetryCount;
+    u8      minPollBmpMode;
+    u8      singlePacketMode;
+    u8      ignoreFatalErrorMode;
+    u8      ignoreSizePrecheckMode;
+
+} WMMPParam;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">mask</FONT></STRONG></EM></TD>
+      <TD width="800">以下のどのフィールドを有効にするのかをビットで指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">minFrequency</font></strong></em></TD>
+      <TD width="800">機能が未実装のメンバです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">frequency</font></strong></em></TD>
+      <TD width="800">1ピクチャフレームでの MP 通信回数を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">maxFrequency</font></strong></em></TD>
+      <TD width="800">1ピクチャフレームでの再送も含めた MP 通信回数の上限値を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">parentSize</font></strong></em></TD>
+      <TD width="800">現在の親機送信容量です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">childSize</font></strong></em></TD>
+      <TD width="800">現在の子機送信容量です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">parentInterval</font></strong></em></TD>
+      <TD width="800">1フレーム中に連続して行う場合の親機の MP 通信間隔を ms 単位で指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">childInterval</font></strong></em></TD>
+      <TD width="800">1フレーム中に連続して行う場合の子機が MP 通信を準備する間隔を ms 単位で指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">parentVCount</font></strong></em></TD>
+      <TD width="800">フレーム同期通信時の親機処理の開始 V Count です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">childVCount</font></strong></em></TD>
+      <TD width="800">フレーム同期通信時の子機処理の開始 V Count です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">defaultRetryCount</font></strong></em></TD>
+      <TD width="800">Raw 通信 port での通信のデフォルトリトライ回数です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">minPollBmpMode</font></strong></em></TD>
+      <TD width="800">PollBitmap を送信するパケットの送信先に合わせて最小にするモードかどうかを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">singlePacketMode</font></strong></em></TD>
+      <TD width="800">1MP に 1packet しか送らなくなるモードかどうかを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ignoreFatalErrorMode</font></strong></em></TD>
+      <TD width="800">Fatal Error を無視するモードかどうかを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ignoreSizePrecheckMode</font></strong></em></TD>
+      <TD width="800">通信開始時の送受信サイズの事前チェックを無視するモードかどうかを示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+親機として活動を開始する際に設定すべき情報をまとめた構造体です。<A href="WM_SetMPParameter.html">WM_SetMPParameter</A> 関数で使用されます。
+</P>
+
+<P>以下から設定したいパラメータを選び、対応する定数 <CODE>WM_MP_PARAM_*</CODE> の論理和を取った値を mask フィールドに指定します。なお、一部のパラメータは WM の特定の関数の実行時に自動的に設定されます。詳しくは各パラメータの説明を参照してください。</P>
+
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_FREQUENCY</font></strong></em></TD>
+      <TD width="800">frequency に MP 通信を行う頻度を指定する。0 を指定すると大容量のデータ通信用に用意された連続通信モードになる。MP 通信頻度は WM_StartMP, WM_StartMPEx のどちらかの実行時に必ず設定されるため、この項目は MP 通信を開始した後に MP 通信頻度を再設定する場合にのみ用いられる。親機でのみ意味を持つ。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_MAX_FREQUENCY</font></strong></em></TD>
+      <TD width="800">maxFrequency に1ピクチャーフレームあたりの再送も含めた MP 通信回数の上限値を指定する。デフォルト値は6回。親機でのみ意味を持つ。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_PARENT_SIZE</font></strong></em></TD>
+      <TD width="800">parentSize に MP 通信の親機送信容量を指定する。送信容量は2の倍数である必要があるため、奇数を指定すると偶数になるように切り上げられる。親機でのみ意味を持つ。WM_SetParentParameter 関数で指定した WMParentParam.parentMaxSize で初期設定され、これより大きな値を設定することはできない。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_CHILD_SIZE</font></strong></em></TD>
+      <TD width="800">childSize に MP 通信の子機送信容量を指定する。送信容量は2の倍数である必要があるため、奇数を指定すると偶数になるように切り上げられる。親子どちらでも設定できるが、子機のこの設定値は MP 通信を行う度に親機からの指定値で上書きされるため、あまり意味を持たない。親機であれば WM_SetParentParameter 関数で指定した WMParentParam.childMaxSize で、子機であれば親機の beacon 中に乗っている childMaxSize で初期設定され、これより大きな値を設定することはできない。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_PARENT_INTERVAL</font></strong></em></TD>
+      <TD width="800">parentInterval に親機が MP 通信の準備を行う間隔をマイクロ秒単位で指定する。1ピクチャーフレーム中に複数回の MP 通信を行う場合に使用される。デフォルト値は 2000 us。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_CHILD_INTERVAL</font></strong></em></TD>
+      <TD width="800">childInterval に子機が MP 通信の準備を行う間隔をマイクロ秒単位で指定する。1ピクチャーフレーム中に複数回の MP 通信を行う場合に使用される。デフォルト値は 2000 us。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_PARENT_VCOUNT</font></strong></em></TD>
+      <TD width="800">parentVCount に親機が MP 通信の準備を行う VAlarm Count 値を指定する。フレーム同期通信モード時のピクチャーフレーム内の最初の MP 通信を行う際に参照される。220～262 か 0～190 の範囲である必要がある。デフォルト値は 260。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_CHILD_VCOUNT</font></strong></em></TD>
+      <TD width="800">childVCount に子機が MP 通信の準備を行う VAlarm Count 値を指定する。フレーム同期通信モード時のピクチャーフレーム内の最初の MP 通信を行う際に参照される。220～262 か 0～190 の範囲である必要がある。デフォルト値は 240。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_DEFAULT_RETRY_COUNT</font></strong></em></TD>
+      <TD width="800">defaultRetryCount に 0～7番ポートでの通信において送信が失敗した場合の再送回数のデフォルト値を指定する。なお、8～15番ポートでの通信はこの値に関係なく無限に再送を繰り返す。親機でのみ意味を持つ。デフォルト値は 0。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_MIN_POLL_BMP_MODE</font></strong></em></TD>
+      <TD width="800">minPollBmpMode に特殊な送信モードのためのフラグを指定する。TRUEの場合、MP フレーム中の PollBitmap の値はその回の通信で親が送信するパケットの宛先の論理和となる。FALSEの場合は、常に子機全員の PollBitmap を立てる。使用する際には MP 通信に関する詳細な理解が必要。デフォルト値は FALSE。親機でのみ意味を持つ。MP 通信開始後には変更できない。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_SINGLE_PACKET_MODE</font></strong></em></TD>
+      <TD width="800">singlePacketMode に特殊な送信モードのためのフラグを指定する。TRUEの場合、1回のMP通信では常に1パケットしか送信しない。FALSEの場合は、MP通信のペイロードに送信容量が許す限りのパケットを詰める。デフォルト値は FALSE。MP 通信開始後には変更できない。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_IGNORE_FATAL_ERROR_MODE</font></strong></em></TD>
+      <TD width="800">ignoreFatalErrorMode に特殊な送信モードのためのフラグを指定する。TRUEの場合、致命的エラー発生時も切断処理を行なわず接続状態を維持する。このフラグを有効にすると Sequential 通信の完全性が保証されなくなるため、MBなど限られたモード以外では TRUE にしてはならない。デフォルト値は FALSE。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_MP_PARAM_IGNORE_SIZE_PRECHECK_MODE</font></strong></em></TD>
+      <TD width="800">ignoreSizePrecheckMode に特殊な送受信サイズの管理のためのフラグを指定する。TRUEの場合、通常は WM_StartMP 関数で MP 通信を開始する際に確認されるはずの親子の送信容量と最大接続数による通信時間と送受信バッファサイズの事前チェックが無効になる。使用する際には MP 通信に関する詳細な理解が必要。デフォルト値は FALSE。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<P>minPollBmpMode 及び ignoreSizePrecheckMode の使用に関しては MP 通信に関する詳細な理解が必要となりますので、通常は有効にしないようにしてください。
+また、minPollBmpMode を有効にする場合は、8～15番の範囲で使用しているportに関して、全ての子機、全てのportに対し、60秒に1回は通信が行われる必要があります。</P>
+<P>各設定値の詳細に関しては「ワイヤレス通信ライブラリ解説」を参照してください。</P>
+
+
+<H2>履歴</H2>
+<P>
+2005/12/20 ignoreSizePrecheckMode の危険性について明記<BR>
+2005/12/08 送信容量は偶数である必要があることを明記<BR>
+2005/11/24 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCPrototypeList</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCPrototypeList</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef struct PRCPrototypeList
+{
+    const <A href="PRCPrototypeEntry.html">PRCPrototypeEntry</A>    *entries;
+    int                         entrySize;
+    const <A href="../stroke/PRCPoint.html">PRCPoint</A>              *pointArray;
+    int                         pointArraySize;
+
+    int                         normalizeSize;
+} PRCPrototypeList;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">entries</FONT></STRONG></EM></TD>
+      <TD width="87%">見本DB中の各エントリの属性情報</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">entrySize</FONT></STRONG></EM></TD>
+      <TD width="87%"><CODE>entries</CODE> の要素数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pointArray</FONT></STRONG></EM></TD>
+      <TD width="87%">各エントリの座標値を1列に並べた配列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pointArraySize</FONT></STRONG></EM></TD>
+      <TD width="87%"><CODE>pointArray</CODE> の要素数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">normalizeSize</FONT></STRONG></EM></TD>
+      <TD width="87%"><CODE>pointArray</CODE> の各座標値の正規化サイズ</TD>
+    </TR>
+  </tbody>
+</table>
+<H2>説明</H2>
+<P>図形認識の辞書の基本となるデータです。基本的には、各見本パターンを構成する折れ線の頂点座標のみを保持しています。実際に認識に使う際は、追加情報として各線分の長さや角度などを事前計算して収めた
+<CODE><A href="PRCPrototypeDB.html">PRCPrototypeDB</A></CODE> 構造体に変換してから用います。</P>
+<P>見本DB内の各頂点座標データは左上 <CODE>(0, 0)</CODE> 右下 <CODE>(normalizeSize-1, normalizeSize-1)</CODE> のバウンディングボックスを基準に処理されます。この範囲外の座標のデータが存在した場合には正常な処理は保証されません。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/28 regularize を normalize に変更<BR>
+2004/06/23 初版
+</P>
+</body>
+</html>

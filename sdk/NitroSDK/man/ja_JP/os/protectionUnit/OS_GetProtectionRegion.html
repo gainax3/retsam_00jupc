@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetProtectionRegion</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetProtectionRegion*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>OS_GetProtectionRegionParam( regionNo );</CODE>
+<CODE>OS_GetProtectionRegionAddress( regionNo );</CODE>
+<CODE>OS_GetProtectionRegionSize( regionNo );</CODE>
+(これらの関数はマクロになっています)</PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>regionNo</I></B></TD>
+      <TD>プロテクションリージョン番号です。0～7の値で指定してください。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>すべてu32型の値を返します。指定プロテクションリージョンの情報です。</P>
+<H2>説明</H2>
+<P>プロテクションリージョンのベースアドレスとサイズに関する設定を取得します。</P>
+<P><FONT color="#ff0033">プロテクションリージョンの設定はシステムの挙動に大きく関わってきます。プロテクションリージョンの仕組みと各領域の使用用途などを理解した上で設定を行なってください。</FONT></P>
+<P>OS_GetProtectionRegionParam() は<B><I>regionNo</I></B>で指定したプロテクションリージョンのベースアドレスと領域サイズ情報のパラメータをCP15から得たままの値で返します。</P>
+<P>OS_GetProtectionRegionAddress() は<B><I>regionNo</I></B> で指定したプロテクションリージョンのベースアドレスを返します。</P>
+<P>OS_GetProtectionRegionSize() は<B><I>regionNo </I></B>で指定したプロテクションリージョンの領域サイズ情報を返します。領域サイズ情報は、HW_C6_PR_xxx
+と定義された値で、xxx の部分がサイズを表します。サイズとして取りえるのは以下の通りです。</P>
+<BLOCKQUOTE>
+<P>4KB 8KB 16KB 32KB 64KB 128KB 256KB 512KB<BR>1MB 2MB 4MB 8MB 16MB 32MB 64MB 
+128MB 256MB 512MB<BR>1GB 2GB 4GB</P>
+</BLOCKQUOTE>
+<P>これらはすべて関数マクロとなっています。<B><I>regionNo</I></B>は0～7の値で指定してください。この引数をそのまま文字列として使用しますので0～7の値を入れた変数の指定などは出来ません。0～7の値そのもので指定してください。</P>
+<H2>内部動作</H2>
+<P>この関数自体はマクロですが、最終的にシステム制御コプロセッサ CP15 のレジスタ6を操作します。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_EnableProtectionUnit.html">OS_EnableProtectionUnit</A>, <A href="OS_DisableProtectionUnit.html">OS_DisableProtectionUnit</A><BR>
+<A href="OS_SetProtectionRegion.html">OS_SetProtectionRegion*</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/05/28 初版</P>
+</BODY>
+</HTML>

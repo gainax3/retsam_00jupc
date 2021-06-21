@@ -1,0 +1,507 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>ワイヤレスマネージャ(WM)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>ワイヤレスマネージャ(WM)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Init.html" target="_self">WM_Init</A></TH>
+      <TD>無線ライブラリの初期化処理を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Finish.html" target="_self">WM_Finish</A></TH>
+      <TD>無線ライブラリの終了処理を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Enable.html" target="_self">WM_Enable</A></TH>
+      <TD>無線ハードウェアを使用可能な状態にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Disable.html" target="_self">WM_Disable</A></TH>
+      <TD>無線ハードウェアを使用禁止状態にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_PowerOn.html" target="_self">WM_PowerOn</A></TH>
+      <TD>無線ハードウェアを起動します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_PowerOff.html" target="_self">WM_PowerOff</A></TH>
+      <TD>無線ハードウェアをシャットダウンします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Initialize.html" target="_self">WM_Initialize</A></TH>
+      <TD>無線ライブラリの初期化処理及び無線ハードウェアの起動を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_End.html" target="_self">WM_End</A></TH>
+      <TD>無線ハードウェアのシャットダウン及び無線ライブラリの終了処理を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EnableForListening.html" target="_self">WM_EnableForListening</A></TH>
+      <TD>無線ハードウェアを受信専用モードで使用可能な状態にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_InitializeForListening.html" target="_self">WM_InitializeForListening</A></TH>
+      <TD>受信専用モードでの無線ライブラリの初期化処理及び無線ハードウェアの起動を行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Config">初期設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetIndCallback.html" target="_self">WM_SetIndCallback</A></TH>
+      <TD>Indication通知用のコールバック関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_Reset.html" target="_self">WM_Reset</A></TH>
+      <TD>無線ライブラリをリセットし、初期化、無線ハードウェア起動直後の状態に戻します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_ReadStatus.html" target="_self">WM_ReadStatus</A></TH>
+      <TD>無線ライブラリ状態を示す構造体を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetParentParameter.html" target="_self">WM_SetParentParameter</A></TH>
+      <TD>親機情報を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartParent.html" target="_self">WM_StartParent</A></TH>
+      <TD>親機として通信を開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndParent.html" target="_self">WM_EndParent</A></TH>
+      <TD>親機としての通信を停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartScan.html" target="_self">WM_StartScan</A></TH>
+      <TD>子機として親機のスキャンを開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartScanEx.html" target="_self">WM_StartScanEx</A></TH>
+      <TD>詳細な設定の元に、子機として親機のスキャンを開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndScan.html" target="_self">WM_EndScan</A></TH>
+      <TD>子機としてのスキャン処理を停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartConnect.html" target="_self">WM_StartConnect</A></TH>
+      <TD>子機として親機への接続を開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartConnectEx.html" target="_self">WM_StartConnectEx</A></TH>
+      <TD>子機として親機への接続を開始します。接続後の省電力モード、接続時の認証モードを設定可能です。</TD>
+    </TR>
+<!--<TR>
+      <TH width="25%"><A href="wm/WM_EndConnect.html" target="_self">WM_EndConnect</A></TH>
+      <TD>確立されている接続を切断します。</TD>
+    </TR>-->
+    <TR>
+      <TH width="25%"><A href="wm/WM_Disconnect.html" target="_self">WM_Disconnect</A></TH>
+      <TD>確立されている接続を切断します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_DisconnectChildren.html" target="_self">WM_DisconnectChildren</A></TH>
+      <TD>確立されている子機との接続を一括で切断します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetGameInfo.html" target="_self">WM_SetGameInfo</A></TH>
+      <TD>ゲーム情報を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetEntry.html" target="_self">WM_SetEntry</A></TH>
+      <TD>親機としてのエントリー受け付け状態を変更します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MP">MP通信</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetMPReceiveBufferSize.html" target="_self">WM_GetMPReceiveBufferSize</A></TH>
+      <TD>MP通信で必要な受信バッファのサイズを求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetMPSendBufferSize.html" target="_self">WM_GetMPSendBufferSize</A></TH>
+      <TD>MP通信で必要な送信バッファのサイズを求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartMP.html" target="_self">WM_StartMP</A></TH>
+      <TD>MP通信を開始します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartMPEx.html" target="_self">WM_StartMPEx</A></TH>
+      <TD>詳細な動作モードを指定した上でMP通信を開始します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndMP.html" target="_self">WM_EndMP</A></TH>
+      <TD> MP通信を停止します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPDataToPort.html" target="_self">WM_SetMPDataToPort</A></TH>
+      <TD>MP通信にて特定のポートに送信するデータを予約します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPDataToPortEx.html" target="_self">WM_SetMPDataToPortEx</A></TH>
+      <TD>MP通信にて特定のポートに送信するデータを予約します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetPortCallback.html" target="_self">WM_SetPortCallback</A></TH>
+      <TD>特定ポートに対するデータ受信時のコールバック関数を指定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartDataSharing.html" target="_self">WM_StartDataSharing</A></TH>
+      <TD>MP通信にてデータシェアリングを開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndDataSharing.html" target="_self">WM_EndDataSharing</A></TH>
+      <TD>データシェアリングを停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StepDataSharing.html" target="_self">WM_StepDataSharing</A></TH>
+      <TD>データシェアリングの同期を進めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetSharedDataAddress.html" target="_self">WM_GetSharedDataAddress</A></TH>
+      <TD>データシェアリングにて共有したデータから各端末のデータを抽出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartKeySharing.html" target="_self">WM_StartKeySharing</A></TH>
+      <TD>キーシェアリング機能を有効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndKeySharing.html" target="_self">WM_EndKeySharing</A></TH>
+      <TD>キーシェアリング機能を無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetKeySet.html" target="_self">WM_GetKeySet</A></TH>
+      <TD>キーシェアリングされたキーセットデータをひとつ読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SIZE_MP_PARENT_RECEIVE_BUFFER.html" target="_self">WM_SIZE_MP_PARENT_RECEIVE_BUFFER</A></TH>
+      <TD>MP通信で親機が必要な受信バッファのサイズを定数値として求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SIZE_MP_PARENT_SEND_BUFFER.html" target="_self">WM_SIZE_MP_PARENT_SEND_BUFFER</A></TH>
+      <TD>MP通信で親機が必要な送信バッファのサイズを定数値として求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SIZE_MP_CHILD_RECEIVE_BUFFER.html" target="_self">WM_SIZE_MP_CHILD_RECEIVE_BUFFER</A></TH>
+      <TD>MP通信で子機が必要な受信バッファのサイズを定数値として求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SIZE_MP_CHILD_SEND_BUFFER.html" target="_self">WM_SIZE_MP_CHILD_SEND_BUFFER</A></TH>
+      <TD>MP通信で子機が必要な送信バッファのサイズを定数値として求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPData.html" target="_self">WM_SetMPData</A></TH>
+      <TD>MP通信にて送信するデータを予約します。親機・子機共通関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_ReadMPData.html" target="_self">WM_ReadMPData</A></TH>
+      <TD>受信したデータ全体から指定子機のデータだけを抽出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetAID.html" target="_self">WM_GetAID</A></TH>
+      <TD>現在の AID を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetConnectedAIDs.html" target="_self">WM_GetConnectedAIDs</A></TH>
+      <TD>現在の接続相手をビットマップの形で取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPParameter.html" target="_self">WM_SetMPParameter</A></TH>
+      <TD>MP 通信用の各種パラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPFrequency.html" target="_self">WM_SetMPFrequency</A></TH>
+      <TD>MP通信の通信頻度を指定します。親機専用関数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPChildSize.html" target="_self">WM_SetMPChildSize</A></TH>
+      <TD>子機送信容量を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPParentSize.html" target="_self">WM_SetMPParentSize</A></TH>
+      <TD>親機送信容量を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPInterval.html" target="_self">WM_SetMPInterval</A></TH>
+      <TD>1フレーム中に連続して MP 通信を行う場合の間隔を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetMPTiming.html" target="_self">WM_SetMPTiming</A></TH>
+      <TD>フレーム同期通信モード時に MP 通信の準備を開始するタイミングを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="DCF">インフラストラクチャモード通信</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WM_StartDCF.html" target="_self">WM_StartDCF</A></TH>
+      <TD>インフラストラクチャモードでの通信を開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetDCFData.html" target="_self">WM_SetDCFData</A></TH>
+      <TD>インフラストラクチャモード通信にて送信するデータを予約します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_EndDCF.html" target="_self">WM_EndDCF</A></TH>
+      <TD>インフラストラクチャモードでの通信を停止します。</TD>
+    </TR>
+ </TBODY>
+</TABLE>
+<H3><A name="Other">その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetWEPKey.html" target="_self">WM_SetWEPKey</A></TH>
+      <TD>暗号機能・暗号キーを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetWEPKeyEx.html" target="_self">WM_SetWEPKeyEx</A></TH>
+      <TD>暗号機能・暗号キーを設定し、使用するキーを選択します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetBeaconIndication.html" target="_self">WM_SetBeaconIndication</A></TH>
+      <TD>ビーコン送受信indicateの有効/無効を切り替えます。</TD>
+    </TR>
+<!--    <TR>
+      <TH width="25%"><A href="wm/WM_SetBeaconPeriod.html" target="_self">WM_SetBeaconPeriod</A></TH>
+      <TD>親機動作開始後にビーコン間隔を変更します。</TD>
+    </TR>-->
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetLifeTime.html" target="_self">WM_SetLifeTime</A></TH>
+      <TD>通信時のライフタイムを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_MeasureChannel.html" target="_self">WM_MeasureChannel</A></TH>
+      <TD>電波使用率を測定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_InitWirelessCounter.html" target="_self">WM_InitWirelessCounter</A></TH>
+      <TD>送受信フレーム数などのカウンタを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetWirelessCounter.html" target="_self">WM_GetWirelessCounter</A></TH>
+      <TD>送受信フレーム数などのカウンタの現在値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetAllowedChannel.html" target="_self">WM_GetAllowedChannel</A></TH>
+      <TD>無線通信時に使用すべきチャンネルを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_IsExistAllowedChannel.html" target="_self">WM_IsExistAllowedChannel</A></TH>
+      <TD>無線通信時に使用を許可されたチャンネルの有無を確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_IsValidGameBeacon.html" target="_self">WM_IsValidGameBeacon</A></TH>
+      <TD>取得したビーコン情報がDSワイヤレスプレイ用親機からのものであるかを確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_IsValidGameInfo.html" target="_self">WM_IsValidGameInfo</A></TH>
+      <TD>ゲーム情報構造体が対応している形式であるかを確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetLinkLevel.html" target="_self">WM_GetLinkLevel</A></TH>
+      <TD>接続されている通信相手とのリンク強度を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetDispersionBeaconPeriod.html" target="_self">WM_GetDispersionBeaconPeriod</A></TH>
+      <TD>親機として通信を開始する際に設定すべきビーコン間隔を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetDispersionScanPeriod.html" target="_self">WM_GetDispersionScanPeriod</A></TH>
+      <TD>子機として親機を探索する際に設定すべき探索限度時間を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_GetNextTgid.html" target="_self">WM_GetNextTgid</A></TH>
+      <TD>TGID 値を自動生成して取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_ConvGgid.html" target="_self">WM_ConvGgid*</A></TH>
+      <TD>ゲームグループIDを変換します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="wm/WM_IsBssidEqual.html" target="_self">WM_IsBssidEqual</A></TH>
+      <TD>二つのBSSIDを比較して同一かどうかの判定を行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="wm/WM_IsBssidEqual.html" target="_self">WM_IsBssidEqual16</A></TH>
+      <TD>二つのBSSIDを比較して同一かどうかの判定を 16bit 単位で行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="wm/WM_CopyBssid.html" target="_self">WM_CopyBssid</A></TH>
+      <TD>BSSIDをコピーします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="wm/WM_CopyBssid.html" target="_self">WM_CopyBssid16</A></TH>
+      <TD>BSSIDを 16bit 単位でコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WM_SetPowerSaveMode.html" target="_self">WM_SetPowerSaveMode</A></TH>
+      <TD>インフラストラクチャ通信時に省電力モードを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="const">定数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WMApiid.html" target="_self">WMApiid</A></TH>
+      <TD>APIのIDを示す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStateCode.html" target="_self">WMStateCode</A></TH>
+      <TD>コールバックの種別を示す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMErrCode.html" target="_self">WMErrCode</A></TH>
+      <TD>WM操作関数に共通の処理結果を示す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMPort.html" target="_self">WMPort</A></TH>
+      <TD>MP通信によるデータ送受信ポートを示す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMLinkLevel.html" target="_self">WMLinkLevel</A></TH>
+      <TD>通信時のリンク強度を示す列挙型です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Type">型・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/WMDataSet.html" target="_self">WMDataSet</A></TH>
+      <TD>データシェアリング機能によって共有されたデータを示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMKeySet.html" target="_self">WMKeySet</A></TH>
+      <TD>キーシェアリング機能により取得するシェアされたキー情報を示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMKeySetBuf.html" target="_self">WMKeySetBuf</A></TH>
+      <TD>キーシェアリング機能により取得するキー情報を溜めておくリングバッファの構造体です。 </TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMParentParam.html" target="_self">WMParentParam</A></TH>
+      <TD>親機として活動を開始する際に設定すべき情報をまとめた構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMScanParam.html" target="_self">WMScanParam</A></TH>
+      <TD>子機として親機の探索を開始する際に設定すべき情報をまとめた構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMScanExParam.html" target="_self">WMScanExParam</A></TH>
+      <TD>詳細な設定の元に子機として親機の探索を開始する際に設定すべき情報をまとめた構造体です。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="wm/WMGameInfo.html" target="_self">WMGameInfo</A></TH>
+      <TD><A href="wm/WM_StartScan.html" target="_self">WM_StartScan</A>関数で取得する、親機の探索情報の格納された構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMBssDesc.html" target="_self">WMBssDesc</A></TH>
+      <TD><A href="wm/WM_StartScan.html" target="_self">WM_StartScan</A>関数で取得する、親機の探索情報の格納された構造体です。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="wm/WMCallbackFunc.html" target="_self">WMCallbackFunc</A></TH>
+      <TD>ユーザコールバック関数の型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartParentCallback.html" target="_self">WMStartParentCallback</A></TH>
+      <TD><A href="wm/WM_StartParent.html">WM_StartParent</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartScanCallback.html" target="_self">WMStartScanCallback</A></TH>
+      <TD><A href="wm/WM_StartScan.html">WM_StartScan</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartScanExCallback.html" target="_self">WMStartScanExCallback</A></TH>
+      <TD><A href="wm/WM_StartScanEx.html">WM_StartScanEx</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartConnectCallback.html" target="_self">WMStartConnectCallback</A></TH>
+      <TD><A href="wm/WM_StartConnect.html">WM_StartConnect</A>及び<A href="wm/WM_StartConnectEx.html">WM_StartConnectEx</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMDisconnectCallback.html" target="_self">WMDisconnectCallback</A></TH>
+      <TD><A href="wm/WM_Disconnect.html">WM_Disconnect</A>、及び<A href="wm/WM_DisconnectChildren.html">WM_DisconnectChildren</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartMPCallback.html" target="_self">WMStartMPCallback</A></TH>
+      <TD><A href="wm/WM_StartMP.html">WM_StartMP</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMPortSendCallback.html" target="_self">WMPortSendCallback</A></TH>
+      <TD><A href="wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="wm/WM_SetMPDataToPortEx.html">WM_SetMPDataToPortEx</A>, <A href="wm/WM_SetMPData.html">WM_SetMPData</A>で設定したコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMStartDCFCallback.html" target="_self">WMStartDCFCallback</A></TH>
+      <TD><A href="wm/WM_StartDCF.html">WM_StartDCF</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMMeasureChannelCallback.html" target="_self">WMMeasureChannelCallback</A></TH>
+      <TD><A href="wm/WM_MeasureChannel.html">WM_MeasureChannel</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMGetWirelessCounterCallback.html" target="_self">WMGetWirelessCounterCallback</A></TH>
+      <TD><A href="wm/WM_GetWirelessCounter.html">WM_GetWirelessCounter</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMIndCallback.html" target="_self">WMIndCallback</A></TH>
+      <TD><A href="wm/WM_SetIndCallback.html">WM_SetIndCallback</A>で設定したコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMBeaconRecvIndCallback.html" target="_self">WMBeaconRecvIndCallback</A></TH>
+      <TD><A href="wm/WM_SetIndCallback.html">WM_SetIndCallback</A>で設定したコールバック関数にビーコン受信時に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMPortRecvCallback.html" target="_self">WMPortRecvCallback</A></TH>
+      <TD><A href="wm/WM_SetPortCallback.html">WM_SetPortCallback</A>で設定したコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMCallback.html" target="_self">WMCallback</A></TH>
+      <TD>通常のWM非同期処理関数のコールバック関数に渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMMPParam.html" target="_self">WMMPParam</A></TH>
+      <TD>親機として活動を開始する際に設定すべき情報をまとめた構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/WMSetMPParameterCallback.html" target="_self">WMSetMPParameterCallback</A></TH>
+      <TD><A href="wm/WM_SetMPParameter.html">WM_SetMPParameter</A>に対するコールバック関数に渡される構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Misc">図表・情報</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wm/wm_state_diagram.html" target="_self">WM 状態遷移図</A></TH>
+      <TD>WMの各APIによる内部状態の遷移を表した図です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wm/wm_time_calc.html" target="_self">無線通信時間計算シート</A></TH>
+      <TD>1回の通信にかかる時間を送信サイズから計算できるシートです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

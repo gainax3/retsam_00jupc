@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SetUdpCallback</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SetUdpCallback</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_SetUdpCallback(int (*callback)(u8 *, u32, CPSSoc *));</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>callback</strong></em></code></td>
+    <td>コールバック関数。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>UDPパケット受信の際に呼ばれるコールバック関数を設定します。<BR>
+	コールバック関数はスレッドがUDP受信待ちでブロックしていない場合にだけ呼び出されます。<BR>
+	コールバック関数は第1・第2パラメータとしてパケットデータへのポインタ・長さを受け取り、第3パラメータとして<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>へのポインタを受け取ります。<BR>
+	コールバック関数が0を返した時はデータはバッファに格納され、非0を返したときはデーバはバッファには格納されません。<BR>
+	ブロックはしません。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

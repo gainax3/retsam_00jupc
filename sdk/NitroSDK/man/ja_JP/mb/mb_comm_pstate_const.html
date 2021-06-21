@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBCommPState</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBCommPState</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef enum
+{
+    MB_COMM_PSTATE_NONE, 
+    MB_COMM_PSTATE_INIT_COMPLETE,
+    MB_COMM_PSTATE_CONNECTED, 
+    MB_COMM_PSTATE_DISCONNECTED, 
+    MB_COMM_PSTATE_KICKED, 
+    MB_COMM_PSTATE_REQ_ACCEPTED, 
+    MB_COMM_PSTATE_SEND_PROCEED, 
+    MB_COMM_PSTATE_SEND_COMPLETE, 
+    MB_COMM_PSTATE_BOOT_REQUEST, 
+    MB_COMM_PSTATE_BOOT_STARTABLE, 
+    MB_COMM_PSTATE_REQUESTED,
+    MB_COMM_PSTATE_MEMBER_FULL,
+    MB_COMM_PSTATE_END,
+    MB_COMM_PSTATE_ERROR,
+    MB_COMM_PSTATE_WAIT_TO_SEND,
+    
+    MB_COMM_PSTATE_WM_EVENT = 0x80000000
+} MBCommPState;
+</PRE>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>マルチブート親機状態を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_NONE</TD>
+      <TD>親機のアイドル状態を示します。<BR>
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_INIT_COMPLETE</TD>
+      <TD>MB_StartParent関数の完了時のコールバックを示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg には<br>
+<a href="../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>関数の完了コールバック引数である<br>
+<a href="../wm/wm/WMCallback.html">WMCallback</a>型のポインタが渡されます。<br>特定の子機に対する状態のコールバックではないため、引数child_aidには0が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_CONNECTED</TD>
+      <TD>任意の子機から接続が開始された直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg には<br>
+WM_STATECODE_CHILD_CONNECTED 状態における<br>
+<a href="../wm/wm/WMStartParentCallback.html">WMStartParentCallback</a>型のポインタが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_DISCONNECTED</TD>
+      <TD>任意の子機が切断された直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg には<br>
+WM_STATECODE_DISCONNECTED 状態における<br>
+<a href="../wm/wm/WMStartParentCallback.html">WMStartParentCallback</a>型のポインタが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_KICKED</TD>
+      <TD>任意の子機への接続拒否応答が正しく完了した直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_REQ_ACCEPTED</TD>
+      <TD>任意の子機への接続許可応答が正しく完了した直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_WAIT_TO_SEND</TD>
+      <TD>任意の子機がダウンロード開始の待機状態に入ったことを示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+      </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_SEND_PROCEED</TD>
+      <TD>任意の子機へのダウンロードが正常に進捗している状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+コールバックは、ダウンロード開始の時に一度だけ呼ばれます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_SEND_COMPLETE</TD>
+      <TD>任意の子機へのダウンロードが正常に完了した直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_BOOT_REQUEST</TD>
+      <TD>任意の子機へブート要求を送信している状態を示します。<br>
+この状態には、<A href="parent/MB_CommBootRequest.html">MB_CommBootRequest</A>または、<A href="parent/MB_CommBootRequestAll.html">MB_CommBootRequestAll</A>を呼んだときに遷移します。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_BOOT_STARTABLE</TD>
+      <TD>任意の子機へのブート要求が正しく完了した直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_REQUESTED</TD>
+      <TD>任意の子機からダウンロード要求を受信した直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg には<br>
+子機のユーザーデータが格納された<a href="mb_user_info_type.html">MBUserInfo</a>型のポインタが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_MEMBER_FULL</TD>
+      <TD>任意の子機からのダウンロード開始要求が、人数制限のため強制的にキャンセルされた直後の状態を示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+引数child_aidには対象子機の番号が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_END</TD>
+      <TD>MB_End関数の完了時のコールバックを示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg にはNULLが渡されます。<br>
+特定の子機に対する状態のコールバックではないため、引数child_aidには0が渡されます。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_PSTATE_ERROR</TD>
+      <TD>MBライブラリの内部で発生した各種のエラーを通知するコールバックを示します。<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックでは、引数 arg には<br>
+エラーの要因が格納された<a href="mb_error_status_type.html">MBErrorStatus</a>型のポインタが渡されます。<br>
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD><font color="#808080">MB_COMM_PSTATE_WM_EVENT</font></TD>
+      <TD><font color="#808080">ライブラリ内部で使用されます。</font>
+	  </TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A> 
+<A href="parent/MB_CommGetParentState.html">MB_CommGetParentState</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/05 列挙型追加<BR>
+2004/09/30 列挙型追加<BR>
+2004/09/27 記述修正<BR>
+2004/09/10 MB_CommSetParentStateCallback関数でのコールバック引数に関する記述を追加<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

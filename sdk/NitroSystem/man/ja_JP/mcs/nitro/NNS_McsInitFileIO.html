@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsInitFileIO</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_McsInitFileIO</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>void NNS_McsInitFileIO(void* workMem);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+<table border="1" width="100%">
+ 
+    <tr> 
+  <td width="13%"><em><strong><font face="Courier New">workMem</font></strong></em></td>
+  <td width="87%">MCS File I/O が使用するワーク用メモリ。バイト数 が NNS_MCS_FILEIO_WORKMEM_SIZE で、アライメントが 4 のメモリ領域を指定してください。</td>
+ </tr>
+  </table>
+  
+<h2>返り値</h2>
+<p>なし。</p>
+<h2>説明</h2>
+<P>PC上のファイルを読み書きするAPIとディレクトリ内のファイルを列挙するAPIのための初期化を行います。</p>
+<P>この関数Iを呼び出す前に、NNS_McsInit()を呼び出してmcsライブラリを初期化しておく必要があります。</p>
+<H2>履歴</H2>
+<P>2007/04/26 内部で使用するワーク用メモリを引数で指定するように変更。<br>
+2004/12/07 説明を追加。<br>
+2004/10/08 説明を追加。<br>
+ 2004/07/01 初版</P>
+</body>
+</html>

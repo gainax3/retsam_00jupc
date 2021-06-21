@@ -1,0 +1,133 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSSslConnection</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSSslConnection</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct _CPSSslConnection {
+    CPSSslSession *session;			// the session this connection belongs to
+    u8 reuse_session;				// non 0 if session should be reused
+    u8 padding;
+    u16 method;					// cipher suite
+    u8 client_random[32];
+    u8 server_random[32];
+    u8 key_block[2*(20+16+0)];
+    u8 *send_mac;				// points to somewhere in key_block[]
+    u8 *send_key;				//  ditto
+    u8 *send_iv;				//  ditto
+    CPSCipherCtx send_cipher;			// cipher context for send
+    u8 send_seq[8];				// 64 bit sequence
+    u8 *rcv_mac;				// points to somewhere in key_block[]
+    u8 *rcv_key;				//  ditto
+    u8 *rcv_iv;					//  ditto
+    CPSCipherCtx rcv_cipher;			// cipher context for receive
+    u8 rcv_seq[8];				// 64 bit sequence
+    CPSSha1Ctx sha1_hash;			// hash of handshake messages in SHA1
+    CPSSha1Ctx sha1_hash_tmp;
+    CPSMd5Ctx md5_hash;				// hash of handshake messages in MD5
+    CPSMd5Ctx md5_hash_tmp;
+    u8 server;					// non 0 if server type connection
+    u8 state;
+    u16 padding2;
+    //
+    //	certificate
+    //
+    int sig_algorithm;				// signature algorithm
+    int pub_algorithm;				// public key algorithm
+    u8 *hash_start;				// start address of hash area
+    u8 *hash_end;				// end address of hash area + 1
+    u8 hash_val[20];				// hash value of hash_start..hash_end
+    int hash_len;				// valid length of hash_val[]
+    CPSCaInfo midca_info;			// middle ca info
+    u8 modulus[CPS_MAX_RSA_LEN];		// modulus
+    u32 modulus_len;				// length of modulus in bytes
+    u8 exponent[CPS_MAX_RSA_PUBLICEXPONENT_LEN];
+									// public exponent
+    int exponent_len;				// length of exponent in bytes
+    u8 *signature;
+    int signature_len;
+    u8 seen_validity;				// next string is 'subject', not 'issuer'
+    u8 seen_pub_algorithm;			// next BIT STRING is public key information
+    u8 seen_attr;
+    u8 date_ok;
+    char issuer[CPS_MAX_DN_LEN + 1];
+    char subject[CPS_MAX_DN_LEN + 1];
+    char cn[CPS_MAX_CN_LEN + 1];
+    char *server_name;				// server name to match
+    u8 *cert;					// for auth_callback
+    int certlen;
+    u32 cur_date;				// 65536*year + 256*month + day
+    int (*auth_callback)(int, struct _CPSSslConnection *, int);
+    CPSCaInfo **ca_info;
+    int ca_builtins;
+    CPSPrivateKey *my_key;
+    CPSCertificate *my_certificate;
+    //
+    //	ssl_read()
+    //
+    u8 *inbuf;					// pointer to input buffer (NULL if none)
+    long inbuf_len;				// length of inbuf
+    long inbuf_pnt;				// index of current position (0..inbuf_len-1)
+} CPSSslConnection;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>SSLコネクションを定義する構造体です。<BR>
+<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>内のフィールドからポイントされます。<BR>
+殆どのフィールドはシステムが設定します。アプリケーションが設定しなければならないフィールドは以下の通り。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>server_name</CODE></STRONG></EM></TD>
+			<TD width="75%">NULLでない場合、証明書のサーバ名(Common Name)との比較が行われ、その結果がコールバック関数に渡されます。<BR>
+			証明書のサーバ名としてのワイルドカードをサポートしています。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>auth_callback</CODE></STRONG></EM></TD>
+			<TD>証明書の認証作業が終わる度に呼び出されます。最初のパラメータとしてエラーコードが、二番目のパラメータとしてCPSSslConnectionへのポインタが、三つ目のパラメータとして認証チェーン内の段数(初期値は0)が渡されます。<BR>
+			渡されたエラーコードを変更して返すことによってエラーを無視することが出来ます。0以外を返すと認証は失敗します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P>auth_callbackに渡されるCPSSslConnection *から、以下のフィールドを参照することが出来ます。</P>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>cert<BR>
+			certlen</CODE></STRONG></EM></TD>
+			<TD width="75%">現在認証作業中の証明書へのポインタ、長さ。この証明書を元にして<CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>を作りルート証明に追加することが出来ます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>subject</CODE></STRONG></EM></TD>
+			<TD>証明書のsubject。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>issuer</CODE></STRONG></EM></TD>
+			<TD>証明書のissuer。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>, <CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

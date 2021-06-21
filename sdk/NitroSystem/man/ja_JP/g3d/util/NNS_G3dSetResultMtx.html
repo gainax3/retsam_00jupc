@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dSetResultMtx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dSetResultMtx</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/util.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL
+NNS_G3dSetResultMtx(
+    const NNSG3dRenderObj* pRenderObj,
+    const MtxFx43*         pos,
+    const MtxFx33*         nrm,
+    u32                    nodeID
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
+      <TD width="87%">RenderObj構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pos</STRONG></EM></TD>
+      <TD width="87%">クリップ座標行列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nrm</STRONG></EM></TD>
+      <TD width="87%">方向ベクトル行列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nodeID</STRONG></EM></TD>
+      <TD width="87%">ノードID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>行列がスタックの該当位置に代入出来た場合は<CODE>TRUE</CODE>を返します。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>NNS_G3dDraw</CODE>関数の実行後に<B><I>nodeID</I></B>に対応する行列が行列スタックに残るような設定になっている場合は（g3dcvtr で-sオプションをつけた場合は全てのnodeIDに対応する行列が行列スタックにストアされている）、 <B><I>pos</I></B>, <B><I>nrm</I></B>で指定された行列をスタックの該当位置に代入します。 代入できた場合は<CODE>TRUE</CODE>,できなかった場合は<CODE>FALSE</CODE>が返ります。</P>
+<P>戻り値が<CODE>TRUE</CODE>の場合、行列モードはPosition/Vector行列モードに変更されています。 <B><I>nrm</I></B>は<CODE>NULL</CODE>でもかまいませんが、<B><I>pos</I></B>は<CODE>NULL</CODE>であってはいけません。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dGetResultMtx.html">NNS_G3dGetResultMtx</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

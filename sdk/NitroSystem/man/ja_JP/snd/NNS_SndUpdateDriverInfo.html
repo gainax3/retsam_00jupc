@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndUpdateDriverInfo</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndUpdateDriverInfo</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndUpdateDriverInfo( <code>void )</code>;</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>引数</h2>
+      
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1LWT"></a>
+      <h2>返り値</h2>
+
+      <p>ドライバ情報の更新に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドドライバの情報を更新します。
+</p>
+      <p>
+更新したサウンドドライバの情報は、
+<tt class="function"><a href="NNS_SndReadDriverChannelInfo.html">NNS_SndReadDriverChannelInfo</a></tt>関数、
+<tt class="function"><a href="NNS_SndPlayerReadDriverPlayerInfo.html">NNS_SndPlayerReadDriverPlayerInfo</a></tt>関数、
+<tt class="function"><a href="NNS_SndPlayerReadDriverTrackInfo.html">NNS_SndPlayerReadDriverTrackInfo</a></tt>関数
+で取得することができます。
+</p>
+      <p>
+更新に失敗しても、それまでに１度でも更新に成功していれば、
+最後に更新に成功した時点での情報を取得することができます。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+サウンドドライバの情報の更新のために、ARM7と通信を行っています。
+そのため、ARM7での処理が行われない間に、繰り返しこの関数を呼びだしても、失敗し続けます。
+そのため、１フレームに１回程度の間隔で呼びだしてください。
+</p>
+<p>
+始めてこの関数を呼びだしたときは、必ず更新に失敗します。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndReadDriverChannelInfo.html">NNS_SndReadDriverChannelInfo</a>, <a href="NNS_SndPlayerReadDriverPlayerInfo.html">NNS_SndPlayerReadDriverPlayerInfo</a>, <a href="NNS_SndPlayerReadDriverTrackInfo.html">NNS_SndPlayerReadDriverTrackInfo</a></p>
+<h2>履歴</h2>
+<p>2005/02/17 初版<br></p>
+</div>
+</body>
+</html>

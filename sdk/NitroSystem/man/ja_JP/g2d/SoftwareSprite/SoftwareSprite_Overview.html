@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>SoftwareSprite_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">ソフトウェアスプライト概要</h1>
+<H2>サンプル実行画面</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><IMG src="image.jpg" border="0" width="264" height="457"></span><BR>
+<H2>説明</H2>
+ソフトウェアスプライトは、NITROの３Ｄグラフィックスエンジンの四角形ポリゴンを用いて、キャラクタの表示を行います。<BR>
+<BR>
+
+<h2>ソフトウェアスプライトの機能</h2>
+
+<h3>プライオリティ</h3>
+ソフトウェアスプライトの描画優先度をソフトウェアスプライトを構成する四角ポリゴンのZ値で指定することが可能です。
+四角ポリゴンの描画に正射投影を使用するため、正しく、深度テストを行うためには深度テストをZバッファモードに設定する必要があります。
+３Dオブジェクトと、ソフトウェアスプライトを併用する場合には、ユーザはお互いの描画が干渉しないように適切にそれぞれのZ値域を管理する必要があります。
+<h3>アルファブレンド</h3>
+ソフトウェアスプライトのαブレンド機能では、スプライト1枚ごとに不透明度を変化させることが可能です。<br>
+また、3Dグラフィックスエンジンで、α値をゼロにしてポリゴン描画を行うと、ワイヤーフレーム描画が行われますが、
+ライブラリ内部で、完全に透明なスプライト(α値がゼロ)を判定し、描画を行わないようにしています。<br>
+
+<h3>カラーモジュレーション</h3>
+ソフトウェアスプライトに、指定された単色を掛け合わせる事が可能です。
+
+<h3>ＵＶ値の設定</h3>
+ソフトウェアスプライトは、テクスチャがマッピングされたポリゴンとして描画されますが、そのマッピングされているテクスチャのＵ，Ｖの値を変更する事が可能となっています。UV値はスプライト左上のUV値、右下のUV値の2点で指定するようになっています。
+
+<h3>回転の中心の設定</h3>
+ソフトウェアスプライトを回転させる場合、その回転の中心を指定することができます。回転の中心が設定されない場合は、ソフトウェアスプライトの中心を回転の中心とします。
+
+<h3>上下左右のフリップ</h3>
+ソフトウェアスプライトは、上下方向、左右方向に反転させて表示させる事が可能です。
+
+<h2>ソフトウェアスプライトの描画API</h2>
+ソフトウェアスプライトを描画するAPIは大きく2種類に分類されます。<BR>
+ひとつは、ライブラリの提供するデータ構造を利用して描画を行うAPI、<BR>
+もうひとつはデータ構造を利用せずに直接関数引数にパラメータを指定して描画を実行するAPIです。<BR>
+<h2>API種類によるパフォーマンスの違いについて</h2>
+<CODE><pre>
+void NNS_G2dDrawSprite( s16 px, s16 py, int pz, 
+                        int sx, int sy, 
+                        int U0, int V0, int U1, int V1 );
+</pre></CODE>
+パラメータを指定して描画を実行するAPIは、UV値を設定して四角ポリゴンを描画するだけのシンプルな関数です。<BR>
+高速に動作しますが、3D グラフィックスエンジンの各種設定をユーザが適切に行う必要があります。<BR>
+<BR>
+<CODE><pre>
+void NNS_G2dDrawSpriteSimple  ( const NNSG2dSimpleSprite* pS );
+void NNS_G2dDrawSpriteBasic   ( const NNSG2dBasicSprite* pB );
+void NNS_G2dDrawSpriteExtended( const NNSG2dExtendedSprite* pE );
+</pre></CODE>
+ライブラリのデータ構造を利用して描画を行うAPIは、3D グラフィックスエンジンの各種設定を関数内で実行します。<BR>
+そのため、簡単に利用できますが処理負荷は直接パラメータを指定するAPIと比べて高くなっています。<BR>
+<BR>
+サンプルデモの比較では、直接パラメータを指定するAPIは、データ構造を利用して描画を行うAPIと比べて 約40パーセントほど高速に動作します。
+<BR>
+そのため、ゲームパフォーマンスに大きな影響を与える局面（大量のスプライトの描画など）では、直接パラメータを指定するAPI
+のご利用を推奨します。<BR>
+
+<h2>ソフトウェアスプライトのデータ構造</h2>
+
+<h3>ソフトウェアスプライトのデータ構造</h3>
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><strong>種類</strong></td>
+    <td width="47%"><strong>指定できる機能</strong></td>
+    <td width="40%"><strong>適用例</strong></td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">Simple Sprite</font></strong></em></td>
+    <td width="47%">スプライトの位置、Ｚ軸回りの回転、プライオリティ、アルファブレンド</td>
+    <td width="40%">パーティクル等、同一テクスチャで位置、サイズのみが異なるスプライトの描画</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">Basic Sprite</font></strong></em></td>
+    <td width="47%">Simple Spriteの全機能、テクスチャ指定、カラーモジュレーション</td>
+    <td width="40%">標準的なスプライトの描画</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">Extended Sprite</font></strong></em></td>
+    <td width="47%">Basic Spriteの全機能、ＵＶ値の設定、回転中心の設定、上下左右のフリップ</td>
+    <td width="40%">UVアニメーション等のエフェクトを含むスプライトの描画</td>
+  </tr>
+  
+</table>
+<BR>
+ソフトウェアスプライトは、指定可能なパラメータの数により３種類のフォーマットを用意しています。<BR>
+ソフトウェアスプライトは、内部的に全てExtended Spriteとして処理されています。<BR>
+Simple Sprite及びBasic Spriteでは指定できない機能にはデフォルトの値を使用し、
+これらについての演算コストを低減しています。<BR>
+なお、デフォルトの値は、別に用意されるＡＰＩにより変更可能となっています。<BR>
+  
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2007/11/26 アルファ値に関する説明を追加</P>
+<P>2004/12/06 初版</P>
+</body>
+</html>

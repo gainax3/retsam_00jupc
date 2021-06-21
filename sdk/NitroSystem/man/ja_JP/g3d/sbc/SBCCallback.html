@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>SBCとコールバック</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css"   type="text/css">
+	<LINK rel="stylesheet" href="../../css/apilist.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<h1 align="left">SBCとコールバック</h1>
+
+<h2>説明</h2>
+<P>レンダリング、及びアニメーションの計算はNNS_G3dDrawの実行の際、モデルリソースバイナリ内の（ユーザー独自のものも指定できる）SBC(Structure
+Byte Code)と呼ばれる何種類かのバイトコード命令のストリームを処理することで行われます。SBCには、ジョイントの親子関係を定義するもの、使用するマテリアルを指定するもの、描画するプリミティブを指定するものがあり、実行時にそれらを適切に解釈することにより、描画やアニメーションを行います。<BR>
+<BR>
+以下に各SBC命令の概略を表にまとめておきます。各命令の先頭1バイトは5bitと3bitのフィールドに分かれていて、前者が各SBC命令に対応し、後者でそのバリエーションを指定するようになっています。それぞれの命令はいくつかの引数を持つ場合があります。<BR>
+</P>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left"><A href="SBC_NOP.html">NNS_G3D_SBC_NOP</A></TD>
+      <TD width="573">何もしません。g3dcvtrはこのコードをSBC命令列の終わりに4バイトアラインメントをとるために出力します。</TD>
+    </TR>
+    <TR>
+      <TD width="249"><A href="SBC_RET.html">NNS_G3D_SBC_RET</A></TD>
+      <TD width="573">SBC命令列の処理を終了します。</TD>
+    </TR>
+    <TR>
+      <TD width="249"><A href="SBC_NODE.html">NNS_G3D_SBC_NODE</A></TD>
+      <TD width="573">現在どのノードを処理しているのかを引数のノードIDで指定し、そのノードに所属しているプリミティブがvisibleかinvisibleかを指定します。ビジビリティアニメーションはこの命令で処理されます。</TD>
+    </TR>
+    <TR>
+      <TD width="249"><A href="SBC_MTX.html">NNS_G3D_SBC_MTX</A></TD>
+      <TD width="573">ジオメトリエンジンのPosition/Vector行列スタックの指定した場所からカレント行列に行列をロードします。</TD>
+    </TR>
+    <TR>
+      <TD width="249"><A href="SBC_MAT.html">NNS_G3D_SBC_MAT</A></TD>
+      <TD width="573">どのマテリアルを使用するかを引数のマテリアルIDで指定し、対応するマテリアル情報をジオメトリエンジンに送信します。マテリアルアニメーションはこの命令で処理されます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_SHP.html">NNS_G3D_SBC_SHP</A></TD>
+      <TD>どのシェイプを使用するかを引数のシェイプIDで指定し、対応するシェイプ(プリミティブのディスプレイリスト)をジオメトリエンジンに送信します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_NODEDESC.html">NNS_G3D_SBC_NODEDESC</A></TD>
+      <TD>引数でノードの親子関係を定義します。ノードに対応するPosition/Vector行列が格納される行列スタックのIDが指定されることもあります。ジョイントアニメーションはこの命令で処理されます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_BB.html">NNS_G3D_SBC_BB</A></TD>
+      <TD>ビルボード変換を行います。バリエーションによってビルボード変換した行列をスタックに格納したりできます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_BBY.html">NNS_G3D_SBC_BBY</A></TD>
+      <TD>Ｙ軸ビルボード変換を行います。バリエーションによってＹ軸ビルボード変換した行列をスタックに格納したりできます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_NODEMIX.html">NNS_G3D_SBC_NODEMIX</A></TD>
+      <TD>ウェイテッドエンベロープ表示に使用する行列を計算し、計算結果を行列スタックに格納します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_CALLDL.html">NNS_G3D_SBC_CALLDL</A></TD>
+      <TD>引数でオフセットとサイズを指定したディスプレイリストをジオメトリエンジンに送信します。g3dcvtrはこのSBC命令を出力しません。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_POSSCALE.html">NNS_G3D_SBC_POSSCALE</A></TD>
+      <TD>NITRO中間ファイルの.imdフォーマットで指定される&lt;model_info&gt;::pos_scaleを処理するためにg3dcvtrが出力するSBC命令。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_ENVMAP.html">NNS_G3D_SBC_ENVMAP</A></TD>
+      <TD>環境マップのためのテクスチャ行列計算を行うためのSBC命令です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="SBC_PRJMAP.html">NNS_G3D_SBC_PRJMAP</A></TD>
+      <TD>投影マップのためにテクスチャ行列計算を行うためのSBC命令です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+それぞれの命令には最大で３つのコールバック可能なポイント（タイミング）が設定されています。各命令には１つずつコールバックを設定することができます。使用したいコールバックが１つだけの場合は、<A href="../kernel/NNS_G3dRenderObjSetCallBack.html" target="_self"><CODE>NNS_G3dRenderObjSetCallBack</CODE></A>関数を使用することで指定することができます。使用したいコールバックが複数ある場合は、<A href="../kernel/NNS_G3dRenderObjSetInitFunc.html" target="_self"><CODE>NNS_G3dRenderObjSetInitFunc</CODE></A>関数で描画直前に実行されるコールバック関数を登録しておいて、コールバック関数内で<A href="NNSG3dRS.html#NNS_G3dRSSetCallBack" target="_self"><CODE>NNS_G3dRSSetCallBack</CODE></A>関数を利用することにより、複数のコールバックを登録することができます。それぞれのタイミングがどのような用途に適しているかについては、各命令についての解説を参照してください。</P>
+<H2>参照</H2>
+
+
+<H2>履歴</H2>
+<P>2004/10/11 改訂版<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

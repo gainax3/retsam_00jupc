@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetIndCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetIndCallback</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetIndCallback( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">無線ファームウェアからの状況通知時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+ </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>通常のAPIの結果通知用のコールバック関数とは別に、ビーコン受信時や接続認証の途中経過、ARM7側の致命的エラーなどで発生するIndication通知用のコールバック関数をセットするためのAPIです。
+この関数は同期関数ですので、処理に成功した場合即座にWM_ERRCODE_SUCCESSを返します。
+WMの初期化後、必要に応じて1度以上実行してください。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_Initialize.html">WM_Initialize</A>, <A href="WM_Reset.html">WM_Reset</A>, <A href="WM_End.html">WM_End</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/02/01 説明の修正等<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

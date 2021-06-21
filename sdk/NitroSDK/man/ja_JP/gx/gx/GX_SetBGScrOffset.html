@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetBGScrOffset</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetBGScrOffset</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_SetBGScrOffset(GXBGScrOffset offset);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">offset</font></strong></em></td>
+    <td width="87%">BGスクリーンデータオフセット値</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>メイン2DエンジンのBGスクリーンデータの格納アドレスに対してかけるオフセットを選択します。この関数で設定するBGスクリーンベースオフセットと各BG毎に設定するスクリーンベースブロックとの合計が、スクリーンデータのBG-VRAM空間でのベースアドレスになります。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BGSCROFFSET_0x00000</CODE></TD>
+      <TD>オフセットに0x00000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x10000</CODE></TD>
+      <TD>オフセットに0x10000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x20000</CODE></TD>
+      <TD>オフセットに0x20000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x30000</CODE></TD>
+      <TD>オフセットに0x30000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x40000</CODE></TD>
+      <TD>オフセットに0x40000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x50000</CODE></TD>
+      <TD>オフセットに0x50000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x60000</CODE></TD>
+      <TD>オフセットに0x60000番地を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BGSCROFFSET_0x70000</CODE></TD>
+      <TD>オフセットに0x70000番地を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXBGScrOffset</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_BGSCROFFSET_0x00000 = 0x00,
+    GX_BGSCROFFSET_0x10000 = 0x01,
+    GX_BGSCROFFSET_0x20000 = 0x02,
+    GX_BGSCROFFSET_0x30000 = 0x03,
+    GX_BGSCROFFSET_0x40000 = 0x04,
+    GX_BGSCROFFSET_0x50000 = 0x05,
+    GX_BGSCROFFSET_0x60000 = 0x06,
+    GX_BGSCROFFSET_0x70000 = 0x07
+}
+GXBGScrOffset;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="../g2/G2_SetBG0Control.html">G2_SetBG0Control</A>, <A href="../g2/G2_SetBG1Control.html">G2_SetBG1Control</A>, <A href="../g2/G2_SetBG2ControlText.html">G2_SetBG2ControlText</A>, <A href="../g2/G2_SetBG2ControlAffine.html">G2_SetBG2ControlAffine</A>, <A href="../g2/G2_SetBG2Control256x16Pltt.html">G2_SetBG2Control256x16Pltt</A>, <A href="../g2/G2_SetBG2Control256Bmp.html">G2_SetBG2Control256Bmp</A>, <A href="../g2/G2_SetBG2ControlDCBmp.html">G2_SetBG2ControlDCBmp</A>, <A href="../g2/G2_SetBG3ControlText.html">G2_SetBG3ControlText</A>, <A href="../g2/G2_SetBG3ControlAffine.html">G2_SetBG3ControlAffine</A>, <A href="../g2/G2_SetBG3Control256x16Pltt.html">G2_SetBG3Control256x16Pltt</A>, <A href="../g2/G2_SetBG3Control256Bmp.html">G2_SetBG3Control256Bmp</A>, <A href="../g2/G2_SetBG3ControlDCBmp.html">G2_SetBG3ControlDCBmp</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>参照の修正。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

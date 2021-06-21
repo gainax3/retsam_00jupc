@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_CancelFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_CancelFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void FS_CancelFile( FSFile *p_file );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>
+指定したファイルが現在非同期処理を実行中であればキャンセルを要求します。<BR>
+関数は、処理の完了を待たずにすぐ制御を返します。<BR>
+キャンセルが受理されるかまたは実際に処理が完了するまで待機するには、FS_WaitAsync関数を使用します。<BR>
+<BR>
+指定したファイルがアーカイブ内で未処理コマンドとして保留されている場合、<BR>
+アーカイブが現在のコマンドを完了したタイミングでキャンセルが受理されます。<BR>
+指定したファイルが現在アーカイブ内で処理対象コマンドとなっている場合、<BR>
+処理をキャンセルするか完遂するかはアーカイブの実装に依存します。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="FS_WaitAsync.html">FS_WaitAsync</A> 
+<A href="FS_IsBusy.html">FS_IsBusy</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<p>
+2004/07/13 初版<br>
+</P>
+</body>
+</html>

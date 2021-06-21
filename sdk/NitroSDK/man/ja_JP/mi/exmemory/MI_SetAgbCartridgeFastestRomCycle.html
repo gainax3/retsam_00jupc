@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_SetAgbCartridgeFastestRomCycle</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_SetAgbCartridgeFastestRomCycle</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_SetAgbCartridgeFastestRomCycle( </CODE><BR>
+  　　　　　　　　<CODE>MICartridgeRomCycle1st *prev1st,</CODE><BR>
+  　　　　　　　　<CODE>MICartridgeRomCycle2nd *prev2nd );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><EM><B>prev1st</B></EM></TD>
+      <TD>以前の、ROM 1st アクセスサイクルの設定値を格納する領域へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>prev2nd</B></EM></TD>
+      <TD>以前の、ROM 2nd アクセスサイクルの設定値を格納する領域へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。<BR>
+<BR>
+ただし、<EM><B>prev1st</B></EM> と <EM><B>prev2nd</B></EM> の示す先に以前の設定値が格納されます。</p>
+
+<H2>説明</H2>
+<P>カートリッジROM領域への1st、2nd アクセスサイクルを設定します。<BR>
+AGBカートリッジのROMのために高速なROMアクセスサイクルを設定します。</P>
+<P>1st アクセスサイクルを 8、2ndアクセスサイクルを 4 に設定します。この設定は、</P>
+<BLOCKQUOTE>
+<P><CODE>MI_SetCartridgeRomCycle1st( MI_CTRDG_ROMCYCLE1_8 );<BR>
+MI_SetCartridgeRomCycle2nd( MI_CTRDG_ROMCYCLE2_4 );<BR>
+</CODE></P>
+</BLOCKQUOTE>
+<P>を行なうのと同じです。</P>
+<P><B><I>prev1st</I></B> が NULL でなければ、以前の1st アクセスサイクル設定値を <B><I>prev1st</I></B> で示されるポインタの先に格納します。<B><I>prev2nd</I></B> が NULL でなければ、以前の 2nd アクセスサイクル設定値を <B><I>prev2nd</I></B> で示されるポインタの先に格納します。</P>
+<P><BR>
+</P>
+<BLOCKQUOTE><B>注意：</B><BR>
+DS ではシステムクロックの周波数が AGB の2倍になっているため、アクセスサイクルの計算式は下記のようになります。</BLOCKQUOTE>
+<BLOCKQUOTE><BLOCKQUOTE>（AGBのウェイトサイクル数 + 1 
+&lt;実アクセス&gt;）× 2</BLOCKQUOTE></BLOCKQUOTE>
+<BLOCKQUOTE>なので、AGB での 3-1 ウェイトが、DS では 8-4 アクセスという表記になっています
+。ウェイトサイクルに換算すると 7-3 というように全て奇数の表現となります。</BLOCKQUOTE>
+<BLOCKQUOTE>AGB の全マスクROM は 3-1 ウェイト（DS では 8-4 アクセスと表記）まで速い設定にできますが、
+遅くする分には問題はありません。1st アクセスを 6 に設定することのみが禁止となります。</BLOCKQUOTE>
+<BLOCKQUOTE>ただし、カートリッジに AGB のマスク ROM と同じスピードではアクセスできないデバイスが搭載されている可能性もありますし、 AGB とは違ってアクセススピードを設定できるアドレス空間が１つしかありませんので、 できるだけ遅い設定でアクセスされることをお勧めします。 <FONT color="#ff0033">マスクROM 用の速い設定にしたまま遅いデバイスへアクセスすることの無いように注意して下さい。</FONT></BLOCKQUOTE>
+<BLOCKQUOTE>またアクセスする前には <CODE><A href="../../ctrdg/CTRDG_GetAgbGameCode.html">CTRDG_GetAgbGameCode()</A></CODE> / <CODE><A href="../../ctrdg/CTRDG_IsBitID.html">CTRDG_IsBitID()</A></CODE> / <CODE><A href="../../ctrdg/CTRDG_IsNumberID.html">CTRDG_IsNumberID()</A></CODE>　などを使い、想定しているカートリッジかどうか確認後にアクセスするようにして下さい。</BLOCKQUOTE>
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE>
+ <A href="MI_SetCartridgeRomCycle1st.html">MI_SetCartridgeRomCycle1st</A>,
+ <A href="MI_SetCartridgeRomCycle2nd.html">MI_SetCartridgeRomCycle2nd</A>,</CODE><BR>
+<CODE>
+<A href="../../ctrdg/CTRDG_GetAgbGameCode.html">CTRDG_GetAgbGameCode</A>,
+<A href="../../ctrdg/CTRDG_IsBitID.html">CTRDG_IsBitID</A>, 
+<A href="../../ctrdg/CTRDG_IsNumberID.html">CTRDG_IsNumberID</A></CODE></p>
+<H2>履歴</H2>
+<P>2005/02/08 初版</P>
+</body>
+</html>

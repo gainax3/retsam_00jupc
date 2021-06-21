@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>コンパイルターゲット解説</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>コンパイルターゲット解説</H1>
+
+<H3><A name="Sinit">[NITRO_FINALROM]</A></H3>
+<P>マスター提出時に製品版の作成目的で使用されるオプションです。</P>
+<P>※<font color="#ff0000">ROMを提出する際は必ずこのオプションでビルドする必要があります。</font></P>
+<ul>
+<li>SDK_ASSERT(), SDK_WARNING() が無効
+<li>OS_Panic(), OS_TPanic() はFINALROMライブラリではメッセージを出力しません。(何もしないでただ停止する関数 OS_Terminate() と同等となります。)
+<li>最適化ON
+<li>デバッグ用の関数のいくつかが、動作環境に関わらず一定の値を返したり、何もしない関数になります。</P>
+</ul>
+
+<H3><A name="System">[NITRO_DEBUG]</A></H3>
+<P>NITRO_FINALROM や NITRO_RELEASE 使用時より入念なデバッグ目的で使用されるオプションです。</P>
+<ul>
+<li>OSのデバッグ文字列表示関数の OS_PutString() 等が有効。
+<li>OS_GetArgc(), OS_GetArgv() 等が有効。
+<li>OS_Panic(), OS_TPanic() が有効。
+<li>デバッグのスタックチェック関数の OS_CheckStack(), OS_CheckIrqStack() が有効。
+</ul>
+<P>具体的に関数の無効・有効の詳細は<A href="../os/list_os.html#Debug-Environment" target="main">OSのデバッグ関数リファレンス</A>以下のデバッグ用関数を参照してください。</P>
+
+<H3><A name="Arch">[NITRO_RELEASE]</A></H3>
+<P>NITRO_DEBUG 使用時より製品版に近い条件でのデバッグ目的で使用されるオプションです。</P>
+<P>基本的には、上記 NITRO_DEBUG/NITRO_ROM の両方の特徴をマージしたものです。<br>
+以下に具体的なマージの内容を示します。</P>
+
+
+<style type="text/css">
+<!--
+.enable { background :#ffcccc; text-align : center }
+.disable { text-align : center }
+-->
+</style>
+<TABLE border="1" cellspacing="10" cellpadding="10">
+  <TBODY>
+    <TR>
+      <TH>特徴</TH>
+      <TH style="background :#ccffcc">NITRO_DEBUG</TH>
+      <TH style="background :#ccccff">NITRO_RELEASE</TH>
+　　　<TH style="background :#cccccc">NITRO_FINALROM</TH>
+    </TR>
+    <TR>
+      <TD>OSのデバッグ出力関数<br><CODE>OS_PutString() 等</CODE></TD>
+      <TD colspan="2" class="enable">有効</TD>
+      <TD class="disable">無効</TD>
+    </TR>
+    <TR>
+      <TD>コンパイラの最適化</TD>
+      <TD class="disable">OFF</TD>
+      <TD colspan="2" class="enable">ON</TD>
+    </TR>
+    <TR>
+      <TD>SDK内部のデバッグコード</TD>
+      <TD colspan="2" class="enable">有効</TD>
+      <TD class="disable">無効</TD>
+    </TR>
+    <TR>
+      <TD>SDK_ASSERT() 等のアサート関数</TD>
+      <TD class="disable">有効</TD>
+      <TD colspan="2" class="enable">無効</TD>
+    </TR>
+    <TR>
+      <TD>OS_Panic() 等の関数</TD>
+      <TD colspan="2" class="enable">有効</TD>
+      <TD class="disable">OS_Terminate() と同等</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+</BODY>
+</HTML>

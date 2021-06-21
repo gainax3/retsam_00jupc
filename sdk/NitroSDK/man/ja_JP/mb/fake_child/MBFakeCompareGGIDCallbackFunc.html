@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MBFakeCompareGGIDCallbackFunc</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBFakeCompareGGIDCallbackFunc</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mb/mb_fake_child.h&gt;</CODE>
+
+typedef BOOL (*MBFakeCompareGGIDCallbackFunc) (WMStartScanCallback *arg, u32 defaultGGID);
+</PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>引数</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD><B><I>arg</I></B></TD>
+      <TD>スキャンによって得られたビーコン情報が格納された<a href="../../wm/wm/WMStartScanCallback.html">WMStartScanCallback</a>構造体へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>defaultGGID</I></B></TD>
+      <TD><A href="MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>関数で指定されたGGIDです。<br />
+      コールバックの実装の利便性のために引数として渡されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>今回得られたビーコンが検索条件に合致していればTRUEを、そうでなければFALSEを返す必要があります。</p>
+
+<H2>説明</H2>
+<p><A href="MB_FakeSetCompareGGIDCallback.html">MB_FakeSetCompareGGIDCallback</A>関数で指定するユーザ定義コールバックの関数プロトタイプです。<br />
+このコールバック関数に与えられた引数をもとに検索対象のビーコンであるかそうでないかを判断し、その結果を返り値としてMBライブラリへ指示する必要があります。</p>
+<p>
+例)
+<pre>
+<font color="#008000">/* 2種類のGGIDのみを検索対象にしたい場合 */</font>
+static BOOL GGIDComparator(WMStartScanCallback *arg, u32 defaultGGID)
+{
+    (void)defaultGGID;
+    return (arg->gameInfo.ggid == ggid1) || (arg->gameInfo.ggid == ggid2);
+}
+
+    ...
+    MB_FakeInit(mbfBuf, &userInfo);
+    MB_FakeSetCompareGGIDCallback(GGIDComparator);
+    MB_FakeStartScanParent(NotifyScanParent, ggid1<font color="#008000">/* この例では単に無視される */</font>);
+    ...
+</pre>
+</p>
+<h2>参照</h2>
+<p><A href="MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>、<A href="MB_FakeSetCompareGGIDCallback.html">MB_FakeSetCompareGGIDCallback</A><CODE><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2007/04/18 初版<br>
+</P>
+</body>
+</html>

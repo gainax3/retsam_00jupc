@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dAnmObjInit</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dAnmObjInit</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dAnmObjInit(
+    NNSG3dAnmObj*       pAnmObj,
+    void*               pResAnm,
+    const NNSG3dResMdl* pResMdl,
+    const NNSG3dResTex* pResTex
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pAnmObj</STRONG></EM></TD>
+      <TD width="87%">AnmObj構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResAnm</STRONG></EM></TD>
+      <TD width="87%">アニメーションリソースへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResTex</STRONG></EM></TD>
+      <TD width="87%">テクスチャリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>NNSG3dAnmObj</CODE>構造体を初期化します。 <I><B>pAnmObj</B></I>で指定されるアニメーションオブジェクトは、最低で<CODE>NNS_G3dAnmObjCalcSizeRequired</CODE>
+関数で得られるサイズ分の大きさを持っている必要があります。
+<B><I>pResTex</I></B>は、テクスチャパターンアニメーション用のアニメーションオブジェクトを初期化する場合以外では<CODE>NULL</CODE>でも構いません。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dAnmObjCalcSizeRequired.html">NNS_G3dAnmObjCalcSizeRequired</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

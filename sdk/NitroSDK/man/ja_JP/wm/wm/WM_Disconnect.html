@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_Disconnect</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_Disconnect</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_Disconnect( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback , u16 aid );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">aid</FONT></STRONG></EM></TD>
+      <TD width="800">切断する通信相手のAIDを指定します。<BR>
+      親機の場合には 1 ～ 15 の値を指定可能であり、対応するAIDを割り当てられている子機を個別に切断します。<BR>
+      子機の場合には 0 ( 親機のAID ) を指定して下さい。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>指定した機器との接続を切断します。WMのステートが<A href="wm_state_diagram.html">接続済み以上の状態</A>(PARENT、MP_PARENT、CHILD、MP_CHILD、DCF_CHILD 各ステート)でのみ実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、切断処理が完了した後にコールバックが発生します。<BR>
+子機として接続を切断した場合には通信が終了し、WMのステートは<A href="wm_state_diagram.html">IDLEステート</A>に戻ります。
+親機の場合には指定した子機との接続を切断するだけで、通信は継続されます。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="WM_StartParent.html">WM_StartParent</A>, <A href="WM_StartConnect.html">WM_StartConnect</A>, <A href="WM_DisconnectChildren.html">WM_DisconnectChildren</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 aid引数について説明追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

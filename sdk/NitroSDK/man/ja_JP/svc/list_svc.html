@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>スーパバイザコールAPI 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>スーパバイザコール(SVC)API 機能一覧</H1>
+
+<H3><A name="IntrWait">割り込みウェイト</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="SVC_WaitVBlankIntr.html" target="_self">SVC_WaitVBlankIntr</A></TH>
+      <TD>Vブランク割り込みが発生するまでHalt状態で待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_Halt.html" target="_self">SVC_Halt</A></TH>
+      <TD>CPUコアを停止させてHalt状態に入ります。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_Sleep.html" target="_self">SVC_Sleep</A></TH>
+      <TD>原発信を停止します。(ARM7のみ)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Wait">ウェイト</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="SVC_WaitByLoop.html" target="_self">SVC_WaitByLoop</A></TH>
+      <TD>システムROM上でループしてウェイトします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Memory">メモリ操作</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="SVC_CpuClear.html" target="_self">SVC_CpuClear*</A></TH>
+      <TD>CPUでメモリクリアを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="SVC_CpuCopy.html" target="_self">SVC_CpuCopy*</A></TH>
+      <TD>CPUでメモリコピーを行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Uncompress">圧縮データ展開</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="SVC_UnpackBits.html" target="_self">SVC_UnpackBits</A></TH>
+      <TD>0固定のビットを詰めたデータを展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_UncompressLZ.html" target="_self">SVC_UncompressLZ8</A></TH>
+      <TD>LZ77圧縮データを8bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_UncompressRL.html" target="_self">SVC_UncompressRL8</A></TH>
+      <TD>ランレングス圧縮データを8bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_UncompressLZ.html" target="_self">SVC_UncompressLZ16FromDevice</A></TH>
+      <TD>デバイス上のLZ77圧縮データを16bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_UncompressRL.html" target="_self">SVC_UncompressRL16FromDevice</A></TH>
+      <TD>デバイス上のランレングス圧縮データを16bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_UncompressHuffmanFromDevice.html" target="_self">SVC_UncompressHuffmanFromDevice</A></TH>
+      <TD>デバイス上のハフマン圧縮データを32bit単位で展開します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Calc">算術演算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="SVC_Div.html" target="_self">SVC_Div</A></TH>
+      <TD>除算を行い結果を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="SVC_DivRem.html" target="_self">SVC_DivRem</A></TH>
+      <TD>除算を行い余りを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="SVC_Sqrt.html" target="_self">SVC_Sqrt</A></TH>
+      <TD>平方根演算を行い結果を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Other">その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="SVC_GetCRC16.html" target="_self">SVC_GetCRC16</A></TH>
+      <TD>CRC-16を算出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="SVC_IsMmemExpanded.html" target="_self">SVC_IsMmemExpanded</A></TH>
+      <TD>メインメモリが8MB搭載されているかどうかを調べます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

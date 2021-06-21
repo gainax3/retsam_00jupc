@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_FAVORITE_COLOR_*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_FAVORITE_COLOR_*</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+<pre>
+/* 本体情報 : 「お気に入りの色」定義 (0-15) */
+#define OS_FAVORITE_COLOR_GRAY         0x00
+#define OS_FAVORITE_COLOR_BROWN        0x01
+#define OS_FAVORITE_COLOR_RED          0x02
+#define OS_FAVORITE_COLOR_PINK         0x03
+#define OS_FAVORITE_COLOR_ORANGE       0x04
+#define OS_FAVORITE_COLOR_YELLOW       0x05
+#define OS_FAVORITE_COLOR_LIME_GREEN   0x06
+#define OS_FAVORITE_COLOR_GREEN        0x07
+#define OS_FAVORITE_COLOR_DARK_GREEN   0x08
+#define OS_FAVORITE_COLOR_SEA_GREEN    0x09
+#define OS_FAVORITE_COLOR_TURQUOISE    0x0A
+#define	OS_FAVORITE_COLOR_BLUE         0x0B
+#define OS_FAVORITE_COLOR_DARK_BLUE    0x0C
+#define OS_FAVORITE_COLOR_PURPLE       0x0D
+#define OS_FAVORITE_COLOR_VIOLET       0x0E
+#define OS_FAVORITE_COLOR_MAGENTA      0x0F
+#define OS_FAVORITE_COLOR_BITMASK      0x0F
+#define OS_FAVORITE_COLOR_MAX          0x10
+
+/* 本体情報 : 「お気に入りの色」定数 (GXRgb) */
+#define OS_FAVORITE_COLOR_VALUE_GRAY         GX_RGB(12,16,19)
+#define OS_FAVORITE_COLOR_VALUE_BROWN        GX_RGB(23, 9, 0)
+#define OS_FAVORITE_COLOR_VALUE_RED          GX_RGB(31, 0, 3)
+#define OS_FAVORITE_COLOR_VALUE_PINK         GX_RGB(31,17,31)
+#define OS_FAVORITE_COLOR_VALUE_ORANGE       GX_RGB(31,18, 0)
+#define OS_FAVORITE_COLOR_VALUE_YELLOW       GX_RGB(30,28, 0)
+#define OS_FAVORITE_COLOR_VALUE_LIME_GREEN   GX_RGB(21,31, 0)
+#define OS_FAVORITE_COLOR_VALUE_GREEN        GX_RGB( 0,31, 0)
+#define OS_FAVORITE_COLOR_VALUE_DARK_GREEN   GX_RGB( 0,20, 7)
+#define OS_FAVORITE_COLOR_VALUE_SEA_GREEN    GX_RGB( 9,27,17)
+#define OS_FAVORITE_COLOR_VALUE_TURQUOISE    GX_RGB( 6,23,30)
+#define OS_FAVORITE_COLOR_VALUE_BLUE         GX_RGB( 0,11,30)
+#define OS_FAVORITE_COLOR_VALUE_DARK_BLUE    GX_RGB( 0, 0,18)
+#define OS_FAVORITE_COLOR_VALUE_PURPLE       GX_RGB(17, 0,26)
+#define OS_FAVORITE_COLOR_VALUE_VIOLET       GX_RGB(26, 0,29)
+#define OS_FAVORITE_COLOR_VALUE_MAGENTA      GX_RGB(31, 0,18)
+</pre>
+<br>
+  </CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>本体情報として取得できる「お気に入りの色」の番号を定義する定数値です。<BR>
+番号ごとの色の対応は以下のとおりです。
+<BR>
+<TABLE border="0" height="310">
+  <TBODY>
+    <TR>
+      <TD>番号</TD>
+      <TD>R</TD><TD>G</TD><TD>B</TD><TD>イメージ</TD>
+	  <TD>定数名</TD>
+    </TR>
+
+    <TR>
+      <TD>0</TD>
+      <TD>12</TD><TD>16</TD><TD>19</TD><TD><img src="color_0.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_GRAY</TD>
+    </TR>
+
+    <TR>
+      <TD>1</TD>
+      <TD>23</TD><TD>9</TD><TD>0</TD><TD><img src="color_1.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_BROWN</TD>
+    </TR>
+
+    <TR>
+      <TD>2</TD>
+      <TD>31</TD><TD>0</TD><TD>3</TD><TD><img src="color_2.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_RED</TD>
+    </TR>
+
+    <TR>
+      <TD>3</TD>
+      <TD>31</TD><TD>17</TD><TD>31</TD><TD><img src="color_3.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_PINK</TD>
+    </TR>
+
+    <TR>
+      <TD>4</TD>
+      <TD>31</TD><TD>18</TD><TD>0</TD><TD><img src="color_4.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_ORANGE</TD>
+    </TR>
+
+    <TR>
+      <TD>5</TD>
+      <TD>30</TD><TD>28</TD><TD>0</TD><TD><img src="color_5.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_YELLOW</TD>
+    </TR>
+
+    <TR>
+      <TD>6</TD>
+      <TD>21</TD><TD>31</TD><TD>0</TD><TD><img src="color_6.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_LIME_GREEN</TD>
+    </TR>
+
+    <TR>
+      <TD>7</TD>
+      <TD>0</TD><TD>31</TD><TD>0</TD><TD><img src="color_7.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_GREEN</TD>
+    </TR>
+
+    <TR>
+      <TD>8</TD>
+      <TD>0</TD><TD>20</TD><TD>7</TD><TD><img src="color_8.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_DARK_GREEN</TD>
+    </TR>
+
+    <TR>
+      <TD>9</TD>
+      <TD>9</TD><TD>27</TD><TD>17</TD><TD><img src="color_9.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_SEA_GREEN</TD>
+    </TR>
+
+    <TR>
+      <TD>10</TD>
+      <TD>6</TD><TD>23</TD><TD>30</TD><TD><img src="color_10.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_TURQUOISE</TD>
+    </TR>
+
+    <TR>
+      <TD>11</TD>
+      <TD>0</TD><TD>11</TD><TD>30</TD><TD><img src="color_11.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_BLUE</TD>
+    </TR>
+
+    <TR>
+      <TD>12</TD>
+      <TD>0</TD><TD>0</TD><TD>18</TD><TD><img src="color_12.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_DARK_BLUE</TD>
+    </TR>
+
+    <TR>
+      <TD>13</TD>
+      <TD>17</TD><TD>0</TD><TD>26</TD><TD><img src="color_13.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_PURPLE</TD>
+    </TR>
+
+    <TR>
+      <TD>14</TD>
+      <TD>26</TD><TD>0</TD><TD>29</TD><TD><img src="color_14.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_VIOLET</TD>
+    </TR>
+
+    <TR>
+      <TD>15</TD>
+      <TD>31</TD><TD>0</TD><TD>18</TD><TD><img src="color_15.jpg"></TD>
+	  <TD>OS_FAVORITE_COLOR_MAGENTA</TD>
+    </TR>
+
+
+  </TBODY>
+</TABLE>
+<BR>
+<P>番号から色値を取得するには<a href="OS_GetFavoriteColor.html">OS_GetFavoriteColor</a>関数を使用します。<br>
+<br>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<a href="OS_GetFavoriteColorTable.html">OS_GetFavoriteColorTable</a>
+<a href="OS_GetFavoriteColor.html">OS_GetFavoriteColor</a>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/08 初版<br>
+</P>
+</body>
+</html>

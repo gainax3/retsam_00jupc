@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSConfig</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSConfig</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define CPS_DONOTUSE_DHCP 0x0001</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct {
+    u32 mode;
+    void *(*alloc)(u32);
+    void (*free)(void *);
+    void (*dhcp_callback)(void);
+    BOOL (*link_is_on)(void);
+    unsigned long long random_seed;
+    u8 *lan_buf;
+    u32 lan_buflen;
+    u32 mymss;
+    CPSInAddr requested_ip;
+    u32 yield_wait;
+} CPSConfig;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p><CODE><A href="CPS_Startup.html">CPS_Startup</A></CODE>()に渡す構成情報を定義する構造体です。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>mode</CODE></STRONG></EM></TD>
+			<TD width="75%">望まれる動作モードをビット単位で設定します。<BR>
+                                        CPS_DONOTUSE_DHCPビットが立っているならDHCPを使用しません。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>alloc</CODE></STRONG></EM></TD>
+			<TD>必須。CPSライブラリ内でメモリ割り当てが必要なときに呼び出される関数を設定します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>free</CODE></STRONG></EM></TD>
+			<TD>必須。CPSライブラリ内でメモリ開放が必要なときに呼び出される関数を設定します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>dhcp_callback</CODE></STRONG></EM></TD>
+			<TD>DHCPを使用しない設定になっている場合は物理リンクが確立した直後に、DHCPを使用する設定になっている場合はDHCPサーバが見つけられなかったときに呼び出されます。<BR>
+                            dhcp_callback内では<CODE><A href="CPS_GLOBAL_VARIABLE.html">CPSMyIp</A></CODE>、<CODE><A href="CPS_GLOBAL_VARIABLE.html">CPSNetMask</A></CODE>、<CODE><A href="CPS_GLOBAL_VARIABLE.html">CPSGatewayIp</A></CODE>、<CODE><A href="CPS_GLOBAL_VARIABLE.html">CPSDnsIp</A></CODE>等を設定します。
+                            NULLの場合は何もしない関数に設定されます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>link_is_on</CODE></STRONG></EM></TD>
+			<TD>物理リンクの状態(リンクがONなら非0)を返す関数に設定します。<BR>
+                            NULLの場合は常に真を返す関数に設定されます。<BR>
+                            通常は、<BR>
+<BR>
+                        static BOOL some_func()<BR>
+                        {<BR>
+                        　　return WCM_GetApMacAddress() != NULL;<BR>
+                        }<BR>
+<BR>
+		といった関数に設定してください。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>random_seed</CODE></STRONG></EM></TD>
+			<TD>乱数の種を設定します。<BR>
+                            0の場合はOS_GetTick()の値になります。<BR>
+                            この値を元に一時ポートの初期値等を設定するので、ユーザの何等かのアクションをきっかけにするなどして可能な限りランダムな値を設定することを推奨します。</TD>
+		</TR>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>lan_buf</CODE></STRONG></EM></TD>
+			<TD width="75%">必須。無線LANの受信に使うリングバッファのアドレスを設定します。<BR></TD>
+		</TR>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>lan_buflen</CODE></STRONG></EM></TD>
+			<TD width="75%">必須。無線LANの受信に使うリングバッファの長さを設定します。<BR>
+                                        あまりに設定した長さが小さいとパケットを取りこぼす可能性があり、8Kから16K以上を設定することを推奨します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>mymss</CODE></STRONG></EM></TD>
+			<TD>TCP受信に於ける、最大セグメントサイズを設定します。<BR>
+                            0の場合は1460に設定されます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>requested_ip</CODE></STRONG></EM></TD>
+			<TD>DHCPを使用する際、割り当てて欲しいIPアドレスを設定します。<BR>
+                           DHCPサーバは可能な限りこのIPアドレスを割り当てようとする。<BR>
+                           0の場合は、特に割り当てて欲しいIPアドレスはない事を示します。<BR>
+<BR>
+                           アクセスポイントによっては MAC アドレスと IP アドレスのペアを保持しないものがあるため、ネットワーク切断→再接続を行なうときには必要に応じて前回接続時の IP アドレスが優先的に割り当てられるようにこのメンバに IP アドレスを指定する必要があります。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>yield_wait</CODE></STRONG></EM></TD>
+			<TD>CPSライブラリ内でパケットの受信をポーリングしながら待つ部分において、OSのどの機能を使って待つかを指定します。<BR>
+<BR>
+		0の場合は、OS_YieldThread()を使用します。<BR>
+                この場合CPSライブラリよりも低い優先度を持つアプリケーションには制御が渡りにくくなります。<BR>
+		0でない場合は、この値をパラメータとするOS_Sleep()を使用します。<BR>
+                この場合は優先度の低いアプリケーションにも確実に制御が渡るが、ネットワークの反応が若干低下する可能性があります。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P>
+(注意) メンバalloc, freeに設定される関数では排他制御を行う必要があります。
+</P>
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_Startup.html">CPS_Startup</A></CODE>, <CODE><A href="CPS_CONSTANT_TYPE.html">CPSライブラリ型</A></CODE>, <CODE><A href="CPS_GLOBAL_VARIABLE.html">CPSライブラリ大域変数</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

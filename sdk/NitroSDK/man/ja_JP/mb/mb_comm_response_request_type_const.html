@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBCommResponseRequestType</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBCommResponseRequestType</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef	enum
+{
+    MB_COMM_RESPONSE_REQUEST_KICK,
+    MB_COMM_RESPONSE_REQUEST_ACCEPT,
+    MB_COMM_RESPONSE_REQUEST_DOWNLOAD,
+    MB_COMM_RESPONSE_REQUEST_BOOT
+} MBCommResponseRequestType;
+</PRE>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>マルチブート親機から子機へ通知する接続応答を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_RESPONSE_REQUEST_KICK</TD>
+      <TD>子機の接続を拒否して切断させることを表します。<BR>
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_RESPONSE_REQUEST_ACCEPT</TD>
+      <TD>子機の接続を許可してエントリー要求を受け入れることを表します。<BR>
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_RESPONSE_REQUEST_DOWNLOAD</TD>
+      <TD>子機のダウンロード要求を許可してダウンロード開始を通知することを表します。<br>
+	  <a href="parent/MB_CommStartSending.html">MB_CommStartSending</a>関数はこの定数を指定して<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>関数を呼び出すことと等価です。
+	  </TD>
+    </TR>
+
+    <TR>
+      <TD>MB_COMM_RESPONSE_REQUEST_BOOT</TD>
+      <TD>子機のブート要求を許可してブート開始を通知することを表します。<br>
+	  <a href="parent/MB_CommBootRequest.html">MB_CommBootRequest</a>関数はこの定数を指定して<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>関数を呼び出すことと等価です。
+	  </TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A> 
+<a href="parent/MB_CommStartSending.html">MB_CommStartSending</a> 
+<a href="parent/MB_CommBootRequest.html">MB_CommBootRequest</a>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/27 列挙値追加<br>
+2004/08/27 初版<BR>
+</P>
+</body>
+</html>

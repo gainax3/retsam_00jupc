@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Animation_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NITRO-Systemで表現できるアニメーション</h1>
+
+<H2>説明</H2>
+NITRO-Systemの2D開発環境では、セルと呼ばれる概念と、マルチセルと呼ばれる概念を用いて、パターンアニメーションを行うゲームキャラクタを構成します。
+以下にこれらの概念について説明します。
+<BR>
+
+<h2>セルとセルリスト</h2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:430.2pt;
+ height:112.8pt' fillcolor="silver">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title="" cropright="-29418f"/>
+</v:shape><![endif]--><IMG width="574" height="150" src="clip_image001.gif" v:shapes="_x0000_i1025"></span></P>
+<BR>
+セルは、複数個のOBJを組み合わせて配置し、1つのゲームキャラクタを構成したものです。<BR>
+部分部分で画像データの転用などを工夫すると、ゲームキャラクタを1枚の大きなOBJとして表示するよりも、キャラクタデータの使用効率が良くなる場合があります（左右対称ゲームキャラクタの半分だけをキャラクタデータとして作成し、そのデータを反転して利用するなど）。<BR>
+また、複数OBJを組み合わせることで、OBJのサイズ制限以上の大きなゲームキャラクタを構成することが可能です。<BR>
+セルリストは、複数枚のセルをまとめたものであり、後述のセルアニメーションから参照されます。<BR>
+
+
+
+
+
+
+
+<h2>セルアニメーション</h2>
+セルアニメーションは、複数枚のセルを次々と切り替えて描画することにより行われます。<BR>
+アニメーションを構成するセルは、セルリスト内に登録されているセルを使用します。<BR>
+アニメーションを構成している個々のセルには表示時間（フレーム数）を指定する事ができ、セルは指定されたフレームだけ表示され、次のセルに切り替わります。<BR>
+<BR>
+
+
+
+
+<h2>マルチセルとマルチセルリスト</h2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:404.4pt;
+ height:124.2pt' fillcolor="silver">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title="" croptop="4014f" cropbottom="-683f" cropright="3033f"/>
+</v:shape><![endif]--><IMG width="539" height="166" src="clip_image002.gif" v:shapes="_x0000_i1025"></span></P>
+<BR>
+マルチセルは、複数個のセルアニメーションを組み合わせて配置したものです。<BR>
+複数個のセルアニメーションを部品として使用して、1枚の大きなゲームキャラクタを構成します。<BR>
+マルチセルリストは、複数枚のマルチセルをまとめたものであり、後述のマルチセルアニメーションから参照されます。<BR>
+
+
+<h2>マルチセルアニメーション</h2>
+マルチセルアニメーションは、複数枚のマルチセルを次々と切り替えて描画することにより行われます。<BR>
+アニメーションを構成するマルチセルは、マルチセルリスト内に登録されているマルチセルを使用します。<BR>
+アニメーションを構成している個々のマルチセルには表示時間（フレーム数）を指定する事ができ、マルチセルは指定されたフレームだけ表示され、次のマルチセルに切り替わります。<BR>
+マルチセルを構成している部品であるセルアニメーションは、それぞれ自分自身に設定されているタイミングに従ってアニメーションを行います。すなわち、ゲームキャラクタの個々の部品が、異なったタイミングでアニメーションを行うという、複雑な動きをするゲームキャラクタを作成する事が可能となります。<BR>
+
+
+<h2>VRAM転送アニメーション</h2>
+前述のアニメーションは、いずれもセルが表示する画像（キャラクタ）データの参照先を切り替えることによって、アニメーションを実現していました。<BR>
+しかし、非常に沢山の種類の画像データを使用して、多彩なアニメーションを実現しようとしたときに画像データの最大容量制限が問題になってきます。<BR>
+VRAM転送アニメーションは、セルが参照する画像（VRAM）データを適宜転送して書き換えることで、アニメーションを実現する仕組みです。VRAM転送アニメーションを利用することで、ハードが必要とする画像データ容量を少なく抑えたまま、大量の画像データを使用してアニメーションを作成することが可能になります。VRAM転送アニメーションは2Dゲーム開発で、非常に沢山のアニメーションパターンを持つ、主人公キャラクタなどに一般的に利用される機能です。<BR>
+<BR>
+VRAM転送アニメを利用するには、VRAM転送アニメ専用データとして、オプションを指定してコンバートする必要があります。（その際、入力NITRO-CHARACTERデータはキャラクタ圧縮なし、1Dマッピングモード形式である必要があります。）<BR>
+なお、厳密にはG2Dライブラリでは、VRAM転送タスクの請求を行う部分までを処理しており、実際のVRAM転送の実行、タスクの管理 については、処理を外部モジュールに委譲しています。<BR>
+また、VRAM転送処理を行うモジュールの標準的な実装をGFDライブラリ内で提供しています。GFDライブラリのドキュメントを参照ください。<BR>
+
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

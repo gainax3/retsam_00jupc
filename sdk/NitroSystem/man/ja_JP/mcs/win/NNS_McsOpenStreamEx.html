@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsOpenStreamEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsOpenStreamEx</h1>
+<h2>構文</h2>
+
+<dl> 
+ <dd> 
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;
+
+struct NNSMcsStreamInfo
+{
+    DWORD   structBytes;
+    DWORD   deviceType;
+};
+
+HANDLE NNS_McsOpenStreamEx(
+           USHORT            channel,
+           DWORD             flags,
+           NNSMcsStreamInfo* pStreamInfo);</CODE></pre>
+ </dd>
+</dl>
+<h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">channel</font></strong></em></td>
+    
+  <td width="87%">ストリームを識別するための値。0～0x3FFFの値を指定できます。0x4000～0x7FFFはNITRO-Systemアプリケーション用、0x8000～0xFFFFはmcsシステム用に予約しています。</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">flags</font></strong></em></td>
+    
+  <td width="87%">オープン時に指定するフラグ(詳細は説明を参照)。</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pStreamInfo</font></strong></em></td>
+    
+  <td width="87%">オープンしたストリームに関する補足情報を格納する構造体へのポインタ。</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>オープンに成功した場合、ストリームのハンドルを返します。
+失敗した場合、INVALID_HANDLE_VALUE を返します。エラーの詳細は GetLastError() で取得できます。</p>
+<H2>説明</H2>
+<p>Multiple Channel Stream 用ストリームをオープンします。ストリームは実際にはWin32システムにおけるメッセージタイプの名前付きパイプであり、返り値はこの名前付きパイプのハンドルとなります。関数<code>NNS_McsOpenStream</code>はメッセージタイプの名前付きパイプをオープンし、引数channelで指定されたストリームを識別する値をmcsサーバに登録します。</P>
+<p>ストリームへの読み書きを行うには、Win32 API の<code>ReadFile(Ex)</code>, <code>WriteFile(Ex)</code>を用います。</P>
+<p>引数flagには0か、次に示す値が指定できます。この値はWin32 APIのCreateFileの第6引数(dwFlagsAndAttributes)に渡されます。</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><em><strong><font face="Courier New">FILE_FLAG_OVERLAPPED</font></strong></em></td>
+      <td>非同期で入出力を行います(オーバーラップドI/O)。詳細については Win32 API のCreateFileの解説を参照してください。</td>
+    </tr>
+  </tbody>
+</table>
+<p>pStreamInfoで指定したNNSMcsStreamInfo構造体にオープンしたストリームに関する補足情報がセットされます。 NNSMcsStreamInfo構造体メンバの詳細は次のとおりです。</p>
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">structBytes</font></strong></em></td>
+    
+  <td width="87%">構造体のサイズを表します。関数を呼び出す前に、sizeof(NNSMcsStreamInfo)をセットするようにしてください。</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">deviceType</font></strong></em></td>
+    
+  <td width="87%">デバイスのタイプを表す値がセットされます。</td>
+  </tr>
+</table>
+<p>deviceTypeにセットされるデバイスのタイプは次のとおりです。</p>
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_UNKNOWN</font></strong></em></td>
+    
+  <td width="87%">未知のデバイス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_NITRO_DEBUGGER</font></strong></em></td>
+    
+  <td width="87%">IS-NITRO-EMULATOR</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_NITRO_UIC</font></strong></em></td>
+    
+  <td width="87%">IS-NITRO-UIC</td>
+  </tr>
+  <tr>
+      <td width="13%"><em><strong><font face="Courier New">NNS_MCS_DEVICE_TYPE_ENSATA</font></strong></em></td>
+      <td width="87%">ensata</td>
+  </tr>
+</table>
+<h2>参照</h2>
+<p><code><a href="NNS_McsOpenStream.html">NNS_McsOpenStream</a></code></p>
+<H2>履歴</H2>
+<P>2005/01/11 説明を追加。デバイスの種類からIS-CGB-EMULATORを削除し、ensataを追加。<br>
+2004/10/08 引数channelの解説を追加。<br>
+2004/07/20 初版</P>
+</body>
+</html>

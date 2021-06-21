@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<base target="main" />
+<title>ワイヤレスファイルシステムライブラリ(WFS) 機能一覧</title>
+<link rel="stylesheet" href="../css/titles.css" />
+</head>
+<body>
+<h3>ワイヤレスファイルシステムライブラリ(WFS)</h3>
+<p>[<b><a href="list_wfs.html">機能一覧</a></b>][<b><a href="overview_wfs.html">概要</a></b>]</p>
+<dl>
+  <dt>サーバ処理</dt>
+  <dt style="padding-left:5px">初期化</dt>
+  <dd><a href="server/WFS_InitServer.html">WFS_InitServer</a></dd>
+  <dd><a href="server/WFS_EndServer.html">WFS_EndServer</a></dd>
+  <dd><a href="server/WFS_RegisterServerTable.html">WFS_RegisterServerTable</a></dd>
+  <dd><a href="server/WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a></dd>
+  <dt style="padding-left:5px">フック</dt>
+  <dd><a href="server/WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a></dd>
+  <dd><a href="server/WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a></dd>
+  <dd><a href="server/WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a></dd>
+  <dd><a href="server/WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a></dd>
+  <dt style="padding-left:5px">設定</dt>
+  <dd><a href="server/WFS_GetServerConnectedBitmap.html">WFS_GetServerConnectedBitmap</a></dd>
+  <dd><a href="server/WFS_GetServerBusyBitmap.html">WFS_GetServerBusyBitmap</a></dd>
+  <dd><a href="server/WFS_GetServerSyncBitmap.html">WFS_GetServerSyncBitmap</a></dd>
+  <dd><a href="server/WFS_GetServerPacketLength.html">WFS_GetServerPacketLength</a></dd>
+  <dd><a href="server/WFS_SetServerPacketLength.html">WFS_SetServerPacketLength</a></dd>
+  <dd><a href="server/WFS_SetServerSync.html">WFS_SetServerSync</a></dd>
+  
+</dl>
+<dl>
+  <dt>クライアント処理</dt>
+  <dt style="padding-left:5px">初期化</dt>
+  <dd><a href="client/WFS_InitClient.html">WFS_InitClient</a></dd>
+  <dd><a href="client/WFS_EndClient.html">WFS_EndClient</a></dd>
+  <dd><a href="client/WFS_StartClient.html">WFS_StartClient</a></dd>
+  <dt style="padding-left:5px">フック</dt>
+  <dd><a href="client/WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a></dd>
+  <dd><a href="client/WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a></dd>
+  <dd><a href="client/WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a></dd>
+  <dd><a href="client/WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a></dd>
+  <dt style="padding-left:5px">操作</dt>
+  <dd><a href="client/WFS_IsClientReady.html">WFS_IsClientReady</a></dd>
+  <dd><a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a></dd>
+  <dd><a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a></dd>
+  <dd><a href="client/WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a></dd>
+  <dd><a href="client/WFS_ReplaceRomArchive.html">WFS_ReplaceRomArchive</a></dd>
+</dl>
+<dl>
+  <dt>型・構造体</dt>
+  <dd><a href="WFSEventType.html">WFSEventType</a></dd>
+  <dd><a href="WFSEventCallback.html">WFSEventCallback</a></dd>
+  <dd><a href="WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a></dd>
+  <dd><a href="WFSPacketBuffer.html">WFSPacketBuffer</a></dd>
+  <dd><a href="WFSPeerInfo.html">WFSPeerInfo</a></dd>
+  <dd><a href="WFSSegmentBuffer.html">WFSSegmentBuffer</a></dd>
+  <dd><a href="WFSTableFormat.html">WFSTableFormat</a></dd>
+</dl>
+</body>
+</html>

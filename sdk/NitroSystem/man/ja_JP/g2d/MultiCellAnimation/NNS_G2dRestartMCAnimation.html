@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dRestartMCAnimation</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dRestartMCAnimation</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_MultiCellAnimation.h&gt;</CODE></pre>
+  <pre><CODE>
+void NNS_G2dRestartMCAnimation
+(
+    NNSG2dMultiCellAnimation*   pMultiCellAnim
+);
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMultiCellAnim</font></strong></em></td>
+    <td width="87%">[OUT] マルチセルアニメーション実体</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+マルチセルアニメーションの再生を、アニメーションシーケンスの先頭から再スタートします。<BR>
+逆再生をしている場合には、アニメーションシーケンスの終端が先頭と解釈されます。<BR>
+<BR>
+内部では、マルチセルアニメーションのアニメーションコントローラおよび、マルチセルを構成するセルアニメーションのアニメーションコントローラに対して、
+NNS_G2dStartAnimCtrl()関数と、NNS_G2dResetAnimCtrlState()関数を呼び出しています。
+
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="../Animation/NNS_G2dStartAnimCtrl.html">NNS_G2dStartAnimCtrl</A><br></CODE>
+<CODE><A href="../Animation/NNS_G2dResetAnimCtrlState.html">NNS_G2dResetAnimCtrlState</A><br></CODE>
+</p>
+<H2>履歴</H2>
+<P>2006/05/29 初版</P>
+</body>
+</html>

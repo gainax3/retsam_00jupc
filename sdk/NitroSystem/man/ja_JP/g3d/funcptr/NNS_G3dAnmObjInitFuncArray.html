@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dAnmObjInitFuncArray</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dAnmObjInitFuncArray</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
+
+typedef void (*NNSG3dAnimInitFunc)(NNSG3dAnmObj*, void*, const NNSG3dResMdl*);
+
+typedef struct
+{
+    u8                  category0;
+    u8                  dummy_;
+    u16                 category1;
+    NNSG3dAnimInitFunc  func;
+}
+NNSG3dAnmObjInitFunc;
+
+NNSG3dAnmObjInitFunc NNS_G3dAnmObjInitFuncArray[NNS_G3D_ANMFMT_MAX];</CODE></PRE>
+</DL>
+<H2>説明</H2>
+<P><CODE><A href="../kernel/NNS_G3dAnmObjInit.html" target="_self">NNS_G3dAnmObjInit</A></CODE>関数で<CODE><A href="../struct/NNSG3dAnmObj.html" target="_self">NNSG3dAnmObj</A></CODE>構造体を初期化する際、アニメーションリソースの種類毎に処理を振り分ける必要があります。<CODE>NNS_G3dAnmObjInitFuncArray</CODE>はそのための配列で、配列の要素(<CODE>NNSG3dAnmObjInitFunc</CODE>)は<CODE>NNSG3dAnimInitFunc</CODE>型の関数へのポインタになっています。<CODE>NNSG3dAnimInitFunc</CODE>型の関数は、実際にアニメーションフォーマットに適するように<CODE><A href="../struct/NNSG3dAnmObj.html" target="_self">NNSG3dAnmObj</A></CODE>構造体を初期化します。新しいアニメーションフォーマットをG3Dに追加する場合は、この配列に要素を追加することで<CODE><A href="../kernel/NNS_G3dAnmObjInit.html" target="_self">NNS_G3dAnmObjInit</A></CODE>関数を利用した初期化が可能になります。<BR>
+<BR>
+なお、<CODE>NNSG3dAnmObjInitFunc</CODE>構造体のcategory0, category1は、<CODE>NNSG3dResAnmHeader</CODE>構造体のcategory0, category1と比較されます。<CODE>NNSG3dResAnmHeader</CODE>構造体はアニメーションリソース内のデータ構造です。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="../kernel/NNS_G3dAnmObjInit.html" target="_self">NNS_G3dAnmObjInit</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/10/19 初版</P>
+</BODY>
+
+</HTML>

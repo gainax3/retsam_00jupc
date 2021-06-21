@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMGetWirelessCounterCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMGetWirelessCounterCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMGetWirelessCounterCallback
+{
+    u16     apiid;
+    u16     errcode;
+    u16     wlCmdID;
+    u16     wlResult;
+    u32     TX_Success;
+    u32     TX_Failed;
+    u32     TX_Retry;
+    u32     TX_AckError;
+    u32     TX_Unicast;
+    u32     TX_Multicast;
+    u32     TX_WEP;
+    u32     TX_Beacon;
+    u32     RX_RTS;
+    u32     RX_Fragment;
+    u32     RX_Unicast;
+    u32     RX_Multicast;
+    u32     RX_WEP;
+    u32     RX_Beacon;
+    u32     RX_FCSError;
+    u32     RX_DuplicateError;
+    u32     RX_MPDuplicateError;
+    u32     RX_ICVError;
+    u32     RX_FrameCtrlError;
+    u32     RX_LengthError;
+    u32     RX_PLCPError;
+    u32     RX_BufferOverflowError;
+    u32     RX_PathError;
+    u32     RX_RateError;
+    u32     RX_FCSOK;
+    u32     TX_MP;
+    u32     TX_KeyData;
+    u32     TX_NullKey;
+    u32     RX_MP;
+    u32     RX_MPACK;
+    u32     MPKeyResponseError[15];
+
+} WMGetWirelessCounterCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_GET_W_COUNTERに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlCmdID</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなったコマンドのIDが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlResult</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなった要因コードが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Success</font></strong></em></TD>
+      <TD width="800">正常に送信が行えた回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Failed</font></strong></em></TD>
+      <TD width="800">正常に送信が行えなかった回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Retry</font></strong></em></TD>
+      <TD width="800">再送を行った回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_AckError</font></strong></em></TD>
+      <TD width="800">希望するACKフレームを受信できなかった回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Unicast</font></strong></em></TD>
+      <TD width="800">正常に送信が行えたUnicast宛フレームの数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Multicast</font></strong></em></TD>
+      <TD width="800">正常に送信が行えたMulticast宛フレームの数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_WEP</font></strong></em></TD>
+      <TD width="800">正常に送信が行えた暗号フレームの数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_Beacon</font></strong></em></TD>
+      <TD width="800">正常に送信が行えたBeaconフレームの数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_RTS</font></strong></em></TD>
+      <TD width="800">RTSを受信してCTSの応答を行った回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_Fragment</font></strong></em></TD>
+      <TD width="800">フラグメントされたフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_Unicast</font></strong></em></TD>
+      <TD width="800">Unicast宛のフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_Multicast</font></strong></em></TD>
+      <TD width="800">Multicast宛のフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_WEP</font></strong></em></TD>
+      <TD width="800">正常に復号を行えた暗号フレームの受信回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_Beacon</font></strong></em></TD>
+      <TD width="800">Beaconフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_FCSError</font></strong></em></TD>
+      <TD width="800">FCSエラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_DuplicateError</font></strong></em></TD>
+      <TD width="800">重複エラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_MPDuplicateError</font></strong></em></TD>
+      <TD width="800">MPフレームの重複エラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_ICVError</font></strong></em></TD>
+      <TD width="800">ICVエラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_FrameCtrlError</font></strong></em></TD>
+      <TD width="800">不正なFrameCtrlを持つフレームを受信した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_LengthError</font></strong></em></TD>
+      <TD width="800">規定の長さより短いあるいは長いフレームを受信した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_PLCPError</font></strong></em></TD>
+      <TD width="800">PLCPのCRCエラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_BufferOverflowError</font></strong></em></TD>
+      <TD width="800">受信バッファがオーバーフローした回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_PathError</font></strong></em></TD>
+      <TD width="800">受信ブロック内部のエラーが発生した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_RateError</font></strong></em></TD>
+      <TD width="800">受信レートが不正なフレームを受信した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_FCSOK</font></strong></em></TD>
+      <TD width="800">正常なFCSを持つフレームを受信した回数が格納されます。<FONT color=red>(注)</FONT></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_MP</font></strong></em></TD>
+      <TD width="800">MPフレームを送信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_KeyData</font></strong></em></TD>
+      <TD width="800">MP-KeyDataフレームを送信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">TX_NullKey</font></strong></em></TD>
+      <TD width="800">MP-NullKeyフレームを送信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_MP</font></strong></em></TD>
+      <TD width="800">正常なMPフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">RX_MPACK</font></strong></em></TD>
+      <TD width="800">正常なMPACKフレームを受信した回数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">MPKeyResponseError</font></strong></em></TD>
+      <TD width="800">各子機がKey要求に対して正常に応答しなかった回数が格納されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+    <FONT color=red>(注)</FONT><BR>
+    ハードウェア内のカウンタが予期せずクリアされる可能性があるため、
+    実際の合計値に満たない値となる場合があります。
+</P>
+
+<H2>説明</H2>
+<P>
+<A href="WM_GetWirelessCounter.html">WM_GetWirelessCounter</A>に対するコールバック関数に渡される構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/11/11 注意書きを追記<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

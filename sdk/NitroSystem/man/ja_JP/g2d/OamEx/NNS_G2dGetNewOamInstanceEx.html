@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetNewOamInstanceEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetNewOamInstanceEx</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OAMEｘ.h&gt;</CODE></pre>
+  <pre><CODE>BOOL NNS_G2dGetOamManExInstance( 
+                                NNSG2dOamManagerInstanceEx*    pOam, 
+                                NNSG2dOamChunkList*             pOamOrderingTbl, 
+                                u8                              lengthOfOrderingTbl,
+                                u16                             numPooledOam,
+                                NNSG2dOamChunk*                 pPooledOam,
+                                u16                             lengthAffineBuffer,
+                                NNSG2dAffineParamProxy*         pAffineBuffer );
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[OUT] 拡張OAMマネージャ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOamOrderingTbl</font></strong></em></td>
+    <td width="87%">[IN] オーダリングテーブルの先頭アドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">lengthOfOrderingTbl</font></strong></em></td>
+    <td width="87%">[IN] オーダリングテーブルの長さ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">numPooledOam</font></strong></em></td>
+    <td width="87%">[IN] OBJChunkの個数</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pPooledOam</font></strong></em></td>
+    <td width="87%">[IN] OBJChunk配列へのポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">lengthAffineBuffer</font></strong></em></td>
+    <td width="87%">[IN] アフィンパラメータバッファ配列の長さ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAffineBuffer</font></strong></em></td>
+    <td width="87%">[IN] アフィンパラメータバッファ配列へのポインタ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>初期化に成功した場合TRUEを返します<BR>
+</p>
+<H2>説明</H2>
+<P>
+拡張OAMマネージャを初期化します。<BR>
+オーダリングテーブルの長さがOBJ登録時に指定可能な深度の最大値となります。<BR>
+オーダリングテーブルの長さが長いほど、描画時に発生するオーバーヘッドが増加する特性を持ちます。<BR>
+<BR>
+本関数はNNS_G2dGetOamManExInstanceへ改名されました。本関数は互換性維持のために別名として残されます。<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dGetOamManExInstance.html">NNS_G2dGetOamManExInstance</A><br></CODE>
+<CODE><A href="NNS_G2dInitAffineManagerEx.html">NNS_G2dInitAffineManagerEx</A><br>
+</CODE>
+<CODE><A href="NNS_G2dSetOamManExEntryFunctions.html">NNS_G2dSetOamManExEntryFunctions</A><br>
+</CODE>
+</P>
+<H2>履歴</H2>
+<P>2004/06/22 初版</P>
+</body>
+</html>

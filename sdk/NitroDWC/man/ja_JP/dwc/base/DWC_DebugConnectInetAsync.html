@@ -1,0 +1,99 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_DebugConnectInetAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_DebugConnectInetAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_DebugConnectInetAsync( const void *ssid, const void *wep, int wepMode );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <a href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</a>関数の代わりに使用するデバッグ用の関数で、引数で指定されたAPの設定を使ってインターネットへの自動接続処理を開始します。<BR>
+		  この自動接続処理では、引数で指定されたAP以外には接続されません。また、IPアドレス等はDHCPを使って取得します。<BR>
+		  WEPキーについては<a href="../../main.html#tyuui_wep">トップページの注意事項「WEPキーについて」</a>を参照してください。
+		</P>
+		<P>
+		  本関数を呼び出した後は、自動接続処理を実行するために<a href="DWC_ProcessInet.html">DWC_ProcessInet</a>関数を毎ゲームフレーム程度の頻度で呼び出してください。
+		</P>
+		<P>
+		  接続中に発生したエラー処理を行うためには、<a href="DWC_ProcessInet.html">DWC_ProcessInet</a>関数呼出し後に<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数でエラー状態を取得し、必要に応じてエラーメッセージとともにエラーコードを表示してください。
+		  メッセージについては、「Nitendo Wi-Fi Connection プログラミングガイドライン」をご確認ください。
+		  本関数を使い、接続中にエラーが発生した場合、エラーコードの下二桁には00が入ります。
+		</P>
+		<P>
+		  接続状態は<a href="DWC_CheckInet.html">DWC_CheckInet</a>関数,
+		  <a href="DWC_GetInetStatus.html">DWC_GetInetStatus</a>関数を使用して取得することができます。
+		</P>
+		<P>
+		<STRONG>
+		※ <a href="DWC_SetConnectApType.html">DWC_SetConnectApType</a>関数とは一緒に呼び出さないようにしてください。<BR>
+		※ 本関数は、最終ROM版（FINALROM）ライブラリでも動作しますが、デバッグの利便性を考慮して用意されたものですので、基本的には製品では使用しないでください。
+		</STRONG>
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>ssid</CODE></STRONG></EM></TD>
+					<TD width="75%">接続先に指定するAPのSSID<BR>
+						32byteまでの文字列を指定してください。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>wep</CODE></STRONG></EM></TD>
+					<TD width="75%">接続先に指定するAPのWEPキー<BR>
+						wepMode に指定した長さのバイト列へのポインタを指定します。<BR>
+						wepMode が WCM_WEPMODE_NONE の場合は NULL を指定します。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>wepMode</CODE></STRONG></EM></TD>
+					<TD width="75%">接続先に指定するAPのWEPキーのモード<BR>
+						<STRONG>WCM_WEPMODE_NONE</STRONG>　　 WEP 暗号化を行わない場合の暗号化種別です。<BR>
+						<STRONG>WCM_WEPMODE_40</STRONG>　　　　　40 ビット ( 5 バイト ) WEP 暗号化を行う場合の暗号化種別です。<BR>
+						<STRONG>WCM_WEPMODE_104</STRONG>　　　　104 ビット ( 13 バイト ) WEP 暗号化を行う場合の暗号化種別です。<BR>
+						<STRONG>WCM_WEPMODE_128</STRONG>　　　　128 ビット ( 16 バイト ) WEP 暗号化を行う場合の暗号化種別です。<BR>
+					</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>,
+				<A href="DWC_InitInet.html">DWC_CheckInet</A>,
+				<A href="DWC_SetAuthServer.html">DWC_SetAuthServer</A>,
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_ProcessInet.html">DWC_ProcessInet</A>,
+				<A href="DWC_GetInetStatus.html">DWC_GetInetStatus</A>,
+				<A href="DWC_CleanupInet.html">DWC_CleanupInet</A>,
+				<a href="DWC_SetConnectApType.html">DWC_SetConnectApType</a>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/04/27 WEPキーに関する説明を追記。注意事項を追記。<BR>
+		  2006/04/17 DWC_ConnectInetAsync関数との関係を明記<BR>
+		  2006/03/10 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

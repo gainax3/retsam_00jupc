@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_CalcCalibrateParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_CalcCalibrateParam</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>u32 TP_CalcCalibrateParam( TPCalibrateParam * calibrate,
+                                u16 raw_x1, u16 raw_y1,
+                                u16 dx1,   u16 dy1,
+                                u16 raw_x2, u16 raw_y2,
+                                u16 dx2,   u16 dy2 );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">calibrate</font></strong></em></TD>
+      <TD width="700">結果のキャリブレーションパラメータを格納するためのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">raw_x1、 raw_y1</font></strong></em></TD>
+      <TD>座標１で得られた生のタッチパネル値 （0～4095）</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">dx1、 dy1</font></strong></em></TD>
+      <TD>座標１の画面座標 </TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">raw_x2, raw_y2</font></strong></em></TD>
+      <TD>座標２で得られた生のタッチパネル値 （0～4095）</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">dx2, dy2</font></strong></em></TD>
+      <TD>座標２の画面座標</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>引数が有効なパラメータであった場合には0<BR>
+有効でないパラメータであった場合には0以外を返します。</p>
+<H2>説明</H2>
+<P>２点の座標を元に、キャリブレーションのためのパラメータを計算します。</P>
+<P>座標１と座標２のパラメータとして、x または y に同じ値を入力しないでください。</P>
+<h2>参照</h2>
+<P><A href="TP_GetCalibratedPoint.html">TP_GetCalibratedPoint</A>、<A href="TP_SetCalibrateParam.html">TP_SetCalibrateParam</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
+</body>
+</html>

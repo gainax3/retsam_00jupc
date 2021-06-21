@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WVR_StartUpAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WVR_StartUpAsync</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wvr.h&gt;
+
+<A href="WVRResult.html">WVRResult</A> WVR_StartUpAsync(
+    GXVRamARM7      vram ,
+    <A href="WVRCallbackFunc.html">WVRCallbackFunc</A> callback ,
+    void*           arg
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">vram</FONT></STRONG></EM></TD>
+      <TD width="800">ARM7に割り当てるVRAMバンクを指定します。ARM7側の無線ドライバはこのVRAM上で動作するようになります。<BR>
+      以下の設定値を指定可能です。
+      <CODE><UL>
+      <LI>GX_VRAM_ARM7_128_C
+      <LI>GX_VRAM_ARM7_128_D
+      <LI>GX_VRAM_ARM7_256_CD
+      </UL></CODE>
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">arg</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数に渡される任意の引数を指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WVRResult.html">WVRResult列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+ARM7側の無線ドライバにVRAMバンクを割り当て、その上でドライバの動作を開始します。
+返り値がWVR_RESULT_OPERATINGであった場合、非同期処理完了時にPXI受信割り込みハンドラ内からコールバック関数が呼び出されます。<BR>
+VRAM上で無線ドライバを動作させる機能を持つichneumonコンポーネントを使用している場合にのみ意味を持ち、
+その他のコンポーネントの場合はWVR_RESULT_DISABLEを返してこの関数は失敗します。
+ichneumonコンポーネントを使用している場合は、この関数によって無線ドライバを起動させない限り無線通信機能を使用できません。
+無線ドライバ起動前には<A href="../../wm/wm/WM_Init.html">WM_Init関数</A>がWM_ERRCODE_DISABLEを返して失敗します。<BR>
+<BR>
+無線ドライバに割り当て可能なVRAMバンクは VRAM-C 及び VRAM-D に限られますが、このVRAMバンクがすでにGXライブラリによって
+別の用途に割り当てられている場合には、この関数は失敗します。
+この場合は、GX_DisableBankFor*関数などによって使用するVRAMバンクを"何の用途にも割り当てられていない"状態にしてから
+当関数を呼び出すようにして下さい。逆に、当関数によってVRAMバンクを無線ドライバに割り当てると、
+<A href="WVR_TerminateAsync.html">WVR_TerminateAsync関数</A>によって無線ドライバを停止させるまで指定したVRAMバンクは別の用途に割り当てることができなくなります。<br>
+なお、割り当てるVRAMによる無線ドライバの動作の違いはありません。VRAM-C と VRAM-D の両方を割り当てた場合も無線ドライバの動作は同じです。
+VRAM-C 及び VRAM-D の使用用途に合わせて割り当てるVRAMを選択して下さい。<br>
+<br>
+<FONT color="#800000">この関数を呼び出す前に、<A href="../../os/spinLock/OS_InitLock.html">OS_InitLock</A>関数または<A href="../../os/init/OS_Init.html">OS_Init</A>関数が呼び出されている必要があります。</FONT><BR>
+
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WVR_TerminateAsync.html">WVR_TerminateAsync</A>, <A href="../../wm/wm/WM_Init.html">WM_Init</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/14 リンク先のミスを訂正<BR>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2005/02/16 初版<BR>
+2005/03/01 説明追記<BR>
+</P>
+</body>
+</html>

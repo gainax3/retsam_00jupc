@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetThreadDestructorStack</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetThreadDestructorStack</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SetThreadDestructorStack( void* stack );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD nowrap><EM><STRONG>stack</STRONG></EM>　　　　</TD>
+      <TD>スタックポインタの開始アドレス。<BR>
+      スタックは下位方向に積まれていくので、 スタックの最上位の位置を指定しなければならない点に注意してください。<BR>
+      アドレスは4バイトアラインメントされたものである必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>すべてのスレッドのデストラクタが実行される際のスタックを指定します。</P>
+<P><EM><B>stack</B></EM> で指定した値が、デストラクタ実行直前にスタックポインタとして代入されます。NULL
+を指定すると、この動作は行なわれません(デフォルトも同様です) 。スタックとして与える値は、領域の最上位アドレス(+1)
+となることに注意してください。<BR>
+</P>
+<P>以下、さらに詳しい説明です。</P>
+<P>あるスレッドが他のスレッドから <CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で破棄されてデストラクタが実行される場合、その時点での破棄されるスレッドのスタック消費量(あるいは残量)を正確に予測することは困難です。そのままスタックを使いつづけようとすると、たまたま大きくスタックを消費している瞬間にスレッドが破棄され、デストラクタを実行するにはスタックが足りないという事態に陥るかもしれません。</P>
+<P>それを避けるために、OSThread システムでは、スレッドが別のスレッドから破棄された場合のスタックについて、</P>
+<UL>
+  <LI>デストラクタ実行直前にスタックポインタをスタック作成時の値まで戻す(デフォルト)
+  <LI>デストラクタ実行時に、別のスタックを使用するようにする
+</UL>
+<P>のいずれかの動作を選択出来るようになっています。本関数で NULL を指定するとデストラクタ実行直前にスタックポインタをスタック作成時の値まで戻すようになります。これはデフォルトの動作でもあります。NULL 以外のスタックを指定するとデストラクタ時にそれを使用するようになります。なお、複数のデストラクタが同時に実行されることはありませんので、すべてのスレッドに共通なスタックエリアを１つ指定して複数のデストラクタでスタックの使いまわしをすることに問題はありません。</P>
+<P>デフォルトの動作に比べ、デストラクタ用のスタックを別に用意したほうがメモリの消費を押さえることが出来る場合もあります。例えば普段スタックを100バイトしか使わないスレッドが、デストラクタでスタックを1000バイト消費する場合、デフォルト動作のためには予めスタックを
+1000 バイト用意しなければなりません。スレッドが複数あった場合、それぞれに同様のことが当てはまります。しかしデストラクタスタックを
+1000 バイト指定しておけば、普段の処理のための スタックは 100 バイトで済みます。
+</P>
+<P>また、別スタックを用意しておけば、破棄されるスレッドがその時実行していた関数のローカル変数を潰すことがありません。例えば
+OSAlarm はすべてのアラームがリストで接続されています。ローカルで作成した
+OSAlarm をデストラクタでキャンセルしたいという場合はデストラクタまでスタック領域を残しておかなければなりません。</P>
+<P>なお、<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で自分のスレッドを指定した場合は、デフォルト動作のスタックポインタの戻しは行ないません。自らスレッドの終了を宣言することからスタックの使用状況は推測可能であるからです。ただし、この場合でも本関数で
+NULL 以外のデストラクタ用スタックが与えてある場合は、そちらをデストラクタ用のスタックとして使用するのはすべての場合で同様です。</P>
+<P><B><BR>
+別スタックを用意しなければならない例</B></P>
+<P>以下のプログラムでは 10 秒後に「10 seconds passed.」と表示されるスレッドを　<CODE>main()</CODE> 内で作っています。10 秒をカウントするのは OSAlarm システムを利用しています。10
+秒経つまえにスレッドが破棄された場合は、スレッドデストラクタでアラームを削除しようとしています。しかし、アラーム構造体の本体はローカルな変数であるため、スレッドのスタックに存在しています。従ってデストラクタが呼ばれるときに元のスタックが破壊されることを避けなければなりません。
+そこで <CODE><A href="OS_InitThread.html">OS_InitThread()</A></CODE> の直後、 <CODE>OS_SetThreadDestructorstack()</CODE> でデストラクタ実行用のスレッドを指定しています。(ソース中、宣言など簡略化したり省略している個所があります)<BR>
+<BR>
+</P>
+<BLOCKQUOTE><CODE>OSAlarm* myAlarm = NULL;<BR>
+u32 stack[ STACKSIZE ] ATTRIBUTE_ALIGN(32);<BR>
+<BR>
+main()<BR>
+{<BR>
+　　　　：<BR>
+　　OS_InitThread();<BR>
+　　<FONT color="#ff0033">OS_SetThreadDestructorStack( &amp;stack[STACKSIZE] );</FONT><BR>
+　　　　：<BR>
+　　OSThread thread;<BR>
+　　OS_CreateThread( &amp;thread, function, … );　　// スレッドを作る<BR>
+　　OS_SetThreadDestructor( &amp;thread, dtor );　　// デストラクタを設定<BR>
+　　OS_WakeupThreadDirect( thread );　　　　　　　// スレッドを起す<BR>
+　　　　：<BR>
+　　　　：<BR>
+　　OS_KillThread( &amp;thread );　　　　　　　　　　　// thread を破棄<BR>
+　　　　：<BR>
+<BR>
+}<BR>
+<BR>
+function()<BR>
+{<BR>
+　　OSAlarm alarm;　　　　　　　　　　　　　　　　　　// alarm はローカル変数<BR>
+　　myAlarm = &amp;alarm;<BR>
+　　OS_SetAlarm( &amp;alarm, OSSecondsToTicks( 10 ), handler, … ); //
+10秒後に handler が呼ばれる<BR>
+　　　　：<BR>
+}<BR>
+<BR>
+handler()<BR>
+{<BR>
+　　OS_Printf( &quot;10 seconds passed.\n&quot; );　　　　　// 10秒たったと表示<BR>
+　　myAlarm = NULL;<BR>
+}<BR>
+<BR>
+dtor()<BR>
+{<BR>
+　　　　：<BR>
+　　if ( myAlarm != NULL )<BR>
+　　{<BR>
+　　　　OS_CancelAlarm( myAlarm ); 　　　　　　　　　// アラームキャンセル<BR>
+　　}<BR>
+　　　　：<BR>
+}<BR>
+</CODE></BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_KillThread.html">OS_KillThread</A>, <A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/08/08 初版</P>
+</BODY>
+</HTML>

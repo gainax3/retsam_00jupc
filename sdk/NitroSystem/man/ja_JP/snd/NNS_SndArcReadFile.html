@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcReadFile</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcReadFile</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">s32 NNS_SndArcReadFile(
+        u32 <var>fileId</var>,
+        void* <var>buffer</var>,
+        s32 <var>size</var>,
+        s32 <var>offset</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>fileId</code></strong></em></td>
+<td>ファイルIDです。</td>
+</tr>
+<tr>
+<td><em><strong><code>buffer</code></strong></em></td>
+<td>格納先バッファのアドレスです。</td>
+</tr>
+<tr>
+<td><em><strong><code>size</code></strong></em></td>
+<td>読み出すデータのバイト長です。</td>
+</tr>
+<tr>
+<td><em><strong><code>offset</code></strong></em></td>
+<td>読み込み始めるファイル先頭からの位置です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAGNWT"></a>
+      <h2>返り値</h2>
+
+      <p>読み込んだデータサイズを返します。読み込みに失敗したときは、-1を返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDANNWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ中のファイルをメモリ上へ読み出します。
+</p>
+      <p>
+読み込むデータサイズ<em><strong><code>size</code></strong></em>分のメモリをあらかじめ確保しておく必要があります。
+ファイルサイズを取得するには、
+<tt class="function"><a href="NNS_SndArcGetFileSize.html">NNS_SndArcGetFileSize</a></tt>関数を使います。
+</p>
+      <p>
+ファイルID<em><strong><code>fileId</code></strong></em>は、
+<tt class="function"><a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a></tt>関数などで
+得たサウンドデータの情報構造体から取得することができます。
+</p>
+      <p>
+一度に行う読み込みサイズを制限したい場合は、
+<tt class="function"><a href="NNS_SndArcSetLoadBlockSize.html">NNS_SndArcSetLoadBlockSize</a></tt>関数で、
+ロードブロックサイズを設定してください。
+</p>
+      <p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcLoadSeq.html">NNS_SndArcLoadSeq</a></tt>関数や、
+<tt class="function"><a href="NNS_SndArcLoadSeqArc.html">NNS_SndArcLoadSeqArc</a></tt>関数などから
+呼びだされています。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数で初期化されたサウンドアーカイブに対して使います。
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数で
+初期化されたサウンドアーカイブに対しては使えません。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcGetFileSize.html">NNS_SndArcGetFileSize</a>, <a href="NNS_SndArcGetSeqInfo.html">NNS_SndArcGetSeqInfo</a>, <a href="NNS_SndArcSetLoadBlockSize.html">NNS_SndArcSetLoadBlockSize</a>, <a href="NNS_SndArcLoadSeq.html">NNS_SndArcLoadSeq</a>, <a href="NNS_SndArcLoadSeqArc.html">NNS_SndArcLoadSeqArc</a>, <a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></p>
+<h2>履歴</h2>
+<p>2007/10/17 NNS_SndArcSetLoadBlockSize関数に関する説明追加<br>
+  2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

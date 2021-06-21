@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_Shutdown</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Shutdown</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_SHUT_RD       0
+#define SOC_SHUT_WR       1
+#define SOC_SHUT_RDWR     2</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Shutdown ( int <em><strong>s</strong></em>, int <em><strong>how</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td valign="top"><code><em><strong>s</strong></em></code></td>
+    <td>ソケット記述子。</td>
+  </tr>
+  <tr>
+    <td valign="top"><code><em><strong>how</strong></em></code></td>
+    <td>シャットダウン処理の種類を指定します。
+      <table width="100%">
+        <tr>
+          <td><code>SOC_SHUT_RD</code></td>
+          <td>以降の受信処理を不可にします。</td>
+        </tr>
+        <tr>
+          <td><code>SOC_SHUT_WR</code></td>
+          <td>以降の送信処理を不可にします。</td>
+        </tr>
+        <tr>
+          <td><code>SOC_SHUT_RDWR</code></td>
+          <td>以降の送受信処理を不可にします。</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：SOC_SHUT_RDWR のみのサポートとなっています。</p>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0以上</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINVAL</code></td>
+    <td>無効な処理。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EMFILE</code></td>
+    <td>ソケット記述子をこれ以上作れません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENETRESET</code></td>
+    <td>ソケットライブラリが初期化されていません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOBUFS</code></td>
+    <td>リソース不足。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOTCONN</code></td>
+    <td>接続されていません。</td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリ リリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>ソケットの送受信処理をシャットダウンします。</p>
+
+<h2>参照</h2>
+
+<p><code><a href="SOC_Close.html">SOC_Close</a></code></p>
+<H2>履歴</H2>
+<P>
+2005/12/12 説明の記述変更
+2005/09/13 初版</P>
+</body>
+</html>

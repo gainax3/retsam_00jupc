@@ -1,0 +1,59 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SocWrite</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SocWrite</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>u32 CPS_SocWrite(u8 *buf, u32 len);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>buf</strong></em></code></td>
+    <td>出力するバッファ。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>len</strong></em></code></td>
+    <td>出力するバッファの長さ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>出力されたデータ長</P>
+
+<h2>説明</h2>
+
+<p>PING/UDP/TCPの出力を行います。完了するまでブロックされます。TCPに関してはこれは、出力データがACKされるまで待つ事を意味するので、少量の単位で出力するのは著しく効率が悪いです。アプリケーション側でバッファリングするか、CPSライブラリが用意するバッファー経由の出力サービスを使うかするのが良いです。<BR>
+	CPS_SocWrite()に渡すポインタはどこでも良いですが、<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>.sndbuf.dataに定数(UDPなら14 + 20 + 8、TCPなら14 + 20 + 20)を足したアドレスを使うと、ARM9側に関してはno-copyで実行されるので、速度、メモリ効率の両面で有利です。アプリケーションはこの使い方以外で<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>.sndbuf.dataを使用してはいけません。<BR>
+	バッファ経由の出力サービスと混在することも可能です。内部的にCPS_SocFlush()と等価なことを行ってから出力します。<BR>
+	実際に出力されたデータ長が返されます。<BR>
+	ブロックします。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPSSoc.html">CPSSoc</A>, 
+<A href="CPS_SocFlush.html">CPS_SocFlush</A>, 
+<A href="CPS_GetProperSize.html">CPS_GetProperSize</A>
+</P>
+</CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

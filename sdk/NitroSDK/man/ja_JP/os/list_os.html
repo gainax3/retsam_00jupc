@@ -1,0 +1,1310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>オペレーティングシステムAPI 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>オペレーティングシステム(OS)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="init/OS_Init.html" target="_self">OS_Init</A></TH>
+      <TD>システムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="init/OS_InitChina.html" target="_self">OS_InitChina</A></TH>
+      <TD>中国向けアプリケーションのシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="init/OS_ShowAttentionChina.html" target="_self">OS_ShowAttentionChina</A></TH>
+      <TD>中国向けアプリケーションの起動画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="init/NitroStartUp.html" target="_self">NitroStartUp</A></TH>
+      <TD>スタティックコンストラクタ呼び出し前に行なう初期化処理を記述します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="init/NitroStaticInit.html" target="_self">NitroStaticInit</A></TH>
+      <TD>スタティックイニシャライザを記述します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Reset">リセット</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="reset/OS_InitReset.html" target="_self">OS_InitReset</A></TH>
+      <TD>リセットシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="reset/OS_ResetSystem.html" target="_self">OS_ResetSystem</A></TH>
+      <TD>プログラムを再実行します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="reset/OS_GetResetParameter.html" target="_self">OS_GetResetParameter</A></TH>
+      <TD>リセットパラメータの値を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Cpsr">システム状態</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="system/OS_EnableInterrupts.html" target="_self">OS_EnableInterrupts</A></TH>
+      <TD>CPSR の IRQ 割り込みを許可します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="system/OS_DisableInterrupts.html" target="_self">OS_DisableInterrupts</A></TH>
+      <TD>CPSR の IRQ 割り込みを禁止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_RestoreInterrupts.html" target="_self">OS_RestoreInterrupts</A></TH>
+      <TD>CPSR の IRQ 割り込みを指定の状態にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="system/OS_EnableInterrupts_IrqAndFiq.html" target="_self">OS_EnableInterrupts_IrqAndFiq</A></TH>
+      <TD>CPSR の IRQ, FIQ 割り込みを許可します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="system/OS_DisableInterrupts_IrqAndFiq.html" target="_self">OS_DisableInterrupts_IrqAndFiq</A></TH>
+      <TD>CPSR の IRQ, FIQ 割り込みを禁止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_RestoreInterrupts_IrqAndFiq.html" target="_self">OS_RestoreInterrupts_IrqAndFiq</A></TH>
+      <TD>CPSR の IRQ, FIQ 割り込みを指定の状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_GetCpsrIrq.html" target="_self">OS_GetCpsrIrq</A></TH>
+      <TD>現在のCPSR の IRQ割り込み状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_GetProcMode.html" target="_self">OS_GetProcMode</A></TH>
+      <TD>現在のプロセッサモードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_Halt.html" target="_self">OS_Halt</A></TH>
+      <TD>プロセッサを HALT 状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_Terminate.html" target="_self">OS_Terminate</A></TH>
+      <TD>プロセッサを HALT 状態にしてループします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_Exit.html" target="_self">OS_Exit</A></TH>
+      <TD>終了ステータスを表示し、<A href="system/OS_Terminate.html" target="_self">OS_Terminate()</A> を呼びます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_SpinWait.html" target="_self">OS_SpinWait</A></TH>
+      <TD>プロセッサを空転させます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Tcm">TCM</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="tcm/OS_EnableITCM.html" target="_self">OS_EnableITCM</A></TH>
+      <TD>命令TCMをイネーブルにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_DisableITCM.html" target="_self">OS_DisableITCM</A></TH>
+      <TD>命令TCMをディセーブルにします。</TD>
+
+
+
+
+
+
+
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_GetITCMAddress.html" target="_self">OS_GetITCMAddress</A></TH>
+      <TD>命令TCMのアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_EnableDTCM.html" target="_self">OS_EnableDTCM</A></TH>
+      <TD>データTCMをイネーブルにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_DisableDTCM.html" target="_self">OS_DisableDTCM</A></TH>
+      <TD>データTCMをディセーブルにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_SetITCMParam.html" target="_self">OS_SetITCMParam</A></TH>
+      <TD>命令TCMのパラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_GetITCMParam.html" target="_self">OS_GetITCMParam</A></TH>
+      <TD>命令TCMのパラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_SetDTCMParam.html" target="_self">OS_SetDTCMParam</A></TH>
+      <TD>データTCMのパラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_GetDTCMParam.html" target="_self">OS_GetDTCMParam</A></TH>
+      <TD>データTCMのパラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_SetDTCMAddress.html" target="_self">OS_SetDTCMAddress</A></TH>
+      <TD>データTCMのアドレスを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tcm/OS_GetDTCMAddress.html" target="_self">OS_GetDTCMAddress</A></TH>
+      <TD>データTCMのアドレスを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ProtectionUnit">プロテクションユニット</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="protectionUnit/OS_EnableProtectionUnit.html" target="_self">OS_EnableProtectionUnit</A></TH>
+      <TD>プロテクションユニットをイネーブルにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_DisableProtectionUnit.html" target="_self">OS_DisableProtectionUnit</A></TH>
+      <TD>プロテクションユニットをディセーブルにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_SetProtectionRegion.html" target="_self">OS_SetProtectionRegion</A></TH>
+      <TD>プロテクションリージョンを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_SetProtectionRegion.html" target="_self">OS_SetProtectionRegionParam</A></TH>
+      <TD>プロテクションリージョンをパラメータ指定で設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_GetProtectionRegion.html" target="_self">OS_GetProtectionRegionAddress</A></TH>
+      <TD>プロテクションリージョンの設定のベースアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_GetProtectionRegion.html" target="_self">OS_GetProtectionRegionSize</A></TH>
+      <TD>プロテクションリージョンの設定の領域サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="protectionUnit/OS_GetProtectionRegion.html" target="_self">OS_GetProtectionRegionParam</A></TH>
+      <TD>プロテクションリージョンの設定パラメータを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Exception">例外</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="25%"><A href="exception/OS_InitException.html" target="_self">OS_InitException</A></TH>
+      <TD>例外表示システムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="exception/OS_SetUserExceptionHandler.html" target="_self">OS_SetUserExceptionHandler</A></TH>
+      <TD>例外発生時のユーザハンドラを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="exception/OS_SetExceptionVectorLower.html" target="_self">OS_SetExceptionVectorLower</A></TH>
+      <TD>例外ベクタの位置を正規アドレスにします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="exception/OS_SetExceptionVectorUpper.html" target="_self">OS_SetExceptionVectorUpper</A></TH>
+      <TD>例外ベクタの位置をハイベクタにします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Irq">割り込み</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="25%"><A href="irq/OS_EnableIrq.html" target="_self">OS_EnableIrq</A></TH>
+      <TD>すべてのIRQ割り込みを許可します。</TD>
+    </TR>
+    <TR>
+      <TH nowrap width="25%"><A href="irq/OS_DisableIrq.html" target="_self">OS_DisableIrq</A></TH>
+      <TD>すべてのIRQ割り込みを禁止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_RestoreIrq.html" target="_self">OS_RestoreIrq</A></TH>
+      <TD>全てのIRQ割り込みを指定の状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_SetIrqMask.html" target="_self">OS_SetIrqMask</A></TH>
+      <TD>IRQ割り込み要因を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_GetIrqMask.html" target="_self">OS_GetIrqMask</A></TH>
+      <TD>現在設定されているIRQ割り込み要因を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_EnableIrqMask.html" target="_self">OS_EnableIrqMask</A></TH>
+      <TD>指定の割り込み要因のIRQを許可します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_DisableIrqMask.html" target="_self">OS_DisableIrqMask</A></TH>
+      <TD>指定の割り込み要因のIRQを禁止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_ResetRequestIrqMask.html" target="_self">OS_ResetRequestIrqMask</A></TH>
+      <TD>割り込みリクエストの指定の割り込み要因を解除します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_GetRequestIrqMask.html" target="_self">OS_GetRequestIrqMask</A></TH>
+      <TD>現在の割り込みリクエスト状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_InitIrqTable.html" target="_self">OS_InitIrqTable</A></TH>
+      <TD>IRQハンドラのテーブルを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_SetIrqFunction.html" target="_self">OS_SetIrqFunction</A></TH>
+      <TD>指定のIRQに対応するハンドラを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_GetIrqFunction.html" target="_self">OS_GetIrqFunction</A></TH>
+      <TD>指定のIRQに対応するハンドラを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A></TH>
+      <TD>割り込みチェックフラグをセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag</A></TH>
+      <TD>割り込みチェックフラグをクリアします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag</A></TH>
+      <TD>割り込みチェックフラグを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_WaitIrq.html">OS_WaitIrq</A></TH>
+      <TD>指定のIRQを待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_WaitAnyIrq.html">OS_WaitAnyIrq</A></TH>
+      <TD>あらゆるIRQを待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_WaitInterrupt.html">OS_WaitInterrupt</A></TH>
+      <TD>指定のIRQを待ちます。(スレッド切り替えをしません。)</TD>
+    </TR>
+    <TR>
+      <TH><A href="system/OS_WaitVBlankIntr.html">OS_WaitVBlankIntr</A></TH>
+      <TD>Vブランクを待ちます。(スレッド切り替えをします。)</TD>
+    </TR>
+    <TR>
+      <TH><A href="irq/OS_GetVBlankCount.html">OS_GetVBlankCount</A></TH>
+      <TD>Vブランクカウンタの値を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Timer">タイマー</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="timer/OS_StartTimer.html" target="_self">OS_StartTimer</A></TH>
+      <TD>タイマーを設定してスタートします。カウント値は16ビットです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="timer/OS_StartTimer.html" target="_self">OS_StartTimer32</A></TH>
+      <TD>2つのタイマーを用いて、32ビットの長時間タイマーをスタートします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StartTimer.html" target="_self">OS_StartTimer48</A></TH>
+      <TD>3つのタイマーを用いて、48ビットの長時間タイマーをスタートします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StartTimer.html" target="_self">OS_StartTimer64</A></TH>
+      <TD>4つのタイマーを用いて、64ビットの長時間タイマーをスタートします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StopTimer.html" target="_self">OS_StopTimer</A></TH>
+      <TD>タイマーを停止します。カウント値は16ビットです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StopTimer.html" target="_self">OS_StopTimer32</A></TH>
+      <TD>2つのタイマーを停止します。32ビットタイマーを使用している時に使います。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StopTimer.html" target="_self">OS_StopTimer48</A></TH>
+      <TD>3つのタイマーを停止します。48ビットタイマーを使用している時に使います。</TD>
+    </TR>
+    <TR>
+      <TH><A href="timer/OS_StopTimer.html" target="_self">OS_StopTimer64</A></TH>
+      <TD>4つのタイマーを停止します。64ビットタイマーを使用している時に使います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Alarm">アラーム</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_InitAlarm.html" target="_self">OS_InitAlarm</A></TH>
+      <TD>アラームシステム用にタイマを割り当て初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_EndAlarm.html" target="_self">OS_EndAlarm</A></TH>
+      <TD>アラームシステム用のタイマを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_IsAlarmAvailable.html" target="_self">OS_IsAlarmAvailable</A></TH>
+      <TD>アラームシステムが初期化され使用できる状態か調べます。</TD>
+
+
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_CreateAlarm.html" target="_self">OS_CreateAlarm</A></TH>
+      <TD>アラーム構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_SetAlarm.html" target="_self">OS_SetAlarm</A></TH>
+      <TD>アラームを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_SetPeriodicAlarm.html" target="_self">OS_SetPeriodicAlarm</A></TH>
+      <TD>周期的なアラームを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_SetAlarmTag.html" target="_self">OS_SetAlarmTag</A></TH>
+      <TD>アラームにタグを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_CancelAlarm.html" target="_self">OS_CancelAlarm</A></TH>
+      <TD>アラームを取り消します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_CancelAlarms.html" target="_self">OS_CancelAlarms</A></TH>
+      <TD>指定のタグを持つアラームを取り消します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alarm/OS_CancelAllAlarms.html" target="_self">OS_CancelAllAlarms</A></TH>
+      <TD>全てのアラームを取り消します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VAlarm">Vカウントアラーム</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_InitVAlarm.html" target="_self">OS_InitVAlarm</A></TH>
+      <TD>Vカウントアラームシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_EndVAlarm.html" target="_self">OS_EndVAlarm</A></TH>
+      <TD>Vカウントアラームシステムを終了します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_IsVAlarmAvailable.html" target="_self">OS_IsVAlarmAvailable</A></TH>
+      <TD>Vカウントアラームシステムが初期化され使用できる状態か調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_CreateVAlarm.html" target="_self">OS_CreateVAlarm</A></TH>
+      <TD>Vカウントアラーム構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_SetVAlarm.html" target="_self">OS_SetVAlarm</A></TH>
+      <TD>Vカウントアラームを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_SetOneTimeVAlarm.html" target="_self">OS_SetOneTimeVAlarm</A></TH>
+      <TD>Vカウントアラームを設定します。(旧形式と互換をとるための関数です)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_SetPeriodicVAlarm.html" target="_self">OS_SetPeriodicVAlarm</A></TH>
+      <TD>周期的なVカウントアラームを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_SetVAlarmTag.html" target="_self">OS_SetVAlarmTag</A></TH>
+      <TD>Vカウントアラームにタグを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_CancelVAlarm.html" target="_self">OS_CancelVAlarm</A></TH>
+      <TD>Vカウントアラームを取り消します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_CancelVAlarms.html" target="_self">OS_CancelVAlarms</A></TH>
+      <TD>指定のタグを持つVカウントアラームを取り消します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="valarm/OS_CancelAllVAlarms.html" target="_self">OS_CancelAllVAlarms</A></TH>
+      <TD>全てのVカウントアラームを取り消します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Time">時間</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="time/OS_InitTick.html" target="_self">OS_InitTick</A></TH>
+      <TD>チック用にタイマーを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_IsTickAvailable.html" target="_self">OS_IsTickAvailable</A></TH>
+      <TD>チックが初期化され使用できる状態か調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_GetTick.html" target="_self">OS_GetTick</A></TH>
+      <TD>チック値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_GetTickLo.html" target="_self">OS_GetTickLo</A></TH>
+      <TD>チック値の下位16ビット値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_SetTick.html" target="_self">OS_SetTick</A></TH>
+      <TD>チック値を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_SecondsToTicks.html" target="_self">OS_MicroSecondsToTicks*</A></TH>
+      <TD>マイクロ秒からチック値へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_SecondsToTicks.html" target="_self">OS_MilliSecondsToTicks*</A></TH>
+      <TD>ミリ秒からチック値へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_SecondsToTicks.html" target="_self">OS_SecondsToTicks*</A></TH>
+      <TD>秒からチック値へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_TicksToSeconds.html" target="_self">OS_TicksToMicroSeconds*</A></TH>
+      <TD>チック値からマイクロ秒へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_TicksToSeconds.html" target="_self">OS_TicksToMilliSeconds*</A></TH>
+      <TD>チック値からミリ秒へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="time/OS_TicksToSeconds.html" target="_self">OS_TicksToSeconds*</A></TH>
+      <TD>チック値から秒へ変換します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Thread">スレッド</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="thread/OS_InitThread.html" target="_self">OS_InitThread</A></TH>
+      <TD>スレッドシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="thread/OS_IsThreadAvailable.html" target="_self">OS_IsThreadAvailable</A></TH>
+      <TD>スレッドシステムが初期化され使用可能かを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="thread/OS_CreateThread.html" target="_self">OS_CreateThread</A></TH>
+      <TD>スレッドを作成します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_InitThreadQueue.html" target="_self">OS_InitThreadQueue</A></TH>
+      <TD>スレッドキューを作成します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_ExitThread.html" target="_self">OS_ExitThread</A></TH>
+      <TD>カレントスレッドを終了します。スレッドデストラクタが呼ばれます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_KillThread.html" target="_self">OS_KillThread</A></TH>
+      <TD>指定のスレッドを終了します。スレッドデストラクタが呼ばれます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_KillThread.html" target="_self">OS_KillThreadWithPriority</A></TH>
+      <TD>指定のスレッドの優先度を設定して終了します。スレッドデストラクタが呼ばれます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_DestroyThread.html" target="_self">OS_DestroyThread</A></TH>
+      <TD>指定のスレッドを終了します。スレッドデストラクタは呼ばれません。</TD>
+
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_JoinThread.html">OS_JoinThread</A></TH>
+      <TD>スレッドを結合し、スレッドの終了を待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_IsThreadTerminated.html">OS_IsThreadTerminated</A></TH>
+      <TD>スレッドが終了したかどうかを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SelectThread.html" target="_self">OS_SelectThread</A></TH>
+      <TD>次に動作するスレッドを選択します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SetSwitchThreadCallback.html" target="_self">OS_SetSwitchThreadCallback</A></TH>
+      <TD>スレッド切り替え時のコールバックを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_RescheduleThread.html" target="_self">OS_RescheduleThread</A></TH>
+      <TD>スレッドのスケジューリングを行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_YieldThread.html" target="_self">OS_YieldThread</A></TH>
+      <TD>同じ優先度のスレッドに実行機会を与えてスレッドのスケジューリングを行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SleepThread.html" target="_self">OS_SleepThread</A></TH>
+      <TD>現在のスレッドを休止状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SleepThreadDirect.html" target="_self">OS_SleepThreadDirect</A></TH>
+      <TD>指定したスレッドを休止状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_Sleep.html" target="_self">OS_Sleep</A></TH>
+      <TD>一定時間スレッドを休止状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_WakeupThread.html" target="_self">OS_WakeupThread</A></TH>
+      <TD>キューに登録された全てのスレッドを動作可能状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_WakeupThreadDirect.html" target="_self">OS_WakeupThreadDirect</A></TH>
+      <TD>指定したスレッドを動作可能状態にします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SetThreadPriority.html" target="_self">OS_SetThreadPriority</A></TH>
+      <TD>スレッドの優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_GetThreadPriority.html" target="_self">OS_GetThreadPriority</A></TH>
+      <TD>スレッドの優先度を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_GetCurrentThread.html" target="_self">OS_GetCurrentThread</A></TH>
+      <TD>カレントスレッドを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_GetNumberOfThread.html" target="_self">OS_GetNumberOfThread</A></TH>
+      <TD>作成されているスレッドの数を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_DisableScheduler.html" target="_self">OS_DisableScheduler</A></TH>
+      <TD>スレッドのリスケジューリングを一時停止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_EnableScheduler.html" target="_self">OS_EnableScheduler</A></TH>
+      <TD>スレッドのリスケジューリングを再開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SetThreadParameter.html" target="_self">OS_SetThreadrParameter</A></TH>
+      <TD>ユーザパラメータの値を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_GetThreadParameter.html" target="_self">OS_GetThreadParameter</A></TH>
+      <TD>ユーザパラメータの値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SetThreadDestructor.html" target="_self">OS_SetThreadDestructor</A></TH>
+      <TD>スレッドデストラクタを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_GetThreadDestructor.html" target="_self">OS_GetThreadDestructor</A></TH>
+      <TD>スレッドデストラクタを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_SetThreadDestructorStack.html" target="_self">OS_SetThreadDestructorStack</A></TH>
+      <TD>スレッドデストラクタ実行時のスタックを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="thread/OS_DumpThreadList.html" target="_self">OS_DumpThreadList</A></TH>
+      <TD>すべてのスレッドを表示します(デバッグ用)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Mutex">排他制御</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mutex/OS_InitMutex.html" target="_self">OS_InitMutex</A></TH>
+      <TD>排他制御用Mutex構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mutex/OS_LockMutex.html" target="_self">OS_LockMutex</A></TH>
+      <TD>Mutexを用いてスレッドにロックをかけます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mutex/OS_UnlockMutex.html" target="_self">OS_UnlockMutex</A></TH>
+      <TD>Mutexでかけていたスレッドへのロック解除を行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mutex/OS_TryLockMutex.html" target="_self">OS_TryLockMutex</A></TH>
+      <TD>Mutexを用いてスレッドのロックを試みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="spinLock/OS_InitLock.html" target="_self">OS_InitLock</A></TH>
+      <TD>排他制御に関連した初期化を行います。</TD>
+
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_LockCard.html" target="_self">OS_LockCard</A></TH>
+      <TD>カードを排他制御するためにスピンロックを行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_LockCartridge.html" target="_self">OS_LockCartridge</A></TH>
+      <TD>カートリッジを排他制御するためにスピンロックを行ないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_UnlockCard.html" target="_self">OS_UnlockCard</A></TH>
+      <TD>カードのスピンロックを解除します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_UnlockCartridge.html" target="_self">OS_UnlockCartridge</A></TH>
+      <TD>カートリッジのスピンロックを解除します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_TryLockCard.html" target="_self">OS_TryLockCard</A></TH>
+      <TD>カードを排他制御するためにスピンロックを試みます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_TryLockCartridge.html" target="_self">OS_TryLockCartridge</A></TH>
+      <TD>カートリッジを排他制御するためにスピンロックを試みます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_GetLockID.html" target="_self">OS_GetLockID</A></TH>
+      <TD>スピンロックのためのロックIDを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="spinLock/OS_ReleaseLockID.html" target="_self">OS_ReleaseLockID</A></TH>
+      <TD>スピンロックに用いたロックIDを開放します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Context">コンテキスト</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="context/OS_InitContext.html" target="_self">OS_InitContext</A></TH>
+      <TD>コンテキストを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="context/OS_SaveContext.html" target="_self">OS_SaveContext</A></TH>
+      <TD>現在のコンテキストを保存します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="context/OS_LoadContext.html" target="_self">OS_LoadContext</A></TH>
+      <TD>指定のコンテキストを読み込みます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="context/OS_DumpContext.html" target="_self">OS_DumpContext</A></TH>
+      <TD>コンテキスト構造体の中身を表示します。(デバッグ用)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Message">メッセージ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+
+    <TR>
+
+      <TH width="25%"><A href="message/OS_InitMessageQueue.html" target="_self">OS_InitMessageQueue</A></TH>
+      <TD>メッセージキュー構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="message/OS_SendMessage.html" target="_self">OS_SendMessage</A></TH>
+      <TD>メッセージキューの末尾にメッセージを挿入します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="message/OS_JamMessage.html" target="_self">OS_JamMessage</A></TH>
+      <TD>メッセージキューの先頭にメッセージを挿入します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="message/OS_ReceiveMessage.html" target="_self">OS_ReceiveMessage</A></TH>
+      <TD>メッセージキューからメッセージを取り出します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="message/OS_ReadMessage.html" target="_self">OS_ReadMessage</A></TH>
+      <TD>メッセージキューの先頭のメッセージをコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Cache">キャッシュ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="cache/DC_Enable.html" target="_self">DC_Enable</A></TH>
+      <TD>全てのデータキャッシュを使用可能にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_Disable.html" target="_self">DC_Disable</A></TH>
+      <TD>全てのデータキャッシュを使用禁止にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_Restore.html" target="_self">DC_Restore</A></TH>
+      <TD>全てのデータキャッシュを使用可能か使用禁止に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_InvalidateAll.html" target="_self">DC_InvalidateAll</A></TH>
+      <TD>全てのデータキャッシュを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_StoreAll.html" target="_self">DC_StoreAll</A><BR>
+      <A href="cache/DC_StoreAll.html">(DC_CleanAll)</A></TH>
+      <TD>全てのデータキャッシュをクリーンします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_FlushAll.html" target="_self">DC_FlushAll</A><BR>
+      <A href="cache/DC_FlushAll.html">(DC_CleanAndInvalidateAll)</A></TH>
+      <TD>全てのデータキャッシュをクリーンして無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_InvalidateRange.html" target="_self">DC_InvalidateRange</A></TH>
+      <TD>指定領域のデータキャッシュを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_StoreRange.html" target="_self">DC_StoreRange</A><BR>
+      <A href="cache/DC_StoreRange.html">(DC_CleanRange)</A></TH>
+      <TD>指定領域のデータキャッシュをクリーンします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_FlushRange.html" target="_self">DC_FlushRange</A><BR>
+      <A href="cache/DC_FlushRange.html">(DC_CleanAndInvalidateRange)</A></TH>
+      <TD>指定領域のデータキャッシュをクリーンして無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_TouchRange.html" target="_self"><font color="#808080">DC_TouchRange</font></A></TH>
+      <TD><font color="#808080">この関数は実際には何も行いません</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_LockdownRange.html" target="_self">DC_LockdownRange</A></TH>
+      <TD>指定領域のデータキャッシュをロックダウンします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cache/DC_Unlockdown.html" target="_self">DC_Unlockdown</A></TH>
+      <TD>ロックダウンされたデータキャッシュをブロック単位で解放します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cache/DC_UnlockdownAll.html" target="_self">DC_UnlockdownAll</A></TH>
+      <TD>ロックダウンされたデータキャッシュをすべて解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/DC_WaitWriteBufferEmpty.html" target="_self">DC_WaitWriteBufferEmpty</A></TH>
+      <TD>ライトバッファが空になるのを待ちます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_Enable.html" target="_self">IC_Enable</A></TH>
+      <TD>全ての命令キャッシュを使用可能にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_Disable.html" target="_self">IC_Disable</A></TH>
+      <TD>全ての命令キャッシュを使用禁止にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_Restore.html" target="_self">IC_Restore</A></TH>
+      <TD>全ての命令キャッシュを使用可能か使用禁止に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_InvalidateAll.html" target="_self">IC_InvalidateAll</A></TH>
+      <TD>全ての命令キャッシュを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_InvalidateRange.html" target="_self">IC_InvalidateRange</A></TH>
+      <TD>指定領域の命令キャッシュを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_PrefetchRange.html" target="_self">IC_PrefetchRange</A></TH>
+      <TD>指定領域の命令キャッシュのプリフェッチを行ないます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/IC_LockdownRange.html" target="_self">IC_LockdownRange</A></TH>
+      <TD>指定領域の命令キャッシュをロックダウンします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cache/IC_Unlockdown.html" target="_self">IC_Unlockdown</A></TH>
+      <TD>ロックダウンされた命令キャッシュをブロック単位で解放します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cache/IC_UnlockdownAll.html" target="_self">IC_UnlockdownAll</A></TH>
+      <TD>ロックダウンされた命令キャッシュをすべて解放します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Arena">アリーナ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="arena/OS_InitArena.html" target="_self">OS_InitArena</A></TH>
+      <TD>アリーナの初期設定を行ないます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="arena/OS_EnableMainExArena.html" target="_self">OS_EnableMainExArena</A></TH>
+      <TD>メインメモリ拡張アリーナの使用を宣言します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="arena/OS_DisableMainExArena.html" target="_self">OS_DisableMainExArena</A></TH>
+      <TD>メインメモリ拡張アリーナの不使用を宣言します。</TD>
+
+    </TR>
+    <TR>
+      <TH width="25%"><A href="arena/OS_SetArenaHi.html" target="_self">OS_SetArenaHi</A></TH>
+      <TD>アリーナの上位境界を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_SetArenaHi.html" target="_self">OS_Set*ArenaHi</A></TH>
+      <TD>アリーナの上位境界を設定します。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_SetArenaLo.html" target="_self">OS_SetArenaLo</A></TH>
+      <TD>アリーナの下位境界を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_SetArenaLo.html" target="_self">OS_Set*ArenaLo</A></TH>
+      <TD>アリーナの下位境界を設定します。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_GetArenaHi.html" target="_self">OS_GetArenaHi</A></TH>
+      <TD>アリーナの上位境界を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_GetArenaHi.html" target="_self">OS_Get*ArenaHi</A></TH>
+      <TD>アリーナの上位境界を取得します。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_GetArenaLo.html" target="_self">OS_GetArenaLo</A></TH>
+      <TD>アリーナの下位境界を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_GetArenaLo.html" target="_self">OS_Get*ArenaLo</A></TH>
+      <TD>アリーナの下位境界を取得します。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_AllocFromArenaHi.html" target="_self">OS_AllocFromArenaHi</A></TH>
+      <TD>アリーナの上位から指定サイズの領域を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_AllocFromArenaHi.html" target="_self">OS_AllocFrom*ArenaHi</A></TH>
+      <TD>アリーナの上位から指定サイズの領域を割り当てます。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_AllocFromArenaLo.html" target="_self">OS_AllocFromArenaLo</A></TH>
+      <TD>アリーナの下位から指定サイズの領域を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="arena/OS_AllocFromArenaLo.html" target="_self">OS_AllocFrom*ArenaLo</A></TH>
+      <TD>アリーナの下位から指定サイズの領域を割り当てます。(アリーナ指定)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Alloc">メモリ割り当て</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="alloc/OS_InitAlloc.html" target="_self">OS_InitAlloc</A></TH>
+      <TD>メモリ割り当てシステムの初期化を行ないます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alloc/OS_ClearAlloc.html" target="_self">OS_ClearAlloc</A></TH>
+      <TD>メモリ割り当てシステムの情報を破棄します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="alloc/OS_CreateHeap.html" target="_self">OS_CreateHeap</A></TH>
+      <TD>ヒープを作成します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_DestroyHeap.html" target="_self">OS_DestroyHeap</A></TH>
+      <TD>ヒープを破棄します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_ClearHeap.html" target="_self">OS_ClearHeap</A></TH>
+      <TD>ヒープを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_AddToHeap.html" target="_self">OS_AddToHeap</A></TH>
+      <TD>指定のメモリブロックをヒープ領域に追加します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_SetCurrentHeap.html">OS_SetCurrentHeap</A></TH>
+      <TD>カレントヒープを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_AllocFromHeap.html">OS_AllocFromHeap</A></TH>
+      <TD>ヒープ領域からメモリを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_AllocFromHeap.html">OS_AllocFrom*</A></TH>
+      <TD>ヒープ領域からメモリを割り当てます。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_AllocFromHeap.html">OS_Alloc</A></TH>
+      <TD>ヒープ領域からメモリを割り当てます。(メインメモリ上のアリーナ)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_AllocFixed.html">OS_AllocFixed</A></TH>
+      <TD>指定の領域を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeToHeap.html">OS_FreeToHeap</A></TH>
+      <TD>ヒープ領域にメモリを解放します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeToHeap.html">OS_FreeTo*</A></TH>
+      <TD>ヒープ領域にメモリを解放します。(アリーナ指定)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeToHeap.html">OS_Free</A></TH>
+      <TD>ヒープ領域にメモリを解放します。(メインメモリ上のアリーナ)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAllToHeap</A></TH>
+      <TD>ヒープ領域に割り当てられたすべてのメモリを解放します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAllTo*</A></TH>
+      <TD>ヒープ領域に割り当てられたすべてのメモリを解放します。(アリーナ指定)</TD>
+
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_FreeAllToHeap.html">OS_FreeAll</A></TH>
+      <TD>ヒープ領域に割り当てられたすべてのメモリを解放します。(メインメモリ上のアリーナ)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_CheckHeap.html">OS_CheckHeap</A></TH>
+      <TD>ヒープをチェックします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_DumpHeap.html">OS_DumpHeap</A></TH>
+      <TD>ヒープの内容を表示します。(デバッグ用)</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_ReferentSize.html">OS_ReferentSize</A></TH>
+      <TD>メモリブロックの(ヘッダを除く)メモリ上のサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_VisitAllocated.html">OS_VisitAllocated</A></TH>
+      <TD>すべてのメモリブロックに対して指定の関数に処理を行わせます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_GetTotalAllocSize.html">OS_GetTotalAllocSize</A></TH>
+      <TD>ヒープに割り当てられたメモリブロックの合計サイズを取得します。ヘッダは含みません。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize</A></TH>
+      <TD>ヒープに割り当てられたメモリブロックの合計サイズを取得しますヘッダを含みます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_GetTotalFreeSize.html">OS_GetTotalFreeSize</A></TH>
+      <TD>ヒープの中のフリーブロックの合計サイズを取得します</TD>
+    </TR>
+    <TR>
+      <TH><A href="alloc/OS_GetMaxFreeSize.html">OS_GetMaxFreeSize</A></TH>
+      <TD>ヒープの中のフリーブロックのうち、最大のもののサイズを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Owner">本体情報</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="ownerInfo/OS_GetOwnerInfo.html">OS_GetOwnerInfo</A></TH>
+      <TD>オーナー情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/OSOwnerInfo.html">OSOwnerInfo</A></TH>
+      <TD>オーナー情報を示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/OS_GetOwnerRtcOffset.html">OS_GetOwnerRtcOffset</A></TH>
+      <TD>RTC改変オフセット情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/OS_GetMacAddress.html">OS_GetMacAddress</A></TH>
+      <TD>ニンテンドーDS本体に固有のMACアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/OS_GetFavoriteColorTable.html">OS_GetFavoriteColorTable</A></TH>
+      <TD>オーナー情報の<a href="ownerInfo/os_favorite_color_const.html">「お気に入りの色」</a>の配列へのポインタを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/OS_GetFavoriteColor.html">OS_GetFavoriteColor</A></TH>
+      <TD>オーナー情報の<a href="ownerInfo/os_favorite_color_const.html">「お気に入りの色」</a>の色値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="ownerInfo/os_favorite_color_const.html">OS_FAVORITE_COLOR_*</A></TH>
+      <TD>オーナー情報の<a href="ownerInfo/os_favorite_color_const.html">「お気に入りの色」</a>の定義値です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="entropy/OS_GetLowEntropyData.html">OS_GetLowEntropyData</A></TH>
+      <TD>システム状態から実行毎に異なるような値を生成して返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-Environment">デバッグ(動作環境)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="debug/OS_IsRunOnEmulator.html" target="_self">OS_IsRunOnEmulator</A></TH>
+      <TD>プログラムが ensata 上で実行されているか調査します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/OS_GetConsoleType.html">OS_GetConsoleType</A></TH>
+      <TD>プログラムの動作環境を調査します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-Print">デバッグ(文字列表示)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="debug/OS_PutString.html" target="_self">OS_PutString</A></TH>
+      <TD>文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_Printf.html" target="_self">OS_Printf</A></TH>
+      <TD>フォーマット付きで文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_TPrintf.html" target="_self">OS_TPrintf</A></TH>
+      <TD>フォーマット付きで文字列を表示します。OS_Printf の簡易版です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_VPrintf.html" target="_self">OS_VPrintf</A></TH>
+      <TD>フォーマット付きで文字列を表示します。引数リストを使用します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_TVPrintf.html" target="_self">OS_TVPrintf</A></TH>
+      <TD>フォーマット付きで文字列を表示します。OS_VPrintf の簡易版です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_SPrintf.html" target="_self">OS_SPrintf</A></TH>
+      <TD>書式文字列を可変個引数でメモリ上に出力します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_VSPrintf.html" target="_self">OS_VSPrintf</A></TH>
+      <TD>書式文字列を引数リストでメモリ上に出力します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_SNPrintf.html" target="_self">OS_SNPrintf</A></TH>
+      <TD>書式文字列を可変個引数でメモリ上に出力します。(サイズ指定あり)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_VSNPrintf.html" target="_self">OS_VSNPrintf</A></TH>
+      <TD>書式文字列を引数リストでメモリ上に出力します。(サイズ指定あり)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_TPrintfEx.html" target="_self">OS_TPrintfEx</A></TH>
+      <TD>フォーマット付きで文字列を表示します。OS_TPrintf の機能拡張版です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_TVPrintfEx.html" target="_self">OS_TVPrintfEx</A></TH>
+      <TD>フォーマット付きで文字列を表示します。OS_TVPrintf の機能拡張版です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_VSNPrintfEx.html" target="_self">OS_VSNPrintfEx</A></TH>
+      <TD>書式文字列を引数リストでメモリ上に出力します。(サイズ指定あり)</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/OS_Warning.html" target="_self">OS_Warning</A></TH>
+      <TD>警告を表示します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/OS_TWarning.html" target="_self">OS_TWarning</A></TH>
+      <TD>警告を表示します。OS_Warning の簡易版です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_InitPrintServer.html" target="_self"><font color="#808080">OS_InitPrintServer</font></A></TH>
+      <TD><font color="#808080">ARM7 からのデバッグメッセージを表示するための初期化を行います。通常は使用する必要はありません。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="debug/OS_PrintServer.html" target="_self"><font color="#808080">OS_PrintServer</font></A></TH>
+      <TD><font color="#808080">ARM7 からのデバッグメッセージを表示します。通常は使用する必要はありません。</font></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-Assert">デバッグ(アサート)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="debug/SDK_ASSERT.html">SDK_ASSERT*</A></TH>
+      <TD>条件を検査し、警告を表示してプログラムを停止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/SDK_WARNING.html">SDK_WARNING</A></TH>
+      <TD>条件を検査し、警告を表示します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/OS_Panic.html" target="_self">OS_Panic</A></TH>
+      <TD>プログラムの実行を停止します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/OS_TPanic.html" target="_self">OS_TPanic</A></TH>
+      <TD>プログラムの実行を停止します。OS_Panic の簡易版です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="debug/SDK_COMPILER_ASSERT.html" target="_self">SDK_COMPILER_ASSERT</A></TH>
+      <TD>コンパイル時に条件を検査し、条件が満たされない場合はコンパイルエラーにします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-CallTrace">デバッグ(関数コールトレース)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_InitCallTrace.html" target="_self">OS_InitCallTrace</A></TH>
+      <TD>関数コールトレースのバッファを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_DumpCallTrace.html" target="_self">OS_DumpCallTrace</A></TH>
+      <TD>関数コールトレースのバッファ内容を表示します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_DumpThreadCallTrace.html" target="_self">OS_DumpThreadCallTrace</A></TH>
+      <TD>指定スレッドの関数コールトレースのバッファ内容を表示します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_CalcCallTraceLines.html" target="_self">OS_CalcCallTraceLines</A></TH>
+      <TD>関数コールトレースのライン数をバッファサイズから計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_CalcCallTraceBufferSize.html" target="_self">OS_CalcCallTraceBufferSize</A></TH>
+      <TD>関数コールトレースのバッファサイズをライン数から計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_ClearCallTraceBuffer.html" target="_self">OS_ClearCallTraceBuffer</A></TH>
+      <TD>関数コールトレースのバッファ内容をクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_EnableCallTrace.html" target="_self">OS_EnableCallTrace</A></TH>
+      <TD>関数コールトレースの機能を有効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_DisableCallTrace.html" target="_self">OS_DisableCallTrace</A></TH>
+      <TD>関数コールトレースの機能を無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="callTrace/OS_RestoreCallTrace.html" target="_self">OS_RestoreCallTrace</A></TH>
+      <TD>関数コールトレースの機能を有効または無効に設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-FunctionCost">デバッグ(関数コスト計測)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_InitFunctionCost.html" target="_self">OS_InitFunctionCost</A></TH>
+      <TD>関数コスト計測バッファを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CalcFunctionCostLines.html" target="_self">OS_CalcFunctionCostLines</A></TH>
+      <TD>関数コスト計測の情報数をバッファサイズから計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CalcFunctionCostBufferSize.html" target="_self">OS_CalcFunctionCostBufferSize</A></TH>
+      <TD>関数コスト計測バッファサイズをライン数から計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_ClearFunctionCostBuffer.html" target="_self">OS_ClearFunctionCostBuffer</A></TH>
+      <TD>関数コスト計測バッファの内容をクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CheckFunctionCostBuffer.html" target="_self">OS_CheckFunctionCostBuffer</A></TH>
+      <TD>関数コスト計測バッファの最上位が書き換えられたかを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_EnableFunctionCost.html" target="_self">OS_EnableFunctionCost</A></TH>
+      <TD>関数コスト計測の機能を有効にします。</TD>
+    </TR>
+    <TR>
+
+      <TH width="25%"><A href="functionCost/OS_DisableFunctionCost.html" target="_self">OS_DisableFunctionCost</A></TH>
+      <TD>関数コスト計測の機能を無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_RestoreFunctionCost.html" target="_self">OS_RestoreFunctionCost</A></TH>
+      <TD>関数コスト計測の機能を有効または無効に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_InitStatistics.html" target="_self">OS_InitStatistics</A></TH>
+      <TD>関数コスト集計バッファを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CheckStatisticsBuffer.html" target="_self">OS_CheckStatisticsBuffer</A></TH>
+      <TD>関数コスト集計バッファの最上位が書き換えられたかを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CalcStatistics.html" target="_self">OS_CalcStatistics</A></TH>
+      <TD>関数コスト集計バッファに計測バッファの内容を集計します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_CalcThreadStatistics.html" target="_self">OS_CalcThreadStatitics</A></TH>
+      <TD>関数コスト集計バッファにスレッド指定で計測バッファの内容を集計します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="functionCost/OS_DumpStatistics.html" target="_self">OS_DumpStatistics</A></TH>
+      <TD>関数コスト集計バッファの内容を出力します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-Stack">デバッグ</A>(スタックチェック)</H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="stack/OS_SetThreadStackWarningOffset.html" target="_self">OS_SetThreadStackWarningOffset</A></TH>
+      <TD>スレッドのスタック溢れチェックのための警戒水準を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stack/OS_CheckStack.html" target="_self">OS_CheckStack</A></TH>
+      <TD>スレッドのスタック溢れをチェックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stack/OS_GetStackStatus.html" target="_self">OS_GetStackStatus</A></TH>
+      <TD>スレッドのスタック溢れの状態を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="stack/OS_SetIrqStackChecker.html" target="_self">OS_SetIrqStackChecker</A></TH>
+      <TD>IRQモード用スタックのスタック溢れチェックのためのマジックナンバーを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stack/OS_SetIrqStackWarningOffset.html" target="_self">OS_SetIrqStackWarningOffset</A></TH>
+      <TD>IRQモード用スタックのスタック溢れチェックのための警戒水準を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stack/OS_CheckIrqStack.html" target="_self">OS_CheckIrqStack</A></TH>
+      <TD>IRQモード用スタックのスタック溢れをチェックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stack/OS_GetIrqStackStatus.html" target="_self">OS_GetIrqStackStatus</A></TH>
+      <TD>IRQモード用スタックのスタック溢れの状態を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Debug-Argument">デバッグ(引数)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="argument/OS_GetArgc.html">OS_GetArgc</A></TH>
+      <TD>引数の個数を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="argument/OS_GetArgv.html">OS_GetArgv</A></TH>
+      <TD>引数の文字列位置を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="argument/OS_GetOpt.html">OS_GetOpt*</A></TH>
+      <TD>コマンドライン引数のオプションに関する情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="argument/OS_ConvertToArguments.html">OS_ConvertToArguments</A></TH>
+      <TD>文字列を引数データに変換します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="argument/OS_SetArgumentBuffer.html">OS_SetArgumentBuffer</A></TH>
+      <TD>引数データを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="argument/OS_GetArgumentBuffer.html">OS_GetArgumentBuffer</A></TH>
+      <TD>引数データを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+</BODY>
+</HTML>

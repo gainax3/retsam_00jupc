@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTCTime</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTCTime</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct {
+         u32        hour;
+         u32        minute;     
+         u32        second;
+} RTCTime;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">hour</font></strong></em></TD>
+      <TD width="700">時を示す 0～23 の数値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">minute</font></strong></em></TD>
+      <TD>分を示す 0～59 の数値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">second</font></strong></em></TD>
+      <TD>秒を示す 0～59 の数値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>リアルタイムクロックの時刻を表す構造体です。<BR>
+時分秒を示します。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTCDate.html">RTCDate</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/12/05 時間表記に関する説明の変更<BR>
+Ver. 2004/08/19 時間表記固定による記述変更<BR>
+Ver. 2004/07/01 時間表記の統一による記述変更<BR>
+Ver. 2004/05/18 初版<BR>
+</P>
+</body>
+</html>

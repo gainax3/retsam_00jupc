@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_RegisterFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_RegisterFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL MB_RegisterFile(const MBGameRegistry *game_reg, const void *buf);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>game_reg</STRONG></EM></TD>
+      <TD width="87%">登録するプログラムの情報が格納された<A href="../mb_game_registry_type.html">MBGameRegistry</A>構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>buf</STRONG></EM></TD>
+      <TD width="87%">抽出したセグメント情報が格納されたメモリへのポインタ<BR>
+	  このセグメント情報は<A href="MB_ReadSegment.html">MB_ReadSegment</A>関数で取得します。<BR>
+	  ここで指定したメモリは、関数が成功した場合<A href="MB_UnregisterFile.html">MB_UnregisterFile</A>関数を呼ぶまで内部で使用されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>プログラムを正しく登録できた場合はTRUE、そうでない場合はFALSEを返します。</p>
+
+<H2>説明</H2>
+<P>指定したプログラムファイルを、ダウンロードプログラムのリストに登録します。<BR>
+親機は、同時に MB_MAX_FILE 個までのゲームプログラムを並行してダウンロードさせることができます。<BR>
+<br>
+指定するセグメントデータは、この関数の前に<A href="MB_ReadSegment.html">MB_ReadSegment</A>関数で取得しておく必要があります。<br>
+<font color="#800000">アーカイブから動的に読み込むよう設定されたセグメントデータを使用してこの関数を呼び出した場合、<br>
+MBライブラリの内部でスレッドがひとつだけ自動的に起動する点に注意してください。<br>
+詳細は<A href="MB_ReadSegment.html">MB_ReadSegment</A>関数の [内部動作] の項を参照ください。</font><br>
+<br>
+</CODE></p>
+<P><B><FONT color=red>(注意)</FONT></B><BR>
+IPL上において、DSダウンロードプレイの子機がゲームを選択している時に、親機側で特定の手順を踏むと、選択していない親機のゲームがダウンロードされることがあります。<BR>
+この問題は、MB_RegisterFile関数で登録する個々のゲームごとに異なるGGIDをMBGameRegistry構造体へ設定しておくことによって発生を回避することができます。<BR>
+詳しくはDSダウンロードプレイ解説のドキュメント($NitroSDK/docs/TechnicalNotes/AboutMultiBoot.pdf)
+の <B>DSダウンロードプレイの不具合について</B> をご確認ください。
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../mb_game_registry_type.html">MBGameRegistry</A> <BR>
+<A href="MB_GetSegmentLength.html">MB_GetSegmentLength</A> 
+<A href="MB_ReadSegment.html">MB_ReadSegment</A> 
+<A href="MB_UnregisterFile.html">MB_UnregisterFile</A>
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/02/22 DSダウンロードプレイの不具合に関する記述を追加<BR>
+2005/04/11 タスクスレッドの関する注意とリンクを追加<br>
+2004/09/09 MB_UnregisterFile関数についての記述を追加<br>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

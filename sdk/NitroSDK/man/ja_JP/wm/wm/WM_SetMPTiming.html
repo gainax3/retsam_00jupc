@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetMPTiming</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetMPTiming</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetMPTiming(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        u16             parentVCount,
+        u16             childVCount
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">parentVCount</FONT></STRONG></EM></TD>
+      <TD width="800">フレーム同期通信時の親機処理の開始 V Count です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">childVCount</FONT></STRONG></EM></TD>
+      <TD width="800">フレーム同期通信時の子機処理の開始 V Count です。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>フレーム同期通信モード時に MP 通信の準備を開始するタイミングを設定します。詳細は「ワイヤレス通信ライブラリ解説」を参照してください。</P>
+<P>内部的に <A href="WM_SetMPParameter.html">WM_SetMPParameter</A> 関数を呼び出しているラッパー関数です。</P>
+
+<h2>参照</h2>
+<P><code><A href="WM_SetMPParameter.html">WM_SetMPParameter</A>, <A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A></code></P>
+
+<H2>履歴</H2>
+<P>
+2005/11/24 初版<BR>
+</P>
+</body>
+</html>

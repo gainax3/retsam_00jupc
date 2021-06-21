@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>除算器 (overview)</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">除算器 (overview)</h1>
+<P>DS には除算および平方根演算のアクセラレータが備わっています。ここでは除算器について説明します。</P>
+<HR>
+<P><B>除算のためのレジスタ</B></P>
+
+<P>データレジスタとして、被除数、除数、商、余りのために以下のレジスタが用意されています。</P>
+<BLOCKQUOTE><IMG src="image_reg_DIV_NUMER.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_reg_DIV_DENOM.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_reg_DIV_RESULT.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_reg_DIVREM_RESULT.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+これらのレジスタは次のような関係があります。</P>
+<BLOCKQUOTE><IMG src="image_Divider1.gif" border="0"></BLOCKQUOTE>
+<P>そして、除算器を制御するための以下のコントロールレジスタが用意されています。</P>
+<BLOCKQUOTE><IMG src="image_reg_DIVCNT.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>除算器の動作</B></P>
+<P>除算器は、データレジスタ DIV_NUMER と DIV_DENOM に被除数と除数をセットし、コントロールレジスタ
+DIVCNT を適切に設定すると計算結果が DIV_RESULT と DIVREM_RESULT に格納される、という動作で計算を行ないます。(実際は、DIV_NUMER,
+DIV_DENOM、DIVCNT の何れかに値を書くとすぐに演算が始まり、演算の途中であってもレジスタへの書き込みがあれば最初から演算をやり直します)</P>
+<P>除算には３つの除算モードがあります。<UL>
+<LI>32ビット 割る 32ビット の結果を 商32ビット、余り32ビットで取得するモード
+<LI>64ビット 割る 32ビット の結果を 商64ビット、余り32ビットで取得するモード
+<LI>64ビット 割る 64ビット の結果を 商64ビット、余り32ビットで取得するモード
+</UL>
+<P>これらは DIVCNT の MODEビットへセットする値で変更することが出来ます。</P>
+
+<P>除算器が除算を開始すると、DIVCNT の BUSY ビットが 1 となります。計算結果を弾き出すまでそのまま
+1で、これが 0 となったときに DIV_RESULT と DIVREM_RESULT レジスタの値は演算結果として正当なものとなります。</P>
+<P>除数が 0 である場合、DIVCNT の DIV0 ビットが 1 となります。この場合の演算結果は不定です。</P>
+<HR>
+<P><B>計算サイクル</B></P>
+<P>除算器が除算演算のために必要なサイクル数は除算モードによって異なります。</P>
+
+
+<UL>
+  <LI>32ビット 割る 32ビット の結果を 商32ビット、余り32ビットで取得するモード
+  … 36 CPUサイクル (システムクロックで18サイクル)
+<LI>64ビット 割る 32ビット の結果を 商64ビット、余り32ビットで取得するモード
+  … 68 CPUサイクル (システムクロックで34サイクル)
+<LI>64ビット 割る 64ビット の結果を 商64ビット、余り32ビットで取得するモード
+  … 68 CPUサイクル (システムクロックで34サイクル)
+</UL>
+<P>除算器のデータレジスタにパラメータをセットしてから、結果が出るまでの時間、別の作業を行なうことで効率的に除算器を用いることが出来ます。</P>
+<HR>
+<P><B>パラメータの設定</B></P>
+<P>除算のパラメータをセットする関数は <A href="CP_SetDivImm.html"><CODE>CP_SetDivImm*()</CODE></A> 、<CODE><A href="CP_SetDiv.html">CP_SetDiv*()</A></CODE> です。両関数ともに除数と被除数をセットします。<CODE><A href="CP_SetDiv.html">CP_SetDiv*()</A></CODE> ではさらに DIVCNT レジスタの除算モード設定を行ないます。</P>
+<P><CODE><A href="CP_SetDivImm.html">CP_SetDivImm32_32()</A></CODE>, <CODE><A href="CP_SetDivImm.html">CP_SetDivImm64_32()</A></CODE>, <CODE><A href="CP_SetDivImm.html">CP_SetDivImm_64_64()</A></CODE><BR>
+<CODE><A href="CP_SetDiv.html">CP_SetDiv32_32()</A></CODE>, <CODE><A href="CP_SetDiv.html">CP_SetDiv64_32</A></CODE>, <CODE><A href="CP_SetDiv.html">CP_SetDivImm64_64()</A></CODE></P>
+<P>例えば、同じ除算モードで連続して除算演算を行なう場合、最初の1回は <CODE><A href="CP_SetDiv.html">CP_SetDiv*()</A></CODE> を使い、それ以降は <CODE><A href="CP_SetDivImm.html">CP_SetDivImm*()</A></CODE> を使う、という用途が考えられます。</P>
+<HR>
+<P><B>演算終了待ち</B></P>
+<P>演算が終了したかを調べるには <CODE><A href="CP_IsDivBusy.html">CP_IsDivBusy()</A></CODE> を呼んでください。</P>
+<P>演算が終了するまで待つには <CODE><A href="CP_WaitDiv.html">CP_WaitDiv()</A></CODE> を呼んでください。</P>
+<HR>
+<P><B>演算結果の取得</B></P>
+<P>除算演算の商を取得するには <CODE><A href="CP_GetDivResult.html">CP_GetDivResult*()</A></CODE> 、<CODE><A href="CP_GetDivResult.html">CP_GetDivResultImm*()</A></CODE> を呼んで下さい。前者は DIVCNT が BUSY 状態でなくなるのを待ってから結果を取得します。後者はすぐに取得します。</P>
+<P>余りを取得するには、<CODE><A href="CP_GetDivRemainder.html">CP_GetDivRemainder()</A></CODE> 、<CODE><A href="CP_GetDivRemainder.html">CP_GetDivRemainderImm*()</A></CODE> を呼んで下さい。前者は DIVCNT が BUSY 状態でなくなるのを待ってから結果を取得します。後者はすぐに取得します。</P>
+
+<HR>
+<P><B>注意</B></P>
+<P>
+除算モードが、&quot;32ビット割る32ビット&quot; や &quot;64ビット割る32ビット&quot;
+の場合、32ビット分しか使われていないデータレジスタの上位32ビットは 0 としておく必要があります。ただし、NitroSDK
+の関数ではこれは自動で行なわれます。アプリケーションで直接レジスタに値を設定するときに忘れないようご注意ください。</P>
+<P>スレッドシステムを使用している場合、デフォルトでは除算器演算はスレッドセーフとなっています。</P>
+<HR>
+<P><B>例</B></P>
+<P>以下は除算器を用いて除算を行なって結果を表示する例です。</P>
+<BLOCKQUOTE style="background-color : #eeeeee;">
+<P><CODE>u32 quotient;<BR>
+u32 remainder;<BR>
+<BR>
+//---- set parameter and div-mode<BR>
+CP_SetDiv( 0x12345678, 0x300, CP_DIV_32_32BIT_MODE );<BR>
+<BR>
+//---- wait fot finishing division<BR>
+CP_WaitDiv();<BR>
+<BR>
+//---- display result<BR>
+quotient = CP_GetDivResultImm32();<BR>
+remainder = CP_GetDivRemainderImm32();<BR>
+OS_Printf( &quot;quotient=%x, remainder=%x\n&quot;, quotient, remainder
+);<BR>
+</CODE></P>
+</BLOCKQUOTE>
+
+<HR>
+
+<P><A name="use_in_intr"><B>割り込み内で使用する際の注意</B></A></P>
+<P>
+割り込み内で除算器/平方根演算器を使用する場合には、<B><FONT color="#ff3300">割り込み元の演算結果を破壊してしまう可能性があります。</FONT></B><BR>
+割り込み内で除算器/平方根演算器が使用される場合には<A href="../CP_SaveContext.html">CP_SaveContext</A>,<A href="../CP_RestoreContext.html">CP_RestoreContext</A>
+を使用して除算器/平方根演算器の状態を退避・復元するようにしてください。<BR>
+<B><FONT color="#ff3300">スレッド切り替え時には、除算器の内容もスレッドコンテキストから自動的に復元されます。</FONT></B>
+
+<BLOCKQUOTE style="background-color : #eeeeee;">
+<P><CODE>void intr_func( void ) <BR>
+{<BR>
+　CPContext context;<BR>
+　<BR>
+　CP_SaveContext( &amp;context );<BR>
+　CP_SetDiv32_32( 1000, 5 );<BR>
+　CP_WaitDiv();<BR>
+　result = CP_GetDivResult();<BR>
+　CP_RestoreContext( &amp;context );<BR>
+}</CODE></P>
+</BLOCKQUOTE>
+
+
+<H2>履歴</H2>
+<P>2006/08/07 計算サイクルの表記をCPUサイクル換算に変更、割り込み内での使用に関する注意を追加<BR>
+2004/12/27 初版</P>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</body>
+</html>

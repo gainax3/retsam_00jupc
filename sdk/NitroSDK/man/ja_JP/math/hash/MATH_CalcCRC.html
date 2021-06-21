@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_CalcCRC*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_CalcCRC*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/crc.h&gt;
+
+u8  MATH_CalcCRC8( const <A href="MATHCRCTable.html">MATHCRC8Table</A> *table, const void* data, u32 dataLength );
+u16 MATH_CalcCRC16( const <A href="MATHCRCTable.html">MATHCRC16Table</A> *table, const void* data, u32 dataLength );
+u16 MATH_CalcCRC16CCITT( const <A href="MATHCRCTable.html">MATHCRC16Table</A> *table, const void* data, u32 dataLength );
+u32 MATH_CalcCRC32( const <A href="MATHCRCTable.html">MATHCRC32Table</A> *table, const void* data, u32 dataLength );
+u32 MATH_CalcCRC32POSIX( const <A href="MATHCRCTable.html">MATHCRC32Table</A> *table, const void* data, u32 dataLength );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">table</font></strong></em></TD>
+      <TD width="670">各種 CRC 計算用のテーブルへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="670">入力データへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">dataLength</font></strong></em></TD>
+      <TD width="670">入力データのサイズ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>各種 CRC 値。</p>
+<H2>説明</H2>
+<P>この関数は、各種 CRC の計算を1度の関数呼び出しでまとめて行います。table 引数をあらかじめ <A href="MATH_CRCInitTable.html">MATH_CRC*InitTable</A> 関数で初期化しておく必要があります。<BR>
+入力データには任意のサイズ・任意のアラインメント位置のものが使用できます。<BR>
+<BR>
+CRC-8 は 8bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-16, CRC-16/CCITT は 16bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-32, CRC-32/POSIX は 32bit のハッシュ値を求めるためのアルゴリズムです。<BR>
+CRC-16 は圧縮プログラムの ARC, LHA などで使用されているアルゴリズムです。先頭に 0 のバイトを追加してもハッシュ値が変わらないという制限があります。<BR>
+CRC-16/CCITT は様々なデータリンク層の規格で FCS (Frame Check Sequence) として使用されているアルゴリズムです。CCITT (Comite Consultatif International Telegraphique et Telephonique) の X.25 などで規定されています。<BR>
+CRC-32 は圧縮プログラムの PKZIP や画像フォーマットの PNG などで使用されているアルゴリズムです。詳細は ISO 3309, RFC 2083 などを参照してください。<BR>
+CRC-32/POSIX は POSIX 準拠の Unix に標準で入っている cksum コマンドで使用されているアルゴリズムです。POSIX 1003.2 で規定されています。なお、cksum コマンドでは、入力ファイルの最後にファイル長を加えてから CRC をとります。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_CRCInitTable.html">MATH_CRC*InitTable</A>, <A href="MATH_CRCInit.html">MATH_CRC*Init</A>, <A href="MATH_CRCUpdate.html">MATH_CRC*Update</A>, <A href="MATH_CRCGetHash.html">MATH_CRC*GetHash</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 初版<BR>
+</P>
+</body>
+</html>

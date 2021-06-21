@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_TYPE_*</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_TYPE_*</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+/* ブートタイプ */
+#define	MB_TYPE_ILLEGAL		0	/* 不正な状態 */
+#define	MB_TYPE_NORMAL		1	/* ROM から起動 */
+#define	MB_TYPE_MULTIBOOT	2	/* マルチブート子機 */
+</PRE>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>プログラム自身の起動状態を表す定数です。<BR>
+
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>MB_TYPE_ILLEGAL</TD>
+      <TD>なんらかの不正な状態にあり、起動状態を判断できない状態です。<BR>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_TYPE_NORMAL</TD>
+      <TD>NITRO-CARDからの通常の起動状態です。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_TYPE_MULTIBOOT</TD>
+      <TD>任意の親機からのマルチブート起動状態です。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+MBParam MB_GetMultiBootParam 
+<A href="common/MB_IsMultiBootChild.html">MB_IsMultiBootChild</A> 
+<A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

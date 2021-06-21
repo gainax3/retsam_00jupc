@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNSG3dResTex</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dResTex</H1>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dResTex</CODE>構造体は、テクスチャとパレットの集合に対応する構造体で、G3Dのテクスチャやパレットに関するデータにアクセスする場合はこの構造体を経由することになります。この構造体及びテクスチャ・パレットデータは、.nsbmdファイル及び.nsbtxファイル内のデータとして存在していて、g3dcvtrによる.imdファイルのコンバート時に作成されています。<BR>
+<BR>
+<CODE>NNSG3dResTex</CODE>構造体からは以下のようなデータにアクセスすることができます。</P>
+<UL>
+  <LI>通常テクスチャ・4x4texel圧縮テクスチャ・パレットの格納場所を示すキー
+  <LI>各テクスチャやパレットのサイズ等の情報
+  <LI>各テクスチャやパレットのイメージ
+</UL>
+<P>この構造体とこの構造体から到達できるキー等の情報は、描画中にＧ３Ｄライブラリから変更されることはありません(コールバック関数内で変更される場合を除く)。</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A>　<A href="../list_g3d.html#BinaryResource">バイナリリソース</A></P>
+<H2>履歴</H2>
+<P>2007/05/17 構造体の定義を追加<BR>
+2004/10/13 初版</P>
+</BODY>
+
+</HTML>

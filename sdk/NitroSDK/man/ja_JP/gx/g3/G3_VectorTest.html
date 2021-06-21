@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_VectorTest</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_VectorTest</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_VectorTest(fx16 x, fx16 y, fx16 z);
+
+// 以下ディスプレイリスト（コマンド列）作成用API
+void G3BS_VectorTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, fx16 x, fx16 y, fx16 z);
+void G3B_VectorTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, fx16 x, fx16 y, fx16 z);
+void G3CS_VectorTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, fx16 x, fx16 y, fx16 z);
+void G3C_VectorTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, fx16 x, fx16 y, fx16 z);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="128"><em><strong><font face="Courier New">x</font></strong></em></TD>
+      <TD width="567">テスト用方向ベクトルのＸ成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD>テスト用方向ベクトルのＹ成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">z</font></strong></em></TD>
+      <TD>テスト用方向ベクトルのＺ成分</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>方向ベクトルをカレント方向ベクトル行列により座標変換します。<B><I>x</I></B>,<I><B>y</B></I>,<I><B>z</B></I>に変換するベクトルを設定します。結果は<A href="G3X_GetVectorTestResult.html">G3X_GetVectorTestResult</A>で取得します。</P>
+<h2>参照</h2>
+<P><A href="G3_BoxTest.html">G3_BoxTest</A>, <A href="G3_PositionTest.html">G3_PositionTest</A>, <A href="G3X_GetVectorTestResult.html">G3X_GetVectorTestResult</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

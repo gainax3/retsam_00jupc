@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerPause*</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKYT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerPause*</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerPause( NNSSndHandle* <var>handle</var>, BOOL <var>flag</var> );</code><br><code class="funcprototype">void NNS_SndPlayerPauseByPlayerNo( int <var>playerNo</var>, BOOL <var>flag</var> );</code><br><code class="funcprototype">void NNS_SndPlayerPauseAll( BOOL <var>flag</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAYNYT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>playerNo</code></strong></em></td>
+<td>プレイヤー番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>flag</code></strong></em></td>
+<td>TRUEの時、一時停止し、FALSEの時、再開します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAVOYT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA2OYT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスを一時停止または再開します。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerPause</tt>関数は、サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスの一時停止または再開を行います。サウンドハンドルが無効の場合は、何もしません。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerPauseByPlayerNo</tt>関数は、プレイヤー番号<em><strong><code>playerNo</code></strong></em>を指定して、
+再生中のシーケンスの一時停止または再開を行います。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerPauseAll</tt>関数は、全ての再生中のシーケンスの一時停止または再開を行います。 
+</p>
+      <p>
+一時停止か再開かは、<em><strong><code>flag</code></strong></em>で指定します。状態が変わらない場合、例えば、すでに一時停止状態の時に一時停止を行っても、何もしません。 
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+シーケンスの一時停止を行うと、そのシーケンスで発音中のチャンネルは強制的に停止させられます（一時停止ではない）。
+したがって、シーケンスの一時停止を解除しても、発音中のチャンネルが続きから再生されることはありませんので、
+ご注意ください。
+（チャンネルの一時停止は、ハードウェアの仕様によりできません。）
+        </p>
+</div>
+      
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/09/12 
+            注意書き修正。
+          <br>2004/08/10 
+            NNS_SndPlayerPauseAll関数の引数が間違っていたのを修正。
+          <br>2004/06/01 
+            NNS_SndPlayerPauseByNumberをNNS_SndPlayerPauseByPlayerNoに変更。
+          <br>2004/04/19 
+            NNS_SndPlayerPause, NNS_SndPlayerPauseByNumber, NNS_SndPlayerPauseAll のマニュアルを統合
+<br>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

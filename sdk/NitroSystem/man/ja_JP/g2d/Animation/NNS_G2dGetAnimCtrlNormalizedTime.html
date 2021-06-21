@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetAnimCtrlNormalizedTime</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetAnimCtrlNormalizedTime</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Animation.h&gt;</CODE></pre>
+  <pre><CODE>fx32 NNS_G2dGetAnimCtrlNormalizedTime( 
+                      NNSG2dAnimController*     pAnimCtrl );</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAnimCtrl </font></strong></em></td>
+    <td width="87%">[IN] NNSG2dAnimController 実体</td>
+  </tr>
+    </table>
+<h2>返り値</h2>
+<p>現在の再生フレームの表示期間で正規化された時間</p>
+<H2>説明</H2>
+<P>現在の再生フレームの表示期間で正規化された時間を取得します。<BR>
+返り値 = 現在の時間 / 現在の再生フレームの表示期間 です。<BR>
+アニメーションの補間に使用します。<BR>
+</p>
+
+<P>NNS_G2dGetNormalizedTime()から改名されました。以前の関数名は別名として残されています。<BR></p>
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dGetNormalizedTime.html">NNS_G2dGetNormalizedTime</A><br></CODE>
+<CODE><A href="NNS_G2dGetAnimCtrlCurrentElement.html">NNS_G2dGetAnimCtrlCurrentElement</A><br>
+</CODE>
+<CODE><A href="NNS_G2dGetAnimCtrlNextElement.html">NNS_G2dGetAnimCtrlNextElement</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/08/02 関数改名の実施</P><P>2004/05/28 初版</P>
+</body>
+</html>

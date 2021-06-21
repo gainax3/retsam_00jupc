@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_NtoHl, SOC_HtoNs, SOC_NtoHl, SOC_NtoHs</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_HtoNl<br>SOC_HtoNs<br>SOC_NtoHl<br>SOC_NtoHs</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>u32 SOC_HtoNl ( u32 <strong><em>hostlong</em></strong> );
+u16 SOC_HtoNs ( u16 <strong><em>hostshort</em></strong> );
+u32 SOC_NtoHl ( u32 <strong><em>netlong</em></strong> );
+u16 SOC_NtoHs ( u16 <strong><em>netshort</em></strong> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><strong><em>netlong</em></strong></code></td>
+    <td>ネットワークバイトオーダーの 32bit整数。</td>
+  </tr>
+  <tr>
+    <td><code><strong><em>netshort</em></strong></code></td>
+    <td>ネットワークバイトオーダーの 16bit整数。</td>
+  </tr>
+  <tr>
+    <td><code><strong><em>hostlong</em></strong></code></td>
+    <td>ホストバイトオーダーの 32bit整数。</td>
+  </tr>
+  <tr>
+    <td><code><strong><em>hostshort</em></strong></code></td>
+    <td>ホストバイトオーダーの 16bit整数。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<p> <code>SOCHtoNl()</code>と<code>SOCHtoNs()</code>は、ホストバイトオーダーからネットワークバイトオーダーに変換された引数の値を返します。</p>
+<p> <code>SOCNtoHl()</code>と<code>SOCNtoHs()</code>は、ネットワークバイトオーダーからホストバイトオーダーに変換された引数の値を返します。</p>
+
+<h2>説明</h2>
+
+<p>これらの関数は、16bitまたは32bitの値を、ネットワークバイトオーダーとホストバイトオーダーの間で変換します。</p>
+
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

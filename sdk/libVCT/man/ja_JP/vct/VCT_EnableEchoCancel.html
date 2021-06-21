@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_EnableEchoCancel</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_EnableEchoCancel</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>void VCT_EnableEchoCancel( BOOL flag );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>flag</STRONG></EM></TD>
+      <TD width="87%" height="17">TRUEでエコーキャンセルをオン、FALSEでオフ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<p>エコーキャンセル機能をを有効、または無効にします。デフォルトでは、無効になっています。</p>
+<p>エコーキャンセル機能を利用する際は、以下の点に注意してください。</p>
+<ul>
+<li>マイクのゲインは160dbとしてください。
+<li>音声の再生は1chだけ利用するようにしてください（<code><a href="VCT_ReceiveAudio.html">VCT_ReceiveAudio</a></code>で取得したデータを複数チャンネルにコピーして再生音声を大きくするようなことはしないでください）。
+<li><code><a href="VCT_Main.html">VCT_Main</a></code>関数を<b>必ず１ピクチャーフレームに１回</b>呼び出してください。
+</ul>
+</p>
+<H2>履歴</H2>
+<P>
+2006/08/31 初版
+</P>
+</body>
+</html>

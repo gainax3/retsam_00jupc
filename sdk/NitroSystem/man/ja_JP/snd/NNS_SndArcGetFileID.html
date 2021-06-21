@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcGetFileID</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcGetFileID</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">FSFileID NNS_SndArcGetFileID( <code>void )</code>;</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>引数</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1LWT"></a>
+      <h2>返り値</h2>
+
+      <p>ファイルIDを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブのファイルIDを取得します。
+</p>
+      <p>
+取得したファイルIDを使って、<tt class="function">FS_OpenFileFast</tt>関数で
+サウンドアーカイブファイルを開くことができます。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数で初期化されたサウンドアーカイブに対して使います。
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数で
+初期化されたサウンドアーカイブに対しては使えません。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></p>
+<h2>履歴</h2>
+<p>2004/08/10 初版<br></p>
+</div>
+</body>
+</html>

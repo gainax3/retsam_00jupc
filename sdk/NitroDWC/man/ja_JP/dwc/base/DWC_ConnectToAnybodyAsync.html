@@ -1,0 +1,113 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_ConnectToAnybodyAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_ConnectToAnybodyAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+BOOL DWC_ConnectToAnybodyAsync(
+             u8  numEntry,
+             const char* addFilter,
+             <A href="DWCMatchedCallback.html">DWCMatchedCallback</A> matchedCallback,
+             void* matchedParam,
+             <A href="DWCEvalPlayerCallback.html">DWCEvalPlayerCallback</A> evalCallback,
+             void* evalParam );
+
+
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  友達を指定せずに、人数指定でメッシュ型ネットワークを作成します。これを友達無指定ピアマッチメイクと呼びます。
+		</P>
+		<P>
+		  引数addFilterで、マッチメイクの候補として検索するプレイヤーの条件を設定することができます。
+		  このフィルタ文字列内で使用するためのマッチメイク指標キーは、予め<A href="DWC_AddMatchKey.html">DWC_AddMatchKeyInt</A> / <A href="DWC_AddMatchKey.html">DWC_AddMatchKeyString</A>関数を用いて登録しておく必要があります。
+		</P>
+		<P>
+		  また、引数evalCallbackを指定すれば、マッチメイクの候補プレイヤーを見つける度に指定された評価コールバック関数が呼び出されます。
+		  評価コールバック関数内では、<A href="DWC_GetMatch_Value.html">DWC_GetMatchIntValue</A> / <A href="DWC_GetMatch_Value.html">DWC_GetMatchStringValue</A>関数を用いてマッチメイク指標キーを参照することができます。
+		  その値を元にプレイヤーを評価し、評価値を戻り値として返してください。
+		  評価値が0以下のプレイヤーはマッチメイクの対象から外されます。
+		  評価値が高いプレイヤーほど、マッチメイクの相手として選ばれやすくなります。
+		</P>
+		<P>
+		  本関数呼出し後、<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>関数を呼び続ければマッチメイク処理が進行し、マッチメイクが成功、エラー、キャンセルのいずれかの状態で完了すれば、マッチメイク完了コールバックが呼び出されます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>numEntry</CODE></STRONG></EM></TD>
+					<TD width="75%">要求するネットワーク構成人数（自分も含む）。2～32の値が設定できる。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>addFilter</CODE></STRONG></EM></TD>
+					<TD>ゲームで追加したいマッチメイク条件文字列。条件を追加しない場合はNULLを渡す。条件はスタンダードなSQLの書式で書くことができます。設定できる文字列長は最大127文字で、デバッグビルドでは文字数オーバチェックをしています。文字列はコピーしてライブラリ内で保持します。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedCallback</CODE></STRONG></EM></TD>
+					<TD>マッチメイク完了コールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedParam</CODE></STRONG></EM></TD>
+					<TD>マッチメイク完了コールバック用パラメータ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>evalCallback</CODE></STRONG></EM></TD>
+					<TD>プレイヤー評価コールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>evalParam</CODE></STRONG></EM></TD>
+					<TD>プレイヤー評価コールバック用パラメータ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">処理開始。コールバック関数で結果が通知される。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD>本関数を呼んで良い状態ではない</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>,
+				<A href="DWC_AddMatchKey.html">DWC_AddMatchKey*</A>,
+				<A href="DWC_GetMatch_Value.html">DWC_GetMatch*Value</A>,
+				<A href="DWCMatchedCallback.html">DWCMatchedCallback</A>,
+				<A href="DWCEvalPlayerCallback.html">DWCEvalPlayerCallback</A>,
+				<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 詳細な関数説明を追加<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

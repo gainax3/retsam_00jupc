@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetUserExCellAttr</title>
+<LINK rel="stylesheet" href="../../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetUserExCellAttr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/fmt/g2d_Cell_data.h&gt;</CODE></pre>
+  <pre><CODE>
+static inline const NNSG2dUserExCellAttr* 
+NNS_G2dGetUserExCellAttr
+( 
+    const NNSG2dUserExCellAttrBank* pCellAttrBank, 
+    u16                             idx
+);
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pCellAttrBank</font></strong></em></td>
+    <td width="87%">[IN] セルユーザ拡張アトリビュートバンク</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">idx</font></strong></em></td>
+    <td width="87%">[IN] セル番号</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>セルユーザ拡張アトリビュート<BR>
+</p>
+<H2>説明</H2>
+<P>
+セル拡張アトリビュートバンク中のセルユーザ拡張アトリビュートをセル番号を指定して取得します。<BR>
+取得できなかった場合はNULLを返します。<BR>
+ユーザ拡張アトリビュートを利用するためには、-oua オプションを指定してデータをコンバートする必要があります。<BR>
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>なし</p>
+<H2>履歴</H2>
+<P>2005/09/01 初版</P>
+</body>
+</html>

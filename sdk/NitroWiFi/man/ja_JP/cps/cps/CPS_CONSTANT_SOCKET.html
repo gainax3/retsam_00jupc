@@ -1,0 +1,73 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_STT_*</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_STT_*</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>enum {
+	CPS_STT_CLOSED = 0,
+	CPS_STT_LISTEN,
+	CPS_STT_SYN_SENT,
+	CPS_STT_SYN_RCVD,
+	CPS_STT_ESTABLISHED,
+	CPS_STT_CLOSE_WAIT,
+	CPS_STT_LAST_ACK,
+	CPS_STT_FIN_WAIT1,
+	CPS_STT_FIN_WAIT2,
+	CPS_STT_CLOSING,
+	CPS_STT_DATAGRAM,
+	CPS_STT_PING
+};</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>CPSSoc.stateに設定される定数です。ソケットの状態を示します。ユーザはこの値を変更しないでください。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>CPS_STT_CLOSED<BR>
+			CPS_STT_LISTEN<BR>
+			CPS_STT_SYN_SENT<BR>
+			CPS_STT_SYN_RCVD<BR>
+			CPS_STT_ESTABLISHED<BR>
+			CPS_STT_CLOSE_WAIT<BR>
+			CPS_STT_LAST_ACK<BR>
+			CPS_STT_FIN_WAIT1<BR>
+			CPS_STT_FIN_WAIT2<BR>
+			CPS_STT_CLOSING</CODE></STRONG></EM></TD>
+			<TD width="75%">それぞれ対応するTCPステートを示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_STT_DATAGRAM</CODE></STRONG></EM></TD>
+			<TD>ソケットがUDPモードであることを示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_STT_PING</CODE></STRONG></EM></TD>
+			<TD>ソケットがPING(ICMP echo)モードであることを示します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<h2>参照</h2>
+
+<p>
+</p>
+<H2>履歴</H2>
+<P>
+Ver. 2005/09/13 初版</P>
+</body>
+</html>

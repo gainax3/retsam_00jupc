@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>STD_CompareString</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">STD_CompareString</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/std.h&gt;
+
+int STD_CompareString( const char* str1, const char* str2 );</CODE></PRE>
+  <PRE><CODE>int STD_StrCmp( const char* str1, const char* str2 );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">str1</FONT></STRONG></EM></TD>
+      <TD width="800">比較する文字列のポインタを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">str2</FONT></STRONG></EM></TD>
+      <TD width="800">比較する文字列のポインタを指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>
+比較した文字列が同一ならば 0 を返します。
+</p>
+
+<H2>説明</H2>
+<P>
+文字列 str1 と、文字列 str2 を比較します。C標準関数の <CODE>strcmp()</CODE> と同じ動作をします。</P>
+<p><CODE>STD_StrCmp()</CODE> は <CODE>STD_CompareString()</CODE> の別名として define されています。</p>
+
+<h2>参照</h2>
+<p><CODE><A href="STD_CompareNString.html">STD_CompareNString</A>, <A href="STD_CompareLString.html">STD_CompareLString</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/10/5 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>コンテキスト (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">コンテキスト (overview)</H1>
+<H2>説明</H2>
+<P>コンテキストは、日本語では「文脈」としばしば訳されますが、ここではある時点のシステムの内部状態、あるいはその内部状態を格納したデータ
+(構造体)を指します。通常、主にレジスタの値の集合となっていますが、その他の情報を含むこともあります。NitroSDK
+ではコンテキストの保存、切り替え、復帰という操作を組み合わせてスレッドシステムが構築されています。ここでは
+NitroSDK が保存するコンテキスト情報について説明します。</P>
+<P>コンテキスト関連の関数は、コンテキストを初期化する <CODE><A href="OS_InitContext.html">OS_InitContext()</A></CODE> 、 現在のコンテキストを保存する <CODE><A href="OS_SaveContext.html">OS_SaveContext()</A></CODE> 、 コンテキストを読み込む <CODE><A href="OS_LoadContext.html">OS_LoadContext()</A></CODE> 、デバッグ用の <CODE><A href="OS_DumpContext.html">OS_DumpContext()</A></CODE> がありますが、スレッドシステムがこれらを取り扱うため、ユーザが直接コンテキスト関数を呼ぶことはほとんどありません。</P>
+<HR>
+<P><B>コンテキスト情報</B></P>
+<BLOCKQUOTE>コンテキスト構造体 OSContext は以下のように定義されています。<BR>
+<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>
+<PRE>
+typedef struct OSContext<BR>
+{<BR>    u32 cpsr;<BR>    u32 r[13];<BR>    u32 sp;<BR>    u32 lr;<BR>    u32 pc_plus4;<BR>
+#ifdef SDK_CONTEXT_HAS_SP_SVC<BR>    u32 sp_svc;<BR>
+#endif<BR>
+#ifdef SDK_ARM9<BR>    CPContext cp_context;<BR>
+#endif<BR>
+} OSContext;
+</PRE>
+</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<BR>
+<B><FONT color="#ff0033">CPSR</FONT></B> は Current Program Status Register で、フラグや割り込み状態などのステータスが格納されているレジスタを格納する領域です。</BLOCKQUOTE>
+<BLOCKQUOTE><B><FONT color="#ff0033">r[13]</FONT></B> は、汎用レジスタ R0 ～ R12 までを格納する領域です。</BLOCKQUOTE>
+<BLOCKQUOTE><FONT color="#ff0033"><B>sp</B></FONT> は、スタックポインタ(R13)を格納する領域です。</BLOCKQUOTE>
+<BLOCKQUOTE><B><FONT color="#ff0033">lr</FONT></B> は、リンクレジスタ(R14) を格納する領域です。</BLOCKQUOTE>
+<BLOCKQUOTE><FONT color="#ff0033"><B>pc_plus4</B></FONT> は、プログラムカウンタ(PC) の値を格納する領域です。コンテキストを復帰させる際に次の命令から実行させるため、あらかじめPCの値をインクリメントして(値としては+4)
+格納するため、このようなメンバ名になっています。</BLOCKQUOTE>
+<BLOCKQUOTE><FONT color="#ff0033"><B>sp_svc</B></FONT> は、コンパイル時の定義により含める場合と含めない場合を選択することが可能です。ここには
+SVC(スーパバイザコール) モードのスタックポインタの値が入ります。</BLOCKQUOTE>
+<BLOCKQUOTE><FONT color="#ff0033"><B>cp_context</B></FONT> は、演算コプロセッサの状態です。ディバイダ(除算器) と、平方根演算器の状態が含まれます。コンテキストがスイッチされても演算器を適切な状態に移行するために設けられています。ARM7
+にはディバイダも平方根演算器もありませんので、ARM9 にのみ存在するメンバです。以下のように定義されています。<BR>
+<BLOCKQUOTE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>
+<PRE>
+typedef struct CPContext
+{
+    u64     div_numer;
+    u64     div_denom;
+    u64     sqrt;
+    u16     div_mode;
+    u16     sqrt_mode;
+} CPContext;
+</PRE>
+</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BLOCKQUOTE>
+</BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Context">OS関数一覧(コンテキスト)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/13 用語や語尾など修正<BR>
+2004/11/05 初版</P>
+</BODY>
+</HTML>

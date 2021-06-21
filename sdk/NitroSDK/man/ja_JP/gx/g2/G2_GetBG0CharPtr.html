@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_GetBG0CharPtr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_GetBG0CharPtr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2.h&gt;</CODE><BR>
+<CODE>void *G2_GetBG0CharPtr();</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<P>BG0のキャラクタデータの格納領域へのポインタ</P>
+<H2>説明</H2>
+<P>メイン2DエンジンのBG0キャラクタデータの格納領域へのポインタを返します。つまり返り値は、</P>
+<BLOCKQUOTE><CODE>HW_BG_VRAM</CODE><BR>
++ （<A href="../gx/GX_SetBGCharOffset.html">GX_SetBGCharOffset</A><CODE>で指定したGXBGCharOffset</CODE>列挙型の値名の末尾の値） <BR>
++ （<A href="G2_SetBG0Control.html">G2_SetBG0Control</A>で指定した<CODE>GXBGCharBase</CODE>列挙型の値名の末尾の値）</BLOCKQUOTE>
+<P>になります。</P>
+<h2>参照</h2>
+<P><A href="G2_SetBG0Control.html">G2_SetBG0Control</A>, <A href="G2_SetBG0Priority.html">G2_SetBG0Priority</A>, <A href="G2_BG0Mosaic.html">G2_BG0Mosaic</A>, <A href="G2_GetBG0ScrPtr.html">G2_GetBG0ScrPtr</A>, <A href="G2_SetBG0Offset.html">G2_SetBG0Offset</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>説明の追加。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

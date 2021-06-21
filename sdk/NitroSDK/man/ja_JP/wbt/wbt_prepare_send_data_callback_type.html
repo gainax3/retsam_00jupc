@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTPrepareSendDataCallback</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTPrepareSendDataCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+<pre>
+typedef	struct
+{
+	u32 block_id;
+	s32 block_seq_no; 
+	void *data_ptr;
+	s16 own_packet_size;
+	u16 padd;
+} WBTPrepareSendDataCallback;
+</pre>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A>関数でデータバッファを指定しなかった場合のコールバックで渡される構造体です。<BR>
+<br>
+各メンバの内容は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>block_id</TD>
+      <TD>要求されているブロックIDです。</TD>
+    </TR>
+    <TR>
+      <TD>block_seq_no</TD>
+      <TD>要求されているシーケンス番号です。</TD>
+    </TR>
+    <TR>
+      <TD>data_ptr</TD>
+      <TD>データバッファを指定するポインタです。<br>
+    </TR>
+    <TR>
+      <TD>own_packet_size</TD>
+      <TD>シーケンス番号の単位となるパケットサイズです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+ユーザは、任意のシーケンス番号 N について<br>
+N * own_packet_size バイトの位置から own_packet_size バイト分のデータをすでに準備している場合、<br>
+コールバックの中で block_seq_no に N を代入し、data_ptr に該当バッファを指定します。<br>
+ただちに応答できるシーケンス番号が何もない場合は data_ptr に NULL を代入します。<br>
+指定したバッファはコールバックの呼び出し元でただちにコピーされるので、保持しておく必要はありません。<br>
+<br>
+WBTライブラリは、ユーザコールバックに対して<br>
+「前回の要求番号が今回準備され、今回の要求番号が次回までに準備される」<br>
+という流れにおいて効率良く処理が進むように順次シーケンス番号を要求します。<br>
+<br>
+</P>
+<h2>参照</h2>
+<p><CODE>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR></P>
+</body>
+</html>

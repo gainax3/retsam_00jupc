@@ -1,0 +1,61 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_AddRandomSeed</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_AddRandomSeed</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void SOC_AddRandomSeed ( void* <em><strong>seed</strong></em>, u32 <em><strong>len</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>seed</strong></em></code></td>
+    <td>乱数プール攪拌のための種へのポインタ。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>con</strong></em></code></td>
+    <td>seed で指定した種の長さ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<p>なし。</p>
+
+<h2>説明</h2>
+
+<p>SSL 通信で使用する乱数を生成するための乱数プールを攪拌します。通信ライブラリの初期化前でも常に呼び出すことが可能です。</p>
+<p>SSL 通信を安全に行うためには、 SSL 通信を開始する前に<strong>必ず</strong>この関数で十分なエントロピーを供給する必要があります。
+その後も定期的にエントロピーを供給することを推奨します。</p>
+<p>seed に指定するデータとしては、例えばマイクからのサンプリングデータがエントロピーが高く適していますが、常時サンプリングを続けるのは現実的ではありません。
+低コストで取得可能な簡易的な低エントロピー源として、OS_GetLowEntropyData 関数が用意されています。
+ただし、1回の OS_GetLowEntropyData 関数の呼び出しで取得できるデータのエントロピーはあまり高くありませんので、
+SSL 通信を行う前から定期的に OS_GetLowEntropyData 関数で取得したデータを SOC_AddRandomSeed 関数に与えるようにして、
+十分なエントロピーを乱数生成器に供給するようにしてください。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_EnableSsl.html">SOC_EnableSsl</a></code>
+</p>
+
+<H2>履歴</H2>
+<P>
+2005/12/21 初版</P>
+</body>
+</html>

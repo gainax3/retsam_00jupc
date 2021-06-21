@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNSSndArcStrmCallback</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNSSndArcStrmCallback</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndArcStrmCallbackInfo
+{
+    int playerNo;
+    int strmNo;
+} NNSSndArcStrmCallbackInfo;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndArcStrmCallbackParam
+{
+    int strmNo;
+    u32 offset;
+} NNSSndArcStrmCallbackParam;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">typedef BOOL (*NNSSndArcStrmCallback)(
+        NNSSndArcStrmCallbackStatus <var>status</var>,
+        const NNSSndArcStrmCallbackInfo* <var>info</var>,
+        NNSSndArcStrmCallbackParam* <var>param</var>,
+        void* <var>arg</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAHMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>status</code></strong></em></td>
+<td>コールバックの状態です。</td>
+</tr>
+<tr>
+<td><em><strong><code>info</code></strong></em></td>
+<td>コールバック情報構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>param</code></strong></em></td>
+<td>コールバックパラメータ構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>arg</code></strong></em></td>
+<td>ユーザー引数です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDALNWT"></a>
+      <h2>返り値</h2>
+
+      <p>返り値の意味は、コールバックの状態<em><strong><code>status</code></strong></em>によって、異なります。
+デフォルトの処理を行うためには、FALSEを返します。
+個々の<em><strong><code>status</code></strong></em>毎の説明は、下記を参照してください。
+</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXNWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリーム再生中に、特定のタイミングで呼びだされるコールバック関数です。
+</p>
+      <p>
+このコールバック関数は、
+<tt class="function"><a href="NNS_SndArcStrmStartEx2.html">NNS_SndArcStrmStartEx2</a></tt>関数、
+<tt class="function"><a href="NNS_SndArcStrmPrepareEx2.html">NNS_SndArcStrmPrepareEx2</a></tt>関数
+で登録されます。
+</p>
+      <p>
+コールバック関数は、特定のタイミングで呼びだされます。
+どのタイミングで呼びだされたかは、
+コールバックの状態<em><strong><code>status</code></strong></em>で判定できます。
+コールバックの状態<em><strong><code>status</code></strong></em>は次の値を取ります。
+</p>
+      
+      <div class="table"><a name="IDAROWT"></a><p class="title"><b>表 . NNSSndArcStrmCallbackStatus</b></p>
+<table summary="NNSSndArcStrmCallbackStatus" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_ARC_STRM_CALLBACK_DATA_END</td>
+<td>ループ無しストリームのデータ供給がデータ終端に達した状態です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <p>
+コールバック情報構造体<em><strong><code>info</code></strong></em>は、
+コールバックの付加情報が格納された構造体です。
+構造体のメンバの意味は、次の通りです。
+</p>
+      
+      <div class="table"><a name="IDATPWT"></a><p class="title"><b>表 . NNSSndArcStrmCallbackInfo</b></p>
+<table summary="NNSSndArcStrmCallbackInfo" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>メンバ</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>playerNo</td>
+<td>現在再生に使用してるストリームプレイヤーの番号です。</td>
+</tr>
+<tr>
+<td>strmNo</td>
+<td>現在再生しているストリームの番号です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        <p>
+コールバックパラメータ構造体<em><strong><code>param</code></strong></em>の設定及び、関数の返り値の意味は、
+コールバックの状態<em><strong><code>status</code></strong></em>毎に異なります。
+個々の<em><strong><code>status</code></strong></em>毎の処理は、以下の説明を参照してください。
+</p>
+      
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+将来、コールバックの状態<var>status</var>の種類が増える可能性があります。
+必ず、<var>status</var>の値をチェックして、
+無視する場合は、FALSEを返してください。
+</p>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAORWT"></a>
+        <h2>status毎の処理</h2>
+      
+      <div class="refsection" lang="ja"><a name="IDASRWT"></a>
+        <h3>NNS_SND_ARC_STRM_CALLBACK_DATA_END</h3>
+        <p>
+コールバックパラメータ構造体<em><strong><code>param</code></strong></em>のメンバ
+<em><strong><code>strmNo</code></strong></em>に次に再生するストリームデータのストリーム番号を入れて
+TRUEを返すと、指定したストリームデータを続けて再生します。
+この時、コールバックパラメータ構造体<em><strong><code>param</code></strong></em>のメンバ<em><strong><code>offset</code></strong></em>に
+msec単位の再生開始オフセット位置を指定できます。
+</p>
+      <p>
+FALSEを返すと、データ供給を停止し、残りのバッファ再生後にストリームは停止します。
+            </p>
+          <p>
+続けて再生する場合、前のストリームのデータフォーマットと、次に再生するデータのフォーマットが、
+次の条件を全て満たしていなければ、継続再生に失敗します。
+</p>
+          <div class="itemizedlist">
+<ul type="disc">
+<li>サンプリングレートが等しい。</li>
+<li>サンプルフォーマットが共に８ビットPCMか、共に８ビットPCMでない。</li>
+</ul>
+</div>
+    </div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcStrmStartEx2.html">NNS_SndArcStrmStartEx2</a>, <a href="NNS_SndArcStrmPrepareEx2.html">NNS_SndArcStrmPrepareEx2</a></p>
+<h2>履歴</h2>
+<p>2004/11/26 初版<br></p>
+</div>
+</body>
+</html>

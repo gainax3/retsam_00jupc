@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndCreateFrmHeapEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndCreateFrmHeapEx</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>NNSFndHeapHandle    NNS_FndCreateFrmHeapEx(
+	                        void*   startAddress,
+	                        u32     size,
+	                        u16     optFlag);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">startAddress</font></strong></em></td>
+    
+  <td width="87%">ヒープに割り当てるメモリ領域の先頭アドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
+    
+  <td width="87%">ヒープに割り当てるメモリ領域のサイズ(バイト)</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">optFlag</font></strong></em></td>
+    <td width="87%">ヒープへのオプション(詳細は下記を参照)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>ヒープを作成することが出来た場合、ヒープへのハンドル値を返します。 ヒープを作成することが出来なかった場合、NNS_FND_HEAP_INVALID_HANDLE 
+	(NULL値)を返します。</p>
+<H2>説明</H2>
+<p>フレームヒープを作成します。ヒープのための領域は startAddress で指定したアドレスから heapSize で指定されたサイズ分のメモリ領域になります。</P>
+<p>optFlag で、ヒープへのオプションを指定できます。</P>
+<table>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_HEAP_OPT_0_CLEAR</font></strong></em></td>
+		<td>ヒープからメモリを確保したときに、確保したメモリブロックを0で埋めます。</td>
+	</tr>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_HEAP_OPT_DEBUG_FILL</font></strong></em></td>
+		
+  <td>ヒープ作成時および、メモリブロック確保時・解放時にそれぞれ異なった32bit値でメモリ領域を埋めます。このフラグはデバッグ用で、メモリの初期化忘れや無効なメモリ領域を指しているポインタを通じてのメモリアクセスのバグを見つけるのに活用できます。最終ROM版(FINALROM)ライブラリでは機能しません。</td>
+	</tr>
+</table>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndCreateFrmHeap.html">NNS_FndCreateFrmHeap</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/28 ヒープを作成することができなかった場合の値を間違えていたのを修正<br>
+2004/04/01 初版</P>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_EnableVAD</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_EnableVAD</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>void VCT_EnableVAD( BOOL flag );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>flag</STRONG></EM></TD>
+      <TD width="87%" height="17">TRUEでVADをオン、FALSEでVADをオフ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<p>VAD(Voice Activity Detection)を有効、または無効にします。デフォルトでは、VADは有効になっています。</p>
+<p>VADをオンにすると、<code><a href="VCT_Main.html">VCT_Main</a></code>関数内で音声の判定が行われたうえで、パケットの送信をする・しないを自動的に判定するようになります。
+</p>
+<H2>履歴</H2>
+<P>
+2006/08/31 VCT_SendAudio関数に関する記述を削除し、VCT_Main関数に関する記述を追加<BR>
+2006/03/24 VCT_SendAudio関数に関する記述を追記<BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

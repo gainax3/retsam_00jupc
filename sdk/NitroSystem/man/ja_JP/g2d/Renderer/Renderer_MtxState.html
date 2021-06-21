@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Renderer_MtxState</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">レンダラ行列状態</h1>
+<H2>レンダラ行列の状態遷移図</H2>
+<P><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:4in;
+ height:200.4pt'>
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.emz"
+  o:title="図1"/>
+</v:shape><![endif]--><IMG width="384" height="267" src="clip_image0022.gif" v:shapes="_x0000_i1025"></span></P>
+<H2>説明</H2>
+レンダラは、内部に行列スタックを持っています。<BR>
+レンダラは2Dグラフィックエンジンで描画を行う際には、
+行列のアフィンパラメータへのロード処理を担当します。<BR>
+<BR>
+(2D グラフィックスエンジンを使用して描画する場合は、
+行列スタックのカレント行列の内容をアフィンパラメータとして、OAMにをロードし、ロードしたアフィンパラメータを
+参照するようにOAMアトリビュートにアフィン番号を設定する必要があります。)<BR>
+
+<pre>
+レンダラは、アフィンパラメータを節約するために、行列の状態を管理し、ロード回数を減らそうと試みます。
+
+行列の状態は
+ SR(スケール、回転)変換されていない
+ SR(スケール、回転)変換されており、読み込まれていない
+ SR(スケール、回転)変換されており、読み込まれていない。カレント行列がPushされた。
+ SR(スケール、回転)変換されており、読み込まれている。
+に大別されます。
+</pre>
+行列の状態は図に示したようなイベントに対応して推移します。
+<BR>
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

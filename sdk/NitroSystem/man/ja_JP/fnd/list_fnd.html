@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>FoundationライブラリAPI 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>Foundationライブラリ(Fnd)API 機能一覧</H1>
+<H3><A name="Heap">ヒープ共通</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndGetHeapStartAddress.html" target="_self">NNS_FndGetHeapStartAddress</A></TH>
+      <TD>ヒープの使用するメモリ領域の開始アドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndGetHeapEndAddress.html" target="_self">NNS_FndGetHeapEndAddress</A></TH>
+      <TD>ヒープの使用するメモリ領域の終了アドレス(+1)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndFindContainHeap.html" target="_self">NNS_FndFindContainHeap</A></TH>
+      <TD>メモリブロックを含有するヒープを検索します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndSetFillValForHeap.html" target="_self">NNS_FndSetFillValForHeap</A></TH>
+      <TD>ヒープ作成時および、メモリブロック確保時と解放時にメモリを埋める値を設定します。(デバッグ用)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndGetFillValForHeap.html" target="_self">NNS_FndGetFillValForHeap</A></TH>
+      <TD>ヒープ作成時および、メモリブロック確保時と解放時にメモリを埋める値を取得します。(デバッグ用)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="heap/NNS_FndDumpHeap.html" target="_self">NNS_FndDumpHeap</A></TH>
+      <TD>ヒープの内容を表示します。(デバッグ用)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ExpHeap">拡張ヒープ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndCreateExpHeap.html" target="_self">NNS_FndCreateExpHeap</A></TH>
+      <TD>拡張ヒープを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndCreateExpHeapEx.html" target="_self">NNS_FndCreateExpHeapEx</A></TH>
+      <TD>拡張ヒープを作成します。(オプション指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndDestroyExpHeap.html" target="_self">NNS_FndDestroyExpHeap</A></TH>
+      <TD>拡張ヒープを破棄します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndAllocFromExpHeap.html" target="_self">NNS_FndAllocFromExpHeap</A></TH>
+      <TD>拡張ヒープからメモリブロックを確保します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndAllocFromExpHeapEx.html" target="_self">NNS_FndAllocFromExpHeapEx</A></TH>
+      <TD>拡張ヒープからメモリブロックを確保します。(アライメント指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndResizeForMBlockExpHeap.html" target="_self">NNS_FndResizeForMBlockExpHeap</A></TH>
+      <TD>メモリブロックのサイズを変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndFreeToExpHeap.html" target="_self">NNS_FndFreeToExpHeap</A></TH>
+      <TD>メモリブロックを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndSetAllocModeForExpHeap.html" target="_self">NNS_FndSetAllocModeForExpHeap</A></TH>
+      <TD>拡張ヒープのメモリブロックの確保モードをセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetAllocModeForExpHeap.html" target="_self">NNS_FndGetAllocModeForExpHeap</A></TH>
+      <TD>拡張ヒープのメモリブロックの確保モードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndSetGroupIDForExpHeap.html" target="_self">NNS_FndSetGroupIDForExpHeap</A></TH>
+      <TD>拡張ヒープのグループIDをセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetGroupIDForExpHeap.html" target="_self">NNS_FndGetGroupIDForExpHeap</A></TH>
+      <TD>拡張ヒープのグループIDを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndVisitAllocatedForExpHeap.html" target="_self">NNS_FndVisitAllocatedForExpHeap</A></TH>
+      <TD>すべてのメモリブロックに対して指定の関数に処理を行わせます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetTotalFreeSizeForExpHeap.html" target="_self">NNS_FndGetTotalFreeSizeForExpHeap</A></TH>
+      <TD>拡張ヒープ内の空き領域の合計サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetAllocatableSizeForExpHeap.html" target="_self">NNS_FndGetAllocatableSizeForExpHeap</A></TH>
+      <TD>確保できるメモリブロックの最大サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetAllocatableSizeForExpHeapEx.html" target="_self">NNS_FndGetAllocatableSizeForExpHeapEx</A></TH>
+      <TD>確保できるメモリブロックの最大サイズを取得します。(アライメント指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetSizeForMBlockExpHeap.html" target="_self">NNS_FndGetSizeForMBlockExpHeap</A></TH>
+      <TD>メモリブロックのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetGroupIDForMBlockExpHeap.html" target="_self">NNS_FndGetGroupIDForMBlockExpHeap</A></TH>
+      <TD>メモリブロックのグループIDを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndGetAllocDirForMBlockExpHeap.html" target="_self">NNS_FndGetAllocDirForMBlockExpHeap</A></TH>
+      <TD>メモリブロックの確保方向を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndCheckExpHeap.html" target="_self">NNS_FndCheckExpHeap</A></TH>
+      
+  <TD>拡張ヒープが破壊されていないかどうかのチェックを行います。(デバッグ用)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="expheap/NNS_FndCheckForMBlockExpHeap.html" target="_self">NNS_FndCheckForMBlockExpHeap</A></TH>
+      
+  <TD>拡張ヒープのメモリブロックが破壊されていないかどうかのチェックを行います。(デバッグ用)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="FrameHeap">フレームヒープ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndCreateFrmHeap.html" target="_self">NNS_FndCreateFrmHeap</A></TH>
+      <TD>フレームヒープを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndCreateFrmHeapEx.html" target="_self">NNS_FndCreateFrmHeapEx</A></TH>
+      <TD>フレームヒープを作成します。(オプション指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndDestroyFrmHeap.html" target="_self">NNS_FndDestroyFrmHeap</A></TH>
+      <TD>フレームヒープを破棄します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndAllocFromFrmHeap.html" target="_self">NNS_FndAllocFromFrmHeap</A></TH>
+      <TD>フレームヒープからメモリブロックを確保します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndAllocFromFrmHeapEx.html" target="_self">NNS_FndAllocFromFrmHeapEx</A></TH>
+      <TD>フレームヒープからメモリブロックを確保します。(アライメント指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndResizeForMBlockFrmHeap.html" target="_self">NNS_FndResizeForMBlockFrmHeap</A></TH>
+      
+  <TD>メモリブロックのサイズを変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndFreeToFrmHeap.html" target="_self">NNS_FndFreeToFrmHeap</A></TH>
+      <TD>メモリブロックを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndRecordStateForFrmHeap.html" target="_self">NNS_FndRecordStateForFrmHeap</A></TH>
+      <TD>フレームヒープのメモリブロック確保状況を記録します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndFreeByStateToFrmHeap.html" target="_self">NNS_FndFreeByStateToFrmHeap</A></TH>
+      <TD>フレームヒープのメモリブロック確保状況の記録情報を使って、メモリブロックの確保状況を記録される直前の時点に戻します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndAdjustFrmHeap.html" target="_self">NNS_FndAdjustFrmHeap</A></TH>
+      <TD>フレームヒープの空き領域を解放し、フレームヒープが使用するメモリ領域を縮小します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndGetAllocatableSizeForFrmHeap.html" target="_self">NNS_FndGetAllocatableSizeForFrmHeap</A></TH>
+      <TD>確保できるメモリブロックの最大サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="frameheap/NNS_FndGetAllocatableSizeForFrmHeapEx.html" target="_self">NNS_FndGetAllocatableSizeForFrmHeapEx</A></TH>
+      <TD>確保できるメモリブロックの最大サイズを取得します。(アライメント指定)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="UnitHeap">ユニットヒープ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndCreateUnitHeap.html" target="_self">NNS_FndCreateUnitHeap</A></TH>
+      <TD>ユニットヒープを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndCreateUnitHeapEx.html" target="_self">NNS_FndCreateUnitHeapEx</A></TH>
+      <TD>ユニットヒープを作成します。(アライメント、オプション指定)</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndDestroyUnitHeap.html" target="_self">NNS_FndDestroyUnitHeap</A></TH>
+      <TD>ユニットヒープを破棄します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndAllocFromUnitHeap.html" target="_self">NNS_FndAllocFromUnitHeap</A></TH>
+      <TD>ユニットヒープからメモリブロックを確保します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndFreeToUnitHeap.html" target="_self">NNS_FndFreeToUnitHeap</A></TH>
+      <TD>メモリブロックを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndCountFreeBlockForUnitHeap.html" target="_self">NNS_FndCountFreeBlockForUnitHeap</A></TH>
+      <TD>ユニットヒープの確保可能なメモリブロック数を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndCalcHeapSizeForUnitHeap.html" target="_self">NNS_FndCalcHeapSizeForUnitHeap</A></TH>
+      <TD>メモリブロックのサイズと個数から、必要となるユニットヒープのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="unitheap/NNS_FndGetMemBlockSizeForUnitHeap.html" target="_self">NNS_FndGetMemBlockSizeForUnitHeap</A></TH>
+      <TD>ユニットヒープのメモリブロックのサイズを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Archive">アーカイブ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="archive/NNS_FndMountArchive.html" target="_self">NNS_FndMountArchive</A></TH>
+      <TD>アーカイブをファイルシステムにマウントします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive/NNS_FndUnmountArchive.html" target="_self">NNS_FndUnmountArchive</A></TH>
+      <TD>ファイルシステムにマウントされているアーカイブをアンマウントします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive/NNS_FndGetArchiveFileByIndex.html" target="_self">NNS_FndGetArchiveFileByIndex</A></TH>
+      <TD>ファイルIDから、そのファイルが格納されているアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive/NNS_FndGetArchiveFileByName.html" target="_self">NNS_FndGetArchiveFileByName</A></TH>
+      <TD>ファイル名から、そのファイルが格納されているアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive/NNS_FndOpenArchiveFileByIndex.html" target="_self">NNS_FndOpenArchiveFileByIndex</A></TH>
+      <TD>ファイルIDを指定して、ファイルをオープンします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="List">リスト</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FND_INIT_LIST.html" target="_self">NNS_FND_INIT_LIST</A></TH>
+      <TD>リスト構造体を初期化します。（マクロ版）</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndInitList.html" target="_self">NNS_FndInitList</A></TH>
+      <TD>リスト構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndAppendListObject.html" target="_self">NNS_FndAppendListObject</A></TH>
+      <TD>オブジェクトをリストの最後尾に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndPrependListObject.html" target="_self">NNS_FndPrependListObject</A></TH>
+      <TD>オブジェクトをリストの先頭に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndInsertListObject.html" target="_self">NNS_FndInsertListObject</A></TH>
+      <TD>オブジェクトをリストの指定した位置に挿入します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndRemoveListObject.html" target="_self">NNS_FndRemoveListObject</A></TH>
+      <TD>オブジェクトをリストから削除します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndGetNextListObject.html" target="_self">NNS_FndGetNextListObject</A></TH>
+      <TD>指定したオブジェクトの次に繋がれているオブジェクトを得ます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndGetPrevListObject.html" target="_self">NNS_FndGetPrevListObject</A></TH>
+      <TD>指定したオブジェクトの１つ前に繋がれているオブジェクトを得ます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="list/NNS_FndGetNthListObject.html" target="_self">NNS_FndGetNthListObject</A></TH>
+      <TD>リストの先頭からＮ番目に繋がれているオブジェクトを得ます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Allocator">メモリアロケータ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndAllocFromAllocator.html" target="_self">NNS_FndAllocFromAllocator</A></TH>
+      <TD>アロケータからメモリブロック確保します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndFreeToAllocator.html" target="_self">NNS_FndFreeToAllocator</A></TH>
+      <TD>アロケータにメモリブロックを返却してメモリブロックを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndInitAllocatorForExpHeap.html" target="_self">NNS_FndInitAllocatorForExpHeap</A></TH>
+      <TD>拡張ヒープからメモリの確保と解放を行うようにアロケータを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndInitAllocatorForFrmHeap.html" target="_self">NNS_FndInitAllocatorForFrmHeap</A></TH>
+      <TD>フレームヒープからメモリの確保と解放を行うようにアロケータを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndInitAllocatorForUnitHeap.html" target="_self">NNS_FndInitAllocatorForUnitHeap</A></TH>
+      <TD>ユニットヒープからメモリの確保と解放を行うようにアロケータを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/NNS_FndInitAllocatorForSDKHeap.html" target="_self">NNS_FndInitAllocatorForSDKHeap</A></TH>
+      <TD>NITRO-SDKのヒープからメモリの確保と解放を行うようにアロケータを初期化します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

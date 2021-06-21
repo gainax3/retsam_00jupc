@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dFuncSbcShpTable</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dFuncSbcShpTable</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/sbc.h&gt;
+
+typedef void (*NNSG3dFuncSbc_ShpInternal)(NNSG3dRS*, u32, const NNSG3dResShpData*, u32);
+
+NNSG3dFuncSbc_ShpInternal NNS_G3dFuncSbcShpTable[NNS_G3D_SIZE_SHP_VTBL_NUM];</CODE></PRE>
+</DL>
+<H2>説明</H2>
+<P>マテリアルのデータフォーマット毎にSBCの<A href="../sbc/SBC_SHP.html">NNS_G3D_SBC_SHP</A>命令の処理を振り分けるための関数テーブルです。現状ではシェイプのデータフォーマットは１つであるため、将来の拡張に備えた仕様でしかありません。</P>
+<H2>参照</H2>
+<P><A href="../sbc/SBCCallback.html">SBCとコールバック</A></P>
+<H2>履歴</H2>
+<P>2004/10/19 初版</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_Normal</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_Normal</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>
+#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_Normal(fx16 x, fx16 y, fx16 z);
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR>void G3B_Normal(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y, fx16 z);<BR>void G3C_Normal(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y, fx16 z);<BR>void G3BS_Normal(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y, fx16 z);<BR>void G3CS_Normal(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y, fx16 z);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">x</font></strong></em></td>
+    <td width="87%">法線ベクトルのx成分</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">y</font></strong></em></TD>
+      <TD>法線ベクトルのy成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">z</font></strong></em></TD>
+      <TD>法線ベクトルのz成分</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>法線ベクトルを設定します。<B><I>x</I></B>,<B><I>y</I></B>,<B><I>z</I></B>はそれぞれ、引数としては、-FX16_ONE以上、FX16_ONE-1以下を取ることができます。内部で符号+小数部9ビットの固定小数に変換されるので、-1.0(0xF000)以上0.998(0x0FF8)以下の値としてハードウェアに渡されます。ハードウェアによるベクトルの正規化は行われませんので、単位ベクトルを設定してください。<BR>
+<BR>
+ライティングによって求められた頂点カラーは、次の <A href="G3_Color.html" target="_self">G3*_Color</A>, <A href="G3_Normal.html" target="_self">G3*_Normal</A>, <A href="G3_MaterialColorDiffAmb.html" target="_self">G3*_MaterialColorDiffAmb</A>(頂点カラーセットフラグ)のいずれかのコマンドによってカレント頂点カラーが更新されるまで有効です。<BR>
+このため、実用上は複数の頂点で法線ベクトルを共有することが出来ます。なお、ライティングはNormal
+コマンド実行時のみ行われます。従って、ライトのON/OFF 切り替えや、ライトもしくはマテリアルのパラメータ変更後、その効果を頂点カラーへ反映させるためには
+Normal コマンドを再発行する必要があります。</P>
+<h2>参照</h2>
+<P><A href="G3_Color.html">G3*_Color</A>, <A href="G3_MaterialColorDiffAmb.html" target="_self">G3*_MaterialColorDiffAmb</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

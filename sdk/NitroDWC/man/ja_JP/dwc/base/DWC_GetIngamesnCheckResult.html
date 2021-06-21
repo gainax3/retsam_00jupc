@@ -1,0 +1,72 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetIngamesnCheckResult</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetIngamesnCheckResult</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCIngamesnCheckResult DWC_GetIngamesnCheckResult( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  最後に<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数で認証サーバに送信したゲーム内スクリーンネーム（ゲーム中でプレイヤーが使用する名前）のチェック結果を取得します。Wi-Fiコネクションへの接続に成功した後に呼び出してください。
+		</P>
+		<P>
+		  認証サーバは、<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数で認証サーバに送信したゲーム内スクリーンネームがWi-Fiコネクション上で不適切なものでないかチェックします。
+		</P>
+		<P>
+		  チェック結果の適用方法については、「Nitendo Wi-Fi Connection プログラミングガイドライン」を参照してください。<BR>
+		</P>
+		<!-- <P>
+		  <FONT color="red">※ 現在、適用方法が未定のため Nintendo Wi-Fi Connection プログラミングガイドライン に該当の記載はありません。適用方法が公開されるまで、本関数を呼び出す必要はありません。</FONT>
+		</P> -->
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="30%"><EM><STRONG><CODE>DWC_INGAMESN_NOT_CHECKED</CODE></STRONG></EM></TD>
+					<TD>認証サーバでチェックされていません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_INGAMESN_VALID</CODE></STRONG></EM></TD>
+					<TD>認証サーバで不適切と判断されませんでした。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_INGAMESN_INVALID</CODE></STRONG></EM></TD>
+					<TD>認証サーバで不適切と判断されました。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		  <code>
+				<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>
+			  </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/03/27 適用方法に関する注意書きを削除<BR>
+			2005/12/26 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

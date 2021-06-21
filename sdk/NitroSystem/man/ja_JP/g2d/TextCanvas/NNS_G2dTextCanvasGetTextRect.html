@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dTextCanvasGetTextRect</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dTextCanvasGetTextRect</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_TextCanvas.h&gt;
+
+<a href="../Font/NNSG2dTextRect.html">NNSG2dTextRect</a> NNS_G2dTextCanvasGetTextRect(
+	const NNSG2dTextCanvas* pTxn,
+	const <a href="NNS_G2D_UNICODE.html">NNSG2dChar</a>* txt
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pTxn</STRONG></EM></TD>
+      <TD width="87%"> [IN] TextCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>txt</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字列へのポインタ </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	文字列を描画した場合の幅と高さを返します。
+</P>
+<P>
+	<code>NNSG2dTextRect</code> 型は以下のように定義されています。
+</P>
+	<pre><code>typedef struct NNSG2dTextRect
+{
+	int width;	// 矩形幅
+	int height;	// 矩形高さ
+}
+NNSG2dTextRect;
+</code></pre>
+
+<H2>説明</H2>
+<P>
+	文字列 <EM><STRONG>txt</STRONG></EM> を描画した場合の幅と高さを計算します。
+</P>
+<P class="warning">
+    縦書きフォントでは幅と高さを逆に計算します。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<a href="../Font/NNS_G2dFontGetTextRect.html">NNS_G2dFontGetTextRect</a>,
+<a href="NNS_G2dTextCanvasGetStringWidth.html">NNS_G2dTextCanvasGetStringWidth</a>,
+<a href="NNS_G2dTextCanvasGetTextWidth.html">NNS_G2dTextCanvasGetTextWidth</a>,
+<a href="NNS_G2dTextCanvasGetTextHeight.html">NNS_G2dTextCanvasGetTextHeight</a>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2007/03/14 縦書き/縦持ちフォントに対応。<br>
+2005/05/25 初版
+</P>
+</BODY>
+
+</HTML>

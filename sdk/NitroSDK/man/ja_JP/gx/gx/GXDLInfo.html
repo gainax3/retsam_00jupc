@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GXDLInfo</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GXDLInfo</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/g3.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct
+{
+    u8 *curr_cmd;
+    u32 *curr_param;
+    u32 *bottom;
+    u32 length;
+    BOOL param0_cmd_flg;
+}
+GXDLInfo;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">curr_cmd</font></strong></em></TD>
+      <TD width="800">コマンド挿入位置へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">curr_param</font></strong></em></TD>
+      <TD width="800">コマンドパラメータ挿入位置へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">bottom</font></strong></em></TD>
+      <TD width="800">ディスプレイリスト末尾へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">length</font></strong></em></TD>
+      <TD width="800">ディスプレイリストのサイズ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">param0_cmd_flg</font></strong></em></TD>
+      <TD>パラメータ0のジオメトリコマンド送信時のハードウェアバグ対策パラメータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>G3B_***, G3C_***等の動的ディスプレイリスト作成関数の引数として使われる構造体です。</P>
+
+<H2>履歴</H2>
+<P>2004/11/05 初版</P>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>fx64c型の定数マクロ</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">fx64c型の定数マクロ</h1>
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="201">FX64C_ONE</TD>
+      <TD width="445">1です。 FX64C_CONST( 1.0f ) と同等です。</TD>
+    </TR>
+    <TR>
+      <TD>FX64C_HALF</TD>
+      <TD>1/2です。 FX64C_CONST( 0.5f ) と同等です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_E</TD>
+      <TD width="445">自然対数の底です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_LOG2E</TD>
+      <TD width="445">log2(e)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_LOG10E</TD>
+      <TD width="445">log10(e)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_LN2</TD>
+      <TD width="445">ln(2)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_LN10</TD>
+      <TD width="445">ln(10)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_PI</TD>
+      <TD width="445">πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_TWOPI</TD>
+      <TD width="445">2πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_PI_2</TD>
+      <TD width="445">π/2です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_PI_4</TD>
+      <TD width="445">π/4です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_3PI_4</TD>
+      <TD width="445">3π/4です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_SQRTPI</TD>
+      <TD width="445">πの平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_1_PI</TD>
+      <TD width="445">1/πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_2_PI</TD>
+      <TD width="445">2/πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_2_SQRTPI</TD>
+      <TD width="445">2/sqrt(π)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_SQRT2</TD>
+      <TD width="445">2の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_SQRT1_2</TD>
+      <TD width="445">1/2の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_SQRT3</TD>
+      <TD width="445">3の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_SQRT1_3</TD>
+      <TD width="445">1/3の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_IVLN10</TD>
+      <TD width="445">1/ln(10)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_LOG2_E</TD>
+      <TD width="445">1/log2(e)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_INVLN2</TD>
+      <TD width="445">1/ln(2)です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_1_360</TD>
+      <TD width="445">1/360です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_TWOPI_360</TD>
+      <TD width="445">2π/360です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_360_TWOPI</TD>
+      <TD width="445">360/2πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_65536_TWOPI</TD>
+      <TD width="445">65536/2πです。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_65536_360</TD>
+      <TD width="445">65536/360です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_TWOPI_65536</TD>
+      <TD width="445">2π/65536です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_360_65536</TD>
+      <TD width="445">360/65536です。</TD>
+    </TR>
+    <TR>
+      <TD width="201">FX64C_[1-99]_100</TD>
+      <TD width="445">1/100から99/100です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロの定義</H2>
+<P><CODE>NitroSDK/include/nitro/fx/fx_const.h</CODE>に定義されています。
+</P>
+<PRE><CODE>#define FX64C_ONE                        ((fx64c) 0x0000000100000000LL)    // 1.000000000
+#define FX64C_HALF                       ((fx64c) 0x0000000080000000LL)    // 0.500000000
+#define FX64C_E                          ((fx64c) 0x00000002b7e15163LL)    // 2.718281829
+#define FX64C_LOG2E                      ((fx64c) 0x0000000171547653LL)    // 1.442695041
+#define FX64C_LOG10E                     ((fx64c) 0x000000006f2dec55LL)    // 0.434294482
+#define FX64C_LN2                        ((fx64c) 0x00000000b17217f8LL)    // 0.693147181
+#define FX64C_LN10                       ((fx64c) 0x000000024d763777LL)    // 2.302585093
+#define FX64C_PI                         ((fx64c) 0x00000003243f6a89LL)    // 3.141592654
+#define FX64C_TWOPI                      ((fx64c) 0x00000006487ed511LL)    // 6.283185307
+#define FX64C_PI_2                       ((fx64c) 0x00000001921fb544LL)    // 1.570796327
+#define FX64C_PI_4                       ((fx64c) 0x00000000c90fdaa2LL)    // 0.785398163
+#define FX64C_3PI_4                      ((fx64c) 0x000000025b2f8fe6LL)    // 2.356194490
+#define FX64C_SQRTPI                     ((fx64c) 0x00000001c5bf891bLL)    // 1.772453851
+#define FX64C_1_PI                       ((fx64c) 0x00000000517cc1b7LL)    // 0.318309886
+#define FX64C_2_PI                       ((fx64c) 0x00000000a2f9836eLL)    // 0.636619772
+#define FX64C_2_SQRTPI                   ((fx64c) 0x0000000120dd7504LL)    // 1.128379167
+#define FX64C_SQRT2                      ((fx64c) 0x000000016a09e668LL)    // 1.414213562
+#define FX64C_SQRT1_2                    ((fx64c) 0x00000000b504f334LL)    // 0.707106781
+#define FX64C_SQRT3                      ((fx64c) 0x00000001bb67ae86LL)    // 1.732050808
+#define FX64C_SQRT1_3                    ((fx64c) 0x0000000093cd3a2dLL)    // 0.577350269
+#define FX64C_IVLN10                     ((fx64c) 0x000000006f2dec55LL)    // 0.434294482
+#define FX64C_LOG2_E                     ((fx64c) 0x00000000b17217f8LL)    // 0.693147181
+#define FX64C_INVLN2                     ((fx64c) 0x0000000171547653LL)    // 1.442695041
+#define FX64C_1_360                      ((fx64c) 0x0000000000b60b61LL)    // 0.002777778
+#define FX64C_TWOPI_360                  ((fx64c) 0x000000000477d1a9LL)    // 0.017453293
+#define FX64C_360_TWOPI                  ((fx64c) 0x000000394bb834c8LL)    // 57.295779513
+#define FX64C_65536_TWOPI                ((fx64c) 0x000028be60db9391LL)    // 10430.378350470
+#define FX64C_65536_360                  ((fx64c) 0x000000b60b60b60bLL)    // 182.044444444
+#define FX64C_TWOPI_65536                ((fx64c) 0x000000000006487fLL)    // 0.000095874
+#define FX64C_360_65536                  ((fx64c) 0x0000000001680000LL)    // 0.005493164</CODE>
+.....</PRE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/25</P>
+</body>
+</html>

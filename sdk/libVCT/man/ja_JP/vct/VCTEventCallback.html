@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTEventCallback</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTEventCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef void (*VCTEventCallback)(u8 aid,
+                                 <a href="VCTEvent.html">VCTEvent</a> result,
+                                 <a href="VCTSession.html">VCTSession</a> *session,
+                                 void *param);
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>aid</I></B></TD>
+      <TD width="70%">イベントを発生させたリモートマシンのaid</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>result</I></B></TD>
+      <TD width="70%">イベントコード</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>session</I></B></TD>
+      <TD width="70%">このイベントのセッション</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>param</I></B></TD>
+      <TD width="70%">ユーザーが設定したパラメータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>VoiceChatのイベントコールバック関数です。<code><a href="VCTConfig.html">VCTConfig</a></code>で指定します。</P>
+
+この関数は<code><a href="VCT_HandleData.html">VCT_HandleData</a></code>、および<code><a href="VCT_Main.html">VCT_Main</a></code>関数から呼び出されます。
+
+<h2>参照</h2>
+<P><CODE>
+<A href="VCT_Init.html">VCT_Init</A>,
+<A href="VCTConfig.html">VCTConfig</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

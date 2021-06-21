@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_UnloadOverlayImage</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_UnloadOverlayImage</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_UnloadOverlayImage(FSOverlayInfo *p_ovi);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_ovi</STRONG></EM></TD>
+      <TD width="87%">オーバーレイモジュールの情報が格納されたFSOverlayInfo構造体</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>オーバーレイモジュールのイメージが正しくアンロードされれば TRUE を返し、そうでない場合は、FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>オーバーレイモジュールのイメージをメモリからアンロードします。<BR>
+現状、この関数は内部でFS_EndOverlay関数を呼び出すだけです。<br>
+オーバーレイモジュールをロードする場合、領域の競合する他の全てのロード済みのモジュールに対して<BR>
+この関数を呼ぶ必要があります。<BR>
+<BR>
+</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>
+<A href="FS_EndOverlay.html">FS_EndOverlay</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 リンク先訂正<br>
+2004/09/10 FS_EndOverlayに関する記述を追加<BR>
+2004/06/11 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_ReadUncompHuffman</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_ReadUncompHuffman*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mi/uncomp_stream.h&gt;</CODE><BR>
+  <BR>
+<CODE>s32 MI_ReadUncompHuffman(  <A href="MIUncompContextHuffman.html">MIUncompContextHuffman</A> *context,  
+                               const u8* data, 
+                               u32 len );</CODE><br>
+</PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>context</STRONG></EM></TD>
+      <TD width="87%">ハフマン圧縮されたデータの展開用コンテキスト構造体へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data</STRONG></EM></TD>
+      <TD width="87%">展開するデータの一部へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>len</STRONG></EM></TD>
+      <TD>第二引数で与えたデータのデータサイズです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>展開されるデータの残りバイト数が返されます。<BR>
+すべてのデータを展開し終えた場合には0となります。</p>
+
+<H2>説明</H2>
+<P>ランレングス圧縮されたデータを与えられたデータサイズ分だけ順次ストリーミング展開し、<BR>
+<A href="MI_InitUncompContextHuffman.html">MI_InitUncompContextHuffman</A>関数で設定されたバッファへコピーします。<BR>
+展開速度は、<A href="MI_UncompressHuffman.html">MI_UncompressHuffman*</A>関数で一度に展開する場合に比べると低速です。</P>
+<P><CODE>MI_ReadUncompHuffman()</CODE>は、32bit単位で書き込みますので、<BR>
+VRAMにも直接展開できます。</P>
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+<h2>参照</h2>
+<p><CODE><A href="MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="MI_InitUncompContextHuffman.html">MI_InitUncompContextHuffman</A>, <A href="MIUncompContextHuffman.html">MIUncompContextHuffman</A>,<A href="MI_ReadUncompLZ.html">MI_ReadUncompLZ*</A>, <A href="MI_ReadUncompRL.html">MI_ReadUncompRL*</A>, <A href="MI_CompressHuffman.html">MI_CompressHuffman</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/11/30 初版</P>
+</body>
+</html>

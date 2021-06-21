@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRC_GetRecognizedEntry</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRC_GetRecognizedEntry*</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+fx32 PRC_GetRecognizedEntry(
+    <A href="PRCPrototypeEntry.html">PRCPrototypeEntry</A>**         resultEntry,
+    void*                       buffer,
+    const <A href="PRCInputPattern.html">PRCInputPattern</A>*      input,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB );
+
+fx32 PRC_GetRecognizedEntryEx(
+    <A href="PRCPrototypeEntry.html">PRCPrototypeEntry</A>**         resultEntry,
+    void*                       buffer,
+    const <A href="PRCInputPattern.html">PRCInputPattern</A>*      input,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB,
+    u32                         kindMask,
+    const <A href="PRCRecognizeParam.html">PRCRecognizeParam</A>*    param );
+
+int PRC_GetRecognizedEntries(
+    <A href="PRCPrototypeEntry.html">PRCPrototypeEntry</A>**         resultEntries,
+    fx32*                       resultScores,
+    int                         numRanking,
+    void*                       buffer,
+    const <A href="PRCInputPattern.html">PRCInputPattern</A>*      input,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB );
+
+int PRC_GetRecognizedEntriesEx(
+    <A href="PRCPrototypeEntry.html">PRCPrototypeEntry</A>**         resultEntries,
+    fx32*                       resultScores,
+    int                         numRanking,
+    void*                       buffer,
+    const <A href="PRCInputPattern.html">PRCInputPattern</A>*      input,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB,
+    u32                         kindMask,
+    const <A href="PRCRecognizeParam.html">PRCRecognizeParam</A>*    param );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">resultEntry</font></strong></em></td>
+      <td width="87%">認識結果の<CODE>PRCPrototypeEntry*</CODE>を受け取るポインタ</td>
+    </tr>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">buffer</FONT></STRONG></EM></TD>
+      <TD width="87%">認識アルゴリズムで使用されるメモリ領域へのポインタ</TD>
+    </TR>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">input</font></strong></em></td>
+      <td width="87%">認識する入力パターンデータ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">protoDB</font></strong></em></td>
+      <td width="87%">見本DB</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">kindMask</font></strong></em></td>
+      <td width="87%">マッチング対象を限定するための図形種のビットフィールド指定</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">param</font></strong></em></td>
+      <td width="87%">認識アルゴリズム依存のその他のパラメータ値　（NULL でデフォルト値を使用）</td>
+    </tr>
+  </tbody>
+</table>
+
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">resultEntries</font></strong></em></td>
+      <td width="87%">認識結果の<CODE>PRCPrototypeEntry*</CODE>を受け取る配列へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">resultScores</font></strong></em></td>
+      <td width="87%">認識結果のスコアを受け取る配列へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">numRanking</font></strong></em></td>
+      <td width="87%">認識結果の何位までを受け取るかの指定</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><CODE>PRC_GetRecognizedEntry</CODE>, <CODE>PRC_GetRecognizedEntryEx</CODE> は認識結果のスコアを<CODE><A href="../../fx/fx32.html">fx32</A></CODE>型で返します。</p>
+<P><CODE>PRC_GetRecognizedEntries</CODE>, <CODE>PRC_GetRecognizedEntriesEx</CODE> は見本DBの中の何パターンがマッチング対象になったかを返します。</P>
+<H2>説明</H2>
+<P>図形認識を実際に行うAPIです。<CODE><A href="PRCInputPattern.html">PRCInputPattern</A></CODE>型の入力パターンデータと<CODE><A href="PRCPrototypeDB.html">PRCPrototypeDB</A></CODE>型の見本DBの各エントリとのマッチングを行い、スコアの高かったものを返します。</P>
+<P>マッチング処理中に、<CODE>protoDB</CODE> 中の各見本DBエントリの <CODE>kind</CODE> 値と<CODE>kindMask</CODE> 値との AND がとられ、結果が非0であればそのエントリをマッチングの対象とします。<CODE>kindMask</CODE> に <CODE>PRC_KIND_ALL</CODE> を指定すると全種類を選択します。なお、<CODE>enabled</CODE> フラグが偽の見本DBエントリは <CODE>kind</CODE> 値が合致していてもマッチング対象にはなりません。</P>
+<P><CODE>PRC_GetRecognizedEntry</CODE>, <CODE>PRC_GetRecognizedEntryEx</CODE> はもっともスコアの高かった見本DBエントリへのポインタを <CODE>*resultEntry</CODE> に返します。認識できなかった場合は<CODE>*resultEntry</CODE> に <CODE>NULL</CODE> が代入されて返ります。</P>
+<P><CODE>PRC_GetRecognizedEntries</CODE>, <CODE>PRC_GetRecognizedEntriesEx</CODE> はスコアの上位 <CODE>numRanking</CODE> 位までの見本DBエントリへのポインタをスコアの降順に <CODE>resultEntries[]</CODE> に返し、それぞれのスコアの数値を<CODE>resultScores[]</CODE> に返します。マッチング対象の見本DBエントリの数が <CODE>numRanking</CODE> に満たなかった場合は、<CODE>resultEntries[]</CODE> の足りない部分に <CODE>NULL</CODE> が代入されます。</P>
+<P>選択した認識アルゴリズムと入力パターンの複雑さ、見本DBのエントリ数・複雑さなどの条件により、非常に高コストの処理となりますので注意してください。認識には複数フレームかかることを前提として、メインの処理とは別のスレッド上でこのAPIを実行することを推奨します。実装例としてデモの下の
+prc/characterRecognition-1 をご参照ください。</P>
+<P>認識アルゴリズムが使用するメモリ領域を <CODE>buffer</CODE> で指定します。必要なメモリ量をあらかじめ<CODE><A href="PRC_GetRecognitionBufferSize.html">PRC_GetRecognitionBufferSize*</A></CODE>で取得し、それ以上のメモリ領域を確保しておいてください。</P>
+<P>fx32 型で返ってくるスコア値は実際には 0 以上 FX32_ONE 以下の範囲に収まっています。スコアが大きいほど認識結果のパターンとの類似度が高くなります。</P>
+<P><CODE>PRC_GetRecognizedEntry, PRC_GetRecognizedEntries</CODE> は、それぞれ <CODE>kindMask</CODE> に <CODE>PRC_KIND_ALL</CODE>、<CODE>param</CODE> に <CODE>NULL</CODE> を設定した <CODE>PRC_GetRecognizedEntryEx, PRC_GetRecognizedEntriesEx</CODE> の呼び出しと同等です。</P>
+<P>認識のアルゴリズムの詳細に関しては、docs/TechnicalNotes/AboutPatternRecognition.pdf を参照してください。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_GetRecognitionBufferSize.html">PRC_GetRecognitionBufferSize*</A>, <A href="PRCRecognizeParam.html">PRCRecognizeParam</A>, <A href="PRC_Init.html">PRC_Init</A>, <A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB*</A>, <A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A>, <A href="PRC_GetEntryCode.html">PRC_GetEntryCode</A>, <A href="PRC_GetEntryData.html">PRC_GetEntryData</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/02/18 解説ドキュメントのファイル名を修正<BR>
+2004/06/23 初版</P>
+</body>
+</html>

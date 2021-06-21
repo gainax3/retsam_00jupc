@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>バックアップアクセス (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">バックアップアクセス (overview)</H1>
+<H2>説明</H2>
+<P>バックアップデバイスはDSカード内のSPIバスに接続され、IOレジスタを通してコマンドをシリアル通信することによって状態確認やデータ転送などの各種操作を行います。
+用意されるコマンドの種類や制限はデバイス種別やサイズなどに依存しますが、一般的には共通して以下のような特徴があります。<br>
+<ul>
+<li>固有のページサイズによってメモリ空間全体が区切られ、各ページごとに独立して書き込み回数の寿命を持ちます。
+<li>書き込みに関係するコマンドを発行すると完了するまでデバイスがビジー状態になります。
+<li>書き込み回数の蓄積に比例してビジー期間は徐々に長くなり、最終的には保証された規定範囲では決して完了しなくなります。
+<li>書き込み回数に依存しない、デバイス全体のデータ保持期間も存在します。
+</ul>
+</P>
+<HR>
+<P><B>デバイス種別</B></P>
+現在CARDライブラリで対応している主なバックアップデバイス種別とその特性を以下に示します。
+<table>
+<tr><td>デバイス種別</td><td>特性</td></tr>
+<tr><td>EEPROM</td><td>標準的な特性の、比較的小容量なメモリ。</td></tr>
+<tr><td>FLASH</td><td>比較的書き込みが遅く大容量なメモリ。<br />特に容量の大きなものはデータの書き換え処理が若干複雑になる。(後述)</td></tr>
+<tr><td>FRAM</td><td>書き込み回数の面で非常に優れている。また、セクタの概念が無く書き込み時のビジー期間も存在しない。</td></tr>
+</table>
+<br>
+DSカードに搭載されているバックアップデバイスの種別を自動的に判断する手段は存在しませんので、
+アプリケーションは自身が使用するデバイスタイプを明確に認識した上で、
+全てのバックアップアクセス関数に先立って<A href="../common/CARD_IdentifyBackup.html">CARD_IdentifyBackup</a>関数で明示的に指定する必要があります。
+特にDSダウンロードプレイなどでDSカード以外から起動したアプリケーションにおいては、
+詳細の不確定なDSカードへ不用意にアクセスしてデータ破壊などの問題を生じることが無いよう、
+必ずガイドラインに従ってROMヘッダ情報を事前に判定する必要がある点に注意してください。
+そのような条件下ではCARDライブラリで自動的に制限が働き、<A href="../common/CARD_Enable.html">CARD_Enable</a>関数を呼び出さない限りアクセスできないようになります。
+挿入されているDSカードのROMヘッダ情報は<A href="../common/CARD_GetRomHeader.html">CARD_GetRomHeader</a>関数で参照することができます。<br>
+<br />
+前述の通り、デバイス種別ごとに使用可能なコマンドの種類や制限が異なります。特に、ある程度大容量なFLASHデバイスでは単純なデータ書き換えコマンドである"Write"操作を使用することができません。そのようなデバイスでは、セクタ単位でデータを消去する"EraseSector"操作と消去済み領域へデータを書き込む"Program"操作を組み合わせて同様の処理を実現する必要があるという点に注意してください。<br />
+以下に、現在サポートされているデバイスとおおよその動作特性をまとめます。
+<table>
+<tr><td style="text-align:center">デバイス種別</td><td style="text-align:center" colspan="3">EEPROM</td><td style="text-align:center" colspan="1">FRAM</td><td style="text-align:center" colspan="5">FLASH</td></tr>
+<tr><td>サイズ</td><td>4kb</td><td>64kb</td><td>512kb</td><td>256kb</td><td>2Mb</td><td>4Mb</td><td>8Mb</td><td>16Mb</td><td>64Mb</td></tr>
+<tr><td>ページサイズ</td><td style="text-align:center" colspan="3"><font color="gray">(容量全体)</font></td><td style="text-align:center" colspan="1"><font color="gray">(容量全体)</font></td><td style="text-align:center" colspan="5">256B</td></tr>
+<tr><td>セクタサイズ</td><td style="text-align:center" colspan="3"><font color="gray">(容量全体)</font></td><td style="text-align:center"><font color="gray">(容量全体)</font></td><td style="text-align:center" colspan="5">65536B</td></tr>
+<tr><td>Write (消去不要な直接書き換え操作)</td><td style="text-align:center" colspan="3">○</td><td style="text-align:center">○</td><td style="text-align:center" colspan="4">○</td><td style="text-align:center;background-color:#FFC0C0" colspan="1">×</td></tr>
+<tr><td>Program (消去後の書き込み操作)</td><td style="text-align:center" colspan="3">×</td><td style="text-align:center">×</td><td style="text-align:center" colspan="5">○</td></tr>
+<tr><td>EraseSector (セクタ消去操作)</td><td style="text-align:center" colspan="3">×</td><td style="text-align:center">×</td><td style="text-align:center" colspan="5">○</td></tr>
+</table>
+<br />
+</P>
+<HR>
+<P><B>アクセス関数の処理の流れ</B></P>
+<P>バックアップアクセス関数を呼び出してからの処理の流れについて説明します。</P>
+<BLOCKQUOTE><IMG src="image_BackupAccess.gif" border="0"></BLOCKQUOTE>
+<ol>
+<li>データ転送に関係するほとんどのデバイスコマンドはページやセクタなどの固有サイズに制限を受けるため、
+CARDライブラリはユーザから指定された内容を適切なサイズの複数個のコマンドへ自動的に分割します。
+<li>分割された個々のコマンドを順に発行します。コマンド発行とその後のビジー判定には終始CPUの直接処理を要するため、
+この処理はARM7コンポーネント側の比較的低優先なスレッドで実行されます。
+ARM9からはPXIを経由して1回ずつコマンド発行要求を通知します。
+<li>ARM7コンポーネントでコマンドが完了すると、同じくPXIを経由して結果がARM9へ通知されます。
+<li>分割された残りのコマンドがあればこの場で再びARM9からコマンド発行要求を通知します。
+処理全体が完了するか失敗するか、あるいは<a href="../backup/CARD_CancelBackupAsync.html">CARD_CancelBackupAsync</a>
+関数で中止されるまでこれを繰り返します。
+ここで行われる完了待ちと再発行要求の処理はメモリコピーなどで長い時間がかかる場合があるため、
+PXI割り込みハンドラではなくCARDライブラリ内部のスレッドで実行されます。
+<li>処理が完了すると、指定されたコールバックが呼び出し元へ通知されます。処理の結果は
+<a href="../card_result_const.html">CARDResult</a>型の列挙値として
+<a href="../common/CARD_GetResultCode.html">CARD_GetResultCode</a>関数で参照することができます。
+</ol>
+<P>
+<H2>参照</H2>
+<P><CODE><A href="../list_card.html">CARD関数一覧</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2007/08/22 大容量FLASHに関する説明と特性表を追記<br />
+2006/01/11 初版<br />
+</P>
+</BODY>
+</HTML>

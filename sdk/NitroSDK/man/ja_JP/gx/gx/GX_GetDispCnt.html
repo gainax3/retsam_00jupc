@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_GetDispCnt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_GetDispCnt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>GXDispCnt GX_GetDispCnt( void );</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>メイングラフィックスエンジンの表示コントロールレジスタの値を示すGXDispCnt型の値。</p>
+<H2>説明</H2>
+<P>メイングラフィックスエンジンの表示コントロールレジスタの値を取得します。<BR>
+<BR>
+GXDispCnt型には以下の情報が含まれます。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I><CODE>bgMode</CODE></I></B></TD>
+      <TD width="70%">BGモードの情報です。<A href="GX_SetGraphicsMode.html">GX_SetGraphicsMode</A>のGXBGMode型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I><CODE>bg0_2d3d</CODE></I></B></TD>
+      <TD width="70%">BG0を3Dに割り当てるかどうかの情報です。<A href="GX_SetGraphicsMode.html">GX_SetGraphicsMode</A>のGXBG0As型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><I><B><CODE>objMapChar</CODE></B></I></TD>
+      <TD width="70%">キャラクタOBJの1D/2Dマッピングの選択フラグです。<BR>
+      <A href="GX_SetOBJVRamModeChar.html">GX_SetOBJVRamModeChar</A>を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I><CODE>objMapBmp</CODE></I></B></TD>
+      <TD width="70%">ビットマップOBJのマッピング選択フラグです。<BR>
+      <A href="GX_SetOBJVRamModeBmp.html">GX_SetOBJVRamModeBmp</A>を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><I><B><CODE>blankScr</CODE></B></I></TD>
+      <TD width="70%">2D表示の強制ブランク設定です。このパラメータは2D表示のみを停止するものであり通常利用されません。表示のON/OFF制御には<A href="GX_DispOn.html">GX_DispOff</A>,<A href="GX_DispOn.html">GX_DispOn</A>を使用してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><I><B><CODE>visiblePlane</CODE></B></I></TD>
+      <TD width="70%">2D表示面の設定です。詳細は<A href="GX_SetVisiblePlane.html">GX_SetVisiblePlane</A>のGXPlaneMask型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>visibleWnd</CODE></I></B></TD>
+      <TD>ウィンドウの表示設定です。詳細は<A href="GX_SetVisibleWnd.html">GX_SetVisibleWnd</A>のGXWndMask型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>dispMode</CODE></I></B></TD>
+      <TD>表示モードの設定です。詳細は<A href="GX_SetGraphicsMode.html">GX_SetGraphicsMode</A>のGXDispMode型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>extObjMapChar</CODE></I></B></TD>
+      <TD>キャラクタOBJのVRAM容量設定です。<BR>
+      <A href="GX_SetOBJVRamModeChar.html">GX_SetOBJVRamModeChar</A>を参照。</TD>
+    </TR>
+    <TR>
+      <TD><I><B><CODE>extObjMapBmp</CODE></B></I></TD>
+      <TD>ビットマップOBJのVRAM容量設定です。<BR>
+      <A href="GX_SetOBJVRamModeBmp.html">GX_SetOBJVRamModeBmp</A>を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>hBlankObjProc</CODE></I></B></TD>
+      <TD>Hブランク中のOBJ処理設定を行ないます。詳細は<A href="GX_HBlankOBJProc.html">GX_HBlankOBJProc</A>を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>bgCharOffset</CODE></I></B></TD>
+      <TD>BGキャラクタデータのオフセット値設定です。<A href="GX_SetBGCharOffset.html">GX_SetBGCharOffset</A>のGXBGCharOffset型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>bgScrOffset</CODE></I></B></TD>
+      <TD>BGスクリーンデータのオフセット値設定です。<BR>
+      <A href="GX_SetBGScrOffset.html">GX_SetBGScrOffset</A>のGXBGScrOffset型を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>bgExtPltt</CODE></I></B></TD>
+      <TD>BG拡張パレット有効フラグです。<A href="GX_SetBankForBGExtPltt.html">GX_SetBankForBGExtPltt</A>等のVRAMバンク設定関数中で設定されます。</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>objExtPltt</CODE></I></B></TD>
+      <TD>OBJの拡張パレット有効フラグです。<A href="GX_SetBankForOBJExtPltt.html">GX_SetBankForOBJExtPltt</A>等のVRAMバンク設定関数中で設定されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下にGXDispCnt型の型定義を示しておきます。</P>
+<PRE><CODE>typedef union
+{
+        u32 raw;
+        struct {
+                u32             bgMode          :3;
+                u32             bg0_2d3d        :1;
+                u32             objMapChar      :1;
+                u32             objMapBmp       :2;
+                u32             blankScr        :1;
+                u32             visiblePlane    :5;
+                u32             visibleWnd      :3;
+                u32             dispMode        :4;
+                u32             extObjMapChar   :2;
+                u32             extObjMapBmp    :1;
+                u32             hBlankObjProc   :1;
+                u32             bgCharOffset    :3;
+                u32             bgScrOffset     :3;
+                u32             bgExtPltt       :1;
+                u32             objExtPltt      :1;
+        };
+}
+GXDispCnt;
+</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/12/24</P>
+
+</body>
+</html>

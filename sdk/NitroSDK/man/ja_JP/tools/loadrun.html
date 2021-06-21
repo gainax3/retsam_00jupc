@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>loadrun</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">loadrun</H1>
+<H2>説明</H2>
+
+<P>　<CODE>loadrun</CODE> は、指定のバイナリデータを IS-NITRO-EMULATOR 等の機材にダウンロードして実行するツールです。デバッガを起動する必要がなく、コマンドラインからすばやく実行することが出来ます。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% loadrun [OPTION]... [NITROSRLFILE]</CODE></P>
+<P><CODE>NITROSRLFILE</CODE> は、実行する ROM ファイルです。srl ファイルを指定できます。</P>
+<P><CODE><B>-L</B> または <B>--list</B></CODE> オプションを指定すると、現在接続されていて識別可能なデバイスを一覧にして表示します。以下は表示の例です。</P>
+<BLOCKQUOTE><CODE>---- Connected devices:<BR>
+0: [NITROUSB]  IS-NITRO-EMULATOR serial:04070680<BR>
+1: [NITROUSB]  IS-NITRO-EMULATOR serial:04070682<BR>
+2: [NITROUSB]  IS-NITRO-EMULATOR serial:04070683<BR>
+3 device(s) found.</CODE></BLOCKQUOTE>
+<P><CODE>serial</CODE> は、<CODE>-s</CODE> オプションで指定するシリアル番号となります。<CODE>[NITROUSB]</CODE>はデバイスの種類で、NITRO-DEBUGGER 等がデバイスを使用していると、<CODE>[UNKNOWN]</CODE>となります。</P>
+<P><CODE><B>-l</B> または <B>--lap</B> </CODE>オプションを指定すると、ROM ファイルから <CODE>OS_Printf()</CODE> でデバッグ出力がされたものをコンソールに出力する際に、各行の先頭に実行開始からの時間を
+{xx: xx} (分:秒)の形式で付加します。以下は表示の一例です。</P>
+<BLOCKQUOTE><CODE>{0:01}Program started<BR>
+{0:01}--- heap init<BR>
+{0:02}x=14 y=50<BR>
+{0:04}</CODE></BLOCKQUOTE>
+
+<P><CODE><B>-s</B></CODE> または <CODE><B>--serial</B></CODE>　オプションは数値の引数をとります。これは srl ファイルをダウンロードするデバイスのシリアル番号を指定するためのオプションです。ここで指定したシリアル番号を持つ機材に対して操作を行ないます。(通常ないことですが)同じシリアル番号の機材が複数ある場合は最初に見つかったものとなります。なお、<CODE>-L</CODE> オプションのデバイス一覧で、04070680 とシリアル表示表示された場合、4070680
+のように前の 0 は省略することが出来ます。</P>
+<P><B><CODE>-t</CODE></B> または <CODE><B>--timeout</B></CODE> オプションは数値の引数を取ります。このオプションは表示タイムアウトを指定するもので、単位は秒です。srl ファイルを実行したのち、最後の <CODE>OS_Printf()</CODE> データを受信してから、次のデータが指定時間こない場合に強制終了します。指定値が
+0 のときは、タイムアウト指定はしないという意味になります。オプション指定がない場合も同様です。</P>
+<P><CODE><B>-T</B></CODE> または <CODE><B>--exec-timeout</B></CODE> オプションは数値の引数を取ります。このオプションは実行タイムアウトを指定するもので、単位は秒です。srl ファイルを実行してから、指定の秒数が経過すると強制終了します。指定値が 0 のときは、実行タイムアウト指定はしないという意味になります。オプション指定がない場合も同様です。</P>
+<P><CODE><B>-a</B></CODE> または<CODE> <B>--abort-string</B></CODE> オプションは実行の終了文字列を指定します。ここで指定した文字列が行頭から表示されると強制終了します。また改行に出会うまでは判定が保留されます。表示の間が時間的に開いても構いません。</P>
+<P>例えば &quot;ABORT &quot; が終了文字列となっている場合、</P>
+<BLOCKQUOTE>
+<P><CODE>OS_Printf(&quot;ABORT\n&quot;)<BR>
+OS_Printf(&quot;ABORTING\n&quot;)<BR>
+OS_Printf(&quot;ABORT\nQUIT\n&quot;)<BR>
+OS_Printf(&quot;ABOR&quot;);OS_Sleep(1000);OS_Printf(&quot;T\n&quot;);</CODE></P>
+</BLOCKQUOTE>
+の何れでも終了しますが、
+<BLOCKQUOTE>
+<P><CODE>OS_Printf(&quot; 　ABORT\n&quot;)　　// 前に空白が入っている<BR>
+OS_Printf(&quot;ABO\nRT\n&quot;)　　// 途中に改行が入っている<BR>
+OS_Printf(&quot;A B O R T\n&quot;)　// 空白が入っているので &quot;ABORT&quot;
+という文字列ではない</CODE></P>
+</BLOCKQUOTE>
+<P>では終了しません。また、</P>
+<BLOCKQUOTE><CODE>OS_Printf(&quot;ABORT&quot;)</CODE></BLOCKQUOTE>
+<P>としてもまだ改行されていないのですぐには終了しません。この後 <CODE>OS_Printf(&quot;\n&quot;)</CODE> であるとか <CODE>OS_Printf(&quot; SOON\n&quot;)</CODE> のように改行コードがくれば終了します。</P>
+<P><CODE><B>-c</B></CODE> または <CODE><B>--card-slot</B></CODE> オプションは引数を取ります。引数は ON か OFF かのいずれかです。このオプションでは、実行時のカードスロットのロック指定を行ないます。何も指定しない場合は
+OFF となります。</P>
+<P><CODE><B>-C</B></CODE> または <CODE><B>--cartridge-slot</B></CODE> オプションは引数を取ります。引数は ON か OFF のいずれかです。このオプションでは、実行時のカートリッジのロック指定を行ないます。何も指定しない場合は
+OFF となります。</P>
+
+<P><CODE><B>--stdin</B></CODE> オプションは、バイナリファイルの入力を標準入力から読み込むという指定です。この場合、コマンドの引数に、<CODE>NITROSRLFILE</CODE> の指定は必要ありません。</P>
+<P><CODE><B>-q</B></CODE> または <CODE><B>--quiet</B></CODE> オプション を指定すると quiet モードとなり、エラー以外のメッセージを出しません。</P>
+<P><B><CODE>-v</CODE></B> または <CODE><B>--verbose</B></CODE> オプションを指定すると、詳細な動作の説明を表示します。</P>
+<P><CODE><B>-h</B></CODE> または <CODE><B>--help</B></CODE> オプションは、簡単な使い方を表示します。</P>
+<P><CODE><B>--version</B></CODE> オプションは、コマンドのバージョンを表示します。</P>
+<H3><BR>
+<BR>
+終了条件</H3>
+<P>・DS 側で <CODE><A href="../os/system/OS_Exit.html">OS_Exit()</A></CODE> を呼ぶと、特定の文字列が表示されてプログラムは HALT状態になります。その表示文字列データを<CODE>loadrun</CODE> が受け取ると、終了ステータスを <CODE><A href="../os/system/OS_Exit.html">OS_Exit()</A></CODE> で指定した値にセットして <CODE>loadrun</CODE> も終了します。</P>
+<P>・オプションにより、ユーザが定めた特定の文字列の表示で終了します。</P>
+<P>・オプションにより、ユーザが定めた実行タイムアウト時間より長く実行時間が経過すると終了します。</P>
+<P>・オプションにより、ユーザが定めた表示タイムアウト時間より長く表示の無い状態が続くと終了します。</P>
+<P>・ユーザが ctrl-C などでプログラムを停止した場合にも終了します。</P>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/loadrun.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="buryarg.html">buryarg</A>, <A href="nitrorun.html">nitrorun</A>, <A href="../os/system/OS_Exit.html">OS_Exit</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/09/05 デバイス種類のオプションを削除した<BR>
+2005/08/31 初版作成</P>
+</BODY>
+</HTML>

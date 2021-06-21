@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_ReadRomAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_ReadRomAsync</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void	CARD_ReadRomAsync(u32 dma, const void *src, void *dst, u32 len,
+	MIDmaCallback callback, void *arg);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dma</STRONG></EM></TD>
+      <TD width="87%">転送に使用するDMAチャンネル<BR>
+	  範囲外に指定すると CPU 転送によって実行されます。<BR>
+	  <FONT color="#800000">有効なDMAチャンネルを指定した場合、転送が完了するまでこのDMAチャンネルを使用できません。</FONT><br>
+	  <font color="#800000">また、カードアクセスの転送元はIOレジスタなのでDMAチャンネル0を指定することはできません。</font>
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">転送元の CARD ROM アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="87%">転送先のメモリアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">読み出すデータのバイト長</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">完了時のコールバック関数<BR>
+	  必要ない場合は NULL を指定します<br>有効なDMAチャンネルを指定した場合、このコールバックはDMA割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>arg</STRONG></EM></TD>
+      <TD width="87%">完了時のコールバック関数に与える引数<BR>
+	  callback に NULL を指定した場合は単に無視されます</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>ROM の配置されたデバイスからデータを非同期的に読み込みます。<BR>
+この関数を使用する場合、事前にアクセスバスをロックしている必要があります。<BR>
+<BR>
+有効なDMAチャンネルを指定されている場合、MI_StopDma関数で明示的に停止してから使用します。<BR>
+また、前回のアクセスが完了していなければ完了までブロッキングします。<BR>
+<BR>
+この関数で明示的に CPU 転送を指定した場合は、同期版のCARD_ReadRom関数と同じ動作になります。<BR>
+<BR>
+この関数の古いバージョンでは転送元、転送先、転送サイズについて<BR>
+ハードウェア的な制約がありましたが、現在それらの制約はありません。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<p>
+<FONT color="#800000">この関数で有効なDMAチャンネルを指定した場合、転送が完了するまでこのDMAチャンネルを使用できません。<BR>
+また、この関数は内部で割り込みを使用しますので、割り込みを禁止にしたまま待ち続けると処理が完了しないという点に注意してください。<BR>
+</FONT></p>
+<h2>内部動作</h2>
+<p><CODE>
+この関数は、以下の条件を満たした場合に限りDMA転送とIRQハンドラを使用して非同期的に動作します。<BR>
+この場合にはカードデータの転送とCPU処理を並列に行うことができます。
+</p>
+<ul>
+<li>転送先範囲がDMAアクセス可能かつ32バイトでアラインメントされている<br>
+<li>転送元範囲が<A href="../card_rom_page_size_const.html">CARD_ROM_PAGE_SIZE</A>バイトでアラインメントされている<br>
+<li>転送サイズが<A href="../card_rom_page_size_const.html">CARD_ROM_PAGE_SIZE</A>バイトでアラインメントされている<br>
+</ul>
+<p>これらの条件に合わない場合は、DMA転送の指定の有無にかかわらずCARDライブラリ内部のスレッドを使用してCPU処理による非同期処理を実行します。<br>
+このスレッドについては、<A href="../common/CARD_GetThreadPriority.html">CARD_GetThreadPriority</A>関数の説明を参照ください。<br>
+<br>
+<br>
+DMA転送の条件を満たすために実際にアプリケーションで注意すべき点は主に以下の通りです。
+</p>
+<ul>
+<li>自動変数を転送先に指定しない (スタックはデフォルトでDTCMから割り当てられるため、DMAアクセスが不可能となります) 
+<li>RSFファイルのRomSpec セクション内でAlignまたはAlignAllを指定し、512バイトアラインメントするようファイルを配置する
+<li>ファイルサイズが512バイトの整数倍でない場合、なるべく512バイトの整数倍単位に分割して読み込むようにする
+</ul>
+<BR>
+</CODE></p>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../card_rom_page_size_const.html">CARD_ROM_PAGE_SIZE</A> 
+<A href="CARD_LockRom.html">CARD_LockRom</A> 
+<A href="CARD_ReadRom.html">CARD_ReadRom</A> 
+<A href="CARD_TryWaitRomAsync.html">CARD_TryWaitRomAsync</A> 
+<A href="CARD_WaitRomAsync.html">CARD_WaitRomAsync</A> 
+<A href="../common/CARD_GetThreadPriority.html">CARD_GetThreadPriority</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2006/05/10 転送先範囲が32バイトアラインメントされていないとDMA転送されないように仕様変更<br>
+2005/08/22 [内部動作] の項を大幅に修正<br>
+2005/06/01 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/04/28 DMAチャンネル0が指定できない旨を追記<br>
+2004/12/09 記述修正 「IOプロセッサ」→「ARM7プロセッサ」<br>
+2004/11/02 引数名をヘッダファイルと同一に訂正<br>
+2004/07/28 コールバックの型を修正<BR>
+2004/07/19 内部動作説明の変更<BR>
+2004/07/09 関数形式の変更による記述の修正 / 内部動作説明の追加<BR>
+2004/07/05 初版 <BR>
+</P>
+</body>
+</html>

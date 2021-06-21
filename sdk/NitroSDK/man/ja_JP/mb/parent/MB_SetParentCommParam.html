@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_SetParentCommParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_SetParentCommParam</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL MB_SetParentCommParam( u16 sendSize, u16 maxChildren );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>sendSize</STRONG></EM></TD>
+      <TD width="87%">MB親機のMP通信における送信バッファサイズ<BR>
+      このサイズは<a href="../mb_comm_parent_consts.html">MB_COMM_PARENT_SEND_MIN</a>バイト以上かつ<a href="../mb_comm_parent_consts.html">MB_COMM_PARENT_SEND_MAX</a>バイト以下である必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>maxChildren</STRONG></EM></TD>
+      <TD width="87%">MBの受け付ける最大子機数です。最大15台。<BR>
+      この台数以上の子機を受け付ける設定で<a href="MB_RegisterFile.html">MB_RegisterFile</a>関数を呼びだすと失敗します。<A href="../mb_game_registry_type.html">MBGameRegistry</A>のmaxPlayerNumは親機を含む台数なので、同じ台数設定する場合にはMBGameRegistryの値よりも１小さくなります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>設定値がただしい範囲であれば TRUE を、そうでなければ FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>MBライブラリの内部で駆動される通信の送信サイズを、最大子機数も含めて指定します。<BR>
+あらかじめ接続台数の上限がわかっている場合にこの関数を使用することで、<BR>
+MP通信パケットの効率を上げることができます。<BR>
+<BR>
+この関数は、<a href="../common/MB_Init.html">MB_Init</a>関数の呼び出し以降、<A href="MB_StartParent.html">MB_StartParent</A>関数を呼び出すまでの<br>
+タイミングでのみ呼び出すことが可能です。<BR>
+<BR>
+この関数は、最大接続子機数も含めて指定するという点以外は<br>
+<a href="MB_SetParentCommSize.html">MB_SetParentCommSize</a>関数と等価です。<br>
+<BR>
+親機受信サイズの設定はできません。</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../mb_comm_parent_consts.html">MB_COMM_PARENT_*</A>
+<A href="../mb_user_info_type.html">MBUserInfo</A> <br>
+<A href="../common/MB_Init.html">MB_Init</A> 
+<a href="MB_SetParentCommSize.html">MB_SetParentCommSize</a>
+<A href="MB_StartParent.html">MB_StartParent</A> 
+<A href="MB_RegisterFile.html">MB_RegisterFile</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>2004/11/18 recvSize引数の廃止<BR>
+2004/10/05 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMPortRecvCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMPortRecvCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMPortRecvCallback
+{ 
+    u16             apiid;
+    u16             errcode;
+    u16             state;
+    u16             port;
+    WMMpRecvBuf*    recvBuf;
+    u16*            data;
+    u16             length;
+    u16             aid;
+    u8              macAddress[6];
+    u16             seqNo;
+    void*           arg;
+    u16             myAid;
+    u16             connectedAidBitmap;
+    u8              ssid[24];
+    u16             reason;
+    u16             rsv;
+
+} WMPortRecvCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_PORT_RECVに固定となります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の5つです。<BR>
+      WM_STATECODE_PORT_INIT、WM_STATECODE_PORT_RECV、WM_STATECODE_CONNECTED、WM_STATECODE_DISCONNECTED、WM_STATECODE_DISCONNECTED_FROM_MYSELF。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">port</font></strong></em></TD>
+      <TD width="800">データを受信したポートが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">recvBuf</font></strong></em></TD>
+      <TD width="800"><A href="WMStartMPCallback.html">WMStartMPCallback</A>との互換性のために用意されたメンバです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="800">データを受信したバッファのアドレスが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">length</font></strong></em></TD>
+      <TD width="800">受信したデータの長さが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">aid</font></strong></em></TD>
+      <TD width="800">受信したデータの送信元のAIDが格納されます。<BR>
+      WM_STATECODE_CONNECTEDの通知でも相手の端末のAIDが入っていることに注意してください。<BR>
+      子機ならば0（親機のAID）で固定です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">macAddress</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_CONNECTED、WM_STATECODE_DISCONNECTED、WM_STATECODE_DISCONNECTED_FROM_MYSELFの場合、
+      接続もしくは切断された子機のMACアドレスが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">seqNo</font></strong></em></TD>
+      <TD width="800">シーケンス番号が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetPortCallback.html">WM_SetPortCallback関数</A>で指定した引数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">myAid</font></strong></em></TD>
+      <TD width="800">自分のAIDが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">connectedAidBitmap</font></strong></em></TD>
+      <TD width="800">接続中のAIDのビットマップが格納されます。<BR></TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ssid</font></strong></em></TD>
+      <TD width="800">子機が<A href="WM_StartConnect.html">WM_StartConnect</A>で指定したssidが格納されます。<BR>
+      親機における、WM_STATECODE_CONNECTEDの通知の際にだけ有効です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">reason</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_DISCONNECTED、WM_STATECODE_DISCONNECTED_FROM_MYSELFの場合、切断された理由を示すコードが格納されます。<BR>
+      ライブラリ内部で使用されるデバッグ目的のメンバです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">rsv</font></strong></em></TD>
+      <TD width="800">予約されたメンバです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_SetPortCallback.html">WM_SetPortCallback</A>で設定したコールバック関数に渡される構造体です。 
+</P>
+
+<H2>履歴</H2>
+<P>
+2006/02/17 stateに返るコードに関する記述を修正<BR>
+2005/11/14 誤って削除していた rsv メンバに関する記述を復元<BR>
+2005/10/31 connectedAidBitmap, reason メンバの追加<BR>
+2005/02/01 myAid と ssid メンバの説明を追加<BR>
+2004/10/05 MACアドレスをu8型配列に統一<BR>
+2004/09/13 WM_STATECODE_CHILD_CONNECTED を WM_STATECODE_CONNECTED に変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

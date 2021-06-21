@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndLockChannel</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAEMWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndLockChannel</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndLockChannel( u32 <var>chBitFlag</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAQNWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>chBitFlag</code></strong></em></td>
+<td>ロックするチャンネルのビットフラグ</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA5NWT"></a>
+      <h2>返り値</h2>
+
+      <p>ロックに成功するとTRUEを返します。失敗するとFALSEを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAGOWT"></a>
+      <h2>説明</h2>
+      <p>
+チャンネルをロックします。
+ロックしたチャンネルは、ライブラリ内部で使用しないようになります。
+</p>
+      <p>
+<em><strong><code>chBitFlag</code></strong></em>で、ロックするチャンネルを指定します。
+下位ビットから順に、チャンネル0、チャンネル1、チャンネル2、、、を表し、
+ビットが立っているチャンネル全てを同時にロックします。
+例えば、チャンネル2とチャンネル5をロックしたい場合は、、 (1 &lt;&lt; 2) | (1 &lt;&lt; 5) すなわち、0x0024 とします。
+</p>
+      <p>
+指定チャンネルがシーケンス再生で使用中の場合、
+発音中の音は強制的に停止し、ロックに成功します。
+それ以外のストリーム再生などで使用中のチャンネルをロックしようとすると、関数は失敗します。
+複数チャンネルをロックしようとしたとき、
+１つでもロックに失敗すると、全てのロックは失敗します。
+</p>
+      <p>
+チャンネルのロックを解除するためには、
+<tt class="function"><a href="NNS_SndUnlockChannel.html">NNS_SndUnlockChannel</a></tt>関数を呼びだします。
+</p>
+       <p>
+なお、チャンネルは16個ありますが、
+下記のように、チャンネル番号に応じてチャンネルの機能が異なっています。
+</p>
+      
+      <div class="table"><a name="IDA5OWT"></a><p class="title"><b>表 . チャンネルの番号別機能</b></p>
+<table summary="チャンネルの番号別機能" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>チャンネル番号</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, 2</td>
+<td>PCM/ADPCMを再生できます。このチャンネルの出力をサウンドキャプチャの入力とすることもできます。</td>
+</tr>
+<tr>
+<td>1, 3</td>
+<td>PCM/ADPCMを再生できます。サウンドキャプチャとタイマーを共用しているため、サウンドキャプチャを使うときは、サウンドキャプチャの出力チャンネルとしてしか使えません。</td>
+</tr>
+<tr>
+<td>4 ～ 7</td>
+<td>PCM/ADPCMを再生できます。シーケンス再生で波形データを再生するときには優先的に使っています。</td>
+</tr>
+<tr>
+<td>8 ～ 13</td>
+<td>PCM/ADPCMまたは、PSG矩形波を再生できます。</td>
+</tr>
+<tr>
+<td>14, 15</td>
+<td>PCM/ADPCMまたは、ホワイトノイズを再生できます。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+   </div>
+<h2>参照</h2>
+<p><a href="NNS_SndUnlockChannel.html">NNS_SndUnlockChannel</a></p>
+<h2>履歴</h2>
+<p>2004/10/25 初版<br></p>
+</div>
+</body>
+</html>

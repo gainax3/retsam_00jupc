@@ -1,0 +1,164 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroSDK - man
+  File:     categories.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: categories.html,v $
+  Revision 1.6  2007/06/15 03:17:25  okubata_ryoma
+  small fix
+
+  Revision 1.5  2007/06/06 09:08:21  yosizaki
+  add WFS.
+
+  Revision 1.4  2006/03/02 10:23:16  okubata_ryoma
+  vibライブラリの追加
+
+  Revision 1.3  2006/01/06 09:14:56  kitase_hirotake
+  水平線で区切るように変更
+
+  Revision 1.2  2005/12/26 01:03:00  yosizaki
+  restore old style.
+
+  Revision 1.1  2005/12/16 08:22:48  okubata_ryoma
+  接頭辞がスクロールアウトしないように修正
+
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>NITRO-SDK 関数リファレンス</TITLE>
+		<LINK rel="stylesheet" href="css/titles.css">
+	</HEAD>
+	<BODY>
+
+<P class="toc" style="margin-bottom:0px;">[
+<A href="contents.html#OS" target="contents_detail">OS</A> |
+<A href="contents.html#GX" target="contents_detail">GX</A> |
+<A href="contents.html#G2" target="contents_detail">G2</A> |
+<A href="contents.html#G3" target="contents_detail">G3</A> |
+<A href="contents.html#G3X" target="contents_detail">G3X</A> ]
+<BR>
+[
+<A href="contents.html#MI" target="contents_detail">MI</A> |
+<A href="contents.html#FX" target="contents_detail">FX </A> | 
+<A href="contents.html#MTX" target="contents_detail">MTX </A>| 
+<A href="contents.html#VEC" target="contents_detail">VEC </A>| 
+<A href="contents.html#CP" target="contents_detail">CP</A> ]
+<BR>
+[
+<A href="contents.html#MATH" target="contents_detail">MATH</A> |
+<A href="contents.html#PAD" target="contents_detail">PAD</A> |
+<A href="contents.html#TP" target="contents_detail">TP</A> |
+<A href="contents.html#NVRAM" target="contents_detail">NVRAM</A> ]
+<BR>
+[
+<A href="contents.html#MIC" target="contents_detail">MIC</A> |
+<A href="contents.html#PM" target="contents_detail">PM</A> |
+<A href="contents.html#PRC" target="contents_detail">PRC</A> |
+<A href="contents.html#RTC" target="contents_detail">RTC</A> |
+<A href="contents.html#SND" target="contents_detail">SND</A> |
+<A href="contents.html#FS" target="contents_detail">FS</A>]
+<BR>
+[
+<A href="contents.html#SVC" target="contents_detail">SVC</A> |
+<A href="contents.html#CARD" target="contents_detail">CARD</A> |
+<A href="contents.html#CTRDG" target="contents_detail">CTRDG</A> |
+<A href="contents.html#VIB" target="contents_detail">VIB</A> ]
+<BR>
+[
+<A href="contents.html#WM" target="contents_detail">WM</A> |
+<A href="contents.html#WVR" target="contents_detail">WVR</A> |
+<A href="contents.html#WBT" target="contents_detail">WBT</A> |
+<A href="contents.html#WFS" target="contents_detail">WFS</A> |
+<A href="contents.html#MB" target="contents_detail">MB</A> ]
+<BR>
+[
+<A href="contents.html#CHT" target="contents_detail">CHT</A> |
+<A href="contents.html#EXT" target="contents_detail">EXT</A> |
+<A href="contents.html#ENV" target="contents_detail">ENV</A> |
+<A href="contents.html#STD" target="contents_detail">STD</A> ]
+<BR>
+[
+<A href="contents.html#HOSTIO" target="contents_detail">ホストI/O</A> |
+<A href="contents.html#SAMPLE" target="contents_detail">サンプル</A> |
+<A href="contents.html#TOOL" target="contents_detail">ツール</A> ]<BR>
+[ <A href="contents.html#ROMFILES" target="contents_detail">ビルド済みプログラム</A> ]<br>
+[ <A href="contents.html#HAEADERFILES" target="contents_detail">関連情報</A> ]</P>
+<HR>
+<!--
+		<TABLE width="100%" height="100%" bgcolor="#cccccc" border="1">
+			<TBODY>
+				<TR>
+					<TD align="center" width="6%" colspan="4" bgcolor="#999999"><B><FONT size="2" color="#ffffff">機能</FONT></B></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#OS" target="contents_detail"><B><FONT size="2">OS</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#GX" target="contents_detail"><B><FONT size="2">GX</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#G2" target="contents_detail"><B><FONT size="2">G2</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#G3" target="contents_detail"><B><FONT size="2">G3</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#G3X" target="contents_detail"><B><FONT size="2">G3X</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#MI" target="contents_detail"><B><FONT size="2">MI</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#FX" target="contents_detail"><B><FONT size="2">FX</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#MTX" target="contents_detail"><B><FONT size="2">MTX</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#VEC" target="contents_detail"><B><FONT size="2">VEC</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#CP" target="contents_detail"><B><FONT size="2">CP</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="4"><A href="contents.html#MATH" target="contents_detail"><B><FONT size="2">MATH</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#PAD" target="contents_detail"><B><FONT size="2">PAD</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#TP" target="contents_detail"><B><FONT size="2">TP</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#NVRAM" target="contents_detail"><B><FONT size="2">NVRAM</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#MIC" target="contents_detail"><B><FONT size="2">MIC</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#PM" target="contents_detail"><B><FONT size="2">PM</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#PRC" target="contents_detail"><B><FONT size="2">PRC</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#RTC" target="contents_detail"><B><FONT size="2">RTC</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#SND" target="contents_detail"><B><FONT size="2">SND</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#FS" target="contents_detail"><B><FONT size="2">FS</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#SVC" target="contents_detail"><B><FONT size="2">SVC</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="4"><A href="contents.html#CARD" target="contents_detail"><B><FONT size="2">CARD</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#CTRDG" target="contents_detail"><B><FONT size="2">CTRDG</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="4"><A href="contents.html#WVR" target="contents_detail"><B><FONT size="2">WVR</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#WM" target="contents_detail"><B><FONT size="2">WM</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#WBT" target="contents_detail"><B><FONT size="2">WBT</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="2"><A href="contents.html#MB" target="contents_detail"><B><FONT size="2">MB</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#CHT" target="contents_detail"><B><FONT size="2">CHT</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#EXT" target="contents_detail"><B><FONT size="2">EXT</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#ENV" target="contents_detail"><B><FONT size="2">ENV</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="3"><A href="contents.html#STD" target="contents_detail"><B><FONT size="2">STD</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#HOSTIO" target="contents_detail"><B><FONT size="2">ホストI/O</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#SAMPLE" target="contents_detail"><B><FONT size="2">サンプル</FONT></B></A></TD>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#TOOL" target="contents_detail"><B><FONT size="2">ツール</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="11"><A href="contents.html#ROMFILES" target="contents_detail"><B><FONT size="2">ビルド済みプログラム</FONT></B></A></TD>
+				</TR>
+				<TR>
+					<TD align="center" width="6%" colspan="5"><A href="contents.html#HAEADERFILES" target="contents_detail"><B><FONT size="2">関連情報</FONT></B></A></TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+-->
+	</BODY>
+</HTML>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_CpuCopy</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_CpuCopy*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_CpuCopy8( const void* src, void* dest, u32 size );</CODE><br>
+  <CODE>void MI_CpuCopy16( const void* src, void* dest, u32 size );</CODE><br>
+  <CODE>void MI_CpuCopy32( const void* src, void* dest, u32 size );</CODE><br>
+  <CODE>void MI_CpuCopyFast( const void* src, void* dest, u32 size );</CODE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">転送元アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dest</STRONG></EM></TD>
+      <TD width="87%">転送先アドレス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>転送サイズ
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>CPUでメモリコピーを行います。</P>
+<P><CODE>MI_CpuCopy8()</CODE> は転送元アドレスと転送先アドレスから判断してできるだけ効率的なコピー方法を選択し、適宜 16ビットおよび 32ビット単位でコピーを行います。転送元アドレス、転送先アドレスのアラインメントを考慮する必要はありません。</P>
+<P><CODE>MI_CpuCopy16()</CODE> は 16ビット単位でコピーを行います。転送元アドレス、転送先アドレスは2バイトアラインメントする必要があります。</P>
+<P><CODE>MI_CpuCopy32()</CODE> は 32ビット単位でコピーを行います。転送元アドレス、転送先アドレスは4バイトアラインメントする必要があります。</P>
+<P><CODE>MI_CpuCopyFast()</CODE> は 32バイト単位で高速にコピーを行います。転送元アドレス、転送先アドレスは4バイトアラインメントする必要があります。転送サイズは4の整数倍バイトである必要があります。32の整数倍バイトである必要はありません。32バイト単位で転送した後の端数分は<CODE>MI_CpuCopy32()</CODE> と同じ処理を行ないます。</P>
+<P>従って、<CODE>MI_CpuCopyFast()</CODE> と <CODE>MI_CpuCopy32()</CODE> は、転送サイズが 32 バイトより小さい場合、二つの関数で純粋な転送動作部分のコードは同じになります。 しかし<CODE>MI_CpuCopyFast()</CODE> では32バイトに満たない端数分かどうかという判定を行なっていますので、そのコードの分のロスが生じます。つまりこの状況では <CODE>MI_CpuCopy32()</CODE> が少しだけ速いということになります。しかしそれより転送サイズが大きくなれば
+<CODE>MI_CpuCopyFast()</CODE> の方が高速となります。</P>
+<P>この考えに基づいて、一つの関数で効率の良い転送を行ないたい場合は、次のように実装することが考えられます。</P>
+<BLOCKQUOTE><CODE>static inline void myCpuCopy32( const void *src, void *dest, u32 size )<BR>
+{<BR>
+　　　if ( size &gt;= 0x20 )<BR>
+　　　{<BR>
+　　　　　　MIi_CpuCopyFast(src, dest, size);<BR>
+　　　}<BR>
+　　　else<BR>
+　　　{<BR>
+　　　　　　MIi_CpuCopy32(src, dest, size);<BR>
+　　　}<BR>
+} </CODE></BLOCKQUOTE>
+<P><CODE>しかし、転送を行なう領域のキャッシュの状態や転送アドレスなどの要因によって速度差の出るサイズの閾値が厳密に
+32バイトのところにあるかは不定ですので、これは理論的な目安であると捉えるべきでしょう。</CODE></P>
+<h2>内部動作</h2>
+<P>DMAコントローラは使用せず、CPUだけで処理します。システムコールは使用しません。<BR>
+MI_CpuCopy8に関しても16/32ビット単位でコピーが行なわれますので、直接VRAMへアクセスする場合でも問題は発生しません。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_CpuFill.html">MI_CPUFill*</A>, <A href="MI_CpuClear.html">MI_CpuClear*</A>, <A href="MI_CpuSend.html">MI_CpuSend*</A>, <A href="../dma/MI_DmaCopy.html">MI_DmaCopy*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/07/07 <CODE>MI_CpuCopy32</CODE> と <CODE>MI_CpuCopyFast</CODE> の速度について追記<BR>
+2004/04/29 <CODE>MI_CpuCopy8</CODE> の記述を追加<BR>
+2004/03/29 システムコールは使用しないと記述<BR>
+2003/12/01 初版</P>
+</body>
+</html>

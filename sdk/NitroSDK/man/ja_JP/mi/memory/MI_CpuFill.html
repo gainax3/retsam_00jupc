@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_CpuFill</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_CpuFill*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_CpuFill8( void* dest, u8 data, u32 size );</CODE><BR>
+  <CODE>void MI_CpuFill16( void* dest, u16 data, u32 size );</CODE><BR>
+  <CODE>void MI_CpuFill32( void* dest, u32 data, u32 size );</CODE><BR>
+  <CODE>void MI_CpuFillFast( void* dest, u32 data, u32 size );</CODE></dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dest</STRONG></EM></TD>
+      <TD width="87%">転送先アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data</STRONG></EM></TD>
+      <TD width="87%">転送データ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>転送サイズ
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>CPUでメモリを指定のデータで埋めます。</P>
+<P><CODE>MI_CpuFill8() </CODE>は転送先アドレスから判断してできるだけ効率的なメモリアクセスを選択し、適宜 16ビットおよび 32ビット単位でメモリを指定のデータで埋めます。転送先アドレスのアラインメントを考慮する必要はありません。</P>
+<P><CODE>MI_CpuFill16()</CODE> は 16ビット単位でメモリを指定のデータで埋めます。転送先アドレスは2バイトアラインメントする必要があります。</P>
+<P><CODE>MI_CpuFill32()</CODE> は 32ビット単位でメモリを指定のデータで埋めます。転送先アドレスは4バイトアラインメントする必要があります。</P>
+<P><CODE>MI_CpuFillFast()</CODE> は 32バイト単位で高速に埋めます。転送先アドレスは4バイトアラインメントする必要があります。転送サイズは4の整数倍バイトである必要があります。32の整数倍バイトである必要はありません。</P>
+<h2>内部動作</h2>
+<P>DMAコントローラは使用せず、CPUだけで処理します。システムコールは使用しません。<BR>
+MI_CpuFill8に関しても16/32ビット単位でコピーが行なわれますので、直接VRAMへアクセスする場合でも問題は発生しません。</P>
+<h2>参照</h2>
+<p><CODE><A href="MI_CpuCopy.html">MI_CpuCopy*</A>, <A href="MI_CpuClear.html">MI_CpuClear*</A>,  <A href="MI_CpuSend.html">MI_CpuSend*</A>, <A href="../dma/MI_DmaFill.html">MI_DmaFill*</A></CODE></p>
+
+<H2>履歴</H2>
+<P>2004/04/29 <CODE>MI_CpuFill8</CODE> の記述を追加<BR>
+2004/03/29 システムコールを使用しないと記述<BR>
+2003/12/01 初版</P>
+</body>
+</html>

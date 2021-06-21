@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBErrorStatus</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBErrorStatus</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef struct
+{
+    u16 errcode;
+} MBErrorStatus;
+</PRE>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P><A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックに<a href="mb_comm_pstate_const.html">MB_COMM_PSTATE_ERROR</a>が返されたときにポインタで渡される、<br>
+エラー要因の格納された構造体です。<BR>
+各メンバの意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>メンバ</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>errcode</TD>
+      <TD>MBライブラリのエラーコードを示す<a href="mb_err_code_const.html">MBErrCode</a>型の値です。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<a href="mb_comm_pstate_const.html">MB_COMM_PSTATE_ERROR</a> 
+<a href="mb_err_code_const.html">MBErrCode</a>
+<br>
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/27 初版<BR>
+</P>
+</body>
+</html>

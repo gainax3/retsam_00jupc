@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dDrawOneOam3DDirect*Fast</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dDrawOneOam3DDirect*Fast</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OamSoftwareSpriteDraw.h&gt;</CODE></pre>
+  <pre><CODE>
+    void    NNS_G2dDrawOneOam3DDirectFast
+    ( 
+        const GXOamAttr*                pOam, 
+        const NNSG2dImageAttr*          pTexImageAttr,
+        u32                             texBaseAddr,
+        u32                             pltBaseAddr
+    );
+
+    void    NNS_G2dDrawOneOam3DDirectWithPosFast
+    ( 
+        s16                             posX,
+        s16                             posY,
+        s16                             posZ,
+        const GXOamAttr*                pOam, 
+        const NNSG2dImageAttr*          pTexImageAttr,
+        u32                             texBaseAddr,
+        u32                             pltBaseAddr
+    );
+
+    void    NNS_G2dDrawOneOam3DDirectWithPosAffineFast
+    ( 
+        s16                             posX,
+        s16                             posY,
+        s16                             posZ,
+        const GXOamAttr*                pOam, 
+        const NNSG2dImageAttr*          pTexImageAttr,
+        u32                             texBaseAddr,
+        u32                             pltBaseAddr,
+        const MtxFx22*                  pMtx
+    );
+	</CODE></pre>
+  </dd>
+</dl>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+単一OBJを3Dグラフィックスエンジンを使用して、内部バッファを使用せずに直接描画します。<BR>
+NNS_G2dDrawOneOam3DDirectXXXFast()関数は、描画の前後でジオメトリエンジンのカレント行列の内容が保存されません。<BR>
+カレント行列スタックのPush,Pop処理を行わないので、その分だけ高速に動作します。<BR>
+特に、カレント行列を描画毎に保存する必要がない場合などに、効率的な処理を行うことが可能となります(コード例１)。<BR>
+<BR>
+<pre>
+コード例１：
+
+G3_PushMtx();
+for( i = 0; i < N; i++ )
+{
+    G3_Identity();// もしくは、G3_LoadMtx43( &mtx ) など
+    NNS_G2dDrawOneOam3DDirectXXXFast();
+}
+G3_PopMtx(1);   
+</pre>
+<BR>
+<BR>
+NNS_G2dDrawOneOam3DDirectXXXは以下のコード例で示すように、
+NNS_G2dDrawOneOam3DDirectXXXFast()によって実装されています(コード例２)。<BR>
+<BR>
+<pre>
+コード例２：
+
+NNS_G2dDrawOneOam3DDirectXXX 
+{
+    G3_PushMtx();
+        NNS_G2dDrawOneOam3DDirectXXXFast();
+    G3_PopMtx(1);
+}
+</pre>
+
+
+
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="NNS_G2dDrawOneOam3DDirect.html">NNS_G2dDrawOneOam3DDirect</A><br>
+<A href="NNS_G2dDrawOneOam3DDirectWithPos.html">NNS_G2dDrawOneOam3DDirectWithPos</A><br>
+<A href="NNS_G2dDrawOneOam3DDirectWithPosAffine.html">NNS_G2dDrawOneOam3DDirectWithPosAffine</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/11/10 初版</P>
+</body>
+</html>

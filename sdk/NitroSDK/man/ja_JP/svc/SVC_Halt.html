@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>SVC_Halt</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">SVC_Halt</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os/common/systemCall.h&gt;</CODE></PRE>
+  <PRE><CODE>void SVC_Halt( void ); </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+
+<P>CPUコアを停止させてホールト状態に入ります。</P>
+<P>該当する割り込み要求が許可(IE にセット)されている割り込み要求(IFにセット)にて復帰します。<BR>
+CPSRのIRQディセーブルフラグがセットされている場合には、ホールトから復帰しますが割り込みは発生しません。<BR>
+<A href="../os/system/OS_DisableInterrupts.html"><CODE>OS_DisableInterrupts()</CODE></A>を呼ぶとこの状態になります。</P>
+<P>IMEがクリアされた状態でホールトに入ると復帰出来なくなります。<BR>
+<CODE><A href="../os/irq/OS_DisableIrq.html">OS_DisableIrq()</A></CODE> を呼ぶとこの状態になります。</P>
+<H2>参照</H2>
+<P><CODE><A href="SVC_Sleep.html">SVC_Sleep</A>, <A href="../os/system/OS_Halt.html">OS_Halt</A></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/07/22 初版</P>
+</BODY>
+</HTML>

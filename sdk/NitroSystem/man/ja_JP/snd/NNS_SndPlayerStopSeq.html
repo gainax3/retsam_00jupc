@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerStopSeq*</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerStopSeq*</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerStopSeq( NNSSndHandle* <var>handle</var>, int <var>fadeFrame</var> );</code><br><code class="funcprototype">void NNS_SndPlayerStopSeqByPlayerNo( int <var>playerNo</var>, int <var>fadeFrame</var> );</code><br><code class="funcprototype">void NNS_SndPlayerStopSeqBySeqNo( int <var>seqNo</var>, int <var>fadeFrame</var> );</code><br><code class="funcprototype">void NNS_SndPlayerStopSeqBySeqArcNo( int <var>seqArcNo</var>, int <var>fadeFrame</var> );</code><br><code class="funcprototype">void NNS_SndPlayerStopSeqBySeqArcIdx(
+        int <var>seqArcNo</var>,
+        int <var>index</var>,
+        int <var>fadeFrame</var> );</code><br><code class="funcprototype">void NNS_SndPlayerStopSeqAll( int <var>fadeFrame</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAAPWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>playerNo</code></strong></em></td>
+<td>プレイヤー番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>seqNo</code></strong></em></td>
+<td>シーケンス番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>seqArcNo</code></strong></em></td>
+<td>シーケンスアーカイブ番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>index</code></strong></em></td>
+<td>シーケンスアーカイブ中のインデックス番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>fadeFrame</code></strong></em></td>
+<td>フェードアウトフレームです。値の範囲は、0 ～ 65535です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAVQWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA2QWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスを停止します。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerStopSeq</tt>関数は、サウンドハンドル<em><strong><code>handle</code></strong></em>を使って、シーケンスを止めます。サウンドハンドルに、結びつけられたシーケンスが止まります。サウンドハンドルが無効の場合は、何もしません。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerStopSeqByPlayerNo</tt>関数は、プレイヤー番号<em><strong><code>playerNo</code></strong></em>を指定して、シーケンスを止めます。指定したプレイヤーで再生中のシーケンスが止まります。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerStopSeqBySeqNo</tt>関数は、シーケンス番号<em><strong><code>seqNo</code></strong></em>を指定して、シーケンスを止めます。これは、<tt class="function"><a href="NNS_SndPlayerSetSeqNo.html">NNS_SndPlayerSetSeqNo</a></tt>関数でセットしたシーケンス番号が、<em><strong><code>seqNo</code></strong></em>と同じである全てのシーケンスを止めます。 
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerStopSeqBySeqArcNo</tt>関数は、シーケンスアーカイブ番号<em><strong><code>seqArcNo</code></strong></em>を指定して、シーケンスを止めます。
+これは、<tt class="function"><a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></tt>関数でセットしたシーケンスアーカイブ番号が、<em><strong><code>seqArcNo</code></strong></em>と同じである全てのシーケンスを止めます。
+<tt class="function">NNS_SndPlayerStopSeqBySeqArcIdx</tt>関数は、シーケンスアーカイブ番号<em><strong><code>seqArcNo</code></strong></em>と
+インデックス番号<em><strong><code>index</code></strong></em>の両方が等しいシーケンスを止めます。
+</p>
+      <p>
+<tt class="function">NNS_SndPlayerStopSeqAll</tt>関数は、全ての再生中のシーケンスを止めます。 
+</p>
+      <p>
+<em><strong><code>fadeFrame</code></strong></em>で指定したゲームフレーム分の時間をかけて、徐々に音が小さくなった後、シーケンスは完全に停止します。0の場合は、即座に停止します。 
+</p>
+      <p>
+これらの関数を呼びだすと、プレイヤープライオリティは最低の0になります。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndPlayerSetSeqNo.html">NNS_SndPlayerSetSeqNo</a>, <a href="NNS_SndPlayerSetSeqArcNo.html">NNS_SndPlayerSetSeqArcNo</a></p>
+<h2>履歴</h2>
+<p>2004/08/10 
+            NNS_SndPlayerStopSeqAll関数の引数が間違っていたのを修正。
+          <br>2004/06/01 
+            NNS_SndPlayerStopSeqBySeqNo, NNS_SndPlayerStopSeqBySeqArcNo, NNS_SndPlayerStopSeqBySeqArcIdx追加。
+            NNS_SndPlayerStopSeqByNumberをNNS_SndPlayerStopSeqByPlayerNoに変更。
+          <br>2004/04/19 
+            NNS_SndPlayerStopSeq, NNS_SndPlayerStopSeqByNumber, NNS_SndPlayerStopSeqAll のマニュアルを統合
+<br>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

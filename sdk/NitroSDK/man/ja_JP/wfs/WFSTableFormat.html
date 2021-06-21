@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSTableFormat</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSTableFormat</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+<font color="#008000">/* WFSテーブルフォーマットの配列順序 */</font>
+typedef enum WFSTableRegionType
+{
+    WFS_TABLE_REGION_FAT,
+    WFS_TABLE_REGION_FNT,
+    WFS_TABLE_REGION_OV9,
+    WFS_TABLE_REGION_OV7,
+    WFS_TABLE_REGION_MAX
+}
+WFSTableRegionType;
+
+<font color="#008000">/* ROMファイルテーブル情報 */</font>
+typedef struct WFSTableFormat
+{
+    u32             origin;                       <font color="#008000">/* ROMイメージオフセット */</font>
+    u8             *buffer;                       <font color="#008000">/* ファイルテーブル情報の格納されたバッファ */</font>
+    u32             length;                       <font color="#008000">/* bufferのサイズ */</font>
+    <a href="../card/card_rom_region_type.html">CARDRomRegion</a>   region[WFS_TABLE_REGION_MAX]; <font color="#008000">/* FAT、FNT、オーバーレイの各テーブルの格納位置 */</font>
+} PLATFORM_STRUCT_PADDING_FOOTER
+WFSTableFormat;
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>origin</td>
+      <td>子機にとってのROMイメージの0番地が親機の実際のROMデバイス上でどこに位置するかを示すオフセット値です。<br />
+      アプリケーションで特に考慮する必要はありません。</td>
+    </tr>
+    <tr>
+      <td>buffer</td>
+      <td>後述するregionメンバの指す各テーブル情報が格納されたメモリです。</td>
+    </tr>
+    <tr>
+      <td>length</td>
+      <td>bufferのサイズです。</td>
+    </tr>
+    <tr>
+      <td>region</td>
+      <td>buffer内に格納されているFAT、FNT、オーバーレイの各テーブル情報の領域です。<br />
+      たとえばFNTの情報なら以下のように参照することができます。
+      <ul>
+      <li>先頭アドレス = buffer + region[WFS_TABLE_REGION_FNT].offset</li>
+      <li>テーブルサイズ = region[WFS_TABLE_REGION_FNT].length</li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>説明</h2>
+<p><a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a>関数で子機が取得するファイルテーブル情報をあらわす構造体です。</p>
+
+<h2>参照</h2>
+<p><code>
+
+<a href="../card/card_rom_region_type.html">CARDRomRegion</a>
+<a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a>
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

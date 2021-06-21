@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSEventCallback</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSEventCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+typedef void (*WFSEventCallback)(void *context, <a href="WFSEventType.html">WFSEventType</a> event, void *argument);
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p>WFSライブラリで使用されるイベントコールバック形式のプロトタイプ宣言です。<br />
+各引数の意味は以下の通りです。</p>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>context</td>
+      <td>WFSServerContext構造体またはWFSClientContext構造体のポインタ</td>
+    </tr>
+   <tr>
+      <td>event</td>
+      <td>コールバックの通知種別を示す<a href="WFSEventType.html">WFSEventType</a>列挙型の値</td>
+   </tr>
+   <tr>
+      <td>argument</td>
+      <td>コールバックの通知種別ごとに異なる情報を保持した引数<br />
+	  通知種別ごとの引数の内容は、<a href="WFSEventType.html">WFSEventType</a>の説明を参照してください。</td>
+   </tr>
+  </tbody>
+</table>
+
+<h2>参照</h2>
+<p><code>
+<a href="server/WFS_InitServer.html">WFS_InitServer</a> 
+<a href="client/WFS_InitClient.html">WFS_InitClient</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

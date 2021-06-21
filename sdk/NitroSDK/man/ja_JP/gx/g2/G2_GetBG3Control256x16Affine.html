@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2*_GetBG3Control256x16Affine</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2*_GetBG3Control256x16Affine</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_bgcnt.h&gt;</CODE><BR>
+  <PRE><CODE>static inline GXBg23Control256x16Affine G2_GetBG3Control256x16Affine( void );</CODE>
+<CODE>static inline GXBg23Control256x16Affine G2S_GetBG3Control256x16Affine( void );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>BG3の設定。</p>
+<H2>説明</H2>
+<P>アフィン拡張BGで256色×16パレットキャラクタBGの場合のBG3の設定をGXBg23Control256x16Affine構造体として取得します。<BR>
+各メンバについては<A href="G2_SetBG3Control256x16Affine.html">G2_SetBG3Control256x16Affine</A>を参照してください。<BR>
+<BR>
+この関数はBG3が256色×16パレットキャラクタBGに設定されている状態で使用する必要があります。<BR>
+<BR>
+G2_GetBG3Control256x16Affine関数ではメイン2Dエンジン、G2S_GetBG3Control256x16Affine関数ではサブ2Dエンジンの設定を取得できます。<BR>
+<BR>
+GXBg23Control256x16Affineの定義は以下のようになっております。</P>
+<PRE>ttypedef union
+{
+    u16 raw;
+    struct
+    {
+        u16 priority    :2;
+        u16 charBase    :4;
+        u16 mosaic      :1;
+        u16 _reserve    :1;
+        u16 screenBase  :5;
+        u16 areaOver    :1;
+        u16 screenSize  :2;
+    };
+}
+GXBg23Control256x16Affine;
+</PRE>
+
+<h2>参照</h2>
+<P><A href="G2_SetBG3Control256x16Affine.html">G2_SetBG3Control256x16Affine</A>, <A href="G2S_SetBG3Control256x16Affine.html">G2S_SetBG3Control256x16Affine</A></P>
+<H2>履歴</H2>
+<P>2007/01/18 初版</P>
+
+</body>
+</html>

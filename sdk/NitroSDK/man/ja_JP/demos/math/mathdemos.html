@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>MATH Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>算術関数 (MATH) サンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/math</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/math</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/math/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/math/test/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/math/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<BR>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD><EM><STRONG><CODE>misc-1</CODE></STRONG></EM></TD>
+      <TD>様々な数学関数の動作テストをおこないます。結果をデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>rand_lc</CODE></STRONG></EM></TD>
+      <TD width="525">線形合同法による乱数のテストです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>qsort</CODE></STRONG></EM></TD>
+      <TD>クイックソート関数のテストです。Aボタンを押すと乱数で発生させたデータの並べ変えをおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>fft-1</CODE></STRONG></EM></TD>
+      <TD>高速フーリエ変換関数の動作テストをおこないます。結果をデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>fft-2</CODE></STRONG></EM></TD>
+      <TD>マイク入力を高速フーリエ変換関数にかけてスペクトル表示をおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>dgt-1</CODE></STRONG></EM></TD>
+      <TD>メッセージダイジェスト関数・ハッシュ関数の動作テストをおこないます。結果をデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>dgt-2</CODE></STRONG></EM></TD>
+      <TD>メッセージダイジェスト関数・ハッシュ関数の動作速度の比較をおこないます。結果をデバッグ出力に表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>動作</H2>
+<P><CODE>すべての動作環境で正常に動作します。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../math/list_math.html"><CODE>MATH 関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2005/07/05 fft-2 デモの説明を追加<BR>
+2005/05/13 fft-1 デモの説明を追加<BR>
+2005/05/10 misc-1サンプルの説明を追加。<BR>
+2005/04/18 dgt-1, dgt-2 デモの説明を追加<BR>
+2005/04/12 qsortデモを追加<BR>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2004/12/15 初版
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNS_G3dResDefaultRelease</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dResDefaultRelease</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/util.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dResDefaultRelease(
+    void* pResData
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResData</STRONG></EM></TD>
+      <TD width="87%">リソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><B><I>pResData</I></B>により指定されたG3Dリソースの領域を開放する前に、通常行う必要がある後始末処理を実行します。 G3Dリソースが、モデルデータ(拡張子：.nsbmd）または、テクスチャデータ（拡張子：.nsbtx）である場合には、 テクスチャとパレット用の領域を開放する処理を行います。それ以外のデータでは、何も処理を行いません。</P>
+<P>
+この関数では、<CODE>pData</CODE>が指すメモリ領域そのものの解放は行いませんので、
+ユーザがこれを行う必要があります。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dResDefaultSetup.html">NNS_G3dResDefaultSetup</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/05/17 誤記訂正<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

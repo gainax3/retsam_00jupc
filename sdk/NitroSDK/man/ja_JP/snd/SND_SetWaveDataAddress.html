@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_SetWaveDataAddress</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_SetWaveDataAddress</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_SetWaveDataAddress(
+        SNDWaveArc* <var>waveArc</var>,
+        int <var>index</var>,
+        const SNDWaveData* <var>address</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>waveArc</code></strong></em></td>
+<td>波形アーカイブのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>index</code></strong></em></td>
+<td>波形データのインデックス番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>address</code></strong></em></td>
+<td>波形データのアドレスです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+波形アーカイブ中の波形データのアドレスを更新します。
+波形データは、<a href="SNDWaveData.html">SNDWaveData</a>型で指定します。
+</p>
+      <p>
+<em><strong><code>address</code></strong></em>にNULLを指定すると、
+その波形インデックスに対する発音は行わなくなります。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="SNDWaveData.html">SNDWaveData</a></p>
+<h2>履歴</h2>
+<p>2005/01/20 初版<br></p>
+</div>
+</body>
+</html>

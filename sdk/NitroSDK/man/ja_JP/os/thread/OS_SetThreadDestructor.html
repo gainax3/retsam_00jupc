@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetThreadDestructor</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetThreadDestructor</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SetThreadDestructor( OSThread* thread, OSThreadDestructor dtor );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>thread</STRONG></EM></TD>
+      <TD width="87%">デストラクタを設定するスレッド構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dtor</STRONG></EM></TD>
+      <TD width="87%">デストラクタ関数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スレッドが終了するときに呼ばれる関数(デストラクタ関数)を設定します。</P>
+<P>スレッドは <EM><B>thread</B></EM> で指定します。<STRONG><B><EM>dtor</EM> </B></STRONG>は <CODE>OSThreadDestructor</CODE> 型の関数へのポインタで、<CODE>OSThreadDestructor</CODE> 型は、</P>
+<P>　　　　<CODE>typedef void (*OSThreadDestructor)( void* );</CODE></P>
+<P>と定義されています。</P>
+<P>デストラクタ関数は以下の状況でスレッドが終了するときに呼ばれます。</P>
+<BLOCKQUOTE>・スレッドのタスクを最後まで実行し終わった<BR>
+・<CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> で終了した<BR>
+・<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で他のスレッドから終了させられた<BR>
+・<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で自らのスレッドを終了させた</BLOCKQUOTE>
+<P>以下の場合にはデストラクタ関数が呼ばれることはありません。</P>
+<BLOCKQUOTE>・<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> で他のスレッドから終了させられた<BR>
+・<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> で自らのスレッドを終了させた</BLOCKQUOTE>
+<P>デストラクタ関数が実行されるときときは、その終了するスレッドのコンテキストに切り替わって実行されます。そしてスタックポインタが変更されます(後述)。デストラクタは内部のスレッド情報を変更する前に割り込み禁止状態で呼ばれます。</P>
+<P>デストラクタ関数実行時のスタックは、デフォルトでは(チェック用のコードを除いた)最上位に変更されます。 <CODE><A href="OS_SetThreadDestructorStack.html">OS_SetThreadDestructorStack()</A></CODE> を使って、指定のスタックに変更することも可能です。</P>
+<P><FONT color="#ff0033">スレッドリストに不整合が生じる可能性がありますので、デストラクタ関数内では、割り込み禁止を解除したり、スレッドのスケジューリングを発生させる関数を呼ばないようにしてください。</FONT></P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, </CODE><CODE><A href="OS_ExitThread.html">OS_ExitThread</A>, <A href="OS_DestroyThread.html">OS_DestroyThread</A>, <A href="OS_KillThread.html">OS_KillThread*</A></CODE><BR><CODE><A href="OS_GetThreadDestructor.html">OS_GetThreadDestructor</A>, <A href="OS_SetThreadDestructorStack.html">OS_SetThreadDestructorStack</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2007/08/20 デストラクタ関数内での注意事項を追記<BR>
+2005/08/09 <CODE><A href="OS_SetThreadDestructorStack.html">OS_SetThreadDestructorStack</A></CODE> について追記<BR>
+2005/07/07 デストラクタ関数が呼ばれる状況について追記<BR>
+2005/06/30 初版</P>
+</BODY>
+</HTML>

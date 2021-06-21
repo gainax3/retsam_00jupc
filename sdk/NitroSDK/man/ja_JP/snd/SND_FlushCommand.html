@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_FlushCommand</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_FlushCommand</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL SND_FlushCommand( u32 <var>flags</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAIMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>flags</code></strong></em></td>
+<td>フラグです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>返り値</h2>
+
+      <p>コマンドの発行に成功したらTRUE、失敗したらFALSEを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA4MWT"></a>
+      <h2>説明</h2>
+      <p>
+予約済みコマンドを発行します。
+ARM7コマンドはこの関数を呼びだして始めて、ARM7で処理されることになります。
+</p>
+      <p>
+フラグ<em><strong><code>flags</code></strong></em>には、
+<span class="symbol">SND_COMMAND_BLOCK</span>または、<span class="symbol">SND_COMMAND_NOBLOCK</span>を指定します。
+<span class="symbol">SND_COMMAND_BLOCK</span>の場合、コマンド発行に成功するまで関数内でブロックします。
+<span class="symbol">SND_COMMAND_NOBLOCK</span>の場合は、コマンド発行に失敗するとFALSEを返します。
+</p>
+      <p>
+また、フラグ<em><strong><code>flags</code></strong></em>に対して、
+<span class="symbol">SND_COMMAND_IMMEDIATE</span>を、論理和を使って追加で指定することができます。
+<span class="symbol">SND_COMMAND_IMMEDIATE</span>を指定すると、
+コマンド発行に成功した場合、発行したコマンドがすぐに処理されるようになります。
+指定していなかった場合は、次のサウンドフレームが回ってきた時点で、処理されます。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+予約済みコマンドが無い場合は、即座にTRUEを返しますが、
+コマンド処理応答はありませんので注意してください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/03/01 SND_COMMAND_IMMEDIATEフラグ追加<br>2005/02/17 説明中の"フラッシュ"を"発行"に変更<br>2004/07/20 初版<br></p>
+</div>
+</body>
+</html>

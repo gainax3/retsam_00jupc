@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_FFT</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_FFT</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/fft.h&gt;
+
+void MATH_FFT( fx32* data, u32 nShift, const fx16* sinTable );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="670">変換するデータへのポインタ。変換後のデータは上書きされる。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">nShift</font></strong></em></TD>
+      <TD width="670">入力複素数の個数に2を底とした対数を取った値。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">sinTable</font></strong></em></TD>
+      <TD width="670">sin 値のテーブルのポインタ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>
+複素数列を入力とし、複素数列を出力する離散フーリエ変換を高速フーリエ変換のアルゴリズムを用いて行います。<BR>
+</P>
+<P>
+以下、2<sup>nShift</sup>(2のnShift乗) を N と置きます。data は fx32 型の長さ 2*N の配列です。
+data には N 個の複素数が実数と虚数が交互に格納される形式で渡します。
+すなわち、<i>i</i> を虚数単位とすると、入力データは、
+<CODE>{data[0]+<i>i</i>*data[1], data[2]+<i>i</i>*data[3], ..., data[N*2-2]+<i>i</i>*data[N*2-1]}</CODE> という長さ N の複素数列となります。<BR>
+sinTable は <CODE>sinTable[k] = <i>sin</i>( (2π/N) * k )  (k = 0, 1,..., N*3/4-1)</CODE> となるように fx16 型の sin 値を代入した、長さ N*3/4 の配列へのポインタです。<A href="MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A> 関数で作成することもできます。<BR>
+離散フーリエ変換の結果も複素数列になり、data に入力時と同じ形式で上書きして返されます。<BR>
+</P>
+<P>
+離散フーリエ変換とは、<CODE><i>f</i><sub>n</sub> (n = 0, 1, ... N-1)</CODE> を時間軸に沿った複素数のサンプリング値としたとき、<BR>
+<CODE><i>f</i><sub>n</sub> = Σ<sub>k = 0</sub><sup>N-1</sup> <i>F</i><sub>k</sub><i>e</i><sup><i>i</i>2πkn/N</sup></CODE><BR>
+上式を満たすような <CODE><i>F</i><sub>m</sub> (m = 0, 1, ... N-1)</CODE> を求める演算です。<BR>
+<CODE><i>F</i><sub>m</sub></CODE> は入力信号を正弦波の重ね合わせに分解した場合の各周波数の係数と見ることができます。<BR>
+高速フーリエ変換は離散フーリエ変換を <CODE>N*log(N)</CODE> のオーダーの時間計算量で行うアルゴリズムです。<BR>
+</P>
+<P>
+固定小数点数を用いて計算しているため、大きな値を入力として与えると桁あふれを起こす危険があります。
+入力値を s32 型として見たときの絶対値が <CODE>0x80000000/N</CODE> 以上にならないことを目安としてください。
+また、順変換と逆変換を行った場合の誤差は最大で FX32_ONE の数倍程度となります。
+</P>
+<h2>参照</h2>
+<P><A href="MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A>, <A href="MATH_IFFT.html">MATH_IFFT</A>, <A href="MATH_FFTReal.html">MATH_FFTReal</A>, <A href="MATH_IFFTReal.html">MATH_IFFTReal</A></P>
+<H2>履歴</H2>
+<P>
+2005/07/21 sinTable の説明の修正<BR>
+2005/07/11 説明の修正<BR>
+2005/05/13 初版<BR>
+</P>
+</body>
+</html>

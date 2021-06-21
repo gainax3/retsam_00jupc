@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>フォント概要</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">フォント概要</H1>
+
+<H2>用語</H2>
+<P>
+	ここに示す語の定義はG2Dのフォント/文字(列)表示ライブラリ関連文章中での使われ方であり、
+	一般的な語の意味と異なる事があります。
+</P>
+	
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="30%"><STRONG>NITROフォント</STRONG></TD>
+	      <TD width="70%"> G2Dが文字表示に利用するフォント。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>フォントリソース</STRONG></TD>
+	      <TD width="70%"> NITROフォントがG2Dで利用できるように展開される前の状態のもの。また、それを格納したファイル。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>グリフ</STRONG></TD>
+	      <TD width="70%"> 文字の形。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>グリフイメージ</STRONG></TD>
+	      <TD width="70%"> 画像としての面を特に強調してグリフを指す言葉。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>グリフインデックス</STRONG></TD>
+	      <TD width="70%"> NITROフォント内の各グリフに割り当てられたID番号。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>文字コード</STRONG></TD>
+	      <TD width="70%"> 各文字に割り当てられた番号。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%"><STRONG>文字エンコーディング</STRONG></TD>
+	      <TD width="70%"> 文字コードをバイト列として表現する場合の文字コード列とバイト列間の変換方法 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+<H2>NITROフォント</H2>
+<P>
+	NITROフォントには以下のような情報が格納されています。
+</P>
+	
+	<ul>
+	<li>フォント全体に渡る情報
+		<ul>
+		<li>グリフのフォーマット
+		<li>ベースライン位置
+		<li>セルサイズ
+		<li>改行幅
+		<li>代替文字
+		<li>対応するエンコーディング
+		</ul>
+	<li>各文字毎の情報
+		<ul>
+		<li>グリフイメージ
+		<li>文字幅
+		</ul>
+	<li>文字コードからグリフインデックスへの変換表
+	</ul>
+
+<H2>文字</H2>
+<P>
+	NITROフォントでの各文字はグリフイメージ
+	(<code><a href="NNS_G2dFontGetGlyphImage.html">NNS_G2dFontGetGlyphImage</a></code>)と
+	文字幅を分解した3つの幅データ（左スペース幅、グリフ幅、右スペース幅
+	(<code><a href="NNS_G2dFontGetCharWidths.html">NNS_G2dFontGetCharWidths</a></code>)）
+	からなっています(下図)。
+	グリフ幅はグリフを囲む最小限の矩形の幅で、
+	左スペース幅と右スペース幅はその矩形の左右に存在する何も描画する必要のない領域の幅です。
+	左スペース幅とグリフ幅、右スペース幅を足したものが文字幅となります。
+	<br>
+	G2Dでの文字描画(<code><a href="../CharCanvas/NNS_G2dCharCanvasDrawChar.html">NNS_G2dCharCanvasDrawChar</a></code>)
+	では左スペース幅分ずらした位置からグリフ幅分のグリフイメージを描画します。
+	描画位置を文字幅分右へと移動させながら文字描画を行う事で文字列の描画を行えます。
+	左スペース幅と右スペース幅は負の値をとることができ、文字幅がグリフ幅より小さくなる事もあります。
+	この場合は前後の文字と重なって描画されることになります。
+
+	<br>
+	<br>
+	<img src="char.png" alt="NITROフォントでの文字構成要素">
+	<br clear="left">
+	<br>
+	NITROフォントでは文字毎のグリフの高さは格納していません。
+	代わりにフォント中の全ての文字を表現するのに必要十分な高さをフォントの高さ
+	(<code><a href="NNS_G2dFontGetHeight.html">NNS_G2dFontGetHeight</a></code>)
+	として格納しています。
+
+</P>
+
+<H2>セル</H2>
+<P>
+	NITROフォントではグリフは BMP イメージとして格納されています。
+	各グリフは
+	<code><a href="NNS_G2dFontGetCellWidth.html">NNS_G2dFontGetCellWidth()</a></code> x
+	<code><a href="NNS_G2dFontGetCellHeight.html">NNS_G2dFontGetCellHeight()</a></code>
+	ピクセルの BMP イメージに格納されており、この BMP イメージをセルと呼びます。<br>
+	<br>
+	<img src="cell.png" alt="セルとグリフ概念図">
+	<br clear="left">
+	グリフイメージはセル内に左詰めされて格納されており、その幅は
+	<code><a href="NNS_G2dFontGetCharWidths.html">NNS_G2dFontGetCharWidths()</a></code>
+	等で取得できます。
+</P>
+
+<H2>代替文字</H2>
+<P>
+	いくつかの関数ではNITROフォントに存在しない文字が指定されたとき、
+	代わりの文字が使用されます。
+	この代わりの文字を代替文字と呼び、NITROフォントに登録されています
+	(<code><a href="NNS_G2dFontGetAlternateGlyphIndex.html">NNS_G2dFontGetAlternateGlyphIndex</a></code>)。
+</P>
+
+<H2>文字コード</H2>
+<P>
+	文字を引数とするフォント操作関数では文字の指定に 16 bitの文字コードを用います。
+	各関数はこの文字コードを意味のある数値としては扱いません。
+	文字コードは関数内ですぐにNITROフォント内の変換テーブルを用いてグリフインデックスに変換され、
+	実際の処理は全てグリフインデックスにより行われます。
+	<br>
+	これによりNITROフォント内の文字コード変換テーブルさえ適切に作成されていれば、
+	任意の文字セットを扱う事ができます。
+	逆にいえば、NITROフォントは文字セットごとに用意される必要があり、
+	プログラム中で使用される文字セットとNITROフォントの文字セットが異なると意図した結果が得られません。
+</P>
+
+<H2>フォント関数</H2>
+<P>
+	フォント関数は以下のように大きく6つのグループに分ける事ができます。
+</p>
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="40%">
+			<strong>フォント構築</strong><br>
+			フォントを構築する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dFontInitAuto.html">NNS_G2dFontInitAuto()</a></code><br>
+			<code><a href="NNS_G2dFontInitXXX.html">NNS_G2dFontInitUTF8()</a></code><br>
+			<code><a href="NNS_G2dFontInitXXX.html">NNS_G2dFontInitUTF16()</a></code><br>
+			<code><a href="NNS_G2dFontInitXXX.html">NNS_G2dFontInitShiftJIS()</a></code><br>
+			<code><a href="NNS_G2dFontInitXXX.html">NNS_G2dFontInitCP1252()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>フォントアクセサ</strong><br>
+			フォント全体に渡る情報を取得･設定する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dFontGetType.html">NNS_G2dFontGetType()</a></code><br>
+			<code><a href="NNS_G2dFontGetHeight.html">NNS_G2dFontGetHeight()</a></code><br>
+			<code><a href="NNS_G2dFontGetCellHeight.html">NNS_G2dFontGetCellHeight()</a></code><br>
+			<code><a href="NNS_G2dFontGetCellWidth.html">NNS_G2dFontGetCellWidth()</a></code><br>
+			<code><a href="NNS_G2dFontGetBpp.html">NNS_G2dFontGetBpp()</a></code><br>
+			<code><a href="NNS_G2dFontGetBaselinePos.html">NNS_G2dFontGetBaselinePos()</a></code><br>
+			<code><a href="NNS_G2dFontGetMaxCharWidth.html">NNS_G2dFontGetMaxCharWidth()</a></code><br>
+			<code><a href="NNS_G2dFontGetLineFeed.html">NNS_G2dFontGetLineFeed()</a></code><br>
+			<code><a href="NNS_G2dFontSetLineFeed.html">NNS_G2dFontSetLineFeed()</a></code><br>
+			<code><a href="NNS_G2dFontGetDefaultCharWidths.html">NNS_G2dFontGetDefaultCharWidths()</a></code><br>
+			<code><a href="NNS_G2dFontSetDefaultCharWidths.html">NNS_G2dFontSetDefaultCharWidths()</a></code><br>
+			<code><a href="NNS_G2dFontGetAlternateGlyphIndex.html">NNS_G2dFontGetAlternateGlyphIndex()</a></code><br>
+			<code><a href="NNS_G2dFontSetAlternateGlyphIndex.html">NNS_G2dFontSetAlternateGlyphIndex()</a></code><br>
+			<code><a href="NNS_G2dFontSetAlternateChar.html">NNS_G2dFontSetAlternateChar()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>文字コードによるグリフ情報取得</strong><br>
+			文字コードを引数として各文字のグリフ情報を取得する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dFontGetGlyph.html">NNS_G2dFontGetGlyph()</a></code><br>
+			<code><a href="NNS_G2dFontGetGlyphImage.html">NNS_G2dFontGetGlyphImage()</a></code><br>
+			<code><a href="NNS_G2dFontGetCharWidth.html">NNS_G2dFontGetCharWidth()</a></code><br>
+			<code><a href="NNS_G2dFontGetCharWidths.html">NNS_G2dFontGetCharWidths()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>グリフインデックス取得</strong><br>
+			文字コードからグリフインデックスを取得する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dFontFindGlyphIndex.html">NNS_G2dFontFindGlyphIndex()</a></code><br>
+			<code><a href="NNS_G2dFontGetGlyphIndex.html">NNS_G2dFontGetGlyphIndex()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>グリフインデックスによるグリフ情報取得</strong><br>
+			グリフインデックスを引数として各文字のグリフ情報を取得する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><A href="NNS_G2dFontGetGlyphImageFromIndex.html">NNS_G2dFontGetGlyphImageFromIndex()</A></code><br>
+			<code><A href="NNS_G2dFontGetGlyphFromIndex.html">NNS_G2dFontGetGlyphFromIndex()</A></code><br>
+			<code><A href="NNS_G2dFontGetCharWidthFromIndex.html">NNS_G2dFontGetCharWidthFromIndex()</A></code><br>
+			<code><A href="NNS_G2dFontGetCharWidthsFromIndex.html">NNS_G2dFontGetCharWidthsFromIndex()</A></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>文字列描画サイズ計算</strong><br>
+			文字列の描画サイズを計算する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dFontGetStringWidth.html">NNS_G2dFontGetStringWidth()</a></code><br>
+			<code><a href="NNS_G2dFontGetTextWidth.html">NNS_G2dFontGetTextWidth()</a></code><br>
+			<code><a href="NNS_G2dFontGetTextHeight.html">NNS_G2dFontGetTextHeight()</a></code><br>
+			<code><a href="NNS_G2dFontGetTextRect.html">NNS_G2dFontGetTextRect()</a></code><br>
+	      </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+<H2>縦書き/縦持ち</H2>
+<P>
+    2007年03月14日版より縦書き/縦持ちの簡易サポートが追加されました。
+    縦書き/縦持ち用のフォントを使用することで縦書き/縦持ち用の描画を行う事ができます。
+    ただし、これは簡易的なものであり、フォントリソースの一部を通常と異なる使い方をすることで実現しています。
+    そのため、いくつかの制限があります。
+</P>
+
+<h3>縦書き/縦持ちをサポートしない関数</h3>
+<P>
+    以下の関数は縦書き/縦持ちフォントに対して正常に動作しません。
+</P>
+<ul>
+<li><code><a href="NNS_G2dFontGetGlyph.html">NNS_G2dFontGetGlyph()</a></code>
+<li><code><A href="NNS_G2dFontGetGlyphFromIndex.html">NNS_G2dFontGetGlyphFromIndex()</A></code>
+<li><code><a href="NNS_G2dFontGetCharWidths.html">NNS_G2dFontGetCharWidths()</a></code>
+<li><code><A href="NNS_G2dFontGetCharWidthsFromIndex.html">NNS_G2dFontGetCharWidthsFromIndex()</A></code>
+<li><code><a href="NNS_G2dFontGetHeight.html">NNS_G2dFontGetHeight()</a></code>
+<li><code><a href="../CharCanvas/NNS_G2dCharCanvasDrawGlyph.html">NNS_G2dCharCanvasDrawGlyph()</a></code>
+</ul>
+
+<h3>使用に注意を要する関数</h3>
+<P>
+    以下の関数では縦書き/縦持ちに関する注意があります。
+    詳しくはそれぞれの関数のリファレンスを参照してください。
+</P>
+<ul>
+<li><code><a href="NNS_G2dFontGetCharWidth.html">NNS_G2dFontGetCharWidth()</a></code>
+<li><code><A href="NNS_G2dFontGetCharWidthFromIndex.html">NNS_G2dFontGetCharWidthFromIndex()</A></code>
+
+<li><code><a href="NNS_G2dFontGetBaselinePos.html">NNS_G2dFontGetBaselinePos()</a></code>
+<li><code><a href="NNS_G2dFontGetMaxCharWidth.html">NNS_G2dFontGetMaxCharWidth()</a></code>
+<li><code><a href="NNS_G2dFontGetStringWidth.html">NNS_G2dFontGetStringWidth()</a></code>
+<li><code><a href="NNS_G2dFontGetTextHeight.html">NNS_G2dFontGetTextHeight()</a></code>
+<li><code><a href="NNS_G2dFontGetTextRect.html">NNS_G2dFontGetTextRect()</a></code>
+<li><code><a href="NNS_G2dFontGetTextWidth.html">NNS_G2dFontGetTextWidth()</a></code>
+
+<li><code><a href="../CharCanvas/NNS_G2dCharCanvasDrawChar.html">NNS_G2dCharCanvasDrawChar()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasDrawString.html">NNS_G2dTextCanvasDrawString()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasDrawTaggedText.html">NNS_G2dTextCanvasDrawTaggedText()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasDrawText.html">NNS_G2dTextCanvasDrawText()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasDrawTextRect.html">NNS_G2dTextCanvasDrawTextRect()</a></code>
+
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasGetStringWidth.html">NNS_G2dTextCanvasGetStringWidth()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasGetTextHeight.html">NNS_G2dTextCanvasGetTextHeight()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasGetTextRect.html">NNS_G2dTextCanvasGetTextRect()</a></code>
+<li><code><a href="../TextCanvas/NNS_G2dTextCanvasGetTextWidth.html">NNS_G2dTextCanvasGetTextWidth()</a></code>
+</ul>
+
+<h3>描画の原点</h3>
+<P>
+    横書き時の描画の原点は縦持ち/横持ちによらず文字の左上になります。<br>
+    縦書き時の描画の原点は縦持ち/横持ちによらず文字の右上になります。<br>
+</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2007/03/14 「縦書き/縦持ち」の項を追加。<br>
+2005/05/25 初版
+</P>
+</BODY>
+
+</HTML>

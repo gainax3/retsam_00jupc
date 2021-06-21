@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_SetIrqFunction</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_SetIrqFunction</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_SetIrqFunction( OSIrqMask intrBit, OSIrqFunction function );</CODE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>intrBit</I></B></TD>
+      <TD>設定するIRQ割り込み要因</TD>
+    </TR>
+    <TR>
+      <TD><B><I>function</I></B></TD>
+      <TD>割り込みハンドラ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>割り込みハンドラを設定します。</P>
+<P>指定のIRQ割り込みが発生したときにジャンプする関数(割り込みハンドラ)を設定します。<B><I>intrBit</I></B> には、ハンドラを設定するIRQ割り込み要因を指定します。<B><I>function</I></B> にはハンドラを指定します。</P>
+<P>IRQ割り込み要因については、<A href="OS_SetIrqMask.html"><CODE>OS_SetIrqMask()</CODE></A> を参照してください。</P>
+<P>割り込みハンドラは<CODE>OSIrqFunction</CODE>型で、これは引数を持たない、void型関数です。</P>
+<BLOCKQUOTE>(例)<BR>
+<CODE>main()<BR>
+{<BR>
+　　　　：<BR>
+　　OS_InitIrqTable();<BR>
+　　OS_SetIrqFunction( OS_IE_V_BLANK, vhandler );<BR>
+　　　　：<BR>
+}<BR>
+<BR>
+void vhandler( void )<BR>
+{<BR>
+　　// V ブランク割り込み処理<BR>
+}</CODE></BLOCKQUOTE>
+<P><BR>
+注意：<BR>
+タイマ割り込みについては注意が必要です。ハードウェアのタイマ仕様では、設定したタイマ割り込みは繰り返し発生しますが、OSでは最初の一回が発生したときに登録されたハンドラの設定を解除しますので、タイマ割り込みハンドラは最初の一回しか発生しません。繰り返し発生させるためには割り込みハンドラ内で再設定するなどの処理が必要です。</P>
+<h2>参照</h2>
+<p><CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask</A>, <A href="OS_InitIrqTable.html">OS_InitIrqTable</A>, <A href="OS_GetIrqFunction.html">OS_GetIrqFunction</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/06/03 タイマ割り込みについての注意を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

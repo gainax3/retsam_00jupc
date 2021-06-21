@@ -1,0 +1,56 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetAIDBitmap</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetAIDBitmap</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+u32 DWC_GetAIDBitmap( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  接続中ホストのAIDビットマップを取得します。
+		</P>
+		<P>
+		  AIDはメッシュ型ネットワーク内での各DSの識別番号で、0～（ネットワーク構成台数-1）の数値が用いられます。
+		  例えば4人でマッチメイクを完了した場合なら、0, 1, 2, 3 の4台が存在し、ビットマップは0xf、AID = 1 の人がネットワークから抜ければ、残りは 0, 2, 3 となり、ビットマップは0xdとなります。<BR>
+		  サーバクライアントマッチメイクにおいてはサーバDSのAIDが必ず0になります。
+		</P>
+		<P>
+		  AIDを数値の配列として取得したい場合は、<A href="DWC_GetAIDList.html">DWC_GetAIDList</A>関数を使用してください。
+		</P>
+
+		<H2>引数</H2>
+		<P>なし</P>
+
+		<H2>返り値</H2>
+		<P>
+		  接続中ホストのAIDビットマップ
+		</P>
+
+		<H2>参照</H2>
+		<P>
+		  <CODE>
+			<A href="DWC_GetAIDList.html">DWC_GetAIDList</A>
+		  </CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/02/22 サーバクライアントマッチメイク時のAIDについての記述を追加<BR>
+			2005/12/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

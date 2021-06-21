@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_IsExistAllowedChannel</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_IsExistAllowedChannel</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+BOOL WM_IsExistAllowedChannel( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>
+無線のチャンネルの内、使用を許可されたチャンネルが一つでもある場合にTRUEを返します。
+全てのチャンネルの使用が禁止されている場合はFALSEを返します。
+</p>
+
+<H2>説明</H2>
+<P>
+無線通信において使用すべきチャンネルが存在するかどうかを確認します。
+初期化前を含めて、WMのステートに依存せずに実行可能です。
+</P>
+
+<h2>注意</h2>
+<p>
+この関数にFALSEが返された場合は、使用すべきチャンネルが無い、つまり<font color=red>無線で通信してはいけない</font>ことを示します。
+無線通信が禁止された特殊な環境で使用される本体であった場合などにFALSEが返される可能性がある点に注意して下さい。
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_GetAllowedChannel.html">WM_GetAllowedChannel</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/12/21 初版<BR>
+</P>
+</body>
+</html>

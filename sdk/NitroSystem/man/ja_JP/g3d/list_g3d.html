@@ -1,0 +1,850 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+<BASE target="main">
+<TITLE>Graphics 3DライブラリAPI 機能一覧</TITLE>
+	<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+
+<BODY>
+
+<H1>Graphics 3Dライブラリ(G3d)API 機能一覧</H1>
+<H3><A href="incompatibility041011.html" target="_self">2004-09-16版又はそれ以前のバージョンとの非互換性についてのお知らせ</A></H3>
+<H3><A name="Overview">G3Dの概略</A>図</H3>
+<P>以下はG3Dの主要な構造体と関数の概略図です。ただしG3DはC言語で実装されていますので、クラスやメンバ関数といった形では実装されていません。</P>
+<P><IMG src="G3DOverview.png" width="821" height="545" border="0"></P>
+<H3><A name="GlobalState">グローバルステート</A>（NNSG3dGlb）</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbInit.html" target="_self" >NNS_G3dGlbInit</A></TH>
+			<TD>G3Dライブラリ内部で保持しているグローバル状態を初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbFlush.html" target="_self" >NNS_G3dGlbFlushP</A></TH>
+			<TD>G3Dライブラリ内部で保持しているグローバル状態をジオメトリエンジンに送信します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbFlushVP.html" target="_self">NNS_G3dGlbFlushVP</A></TH>
+      <TD>G3Dライブラリ内部で保持しているグローバル状態をジオメトリエンジンに送信します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbFlushAlt.html" target="_self" >NNS_G3dGlbFlushWVP</A></TH>
+			<TD>G3Dライブラリ内部で保持しているグローバル状態をジオメトリエンジンに送信します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbSetBaseScale.html" target="_self" >NNS_G3dGlbSetBaseScale</A></TH>
+			<TD>グローバル状態のベーススケールに値を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbSetBaseRot.html" target="_self" >NNS_G3dGlbSetBaseRot</A></TH>
+			<TD>グローバル状態のベースローテーションに値を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbSetBaseTrans.html" target="_self" >NNS_G3dGlbSetBaseTrans</A></TH>
+			<TD>グローバル状態のベーストランスレーションに値を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbLightVector.html" target="_self" >NNS_G3dGlbLightVector</A></TH>
+			<TD>グローバル状態にライトの方向ベクトルを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbLightColor.html" target="_self" >NNS_G3dGlbLightColor</A></TH>
+			<TD>グローバル状態にライトカラーを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbMaterialColorDiffAmb.html" target="_self" >NNS_G3dGlbMaterialColorDiffAmb</A></TH>
+			<TD>グローバル状態に材質の拡散反射色(diffuse)と環境反射色(ambient)を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbMaterialColorSpecEmi.html" target="_self" >NNS_G3dGlbMaterialColorSpecEmi</A></TH>
+			<TD>グローバル状態に材質の鏡面反射色(specular)と放射光色(emission)を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbPolygonAttr.html" target="_self" >NNS_G3dGlbPolygonAttr</A></TH>
+			<TD>グローバル状態にポリゴン関連属性値を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbSetViewPort.html" target="_self" >NNS_G3dGlbSetViewPort</A></TH>
+			<TD>グローバル状態にビューポートを設定します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbLookAt.html" target="_self">NNS_G3dGlbLookAt</A></TH>
+      <TD>グローバル状態にカメラ行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbPerspective.html" target="_self">NNS_G3dGlbPerspective</A></TH>
+      <TD>グローバル状態に透視射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbFrustum.html" target="_self">NNS_G3dGlbFrustum</A></TH>
+      <TD>グローバル状態に透視射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbOrtho.html" target="_self">NNS_G3dGlbOrtho</A></TH>
+      <TD>グローバル状態に正射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbPerspectiveW.html" target="_self">NNS_G3dGlbPerspectiveW</A></TH>
+      <TD>グローバル状態に透視射影行列をセットします。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbFrustumW.html" target="_self">NNS_G3dGlbFrustumW</A></TH>
+      <TD>グローバル状態に透視射影行列をセットします。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbOrthoW.html" target="_self">NNS_G3dGlbOrthoW</A></TH>
+      <TD>グローバル状態に正射影行列をセットします。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbSetProjectionMtx.html" target="_self">NNS_G3dGlbSetProjectionMtx</A></TH>
+      <TD>グローバル状態に射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetCameraMtx.html" target="_self">NNS_G3dGlbGetCameraMtx</A></TH>
+      <TD>グローバル状態に設定されているカメラ行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetProjectionMtx.html" target="_self">NNS_G3dGlbGetProjectionMtx</A></TH>
+      <TD>グローバル状態に設定されている射影行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetBaseRot.html" target="_self">NNS_G3dGlbGetBaseRot</A></TH>
+      <TD>グローバル状態に設定されているオブジェクトの回転行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetBaseTrans.html" target="_self">NNS_G3dGlbGetBaseTrans</A></TH>
+      <TD>グローバル状態に設定されているオブジェクトの平行移動ベクトルへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetBaseScale.html" target="_self">NNS_G3dGlbGetBaseScale</A></TH>
+      <TD>グローバル状態に設定されているオブジェクトのスケールベクトルへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetCameraPos.html" target="_self">NNS_G3dGlbGetCameraPos</A></TH>
+      <TD>グローバル状態に設定されているカメラの位置ベクトルへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetCameraUp.html" target="_self">NNS_G3dGlbGetCameraUp</A></TH>
+      <TD>グローバル状態に設定されているカメラの上方向ベクトルへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetCameraTarget.html" target="_self">NNS_G3dGlbGetCameraTarget</A></TH>
+      <TD>グローバル状態に設定されているカメラの焦点ベクトルへのポインタを返します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbGetInvCameraMtx.html" target="_self" >NNS_G3dGlbGetInvV</A></TH>
+			<TD>グローバル状態に設定されているカメラ行列の逆行列へのポインタを返します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetInvW.html" target="_self">NNS_G3dGlbGetInvW</A></TH>
+      <TD>グローバル状態に設定されているBaseSRT行列の逆行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetInvP.html" target="_self">NNS_G3dGlbGetInvP</A></TH>
+      <TD>グローバル状態に設定されている射影行列の逆行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbGetSrtCameraMtx.html" target="_self" >NNS_G3dGlbGetWV</A></TH>
+			<TD>グローバル状態に設定されているBaseSRT行列にカメラ行列をかけた行列へのポインタを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="glbstate/NNS_G3dGlbGetInvSrtCameraMtx.html" target="_self" >NNS_G3dGlbGetInvWV</A></TH>
+			<TD>グローバル状態に設定されているBaseSRT行列にカメラ行列をかけた行列の逆行列へのポインタを返します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetInvVP.html" target="_self">NNS_G3dGlbGetInvVP</A></TH>
+      <TD>グローバル状態に設定されているカメラ行列に射影行列をかけた行列の逆行列へのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="glbstate/NNS_G3dGlbGetViewPort.html" target="_self">NNS_G3dGlbGetViewPort</A></TH>
+      <TD>グローバル状態に設定されているビューポートを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="Kernel">カーネル</A>（NNSG3dRenderObj, NNSG3dAnmObj, NNSG3dRedMdl, NNSG3dResTex他）</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+    <TR>
+      <TH><A href="kernel/NNS_G3dAnmObjInit.html" target="_self">NNS_G3dAnmObjInit</A></TH>
+      <TD>アニメーションオブジェクトを初期化します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dAnmObjSetFrame.html" target="_self" >NNS_G3dAnmObjSetFrame</A></TH>
+			<TD>アニメーションオブジェクトのアニメーション再生フレームを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dAnmObjSetBlendRatio.html" target="_self"	>NNS_G3dAnmObjSetBlendRatio</A></TH>
+			<TD>アニメーションオブジェクトのアニメーションブレンド比を設定します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dAnmObjGetNumFrame.html">NNS_G3dAnmObjGetNumFrame</A></TH>
+      <TD>アニメーションオブジェクトが参照するアニメーションのフレーム数を取得します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dAnmObjCalcSizeRequired.html" target="_self" >NNS_G3dAnmObjCalcSizeRequired</A></TH>
+			<TD>指定されたモデルリソースに対応するアニメーションオブジェクトに必要なメモリサイズを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dAnmObjEnableID.html" target="_self">NNS_G3dAnmObjEnableID</A></TH>
+			<TD>指定されたノードＩＤ／マテリアルIDのアニメーションを有効にします。</TD>
+		</TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dAnmObjDisableID.html" target="_self">NNS_G3dAnmObjDisableID</A></TH>
+      <TD>指定されたノードＩＤ／マテリアルＩＤのアニメーションを無効にします。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjInit.html" target="_self" >NNS_G3dRenderObjInit</A></TH>
+			<TD>レンダリングオブジェクトを初期化します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dRenderObjGetResMdl.html" target="_self">NNS_G3dRenderObjGetResMdl</A></TH>
+      <TD>レンダリングオブジェクトからモデルリソースへのポインタを取得します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjAddAnmObj.html" target="_self" >NNS_G3dRenderObjAddAnmObj</A></TH>
+			<TD>レンダリングオブジェクトにアニメーションオブジェクトを追加します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjRemoveAnmObj.html" target="_self" >NNS_G3dRenderObjRemoveAnmObj</A></TH>
+			<TD>レンダリングオブジェクトからアニメーションオブジェクトを削除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetUserSbc.html" target="_self"			>NNS_G3dRenderObjSetUserSbc</A></TH>
+			<TD>レンダリングオブジェクトに ユーザー指定のsbc（Structure Byte Code）を登録します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetJntAnmBuffer.html" target="_self"	>NNS_G3dRenderObjSetJntAnmBuffer</A></TH>
+			<TD>レンダリングオブジェクトにジョイントアニメーション用バッファを登録します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetMatAnmBuffer.html" target="_self"	>NNS_G3dRenderObjSetMatAnmBuffer</A></TH>
+			<TD>レンダリングオブジェクトにマテリアルアニメーション用バッファを登録します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjReleaseJntAnmBuffer.html" target="_self">NNS_G3dRenderObjReleaseJntAnmBuffer</A></TH>
+			<TD>レンダリングオブジェクトに登録されているジョイントアニメーション用バッファを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjReleaseMatAnmBuffer.html" target="_self">NNS_G3dRenderObjReleaseMatAnmBuffer</A></TH>
+			<TD>レンダリングオブジェクトに登録されているマテリアルアニメーション用バッファを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetCallBack.html" target="_self" >NNS_G3dRenderObjSetCallBack</A></TH>
+			<TD>描画処理中に呼び出されるコールバック関数を登録します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjResetCallBack.html" target="_self" >NNS_G3dRenderObjResetCallBack</A></TH>
+			<TD>描画処理中に呼び出されるコールバック関数を消去します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dRenderObjSetInitFunc.html" target="_self">NNS_G3dRenderObjSetInitFunc</A></TH>
+      <TD>描画処理前に呼び出されるコールバック関数を登録します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetUserPtr.html" target="_self" >NNS_G3dRenderObjSetUserPtr</A></TH>
+			<TD>描画処理中に行うコールバック処理で使用できる領域へのポインタを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjSetFlag.html" target="_self" >NNS_G3dRenderObjSetFlag</A></TH>
+			<TD>レンダリングオブジェクトの実行制御フラグで指定されたものをセットします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjResetFlag.html" target="_self" >NNS_G3dRenderObjResetFlag</A></TH>
+			<TD>レンダリングオブジェクトの実行制御フラグで指定されたものをリセットします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dRenderObjTestFlag.html" target="_self" >NNS_G3dRenderObjTestFlag</A></TH>
+			<TD>レンダリングオブジェクトの実行制御フラグがセットされているかどうかテストします。</TD>
+		</TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dRenderObjSetBlendFuncJnt.html" target="_self">NNS_G3dRenderObjSetBlendFuncJnt</A></TH>
+      <TD>レンダリングオブジェクトにジョイントのブレンド関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dRenderObjSetBlendFuncMat.html" target="_self">NNS_G3dRenderObjSetBlendFuncMat</A></TH>
+      <TD>レンダリングオブジェクトにマテリアルのブレンド関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="kernel/NNS_G3dRenderObjSetBlendFuncVis.html" target="_self">NNS_G3dRenderObjSetBlendFuncVis</A></TH>
+      <TD>レンダリングオブジェクトにビジビリティのブレンド関数を設定します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="kernel/NNS_G3dTexGetRequiredSize.html" target="_self" >NNS_G3dTexGetRequiredSize</A></TH>
+			<TD>通常テクスチャをVRAMに格納する場合に必要となるサイズを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dTex4x4GetRequiredSize.html" target="_self" >NNS_G3dTex4x4GetRequiredSize</A></TH>
+			<TD>４×４テクセル圧縮テクスチャをVRAMに格納する場合に必要となるサイズを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dTexSetTexKey.html" target="_self" >NNS_G3dTexSetTexKey</A></TH>
+			<TD>テクスチャリソースに、テクスチャを格納する為のメモリを示すテクスチャ・キーを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dTexLoad.html" target="_self" >NNS_G3dTexLoad</A></TH>
+			<TD>テクスチャを、設定されているテクスチャ・キーが指し示すVRAM領域にロードします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dTexReleaseTexKey.html" target="_self" >NNS_G3dTexReleaseTexKey</A></TH>
+			<TD>参照していたテクスチャを放棄します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dPlttGetRequiredSize.html" target="_self" >NNS_G3dPlttGetRequiredSize</A></TH>
+			<TD>パレットをVRAMに格納する場合に必要となるサイズを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dPlttSetPlttKey.html" target="_self" >NNS_G3dPlttSetPlttKey</A></TH>
+			<TD>テクスチャリソースに、パレットを格納する為のメモリを示すパレット・キーを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dPlttLoad.html" target="_self" >NNS_G3dPlttLoad</A></TH>
+			<TD>パレットを設定されているパレット・キーが指し示すVRAM領域にロードします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dPlttReleasePlttKey.html" target="_self" >NNS_G3dPlttReleasePlttKey</A></TH>
+			<TD>参照していたパレットを放棄します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dBindMdlTex.html" target="_self" >NNS_G3dBindMdlTex</A></TH>
+			<TD>モデルにテクスチャを関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dBindMdlTexEx.html" target="_self" >NNS_G3dBindMdlTexEx</A></TH>
+			<TD>モデルに名前で指定されたテクスチャを関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dForceBindMdlTex.html" target="_self" >NNS_G3dForceBindMdlTex</A></TH>
+			<TD>モデルにインデックスで指定されたテクスチャを強制的に関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dReleaseMdlTex.html" target="_self" >NNS_G3dReleaseMdlTex</A></TH>
+			<TD>テクスチャに関連付けられているマテリアルのテクスチャエントリの関連付けを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dReleaseMdlTexEx.html" target="_self" >NNS_G3dReleaseMdlTexEx</A></TH>
+			<TD>指定された名前をもつテクスチャに関連付けられているマテリアルのテクスチャエントリの関連付けを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dBindMdlPltt.html" target="_self" >NNS_G3dBindMdlPltt</A></TH>
+			<TD>モデルにパレットを関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dBindMdlPlttEx.html" target="_self" >NNS_G3dBindMdlPlttEx</A></TH>
+			<TD>モデルに名前で指定されたパレットを関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dForceBindMdlPltt.html" target="_self" >NNS_G3dForceBindMdlPltt</A></TH>
+			<TD>モデルにインデックスで指定されたパレットを強制的に関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dReleaseMdlPltt.html" target="_self" >NNS_G3dReleaseMdlPltt</A></TH>
+			<TD>パレットに関連付けられているマテリアルのパレットエントリの関連付けを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dReleaseMdlPlttEx.html" target="_self" >NNS_G3dReleaseMdlPlttEx</A></TH>
+			<TD>パレットに関連付けられているマテリアルのパレットエントリの関連付けを解除します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dBindMdlSet.html" target="_self" >NNS_G3dBindMdlSet</A></TH>
+			<TD>モデルセット内の各モデルをテクスチャ／パレットに関連付けます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="kernel/NNS_G3dReleaseMdlSet.html" target="_self" >NNS_G3dReleaseMdlSet</A></TH>
+			<TD>モデルセット内の各モデルからテクスチャ／パレットへの関連付けを外します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="SBC">描画エンジン</A>（NNSG3dRS, NNSG3dRenderObj）</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="sbc/NNS_G3dDraw.html" target="_self" >NNS_G3dDraw</A></TH>
+			<TD>モデルを描画します。</TD>
+		</TR>
+    <TR>
+      <TH><A href="sbc/NNS_G3dDraw1Mat1Shp.html">NNS_G3dDraw1Mat1Shp</A></TH>
+      <TD>単純なモデルを高速に描画します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="sbc/SBCGlobalVariables.html" target="_self" >大域変数</A></TH>
+			<TD>描画時に使用される大域変数。</TD>
+		</TR>
+    <TR>
+      <TH><A href="sbc/SBCCallback.html">SBCとコールバック</A></TH>
+      <TD>SBC(Structure Byte Code)とコールバックの説明</TD>
+    </TR>
+    <TR>
+      <TH><A href="sbc/NNSG3dRS.html">NNSG3dRS構造体とアクセサ</A></TH>
+      <TD>描画時の状態を管理する構造体とアクセサ関数の説明</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="Gecom">ジオメトリエンジン</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeIsSendDLBusy.html" target="_self" >NNS_G3dGeIsSendDLBusy</A></TH>
+			<TD><CODE>NNS_G3dGeSendDL</CODE>関数によるジオメトリコマンドのDMA転送が転送中であるかどうかを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeIsBufferExist.html" target="_self" >NNS_G3dGeIsBufferExist</A></TH>
+			<TD>コマンドバッファが存在するかどうかを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeIsImmOK.html" target="_self" >NNS_G3dGeIsImmOK</A></TH>
+			<TD>コマンドを直接ジオメトリFIFOに送信しても良いかどうかを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeIsBufferOK.html" target="_self" >NNS_G3dGeIsBufferOK</A></TH>
+			<TD>データをコマンドバッファに追加可能かどうかを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeWaitSendDL.html" target="_self" >NNS_G3dGeWaitSendDL</A></TH>
+			<TD><CODE>NNS_G3dGeSendDL</CODE>関数の転送動作が完了するまで待ちます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeSetBuffer.html" target="_self" >NNS_G3dGeSetBuffer</A></TH>
+			<TD>コマンドバッファをセットします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeReleaseBuffer.html" target="_self" >NNS_G3dGeReleaseBuffer</A></TH>
+			<TD>コマンドバッファを安全に取り除きます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeFlushBuffer.html" target="_self" >NNS_G3dGeFlushBuffer</A></TH>
+			<TD>コマンドバッファの内容を安全にジオメトリエンジンに書き出します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeSendDL.html" target="_self" >NNS_G3dGeSendDL</A></TH>
+			<TD>指定されたディスプレイリストを、安全にジオメトリエンジンに書き出します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/NNS_G3dGeBufferOP_N.html" target="_self" >NNS_G3dGeBufferOP_N</A></TH>
+			<TD>N個の引数を持つジオメトリコマンドを安全にジオメトリエンジンに書き出します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="gecom/GeometryCommand.html" target="_self" >ジオメトリコマンド関数</A></TH>
+			<TD><CODE>NNS_G3dGeBufferOP_N関数経由でジオメトリコマンドを発行する関数群です。</CODE></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="Model">モデル</A>（NNSG3dResMdl）</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+    <TR>
+      <TH><A href="model/NNS_G3dMdlUseGlbXXXXX.html" target="_self">NNS_G3dMdlUseGlbXXXXX</A></TH>
+      <TD>グローバルステートで設定されたマテリアル設定をモデルの描画に使用するように設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="model/NNS_G3dMdlUseMdlXXXXX.html" target="_self">NNS_G3dMdlUseMdlXXXXX</A></TH>
+      <TD>モデルリソース内のマテリアル設定をモデルの描画に使用するように設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="model/NNS_G3dMdlSetMdlXXXXX.html" target="_self">NNS_G3dMdlSetMdlXXXXX</A></TH>
+      <TD>モデルリソース内の個々のマテリアルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="model/NNS_G3dMdlGetMdlXXXXX.html" target="_self">NNS_G3dMdlGetMdlXXXXX</A></TH>
+      <TD>モデルリソース内の個々のマテリアル設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="model/NNS_G3dMdlSetMdlXXXXXAll.html" target="_self">NNS_G3dMdlSetMdlXXXXXAll</A></TH>
+      <TD>モデルリソース内のマテリアルを一括設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Animation">アニメーション</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+    <TR>
+      <TH><A href="anm/NNS_G3dGetAnmByIdx.html">NNS_G3dGetAnmByIdx</A></TH>
+      <TD>アニメーションリソースファイルからインデックスを指定してアニメーションリソースへのポインタを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="anm/NNS_G3dGetAnmByName.html">NNS_G3dGetAnmByName</A></TH>
+      <TD>アニメーションリソースファイルからリソース名を指定してアニメーションリソースへのポインタを取得します。</TD>
+    </TR>
+  </TBODY> 
+</TABLE>
+
+
+
+
+<H3><A name="Utility">ユーティリティ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dInit.html"  target="_self" >NNS_G3dInit</A></TH>
+			<TD>G3Dライブラリの初期化を行います。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dResDefaultSetup.html" target="_self" >NNS_G3dResDefaultSetup</A></TH>
+			<TD>G3Dのリソースをセットアップします。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dResDefaultRelease.html" target="_self" >NNS_G3dResDefaultRelease</A></TH>
+			<TD>G3Dリソース開放前に必要な後始末処理を実行します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dGetResultMtx.html" target="_self" >NNS_G3dGetResultMtx</A></TH>
+			<TD>指定された行列が行列スタックに残っている場合は、その行列を行列スタックから取り出します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dSetResultMtx.html" target="_self" >NNS_G3dSetResultMtx</A></TH>
+			<TD>指定された行列を行列スタックの該当位置に代入します。</TD>
+		</TR>
+    <TR>
+			<TH width="25%"><A href="util/NNS_G3dGetSbcCmdLen.html" target="_self" >NNS_G3dGetSbcCmdLen</A></TH>
+			<TD>指定されたSBCコマンド列の長さを返します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dSearchSbcCmd.html" target="_self" >NNS_G3dSearchSbcCmd</A></TH>
+			<TD>指定されたSBCコマンドを、SBCコード列の中から見つけます。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dGetParentNodeID.html" target="_self" >NNS_G3dGetParentNodeID</A></TH>
+			<TD>指定されたノードの親になるノードのIDを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="util/NNS_G3dGetChildNodeIDList.html" target="_self" >NNS_G3dGetChildNodeIDList</A></TH>
+			<TD>指定されたノードの子ノードのIDが格納されたリストを作成します。 </TD>
+		</TR>
+    <TR>
+      <TH><A href="util/NNS_G3dGetCurrentMtx.html" target="_self">NNS_G3dGetCurrentMtx</A></TH>
+      <TD>カレント位置座標行列とカレント方向ベクトル行列を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="util/NNS_G3dLocalOriginToScrPos.html" target="_self">NNS_G3dLocalOriginToScrPos</A></TH>
+      <TD>ローカル座標系の原点のスクリーン上の位置を返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="util/NNS_G3dWorldPosToScrPos.html" target="_self">NNS_G3dWorldPosToScrPos</A></TH>
+      <TD>ワールド座標系の座標のスクリーン上の位置を返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="util/NNS_G3dScrPosToWorldLine.html" target="_self">NNS_G3dScrPosToWorldLine</A></TH>
+      <TD>スクリーン上の位置に対応するNearクリップ面とFarクリップ面上の点をワールド座標系で返します。</TD>
+    </TR>
+    <TR>
+			<TH width="25%"><A href="util/ResourceNameMacro.html" target="_self">リソース名マクロ</A></TH>
+			<TD>リソース名を扱うためのマクロ群です。</TD>
+		</TR>
+	</TBODY> 
+</TABLE>
+
+
+
+
+<H3><A name="BinaryResource">バイナリリソース</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetResDataByName.html"  target="_self" >NNS_G3dGetResDataByName</A></TH>
+			<TD>ディクショナリからリソース名に対応するエントリへのポインタを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetResDictIdxByName.html"  target="_self" >NNS_G3dGetResDictIdxByName</A></TH>
+			<TD>ディクショナリからリソース名に対応するインデックスを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetDataBlockHeaderByIdx.html"  target="_self" >NNS_G3dGetDataBlockHeaderByIdx</A></TH>
+			<TD>リソースファイルからブロックヘッダを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetMdlSet.html"  target="_self" >NNS_G3dGetMdlSet</A></TH>
+			<TD>リソースファイルからモデルセットを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetTex.html"  target="_self" >NNS_G3dGetTex</A></TH>
+			<TD>リソースファイルからテクスチャリソースを取得します。</TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetMdlByIdx.html"  target="_self" >NNS_G3dGetMdlByIdx</A></TH>
+			<TD>モデルセットからインデックスでモデルを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetMdlByName.html"  target="_self" >NNS_G3dGetMdlByName</A></TH>
+			<TD>モデルセットからリソース名でモデルを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetMat.html"  target="_self" >NNS_G3dGetMat</A></TH>
+			<TD>モデルからマテリアルを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetShp.html"  target="_self" >NNS_G3dGetShp</A></TH>
+			<TD>モデルからシェイプを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="binres/NNS_G3dGetSbc.html"  target="_self" >NNS_G3dGetSbc</A></TH>
+			<TD>モデルからSBCコード列へのポインタを取得します。</TD>
+		</TR>
+	</TBODY> 
+</TABLE>
+
+
+
+
+<H3><A name="MemoryAllocate">メモリアロケート</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dAllocRenderObj.html"  target="_self" >NNS_G3dAllocRenderObj</A></TH>
+			<TD>レンダリングオブジェクトのための領域をヒープ領域から確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dFreeRenderObj.html"  target="_self" >NNS_G3dFreeRenderObj</A></TH>
+			<TD><CODE>NNS_G3dAllocRenderObj</CODE>関数で確保した領域を解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dAllocAnmObj.html"  target="_self" >NNS_G3dAllocAnmObj</A></TH>
+			<TD>アニメーションオブジェクトのための領域をヒープ領域から確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dFreeAnmObj.html"  target="_self" >NNS_G3dFreeAnmObj</A></TH>
+			<TD><CODE>NNS_G3dAllocAnmObj</CODE>関数で確保した領域を解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dAllocRecBufferJnt.html"  target="_self" >NNS_G3dAllocRecBufferJnt</A></TH>
+			<TD>ジョイントのレコードバッファのための領域をヒープ領域から確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dFreeRecBufferJnt.html"  target="_self" >NNS_G3dFreeRecBufferJnt</A></TH>
+			<TD><CODE>NNS_G3dAllocRecBufferJnt</CODE>関数で確保した領域を解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dAllocRecBufferMat.html"  target="_self" >NNS_G3dAllocRecBufferMat</A></TH>
+			<TD>マテリアルのレコードバッファのための領域をヒープ領域から確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="mem/NNS_G3dFreeRecBufferMat.html"  target="_self" >NNS_G3dFreeRecBufferMat</A></TH>
+			<TD><CODE>NNS_G3dAllocRecBufferMat</CODE>関数で確保した領域を解放します。</TD>
+		</TR>
+	</TBODY> 
+</TABLE>
+<H3><A name="Structure">G3Dの主要な構造体についての解説</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="331"><A href="struct/NNSG3dGlb.html" target="_self">NNSG3dGlb</A></TD>
+      <TD width="780">カメラ行列やライトのカラー・方向等を管理するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TD width="331"><A href="struct/NNSG3dRenderObj.html" target="_self">NNSG3dRenderObj</A></TD>
+      <TD width="780">１つのモデルと複数のアニメーションを管理するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dAnmObj.html" target="_self">NNSG3dAnmObj</A></TD>
+      <TD>アニメーションリソースから必要なアニメーションデータを取り出すために必要となるデータを保持する構造体です。</TD>
+    </TR>
+    <TR>
+      <TD>NNSG3dRS</TD>
+      <TD>描画中の状態を保持している構造体です。<A href="sbc/NNSG3dRS.html">NNSG3dRS構造体とアクセサ</A>を参照してください。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dJntAnmResult.html" target="_self">NNSG3dJntAnmResult</A></TD>
+      <TD>ジョイント（アニメーション）の計算結果を格納するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dMatAnmResult.html" target="_self">NNSG3dMatAnmResult</A></TD>
+      <TD>マテリアル（アニメーション）の計算結果を格納するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dVisAnmResult.html" target="_self">NNSG3dVisAnmResult</A></TD>
+      <TD>ビジビリティ（アニメーション）の計算結果を格納するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dResMdl.html" target="_self">NNSG3dResMdl</A></TD>
+      <TD>.nsbmdファイル内のモデルリソースの構造体です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="struct/NNSG3dResTex.html" target="_self">NNSG3dResTex</A></TD>
+      <TD>.nsbmdファイルか.nsbtxファイル内のテクスチャリソースの構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="PtrFunction">G3Dの関数ポインタ型と関数ポインタテーブルについての解説</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="296"><A href="funcptr/NNSG3dSbcCallBackFunc.html" target="_self">NNSG3dSbcCallBackFunc</A></TD>
+      <TD width="666">描画時に使用されるコールバック関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNSG3dFuncAnmJnt.html" target="_self">NNSG3dFuncAnmJnt</A></TD>
+      <TD width="666">ジョイントアニメーションを計算する関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="funcptr/NNSG3dFuncAnmMat.html" target="_self">NNSG3dFuncAnmMat</A></TD>
+      <TD>マテリアルアニメーションを計算する関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNSG3dFuncAnmVis.html" target="_self">NNSG3dFuncAnmVis</A></TD>
+      <TD width="666">ビジビリティアニメーションを計算する関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNSG3dFuncAnmBlendJnt.html" target="_self">NNSG3dFuncAnmBlendJnt</A></TD>
+      <TD width="666">ジョイントアニメーションの計算結果をブレンドする関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="funcptr/NNSG3dFuncAnmBlendMat.html" target="_self">NNSG3dFuncAnmBlendMat</A></TD>
+      <TD>マテリアルアニメーションの計算結果をブレンドする関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNSG3dFuncAnmBlendVis.html" target="_self">NNSG3dFuncAnmBlendVis</A></TD>
+      <TD width="666">ビジビリティアニメーションの計算結果をブレンドする関数の型です。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNS_G3dFuncSbcTable.html" target="_self">NNS_G3dFuncSbcTable</A></TD>
+      <TD width="666">SBCを処理する関数のテーブルです。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNS_G3dFuncSbcMatTable.html" target="_self">NNS_G3dFuncSbcMatTable</A></TD>
+      <TD width="666">SBCの<A href="sbc/SBC_MAT.html">NNS_G3D_SBC_MAT</A>命令をマテリアルのデータフォーマット毎に処理するための関数テーブルです。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNS_G3dFuncSbcShpTable.html" target="_self">NNS_G3dFuncSbcShpTable</A></TD>
+      <TD width="666">SBCの<A href="sbc/SBC_SHP.html">NNS_G3D_SBC_SHP</A>命令をシェイプのデータフォーマット毎に処理するための関数テーブルです。</TD>
+    </TR>
+    <TR>
+      <TD width="296"><A href="funcptr/NNS_G3dAnmObjInitFuncArray.html" target="_self">NNS_G3dAnmObjInitFuncArray</A></TD>
+      <TD width="666">各アニメーションフォーマットに対応する<A href="struct/NNSG3dAnmObj.html" target="_self">NNSG3dAnmObj</A>構造体の初期化関数が格納されている関数テーブルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Config">config.hで設定できるマクロについての解説</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="296">NNS_G3D_SIZE_JNT_MAX</TD>
+      <TD width="666">１つのモデルの最大ノード数を指定。256以下で32の倍数である必要があります。デフォルトは64です。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_SIZE_MAT_MAX</TD>
+      <TD width="666">１つのモデルの最大マテリアル数を指定。256以下で32の倍数である必要があります。デフォルトは64。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_SIZE_SHP_MAX</TD>
+      <TD>１つのモデルの最大シェイプ数を指定。256以下で32の倍数である必要があります。デフォルトは64。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_SIZE_COMBUFFER</TD>
+      <TD width="666"><A href="gecom/NNS_G3dGeSetBuffer.html" target="_self">NNS_G3dGeSetBuffer</A>で設定できるコマンドバッファのサイズ。デフォルトは192(ワード)。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_SBC_CALLBACK_TIMING_A_DISABLE</TD>
+      <TD width="666">定義すると、タイミングAのコールバックが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_SBC_CALLBACK_TIMING_B_DISABLE</TD>
+      <TD>定義すると、タイミングBのコールバックが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_SBC_CALLBACK_TIMING_C_DISABLE</TD>
+      <TD width="666">定義すると、タイミングCのコールバックが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_MAYA_DISABLE</TD>
+      <TD width="666">定義すると、Mayaで作成したモデルへの対応コードが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_SI3D_DISABLE</TD>
+      <TD width="666">定義すると、SI3Dで作成したモデルへの対応コードが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_3DSMAX_DISABLE</TD>
+      <TD width="666">定義すると、3dsMaxで作成したモデルへの対応コードが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="296">NNS_G3D_XSI_DISABLE</TD>
+      <TD width="666">定義すると、Softimage|XSIで作成したモデルへの対応コードが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_NSBMA_DISABLE</TD>
+      <TD>定義すると、マテリアルカラーアニメーションが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_NSBTP_DISABLE</TD>
+      <TD>定義すると、テクスチャパターンアニメーションが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_NSBTA_DISABLE</TD>
+      <TD>定義すると、テクスチャSRTアニメーションが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_NSBCA_DISABLE</TD>
+      <TD>定義すると、キャラクタアニメーションが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_NSBVA_DISABLE</TD>
+      <TD>定義すると、ビジビリティアニメーションが無効になります。デフォルトでは定義されていません。</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G3D_USE_EVPCACHE</TD>
+      <TD>0以外を指定するとスキニングの計算時にキャッシュを用いることで処理が高速になります。デフォルトでは1が定義されています。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

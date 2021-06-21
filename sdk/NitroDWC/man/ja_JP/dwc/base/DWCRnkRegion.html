@@ -1,0 +1,77 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnk</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkRegion</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef enum{
+
+    DWC_RNK_REGION_JP   = 0x01,
+    DWC_RNK_REGION_US   = 0x02,
+    DWC_RNK_REGION_EU   = 0x04,
+    DWC_RNK_REGION_KR   = 0x08,
+
+    DWC_RNK_REGION_ALL  = 0xff
+
+} DWCRnkRegion;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  汎用ランキングのリージョンコードを示す列挙型です。
+		</P>
+		<P>
+		  <a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>関数の呼び出しでは、複数の値のOR値を指定することができます。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_REGION_JP</CODE></STRONG></EM></TD>
+			<TD>日本<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_REGION_US</CODE></STRONG></EM></TD>
+			<TD>米国<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_REGION_EU</CODE></STRONG></EM></TD>
+			<TD>欧州<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_REGION_KR</CODE></STRONG></EM></TD>
+			<TD>韓国<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_REGION_ALL</CODE></STRONG></EM></TD>
+			<TD>全世界<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2007/05/18 韓国を追加<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

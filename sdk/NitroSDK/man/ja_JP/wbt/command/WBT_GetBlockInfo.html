@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_GetBlockInfo</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_GetBlockInfo</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_GetBlockInfo(u16 target, int index, 
+	WBTBlockInfoTable *block_info_table, WBTCallback callback);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">ブロック情報を受信する対象のaidビットマップ<br>
+	  子機の場合、親機である "1" のみ指定可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>index</STRONG></EM></TD>
+      <TD width="87%">登録済みのブロックリストのうち、情報を受信すべきブロックのリスト先頭からのインデックス<br>
+	  ブロックリストは<A href="../common/WBT_RegisterBlock.html">WBT_RegisterBlock</A>関数で新しく登録するたびに末尾へ追加され、<br>
+      <A href="../common/WBT_UnregisterBlock.html">WBT_UnregisterBlock</A>関数で解放されたブロック以降のリストはインデックスがずれます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>block_info_table</STRONG></EM></TD>
+      <TD width="87%">受信するブロック情報の格納先アドレスを保持した<A href="../wbt_block_info_table_type.html">WBTBlockInfoTable</A>型のテーブルへのポインタ<br>
+	  このテーブルのうちtargetで指定した全てのaidについて、必ず有効な格納先アドレスを設定しておく必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">コマンド完了時に通知を受ける<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数
+	  <br>このコールバックは<a href="../parent/WBT_MpParentRecvHook.html">WBT_MpParentRecvHook</a>関数または<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>現在処理中のコマンドが無ければコマンドを発行して TRUE を、<br>
+そうでないなら何もせず FALSE を返します。</p>
+
+<H2>説明</H2>
+<p>指定した対象機器からブロック情報を受信します。<br>
+受信した<A href="../wbt_block_info_type.html">WBTBlockInfo</A>構造体データから、ブロックIDやデータサイズを取得することができます。<br>
+<br>
+<font color="#800000">現在まだ処理中のコマンドがある場合、呼び出しは失敗します。</font><br>
+<br>
+</p>
+<H2>参照</H2>
+<A href="WBT_RequestSync.html">WBT_RequestSync</A>
+<A href="WBT_GetBlock.html">WBT_GetBlock</A>
+<A href="WBT_PutUserData.html">WBT_PutUserData</A>
+<br>
+<H2>履歴</H2>
+<P>
+2006/03/13 target引数の記述を修正<br>
+2005/06/01 コールバックがWBT_MpParentRecvHook関数またはWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

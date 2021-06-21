@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_IsRunOnEmulator</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_IsRunOnEmulator</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL OS_IsRunOnEmulator( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>プログラムが &quot;ensata NITRO Software Emulator&quot; 上で実行されていれば
+TRUE をそうでないなら FALSE を返します。</P>
+<H2>説明</H2>
+<P>プログラムが &quot;ensata NITRO Software Emulator&quot; (以下 ensata) 上で実行されているかどうか調べます。ensata
+と それ以外(TEG ボードなど)の場合とで処理を動的に切り替えたい場合に有効です。これにより
+ensata とそれ以外の実行環境において共通で動作するプログラムを作成することができます。</P>
+<P><A href="OS_Printf.html"><CODE>OS_Printf()</CODE></A> 関数ではこの API を使って出力先を制御しています。</P>
+<P>これはデバッグ用の関数ですので、最終ROM版(FINALROM)ライブラリでは常に FALSE
+を返します。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_Printf.html">OS_Printf</A>, <A href="OS_GetConsoleType.html">OS_GetConsoleType</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/02/19 初版</P>
+</BODY>
+</HTML>

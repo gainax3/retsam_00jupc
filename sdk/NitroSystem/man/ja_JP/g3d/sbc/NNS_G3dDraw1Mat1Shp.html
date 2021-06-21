@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dDraw1Mat1Shp</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dDraw1Mat1Shp</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/1mat1shp.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dDraw1Mat1Shp(
+    const NNSG3dResMdl* pResMdl,
+    u32 matID,
+    u32 shpID,
+    BOOL sendMat
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pResMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>matID</STRONG></EM></TD>
+      <TD>描画するマテリアルへのインデックス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>shpID</STRONG></EM></TD>
+      <TD>描画するシェイプへのインデックス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>sendMat</STRONG></EM></TD>
+      <TD>マテリアル情報をジオメトリエンジンに送信するかどうか</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+
+<H2>説明</H2>
+<P>ごく単純なオブジェクトを描画するのに適した関数で、モデル内の<I><B>matID</B></I>と<I><B>shpID</B></I>で指定されるマテリアルとシェイプを描画します。<I><B>sendMat</B></I>を<CODE>FALSE</CODE>にした場合、マテリアル情報の送信は行われません。<BR>
+この関数を使用した場合、一般的なモデルの描画の前に必要なセットアップ処理やアニメーション計算に伴うデータのコピー等を行わないため、<CODE>NNS_G3dDraw</CODE>関数で同様の描画を行うよりも高速に描画することができます。ただし、以下のような制限があります。</P>
+<UL>
+  <LI>アニメーションリソースを再生することは不可能です。
+  <LI>コールバック処理を挟むことはできません。
+  <LI>マテリアルのグローバルステートとの合成は行われません。モデルのマテリアル情報がそのままジオメトリエンジンに送信されます。
+  <LI>エンベロープ付のシェイプは描画不可能です。
+</UL>
+<P>ディスプレイリストの送信にDMA転送を使用するため、この関数を呼ぶ前に<CODE>DC_Flush*</CODE>/<CODE>DC_Store*</CODE>関数等を使用してディスプレイリストをメモリにライトバックしておく必要があります。</P>
+<H2>参照</H2>
+<P><A href="NNS_G3dDraw.html">NNS_G3dDraw</A></P>
+<H2>履歴</H2>
+<P>2008/01/23 DMA転送を使用する旨を追記<BR>
+2004/08/31 初版</P>
+</BODY>
+
+</HTML>

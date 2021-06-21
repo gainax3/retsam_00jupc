@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetBankForClearImage</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetBankForClearImage</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_SetBankForClearImage(GXVRamClearImage clrImg);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">clrImg</font></strong></em></td>
+    <td width="87%">クリアイメージに割り当てるVRAMバンクを指定</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>指定されたVRAMバンクをクリアイメージに割り当てます。ハードウェア的には、クリアイメージスロットの実体はテクスチャイメージスロット2,3と同じです。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをクリアイメージに割り当てます。<BR>
+クリアカラーイメージにVRAMを割り当てない場合にはすべてのピクセルが0でクリアされます。<BR>
+この時、テクスチャイメージスロット２は使用できません。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARIMAGE_NONE</CODE></TD>
+      <TD>クリアイメージにVRAMバンクを割り当てません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARIMAGE_256_AB</CODE></TD>
+      <TD>クリアイメージにVRAM-A,Bを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARIMAGE_256_CD</CODE></TD>
+      <TD>クリアイメージにVRAM-C,Dを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARDEPTH_128_A</CODE></TD>
+      <TD>クリアデプスイメージにVRAM-Aを割り当てます。<BR>
+      テクスチャイメージスロット2は使用不能になります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARDEPTH_128_B</CODE></TD>
+      <TD>クリアデプスイメージにVRAM-Bを割り当てます。<BR>
+      テクスチャイメージスロット2は使用不能になります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARDEPTH_128_C</CODE></TD>
+      <TD>クリアデプスイメージにVRAM-Cを割り当てます。<BR>テクスチャイメージスロット2は使用不能になります。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_CLEARDEPTH_128_D</CODE></TD>
+      <TD>クリアデプスイメージにVRAM-Dを割り当てます。<BR>テクスチャイメージスロット2は使用不能になります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXVRamClearImage</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_VRAM_CLEARIMAGE_NONE = 0x0000,
+    GX_VRAM_CLEARIMAGE_256_AB = GX_VRAM_A | GX_VRAM_B, // TextureImageSlot 23
+    GX_VRAM_CLEARIMAGE_256_CD = GX_VRAM_C | GX_VRAM_D, // TextureImageSlot 23
+    GX_VRAM_CLEARDEPTH_128_A  = GX_VRAM_A,
+    GX_VRAM_CLEARDEPTH_128_B  = GX_VRAM_B,
+    GX_VRAM_CLEARDEPTH_128_C  = GX_VRAM_C,
+    GX_VRAM_CLEARDEPTH_128_D  = GX_VRAM_D
+}
+GXVRamClearImage;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_GetBankForClearImage.html">GX_GetBankForClearImage</A>, <A href="GX_ResetBankForClearImage.html">GX_ResetBankForClearImage</A>, <A href="GX_DisableBankForClearImage.html">GX_DisableBankForClearImage</A>, <A href="GX_GetSizeOfClearImage.html">GX_GetSizeOfClearImage</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_GetConfigError</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_GetConfigError</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_IP_ERR_DHCP_TIMEOUT    -100</code></pre>
+  </dd>
+  <dd><pre><code>s32 SOC_GetConfigError ( SOCInterface* <em><strong>interface</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><font size="-1"color="#808080"><code><em><strong>interface</strong></em></code></td>
+    <td><font size="-1"color="#808080">エラーコードを取得するSOCInterfaceへのポインタ。この引数は互換性のため用意されていますが、実際には無視されます。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_IP_ERR_DHCP_TIMEOUT</code></td>
+    <td>DHCPサーバーが見つかりません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_IP_ERR_LINK_DOWN</code></td>
+    <td>リンク切れが発生しました。</td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>ホスト設定のエラーコードを取得します。エラーコードはスティッキーコードで、SOC_ClearConfigError()が呼ばれるまでクリアされません。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_ClearConfigError.html">SOC_ClearConfigError</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSFile</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSFile</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE><pre>
+<font color="#008000">/* file and directory structure */</font>
+typedef  struct  FSFile
+{
+<font color="#008000">/* private: */</font>
+
+  <font color="#008000">/* for archive control */</font>
+  FSFileLink              link;
+  struct  FSArchive       *arc;
+  <font color="#008000">/* for internal status */</font>
+  u32                     stat;
+  FSCommandType           command;
+  FSResult                error;
+  OSThreadQueue           queue[4 / sizeof(OSThreadQueue)];
+
+<font color="#008000">/* private: (except direct operation with FSArchive) */</font>
+
+  <font color="#008000">/* handle property */</font>
+  union {
+    <font color="#008000">/* file-handle property */</font>
+    struct {
+      u32                 own_id; <font color="#008000">/* own file-id */</font>
+      u32                 top;    <font color="#008000">/* image-top */</font>
+      u32                 bottom; <font color="#008000">/* image-bottom */</font>
+      u32                 pos;    <font color="#008000">/* current position */</font>
+    } file;
+    <font color="#008000">/* directory-handle property */</font>
+    struct {
+      FSDirPos            pos;    <font color="#008000">/* current-directory-position */</font>
+      u32                 parent; <font color="#008000">/* parent directory-id */</font>
+    } dir;
+  } prop;
+
+  <font color="#008000">/* command argument and return value area */</font>
+  union {
+    FSReadFileInfo        readfile;
+    FSWriteFileInfo       writefile;
+    FSSeekDirInfo         seekdir;
+    FSReadDirInfo         readdir;
+    FSFindPathInfo        findpath;
+    FSGetPathInfo         getpath;
+    FSOpenFileFastInfo    openfilefast;
+    FSOpenFileDirectInfo  openfiledirect;
+    FSCloseFileInfo       closefile;
+  } arg;
+
+} FSFile;
+  <br></pre></code>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ファイルやディレクトリのアクセス関数で使用する構造体です。<BR>
+メンバは全て内部処理でのみ使用され、直接これらを操作することは禁止されます。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<P>この型の内部表現は将来の拡張で変更される可能性があります。<BR>
+現在の実装におけるサイズやメンバに依存したプログラミングは避けてください。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="file/FS_OpenFile.html">FS_OpenFile</A> 
+<A href="file/FS_OpenFileFast.html">FS_OpenFileFast</A> 
+<A href="file/FS_CloseFile.html">FS_CloseFile</A> 
+<A href="file/FS_GetLength.html">FS_GetLength</A> 
+<A href="file/FS_ReadFile.html">FS_ReadFile</A> 
+<A href="file/FS_SeekFile.html">FS_SeekFile</A> 
+<A href="file/FS_SeekFileToBegin.html">FS_SeekFileToBegin</A> 
+<A href="file/FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+<A href="file/FS_FindDir.html">FS_FindDir</A> 
+<A href="file/FS_ReadDir.html">FS_ReadDir</A> 
+<A href="file/FS_TellDir.html">FS_TellDir</A> 
+<A href="file/FS_SeekDir.html">FS_SeekDir</A> 
+<A href="file/FS_RewindDir.html">FS_RewindDir</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+2004/05/20 FSFile の変更に伴う記述修正<BR>
+2004/05/14 FSFile の変更に伴う記述修正<BR>
+2004/04/13 FSFile の変更に伴う記述修正<BR>
+2004/04/08 FSDirとFSFileの統合による記述修正<BR>
+2004/04/01 初版<BR>
+</P>
+</body>
+</html>

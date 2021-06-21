@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_AddConferenceClient</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_AddConferenceClient</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>int VCT_AddConferenceClient( u8 aid );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%" height="17">追加するクライアントのaid</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>0なら成功、失敗の場合は<a href="VCTErrorCode.html">負のエラーコード</a></p>
+
+<H2>説明</H2>
+<P>クライアントをカンファレンスに追加します。自分自身のaidを指定する必要はありません（指定しても関数内部で無視されます）。カンファレンスを開始するには、お互いがこの関数を呼び出す必要があります。aid １、２、３の３台がカンファレンスを行うには、１は２と３を、２は１と３を、３は１と２を追加する必要があります。</P>
+<P>また、カンファレンスに参加可能な最大人数は４人です。このため、追加できるクライアントは自分自身を除く最大３台となります。また、あらかじめ<code><a href="VCT_Init.html">VCT_Init</a></code>関数で、「参加人数 - 1」分の<code><a href="VCTSession.html">VCTSession</a></code>構造体を指定する必要があります（セッションが足りない場合、関数はエラーを返します）。</P>
+<P>
+なお、この関数をカンファレンスモード以外で呼び出してもエラーになります。</P>
+<h2>参照</h2>
+<p>
+<code>
+<a href="VCT_SetTransceiverClients.html">VCT_RemoveConferenceClient</a>,
+<a href="VCTSession.html">VCTSession</a>
+</code>
+</p>
+<H2>履歴</H2>
+<P>
+2006/04/17 エラーコード, VCTSession構造体のリンクを追加<BR>
+2006/03/28 クライアントを追加する際の注意事項を追記<BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

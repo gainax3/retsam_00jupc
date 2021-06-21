@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_Checksum*Update</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_Checksum*Update</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/checksum.h&gt;
+
+void MATH_Checksum8Update( <A href="MATHChecksumContext.html">MATHChecksum8Context</A> *context, const void* input, u32 length );
+void MATH_Checksum16Update( <A href="MATHChecksumContext.html">MATHChecksum16Context</A> *context, const void* input, u32 length );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
+      <TD width="670">各種 Checksum 計算用のコンテキスト構造体へのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">input</font></strong></em></TD>
+      <TD width="670">入力データへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">length</font></strong></em></TD>
+      <TD width="670">入力データのサイズ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、各種 Checksum によるハッシュ値を入力データによって更新します。context 引数はあらかじめ<A href="MATH_ChecksumInit.html">MATH_Checksum*Init</A> 関数で初期化してある必要があります。<BR>
+この関数を任意の回数呼び出した後に、<A href="MATH_ChecksumGetHash.html">MATH_Checksum*GetHash</A> 関数を使用してハッシュ値を得ます。<BR>
+入力データには任意のサイズ・任意のアラインメント位置のものが使用できます。<BR>
+<BR>
+8bit Checksum は 8bit のハッシュ値を求めるためのアルゴリズムです。1の補数和の1の補数を 8bit 単位で計算します。<BR>
+16bit Checksum は 16bit のハッシュ値を求めるためのアルゴリズムです。1の補数和の1の補数を 16bit 単位で計算します。<BR>
+16bit Checksum は IP, UDP, TCP などで使用する IP Checksum、または Internet Checksum と呼ばれるものと同じ値を返します。Internet Checksum の詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 1071 などを参照してください。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_ChecksumInit.html">MATH_Checksum*Init</A>, <A href="MATH_ChecksumGetHash.html">MATH_Checksum*GetHash</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 初版<BR>
+</P>
+</body>
+</html>

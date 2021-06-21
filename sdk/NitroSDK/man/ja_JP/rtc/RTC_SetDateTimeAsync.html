@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTC_SetDateTimeAsync</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTC_SetDateTimeAsync</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE><A href="RTCResult.html">RTCResult</A> RTC_SetDateTimeAsync( 
+            const <A href="RTCDate.html">RTCDate</A>*    date, 
+            const <A href="RTCTime.html">RTCTime</A>*    time, 
+            <A href="RTCCallback.html">RTCCallback</A>       callback, 
+            void*             arg );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">date</font></strong></em></TD>
+      <TD width="700">日付データを格納したバッファへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">time</font></strong></em></TD>
+      <TD>時刻データを格納したバッファへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">callback</font></strong></em></TD>
+      <TD>コールバック関数へのポインタ<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD>コールバック関数へ渡す引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<P>要求が成功した場合に 0 を返します。<BR>
+要求が失敗した場合には 0 以外を返します。</P>
+
+<H2>説明</H2>
+<P>リアルタイムクロックに非同期的に日付データ及び時刻データを書き込みます。<BR>
+この関数はARM7に日付・時刻データ書き込み要求を発行し、ARM7からの応答を待たずに呼び出し元に戻ります。<BR>
+ARM7における処理結果はユーザコールバック関数に渡される<em><strong><font face="Courier New">result</font></strong></em>引数によって取得する必要があります。<BR>
+<BR>
+この関数が失敗した場合は非同期的な操作は行われず、ユーザコールバック関数も呼び出されません。</P>
+
+<h2>注意</h2>
+<P><FONT color=red>書き込む日付データには、存在しない年月日を指定しないで下さい。但し曜日だけは実際のカレンダーと異なる曜日を指定しても問題ありません。<BR>
+書き込む時刻データには、存在しない時分秒を指定しないで下さい。<BR>
+また、<em><strong><font face="Courier New">date</font></strong></em>引数 及び<em><strong><font face="Courier New">time</font></strong></em>引数によって指定したバッファは関数とは非同期に値が参照されますので、ユーザコールバック関数によって非同期処理の完了を確認するまでは内容を変更しないようにして下さい。</FONT><BR>
+<FONT color=red>なお、アプリケーションが日付・時刻を変更する事は禁止されていますので、本APIは開発途中のデバッグ時以外は使用しないで下さい。</FONT></P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTC_SetDateTime.html">RTC_SetDateTime</A>, <A href="RTC_GetDateTime.html">RTC_GetDateTime</A>, <A href="RTC_GetDateTimeAsync.html">RTC_GetDateTimeAsync</A>, <A href="RTCResult.html">RTCResult</A>, <A href="RTCDate.html">RTCDate</A>, <A href="RTCTime.html">RTCTime</A>, <A href="RTCCallback.html">RTCCallback</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+Ver. 2004/07/01 時間表記の統一による記述変更<BR>
+Ver. 2004/05/18 初版<BR>
+</P>
+</body>
+</html>

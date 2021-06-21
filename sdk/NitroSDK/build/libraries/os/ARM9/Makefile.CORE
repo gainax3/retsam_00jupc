@@ -1,0 +1,126 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - libraries - os
+# File:     Makefile.CORE
+#
+# Copyright 2005,2006 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: Makefile.CORE,v $
+# Revision 1.10  2006/09/06 11:54:41  yasu
+# NITROSDK_ROOT ではなく ROOT を使うように変更
+#
+# Revision 1.9  2006/06/12 00:54:06  okubata_ryoma
+# TCM_APPLYをmodulerulesの前に移動
+#
+# Revision 1.8  2006/01/10 06:00:34  okubata_ryoma
+# os_terminate_proc.cの追加
+#
+# Revision 1.7  2005/07/27 07:37:01  seiki_masashi
+# os_entropy.c の追加
+#
+# Revision 1.6  2005/07/21 02:31:31  yada
+# add os_argument.c
+#
+# Revision 1.5  2005/06/14 04:52:55  yasu
+# bin2obj を使用するように修正
+#
+# Revision 1.4  2005/06/14 04:45:01  yasu
+# OBJDIR を使用する
+#
+# Revision 1.3  2005/06/06 05:36:34  terui
+# BinToElf.exe の出力リダイレクト設定を行わないように変更
+#
+# Revision 1.2  2005/06/02 07:54:07  yosizaki
+# link sound data.
+#
+# Revision 1.1  2005/05/25 11:43:42  terui
+# ライブラリを作成するコア部分をMakefileから切り出して新規追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+SUBDIRS		=
+SUBMAKES	=
+
+#----------------------------------------------------------------------------
+
+# build ARM & THUMB libraries
+NITRO_CODEGEN_ALL 	?= True
+
+SRCS			= os_irqHandler.c	\
+			  os_irqTable.c		\
+			  os_interrupt.c	\
+			  os_spinLock.c		\
+			  os_printf.c		\
+			  os_thread.c		\
+			  os_context.c		\
+			  os_emulator.c		\
+			  os_message.c		\
+			  os_mutex.c		\
+			  os_cache.c		\
+			  os_init.c		\
+			  os_arena.c		\
+			  os_alloc.c		\
+			  os_tcm.c		\
+			  os_protectionUnit.c	\
+			  os_protectionRegion.c	\
+			  os_exception.c	\
+			  os_timer.c		\
+			  os_tick.c		\
+			  os_alarm.c		\
+			  os_valarm.c		\
+			  os_system.c		\
+			  os_profile.c		\
+			  os_reset.c		\
+			  os_ownerInfo.c	\
+			  os_vramExclusive.c	\
+			  os_china.c		\
+			  os_argument.c		\
+			  os_entropy.c		\
+			  os_terminate_proc.c
+
+TARGET_LIB		= libos$(TS_VERSION)$(NITRO_LIBSUFFIX).a
+
+include	$(NITROSDK_ROOT)/build/buildtools/commondefs
+
+INSTALL_TARGETS		= $(TARGETS)
+INSTALL_DIR		= $(NITRO_INSTALL_LIBDIR)
+
+ifdef NITRO_CALLTRACE
+CCFLAGS			+= -DOS_PROFILE_AVAILABLE -DOS_PROFILE_CALL_TRACE
+endif
+
+ifdef NITRO_FUNCTIONCOST
+CCFLAGS			+= -DOS_PROFILE_AVAILABLE -DOS_PROFILE_FUNCTION_COST
+endif
+
+ifdef NITRO_TCM_APPLY
+CCFLAGS			+= -DSDK_TCM_APPLY
+endif
+
+#----------------------------------------------------------------------------
+
+DATA_DIR		= $(ROOT)/data/for_china
+DATA_OBJS		= $(patsubst $(DATA_DIR)/%.bin,$(OBJDIR)/%.o,$(wildcard $(DATA_DIR)/*.bin))
+
+do-build:	$(DATA_OBJS) $(TARGETS)
+
+
+include	$(NITROSDK_ROOT)/build/buildtools/modulerules
+
+
+OBJS			+= $(DATA_OBJS)
+
+# スクリーンデータを直接オブジェクトに変換する
+$(OBJDIR)/%.o: $(DATA_DIR)/%.bin
+			$(BIN2OBJ) --compatible $< $@
+
+#			$(CW_BINDIR)/BinToElf.exe $< -aligndata 4 -endian little -output $@
+
+#===== End of Makefile =====

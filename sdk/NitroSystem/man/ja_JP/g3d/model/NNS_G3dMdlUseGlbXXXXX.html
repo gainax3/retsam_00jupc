@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dMdlUseGlbXXXXX</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dMdlUseGlbXXXXX</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/model.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G3dMdlUseGlbDiff(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbAmb(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbSpec(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbEmi(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbLightEnableFlag(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbPolygonMode(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbCullMode(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbPolygonID(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbAlpha(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbFogEnableFlag(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbDepthTestCond(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlb1Dot(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbFarClip(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseGlbXLDepthUpdate(NNSG3dResMdl* pMdl);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><B><I>pMdl</I></B>で指定されるモデルの描画にグローバルステートで設定された値を使用するよう設定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbDiff</CODE></TD>
+      <TD width="1078"> <CODE>NNS_G3dGlbMaterialColorDiffAmb</CODE>関数で設定した diffuse 色を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbAmb</CODE></TD>
+      <TD width="1078"> <CODE>NNS_G3dGlbMaterialColorDiffAmb</CODE>関数で設定したambient色を使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbSpec</CODE></TD>
+      <TD width="1078"> <CODE>NNS_G3dGlbMaterialColorSpecEmi</CODE>関数で設定したspecular色を使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbEmi</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbMaterialColorSpecEmi</CODE>関数で設定したemission色を使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbLightEnableFlag</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したライトイネーブルフラグを使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbPolygonMode</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したポリゴンモードを使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbCullMode</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したカルモードを使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbPolygonID</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したポリゴンIDを使うように指定します。
+</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbAlpha</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したα値を使うように指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbFogEnableFlag</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したフォグイネーブルフラグを使うように指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbDepthTestCond</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したデプステスト条件を使うように指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlb1Dot</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定した１ドットポリゴン表示指定を使うように指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbFarClip</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定したFAR面交差ポリゴン表示指定を使うように指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseGlbXLDepthUpdate</CODE></TD>
+      <TD width="1078"><CODE>NNS_G3dGlbPolygonAttr</CODE>関数で設定した半透明ポリゴンのデプス値更新イネーブルフラグを使うように指定します。
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dMdlUseMdlXXXXX.html">NNS_G3dMdlUseMdlXXXXX</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</BODY>
+
+</HTML>

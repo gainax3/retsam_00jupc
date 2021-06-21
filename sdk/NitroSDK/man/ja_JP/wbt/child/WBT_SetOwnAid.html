@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_SetOwnAid</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_SetOwnAid</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void WBT_SetOwnAid(int aid);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%">自身のaid</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<p>自身のaidをWBTライブラリへ通知します。<br>
+<a href="../init/WBT_InitChild.html">WBT_InitChild</a>関数で初期化した後、<A href="WBT_MpChildSendHook.html">WBT_MpChildSendHook</A>および<A href="WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</A>を<br>
+呼び出すより前に、必ずこの関数でaidを指定する必要があります。
+</p>
+<br>
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

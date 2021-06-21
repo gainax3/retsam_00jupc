@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_InitContext</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_InitContext</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;
+
+void OS_InitContext( OSContext* context,
+                     u32         newpc,
+                     u32         newsp );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>context</STRONG></EM></TD>
+      <TD width="87%">コンテキスト</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>newpc</STRONG></EM></TD>
+      <TD width="87%">開始アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>newsp</STRONG></EM></TD>
+      <TD width="87%">スタック</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>コンテキストを初期化します。</P>
+<P>コンテキスト構造体 <CODE>OSContext</CODE> は以下のメンバーを持っています。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 cpsr</CODE></TD>
+      <TD bgcolor="#ffeeee">CPSR (カレントプログラムステータスレジスタ)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 r[13]</CODE></TD>
+      <TD bgcolor="#ffeeee">R0～R12レジスタ</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 sp</CODE></TD>
+      <TD bgcolor="#ffeeee">スタックポインタ (R13 レジスタ)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 lr</CODE></TD>
+      <TD bgcolor="#ffeeee">リンクレジスタ (R14 レジスタ)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 pc_plus4</CODE></TD>
+      <TD bgcolor="#ffeeee">プログラムカウンタ+4 (R15 レジスタ+4)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#ffeeee"><CODE>u32 sp_svc</CODE></TD>
+      <TD bgcolor="#ffeeee">スーパバイザモードのスタック退避用 <B>(*1)</B></TD>
+    </TR>
+    <TR>
+      <TD><CODE>CPContext cp_context</CODE></TD>
+      <TD>除算器・平方根演算器のコンテキスト <B>(*2)</B></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B>(*1)</B> … コンパイルオプションによっては存在しません。<BR>
+<B>(*2)</B> … ARM9にのみ存在します。</P>
+<P>OS_InitContext()では、<B><I>newsp</I></B> から下位方向に SVC 用スタックを確保します。( コンパイルオプションによってはこの処理は行ないません。)<CODE>cpsr</CODE> は CPSR レジスタからプロセッサモード( ARM、THUMB の区別)を調べ適切に設定されます。<CODE>r[0]～r[12]</CODE> ( R0 ～ R12 レジスタ)、<CODE>lr</CODE> ( R14 レジスタ)はゼロクリアされます。<CODE>pc_plus4</CODE> は <B><I>newpc</I></B> で指定した値+4 となります。</P>
+<P><CODE>cp_context</CODE> は ARM9 にのみ存在し、除算器・平方根演算器のコンテキストです。<CODE>CPContext</CODE> 構造体は以下のメンバを保持します。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>u64 div_numer</CODE></TD>
+      <TD>除算器のパラメータ(除数)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>u64 div_denom</CODE></TD>
+      <TD>除算器のパラメータ(被除数)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>u64 sqrt</CODE></TD>
+      <TD>平方根演算器のパラメータ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>u16 div_mode</CODE></TD>
+      <TD>除算器のモード</TD>
+    </TR>
+    <TR>
+      <TD><CODE>u16 sqrt_mode</CODE></TD>
+      <TD>平方根演算器のモード</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+OS_InitContext() では<CODE>cp_context</CODE> の内容を変更しません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_SaveContext.html">OS_SaveContext</A>, <A href="OS_LoadContext.html">OS_LoadContext</A>, <A href="OS_DumpContext.html">OS_DumpContext</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/06/30 cp_context について記述<BR>
+2003/12/01 初版</P>
+</BODY>
+</HTML>

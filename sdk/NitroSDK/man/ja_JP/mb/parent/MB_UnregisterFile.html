@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_UnregisterFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_UnregisterFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void* MB_UnregisterFile(const MBGameRegistry *game_reg);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>game_reg</STRONG></EM></TD>
+      <TD width="87%">解放する登録済みプログラムの情報が格納されたMBGameRegistry構造体へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>登録済みプログラムを正しく解放できた場合はそのポインタを、そうでない場合はNULLを返します。</p>
+
+<H2>説明</H2>
+<P>指定した登録済みプログラムを、ダウンロードプログラムのリストから解放します。<BR>
+この解放処理によって、<A href="MB_RegisterFile.html">MB_RegisterFile</A>関数で指定したセグメント情報のメモリバッファは<br>
+ユーザ側へ解放されます。<br>
+<br>
+<H2>注意</H2>
+<font color="#800000">この関数を一度以上呼び出した後はMB_RegisterFile関数を呼び出すことはできません。<br>
+プログラムの登録内容を変更する場合、一度MB_End関数でMBライブラリを終了させた後にTGIDを変えて再起動する必要があります。</font>
+<br>
+</CODE></p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../mb_game_registry_type.html">MBGameRegistry</A> <BR>
+<A href="MB_GetSegmentLength.html">MB_GetSegmentLength</A> 
+<A href="MB_ReadSegment.html">MB_ReadSegment</A> 
+<A href="MB_RegisterFile.html">MB_RegisterFile</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2004/10/18 MB_RegisterFileに及ぼす制約に関する記述を追加<BR>
+2004/09/30 返り値を変更<BR>
+2004/09/09 初版<BR>
+</P>
+</body>
+</html>

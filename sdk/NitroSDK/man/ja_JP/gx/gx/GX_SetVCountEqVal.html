@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetVCountEqVal</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetVCountEqVal</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+void GX_SetVCountEqVal(s32 val);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="237"><EM><STRONG><FONT face="Courier New">val</FONT></STRONG></EM></TD>
+      <TD width="609">Vカウンター一致設定値(0 &lt;= val &lt;= 262)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>Vカウンター一致設定値を設定します。値は0から262の整数である必要があります。</P>
+<P>MP通信中はVブランク同期のために202～210の範囲でVカウント値が巻き戻る可能性がありますので、使用する際には注意してください。</P>
+<P>GX_SetVCounterEqVal から GX_SetVCountEqVal に名称が変更されています。GX_SetVCounterEqVal は互換性のため、GX_SetVCountEqVal の別名として定義されています。</P>
+<h2>参照</h2>
+<P><A href="GX_GetVCountEqVal.html">GX_GetVCountEqVal</A>, <A href="GX_IsVCountEq.html">GX_IsVCountEq</A>, <A href="GX_VCountEqIntr.html">GX_VCountEqIntr</A></P>
+<H2>履歴</H2>
+<P>
+2007/10/16 MP通信中の注意事項を追記<BR>
+2004/10/19 GX_SetVCounterEqVal から GX_SetVCountEqVal に名称変更<BR>
+2004/01/19 新規作成
+</P>
+</body>
+</html>

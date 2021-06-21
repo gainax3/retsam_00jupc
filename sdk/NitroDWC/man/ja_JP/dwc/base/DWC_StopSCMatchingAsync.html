@@ -1,0 +1,76 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_StopSCMatchingAsync</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_StopSCMatchingAsync</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_StopSCMatchingAsync(DWCStopSCCallback callback, void* param);</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+      サーバDSから現在進行中のサーバクライアントマッチメイクを締め切り、以後のクライアントDSからの接続要求を受け付けないようにします。
+    </P>
+    <P>
+      締め切り処理が完了し、以後のクライアントDSからの接続を拒否する状態になると、締め切り処理完了コールバックが呼び出されます。
+    </P>
+	<P>
+	  締め切り処理を実行すると、接続可能な最大プレイヤー数を、現在接続しているプレイヤー数と等しい値にセットします。これにより、以後クライアントDSはこのサーバに接続することができなくなります。
+	</P>
+	<P>
+	  また、締め切り後に接続済みのプレイヤーが抜けた場合は、その台数分のクライアントDSはサーバDSに接続が可能になります。
+	</P>
+
+    <H2>引数</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>callback</CODE></STRONG></EM></TD>
+          <TD width="75%">締め切り処理完了コールバック関数へのポインタ</TD>
+        </TR>
+        <TR>
+          <TD><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+          <TD>締め切り処理完了コールバック用パラメータ</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+    <H2>返り値</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+          <TD width="75%">サーバクライアントマッチメイク締め切り処理の成功</TD>
+        </TR>
+        <TR>
+          <TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+          <TD>サーバクライアントマッチメイク締め切り処理が実行できなかった</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+    <H2>参照</H2>
+    <P>
+      <CODE>
+        <a href="DWCStopSCCallback.html">DWCStopSCCallback</a>
+      </CODE>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+	  2006/02/23 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

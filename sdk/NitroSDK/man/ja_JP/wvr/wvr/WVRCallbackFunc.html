@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WVRCallbackFunc</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WVRCallbackFunc</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wvr.h&gt;</CODE><BR>
+  <PRE><CODE>typedef void ( *WVRCallbackFunc )(  void *arg , <A href="WVRResult.html">WVRResult</A> result  );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD width="30%"><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD width="70%">非同期関数を呼び出す際に指定された引数です。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><em><strong><font face="Courier New">result</font></strong></em></TD>
+      <TD width="70%">非同期処理の結果を示す<A href="WVRResult.html">WVRResult列挙型</A>の値です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>WVR非同期操作関数によって起動された非同期処理が完了した際に呼び出されるユーザコールバック関数の形式です。<BR>
+非同期処理の開始時に指定された任意の値、及び処理結果を引数に取ります。</P>
+
+<H2>履歴</H2>
+<P>
+2005/02/16 初版<BR>
+</P>
+</body>
+</html>

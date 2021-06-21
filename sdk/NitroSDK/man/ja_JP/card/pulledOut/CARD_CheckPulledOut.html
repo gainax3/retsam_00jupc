@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CARD_CheckPulledOut</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CARD_CheckPulledOut</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/card.h&gt;</CODE></PRE>
+  <PRE><CODE>void CARD_CheckPulledOut( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>
+カード抜け検出処理をARM9から直接実行します。<br>
+この検出処理はARM7が定期的に行いPXIを経由して検出通知されるため通常はARM9にとって必要ありませんが、<br>
+この関数を呼び出すことにより検出通知までの遅延時間を無しに即時判定することができます。<br>
+<br>
+カード抜けを検出した場合、ARM7から通知を受けた場合と同様にユーザコールバック関数と<A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut</A>関数が<br>
+この関数の内部から呼び出されます。<br>
+<br>
+この関数を使用するためには、<CODE><A href="../common/CARD_Init.html">CARD_Init</A></CODE> 関数が予め呼ばれている必要があります。<br>
+また、事前に<A href="../rom/CARD_LockRom.html">CARD_LockRom</A>関数を呼び出してCARD-ROMのバスをロックしておく必要があります。<br>
+<br>
+デフォルトではカード抜けを検出するとライブラリ内部で <CODE><A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut</A></CODE>関数を呼び出します。
+そこでプログラムは停止しますので、<A href="CARD_IsPulledOut.html">CARD_IsPulledOut</A>関数でポーリングする場合などは <CODE><A href="CARD_SetPulledOutCallback.html">CARD_SetPulledOutCallback</A>関数</CODE> で FALSE を返すコールバックを設定しておく必要があります。</P>
+<H2>参照</H2>
+<P>
+<CODE>
+<A href="../common/CARD_Init.html">CARD_Init</A>, 
+<A href="../rom/CARD_LockRom.html">CARD_LockRom</A>, 
+<A href="CARD_IsPulledOut.html">CARD_IsPulledOut</A>, 
+<A href="CARD_SetPulledOutCallback.html">CARD_SetPulledOutCallback</A>, 
+<A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/08/08 事前にCARD_LockRom関数を呼び出す必要がある点について追記<br>
+2005/06/01 初版<br>
+</P>
+</BODY>
+</HTML>

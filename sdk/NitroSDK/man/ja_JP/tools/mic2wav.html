@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>mic2wav</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color  : #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">mic2wav</H1>
+<H2>説明</H2>
+<P><CODE>　mic2wav</CODE> は、マイクサンプルデモ<A href="../demos/spi/spidemos.html">mic-2</A
+>を実行して得られたテキスト形式の録音データを、PCM 形式で .wav 音声ファイルに変換するツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% mic2wav TEXTFILE [OUTPUT_DIRECTORY]</CODE></P>
+<P>　<CODE>TEXTFILE</CODE> で指定されたファイルに記述されているテキストデータを解釈し、
+得られた個々のサンプリングデータを <CODE>OUTPUT_DIRECTORY</CODE> で指定されたディレクトリへ
+ .wav ファイルとして作成します。<CODE>OUTPUT_DIRECTORY</CODE> は省略可能です。省略時には <CODE>TEXTFILE</CODE> で指定されたファイルと同じ位置に生成します。</P>
+<P>ファイル名は 00000000.wav、00000001.wav、... と昇順の通し番号で生成されます。既存の同名ファイルがある場合、それを上書きします。</P>
+<H3>音声テキストデータ書式</H3>
+<P><CODE>　mic2wav</CODE> は、テキストデータを以下の書式のもとに解釈します。</P>
+<P>全ての書式は行単位で解釈され、行頭の文字列から判断されます。</P>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>書式</TH>
+      <TH>意味</TH>
+      <TH>詳細</TH>
+    </TR>
+    <TR>
+      <TD>$rate=<I><FONT color="#400000">RATE</FONT></I></TD>
+      <TD>周波数指定</TD>
+      <TD>Hz 単位のサンプリング周波数を、<I><FONT color="#400000">RATE</FONT></I>の部分に整数で指定します。<BR>
+      .wav ファイルの PCM フォーマットとして対応しているのは以下の値です。<BR>
+      <BR>
+      8000 Hz<BR>
+      11025 Hz<BR>
+      16000 Hz<BR>
+      22050 Hz<BR>
+      32000 Hz<BR>
+      44100 Hz<BR>
+      <BR>
+      マイクサンプルデモ<A href="../demos/spi/spidemos.html">mic-2</A>はこれらのうち 44100 Hz を除く全ての値について録音を対応しています。
+      </TD>
+    </TR>
+    <TR>
+      <TD>$bits=<I><FONT color="#400000">BITS</FONT></I></TD>
+      <TD>ビット数指定</TD>
+      <TD>bit 量子化ビット数を、<I><FONT color="#400000">BITS</FONT></I>の部分に整数で指定します。<BR>
+      .wav ファイルの PCM フォーマットとして対応しているのは以下の値です。<BR>
+      <BR>
+      8 bit<BR>
+      16 bit<BR>
+      <BR>
+      マイクサンプルデモ<A href="../demos/spi/spidemos.html">mic-2</A>はこれらの全ての値について録音を対応しています。
+      </TD>
+    </TR>
+    <TR>
+      <TD>$end</TD>
+      <TD>データ終了指定</TD>
+      <TD>現在までの一連の設定とサンプリングデータを、単体の .wav ファイルとして出力します。<BR>
+      出力ファイルは、前述の規則に従って自動的に生成されます。<BR>
+      出力後、サンプリングデータは全て破棄されて入力前の解析状態に戻ります。
+      </TD>
+    </TR>
+    <TR>
+      <TD>|<I><FONT color="#400000">DATA</FONT></I>,<I><FONT color="#400000">DATA</FONT></I>, ...</TD>
+      <TD>サンプリング指定</TD>
+      <TD>現在の設定に基づき、<I><FONT color="#400000">DATA</FONT></I>部分を16進符号無し整数のサンプリングデータとして読み込みます。<BR>
+      <I><FONT color="#400000">DATA</FONT></I>は量子化ビット数が 8 bit であれば 00～FF、16 bit であれば 0000～FFFFとなります。<BR>
+      桁数が厳密に一致しない場合は、単に無視されます。<BR>
+      マイクサンプルデモ<A href="../demos/spi/spidemos.html">mic-2</A>は 1 行あたり 16 サンプルを出力します。<BR>
+      <BR>
+      一回以上この書式が現れると、以降は $end によるデータ終了指定を行わない限り $rate および $bits の設定変更は無視されます。
+      </TD>
+    </TR>
+    <TR>
+      <TD># ...</TD>
+      <TD>コメント</TD>
+      <TD>明示的なコメント行と解釈し、なにも行わずに読み捨てます。
+      </TD>
+    </TR>
+    <TR>
+      <TD>その他</TD>
+      <TD>不正な書式</TD>
+      <TD>認識できない不正な書式は、なにも行わずに読み捨てます。<BR>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+上記の書式に従い、マイクサンプルデモ<A href="../demos/spi/spidemos.html">mic-2</A>が出力したテキストデータが音声ファイルとして一括生成されます。
+テキストは、デバッグログ出力ウィンドウから文字列をコピーし、任意のテキストファイルとして用意する必要があります。<BR>
+<BR>また、TEG版IS-NITRO-EMULATOR を使用する場合には、デバッグログ出力をファイルに書き出す機能を利用することもできます。
+そのための指定方法は、簡潔な一例としてバッチファイル /build/demos/spi/mic-2/sampling.bat を用意してありますので、
+こちらを参考にしてください。
+</P>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/mic2wav.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="../demos/spi/spidemos.html">マイクサンプルデモ mic-2</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/06/18 初版</P><BR>
+</BODY>
+</HTML>

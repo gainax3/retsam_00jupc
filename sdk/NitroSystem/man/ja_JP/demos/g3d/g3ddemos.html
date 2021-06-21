@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>G3D Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>G3Dサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/g3d/</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSystem/build/demos/g3d/</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/g3d/samples/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/g3d/samples/simple/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSystem/build/demos/g3d/samples/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/　</CODE>ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<H4>サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g3d/samples/simple/src/main.c">simple</A></CODE></STRONG></EM></TD>
+      <TD width="576">テクスチャつきのモデル描画をおこなう単純なサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g3d/samples/1mat1shp/src/main.c">1mat1shp</A></CODE></STRONG></EM></TD>
+      <TD width="576">非常に単純なモデルを高速に表示するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><A href="../../../../build/demos/g3d/samples/callback1/src/main.c"><EM><STRONG><CODE>callback1</CODE></STRONG></EM></A></TD>
+      <TD width="576">コールバック関数登録を利用して、レンダリング処理のカスタマイズを行うサンプルです。(1)</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/callback2/src/main.c"><STRONG><CODE>callback2</CODE></STRONG></A></EM></TD>
+      <TD width="576">コールバック関数登録を利用して、レンダリング処理のカスタマイズを行うサンプルです。(2)</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/callback3/src/main.c"><STRONG><CODE>callback3</CODE></STRONG></A></EM></TD>
+      <TD width="576">コールバック関数登録を利用して、レンダリング処理のカスタマイズを行うサンプルです。(3)</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g3d/samples/callback4/src/main.c">callback4</A></CODE></STRONG></EM></TD>
+      <TD width="576">コールバック関数登録を利用して、レンダリング処理のカスタマイズを行うサンプルです。(4)</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/callback5/src/main.c"><STRONG><CODE>callback5</CODE></STRONG></A></EM></TD>
+      <TD width="576">コールバック関数登録を利用して、レンダリング処理のカスタマイズを行うサンプルです。(5)</TD>
+    </TR>
+    <TR>
+      <TD width="187"><A href="../../../../build/demos/g3d/samples/CameraMtx/src/main.c"><EM><STRONG><CODE>CameraMtx</CODE></STRONG></EM></A></TD>
+      <TD width="576">ビルボードを表示するサンプルです。Projection行列の設定方法を切り替えて描画効率を比較するサンプルにもなっています。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/CustomizeSbcOp/src/main.c"><STRONG><CODE>CustomizeSbcOp</CODE></STRONG></A></EM></TD>
+      <TD width="576">SBCコマンドの処理関数をユーザーがカスタマイズしたものに変更するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/DisposeTex/src/main.c"><STRONG><CODE>DisposeTex</CODE></STRONG></A></EM></TD>
+      <TD width="576">モデルテクスチャをVRam転送後にテクスチャ領域をゼロクリアしても問題なく動作することを示すサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><A href="../../../../build/demos/g3d/samples/Envelope/src/main.c"><EM><STRONG><CODE>Envelope</CODE></STRONG></EM></A></TD>
+      <TD width="576">ウェイテッドエンベロープつきモデルを表示するサンプル。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><A href="../../../../build/demos/g3d/samples/GeComBuffering/src/main.c"><EM><STRONG><CODE>GeComBuffering</CODE></STRONG></EM></A></TD>
+      <TD width="576">ジオメトリコマンドバッファリング機能を利用するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/JointAnm/src/main.c"><STRONG><CODE>JointAnm</CODE></STRONG></A></EM></TD>
+      <TD width="576">モデルジョイントアニメーションを再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><A href="../../../../build/demos/g3d/samples/PartialAnm1/src/main.c"><STRONG><CODE>PartialAnm1</CODE></STRONG></A></EM></TD>
+      <TD>モデルジョイントアニメーションを部分的に再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><A href="../../../../build/demos/g3d/samples/PartialAnm2/src/main.c"><STRONG><CODE>PartialAnm2</CODE></STRONG></A></EM></TD>
+      <TD>モデルジョイントアニメーションを部分的に再生し、組み合わせるサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/SlowMotion/src/main.c"><STRONG><CODE>SlowMotion</CODE></STRONG></A></EM></TD>
+      <TD width="576">モデルジョイントアニメーションをスロー再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/SharedMotion/src/main.c"><STRONG><CODE>SharedMotion</CODE></STRONG></A></EM></TD>
+      <TD width="576">体型の違うモデルで同一のジョイントアニメーションを再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/ManualSetup/src/main.c"><STRONG><CODE>ManualSetup</CODE></STRONG></A></EM></TD>
+      <TD width="576">NNS_G3dResDefaultSetupを使用せずにモデルリソースをセットアップするサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/MatColAnm/src/main.c"><STRONG><CODE>MatColAnm</CODE></STRONG></A></EM></TD>
+      <TD width="576">マテリアルカラーアニメーションを再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/ModifyNsbmd/src/main.c"><STRONG><CODE>ModifyNsbmd</CODE></STRONG></A></EM></TD>
+      <TD width="576">モデルのマテリアル色やライト設定を変更するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/MotionLOD/src/main.c"><STRONG><CODE>MotionLOD</CODE></STRONG></A></EM></TD>
+      <TD width="576">遠くにあるキャラクターアニメーションのフレームレートを落として、CPU処理を軽減するサンプル。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/MultiModel/src/main.c"><STRONG><CODE>MultiModel</CODE></STRONG></A></EM></TD>
+      <TD width="576">コンバータで複数モデルをマージし、その結果を描画するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/RecordJoint/src/main.c"><STRONG><CODE>RecordJoint</CODE></STRONG></A></EM></TD>
+      <TD width="576">ジョイントの計算結果を前計算しておくサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/RecordMaterial/src/main.c"><STRONG><CODE>RecordMaterial</CODE></STRONG></A></EM></TD>
+      <TD width="576">マテリアルの計算結果を前計算しておくサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/RecordMtx/src/main.c"><STRONG><CODE>RecordMtx</CODE></STRONG></A></EM></TD>
+      <TD width="576">callback2サンプルと同様の動作をコールバックを使用せずに実現するサンプル。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/SeparateTex/src/main.c"><STRONG><CODE>SeparateTex</CODE></STRONG></A></EM></TD>
+      <TD width="576">コンバータでモデルバイナリとテクスチャバイナリを分割出力し、それらを適切に関連付けて表示するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g3d/samples/ShadowVolume/src/main.c">ShadowVolume</A></CODE></STRONG></EM></TD>
+      <TD width="576">G3Dを使用してシャドウボリュームを描画するサンプル。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><A href="../../../../build/demos/g3d/samples/TexPatternAnm/src/main.c"><EM><STRONG><CODE>TexPatternAnm</CODE></STRONG></EM></A></TD>
+      <TD width="576">テクスチャパターンアニメーション再生サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/TexSRTAnm/src/main.c"><STRONG><CODE>TexSRTAnm</CODE></STRONG></A></EM></TD>
+      <TD width="576">テクスチャSRTアニメーション再生サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g3d/samples/UnbindTex/src/main.c">UnbindTex</A></CODE></STRONG></EM></TD>
+      <TD width="576">モデル内のテクスチャの部分的な取り外し、張替えを行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/VisibilityAnm/src/main.c"><STRONG><CODE>VisibilityAnm</CODE></STRONG></A></EM></TD>
+      <TD width="576">ビジビリティアニメーションの再生を行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><A href="../../../../build/demos/g3d/samples/ScreenUtil/src/main.c"><STRONG><CODE>ScreenUtil</CODE></STRONG></A></EM></TD>
+      <TD width="576">G3Dの座標変換ユーティリティAPIを使ったサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><A href="../../../../build/demos/g3d/samples/Translucent/src/main.c"><STRONG><CODE>Translucent</CODE></STRONG></A></EM></TD>
+      <TD>半透明ポリゴンが重なっているオブジェクトを描画するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><A href="../../../../build/demos/g3d/samples/EnvMap/src/main.c"><STRONG><CODE>EnvMap</CODE></STRONG></A></EM></TD>
+      <TD>環境マップされたオブジェクトを表示するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><A href="../../../../build/demos/g3d/samples/ProjMap/src/main.c"><STRONG><CODE>ProjMap</CODE></STRONG></A></EM></TD>
+      <TD>投影マップされたオブジェクトを表示するサンプルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATOR、ensata での正常動作を確認しています。</P>
+<H2>参照</H2>
+<P><A href="../../g3d/list_g3d.html"><CODE>G3D関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2005/01/24 実行方法において IS-NITRO-EMULATOR の記述を削除、動作環境において TEG の記述を削除し、TS を
+IS-NITRO-EMULATOR に変更。<BR>
+2005/01/21 EnvMap, ProjMapの２つのサンプルを追加<BR>
+2004/11/26 Translucentサンプルを追加<BR>
+2004/11/10 PartialAnm1, PartialAnm2, SlowMotion, SharedMotion, ScreenUtilの５つのサンプルを追加<BR>
+2004/10/12 callback5, Envelope, ManualSetup, RecordMtx, ShadowVolumeの５つのサンプルを追加<BR>
+2004/09/16 callback4, MotionLODの２つのサンプルを追加<BR>
+2004/09/01 1mat1shp, callback3, GeComBufferingの３つのサンプルを追加<BR>
+2004/08/10 幾つかのサンプルを追加<BR>
+2004/08/02 初版
+</P>
+</BODY>
+</HTML>

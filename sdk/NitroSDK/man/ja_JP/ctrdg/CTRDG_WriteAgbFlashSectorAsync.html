@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_Read</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_WriteAgbFlashSectorAsync</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>void CTRDG_WriteAgbFlashSectorAsync(u16 sec_num, u8* src, CTRDG_TASK_FUNC callback);
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>sec_num</I></B></TD>
+      <TD>対象セクタNo</TD>
+    </TR>
+    <TR>
+      <TD><B><I>src</I></B></TD>
+      <TD>書き込み元アドレス</TD>
+    </TR>
+    <TR>
+      <TD><B><I>callback</I></B></TD>
+      <TD>データのWrite処理が終了したときに呼び出されるコールバック関数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>src アドレスから１セクタ分(4kbyte)のデータを非同期に対象セクタ№に書き込みます。<br>
+本ルーチン内で <CODE><A href="CTRDG_EraseAgbFlashSector.html">CTRDG_EraseAgbFlashSector</A></CODE> 関数をコールし、セクタを消去してから書き込みを行います。<br>
+本ルーチンの実行中、グローバル変数 flash_remainder を参照することで、残バイト数を知ることができます。<br>
+また、本ルーチンの呼び出し後に返ってくるコールバック関数の引数である構造体 CTRDGTaskInfo のメンバ result を参照することで、
+Write処理に成功したのかを知ることができます。<br>
+Write処理に成功した場合は 0 、失敗した場合、対象セクタNo が範囲外の場合は 0 以外です。</P>
+<P>アクセスサイクルの設定は関数内で行いますので、事前に行う必要はありません。<br>
+また、この関数ではタイムアウト測定用にチックを使用しますので事前に <CODE><A href="../os/time/OS_InitTick.html">OS_InitTick</A></CODE> 関数を呼んでおく必要があります。</P>
+<P>※この関数内では一定期間全ての割り込みが禁止され、カートリッジバスがロックされますので注意して下さい。<br>
+特に、本関数コール時はダイレクトサウンドおよびＶ・Ｈブランク同期、表示同期、カートリッジリクエスト等の特定のタイミングで自動起動するＤＭＡは使用しないで下さい。</P>
+<P>また IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスすることはできませんので、注意してください。</P>
+<PRE>/* コールバック関数 */
+typedef u32 (*CTRDG_TASK_FUNC) (struct CTRDGiTaskInfo_tag *);
+</PRE>
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_EraseAgbFlashSector.html">CTRDG_EraseAgbFlashSector</A>, <A href="CTRDG_WriteAgbFlashSector.html">CTRDG_WriteAgbFlashSector</A>, <A href="CTRDG_WriteAndVerifyAgbFlash.html">CTRDG_WriteAndVerifyAgbFlash</A>, <A href="CTRDG_WriteAndVerifyAgbFlashAsync.html">CTRDG_WriteAndVerifyAgbFlashAsync</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2006/05/25 IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスできないことを追記<BR>
+2006/04/07 初版</P>
+</BODY>
+</HTML>

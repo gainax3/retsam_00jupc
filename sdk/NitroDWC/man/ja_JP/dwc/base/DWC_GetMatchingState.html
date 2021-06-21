@@ -1,0 +1,85 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_GetMatchingState</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_GetMatchingState</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCMatchState DWC_GetMatchingState( void );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+      マッチメイク中の内部状態を取得します。（デバッグ用）
+	</P>
+	<P>
+	  取得した値はデバッグ用にのみ使用してください。
+    </P>
+	<P>
+	  これはデバッグ用の関数ですが、最終ROM版（FINALROM）ライブラリでも動作します。
+	</P>
+
+    <H2>引数</H2>
+    <P>
+      なし
+    </P>
+
+    <H2>返り値</H2>
+<PRE><CODE>
+typedef enum
+{
+    DWC_MATCH_STATE_INIT = 0,           // 0 初期状態
+
+    // クライアント側の状態
+    DWC_MATCH_STATE_CL_WAITING,         // 1 待ち状態
+    DWC_MATCH_STATE_CL_SEARCH_OWN,      // 2 自ホスト情報検索中
+    DWC_MATCH_STATE_CL_SEARCH_HOST,     // 3 空きホスト検索状態（友達無指定の時のみ）
+    DWC_MATCH_STATE_CL_WAIT_RESV,       // 4 予約に対するサーバからの返答待ち
+    DWC_MATCH_STATE_CL_SEARCH_NN_HOST,  // 5 予約が完了した相手ホストを検索中
+    DWC_MATCH_STATE_CL_NN,              // 6 NATネゴシエーション中
+    DWC_MATCH_STATE_CL_GT2,             // 7 GT2コネクション確立中
+    DWC_MATCH_STATE_CL_CANCEL_SYN,      // 8 サーバクライアントマッチメイクでマッチメイクキャンセル同期調整中
+    DWC_MATCH_STATE_CL_SYN,             // 9 マッチメイク終了同期調整中
+        
+    // サーバ側の状態
+    DWC_MATCH_STATE_SV_WAITING,         // 10 待ち状態
+    DWC_MATCH_STATE_SV_OWN_NN,          // 11 クライアントとのNATネゴシエーション中
+    DWC_MATCH_STATE_SV_OWN_GT2,         // 12 クライアントとのGT2コネクション確立中
+    DWC_MATCH_STATE_SV_WAIT_CL_LINK,    // 13 クライアント同士の接続完了待ち
+    DWC_MATCH_STATE_SV_CANCEL_SYN,      // 14 サーバクライアントマッチメイクでマッチメイクキャンセル同期調整SYN-ACK待ち
+    DWC_MATCH_STATE_SV_CANCEL_SYN_WAIT, // 15 サーバクライアントマッチメイクでマッチメイクキャンセル同期調整終了待ち
+    DWC_MATCH_STATE_SV_SYN,             // 16 マッチメイク終了同期調整SYN-ACK待ち
+    DWC_MATCH_STATE_SV_SYN_WAIT,        // 17 マッチメイク終了同期調整終了待ち
+
+    // 共通状態
+    DWC_MATCH_STATE_WAIT_CLOSE,         // 18 コネクションクローズ完了待ち
+
+    // マッチメイクオプション使用時のみの状態
+    DWC_MATCH_STATE_SV_POLL_TIMEOUT,    // 19 サーバがOPTION_MIN_COMPLETEのタイムアウトをポーリング中
+
+    DWC_MATCH_STATE_NUM
+}
+DWCMatchState;
+</CODE></PRE>
+	
+    <H2>参照</H2>
+    <P>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+      2005/12/16 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

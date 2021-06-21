@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_ResetCapture</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_ResetCapture</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx_capture.h&gt;
+
+void GX_ResetCapture( void );<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>表示キャプチャコントロールレジスタのキャプチャイネーブルフラグをOFFに設定します。<BR>
+キャプチャイネーブルレジスタはキャプチャ終了後、自動的にOFFになりますので、通常この関数で<BR>
+明示的にリセットする必要はありません。<BR>
+<BR>
+<B>(注意1)</B> 0ライン目で表示キャプチャが開始された後に、この関数でキャプチャを途中中断することはできません。キャプチャを解除する場合にはキャプチャの動作開始される前に行なってください。</P>
+<h2>参照</h2>
+<P><A href="GX_SetCapture.html">GX_SetCapture</A></P>
+<H2>履歴</H2>
+<P>Ver. 2005/01/05</P>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetPortCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetPortCallback</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetPortCallback(
+        u16             port ,
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        void*           arg
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">port</FONT></STRONG></EM></TD>
+      <TD width="800"><A href="WMPort.html">ポート番号</A>を指定します。0 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">通信フレーム受信時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">arg</FONT></STRONG></EM></TD>
+      <TD width="800">コールバック関数に渡される引数を指定します。</TD>
+    </TR>
+ </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+特定ポートに対してデータを受信した際に呼び出されるコールバック関数をセットします。
+この関数は同期関数ですので、処理に成功した場合即座にWM_ERRCODE_SUCCESSを返します。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WMPort.html">WMPort</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 port引数について指定可能範囲を追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>MB 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H3>マルチブートライブラリ(MB)</H3>
+<P>[<B><A href="list_mb.html">機能一覧</A></B>]</P>
+<DL>
+  <DT>初期化
+  <DD><A href="common/MB_Init.html">MB_Init</A>
+  <DD><A href="common/MB_End.html">MB_End</A>
+  <DD><A href="common/MB_EndToIdle.html">MB_EndToIdle</A>
+  <DD><A href="common/MB_GetParentSystemBufSize.html">MB_GetParentSystemBufSize</A>
+  <DD><A href="common/MB_GetTgid.html">MB_GetTgid</A>
+</DL>
+<DL>
+  <DT>子機(マルチブート後)
+  <DD><A href="common/MB_IsMultiBootChild.html">MB_IsMultiBootChild</A>
+  <DD><A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>
+  <DD><A href="child/MB_GetMultiBootDownloadParameter.html">MB_GetMultiBootDownloadParameter</A>
+  <DD><A href="child/MB_ReadMultiBootParentBssDesc.html">MB_ReadMultiBootParentBssDesc</A>
+  <DD><A href="common/MB_GetUserVolatData.html">MB_GetUserVolatData</A>
+</DL>
+<DL>
+  <DT>親機
+  <DD><A href="parent/MB_SetParentCommSize.html">MB_SetParentCommSize</A>
+  <DD><A href="parent/MB_SetParentCommParam.html">MB_SetParentCommParam</A>
+  <DD><A href="parent/MB_SetPowerSaveMode.html">MB_SetPowerSaveMode</A>
+  <DD><A href="parent/MB_SetLifeTime.html">MB_SetLifeTime</A>
+
+  <DD><A href="parent/MB_StartParent.html">MB_StartParent</A>
+  <DD><A href="parent/MB_StartParentFromIdle.html">MB_StartParentFromIdle</A>
+  <DD><A href="parent/MB_CommGetChildrenNumber.html">MB_CommGetChildrenNumber</A>
+  <DD><A href="parent/MB_CommGetChildUser.html">MB_CommGetChildUser</A>
+  <DD><A href="parent/MB_CommGetParentState.html">MB_CommGetParentState</A>
+  <DD><A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>
+  <DD><A href="parent/MB_GetSegmentLength.html">MB_GetSegmentLength</A>
+  <DD><A href="parent/MB_ReadSegment.html">MB_ReadSegment</A>
+  <DD><A href="parent/MB_RegisterFile.html">MB_RegisterFile</A>
+  <DD><A href="parent/MB_UnregisterFile.html">MB_UnregisterFile</A>
+  <DD><A href="parent/MB_CommResponseRequest.html">MB_CommResponseRequest</A>
+  <DD><A href="parent/MB_CommStartSending.html">MB_CommStartSending</A>
+  <DD><A href="parent/MB_CommStartSendingAll.html">MB_CommStartSendingAll</A>
+  <DD><A href="parent/MB_CommIsBootable.html">MB_CommIsBootable</A>
+  <DD><A href="parent/MB_CommBootRequest.html">MB_CommBootRequest</A>
+  <DD><A href="parent/MB_CommBootRequestAll.html">MB_CommBootRequestAll</A>
+  <DD><A href="parent/MB_DisconnectChild.html">MB_DisconnectChild</A>
+  <DD><A href="parent/MB_GetGameEntryBitmap.html">MB_GetGameEntryBitmap</A>
+  <DD><A href="common/MB_SetSendVolatCallback.html">MB_SetSendVolatCallback</A>
+  <DD><A href="common/MB_SetUserVolatData.html">MB_SetUserVolatData</A>
+</DL>
+<P><B>擬似マルチブート子機</B></P>
+<DL>
+  <DD><A href="fake_child/MB_FakeInit.html">MB_FakeInit</A>
+  <DD><A href="fake_child/MB_FakeEnd.html">MB_FakeEnd</A>
+  <DD><A href="fake_child/MB_FakeGetWorkSize.html">MB_FakeGetWorkSize</A>
+  <DD><A href="fake_child/MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>
+  <DD><A href="fake_child/MB_FakeEndScan.html">MB_FakeEndScan</A>
+  <DD><A href="fake_child/MB_FakeSetCStateCallback.html">MB_FakeSetCStateCallback</A>
+  <DD><A href="fake_child/MB_FakeEntryToParent.html">MB_FakeEntryToParent</A>
+  <DD><A href="fake_child/MB_FakeGetParentGameInfo.html">MB_FakeGetParentGameInfo</A>
+  <DD><A href="fake_child/MB_FakeGetParentBssDesc.html">MB_FakeGetParentBssDesc</A>
+  <DD><A href="fake_child/MB_FakeReadParentBssDesc.html">MB_FakeReadParentBssDesc</A>
+  <DD><A href="fake_child/MB_FakeSetVerboseScanCallback.html">MB_FakeSetVerboseScanCallback</A>
+  <DD><A href="fake_child/MB_FakeSetCompareGGIDCallback.html">MB_FakeSetCompareGGIDCallback</A>
+</DL>
+<DL>
+  <DT>定数・構造体
+  <DD><A href="mb_game_consts.html">MB_ICON_*</A>
+  <DD><A href="mb_comm_parent_consts.html">MB_COMM_PARENT_*</A>
+  <DD><A href="mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>
+  <DD><A href="mb_game_consts.html">MB_GAME_*</A>
+  <DD><A href="mb_game_consts.html">MB_USER_*</A>
+  <DD><A href="mb_tgid_auto_const.html">MB_TGID_AUTO</A>
+  <DD><A href="mb_fake_work_size_const.html">MB_FAKE_WORK_SIZE</A>
+  <DD><A href="mb_error_status_type.html">MBErrorStatus</A>
+  <DD><A href="mb_err_code_const.html">MBErrCode</A>
+  <DD><A href="mb_comm_pstate_const.html">MBCommPState</A>
+  <DD><A href="mb_comm_cstate_const.html">MBCommCState</A>
+  <DD><A href="mb_comm_response_request_type_const.html">MBCommResponseRequestType</A>
+  <DD><A href="mb_comm_pstate_callback_type.html">MBCommPStateCallback</A>
+  <DD><A href="mb_comm_cstate_callback_type.html">MBCommPStateCallbackFunc</A>
+  <DD><A href="mb_game_registry_type.html">MBGameRegistry</A>
+  <DD><A href="mb_icon_info_type.html">MBIconInfo</A>
+  <DD><A href="mb_user_info_type.html">MBUserInfo</A>
+  <DD><A href="mb_parent_bss_desc_type.html">MBParentBssDesc</A>
+  <DD><A href="common/MBGameInfo.html">MBGameInfo</A>
+  <DD><A href="fake_child/MBFakeScanCallback.html">MBFakeScanCallback</A>
+  <DD><A href="fake_child/MBFakeScanCallbackFunc.html">MBFakeScanCallbackFunc</A>
+  <DD><A href="fake_child/MBFakeCompareGGIDCallbackFunc.html">MBFakeCompareGGIDCallbackFunc</A>
+  <DD><A href="fake_child/MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A>
+</DL>
+</BODY>
+</HTML>

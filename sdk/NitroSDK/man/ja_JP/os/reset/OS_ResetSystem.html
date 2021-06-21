@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_ResetSystem</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_ResetSystem</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <code>void OS_ResetSystem( u32 parameter );</CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>parameter</STRONG></EM></TD>
+      <TD width="87%">リセットパラメータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>プログラムを再実行しなおします。<BR>
+この関数から戻ることはありません。</P>
+<P><B><I>parameter</I></B> はリセットパラメータで、この値は再実行されるプログラム中から <CODE><A href="OS_GetResetParameter.html">OS_GetResetParameter()</A></CODE> で読むことが出来ます。起動直後の <CODE><A href="OS_GetResetParameter.html">OS_GetResetParameter()</A></CODE> で読める値は 0 となっていますので、リセットパラメータに 0 以外の値を入れることで、電源投入後と再実行後を区別するという用途などに使用することができます。</P>
+<P>再実行に必要な処理は本関数を呼び出す前に行なう必要があります。</P>
+<P><font color="#ff0000">この関数を割り込み禁止の状態で呼び出すことはできません。</font></P>
+<P>本関数を呼ぶためには、<CODE><A href="OS_InitReset.html">OS_InitReset()</A></CODE> が予め呼ばれている必要があります。ただし、<A href="OS_InitReset.html"><CODE>OS_InitReset()</CODE></A> は <A href="../init/OS_Init.html"><CODE>OS_Init()</CODE></A> から呼ばれていますので、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいる場合はアプリケーションで呼ぶ必要はありません。</P>
+<P>マルチブート子機からのリセットは出来ません。本関数が呼ばれた場合、<CODE><A href="../debug/OS_Panic.html">OS_Panic()</A></CODE> で停止します。マルチブート子機かどうかの判定は<CODE><A href="../../mb/common/MB_IsMultiBootChild.html">MB_IsMultiBootChild()</A></CODE> を使用しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitReset.html">OS_InitReset</A>, <A href="OS_GetResetParameter.html">OS_GetResetParameter</A>, <A href="../../mb/common/MB_IsMultiBootChild.html">MB_IsMultiBootChild()</A></CODE></P>
+<H2>履歴</H2>
+<P>2006/12/05 リセットパラメータに関する記述を追加<BR>
+2005/04/01 割り込み禁止の状態からの呼び出し禁止を追記<br>
+2004/11/02 本関数内で行なう処理のためユーザがやらなくてもよいものを削除<BR>
+2004/09/09 マルチブート子機からリセットが出来ないという記述を追加<BR>
+2004/09/01 初版</P>
+</BODY>
+</HTML>

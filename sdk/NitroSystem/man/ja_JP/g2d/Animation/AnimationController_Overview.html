@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>AnimationController_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">アニメーションコントローラ概要</h1>
+<h2>概念図</h2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:395.4pt;
+ height:132pt' o:ole="">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><IMG src="image2.gif" border="0" width="660" height="221"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="MSDraw.Drawing.8.2" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1162366283">
+ </o:OLEObject>
+</xml><![endif]--></span></P>
+<H2>説明</H2>
+アニメーションコントローラは、セルアニメーション及びマルチセルアニメーションの再生を制御します。
+<BR>
+
+<h2>アニメーションコントローラの内部データ</h2>
+
+<h3>表示中のアニメーションフレーム</h3>
+
+表示中のアニメーションフレームには、現在再生中のアニメーションシーケンスデータへのポインタが格納されます。
+コントローラは、アニメーションシーケンスには、アニメーションを定義する情報が格納されています。
+アニメーションシーケンスデータは、メインメモリ上に読み出された　アニメーションデータ（.nanr, .nmarファイル）の内部に存在します。
+アニメーションデータは、静的なデータであり、書き換えられることは有りません。
+
+<h3>カウンタ</h3>
+
+カウンタには、現在再生中のアニメーションのフレームデータへのポインタが格納されます。
+アニメーションフレームデータは、その期間に表示するセルまたはマルチセルのデータの番号などの情報を指しています。
+
+<h3>再生スピード</h3>
+再生スピードは、アニメーション再生スピードを変更するための情報です。
+アニメーションの再生スピードを設定可能です。マイナス値を設定することで、逆再生が設定可能です。
+（なお、逆再生設定には逆再生フラグを設定する方法も用意されています。）
+
+<h3>コールバック関数情報</h3>
+
+アニメーションコントローラはアニメーション再生の種々のタイミングでのコールバック関数呼び出しをサポートします。
+そのため、アニメーションコントローラはコールバック関数の関数ポインタとコールバック関数に渡す、4バイトのユーザデータをメンバとして保持しています。
+
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

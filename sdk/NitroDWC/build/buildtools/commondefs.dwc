@@ -1,0 +1,139 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroDWC - commondefs - common definitions for build system
+# File:     commondefs
+#
+#  Copyright 2003-2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+#----------------------------------------------------------------------------
+
+ifndef NITRODWC_COMMONDEFS_
+NITRODWC_COMMONDEFS_ := TRUE
+
+#----------------------------------------------------------------------------
+#
+# NitroDWC Root directory
+#
+NITRODWC_ROOT ?= C:/NitroDWC
+
+ifndef NITRODWC_NOGS
+NITROGS_VERSION ?= 0.01
+endif
+
+#----------------------------------------------------------------------------
+#
+# NitroDWC Path
+#
+ifdef NITRO_USEINET
+NITRODWC_LIB_MODULES_   ?= ac_inet auth_inet bm base util account ranking
+else
+ifndef NITRODWC_NOGS
+NITRODWC_LIB_MODULES_   ?= ac auth bm base util account nhttp nd ranking
+else
+NITRODWC_LIB_MODULES_   ?= ac auth bm base util account nhttp nd
+endif
+endif
+ifndef NITRODWC_NOGS
+NITRODWC_LIB_GSMODULES_ ?= common ghttp gp gstats gt2 natneg qr2 serverbrowsing chat
+endif
+
+# peer, gsoap modules are not supported now.
+
+
+NITRODWC_ROOT_		:= $(subst $(SPACE),\ ,$(subst \,/,$(NITRODWC_ROOT)))
+
+NITRODWC_BUILDTOOLSDIR	:= $(NITRODWC_ROOT_)/build/buildtools
+NITRODWC_TOOLSDIR		:= $(NITRODWC_ROOT_)/tools
+NITRODWC_INCDIR			:= $(addprefix $(NITRODWC_ROOT_)/include/,$(NITRODWC_LIB_MODULES_)) \
+						   $(NITRODWC_ROOT_)/include
+ifndef NITRODWC_NOGS
+NITRODWC_INCDIR			:= $(NITRODWC_INCDIR) $(NITRODWC_ROOT_)/include/gs
+else
+NITRODWC_INCDIR			:= $(NITRODWC_INCDIR)
+endif
+
+NITRODWC_LIB_PREFIX := dwc
+
+NITRODWC_LIBDIR	:= $(NITRODWC_ROOT_)/lib/$(NITRO_LIBTYPE)
+ifndef NITRODWC_NOGS
+NITRODWC_GSLIBDIR	:= $(NITRODWC_ROOT_)/lib/gamespy/$(NITRO_LIBTYPE)
+endif
+
+#----------------------------------------------------------------------------
+#
+# NitroDWC Library
+#
+NITRODWC_LIBS := $(addsuffix $(NITRO_LIBSUFFIX).a,$(addprefix lib$(NITRODWC_LIB_PREFIX),$(NITRODWC_LIB_MODULES_)))
+ifndef NITRODWC_NOGS
+NITRODWC_GSLIBS := $(addsuffix $(NITRO_LIBSUFFIX).a,$(addprefix lib$(NITRODWC_LIB_PREFIX)gs,$(NITRODWC_LIB_GSMODULES_)))
+endif
+
+#----------------------------------------------------------------------------
+#
+# NIIRODWC_INSTALL_ROOT
+#
+
+NITRODWC_INSTALL_ROOT 		?= $(NITRODWC_ROOT)
+NITRODWC_INSTALL_ROOT		:= $(subst $(SPACE),\ ,$(subst \,/,$(NITRODWC_INSTALL_ROOT)))
+
+NITRODWC_INSTALL_TOOLSDIR	= $(NITRODWC_INSTALL_ROOT)/tools
+NITRODWC_INSTALL_INCDIR		= $(NITRODWC_INSTALL_ROOT)/include
+NITRODWC_INSTALL_LIBDIR		= $(NITRODWC_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
+
+#----------------------------------------------------------------------------
+# %.nefのリンク時にオブジェクト／ライブラリを依存させられたら便利。
+# もしかのときのため、定義だけ入れておく。
+NITRODWC_LIB_DEPENDS += $(addprefix $(NITRODWC_LIBDIR)/,$(NITRODWC_LIBS)) \
+						$(addprefix $(NITRODWC_GSLIBDIR)/,$(NITRODWC_GSLIBS))
+
+#----------------------------------------------------------------------------
+##LLIBRARY_DIRS、LLIBRARIESに追加します。
+LLIBRARY_DIRS		+= $(NITRODWC_LIBDIR) $(NITRODWC_GSLIBDIR)
+LLIBRARIES			+= $(NITRODWC_LIBS) $(NITRODWC_GSLIBS)
+
+LLIBRARY_DIRS += $(subst $(SPACE),\ ,$(subst \,/,$(NITROCRYPTO_ROOT)))/lib/$(NITRO_LIBTYPE)
+LLIBRARIES += libcrypto$(NITRO_LIBSUFFIX).a
+
+#----------------------------------------------------------------------------
+##LINCLUDESに追加します。
+LINCLUDES			+= $(NITRODWC_INCDIR)
+
+#----------------------------------------------------------------------------
+## gamespy用のNITRO定義
+MACRO_FLAGS += -D_NITRO
+CCFLAGS_WARNING += -w nonotused -w nopadding
+
+##MACRO_FLAGS += -D_NITRO -DGSI_MEM_MANAGED -w nonotused -w nopadding
+##CCFLAGS += -D_NITRO -DGSI_MEM_MANAGED -DSB_ICMP_SUPPORT -w nonotused -w nopadding
+
+## 不具合の吸収のため。
+#MACRO_FLAGS += -DDWC_BUG_WIFI_DELAY_SEND
+
+ifdef NITRODWC_NOGS
+MACRO_FLAGS += -DNITRODWC_NOGS
+endif
+
+ifdef NITRO_DEBUG
+ifndef NITRODWC_NOGS
+MACRO_FLAGS += -DGSI_COMMON_DEBUG
+endif
+endif
+
+ifdef NITRO_USEINET
+MACRO_FLAGS += -DDWC_USE_DUMMY_REMOTE_AUTH
+endif
+
+ifdef DWC_WAYPORT
+MACRO_FLAGS += -DDWC_NETCHECK_WAYPORT
+endif
+
+# NITRODWC_COMMONDEFS_
+endif
+
+#----- End of commondefs -----

@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_GetProperSize</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_GetProperSize</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>s32 CPS_GetProperSize(void);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<P>なし。</P>
+
+<h2>返り値</h2>
+<P>TCP送信パケットサイズを求めるのに使用される値</P>
+
+<h2>説明</h2>
+
+<p>その時点での最適なTCP送信パケットサイズを求めるのに使用される値を返します。<BR>
+	この値の整数倍で送信すると、効率の良い場合が多くなります。<BR>
+	0が返ってきた場合は、相手のウインドウサイズが0である事を示します。<BR>
+	TCPコネクションが確立していない場合は-1を返します。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocWrite.html">CPS_SocWrite</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

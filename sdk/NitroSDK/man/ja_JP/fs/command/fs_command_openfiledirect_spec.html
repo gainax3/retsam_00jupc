@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_COMMAND_OPENFILEDIRECT</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_COMMAND_OPENFILEDIRECT</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <BR>
+  <CODE>FSResult FS_ARCHIVE_PROC_FUNC(FSFile *p_file, FSCommandType command /*
+  = FS_COMMAND_OPENFILEDIRECT */);<br>
+  </CODE><br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_OPENFILEDIRECT の動作仕様を以下に示します</CODE>。<BR>
+<BR>
+<BR>
+
+<HR>
+<B>このコマンドに渡される引数</B>
+<BLOCKQUOTE>
+<PRE>p_file に格納された変数 arg.openfiledirect をコマンド引数とします。 
+この変数は nitro/fs/file.h にて以下のように定義されています。
+
+typedef struct
+{
+    u32     top;
+    u32     bottom;
+    u32     index;
+} FSOpenFileDirectInfo;</PRE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>引数の内容は以下のとおりです。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1" width="50%">
+  <TBODY>
+    <TR>
+      <TD style="text-align : center;" width="95">引数</TD>
+      <TD style="text-align : center;" width="522">内容</TD>
+    </TR>
+    <TR>
+      <TD width="95" style="text-align : center;">top</TD>
+      <TD width="522">ファイルイメージの領域先頭を示す、アーカイブのベースオフセット値を示します。<BR>
+      この値は、FS_SeekFile 関数での領域判定に使用されます。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">bottom</TD>
+      <TD>ファイルイメージの領域終端を示す、アーカイブのベースオフセット値を示します。<BR>
+      この値は、FS_SeekFile 関数での領域判定に使用されます。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">index</TD>
+      <TD>ファイルのインデックスを示します。<BR>
+      この値は、FS_COMMAND_GETPATH コマンドで使用されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BR>
+<HR>
+<B>このコマンドに要求される動作</B>
+<BLOCKQUOTE>
+<PRE>p_file の変数 prop.file を以下のように設定します。
+
+・引数の top, bottom, index に基づいて prop.file の各変数を適切に設定します。
+  設定した値は、以降の FS_COMMAND_READFILE コマンドおよび FS_COMMAND_WRITEFILE コマンドで使用されます。
+  これらのコマンドに対して正当な引数になるのであれば、prop.file の各変数の意味については独自に取り決めて構いません。
+  ただし、prop.file.pos については prop.file.top から prop.file.bottom の範囲におさまっている必要があります。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>デフォルトの実装</B><BR>
+<BR>
+<BLOCKQUOTE>以下の取り決めに基づいて値を設定します。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="185">prop.file.top</TD>
+      <TD width="432">引数 top をそのまま設定</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.file.bottom</TD>
+      <TD width="432">引数 bottom をそのまま設定</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.file.pos</TD>
+      <TD width="432">prop.file.top と同じ値を設定</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.file.own_id</TD>
+      <TD width="432">引数 index と p_file-&gt;arc を設定</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BR>
+<HR>
+<B>コマンドの結果</B><BR>
+
+<BLOCKQUOTE>
+<PRE>FS_RESULT_SUCCESS を返した場合、p_file はファイル情報を格納したハンドルになり、
+以降は FS_IsFile 関数で TRUE を返すようになります。
+また、ファイルを操作する関数の引数に使われるようになります。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドが使用される関数</B><BR>
+<BLOCKQUOTE>FS_OpenFileDirect<BR>
+( デフォルトの FS_OPENFILEFAST コマンドから間接的に )<BR>
+FS_OpenFile<BR>
+FS_OpenFileFast<BR>
+</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<A href="../fs_command_type_const.html">FS_COMMAND_*</A>
+<BR>
+<A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/08/25 誤記修正 FS_COMMAND_WRITE → FS_COMMAND_WRITEFILE<br>
+2004/07/12 初版<br>
+</P>
+</body>
+</html>

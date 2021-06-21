@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetThreadParameter</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetThreadParameter</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SetThreadParameter( OSThread* thread, void* parameter );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>thread</STRONG></EM></TD>
+      <TD width="87%">スレッド構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>parameter</STRONG></EM></TD>
+      <TD>設定するパラメータ値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スレッドにユーザパラメータを設定します。</P>
+<P>ユーザパラメータは、ユーザが自由に使用できる領域です。全てのスレッドにこのための１つの
+void* 型領域が与えられており、この値をどのように使用しても構いません。システム側でこの値を変更したり参照することはありません。</P>
+<P>設定したユーザパラメータを取得するには、<CODE><A href="OS_GetThreadParameter.html">OS_GetThreadParameter()</A></CODE> を使用してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_GetThreadParameter.html">OS_GetThreadParameter</A></CODE><CODE><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/07/08 初版</P>
+</BODY>
+</HTML>

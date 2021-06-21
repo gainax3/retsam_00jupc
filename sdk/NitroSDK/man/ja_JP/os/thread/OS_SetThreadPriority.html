@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetThreadPriority</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetThreadPriority</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL OS_SetThreadPriority( OSThread* thread, u32 prio );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>thread</STRONG></EM></TD>
+      <TD width="87%">優先度をセットするスレッドへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>prio</STRONG></EM></TD>
+      <TD width="87%">セットする優先度 (0～31)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>優先度をセットすることができればTRUEを返します。<BR>
+もともとの優先度と同じものを指定した場合でもTRUEとなります。<BR>
+スレッドがなかった場合はFALSEになります。</P>
+<H2>説明</H2>
+<P>スレッドの優先度をセットします。<BR>
+セットできる優先度は 0～31 です。0が最も高い優先度のスレッドとなります。<BR>
+スレッドの優先度が変わるとスケジューリングの変更が発生する場合があります。</P>
+<P>スレッドシステムは、<CODE><A href="OS_InitThread.html">OS_InitThread()</A></CODE> の際にアイドルスレッド (優先度32) を作成していますが、このスレッドの優先度は変更することは出来ません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_GetThreadPriority.html">OS_GetThreadPriority</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/04/27 アイドルスレッドに対する注意を追加<BR>
+2004/02/26 初版</P>
+</BODY>
+</HTML>

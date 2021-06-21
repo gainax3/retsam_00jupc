@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_EndKeySharing</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_EndKeySharing</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_EndKeySharing( <A href="WMKeySetBuf.html">WMKeySetBuf</A>* buf );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">buf</FONT></STRONG></EM></TD>
+      <TD width="800">キー情報を格納するバッファへのポインタを指定します。<BR>
+      実体は WMDataSharingInfo 構造体へのポインタです。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>キーシェアリング機能を無効にします。
+<A href="WM_StartKeySharing.html">WM_StartKeySharing</A>関数によってキーシェアリング機能が有効になっている場合に実行可能です。
+この関数は非同期関数から同期関数へ変更されました。<BR>
+<A href="WM_StartKeySharing.html">WM_StartKeySharing</A>, <A href="WM_EndKeySharing.html">WM_EndKeySharing</A>, <A href="WM_GetKeySet.html">WM_GetKeySet</A> は
+過去との互換性のために残されており、今後廃止される予定です。Data Sharing の各関数を代わりに使用してください。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartKeySharing.html">WM_StartKeySharing</A>, <A href="WM_GetKeySet.html">WM_GetKeySet</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/07 引数の変更と同期関数化<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_CallClientPacketRecvHook</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFS_CallClientPacketRecvHook</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_CallClientPacketRecvHook(WFSClientContext *context, const <a href="../WFSPacketBuffer.html">WFSPacketBuffer</a> *packet);</code><br />
+  <br />
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>packet</strong></em></td>
+      <td style="width:87%">受信パケットの情報が格納された<a href="../WFSPacketBuffer.html">WFSPacketBuffer</a>構造体のポインタ<br />
+	  各メンバには以下の内容を設定して与える必要があります。<br />
+      <table border="1" width="100%">
+        <tbody>
+          <tr>
+            <td style="width:13%"><em><strong>buffer</strong></em></td>
+            <td style="width:87%">受信したパケットデータのバッファを指定します。</td>
+          </tr>
+          <tr>
+            <td style="width:13%"><em><strong>length</strong></em></td>
+            <td style="width:87%">受信したサイズを指定します。</td>
+          </tr>
+          <tr>
+            <td style="width:13%"><em><strong>bitmap</strong></em></td>
+            <td style="width:87%">パケット送信元を示すAIDビットマップを指定します。<br />
+			親機から子機への受信データなので常に0x0001(親機から)で構いません。</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p>親機から受信したMP通信1回分のパケットデータをWFSライブラリの内部的なプロトコルに変換します。
+MP通信で受信したパケットデータをこの関数で解析することにより、親子間でWFS状態が更新されます。<br />
+アプリケーションはこの関数呼び出しとMP通信を適当な頻度で繰り返す必要があります。<br />
+</p>
+
+<h2>参照</h2>
+<p>
+<a href="WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a>
+<a href="WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a>
+<a href="WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

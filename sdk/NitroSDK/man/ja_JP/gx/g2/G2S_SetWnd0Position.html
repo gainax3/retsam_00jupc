@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2S_SetWnd0Position</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2S_SetWnd0Position</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g2.h&gt;
+
+void G2S_SetWnd0Position(int x1, int y1, int x2, int y2);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">x1</font></strong></em></TD>
+      <TD width="593">ウィンドウ左上X座標(下位8bit有効)</TD>
+    </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">y1</font></strong></em></TD>
+      <TD>ウィンドウ左上Y座標(0～192)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">x2</font></strong></em></TD>
+      <TD>ウィンドウ右下X座標(下位8bit有効)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">y2</font></strong></em></TD>
+      <TD>ウィンドウ右下Y座標(0～192)</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>サブ２Dエンジンのウィンドウ0の位置を設定します。X座標は下位8ビットが有効で、Y座標は0から192までの値である必要があります。</P>
+
+<h2>参照</h2>
+<P><A href="G2S_SetWnd1Position.html">G2S_SetWnd1Position</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+</body>
+</html>

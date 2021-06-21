@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ENV_Init</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">ENV_Init</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/env.h&gt;</CODE></PRE>
+  <PRE><CODE>void ENV_Init( void );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>リソース管理システムを初期化します。</P>
+<P>関数内でリソース配列を ENVResource* resourceArray[] 配列で指定しています。以降、リソースを検索する際はこの配列から行なわれます。</P>
+<P>resourceArray[] はリソース配列を持つ配列です。必要なリソース配列をまとめることで、一度に指定することができます。この関数を呼ぶ前に用意をしておく必要があります。</P>
+
+<P>システム内では、複数の配列をリストで結合し、保持することが可能です (最大
+ENV_RESOURCE_SET_MAX 個です)。 複数の配列を保持している場合、すべての中から検索されます。リストを操作するのは、<CODE><A href="ENV_SetResourceSet.html">ENV_SetResourceSet()</A>, <A href="ENV_AppendResourceSet.html">ENV_AppendResourceSet()</A>, <A href="ENV_PrependResourceSet.html">ENV_PrependResourceSet()</A>, <A href="ENV_InsertResourceSet.html">ENV_InsertResourceSet()</A></CODE> が用いられます。</P>
+<P>リソース配列を記述する際には、最後に ENV_RESOURCE_END を配置するようにして下さい。</P>
+
+<P>resourceArray[] の記述例です。</P>
+<BLOCKQUOTE><CODE><B>(例)</B><BR>
+<BR>
+ENVResource myResource1[] = {<BR>
+　　　&quot;res1.data1&quot;,　　ENV_U32( 300 ),<BR>
+　　　&quot;res1.data2&quot;,　　ENV_STRING( &quot;abcde&quot; ),<BR>
+　　　&quot;res1.data3&quot;,　　ENV_S32( -100 ),<BR>
+　　　<B><FONT color="#ff0033">ENV_RESOUCE_END</FONT></B><BR>
+};<BR>
+<BR>
+ENVResource myResource2[] = {<BR>
+　　　&quot;res2.data1&quot;,　　ENV_U32( 500 ),<BR>
+　　　&quot;res2.data2&quot;,　　ENV_S32( -800 ),<BR>
+　　　<B><FONT color="#ff0033">ENV_RESOUCE_END</FONT></B><BR>
+};<BR>
+<BR>
+
+ENVResource* resourceArray[]={ myResource1, myResource2, NULL };
+　　　　　：</CODE><BR>
+<BR>
+</BLOCKQUOTE>
+
+<H2>参照</H2>
+<P><CODE><A href="ENV_SetResourceSetArray.html">ENV_SetResourceSetArray</A>,<BR>
+<A href="ENV_SetResourceSet.html">ENV_SetResourceSet</A>, <A href="ENV_AppendResourceSet.html">ENV_AppendResourceSet</A>, <A href="ENV_PrependResourceSet.html">ENV_PrependResourceSet</A>, <A href="ENV_InsertResourceSet.html">ENV_InsertResourceSet</A>,<BR>
+<A href="ENV_GetXXX.html">ENV_Get*</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/29 複数の配列について記述<BR>
+2005/08/16 初版</P>
+</BODY>
+</HTML>

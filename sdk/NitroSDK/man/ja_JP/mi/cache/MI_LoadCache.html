@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_LoadCache</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_LoadCache</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  void MI_LoadCache(<a href="./MICache.html">MICache</a> *cache, <a href="../device/MIDevice.html">MIDevice</a> *device);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>cache</strong></em></td>
+      <td width="87%">アクセスする<a href="./MICache.html">MICache</a>構造体へのポインタ<br />
+      <a href="./MI_InitCache.html">MI_InitCache</a>関数で初期化されている必要があります。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>device</strong></em></td>
+      <td width="87%">ロード対象となるデバイスを指す<a href="../device/MIDevice.html">MIDevice</a>構造体へのポインタ<br />
+      <a href="../device/MI_InitDevice.html">MI_InitDevice</a>関数で初期化されている必要があります。</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<h2>説明</h2>
+<p>
+キャッシュページリスト内でロード待ち状態にある全てのページのデータをデバイスから読み込みます。<br />
+この関数の内部から<a href="../device/MI_ReadDevice.html">MI_ReadDevice</a>関数が呼び出されてロード済み状態のページとなり、
+以前呼び出して失敗した<a href="MI_ReadCache.html">MI_ReadCache</a>関数は次回の呼び出しから成功するようになります。<br />
+</p>
+<p>
+この関数はスレッドセーフです。
+別のスレッドが<a href="MI_ReadCache.html">MI_ReadCache</a>関数などを呼び出している間でも使用することが出来ます。
+</p>
+<p>
+ロード待ち状態のページが存在するかどうかを判定するには<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a>関数を使用します。<br />
+アプリケーションは、この関数を適切なタイミングで呼び出してロード待ち状態のページをロード済み状態にする必要があります。<br />
+ロード待ち状態のページが存在しないときにこの関数を呼び出した場合、何も行いません。
+</p>
+<p>
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+詳細は<a href="MICache.html">MICache</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitCache.html">MI_InitCache</a>
+<a href="MI_ReadCache.html">MI_ReadCache</a>
+<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
+<a href="MICache.html">MICache</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

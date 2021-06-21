@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Screen2D</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">2Dスクリーン関係のマクロや構造体</h1>
+<h2>説明</h2>
+<P>NitroSDK/include/nitro/gx/struct_2d.h には、2Dスクリーンのスクリーンデータやキャラクタデータを格納するための構造体・マクロ・typedefが定義されています。</P>
+<H2>typedefs</H2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left">GXScrFmtText</TD>
+      <TD width="573">u16のtypedefで、テキストBG画面のスクリーンデータです。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GXScrFmtAffine</TD>
+      <TD width="573">u8のtypedefで、アフィンBG画面のスクリーンデータです。</TD>
+    </TR>
+    <TR>
+      <TD width="249">GXScrFmt256Bmp</TD>
+      <TD width="573">u8のtypedefで、ビットマップBG画面のスクリーンデータです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロ</H2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left">GX_SCRFMT_TEXT(pltt, vf, hf, name)</TD>
+      <TD width="573">カラーパレット・HVフリップ・キャラクタネームからテキストBG画面のスクリーンデータを得ます</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>構造体</H2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left">GXCharFmt16</TD>
+      <TD width="573">16色モードの8x8ドットのキャラクタ</TD>
+    </TR>
+    <TR>
+      <TD width="249">GXCharFmt256</TD>
+      <TD width="573">256色モードの8x8ドットのキャラクタ</TD>
+    </TR>
+    <TR>
+      <TD width="249">GXBGPltt16/GXOBJPltt16</TD>
+      <TD width="573">16色パレット</TD>
+    </TR>
+    <TR>
+      <TD>GXBGPltt256/GXOBJPltt256</TD>
+      <TD>256色パレット</TD>
+    </TR>
+    <TR>
+      <TD>GXScrText32x32</TD>
+      <TD>256x256ドットのテキストBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrText64x32</TD>
+      <TD>512x256ドットのテキストBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrText32x64</TD>
+      <TD>256x512ドットのテキストBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrText64x64</TD>
+      <TD>512x512ドットのテキストBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrAffine16x16</TD>
+      <TD>128x128ドットのアフィンBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrAffine32x32</TD>
+      <TD>256x256ドットのアフィンBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrAffine64x64</TD>
+      <TD>512x512ドットのアフィンBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrAffine128x128</TD>
+      <TD>1024x1024ドットのアフィンBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScr256Bmp128x128</TD>
+      <TD>128x128ドットのビットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScr256Bmp256x256</TD>
+      <TD>256x256ドットのビットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScr256Bmp512x256</TD>
+      <TD>512x256ドットのビットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScr256Bmp512x512</TD>
+      <TD>512x512ドットのビットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrDCBmp128x128</TD>
+      <TD>128x128ドットのダイレクトカラービットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrDCBmp256x256</TD>
+      <TD>256x256ドットのダイレクトカラービットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrDCBmp512x256</TD>
+      <TD>512x256ドットのダイレクトカラービットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXScrDCBmp512x512</TD>
+      <TD>512x512ドットのダイレクトカラービットマップBG</TD>
+    </TR>
+    <TR>
+      <TD>GXCharBGText16</TD>
+      <TD>16色モードのキャラクタBG</TD>
+    </TR>
+    <TR>
+      <TD>GXCharBGText256</TD>
+      <TD>256色モードのキャラクタBG</TD>
+    </TR>
+    <TR>
+      <TD>GXCharBGAffine256</TD>
+      <TD>256色モードのアフィンBG</TD>
+    </TR>
+    <TR>
+      <TD>GXBGStdPlttData</TD>
+      <TD>標準BGパレットデータ</TD>
+    </TR>
+    <TR>
+      <TD>GXOBJStdPlttData</TD>
+      <TD>標準OBJパレットデータ</TD>
+    </TR>
+    <TR>
+      <TD>GXStdPlttData</TD>
+      <TD>標準パレットデータ</TD>
+    </TR>
+    <TR>
+      <TD>GXBGExtPlttData</TD>
+      <TD>拡張BGパレットデータ</TD>
+    </TR>
+    <TR>
+      <TD>GXOBJExtPlttData</TD>
+      <TD>拡張OBJパレットデータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/23</P>
+</body>
+</html>

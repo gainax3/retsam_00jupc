@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>STD_ConvertCharUnicodeToSjis</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">STD_ConvertCharUnicodeToSjis</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/std.h&gt;
+
+inline int STD_ConvertCharUnicodeToSjis(char *dst, u16 src);</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="20%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="80%">変換先の ShiftJIS 文字列バッファ<BR>
+      2 バイト以上の領域を確保したバッファを指定するようにして下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="20%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="80%">変換する Unicode 形式の1文字</TD>
+    </TR>
+    <TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>
+変換に成功した場合は、変換したバイト数(= 1 or 2)を返します。
+変換に失敗した場合は、-1 を返します。
+</p>
+
+<H2>説明</H2>
+<P>
+Unicode 形式の文字を ShiftJIS 形式の文字に変換します。<BR>
+内部で<CODE><A href="STD_ConvertStringUnicodeToSjis.html">STD_ConvertStringUnicodeToSjis</A></CODE>を呼び出して1文字だけの変換を行っています。<BR>
+変換後の ShiftJIS の文字が 2 バイト文字の場合、dst には 2 バイト以上の領域を確保したバッファを渡す必要があります。<BR>
+変換後の文字が 1 バイト文字、2 バイト文字のどちらになるか不明な場合は、必ず 2 バイト以上のバッファを渡すようにして下さい。
+
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="STD_ConvertStringUnicodeToSjis.html">STD_ConvertStringUnicodeToSjis</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2006/07/24 インタフェース変更。<br>
+2006/07/05 初版
+</P>
+</body>
+</html>

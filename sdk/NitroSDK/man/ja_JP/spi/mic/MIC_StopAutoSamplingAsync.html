@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MIC_StopAutoSamplingAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MIC_StopAutoSamplingAsync</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE><A href="MICResult.html">MICResult</A> MIC_StopAutoSamplingAsync(
+            <A href="MICCallback.html">MICCallback</A>		callback,
+            void*		arg );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">callback</font></strong></em></TD>
+      <TD width="700">コールバック関数へのポインタ<br>
+このコールバックは割り込みハンドラ内から呼び出されます。
+</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD>コールバック関数へ渡す引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>
+		<A href="MICResult.html">MICResult列挙型</A>の処理結果を返します。<BR>
+		非同期処理を正常に開始できた場合に MIC_RESULT_SUCCESS が、何らかの原因で失敗した場合にはそれ以外の返り値が返されます。
+</p>
+
+<H2>説明</H2>
+<P>マイクの自動サンプリングを非同期に停止します。<BR>
+この関数はARM7に自動サンプリング停止要求を発行し、ARM7からの応答を待たずに呼び出し元に戻ります。<BR>
+ARM7における処理結果はユーザコールバック関数に渡される<em><strong><font face="Courier New">result</font></strong></em>引数によって取得する必要があります。<BR>
+<BR>
+この関数が失敗した場合は非同期的な操作は行われず、ユーザコールバック関数も呼び出されません。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="MIC_StopAutoSampling.html">MIC_StopAutoSampling</A>, <A href="MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A>, <A href="MIC_AdjustAutoSamplingAsync.html">MIC_AdjustAutoSamplingAsync</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+	Ver. 2005/01/11 返り値の修正、参照関数の追加<BR>
+	Ver. 2004/06/01 初版<BR>
+</P>
+</body>
+</html>

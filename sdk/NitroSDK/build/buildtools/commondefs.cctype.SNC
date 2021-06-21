@@ -1,0 +1,235 @@
+#! make -f
+#----------------------------------------------------------------------------
+#  Project:  NitroSDK - buildtools - compiler dependant settings for ProDG
+#  File:     commondefs.cctype.SNC
+#
+#  Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: commondefs.cctype.SNC,v $
+# Revision 1.2  2005/06/21 09:56:03  yasu
+# NITRO_UTEST ‚Ì’Ç‰Á
+#
+# Revision 1.1  2005/06/15 10:15:10  yasu
+# ProDG ‘Î‰ž
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+EMPTY	 	?=
+SPACE 		?= $(EMPTY) $(EMPTY)
+
+
+#----------------------------------------------------------------------------
+SN_NDS_PATH	?= C:\Program Files\SN System\NDS
+SN_NDS_ROOT	 = $(patsubst %/,%,$(subst $(SPACE),\ ,$(subst \,/,$(SN_NDS_PATH))))
+SN_BINDIR	 = $(SN_NDS_ROOT)/bin
+
+
+#----------------------------------------------------------------------------
+SNCC		:= $(SN_BINDIR)/ndssnc.exe
+SNAS		:= $(SN_BINDIR)/ndsas.exe
+SNLD		:= $(SN_BINDIR)/ndsld.exe
+SNAR		:= $(SN_BINDIR)/snarl.exe
+
+CC		:= $(SNCC)
+AS		:= $(SNAS)
+LD		:= $(SNLD)
+AR		:= $(SNAR)
+
+
+#----------------------------------------------------------------------------
+# SDK small build
+#
+ifdef	SDK_SMALL_BUILD
+MACRO_FLAGS	+= -DSDK_SMALL_BUILD
+endif
+
+
+#----------------------------------------------------------------------------
+SN_INCDIRS	= $(SN_NDS_ROOT)/include
+SN_LIBDIRS	= $(SN_NDS_ROOT)/lib
+
+SN_LIBS_ARM	= libc.a libgcs.a libsn.a libm.a
+SN_LIBS_THUMB	= $(SN_LIBS_ARM)
+
+SN_LIBCXX_ARM	= libsncpp.a
+SN_LIBCXX_THUMB	= $(SN_LIBCXX_ARM)
+
+SN_LD_SCRIPT	= $(SN_NDS_ROOT)/lib/nds.ld
+
+
+#----------------------------------------------------------------------------
+#  switch by codegen target
+#    NITRO_PLATFORM  TEG/TS
+#    NITRO_MEMSIZE   4M/8M
+#    CODEGEN_PROC    ARM7/ARM9
+#    CODEGEN_CC      ARM/THUMB
+#    CODEGEN_AS      ARM/THUMB
+#
+MACRO_FLAGS	+= -DSDK_$(NITRO_PLATFORM)  \
+		   -DSDK_$(NITRO_MEMSIZE)   \
+		   -DSDK_$(CODEGEN_PROC)
+
+MACRO_FLAGS_CC	+= -DSDK_CODE_$(CODEGEN_CC)
+MACRO_FLAGS_AS	+= -DSDK_CODE_$(CODEGEN_AS)
+
+
+#-------------------------------------- CODEGEN_PROC ARM9/ARM7
+ifeq		($(CODEGEN_PROC),ARM9)
+CCFLAGS_PROC	:= -Xcpu=arm946e
+ASFLAGS_PROC	:= -arm
+else	#	($(CODEGEN_PROC),ARM7)
+CCFLAGS_PROC	:= -Xcpu=arm7tdmi
+ASFLAGS_PROC	:= -arm
+endif	#	($(CODEGEN_PROC))
+
+
+#-------------------------------------- NITRO_CODEGEN ARM/THUMB
+ifeq		($(NITRO_CODEGEN),ARM)
+SN_LIBS		?= $(SN_LIBS_ARM)
+else	#	($(NITRO_CODEGEN),THUMB)
+SN_LIBS		?= $(SN_LIBS_THUMB)
+endif
+
+
+#-------------------------------------- CODEGEN_CC  ARM/THUMB
+ifeq		($(CODEGEN_CC),THUMB)
+CCFLAGS_ISET	:= -Xthumb=1
+else
+CCFLAGS_ISET	:= -Xthumb=0
+endif
+
+
+#-------------------------------------- CODEGEN_AS  ARM/THUMB
+ifeq		($(CODEGEN_AS),THUMB)
+ASFLAGS_ISET	:=
+else
+ASFLAGS_ISET	:=
+endif
+
+CCFLAGS_ARCH	?= $(CCFLAGS_PROC) $(CCFLAGS_ISET) -Xinterwork=yes
+ASFLAGS_ARCH	?= $(ASFLAGS_PROC) $(ASFLAGS_ISET)
+LDFLAGS_ARCH	?=
+ARFLAGS_ARCH	?=
+
+
+#----------------------------------------------------------------------------
+#  switch by C Compiler CW/SNC
+#
+
+MACRO_FLAGS	+= -DSDK_$(NITRO_CCTYPE) -D__SNC__
+
+
+#----------------------------------------------------------------------------
+#  switch by DEBUG/RELEASE/FINALROM
+#
+
+MACRO_FLAGS	+= -DSDK_$(NITRO_BUILD_TYPE)
+
+ifeq		($(NITRO_BUILD_TYPE),DEBUG)
+CCFLAGS_OPT_O_	= -O0
+CCFLAGS_OPT_G_	= -g
+else
+ifeq		($(NITRO_BUILD_TYPE),FINALROM)
+CCFLAGS_OPT_O_	= -O3
+CCFLAGS_OPT_G_	=
+else 	#	($(NITRO_BUILD_TYPE),RELEASE)	# (default)
+CCFLAGS_OPT_O_	= -O3
+CCFLAGS_OPT_G_	=
+endif
+endif
+
+CCFLAGS_OPT	?= $(CCFLAGS_OPT_G_) $(CCFLAGS_OPT_O_)
+ASFLAGS_OPT	?=
+LDFLAGS_OPT	?=
+ARFLAGS_OPT	?=
+
+
+#----------------------------------------------------------------------------
+#  switch for anti-thread policy
+#
+ifdef		NITRO_NO_THREAD
+MACRO_FLAGS	+= -DSDK_NO_THREAD
+endif
+
+
+#----------------------------------------------------------------------------
+#  switch for AUTOTEST/UNITTEST
+#
+ifdef		NITRO_AUTOTEST
+MACRO_FLAGS	+= -DSDK_AUTOTEST
+endif
+ifdef		NITRO_UTEST
+MACRO_FLAGS	+= -DSDK_UTEST
+endif
+
+
+#----------------------------------------------------------------------------
+#  switch for TS board
+#
+#       Default value of NITRO_TS_VERSION is defined in <nitro/spec.h>
+#
+#	NITRO_TS_VERSION = [0/100/200]
+#
+#      0 : Prototype breadboard ~ ISD-BOX Ver.C
+#    100 : ISD-BOX Ver.D
+#    200 : ISD-BOX Ver.E
+#
+ifdef		NITRO_TS_VERSION
+MACRO_FLAGS	+= -DSDK_TS_VERSION=$(NITRO_TS_VERSION)
+endif
+
+
+#----------------------------------------------------------------------------
+#  my macro flags
+#
+MACRO_FLAGS	+= $(LMACRO_FLAGS)
+
+
+#----------------------------------------------------------------------------
+CCFLAGS_WARNING		?=
+LDFLAGS_WARNING		?=
+ARFLAGS_WARNING		?=
+
+ifeq	($(NITROSDK_LANG),en)
+CCFLAGS_ENCODING	?=
+else
+CCFLAGS_ENCODING	?= --multibyte-char
+endif
+CCFLAGS_CHARTYPE	?=
+
+CCFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(CCFLAGS_WARNING) $(CCFLAGS_ENCODING) $(CCFLAGS_CHARTYPE)
+ASFLAGS_MISC	= $(CCFLAGS_MSGSTYLE)
+LDFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(LDFLAGS_WARNING)
+ARFLAGS_MISC	= $(CCFLAGS_MSGSTYLE) $(ARFLAGS_WARNING)
+
+
+#----------------------------------------------------------------------------
+CCFLAGS_SYS	?= -stdinc -nostdlib
+ASFLAGS_SYS	?= -stdinc -DSDK_ASM
+LDFLAGS_SYS	?= -e _start
+ARFLAGS_SYS	?= -rcuT
+
+CCFLAGS		= $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \
+		  $(CCFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
+
+CXXFLAGS	= $(CCFLAGS_ARCH) $(CCFLAGS_OPT) $(CCFLAGS_MISC) \
+		  $(CCFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_CC)
+
+ASFLAGS		= $(ASFLAGS_ARCH) $(ASFLAGS_OPT) $(ASFLAGS_MISC) \
+		  $(ASFLAGS_SYS)  $(MACRO_FLAGS) $(MACRO_FLAGS_AS)
+
+LDFLAGS		= $(LDFLAGS_ARCH) $(LDFLAGS_OPT) $(LDFLAGS_MISC) \
+		  $(LDFLAGS_SYS)
+
+ARFLAGS		= $(ARFLAGS_ARCH) $(ARFLAGS_OPT) $(ARFLAGS_MISC) \
+		  $(ARFLAGS_SYS)
+
+
+#----- End of commondefs.cctype.SNC -----

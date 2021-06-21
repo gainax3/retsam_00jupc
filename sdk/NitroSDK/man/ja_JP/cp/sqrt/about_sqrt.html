@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>平方根演算器 (overview)</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">平方根演算器 (overview)</h1>
+<P>DS には除算および平方根演算のアクセラレータが備わっています。ここでは平方根演算器について説明します。</P>
+<HR>
+<P><B>平方根演算のためのレジスタ</B></P>
+
+<P>データレジスタとして、演算パラメータ、演算結果のために以下のレジスタが用意されています。</P>
+<BLOCKQUOTE><IMG src="image_reg_SQRT_PARAM.gif" border="0"></BLOCKQUOTE>
+<BLOCKQUOTE><IMG src="image_reg_SQRT_RESULT.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+平方根演算器を制御するための以下のコントロールレジスタが用意されています。</P>
+<BLOCKQUOTE><IMG src="image_reg_SQRTCNT.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>平方根演算器の動作</B></P>
+<P>平方根演算器は、データレジスタ SQRT_PARAM に平方根演算のパラメータをセットし、コントロールレジスタ
+SQRTCNT を適切に設定すると計算結果が SQRT_RESULT に格納される、という動作で計算を行ないます。(実際は、SQRT_PARAM、SQRTCNT
+の何れかに値を書くとすぐに演算が始まり、演算の途中であってもレジスタへの書き込みがあれば最初から演算をやり直します)</P>
+<P>平方根演算には2つの演算モードがあります。<UL>
+<LI>入力パラメータが 32ビットのモード
+<LI>入力パラメータが 64ビットのモード
+</UL>
+<P>これらは SQRTCNT の MODEビットへセットする値で変更することが出来ます。</P>
+
+<P>平方根演算器が除算を開始すると、SQRTCNT の BUSY ビットが 1 となります。計算結果を弾き出すまでそのまま
+1で、これが 0 となったときに SQRT_RESULT の値は演算結果として正当なものとなります。</P>
+
+<HR>
+<P><B>計算サイクル</B></P>
+<P>平方根演算器が演算のために必要なサイクル数はモードによらず一定です。</P>
+
+
+<UL>
+  <LI>入力パラメータが 32ビットのモード … 26 CPUサイクル（システムクロックで13サイクル）
+<LI>入力パラメータが 64ビットのモード … 26 CPUサイクル（システムクロックで13サイクル）
+</UL>
+<P>平方根演算器のレジスタにパラメータをセットしてから、結果が出るまでの時間、別の作業を行なうことで効率的に平方根演算器を用いることが出来ます。</P>
+<HR>
+<P><B>パラメータの設定</B></P>
+<P>平方根演算のパラメータをセットする関数は <A href="CP_SetSqrtImm.html"><CODE>CP_SetSqrtImm*()</CODE></A> 、<CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> です。後者は SQRTCNT レジスタの演算モード設定を行ないます。</P>
+
+<P>例えば、同じ演算モードで連続して平方根演算を行なう場合、最初の1回は <CODE><A href="CP_SetSqrt.html">CP_SetSqrt*()</A></CODE> を使い、それ以降は <CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*()</A></CODE> を使う、という用途が考えられます。</P>
+<HR>
+<P><B>演算終了待ち</B></P>
+<P>演算が終了したかを調べるには <CODE><A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy()</A></CODE> を呼んでください。</P>
+<P>演算が終了するまで待つには <CODE><A href="CP_WaitSqrt.html">CP_WaitSqrt()</A></CODE> を呼んでください。</P>
+<HR>
+<P><B>演算結果の取得</B></P>
+<P>平方根演算の結果を取得するには <CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResult*()</A></CODE> 、<CODE><A href="CP_GetSqrtResult.html">CP_GetSqrtResultImm*()</A></CODE> を呼んで下さい。前者は SQRTCNT が BUSY 状態でなくなるのを待ってから結果を取得します。後者はすぐに取得します。</P>
+
+
+<HR>
+<P><B>注意</B></P>
+<P>スレッドシステムを使用している場合、デフォルトでは平方根演算はスレッドセーフとなっています。</P>
+<HR>
+<P><B>例</B></P>
+<P>以下は平方根演算器を用いて平方根演算を行なって結果を表示する例です。</P>
+<BLOCKQUOTE>
+<P><CODE>u32 result;<BR>
+<BR>
+//---- set parameter and sqrt-mode<BR>
+CP_SetSqrt( 0x12345678, CP_SQRT_32BIT_MODE );<BR>
+<BR>
+//---- wait fot finishing sqrt operation<BR>
+CP_WaitSqrt();<BR>
+<BR>
+//---- display result<BR>
+result = CP_GetSqrtResultImm32();<BR>
+OS_Printf( &quot;result=%x\n&quot;, result );<BR>
+</CODE></P>
+</BLOCKQUOTE>
+
+
+<HR>
+
+<P><A name="use_in_intr"><B>割り込み内で使用する際の注意</B></A></P>
+<P>
+割り込み内で除算器/平方根演算器を使用する場合には、<B><FONT color="#ff3300">割り込み元の演算結果を破壊してしまう可能性があります。</FONT></B><BR>
+割り込み内で除算器/平方根演算器が使用される場合には<A href="../CP_SaveContext.html">CP_SaveContext</A>,<A href="../CP_RestoreContext.html">CP_RestoreContext</A>
+を使用して除算器/平方根演算器の状態を退避・復元するようにしてください。<BR>
+<B><FONT color="#ff3300">スレッド切り替え時には、除算器の内容もスレッドコンテキストから自動的に復元されます。</FONT></B>
+
+<BLOCKQUOTE style="background-color : #eeeeee;">
+<P><CODE>void intr_func( void ) <BR>
+{<BR>
+　CPContext context;<BR>
+　<BR>
+　CP_SaveContext( &amp;context );<BR>
+　CP_SetDiv32_32( 1000, 5 );<BR>
+　CP_WaitDiv();<BR>
+　result = CP_GetDivResult();<BR>
+　CP_RestoreContext( &amp;context );<BR>
+}</CODE></P>
+</BLOCKQUOTE>
+
+
+<H2>履歴</H2>
+<P>2006/08/07 計算サイクルの表記をCPUサイクル換算に変更、割り込み内での使用に関する注意を追加<BR>
+2004/12/27 初版</P>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</body>
+</html>

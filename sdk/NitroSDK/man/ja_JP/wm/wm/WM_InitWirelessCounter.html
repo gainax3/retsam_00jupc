@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_InitWirelessCounter</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_InitWirelessCounter</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_InitWirelessCounter( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+送受信フレームなどのカウンタを初期化します。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、カウンタ初期化処理が完了した後にコールバックが発生します。
+</P>
+
+<H2>参照</H2>
+<p><CODE>
+<A href="WM_GetWirelessCounter.html">WM_GetWirelessCounter</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGlbPolygonAttr</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGlbPolygonAttr</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE>#include &lt;nnsys/g3d/glbstate.h&gt;</PRE>
+  <PRE><CODE>void
+NNS_G3dGlbPolygonAttr(
+    int light,
+    GXPolygonMode polyMode,
+    GXCull cullMode,
+    int polygonID,
+    int alpha,
+    int misc
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>light</STRONG></EM></TD>
+      <TD width="87%">どのライトを点灯するかを指定する4ビットのマスク</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>polyMode</STRONG></EM></TD>
+      <TD width="87%">ポリゴンモード</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cullMode</STRONG></EM></TD>
+      <TD width="87%">どの面をカリングするかを指定</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>polygonID</STRONG></EM></TD>
+      <TD width="87%">ポリゴンＩＤ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>alpha</STRONG></EM></TD>
+      <TD width="87%">α値を指定</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>misc</STRONG></EM></TD>
+      <TD width="87%">その他のポリゴン属性を指定するためのビットフィールド</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+G3Dライブラリ内部で保持しているグローバル状態に、ポリゴン関連属性値を設定します。
+
+<P><I><B>light</B></I>は4ビットのフラグで、下位4ビットで下位から順に、ライト0, ライト1, ライト2,ライト3のON/OFFを指定します。<BR>
+<B><I>polyMode</I></B>はポリゴンモードを指定する引数で、<CODE>GXPolygonMode</CODE>型の値を指定します。<BR>
+<B><I>cullMode</I></B>はポリゴンのカリング方式を指定する引数で、<CODE>GXCull</CODE>型の値を指定します。<BR>
+<B><I>polygonID</I></B>はポリゴンＩＤを指定する引数で、0以上63以下を指定できます。
+<B><I>alpha</I></B>はポリゴンのα値を指定する引数で、0以上31以下を指定できます。
+<B><I>misc</I></B>はその他の属性フラグをまとめたビットフィールドで、<CODE>GXPolygonAttrMisc</CODE>型の値の論理和を渡します。<BR>
+<BR>
+属性のうちのいくつかは、<CODE>NNS_G3dMdlUseGlbLightEnableFlag</CODE>関数, <CODE>NNS_G3dMdlUseGlbPolygonMode</CODE>関数,
+<CODE>NNS_G3dMdlUseGlbCullMode</CODE>関数, <CODE>NNS_G3dMdlUseGlbPolygonID</CODE>関数, <CODE>NNS_G3dMdlUseGlbAlpha</CODE>関数を実行することによってモデルに反映させることができます。それ以外の属性はこのAPIでの設定がモデルに反映されています。</P>
+<H2>参照</H2>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

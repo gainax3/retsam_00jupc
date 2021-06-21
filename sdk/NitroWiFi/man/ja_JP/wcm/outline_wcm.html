@@ -1,0 +1,108 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - man
+  File:     outline_wcm.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: outline_wcm.html,v $
+  Revision 1.2  2005/09/02 01:19:24  terui
+  キープアライブ機能のため、OSアラームを使用することに関して注意書きを追記
+
+  Revision 1.1  2005/07/22 13:01:11  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>[WCM] ワイヤレス接続管理ライブラリ 概要</TITLE>
+		<LINK rel="stylesheet" href="../css/apilist.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>[WCM] ワイヤレス接続管理ライブラリ 概要</H1>
+		<P>
+			WCM ライブラリは、インフラストラクチャモードでワイヤレス通信を行う際に周辺の無線アクセスポイントを探索する、
+			無線アクセスポイントと接続・切断する、という機能に特化した WM ライブラリのラッパーライブラリです。<BR>
+			<FONT color="red">WM ライブラリの状態管理を行いますので、WCM ライブラリを使用中は WM ライブラリ や MB ライブラリを直接使用しないで下さい。</FONT><BR>
+			<BR>
+			無線アクセスポイントに接続されている状態では、データを送受信する際に CPS ( TCP/IP プロトコルスタック ) ライブラリと無線ドライバとの
+			橋渡しを行うスタックとして機能します。WCM ライブラリを使用して直接データを送受信するインターフェースは CPS ライブラリのみが使用する
+			ことを想定しておりますので、API として公開しておりません。ご了承下さい。<BR>
+			<BR>
+			また、WCM ライブラリは、無線アクセスポイントと接続されている間に何も通信を行わないと無線アクセスポイントから接続を切断されるという現象を
+			回避するために、約 1 分間無通信状態が続くと自動的にキープアライブ用の NULL パケットを送信します。
+			このキープアライブ機能の為に OS ライブラリのアラーム機能を使用していますのでご注意下さい。
+		</P>
+
+		<H3>状態遷移</H3>
+		<P>
+			WCM ライブラリの状態遷移は以下の図のようになっています。各々の状態は <A href="wcm/WCM_CONSTANT_NUMBER.html#phase"><CODE>WCM_PHASE_*</CODE> 定数</A>として定義されています。
+			各状態の詳細については <A href="wcm/WCM_CONSTANT_NUMBER.html#phase">WCM ライブラリ定数</A>を参照して下さい。<BR>
+			<UL>
+				<LI>WCM ライブラリを初期化する前の状態が <CODE>WCM_PHASE_NULL</CODE> です。<BR>
+				<LI><CODE>WCM_PHASE_IDLE</CODE> はワイヤレス通信するための準備が整っている状態です。通信はしていません。<BR>
+				<LI><CODE>WCM_PHASE_SEARCH</CODE> は周辺の無線アクセスポイントを自動的に探索している状態です。自動探索については<A href="#auto" target="_self">下記</A>を参照して下さい。<BR>
+				<LI><CODE>WCM_PHASE_DCF</CODE> は無線アクセスポイントに接続された状態です。この状態の時にのみ実際にインフラストラクチャモードで通信を行うことができます。<BR>
+				<LI><CODE>WCM_PHASE_IRREGULAR</CODE> はエラーが発生したものの復旧可能な状態です。但し <A href="wcm/WCM_TerminateAsync.html"><CODE>WCM_TerminateAsync</CODE> 関数</A>による強制停止処理を行うことしかできません。<BR>
+				<LI><CODE>WCM_PHASE_FATAL_ERROR</CODE> は致命的なエラーの発生により、内部状態が管理できなくなった状態です。復旧は不可能ですので、エンドユーザーに電源断を促す画面表示をする等して下さい。
+			</UL>
+		</P>
+		<P>
+			<IMG src="wcm_diagram.jpg" width="952" height="728" border="0" usemap="#diagram">
+			<MAP name="diagram">
+				<AREA href="wcm/WCM_Init.html" shape="rect" coords="238,88,310,108">
+				<AREA href="wcm/WCM_Finish.html" shape="rect" coords="408,88,498,108">
+				<AREA href="wcm/WCM_StartupAsync.html" shape="rect" coords="176,200,312,220">
+				<AREA href="wcm/WCM_CleanupAsync.html" shape="rect" coords="408,280,544,300">
+				<AREA href="wcm/WCM_BeginSearchAsync.html" shape="rect" coords="0,372,166,392">
+				<AREA href="wcm/WCM_EndSearchAsync.html" shape="rect" coords="172,474,326,494">
+				<AREA href="wcm/WCM_ConnectAsync.html" shape="rect" coords="562,369,700,389">
+				<AREA href="wcm/WCM_DisconnectAsync.html" shape="rect" coords="402,474,562,494">
+				<AREA href="wcm/WCM_TerminateAsync.html" shape="rect" coords="802,416,950,436">
+			</MAP>
+		</P>
+
+		<H3>非同期状態遷移の流れ</H3>
+		<P>
+			WCM ライブラリの内部状態を遷移させる API は初期化・終了関数を除くと全て非同期処理を行います。
+			WCM ライブラリの非同期 API は、返り値には非同期処理を開始することができたかどうかを示す処理結果を返します。
+			<CODE>WCM_RESULT_ACCEPT</CODE> が返された場合には非同期処理が正常に開始されており、処理結果を通知するコールバックが必ず一回発生します。
+			内部では WM ライブラリの非同期 API を一回から数回連鎖的に呼び出し、最終的な処理結果のみがコールバックで通知されます。
+			例えば二回 WM ライブラリの非同期 API を連鎖的に呼び出す場合は、以下のような処理の流れになります。
+		</P>
+		<P>
+			<IMG src="wcm_flow.jpg" width="1016" height="924" border="0">
+		</P>
+
+		<A name="auto"><H3>無線アクセスポイント自動探索</H3></A>
+		<P>
+			WCM ライブラリでは、<A href="wcm/WCM_BeginSearchAsync.html"><CODE>WCM_BeginSearchAsync</CODE> 関数</A>により無線アクセスポイントの自動探索を開始すると、
+			非同期処理完了通知後も WCM ライブラリ内部で設定に基づいたスキャン処理が自動的に連続して非同期に行われ続けます。
+			内部状態が <CODE>WCM_PHASE_SEARCH</CODE> の時には、API 呼び出しによって開始された非同期処理は行われていない状態ですが、
+			スキャン処理を内部で連鎖的に行い続けるという非同期処理は行われていますので、不定期に無線アクセスポイント発見通知が発生します。<BR>
+			自動探索におけるスキャン処理は、オプション指定されているチャンネルのリストを小さい番号から一つずつ順番にスキャンしていく方式です。
+			一番大きい番号のチャンネルまでスキャンし終わると一番小さいチャンネルに戻ってスキャンを続けます。<BR>
+			<A href="wcm/WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>に指定する <A href="wcm/WCMConfig.html"><CODE>WCMConfig</CODE> 構造体</A>に、ある程度の探索結果情報退避用バッファを与えておくと、発見通知がコールバックされると同時に
+			このバッファに ( サイズが許す限り ) 無線アクセスポイントの情報がリストアップされていきます。
+			また、リストアップされた情報に適切にアクセスする為の <A href="list_wcm.html#aplist">API 群</A>が用意されています。
+			探索結果情報退避用のバッファを与えない場合には、無線アクセスポイント発見通知コールバック内で何らかのバッファに情報を退避して頂く必要があります。
+		</P>
+
+		<H3>履歴</H3>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+		<TABLE border="0" height="100%"><TR><TD style="background-color : white;"></TD></TR></TABLE>
+	</BODY>
+</HTML>

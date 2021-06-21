@@ -1,0 +1,64 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NITRO-System - buildtools
+# File:     nnslibdefs
+#
+# Copyright 2004-2007 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Revision: 1.8 $
+#----------------------------------------------------------------------------
+
+
+ifdef NITROSYSTEM_ROOT
+
+NITROSYSTEM_ROOT_ 		:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_ROOT)))
+NNS_NITROSDK_ROOT 		:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSDK_ROOT)))
+
+NITROSYSTEM_LIB_ROOT	?= $(NITROSYSTEM_ROOT)/lib
+NITROSYSTEM_LIB_ROOT	:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_LIB_ROOT)))
+
+
+-include $(NITROSYSTEM_ROOT_)/build/buildtools/_nnslibdefs_private
+
+
+#----------------------------------------------------------------------------
+#
+# NITRO-System Library settings
+#
+# NITRO-Systemのcommondefsが使用されている場合は、NITRO-Systemライブラリを使
+# 用するための設定をします。
+#
+
+ifdef NITROSYSTEM_COMMONDEFS_
+
+NITROSYSTEM_INCDIR := $(NITROSYSTEM_ROOT_)/include
+NITROSYSTEM_LIBDIR := $(NITROSYSTEM_LIB_ROOT)/$(NITRO_LIBTYPE)
+
+ifeq ($(CODEGEN_PROC),ARM9)
+NITROSYSTEM_LIBS := \
+		libnnsfnd$(NITRO_LIBSUFFIX).a \
+		libnnsgfd$(NITRO_LIBSUFFIX).a \
+		libnnsg2d$(NITRO_LIBSUFFIX).a \
+		libnnsg3d$(NITRO_LIBSUFFIX).a \
+		libnnssnd$(NITRO_LIBSUFFIX).a \
+		libnnsmcs$(NITRO_LIBSUFFIX).a \
+
+else # ($(CODEGEN_PROC),ARM7)
+NITROSYSTEM_LIBS := 
+
+endif
+
+# NITROSYSTEM_COMMONDEFS_
+endif
+
+# NITROSYSTEM_ROOT
+endif
+
+
+#----- End of nnslibdefs -----

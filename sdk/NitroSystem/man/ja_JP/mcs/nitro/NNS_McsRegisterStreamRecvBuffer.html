@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsRegisterStreamRecvBuffer</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsRegisterStreamRecvBuffer</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>void NNS_McsRegisterStreamRecvBuffer(
+         u16     channel,
+         void*   buf,
+         u32     bufSize);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">channel</font></strong></em></td>
+  <td width="87%">ストリームを識別するための値。0～0x3FFFの値を指定できます。0x4000～0x7FFFはNITRO-Systemアプリケーション用、0x8000～0xFFFFはmcsシステム用に予約しています。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">buf</font></strong></em></td>
+  <td width="87%">登録する受信用バッファ。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">bufSize</font></strong></em></td>
+  <td width="87%">登録する受信用バッファのサイズ。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<p>データ受信用のバッファを登録します。
+内部で、関数NNS_McsRegisterRecvCallback()を呼び出すため、
+データ受信のコールバックと同時に使用できません。
+指定したバッファに内部で使用するための情報エリアを確保します。
+そのため、バッファのサイズは少なくとも48以上である必要があります。</p>
+<p>受信用バッファが受信データで一杯になり、新規に受信したデータを格納するだけの空き容量が無い場合は、
+その受信データは捨てられます。
+従って、通信で使用するデータ量に合わせてバッファサイズを十分な大きさに設定する必要があります。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_McsRegisterRecvCallback.html">NNS_McsRegisterRecvCallback</A>, 
+<A href="NNS_McsUnregisterRecvResource.html">NNS_McsUnregisterRecvResource</A></CODE></p>
+<H2>履歴</H2>
+<P>2004/10/08 引数channelの解説を追加。また、参照にNNS_McsUnregisterRecvResourceを追加。<br>
+ 2004/08/26 引数channelの型の変更。<br>
+ 2004/06/01 初版</P>
+</body>
+</html>

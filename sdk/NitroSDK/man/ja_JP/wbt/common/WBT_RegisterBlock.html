@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_RegisterBlock</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_RegisterBlock</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_RegisterBlock(WBTBlockInfoList *block_info_list, u32 block_id,
+	const void *user_id, const void *data_ptr, int data_size, u16 permission_bmp);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>block_info_list</STRONG></EM></TD>
+      <TD width="87%">登録に使用する<A href="../wbt_block_info_list_type.html">WBTBlockInfoList</A>構造体のポインタ<br>
+	  この構造体は<A href="WBT_UnregisterBlock.html">WBT_UnregisterBlock</A>関数で解放されるまでWBTライブラリで使用されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>block_id</STRONG></EM></TD>
+      <TD width="87%">登録するブロックに割り当てる一意のユーザ定義値<br>
+	  この値は<A href="../wbt_block_id_min_const.html">WBT_BLOCK_ID_MIN</A>より大きな値のみ使用可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>user_id</STRONG></EM></TD>
+      <TD width="87%">ブロックに付与する<A href="../wbt_user_id_len_const.html">WBT_USER_ID_LEN</A>バイト分のユーザ定義情報</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data_ptr</STRONG></EM></TD>
+      <TD width="87%">ブロックデータの格納されたバッファ<br>
+	  この値がNULLでない場合、<A href="WBT_UnregisterBlock.html">WBT_UnregisterBlock</A>関数で解放されるまで<br>
+	  バッファはWBTライブラリに参照されるので変更や破棄はできません。<br>
+	  この値がNULLの場合、必要に応じて<A href="../wbt_command_type_const.html">WBT_CMD_SYSTEM_CALLBACK</A>コールバックに<A href="../wbt_command_type_const.html">WBT_CMD_PREPARE_SEND_DATA</a>イベントとして<br>
+	  部分的なバッファ準備要求が通知されます。<br>
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>data_size</STRONG></EM></TD>
+      <TD width="87%">ブロックデータのサイズ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>permission_bmp</STRONG></EM></TD>
+      <TD width="87%">今後の拡張のために予約されています。<br>
+	  常に0を指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>指定されたブロックIDが現在登録済みでなく、かつ登録済みブロックの総数が<br>
+<A href="../wbt_num_max_block_info_id_const.html">WBT_NUM_MAX_BLOCK_INFO_ID</A> 未満であれば登録して TRUE を返します。<br>
+そうでないなら何もせず FALSE を返します。</p>
+
+<H2>説明</H2>
+<p>指定された情報を元にデータブロックをWBT内部のブロックリストへ登録します。<br>
+登録したブロックは、通信相手から<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数で受信可能になります。<br>
+<br>
+</p>
+<H2>参照</H2>
+<A href="WBT_UnregisterBlock.html">WBT_UnregisterBlock</A>
+<A href="../command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
+<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>
+<br>
+<A href="../wbt_block_info_list_type.html">WBTBlockInfoList</A><br>
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

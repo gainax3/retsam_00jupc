@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_GetCurrentCommandTag</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_GetCurrentCommandTag</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">u32 SND_GetCurrentCommandTag( <code>void )</code>;</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>引数</h2>
+      
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1LWT"></a>
+      <h2>返り値</h2>
+
+      <p>コマンドタグを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>説明</h2>
+      <p>
+現在のコマンドタグを取得します。
+</p>
+      <p>
+コマンドタグを取得すると、
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数で
+それ以前のコマンド処理が完了したかどうかを確認することができたり、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数で
+直前のコマンド処理が完了するまで待ち続けたりすることができるようになります。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

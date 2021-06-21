@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dBGLoadElementsEx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dBGLoadElements*</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g2d/g2d_Screen.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G2dBGLoadElements(
+    NNSG2dBGSelect bg,
+    const NNSG2dScreenData* pScnData,
+    const NNSG2dCharacterData* pChrData,
+    const NNSG2dPaletteData* pPltData,
+);</CODE></PRE>
+  <PRE><CODE>void NNS_G2dBGLoadElementsEx(
+    NNSG2dBGSelect bg,
+    const NNSG2dScreenData* pScnData,
+    const NNSG2dCharacterData* pChrData,
+    const NNSG2dPaletteData* pPltData,
+    const NNSG2dCharacterPosInfo* pPosInfo,
+    const NNSG2dPaletteCompressInfo* pCmpInfo
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>bg</STRONG></EM></TD>
+      <TD width="87%"> [IN] ロードするデータを使用する BG 面 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pScnData</STRONG></EM></TD>
+      <TD width="87%"> [IN] スクリーンデータへのポインタ。<EM><STRONG>pPltData</STRONG></EM> が NULL の場合に限って NULL 指定も可能です。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pChrData</STRONG></EM></TD>
+      <TD width="87%"> [IN] キャラクタデータへのポインタ。NULL 指定も可能です。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pPltData</STRONG></EM></TD>
+      <TD width="87%"> [IN] パレットデータへのポインタ。NULL 指定も可能です。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pPosInfo</STRONG></EM></TD>
+      <TD width="87%"> [IN] <EM><STRONG>pChrData</STRONG></EM> のキャラクタ抽出領域情報。<EM><STRONG>pChrData</STRONG></EM> が部分キャラクタでない場合は NULL を指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCmpInfo</STRONG></EM></TD>
+      <TD width="87%"> [IN] <EM><STRONG>pPltData</STRONG></EM> のパレット圧縮情報。 <EM><STRONG>pPltData</STRONG></EM> が圧縮パレットでない場合は NULL を指定します。 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+なし。
+</P>
+
+<H2>説明</H2>
+<P>
+キャラクタ BG で用いるグラフィックスデータを適切なVRAMにロードします。
+BG の設定状況からロード先を判断しますので、
+BGモード と 対象 BG の BGControl が適切に設定されている必要があります。<br>
+この関数は BG 関連設定の変更を行いません。また、BMP BG には対応していません。<br>
+</P>
+<P>
+BG0 または BG1 の拡張パレットのロード先スロットは拡張パレットへの VRAM の割り当て状況から自動的に判断します。
+テキスト BG の 256x1 パレットは拡張パレットが有効ならば拡張パレットへ
+そうでなければ標準パレットへロードします。
+</P>
+<P>
+各パラメータに<CODE>NULL</CODE>が指定された場合は、
+それぞれのグラフィックスデータの読み込みが行われません。
+これは、グラフィックスデータを複数のBGで共有する場合の利用を想定しています。<br>
+</P>
+
+<P>
+この関数の実行結果は以下の設定の影響を受けます。
+そのため、これらの設定は関数を呼び出す前に適切に設定しておかなければなりません。<br>
+</P>
+<ul>
+	<li>VRAM 割り当て
+	<li>ベースオフセット
+	<li>BG Control 
+	<li>表示モード
+	<li>BG モード
+</ul>
+
+<P>
+<CODE>NNSG2dBGSelect</CODE> 型については 
+<CODE><a href="NNS_G2dBGSetupXXX.html">NNS_G2dBGSetup()</a></CODE> を参照してください。
+</P>
+
+<H2>参照</H2>
+<P>
+<CODE><a href="NNS_G2dBGSetupXXX.html">NNS_G2dBGSetup</a></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2004/09/02 初版
+</P>
+</BODY>
+
+</HTML>

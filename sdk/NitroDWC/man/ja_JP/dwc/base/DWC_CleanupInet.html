@@ -1,0 +1,61 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_CleanupInet</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_CleanupInet</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_CleanupInet( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  自動接続処理を終了します。
+		  インターネットから切断されるまで、全てのスレッド処理をブロックします。
+		</P>
+		<P>
+		  非同期で終了処理を行う<A href="DWC_CleanupInetAsync.html">DWC_CleanupInetAsync</A>関数も用意されています。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_InitInet.html">DWC_CheckInet</A>,
+				<A href="DWC_SetAuthServer.html">DWC_SetAuthServer</A>,
+				<A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>,
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_ProcessInet.html">DWC_ProcessInet</A>,
+				<A href="DWC_GetInetStatus.html">DWC_GetInetStatus</A>
+				<A href="DWC_CleanupInetAsync.html">DWC_CleanupInetAsync</A>,
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2005/12/16 DWC_CleanupInetAsync関数があることを追加<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

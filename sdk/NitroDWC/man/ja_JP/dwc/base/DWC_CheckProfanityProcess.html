@@ -1,0 +1,73 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_CheckProfanityProcess</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_CheckProfanityProcess</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCProfState DWC_CheckProfanityProcess( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		不正文字列チェック処理を進行させます。<A href="DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync</A>関数を呼び出した後、本関数を毎ゲームフレーム程度の頻度で呼び出してください。
+		</P>
+		<P>
+		返り値にDWC_PROF_STATE_SUCCESSが得られた場合、
+		<A href="DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync</A>関数で指定したresultからチェック結果を取得できます。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+		なし
+		</P>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_PROF_STATE_NOT_INITIALIZED</CODE></STRONG></EM></TD>
+				<TD><A href="DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync</A>関数が呼び出されていない</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_PROF_STATE_OPERATING</CODE></STRONG></EM></TD>
+				<TD>不正文字列チェックが処理中</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_PROF_STATE_SUCCESS</CODE></STRONG></EM></TD>
+				<TD>不正文字列チェックが成功終了した</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_PROF_STATE_FAIL</CODE></STRONG></EM></TD>
+				<TD>不正文字列チェックが失敗終了した<BR>
+				<A HREF="DWC_GetLastError.html">DWC_GetLastErrorEx</A>関数の結果に従ってエラーコードの表示とエラーに対する対処を行ってください</TD>
+			  </TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_CheckProfanityAsync.html">DWC_CheckProfanityAsync</A>,
+				<A HREF="DWC_GetLastError.html">DWC_GetLastErrorEx</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2007/04/20 誤記修正<BR>
+		  2007/03/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

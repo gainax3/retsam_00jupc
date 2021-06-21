@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>排他制御(SpinLock) (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">排他制御(SpinLock) (overview)</H1>
+<H2>説明</H2>
+<P>SpinLock (スピンロック) は、ARMプロセッサの swp 命令を使い、スレッド間やプロセッサ間の排他制御を行なうための機構です。</P>
+<P>スレッド間の排他制御を行なうものとしては、Mutex や Message もありますが、スピンロックはそれらと異なり、ロック時のスレッド切り替えは発生しません。その場でループしてロックの解除を待ちます。</P>
+<P>NitroSDK内部では、スピンロックを以下の用途で使用しています。<BR>
+・プロセッサ間での、カートリッジへのアクセス排他制御<BR>
+・プロセッサ間での、カードへのアクセス排他制御<BR>
+・プロセッサ間での、VRAM C と VRAM D へのアクセス排他制御<BR>
+・プロセッサ間での、初期化時( <CODE>OS_InitLock()</CODE> ) の同期取り</P>
+<P>このページでは、これら NitroSDK で扱われているスピンロックを用いた同期処理の関数について説明します。</P>
+<HR>
+<P><B>SDK で使用する spin lock の初期化</B></P>
+<P>SDK で使用しているスピンロックに関しての初期化を行なう関数は <CODE>OS_InitLock()</CODE> です。ただしこれは <A href="../init/OS_Init.html"><CODE>OS_Init()</CODE></A> の中で呼ばれていますので、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいればアプリケーションで呼び出す必要はありません。</P>
+<P><CODE>OS_InitLock()</CODE> では他方のプロセッサの <CODE>OS_InitLock()</CODE> と同期を取るという処理も行なっています。</P>
+<P>(注) <CODE>OS_InitLock()</CODE> のリファレンスはありません。</P>
+<HR>
+<P><B>カードアクセスの排他制御</B></P>
+<P>カードへのアクセス権は通常 ARM7 にあります。<CODE><A href="OS_LockCard.html">OS_LockCard()</A></CODE> を呼ぶことで、アクセス権は ARM9 となり、ARM7 からのアクセスをロックします。</P>
+<P><CODE><A href="OS_UnlockCard.html">OS_UnlockCard()</A></CODE> を呼ぶと、カードへのアクセス権を ARM7 にして、ロックを解除します。</P>
+<P><CODE><A href="OS_LockCard.html">OS_LockCard()</A></CODE> はロック出来るまで関数から戻りませんが、<CODE><A href="OS_TryLockCard.html">OS_TryLockCard()</A></CODE> では一度だけロックを試行します。返り値でロックできたかどうかを知ることが出来ます。</P>
+<HR>
+<P><B>カートリッジアクセスの排他制御</B></P>
+<P>カートリッジのアクセス権は通常 ARM7 にあります。<CODE><A href="OS_LockCartridge.html">OS_LockCartridge()</A></CODE> を呼ぶことで、アクセス権は ARM9 となり、ARM7 からのアクセスをロックします。</P>
+<P><A href="OS_UnlockCartridge.html"><CODE>OS_UnlockCartridge()</CODE></A> を呼ぶと、カートリッジへのアクセス権を ARM7 にして、ロックを解除します。</P>
+<P><CODE><A href="OS_LockCartridge.html">OS_LockCartridge()</A></CODE> はロック出来るまで関数から戻りませんが、<CODE><A href="OS_TryLockCartridge.html">OS_TryLockCartridge()</A></CODE> では一度だけロックを試行します。返り値でロックできたかどうかを知ることが出来ます。</P>
+<HR>
+<P><B>ロック関数に使用される ID</B></P>
+<P>ロックに使用する ID ( u16 値 ) は、スレッド間、あるいはプロセッサ間で (
+カードやカートリッジなどの) 同じリソースにアクセスしようとしたときは、異なる値でなければなりません。NitroSDK
+ではこのロック ID に関する以下の関数を用意しています。</P>
+<P><CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> は、ARM9 で用意されている ID 候補のなかから使用されていない値を返します。この値は ARM9、ARM7 問わず他のモジュールで使用されていないことが保証されています。 但し他のモジュールも <CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> で値を取得していることが条件となります。NitroSDK 内部でも必要な個所では <CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> を使用していますので、アプリケーションが設定する値と重なることはありません。</P>
+<P>その ID を使い終わったら <CODE><A href="OS_ReleaseLockID.html">OS_ReleaseLockID()</A></CODE> で解放してください。この関数を呼ぶことで その ID は <CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> の候補に戻され、次の <CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> 以降で他のロックに使用されます。</P>
+<P>なお、<CODE><A href="OS_GetLockID.html">OS_GetLockID()</A></CODE> で取得出来る値は、0x40 ～ 0x6F のうちの何れかです。</P>
+<P>(参考) 同じ関数は ARM7 側のライブラリにもあり、取得出来る値は 0x80 ～ 0xA0
+のうちの何れかです。<BR>
+</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Mutex">OS関数一覧(排他制御)<BR>
+</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/12/14 用語や語尾など修正<BR>
+2004/11/15 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MBFakeScanCallbackFunc</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBFakeScanCallbackFunc</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mb/mb_fake_child.h&gt;</CODE>
+
+typedef void (*MBFakeScanCallbackFunc)( u16 type, void* arg );
+</PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>引数</TD>
+      <TD colspan="2">意味</TD>
+    </TR>
+    <TR>
+      <TD rowspan="6"><B><I>type</I></B></TD>
+      <TD colspan="2">コールバックの種別を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_PARENT_FOUND</TD>
+      <TD>新しい親機の発見や親機情報の更新の通知です。</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_PARENT_BEACON</TD>
+      <TD>発見済みの親機からビーコンを受けるたび通知されます。<br>
+	  プレイヤー情報に何ら更新が無い場合でも通知されるという点でMB_FAKESCAN_PARENT_FOUNDと異なります。<br>
+	  親機側で<a href="../common/MB_SetUserVolatData.html">MB_SetUserVolatData</a>関数を頻繁に呼び出している場合には子機側がこのコールバック内で
+	  <a href="../common/MB_GetUserVolatData.html">MB_GetUserVolatData</a>関数を呼ぶことにより最新のデータを取得することができます。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_PARENT_LOST</TD>
+      <TD>親機を見失ったか親機情報が無効化された場合の通知です。</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_API_ERROR</TD>
+      <TD>ワイヤレスが使用できないまたは、このままスキャンの続行をすることが不能なエラーが発生した場合の通知です。</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_END_SCAN</TD>
+      <TD><A href="MB_FakeEndScan.html">MB_FakeEndScan</A>によって親機スキャンの終了が完了したことを通知するコールバックです。</TD>
+    </TR>
+    <TR>
+      <TD rowspan="5"><B><I>arg</I></B></TD>
+      <TD colspan="2">コールバック関数に渡される構造体へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD><B>コールバックのタイプ</B></TD>
+      <TD><B>渡される構造体</B></TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_PARENT_FOUND<BR>MB_FAKESCAN_PARENT_BEACON<BR>MB_FAKESCAN_PARENT_LOST</TD>
+      <TD><A href="MBFakeScanCallback.html">MBFakeScanCallback</A>*</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_API_ERROR</TD>
+      <TD><A href="MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A>*</TD>
+    </TR>
+    <TR>
+      <TD>MB_FAKESCAN_END_SCAN</TD>
+      <TD>常にNULL</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P><A href="MB_FakeInit.html">MB_FakeStartScanParent</A>関数でマルチブート親機のスキャンが開始されてから、<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>関数でスキャンが完了するまでの間、状態を通知するコールバックの型です。</p>
+<h2>参照</h2>
+<p><A href="MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>、<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>、<A href="MBFakeScanCallback.html">MBFakeScanCallback</A>、<A href="MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A><CODE><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2006/03/13 MB_FAKESCAN_PARENT_BEACONの項目を追加<BR>
+2004/11/25 初版<BR>
+</P>
+</body>
+</html>

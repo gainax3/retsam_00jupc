@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SelectThread</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SelectThread</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>OSThread* OS_SelectThread( void );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<P>なし。</P>
+
+<H2>返り値</H2>
+選択されたスレッドです。
+
+<H2>説明</H2>
+<P>現在動作可能で、最も優先度の高いスレッドの、スレッド構造体へのポインタを返します。<BR>
+動作可能なスレッドがない場合、NULLを返します。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread</A>, <A href="OS_SleepThread.html">OS_SleepThread</A>, <A href="OS_WakeupThread.html">OS_WakeupThread</A>, <A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2003/12/01 初版</P>
+</BODY>
+</HTML>

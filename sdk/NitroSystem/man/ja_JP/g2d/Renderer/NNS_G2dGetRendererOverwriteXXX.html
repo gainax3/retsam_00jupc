@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetRendererOverwrite*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetRendererOverwrite*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+<pre><CODE>
+    
+    NNS_G2D_INLINE u16 NNS_G2dGetRendererOverwritePriority
+    (
+        const NNSG2dRendererInstance* pRend
+    );
+
+    NNS_G2D_INLINE u16 NNS_G2dGetRendererOverwritePlttNo
+    (
+        const NNSG2dRendererInstance* pRend    
+    );
+
+    NNS_G2D_INLINE BOOL NNS_G2dGetRendererOverwriteMosaicFlag
+    (
+        const NNSG2dRendererInstance* pRend    
+    );
+    
+    NNS_G2D_INLINE GXOamMode NNS_G2dGetRendererOverwriteOBJMode
+    (
+        const NNSG2dRendererInstance* pRend    
+    );
+    
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">レンダラ 実体</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>レンダラがOAMの上書きに使用する各種パラメータ。<BR>
+</p>
+<H2>説明</H2>
+<P>
+レンダラが描画するOBJに上書きするパラメータの値を取得します。<BR>
+NNS_G2dGetRendererOverwritePriority()は描画優先度を取得します。<BR>
+NNS_G2dGetRendererOverwritePlttNo()はパレット番号を取得します。<BR>
+NNS_G2dSetRendererOverwriteMosaicFlag()はモザイクフラグを取得します。<BR>
+NNS_G2dSetRendererOverwriteOBJMode()はオブジェモードを取得します。<BR>
+
+<BR>
+パラメータ上書き機能を有効にするために、NNS_G2dSetRendererOverwriteEnable()で適切なパラメータの上書き機能を有効に設定する必要があります。
+<BR>
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dSetRendererOverwriteEnable.html">NNS_G2dSetRendererOverwriteEnable/Disable</A><br>
+</CODE>
+<CODE>
+<A href="NNS_G2dSetRendererOverwriteXXX.html">NNS_G2dSetRendererOverwrite*</A><br>
+</CODE>
+</p>
+
+<H2>履歴</H2>
+<P>
+2004/11/10 NNS_G2dGetRendererOverwriteMosaicFlag()、NNS_G2dGetRendererOverwriteOBJMode()を追加。<BR>
+2004/10/12 初版<BR>
+</P>
+</body>
+</html>

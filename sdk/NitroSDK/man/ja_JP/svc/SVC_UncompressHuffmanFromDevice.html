@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>SVC_UncompressHuffmanFromDevice</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SVC_UncompressHuffmanFromDevice</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os/common/systemCall.h&gt;</CODE><BR>
+  <BR>
+  <CODE>s32 SVC_UncompressHuffmanFromDevice( const void* srcp,</CODE></dd>
+  <dd><CODE>　　　　　　　　　　　　　　　　　　　　　　　void* destp,</CODE></dd>
+  <dd><CODE>　　　　　　　　　　　　　　　　　　　　　　　u8* tableBufp,</CODE></dd>
+  <dd><CODE>　　　　　　　　　　　　　　　　　　　　　　　const MIReadStreamCallbacks *callbackes</CODE><CODE> );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">ハフマン圧縮データの格納されているソースアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開するディスティネーションアドレス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>tableBufp</STRONG></EM></TD>
+      <TD>ツリーテーブル格納バッファ(最大512バイト)<BR>
+      <CODE>MIReadStreamCallbacks</CODE>構造体の <CODE>initStream</CODE> 関数へパラメータを渡したい場合、このバッファを経由して渡すことが出来ます。ただし、<CODE>initStream</CODE> 関数呼び出し跡はツリーテーブルで上書きされます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>callbacks</STRONG></EM></TD>
+      <TD><CODE>MIReadStreamCallbacks</CODE> 構造体のアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p> 0以上ならば展開したサイズで、0以下ならエラーです。</p>
+
+<H2>説明</H2>
+<P>ハフマン圧縮データを展開し、指定のメモリ領域に32bit単位で書き込みます。<BR>
+ソースアドレス <B><I>src</I></B> は4byte 境界に合わせてください。<BR>
+圧縮データのサイズが4の倍数にならなかった場合は出来るだけ0で詰めて調整してください。<CODE><BR>
+</CODE>メモリマッピングされていないデバイス上の圧縮データをテンポラリバッファを使わずに直接展開することが出来ます。</P>
+<h2>参照</h2>
+<p><CODE><A href="../mi/uncompress/MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="SVC_UncompressLZ.html">SVC_UncompressLZ*</A>, <A href="SVC_UncompressRL.html">SVC_UncompressRL*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/22 初版</P>
+</body>
+</html>

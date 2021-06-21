@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_Poll</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Poll</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_POLLRDNORM       0x0001  // Normal data read
+#define SOC_POLLWRNORM       0x0008  // Normal data write
+#define SOC_POLLERR          0x0020  // Error (revents only)
+#define SOC_POLLHUP          0x0040  // Disconnected (revents only)
+#define SOC_POLLNVAL         0x0080  // Invalid fd (revents only)
+
+typedef struct SOCPollFD
+{
+    int         fd;
+    short       events;         // input event flags
+    short       revents;        // output event flags
+} SOCPollFD;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Poll( SOCPollFD <em><strong>fds</strong></em>[], unsigned <em><strong>nfds</strong></em>, OSTick <em><strong>timeout</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td valign="top"><code><strong><em>fds</em></strong></code></td>
+    <td><code>SOCPollFD</code> の配列。</td>
+  </tr>
+  <tr>
+    <td valign="top"><code><strong><em>nfds</em></strong></code></td>
+    <td>配列 <em><code><strong>fds</strong></em></code> の <code>SOCPollFD</code> 
+    の数。</td>
+  </tr>
+  <tr>
+    <td valign="top"><code><strong><em>timeout</em></strong></code></td>
+    <td>タイムアウト。負の値 のときはタイムアウトなし。</td>
+  </tr>
+  </table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>正の数</td>
+    <td>読み込みあるいは書き込み可能になったソケット記述子の数。</td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>呼び出しがタイムアウトしました。</td>
+  </tr>
+  </table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>指定したソケット記述子のなかで読み込みや書き込み処理が可能になっている記述子がないかどうかを調べます。</p>
+
+<p><strong><em>注意</em></strong>：<code>SOC_Poll()</code> は読み込みや書き込み処理が可能になっている可能性があること示します。
+したがって <code>SOC_Poll()</code> に続く <code><a href="SOC_Recv.html">SOC_Read()</a></code>, <code><a href="SOC_Send.html">SOC_Write()</a></code>,<code><a href="SOC_Accept.html">SOC_Accept()</a></code> などの関数で呼び出しスレッドが休眠したり、
+エラーが返される場合があります。</p>
+
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

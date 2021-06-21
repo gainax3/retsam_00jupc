@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_LoadBGExtPltt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_LoadBGExtPltt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/gx_load.h&gt;</CODE><BR>
+<CODE>void GX_LoadBGExtPltt(const void *pSrc, u32 destSlotAddr, u32 szByte);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">pSrc</font></strong></em></TD>
+      <TD width="512">転送元のポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">destSlotAddr</font></strong></em></TD>
+      <TD width="512">転送先BG拡張パレットスロット内のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">szByte</font></strong></em></TD>
+      <TD width="512">転送サイズ（バイト単位）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>BGパレットデータをメイン2DエンジンのBG拡張パレットにDMA転送します。転送先のアドレス(BG拡張パレット内)を指定することができます。使用するDMAチャネルは<CODE>GX_DMAID</CODE>(gxcommon.hで定義)で、<em><strong><font face="Courier New">destSlotAddr</font></strong></em>と<em><strong><font face="Courier New">szByte</font></strong></em>は4の倍数である必要があります。<A href="GX_BeginLoadBGExtPltt.html">GX_BeginLoadBGExtPltt</A>と<A href="GX_EndLoadBGExtPltt.html">GX_EndLoadBGExtPltt</A>の間で呼んで下さい。<BR>
+<BR>
+<B>(注意1) </B>内部でDMA転送を行うので、前もって転送元のデータを<A href="../../os/cache/DC_FlushRange.html" target="_self">DC_FlushRange</A>等を用いてメインメモリに書き出しておく必要があります。<BR>
+<B>(注意2) </B>転送元と転送先で領域が重なる場合については動作結果は不定です。<BR>
+<B>(注意3)</B> <A href="GXS_BeginLoadBGExtPltt.html">GXS_BeginLoadBGExtPltt</A>と<A href="GXS_EndLoadBGExtPltt.html">GXS_EndLoadBGExtPltt</A>の間では<A href="GX_SetBankForSubBGExtPltt.html">GX_SetBankForSubBGExtPltt</A>, <A href="GX_ResetBankForSubBGExtPltt.html">GX_ResetBankForSubBGExtPltt</A>, <A href="GX_DisableBankForSubBGExtPltt.html">GX_DisableBankForSubBGExtPltt</A>を呼びださないでください。<BR>
+<B>(注意4)</B> BG面によってパレットとして使用することのできるメモリ空間が異なります。BG2のパレットは0x4000-0x6000(スロット2)、BG3のパレットは0x6000-0x8000(スロット3)にパレットデータを置かなくてはなりません。BG0は0x0000-0x2000(スロット0)か0x4000-0x6000(スロット2)を<A href="../g2/G2S_SetBG0Control.html">G2S_SetBG0Control</A>によって選択でき、BG1は、0x2000-0x4000(スロット1)か0x6000-0x8000(スロット3)を<A href="../g2/G2S_SetBG1Control.html">G2S_SetBG1Control</A>によって選択できます。</P>
+
+<h2>参照</h2>
+<P><A href="GX_BeginLoadBGExtPltt.html">GX_BeginLoadBGExtPltt</A>, <A href="GX_EndLoadBGExtPltt.html">GX_EndLoadBGExtPltt</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/03/01</P>
+<UL>
+  <LI>パレットデータの配置制限についての注意
+</UL>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>説明の修正と追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

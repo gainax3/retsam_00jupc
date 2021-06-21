@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTCDate</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTCDate</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct { 
+         u32		year; 
+         u32		month; 
+         u32		day;
+         <A href="RTCWeek.html">RTCWeek</A>	week;
+} RTCDate;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">year</font></strong></em></TD>
+      <TD width="700">年を示す 0～99 の数値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">month</font></strong></em></TD>
+      <TD>月を示す 1～12 の数値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">day</font></strong></em></TD>
+      <TD>日を示す 1～31 の数値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">week</font></strong></em></TD>
+      <TD>曜日を示す<A href="RTCWeek.html">RTCWeek列挙型</A>の値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>リアルタイムクロックの日付を表す構造体です。<BR>
+年月日、及び曜日を示します。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTCWeek.html">RTCWeek</A></CODE></P>
+
+<H2>履歴</H2>
+<P>Ver. 2004/05/18 初版</P>
+</body>
+</html>

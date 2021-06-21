@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2*_GetBG2ExtMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2*_GetBG2ExtMode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_bgcnt.h&gt;</CODE><BR>
+  <PRE><CODE>static inline GXBGExtMode G2_GetBG2ExtMode( void );</CODE>
+<CODE>static inline GXBGExtMode G2S_GetBG2ExtMode( void );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>BG2のアフィン拡張BGタイプ設定。</p>
+<H2>説明</H2>
+<P>BG2の拡張BGタイプ設定をGXBGExtModeとして取得します。<BR>
+G2_GetBG2ExtMode関数ではメイン2Dエンジン、G2S_GetBG2ExtMode関数ではサブ2Dエンジンの設定を取得できます。<BR>
+この関数を使用する場合にはBG2のBGモードがアフィン拡張BGに設定されている必要があります。<BR>
+<BR>
+以下にGXBGExtModeの定義を示します。</P>
+<PRE>typedef enum
+{
+    GX_BG_EXTMODE_256x16PLTT = (0 &lt;&lt; REG_G2_BG2CNT_CHARBASE_SHIFT) | (0 &lt;&lt; REG_G2_BG2CNT_COLORMODE_SHIFT),
+    GX_BG_EXTMODE_256BITMAP  = (0 &lt;&lt; REG_G2_BG2CNT_CHARBASE_SHIFT) | (1 &lt;&lt; REG_G2_BG2CNT_COLORMODE_SHIFT),
+    GX_BG_EXTMODE_DCBITMAP   = (1 &lt;&lt; REG_G2_BG2CNT_CHARBASE_SHIFT) | (1 &lt;&lt; REG_G2_BG2CNT_COLORMODE_SHIFT)
+}
+GXBGExtMode;
+</PRE>
+
+<h2>参照</h2>
+<P><A href="../gx/GX_SetGraphicsMode.html">GX_SetGraphicsMode</A>, <A href="../gx/GXS_SetGraphicsMode.html">GXS_SetGraphicsMode</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/24</P>
+
+</body>
+</html>

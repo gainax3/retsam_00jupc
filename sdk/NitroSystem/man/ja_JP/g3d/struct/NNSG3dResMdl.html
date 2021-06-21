@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNSG3dResMdl</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dResMdl</H1>
+<H2>構造体の定義</H2>
+<PRE class="construction">#include &lt;nnsys/g3d/binres/res_struct.h&gt;
+
+typedef struct NNSG3dResMdl_
+{
+    u32                size;        // モデルのサイズ
+    u32                ofsSbc;      // &amp;NNSG3dResMdlを起点としたSbcへのオフセット
+    u32                ofsMat;      // &amp;NNSG3dResMdlを起点としたNNSG3dResMatへのオフセット
+    u32                ofsShp;      // &amp;NNSG3dResMdlを起点としたNNSG3dResShpへのオフセット
+    u32                ofsEvpMtx;   // &amp;NNSG3dResMdlを起点としたNNSG3dEvpMtxへのオフセット
+    NNSG3dResMdlInfo   info;        // モデル情報(固定長)
+    NNSG3dResNodeInfo  nodeInfo;    // ノード情報
+    // SBC
+    // Materials
+    // Shapes
+    // EvpMtxs
+}
+NNSG3dResMdl;
+
+typedef struct NNSG3dResMdlInfo_
+{
+    u8         sbcType;
+    u8         scalingRule;
+    u8         texMtxMode;
+    u8         numNode;
+
+    u8         numMat;
+    u8         numShp;
+    u8         firstUnusedMtxStackID;
+    u8         dummy_;
+
+    fx32       posScale;      
+    fx32       invPosScale;
+
+    u16        numVertex;
+    u16        numPolygon;
+    u16        numTriangle;
+    u16        numQuad;
+
+    fx16       boxX, boxY, boxZ;
+    fx16       boxW, boxH, boxD;
+
+    fx32       boxPosScale;
+    fx32       boxInvPosScale;
+}
+NNSG3dResMdlInfo;</PRE>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dResMdl</CODE>構造体は、１つのモデルデータを格納するデータ構造の根に対応する構造体で、モデルデータ内の情報にアクセスする場合はこの構造体を経由することになります。この構造体は、.nsbmdファイル内のデータとして存在していてg3dcvtrによる.imdファイルのコンバート時に作成されています。<BR>
+<BR>
+<CODE>NNSG3dResMdl</CODE>構造体からは以下のようなデータにアクセスすることができます。</P>
+<UL>
+  <LI>マテリアル
+  <LI>シェイプ
+  <LI>SBC列（モデルの構造をシリアライズしてエンコードしたもの）
+  <LI>各ノードの静止位置情報
+  <LI>使用ＣＧツール・ポリゴン数等の情報
+</UL>
+<P>この構造体とこの構造体から到達できるマテリアルやシェイプ等の内容は、描画中にＧ３Ｄライブラリから変更されることはありません(コールバック関数内で変更される場合を除く)。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="320">NNSG3dResMdlInfo構造体のメンバ</TH>
+      <TH align="center" width="717">説明</TH>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>sbcType</B></I></TD>
+      <TD width="717">Structure Byte Codeタイプ識別子(NNSG3dSbcType)</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>scalingRule</B></I></TD>
+      <TD width="717">スケーリングルール識別子(NNSG3dScalingRule)</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>texMtxMode</B></I></TD>
+      <TD width="717">テクスチャ行列計算方式識別子(NNSG3dTexMtxMode)</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>numNode</B></I></TD>
+      <TD width="717">モデル内のノード数</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>numMat</I></B></TD>
+      <TD width="717">モデル内のマテリアル数</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>numShp</I></B></TD>
+      <TD width="717">モデル内のシェイプ数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>firstUnusedMtxStackID</I></B></TD>
+      <TD>行列スタックの行列でこのモデルの描画時に使わない行列の最初のID</TD>
+    </TR>
+    <TR>
+      <TD><B><I>posScale</I></B></TD>
+      <TD>頂点位置座標に乗ずるスケール値。ジオメトリエンジンのスケールコマンドへ渡す値</TD>
+    </TR>
+    <TR>
+      <TD><B><I>invPosScale</I></B></TD>
+      <TD><I><B>posScale</B></I>の逆数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>numVertex</I></B></TD>
+      <TD>.imdファイルにおける&lt;output_info&gt;要素のvertex_size属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>numPolygon</I></B></TD>
+      <TD>.imdファイルにおける&lt;output_info&gt;要素のpolygon_size属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>numTriangle</I></B></TD>
+      <TD>.imdファイルにおける&lt;output_info&gt;要素のtriangle_size属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>numQuad</I></B></TD>
+      <TD>.imdファイルにおける&lt;output_info&gt;要素のquad_size属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>boxX, boxY, boxZ</I></B></TD>
+      <TD>.imdファイルにおける&lt;box?test&gt;要素のxyz属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>boxW, boxH, boxD</I></B></TD>
+      <TD>.imdファイルにおける&lt;box?test&gt;要素のwhd属性の値がそのまま入っている。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>boxPosScale</I></B></TD>
+      <TD>ボックスの座標やサイズに乗ずるスケール値。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>boxInvPosScale</I></B></TD>
+      <TD><I><B>boxPosScale</B></I>の逆数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A>　<A href="../list_g3d.html#Model">モデル</A> <A href="../list_g3d.html#BinaryResource">バイナリリソース</A></P>
+<H2>履歴</H2>
+<P>2007/05/17 構造体の定義を追加<BR>
+2004/10/13 初版</P>
+</BODY>
+
+</HTML>

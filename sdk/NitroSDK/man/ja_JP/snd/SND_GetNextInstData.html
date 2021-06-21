@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_GetNextInstData</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_GetNextInstData</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL SND_GetNextInstData(
+        const SNDBankData* <var>bank</var>,
+        SNDInstData* <var>inst</var>,
+        SNDInstPos* <var>pos</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>bank</code></strong></em></td>
+<td>バンクデータのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>inst</code></strong></em></td>
+<td>取得したインストデータを格納する構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>pos</code></strong></em></td>
+<td>インストデータの位置情報です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>インストデータの取得に成功すると、TRUEを返します。次のインストデータが存在しなければ、FALSEを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+バンクデータ中のインストデータを順番に取得します。
+</p>
+      <p>
+インストデータの取得に成功すると、<a href="SNDInstData.html">SNDInstData</a>型のインストデータが、
+<em><strong><code>inst</code></strong></em>で指定したメモリ領域へ書き込まれます。
+さらに、インストデータの位置情報<em><strong><code>pos</code></strong></em>が、
+次のインストデータの位置を指すように更新されます。
+</p>
+      <p>
+この関数を始めに呼びだすときは、
+<tt class="function"><a href="SND_GetFirstInstDataPos.html">SND_GetFirstInstDataPos</a></tt>関数で取得した
+インストデータの位置情報を、<em><strong><code>pos</code></strong></em>に渡す必要があります。
+</p>
+
+
+      <pre class="programlisting">
+    SNDInstPos pos = SND_GetFirstInstDataPos( bank );
+    SNDInstData inst;
+    
+    while( SND_GetNextInstData( bank, &amp;inst, &amp;pos ) ) {
+        // inst に対する処理を行う
+    }
+</pre>
+    </div>
+<h2>参照</h2>
+<p><a href="SNDInstData.html">SNDInstData</a>, <a href="SND_GetFirstInstDataPos.html">SND_GetFirstInstDataPos</a></p>
+<h2>履歴</h2>
+<p>2005/01/20 初版<br></p>
+</div>
+</body>
+</html>

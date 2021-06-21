@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OamSoftwareSpriteDraw.h&gt;</CODE></pre>
+  <pre><CODE>
+void    NNS_G2dSetOamSoftEmuUVFlipCorrectFunc( NNS_G2dOamSoftEmuUVFlipCorrectFunc pFunc );
+                            
+                            
+</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pFunc</font></strong></em></td>
+    <td width="87%">[IN] OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタを設定します。<BR>
+関数ポインタを無効にするには NNS_G2dResetOamSoftEmuUVFlipCorrectFunc() をご使用ください。<BR>
+<BR>
+コールバックはソフトウェア4隅のUV値へのポインタと水平垂直方向のフリップ状況フラグを引数に呼び出されます。
+本関数は、ソフトウェアスプライトのフリップ処理の際にテクスチャサンプリング位置が1テクセルずれてしまう仕様を、回避することを目的に用意されました。<BR>
+<BR>
+典型的な実装例を以下に示します。
+<BR>
+<CODE>
+<pre>
+void UVFlipCorrectFunc_
+(
+    fx32*   pRetU0,
+    fx32*   pRetV0,
+    fx32*   pRetU1,
+    fx32*   pRetV1,
+    BOOL   bFilpH,
+    BOOL   bFilpV
+)
+{
+    if( bFilpH )
+    {
+        *pRetU0 -= FX32_ONE;
+        *pRetU1 -= FX32_ONE;
+    }
+
+    if( bFilpV )
+    {
+        *pRetV0 -= FX32_ONE;
+        *pRetV1 -= FX32_ONE;
+    }
+}
+</pre>
+</CODE>
+<BR>
+本関数で設定可能な補正関数は、アフィン変換されたスプライトのサンプリング位置補正をサポートしていません。<BR>
+これは、処理負荷等を考慮すると、アフィン変換スプライトのサンプリング位置補正は素材側での対応が現実的との判断に基づいています。<BR>
+（素材側での対応とは、”サンプル位置がずれた結果、目立った影響が出ないようにセルの周りのピクセルに透明色を配置する”などの対策のことです。）
+
+
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dResetOamSoftEmuUVFlipCorrectFunc.html">NNS_G2dResetOamSoftEmuUVFlipCorrectFunc</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>
+2004/11/10 サンプルコードを追加<BR>
+2004/07/20 初版
+</P>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_CreateFileFromMemory</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_CreateFileFromMemory</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_CreateFileFromMemory(<A href="../fs_file_type.html">FSFile</A> *p_file, void *buf, u32 size);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%"><A href="../fs_file_type.html">FSFile</A>構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>buf</STRONG></EM></TD>
+      <TD width="87%">リードおよびライトの対象となるメモリ領域先頭</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>size</STRONG></EM></TD>
+      <TD width="87%">bufのバイトサイズ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ファイルが正しく開ければ TRUE を, そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したメモリマップ上のアドレス領域を一時的なファイルとみなし、そのファイルを開きます。<br>
+この関数で開いたファイルは以下の関数にのみ対応します。<br>
+<ul>
+<li><A href="FS_SeekFile.html">FS_SeekFile</A>, <A href="FS_SeekFileToBegin.html">FS_SeekFileToBegin</A>, <A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A>
+<li><A href="FS_ReadFile.html">FS_ReadFile</A>, <A href="FS_WriteFile.html">FS_WriteFile</A>
+<li><A href="FS_ReadFileAsync.html">FS_ReadFileAsync</A>, <A href="FS_WriteFileAsync.html">FS_WriteFileAsync</A> (ただし同期版と同様に振舞います)
+<li><A href="FS_CloseFile.html">FS_CloseFile</A>
+</ul>
+詳細は「<A href="../archive_mem_spec.html">メモリファイルアーカイブ</a>」の説明を参照ください。<br>
+</P>
+<H2>注意</H2>
+<p><font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font></p>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="../fs_archive_type.html">FSArchive</A> 
+<A href="../archive_mem_spec.html">メモリファイルアーカイブ</a>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/28 初版<BR>
+</P>
+</body>
+</html>

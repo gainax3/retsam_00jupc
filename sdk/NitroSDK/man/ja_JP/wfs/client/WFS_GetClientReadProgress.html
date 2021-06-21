@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_GetClientReadProgress</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFS_GetClientReadProgress</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_GetClientReadProgress(WFSClientContext *context, int *current, int *total);</code><br />
+  <br />
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>current</strong></em></td>
+      <td style="width:87%">受信済みパケット数を取得するint変数へのポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>total</strong></em></td>
+      <td style="width:87%">受信予定のパケット総数を取得するint変数へのポインタ</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p><a href="WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数で発行したROMイメージ読み込みリクエストの進捗状況を取得します。<br />
+進捗状況は <em>(受信済みパケット数) / (受信予定のパケット総数)</em> の形式で取得することが出来ます。<br />
+</p>
+<h2>参照</h2>
+<p>
+<a href="WFS_RequestClientRead.html">WFS_RequestClientRead</a>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

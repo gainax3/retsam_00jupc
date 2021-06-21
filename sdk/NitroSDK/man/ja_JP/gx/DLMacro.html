@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>DLMacro</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">ディスプレイリスト記述用マクロ</h1>
+<h2>説明</h2>
+<P>ジオメトリコマンドのパラメータをパックするマクロです。パラメータのワード数が1のものについて定義されています。<BR>
+</P>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="568">マクロ</TD>
+      <TD width="233">対応するＡＰＩ</TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_OP(op1, op2, op3, op4)</TD>
+      <TD width="233">コマンドコードをu32型にパックします。</TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_SWAPBUFFERS_PARAM(am, zw)</TD>
+      <TD width="233"><A href="g3/G3_SwapBuffers.html">G3*_SwapBuffers</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_MTXMODE_PARAM(mode)</TD>
+      <TD width="233"><A href="g3/G3_MtxMode.html">G3*_MtxMode</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_POPMTX_PARAM(num)</TD>
+      <TD width="233"><A href="g3/G3_PopMtx.html" target="_self">G3*_PopMtx</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_STOREMTX_PARAM(num)</TD>
+      <TD width="233"><A href="g3/G3_StoreMtx.html" target="_self">G3*_StoreMtx</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_RESTOREMTX_PARAM(num)</TD>
+      <TD width="233"><A href="g3/G3_RestoreMtx.html" target="_self">G3*_RestoreMtx</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_LIGHTVECTOR_PARAM(lightID, x, y, z)</TD>
+      <TD width="233"><A href="g3/G3_LightVector.html" target="_self">G3*_LightVector</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_DIFFAMB_PARAM(diffuse, ambient, IsSetVtxColor)</TD>
+      <TD width="233"><A href="g3/G3_MaterialColorDiffAmb.html" target="_self">G3*_MaterialColorDiffAmb</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_SPECEMI_PARAM(specular, emission, IsShininess)</TD>
+      <TD width="233"><A href="g3/G3_MaterialColorSpecEmi.html" target="_self">G3*_MaterialColorSpecEmi</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_POLYGONATTR_PARAM(light, polyMode, cullMode, polygonID, alpha,
+      misc)</TD>
+      <TD width="233"><A href="g3/G3_PolygonAttr.html" target="_self">G3*_PolygonAttr</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_BEGIN_PARAM(primitive)</TD>
+      <TD width="233"><A href="g3/G3_Begin.html" target="_self">G3*_Begin</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_COLOR_PARAM(rgb)</TD>
+      <TD width="233"><A href="g3/G3_Color.html" target="_self">G3*_Color</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_NORMAL_PARAM(x, y, z)</TD>
+      <TD width="233"><A href="g3/G3_Normal.html" target="_self">G3*_Normal</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_VTX10_PARAM(x, y, z)</TD>
+      <TD width="233"><A href="g3/G3_Vtx10.html" target="_self">G3*_Vtx10</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_VTXXY_PARAM(x, y)</TD>
+      <TD width="233"><A href="g3/G3_VtxXY.html" target="_self">G3*_VtxXY</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_VTXXZ_PARAM(x, z)</TD>
+      <TD width="233"><A href="g3/G3_VtxXZ.html" target="_self">G3*_VtxXZ</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_VTXYZ_PARAM(y, z)</TD>
+      <TD width="233"><A href="g3/G3_VtxYZ.html" target="_self">G3*_VtxYZ</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_VTXDIFF_PARAM(x, y, z)</TD>
+      <TD width="233"><A href="g3/G3_VtxDiff.html" target="_self">G3*_VtxDiff</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_TEXCOORD_PARAM(s, t)</TD>
+      <TD width="233"><A href="g3/G3_TexCoord.html" target="_self">G3*_TexCoord</A></TD>
+    </TR>
+    <TR>
+      <TD width="568">GX_PACK_TEXIMAGE_PARAM(texFmt, texGen, s, t, repeat, flip, pltt0, addr)</TD>
+      <TD width="233"><A href="g3/G3_TexImageParam.html" target="_self">G3*_TexImageParam</A></TD>
+    </TR>
+    <TR>
+      <TD>GX_PACK_TEXPLTTBASE_PARAM(addr, texFmt)</TD>
+      <TD><A href="g3/G3_TexPlttBase.html" target="_self">G3*_TexPlttBase</A></TD>
+    </TR>
+    <TR>
+      <TD>GX_PACK_VIEWPORT_PARAM(x1, y1, x2, y2)</TD>
+      <TD><A href="g3/G3_ViewPort.html" target="_self">G3*_ViewPort</A></TD>
+    </TR>
+    <TR>
+      <TD>GX_PACK_VECTORTEST_PARAM(x, y, z)</TD>
+      <TD><A href="g3/G3_VectorTest.html">G3*_VectorTest</A></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロ定義</H2>
+<PRE><CODE>
+#define GX_PACK_OP(op1, op2, op3, op4) \
+    ((u32)((op1) | ((op2) &lt;&lt; 8) | ((op3) &lt;&lt; 16) | ((op4) &lt;&lt; 24)))
+#define GX_PACK_SWAPBUFFERS_PARAM(am, zw) \
+    ((u32) (((am) &lt;&lt; REG_G3_SWAP_BUFFERS_XS_SHIFT) | \
+            ((zw) &lt;&lt; REG_G3_SWAP_BUFFERS_DP_SHIFT)))
+#define GX_PACK_MTXMODE_PARAM(mode)    ((u32) ((mode) &lt;&lt; REG_G3_MTX_MODE_M_SHIFT))
+#define GX_PACK_POPMTX_PARAM(num)      ((u32) (num))
+#define GX_PACK_STOREMTX_PARAM(num)    ((u32) (num))
+#define GX_PACK_RESTOREMTX_PARAM(num)  ((u32) (num))
+#define GX_PACK_LIGHTVECTOR_PARAM(lightID, x, y, z)        \
+    ((u32)GX_VECFX10((x), (y), (z))                      | \
+     ((u32)(lightID) &lt;&lt; REG_G3_LIGHT_VECTOR_LNUM_SHIFT))
+#define GX_PACK_LIGHTCOLOR_PARAM(lightID, rgb)                   \
+    ((u32)((rgb)                                               | \
+           ((u32)(lightID) &lt;&lt; REG_G3_LIGHT_COLOR_LNUM_SHIFT)))
+#define GX_PACK_DIFFAMB_PARAM(diffuse, ambient, IsSetVtxColor)   \
+    ((u32)((diffuse)                                           | \
+           ((ambient) &lt;&lt; REG_G3_DIF_AMB_AMBIENT_RED_SHIFT)     | \
+           (((IsSetVtxColor) != FALSE) &lt;&lt; REG_G3_DIF_AMB_C_SHIFT)))
+#define GX_PACK_SPECEMI_PARAM(specular, emission, IsShininess)   \
+    ((u32)((specular)                                          | \
+           ((emission) &lt;&lt; REG_G3_SPE_EMI_EMISSION_RED_SHIFT)   | \
+           (((IsShininess) != FALSE) &lt;&lt; REG_G3_SPE_EMI_S_SHIFT)))
+#define GX_PACK_POLYGONATTR_PARAM(light, polyMode, cullMode, polygonID, alpha, misc) \
+    ((u32)(((light) &lt;&lt; REG_G3_POLYGON_ATTR_LE_SHIFT)     | \
+           ((polyMode) &lt;&lt; REG_G3_POLYGON_ATTR_PM_SHIFT)  | \
+           ((cullMode) &lt;&lt; REG_G3_POLYGON_ATTR_BK_SHIFT)  | \
+           (misc)                                        | \
+           ((polygonID) &lt;&lt; REG_G3_POLYGON_ATTR_ID_SHIFT) | \
+           ((alpha) &lt;&lt; REG_G3_POLYGON_ATTR_ALPHA_SHIFT)))
+#define GX_PACK_BEGIN_PARAM(primitive)                 \
+    ((u32)((primitive) &lt;&lt; REG_G3_BEGIN_VTXS_TYPE_SHIFT))
+#define GX_PACK_COLOR_PARAM(rgb)       ((u32)(rgb))
+#define GX_PACK_NORMAL_PARAM(x, y, z)  ((u32)GX_VECFX10((x), (y), (z)))
+#define GX_PACK_VTX10_PARAM(x, y, z)   ((u32)GX_VECVTX10((x), (y), (z)))
+#define GX_PACK_VTXXY_PARAM(x, y)      (GX_FX16PAIR((x), (y)))
+#define GX_PACK_VTXXZ_PARAM(x, z)      (GX_FX16PAIR((x), (z)))
+#define GX_PACK_VTXYZ_PARAM(y, z)      (GX_FX16PAIR((y), (z)))
+#define GX_PACK_VTXDIFF_PARAM(x, y, z) (GX_VECVTXDIFF((x), (y), (z)))
+#define GX_PACK_TEXCOORD_PARAM(s, t)   (GX_ST((s), (t)))
+#define GX_PACK_TEXIMAGE_PARAM(texFmt, texGen, s, t, repeat, flip, pltt0, addr) \
+    ((u32)(((addr) &gt;&gt; 3)                                    | \
+           ((texFmt) &lt;&lt; REG_G3_TEXIMAGE_PARAM_TEXFMT_SHIFT) | \
+           ((texGen) &lt;&lt; REG_G3_TEXIMAGE_PARAM_TGEN_SHIFT)   | \
+           ((s) &lt;&lt; REG_G3_TEXIMAGE_PARAM_V_SIZE_SHIFT)      | \
+           ((t) &lt;&lt; REG_G3_TEXIMAGE_PARAM_T_SIZE_SHIFT)      | \
+           ((repeat) &lt;&lt; REG_G3_TEXIMAGE_PARAM_RS_SHIFT)     | \
+           ((flip) &lt;&lt; REG_G3_TEXIMAGE_PARAM_FS_SHIFT)       | \
+           ((pltt0) &lt;&lt; REG_G3_TEXIMAGE_PARAM_TR_SHIFT)))
+#define GX_PACK_TEXPLTTBASE_PARAM(addr, texFmt) \
+    ((u32)((addr) &gt;&gt; (4 - ((texFmt) == GX_TEXFMT_PLTT4))))
+#define GX_PACK_VIEWPORT_PARAM(x1, y1, x2, y2)                \
+    ((u32)((x1) | ((y1) &lt;&lt; 8) | ((x2) &lt;&lt; 16) | ((y2) &lt;&lt; 24)))
+#define GX_PACK_VECTORTEST_PARAM(x, y, z) ((u32)GX_VECFX10((x), (y), (z)))</CODE></PRE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/23</P>
+</body>
+</html>

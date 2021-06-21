@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdDumpFrmPlttVramManagerEx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdDumpFrmPlttVramManagerEx</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_GfdDumpFrmPlttVramManagerEx( NNSGfdFrmPlttVramDebugDumpCallBack pFunc );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pFunc</STRONG></EM></TD>
+      <TD width="87%">ユーザ定義デバックコールバックをあらわす、NNSGfdFrmPlttVramDebugDumpCallBack型の関数ポインタ。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+ユーザ定義デバックコールバックを指定して、フレームパレットVRAMマネージャの状態をデバック出力します。<br>
+NNS_GfdDumpFrmPlttVramManager()関数は、本関数を利用して実装されています。<br>
+NNS_GfdDumpFrmPlttVramManagerが実装するコールバック関数の定義を以下にサンプルとして示します。<br>
+
+<PRE><code> 
+static void FrmPlttVramDebugDumpCallBack_( u32 loAddr, u32 hiAddr, u32 szFree, u32 szTotal )
+{
+    OS_Printf("===== NNS_Gfd FrmPlttVramManager Dump ====\n");
+    OS_Printf("head-Addr   : tail-addr   : free-size \n");
+    
+    
+    OS_Printf("0x%08x  : 0x%08x  : 0x%08x  \n", loAddr, hiAddr, szFree );
+    
+    OS_Printf("    %08d / %08d bytes (%6.2f%%) used \n", szTotal - szFree, szTotal, 
+        100.0f * ( szTotal - szFree ) / szTotal ); 
+    OS_Printf("==========================================\n");
+}
+</code></PRE>
+
+</P>
+
+<H2>参照</H2>
+<P>なし。</P>
+
+<H2>履歴</H2>
+<P>2007/01/31 初版</P>
+</BODY>
+
+</HTML>

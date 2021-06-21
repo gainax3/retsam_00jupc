@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdFreeLnkTexVram</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdFreeLnkTexVram</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>int NNS_GfdFreeLnkTexVram( NNSGfdTexKey memKey );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>memKey</STRONG></EM></TD>
+      <TD width="87%">開放したい領域をあらわすテクスチャキー</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>開放の成否を返します。<BR>
+開放に成功した場合は0を返します。<BR>
+サイズゼロなどの不正なサイズをあらわすテクスチャキーの開放があった場合は1を返します。<BR>
+</P>
+<H2>説明</H2>
+<P>
+テクスチャキーによって指定された、VRAM領域を開放します。
+開放された領域は、再び空き領域としてマネージャに再登録されます。<BR>
+開放の結果、新たな空き領域が発生した場合に、空き領域を管理するための管理情報ブロック容量が十分で無い場合は開放に失敗してしまいます。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdAllocLnkTexVram.html">NNS_GfdAllocLnkTexVram</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</BODY>
+
+</HTML>

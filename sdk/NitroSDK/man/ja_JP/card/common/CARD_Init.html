@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_Init</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_Init</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void CARD_Init( void );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+なし
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>CARD モジュールを初期化します。<BR>
+全てのCARD関数の呼び出しの前に少なくとも１回呼び出す必要があります。<BR>
+２回以上呼び出された場合は何も行いません。<br>
+<A href="../../os/init/OS_Init.html">OS_Init</A>関数を呼ぶ場合、その内部からこの関数が呼ばれますのでそれ以降にアプリケーション側から呼び出す必要はありません。<br>
+<br>
+この関数は、初期化処理の中で非同期処理スレッドをひとつ生成して起動します。<br>
+このスレッドは、<A href="../rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</A>関数などの非同期関数が<br>
+引数や動作環境に制約を受けて割り込みハンドラだけで実行できない場合に、内部で使用されます。<br>
+このスレッドの優先度の初期値は<A href="../card_thread_priority_default_const.html">CARD_THREAD_PRIORITY_DEFAULT</A>に設定されており、<A href="CARD_SetThreadPriority.html">CARD_SetThreadPriority</A>関数で変更可能です。<br>
+<br>
+</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="CARD_IsAvailable.html">CARD_IsAvailable</A>, <A href="../../os/init/OS_Init.html">OS_Init</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+2005/04/11 非同期処理スレッドが自動生成される旨の説明を追加<br>
+2004/10/18 OS_Init 関数から呼ばれるという記述を追加<br>
+2004/07/05 初版<br>
+</P>
+</body>
+</html>

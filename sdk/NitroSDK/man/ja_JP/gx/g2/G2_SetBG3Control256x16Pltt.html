@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_SetBG3Control256x16Pltt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_SetBG3Control256x16Pltt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_bgcnt.h&gt;</CODE><BR>
+  <PRE><CODE>void G2_SetBG3Control256x16Pltt(
+    GXBGScrSize256x16Pltt screenSize,
+    GXBGAreaOver areaOver,
+    GXBGScrBase screenBase,
+    GXBGCharBase charBase
+);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">screenSize</font></strong></em></TD>
+      <TD width="700">スクリーンサイズ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">areaOver</font></strong></em></TD>
+      <TD>エリアオーバー処理オプション</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">screenBase</font></strong></em></TD>
+      <TD>スクリーンベースブロック</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">charBase</font></strong></em></TD>
+      <TD>キャラクタベースブロック</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>BG3(256色x16パレットキャラクタBGの場合)を設定します。<BR>
+<BR>
+<B>(注意)</B> <A href="../gx/GX_SetBankForBGExtPltt.html">GX_SetBankForBGExtPltt</A>でVRAMバンクをBG拡張パレットに割り当てた場合、BG拡張パレットを参照します。そうでない場合は、スクリーンデータのカラーパレットを無視し、標準パレットを参照します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_SCRSIZE_256x16PLTT_128x128</CODE></TD>
+      <TD width="70%">画面サイズを128x128ドット(512バイト)にします。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_SCRSIZE_256x16PLTT_256x256</CODE></TD>
+      <TD width="70%">画面サイズを256x256ドット(2Kバイト)にします。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_SCRSIZE_256x16PLTT_512x512</CODE></TD>
+      <TD width="70%">画面サイズを512x512ドット(8Kバイト)にします。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_SCRSIZE_256x16PLTT_1024x1024</CODE></TD>
+      <TD width="70%">画面サイズを1024x1024ドット(32Kバイト)にします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_AREAOVER_XLU</CODE></TD>
+      <TD width="70%">エリアオーバー部分の透明表示</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_AREAOVER_REPEAT</CODE></TD>
+      <TD width="70%">エリアオーバー部分の回りこみ表示</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_SCRBASE_0xnnnn</CODE></TD>
+      <TD width="70%">BG3のスクリーンベースブロックを指定します。<A href="../gx/GX_SetBGScrOffset.html">GX_SetBGScrOffset</A>も参照のこと。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BG_CHARBASE_0xnnnnn</CODE></TD>
+      <TD width="70%">BG3のキャラクタベースブロックを指定します。<A href="../gx/GX_SetBGCharOffset.html">GX_SetBGCharOffset</A>も参照のこと。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>以下に引数の列挙型の型定義を記しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_BG_SCRSIZE_256x16PLTT_128x128 = 0,
+    GX_BG_SCRSIZE_256x16PLTT_256x256 = 1,
+    GX_BG_SCRSIZE_256x16PLTT_512x512 = 2,
+    GX_BG_SCRSIZE_256x16PLTT_1024x1024 = 3
+}
+GXBGScrSize256x16Pltt;
+
+typedef enum
+{
+    GX_BG_AREAOVER_XLU = 0,
+    GX_BG_AREAOVER_REPEAT = 1
+}
+GXBGAreaOver;
+
+typedef enum
+{
+    GX_BG_SCRBASE_0x0000 = 0,
+    GX_BG_SCRBASE_0x0800 = 1,
+    GX_BG_SCRBASE_0x1000 = 2,
+    GX_BG_SCRBASE_0x1800 = 3,
+    GX_BG_SCRBASE_0x2000 = 4,
+    GX_BG_SCRBASE_0x2800 = 5,
+    GX_BG_SCRBASE_0x3000 = 6,
+    GX_BG_SCRBASE_0x3800 = 7,
+    GX_BG_SCRBASE_0x4000 = 8,
+    GX_BG_SCRBASE_0x4800 = 9,
+    GX_BG_SCRBASE_0x5000 = 10,
+    GX_BG_SCRBASE_0x5800 = 11,
+    GX_BG_SCRBASE_0x6000 = 12,
+    GX_BG_SCRBASE_0x6800 = 13,
+    GX_BG_SCRBASE_0x7000 = 14,
+    GX_BG_SCRBASE_0x7800 = 15,
+    GX_BG_SCRBASE_0x8000 = 16,
+    GX_BG_SCRBASE_0x8800 = 17,
+    GX_BG_SCRBASE_0x9000 = 18,
+    GX_BG_SCRBASE_0x9800 = 19,
+    GX_BG_SCRBASE_0xa000 = 20,
+    GX_BG_SCRBASE_0xa800 = 21,
+    GX_BG_SCRBASE_0xb000 = 22,
+    GX_BG_SCRBASE_0xb800 = 23,
+    GX_BG_SCRBASE_0xc000 = 24,
+    GX_BG_SCRBASE_0xc800 = 25,
+    GX_BG_SCRBASE_0xd000 = 26,
+    GX_BG_SCRBASE_0xd800 = 27,
+    GX_BG_SCRBASE_0xe000 = 28,
+    GX_BG_SCRBASE_0xe800 = 29,
+    GX_BG_SCRBASE_0xf000 = 30,
+    GX_BG_SCRBASE_0xf800 = 31
+}
+GXBGScrBase;</CODE>
+
+<CODE>typedef enum
+{
+    GX_BG_CHARBASE_0x00000 = 0,
+    GX_BG_CHARBASE_0x04000 = 1,
+    GX_BG_CHARBASE_0x08000 = 2,
+    GX_BG_CHARBASE_0x0c000 = 3,
+    GX_BG_CHARBASE_0x10000 = 4,
+    GX_BG_CHARBASE_0x14000 = 5,
+    GX_BG_CHARBASE_0x18000 = 6,
+    GX_BG_CHARBASE_0x1c000 = 7,
+    GX_BG_CHARBASE_0x20000 = 8,
+    GX_BG_CHARBASE_0x24000 = 9,
+    GX_BG_CHARBASE_0x28000 = 10,
+    GX_BG_CHARBASE_0x2c000 = 11,
+    GX_BG_CHARBASE_0x30000 = 12,
+    GX_BG_CHARBASE_0x34000 = 13,
+    GX_BG_CHARBASE_0x38000 = 14,
+    GX_BG_CHARBASE_0x3c000 = 15
+}
+GXBGCharBase;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G2_GetBG3Control256x16Pltt.html">G2_GetBG3Control256x16Pltt</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>引数にキャラクタベースブロックを追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

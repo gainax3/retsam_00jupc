@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGetChildNodeIDList</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGetChildNodeIDList</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/util.h&gt;</CODE></PRE>
+  <PRE><CODE>int
+NNS_G3dGetChildNodeIDList(
+    u8*       idList,
+    const u8* sbc,
+    u32       nodeID
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>idList</STRONG></EM></TD>
+      <TD width="87%">結果を格納する子ノードIDのリストへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>sbc</STRONG></EM></TD>
+      <TD width="87%">SBCコード列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nodeID</STRONG></EM></TD>
+      <TD width="87%">ノードID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>子ノードの数を返します。</P>
+
+<H2>説明</H2>
+<P><I><B>nodeID</B></I>の子になるノードIDのリストを<B><I>idList</I></B>に作成します。 <I><B>idList</B></I>は十分な領域が確保されている必要があります。 返り値は子ノードの数です。 みつからなかった場合は0を返し、<I><B>idList</B></I>には何も書き込まれません。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dGetParentNodeID.html">NNS_G3dGetParentNodeID</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

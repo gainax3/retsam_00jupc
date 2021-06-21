@@ -1,0 +1,70 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SocBind</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SocBind</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_SocBind(u16 local_port, u16 remote_port, CPSInAddr remote_ip);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>local_port</strong></em></code></td>
+    <td>自ポート。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>remote_port</strong></em></code></td>
+    <td>相手ポート。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>remote_ip</strong></em></code></td>
+    <td>相手アドレス。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>ソケットに自ポート、相手ポート、相手アドレスを割り当てます。</p>
+<P>TCPにおけるCPS_SocBind()</P>
+	<UL>
+		<LI>CPS_SocBind()は三つの引数(自ポート、相手ポート、相手IPアドレス)を取ります。自ポートが0ならエフェメラルポートが割り当てられます。相手ポートが0ならワイルドカードとなります。相手IPアドレスが0ならワイルドカードとなります。</LI>
+		<LI>TCPコネクションが成立した後、相手IPアドレス、相手ポートに関する情報はCPS_SocWho()で取得することが出来ます。これはワイルドカード指定の項目に関して、実際の相手がどこの誰なのかを知るのに使われます。</LI>
+	</UL>
+<P>UDPにおけるCPS_SocBind()</P>
+	<UL>
+		<LI>UDPでは、上に加えて、CPS_SocBind()の相手IPアドレスとして0xffffffffを指定することで、ブロードキャストできます。この場合、受信の際、相手IPはワイルドカードと同じような扱いを受けます。</LI>
+		<LI>ワイルドカード指定の項目は、最初のパケットの受信後、実際の相手の情報で書き換えられます。これによりCPS_SocBind(x, 0, 0)の様にポートxで待ち受けておき、最初にパケットを送ってきた相手のIPとポートと自動的にやり取りできます。この動作が不都合ならば、受信後毎回CPS_SocBind(x, 0, 0)でワイルドカードに戻せばよいです。</LI>
+		<LI>こちらから出力するときに相手をワイルドカードにすることは考えられないので問題ありません。</LI>
+	</UL>
+	<p>ブロックはしません。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_TcpListen.html">CPS_TcpListen</A></CODE>, 
+<CODE><A href="CPS_TcpConnect.html">CPS_TcpConnect</A></CODE>, 
+<CODE><A href="CPS_SocWho.html">CPS_SocWho</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

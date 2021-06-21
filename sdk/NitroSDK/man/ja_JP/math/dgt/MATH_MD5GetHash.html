@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_MD5GetHash</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_MD5GetHash</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/dgt.h&gt;
+
+static inline void MATH_MD5GetHash( <A href="MATHMD5Context.html">MATHMD5Context</A> *context, void* digest );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
+      <TD width="670">MD5 生成用のコンテキスト構造体へのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">digest</font></strong></em></TD>
+      <TD width="670">メッセージダイジェスト値を格納するメモリへのポインタ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、MD5 によるダイジェスト値を得ます。context 引数をあらかじめ <A href="MATH_MD5Init.html">MATH_MD5Init</A> 関数で初期化した上で、
+入力データを <A href="MATH_MD5Update.html">MATH_MD5Update</A> 関数で与えておく必要があります。<BR>
+生成されるメッセージダイジェスト値の長さは 128 bit、すなわち MATH_MD5_DIGEST_SIZE (= 16) バイトです。このサイズが格納できる領域を digest 引数に渡すようにしてください。<BR>
+なお、この関数の内部で context を書き換えてしまいますので、同じ context を <A href="MATH_MD5Update.html">MATH_MD5Update</A> 関数で使いつづけることはできません。<BR>
+<BR>
+MD5 はメッセージダイジェスト値を求めるためのアルゴリズムです。詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 1321 を参照してください。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_MD5Init.html">MATH_MD5Init</A>, <A href="MATH_MD5Update.html">MATH_MD5Update</A></P>
+<H2>履歴</H2>
+<P>
+2005/07/11 説明の追加<BR>
+2005/04/12 関数名の変更<BR>
+2005/04/01 初版<BR>
+</P>
+</body>
+</html>

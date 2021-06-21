@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dBindAnimCtrl</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dBindAnimCtrl</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Animation.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_G2dBindAnimCtrl( 
+        NNSG2dAnimController*        pAnimCtrl, 
+        const NNSG2dAnimSequence*    pAnimSequence );</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAnimCtrl</font></strong></em></td>
+    <td width="87%">[OUT] NNSG2dAnimController 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>pAnimSequence</CODE></font></strong></em></td>
+    <td width="87%">[IN] アニメーションシーケンスデータ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>アニメーションコントローラと制御対象のアニメーションデータを関連付けます。<BR>
+内部でNNS_G2dResetAnimCtrlState() が呼ばれ、アニメーションコントローラの内部状態はリセットされます。</p>
+<BR>
+本関数はNNS_G2dBindAnimController()から改名された新しい関数名です。互換性維持のため、過去の関数は別名として残されています。
+</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dBindAnimController.html">NNS_G2dBindAnimController</A><br></CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/08/02 改名の実施</P><P>2004/05/28 初版</P>
+</body>
+</html>

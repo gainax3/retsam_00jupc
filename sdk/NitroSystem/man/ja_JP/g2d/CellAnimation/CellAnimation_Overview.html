@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CellAnimation_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">セルアニメーション概要</h1>
+<H2>概念図</H2>
+<P><IMG src="image.gif" border="0" width="675" height="275"></P>
+<H2>説明</H2>
+セルアニメーションは、NITRO-CHARACTERで作成されたセルアニメーションを再生するためのものです。<BR>
+セルアニメーションは、内部にアニメーションコントローラを持ち、このアニメーションコントローラを用いてセルをアニメーションさせます。
+アニメーションデータとそのアニメーション結果（インデックス値）を用いて参照するセルデータの関連付けは、このセルアニメーションで実行されます。
+
+
+<h2>セルアニメーションの内部データ</h2>
+
+
+<h3>セルデータバンクへのポインタ</h3>
+
+メインメモリ上に読み出したセルデータバンクへのポインタが格納されます。
+セルデータバンクは静的なデータであり、書き換えられることは有りません。
+セルアニメーションで使用されるセルは、このポインタが指し示すセルデータバンクに含まれていなければなりません。
+
+<h3>表示中のセルデータへのポインタ</h3>
+アニメーション再生により、現在画面に表示されているセルへのポインタが格納されます。
+このポインタが指し示すセルは、セルデータバンクへのポインタが指し示すセルデータバンクの中に存在します。
+
+<h3>SRTアニメ結果</h3>
+アニメーション再生により変化した、セルの位置、回転、スケールが格納されます。
+
+<h3>セルVRAM転送状態オブジェクトのハンドル（cellTransferStateHandle)</h3>
+VRAM転送アニメーションをサポートする際に利用されます。
+セルVRAM転送状態オブジェクトのハンドルは、VRAM転送を行うCellが管理、保存すべき状態、情報を持っています。
+使用されない場合はNNS_G2D_INVALID_CELL_TRANSFER_STATE_HANDLEが代入されます。
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

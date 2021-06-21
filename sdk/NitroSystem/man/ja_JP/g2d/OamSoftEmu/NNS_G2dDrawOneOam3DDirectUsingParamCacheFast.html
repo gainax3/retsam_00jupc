@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OamSoftwareSpriteDraw.h&gt;</CODE></pre>
+  <pre><CODE>
+    void    NNS_G2dDrawOneOam3DDirectUsingParamCacheFast
+    ( 
+        s16                             posX,
+        s16                             posY,
+        s16                             posZ,
+        const GXOamAttr*                pOam
+    );
+                            
+</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posX</font></strong></em></td>
+    <td width="87%">[IN] X位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posY</font></strong></em></td>
+    <td width="87%">[IN] Y位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posZ</font></strong></em></td>
+    <td width="87%">[IN] Z位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[IN] OAMアトリビュート</td>
+  </tr>
+  
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+パラメータ(UVパラメータ)のキャッシュを使用してOAMをスプライト描画します。<BR>
+実行前にキャッシュパラメータの設定を行ってください。<BR>
+キャッシュパラメータの設定は
+NNS_G2dSetOamSoftEmuSpriteParamCache()関数で行います。<BR>
+<BR>
+関数呼び出しの前後で、3D グラフィックスエンジンのカレント行列
+は保存されません。<BR>
+<BR>
+同一のテクスチャを参照するスプライトを大量に書く際に、UV値の計算、設定を一度きり行うことによって、
+効率よく描画処理を行うことが可能となります。<BR>
+<BR>
+本関数では、OAMのフリップフラグが無視される点にご注意ください。
+(UVパラメータはNNS_G2dSetOamSoftEmuSpriteParamCache()関数実行時に
+決定されてしまいます。)<BR>
+フリップしたスプライトを描画する場合、
+NNS_G2dSetOamSoftEmuSpriteParamCache()の引数としてフリップ設定した
+OAM（GXOamAttr）を渡し、キャッシュパラメータを更新する必要があります。<BR>
+
+<BR>
+<PRE>
+    NNS_G2dDrawOneOam3DDirectUsingParamCache()の描画
+        処理 = UVパラメータ設定 x 1 + 描画 x N
+    通常の描画
+        処理 = ( UVパラメータ設定 + 描画 ) x N</p>
+</PRE>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="NNS_G2dSetOamSoftEmuSpriteParamCache.html">NNS_G2dSetOamSoftEmuSpriteParamCache</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/11/10 初版</P>
+</body>
+</html>

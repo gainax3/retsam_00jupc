@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_ReadSegment</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_ReadSegment</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL MB_ReadSegment(FSFile *file, void *buf, u32 len);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>file</STRONG></EM></TD>
+      <TD width="87%">プログラムファイルのハンドルを保持するFSFile構造体<BR>
+	  このファイルのシーク位置はプログラムバイナリの先頭を指している必要があります。<BR>
+	  また、シーク位置はこの関数から返ったときに元の位置を保持します。<br>
+	  <br>
+	  このポインタにNULLを指定した場合は親機アプリケーション自身を<br>
+	  ダウンロードプログラムファイルとみなしてセグメントを抽出します。<br>
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>buf</STRONG></EM></TD>
+      <TD width="87%">抽出したセグメント情報を格納するメモリへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">bufのバイトサイズ<BR>
+	  このサイズは、少なくとも<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>以上である必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>プログラムから正しくセグメント情報を抽出できた場合はTRUE、そうでない場合はFALSEを返します。</p>
+
+<H2>説明</H2>
+<P>
+指定したプログラムファイルから、ダウンロード処理に直接必要となるセグメント情報だけを抽出します。<br>
+ユーザアプリケーションは、この関数で得られたセグメントデータを用いて<A href="MB_RegisterFile.html">MB_RegisterFile</A>関数を呼び出す必要があります。<br>
+<br>
+指定したバッファのサイズが<a href="MB_GetSegmentLength.html">MB_GetSegmentLength</A>関数の返り値以上である場合は、<br>
+この関数呼び出しの中で前もって全てのセグメントデータをメモリ上に準備します。<br>
+<br>
+サイズがそれよりも小さくかつ<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>以上である場合は、<br>
+メモリ上に準備できない残りの部分を、指定のアーカイブから必要に応じて動的に読み込むよう設定されます。<br>
+この設定の場合、子機の要求へ即座に応答できない状況がしばしば発生するために転送効率は若干低下します。<br>
+<font color="#800000">この設定を使用すると、MBライブラリの内部でスレッドがひとつだけ自動的に起動します。詳細は [内部動作] の項を参照ください。</font><br>
+<br>
+サイズが<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>未満である場合は失敗します。<br>
+<br>
+<br>
+<pre>
+例:
+    BOOL    reg_file_done = FALSE;
+
+    FSFile file[1];
+    FS_InitFile(file);
+    if(FS_OpenFile(file, p_game_reg-&gt;romFilePathp)) {
+        u32  len = MB_GetSegmentLength(file);
+        if(len > 0) {
+            void *mem = OS_Alloc(len);
+            if(mem != NULL) {
+                if(MB_ReadSegment(file, mem, len)) {
+                    if(MB_RegisterFile(p_game_reg, mem)) {
+                        reg_file_done = TRUE;
+                    }
+                }
+            }
+        }
+        FS_CloseFile(file);
+    }
+<BR>
+</pre><BR>
+<h2>内部動作</h2>
+<p>
+この関数は内部でFS_ReadFile関数を呼び出します。<br>
+<br>
+アーカイブから動的に読み込むよう設定されたセグメントデータを使用して<A href="MB_RegisterFile.html">MB_RegisterFile</A>関数を呼び出した場合、<br>
+アーカイブへアクセスするためのスレッドが内部でひとつだけ自動的に起動する点に注意してください。<br>
+このスレッドは<A href="../common/MB_End.html">MB_End</a>関数か<A href="../common/MB_EndToIdle.html">MB_EndToIdle</a>関数が完了するまで存在します。<br>
+このスレッドの優先度は0で、子機群のセグメントデータ要求が発生するまでスリープし、必要に応じて不定期にカードアクセスを行います。<br>
+</p>
+<h2>参照</h2>
+<p>
+<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>
+<br>
+<A href="MB_GetSegmentLength.html">MB_GetSegmentLength</A> 
+<A href="MB_RegisterFile.html">MB_RegisterFile</A> 
+</P>
+<H2>履歴</H2>
+<P>
+2005/04/11 タスクスレッドに関する説明を追記<br>
+2004/12/07 遅延リード方式について、適用対象がNITRO-CARDから任意のアーカイブに拡張されたことにともなう記述変更<br>
+2004/11/11 クローンブート公開に伴う記述変更. 遅延リード方式追加に伴う記述変更<br>
+2004/09/10 ファイルポインタにNULLを指定した際の動作説明を追加<br>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

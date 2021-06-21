@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_ReceiveAudio</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_ReceiveAudio</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>BOOL VCT_ReceiveAudio( void* audio_data, u32 length, u32 *aidBitmap );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>audio_data</STRONG></EM></TD>
+      <TD width="87%" height="17">バッファへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>length</STRONG></EM></TD>
+      <TD width="87%" height="17"> バッファのサイズ</TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>aidBitmap</STRONG></EM></TD>
+      <TD width="87%" height="17"> このストリームを送信したクライアントのaidのビットマップ。NULLを指定することも出来ます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<TABLE border="1" id="table1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TRUE</CODE></TD>
+      <TD width="70%">音声データをバッファに書き込んだ</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>FALSE</CODE></TD>
+      <TD width="70%">音声データがない、またはストリーミングが開始されていない、ライブラリが初期化されていない</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<p>受信用バッファから音声データを取り出します。受信した音声のデコードは<code><a href="VCT_HandleData.html">VCT_HandleData</a></code>内ですでに処理されています。また、カンファレンスモードなど、再生音声が複数チャンネルある場合、この関数の内部にて音声がミキシング処理されます。</p>
+
+<p><em><strong>audio_data</strong></em>に書き込まれる音声データのフォーマットは16bit/8KHzです。このバッファは４バイト境界にアライメントされている必要があります。なお、<em><strong>length</strong></em>は現在1088（16bit/8KHzで68ms分のデータ）以外の値は受け付けていません。</p>
+
+<p>この関数は、現在音声ストリーミングが開始されている・いないにかかわらず呼び出すことが可能です。音声ストリーミングが開始されていなければ、この関数は<em><strong>audio_data</strong></em>をゼロクリアします。
+
+<p>この関数の呼び出し間隔にばらつきがあると、音声再生に途切れが発生しやすくなるため、可能な限り正確に68ms単位で呼び出すようにしてください（音声ストリーミング再生の割り込みコールバック内で利用してください）。</p>
+
+<p><em><strong>aidBitmap</strong></em>を指定することで、このストリームを送信したリモートaidのビットマップを取得できます。トランシーバーモードにおいて、発言する人に応じてパンを切り替えるような場合に、利用してください。</p>
+
+<p>この関数の戻り値を利用することで、現在再生すべき音声があるかどうかを判定することができます。これを利用して、音声再生時に BGM をミュート、または音量を抑えるといった処理をすることが可能になります。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="VCT_Init.html">VCT_Init</a>,
+<a href="VCT_StartStreaming.html">VCT_StartStreaming</a>,
+<a href="VCT_SendAudio.html">VCT_SendAudio</a>
+</code></p>
+<H2>履歴</H2>
+<P>
+2006/08/31 ソフトウェアミックスに関する記述を追加<BR>
+2006/04/25 VCT_ReceiveMixedAudioに関する記述を追加<BR>
+2006/04/13 送信間隔を64msから68msへ変更。audio_dataに注意事項を修正。<BR>
+2006/04/06 送信間隔の調整に関する記述を修正 <BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

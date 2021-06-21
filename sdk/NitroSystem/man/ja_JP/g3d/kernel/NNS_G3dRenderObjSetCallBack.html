@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dRenderObjSetCallBack</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dRenderObjSetCallBack</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dRenderObjSetCallBack(
+    NNSG3dRenderObj*        pRenderObj,
+    NNSG3dSbcCallBackFunc   func,
+    u8*                     <S>pCmd</S>,
+    u8                      cmd,
+    NNSG3dSbcCallBackTiming timing
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
+      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>func</STRONG></EM></TD>
+      <TD width="87%">登録するコールバック関数へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><S><EM><STRONG>pCmd</STRONG></EM></S></TD>
+      <TD width="87%"><S>コールバック関数を呼び出すSBC命令へのポインタ</S>（現在この引数は無効ですが、過去のバージョンとの引数の互換性のために残されています。）</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cmd</STRONG></EM></TD>
+      <TD width="87%">コールバック関数を呼び出すSBC命令</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>timing</STRONG></EM></TD>
+      <TD width="87%">コールバック関数を呼び出すタイミング</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><CODE>NNS_G3dDraw</CODE>関数の実行中に差し挟むことができるコールバック関数をレンダリングオブジェクトに登録します。
+コールバック処理は、<I><B>cmd</B></I>で指定されるSBC命令が実行されるときに、<B><I>timing</I></B>で指定される命令内のタイミングでコールバック関数が実行されます。<B><I>timing</I></B>は以下に示す3種類から選択でき、 SBCコマンド毎に設定されています。詳しくは<A href="../sbc/SBCCallback.html">SBCとコールバック</A>を参照してください。</P>
+<PRE><CODE>typedef enum
+{
+    NNS_G3D_SBC_CALLBACK_TIMING_A    = 0x00,
+    NNS_G3D_SBC_CALLBACK_TIMING_B    = 0x01,
+    NNS_G3D_SBC_CALLBACK_TIMING_C    = 0x02
+}
+NNSG3dSbcCallBackTiming;</CODE></PRE>
+<P>
+登録したコールバック処理は<CODE>NNS_G3dRenderObjResetCallBack</CODE>関数によって取り消すことができます。複数のコールバック関数を登録したい場合には、<CODE>NNS_G3dRenderObjSetInitFunc</CODE>関数で登録した関数内で、<CODE>NNS_G3dRSSetCallBack</CODE>関数を使用してコールバック関数を設定してください。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dRenderObjResetCallBack.html">NNS_G3dRenderObjResetCallBack</A>,
+<A href="NNS_G3dRenderObjSetUserPtr.html">NNS_G3dRenderObjSetUserPtr</A>
+<A href="../funcptr/NNSG3dSbcCallBackFunc.html" target="_self">NNSG3dSbcCallBackFunc</A></CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/15 仕様の改訂に伴い記述を改訂<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

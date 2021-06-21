@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetDispersionBeaconPeriod</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetDispersionBeaconPeriod</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+u16 WM_GetDispersionBeaconPeriod( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>
+無線通信親機において設定すべきビーコン間隔を返します。
+</p>
+
+<H2>説明</H2>
+<P>
+無線通信において親機として通信を開始する際に設定すべきビーコン間隔をms単位で取得します。<BR>
+複数の親機が全く同じビーコン間隔で通信している場合は、子機が<A href="WM_StartScan.html">WM_StartScan関数</A>によって親機を探索した際に
+いくつかの親機を長期間発見できない場合があります。この現象を緩和するために、当関数では適度にばらついた
+設定すべきビーコン間隔を返します。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="WM_SetParentParameter.html">WM_SetParentParameter</A>, <A href="WM_GetDispersionScanPeriod.html">WM_GetDispersionScanPeriod</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/10/18 初版<BR>
+</P>
+</body>
+</html>

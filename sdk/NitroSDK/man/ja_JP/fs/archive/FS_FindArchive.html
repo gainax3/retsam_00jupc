@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_FindArchive</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_FindArchive</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>FSArchive*	FS_FindArchive(const char *name, int name_len);</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>name</STRONG></EM></TD>
+      <TD width="87%">検索する名前を格納した文字列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>name_len</STRONG></EM></TD>
+      <TD width="87%">nameの文字列長</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>指定の名前で登録されたアーカイブがすでにある場合はそのポインタを、そうでないなら NULL を返します。</p>
+
+<H2>説明</H2>
+<P>指定された名前のアーカイブがファイルシステムに登録されているか検索します。<BR>
+もし存在すれば、そのアーカイブのポインタを返します。<BR>
+ここで返されるポインタは、登録のみされていてロードされていないアーカイブも含みます。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_name_len_max_const.html">FS_ARCHIVE_NAME_LEN_MAX</A>
+<BR>
+<A href="FS_RegisterArchiveName.html">FS_RegisterArchiveName</A> 
+<A href="FS_LoadArchive.html">FS_LoadArchive</A> 
+<BR></P>
+<H2>履歴</H2>
+<P>2004/07/12 初版</P>
+</body>
+</html>

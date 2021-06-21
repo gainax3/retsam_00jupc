@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_Assert</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">SDK_*ASSERT, SDK_ASSERT*</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/misc.h&gt;</CODE><BR>
+  <BR>
+  <CODE>SDK_ASSERT(exp);</CODE>
+  <DD><CODE>SDK_ASSERTMSG(exp, fmt, ...);</CODE>
+  <DD><CODE>SDK_NULL_ASSERT(exp);</CODE>
+  <DD><CODE>SDK_MINMAX_ASSERT(exp, min, max);</CODE>
+  <DD><CODE>SDK_MIN_ASSERT(exp, min);</CODE>
+  <DD><CODE>SDK_MAX_ASSERT(exp, max);</CODE>
+  <DD><CODE>SDK_ALIGN4_ASSERT(exp);</CODE>
+  <DD><CODE>SDK_ALIGN2_ASSERT(exp);</CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="166"><B><I>exp</I></B></TD>
+      <TD width="481">条件パラメータ</TD>
+    </TR>
+    <TR>
+      <TD width="166"><B><I>fmt</I></B></TD>
+      <TD width="481">表示文字列(フォーマット文字列)</TD>
+    </TR>
+    <TR>
+      <TD width="166"><B><I>min</I></B></TD>
+      <TD width="481">条件を範囲で判定する際の最小値</TD>
+    </TR>
+    <TR>
+      <TD width="166"><B><I>max</I></B></TD>
+      <TD width="481">条件を範囲で判定する際の最大値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>本マクロは、条件を検査し、条件が満たされない場合は文字列を出力します。<BR>
+その後、アプリケーションの動作を強制終了します。<BR>
+<BR>
+SDK_ASSERTMSGでは、フォーマット文字列 <B><I>fmt</I></B> に従って、可変個の引数を与えることが可能です。</P>
+<P>各マクロ関数は、以下の場合にアサートメッセージを表示します。<BR>
+<BR>
+・<CODE>SDK_ASSERT( exp )</CODE> は、評価式<B><I>exp</I></B> の値が偽であるとき(<B><I>exp</I></B>が成立しないとき)<BR>
+・<CODE>SDK_ASSERTMSG( exp, fmt, ... )</CODE> は、評価式<B><I>exp</I></B>の値が偽であるとき(<B><I>exp</I></B>が成立しないとき)<BR>
+・<CODE>SDK_NULL_ASSERT( exp )</CODE> は、評価式が<B><I>exp</I></B>の値が NULL に等しくないとき<BR>
+・<CODE>SDK_MINMAX_ASSERT( exp, min, max )</CODE> は、評価式<B><I>exp</I></B>の値が <B><I>min</I></B>以上<B><I>max</I></B>以下でないとき<BR>
+・<CODE>SDK_MIN_ASSERT( exp, min )</CODE> は、評価式<B><I>exp</I></B> の値が <B><I>min</I></B> 以上でないとき<BR>
+・<CODE>SDK_MAX_ASSERT( exp, max )</CODE> は、評価式<B><I>exp</I></B> の値が <B><I>max</I></B> 以下でないとき<BR>
+・<CODE>SDK_ALIGN4_ASSERT( exp )</CODE> は、評価式<B><I>exp</I></B> の値が４の倍数でないとき<BR>
+・<CODE>SDK_ALIGN2_ASSERT( exp )</CODE> は、評価式<B><I>exp</I></B> の値が2の倍数でないとき</P>
+<P>
+これらのマクロ関数はデバッグ用なので、RELEASEビルドおよびFINALROMビルドでは出力動作を行ないません。</P>
+<H2>参照</H2>
+<P><CODE><A href="SDK_WARNING.html">SDK_WARNING</A>*<BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/09/01 RELEASE, ROMビルドで出力を行わないことを記述<BR>
+2004/03/12 SDK_ALIGN4_ASSERT, SDK_ALIGN2_ASSERT追加<BR>
+2004/02/27 初版</P>
+</BODY>
+</HTML>

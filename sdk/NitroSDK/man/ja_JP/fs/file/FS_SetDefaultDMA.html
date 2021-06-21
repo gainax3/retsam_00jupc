@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_SetDefaultDMA</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_SetDefaultDMA</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32 FS_SetDefaultDMA( u32 dma_no );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dma_no</STRONG></EM></TD>
+      <TD width="87%">ファイルシステム内部のROMアーカイブが使用するDMAチャンネル<BR>
+	  FS_DMA_NOT_USEを指定した場合、DMAは使用せずCPUによる転送を行います。<BR>
+	  <FONT color="#800000">有効なDMAチャンネルを指定した場合、FS_SetDefaultDMA関数で設定を変更するまでこのDMAチャンネルを使用できません。</FONT><br>
+	  <font color="#800000">また、カードアクセスの転送元はIOレジスタなのでDMAチャンネル0を指定することはできません。</font>
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>以前に設定されていたDMAチャンネルを返します。</p>
+
+<H2>説明</H2>
+<P>ファイルシステム内部の<A href="../archive_rom_spec.html">ROM アーカイブ</A>がデータアクセスに使用するDMAチャンネルを指定します。<BR>
+FS_DMA_NOT_USEを指定した場合、DMAは使用せずCPUによる転送を行います。<BR>
+<BR>
+<A href="../archive_rom_spec.html">ROM アーカイブ</A>にDMAチャンネルを割り当てる場合の内部動作については、
+<a href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</a>関数の説明も参照ください。<BR>
+</P>
+<H2>注意</H2>
+<P>
+<FONT color="#800000">この関数で有効なDMAチャンネルを指定した場合、再び設定を変更するまでこのDMAチャンネルを使用できません。<BR>
+また、設定変更時に<A href="../archive_rom_spec.html">ROM アーカイブ</A>へアクセス中である場合には、そのファイル操作が完了するまで変更が反映されません。<br>
+ファイルシステムはこのDMAチャンネルを使用して内部でNITRO ROM デバイスへのアクセスを行います。<BR>
+CARD_ReadRom関数およびCARD_ReadRomAsync関数説明も参照ください。<BR>
+</FONT></P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_dma_not_use_const.html">FS_DMA_NOT_USE</A> 
+<A href="../../card/rom/CARD_ReadRom.html">CARD_ReadRom</A> 
+<A href="../../card/rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</A> 
+<BR></P>
+<H2>履歴</H2>
+<P>
+2005/09/17 DMAチャンネル設定変更の反映に関する注意を追加<br>
+2005/08/28 説明文にCARD_ReadRomAsync関数へのリンクを追加<br>
+2005/04/28 DMAチャンネル0が指定できない旨を追記<br>
+2004/07/23 ROMアーカイブとDMAチャンネルに関する注意を追加<BR>
+2004/05/14 FS_DMA_NOT_USEについての記述を追加<BR>
+2004/04/08 初版<BR>
+</P>
+</body>
+</html>

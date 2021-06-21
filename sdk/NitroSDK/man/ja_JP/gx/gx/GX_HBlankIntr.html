@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_HBlankIntr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_HBlankIntr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+s32 GX_HBlankIntr(BOOL enable);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="237"><EM><STRONG><FONT face="Courier New">enable</FONT></STRONG></EM></TD>
+      <TD width="609">Hブランク割り込み要求を発生させるかさせないかの設定</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>この関数を呼ぶ前のHブランク割り込み要求発生イネーブルフラグの状態を返します。<BR>
+禁止状態の場合0を返し、許可状態の場合は0以外を返します。</p>
+<H2>説明</H2>
+<P>引数がFALSE以外の場合、Hブランク割り込み要求を発生させます。FALSEの場合は発生させません。</P>
+<h2>参照</h2>
+<P><A href="GX_IsHBlank.html">GX_IsHBlank</A>, <A href="GX_VBlankIntr.html">GX_VBlankIntr</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/07/26 返り値の記述を修正<BR>
+Ver. 2004/01/19 初版</P>
+</body>
+</html>

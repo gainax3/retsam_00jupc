@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndGetGroupIDForExpHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndGetGroupIDForExpHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+    <pre><CODE>u16 NNS_FndGetGroupIDForExpHeap(NNSFndHeapHandle heap);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+	<tr> 
+		<td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+		<td width="87%">拡張ヒープのハンドル</td>
+	</tr>
+</table>
+<h2>返り値</h2>
+<p> 現在のグループID値を返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープのグループIDを取得します。</P>
+<P>拡張ヒープから確保したメモリブロックはそれぞれグループIDを持っており、この値はメモリブロックを確保するときにヒープにセットされていたグループID値を引き継ぎます。</P>
+<p>ヒープ作成直後のグループIDは 0 になっています。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndSetAllocModeForExpHeap.html">NNS_FndSetAllocModeForExpHeap</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/28 ヒープ作成直後のグループIDの値が255になっていたのを0に修正<br>
+2004/04/01 初版</P>
+</body>
+</html>

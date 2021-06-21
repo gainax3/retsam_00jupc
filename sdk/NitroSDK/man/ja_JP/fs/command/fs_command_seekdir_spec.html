@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_COMMAND_SEEKDIR</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_COMMAND_SEEKDIR</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <BR>
+  <CODE>FSResult FS_ARCHIVE_PROC_FUNC(FSFile *p_file, FSCommandType command /*
+  = FS_COMMAND_SEEKDIR */);<br>
+  </CODE><br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_SEEKDIR の動作仕様を以下に示します</CODE>。<BR>
+<BR>
+<BR>
+
+<HR>
+<B>このコマンドに渡される引数</B>
+<BLOCKQUOTE>
+<PRE>p_file に格納された変数 arg.seekdir をコマンド引数とします。 
+この変数は nitro/fs/file.h にて以下のように定義されています。
+
+typedef struct {
+   FSDirPos pos;
+} FSSeekDirInfo; </PRE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>引数の内容は以下のとおりです。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1" width="50%">
+  <TBODY>
+    <TR>
+      <TD style="text-align : center;" width="95">引数</TD>
+      <TD style="text-align : center;" width="522">内容</TD>
+    </TR>
+    <TR>
+      <TD width="95" style="text-align : center;">pos</TD>
+      <TD width="522">移動させるべきディレクトリ位置が FSDirPos 型で格納されています。<BR>
+      この値は、FS_COMMAND_READDIR コマンドが生成します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BR>
+<HR>
+<B>このコマンドに要求される動作</B>
+<BLOCKQUOTE>
+<PRE>p_file の変数 prop.dir を以下のように設定します。
+
+・引数 の pos が格納しているディレクトリ位置を prop.dir.pos へ設定します。
+  ただし pos.index と pos.pos がともに 0 の場合はディレクトリ列挙位置の先頭を意味します。
+  設定した値は、以降の FS_COMMAND_SEEKDIR コマンドおよび FS_COMMAND_READDIR コマンドで使用されます。
+  これらのコマンドに対して正当な引数になるのであれば、pos の各変数の意味については独自に取り決めて構いません。
+
+・引数 の pos が指し示すディレクトリ位置の親ディレクトリにあたるインデックスを prop.dir.parent に設定します。
+  ただし pos.own_id が 0 の場合はルートディレクトリを意味します。
+  ルートディレクトリの場合 prop.dir.parent にはディレクトリ総数を設定します。
+  設定した値は、以降の FS_COMMAND_GETPATH コマンドで使用されます。
+</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>デフォルトの実装</B><BR>
+<BR>
+<BLOCKQUOTE>以下の取り決めに基づいて値を設定します。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="185">prop.dir.pos.arc</TD>
+      <TD width="432">引数をそのまま使用</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.dir.pos.own_id</TD>
+      <TD width="432">引数をそのまま使用</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.dir.pos.index</TD>
+      <TD width="432">FNTの、次のディレクトリエントリが存在する位置<BR>
+      ( NitroROMフォーマットに準拠 )</TD>
+    </TR>
+    <TR>
+      <TD width="185">prop.dir.pos.pos</TD>
+      <TD width="432">次のディレクトリエントリがファイルだった場合の、そのインデックス<BR>
+      これは FS_COMMAND_READ が成功するたびに 1 ずつ増加<BR>
+      ( NitroROMフォーマットに準拠 )</TD>
+    </TR>
+    <TR>
+      <TD>prop.dir.parent</TD>
+      <TD>親ディレクトリのインデックスまたはディレクトリ総数<BR>( NitroROMフォーマットに準拠 )</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BLOCKQUOTE><BR>
+これらの情報はアーカイブのFNTがNitroROMフォーマットに準拠していることを前提にして、<BR>
+pos.own_id で示されるFNTインデックスからアーカイブのリードコールバック関数を用いて取得します。<BR>
+</BLOCKQUOTE>
+<HR>
+<B>コマンドの結果</B><BR>
+
+<BLOCKQUOTE>
+<PRE>FS_RESULT_SUCCESS を返した場合、p_file はディレクトリ位置情報を格納したハンドルになり、
+以降は FS_IsDir 関数で TRUE を返すようになります。
+また、ディレクトリを操作する関数の引数に使われるようになります。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドが使用される関数</B><BR>
+<BLOCKQUOTE>FS_SeekDir<BR>
+FS_RewindDir<BR>
+( デフォルトの FS_FINDPATH コマンドから間接的に )<BR>
+FS_ChangeDir<BR>
+FS_OpenFile<BR>
+FS_ConvertPathToFileID<BR>
+( デフォルトの FS_GETPATH コマンドから間接的に )<BR>
+FS_GetPathName<BR>
+FS_GetPathLength</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<A href="../fs_command_type_const.html">FS_COMMAND_*</A>
+<BR>
+<A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/12 初版</P>
+</body>
+</html>

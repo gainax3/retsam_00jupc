@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_Rand*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_Rand*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/rand.h&gt;
+
+static inline u16 MATH_Rand16( <A href="MATHRandContext.html">MATHRandContext16</A> *context, u16 max );<BR></CODE></PRE>
+  <PRE><CODE>static inline u32 MATH_Rand32( <A href="MATHRandContext.html">MATHRandContext32</A> *context, u32 max );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    
+    
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
+      <TD width="670">乱数のコンテキストへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">max</font></strong></em></TD>
+      <TD>取得する乱数の最大値を設定します。ここで設定したmax - 1 が得られる乱数の最大値となります。0を指定した場合にはすべての範囲の数が得られます。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>線形合同法による乱数の取得をおこないます。</P>
+<P>インライン関数となっていますので、引数maxに定数を与えると 最適化により無駄の少ないコードが得られます。</P>
+<h2>参照</h2>
+<P><A href="MATHRandContext.html">MATHRandContext*</A>, <A href="MATH_InitRand.html">MATH_InitRand*</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/13</P>
+</body>
+</html>

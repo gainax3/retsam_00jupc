@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetNextTgid</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetNextTgid</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+u16 WM_GetNextTgid( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし</p>
+
+<h2>返り値</h2>
+<p>初回呼び出し時は RTC をもとに生成された TGID 値を、次回以降は前回の返り値に 1 だけ加算した値を返します。</p>
+
+<H2>説明</H2>
+<P>以下の規則に基づいて自動生成した TGID 値を取得します。<br>
+<UL>
+<LI>初回 : RTC の現在時刻を取得して 「[分] * 256 + [秒]」 の式で生成した値 <font color="#800000">(このとき、内部で<a href="../../rtc/RTC_Init.html">RTC_Init</a>関数と<a href="../../rtc/RTC_GetTime.html">RTC_GetTime</a>関数を呼び出します)</font>
+<LI>次回以降 : 前回の返り値に 1 を加算した値 (0xFFFF を超える場合は 0)
+</UL>
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="WM_SetParentParameter.html">WM_SetParentParameter</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/04/11 初版<br>
+</P>
+</body>
+</html>

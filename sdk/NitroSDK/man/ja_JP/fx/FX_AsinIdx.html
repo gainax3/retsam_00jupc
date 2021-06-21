@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FX_AsinIdx</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FX_AsinIdx</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/fx/fx_trig.h&gt;
+
+u16 FX_AsinIdx(fx32 x);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">x</font></strong></em></TD>
+      <TD width="593"><A href="fx32.html">fx32</A>型の固定小数</TD>
+    </tr>
+  </table>
+<h2>返り値</h2>
+<p><I><B>x</B></I>の逆正弦</p>
+<H2>説明</H2>
+<P><B>x</B>の逆正弦を求めます。結果をu16型で返します。結果の単位は一周(2πラジアン)の1/65536です(例：直角は16384)。内部のSinCosテーブルを参照しています。引数の値は-1以上1以下である必要があります。</P>
+
+<h2>参照</h2>
+<P><A href="FX_Atan.html">FX_Atan</A>, <A href="FX_Atan2.html">FX_Atan2</A>, <A href="FX_Atan2Idx.html">FX_Atan2Idx</A>, <A href="FX_AcosIdx.html">FX_AcosIdx</A></P>
+<H2>履歴</H2>
+<P>Ver. 2007/01/18</P>
+</body>
+</html>

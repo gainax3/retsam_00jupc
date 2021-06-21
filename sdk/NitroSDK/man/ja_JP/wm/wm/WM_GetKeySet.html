@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetKeySet</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetKeySet</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_GetKeySet( <A href="WMKeySetBuf.html">WMKeySetBuf</A>* buf, <A href="WMKeySet.html">WMKeySet</A>* keySet );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">buf</FONT></STRONG></EM></TD>
+      <TD width="800">キー情報を格納するバッファへのポインタを指定します。<BR>
+      実体は WMDataSharingInfo 構造体へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New"><CODE>keySet</CODE></FONT></STRONG></EM></TD>
+      <TD width="800">キーセットを読み出すバッファへのポインタを指定します。<BR>
+      <A href="WM_StartKeySharing.html">WM_StartKeySharing</A>にて与えたバッファとは別のバッファを指定する必要があります。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>引数として与えられたバッファに、接続している全ての機器で共有されたキー情報であるWMKeySetを格納して返します。
+処理落ちや通信の遅延によりkeySetが接続機器間でシェアされていない場合は失敗し、WM_ERRCODE_NO_KEYSETを返します。<BR>
+理想的な通信状態においては、このAPIは<A href="WM_StartMP.html">WM_StartMP</A>のmpFreqが1の場合でも毎フレーム成功します。ただし、keySetには2回前に成功したWM_GetKeySetの呼び出し時点でのキーデータが読み込まれることに注意してください。この制限はmpFreqの値やAPIの呼び出し間隔によらず、常に2回分の遅延が発生します。<BR>
+毎フレームの安定した動作のためには、Vブランクが来てからできるだけ早いタイミングでこのAPIを呼び出す必要があります。</P>
+
+<P><A href="WM_StartKeySharing.html">WM_StartKeySharing</A>, <A href="WM_EndKeySharing.html">WM_EndKeySharing</A>, <A href="WM_GetKeySet.html">WM_GetKeySet</A> は
+過去との互換性のために残されており、今後廃止される予定です。Data Sharing の各関数を代わりに使用してください。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartKeySharing.html">WM_StartKeySharing</A>, <A href="WM_EndKeySharing.html">WM_EndKeySharing</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/07 引数の変更<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/25 説明の加筆・修正<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

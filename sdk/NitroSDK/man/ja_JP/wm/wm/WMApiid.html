@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMApiid</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMApiid</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum WMApiid
+{
+    WM_APIID_INITIALIZE         = 0 ,
+    WM_APIID_RESET              = 1 ,
+    WM_APIID_END                = 2 ,
+    WM_APIID_ENABLE             = 3 ,
+    WM_APIID_DISABLE            = 4 ,
+    WM_APIID_POWER_ON           = 5 ,
+    WM_APIID_POWER_OFF          = 6 ,
+    WM_APIID_SET_P_PARAM        = 7 ,
+    WM_APIID_START_PARENT       = 8 ,
+    WM_APIID_END_PARENT         = 9 ,
+    WM_APIID_START_SCAN         = 10 ,
+    WM_APIID_END_SCAN           = 11 ,
+    WM_APIID_START_CONNECT      = 12 ,
+    WM_APIID_DISCONNECT         = 13 ,
+    WM_APIID_START_MP           = 14 ,
+    WM_APIID_SET_MP_DATA        = 15 ,
+    WM_APIID_END_MP             = 16 ,
+    WM_APIID_START_DCF          = 17 ,
+    WM_APIID_SET_DCF_DATA       = 18 ,
+    WM_APIID_END_DCF            = 19 ,
+    WM_APIID_SET_WEPKEY         = 20 ,
+    WM_APIID_START_KS           = 21 ,
+    WM_APIID_END_KS             = 22 ,
+    WM_APIID_GET_KEYSET         = 23 ,
+    WM_APIID_SET_GAMEINFO       = 24 ,
+    WM_APIID_SET_BEACON_IND     = 25 ,
+    WM_APIID_START_TESTMODE     = 26 ,
+    WM_APIID_STOP_TESTMODE      = 27 ,
+    WM_APIID_VALARM_MP          = 28 ,
+    WM_APIID_SET_LIFETIME       = 29 ,
+    WM_APIID_MEASURE_CHANNEL    = 30 ,
+    WM_APIID_INIT_W_COUNTER     = 31 ,
+    WM_APIID_GET_W_COUNTER      = 32 ,
+    WM_APIID_SET_ENTRY          = 33 ,
+    WM_APIID_AUTO_DEAUTH        = 34 ,
+    WM_APIID_SET_MP_FREQ        = 35 ,
+    WM_APIID_SET_BEACON_PERIOD  = 36 ,
+    WM_APIID_AUTO_DISCONNECT    = 37 ,
+    WM_APIID_START_SCAN_EX      = 38 ,
+    WM_APIID_KICK_MP_PARENT     = 39 ,
+    WM_APIID_KICK_MP_CHILD      = 40 ,
+    WM_APIID_KICK_MP_RESUME     = 41 ,
+    WM_APIID_ASYNC_KIND_MAX     = 42 ,
+
+    WM_APIID_INDICATION         = 128 ,
+    WM_APIID_PORT_SEND ,        = 129 ,
+    WM_APIID_PORT_RECV ,        = 130 ,
+    WM_APIID_READ_STATUS ,      = 131 ,
+
+    WM_APIID_UNKNOWN            = 255
+
+} WMApiid;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_INITIALIZE</font></strong></em></TD>
+      <TD width="800"><A href="WM_Initialize.html">WM_Initialize</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_RESET</font></strong></em></TD>
+      <TD width="800"><A href="WM_Reset.html">WM_Reset</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END</font></strong></em></TD>
+      <TD width="800"><A href="WM_End.html">WM_End</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_ENABLE</font></strong></em></TD>
+      <TD width="800"><A href="WM_Enable.html">WM_Enable</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_DISABLE</font></strong></em></TD>
+      <TD width="800"><A href="WM_Disable.html">WM_Disable</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_POWER_ON</font></strong></em></TD>
+      <TD width="800"><A href="WM_PowerOn.html">WM_PowerOn</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_POWER_OFF</font></strong></em></TD>
+      <TD width="800"><A href="WM_PowerOff.html">WM_PowerOff</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_P_PARAM</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_PARENT</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartParent.html">WM_StartParent</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END_PARENT</font></strong></em></TD>
+      <TD width="800"><A href="WM_EndParent.html">WM_EndParent</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_SCAN</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartScan.html">WM_StartScan</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END_SCAN</font></strong></em></TD>
+      <TD width="800"><A href="WM_EndScan.html">WM_EndScan</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_CONNECT</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartConnect.html">WM_StartConnect</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_DISCONNECT</font></strong></em></TD>
+      <TD width="800"><A href="WM_Disconnect.html">WM_Disconnect</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_MP</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartMP.html">WM_StartMP</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_MP_DATA</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetMPData.html">WM_SetMPData</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END_MP</font></strong></em></TD>
+      <TD width="800"><A href="WM_EndMP.html">WM_EndMP</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_DCF</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartDCF.html">WM_StartDCF</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_DCF_DATA</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetDCFData.html">WM_SetDCFData</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END_DCF</font></strong></em></TD>
+      <TD width="800"><A href="WM_EndDCF.html">WM_EndDCF</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_WEPKEY</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetWEPKey.html">WM_SetWEPKey</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_KS</font></strong></em></TD>
+      <TD width="800"><A href="WM_StartKeySharing.html">WM_StartKeySharing</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_END_KS</font></strong></em></TD>
+      <TD width="800"><A href="WM_EndKeySharing.html">WM_EndKeySharing</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_GET_KEYSET</font></strong></em></TD>
+      <TD width="800"><A href="WM_GetKeySet.html">WM_GetKeySet</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_GAMEINFO</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetGameInfo.html">WM_SetGameInfo</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_BEACON_IND</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetBeaconIndication.html">WM_SetBeaconIndication</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_TESTMODE</font></strong></em></TD>
+      <TD width="800">SDK 内部で使用しているID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_STOP_TESTMODE</font></strong></em></TD>
+      <TD width="800">SDK 内部で使用しているID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_VALARM_MP</font></strong></em></TD>
+      <TD width="800">タイミング制御のため、ARM7側のVアラームが発行するコマンドに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_LIFETIME</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetLifeTime.html">WM_SetLifeTime</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_MEASURE_CHANNEL</font></strong></em></TD>
+      <TD width="800"><A href="WM_MeasureChannel.html">WM_MeasureChannel</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_INIT_W_COUNTER</font></strong></em></TD>
+      <TD width="800"><A href="WM_InitWirelessCounter.html">WM_InitWirelessCounter</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_GET_W_COUNTER</font></strong></em></TD>
+      <TD width="800"><A href="WM_GetWirelessCounter.html">WM_GetWirelessCounter</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_ENTRY</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetEntry.html">WM_SetEntry</A>に割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_AUTO_DEAUTH</font></strong></em></TD>
+      <TD width="800">ARM7側でエントリー打ち切り時に接続された場合の自動切断用コマンドに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_SET_BEACON_PERIOD</font></strong></em></TD>
+      <TD width="800">WMi_SetBeaconPeriodに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_AUTO_DISCONNECT</font></strong></em></TD>
+      <TD width="800">GGIDの異なる子機から接続されたされた場合の自動切断用コマンドに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_START_SCAN_EX</font></strong></em></TD>
+      <TD width="800">WMi_StartScanExに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">
+      WM_APIID_KICK_MP_PARENT<BR>
+      WM_APIID_KICK_MP_CHILD<BR>
+      WM_APIID_KICK_MP_RESUME
+      </font></strong></em></TD>
+      <TD width="800">ARM7側でMP通信のタイミング制御用コマンドに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_ASYNC_KIND_MAX</font></strong></em></TD>
+      <TD width="800">非同期関数群に割り当てられたIDの総数。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_INDICATION</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetIndCallback.html">WM_SetIndCallback</A>にてコールバックされるindicate要因4つで共通のID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_PORT_SEND</font></strong></em></TD>
+      <TD width="800">ポートへのデータ送信完了時に発生するindicateに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_PORT_RECV</font></strong></em></TD>
+      <TD width="800">ポートへのデータ受信時に発生するindicateに割り当てられたID。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_READ_STATUS</font></strong></em></TD>
+      <TD width="800"><A href="WM_ReadStatus.html">WM_ReadStatus</A>に割り当てられたID。<BR>
+      同期関数である為、コールバックは発生しない。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_APIID_UNKNOWN</font></strong></em></TD>
+      <TD width="800">不明なAPI用ID。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+WM非同期処理関数などに割り当てられたAPIのIDを示す列挙型です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 新規関数追加などに伴う変更<BR>
+2004/08/20 エントリー制御仕様の追加に伴う追記<BR>
+2004/08/11 WM仕様追加に伴う追記<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

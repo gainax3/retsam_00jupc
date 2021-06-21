@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dTextCanvasDrawText</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dTextCanvasDrawText</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_TextCanvas.h&gt;
+
+void NNS_G2dTextCanvasDrawText(
+	const NNSG2dTextCanvas* pTxn,
+	int x,
+	int y,
+	int cl,
+	u32 flags,
+	const <a href="NNS_G2D_UNICODE.html">NNSG2dChar</a>* txt
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pTxn</STRONG></EM></TD>
+      <TD width="87%"> [IN] TextCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>x</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字列描画基準点の座標 (CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>y</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字列描画基準点の座標 (CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cl</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字列の描画に用いる基準カラーNo. </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>flags</STRONG></EM></TD>
+      <TD width="87%"> [IN] 描画フラグ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>txt</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字列へのポインタ </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	点 (<EM><STRONG>x</STRONG></EM>, <EM><STRONG>y</STRONG></EM>) を描画の基準点として文字列を描画します。<br>
+	文字列中に '\n' (0x0A) があるとその位置で改行して描画します。
+</P>
+<P>
+	<EM><STRONG>flags</STRONG></EM> には以下のそれぞれのフラグの組み合わせを指定します。<br>
+</P>
+
+	水平方向基準点配置
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALORIGIN_LEFT</TD>
+	      <TD width="70%"> 描画基準点が文字列の左端に位置するように描画します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALORIGIN_CENTER</TD>
+	      <TD width="70%"> 描画基準点が文字列の中央に位置するように描画します。</TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALORIGIN_RIGHT</TD>
+	      <TD width="70%"> 描画基準点が文字列の右端に位置するように描画します。 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+	垂直方向基準点配置
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="30%">NNS_G2D_VERTICALORIGIN_TOP</TD>
+	      <TD width="70%"> 描画基準点が文字列の上端に位置するように描画します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_VERTICALORIGIN_MIDDLE</TD>
+	      <TD width="70%"> 描画基準点が文字列の中央に位置するように描画します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_VERTICALORIGIN_BOTTOM</TD>
+	      <TD width="70%"> 描画基準点が文字列の下端に位置するように描画します。 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+	水平方向揃え
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALALIGN_LEFT</TD>
+	      <TD width="70%"> 文字列が複数行からなる時に各行を左寄せで描画します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALALIGN_CENTER</TD>
+	      <TD width="70%"> 文字列が複数行からなる時に各行を中央寄せで描画します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="30%">NNS_G2D_HORIZONTALALIGN_RIGHT</TD>
+	      <TD width="70%"> 文字列が複数行からなる時に各行を右寄せで描画します。 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+<P class="warning">
+    縦書きフォントでは水平方向と垂直方向が入れ替わります。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G2dTextCanvasDrawTextRect.html">NNS_G2dTextCanvasDrawTextRect</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2007/03/14 縦書き/縦持ちフォントに対応。<br>
+2005/05/25 初版
+</P>
+</BODY>
+
+</HTML>

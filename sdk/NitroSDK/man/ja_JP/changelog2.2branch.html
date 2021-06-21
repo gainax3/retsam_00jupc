@@ -1,0 +1,265 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>NITRO-SDK CHANGELOG</TITLE>
+</HEAD>
+<BODY>
+<HR>
+<H1>NITRO-SDK 2.2 シリーズ 変更履歴</H1>
+<HR>
+
+<DL>
+  <DT><A href="#sdk_2_02">■NITRO-SDK 2.2 正式版</A> (2005/08/23)
+  <DD><A href="#note29-01">Note 29-01: (CARD) FRAM デバイス操作の内部処理修正</A>
+  <DD><A href="#note29-02">Note 29-02: (FS) FS_EndOverlay関数の修正</A>
+  <DD><A href="#note29-03">Note 29-03: (FS) ドキュメントの修正</A>
+  <DD><A href="#note29-04">Note 29-04: (FX) FX_InvSqrt 関数の不具合修正</A>
+  <DD><A href="#note29-05">Note 29-05: (MB) MB_GetMultiBootDownloadParameter 関数の追加</A>
+  <DD><A href="#note29-06">Note 29-06: (OS) ARM7 側のデバッグ出力関数のリファレンス追加</A>
+  <DD><A href="#note29-07">Note 29-07: (OS) NitroStaticInit 関数のリファレンス追加</A>
+  <DD><A href="#note29-08">Note 29-08: (SND) キャッシュ無効化処理の最適化</A>
+  <DD><A href="#note29-09">Note 29-09: (WM) MP 通信時の切断検知処理の不具合修正</A>
+  <DD><A href="#note29-10">Note 29-10: (WM) 子機接続に関する内部処理の修正</A>
+  <DD><A href="#note29-11">Note 29-11: (WM) 切断時の内部動作の変更</A>
+  <DD><A href="#KnownIssues_2_02">SDK 2.2 正式版での既知の問題点</A>
+</DL>
+
+<DL>
+  <DT><A href="#sdk_2_02_rc">■NITRO-SDK 2.2 RC</A> (2005/08/08)
+  <DD><A href="#note28-01">Note 28-01: (CARD) CARD_CheckPulledOut 関数のリファレンス修正</A>
+  <DD><A href="#note28-02">Note 28-02: (CARD) CARD_IdentifyBackup 関数の引数制限</A>
+  <DD><A href="#note28-03">Note 28-03: (DevEnv) ISD_NITRO_DEBUGGER のパス修正</A>
+  <DD><A href="#note28-04">Note 28-04: (FS) オーバーレイ関数の動作変更</A>
+  <DD><A href="#note28-05">Note 28-05: (GX) Sub_Double3D サンプルデモの再修正</A>
+  <DD><A href="#note28-06">Note 28-06: (GX) ディスプレイリストの状態取得関数の引数へ const 修飾子を追加</A>
+  <DD><A href="#note28-07">Note 28-07: (MATH) MD5 関数の高速化</A>
+  <DD><A href="#note28-08">Note 28-08: (MB) サンプルデモの修正</A>
+  <DD><A href="#note28-09">Note 28-09: (PM) LCD オフ状態からスリープモードに移行したあとの復帰処理の修正</A>
+  <DD><A href="#note28-10">Note 28-10: (WM) ignoreFatalError 設定時の復帰不具合の修正</A>
+  <DD><A href="#note28-11">Note 28-11: (WVR) thumb ビルド版 ichneumon コンポーネントの不具合修正</A>
+  <DD><A href="#KnownIssues_2_02_rc">SDK 2.2 RCでの既知の問題点</A>
+</DL>
+
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02" id="sdk_2_02">■ NITRO-SDK Version 2.2 正式版</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2005/08/23)</P>
+</DIV>
+
+<HR>
+<H3><A name="note29-01" id="note29-01">Note 29-01: (CARD) FRAM デバイス操作の内部処理修正</A></H3>
+<P>FRAM デバイスをバックアップに使用している場合、本体起動時に稀にハードウェア内部ステータスの不整合が生じることがあり、その対応処理を追加しました。
+</P>
+
+<HR>
+<H3><A name="note29-02" id="note29-02">Note 29-02: (FS) FS_EndOverlay関数の修正</A></H3>
+<P><a href="changelog.html#note28-03">Note 28-03<a>での動作変更にともない、オーバーレイのアンロード時にオーバーレイ上にあるグローバルなオブジェクト配列のデストラクタが正しく起動しないという不具合があり、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note29-03" id="note29-03">Note 29-03: (FS) ドキュメントの修正</A></H3>
+<P>以下のFSライブラリ解説ドキュメントにおいていくつかの誤記を修正しました。
+<ul>
+<li>$NitroSDK/docs/TechnicalNotes/AboutFileSystem.pdf
+</ul>
+</P>
+
+<HR>
+<H3><A name="note29-04" id="note29-04">Note 29-04: (FX) FX_InvSqrt 関数の不具合修正</A></H3>
+<P>FX_InvSqrt 関数に与える引数が一定値を超えると正しく計算されないという不具合がありましたが、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note29-05" id="note29-05">Note 29-05: (MB) MB_GetMultiBootDownloadParameter 関数の追加</A></H3>
+<P><a href="changelog.html#note27-22">Note 27-22</a>で追加した機能に関連し、ダウンロード時のユーザ定義拡張パラメータを参照する MB_GetMultiBootDownloadParameter 関数を追加しました。
+</P>
+
+<HR>
+<H3><A name="note29-06" id="note29-06">Note 29-06: (OS) ARM7 側のデバッグ出力関数のリファレンス追加</A></H3>
+<P>従来から存在した ARM7 側のデバッグ出力に使用する OS_InitPrintServer 関数および OS_PrintServer 関数のリファレンスを追加し、アプリケーションで特に使う必要がない旨も記述しました。
+</P>
+
+<HR>
+<H3><A name="note29-07" id="note29-07">Note 29-07: (OS) NitroStaticInit 関数のリファレンス追加</A></H3>
+<P><a href="changelog.html#note27-31">Note 27-31</a>の追加にあわせ、NitroStaticInit 関数の説明を関数リファレンスに追加しました。
+</P>
+
+<HR>
+<H3><A name="note29-08" id="note29-08">Note 29-08: (SND) キャッシュ無効化処理の最適化</A></H3>
+<P>サウンドライブラリ内から DC_InvalidateRange 関数を呼びだしている箇所で、指定している範囲が必要以上に広かったため、適切なサイズになるように修正しました。<br>
+この修正により、サウンド処理の負荷が軽減されます。
+</P>
+
+<HR>
+<H3><A name="note29-09" id="note29-09">Note 29-09: (WM) MP 通信時の切断検知処理の不具合修正</A></H3>
+<P>MP通信時に、通信相手の電源が切れるなどして存在しなくなった場合にはタイムアウトにより通信の切断が通知されますが、タイムアウト時の処理に不具合があり、切断通知が発生しない場合がありました。この不具合を修正しました。
+</P>
+
+<HR>
+<H3><A name="note29-10" id="note29-10">Note 29-10: (WM) 子機接続に関する内部処理の修正</A></H3>
+<P>通信状態の非常に悪い環境で子機から繰り返し再接続を受ける状況において親機の内部状態が異常になるという不具合があり、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note29-11" id="note29-11">Note 29-11: (WM) 切断時の内部動作の変更</A></H3>
+<P><a href="changelog-oldver.html#note25-22">Note 25-22</a>により、切断時には切断通知を出せる電波状態になるまで待つように変更していましたが、これを一定の時間でタイムアウトするように変更しました。<br>
+これにより WMTestTool.srl を用いて Noise rate を 100% にした場合に終了しなくなっていた件が改善されます。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02" id="KnownIssues_2_02">SDK 2.2 正式版での既知の問題点</A></H3>
+<P>　ありません。</P>
+
+<HR>
+<H2 style="line-height: 0"><A name="sdk_2_02_rc" id="sdk_2_02_rc">■ NITRO-SDK Version 2.2 RC</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2005/08/08)</P>
+</DIV>
+
+<HR>
+<H3><A name="note28-01" id="note28-01">Note 28-01: (CARD) CARD_CheckPulledOut 関数のリファレンス修正</A></H3>
+<P>CARD_CheckPulledOut 関数のリファレンスにて、この関数を呼び出す前に CARD_LockRom 関数を呼び出して CARD-ROM のバスをロックしておく必要がある旨を追記しました。
+</P>
+
+<HR>
+<H3><A name="note28-02" id="note28-02">Note 28-02: (CARD) CARD_IdentifyBackup 関数の引数制限</A></H3>
+<P>CARD_IdentifyBackup 関数に与えるデバイス種別で CARD_BACKUP_TYPE_NOT_USE を指定出来ないよう制限を追加しました。<br>
+この変更は 2.2PR で入っていましたが、changelog から漏れていました。
+</P>
+
+<HR>
+<H3><A name="note28-03" id="note28-03">Note 28-03: (DevEnv) ISD_NITRO_DEBUGGER のパス修正</A></H3>
+<P>$NitroSDK/build/buildtools/commondefs.emtype.ISD で定義される ISD_NITRO_DEBUGGER が指すパスの位置を修正しました。
+</P>
+
+<HR>
+<H3><A name="note28-04" id="note28-04">Note 28-04: (FS) オーバーレイ関数の動作変更</A></H3>
+<P>アンロードされるオーバーレイ上に配置されたデストラクタを必要とするグローバルオブジェクトが存在している場合に、従来はこれらに対して自動的にデストラクタを呼び出していましたが、これを呼び出さないように動作を変更しました。
+</P>
+
+<HR>
+<H3><A name="note28-05" id="note28-05">Note 28-05: (GX) Sub_Double3D サンプルデモの再修正</A></H3>
+<P>$NitroSDK/build/demos/gx/UnitTours/Sub_Double3D サンプルデモに以下の修正を行いました。<br>
+<br>
+<a href="changelog.html#note27-15">Note27-15</a>で行った修正内容が完全でなく、同様の症状が再現する場合があったため、これを再び修正しました。
+</P>
+
+<HR>
+<H3><A name="note28-06" id="note28-06">Note 28-06: (GX) ディスプレイリストの状態取得関数の引数へ const 修飾子を追加</A></H3>
+<P>以下の関数で引数では渡されたポインタの内容を書き換えていませんが、引数に const 修飾子が付いていませんでしたので、これを追加しました。
+<ul>
+<li>G3_GetDLStart 関数
+<li>G3_GetDLLength 関数
+<li>G3_GetDLSize 関数
+</ul>
+</P>
+
+<HR>
+<H3><A name="note28-07" id="note28-07">Note 28-07: (MATH) MD5 関数の高速化</A></H3>
+<P>MD5 関数の実装を差し替えました。<br>
+コードサイズは約半分になり、以前の実装から2割程度の速度が向上しています。<br>
+インターフェイスの変更はありません。<br>
+この変更は 2.2PR で入っていましたが、changelog から漏れていました。
+</P>
+
+<HR>
+<H3><A name="note28-08" id="note28-08">Note 28-08: (MB) サンプルデモの修正</A></H3>
+<P>
+$NitroSDK/build/demos/mb/cloneboot サンプルに以下の修正を行いました。<br>
+<br>
+<ul>
+<li>親機側が ConnectMain 関数に失敗した場合に WH モジュールを終了せず再試行してしまう不具合があり、これを修正しました。
+</ul>
+</P>
+
+<HR>
+<H3><A name="note28-09" id="note28-09">Note 28-09: (PM) LCD オフ状態からスリープモードに移行したあとの復帰処理の修正</A></H3>
+<P>LCD オフの状態からスリープモードに移行して復帰すると、GX ライブラリの内部状態と実際の状態に不整合が生じるという不具合がありました。<br>
+これを修正しました。<br>
+(参照：<a href="changelog-oldver.html#note22-23">Note22-23</a>)
+</P>
+
+<HR>
+<H3><A name="note28-10" id="note28-10">Note 28-10: (WM) ignoreFatalError 設定時の復帰不具合の修正</A></H3>
+<P>WM_StartMPEx 関数の ignoreFatalError 引数を TRUE にしていた場合、子機側で fatal error が発生しても自動切断されなくなりますが、ここの処理に不具合があり、以降の通信ができなくなっていました。<br>
+これを修正しました。
+</P>
+
+<HR>
+<H3><A name="note28-11" id="note28-11">Note 28-11: (WVR) thumb ビルド版 ichneumon コンポーネントの不具合修正</A></H3>
+<P>thumb ビルド版の ichneumon コンポーネントを使用するとプログラムが動作しないという問題が確認されていましたが、これを修正しました。
+</P>
+
+<HR>
+<H3><A name="KnownIssues_2_02_rc" id="KnownIssues_2_02_rc">SDK 2.2 RCでの既知の問題点</A></H3>
+<P>　ありません。</P>
+
+<P style="text-align: right">NINTENDO Technical Support Center</P>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

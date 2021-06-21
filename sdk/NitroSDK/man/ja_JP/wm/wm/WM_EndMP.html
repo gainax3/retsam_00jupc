@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_EndMP</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_EndMP</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_EndMP( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>MPモードを終了します。WMステートが<A href="wm_state_diagram.html">MP_PARENTステート</A>、もしくは<A href="wm_state_diagram.html">MP_CHILDステート</A>の場合に実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、MPモード終了処理が完了した後にコールバックが発生します。
+WMステートはそれぞれ<A href="wm_state_diagram.html">PARENTステート</A>、もしくは<A href="wm_state_diagram.html">CHILDステート</A>に戻ります。</P>
+
+<P>
+MP通信を行う子機では、WM_EndMPを呼び出すと、それ以降は親機から通信に対してNull応答を返しつづけます。
+この状態が親機の<A href="WM_SetLifeTime.html">WM_SetLifeTime</A>で設定されたMP通信ライフタイムを超えると親機から切断されます。
+また、この状態の子機に対して親機側からMP通信でデータを送った場合、親機は送信成功の通知を受けますが、子機は受信したデータを全て捨ててしまいますので注意してください。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_StartMPEx.html">WM_StartMPEx</A>, <A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WM_SetPortCallback.html">WM_SetPortCallback</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/11/09 Null応答に関する説明を追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/25 説明の加筆・修正<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

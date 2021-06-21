@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_OpenFileDirect</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_OpenFileDirect</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL	FS_OpenFileDirect(FSFile *p_file, FSArchive *p_arc,
+	u32 image_top, u32 image_bottom, u32 file_index);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
+      <TD width="87%">関連付けるFSArchive構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>image_top</STRONG></EM></TD>
+      <TD width="87%">p_arcの固有メモリ空間における、ファイル領域先頭のオフセット</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>image_bottom</STRONG></EM></TD>
+      <TD width="87%">p_arcの固有メモリ空間における、ファイル領域終端のオフセット</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>file_index</STRONG></EM></TD>
+      <TD width="87%">ファイルに割り当てるインデックス値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ファイルが正しく開ければ TRUE を, そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>アーカイブおよびその領域を直接指定してファイルを開きます。<BR>
+この関数は、おもにアーカイブの実装のために使用されます。<BR>
+指定したアーカイブが公開する取り決めに従って呼び出した場合のみ有効です。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<p><font color="#800000">
+この関数を割り込みハンドラ(IRQモード)から呼び出すことはできません。<br>
+また、割り込みを禁止したままの状態にあると処理が完了しない場合がある点に注意して下さい。<br>
+</font></p>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="../fs_archive_type.html">FSArchive</A> 
+<A href="FS_GetFileImageTop.html">FS_GetFileImageTop</A> 
+<A href="FS_GetFileImageBottom.html">FS_GetFileImageBottom</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/24 呼び出し時および完了の条件についての注意を記述追加<br>
+2004/07/13 初版<BR>
+</P>
+</body>
+</html>

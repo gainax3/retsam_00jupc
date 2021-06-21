@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_SetCartridgeRamAccessCycle</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_SetCartridgeRamCycle</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_SetCartridgeRamCycle( MICartridgeRamCycle c )</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>c</STRONG></EM></TD>
+      <TD width="87%">カートリッジRAM領域へのアクセスサイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>カートリッジRAM領域へのアクセスサイクルを設定します。<BR>
+カートリッジROM領域への設定は、<CODE><A href="MI_SetCartridgeRomCycle1st.html">MI_SetCartridgeRomCycle1st()</A></CODE> や <A href="MI_SetCartridgeRomCycle2nd.html"><CODE>MI_SetCartfigeRomCycle2nd() </CODE></A>で行います。</P>
+<P>引数<B><I> c</I></B> は、<CODE>MICartridgeRamCycle</CODE> 列挙型で、以下の意味を持ちます。<BR>
+</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_RAMCYCLE_6</CODE></TD>
+      <TD bgcolor="#eeeeee">6サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_RAMCYCLE_8</CODE></TD>
+      <TD bgcolor="#eeeeee">8サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_RAMCYCLE_10</CODE></TD>
+      <TD bgcolor="#eeeeee">10サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_RAMCYCLE_18</CODE></TD>
+      <TD bgcolor="#eeeeee">18サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_GetCartridgeRamCycle.html">MI_GetCartridgeRamCycle</A><BR>
+<A href="MI_SetCartridgeRomCycle1st.html">MI_SetCartridgeRomCycle1st</A>, <A href="MI_SetCartridgeRomCycle2nd.html">MI_SetCartridegeRomCycle2nd</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/05/25 名前変更。Cartridge をつけた。<BR>
+2003/12/18 初版</P>
+</body>
+</html>

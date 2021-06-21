@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_RequestAutoSamplingStop</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_RequestAutoSamplingStop</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>u32 TP_RequestAutoSamplingStop( void );</CODE></PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>要求が成功した場合には 0を返します。<BR>
+失敗した場合には 0 以外を返します。</p>
+<H2>説明</H2>
+<P>ARM7に対してタッチパネル値のオートサンプリングの停止要求を出し、内部で要求の完了をウェイトします。<BR>
+<A href="TP_RequestAutoSamplingStopAsync.html">TP_RequestAutoSamplingStopAsync</A>の同期版。</P>
+<H2>注意</H2>
+<P><FONT color="#ff0000">この関数はARM7からの完了応答を割り込みで待ちます。ARM7からのFIFO受信割り込みが禁止された状態でコールされるとウェイトから復帰できなくなりますのでご注意ください。</FONT></P>
+<h2>参照</h2>
+<P><A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>、<A href="TP_RequestAutoSamplingStopAsync.html">TP_RequestAutoSamplingStopAsync</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/21 非同期版を作成し同期化<BR>
+Ver. 2004/04/16 初版</P>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnkError</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkError</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef enum{
+
+    DWC_RNK_SUCCESS = 0,
+    DWC_RNK_IN_ERROR,
+
+    DWC_RNK_ERROR_INVALID_PARAMETER,
+
+    DWC_RNK_ERROR_INIT_ALREADYINITIALIZED,
+    DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE,
+    DWC_RNK_ERROR_INIT_INVALID_INITDATA,
+    DWC_RNK_ERROR_INIT_INVALID_USERDATA,
+
+    DWC_RNK_ERROR_PUT_NOTINITIALIZED,
+    DWC_RNK_ERROR_PUT_INVALID_KEY,
+    DWC_RNK_ERROR_PUT_NOMEMORY,
+    
+    DWC_RNK_ERROR_GET_NOTINITIALIZED,
+    DWC_RNK_ERROR_GET_INVALID_KEY,
+    DWC_RNK_ERROR_GET_NOMEMORY,
+
+    DWC_RNK_ERROR_CANCEL_NOTASK,
+
+    DWC_RNK_PROCESS_NOTASK,
+
+    DWC_RNK_ERROR_INVALID_MODE,
+    DWC_RNK_ERROR_NOTCOMPLETED,
+    DWC_RNK_ERROR_EMPTY_RESPONSE
+
+} DWCRnkError;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  汎用ランキングのエラーコードを示す列挙型です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_SUCCESS</CODE></STRONG></EM></TD>
+			<TD>成功<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_IN_ERROR</CODE></STRONG></EM></TD>
+			<TD>エラー発生中<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INVALID_PARAMETER</CODE></STRONG></EM></TD>
+			<TD>不正なパラメータ<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INIT_ALREADYINITIALIZED</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkInitialize.html">DWC_RnkInitialize</a> 初期化済<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INIT_INVALID_INITDATASIZE</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkInitialize.html">DWC_RnkInitialize</a> 不正な初期化データサイズ<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INIT_INVALID_INITDATA</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkInitialize.html">DWC_RnkInitialize</a> 不正な初期化データ<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INIT_INVALID_USERDATA</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkInitialize.html">DWC_RnkInitialize</a> 不正なユーザーデータ<BR>ユーザーデータは有効なGameSpy Profile IDを含む必要があります。一度もログインしていない仮IDを含むデータではこのエラーが発生します。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_NOTINITIALIZED</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync</a> 初期化されていない<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_INVALID_KEY</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync</a> 暗号化キーが不正<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_PUT_NOMEMORY</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync</a> メモリー不足<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_GET_NOTINITIALIZED</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a> 初期化されていない<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_GET_INVALID_KEY</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a> 暗号化キーが不正<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_GET_NOMEMORY</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a> メモリー不足<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_CANCEL_NOTASK</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkCancelProcess.html">DWC_RnkCancelProcess</a> 非同期処理中の処理なし<BR></TD>
+          </TR>
+          <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_PROCESS_NOTASK</CODE></STRONG></EM></TD>
+			<TD><a href="DWC_RnkProcess.html">DWC_RnkProcess</a> 非同期処理中の処理なし<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_INVALID_MODE</CODE></STRONG></EM></TD>
+			<TD>不正なモード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_NOTCOMPLETED</CODE></STRONG></EM></TD>
+			<TD>通信未完了<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_ERROR_EMPTY_RESPONSE</CODE></STRONG></EM></TD>
+			<TD>空のレスポンス<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<a href="DWC_RnkInitialize.html">DWC_RnkInitialize</a>
+			<a href="DWC_RnkPutScoreAsync.html">DWC_RnkPutScoreAsync</a>
+			<a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>
+			<a href="DWC_RnkCancelProcess.html">DWC_RnkCancelProcess</a>
+			<a href="DWC_RnkProcess.html">DWC_RnkProcess</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/07/24 用語統一<BR>
+			2006/06/20 誤記訂正<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

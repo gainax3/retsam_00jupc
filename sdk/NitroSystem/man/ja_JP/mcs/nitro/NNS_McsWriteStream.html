@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsWriteStream</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsWriteStream</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>BOOL NNS_McsWriteStream(
+         u16         channel,
+         const void* data,
+         u32         size);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">channel</font></strong></em></td>
+  <td width="87%">ストリームを識別するための値。0～0x3FFFの値を指定できます。0x4000～0x7FFFはNITRO-Systemアプリケーション用、0x8000～0xFFFFはmcsシステム用に予約しています。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">data</font></strong></em></td>
+  <td width="87%">送信するデータを格納するバッファへのポインタ。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
+  <td width="87%">送信するデータのサイズ。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>関数が成功した場合は TRUE、失敗した場合は FALSE を返します。</p>
+<H2>説明</H2>
+<p>データの送信を行います。関数<code>NNS_McsGetStreamWritableLength</code>によって得られる送信可能なサイズを超えたデータを書き込む場合、PC側で書き込んだデータを読み取るまで関数呼び出しはブロックされ、制御を返しません。</p>
+<p><font color="#ff0000">関数<CODE>NNS_McsOpen</CODE>にてオープンしたデバイスがIS-NITRO-UICの場合で、mcsサーバがニンテンドーDSハードウェアに対して接続していないときは、この関数呼び出しはmcsサーバがニンテンドーDSハードウェアに対して接続するまで制御を返しません。</font>mcsサーバがニンテンドーDSハードウェアに対して接続しているかどうかを判断するには関数<code>NNS_McsIsServerConnect</code>を使用します。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_McsReadStream.html">NNS_McsReadStream</A></code>,
+<code><a href="NNS_McsGetStreamWritableLength.html">NNS_McsGetStreamWritableLength</a></CODE>,
+<code><a href="NNS_McsIsServerConnect.html">NNS_McsIsServerConnect</a></code></p>
+<H2>履歴</H2>
+<P>2005/01/24 説明を追加。<br>
+2004/11/30 説明を追加。<br>
+2004/10/08 引数channelの解説を追加。<br>
+ 2004/08/26 引数channelの型の変更。<br>
+ 2004/06/01 初版</P>
+</body>
+</html>

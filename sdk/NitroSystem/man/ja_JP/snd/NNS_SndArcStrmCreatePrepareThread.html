@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcStrmCreatePrepareThread</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcStrmCreatePrepareThread</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcStrmCreatePrepareThread(
+        NNSSndStrmThread* <var>thread</var>,
+        u32 <var>threadPrio</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>thread</code></strong></em></td>
+<td>スレッド動作管理用構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>threadPrio</code></strong></em></td>
+<td>ストリームスレッドの優先度です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリーム準備のための処理を行うストリームプリペアスレッドを起動します。
+ストリームプリペアスレッドを起動しておくと、
+ストリーム準備のための処理は、ストリームスレッドではなく、
+ストリームプリペアスレッドで処理されるようになります。
+<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>関数の直後に呼びだしてください。
+</p>
+      <p>
+通常、音を途切れさせないために、ストリームスレッドはメインスレッドより高優先で動作させる必要があります。
+ただしストリーム準備処理は、再生前であるがためにメインスレッドより低優先で処理することができます。
+ストリームプリペアスレッドを起動することにより、
+メインスレッドの動作負担を軽くすることができます。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+ストリームプリペアスレッドの優先度を低くすると、ストリームの再生開始が遅れます。
+</p>
+<p>
+ストリームプリペアスレッドの優先度をメインスレッドより低くしたとき、
+メインスレッドでVブランクなどの割り込み待ちをする場合は、
+低優先スレッドに処理を回すために、<tt class="function">OS_WaitIrq</tt>関数などを使う必要があることに注意してください。
+</p>
+<p>
+スレッド動作管理用構造体<var>thread</var>のメモリ領域を再利用することはできません。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></p>
+<h2>履歴</h2>
+<p>2005/05/06 初版<br></p>
+</div>
+</body>
+</html>

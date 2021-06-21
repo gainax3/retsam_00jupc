@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TPRecvCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TPRecvCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef void (*TPRecvCallback)( 
+        TPRequestCommand command, 
+        TPRequestResult result, 
+        u16 index );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">command</font></strong></em></TD>
+      <TD width="700">リクエストコマンド種別</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">result</font></strong></em></TD>
+      <TD>処理結果</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">index</font></strong></em></TD>
+      <TD>オートサンプリングコールバックのインデックス値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ARM7プロセッサへの要求が処理される毎、及びオートサンプリングによって定期的にタッチパネルの値を受信する毎に呼び出されるユーザコールバックの形式です。<BR>
+<B><I>command</I></B>値でどの要求の結果であるか、<B><I>result</I></B>値で正常に処理されたかどうか、<B><I>index</I></B>値でオートサンプリング時の最新データのインデクスを取得することができます。<BR>
+<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_SAMPLING</CODE></TD>
+      <TD width="70%">サンプリングを１回実行要求。<A href="TP_RequestSamplingAsync.html">TP_RequestSampling*</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_AUTO_ON</CODE></TD>
+      <TD width="70%">オートサンプリング開始要求。<A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_AUTO_OFF</CODE></TD>
+      <TD width="70%">オートサンプリング停止要求。<A href="TP_RequestAutoSamplingStop.html">TP_RequestAutoSamplingStop</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_SET_STABILITY</CODE></TD>
+      <TD width="70%">チャタリング対策パラメータの設定要求。<A href="TP_RequestSetStability.html">TP_RequestSetStability</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>TP_REQUEST_COMMAND_AUTO_SAMPLING</CODE></TD>
+      <TD>オートサンプリングによってデータがセットされる毎にこのコールバックが呼び出されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TP_RESULT_SUCCESS</CODE></TD>
+      <TD width="70%">正常終了。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>TP_RESULT_INVALID_PARAMETER</CODE></TD>
+      <TD>送信された要求のパラメータが不正です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>TP_RESULT_INVALID_STATUS</CODE></TD>
+      <TD>現在の状態では処理できない命令です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>TP_RESULT_INVALID_EXCLUSIVE</CODE></TD>
+      <TD>ARM7プロセッサの周辺装置インターフェイスがビジー状態です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>TP_RESULT_PXI_BUSY</CODE></TD>
+      <TD>CPU間通信がビジーのため要求に失敗しました。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>以下に引数の列挙型の型定義を記しておきます。</P>
+<PRE><CODE>// タッチパネルへ発行する命令種別
+typedef enum {
+    TP_REQUEST_COMMAND_SAMPLING         = 0x0,  // サンプリングを１回実行
+    TP_REQUEST_COMMAND_AUTO_ON          = 0x1,  // オートサンプリング開始
+    TP_REQUEST_COMMAND_AUTO_OFF         = 0x2,  // オートサンプリング停止
+    TP_REQUEST_COMMAND_SETUP_STABILITY  = 0x3,  // チャタリング対策値の設定
+    TP_REQUEST_COMMAND_AUTO_SAMPLING    = 0x10, // オートサンプリングの結果受信
+} TPRequestCommand;
+
+// タッチパネルからの結果種別
+typedef enum {
+    TP_RESULT_SUCCESS = 0 ,             // 成功
+    TP_RESULT_INVALID_PARAMETER ,       // パラメータが異常
+    TP_RESULT_ILLEGAL_STATUS ,          // 命令を受け付けられない状態
+    TP_RESULT_EXCLUSIVE ,               // SPIデバイスがビジー中
+    TP_RESULT_PXI_BUSY                  // ARM7とのPXI通信がビジー中
+} TPRequestResult;
+</CODE></PRE>
+<h2>参照</h2>
+<P><A href="TP_SetCallback.html">TP_SetCallback</A>、<A href="TP_RequestSamplingAsync.html">TP_RequestSampling</A>、<A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>、<A href="TP_RequestAutoSamplingStop.html">TP_RequestAutoSamplingStop</A>、<A href="TP_RequestSetStability.html">TP_RequestSetStability</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
+</body>
+</html>

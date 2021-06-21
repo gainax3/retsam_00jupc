@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_DmaCopy*</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_DmaCopy*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CTRDG_DmaCopy16( u32 dmaNo, const void* src, void* dest, u32 size );
+BOOL CTRDG_DmaCopy32( u32 dmaNo, const void* src, void* dest, u32 size );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>dmaNo</I></B></TD>
+      <TD>転送に使用するDMA 番号(0～3)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>src</I></B></TD>
+      <TD>転送元アドレス</TD>
+    </TR>
+    <TR>
+      <TD><B><I>dest</I></B></TD>
+      <TD>転送先アドレス</TD>
+    </TR>
+    <TR>
+      <TD><B><I>size</I></B></TD>
+      <TD>転送サイズ(バイト)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>転送に成功すればTRUEを返します。カートリッジが存在せず転送出来なかった場合は
+FALSE を返します。</P>
+<H2>説明</H2>
+<P>カートリッジ上のデータをDMAで転送します。</P>
+<P><CODE>CTRDG_DmaCopy16()</CODE> は <A href="../mi/dma/MI_DmaCopy.html">MI_DmaCopy16()</A>を用いてデータを転送します。<BR>
+<CODE>CTRDG_DmaCopy32()</CODE> は <A href="../mi/dma/MI_DmaCopy.html">MI_DmaCopy32()</A>を用いてデータを転送します。</P>
+<P>アクセスサイクルの設定は行いません。事前に行っておいてください。</P>
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_CpuCopy.html">CTRDG_CpuCopy*</A>, <A href="CTRDG_Read.html">CTRDG_Read*</A>, <A href="CTRDG_Write.html">CTRDG_Write*</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/09/17 初版</P>
+</BODY>
+</HTML>

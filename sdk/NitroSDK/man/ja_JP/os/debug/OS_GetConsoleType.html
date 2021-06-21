@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetConsoleType</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetConsoleType</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32 OS_GetConsoleType( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>プログラムの実行環境によるu32型の値です。<BR>
+説明の項を参照してください。</P>
+<H2>説明</H2>
+<P>プログラムの実行環境に従い、その環境を表すu32型の値を返します。</P>
+<P><CODE>OS_GetConsoleType()</CODE> は動作環境によって処理を動的に切り替えたい場合に有効です。この関数によって複数の動作環境で共通のプログラムを作成することができます。</P>
+<P><CODE>OS_GetConsoleType()</CODE> は、1回目はデバイスやメモリ等を調査して値を決定しますが、2回目の呼び出しからは以前返した値と同じものをそのまま返します。但し<FONT color="#ff0000">最終ROM版 ( FINALROM) ライブラリでは常に定数 ( <CODE>OS_CONSOLE_NITRO | OS_CONSOLE_DEV_CARD | OS_CONSOLE_SIZE_4MB )</CODE></FONT><CODE> を</CODE>返します。</P>
+<P>返り値と<CODE>OS_CONSOLE_MASK</CODE> の論理積は、プログラムを実行している動作環境によって以下の値を取ります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="240"><CODE>OS_CONSOLE_ENSATA</CODE></TD>
+      <TD>ensata NITRO Software Emulator 上で動作</TD>
+    </TR>
+    <TR>
+      <TD><CODE>OS_CONSOLE_ISEMULATOR</CODE></TD>
+      <TD>TEG版IS-NITRO-EMULATOR 上で動作</TD>
+    </TR>
+    <TR>
+      <TD><CODE>OS_CONSOLE_ISDEBUGGER</CODE></TD>
+      <TD>IS-NITRO-DEBUGGER 上で動作</TD>
+    </TR>
+    <TR>
+      <TD><CODE>OS_CONSOLE_NITRO</CODE></TD>
+      <TD>NITRO 実機で動作</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>　</P>
+<P>返り値と<CODE>OS_CONSOLE_DEV_MASK</CODE> の論理積は、カードデータの読み込みデバイスによって以下の値を取ります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="240"><CODE>OS_CONSOLE_DEV_CARD</CODE></TD>
+      <TD>カードバスから読み込み</TD>
+    </TR>
+    <TR>
+      <TD><CODE>OS_CONSOLE_DEV_CARTRIDGE</CODE></TD>
+      <TD>カートリッジバスから読み込み</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>　</P>
+<P>返り値と<CODE>OS_CONSOLE_SIZE_MASK</CODE> の論理積は、実装されているメインメモリサイズによって以下の値を取ります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="240"><CODE>OS_CONSOLE_SIZE_4MB</CODE></TD>
+      <TD>4MByte</TD>
+    </TR>
+    <TR>
+      <TD><CODE>OS_CONSOLE_SIZE_8MB</CODE></TD>
+      <TD>8MByte</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+</P>
+<BLOCKQUOTE><CODE>(例)<BR>
+switch( OS_GetConsoleType() &amp; OS_CONSOLE_MASK )<BR>
+{<BR>
+　　case OS_CONSOLE_ENSATA:<BR>
+　　　　OS_Printf( &quot;running on ENSATA&quot; );　break;<BR>
+　　case OS_CONSOLE_ISEMULATOR:<BR>
+　　　　OS_Printf( &quot;running on IS-NITRO-EMULATOR&quot; );　break;<BR>
+　　case OS_CONSOLE_ISDEBUGGER:<BR>
+　　　　OS_Printf( &quot;running on IS-NITRO-DEBUGGER&quot; );　break;<BR>
+　　case OS_CONSOLE_NITRO:<BR>
+　　　　OS_Printf( &quot;running on retailed NITRO&quot; );　break;<BR>
+}</CODE><BR>
+</BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE><A href="OS_IsRunOnEmulator.html">OS_IsRunOnEmulator</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/10/12 FINALROM 版で定数を返すことを説明<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/06/08 初版</P>
+</BODY>
+</HTML>

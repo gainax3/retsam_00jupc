@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>時間 (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">時間 (overview)</H1>
+<H2>説明</H2>
+<P>時間を計測するためのシステムとしてチックシステムが用意されています。チックシステムは、4つある
+16bit ハードウェアタイマのうち１つを用いて、64ビット長のチックを実現したものです。チックは一定の時間でカウントアップされる値です。</P>
+<HR>
+<P><B>初期化</B></P>
+<P>チックシステムを使用するときは <CODE><A href="OS_InitTick.html">OS_InitTick()</A></CODE> を呼んでください。なお、アラームシステムを使用する際にはチックシステムが必須となっています。( アラームシステムの初期化 <CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm()</A></CODE> より先に <CODE><A href="OS_InitTick.html">OS_InitTick()</A></CODE> を呼ぶ必要があります。)</P>
+<P>チックシステムが使用可能かどうかは <CODE><A href="OS_IsTickAvailable.html">OS_IsTickAvailable()</A></CODE> で調べることが出来ます。</P>
+<HR>
+<P><B>チック値の取得</B></P>
+<P>チック値を取得する関数としては <CODE><A href="OS_GetTick.html">OS_GetTick()</A></CODE> 、 <CODE><A href="OS_GetTickLo.html">OS_GetTickLo()</A></CODE> が用意されています。</P>
+<P>ハードウェアタイマは16bit のカウンタが1周するごとに割り込みを発生させます。チックシステムでは割り込みが発生する度にシステム内部に保持している
+u64 型変数をインクリメントします。</P>
+<P>チック値を取得するためにユーザが <CODE><A href="OS_GetTick.html">OS_GetTick()</A></CODE> を呼ぶと、ハードウェアタイマの 16bit の値と、内部で保持している u64型変数の下位
+48bit の値から生成した 64bit の値を返します。</P>
+<P><IMG src="image_tick1.gif" border="0"></P>
+<P><CODE><A href="OS_GetTickLo.html">OS_GetTickLo()</A></CODE> は タイマの部分だけを取得する関数です。この値は 16bit 値です。</P>
+<P>チック値は最初に <CODE><A href="OS_InitTick.html">OS_InitTick()</A></CODE> が呼ばれたときに 0 となります。<br>
+その後、内部では16bit タイマカウンタとそのタイマのオーバーフロー割り込みを使用してチック値を更新します。<br>
+そのため、このタイマカウンタの１周分(65536 * OS_SYSTEM_CLOCK / 64 Hz、約7.5フレーム)より長い期間割り込み禁止状態にするとカウンタの繰り上がりが失われ、
+その前後のチック値の差分に不整合が起こるという点に注意してください。</P>
+<HR>
+<P><B>チック値の設定</B></P>
+<P>チック値を設定する関数としては <CODE><A href="OS_SetTick.html">OS_SetTick()</A></CODE> が用意されています。</P>
+<P>アラームを設定している場合にチック値をアプリケーションから設定すると、アラームシステムに不具合が生じる場合がありますので、むやみに変更しないことを推奨します。</P>
+<HR>
+<P><B>チック値と実時間の変換</B></P>
+<P>　ハードウェアタイマの1カウントは、設定によりシステムクロック(約33MHz)
+の64分周となっています。チックシステムのの1カウントも同様です。</P>
+<P>この設定から計算すると、カウンタ値と実際の時間の関係は次のようになります。64bit
+値で考える限り、またゲーム中にチックシステムをリセットしない限り、初期化後に同じ値を返すことはないものと見なしてよいでしょう。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>チック値</TH>
+      <TH>実時間</TH>
+    </TR>
+    <TR>
+      <TD>1</TD>
+      <TD>約64/33514000 秒</TD>
+    </TR>
+    <TR>
+      <TD>0x100 (8bitを一周)</TD>
+      <TD>約0.0004887秒 = 約0.03フレーム</TD>
+    </TR>
+    <TR>
+      <TD>0x10000 (16bitを一周)</TD>
+      <TD>約0.125秒　=　約7.5フレーム</TD>
+    </TR>
+    <TR>
+      <TD>0x100000000 (32bitを一周)</TD>
+      <TD>約8200 秒 = 約2時間17分</TD>
+    </TR>
+    <TR>
+      <TD>0x10000000000000000 (64bitを一周)</TD>
+      <TD>約112万年</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<BR>
+チック値と実時間の変換関数は以下の通りです。</P>
+<P>実時間から、チック値に変換する関数 (マクロ)<BR>
+<CODE><A href="OS_SecondsToTicks.html">OS_MicroSecondsToTicks*(), OS_MilliSecondsToTicks*(), OS_SecondsToTicks*()</A></CODE><BR>
+<BR>
+チック値から実時間に変換する関数 (マクロ)<BR>
+<CODE><A href="OS_TicksToSeconds.html">OS_TicksToMicroSeconds*(), OS_TicksToMilliSeconds*(), OS_TicksToSeconds*()</A></CODE> <BR>
+</P>
+<HR>
+<P><B>使用するハードウェアタイマ</B></P>
+<P>チックシステムはタイマ 0 を用います。このタイマチャンネルは、アプリケーションで使用することは出来ません。OS
+のタイマ関数では、DEBUGビルドのときに <A href="../debug/SDK_ASSERT.html"><CODE>SDK_ASSERT</CODE></A> によるチェックを行ないます。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Time">OS関数一覧(時間)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/13 用語や語尾など修正<BR>
+2004/11/05 初版</P>
+</BODY>
+</HTML>

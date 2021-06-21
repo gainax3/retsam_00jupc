@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndResizeForMBlockExpHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_FndResizeForMBlockExpHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>u32 NNS_FndResizeForMBlockExpHeap(
+        NNSFndHeapHandle    heap,
+        void*               memBlock,
+        u32                 size);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    <td width="87%">拡張ヒープのハンドル</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">memBlock</font></strong></em></td>
+    <td width="87%">サイズを変更するメモリブロックへのポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
+    <td width="87%">変更するメモリブロックのサイズ(バイト)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p> 関数が成功した場合、変更されたメモリブロックのサイズ(バイト)を返します。 関数が失敗した場合、0 を返します。</p>
+<H2>説明</H2>
+<p>拡張ヒープから確保されたメモリブロックのサイズを変更します。</p>
+<p>メモリブロックを今の大きさよりも大きくするとき、メモリブロックの後方にサイズを拡張するのに十分な空き領域が存在する必要があります。 十分な空き領域が存在しない場合は、関数は失敗し 
+ 0を返します。メモリブロックのサイズを大きくできた場合、メモリブロックの大きさが要求したサイズよりも大きい場合があります。</p>
+<p>メモリブロックを今の大きさより小さくするとき、小さくするサイズが数バイト程度と少ない場合は空き領域が作成できず、縮小できない場合があります。 そのときは、現在のメモリブロックのサイズを返します。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndAllocFromExpHeap.html">NNS_FndAllocFromExpHeap</A>, <A href="NNS_FndAllocFromExpHeapEx.html">NNS_FndAllocFromExpHeapEx</A>, <A href="NNS_FndCreateExpHeap.html">NNS_FndCreateExpHeap</A>, <A href="NNS_FndCreateExpHeapEx.html">NNS_FndCreateExpHeapEx</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/10/15 「参照」が見出しになっていなかったのを修正した。<br>
+ 2004/04/01 初版</P>
+</body>
+</html>

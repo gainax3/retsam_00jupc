@@ -1,0 +1,94 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCNdError</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCNdError</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nd/dwc_nd.h&gt;
+
+typedef enum {
+
+	DWC_ND_ERROR_NONE,
+	DWC_ND_ERROR_ALLOC,
+	DWC_ND_ERROR_BUSY,
+	DWC_ND_ERROR_HTTP,
+	DWC_ND_ERROR_BUFFULL,
+	DWC_ND_ERROR_DLSERVER,
+	DWC_ND_ERROR_CANCELED,
+	DWC_ND_ERROR_PARAM,
+	DWC_ND_ERROR_FATAL
+
+} DWCNdError;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  ダウンロードライブラリで発生したエラーの種類を表す列挙型です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_NONE</CODE></STRONG></EM></TD>
+			<TD>実行中の処理が完了した<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_ALLOC</CODE></STRONG></EM></TD>
+			<TD>メモリ確保に失敗した<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_BUSY</CODE></STRONG></EM></TD>
+			<TD>ダウンロード実行中にダウンロードを試みた<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ERROR_HTTP</CODE></STRONG></EM></TD>
+			<TD>HTTP通信にエラーが発生した<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_BUFFULL</CODE></STRONG></EM></TD>
+			<TD>ダウンロードバッファが足りない<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_DLSERVER</CODE></STRONG></EM></TD>
+			<TD>サーバがエラーコードを返してきた<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_CANCELED</CODE></STRONG></EM></TD>
+			<TD>処理のキャンセルが完了した<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_PARAM</CODE></STRONG></EM></TD>
+			<TD>不正なパラメータによるエラーが発生した<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_ND_ERROR_FATAL</CODE></STRONG></EM></TD>
+			<TD>未定義の致命的なエラーが発生した<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<code>
+			<a href="DWCNdCallback.html">DWCNdCallback</a>
+			</code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/04/26 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

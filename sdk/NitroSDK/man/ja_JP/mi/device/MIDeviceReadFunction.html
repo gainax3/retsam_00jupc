@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MIDeviceReadFunction</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MIDeviceReadFunction</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <pre><code>#include &lt;nitro/mi.h&gt;</code><br />
+typedef int (*MIDeviceReadFunction)(void *userdata, void *buffer, u32 offset, u32 length);
+</pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>userdata</strong></em></td>
+      <td width="87%"><a href="./MI_InitDevice.html">MI_InitDevice</a>関数で指定された任意のユーザ定義値<br />
+      コールバック関数の実装の利便性のために与えられます。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>buffer</strong></em></td>
+      <td width="87%">読み込んだデータを格納する転送先メモリ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>offset</strong></em></td>
+      <td width="87%">データを読み込むべきデバイス上の先頭アドレス</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>length</strong></em></td>
+      <td width="87%">読み込むサイズ</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>成功すれば実際に読み込まれたデータサイズ、失敗すれば負の値を返す必要があります。</p>
+
+<h2>説明</h2>
+<p>
+デバイスからデータを読み込むためのコールバック形式を表す関数プロトタイプです。<br />
+この形式でデバイス読み込み操作を実装して<a href="MI_InitDevice.html">MI_InitDevice</a>関数に指定します。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitDevice.html">MI_InitDevice</a>,
+<a href="MI_ReadDevice.html">MI_ReadDevice</a>
+<a href="MI_WriteDevice.html">MI_WriteDevice</a><br />
+<a href="MIDevice.html">MIDevice</a>,
+<a href="MIDeviceReadFunction.html">MIDeviceReadFunction</a>,
+<a href="MIDeviceWriteFunction.html">MIDeviceWriteFunction</a><br />
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/09 初版<br />
+</p>
+</body>
+</html>

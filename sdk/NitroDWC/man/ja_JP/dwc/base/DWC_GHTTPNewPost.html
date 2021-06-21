@@ -1,0 +1,65 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GHTTPNewPost</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GHTTPNewPost</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_GHTTPNewPost( DWCGHTTPPost* post );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  データをHTTPサーバにアップロードするための情報単位として、DWCGHTTPPost型オブジェクトを作成します。
+		</P>
+		<P>
+		  DWCGHTTPPost型オブジェクトを作成した後、HTTPサーバにアップロードしたいデータを<A href="DWC_GHTTPPostAddString.html">DWC_GHTTPPostAddString</A>関数や<A href="DWC_GHTTPPostAddFileFromMemory.html">DWC_GHTTPPostAddFileFromMemory</A>関数を用いて、このオブジェクトにセットします。
+		</P>
+		<P>
+		  DWCGHTTPPost型オブジェクト用のメモリ領域は本関数呼び出し時に確保され、実際にアップロードを行い、アップロード完了のコールバックを抜けた直後に解放されます。
+        </P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>post</CODE></STRONG></EM></TD>
+					<TD width="75%">データをアップロードするために作成されるDWCGHTTPPost型オブジェクトへのポインタ。メモリの確保に失敗した場合はNULLを返します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_GHTTPPostAddString.html">DWC_GHTTPPostAddString</A>,
+				<A href="DWC_GHTTPPostAddFileFromMemory.html">DWC_GHTTPPostAddFileFromMemory</A>,
+				<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A>,
+				<A href="DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/12/27 DWC_GHTTPPostAddFileFromMemory関数、DWC_GetGHTTPDataEx2関数の追加に伴う修正<BR>
+			2005/12/16 関数説明を修正<BR>
+			2005/10/27 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

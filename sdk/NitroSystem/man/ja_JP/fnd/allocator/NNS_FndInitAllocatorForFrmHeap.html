@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndInitAllocatorForFrmHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndInitAllocatorForFrmHeap</h1>
+<h2>構文</h2>
+
+<dl> 
+ <dd> 
+  <pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_FndInitAllocatorForFrmHeap(
+         NNSFndAllocator*    pAllocator,
+         NNSFndHeapHandle    heap,
+         int                 alignment);</CODE></pre>
+ </dd>
+</dl>
+<h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAllocator</font></strong></em></td>
+    
+  <td width="87%">NNSFndAllocator構造体のアドレス。</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    
+  <td width="87%">フレームヒープのハンドル。</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">alignment</font></strong></em></td>
+    
+  <td width="87%">確保する各メモリブロックに適用するアライメント値。</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<p>フレームヒープからメモリの確保と解放を行うようにアロケータを初期化します。 アロケータを通じて確保される全てのメモリブロックのアライメント値は引数alignmentで指定した値になります。</P>
+<p>フレームヒープではメモリブロック単位での解放ができませんので、フレームヒープを使用するように設定したアロケータでは関数NNS_FndFreeToAllocator()は何も行いません。</P>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndInitAllocatorForExpHeap.html">NNS_FndInitAllocatorForExpHeap</A>, 
+<A href="NNS_FndInitAllocatorForUnitHeap.html">NNS_FndInitAllocatorForUnitHeap</A>, 
+<A href="NNS_FndInitAllocatorForSDKHeap.html">NNS_FndInitAllocatorForSDKHeap</A></CODE></p>
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</body>
+</html>

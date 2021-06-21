@@ -1,0 +1,59 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetUdpPacketDropNum</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetUdpPacketDropNum</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+int DWC_GetUdpPacketDropNum( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  受信バッファ溢れのためにUDPパケットを受信できなかった回数を取得します。
+		</P>
+		<P>
+		  この回数が多いようであれば、データ送信間隔やデータ送信量を調整するか、
+		</P>
+		<P>
+		  <A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>関数で設定する受信バッファサイズを大きくすることをお勧めします。<BR>
+		</P>
+		<P>
+		  この回数は、アプリケーションが起動してからの総回数で、リセットされることはありません。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+		  受信バッファ溢れのためにUDPパケットを受信できなかった回数
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/02/23 回数カウントがリセットされないことを追記<BR>
+		  2005/12/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

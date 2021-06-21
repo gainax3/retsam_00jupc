@@ -1,0 +1,101 @@
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - FS - demos - overlay
+# File:     main.lsf
+#
+# Copyright 2005,2006 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: overlay.lsf,v $
+# Revision 1.4  2006/05/11 12:55:47  yasu
+# 著作年度の変更
+#
+# Revision 1.3  2006/05/10 03:18:56  yasu
+# IF-ELSE-ENDIF の条件判定のチェックおよび searchsymbol 文のテスト
+#
+# Revision 1.2  2005/08/26 11:23:38  yasu
+# ITCM/DTCM への overlay の対応
+#
+# Revision 1.1  2005/08/26 04:35:19  yasu
+# DTCM overlay 時のアリーナがおかしくなるのを修正
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+#
+#  Nitro LCF SPEC FILE
+#
+
+Static main
+{
+	Address		0x02000000
+	Object		main_a.o main_b.o main_c.o
+	Library		main_a.a main_b.a main_c.a
+	SearchSymbol	main_overlay_1
+	SearchSymbol	main_overlay_2
+}
+
+Autoload ITCM
+{
+	Address		0x01ff8000
+	Object		* (.itcm)
+	SearchSymbol	main_overlay_1
+}
+
+Autoload DTCM
+{
+	Address		0x023e0000
+	Object		* (.dtcm)
+}
+
+# main_overlay_1 and main_overlay_2 are same area (after main).
+# main_overlay_3 is in ITCM (from 0x01FF8000, after ITCM).
+
+Overlay main_overlay_1
+{
+	After		main
+	Object		OBJDIR/func_1.o
+	SearchSymbol	main_overlay_2
+}
+
+Overlay main_overlay_2
+{
+	After		main
+	Object		OBJDIR/func_2.o
+}
+
+Overlay main_itcm_1
+{
+	After		ITCM
+	Object		OBJDIR/func_3.o
+	SearchSymbol	main_overlay_1
+	SearchSymbol	main_overlay_2
+	SearchSymbol	main_overlay_3
+	SearchSymbol	main_overlay_4
+}
+
+Overlay main_dtcm_1
+{
+	After		DTCM
+	Object		OBJDIR/func_4.o
+}
+
+Overlay main_dtcm_2
+{
+	After		DTCM
+	Object		OBJDIR/func_5.o
+}
+
+Overlay MAIN_EX
+{
+	Address		0x02400000
+	Object		ex_1.o
+}
+
+Overlay MAIN_EX_2
+{
+	After		MAIN_EX
+	Object		ex_2.o
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ディスプレイリスト作成 API 接頭語</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">ディスプレイリスト作成 API 接頭語</H1>
+<H2>説明</H2>
+<H3>ディスプレイリスト(コマンド列)を生成する API</H3>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="75">接頭語</TH>
+      <TH>例</TH>
+      <TH>コマンド列形式</TH>
+      <TH>コマンド生成後のポインタ</TH>
+    </TR>
+    <TR>
+      <TD width="75"><CODE>G3B_</CODE></TD>
+      <TD><CODE>G3B_Vtx(), G3B_LoadMtx43()</CODE></TD>
+      <TD>非圧縮形式</TD>
+      <TD>ポインタを先に進めます</TD>
+    </TR>
+    <TR>
+      <TD width="75"><CODE>G3C_</CODE></TD>
+      <TD><CODE>G3C_Vtx(), G3C_LoadMtx43()</CODE></TD>
+      <TD>圧縮形式</TD>
+      <TD>ポインタを先に進めます</TD>
+    </TR>
+    <TR>
+      <TD width="75"><CODE>G3BS_</CODE></TD>
+      <TD><CODE>G3BS_Vtx(), G3BS_LoadMtx43()</CODE></TD>
+      <TD>非圧縮形式</TD>
+      <TD>ポインタを進めません</TD>
+    </TR>
+    <TR>
+      <TD width="75"><CODE>G3CS_</CODE></TD>
+      <TD><CODE>G3CS_Vtx(), G3CS_LoadMtx43()</CODE></TD>
+      <TD>圧縮形式</TD>
+      <TD>ポインタを進めません</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>参考: ジオメトリ FIFO へ直接コマンドを転送する API</H3>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="75">接頭語</TH>
+      <TH>例</TH>
+    </TR>
+    <TR>
+      <TD><CODE>G3_</CODE></TD>
+      <TD><CODE>G3_Vtx(), G3_LoadMtx43()</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>解説</H2>
+<P>ディスプレイリストを生成する API は上記の様に 1 つの機能につき 4 種類の形式が提供されており、接頭語で区別されています。これはディスプレイリストを生成する4種類の状況に対応しています。</P>
+<H3>非圧縮 vs 圧縮</H3>
+<P>NITRO ハードウェアがサポートしているディスプレイリストの形式に対応したものです。通常は圧縮形式を使用する方が有利です。</P>
+<UL>
+  <LI>非圧縮形式
+  <DL>
+    <DD>メモリを浪費します。
+    <DD>プロセッサの生成処理が軽い。
+  </DL>
+  <LI>圧縮形式
+  <DL>
+    <DD>メモリを浪費しません。
+    <DD>比較して生成処理が重い。(ただしメモリアクセス量が少ないので総合的に見て処理が軽い可能性あり)
+  </DL>
+</UL>
+<H3>ポインタを進める vs ポインタを進めない</H3>
+<P>コマンドリストを生成するときは、DLInfo 構造体を使って現在の出力バッファのポインタを保持します。このポインタをコマンド出力後に次の出力位置へ進めるかどうかに対応したものです。書き換える状況に応じて使い分けてください。</P>
+<UL>
+  <LI>ポインタを進める
+  <DL>
+    <DD>コマンドリストを逐次生成するのに向いています。
+  </DL>
+  <LI>ポインタを進めない
+  <DL>
+    <DD>コマンドリストの一部を生成後に書き換えるのに向いています。
+  </DL>
+</UL>
+<H2>参照</H2>
+<P><CODE><A href="../../mi/dma/MI_SendGXCommand.html">MI_SendGXCommand*</A>, <A href="G3_BeginMakeDL.html">G3_BeginMakeDL</A>, <A href="G3_EndMakeDL.html">G3_EndMakeDL</A></CODE></P>
+<H2>履歴</H2>
+<P>Ver. 2004/03/29 初版作成</P>
+</BODY>
+</HTML>

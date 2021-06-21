@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<link rel="stylesheet" type="text/css" href="../../css/nitro.css" />
+<title>WFS Demos</title>
+</head>
+<body>
+
+<h1>ワイヤレスファイルシステムライブラリ(WFS)サンプルデモ</h1>
+
+<h2>コンパイル方法</h2>
+<p>
+各サンプルデモが収録されているディレクトリに移り、
+</p>
+<blockquote><code>% make</code></blockquote>
+<p>
+と入力します。実行ファイル(<code>.nef</code>, <code>.srl</code> ファイル) が、
+</p>
+<blockquote><code>$NitroSDK/(サンプルデモのディレクトリ)/bin/(プラットフォーム)/(ターゲット)/</code></blockquote>
+<p>
+の下に生成されます。例えば、
+</p>
+<blockquote><code>$NitroSDK/build/demos/mb/multiboot-wfs/bin/ARM9-TS/Release/</code></blockquote>
+<p>
+のようになります。
+</p>
+
+<h2>実行方法</h2>
+<p>
+<code>$NitroSDK/(サンプルデモのディレクトリ)/bin/(プラットフォーム)/(ターゲット)/</code> ディレクトリに移り、以下のうちの一つを行います。
+</p>
+<ul>
+<li>IS-NITRO-DEBUGGER で <code>*.nlf</code> ファイルを読みこんで実行する。</li>
+<li>IS-NITRO-DEBUGGER で <code>*.srl</code> を実行する。</li>
+</ul>
+<p style="color:Red">WFSライブラリの多くのサンプルデモはDSダウンロードプレイを使うため、
+同じ通信環境(無線あるいは有線)どうしの開発機材を複数必要とします。<br />
+<code>$NitroSDK/bin/ARM9-TS/Rom/mb_child.srl</code>はニンテンドーDS本体のDSダウンロードプレイプログラムと同等の機能を提供するサンプルになっていますので、
+このプログラムを他の機材に読み込み、一緒に実行してください。<br />
+また、 IS-NITRO-DEBUGGER のオプション設定によってはこのプログラムを読み込んだ時に<br />
+「ARM9プロセッサ側の転送先アドレスが異常です」<br />
+という内容のダイアログが表示されますが、「いいえ」を選択して読み込んでください。</p>
+
+<h2>説明</h2>
+<table style="width:90%">
+  <tbody>
+
+    <tr>
+      <td><em><strong><code>$NitroSDK/build/demos/wireless_shared/wfs</code></strong></em></td>
+      <td>WFSライブラリをMP通信にフックさせるための簡単な手順を示したサンプルコードです。<br />
+      後述するいくつかのサンプルデモはこのコードを共通処理として参照しています。</td>
+    </tr>
+
+    <tr>
+      <td><em><strong><code>$NitroSDK/build/demos/wbt/wbt-fs</code></strong></em></td>
+      <td>WFSライブラリで親機プログラムから子機プログラムへファイルシステムを提供するもっとも単純なサンプルです。<br />
+      このプログラムは同じものを2つ実行して一方を親、もう一方を子として通信させる必要があります。
+      <b>$NitroSDK/build/demos/wireless_shared/wc</b>のサンプルコードをMP通信のフレームワークとして使用しています。<br />
+      <b>$NitroSDK/build/demos/wireless_shared/wfs</b>のサンプルコードをMP通信フック処理に使用しています。</td>
+    </tr>
+
+    <tr>
+      <td><em><strong><code>$NitroSDK/build/demos/mb/multiboot-wfs</code></strong></em></td>
+      <td>MBライブラリを使用してニンテンドーDS本体へプログラムをダウンロードし、
+      さらにそのプログラムと再接続して子機プログラムへワイヤレスファイルシステムを提供するサンプルです。<br />
+      <b>$NitroSDK/build/demos/wireless_shared/wc</b>のサンプルコードをMP通信のフレームワークとして使用しています。<br />
+      <b>$NitroSDK/build/demos/wireless_shared/wfs</b>のサンプルコードをMP通信フック処理に使用しています。</td>
+    </tr>
+
+    <tr>
+      <td><em><strong><code>$NitroSDK/build/demos/wm/wireless-all</code></strong></em></td>
+      <td>DSワイヤレスプレイの総合的なサンプルです。<br />
+      MBライブラリのクローンブート機能でDSダウンロードプレイを行い、
+      配信した子機プログラムと再接続してデータシェアリング通信を行いつつワイヤレスファイルシステムを提供します。<br />
+      <b>$NitroSDK/build/demos/wireless_shared/wh</b>のサンプルコードをMP通信のフレームワークとして使用しています。<br />
+      <b>$NitroSDK/build/demos/wireless_shared/wfs</b>のサンプルコードをMP通信フック処理に使用しています。</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<h2>エミュレータ</h2>
+<p>
+<code>WFSライブラリのデモは、ensataにおいては動作しません。</code>
+</p>
+
+<h2>参照</h2>
+<p>
+<A href="../../wfs/list_wfs.html"><code>WFS関数一覧</code></A>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/15 初版<br />
+</p>
+</body>
+</html>

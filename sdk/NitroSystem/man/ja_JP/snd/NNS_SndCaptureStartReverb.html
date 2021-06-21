@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndCaptureStartReverb</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndCaptureStartReverb</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndCaptureStartReverb(
+        void* <var>buffer_p</var>,
+        u32 <var>bufSize</var>,
+        NNSSndCaptureFormat <var>format</var>,
+        int <var></var>sampleRate,
+        int <var></var>volume );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0MWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>buffer_p</code></strong></em></td>
+<td>リバーブバッファのポインタです。32バイトアライメントされている必要があります。</td>
+</tr>
+<tr>
+<td><em><strong><code>bufSize</code></strong></em></td>
+<td>リバーブバッファのサイズです。64の倍数でなければなりません。最大値は0x7ffc0です。</td>
+</tr>
+<tr>
+<td><em><strong><code>format</code></strong></em></td>
+<td>サンプルデータのフォーマットです。</td>
+</tr>
+<tr>
+<td><em><strong><code>sampleRate</code></strong></em></td>
+<td>サンプリングレートです。</td>
+</tr>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>リバーブ成分のボリュームです。0～63の範囲です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFOWT"></a>
+      <h2>返り値</h2>
+
+      <p>リバーブの開始に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMOWT"></a>
+      <h2>説明</h2>
+      <p>
+リバーブを開始します。</p>
+      <p>
+キャプチャー機能を使ってミキサー出力をキャプチャし、時間を遅らせて再度ミキサーへ出力することで、リバーブを実現しています。
+リバーブ中は、16チャンネル中の2チャンネル（チャンネル1及びチャンネル3）を消費します。
+チャンネル1またはチャンネル3が、シーケンスによって使用中の場合、発音中の音は強制的に停止させられます。
+</p>
+      <p>
+リバーブを使うためには、リバーブバッファが必要になります。
+リバーブバッファが大きいほど、遅延時間が長くなり、深いリバーブがかかります。
+先頭アドレス<em><strong><code>buffer_p</code></strong></em>は、32バイトアライメントされている必要があります。
+また、バッファサイズ<em><strong><code>bufSize</code></strong></em>は、64の倍数で無ければなりません。
+</p>
+      <p>
+サンプルデータのフォーマット<em><strong><code>format</code></strong></em>は、下記の値から選択します。
+16ビットの方が、音質は良くなりますが、8ビットの時と同じ遅延時間を得たい場合、リバーブバッファは２倍必要になります。
+</p>
+      <div class="table"><a name="IDAAPWT"></a><p class="title"><b>表 . NNSSndCaptureFormat</b></p>
+<table summary="NNSSndCaptureFormat" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_CAPTURE_FORMAT_PCM8</td>
+<td>8ビットPCM</td>
+</tr>
+<tr>
+<td>NNS_SND_CAPTURE_FORMAT_PCM16</td>
+<td>16ビットPCM</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      <p>
+サンプリングレート<em><strong><code>sampleRate</code></strong></em>は、
+値が大きいほどリバーブ成分の音質は良くなりますが、その分遅延時間は短くなります。
+遅延時間を変えたくない場合は、リバーブバッファサイズを大きくする必要があります。
+</p>
+      <p>
+リバーブ成分のボリューム<em><strong><code>volume</code></strong></em>は、
+最大の63の時、ミキサー出力の約半分の音量がフィードバックされます。
+</p>
+      <p>
+リバーブの遅延時間を求める式は、下記のようになります。ただし、フォーマットが16ビットPCMの場合は、この半分の時間です。
+</p>
+      <pre class="programlisting">遅延時間[sec] = bufSize / sampleRate</pre>
+      
+      <p>
+リバーブ開始の失敗には、以下の原因が考えられます。 
+</p>
+      <div class="itemizedlist">
+<ul type="disc">
+<li>キャプチャがリバーブ以外の用途で使用中</li>
+<li>チャンネル１またはチャンネル３が、リバーブやシーケンスによる発音以外の用途で使用中 </li>
+</ul>
+</div>
+
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+音声を再生しながらこの関数を呼びだすと、再生される音が途切れます。
+</p>
+</div>
+      
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>
+  2007/07/11 リバーブバッファサイズの制限に関する誤記修正<br>
+  2005/01/06 TEGに関する記述削除<br>
+  2004/07/01 format引数の型をSNDCaptureFormatからNNSSndCaptureFormatに変更<br>
+  2004/04/01 初版<br>
+</p>
+</div>
+</body>
+</html>

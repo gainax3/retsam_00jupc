@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerWriteVariable</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerWriteVariable</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndPlayerWriteVariable(
+        NNSSndHandle* <var>handle</var>,
+        int <var>varNo</var>,
+        s16 <var>var</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>varNo</code></strong></em></td>
+<td>変数番号です。値の範囲は、0～15です。</td>
+</tr>
+<tr>
+<td><em><strong><code>var</code></strong></em></td>
+<td>書き込む変数の値です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>書き込みに成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスローカル変数に書き込みます。
+</p>
+      <p>
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスのシーケンスローカル変数に値を書き込みます。
+サウンドハンドルが無効の場合は、書き込みに失敗してFALSEを返します。 
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数を呼びだした直後に、
+<tt class="function"><a href="NNS_SndPlayerReadVariable.html">NNS_SndPlayerReadVariable</a></tt>関数で、
+同じ変数の値を読み込んでも、書き込んだ値が読みとれる保証はありません。 </p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndPlayerReadVariable.html">NNS_SndPlayerReadVariable</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

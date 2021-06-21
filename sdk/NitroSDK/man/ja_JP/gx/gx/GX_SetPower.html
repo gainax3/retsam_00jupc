@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetPower</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetPower</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+<CODE>void GX_SetPower(int gxbit_power /* GXPower */ );</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="208"><em><strong><font face="Courier New">gxbit_power</font></strong></em></TD>
+      <TD width="945">GXPower型の値の論理和</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>各種グラフィックス回路のON/OFFを行います。<BR>
+<CODE>GX_POWER_LCD</CODE>は廃止されました。LCDのパワー制御には<A href="../../spi/pm/PM_SetLCDPower.html" target="_self">PM_SetLCDPower</A>を使用して下さい。<BR>
+</P>
+<DIV align="left">
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD align="left"><CODE>GX_POWER_OFF</CODE></TD>
+      <TD>グラフィックス回路を全てOFFに指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_2D</CODE></TD>
+      <TD>メインとサブ両方の2DグラフィックエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_3D</CODE></TD>
+      <TD>ジオメトリエンジンとレンダリングエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_2D_MAIN</CODE></TD>
+      <TD>メイン2DグラフィックエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_2D_SUB</CODE></TD>
+      <TD>サブ2DグラフィックエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_RE</CODE></TD>
+      <TD>レンダリングエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_GE</CODE></TD>
+      <TD>ジオメトリエンジンをONにします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_POWER_ALL</CODE></TD>
+      <TD>全てONに設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</DIV>
+<P><BR>
+以下にGXPower型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_POWER_OFF = 0,
+
+    GX_POWER_2D_MAIN = 1 &lt;&lt; REG_GX_POWCNT_E2DG_SHIFT,
+    GX_POWER_2D_SUB  = 1 &lt;&lt; REG_GX_POWCNT_E2DGB_SHIFT,
+    
+    GX_POWER_RE = 1 &lt;&lt; REG_GX_POWCNT_RE_SHIFT,
+    GX_POWER_GE = 1 &lt;&lt; REG_GX_POWCNT_GE_SHIFT,
+
+    GX_POWER_2D = GX_POWER_2D_MAIN | GX_POWER_2D_SUB,
+    GX_POWER_3D = GX_POWER_RE | GX_POWER_GE,
+    
+    GX_POWER_ALL = GX_POWER_2D | GX_POWER_3D
+}
+GXPower;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_GetPower.html">GX_GetPower, </A><A href="../../spi/pm/PM_SetLCDPower.html" target="_self">PM_SetLCDPower</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/08/10</P>
+<UL>
+  <LI>パワーコントロール用に<CODE>GX_POWER_LCD, GX_POWER_LCD_TOP</CODE>,<CODE>GX_POWER_LCD_BOT</CODE>を削除。
+</UL>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>パワーコントロール用に<CODE>GX_POWER_LCD_TOP</CODE>,<CODE>GX_POWER_LCD_BOT</CODE>, <CODE>GX_POWER_2D_MAIN</CODE>, <CODE>GX_POWER_2D_SUB</CODE>, <CODE>GX_POWER_3D</CODE>を追加。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

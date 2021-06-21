@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCStrokes</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCStrokes</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef struct PRCStrokes
+{
+    <A href="PRCPoint.html">PRCPoint</A>            *points;
+    int                 size;
+    u32                 capacity;
+} PRCStrokes;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">points</FONT></STRONG></EM></TD>
+      <TD width="87%">点列データを実際に格納する <A href="PRCPoint.html">PRCPoint</A> 構造体の配列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">size</FONT></STRONG></EM></TD>
+      <TD width="87%">現在格納されている点の数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">capacity</FONT></STRONG></EM></TD>
+      <TD width="87%">最大で格納できる点の数</TD>
+    </TR>
+  </tbody>
+</table>
+<H2>説明</H2>
+<P>タッチパネルからの入力を座標値の列として保持します。ペンが上がったことを示すマーカーを途中にはさむことによって、複数の画の入力を保持することができます。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRCPoint.html">PRCPoint</A>, <A href="PRC_InitStrokes.html">PRC_InitStrokes</A>, <A href="PRC_AppendPoint.html">PRC_AppendPoint</A>, <A href="PRC_AppendPenUpMarker.html">PRC_AppendPenUpMarker</A>, <A href="PRC_Clear.html">PRC_Clear</A>, <A href="PRC_IsFull.html">PRC_IsFull</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
+</body>
+</html>

@@ -1,0 +1,30 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  libVCT - build
+# File:     commondefs
+#
+# Copyright (c) 2005-2006 Abiosso Networks, Inc. ALL RIGHTS RESERVED.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Abiosso Networks, Inc., and are protected
+# by Federal copyright law.  They may not be disclosed to third parties
+# or copied or duplicated in any form, in whole or in part,  without
+# the prior written consent of Abiosso.
+#
+#----------------------------------------------------------------------------
+
+include  $(NITRODWC_ROOT)/build/buildtools/commondefs
+include  $(NITROLIBVCT_ROOT)/build/buildtools/commondefs.VCT
+
+#----------------------------------------------------------------------------
+#  ADD-INS
+#
+-include  $(NITROLIBVCT_ROOT)/build/buildtools/commondefs.add-ins.*
+
+#----------------------------------------------------------------------------
+#  PRIVATE FLAGS
+#
+-include $(NITROLIBVCT_ROOT)/build/buildtools/_privatedefs
+-include $(NITROLIBVCT_ROOT)/build/buildtools/@privatedefs
+
+#===== End of commondefs =====

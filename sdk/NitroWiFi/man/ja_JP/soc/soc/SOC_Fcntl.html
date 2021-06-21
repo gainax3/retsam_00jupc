@@ -1,0 +1,110 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_Fcntl</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Fcntl</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_F_GETFL 3
+#define SOC_F_SETFL 4
+#define SOC_O_NONBLOCK 0x04</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Fcntl( int <em><strong>s</strong></em>, int <em><strong>cmd</strong></em>, int <em><strong>mode</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td>ソケット記述子。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>cmd</strong></em></code></td>
+    <td>コマンド(<code>SOC_F_*</code>)。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>mode</strong></em></code></td>
+    <td>設定/読み取りしたい値。</td>
+  </tr>
+  </table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0以上</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td>-1</td>
+    <td>エラー。</td>
+  </tr>
+  </table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>オープン済みのソケット記述子に対して以下の操作を実行します。</p>
+<table width="100%">
+  <tr>
+    <th><strong>コマンド</strong></th>
+    <th><strong>引数</strong></th>
+    <th><strong>型</strong></th>
+    <th><strong>説明</strong></th>
+  </tr>
+  <tr>
+    <td><code>SOC_F_GETFL</code></td>
+    <td><em>なし</em></td>
+    <td>　</td>
+    <td>ソケット記述子のフラグを取得します。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_F_SETFL</code></td>
+    <td> <code>SOC_O_*</code> フラグの論理和</td>
+    <td><code>int</code></td>
+    <td>ソケット記述子のフラグを設定します。</td>
+  </tr>
+  </table>
+<p>ソケット記述子を非封鎖モードに設定する場合は、以下のコードを使ってください。</p>
+<dl>
+  <dd>
+  <pre><code>val = SOC_Fcntl(s, SOC_F_GETFL, 0);
+SOC_Fcntl(s, SOC_F_SETFL, val | SOC_O_NONBLOCK);</code></pre>
+  </dd>
+</dl>
+<p>ソケット記述子を封鎖モードに戻す場合は、以下のコードを使ってください。</p>
+<dl>
+  <dd>
+  <pre><code>val = SOC_Fcntl(s, SOC_F_GETFL, 0);
+SOC_Fcntl(s, SOC_F_SETFL, val &amp; ~SOC_O_NONBLOCK);</code></pre>
+  </dd>
+</dl>
+<p>ソケット記述子はデフォルトでは封鎖モードです。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_Connect.html">SOC_Connect</a></code>,
+<code><a href="SOC_Accept.html">SOC_Accept</a></code>,
+<code><a href="SOC_Recv.html">SOC_Recv</a></code>,
+<code><a href="SOC_Send.html">SOC_Send</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

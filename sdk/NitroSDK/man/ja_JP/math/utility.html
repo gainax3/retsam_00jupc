@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MATH ユーティリティ関数群</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">MATH ユーティリティ関数群</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/math.h&gt;</CODE></PRE>
+  <PRE><CODE>static inline int MATH_IAbs( int a );
+static inline int MATH_IMin( int a, int b );
+static inline int MATH_IMax( int a, int b );
+MATH_ABS( a );
+MATH_MIN( a, b );
+MATH_MAX( a, b );
+MATH_CLAMP( x, low, high );
+MATH_ROUNDUP( x, base );
+MATH_ROUNDDOWN( x, base );
+MATH_ROUNDUP32( x );
+MATH_ROUNDDOWN32( x );
+
+  </CODE></PRE>
+</DL>
+<H2>説明</H2>
+<P>ユーティリティ関数群です。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>MATH_IAbs</I></B></TD>
+      <TD>int 型の引数の絶対値を返すインライン関数です。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_IMin</I></B></TD>
+      <TD>2つの int 型の引数のうち、小さいほうを返すインライン関数です。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_IMax</I></B></TD>
+      <TD>2つの int 型の引数のうち、大きいほうを返すインライン関数です。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_ABS</I></B></TD>
+      <TD>引数の絶対値を返す関数マクロです。<FONT color="red"><B><BR>
+      各引数が2回評価される場合がありますので、副作用のある式を引数に入れてはいけません</B></FONT>。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_MIN</I></B></TD>
+      <TD>2 引数のうち、小さいほうを返す関数マクロです。<FONT color="red"><B><BR>
+      各引数が2回評価される場合がありますので、副作用のある式を引数に入れてはいけません</B></FONT>。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_MAX</I></B></TD>
+      <TD>2 引数のうち、大きいほうを返す関数マクロです。<BR>
+      <FONT color="red"><B>各引数が2回評価される場合がありますので、副作用のある式を引数に入れてはいけません</B></FONT>。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_CLAMP</I></B></TD>
+      <TD>引数をlowからhighの範囲に収めた値を返す関数マクロです。<BR>
+      <FONT color="red"><B>各引数が2回評価される場合がありますので、副作用のある式を引数に入れてはいけません</B></FONT>。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_ROUNDUP</I></B></TD>
+      <TD>第1引数 x を第2引数 base の倍数に切り上げた値を返す関数マクロです。すなわち x 以上の最小の base の倍数を返します。base は 2 のべき乗でなければなりません。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_ROUNDDOWN</I></B></TD>
+      <TD>第1引数 x を第2引数 base の倍数に切り下げた値を返す関数マクロです。すなわち x 以下の最大の base の倍数を返します。base は 2 のべき乗でなければなりません。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_ROUNDUP32</I></B></TD>
+      <TD>引数を32の倍数に切り上げた値を返す関数マクロです。MATH_ROUNDUP(x, 32) と等価です。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>MATH_ROUNDDOWN32</I></B></TD>
+      <TD>引数を32の倍数に切り下げた値を返す関数マクロです。MATH_ROUNDDOWN(x, 32) と等価です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<PRE>
+
+
+#define MATH_ABS(a) ( ( (a) &lt; 0 ) ? (-(a)) : (a) )
+#define MATH_MIN(a,b) (((a) &lt;= (b)) ? (a) : (b))
+#define MATH_MAX(a,b) (((a) &gt;= (b)) ? (a) : (b))
+#define MATH_CLAMP(x, low, high) ( ( (x) &gt; (high) ) ? (high) : ( ( (x) &lt; (low) ) ? (low) : (x) ) )
+#define MATH_ROUNDUP(x, base)   (((x) + ((base)-1)) &amp; ~((base)-1))
+#define MATH_ROUNDDOWN(x, base) ((x) &amp; ~((base)-1))
+#define MATH_ROUNDUP32(x)   MATH_ROUNDUP(x, 32)
+#define MATH_ROUNDDOWN32(x) MATH_ROUNDDOWN(x, 32)
+
+</PRE>
+<H2>参照</H2>
+<P><CODE>なし
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/06/02 &amp; を &amp;amp; に修正<BR>
+2004/12/14 初版
+</P>
+</BODY>
+</HTML>

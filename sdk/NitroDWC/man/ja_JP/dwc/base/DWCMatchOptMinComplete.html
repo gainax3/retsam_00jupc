@@ -1,0 +1,82 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCMatchOptMinComplete</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCMatchOptMinComplete</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef struct DWCstMatchOptMinComplete
+{
+    u8  valid;
+    u8  minEntry;
+    u8  pad[2];
+    u32 timeout;
+}
+DWCMatchOptMinComplete;
+
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  指定人数以下マッチメイク完了オプションを設定するための構造体です。
+		</P>
+		<P>
+		  このマッチメイクオプションは、ピアマッチメイクにおいて、一定時間を過ぎてもマッチメイクが完了しない場合に、<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A> / <A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>関数で指定した人数以下でのマッチメイクを許可するものです。
+		  <A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>関数の引数opttypeにDWC_MATCH_OPTION_MIN_COMPLETEを指定し、引数optvalにメンバ変数に値をセットした本構造体へのポインタを指定して呼び出すことによって設定することができます。
+		</P>
+		<P>
+		  自分のマッチメイク開始からの経過時間がtimeoutに達したからといってすぐにマッチメイクを終了するわけではなく、その時に接続している全てのホストが同様にtimeoutの時間を越えていなければマッチメイクが完了することはありません。
+		</P>
+
+		<TABLE border="1">
+		<TBODY>
+          <TR>
+			<TD width="25%"><EM><STRONG><CODE>valid</CODE></STRONG></EM></TD>
+			<TD>TRUE :このマッチメイクオプションを有効にする。<BR>
+				FALSE:このマッチメイクオプションを無効にする。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>minEntry</CODE></STRONG></EM></TD>
+			<TD>マッチメイク完了としても良い、自分を含めた最低接続人数。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>pad</CODE></STRONG></EM></TD>
+			<TD>パディング。何もセットしなくても構いません。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>timeout</CODE></STRONG></EM></TD>
+			<TD>指定人数以下でもマッチメイク完了を許可するようになるまでの、マッチメイク開始からの経過時間（単位：msec）。</TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		  <code>
+			<A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>,
+			<A href="DWC_GetMOMinCompState.html">DWC_GetMOMinCompState</A>,
+			<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A>,
+			<A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>
+		  </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2005/12/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

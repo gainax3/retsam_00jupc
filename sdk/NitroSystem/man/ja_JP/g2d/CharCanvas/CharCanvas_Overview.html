@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>文字描画概要</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">文字描画概要</H1>
+
+<H2>「キャラクタ」について</H2>
+<P>
+	文字(列)描画ライブラリにおいて単語「キャラクタ」は常にOBJやBGの構成要素である8x8ピクセルの画像を指す語として使われます。
+	「文字」の意味で使われる事はありません。
+
+</P>
+
+<H2>文字描画ライブラリ</H2>
+<P>
+	文字描画ライブラリはキャラクタBGやキャラクタOBJのようなキャラクタで構成された画面表示要素に対して、
+	ピクセル単位で文字の描画を行うライブラリです。<br>
+</P>
+
+<H2>ChracterCanvas</H2>
+<P>
+	文字描画ライブラリでは描画対象となるキャラクタを CharCanvas と呼ぶ仮想的な描画面に関連付け、
+	この仮想描画面に対して文字描画を行います。
+	CharCanvas の実体はキャラクタを敷き詰めて1つながりの描画面としたものです。
+	仮想描画面に対して文字描画を行うと文字描画ライブラリによって実体であるキャラクタに描画が行われます。
+</P>
+<P>
+	ニンテンドーDSではキャラクタに対して描画をおこなっても、
+	そのままでは物理画面には表示されません。
+	<br>
+	BGのキャラクタであればスクリーンの設定が、OBJのキャラクタであればOAMの設定が必要になります。
+	文字描画ライブラリではこれらの設定を簡易に行う関数を提供します。
+	<br>
+	またOBJのキャラクタの場合は CharCanvas からセルを構築してレンダラで描画することも可能です。
+	<img src="CharCanvas.png" alt="文字描画→CharCanvas→キャラクタ→スクリーン→画面"><br clear="left">
+</P>
+
+<H2>文字描画関数</H2>
+<P>
+	文字描画ライブラリの関数は以下のように大きく5つのグループに分ける事ができます。
+</p>
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="40%">
+			<strong>CharCanvas構築</strong><br>
+			CharCanvasを初期化・構築する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dCharCanvasInitForBG.html">NNS_G2dCharCanvasInitForBG()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasInitForOBJ1D.html">NNS_G2dCharCanvasInitForOBJ1D()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasInitForOBJ2DRect.html">NNS_G2dCharCanvasInitForOBJ2DRect()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>セル構築</strong><br>
+			CharCanvasを表示するセルを構築する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dCharCanvasCalcCellDataSizeXXX.html">NNS_G2dCharCanvasCalcCellDataSize1D()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasCalcCellDataSizeXXX.html">NNS_G2dCharCanvasCalcCellDataSize2DRect()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasMakeCellXXX.html">NNS_G2dCharCanvasMakeCell1D()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasMakeCellXXX.html">NNS_G2dCharCanvasMakeCell2DRect()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>CharCanvas塗りつぶし</strong><br>
+			CharCanvasを単色で塗りつぶす関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dCharCanvasClear.html">NNS_G2dCharCanvasClear()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasClearArea.html">NNS_G2dCharCanvasClearArea()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>文字描画</strong><br>
+			CharCanvasに文字を描画する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dCharCanvasDrawChar.html">NNS_G2dCharCanvasDrawChar()</a></code><br>
+			<code><a href="NNS_G2dCharCanvasDrawGlyph.html">NNS_G2dCharCanvasDrawGlyph()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>スクリーン・OAM設定</strong><br>
+			CharCanvas を表示できるようにスクリーン及びOAMの設定を行う関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dMapScrToCharText.html">NNS_G2dMapScrToCharText()</a></code><br>
+			<code><a href="NNS_G2dMapScrToCharAffine.html">NNS_G2dMapScrToCharAffine()</a></code><br>
+			<code><a href="NNS_G2dMapScrToChar256x16Pltt.html">NNS_G2dMapScrToChar256x16Pltt()</a></code><br>
+			<code><A href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequireOBJ1D()</A></code><br>
+			<code><A href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequireOBJ2DRect()</A></code><br>
+			<code><A href="NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ1D()</A></code><br>
+			<code><A href="NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ2DRect()</A></code><br>
+	      </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+<p>
+	<br>
+	この分類を用いると文字描画の大まかな流れは以下のようになります。<br>
+</p>
+	<pre>
+    (1) CharCanvas 構築関数で CharCanvas を構築する。
+        スクリーン・OAM設定関数でスクリーンまたはOAMの設定を行う。
+        またはセル構築関数でセルを構築する
+        ↓
+    (2) CharCanvas 塗りつぶし関数で CharCanvas をクリア。
+        ↓
+    (3) 文字描画関数で文字描画
+        ↓
+    以下(2)(3)を必要な時に必要なだけ行う。
+
+    (4) (1) でセルの構築を行った場合はレンダラを用いてセルの描画を行う
+	</pre>
+<p>
+	多くの場合は文字描画関数で直接文字描画を行うのではなく、
+	(3)の代わりに
+	<a href="../TextCanvas/TextCanvas_Overview.html">文字列描画ライブラリ</a>
+	を用いた方が良いでしょう。
+</P>
+
+<H2>CharCanvas座標系</H2>
+<P>
+	文字描画関数では文字描画位置の基準座標を CharCanvas 
+	の左上隅を原点とし右下方向を正方向とするピクセル単位の座標系で表現しています。
+	これを本リファレンス内では CharCanvas 座標系と呼んでいます。
+	<br><br>
+	<img src="origin.png" alt="CharCanvas 座標系">
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/07/12 セル構築関数の追加<br>
+2005/05/25 初版<br>
+</P>
+</BODY>
+
+</HTML>

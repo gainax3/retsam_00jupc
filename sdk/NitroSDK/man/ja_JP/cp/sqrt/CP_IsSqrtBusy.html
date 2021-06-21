@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_IsSqrtBusy</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_IsSqrtBusy</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <BR>
+  <CODE>s32 CP_IsSqrtBusy( void )</CODE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>平方根演算器がビジーかどうかを返します。0 ならばレディ状態、非0 ならばビジー状態です。</p>
+<H2>説明</H2>
+<P>平方根演算器がビジーかどうかを取得します。<BR>
+平方根演算レジスタへの書き込み後、一定サイクルの間ビジー状態になります。<BR>
+平方根演算の結果を取得する場合、ビジーが落ちた状態で読み出さなければなりません。<BR>
+計算サイクルは以下のようになります。(計算サイクルは33.514MHzを基準としたサイクル数です。CPUサイクル換算は67.028MHzを基準としたサイクル数です。)</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>平方根演算モード</TH>
+      <TH>計算</TH>
+      <TH>計算サイクル</TH>
+      <TH>CPUサイクル換算</TH>
+    </TR>
+    <TR>
+      <TD>CP_SQRT_32BIT_MODE</TD>
+      <TD>32ビット値の平方根演算</TD>
+      <TD>13サイクル</TD>
+      <TD>26サイクル</TD>
+    </TR>
+    <TR>
+      <TD>CP_SQRT_64BIT_MODE</TD>
+      <TD>64ビット値の平方根演算</TD>
+      <TD>13サイクル</TD>
+      <TD>26サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、SQRTCNT(0x40002B0) を参照します。<br>
+</CODE></p>
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*</A>, <A href="CP_SetSqrt.html">CP_SetSqrt*</A>, <A href="CP_WaitSqrt.html">CP_WaitSqrt</A>, <A href="CP_GetSqrtResult.html">CP_GetSqrtResult*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/11/02 サイクル数の間違いを修正。構文の関数型をint→s32<BR>
+2004/06/16 サイクル数の記述追加<BR>
+2004/01/09 内容を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

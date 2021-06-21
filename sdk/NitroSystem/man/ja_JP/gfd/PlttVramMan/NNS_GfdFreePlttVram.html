@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdAllocPlttVram</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdFreePlttVram</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>int NNS_GfdFreePlttVram(NNSGfdPlttKey plttKey);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>plttKey</STRONG></EM></TD>
+      <TD width="87%">確保したパレット用メモリを示すキー・データ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>パレット用メモリの解放に成功した場合、０が返ります。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>plttKey</CODE>で指定されたパレット用メモリを解放します。
+NITRO-Systemのライブラリがパレット用メモリを解放する場合には、この関数が使用されます。
+</P>
+<P>
+<CODE>NNS_GfdFreePlttVram</CODE>関数は以下のように定義されており、内部処理は
+グローバルな関数ポインタである<CODE>NNS_GfdDefaultFuncFreePlttVram</CODE>に設定されている関数を呼び出しているのみとなっています。
+</P>
+<PRE>
+static inline int
+NNS_GfdFreePlttVram(NNSGfdPlttKey key)
+{
+    return (*NNS_GfdDefaultFuncFreePlttVram)(key);
+}
+</PRE>
+<P>
+この関数ポインタに適当なパレット用メモリ解放関数を登録する事により、<CODE>NNS_GfdFreePlttVram</CODE>は機能します。
+このような仕組みにより、ライブラリからのパレット用メモリの解放をユーザ側でコントロールする事を可能にしています。
+なお初期状態では、<CODE>NNS_GfdDefaultFuncFreePlttVram</CODE>には、何も処理をせずにエラーを返す関数が設定されています。
+</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdAllocPlttVram.html">NNS_GfdAllocPlttVram</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/07/16 初版</P>
+</BODY>
+
+</HTML>

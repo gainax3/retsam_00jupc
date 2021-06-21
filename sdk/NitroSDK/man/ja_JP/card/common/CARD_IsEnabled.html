@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_IsEnabled</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_IsEnabled</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL CARD_IsEnabled(void);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>NITRO-CARD へのアクセスが可能な状態であればTRUEを、そうでなければFALSEを返します。</p>
+
+<H2>説明</H2>
+<P>NITRO-CARD へのアクセスが可能な状態か判定します。<br>
+アクセス禁止の状態において NITRO-CARD へアクセスした場合、プログラムは強制停止します。<br>
+<br>
+ワイヤレスダウンロードによって起動した子機プログラムは初期状態でFALSEを返します。<br>
+アクセス許可状態は<A href="CARD_Enable.html">CARD_Enable</A>関数によって変更されます。<br>
+<br>
+</p>
+<BR>
+<h2>参照</h2>
+<p>
+<A href="CARD_Init.html">CARD_Init</A> 
+<A href="CARD_Enable.html">CARD_Enable</A> 
+<BR>
+</P>
+<H2>履歴</H2>
+<P>
+2004/12/15 初版<BR>
+</P>
+</body>
+</html>

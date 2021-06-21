@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetBankForOBJ</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetBankForOBJ</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_SetBankForOBJ(GXVRamOBJ obj);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">obj</font></strong></em></td>
+    <td width="87%">メイン2DエンジンのOBJに割り当てるVRAMバンクを指定</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>指定されたVRAMバンクをメイン2DエンジンのOBJに割り当てます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをメイン2DエンジンのOBJに割り当てます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_NONE</CODE></TD>
+      <TD>OBJにVRAMバンクを割り当てません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_16_F</CODE></TD>
+      <TD>OBJに16KBytes確保します。VRAM-Fを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_16_G</CODE></TD>
+      <TD>OBJに16KBytes確保します。VRAM-Gを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_32_FG</CODE></TD>
+      <TD>OBJに32KBytes確保します。VRAM-F,Gを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_64_E</CODE></TD>
+      <TD>OBJに64KBytes確保します。VRAM-Eを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_80_EF</CODE></TD>
+      <TD>OBJに80KBytes確保します。VRAM-E,Fを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_80_EG</CODE></TD>
+      <TD>OBJに80KBytes確保します。VRAM-E,Gを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_96_EFG</CODE></TD>
+      <TD>OBJに96KBytes確保します。VRAM-E,F,Gを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_128_A</CODE></TD>
+      <TD>OBJに128KBytes確保します。VRAM-Aを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_128_B</CODE></TD>
+      <TD>OBJに128KBytes確保します。VRAM-Bを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_OBJ_256_AB</CODE></TD>
+      <TD>OBJに256KBytes確保します。VRAM-A,Bを割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXVRamOBJ</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_VRAM_OBJ_NONE   = 0x0000,
+    GX_VRAM_OBJ_16_F   = GX_VRAM_F,                      // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_F_SIZE
+    GX_VRAM_OBJ_16_G   = GX_VRAM_G,                      // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_G_SIZE
+    GX_VRAM_OBJ_32_FG  = GX_VRAM_F | GX_VRAM_G,          // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_F_SIZE + HW_VRAM_G_SIZE
+    GX_VRAM_OBJ_64_E   = GX_VRAM_E,                      // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_E_SIZE
+    GX_VRAM_OBJ_80_EF  = GX_VRAM_E | GX_VRAM_F,          // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_E_SIZE + HW_VRAM_F_SIZE
+    GX_VRAM_OBJ_80_EG  = GX_VRAM_E | GX_VRAM_G,          // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_E_SIZE + HW_VRAM_G_SIZE
+    GX_VRAM_OBJ_96_EFG = GX_VRAM_E | GX_VRAM_F | GX_VRAM_G, // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_E_SIZE + HW_VRAM_F_SIZE + HW_VRAM_G_SIZE
+    GX_VRAM_OBJ_128_A  = GX_VRAM_A,                      // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_A_SIZE
+    GX_VRAM_OBJ_128_B  = GX_VRAM_B,                      // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_B_SIZE
+    GX_VRAM_OBJ_256_AB = GX_VRAM_A | GX_VRAM_B           // ARM9: HW_OBJ_VRAM  --&gt;   HW_OBJ_VRAM + HW_VRAM_A_SIZE + HW_VRAM_B_SIZE
+}
+GXVRamOBJ;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_GetBankForOBJ.html">GX_GetBankForOBJ</A>, <A href="GX_ResetBankForOBJ.html">GX_ResetBankForOBJ</A>, <A href="GX_DisableBankForOBJ.html">GX_DisableBankForOBJ</A>, <A href="GX_GetSizeOfOBJ.html">GX_GetSizeOfOBJ</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

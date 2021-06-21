@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndGetFillValForHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndGetFillValForHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>u32 NNS_FndGetFillValForHeap(int type);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">type</font></strong></em></td>
+    
+  <td width="87%">値をセットする処理の種類(説明を参照)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>指定した種類のメモリを埋める値を返します。</p>
+<H2>説明</H2>
+<P>ヒープ作成時および、メモリブロック確保時と解放時にメモリを埋める値(32bit)を取得します。ヒープ作成時および、メモリブロック確保時と解放時それぞれにおいて異なる値を設定できるようになっており、取得する種類を引数<code>type</code>に指定します。引数<code>type</code>は次のいずれかの値を指定できます。</P>
+<table border="1" width="100%">
+ <tbody> 
+ <tr> 
+  <td><code>NNS_FND_HEAP_FILL_NOUSE</code></td>
+  <td>ヒープ作成時</td>
+ </tr>
+ <tr> 
+  <td><code>NNS_FND_HEAP_FILL_ALLOC</code></td>
+  <td>メモリブロック確保時</td>
+ </tr>
+ <tr> 
+  <td><code>NNS_FND_HEAP_FILL_FREE</code></td>
+  <td>メモリブロック解放時</td>
+ </tr>
+ </tbody> 
+</table>
+<p>この関数はデバッグ用です。最終ROM版(FINALROM)ライブラリでは何も行いません。</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="NNS_FndSetFillValForHeap.html">NNS_FndSetFillValForHeap</A>, 
+<A href="../expheap/NNS_FndCreateExpHeapEx.html">NNS_FndCreateExpHeapEx</A>, 
+<A href="../frameheap/NNS_FndCreateFrmHeapEx.html">NNS_FndCreateFrmHeapEx</A>, 
+<A href="../unitheap/NNS_FndCreateUnitHeapEx.html">NNS_FndCreateUnitHeapEx</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

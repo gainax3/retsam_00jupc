@@ -1,0 +1,90 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>SSL用の定数</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>SSL用の定数</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/cps.h&gt;
+
+#define CPS_MAX_DN_LEN 255
+#define CPS_MAX_CN_LEN 79
+#define CPS_MAX_RSA_LEN (2048/8)
+#define CPS_MAX_RSA_PUBLICEXPONENT_LEN (64/8)
+
+
+#define SESSION_LIFETIME CPS_MilliSecondsToLTicks(30*1000)	// 30 sec
+
+#define MAX_SESSION 4
+
+#define ssl_blklen (2*1460 - MAX_BLOAT)		// can be as long as 16384
+
+static ushort pairlist[] = {
+	TLS_RSA_WITH_RC4_128_MD5,
+	TLS_RSA_WITH_RC4_128_SHA,
+};
+
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+
+
+		<H2><A name="SSL definitions">説明</A></H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>CPS_MAX_DN_LEN</CODE></STRONG></EM></TD>
+					<TD width="75%">Distinguished Nameの最長値。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>CPS_MAX_CN_LEN</CODE></STRONG></EM></TD>
+					<TD>Common Nameの最長値。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>CPS_MAX_RSA_LEN</CODE></STRONG></EM></TD>
+					<TD>RSA鍵の最長値(バイト単位)。上記の例では2048ビットRSAまでサポートされます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>CPS_MAX_RSA_PUBLICEXPONENT_LEN</CODE></STRONG></EM></TD>
+					<TD>RSA公開鍵の指数部の最長値(バイト単位)。上記の例では64ビットの指数までサポートされます。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>SESSION_LIFETIME</CODE></STRONG></EM></TD>
+					<TD width="75%">SSLセッションキャッシュの寿命。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>MAX_SESSION</CODE></STRONG></EM></TD>
+					<TD>SSLセッションキャッシュのエントリ数。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>ssl_blklen</CODE></STRONG></EM></TD>
+					<TD>送信するplaintextの最大長。最大でもこの単位でciphertextに変換されて送信されます。<BR>
+					    <!--小さくすればメモリ使用量を抑えることができますが、速度が低下します。<BR>
+                                            しかし、余り大きくしてもそれ程は速くなりません。--></TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>ushort pairlist[]</CODE></STRONG></EM></TD>
+					<TD>サポートしている暗号化スイートを、望ましい順番に記述したリストです。<BR>
+                                            クライアントとして動作するときは、この順番でサーバに提示します。<BR>
+					    サーバとして動作するときはクラアントが提示したリストから、このリストの順番に存在を確認し、あったならそれを選択します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>履歴</H2>
+		<P>
+			2005/10/24 初版<BR>
+		</P>
+
+		<TABLE border="0" height="100%"><TR><TD style="background-color : white;"></TD></TR></TABLE>
+	</BODY>
+</HTML>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdInitFrmPlttVramManager</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdInitFrmPlttVramManager</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_GfdInitFrmPlttVramManager(u32 szByte, BOOL useAsDefault);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByte</STRONG></EM></TD>
+      <TD width="87%">フレームパレットVRAMマネージャが管理するパレットRAMのバイト数。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>useAsDefault</STRONG></EM></TD>
+      <TD width="87%">フレームパレットVRAMマネージャをデフォルトとして使用するかどうか。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+フレームパレットVRAMマネージャを初期化します。
+フレームパレットVRAMマネージャは、パレットRAMの先頭から<CODE>szByte</CODE>で指定されたサイズ分の領域を管理するように初期化されます。
+</P>
+<P>
+<CODE>useAsDefault</CODE>は、フレームパレットVRAMマネージャをデフォルトとして使用する場合には、<CODE>TRUE</CODE>を指定します。
+<CODE>useAsDefault</CODE>に<CODE>TRUE</CODE>を設定しますと、グローバルな関数ポインタ変数である
+<CODE>NNS_GfdDefaultFuncAllocPlttVram</CODE>と<CODE>NNS_GfdDefaultFuncFreePlttVram</CODE>に、
+フレームパレットVRAMマネージャのパレットメモリの確保関数<CODE>NNS_GfdAllocFrmPlttVram</CODE>と
+解放関数<CODE>NNS_GfdFreeFrmPlttVram</CODE>がそれぞれ登録されます。
+</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="../PlttVramMan/NNS_GfdAllocPlttVram.html">NNS_GfdAllocPlttVram</A>
+<A href="../PlttVramMan/NNS_GfdFreePlttVram.html">NNS_GfdFreePlttVram</A>
+<BR>
+<A href="NNS_GfdAllocFrmPlttVram.html">NNS_GfdAllocFrmPlttVram</A>
+<A href="NNS_GfdFreeFrmPlttVram.html">NNS_GfdFreeFrmPlttVram</A>
+</CODE></P>
+
+
+<H2>履歴</H2>
+<P>2004/07/16 初版</P>
+</BODY>
+
+</HTML>

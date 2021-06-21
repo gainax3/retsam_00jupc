@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetTotalAllocSize</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetTotalAllocSize</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>u32 OS_GetTotalAllocSize( OSArenaId id, OSHeapHandle heap );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>id</STRONG></EM></TD>
+      <TD width="87%">合計サイズを取得するヒープが含まれるアリーナのアリーナID</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>heap</STRONG></EM></TD>
+      <TD>合計サイズを取得するヒープのヒープハンドル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>ヒープに割り当てられたメモリブロックの合計サイズ(バイト)です。ヘッダは含みません。</P>
+<H2>説明</H2>
+<P>ヒープに割り当てられたメモリブロックの合計サイズを取得します。</P>
+<P><B><I>heap</I></B> に OS_CURRENT_HEAP_HANDLE を指定すると、カレントヒープを指定したことになります。</P>
+<P>メモリブロックのヘッダはサイズに含めません。データ領域のサイズの合計となります。ヘッダを含める場合は、<CODE><A href="OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize()</A></CODE> を使用してください。</P>
+<P>すべての割り当てられたブロックを辿って計算を行なうので、所要時間はメモリブロックの量に比例します。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitAlloc.html">OS_InitAlloc</A>, <A href="OS_GetTotalFreeSize.html">OS_GetTotalFreeSize</A>, <A href="OS_GetMaxFreeSize.html">OS_GetMaxFreeSize</A><BR>
+<A href="OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/10/07 <CODE>OS_GetTotalAllocSize</CODE> と <CODE><A href="OS_GetTotalOccupiedSize.html">OS_GetTotalOccupiedSize</A></CODE> に分割<BR>
+2004/11/05 初版</P>
+</BODY>
+</HTML>

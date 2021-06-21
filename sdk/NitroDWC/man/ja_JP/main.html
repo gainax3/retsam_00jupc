@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--==========================================================================
+  Project:  NitroDWC - man
+  File:     main.html
+
+  Copyright 2005-2008 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+ ==========================================================================-->
+
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>NITRO-DWC 関数リファレンスマニュアル</title>
+<link href="css/titles.css" rel="stylesheet">
+</head>
+
+<body>
+<h1 class="title">NITRO-DWC 関数リファレンスマニュアル<br>(日本語版)</h1>
+<p align="right">
+<span class="version">NITRO-DWC[-DL] 2.2 plus8 対応</span>
+</p>
+<p class="caution">[注意]　このドキュメントの内容は、秘密情報であるため、厳重な取扱い、管理を行なってください。</p>
+<p class="copyright">&copy;2005-2008 Nintendo Co.,Ltd. All rights reserved.</p>
+<p class="recommend">Microsoft Internet Explorer 5.0/Netscape 6.0以降推奨</p>
+<h3>変更履歴</h3>
+<p>
+<a href="changelog.html">NITRO-DWC[-DL] 2.2 plus8 までの変更履歴</A>
+</p>
+
+<h3>目次</h3>
+<p>
+<a href="main.html#hajimeni">はじめに</a><br/>
+<a href="main.html#kousei">NITRO-DWCの構成</a><br/>
+<a href="main.html#houhou">使用方法</a><br/>
+<a href="main.html#tyuui">注意事項</a><br/>
+<a href="main.html#document">ドキュメントについて</a><br/>
+<a href="main.html#icon">アイコンの画像データについて</a><br/>
+<a href="main.html#sample">サンプルデモについて</a><br/>
+</p>
+
+<a name="hajimeni"><h3>はじめに</h3></a>
+<p>
+NITRO-DWCを使うことで、ニンテンドーDSのワイヤレス通信（インフラストラクチャーモード）を利用してインターネットに接続し、友達を登録したり、友達の状態を参照したり、条件にあった他のニンテンドーDSと接続することができます。
+</p>
+<p>
+※ NITRO-DWC-DLはNITRO-DWCからダウンロード機能のみを抜き出したものです。NITRO-DWC-DLでは、本マニュアルの機能一覧に<font color="#ff6600">●</font>が付いている項目が使用できません。
+</p>
+<p>
+NITRO-DWC[-DL]の動作確認が取れている環境は以下の通りです。
+</p>
+<ul>
+<li>NITRO-SDK 4.2 (plus パッチ適用)</li>
+<li>NITRO-System 2007/11/26版 (patch1 適用)</li>
+<li>NITRO-WiFi 2.1 (plus3 パッチ適用)</li>
+<li>NITRO-SDK Crypto ライブラリ 1.0</li>
+<li>CodeWarrior for NINTENDO DS 2.0 SP2 Patch2</li>
+</ul>
+
+<p><h4>注意事項</h4></p>
+<font color="red">
+<ul>
+<li>このパッケージには、本関数リファレンスマニュアルにない関数等が含まれていますが、これらは使用しないでください。</li>
+<li>このパッケージには、ソースの含まれないバイナリが含まれています。</li>
+</ul>
+</font>
+
+<h3><a name="kousei">NITRO-DWC/NITRO-DWC-DLの構成</a></h3>
+<p>
+NITRO-DWCは、下記の機能を定型的に処理するためにまとめたものです。
+</p>
+<ul>
+<li>無線アクセスポイントへの接続のための設定機能</li>
+<li>無線アクセスポイントからのIPアドレス取得</li>
+<li>任天堂認証サーバを使用した認証</li>
+<li>ユーザ名・パスワードをゲームユーザが意識する必要のない、ユーザ管理システム</li>
+<li>インターネットに接続したことがあるかどうかをゲームユーザが意識する必要のない、友達登録システム</li>
+<li>不特定多数を相手とした接続順を意識しない自動的なメッシュ接続作成</li>
+<li>友達に限定した接続順を意識しない自動的なメッシュ接続作成</li>
+<li>友達に限定したサーバクライアント方式での半自動的なメッシュ接続作成</li>
+<li>HTTP通信機能</li>
+<li>汎用ランキング機能</li>
+<li>ダウンロード機能(Wi-Fiダウンロードサービス)</li>
+<li>不正文字列チェック機能</li>
+</ul>
+<p>
+NITRO-DWC-DLでは、このうちの下記の機能のみ使用できます。
+</p>
+<ul>
+<li>無線アクセスポイントへの接続のための設定機能</li>
+<li>無線アクセスポイントからのIPアドレス取得</li>
+<li>任天堂認証サーバを使用した認証</li>
+<li>ダウンロード機能(Wi-Fiダウンロードサービス)</li>
+<li>不正文字列チェック機能</li>
+</ul>
+
+<h3><a name="houhou">使用方法</a></h3>
+<ul>
+<li><code>NITRODWC_ROOT</code> 環境変数に、<code>NitroDWC</code> へのパスを設定してください。</li>
+<li>NITRO-DWC[-DL]を使用する場合は、任天堂認証サーバやGameSpyサーバなどのインターネット上のサーバに接続する必要がありますので、アクセスポイントを使ってインターネットに接続できる環境が必須となります。</li>
+<li>インターネットに接続する設定は、<a href="dwc/list_dwc.html#h3_util">Wi-Fiコネクション設定</a>を使用してください。</li>
+</ul>
+
+<h3><a name="tyuui">注意事項</a></h3>
+<h4>サーバ情報</h4>
+<h5>● 任天堂接続テスト用サーバ</h5>
+<p>
+ニンテンドーDSが、現在インターネットに接続可能な環境にあるかどうかを確認する為のサーバです。無停止で運用しております。
+</p>
+<p>
+稼働状況の確認は、下記のリンクを参照し、「This is test.html page」という文字列が表示されれば稼動中と判断出来ます。
+</p>
+<table width="80%" border="1" cellspacing="2" cellpadding="0" align="center">
+<tr>
+<td align="center" width="50%"><a href="http://conntest.nintendowifi.net/" target="_blank">接続テスト用サーバ</a></td>
+<td align="center" width="50%">　</td>
+</tr>
+</table>
+
+<h5>● 任天堂認証サーバ</h5>
+<p>
+ニンテンドーDSに設定されたユーザID（Wi-Fi Connection ID）を認証し、GameSpyサーバに接続する為の情報を発行するサーバです。<br/>
+不正文字列チェックもこのサーバを使用します。
+</p>
+<p>
+認証サーバは、以下の２種類のものを提供しています。開発・デバッグ時には開発向け認証サーバを使用し、最終ROM作成時に製品向け認証サーバに切り替えてご利用下さい。 開発向け認証サーバ、製品向け認証サーバともに無停止で運用しておりますが、開発向け認証サーバは冗長構成をとっていないため、停止する恐れがあります。万一開発向け認証サーバが停止している場合は、製品向け認証サーバをご利用いただいても問題ありません。
+</p>
+<p>
+稼働状況の確認は、下記のリンクを参照し、「AuthServer is up」という文字列が表示されれば稼動中と判断出来ます。
+</p>
+<table width="80%" border="1" cellspacing="2" cellpadding="0" align="center">
+<tr>
+<td align="center" width="50%"><a href="https://nas.nintendowifi.net/nastest.jsp" target="_blank">製品向け認証サーバ</a></td>
+<td align="center"><a href="https://nas.test.nintendowifi.net/nastest.jsp" target="_blank">開発向け認証サーバ</a></td>
+</tr>
+</table>
+<p>
+<strong>
+【重要】<br/>
+デフォルトでは開発向け認証サーバが使用されます。認証サーバを切り替える方法として、<a href="dwc/base/DWC_SetAuthServer.html"> DWC_SetAuthServer</a>関数を用意しています。詳しくは関数リファレンスを参照してください。
+</strong>
+</p>
+
+<h5>● GameSpyサーバ</h5>
+<p>
+友達管理やマッチメイク処理、データストレージサーバ、汎用ランキングで使用するサーバです。<br/>
+日本時間で毎週火曜日の１６時から１８時まで停止いたします。時によっては１８時でメンテナンスが完了せず、少々長引く場合もあります。
+</p>
+<p>
+<font color="red">友達管理やマッチメイク処理、データストレージサーバは開発向けと製品向けサーバの区別がないことに注意してください。</font>開発向けと製品向けサーバの区別がないため、リマスター版やローカライズ版の開発でマッチメイクのテストを行なう際に、<a href="dwc/base/DWC_SetAuthServer.html">DWC_SetAuthServer</a>関数で製品向け認証サーバに設定していても、既に一般市場で発売しているタイトルとマッチメイクしてしまう可能性があります。
+</p>
+<p>
+これを避けるには、<a href="dwc/base/DWC_ConnectToAnybodyAsync.html">友達無指定ピアマッチメイク</a>で指定できるマッチメイクの候補として検索するプレイヤーの条件によって「製品版」と「デバッグ・開発版」をマッチメイクしないように区別する必要があります。
+</p>
+<p>
+汎用ランキングについては、認証サーバ同様、開発向けと製品向けの２種類が提供され、認証サーバの切り替えにあわせて切り替えられます。
+</p>
+
+<p>
+※ 現在、GameSpyサーバの稼働状況を確認する方法はありません。
+</p>
+
+<h5>● 任天堂ダウンロードサーバ</h5>
+<p>
+Wi-Fiダウンロードサービスで使用するサーバです。詳しくは、<A href="main.html#document">「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル - ダウンロード編 -」</a>をご確認ください。
+</p>
+<p>
+認証サーバ同様、開発向けと製品向けの２種類が提供され、認証サーバの切り替えにあわせて切り替えられます。
+</p>
+<p>
+※ 現在、ダウンロードサーバの稼働状況を確認する方法はありません。
+</p>
+
+<h5>● 備考</h5>
+<ul>
+<li>認証サーバに一度作成したユーザIDを変更・削除することはできません。</li>
+<li>デバッグ用にローカルで使用できるサーバは提供しておりません。</li>
+</ul>
+
+<h4>ライセンスについて</h4>
+<ul>
+<li>自動接続処理の一部において、VeriSign社等のルート証明書が組み込まれています。ライセンスの関係上、これを他の目的で利用したり、加工したりはしないで下さい。</li>
+<li>サンプルデモに動作確認用のフォントが含まれています。ライセンスの関係上、これを他の目的で利用したり、加工して利用しないでください。</li>
+</ul>
+
+<a name="tyuui_wep"><h4>WEPキーについて</h4></a>
+<ul>
+<li>ニンテンドーDSが対応している暗号化方式はWEPキーを使うものだけです。アクセスポイントが使用する暗号化方式がそれ以外の場合は、アクセスポイント側の暗号化方式を変更する必要があります。
+<li>通常、アクセスポイントには、WEPキーを４つまで登録できます。ニンテンドーDSの接続先設定には、４つのうち一番目に登録されたWEPキーを入力し、アクセスポイント側も、そのWEPキーを使うように設定します。</li>
+<li>WEPキーの入力は、ASCII文字と呼ばれる英数字を入力する方法と、16進数と呼ばれる0～9とa～fを入力する方法があります。</li>
+<li>入力できるWEPキーの文字数は次の通りです。<br/>
+ASCII文字の場合…5、13、16文字のいずれか／16進数の場合…10、26、32文字のいずれか</li>
+</ul>
+
+<h3><a name="document">ドキュメントについて</a></h3>
+<p>
+<code>$NITRODWC_ROOT/docs/</code> に次のプログラミングに関するドキュメントが含まれます。
+<ul>
+<li>Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル</li>
+<li>Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル - 汎用ランキング編 -<br/>
+※ NITRO-DWC-DL には含まれません。</li>
+<li>Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル - ダウンロード編 -</li>
+</ul>
+</p>
+<p>
+その他、制作する際の注意事項を記載した「Nitendo Wi-Fi Connection プログラミングガイドライン for DS」等のドキュメントや、パッケージに含まれるドキュメントの最新版は弊社サポートページより入手してください。
+</p>
+<p>
+※ NITRO-DWC-DLを使用する場合は、「Nintendo Wi-Fi Connection NITRO-DWC プログラミングマニュアル - ダウンロード編 -」をご一読ください。
+</p>
+
+<h3><a name="icon">アイコンの画像データについて</a></h3>
+<p>
+<code>$NITRODWC_ROOT/data/Wi-Fi_icons/</code> にニンテンドーWi-Fiコネクション対応タイトルで使用する「Wi-Fiコネクション対応アイコン」と「Wi-Fi受信強度アイコン」のビットマップデータとNITRO-CHARACTERデータが含まれます。<br/>
+各アイコンの適用方法については、「Nitendo Wi-Fi Connection プログラミングガイドライン」をご確認ください。
+</p>
+
+<h3><a name="sample">サンプルデモについて</a></h3>
+<p>
+<code>$NITRODWC_ROOT/build/demos/</code> に実装の参考としてサンプルデモが含まれます。<br/>
+次の点を留意してください。
+</p>
+<ul>
+<li>機能のサンプルを目的としているため、各ガイドラインに則した実装になっていません。</li>
+<li>パッケージの種類によって含まれないものがあります。</li>
+<li><code>$NITRODWC_ROOT/build/demos/dbs/</code> はサンプルデモ共通で使用するライブラリですので、各サンプルデモをビルドする前にビルドしておく必要があります。</li>
+</ul>
+<p>
+各サンプルデモは、以下の目的で作成されています。
+</p>
+<table border="1" align="center" class="hoge">
+<tr>
+<td width="25%" class="hoge">サンプル名</td>
+<td widht="55%" class="hoge">概要</td>
+<td widht="10%" class="hoge">NITRO-DWC</td>
+<td widht="10%" class="hoge">NITRO-DWC-DL</td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_sample</td>
+<td widht="55%" class="hoge">NITRO-DWCの機能を網羅的に使用したサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_connect_inet_sample</td>
+<td widht="55%" class="hoge">インターネット接続や接続確認についての単純なサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge">○</td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_userdata_sample</td>
+<td widht="55%" class="hoge">ユーザデータの扱いについてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_frienddata_sample</td>
+<td widht="55%" class="hoge">友達情報の扱いについてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_anybody_match_sample</td>
+<td widht="55%" class="hoge">不特定多数を相手とした接続順を意識しない自動的なメッシュ接続作成についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_friend_match_sample</td>
+<td widht="55%" class="hoge">友達に限定した接続順を意識しない自動的なメッシュ接続作成についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_sc_match_sample</td>
+<td widht="55%" class="hoge">友達に限定したサーバクライアント方式での半自動的なメッシュ接続作成についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_eval_callback_sample</td>
+<td widht="55%" class="hoge">ピア型マッチメイクにおけるマッチメイク候補プレイヤーの評価についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">friend_match</td>
+<td widht="55%" class="hoge">マッチメイクについてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">rank_sample</td>
+<td widht="55%" class="hoge">汎用ランキング機能についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">ghttp_sample</td>
+<td widht="55%" class="hoge">HTTP通信機能についてのサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge"></td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_naslogin_sample</td>
+<td widht="55%" class="hoge">任天堂認証サーバへログインするサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge">○</td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_nd_sample</td>
+<td widht="55%" class="hoge">ダウンロード機能(Wi-Fiダウンロードサービス)のサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge">○</td>
+</tr>
+<tr>
+<td width="25%" class="hoge">dwc_prof_sample</td>
+<td widht="55%" class="hoge">不正文字列チェック機能のサンプルです</td>
+<td width="10%" class="hoge">○</td>
+<td width="10%" class="hoge">○</td>
+</tr>
+</table>
+</body>
+</html>

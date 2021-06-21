@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WVR_TerminateAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WVR_TerminateAsync</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wvr.h&gt;
+
+<A href="WVRResult.html">WVRResult</A> WVR_TerminateAsync(
+    <A href="WVRCallbackFunc.html">WVRCallbackFunc</A> callback ,
+    void*           arg
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">arg</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数に渡される任意の引数を指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WVRResult.html">WVRResult列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+ARM7側で動作している無線ドライバを強制停止し、使用していたVRAMバンクを解放します。
+返り値がWVR_RESULT_OPERATINGであった場合、非同期処理完了時にPXI受信割り込みハンドラ内からコールバック関数が呼び出されます。<BR>
+VRAM上で無線ドライバを動作させる機能を持つichneumonコンポーネントを使用している場合にのみ意味を持ち、
+その他のコンポーネントの場合はWVR_RESULT_DISABLEを返してこの関数は失敗します。
+ichneumonコンポーネントを使用している場合は、<A href="WVR_StartUpAsync.html">WVR_StartUpAsync関数</A>によって
+無線ドライバを起動している場合にのみドライバの停止処理を行います。<BR>
+<BR>
+この関数の非同期処理が正常に完了すると、無線通信機能が使用できなくなります。
+<A href="WVR_StartUpAsync.html">WVR_StartUpAsync関数</A>によってドライバを起動後にWMライブラリを用いて通信処理を行っていた場合は、
+WMライブラリの内部状態が強制的に<A href="../../wm/wm/wm_state_diagram.html">READYステート</A>になり、
+再度<A href="WVR_StartUpAsync.html">WVR_StartUpAsync関数</A>により無線ドライバが再起動されない限りは、
+以後のWM非同期操作関数にはコールバックにWM_ERRCODE_DISABLEが返されるようになります。
+<font color="red">WMライブラリが"初期化前の状態"にリセットされる訳ではない</font>点に注意して下さい。
+WMライブラリを完全に終了させる必要がある場合は、この関数のコールバック内でWM_Finish関数を呼び出して下さい。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WVR_StartUpAsync.html">WVR_StartUpAsync</A>, <A href="../../wm/wm/WM_Finish.html">WM_Finish</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2005/02/16 初版<BR>
+</P>
+</body>
+</html>

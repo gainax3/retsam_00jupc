@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ENV_GetSize</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">ENV_GetSize</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/env.h&gt;</CODE></PRE>
+  <PRE><CODE>int ENV_GetSize( const char* name );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width=20%><EM><STRONG>name</STRONG></EM></TD>
+      <TD>リソース名へのポインタ。ただし、この文字列が &quot;<CODE>.</CODE>&quot;(ピリオド) から始まる場合はクラス名を省略したものとしてカレントクラスを前に補完してリソース名とします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>リソースのサイズを取得します。</P>
+<H2>説明</H2>
+<P>指定のリソースのサイズを取得します。</P>
+<P><CODE>ENV_STRING()</CODE> で定義した文字列のリソースサイズは文字列のエンドマークもカウントされることに注意して下さい。<CODE>ENV_BINARY()</CODE> で定義した文字列のリソースサイズは文字列のエンドマークはカウントされません。例えば、</P>
+<BLOCKQUOTE><CODE>ENVResource myResource[] = {<BR>
+　　　&quot;class.s1&quot;,　　ENV_STRING( &quot;abcdef&quot; ),<BR>
+　　　&quot;class.b1&quot;,　　ENV_BINARY( &quot;abcdef&quot; ),<BR>
+<BR>
+　　　&quot;class.s2&quot;,　　ENV_STRING( &quot;\0\0\0&quot; ),<BR>
+　　　&quot;class.b2&quot;,　　ENV_BINARY( &quot;\0\0\0&quot; ),<BR>
+<BR>
+　　　&quot;class,val1&quot;,　ENV_U32( 10000 ),<BR>
+<BR>
+　　　ENV_RESOURCE_END<BR>
+};<BR>
+</CODE></BLOCKQUOTE>
+<P>というリソース群に対し、</P>
+<P><CODE>ENV_GetSize( &quot;class.s1&quot; )</CODE> は 7 となります。<BR>
+<CODE>ENV_GetSize( &quot;class.b1&quot; )</CODE> は 6 となります。<BR>
+参考までに、<CODE>sizeof( &quot;abcdef&quot; )</CODE> は 7 となります。<CODE>strlen( &quot;abcdef&quot; )</CODE> は 6 となります。</P>
+<P><CODE>ENV_GetSize( &quot;class.s2&quot; )</CODE> は 4 となります。<BR>
+<CODE>ENV_GetSize( &quot;class.b2&quot; )</CODE> は 3 となります。<BR>
+参考までに、<CODE>sizeof( &quot;\0\0\0&quot; )</CODE> は 4 となります。<CODE>strlen( &quot;\0\0\0&quot; )</CODE> は 0 となります。</P>
+<P><CODE>ENV_GetSize( &quot;class.val1&quot; )</CODE> は 4 となります。</P>
+<H2>参照</H2>
+<P><CODE><A href="ENV_Init.html">ENV_Init</A>, <A href="ENV_GetXXX.html">ENV_Get*</A>, <A href="ENV_GetType.html">ENV_GetType</A>, <A href="ENV_SetClass.html">ENV_SetClass</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/16 初版</P>
+</BODY>
+</HTML>

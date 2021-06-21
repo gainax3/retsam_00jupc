@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>buryarg</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">buryarg</H1>
+<H2>説明</H2>
+<P>　NITRO-SDK では、ROMイメージに引数データ領域を設け、その部分を起動時に書き換えることで、プログラムに
+C言語 の argc, argv 形式の引数として利用できるパラメータを与える仕組みを提供します。起動時に
+ROM イメージファイルを書き換えるので、プログラムを再コンパイルしなくても複数の条件下でプログラムを試すことが出来ます。</P>
+<P>　<CODE>buryarg</CODE> は、指定のバイナリデータに対して、引数データ領域に引数データを書き込むためのツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% buryarg [OPTION]... NITROBINFILE [argument]...</CODE></P>
+<P><CODE>NITROBINFILE</CODE> は、書き換えの元となる ROM ファイルです。srl ファイルや、sbin ファイルが指定できます。また、nlf
+ファイルを指定すると、nlf ファイルを解析して ARM9 の常駐モジュールファイル
+を入力ファイルとします。</P>
+<P><CODE><B>-r</B> または <B>--remain</B></CODE> オプションを指定すると元のファイルを残します。デフォルトでは元ファイルを変更しますので、元のファイルを変更したくない場合はこのオプションを指定します。なお別名のファイルは、元ファイルに &quot;<CODE>.argAdded</CODE> &quot; のついたファイル名となります。 <CODE>-o</CODE> オプションで出力ファイルを選択した場合はこのオプションを指定しなくても元ファイルは変更されません。</P>
+<P><CODE><B>-o</B> または <B>--output</B> オプションは引数をとります。このオプションは、出力ファイルを、-o=dest.srl</CODE> または <CODE>-o dest.srl </CODE>のように指定します。<FONT color="#ff0000">出力ファイルとして元ファイルと同じファイルを指定しないようにしてください。</FONT>また、出力ファイルとして &quot;<CODE>-</CODE>&quot; (マイナス) を指定すると、標準出力に対し出力します。( <CODE>-o-</CODE> のように指定します。)　後述の <CODE>--stdout</CODE> も参照してください。</P>
+<P><CODE><B>--stdout</B></CODE> は、<CODE>-o-</CODE> の指定と同じです。標準出力に対し出力します。</P>
+<P><CODE><B>-f</B></CODE> または <CODE><B>--file</B></CODE> オプションは引数をとります。このオプションは、置き換えるデータをファイルで指定するためのものです。<CODE>-f=rep.dat</CODE> または<CODE> -f rep.dat</CODE> のように指定します。</P>
+
+<P><CODE><B>-q</B></CODE> または <CODE><B>--quiet</B></CODE> オプション を指定すると quiet モードとなり、エラー以外のメッセージを出しません。</P>
+<P><B><CODE>-v</CODE></B> または <B><CODE>--verbose</CODE></B> オプションを指定すると、詳細な動作の説明を表示します。</P>
+<P><CODE><B>-h</B></CODE> または <CODE><B>--help</B></CODE> オプションは、簡単な使い方を表示します。</P>
+<P><CODE><B>-d</B></CODE> または <CODE><B>--debug</B></CODE> オプションは、デバッグのためのオプションです。置き換えるデータをダンプします。</P>
+<P><CODE><B>--version</B></CODE> オプションは、コマンドのバージョンを表示します。</P>
+<H3>引数データ領域</H3>
+<P>コンパイルした直後の ROM データの中では、引数データ領域には、引数データの位置を示すための文字列が書き込まれています。<CODE>buryarg</CODE> では、この文字列を ROM から探し出して、その直後に引数データを書き込みます。位置を示すための文字列は書き換わりませんので、同じ
+ROM データに対して何度でも引数データを書き込むことが出来ます。</P>
+<BLOCKQUOTE><IMG src="buryarg_image1.gif" border="0"></BLOCKQUOTE>
+<P>プログラム中からは、引数領域のデータに <A href="../os/argument/OS_GetArgc.html"><CODE>OS_GetArgc()</CODE></A> 、 <CODE><A href="../os/argument/OS_GetArgv.html">OS_GetArgv()</A></CODE> でアクセスすることが出来ます。<BR>
+</P>
+<BLOCKQUOTE><IMG src="buryarg_image2.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+<BR>
+<B>(注意)</B> 以下のようなミスにご注意ください。</P>
+<BLOCKQUOTE>・<CODE>-o</CODE> オプションで、入力ファイルと同じファイルを指定した。<BR>
+　→ 上書きしたい場合、デフォルトでその動作を行ないます。</BLOCKQUOTE>
+<BLOCKQUOTE>・ srl ファイルに対して引数データの書き換えを行なった。そして nlf ファイルから起動した。<BR>
+　→ nlf から起動した場合、そこにかかれているモジュールが読み込まれます。本コマンドで
+nlf ファイルを指定してください。</BLOCKQUOTE>
+<BLOCKQUOTE>・nlf ファイルに対してデータの書き換えを行なった。そして srl ファイルを起動した。<BR>
+　→ srl ファイルに対して引数データの書き換えを行なってください。</BLOCKQUOTE>
+<BLOCKQUOTE>・引数データ領域のないイメージに対して引数データ書き換えを行なおうとした。<BR>
+　→ 古いSDK で作成された ROM イメージやモジュールには引数データを書き込む領域が用意されていません。そのイメージに対して本コマンドを実行すると、引数データ領域を表す文字列が見つからないというエラーを表示して終了します。</BLOCKQUOTE>
+<BLOCKQUOTE>・FINALROM ビルドのイメージに対して引数データ書き換えを行なおうとした。<BR>
+　→ FINALROM ビルドのイメージには引数データを格納する領域がありません。</BLOCKQUOTE>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/buryarg.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="../os/argument/OS_GetArgc.html">OS_GetArgc</A>, <A href="../os/argument/OS_GetArgv.html">OS_GetArgv</A>, <A href="../os/argument/OS_GetOpt.html">OS_GetOpt*</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/30 参照に <CODE>OS_GetOpt*</CODE> を追加。<CODE>--stdout</CODE> を追加<BR>
+2005/07/22 nlf ファイルへの対応<BR>
+2005/07/21 初版作成</P>
+</BODY>
+</HTML>

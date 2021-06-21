@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_SetSqrt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_SetSqrt*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void CP_SetSqrt64( u64 param );</CODE><br>
+  <CODE>void CP_SetSqrt32( u32 param );</CODE></dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>param</STRONG></EM></TD>
+      <TD width="87%">平方根演算を行う値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>平方根演算のパラメータを設定します。<BR>
+平方根演算モードの設定をまず行い、それからパラメータを格納します。<BR>
+<BR>
+演算モードは以下の2つがあります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>平方根演算モード</TH>
+      <TH>計算</TH>
+      <TH>計算サイクル</TH>
+      <TH>CPUサイクル換算</TH>
+    </TR>
+    <TR>
+      <TD>CP_SQRT_32BIT_MODE</TD>
+      <TD>32ビット値の平方根演算</TD>
+      <TD>13サイクル</TD>
+      <TD>26サイクル</TD>
+    </TR>
+    <TR>
+      <TD>CP_SQRT_64BIT_MODE</TD>
+      <TD>64ビット値の平方根演算</TD>
+      <TD>13サイクル</TD>
+      <TD>26サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B><BR>
+(注意)</B><BR>
+<B><FONT color="#ff3300">平方根演算器は割り込み内で値が上書きされることがあります</FONT></B>。パラメータを設定して平方根演算を行っている最中に割り込みが発生し平方根演算器が使用された場合に、元の演算結果が破壊されてしまいます。従って割り込み内で平方根演算器を使用する場合には<A href="../CP_SaveContext.html">CP_SaveContext</A>, <A href="../CP_RestoreContext.html">CP_RestoreContext</A>を用いて平方根演算器の状態を退避・復元する必要があります。<BR>
+<B><FONT color="#ff3300">スレッド切り替え時には、平方根演算器の状態も自動的に保存・復元されます。</FONT></B></P>
+<BLOCKQUOTE><BR>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD style="background-color : #eeeeee;"><B>例</B>　平方根演算器の状態を復元する<BR>
+      <BR>
+      <CODE>intr_func( void ) <BR>
+      {<BR>
+      　CPContext context;<BR>
+      　<BR>
+      　CP_SaveContext( &amp;context );<BR>
+      　CP_SetSqrt32( 1000 );<BR>
+      　CP_WaitSqrt();<BR>
+      　result = CP_GetSqrtResult32();<BR>
+      　CP_RestoreContext( &amp;context );<BR>
+      }</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BLOCKQUOTE>
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、SQRTCNT(0x40002B0)、SQRT_PARAM(0x40002B8)に値を格納します。<br>
+</CODE></p>
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*</A>, <A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy</A>, <A href="CP_WaitSqrt.html">CP_WaitSqrt</A>, <A href="CP_GetSqrtResult.html">CP_GetSqrtResult*</A>,<A href="../CP_SaveContext.html">CP_SaveContext</A>, <A href="../CP_RestoreContext.html">CP_RestoreContext</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/05/06 状態復元についての説明を追加<BR>
+2004/01/09 内容を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

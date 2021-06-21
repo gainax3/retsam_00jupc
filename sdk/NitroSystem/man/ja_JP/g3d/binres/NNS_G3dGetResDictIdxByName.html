@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGetResDictIdxByName</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGetResDictIdxByName</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/binres/res_struct_accessor.h&gt;</CODE></PRE>
+  <PRE><CODE>int
+NNS_G3dGetResDictIdxByName(
+    const NNSG3dResDict* dict,
+    const NNSG3dResName* name
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dict</STRONG></EM></TD>
+      <TD width="87%">ディクショナリへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>name</STRONG></EM></TD>
+      <TD width="87%">リソース名</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+リソース名に対応するインデックスを返します。
+リソース名に対応するインデックスが見つからなかった場合は負の値を返します。
+</P>
+
+<H2>説明</H2>
+<P>ディクショナリ<STRONG><EM>dict</EM></STRONG>からリソース名<STRONG><EM>name</EM></STRONG>に対応するインデックスを探します。</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dGetResDataByName.html">NNS_G3dGetResDataByName</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

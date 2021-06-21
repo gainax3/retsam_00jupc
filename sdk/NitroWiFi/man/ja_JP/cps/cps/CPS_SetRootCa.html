@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SetRootCa</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SetRootCa</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_SetRootCa(CPSCaInfo *ca[], int ca_num);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>*ca[]</strong></em></code></td>
+    <td>証明書のポインタ。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>ca_num</strong></em></code></td>
+    <td>証明書の数。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>ルート証明を設定します。渡された証明書はポインタだけが保存されるので、ずっとメモリ中に存在する必要があります。<BR>
+	ブロックしません。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPSCaInfo.html">CPSCaInfo</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

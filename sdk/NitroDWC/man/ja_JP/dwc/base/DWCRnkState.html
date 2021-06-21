@@ -1,0 +1,79 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnkState</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkState</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef enum{
+
+    DWC_RNK_STATE_NOTREADY  = 0,
+
+    DWC_RNK_STATE_INITIALIZED,
+    DWC_RNK_STATE_PUT_ASYNC,
+    DWC_RNK_STATE_GET_ASYNC,
+    DWC_RNK_STATE_COMPLETED,
+
+    DWC_RNK_STATE_ERROR
+
+} DWCRnkState;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  汎用ランキングのエラーコードを示す列挙型です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_NOTREADY</CODE></STRONG></EM></TD>
+			<TD>未初期化状態<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_INITIALIZED</CODE></STRONG></EM></TD>
+			<TD>初期化完了<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_PUT_ASYNC</CODE></STRONG></EM></TD>
+			<TD>PUT非同期処理中<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_GET_ASYNC</CODE></STRONG></EM></TD>
+			<TD>GET非同期処理中<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_COMPLETED</CODE></STRONG></EM></TD>
+			<TD>完了<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_STATE_ERROR</CODE></STRONG></EM></TD>
+			<TD>エラー発生<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		    <a href="DWC_RnkGetState.html">DWC_RnkGetState</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

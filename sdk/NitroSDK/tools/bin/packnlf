@@ -1,0 +1,101 @@
+#! gawk -f
+
+BEGIN {
+	isError = 0;
+	
+	if (ARGC != 2){
+		print "packnlf [sample.nlf]" > "/dev/stderr";
+		isError = 1;
+		exit isError;
+	}
+	
+	arcdir = "./package";
+	FS  = ",";
+	OFS = ",";
+	fcount = 0;
+
+	system("rm -rf "arcdir);
+	system("mkdir -p "arcdir);
+
+	oldnlf = ARGV[1];
+	gsub(/^.*\//,"",oldnlf);
+	newnlf = arcdir"/"oldnlf;
+}
+
+/^T,/{
+	root = dequote($2);
+	$2 = enquote(".");
+}
+
+/^H,/{
+	$2 = enquote(get_new_entry(dequote($2)));
+	$3 = enquote(get_new_entry(dequote($3)));
+}
+
+/^[97],/{
+	$2 = enquote(get_new_entry(dequote($2)));
+	$3 = enquote(get_new_entry(dequote($3)));
+	$4 = enquote(get_new_entry(dequote($4)));
+	$5 = enquote(get_new_entry(dequote($5)));
+	$6 = enquote(get_new_entry(dequote($6)));
+}
+
+/^F,/{
+	$7 = enquote(get_new_entry(dequote($7)));
+}
+
+{
+	print $0 >> newnlf;
+}
+
+
+END {
+	if (!isError){
+		arcname = arcdir strftime("-%y%m%d-%H%M.zip");
+		system("zip -r "arcname" "arcdir);
+	}
+	exit isError;
+}
+
+function get_new_entry(t)
+{
+	entry = t;
+	
+	# * で始まるエントリは擬似ファイルなので変換しない
+	if (entry ~/^[*]/){
+		return entry;
+	}
+	
+	new_entry = "./"entry;
+	gsub(/:/,"_",   new_entry);
+	gsub(/\/\//,"/",new_entry);
+	
+	# : がパスに含まれている場合は絶対パスである．
+	# これは ":" → "_" として相対パス化する
+	if (entry !~/:/){
+		entry = root"/"entry;
+		gsub(/\/\//,"/",entry);
+	}
+	
+	# ファイルをコピーする
+	cmd = "install -D "enquote(entry)" "enquote(arcdir"/"new_entry);
+	system(cmd);
+	
+	return new_entry;
+}
+
+function dequote(t)
+{
+	# "" を外す
+	entry = t;
+	sub(/^\"/, "", entry);
+	sub(/\"$/, "", entry);
+	return entry;
+}
+
+function enquote(t)
+{
+	# "" で囲む
+	entry = "\""t"\"";
+	return entry;
+}

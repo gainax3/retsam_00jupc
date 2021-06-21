@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>STDConvertSjisCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">STDConvertSjisCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/std.h&gt;</CODE><BR>
+  <PRE><CODE>typedef <a href="STDResult.html">STDResult</a> (*STDConvertSjisCallback) (char *dst, int *dst_len, const u16 *src, int *src_len);</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="30%"><em><strong>dst</strong></em></TD>
+      <TD width="70%">変換したShiftJIS形式の文字を格納するポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><em><strong>dst_len</strong></em></TD>
+      <TD width="70%">変換先バッファに格納できる最大バイトサイズを受け、実際に格納されたバイトサイズを返すためのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><em><strong>src</strong></em></TD>
+      <TD width="70%">Unicode形式の文字列で変換に失敗した位置を指すポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><em><strong>srclen</strong></em></TD>
+      <TD width="70%">srcが指す未変換の残りの文字数を受け、実際に変換に要した文字数を返すためのポインタ<br>
+      バイトサイズでない点に注意してください。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>変換が成功したら<a href="STDResult.html">STD_RESULT_SUCCESS</a>を、変換に失敗したら<a href="STDResult.html">STD_RESULT_CONVERSION_FAILED</a>を返してください。<br>
+引数dst_lenとsrc_lenにはそれぞれ、実際に変換で使用した文字数を格納して返してください。</p>
+
+<H2>説明</H2>
+<P>
+<A href="STD_ConvertStringUnicodeToSjis.html"><CODE>STD_ConvertStringUnicodeToSjis</CODE></A>で設定するコールバック関数の型です。<BR>
+<A href="STD_ConvertStringUnicodeToSjis.html"><CODE>STD_ConvertStringUnicodeToSjis</CODE></A>関数内で変換できない文字を検出するたびに呼び出され、
+ここで変換処理を自由に規定することができます。<BR>
+<br>
+dstには常に4文字分の配列が保証されており、ここへ変換結果の文字を格納してください。終端を付加する必要はありません。<br>
+srclenには今回の変換によって読み進めるべきsrcの1文字分の文字数を格納してください。(バイトサイズでない点に注意してください)<br>
+<br>
+srcおよびdstいずれも、変換結果が2文字以上となりつつバッファ終端を越える場合には、変換結果を無視して終端に達したものとみなします。<br>
+</P>
+
+<h2>参照</h2>
+<p>
+<a href="STDResult.html">STDResult</a><br>
+<A href="STD_ConvertStringUnicodeToSjis.html">STD_ConvertStringUnicodeToSjis</A>
+</p>
+
+<H2>履歴</H2>
+<P>
+2006/08/10 インタフェース変更。<br>
+2006/07/24 インタフェース変更。返り値の制限に関する追記。<br>
+2006/07/05 初版<br>
+</P>
+</body>
+</html>

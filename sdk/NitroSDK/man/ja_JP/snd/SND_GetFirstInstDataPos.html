@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_GetFirstInstDataPos</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_GetFirstInstDataPos</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">SNDInstPos SND_GetFirstInstDataPos( const SNDBankData* <var>bank</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>bank</code></strong></em></td>
+<td>バンクデータのポインタです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>インストデータ走査のための位置情報を返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+バンクデータ中のインストデータ走査のための位置情報を取得します。
+</p>
+      <p>
+取得した位置情報を
+<tt class="function"><a href="SND_GetNextInstData.html">SND_GetNextInstData</a></tt>関数に渡すことで、
+<a href="SNDInstData.html">SNDInstData</a>型のインストデータを、順番に取得することができます。
+</p>
+
+      
+      <pre class="programlisting">
+    SNDInstPos pos = SND_GetFirstInstDataPos( bank );
+    SNDInstData inst;
+    
+    while( SND_GetNextInstData( bank, &amp;inst, &amp;pos ) ) {
+        // inst に対する処理を行う
+    }
+</pre>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_GetNextInstData.html">SND_GetNextInstData</a>, <a href="SNDInstData.html">SNDInstData</a></p>
+<h2>履歴</h2>
+<p>2005/01/20 初版<br></p>
+</div>
+</body>
+</html>

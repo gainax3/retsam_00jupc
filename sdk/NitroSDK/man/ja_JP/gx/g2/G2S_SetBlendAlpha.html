@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2S_SetBlendAlpha</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2S_SetBlendAlpha</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2.h&gt;</CODE><BR>
+<CODE>void G2S_SetBlendAlpha(<BR>    int plane1 /* GXBlendPlaneMask */,<BR>    int plane2 /* GXBlendPlaneMask */,<BR>    int ev1,<BR>    int ev2<BR>);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+    <td width="13%"><em><strong><font face="Courier New">plane1</font></strong></em></td>
+    <td width="87%">ブレンドの第1対象面を選択（<CODE>GXBlendPlaneMask</CODE>型の値の論理和をとったもの）</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">plane2</font></strong></em></TD>
+      <TD>ブレンドの第2対象面を選択（<CODE>GXBlendPlaneMask</CODE>型の値の論理和をとったもの）</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">ev1</font></strong></em></TD>
+      <TD>第1対象面に対するαブレンディング係数 (0 &lt;= ev1 &lt;= 31)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">ev2</font></strong></em></TD>
+      <TD>第2対象面に対するαブレンディング係数 (0 &lt;= ev2 &lt;= 31)</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>サブ２Dエンジンで第1対象面の直後が第2対象面の場合にαブレンディングを行います。第1対象面でOBJが指定されていなくても半透明ＯＢＪ、ビットマップＯＢＪ、３Ｄ面についてはαブレンディングが行われます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BLEND_PLANEMASK_NONE</CODE></TD>
+      <TD>どの面も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_BG0</CODE></TD>
+      <TD>BG0を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_BG1</CODE></TD>
+      <TD>BG1を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_BG2</CODE></TD>
+      <TD>BG2を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_BG3</CODE></TD>
+      <TD>BG3を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_OBJ</CODE></TD>
+      <TD>OBJを指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_BLEND_PLANEMASK_BD</CODE></TD>
+      <TD>バックドロップ面を指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXBlendPlaneMask</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_BLEND_PLANEMASK_NONE = 0x0000,
+    GX_BLEND_PLANEMASK_BG0 = 0x0001,
+    GX_BLEND_PLANEMASK_BG1 = 0x0002,
+    GX_BLEND_PLANEMASK_BG2 = 0x0004,
+    GX_BLEND_PLANEMASK_BG3 = 0x0008,
+    GX_BLEND_PLANEMASK_OBJ = 0x0010,
+    GX_BLEND_PLANEMASK_BD = 0x0020
+}
+GXBlendPlaneMask;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G2S_BlendNone.html">G2S_BlendNone</A>, <A href="G2S_SetBlendBrightness.html">G2S_SetBlendBrightness</A>, <A href="G2S_SetBlendBrightnessExt.html">G2S_SetBlendBrightnessExt</A>, <A href="G2S_ChangeBlendAlpha.html">G2S_ChangeBlendAlpha</A>, <A href="G2S_ChangeBlendBrightness.html">G2S_ChangeBlendBrightness</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+</body>
+</html>

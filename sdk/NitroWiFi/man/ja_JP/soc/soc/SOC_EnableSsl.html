@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_EnableSsl</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_EnableSsl</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_EnableSsl ( int <em><strong>s</strong></em>, <a href="SOCSslConnection.html">SOCSslConnection</a>* <em><strong>con</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td>SSL を有効にする対象のソケット記述子。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>con</strong></em></code></td>
+    <td>SSL 接続の設定と状態を保持する <a href="SOCSslConnection.html">SOCSslConnection</a> 構造体へのポインタ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0以上</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINVAL</code></td>
+    <td>無効な処理。(ソケットが TCP でない、など)</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EMFILE</code></td>
+    <td>ソケット記述子をこれ以上作れません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENETRESET</code></td>
+    <td>ソケットライブラリが初期化されていません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOBUFS</code></td>
+    <td>リソース不足。</td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>対象のソケットを使った通信を SSL で暗号化します。bind 前の TCP のソケットにしか使用できません。なお、実装上の制限により、SSL を有効にしたソケット記述子に対しては非同期の読み書きを行うことができませんので注意して下さい。</p>
+<p>引数に渡した <a href="SOCSslConnection.html">SOCSslConnection</a> 構造体は、引数 <code>s</code> が示すソケットが完全に終了するまでメモリ領域を確保しておく必要があります。具体的には、<a href="SOC_Close.html">SOC_Close</a> 関数が2回目の0を返すまではメモリ領域を他の用途で使用しないようにしてください。</p>
+<p>SSL で通信するための設定の詳細については <a href="SOCSslConnection.html">SOCSslConnection</a> 構造体の解説を参照してください。</p>
+<p>なお、SSL 通信を安全に行うためには、必ず定期的に <a href="SOC_AddRandomSeed.html">SOC_AddRandomSeed</a> 関数を呼び出す必要があります。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_AddRandomSeed.html">SOC_AddRandomSeed</a></code>
+</p>
+
+<H2>履歴</H2>
+<P>
+2007/1/19 SOCSslConnection 構造体を保持するべき期間について追記<br>
+2005/12/21 初版
+</P>
+</body>
+</html>

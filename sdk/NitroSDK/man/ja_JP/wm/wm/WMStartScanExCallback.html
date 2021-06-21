@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMStartScanExCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMStartScanExCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMStartScanExCallback
+{
+    u16         apiid;
+    u16         errcode;
+    u16         wlCmdID;
+    u16         wlResult;
+    u16         state;
+    u16         channelList;
+    u16         bssDescCount;
+    <A href="WMBssDesc.html">WMBssDesc</A>*  bssDesc[ 16 ];
+    u16         linkLevel[ 16 ];
+
+} WMStartScanExCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_START_SCANに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlCmdID</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなったコマンドのIDが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlResult</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなった要因コードが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の2つです。<BR>
+      WM_STATECODE_PARENT_NOT_FOUND、WM_STATECODE_PARENT_FOUND。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">channelList</font></strong></em></TD>
+      <TD width="800">親機の発見・未発見に関わらず、スキャンしたチャンネルのリストがビットフィールド形式で格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">bssDescCount</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_PARENT_FOUNDの場合に、発見した親機の数が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">bssDesc</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_PARENT_FOUNDの場合に、発見したそれぞれの親機情報が格納されているバッファへのポインタ配列が格納されます。<BR>
+      発見した親機により親機情報のデータ長はそれぞれ異なる場合があり、かつ限られた大きさのバッファに効率的に情報を退避する為に、発見された親機情報はバッファ内に詰めて格納されます。
+      この為、このメンバは<A href="WMBssDesc.html">WMBssDesc型</A>の配列の先頭へのポインタではなく、<A href="WMBssDesc.html">WMBssDesc型</A>へのポインタの配列となっている点に注意して下さい。
+      それぞれの親機情報のデータ実体のサイズは、<CODE><A href="WMBssDesc.html">WMBssDesc</A>.length</CODE> ( ハーフワード(u16)単位 ) に示されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">linkLevel</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_PARENT_FOUNDの場合に、発見したそれぞれの親機の<A href="WMLinkLevel.html">リンク強度</A>配列が格納されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_StartScanEx.html">WM_StartScanEx</A>に対するコールバック関数に渡される構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/03/02 bssDescメンバについて説明追記<BR>
+2005/02/14 初版<BR>
+</P>
+</body>
+</html>

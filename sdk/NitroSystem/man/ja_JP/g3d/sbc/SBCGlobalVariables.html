@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>大域変数</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css"   type="text/css">
+	<LINK rel="stylesheet" href="../../css/apilist.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<h1 align="left">大域変数</h1>
+
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="249" align="left">NNS_G3dRS</TD>
+      <TD width="573">レンダリング中にプログラムが保持する状態(ステートマシンのステート)を保持する構造体へのポインタです。
+      構造体の領域は、NNS_G3dDraw()関数においてスタック領域(DTCM)に確保されます。
+      <CODE>NNS_G3dRS</CODE>構造体は、<CODE>NNS_G3dDraw</CODE>関数終了時に<CODE>NULL</CODE>にクリーンアップされます。</TD>
+    </TR>
+    <TR>
+      <TD width="249">NNS_G3dRSOnGlb</TD>
+      <TD width="573">レンダリング中にプログラムが保持する状態(ステートマシンのステート)で、
+      サイズが大きいためにスタック領域に置かないもの。 </TD>
+    </TR>
+    <TR>
+      <TD width="249">NNS_G3dFuncSbcTable</TD>
+      <TD width="573">個々のSBCコマンドのハンドラが登録されています。 ユーザーは、このハンドラを書き換えて、処理をカスタマイズする事が可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="249">NNS_G3dFuncSbcShpTable</TD>
+      <TD width="573">個々のシェイプデータの先頭にあるタグは、このテーブルへのインデックスになっています。
+      テーブルにシェイプデータの種類別のハンドラを登録しておきます。</TD>
+    </TR>
+    <TR>
+      <TD width="249">NNS_G3dFuncSbcMatTable</TD>
+      <TD width="573">
+			個々のマテリアルデータの先頭にあるタグは、このテーブルへのインデックスになっています。
+			テーブルにマテリアルデータの種類別のハンドラを登録しておきます。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H2>参照</H2>
+
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

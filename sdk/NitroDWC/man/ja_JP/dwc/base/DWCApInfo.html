@@ -1,0 +1,98 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCApInfo</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCApInfo</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef struct DWCstApInfo
+{
+	DWCApInfoType    aptype;
+	DWCApInfoArea    area;
+	char             spotinfo[DWC_SIZE_SPOTINFO+1];
+	char             essid[WM_SIZE_SSID+1];
+	u8               bssid[WM_SIZE_BSSID];
+} DWCApInfo;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  アクセスポイントの情報を格納するための構造体です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>aptype</CODE></STRONG></EM></TD>
+			<TD>アクセスポイントの種類<BR>
+			<BR>
+			DWC_APINFO_TYPE_USER0　　　　:　接続先1のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USER1　　　　:　接続先2のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USER2　　　　:　接続先3のアクセスポイント<BR>
+			DWC_APINFO_TYPE_USB　　　　　:　ニンテンドーWi-Fi USBコネクタ<BR>
+			DWC_APINFO_TYPE_SHOP 　　　　:　ニンテンドーWi-Fiステーション<BR>
+			DWC_APINFO_TYPE_FREESPOT 　　:　FREESPOT（フリースポット）<BR>
+			DWC_APINFO_TYPE_WAYPORT　　　:　Wayport(北米ホットスポット)<BR>
+			DWC_APINFO_TYPE_NINTENDOWFC　:　（予約）<BR>
+			DWC_APINFO_TYPE_NINTENDOSPOT :　nintendo spot<BR>
+          </TR>
+          <TR>
+			<TD width="25%"><EM><STRONG><CODE>area</CODE></STRONG></EM></TD>
+			<TD>ニンテンドーWi-Fiステーション/nintendo spotの設置地域<BR>
+			※aptypeがDWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOTの時のみ有効です。<BR>
+			※下記の全ての地域に設置されているとは限りません。<BR>
+			<BR>
+			DWC_APINFO_AREA_JPN　　　:　日本<BR>
+			DWC_APINFO_AREA_USA　　　:　北米<BR>
+			DWC_APINFO_AREA_EUR　　　:　欧州<BR>
+			DWC_APINFO_AREA_AUS　　　:　豪州<BR>
+			DWC_APINFO_AREA_KOR　　　:　韓国<BR><BR>
+			DWC_APINFO_AREA_UNKNOWN　:　(ニンテンドーWi-Fiステーション/nintendo spotではありません)</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>spotinfo</CODE></STRONG></EM></TD>
+			<TD>ニンテンドーWi-Fiステーション/nintendo spotの場所情報<BR>
+			※aptypeがDWC_APINFO_TYPE_SHOP/DWC_APINFO_TYPE_NINTENDOSPOTの時のみ有効です。<BR>
+			<BR>
+			各ニンテンドーWi-Fiステーション/nintendo spotでユニークな9桁の文字列です。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>essid</CODE></STRONG></EM></TD>
+			<TD>アクセスポイントのSSID<BR>
+			※aptypeがDWC_APINFO_TYPE_USER*の時のみ有効です。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>bssid</CODE></STRONG></EM></TD>
+			<TD>アクセスポイントのBSSID</TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		<code>
+		<a href="DWC_GetApInfo.html">DWC_GetApInfo</a>
+		</code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2008/05/31 nintendo spotに関する記述を追加<BR>
+			2007/03/02 韓国に関する記述と注意を追記<BR>
+			2006/02/23 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMPort</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMPort</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum WMPort
+{ 
+    WM_PORT_RAWDATA     = 0 ,
+    WM_PORT_BT          = 1 ,
+    WM_PORT_RESERVE_02  = 2 ,
+    WM_PORT_RESERVE_03  = 3 ,
+
+    WM_PORT_KS          = 8 ,
+    WM_PORT_RESERVE_11  = 9 ,
+    WM_PORT_RESERVE_12  = 10 ,
+    WM_PORT_RESERVE_13  = 11
+
+} WMPort;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_PORT_RAWDATA</font></strong></em></TD>
+      <TD width="800">WMライブラリのバージョン互換用に予約されたポートです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_PORT_BT</font></strong></em></TD>
+      <TD width="800">ブロック転送用に予約されたポートです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_PORT_KS</font></strong></em></TD>
+      <TD width="800">キーシェアリング用に予約されたポートです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">WM_PORT_RESERVE_*</font></strong></em></TD>
+      <TD width="800">システム予約ポートです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+MPによるデータ送受信ポートを示す列挙型です。
+使用可能なポートは 0 ～ 15 です。
+0 ～ 7 は通常の転送用のポートに、8 ～ 15 はデータ送受信の順序を制御する転送用のポートに、それぞれ割り当てられています。
+0 ～ 3、8 ～ 11 番ポートは予約されていますので、自由に使用可能なポートは 4 ～ 7 、12 ～ 15 番となります。
+データシェアリングを行う際には 12 番以降のポートを使用して下さい。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WM_SetPortCallback.html">WM_SetPortCallback</A>, <A href="WM_StartDataSharing.html">WM_StartDataSharing</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

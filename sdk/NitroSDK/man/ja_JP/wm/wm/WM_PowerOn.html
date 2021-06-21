@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_PowerOn</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_PowerOn</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_PowerOn( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+無線ハードウェアに電力供給を開始します。APIの戻り値がWM_ERRCODE_OPERATINGであった場合、無線ハードウェアへ電力が供給された後に
+コールバックが発生します。WMが<A href="wm_state_diagram.html">STOPステート</A>の場合のみ呼び出し可能であり、<A href="wm_state_diagram.html">IDLEステート</A>に移行します。
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="WM_Init.html">WM_Init</A>, <A href="WM_Enable.html">WM_Enable</A>, <A href="WM_PowerOff.html">WM_PowerOff</A>, <A href="WM_Disable.html">WM_Disable</A>, <A href="WM_Finish.html">WM_Finish</A>, <A href="WM_Initialize.html">WM_Initialize</A>, <A href="WM_End.html">WM_End</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/09/11 初版<BR>
+</P>
+</body>
+</html>

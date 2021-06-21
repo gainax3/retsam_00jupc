@@ -1,0 +1,155 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCM_StartupAsync.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCM_StartupAsync.html,v $
+  Revision 1.3  2005/09/10 03:10:42  terui
+  無線通信を禁止されている本体で呼び出した際の返り値について説明追記
+
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCM_StartupAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCM_StartupAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+s32   WCM_StartupAsync( <A href="WCMConfig.html">WCMConfig</A>* config , <A href="WCMNotify.html">WCMNotify</A> notify );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			無線通信機能の起動シーケンスを開始する非同期関数です。<BR>
+			非同期処理が正常に開始された場合に内部状態は <CODE>WCM_PHASE_WAIT</CODE> から <CODE>WCM_PHASE_WAIT_TO_IDLE</CODE> に変化し、
+			非同期処理が正常に完了した際に <CODE>WCM_PHASE_IDLE</CODE> となります。当関数はこれらの内部状態である時のみ実行することができます。<BR>
+			内部状態が <CODE>WCM_PHASE_WAIT</CODE> である時に呼び出した場合のみ、引数として指定した設定がライブラリの内部動作に反映されます。
+			<EM><STRONG><CODE>notify</CODE></STRONG></EM> で指定したコールバック関数は、当関数呼び出しに伴って発生した非同期処理の終了通知だけでなく、
+			以後の全ての非同期的な処理通知が発生する度に呼び出されます。<BR>
+			<BR>
+			返り値が <CODE>WCM_RESULT_ACCEPT</CODE> であった場合には、対応する非同期処理通知が必ず一回発生し、コールバック関数が呼び出されます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>config</CODE></STRONG></EM></TD>
+					<TD width="75%"><A href="WCMConfig.html"><CODE>WCMConfig</CODE> 型</A>の WCM ライブラリ内部動作設定構造体へのポインタを指定します。
+					内部で使用される DMA 番号、及び無線アクセスポイントの自動探索時の動作設定を行うことができます。
+					<CODE>NULL</CODE> を指定した場合は、デフォルトの設定値が用いられます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>notify</CODE></STRONG></EM></TD>
+					<TD>非同期処理通知が発生した際に呼び出されるコールバック関数を指定します。<CODE>NULL</CODE> を指定した場合は通知が行われなくなります。<BR>
+					なお、このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+			以下のいずれかの処理結果を返します。
+		</P>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_ACCEPT</CODE></STRONG></EM></TD>
+					<TD width="75%">非同期シーケンス開始要求が受け付けられ、正常に非同期処理が開始されたことを示します。
+					非同期処理が終了した際に必ず一回コールバック関数が呼び出されます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_PROGRESS</CODE></STRONG></EM></TD>
+					<TD>当関数によって開始された非同期シーケンスが既に実行中であり、多重呼び出しであったことを示します。
+					多重に呼び出しても非同期処理終了通知は一回しか発生しません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
+					<TD>無線通信機能の起動シーケンスが既に完了しており、内部状態が <CODE>WCM_PHASE_IDLE</CODE> であったことを示します。
+					非同期処理は開始されませんので、非同期処理終了通知も発生しません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
+					<TD>WCM ライブラリが初期化されていない、内部状態が <CODE>WCM_PHASE_WAIT</CODE>、<CODE>WCM_PHASE_WAIT_TO_IDLE</CODE>、<CODE>WCM_PHASE_IDLE</CODE> のいずれかでない、
+					などの原因で処理に失敗したことを示します。ARM7 への PXI 処理要求の発行に失敗した場合にもこの返り値となりますが、内部状態は <CODE>WCM_PHASE_IRREGULAR</CODE> となりますので、
+					リトライすることはできません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_WMDISABLE</CODE></STRONG></EM></TD>
+					<TD>無線通信機能を起動しようとした際に、ARM7 側にて無線ドライバが動作していないため処理が実行できないことを示します。
+					ARM7 コンポーネントが ichneumon である場合は、WVR ライブラリによって無線ドライバが強制停止されている可能性があります。<BR>
+					また、無線通信を禁止されているニンテンドーDS 本体で処理を実行しようとした場合にもこの返り値となります。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FATAL_ERROR</CODE></STRONG></EM></TD>
+					<TD>復旧不可能なエラーが発生したことを示します。内部状態は <CODE>WCM_PHASE_FATAL_ERROR</CODE> となり、以後変更されません。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>非同期処理結果</H2>
+		<P>
+			<EM><STRONG><CODE>notify</CODE></STRONG></EM> で指定したコールバック関数に以下のいずれかの非同期処理結果が渡されます。
+			通知種別は <CODE>WCM_NOTIFY_STARTUP</CODE> に固定となります。
+		</P>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
+					<TD width="75%">非同期処理に成功し、無線機能が正常に起動されたことを示します。内部状態は <CODE>WCM_PHASE_IDLE</CODE> となります。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
+					<TD>非同期処理の途中で WM ライブラリから何らかのエラー通知を受けたことを示します。内部状態は <CODE>WCM_PHASE_IRREGULAR</CODE> となります。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAITAL_ERROR</CODE></STRONG></EM></TD>
+					<TD>非同期処理の途中で復旧不可能なエラーが発生したことを示します。内部状態は <CODE>WCM_PHASE_FATAL_ERROR</CODE> となり、以後変更されません。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCM_CleanupAsync.html">WCM_CleanupAsync</A>, <A href="WCM_TerminateAsync.html">WCM_TerminateAsync</A>,
+				<A href="WCMConfig.html">WCMConfig</A>, <A href="WCMNotify.html">WCMNotify</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/09/10 <CODE>WCM_RESULT_WMDISABLE</CODE> について説明を追記<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

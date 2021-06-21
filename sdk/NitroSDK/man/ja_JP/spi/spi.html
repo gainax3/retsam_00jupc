@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>SPI 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H3>ARM7プロセッサ周辺装置(SPI)</H3>
+<P>[<B><A href="list_spi.html">機能一覧</A></B>]</P>
+<H4>タッチパネル</H4>
+<DL>
+  <DT>&lt; 初期化 &gt;
+  <DD><A href="tp/TP_Init.html">TP_Init</A>
+  <DD><A href="tp/TP_SetCallback.html">TP_SetCallback</A>
+  <DD><A href="tp/TP_SetCalibrateParam.html">TP_SetCalibrateParam</A>
+  <DD><A href="tp/TP_RequestSetStability.html">TP_RequestSetStability</A>
+</DL>
+<DL>
+  <DT>&lt; リクエストによるサンプリング &gt;
+  <DD><A href="tp/TP_RequestRawSampling.html">TP_RequestRawSampling</A>
+  <DD><A href="tp/TP_RequestCalibratedSampling.html">TP_RequestCalibratedSampling</A>
+  <DD><A href="tp/TP_RequestSamplingAsync.html">TP_RequestSamplingAsync</A>
+  <DD><A href="tp/TP_WaitRawResult.html">TP_WaitRawResult</A>
+  <DD><A href="tp/TP_WaitCalibratedResult.html">TP_WaitCalibratedResult</A>
+  <DD><A href="tp/TP_GetCalibratedResult.html">TP_GetCalibratedResult</A>
+</DL>
+<DL>
+  <DT>&lt; オートサンプリング &gt;
+  <DD><A href="tp/TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>
+  <DD><A href="tp/TP_RequestAutoSamplingStartAsync.html">TP_RequestAutoSamplingStartAsync</A>
+  <DD><A href="tp/TP_RequestAutoSamplingStop.html">TP_RequestAutoSamplingStop</A>
+  <DD><A href="tp/TP_RequestAutoSamplingStopAsync.html">TP_RequestAutoSamplingStopAsync</A>
+  <DD><A href="tp/TP_GetLatestRawPointInAuto.html">TP_GetLatestRawPointInAuto</A>
+  <DD><A href="tp/TP_GetLatestCalibratedPointInAuto.html">TP_GetLatestCalibratedPointInAuto</A>
+  <DD><A href="tp/TP_GetLatestIndexInAuto.html">TP_GetLatestIndexInAuto</A>
+</DL>
+<DL>
+  <DT>&lt; キャリブレーション &gt;
+  <DD><A href="tp/TP_GetUserInfo.html">TP_GetUserInfo</A>
+  <DD><A href="tp/TP_CalcCalibrateParam.html">TP_CalcCalibrateParam</A>
+  <DD><A href="tp/TP_GetCalibratedPoint.html">TP_GetCalibratedPoint</A>
+  <DD><A href="tp/TP_GetUnCalibratedPoint.html">TP_GetUnCalibratedPoint</A>
+</DL>
+<DL>
+  <DT>&lt; 成否判定 &gt;
+  <DD><A href="tp/TP_WaitBusy.html">TP_WaitBusy</A>
+  <DD><A href="tp/TP_WaitAllBusy.html">TP_WaitAllBusy</A>
+  <DD><A href="tp/TP_CheckBusy.html">TP_CheckBusy</A>
+  <DD><A href="tp/TP_CheckError.html">TP_CheckError</A>
+</DL>
+<DL>
+  <DT>&lt; 型・構造体 &gt;
+  <DD><A href="tp/TPData.html">TPData</A>
+  <DD><A href="tp/TPRecvCallback.html">TPRecvCallback</A>
+</DL>
+<H4>NVRAM</H4>
+<H4>マイク</H4>
+<DL>
+ <DT>&lt; 初期化 &gt;
+ <DD><A href="mic/MIC_Init.html">MIC_Init</A>
+</DL>
+<DL>
+ <DT>&lt; サンプリング &gt;
+ <DD><A href="mic/MIC_DoSampling.html">MIC_DoSampling</A>
+ <DD><A href="mic/MIC_DoSamplingAsync.html">MIC_DoSamplingAsync</A>
+</DL>
+<DL>
+ <DT>&lt; 自動サンプリング &gt;
+ <DD><A href="mic/MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>
+ <DD><A href="mic/MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A>
+ <DD><A href="mic/MIC_StopAutoSampling.html">MIC_StopAutoSampling</A>
+ <DD><A href="mic/MIC_StopAutoSamplingAsync.html">MIC_StopAutoSamplingAsync</A>
+ <DD><A href="mic/MIC_AdjustAutoSampling.html">MIC_AdjustAutoSampling</A>
+ <DD><A href="mic/MIC_AdjustAutoSamplingAsync.html">MIC_AdjustAutoSamplingAsync</A>
+ <DD><A href="mic/MIC_GetLastSamplingAddress.html">MIC_GetLastSamplingAddress</A>
+</DL>
+<DL>
+ <DT>&lt; 型・構造体 &gt;
+ <DD><A href="mic/MICAutoParam.html">MICAutoParam</A>
+ <DD><A href="mic/MICSamplingType.html">MICSamplingType</A>
+ <DD><A href="mic/MICSamplingRate.html">MICSamplingRate</A>
+ <DD><A href="mic/MICCallback.html">MICCallback</A>
+ <DD><A href="mic/MICResult.html">MICResult</A>
+</DL>
+<H4>パワー制御</H4>
+<DL>
+ <DT>&lt; 初期化 &gt;
+ <DD><A href="pm/PM_Init.html">PM_Init</A>
+</DL>
+<DL>
+ <DT>&lt; PMIC操作 &gt;
+ <DD><A href="pm/PM_ForceToPowerOff.html">PM_ForceToPowerOff</A>*
+ <DD><A href="pm/PM_SetBackLight.html">PM_SetBackLight*</A>
+ <DD><A href="pm/PM_SetAmp.html">PM_SetAmp*</A>
+ <DD><A href="pm/PM_SetAmpGain.html">PM_SetAmpGain*</A>
+ <DD><A href="pm/PM_SetLCDPower.html">PM_SetLCDPower</A>
+</DL>
+<DL>
+  <DT>&lt; PMIC状態 &gt;
+  <DD><A href="pm/PM_GetBattery.html">PM_GetBattery</A>
+  <DD><A href="pm/PM_GetBackLight.html">PM_GetBackLight</A>
+  <DD><A href="pm/PM_GetAmp.html">PM_GetAmp</A>
+  <DD><A href="pm/PM_GetAmpGain.html">PM_GetAmpGain</A>
+  <DD><A href="pm/PM_GetLCDPower.html">PM_GetLCDPower</A>
+  <DD><A href="pm/PM_GetLEDPattern.html">PM_GetLEDPattern*</A>
+</DL>
+<DL>
+ <DT>&lt; スリープ &gt;
+ <DD><A href="pm/PM_GoSleepMode.html">PM_GoSleepMode</A>
+ <DD><A href="pm/PM_SetSleepCallbackInfo.html">PM_SetSleepCallbackInfo</A>
+ <DD><A href="pm/PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback</A>
+ <DD><A href="pm/PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback</A>
+ <DD><A href="pm/PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback</A>
+ <DD><A href="pm/PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback</A>
+ <DD><A href="pm/PM_DeletePreSleepCallback.html">PM_DeletePreSleepCallbackk</A>
+ <DD><A href="pm/PM_DeletePreSleepCallback.html">PM_DeletePostSleepCallbackk</A>
+</DL>
+
+
+
+<P><BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_SetWramBank</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_SetWramBank</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_SetWramBank( MIWram cnt )</CODE><br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>cnt</STRONG></EM></TD>
+      <TD width="87%">ワークRAMの割り当て設定</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>ARM7、ARAM9共用ワークRAMの割り当て設定を行います。<BR>
+引数 <B><I>cnt</I></B> は、<CODE>MI_WRAM</CODE> 列挙型で、以下の意味を持ちます。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_WRAM_ARM9_ALL</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM9に全てのブロック(32KB)を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_WRAM_1616_1</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM9にブロック1(16KB)を、ARM7にブロック0(16KB)を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_WRAM_1616_2</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM9にブロック0(16KB)を、ARM7にブロック1(16KB)を割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_WRAM_ARM7_ALL</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM7に全てのブロック(32KB)を割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>内部動作</h2>
+<p>IOレジスタのWVRAMCNT(0x4000244)のWRAM BANK (d24～d25)にアクセスしています。</p>
+
+<h2>参照</h2>
+<p>なし</p>
+
+<H2>履歴</H2>
+<P>2004/03/12 MI_SetWRAMBank() → MI_SetWramBank() へ修正<BR>
+2003/12/24 初版</P>
+</body>
+</html>

@@ -1,0 +1,26 @@
+#! /bin/bash -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - tools - sdkindent
+# File:     sdkindent.copyright
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: sdkindent.copyright,v $
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+for i in "$@"
+do
+	( sed  -f $NITROSDK_ROOT/tools/bin/sdkindent.copyright-sed "$i" > "$i.tmp$$" ) && \
+	mv "$i" "$i.orig$$" && mv "$i.tmp$$" "$i"
+done
+
+#-----------------------------------------------------------------------
+# $Log: sdkindent.copyright,v $
+#-----------------------------------------------------------------------

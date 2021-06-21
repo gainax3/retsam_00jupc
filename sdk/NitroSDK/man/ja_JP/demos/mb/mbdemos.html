@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>MB Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>マルチブートライブラリ(MB)サンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/mb</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/mb</CODE>ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/mb/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/mb/multiboot/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/mb/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+<P><FONT color="#ff0000">MBライブラリのサンプルはマルチブート機能を使うため、同じ通信環境(無線あるいは有線)どうしの開発機材を複数必要とします。<CODE>$NitroSDK/bin/ARM9-TS/Release</CODE> ディレクトリにある <CODE>mb_child.srl</CODE> プログラムが最終実機におけるマルチブート子機と同等の機能を提供するサンプルになっていますので、このバイナリをサンプルプログラムと同じ方法で他の機材に読み込み、一緒に実行してください。<br
+><br
+>また IS-NITRO-DEBUGGER のオプション設定によっては、この mb_child.srl を読み込んだ時に<br
+>「ARM9プロセッサ側の転送先アドレスが異常です」という内容のダイアログが表示されますが、<br
+>このダイアログでは「いいえ」を選択して読み込んでください。</FONT></P>
+<H2>説明</H2>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>multiboot</CODE></STRONG></EM></TD>
+      <TD width="525">マルチブート親機としてプログラムファイルを子機へダウンロードさせる単純なサンプルです。２つのプログラムファイルを公開し、接続に来た不特定の子機へダウンロードします。ダウンロード後、親機の START ボタンを押すことでダウンロードの完了している子機をブートします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>multiboot-Model</CODE></STRONG></EM></TD>
+      <TD width="525">マルチブート親機としてプログラムファイルを子機へダウンロードさせ、<br>
+	  ダウンロードした子機プログラムとデータシェアリング通信を行うまでの手順を示した規範的なサンプルです。<br>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>cloneboot</CODE></STRONG></EM></TD>
+      <TD width="525">親機自身のプログラムを子機へダウンロードさせるという<br>
+	  いわゆるクローンブート処理を実行するサンプルです。<br>
+	  プログラムの構造自体はmultiboot-Modelサンプルデモと同一のものです。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>fake_child</I></B></TD>
+      <TD>擬似マルチブート子機としてマルチブート親機へエントリーをおこなうサンプルです。
+      GGIDをmultiboot-Modelのサンプルで使用しているものと同じ値に設定しているので、multiboot-Modelサンプルに対してマルチブート子機として擬似的にエントリーする事ができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>mbm</CODE></STRONG></EM></TD>
+      <TD width="525"><a href="../../wm/wm/WM_MeasureChannel.html">WM_MeasureChannel</a>関数を使用してワイヤレスの電波使用率を計測するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>multiboot-PowerSave</CODE></STRONG></EM></TD>
+      <TD width="525">省電力モード設定を明示的に変更し、マルチブート親機として起動する単純なサンプルです。<br>
+	  省電力モード設定以外の全ての設定をデフォルトに固定しているという点以外は、multibootサンプルと同様のものです。<br>
+	  <font color="red">省電力モードはデフォルトで有効であり、通常のプログラムがこの機能を明示的に変更する必要はありません。
+	  詳細は<a href="../../mb/parent/MB_SetPowerSaveMode.html">MB_SetPowerSaveMode</a>関数の説明をご覧ください。</font></TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>multiboot-wfs</CODE></STRONG></EM></TD>
+      <TD width="525">マルチブート親機としてプログラムファイルを子機へダウンロードさせ、
+	  さらに子機がワイヤレスを経由してファイルシステムを使用するサンプルです。<br>
+	  $NitroSDK/build/demos/wireless_shared/wfsサンプルモジュールを使用しています。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>エミュレータ</H2>
+<P><CODE>MBライブラリのデモは、ensataにおいては動作しません。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../mb/list_mb.html"><CODE>MB関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2005/06/23 multiboot-wfsサンプルの説明を追加。<br>
+2005/05/10 mbmサンプルの説明を追加。<br>
+2005/04/28 multiboot-PowerSaveサンプルを追加<br>
+2004/11/16 clonebootサンプルを追加<br>
+2004/10/06 multiboot-Modelサンプルの説明抜けを修正<br>
+2004/09/13 mb_child.srl 読み込み時の注意を追加<br>
+2004/08/10 初版<br>
+</P>
+</BODY>
+</HTML>

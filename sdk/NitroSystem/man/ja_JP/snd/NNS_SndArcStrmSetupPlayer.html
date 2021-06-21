@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcStrmSetupPlayer</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcStrmSetupPlayer</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndArcStrmSetupPlayer( NNSSndHeapHandle <var>heap</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>セットアップに成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ中のストリームプレイヤー設定に基づいて、ストリームプレイヤーをセットアップします。
+</p>
+      <p>
+この関数は、
+<tt class="function"><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></tt>関数から呼びだされますので、
+通常は、呼びだす必要はありません。
+</p>
+      <p>
+関数内では、ストリームプレイヤーが使用するチャンネルを設定し、
+<em><strong><code>heap</code></strong></em>で指定したサウンドヒープから、ストリーム用のバッファを確保します。
+ストリームバッファのサイズは、１つのストリームプレイヤー毎に、2048 × チャンネル数 [Byte] 必要です。
+十分なメモリが確保できない場合、関数は失敗します。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcStrmInit.html">NNS_SndArcStrmInit</a></p>
+<h2>履歴</h2>
+<p>2004/09/02 初版<br></p>
+</div>
+</body>
+</html>

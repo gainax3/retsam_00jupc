@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_GetOverlayImageSize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_GetOverlayImageSize</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>static inline u32 FS_GetOverlayImageSize(const FSOverlayInfo *p_ovi);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_ovi</STRONG></EM></TD>
+      <TD width="87%">オーバーレイモジュールの情報が格納されたFSOverlayInfo構造体</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>オーバーレイモジュールのロードイメージのサイズを返します。</p>
+
+<H2>説明</H2>
+<P>オーバーレイモジュールへロードされるイメージのサイズを取得します。<BR>
+これは text/data 各セクションおよびパディングの合計(全体からbssセクションを除いたもの)になります。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="FS_GetOverlayTotalSize.html">FS_GetOverlayTotalSize</A>
+<A href="FS_GetOverlayAddress.html">FS_GetOverlayAddress</A>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/06/11 初版<BR>
+</P>
+</body>
+</html>

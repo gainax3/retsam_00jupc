@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+    <TITLE>
+        MIC_AdjustAutoSampling
+    </TITLE>
+</HEAD>
+
+<BODY>
+
+    <H1 align="left">MIC_AdjustAutoSampling</H1>
+
+    <H2>構文</H2>
+    <DL>
+        <DD>
+            <CODE>
+                #include &lt;nitro/spi.h&gt;
+            </CODE>
+
+<PRE><CODE><A href="MICResult.html">MICResult</A> MIC_AdjustAutoSampling( u32 rate );</CODE></PRE>
+
+        </DD>
+    </DL>
+
+    <H2>引数</H2>
+    <TABLE border="1" width="100%">
+        <TBODY>
+            <TR>
+                <TD width="300"><EM><STRONG><FONT face="Courier New">rate</FONT></STRONG></EM></TD>
+                <TD width="700">サンプリング周期。ARM7のCPUタイマー周期を直接指定します。<BR>
+                <A href="MICSamplingRate.html">MICSamplingRate列挙型</A>から選択することもできます。</TD>
+            </TR>
+        </TBODY>
+    </TABLE>
+
+    <H2>返り値</H2>
+    <P>
+        <A href="MICResult.html">MICResult列挙型</A>の処理結果を返します。<BR>
+        処理が正常に完了した場合に MIC_RESULT_SUCCESS が、何らかの原因で失敗した場合にはそれ以外の返り値が返されます。
+    </P>
+
+    <H2>説明</H2>
+    <P>
+        マイクの自動サンプリングにおけるサンプリングレートの調整を同期的に行います。<BR>
+        自動サンプリングが開始されている場合にのみ有効であり、ARM7が要求を受け付けた時点でCPUタイマー周期が更新されます。<BR>
+        <BR>
+        この関数はARM7に自動サンプリング調整要求を発行し、ARM7からの応答を待って処理結果を返します。<BR>
+        <A href="MIC_AdjustAutoSamplingAsync.html">MIC_AdjustAutoSamplingAsync</A>の同期版です。
+    </P>
+
+    <H2>注意</H2>
+
+    <P>
+        <FONT color=red>
+            この関数は同期を取る為にPXI割り込みを待ちますので、PXI割り込みを禁止した状態で呼び出さないようにして下さい。
+        </FONT>
+    </P>
+
+    <H2>参照</H2>
+    <P>
+        <CODE>
+            <A href="MIC_AdjustAutoSamplingAsync.html">MIC_AdjustAutoSamplingAsync</A>,
+            <A href="MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>,
+            <A href="MIC_StopAutoSampling.html">MIC_StopAutoSampling</A>
+        </CODE>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+
+        2005/01/11 初版<BR>
+    </P>
+
+</BODY>
+
+</HTML>

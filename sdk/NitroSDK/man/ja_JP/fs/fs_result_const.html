@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSResult</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSResult</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+
+typedef	enum<br>
+{<br>
+<br>
+	FS_RESULT_SUCCESS = 0,<br>
+	FS_RESULT_FAILURE,<br>
+	FS_RESULT_BUSY,<br>
+	FS_RESULT_CANCELED,<br>
+	FS_RESULT_UNSUPPORTED,<br>
+	FS_RESULT_ERROR,<br>
+<br>
+	FS_RESULT_PROC_ASYNC,<br>
+	FS_RESULT_PROC_DEFAULT,<br>
+	FS_RESULT_PROC_UNKNOWN<br>
+<br>
+} FSResult;<br>
+  </CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ファイルシステムAPIの実行結果、およびアーカイブのユーザプロシージャの結果を表現する列挙型です。<BR>
+以下のように定義されます。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD colspan="2">以下はAPIの実行結果およびユーザプロシージャ返り値の両方で使用されます。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_SUCCESS</TD>
+      <TD>正しく処理した結果としての成功を示します。<BR>
+		例えばFS_ReadFile関数にて 100 BYTE リードしようとしたところが<BR>
+		終端に達して 50 BYTE しか読めなかった場合も、動作としては正常なので<BR>
+		「成功」として扱われます。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_FAILURE</TD>
+      <TD>正しく処理した結果としての失敗を示します。<BR>
+		例えばFS_ReadDir関数で終端を読んだときなど、<BR>
+		処理として認められている想定内の「失敗」を指します。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_ERROR</TD>
+      <TD>検知可能な異常が処理中に発生した結果としての失敗を示します。<BR>
+		引数の範囲が異常であったり、処理の過程で NULL のポインタが発生したりといった<BR>
+		処理として認められない「失敗」を指します。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_UNSUPPORTED</TD>
+      <TD>アーカイブが指定コマンドに対応しなかったことを示します。<BR>
+	このエラーは特定のコマンドをあえて無視するアーカイブが<BR>
+	ユーザプロシージャの返り値として明示的に返すことで発生します。<BR>
+	ユーザは対象アーカイブの特殊仕様を把握している必要があります。</TD>
+    </TR>
+    <TR>
+      <TD colspan="2">以下はAPIの実行結果としてのみ返されます。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_BUSY</TD>
+      <TD>現在コマンド処理中であることを示します。<BR>
+		未完なので厳密にはエラーではありませんが、便宜上エラーに含みます。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_CANCELED</TD>
+      <TD>コマンドをキャンセルされたことを示します。<BR>
+		ユーザ自身による明示的なコマンドキャンセルと、<BR>
+		アーカイブアンロード時の強制キャンセルがあります。</TD>
+    </TR>
+    <TR>
+      <TD colspan="2">以下はユーザプロシージャ返り値としてのみ使用されます。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_PROC_ASYNC</TD>
+      <TD>ユーザプロシージャが処理を非同期的に行うためにひとまず制御を戻すときの返り値です。<BR>
+		この値を返した場合は、リード・ライトコールバックと同様に<BR>
+		処理の完了をFS_NotifyArchiveAsyncEnd関数で通知する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_PROC_DEFAULT</TD>
+      <TD>ユーザプロシージャが少なくとも今回だけはデフォルト処理に任せるときの返り値です。<BR>
+		次回も当該コマンドへのユーザプロシージャは呼び出されます。<BR>
+		単にコマンドをフックしたい場合などは毎回これを返します。</TD>
+    </TR>
+    <TR>
+      <TD>FS_RESULT_PROC_UNKNOWN</TD>
+      <TD>ユーザプロシージャが今回以降のこのコマンドを全てデフォルト処理に任せるときの返り値です。<BR>
+		当該コマンドへのプロシージャ呼び出しフラグは解除され、次回から呼び出されません。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_archive_type.html">FSArchive</A>
+<A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<BR>
+<A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/07/12 列挙値とその説明を追加<BR>
+2004/07/01 初版<BR>
+</P>
+</body>
+</html>

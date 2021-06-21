@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_StartParent</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_StartParent</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>int MB_StartParent(int channel);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>channel</STRONG></EM></TD>
+      <TD width="87%">親機として通信を行うチャンネル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>開始処理が正しく完了すれば MB_SUCCESS を返します。</p>
+
+<H2>説明</H2>
+<P>指定したチャンネルのもとに、親機としての動作を開始します。<BR>
+親機の処理は内部で自動で行われ、<A href="../common/MB_End.html">MB_End</A> 関数を呼び出すと終了します。<BR>
+初期化が完了すると、<A href="./MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックとして、引数 status がMB_COMM_PSTATE_INIT_COMPLETEの値で渡されて返ってきます。
+<BR>
+<h2>内部動作</h2>
+<p><CODE>
+<font color="#800000">この関数は内部で<a href="../../wm/wm/WM_Initialize.html">WM_Initialize</a>関数を呼び出し、任意の子機との通信を自動で制御します。<BR>
+そのため、無線ライブラリが<a href="../../wm/wm/wm_state_diagram.html">初期化前の状態</a>において呼び出す必要があります。<br>
+また、ライブラリを終了させるには、対応する<A href="../common/MB_End.html">MB_End</A>関数を呼び出す必要がある点に注意してください。</font>
+<br>
+<br>
+無線ライブラリを起動したまま処理を行いたい場合は、<A href="../parent/MB_StartParentFromIdle.html">MB_StartParentFromIdle</A>関数を使用します。<br>
+</CODE></p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../common/MB_Init.html">MB_Init</A> 
+<A href="../parent/MB_StartParentFromIdle.html">MB_StartParentFromIdle</A> 
+<A href="../common/MB_End.html">MB_End</A> 
+<A href="../common/MB_EndEx.html">MB_EndEx</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2004/11/24 MB_StartParentExをMB_StartParentFromIdleに命名変更<BR>
+2004/10/18 MB_StartParentExに関する記述追加<BR>
+2004/10/15 呼び出し時のWM状態に関する記述修正<BR>
+2004/10/05 呼び出し時のWM状態に関する記述追加<BR>
+2004/09/10 コールバックに関する記述追加<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>割り込み (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">割り込み (overview)</H1>
+<H2>説明</H2>
+<P>割り込みは現在実行中のプログラムを一時中断し、より緊急性の高いプログラムを実行して元のプログラムに戻るための機構です。</P>
+<P>システムやハードウェアの状態によってすぐに特定の処理を行なわなければならない場合、割り込みを使用しなければ一定期間ごとに状態を調べ、条件合致で処理を行なうというポーリング方式を採ることしか出来ませんが、割り込みを使用すると、条件を満たせば予め設定されたプログラムを即座に実行するという処理を行なうことが出来ます。この機構を使用すれば、ポーリング方式よりも高い即時性が期待できますし、何よりメインプログラムは自分の処理に専念することができます。</P>
+<P>このドキュメントでは割り込みを取り扱うための関数について説明します。</P>
+<HR>
+<P><B>割り込みの要因</B></P>
+<P>割り込みが発生する要因は様々で、ARM9 と ARM7 で異なります。ARM9 では以下の要因で割り込みが発生します。<BR>
+</P>
+<TABLE>
+<TBODY>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_V_BLANK</TD>
+<TD bgColor=#eeeeee>Vブランク割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_H_BLANK</TD>
+<TD bgColor=#eeeeee>Hブランク割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_V_COUNT</TD>
+<TD bgColor=#eeeeee>Vカウンター割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_TIMER0</TD>
+<TD bgColor=#eeeeee>タイマー0割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_TIMER1</TD>
+<TD bgColor=#eeeeee>タイマー1割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_TIMER2</TD>
+<TD bgColor=#eeeeee>タイマー2割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_TIMER3</TD>
+<TD bgColor=#eeeeee>タイマー3割り込み</TD>
+    </TR>
+    <TR>
+<TD bgColor=#eeeeee>OS_IE_DMA0</TD>
+<TD bgColor=#eeeeee>DMA0割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_DMA1</TD>
+<TD bgColor=#eeeeee>DMA1割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_DMA2</TD>
+<TD bgColor=#eeeeee>DMA2割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_DMA3</TD>
+<TD bgColor=#eeeeee>DMA3割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_KEY</TD>
+<TD bgColor=#eeeeee>キー割り込み <B><FONT color="#ff0033">*1</FONT></B></TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_CARTRIDGE</TD>
+<TD bgColor=#eeeeee>カートリッジIREQ/DREQ割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_SUBP</TD>
+<TD bgColor=#eeeeee>ARM7割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_SPFIFO_SEND</TD>
+<TD bgColor=#eeeeee>ARM9・ARM7間送信FIFOエンプティ割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_SPFIFO_RECV</TD>
+<TD bgColor=#eeeeee>ARM9・ARM7間受信FIFOノットエンプティ割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_CARD_DATA</TD>
+<TD bgColor=#eeeeee>カードデータ転送終了割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_CARD_IREQ</TD>
+<TD bgColor=#eeeeee>カードIREQ割り込み</TD>
+    </TR>
+<TR>
+<TD bgColor=#eeeeee>OS_IE_GXFIFO</TD>
+<TD bgColor=#eeeeee>ジオメトリコマンドFIFO割り込み</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B><FONT color="#ff0033"><BR>
+<BR>
+*1</FONT></B>　キー割り込みはハードウェアの仕様上、使用しないで下さい。ただし、スリープからの復帰に使用することは可能です。<BR>
+</P>
+<HR>
+<P><B>割り込み関連のレジスタとワーク領域</B></P>
+<P>全ての割り込みのイネーブル・ディセーブルを切り替えるマスターイネーブルフラグはレジスタ
+reg_IME (0x04000208) にあります。このビットが1 ならばイネーブルで、0 ならばディセーブルです。このフラグを操作する関数は
+<CODE><A href="OS_EnableIrq.html">OS_EnableIrq()</A></CODE>, <CODE><A href="OS_DisableIrq.html">OS_DisableIrq()</A></CODE>, <CODE><A href="OS_RestoreIrq.html">OS_RestoreIrq()</A></CODE> です。</P>
+<BLOCKQUOTE><IMG src="image_reg_IME.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+割り込み発生の許可は、割り込み要因ごとに指定でき、I/O レジスタの reg_IE (0x04000210)
+で行ないます。ビットが1 のものがイネーブルとなっている割り込み要因です。このビットを設定・取得する関数は
+<CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask()</A></CODE>, <CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask()</A></CODE>, <CODE><A href="OS_EnableIrq.html">OS_EnableIrqMask()</A></CODE>, <CODE><A href="OS_DisableIrqMask.html">OS_DisableIrqMask()</A>です。( Set関数と Enable関数の違いに注意して下さい )<BR>
+</CODE></P>
+<BLOCKQUOTE><IMG src="image_reg_IE.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+割り込みリクエストレジスタ reg_IF (0x03000214) の各ビットは、対応する割り込みが発生したときに
+1 になります。割り込みと各ビットの関係は reg_IE と同じです。このフラグを設定・取得する関数は
+<CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask()</A></CODE>, <CODE><A href="OS_GetRequestIrqMask.html">OS_GetRequestIrqMask()</A></CODE> です。</P>
+<BLOCKQUOTE><IMG src="image_reg_IF.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+さらに、ARM9プロセッサのステータスレジスタ CPSR (Current Program Status
+Register) に、IRQ をイネーブルにするかどうかのビットがあります。( <A href="../system/about_System.html">システム(概要)</A>を参照)　　このレジスタの I フラグが 1 のときに IRQ はディセーブルとなり、0
+のときはイネーブルとなります。この「割り込み」カテゴリではなく「システム状態」カテゴリに含まれますが、このステータスを変更する関数は
+<CODE><A href="../system/OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_RestoreInterrupts()</A>です。</CODE></P>
+<BLOCKQUOTE><IMG src="../system/image_cpsr.gif" width="536" height="127" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+割り込みが発生したときに、割り込みハンドラでその割り込みが発生したことをチェックしておくためにチェックフラグ領域が設けてあります。この領域は
+DTCM 上にあります。割り込み要因と各ビットの関係は reg_IE と同じです。チェックフラグを設定・取得する関数は、<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag()</A>です。</CODE></P>
+<BLOCKQUOTE><IMG src="image_checkFlag.gif" border="0"></BLOCKQUOTE>
+<P><BR>
+<BR>
+割り込みはプロセッサ例外の一種です。システムは DTCM 上にある割り込みベクタ
+HW_INTR_VECTOR_BUF に格納されているアドレスにジャンプします。通常は OS
+の IRQ ハンドラのアドレスが格納されていますが、ユーザが独自割り込みルーチンを使いたい場合はここを書き換えることになります。</P>
+<BLOCKQUOTE><IMG src="image_intrVector.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>割り込み発生までの流れ</B></P>
+<P>デバイス等からの割り込みの通知は、下の図のような流れでプロセッサに到達します。</P>
+<BLOCKQUOTE><IMG src="image_irq1.gif" border="0"></BLOCKQUOTE>
+<P>指定のデバイスに対し、割り込みを発生させるように設定してあれば、そのデバイスの割り込み条件を満たしたときに、対応する
+IF のビットが 1 になります。</P>
+<P>1 になった IF のビットの割り込み要因が IE で許可されていなければ割り込みは発生しません。また、IME
+がディセーブルであれば割り込みは CPU に通知されません。ここまでの条件を満たせば割り込み通知がARM9プロセッサに到達しますが、CPSR
+の IRQフラグが0 (イネーブル)である場合にIRQ割り込みが発生します。1(ディセーブル)であった場合は
+IRQ割り込みは遅延されます。</P>
+<P>IRQ割り込みは、ARMプロセッサの例外の一種 ( IRQ 例外 ) です。詳細は <A href="../exception/about_exception.html">例外(概要)</A> を参照してください。</P>
+<P>IRQ 例外が発生したとき、ARM9 プロセッサはプログラムを中断して 0xFFFF0018
+にジャンプします。下の図を参照してください。</P>
+<BLOCKQUOTE><IMG src="image_irq2.gif" border="0"></BLOCKQUOTE>
+<P>0xFFFF0018 アドレスにジャンプした後、DTCM の一領域である HW_INTR_VECTOR_BUF
+に格納されているアドレスに制御が移ります。これは通常 OS の IRQハンドラのアドレスとなっています。ユーザが
+IRQ ハンドラを独自に作成する際は、HW_INTR_VECTOR_BUF を書き換えてください。IRQ
+ハンドラの中からは、事前に登録しておいたユーザの割り込みハンドラが呼び出されます。IRQハンドラから戻った後は、割り込みが発生したアドレスの次からプログラムを再開します。(
+ただし、スレッドが切り替わることもあります。<A href="../thread/about_Thread.html">スレッド(概要)</A> を参照 )</P>
+<P>OS の IRQ ハンドラ内の処理をさらに詳しく説明します。</P>
+<BLOCKQUOTE><IMG src="image_irq3.gif" border="0"></BLOCKQUOTE>
+<P>ハンドラの最初では IME がイネーブルかどうかを調べ、イネーブルでなければ何もせずに戻ります。次に
+IE と IF の論理積をとり、これが 0 であれば何もせずに戻ります。0でなければ、1
+となっているビットが今回処理する割り込みということになります。ここで IME
+と IE と IF を調べるのは、I/O レジスタにアクセスして割り込み禁止処理や割り込み要因の変更処理をしている間にも、その変更より先に割り込み信号がプロセッサに入ることがあるからです。ここでチェックを行なうことにより、正確に
+I/O レジスタの設定に準じることが保証できます。</P>
+<P>その後の流れを説明します。先ほど計算した IE と IF の論理積の結果、1 となっているビットに対応する割り込みハンドラを呼び出します。このハンドラは、予めユーザが
+IRQ テーブルに登録しておきます。IRQ ハンドラからはこのテーブルを参照してユーザの割り込みハンドラのアドレスを取得します。</P>
+<P>ユーザの割り込みハンドラから戻った後、ユーザプログラムに復帰します。ただし割り込みハンドラ内でスレッドの切り替えが発生するような事象が生じていれば、スレッドのリスケジューリングが行なわれます。(
+<A href="../thread/about_Thread.html">スレッド(概要)</A>　参照 )</P>
+<P>なお、ユーザの割り込みハンドラの中では、割り込みに対応するチェックフラグをセットしてください。このフラグは他のOS関数で使用されますが、その関数を使わない場合はチェックフラグをセットする必要は本来ありません。しかし個別に処理を変えることで実際に必要な個所で記述し忘れることもあるかもしれませんので、問題がなければ常に割り込みに対してはセットすることをお奨めします。(
+<CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE> 参照 )</P>
+<HR>
+<P><B>割り込みのイネーブル・ディセーブル</B></P>
+<P>以下の関数は全ての割り込みのマスターイネーブルフラグを操作します。</P>
+<P><CODE><A href="OS_EnableIrq.html">OS_EnableIrq()</A></CODE>, <CODE><A href="OS_DisableIrq.html">OS_DisableIrq()</A></CODE>, <CODE><A href="OS_RestoreIrq.html">OS_RestoreIrq()</A></CODE></P>
+<HR>
+<P><B>システム状態の割り込みイネーブル・ディセーブル</B></P>
+<P>詳細は <A href="../system/about_System.html">システム(概要)</A>を参照して下さい。以下は、「割り込み」カテゴリではなく「システム」カテゴリの関数です。<BR>
+これらの関数で CPSR のステータスを変更することが出来ます。</P>
+<P><CODE><A href="../system/OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE>, <CODE><A href="../system/OS_DisableInterrupts.html">OS_RestoreInterrupts()</A></CODE></P>
+
+<HR>
+<P><B>割り込み要因の設定</B></P><P>以下の関数で割り込み要因を設定・取得することが出来ます。</P>
+
+<P>
+<CODE><A href="OS_SetIrqMask.html">OS_SetIrqMask()</A></CODE>, <CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask()</A></CODE>, <CODE><A href="OS_EnableIrq.html">OS_EnableIrqMask()</A></CODE>, <CODE><A href="OS_DisableIrqMask.html">OS_DisableIrqMask()</A></CODE>
+</P>
+<HR>
+<P><B>割り込みリクエストフラグの操作</B></P>
+<P>以下の関数で割り込みリクエストフラグを操作することが出来ます。</P>
+<P><CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask()</A></CODE>, <CODE><A href="OS_GetRequestIrqMask.html">OS_GetRequestIrqMask()</A></CODE></P>
+<HR>
+<P><B>割り込みハンドラの設定</B></P>
+<P>以下の関数で割り込みハンドラを設定・取得することが出来ます。</P>
+
+<P>
+<CODE><A href="OS_InitIrqTable.html">OS_InitIrqTable()</A></CODE>, <CODE><A href="OS_SetIrqFunction.html">OS_SetIrqFunction()</A></CODE>, <CODE><A href="OS_GetIrqFunction.html">OS_GetIrqFunction()</A></CODE>
+</P>
+<HR>
+<P><B>割り込みチェックフラグの操作</B></P>
+<P>以下の関数で割り込みチェックフラグを操作します。</P>
+<P><CODE><A href="OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag()</A></CODE>, <CODE><A href="OS_ClearIrqCheckFlag.html">OS_ClearIrqCheckFlag()</A></CODE>, <CODE><A href="OS_GetIrqCheckFlag.html">OS_GetIrqCheckFlag()</A></CODE></P>
+<HR>
+<P><B>割り込み待ち</B></P>
+<P>割り込みが発生するまで、ウェイトするという目的で次の関数が用意されています。</P>
+<P><CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE>, <CODE><A href="OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE>, <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE></P>
+<P>このうち <CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> 、 <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> は引数で指定した割り込みを待ちます。<BR>
+これに対し、<CODE><A href="OS_WaitAnyIrq.html">OS_WaitAnyIrq()</A></CODE> はあらゆる割り込みを待ちます。</P>
+<P><CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> と <CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> の違いは、割り込みを待つ際の動作です。<CODE><A href="OS_WaitIrq.html">OS_WaitIrq()</A></CODE> はコンテキストを切り替えて他のスレッドに処理を移しますが、<CODE><A href="../system/OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> は <CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> を呼んでその場で停止しますのでスレッドの切り替わりは発生しません。スレッドシステムを使用していない場合は両者の違いはありません。</P>
+<P>システムコールには Vブランクを待つための <CODE><A href="../../svc/SVC_WaitVBlankIntr.html">SVC_WaitVBlankIntr()</A></CODE> という関数があります。この関数はスレッドを切り替えません。</P>
+<P>これらの割り込み待ち関数の内部では、<CODE><A href="../system/OS_Halt.html">OS_Halt()</A></CODE> で一時停止状態になっていたり他のスレッドに処理を明け渡していますが、割り込みが発生して実行状態になったときに、発生したのが指定の割り込みだったかどうか判定するために、割り込みチェックフラグを参照します。そのため割り込みハンドラでは、割り込みチェックフラグをセットする必要があります。</P>
+<HR>
+<P><B>Vブランクカウンタについて</B></P>
+<P>Vブランク割り込みを利用したVブランクカウンタの値を取得する以下の関数が用意されています。</P>
+<P><CODE><A href="OS_GetVBlankCount.html">OS_GetVBlankCount()</A></CODE></P>
+<P>内部では、ARM7 が常にVブランク割り込みをイネーブルにしておき、割り込みの回数をメインメモリの共有領域に書き込みます。ARM9
+のその命令は、共有領域に書かれた値を返します。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Irq">OS関数一覧(割り込み)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/14 用語や語尾など修正<BR>
+2004/12/08 OS_IE_KEY についての注意を追加<BR>
+2004/11/17 初版</P>
+</BODY>
+</HTML>

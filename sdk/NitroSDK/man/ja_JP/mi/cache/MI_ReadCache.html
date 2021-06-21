@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_ReadCache</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_ReadCache</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  BOOL MI_ReadCache(<a href="./MICache.html">MICache</a> *cache, void *buffer, u32 offset, u32 length);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>cache</strong></em></td>
+      <td width="87%">アクセスする<a href="./MICache.html">MICache</a>構造体へのポインタ<br />
+      <a href="./MI_InitCache.html">MI_InitCache</a>関数で初期化されている必要があります。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>buffer</strong></em></td>
+      <td width="87%">読み込んだデータを格納する転送先メモリ
+      NULLを指定した場合は、指定範囲のキャッシュ先読みを指示します。<br />
+      詳細は後述の「説明」をご参照ください。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>offset</strong></em></td>
+      <td width="87%">データを読み込むべきデバイス上の先頭アドレス</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>length</strong></em></td>
+      <td width="87%">読み込むサイズ</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>キャッシュにヒットして読み込みが成功すればTRUE、そうでなければFALSE。</p>
+
+<h2>説明</h2>
+<p><a href="./MICache.html">MICache</a>構造体のキャッシュページリストからデータを読み込みます。<br />
+指定された範囲のデータがすでに<a href="MI_LoadCache.html">MI_LoadCache</a>関数によってロード済みであれば、
+キャッシュページリストからデータをコピーしてTRUEを返します。<br />
+指定された範囲の一部または全てがキャッシュページリストに存在しない場合は、
+キャッシュページリスト内のもっとも使用されていないページを破棄してロード待ち状態にし、FALSEを返します。<br />
+ロード待ち状態になったページは、次回の<a href="MI_LoadCache.html">MI_LoadCache</a>関数呼び出しで実際にロードされます。
+</p>
+<p>
+転送先メモリであるbufferにNULLを指定した場合はキャッシュにヒットしても何もしませんが、
+ヒットしなかった範囲のページをロード待ち状態にする処理は同様です。<br />
+よって、指定範囲を「先読み準備」するよう指示する目的で利用することができます。
+</p>
+<p>
+この関数はスレッドセーフです。
+別のスレッドが<a href="MI_LoadCache.html">MI_LoadCache</a>関数などを呼び出している間でも使用することが出来ます。
+</p>
+<p>
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+詳細は<a href="MICache.html">MICache</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitCache.html">MI_InitCache</a>
+<a href="MI_LoadCache.html">MI_LoadCache</a>
+<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
+<a href="MICache.html">MICache</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCM_CleanupAsync.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCM_CleanupAsync.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCM_CleanupAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCM_CleanupAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+s32   WCM_CleanupAsync( void );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			無線通信機能の停止シーケンスを開始する非同期関数です。<BR>
+			非同期処理が正常に開始された場合に内部状態は <CODE>WCM_PHASE_IDLE</CODE> から <CODE>WCM_PHASE_IDLE_TO_WAIT</CODE> に変化し、
+			非同期処理が正常に完了した際に <CODE>WCM_PHASE_WAIT</CODE> となります。当関数はこれらの内部状態である時のみ実行することができます。<BR>
+			<BR>
+			返り値が <CODE>WCM_RESULT_ACCEPT</CODE> であった場合には、対応する非同期処理通知が必ず一回発生し、コールバック関数が呼び出されます。
+		</P>
+
+
+		<H2>引数</H2>
+		<P>
+			ありません。
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+			以下のいずれかの処理結果を返します。
+		</P>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_ACCEPT</CODE></STRONG></EM></TD>
+					<TD width="75%">非同期シーケンス開始要求が受け付けられ、正常に非同期処理が開始されたことを示します。
+					非同期処理が終了した際に必ず一回コールバック関数が呼び出されます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_PROGRESS</CODE></STRONG></EM></TD>
+					<TD>当関数によって開始された非同期シーケンスが既に実行中であり、多重呼び出しであったことを示します。
+					多重に呼び出しても非同期処理終了通知は一回しか発生しません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
+					<TD>無線通信機能の停止シーケンスが既に完了しており、内部状態が <CODE>WCM_PHASE_WAIT</CODE> であったことを示します。
+					非同期処理は開始されませんので、非同期処理終了通知も発生しません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_REJECT</CODE></STRONG></EM></TD>
+					<TD>無線通信機能の停止シーケンスを開始しようとした際に、ARM7 への PXI 処理要求の発行に失敗したことを示します。
+					内部状態は <CODE>WCM_PHASE_IDLE</CODE> のままですので、リトライすることができます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
+					<TD>WCM ライブラリが初期化されていない、内部状態が <CODE>WCM_PHASE_IDLE</CODE>、<CODE>WCM_PHASE_IDLE_TO_WAIT</CODE>、<CODE>WCM_PHASE_WAIT</CODE> のいずれかでない、
+					などの原因で処理に失敗したことを示します。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FATAL_ERROR</CODE></STRONG></EM></TD>
+					<TD>復旧不可能なエラーが発生したことを示します。内部状態は <CODE>WCM_PHASE_FATAL_ERROR</CODE> となり、以後変更されません。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>非同期処理結果</H2>
+		<P>
+			<A href="WCM_StartupAsync.html"><CODE>WCM_StartupAsync</CODE> 関数</A>で指定したコールバック関数に以下のいずれかの非同期処理結果が渡されます。
+			通知種別は <CODE>WCM_NOTIFY_CLEANUP</CODE> に固定となります。
+		</P>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
+					<TD width="75%">非同期処理に成功し、無線機能が正常に停止されたことを示します。内部状態は <CODE>WCM_PHASE_WAIT</CODE> となります。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
+					<TD>非同期処理の途中で WM ライブラリから何らかのエラー通知を受けたことを示します。内部状態は <CODE>WCM_PHASE_IRREGULAR</CODE> となります。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAITAL_ERROR</CODE></STRONG></EM></TD>
+					<TD>非同期処理の途中で復旧不可能なエラーが発生したことを示します。内部状態は <CODE>WCM_PHASE_FATAL_ERROR</CODE> となり、以後変更されません。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_Finish.html">WCM_Finish</A>, <A href="WCM_StartupAsync.html">WCM_StartupAsync</A>, <A href="WCM_TerminateAsync.html">WCM_TerminateAsync</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

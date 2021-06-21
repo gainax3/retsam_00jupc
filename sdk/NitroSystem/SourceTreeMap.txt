@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+  Project:  NITRO-System
+  File:     SourceTreeMap.txt
+
+  Copyright 2004-2007 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Revision: 1.17 $
+-------------------------------------------------------------------------------
+
+●ソースツリーのディレクトリマップ
+
+以下は、NITRO-Systemライブラリのソースツリー全体図です。
+
+
+$NitroSystem            NITRO-SystemのROOTディレクトリ
+ │
+ ├─docs                   ドキュメント
+ │  │  
+ │  ├─Readme                 -  NITRO-System リリースに関するドキュメント(まずこちらへ)
+ │  ├─Foundation             -  NITRO-Foundationライブラリのドキュメント
+ │  ├─GraphicsFoundation     -  NITRO-GraphicsFoundationライブラリのドキュメント
+ │  ├─G2D                    -  NITRO-2DGraphicsライブラリのドキュメント
+ │  ├─G3D                    -  NITRO-3DGraphicsライブラリのドキュメント
+ │  ├─NitroComposer          -  NITRO-Composerのドキュメント
+ │  ├─mcs                    -  Multiple Channel Streamライブラリのドキュメント
+ │  └─NitroPlayer            -  NITRO-Playerのドキュメント
+ │
+ ├─build                  ビルドディレクトリ
+ │  │
+ │  ├─buildtools             -  ビルドに必要なファイル
+ │  │
+ │  ├─demos                  -  デモアプリケーション
+ │  │  │
+ │  │  ├─fnd                -  -  NITRO-Foundationライブラリのデモ
+ │  │  ├─gfd                -  -  NITRO-GraphicsFoundationライブラリのデモ
+ │  │  ├─g2d                -  -  NITRO-2DGraphicsライブラリのデモ
+ │  │  ├─g3d                -  -  NITRO-3DGraphicsライブラリのデモ
+ │  │  ├─snd                -  -  NITRO-Composerライブラリのデモ
+ │  │  ├─mcs                -  -  Muitiple Channel Streamライブラリのデモ
+ │  │  └─IDE                -  -  CodeWarrior IDE プロジェクトサンプル
+ │  │
+ │  └─libraries              -  ライブラリのソース
+ │      │
+ │      ├─fnd                -  -  NITRO-Foundationライブラリのソース
+ │      ├─gfd                -  -  NITRO-GraphincsFoundationライブラリのソース
+ │      ├─g2d                -  -  NITRO-2DGraphicsライブラリのソース
+ │      ├─g3d                -  -  NITRO-3DGraphicsライブラリのソース
+ │      ├─snd                -  -  NITRO-Composerライブラリのソース
+ │      └─mcs                -  -  Muitiple Channel Streamライブラリのソース
+ │
+ ├─include                インクルードファイル
+ │  │
+ │  └─nnsys                  - NITRO-System用ヘッダファイル
+ │      │
+ │      ├─fnd                -  -  NITRO-Foundationヘッダファイル
+ │      ├─gfd                -  -  NITRO-GraphincsFoundationヘッダファイル
+ │      ├─g2d                -  -  NITRO-2DGraphicsヘッダファイル
+ │      ├─g3d                -  -  NITRO-3DGraphicsヘッダファイル
+ │      ├─snd                -  -  NITRO-Composerヘッダファイル
+ │      └─mcs                -  -  Muitiple Channel Streamヘッダファイル
+ │
+ ├─man                    リファレンスマニュアル（HTML）
+ │  │
+ │  └─ja_JP                  -  日本語
+ │
+ ├─lib                    ライブラリの作成先
+ │  │  
+ │  └─ARM9-TS                -  メインプロセッサ TS以降用ライブラリ
+ │      │
+ │      ├─Debug              -  -  Debug   版
+ │      ├─Release            -  -  Release 版
+ │      └─Rom                -  -  最終ROM 版
+ │
+ └─tools                  NITRO-Systemツール
+     │
+     ├─nitro                  -  NITRO実機用ツール
+     │  │
+     │  └─SoundPlayer        -  -  サウンドプレイヤ関係のファイル
+     │
+     └─win                    -  Windows用ツール
+         │
+         ├─bin                -  -  コンバータ等の実行ファイル
+         ├─fontcvtr           -  -  フォントコンバータ
+         ├─mcsserver          -  -  mcsサーバ
+         └─NitroPlayer        -  -  NITRO-Player
+

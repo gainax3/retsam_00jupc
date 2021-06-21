@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndStrmSetVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndStrmSetVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndStrmSetVolume( NNSSndStrm* <var>stream</var>, int <var>volume</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>stream</code></strong></em></td>
+<td>ストリーム構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>ボリュームの値です。単位は 0.1dBで、0dB の時最大になります。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリームのボリュームを変更します。ボリュームのデフォルト値は、0dBです。
+</p>
+      <p>
+全てのチャンネルに対するボリュームを変更します。
+各チャンネル毎のボリュームを変更するには、
+<tt class="function"><a href="NNS_SndStrmSetChannelVolume.html">NNS_SndStrmSetChannelVolume</a></tt>関数を
+呼びだします。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndStrmSetChannelVolume.html">NNS_SndStrmSetChannelVolume</a></p>
+<h2>履歴</h2>
+<p>2004/08/10 初版<br></p>
+</div>
+</body>
+</html>

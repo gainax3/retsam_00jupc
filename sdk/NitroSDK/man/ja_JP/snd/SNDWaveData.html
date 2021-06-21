@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SNDWaveData</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SNDWaveData</h1>
+<h2>定義</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct SNDWaveParam
+{
+    u8  format;
+    u8  loopflag;
+    u16 rate;
+    u16 timer;
+    u16 loopstart;
+    u32 looplen;
+} SNDWaveParam;
+</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct SNDWaveData
+{
+    struct SNDWaveParam param;
+    u8 samples[0];
+} SNDWaveData;
+</code></pre></dd>
+<dd><pre class="funcprototype"></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDARLWT"></a>
+      <h2>要素</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>format</code></strong></em></td>
+<td>サンプルフォーマットです。</td>
+</tr>
+<tr>
+<td><em><strong><code>loopflag</code></strong></em></td>
+<td>ループフラグです。０ならループ無し、非０ならループ有りです。</td>
+</tr>
+<tr>
+<td><em><strong><code>rate</code></strong></em></td>
+<td>サンプリングレートです。単位はHzです。</td>
+</tr>
+<tr>
+<td><em><strong><code>timer</code></strong></em></td>
+<td>再生タイマー値です。SND_TIMER_CLOCK / rate に相当します。</td>
+</tr>
+<tr>
+<td><em><strong><code>loopstart</code></strong></em></td>
+<td>ループ開始ポイントです。単位はワード（32bit）です。</td>
+</tr>
+<tr>
+<td><em><strong><code>looplen</code></strong></em></td>
+<td>ループ長です。ループ無しの場合は、波形長に相当します。
+            単位はワード（32bit）です。</td>
+</tr>
+<tr>
+<td><em><strong><code>samples</code></strong></em></td>
+<td>サンプルデータの配列です。配列の大きさは、
+            <em><strong><code>loopstart</code></strong></em>+<em><strong><code>looplen</code></strong></em>[word]です。
+          </td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAPNWT"></a>
+      <h2>説明</h2>
+      <p>
+波形データ構造体です。波形データのヘッダ情報及びサンプルデータを保持しています。
+</p>
+      <p>
+サンプルフォーマット<em><strong><code>format</code></strong></em>は以下の値を取ります。
+</p>
+      <div class="table"><a name="IDA0NWT"></a><p class="title"><b>表 . SNDWaveFormat</b></p>
+<table summary="SNDWaveFormat" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_WAVE_FORMAT_PCM8</td>
+<td>8bit PCM</td>
+</tr>
+<tr>
+<td>SND_WAVE_FORMAT_PCM16</td>
+<td>16bit PCM</td>
+</tr>
+<tr>
+<td>SND_WAVE_FORMAT_ADPCM</td>
+<td>IMA-ADPCM</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <p>
+サンプルフォーマットが<em><strong><code>SND_WAVE_FORMAT_ADPCM</code></strong></em>の場合、
+サンプルデータ<em><strong><code>samples</code></strong></em>の先頭１wordには、
+次のようなADPCMのヘッダ情報が格納されます。
+</p>
+
+      <pre class="programlisting">
+struct {
+    s16 prevsample; // 前のサンプル値
+    u8  previndex;  // 前のインデックス値
+    u8  padding;    // パディング(常に0)
+};
+</pre>
+      
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2005/01/19 初版<br></p>
+</div>
+</body>
+</html>

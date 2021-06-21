@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SocGetLength</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SocGetLength</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>s32 CPS_SocGetLength(void);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<P>なし。</P>
+
+<h2>返り値</h2>
+<P>受信バッファ内のデータ数</P>
+
+<h2>説明</h2>
+
+<p>受信バッファ内のデータ数を返します。<BR>
+	TCP通信で、バッファが空で接続が切断されているときは -1 を返します。<BR>
+	ブロックしません。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocRead.html">CPS_SocRead</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

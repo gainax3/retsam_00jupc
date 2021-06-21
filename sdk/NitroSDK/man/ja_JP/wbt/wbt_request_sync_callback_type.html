@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTRequestSyncCallback</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTRequestSyncCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+<pre>
+typedef	struct
+{
+	WBTBlockNumEntry num_of_list;
+	s16 peer_packet_size;
+	s16 my_packet_size;
+	u16 pad1;
+	u32 padd2[2];
+} WBTRequestSyncCallback;
+</pre>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P><A href="command/WBT_RequestSync.html" target="_self">WBT_RequestSync</A>関数の完了コールバックで渡される構造体です。<BR>
+<br>
+各メンバの内容は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>num_of_list</TD>
+      <TD>相手側に登録されているデータブロックの総数です。</TD>
+    </TR>
+    <TR>
+      <TD>peer_packet_size</TD>
+      <TD>相手から送信(自身が受信)するMP通信パケットサイズです。</TD>
+    </TR>
+    <TR>
+      <TD>my_packet_size</TD>
+      <TD>自身から送信(相手が受信)するMP通信パケットサイズです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR></P>
+</body>
+</html>

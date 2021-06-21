@@ -1,0 +1,77 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_GetMOMinCompState</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_GetMOMinCompState</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+int DWC_GetMOMinCompState( u64* time );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+	  指定人数以下マッチメイク完了オプション設定時の、現在の状態を取得します。
+    </P>
+	<P>
+	  このマッチメイクオプションは、ピアマッチメイクにおいて、一定時間を過ぎてもマッチメイクが完了しない場合に、<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A> / <A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>関数で指定した人数以下でのマッチメイクを許可するものです。
+	  <A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>関数で設定することができます。
+	</P>
+	<P>
+	  本関数では、オプションとして設定したタイムアウト時間が過ぎたかどうかと、マッチメイク開始からの経過時間を取得することができます。
+	</P>
+
+    <H2>引数</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>time</CODE></STRONG></EM></TD>
+          <TD>ピアマッチメイク開始からの経過時間（単位：msec）格納先ポインタ。必要なければNULLを指定してください。</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+
+    <H2>返り値</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>0</CODE></STRONG></EM></TD>
+          <TD>オプションとして設定したタイムアウト時間内。</TD>
+        </TR>
+		<TR>
+          <TD width="25%"><EM><STRONG><CODE>1</CODE></STRONG></EM></TD>
+          <TD>オプションとして設定したタイムアウト時間を過ぎており、指定人数以下でマッチメイクが完了する可能性がある。</TD>
+        </TR>
+		<TR>
+          <TD width="25%"><EM><STRONG><CODE>-1</CODE></STRONG></EM></TD>
+          <TD>このマッチメイクオプションが設定されていない、もしくは無効と設定されている。</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+		<A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>,
+		<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A>,
+		<A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+      2005/12/16 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

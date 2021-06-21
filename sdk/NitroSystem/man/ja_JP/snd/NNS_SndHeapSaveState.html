@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndHeapSaveState</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndHeapSaveState</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">int NNS_SndHeapSaveState( NNSSndHeapHandle <var>heap</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>状態保存後の階層レベルを返します。状態の保存に失敗すると、-1を返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドヒープの状態を保存します。
+</p>
+      <p>
+ヒープ作成直後の階層レベルは0で、この関数を呼ぶ毎に、階層レベルが１つ増えます。
+<tt class="function"><a href="NNS_SndHeapLoadState.html">NNS_SndHeapLoadState</a></tt>関数を呼びだすことで、
+指定した階層レベルの保存直後の状態に復元させることができます。
+</p>
+      <p>
+状態の保存には、ヒープを少し消費します。ヒープの空き容量が少ない場合は、関数に失敗します。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndHeapLoadState.html">NNS_SndHeapLoadState</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

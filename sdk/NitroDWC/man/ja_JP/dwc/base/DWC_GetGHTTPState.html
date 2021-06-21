@@ -1,0 +1,107 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetGHTTPState</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetGHTTPState</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCGHTTPState DWC_GetGHTTPState( int req );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  GHTTPライブラリによるHTTP通信状態を取得します。
+		</P>
+		<P>
+		  引数reqには、
+		  <A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A> 関数、
+		  <A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A> 関数、
+		  <A href="DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2</A> 関数、
+		  <A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A> 関数
+		  の返り値であるリクエスト識別子を指定して下さい。</TD>
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>req</CODE></STRONG></EM></TD>
+					<TD width="75%">リクエスト識別子</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>DWC_GHTTP_FALSE</CODE></STRONG></EM></TD>
+					<TD width="75%">通信失敗</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_HOST_LOOKUP</CODE></STRONG></EM></TD>
+					<TD>ホスト名をIPに変換中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_CONNECTING</CODE></STRONG></EM></TD>
+					<TD>ソケット接続完了待ち</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_SECURING_SESSION</CODE></STRONG></EM></TD>
+					<TD>安全なチャンネルを確立中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_SENDING_REQUEST</CODE></STRONG></EM></TD>
+					<TD>リクエスト送信中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_POSTING</CODE></STRONG></EM></TD>
+					<TD>データ送信中（送信しない場合はスキップ）</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_WAITING</CODE></STRONG></EM></TD>
+					<TD>レスポンス待ち</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_RECEIVING_STATUS</CODE></STRONG></EM></TD>
+					<TD>レスポンスの状態を受信中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_RECEIVING_HEADERS</CODE></STRONG></EM></TD>
+					<TD>ヘッダを受信中</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>DWC_GHTTP_RECEIVING_FILE</CODE></STRONG></EM></TD>
+					<TD>ファイルを受信中</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_GetGHTTPData.html">DWC_GetGHTTPData</A>,
+				<A href="DWC_GetGHTTPDataEx.html">DWC_GetGHTTPDataEx</A>,
+				<A href="DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2</A>,
+				<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/12/27 DWC_GetGHTTPDataEx2関数の追加に伴う修正<BR>
+			2005/10/27 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

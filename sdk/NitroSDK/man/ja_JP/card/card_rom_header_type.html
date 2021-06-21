@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARDRomHeader</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARDRomHeader</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><br>
+  <br>
+  <pre>
+/* ROM ヘッダ 構造体 */
+typedef struct
+{
+
+    /* 0x000-0x020 [システム予約領域] */
+    char            game_name[12];      /* ソフトタイトル名 */
+    u32             game_code;          /* イニシャルコード */
+    u16             maker_code;         /* メーカーコード */
+    u8              product_id;         /* 本体コード */
+    u8              device_type;        /* デバイスタイプ */
+    u8              device_size;        /* デバイス容量 */
+    u8              reserved_A[9];      /* システム予約 A */
+    u8              game_version;       /* ソフトバージョン */
+    u8              property;           /* 内部使用フラグ */
+
+    /* 0x020-0x040 [常駐モジュール用パラメータ] */
+    void*           main_rom_offset;    /* ARM9 転送元 ROM オフセット */
+    void*           main_entry_address; /* ARM9 実行開始アドレス(未実装) */
+    void*           main_ram_address;   /* ARM9 転送先 RAM オフセット */
+    u32             main_size;          /* ARM9 転送サイズ */
+    void*           sub_rom_offset;     /* ARM7 転送元 ROM オフセット */
+    void*           sub_entry_address;  /* ARM7 実行開始アドレス(未実装) */
+    void*           sub_ram_address;    /* ARM7 転送先 RAM オフセット */
+    u32             sub_size;           /* ARM7 転送サイズ */
+
+    /* 0x040-0x050 [ファイルテーブル用パラメータ] */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   fnt;                /* ファイルネームテーブル */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   fat;                /* ファイルアロケーションテーブル */
+
+    /* 0x050-0x060 [オーバーレイヘッダテーブル用パラメータ] */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   main_ovt;           /* ARM9 オーバーレイヘッダテーブル */
+    <A href="card_rom_region_type.html">CARDRomRegion</a>   sub_ovt;            /* ARM7 オーバーレイヘッダテーブル */
+
+    /* 0x060-0x070 [システム予約領域] */
+    u8              rom_param_A[8];     /* マスク ROM コントロールパラメータ A */
+    u32             banner_offset;      /* バナーファイル ROM オフセット */
+    u16             secure_crc;         /* セキュア領域 CRC */
+    u8              rom_param_B[2];     /* マスク ROM コントロールパラメータ B */
+
+    /* 0x070-0x078 [オートロードパラメータ] */
+    void*           main_autoload_done; /* ARM9 オートロードフックアドレス */
+    void*           sub_autoload_done;  /* ARM7 オートロードフックアドレス */
+
+    /* 0x078-0x0C0 [システム予約領域] */
+    u8              rom_param_C[8];     /* マスク ROM コントロールパラメータ C */
+    u32             rom_size;           /* アプリケーション最終 ROM オフセット */
+    u32             header_size;        /* ROM ヘッダサイズ */
+    u8              reserved_B[0x38];   /* システム予約 B */
+
+    /* 0x0C0-0x160 [システム予約領域] */
+    u8              logo_data[0x9C];    /* NINTENDO ロゴイメージデータ */
+    u16             logo_crc;           /* NINTENDO ロゴ CRC */
+    u16             header_crc;         /* ROM 内登録データ CRC */
+
+} CARDRomHeader;
+</pre><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ROM 内登録データの情報を表す構造体です。<br>
+各メンバの内容については, プログラミングマニュアルに記述された厳密な定義を参照してください。<br>
+<br>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="rom/CARD_GetRomRegionFNT.html">CARD_GetRomRegionFNT</A> 
+<A href="rom/CARD_GetRomRegionFAT.html">CARD_GetRomRegionFAT</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/18 初版<br>
+</P>
+</body>
+</html>

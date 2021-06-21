@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_StartParent</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_StartParent</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_StartParent( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理の状況通知、及び完了した際に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+ </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>で指定したパラメータに基づいて、親機としての活動を開始します。
+WMが<A href="wm_state_diagram.html">IDLEステート</A>のときにのみ実行可能であり、<A href="wm_state_diagram.html">PARENTステート</A>に移行します。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、親機としての活動開始処理が完了した後にコールバックが発生します。<BR>
+現在の接続子機台数がmaxEntry(<A href="WM_SetParentParameter.html">WM_SetParentParameter</A>で指定)より少ない場合は、子機の受け入れを行い、接続完了時にコールバックが発生します。１回のコールバックで取得できる子機情報は1台分のみです。<BR>
+また、<A href="WM_SetBeaconIndication.html">WM_SetBeaconIndication</A>関数によりビーコン送信indicateが有効になっている場合には、ビーコンが送信される度に
+この関数で指定したコールバックが発生します。<BR>
+また、接続が完了した子機から切断された場合は、その子機のAIDを示すコールバックが別途発生します。</P>
+
+<h2>注意</h2>
+<P>
+この関数を呼び出した後、正常に親機として活動が開始された場合にコールバックが発生しますが、場合によってはこのコールバックが発生する前に
+ビーコン送信完了通知や子機から接続・切断されたことを示す通知が発生することがあります。
+親機としての初期化処理などを行う場合はコールバックが発生した際に行うのではなく、この関数を呼び出す前に行っておくようにして下さい。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>, <A href="WM_EndParent.html">WM_EndParent</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/02/07 コールバックに関する注意を追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

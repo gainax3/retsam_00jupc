@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_DisconnectChild</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_DisconnectChild</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MB_DisconnectChild( u16 aid );<BR>
+  </CODE><br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%">切断する子機のaidを指定</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>MB親機に接続されている子機を親機側から強制切断します。<BR>
+この関数が実行されると、即座にマルチブート子機としての管理から外れ、<BR>
+ワイヤレスの切断処理が開始されます。<BR>
+ワイヤレスの切断完了コールバックは返りません。<br>
+<br>
+
+<h2>参照</h2>
+
+<H2>履歴</H2>
+<P>2004/11/10 初版<BR>
+</P>
+</body>
+</html>

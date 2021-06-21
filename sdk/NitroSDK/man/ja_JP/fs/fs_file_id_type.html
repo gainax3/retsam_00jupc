@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSFileID</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSFileID</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+typedef	struct<BR>
+{<BR>
+/* private: (except direct operation with FSArchive) */<BR>
+	struct	FSArchive	*arc;	/* attached archive */<BR>
+	u32	file_id;	/* index of FAT of attached archive */<BR>
+} FSFileID;</CODE><BR>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ファイルシステムに含まれる一意のファイルを示す ID を表します。<BR>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="file/FS_OpenFileFast.html">FS_OpenFileFast</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/05/20 FSFileID型変更に伴う修正<BR>
+2004/05/14 初版<BR>
+</P>
+</body>
+</html>

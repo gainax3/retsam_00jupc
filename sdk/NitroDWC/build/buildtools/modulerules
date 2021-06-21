@@ -1,0 +1,94 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroDWC - buildtools
+# File:     modulerules
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules,v $
+# Revision 1.6  2005/08/19 14:55:48  nakamud
+# NITRO_USEWIFIを見ているところを、NITRO_USEINETを見るようにした。
+#
+# Revision 1.5  2005/08/06 10:29:22  seiki
+# コンパイルスイッチを commondefs に移動
+#
+# Revision 1.4  2005/08/06 10:03:14  seiki
+# NitroWiFi 使用時に AOSS とらくらく関係を切り離すコンパイルスイッチを追加
+#
+# Revision 1.3  2005/08/06 07:30:59  sasakit
+# NitroWiFiライブラリでのコンパイルに対応。
+#
+# Revision 1.2  2005/08/06 01:40:23  sasakit
+# NitroSDK2.1/2.2環境で、うまくコンパイルされなかった問題を修正。
+#
+# Revision 1.1.1.1  2005/08/02 08:02:29  sasakit
+# First import of NitroDWC source tree.
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+ifdef NITRO_USEINET
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# NITRO-INET の場合              #
+
+    include $(NITROINET_ROOT)/build/buildtools/modulerules
+
+#--------
+# NITRO-SYSTEM の commondefs もしくは NITRO-SDK の commondefs も同時にインクルードされる。
+#--------
+
+#________________________________#
+
+
+else
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# NITRO-WIFIの場合               #
+
+ifdef NITROSYSTEM_ROOT
+
+    include $(NITROSYSTEM_ROOT)/build/buildtools/modulerules
+
+else
+
+    include $(NITROSDK_ROOT)/build/buildtools/modulerules
+
+endif
+
+
+ifdef NITROWIFI_ROOT
+
+    include $(NITROWIFI_ROOT)/build/buildtools/modulerules.WiFi
+
+#--------
+# NITRO-INET でも NITRO-WIFI でもない場合はソケットはインクルードされない。
+#--------
+
+endif
+
+#________________________________#
+
+
+endif
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+# NITRO-DWC は最後に指定       #
+
+#  INCLUDESにSDK2.x対策を入れる。
+INCLUDES		= -gccinc -I. $(INCLUDE_DIRS)
+    include $(NITRODWC_ROOT)/build/buildtools/modulerules.dwc
+
+#________________________________#
+
+
+#===== End of modulerules =====

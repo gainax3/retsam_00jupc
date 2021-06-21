@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_Resolve</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_Resolve</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>CPSInAddr CPS_Resolve(const char *name);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>name</strong></em></code></td>
+    <td>名前。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>IPアドレス</P>
+
+<h2>説明</h2>
+
+<p>DNSサーバに対して問い合わせ、名前をIPアドレスに変えます。名前はキャッシュされることはないので、必要ならアプリケーション側でキャッシュすることになります。この機能自体UDPを使用するので、既にCPS_SocUseの状態になっている場合は使用できません。CPS_SocRegisterは実行されている必要があります。<BR>
+	ブロックします。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocRegister.html">CPS_SocRegister</A></CODE>, 
+<CODE><A href="CPS_SocUse.html">CPS_SocUse</A></CODE>, 
+<CODE><A href="CPS_RevResolve.html">CPS_RevResolve</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/11/09 name に const を追加<BR>
+2005/10/21 初版</P>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_CalcChannelVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKUT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_CalcChannelVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">u16 SND_CalcChannelVolume( int <var>dB</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA5LUT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>dB</code></strong></em></td>
+<td>デシベル値です。単位は0.1dBで、値の範囲は、-723～0 (-72.3dB ～ 0.0dB) です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAOMUT"></a>
+      <h2>返り値</h2>
+
+      <p>チャンネルボリューム値を16ビットで返します。下位8ビットにはボリューム値が、上位8ビットにはデータシフト値が格納されています。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAVMUT"></a>
+      <h2>説明</h2>
+      <p>
+チャンネルボリューム値を計算します。
+</p>
+      <p>
+<tt class="function"><a href="SND_SetChannelVolume.html">SND_SetChannelVolume</a></tt>関数などで
+直接扱えるボリューム値を取得することができます。
+返り値の下位８ビットには、0～127の範囲のボリューム値が入ります。
+上位８ビットには、<span class="type">SNDChannelDataShift</span>型の値が入ります。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_SetChannelVolume.html">SND_SetChannelVolume</a></p>
+<h2>履歴</h2>
+<p>2004/09/02引数の単位に関する説明追加<br>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCPrototypeDBParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCPrototypeDBParam</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef struct PRCPrototypeDBParam
+{
+    int                     normalizeSize;
+    <A href="PRCResampleMethod.html">PRCResampleMethod</A>       resampleMethod;
+    int                     resampleThreshold;
+} PRCPrototypeDBParam;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">normalizeSize</FONT></STRONG></EM></TD>
+      <TD width="87%">正規化後の長辺の長さ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">resampleMethod</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプリングに用いるアルゴリズムの指定</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">resampleThreshold</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプリングのパラメータ</TD>
+    </TR>
+  </tbody>
+</table>
+
+<H2>説明</H2>
+<P><font color="red">以下の機能の実装が予定されていますが、現時点では未実装です。<CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDBEx</A></CODE> は単純にこの引数を無視します。</font></P>
+<P><CODE><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDBEx</A></CODE> の引数です。</P>
+<P>正規化のプロセスでは、まず正規化したいパターンの全体のバウンディングボックスをとり、それから長辺が<CODE>normalizeSize</CODE> で指定したサイズになるように縦横比を維持したままでスケーリングを行います。このとき、短辺方向はセンタリングされます。</P>
+<P><CODE>normalizeSize</CODE> に 0 を指定すると、正規化を行いません。</P>
+<P><CODE>resample*</CODE> に関しては、<CODE><A href="PRCResampleMethod.html">PRCResampleMethod</A></CODE> を参照してください。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRCResampleMethod.html">PRCResampleMethod, </A><A href="PRC_InitPrototypeDB.html">PRC_InitPrototypeDB*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/28 regularize を normalize に変更<BR>
+2004/06/23 初版
+</P>
+</body>
+</html>

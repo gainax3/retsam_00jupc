@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetLinkLevel</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetLinkLevel</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMLinkLevel.html">WMLinkLevel</A> WM_GetLinkLevel( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>
+<A href="WMLinkLevel.html">WMLinkLevel列挙型</A>のリンク強度を返します。
+</p>
+
+<H2>説明</H2>
+<P>
+無線通信において接続されている通信相手とのリンク強度を取得します。
+接続されている通信相手が存在しない場合は最低リンク強度となります。
+親機のリンク強度は、接続されている全子機の中で最も低い強度が採用されます。
+</P>
+
+<h2>注意</h2>
+<p>
+IS-NITRO-EMULATORハードウェアを用いた<font color=red>有線通信環境において当関数を呼び出すと、必ず最低リンク強度が返されます</font>。
+この現象は、非常に低い電波強度で通信を行う有線通信環境に特有のもので、開発機材の仕様に起因するものです。
+当関数の返り値を評価する際には注意が必要です。
+</p>
+
+<H2>履歴</H2>
+<P>
+2004/10/01 開発環境による挙動の違いについて追記<BR>
+2004/08/25 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCM_Finish.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCM_Finish.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCM_Finish</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCM_Finish</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+s32   WCM_Finish( void );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			WCM ライブラリを終了させ、初期化前の状態に戻す同期関数です。<BR>
+			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって初期化した後であり、
+			かつ WCM ライブラリの内部状態が <CODE>WCM_PHASE_WAIT</CODE> である時にのみ実行することができます。<BR>
+			<BR>
+			終了処理に成功した場合、<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>によって再初期化するまでは WCM ライブラリに含まれる API を使用することができなくなりますが、
+			<A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>で与えたワークバッファは別の用途に使用できるよう解放されます。
+		</P>
+
+
+		<H2>引数</H2>
+		<P>
+			ありません。
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+			以下のいずれかの処理結果を返します。
+		</P>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>WCM_RESULT_SUCCESS</CODE></STRONG></EM></TD>
+					<TD width="75%">終了処理が正常に完了したことを示します。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>WCM_RESULT_FAILURE</CODE></STRONG></EM></TD>
+					<TD>WCM ライブラリが初期化されていない、内部状態が <CODE>WCM_PHASE_WAIT</CODE> でない、などの原因で終了処理に失敗したことを示します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCM_CleanupAsync.html">WCM_CleapupAsync</A>, <A href="WCM_TerminateAsync.html">WCM_TerminateAsync</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

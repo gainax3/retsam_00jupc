@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>スレッド (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">スレッド (overview)</H1>
+<H2>説明</H2>
+<P>NitroSDK にはスレッドシステムが用意されています。スレッドはそれぞれ独立したコンテキストを持ち、タスクを分割して少しずつ処理することで、1つのCPUの動作で見た目に複数のモジュールの並行動作を行なわせることが出来る機構です。</P>
+<P><IMG src="threadParallel.gif" border="0"></P>
+<P>スレッドの個数については、スレッド構造体やスタックがメモリに収まるかどうか以外の制限はありません。</P>
+<P>スレッドシステムの初期化は <CODE><A href="OS_InitThread.html">OS_InitThread()</A></CODE> を呼ぶことで行なわれます。 デフォルトでは、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいればスレッドシステムの初期化は行なわれていますので、アプリケーションで呼ぶ必要はありません。</P>
+<P>スレッドシステムが初期化されているかどうかは <CODE><A href="OS_IsThreadAvailable.html">OS_IsThreadAvailable()</A></CODE> で調べることが出来ます。</P>
+<P>スレッドシステムの初期化で、<CODE><A href="OS_InitThread.html">OS_InitThread()</A></CODE> を呼び出したプログラム自らのスレッド化と、アイドルスレッドの作成が行なわれるので、この時点ですでに2つのスレッドが立ち上がっていることになります。スレッドの個数は、<CODE><A href="OS_GetNumberOfThread.html">OS_GetNumberOfThread()</A></CODE> で取得することが出来ます。</P>
+<HR>
+<P><B>スレッドの状態</B></P>
+<P><CODE><A href="OS_CreateThread.html">OS_CreateThread()</A></CODE> で作成された直後のスレッドは、すぐに実行されるわけではありません。このスレッドはまだ「<FONT color="#ff0033">一時停止状態</FONT>」にあります。 <CODE><A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect()</A></CODE> を呼び出すと「<FONT color="#ff0033">実行可能状態</FONT>」となります。（そしてそのまま実行状態になる場合もあります。）</P>
+<P>スレッドには優先度(プライオリティ・priority) が設定されています。実行可能状態であるスレッドの中で、最も優先度の高いものが実行状態となります。優先度はスレッドを作成するときに指定しますが、処理の途中で
+<CODE><A href="OS_SetThreadPriority.html">OS_SetThreadPriority()</A></CODE> によって変更することも可能です。優先度は 0～31 で、<FONT color="#ff0033">値が小さいものがより優先度が高いスレッドである</FONT>と定めています。つまり、0 が最も優先度の高いスレッドとなります。同じ優先度の場合については内部状態に依存します。(本ドキュメントの「明示的なリスケジューリング」の項参照。)</P>
+<P>また、特別な優先度 32 のアイドルスレッドが作成されます。これは何もしないスレッドです。(アイドルスレッドと呼ぶこともあります。) </P>
+<P><CODE><A href="OS_GetThreadPriority.html">OS_GetThreadPriority()</A></CODE> でスレッドの優先度を取得することが出来ます。</P>
+<P>スレッドが <CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> で終了すると、スレッドは「<FONT color="#ff0033">終了状態</FONT>」へ移行します。 このスレッドがブロックしていた Mutex のロックを解除し、このスレッドの終了待ちをして一時停止状態になっていたスレッドを実行可能状態にします。そしてリスケジューリングを行って別のスレッドが実行可能状態となります。</P>
+<P>スレッドが、タスクとなる関数を最後まで実行した場合も <CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> が呼ばれたのと同様の処理となります。</P>
+<P>他のスレッドを終了させる関数として、<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> と <CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> が用意されています。2つの違いについては、「スレッドデストラクタ」の項を参照してください。</P>
+<HR>
+<P><B>スレッドの切り替わり</B></P>
+<P>以下はスレッドの切り替わり ( リスケジューリング ) が発生する可能性があるイベントです。</P>
+<P>・スレッドを実行可能状態にした。すなわち <CODE><A href="OS_WakeupThread.html">OS_WakeupThread()</A></CODE>、<CODE><A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect()</A></CODE> が呼ばれた。<BR>
+・スレッドを一時停止状態にした。すなわち <CODE><A href="OS_SleepThread.html">OS_SleepThread()</A></CODE> が呼ばれた。<BR>
+・他のスレッドの終了待ちに入った。すなわち <CODE><A href="OS_JoinThread.html">OS_JoinThread()</A></CODE> が呼ばれた。<BR>
+・スレッドが終了した。すなわちスレッドで動作している関数が終了位置まで到達したり、<CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> が呼ばれた。<BR>
+・スレッドのリスケジュールが明示的に行われた。すなわち <CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> が呼ばれた。<BR>
+・同優先度を考慮したスレッドのリスケジュールが明示的に行なわれた。すなわち
+<CODE><A href="OS_YieldThread.html">OS_YieldThread()</A></CODE> が呼ばれた。<BR>
+・スレッドの優先度を変更した。すなわち <CODE><A href="OS_SetThreadPriority.html">OS_SetThreadPriority()</A></CODE> が呼ばれた。<BR>
+・他のスレッドによって終了させられた。すなわち <CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> や <CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> が呼ばれた。</P>
+<P>他に、メッセージ関数 <CODE><A href="../message/OS_SendMessage.html">OS_SendMessage()</A></CODE> や <CODE><A href="../message/OS_ReceiveMessage.html">OS_ReceiveMessage()</A></CODE> をブロックモードで呼び出し、ブロックされたか、メッセージの送受信を待っているより優先度の高いスレッドがあった場合、スレッドの切り替わりが発生します。</P>
+<P>また、MUTEX によるスレッド排他制御でもスレッドの切り替わりが発生する場合があります。<CODE><A href="../mutex/OS_LockMutex.html">OS_LockMutex()</A></CODE> でスレッドがロックされた場合と、<CODE><A href="../mutex/OS_UnlockMutex.html">OS_UnlockMutex()</A></CODE> でより高い優先度のスレッドのロックが解除された場合です。(<CODE><A href="../mutex/OS_TryLockMutex.html">OS_TryLockMutex()</A></CODE> ではリスケジューリングは発生しません)</P>
+<P>スレッドのリスケジューリングは　<CODE><A href="OS_DisableScheduler.html">OS_DisableScheduler()</A></CODE> で一時的に停止したり、<CODE><A href="OS_EnableScheduler.html">OS_EnableScheduler()</A></CODE> で再開したりすることが出来ます。このドキュメントの「リスケジューリングの一時停止」の項を参照してください。</P>
+<P><IMG src="threadStatus.gif" border="0"></P>
+<HR>
+<P><B>割り込みとスレッドの切り替わり</B></P>
+<P>割り込みハンドラ内では、スレッドの切り替わり要因となる関数が呼ばれても即座にスレッドが切り替わることはありません。そのようなイベントが発生したことを覚えておき、割込みハンドラから抜ける際に、最も優先度の高い実行可能状態であるスレッドへ制御が移ります。</P>
+<P>以下の例では、thread1の起動、thread2の起動、thread3の起動、と3回スレッドが切り替わる可能性のある関数が呼ばれましたが、そこでは何もせず、割り込みハンドラを抜けるときに全体を調べ、実行可能状態であるスレッドの中から次に実行されるものを選びます。割込みハンドラ内でより優先度の高いスレッドが起動されても即座に切り替わらない、という点に注目してください。</P>
+<P><IMG src="threadWithInterrupt.gif" border="0"></P>
+<P>このように、割り込みによってスレッドが切り替わることもありますので、スレッドの切り替わりが発生して欲しくないような処理を行なう個所では、割り込みを禁止にする必要があります。（もちろん理論的には、割り込みハンドラにスレッドの切り替わりを発生させるような記述が全く存在しないのならば、割り込みを禁止にする必要はありませんが、アプリケーションの割り込みハンドラとシステム内の割り込みハンドラの動作全てを把握するのは困難ですので、通常は割り込みを禁止にしてください。)</P>
+<HR>
+<P><B>スレッドをまとめて起こす</B></P>
+<P>別のあるスレッドのある地点に制御が移るまで、自分の実行を止めたい、という場合があるかもしれません。また、複数のスレッドを同時に起動させたい場合もあるかもしれません。このような場合、スレッドキューが便利です。</P>
+<P><CODE><A href="OS_InitThreadQueue.html">OS_InitThreadQueue()</A></CODE> でスレッドキューを初期化し、そのキューに対し <CODE><A href="OS_SleepThread.html">OS_SleepThread()</A></CODE> でスレッドを登録すると、登録されたスレッドはそのスレッドキューを引数にして <CODE>OS_WakeupThread()</CODE> が呼ばれるまでスリープすることになります。<CODE><A href="OS_WakeupThread.html">OS_WakeupThread()</A></CODE> が呼ばれると、指定のスレッドキューに登録されたスレッドはすべて実行可能状態になり、スレッドのリスケジューリングが発生します。(その結果、スレッドの切り替わりが発生するかどうかは実行可能状態であるスレッドの優先度によります)</P>
+<P><IMG src="threadQueue.gif" border="0"></P>
+<HR>
+<P><B>他のスレッドとの結合</B></P>
+<P>あるスレッドの終了まで、現在動作しているスレッドを一時停止状態にすることが可能です。この動作はいわば、終了するスレッドと、そのスレッドの終了を待って実行可能になるスレッドが結合されたかのように見えますので、リファレンス中でも「スレッドの結合」と表現しています。この仕組みはすべてのスレッドが内部で持っているスレッドキューを用いて実現されます。</P>
+<P>thread1 と thread2 を結合する ( thread1 が終了するときに thread2 を実行可能状態にする
+) 場合を考えます。thread1 のスレッドキューに thread2 を <CODE><A href="OS_JoinThread.html">OS_JoinThread</A>()</CODE> を用いて登録します。thread1 は終了するときにスレッドキューを参照して、そこに登録されているものがあればそれを全てを実行可能状態にします。thread2
+が登録されているので、thread2 は実行可能状態になります。</P>
+<P>1つのスレッドに複数のスレッドを結合させることも出来ます。複数のスレッドに1つのスレッドを結合させることは出来ません。以下は1つのスレッドに複数のスレッドを結合させた例です。</P>
+
+<P><IMG src="threadJoin.gif" border="0"></P>
+<HR>
+<P><B>スリープによるウェイト</B></P>
+<P>時間を指定して、<A href="OS_Sleep.html"><CODE>OS_Sleep()</CODE></A> で、スリープによるウェイトを入れることが可能です。ただし、このためには <CODE><A href="../time/OS_InitTick.html">OS_InitTick()</A></CODE> と <CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm()</A></CODE> でチックシステムとアラームシステムが初期化されていなければなりません。</P>
+<HR>
+<P><B>リスケジューリングの一時停止</B></P>
+<P>スレッドシステムのリスケジューリングを一時停止する関数と、リスケジューリングを再開する関数が用意されています。</P>
+<P>リスケジューリングが停止状態になっていると、<CODE><A href="OS_WakeupThread.html">OS_WakeupThread()</A></CODE> や <CODE><A href="OS_SetThreadPriority.html">OS_SetThreadPriority()</A></CODE> など、スレッドのリスケジューリングが発生する可能性のある関数が呼ばれても、リスケジューリングが行なわれなくなります。また、スレッドの終了などリスケジューリングが発生する可能性のある場面でもリスケジューリングしません。<FONT color="#ff0033">呼び出しの状況によっては動作するスレッドがなくなり、プログラムが停止することもあり得ますので、注意が必要です。</FONT></P>
+<P>リスケジューリングを一時停止する関数は、<CODE><A href="OS_DisableScheduler.html">OS_DisableScheduler()</A></CODE> です。</P>
+<P>リスケジューリングを再開する関数は、<CODE><A href="OS_EnableScheduler.html">OS_EnableScheduler()</A></CODE> です。</P>
+<P>これらの関数は、割り込み禁止状態で呼ばれなければなりません。</P>
+<HR>
+<P><B>明示的なリスケジューリング</B></P>
+<P><CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> と <CODE><A href="OS_YieldThread.html">OS_YieldThread()</A></CODE> はスケジューリングを明示的に行う関数です。</P>
+<P><CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> は、スケジューリングが禁止されていない場合に、実行可能状態であるスレッドの中で最も優先度が高いスレッドに
+CPU の実行権を移します。(ただし、割込みハンドラから呼ばれた場合には実際のスケジューリング処理は後で行ないます。)</P>
+<P>実行可能状態であるスレッドの中で、最も優先度が高いものが複数あった場合、内部で保持しているスレッド情報の順序に依存してスレッドが選択されます。スレッドは優先度順にリストで管理されていて、優先度の高いものほどリストの前に位置しています。<CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> では、リストを前から辿って最初に発見した実行可能状態であるスレッドに実行権を移します。したがって、同じ優先度でもリストの前に位置しているものが常に選ばれることになります。</P>
+<P>これに対し、<CODE><A href="OS_YieldThread.html">OS_YieldThread()</A></CODE> は、カレントスレッドと同じ優先度で実行可能状態であるスレッドが他に存在した場合、カレントスレッドをリストの後ろに繋ぎなおしてから(リストの最も後ろではありません。同じ優先度内で後ろ、という意味です。)、
+<CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> を呼び出します。これは同じ優先度の他のスレッドに実行のチャンスを与えるための処理です。</P>
+<P>なお、<CODE><A href="OS_RescheduleThread.html">OS_RescheduleThread()</A></CODE> や <CODE><A href="OS_YieldThread.html">OS_YieldThread()</A></CODE> で必ずスレッドが切り替わるわけではありません。実行されるスレッドを優先度とリスト順に基づいて次に実行すべきスレッドを検索した結果、それまで実行していたスレッドが選択されればそのまま実行が続きます。また、他に実行するスレッドがない場合も同様です。</P>
+<HR>
+<P><B>スレッドデストラクタ</B></P>
+<P>スレッドには、スレッドデストラクタを設定することが出来ます。スレッドデストラクタは、そのスレッドの終了時に呼ばれる関数で、void*
+型引数を１つとる void 型関数です。ただし、呼ばれるのは以下の場合です。、</P>
+<BLOCKQUOTE>・スレッドのタスクを最後まで実行し終わった<BR>
+・<CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> で終了した<BR>
+・<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で他のスレッドから終了させられた<BR>
+・<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> で自らのスレッドを終了させた</BLOCKQUOTE>
+<P>以下の場合にはデストラクタ関数が呼ばれることはありません。</P>
+<BLOCKQUOTE>・<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> で他のスレッドから終了させられた<BR>
+・<CODE><A href="OS_DestroyThread.html">OS_DestroyThread()</A></CODE> で自らのスレッドを終了させた</BLOCKQUOTE>
+<P>デストラクタ関数が実行されるときは、その終了するスレッドのコンテキストに切り替わって実行されます。他のスレッドに
+Kill される場合はスタックは(チェック用のコードを除いた)最上位か、または別に用意したデストラクタ実行専用のスタックに変更されます。自らのスレッドを
+Kill する場合はスタックをそのままにするか、別に用意したデストラクタ実行専用のスタックに変更されます。その指定は
+<A href="OS_SetThreadDestructorStack.html"><CODE>OS_SetThreadDestructorStack()</CODE></A> で行ないます。</P>
+<P>デストラクタが実行される際、<CODE><A href="OS_KillThread.html">OS_KillThread()</A></CODE> ではスレッドの優先度の変更はありませんが、<CODE><A href="OS_KillThread.html">OS_KillThreadWithPriority()</A></CODE> ではスレッドの優先度を指定の値に変更します。</P>
+<P><CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> ではユーザが任意の void* 値を与えることが出来ます。この値はデストラクタ関数を呼び出す際の引数となります。スレッドのタスクを最後まで実行し終わったり、<CODE><A href="OS_ExitThread.html">OS_ExitThread()</A></CODE> で終了した場合は NULL が渡されます。</P>
+<P>スレッドにスレッドデストラクタを設定する関数は、<CODE><A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor()</A></CODE> です。</P>
+<HR>
+<P><B>スレッド状態を外部から変化させる場合の注意</B></P>
+<P>スレッド外部から直接スレッドの状態を変化させる関数の使用については十分注意してください。</P>
+<P>特にSDK ライブラリ内でスリープしているスレッドをライブラリの意図しない方法で起こしたりすることは思わぬ不具合に繋がる可能性があります。</P>
+<P>例えばメインスレッドをフレームごとにスリープさせ、Vブランクハンドラで強制的に実行可能状態にするというシステムを組もうとした場合を考えます。フレーム内に処理が終わらずにVブランクに入ると、アプリケーションでスリープしていないのに(ライブラリ内で何かの処理待ちでスリープしているのに)
+Vブランクハンドラが無理やりメインスレッドを実行可能状態にすることがあるかもしれません。その結果、ライブラリでは必要な処理を待たずにプログラムが先に進んでしまい、プログラムが破綻するかもしれません。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Thread">OS関数一覧(スレッド)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2008/01/17 スレッド状態を外部から変化させる場合の注意を追加<BR>
+2005/08/09 スレッドデストラクタ実行時のスタックについて修正<BR>
+2005/07/07 スレッドデストラクタについて記述<BR>
+2005/07/06 スレッドの個数制限がなくなった<BR>
+2005/06/20 「明示的なリスケジューリング」を追加<BR>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2005/01/21 リスケジューリングの停止と再開について追記<BR>
+2004/12/14 用語や語尾など修正<BR>
+2004/11/09 初版</P>
+</BODY>
+</HTML>

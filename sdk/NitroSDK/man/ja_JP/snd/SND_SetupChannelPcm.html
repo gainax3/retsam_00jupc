@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_SetupChannelPcm</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAFLWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_SetupChannelPcm</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_SetupChannelPcm(
+        int <var>chNo</var>,
+        SNDWaveFormat <var>format</var>,
+        const void* <var>dataAddr</var>,
+        SNDChannelLoop <var>loop</var>,
+        int <var>loopStart</var>,
+        int <var>dataLen</var>,
+        int <var>volume</var>,
+        SNDChannelDataShift <var>shift</var>,
+        int <var>timer</var>,
+        int <var>pan</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAHOWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>chNo</code></strong></em></td>
+<td>チャンネル番号です。値の範囲は、0～15です。</td>
+</tr>
+<tr>
+<td><em><strong><code>format</code></strong></em></td>
+<td>波形データのフォーマットです。</td>
+</tr>
+<tr>
+<td><em><strong><code>dataAddr</code></strong></em></td>
+<td>波形データの先頭アドレスです。４バイトアライメントされている必要があります。</td>
+</tr>
+<tr>
+<td><em><strong><code>loop</code></strong></em></td>
+<td>ループ再生設定です。</td>
+</tr>
+<tr>
+<td><em><strong><code>loopStart</code></strong></em></td>
+<td>ループ開始位置です。ワード単位で、値の範囲は、0～0xffffです。</td>
+</tr>
+<tr>
+<td><em><strong><code>dataLen</code></strong></em></td>
+<td>データ長です。ワード単位で、値の範囲は、0～0x3fffffです。</td>
+</tr>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>ボリューム値です。値の範囲は、0～127です。</td>
+</tr>
+<tr>
+<td><em><strong><code>shift</code></strong></em></td>
+<td>データシフト設定です。</td>
+</tr>
+<tr>
+<td><em><strong><code>timer</code></strong></em></td>
+<td>タイマー値です。値の範囲は、0x10～0xffffです。</td>
+</tr>
+<tr>
+<td><em><strong><code>pan</code></strong></em></td>
+<td>パン値です。値の範囲は、0(左)～64(中央)～127(右)です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAYQWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA5QWT"></a>
+      <h2>説明</h2>
+      <p>
+PCM再生用にチャンネルをセットアップします。
+</p>
+      <p>
+チャンネル番号<em><strong><code>chNo</code></strong></em>のチャンネルのパラメータを設定します。
+あらかじめ、<tt class="function"><a href="SND_LockChannel.html">SND_LockChannel</a></tt>関数で、
+チャンネルをロックしておく必要があります。
+パラメータ設定後、実際に再生を開始するためには、
+<tt class="function"><a href="SND_StartTimer.html">SND_StartTimer</a></tt>関数を呼びだします。
+</p>
+      <p>
+波形データのフォーマット<em><strong><code>format</code></strong></em>は、下記の値から選択します。
+</p>
+      <div class="table"><a name="IDAZRWT"></a><p class="title"><b>表 . SNDWaveFormat</b></p>
+<table summary="SNDWaveFormat" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_WAVE_FORMAT_PCM8</td>
+<td>8ビットPCM</td>
+</tr>
+<tr>
+<td>SND_WAVE_FORMAT_PCM16</td>
+<td>16ビットPCM</td>
+</tr>
+<tr>
+<td>SND_WAVE_FORMAT_ADPCM</td>
+<td>IMA-ADPCM</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+      <p>
+波形データの先頭アドレス<em><strong><code>dataAddr</code></strong></em>は、４バイトアライメントされている必要があります。
+</p>
+      <p>
+ループ再生設定<em><strong><code>loop</code></strong></em>は、以下の値から選択します。
+</p>
+      <div class="table"><a name="IDAOTWT"></a><p class="title"><b>表 . SNDChannelLoop</b></p>
+<table summary="SNDChannelLoop" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_CHANNEL_LOOP_MANUAL</td>
+<td>データ長<em><strong><code>dataLen</code></strong></em>の設定に無関係に、音が鳴り続けます。</td>
+</tr>
+<tr>
+<td>SND_CHANNEL_LOOP_REPEAT</td>
+<td>データ長<em><strong><code>dataLen</code></strong></em>の終端まで再生すると、
+ループ開始位置<em><strong><code>loopStart</code></strong></em>の位置から続けて再生します。</td>
+</tr>
+<tr>
+<td>SND_CHANNEL_LOOP_1SHOT</td>
+<td>データ長<em><strong><code>dataLen</code></strong></em>の終端まで再生すると、
+再生が自動的に停止します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <p>
+ループ開始位置<em><strong><code>loopStart</code></strong></em>は、ワード単位で指定します。
+ループ再生設定<em><strong><code>loop</code></strong></em>が<span class="symbol">SND_CHANNEL_LOOP_REPAET</span>の時のみ、意味を持ちます。
+</p>
+      <p>
+データ長<em><strong><code>dataLen</code></strong></em>は、波形データのサイズをワード単位で指定します。
+ループ再生設定<em><strong><code>loop</code></strong></em>が<span class="symbol">SND_CHANNEL_LOOP_MANUAL</span>の時、
+値は無視されます。
+</p>
+      <p>
+データシフト設定<em><strong><code>shift</code></strong></em>は、以下の値から選択します。
+</p>
+      <div class="table"><a name="IDA1VWT"></a><p class="title"><b>表 . SNDChannelDataShift</b></p>
+<table summary="SNDChannelDataShift" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_CHANNEL_DATASHIFT_NONE</td>
+<td>データシフトを行いません。</td>
+</tr>
+<tr>
+<td>SND_CHANNEL_DATASHIFT_1BIT</td>
+<td>1ビット右シフトします。</td>
+</tr>
+<tr>
+<td>SND_CHANNEL_DATASHIFT_2BIT</td>
+<td>2ビット右シフトします。</td>
+</tr>
+<tr>
+<td>SND_CHANNEL_DATASHIFT_4BIT</td>
+<td>4ビット右シフトします。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <p>
+タイマー<em><strong><code>timer</code></strong></em>は、１サンプルを出力するクロック数を指定します。
+１秒あたりのクロック数は、<span class="symbol">SND_TIMER_CLOCK</span>で、約16.757MHz です。
+例えば、サンプリングレートが<em><strong><code>rate</code></strong></em>[Hz]の波形データを、そのままの音程で再生する場合は、
+</p>
+<pre class="programlisting"><em><strong><code>timer</code></strong></em> = <span class="symbol">SND_TIMER_CLOCK</span> / <em><strong><code>rate</code></strong></em></pre>
+      <p>
+のように計算します。
+</p>
+
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
+</p>
+<p>
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
+</p>
+</div>
+
+    </div>
+<h2>参照</h2>
+<p><a href="SND_LockChannel.html">SND_LockChannel</a>, <a href="SND_StartTimer.html">SND_StartTimer</a>, <a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
+<h2>履歴</h2>
+<p>2005/02/17 ARM7コマンド処理の注意書き追加<br>2004/10/07 SND_CHANNEL_LOOP_REPAET を SND_CHANNEL_LOOP_REPEAT に修正<br>2004/07/20 初版<br></p>
+</div>
+</body>
+</html>

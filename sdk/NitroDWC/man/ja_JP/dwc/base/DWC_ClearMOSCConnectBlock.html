@@ -1,0 +1,53 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_ClearMOSCConnectBlock</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_ClearMOSCConnectBlock</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_ClearMOSCConnectBlock( void );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+	  マッチメイクブロックオプション設定時に、クライアントDSからの接続ブロック状態を解除します。
+    </P>
+	<P>
+	  このマッチメイクオプションは、サーバクライアントマッチメイクのサーバDSにおいて、1台のクライアントDSとの接続に成功した後、他の接続を受け付けないようにするものです。
+	  <A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>関数で設定することができます。
+	</P>
+	<P>
+	  現在接続ブロック中であるかどうかは、<A href="DWC_GetMOSCConnectBlockState.html">DWC_GetMOSCConnectBlockState</A>関数で調べることができます。
+	</P>
+
+    <H2>引数</H2>
+	<P>なし</P>
+
+    <H2>返り値</H2>
+	<P>なし</P>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+		<A href="DWC_SetMatchingOption.html">DWC_SetMatchingOption</A>,
+		<A href="DWC_GetMOSCConnectBlockState.html">DWC_GetMOSCConnectBlockState</A>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+      2005/12/16 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

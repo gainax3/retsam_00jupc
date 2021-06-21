@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_GetRequestIrqMask</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_GetRequestIrqMask</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>OSIrqMask OS_GetRequestIrqMask( void );</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>現在の、IRQ割り込み要求レジスタの値です。</p>
+<H2>説明</H2>
+<P>現在の、IRQ割り込み要求レジスタの値を取得します。<BR>
+IRQ割り込みが発生すると、その原因に対応するIRQ割り込み要因のビットがセットされます。必要なビットをリセットするには、<A href="OS_ResetRequestIrqMask.html"><CODE>OS_ResetRequestIrqMask()</CODE></A> を用います。</P>
+
+<h2>内部動作</h2>
+<p>IOレジスタの、IF レジスタ(割り込み要求レジスタ)を読み込みます。</p>
+
+<h2>参照</h2>
+<p><CODE><A href="OS_ResetRequestIrqMask.html">OS_ResetRequestIrqMask</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2003/12/01 初版</P>
+</body>
+</html>

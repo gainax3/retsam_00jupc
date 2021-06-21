@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_SetReportLevel</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_SetReportLevel</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>void VCT_SetReportLevel( <a href="VCTReportLevel.html">VCTReportLevel</a> level );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>level</STRONG></EM></TD>
+      <TD width="87%" height="17">ライブラリのデバッグ表示のレベル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>ライブラリがコンソールに表示するデバッグプリントのレベルを調整する関数です。レポートレベルは以下のように定義されています。</P>
+
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><code>VCT_REPORTLEVEL_NONE</code></TD>
+      <TD width="87%" height="17">デバッグプリントを出力しない</TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><code>VCT_REPORTLEVEL_ALL</code></TD>
+      <TD width="87%" height="17">デバッグプリントを出力する</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<P>この関数はデバッグ用の関数です。最終ROM版（FINALROM）ライブラリでは何も動作を行いません。</P>
+
+<h2>参照</h2>
+<p><code><a href="VCTReportLevel.html">VCTReportLevel</a></code></p>
+<H2>履歴</H2>
+<P>2006/09/19 初版</P>
+</body>
+</html>

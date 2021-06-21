@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_Write*</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_Write*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CTRDG_Write8( u8* address, u8 data );
+BOOL CTRDG_Write16( u16* address, u16 data );
+BOOL CTRDG_Write32( u32* address, u32 data );
+ 
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>address</I></B></TD>
+      <TD>書き込みアドレス</TD>
+    </TR>
+    <TR>
+      <TD><B><I>data</I></B></TD>
+      <TD>書き込むデータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>書き込みに成功すればTRUEを返します。カートリッジが存在せず書き込み出来なかった場合は
+FALSE を返します。</P>
+<H2>説明</H2>
+<P>カートリッジ領域に対し書き込みを行います。</P>
+<P><CODE>CTRDG_Write8()</CODE> は 8 ビットデータを書き込みます。<BR>
+<CODE>CTRDG_Write16()</CODE> は 16 ビットデータを書き込みます。<BR>
+<CODE>CTRDG_Write32()</CODE> は 32 ビットデータを書き込みます。</P>
+<P>アクセスサイクルの設定は行いません。事前に行っておいてください。</P>
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_DmaCopy.html">CTRDG_DmaCopy*</A>, <A href="CTRDG_CpuCopy.html">CTRDG_CpuCopy*</A>, <A href="CTRDG_Read.html">CTRDG_Read*</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/09/17 初版</P>
+</BODY>
+</HTML>

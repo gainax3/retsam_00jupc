@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MultiCellAnimation_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">マルチセルアニメーション概要</h1>
+<H2>概念図</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:435pt;
+ height:199.8pt' o:ole="">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="MSDraw.Drawing.8.2" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1162369709">
+ </o:OLEObject>
+</xml><![endif]--><IMG src="image.gif" width="871" height="567" border="0"></span></P>
+<H2>説明</H2>
+マルチセルアニメーションは、NITRO-CHARACTERで作成されたマルチセルアニメーションを再生するためのものです。<BR>
+マルチセルアニメーションは、内部にアニメーションコントローラを持ち、このアニメーションコントローラを用いてマルチセルをアニメーションさせます。<BR>
+マルチセルは、複数のセルアニメーションによって構成されています。<BR>
+
+<h2>マルチセルアニメーションの内部データ</h2>
+<h3>マルチセルデータバンクへのポインタ</h3>
+メインメモリ上に読み出したマルチセルデータバンクへのポインタが格納されます。
+マルチセルデータバンクは静的なデータであり、書き換えられることは有りません。
+マルチセルアニメーションで使用されるマルチセルは、このポインタが指し示すマルチセルデータバンクに含まれていなければなりません。
+
+<h3>表示中のマルチセルデータへのポインタ</h3>
+アニメーション再生により、現在画面に表示されているマルチセルへのポインタが格納されます。
+このポインタが指し示すマルチセルは、マルチセルデータバンクへのポインタが指し示すマルチセルデータバンクの中に存在します。
+表示中のマルチセル実体の内部メンバとして存在しています。
+
+<h3>SRTアニメーションの結果</h3>
+アニメーション再生により変化した、マルチセルの位置、回転、スケールが格納されます。
+
+<h3>マルチセル実体</h3>
+表示中のマルチセルの実体を現す概念です。表示中のマルチセルデータへのポインタを内部に保持します。
+また、アニメーションによって更新される情報を保持しています。
+
+<h3>アニメーションによって更新される部分</h3>
+
+アニメーションによって更新される情報は、マルチセル実体に保持されています。<BR> 
+具体的には、マルチセルを構成するセルアニメーション実体とその実体の位置を記憶するノードなどから構成されます。<BR>
+<BR>
+本情報のランタイム上でのデータ構造はセルアニメーションを共有する、しない方式の2種類が存在します。<BR>
+ユーザは初期化関数に与えるオプションによって用途に合ったデータ構造を選択して使用することが可能です。<BR>
+<BR>
+セルアニメーションを共有する方式を指定した場合は、
+同一のセルアニメーション再生を行うセルアニメーションを複数ノードで共有します(つまり、総ノード数 N >= セルアニメ数 となります)。<BR>
+また、後述のノード状態(SRTパラメータ、可視フラグなど)を保持しません。<BR>
+そのため以下のような特徴があります。<BR>
+<BR>
+<pre>
+･実体生成の際に必要なメモリ量が少ない。
+･アニメーション更新処理負荷が軽い。
+･アフィンパラメータ使用量が少ない（同一のセルアニメーションを描画するノード間ではアフィンパラメータを共有します）。
+</pre>
+<BR>
+この特徴は、マルチセル内に同一のセルアニメが複数存在するほど顕著に現れます。<BR>
+<BR>
+一方、セルアニメーションを共有しない方式を指定した場合、ノードごとに個別にセルアニメーション実体が確保されます(つまり、総ノード数 N == セルアニメ数 となります)。<BR>
+また、ノードの状態を保持するデータ領域を保持します。<BR>
+そのため、ユーザプログラムによる、ノード情報やセルアニメーションの状態(位置、再生アニメーション設定)の上書きが可能となります。<BR>
+<BR>
+ユーザプログラムによるデータの書き換え処理などの必要がない場合は、セルアニメーションを共有する方式を使用してください。<BR>
+
+
+
+<h3>ノード</h3>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:439.8pt;
+ height:91.2pt' o:ole="">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><IMG src="image1.gif" border="0" width="487" height="127"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="MSDraw.Drawing.8.2" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1162369733">
+ </o:OLEObject>
+</xml><![endif]--></span></P>
+<BR>
+ノードは、描画データに関する情報を格納する為のコンテナ（容器）です。 ノードには、描画データへのポインタと、描画オブジェクトの仮想画面上の位置、回転、スケール、アフィン変換パラメータ設定情報等を保持します。
+マルチセルの実体の構成要素としてライブラリ内部で使用されています。
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2005/01/31 "アニメーションによって更新される部分"についての説明を追加</P>
+<P>2004/12/06 初版</P>
+</body>
+</html>

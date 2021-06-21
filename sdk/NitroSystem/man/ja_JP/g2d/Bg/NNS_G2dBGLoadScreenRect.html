@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dBGLoadScreenRect</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dBGLoadScreenRect</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g2d/g2d_Screen.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G2dBGLoadScreenRect(
+    void* pScreenDst,
+    const NNSG2dScreenData* pScnData,
+    int srcX,
+    int srcY,
+    int dstX,
+    int dstY,
+    int dstW,
+    int dstH,
+    int width,
+    int height
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pScreenDst</STRONG></EM></TD>
+      <TD width="87%"> [OUT] 転送先基準点へのポインタ。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pScnData</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送元となるスクリーンデータへのポインタ。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcX</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送元の左上隅のX座標。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcY</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送元の左上隅のY座標。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstX</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送先の左上隅のX座標。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstY</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送先の左上隅のY座標。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstW</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送先領域の幅。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstH</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送先領域の高さ。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>width</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送する矩形領域の幅。（キャラクタ単位） </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>height</STRONG></EM></TD>
+      <TD width="87%"> [IN] 転送する矩形領域の高さ。（キャラクタ単位） </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	スクリーンデータ中の指定された矩形をバッファの指定された位置にコピーします。
+</P>
+<P>
+	<EM><STRONG>pScnData</STRONG></EM> の
+	(<EM><STRONG>srcX</STRONG></EM>, <EM><STRONG>srcY</STRONG></EM>) を左上隅として
+	幅 <EM><STRONG>width</STRONG></EM>、高さ <EM><STRONG>height</STRONG></EM> の領域を、
+	<EM><STRONG>pScreenDst</STRONG></EM> を原点としたときの
+	(<EM><STRONG>dstX</STRONG></EM>, <EM><STRONG>dstY</STRONG></EM>) から
+	幅 <EM><STRONG>width</STRONG></EM>、高さ <EM><STRONG>height</STRONG></EM> の領域にコピーします。
+</P>
+<img src="LoadScreenRect.png" caption="引数概念図">
+<P>
+    転送する領域は転送元や転送先の領域内に収まるようにクリッピングされます。
+    クリッピングによって除外された領域には何も転送されません。
+</P>
+<img src="LoadScreenRectInsect.png" caption="クリッピング">
+<P>
+    図のように転送する領域が転送元や転送先をはみ出している場合、実際に転送されるのは転送する領域の中で転送元と転送先の領域に収まっている部分だけです。
+    図の場合は斜線の領域だけが転送される事になります。
+</P>
+
+<H2>参照</H2>
+<P>
+</P>
+
+<H2>履歴</H2>
+<P>
+2007/01/23 クリッピングを行うように変更<BR>
+2006/01/16 引数を変更<BR>
+2005/06/16 初版
+</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATHCompareFunc</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATHCompareFunc</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/qsort.h&gt;
+
+typedef s32 (*MATHCompareFunc) (void *elem1, void *elem2);
+
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    
+    
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">elem1</font></strong></em></TD>
+      <TD width="670">要素１へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">elem2</font></strong></em></TD>
+      <TD>要素２へのポインタ</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>要素１を要素２よりも後ろにソートする場合には正の数、<BR>
+要素１を要素２よりも前にソートする場合には負の数を返します。</p>
+<p>ただし、要素１と要素２との比較結果が等しい場合には 0 を返すようにしてください。</p>
+<H2>説明</H2>
+<P><A href="MATH_QSort.html">MATH_QSort</A>関数でソートをおこなう際に、比較関数として与える比較関数の型です。<BR>
+返り値として正の数を返すと、第一要素が配列のより後方に並べられ、<BR>
+負の数を返すと、第二要素がより後方に並べられます。</P>
+<h2>参照</h2>
+<P><A href="MATH_QSort.html">MATH_QSort</A></P>
+<H2>履歴</H2>
+<P>
+2006/07/19 返り値についての記述を修正<br>
+2006/04/21 返り値についての記述を追加<br>
+2005/04/12 初版</P>
+</body>
+</html>

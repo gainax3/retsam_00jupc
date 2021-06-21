@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_LoadOverlay</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_LoadOverlay</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_LoadOverlay(MIProcessor target, FSOverlayID id);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">ロードする対象（ARM9プロセッサ/ARM7プロセッサ）</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>id</STRONG></EM></TD>
+      <TD width="87%">ロードするモジュールのID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>モジュールが正しくロードされれば TRUE を返し、そうでない場合は、FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したプロセッサの指定した番号に関連付けられたオーバーレイモジュールをロードします。<BR>
+<br>
+<font color="#800000">ロードされた既存のオーバーレイと領域を競合する他のオーバーレイをロードする場合、<br>
+必ず以前のオーバーレイを<A href="FS_UnloadOverlay.html">FS_UnloadOverlay</A> 関数でアンロードする必要があります。</font>
+<br>
+<BR>
+この関数は、<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>関数でオーバーレイモジュール情報を取得して<BR>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>関数および<A href="FS_StartOverlay.html">FS_StartOverlay</A>関数を呼び出すことと等価です。<BR>
+同等の処理を行う他のオーバーレイ関数との関係については以下の例を参照ください。<br>
+<pre>
+例)
+<font color="#008000">
+/*********************************************************
+ *  オーバーレイ読み込みの方法. (全て内部的に等価な処理)
+ *********************************************************/</font>
+
+FS_EXTERN_OVERLAY(overlay_x);
+FSOverlayID   overlay_id = FS_OVERLAY_ID(overlay_x);
+MIProcessor   target = MI_PROCESSOR_ARM9;
+
+<font color="#008000">/* 方法1: 全てを同期的に実行 */</font>
+{
+    <A href="FS_LoadOverlay.html">FS_LoadOverlay</A>(target, overlay_id);
+}
+
+<font color="#008000">/* 方法2: 部分的に手作業で実行 (同期的) */</font>
+{
+    FSOverlayInfo  info;
+    <A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>(&amp;info, target, overlay_id);
+    <A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>(&amp;info);
+    <A href="FS_StartOverlay.html">FS_StartOverlay</A>(&amp;info);
+}
+
+<font color="#008000">/* 方法3: 全てを手作業で実行 (非同期的) */</font>
+{
+    FSOverlayInfo  info;
+    <A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>(&amp;info, target, overlay_id);
+    {
+        FSFile         file;
+        FS_InitFile(&amp;file);
+        <A href="FS_LoadOverlayImageAsync.html">FS_LoadOverlayImageAsync</A>(&amp;info, &amp;file);
+        while(FS_IsBusy(&amp;file))
+        {
+            <font color="#008000">/* フレームワークまたはメッセージポンプを処理 */</font>
+        }
+        FS_CloseFile(&amp;file);
+    }
+    <A href="FS_StartOverlay.html">FS_StartOverlay</A>(&amp;info);
+}
+
+<font color="#008000">/* 方法4: 全てを低水準関数で実行 */</font>
+{
+    FSOverlayInfo  info;
+    <A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>(&amp;info, target, overlay_id);
+    {
+        FSFile         file;
+        FS_InitFile(&amp;file);
+        <font color="#008000">/* オーバーレイイメージのファイルを直接開きオーバーレイ領域のメモリを初期化する */</font>
+        FS_OpenFileFast(&amp;file, <a href="FS_GetOverlayFileID.html">FS_GetOverlayFileID</a>(&amp;info));
+        <a href="FS_ClearOverlayImage.html">FS_ClearOverlayImage</a>(&amp;info);
+        <font color="#008000">/*
+         * 並行してストリームサウンドを再生したい場合など,
+         * アプリケーションに都合の良い単位で分割してロードする.
+         */</font>
+        {
+            int len, pos;
+            int small_size = 1024 * 32;
+            for (pos = 0; pos < FS_GetLength(&amp;file); pos += len)
+            {
+                len = FS_ReadFileAsync(&amp;file, small_size);
+                while(FS_IsBusy(&amp;file))
+                {
+                    <font color="#008000">/* フレームワークまたはメッセージポンプを処理 */</font>
+                }
+            }
+        }
+        FS_CloseFile(&amp;file);
+    }
+    <A href="FS_StartOverlay.html">FS_StartOverlay</A>(&amp;info);
+}
+</pre>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
+<A href="../fs_overlay_id_types.html">FSOverlayID</A>
+<A href="../fs_overlay_id_types.html">FS_OVERLAY_ID</A>
+<BR>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>
+<A href="FS_LoadOverlayImageAsync.html">FS_LoadOverlayImageAsync</A>
+<A href="FS_StartOverlay.html">FS_StartOverlay</A>
+<A href="FS_LoadOverlay.html">FS_LoadOverlay</A>
+<A href="FS_UnloadOverlay.html">FS_UnloadOverlay</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/04/16 サンプルコードを追加<br>
+2005/06/02 &amp;を&amp;amp;へ修正<br>
+2004/11/17 FS_RegisterOverlayToDebugger廃止に伴うサンプルコード例修正<BR>
+2004/11/16 サンプルコード例を一部修正、FS_UnloadOverlayに関する注意を追加<BR>
+2004/10/19 サンプルコード例を一部修正<BR>
+2004/09/24 各種オーバーレイ関数の関係について例を記述追加<BR>
+2004/06/11 他のオーバーレイ関数追加による記述修正<BR>
+2004/04/08 FSOverlayID の型変更による記述修正<BR>
+2004/04/05 FSOverlayID 追加による記述修正<BR>
+2004/04/01 初版<BR>
+</P>
+</body>
+</html>

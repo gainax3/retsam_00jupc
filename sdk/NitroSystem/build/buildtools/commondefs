@@ -1,0 +1,72 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NITRO-System - buildtools
+# File:     commondefs
+#
+# Copyright 2004-2007 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Revision: 1.19 $
+#----------------------------------------------------------------------------
+
+ifndef NITROSYSTEM_COMMONDEFS_
+NITROSYSTEM_COMMONDEFS_ := TRUE
+
+include	$(NITROSDK_ROOT)/build/buildtools/commondefs
+
+
+#----------------------------------------------------------------------------
+#
+# NITRO-System Root directory
+#
+
+NITROSYSTEM_ROOT ?= C:/NitroSystem
+
+
+#----------------------------------------------------------------------------
+#
+# NITRO-System Path settings
+#
+
+NNS_ROOT					:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_ROOT)))
+
+NITROSYSTEM_BUILDTOOLSDIR	:= $(NNS_ROOT)/build/buildtools
+NITROSYSTEM_TOOLSDIR		:= $(NNS_ROOT)/tools
+
+
+#----------------------------------------------------------------------------
+#
+# NIIROSYSTEM_INSTALL_ROOT
+#
+
+NITROSYSTEM_INSTALL_ROOT 		?= $(NITROSYSTEM_ROOT)
+NITROSYSTEM_INSTALL_ROOT		:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_INSTALL_ROOT)))
+
+NITROSYSTEM_INSTALL_INCDIR		:= $(NITROSYSTEM_INSTALL_ROOT)/include
+NITROSYSTEM_INSTALL_TOOLSDIR	:= $(NITROSYSTEM_INSTALL_ROOT)/tools
+NITROSYSTEM_INSTALL_LIBDIR		:= $(NITROSYSTEM_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
+
+
+#----------------------------------------------------------------------------
+#  PRIVATE FLAGS
+#
+-include $(NITROSYSTEM_BUILDTOOLSDIR)/_privatedefs
+-include $(NITROSYSTEM_BUILDTOOLSDIR)/@privatedefs
+
+
+# NITROSYSTEM_COMMONDEFS_
+endif
+
+
+#----------------------------------------------------------------------------
+### Compiler settings
+
+-include $(NITROSYSTEM_BUILDTOOLSDIR)/commondefs.cctype.$(NITRO_CCTYPE)
+
+
+#----- End of commondefs -----

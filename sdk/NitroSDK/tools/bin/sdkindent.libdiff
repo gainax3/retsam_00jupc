@@ -1,0 +1,6 @@
+#! bash -f
+export TOOLDIR=`dirname $0`
+$TOOLDIR/sdkindent.dis "$1" | /bin/sed -f $TOOLDIR/sdkindent.dis-sed > "$1".dis.1.$$
+$TOOLDIR/sdkindent.dis "$2" | /bin/sed -f $TOOLDIR/sdkindent.dis-sed > "$2".dis.2.$$
+diff -q "$1".dis.1.$$ "$2".dis.2.$$ || echo "$1"
+rm "$1".dis.1.$$ "$2".dis.2.$$

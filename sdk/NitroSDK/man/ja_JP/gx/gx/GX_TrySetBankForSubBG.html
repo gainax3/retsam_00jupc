@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_TrySetBankForSubBG</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_TrySetBankForSubBG</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL GX_TrySetBankForSubBG(GXVRamSubBG bg);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">bg</font></strong></em></td>
+    <td width="87%">サブ2DエンジンのBGに割り当てるVRAMバンクを指定</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>
+正常にVRAMバンクが割り当てられた場合にTRUEを返します。<BR>
+割り当てようとするVRAMバンクが別ライブラリによってロックされている場合にはFALSEを返します。
+</p>
+<H2>説明</H2>
+<P>サブ2DエンジンのＢＧへ指定されたVRAMバンクの割り当てを試みます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをサブ2DエンジンのBGに割り当てます。<BR>
+また、指定したVRAMバンクが他のライブラリによって排他ロックされている場合は割り当てに失敗します。
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>GX_VRAM_SUB_BG_NONE</CODE></TD>
+      <TD>BGにVRAMバンクを割り当てません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_SUB_BG_128_C</CODE></TD>
+      <TD>BGに128KBytes確保します。VRAM-Cを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_SUB_BG_32_H</CODE></TD>
+      <TD>BGに32KBytes確保します。VRAM-Hを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_SUB_BG_48_HI</CODE></TD>
+      <TD>BGに48KBytes確保します。VRAM-H,Iを割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXVRamSubBG</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_VRAM_SUB_BG_NONE = 0x0000,
+    GX_VRAM_SUB_BG_128_C = GX_VRAM_C,
+    GX_VRAM_SUB_BG_32_H = GX_VRAM_H,
+    GX_VRAM_SUB_BG_48_HI = GX_VRAM_H | GX_VRAM_I
+}
+GXVRamSubBG;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_SetBankForSubBG.html">GX_SetBankForSubBG</A>, <A href="GX_GetBankForSubBG.html">GX_GetBankForSubBG</A>, <A href="GX_ResetBankForSubBG.html">GX_ResetBankForSubBG</A>, <A href="GX_DisableBankForSubBG.html">GX_DisableBankForSubBG</A>, <A href="GX_GetSizeOfSubBG.html">GX_GetSizeOfSubBG</A></P>
+<H2>履歴</H2>
+<P>Ver. 2005/02/15 初版</P>
+</body>
+</html>

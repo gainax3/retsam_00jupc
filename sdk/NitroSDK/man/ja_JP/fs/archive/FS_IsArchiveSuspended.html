@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_IsArchiveSuspended</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_IsArchiveSuspended</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>static inline BOOL	FS_IsArchiveSuspended(volatile const FSArchive *p_arc);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>アーカイブが現在サスペンド中なら TRUE を、そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したアーカイブが現在サスペンド中か判定します。<BR>
+サスペンドされたアーカイブは、受け付けた全てのコマンドを保留して実行しません。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<BR>
+<A href="FS_ResumeArchive.html">FS_ResumeArchive</A> 
+<A href="FS_SuspendArchive.html">FS_SuspendArchive</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/06/30 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetIrqStackStatus</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetIrqStackStatus</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>OSStackStatus OS_GetIrqStackStatus( void );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>OS_STACK_OVERFLOW　…　スタック最下位のマジックナンバーが書き換えられています。<BR>
+OS_STACK_UNDERFLOW　…　スタック最上位のマジックナンバーが書き換えられています。<BR>
+OS_STACK_ABOUT_TO_OVERFLOW　…　ユーザが設定した警戒水準位置のマジックナンバーが書き換えられています。</P>
+<P>これらのどれにも当てはまらない場合、OS_STACK_NO_ERROR　( 0 に定義されています
+) を返します。</P>
+<H2>説明</H2>
+<P>IRQモード用スタックに対しスタック溢れをチェックし、その状態を取得します。</P>
+<P>スタックの最上位、最下位 (に加え、設定していれば、ユーザの設定した警戒水準位置も)
+にあらかじめ書かれているマジックナンバーを調べ、それが書き換えられている(すなわち、その部分が一度でも使用された)かどうかを調べます。</P>
+<P>スタックの最下位のマジックナンバーが書き換えられている場合、OS_STACK_OVERFLOW
+を返します。<BR>
+スタックの最上位のマジックナンバーが書き換えられている場合、OS_STACK_UNDERFLOWを返します。<BR>
+スタックにユーザが設定した警戒水準位置のマジックナンバーが書き換えられている場合、OS_STACK_ABOUT_TO_OVERFLOW
+を返します。</P>
+<P>この順序で判定しますので、スタックの最下位と最上位の両方が書き換えられている場合は
+OS_STACK_OVERFLOW を返します。</P>
+<P>これらすべてに合致しない場合(すべてのマジックナンバーが書き換えられていない場合)、OS_STACK_NO_ERROR
+を返します。OS_STACK_NO_ERROR は 0 に定義されていますので、0 と非0 でエラーがあるかないかの判定をすることが可能です。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_SetIrqStackWarningOffset.html">OS_SetIrqStackWarningOffset</A>, <A href="OS_CheckIrqStack.html">OS_CheckIrqStack</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/07/15 初版</P>
+</BODY>
+</HTML>

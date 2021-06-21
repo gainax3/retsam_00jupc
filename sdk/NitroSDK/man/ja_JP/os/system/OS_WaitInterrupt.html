@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_WaitInterrupt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_WaitInterrupt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_WaitInterrupt( BOOL clear, OSIrqMask irqFlags );</CODE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>clear</I></B></TD>
+      <TD>チェックフラグをクリアするかどうか</TD>
+    </TR>
+    <TR>
+      <TD><B><I>irqFlags</I></B></TD>
+      <TD>発生を待つ割り込みのマスク値。論理和で複数を指定可能</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<p>指定のIRQ割り込み要因の発生を待ちます。<BR>
+<B><I>irqFlags</I></B> には複数の割り込み要因をマスク値の論理和で指定することが出来ます。この中のいずれかの割り込みが発生したときに関数から戻ります。</p>
+<p>割り込みが発生したかどうかは、IRQ割り込みが発生した後の割り込みチェックフラグがセットされているかどうかによります。このフラグは割り込みハンドラの中でユーザが明示的に<A href="../irq/OS_SetIrqCheckFlag.html"><CODE> OS_SetIrqCheckFlag()</CODE></A> を呼んでセットする必要があります。</p>
+<p><B><I>clear</I></B> を TRUE にすると、割り込み発生待ちの前に割り込みチェックフラグのうち、<B><I>irqFlags</I></B> で指定された割り込みのフラグをリセットします。リセットしない場合であらかじめ該当の割り込みのチェックフラグがセットされている場合、すぐに関数から戻ることになります。</p>
+<p><CODE><A href="OS_WaitInterrupt.html">OS_WaitInterrupt()</A></CODE> と <A href="../irq/OS_WaitIrq.html"><CODE>OS_WaitIrq()</CODE></A> との違いは、<CODE>OS_WaitInterrupt()</CODE> は割り込み要因を待つ間、<CODE>OS_Halt()</CODE> で停止しますが、<CODE>OS_WaitIrq()</CODE> は割り込み要因を待つ間は他のスレッドに処理を移し、割り込みが発生した後に動作を再開するというものです。スレッドを使用しない場合は、両者は同じ動作をする関数となります。</p>
+<h2>参照</h2>
+<p><CODE><A href="../irq/OS_SetIrqCheckFlag.html">OS_SetIrqCheckFlag</A>, <A href="../irq/OS_WaitIrq.html">OS_WaitIrq</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/05/24 初版</P>
+</body>
+</html>

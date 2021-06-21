@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_GetMultiBootDownloadParameter</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_GetMultiBootDownloadParameter</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>static inline const u8*	MB_GetMultiBootDownloadParameter(void);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+なし
+</p>
+
+<h2>返り値</h2>
+<p>マルチブート子機として起動した状態であればダウンロード時に指定されたユーザ定義の拡張パラメータを、そうでないならNULLを返します。</p>
+
+<H2>説明</H2>
+<P>プログラム自身がマルチブート子機として起動されたものであれば、
+ダウンロード時に指定されたユーザ定義の拡張パラメータが格納されたポインタを返します。<BR>
+この拡張パラメータは、ダウンロードする親機側が<a href="../mb_game_registry_type.html">MBGameRegistry</a>構造体で指定します。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<a href="../mb_game_registry_type.html">MBGameRegistry</a>
+<br> 
+<A href="../common/MB_IsMultiBootChild.html">MB_IsMultiBootChild</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/08/17 初版<BR>
+</P>
+</body>
+</html>

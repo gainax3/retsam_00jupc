@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_VSNPrintfEx</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_VSNPrintfEx</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;<BR>
+<BR>
+int OS_VSNPrintfEx( char *dst, size_t len, const char *fmt, va_list vlist );<BR>
+<BR></CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><I><B>dst</B></I></TD>
+      <TD>出力文字列の格納先バッファ</TD>
+    </TR>
+    <TR>
+      <TD><I><B>len</B></I></TD>
+      <TD>出力文字列の格納先バッファのサイズ</TD>
+    </TR>
+    <TR>
+      <TD><I><B>fmt</B></I></TD>
+      <TD>出力書式文字列(フォーマット文字列)</TD>
+    </TR>
+    <TR>
+      <TD><I><B>vlist</B></I></TD>
+      <TD>可変引数リスト</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>常に、書式文字列を正しく出力した場合の文字数を返します。この文字数に終端文字
+'\0' は含まれません。</P>
+<P><B><I>dst</I></B> には出力文字列が書き込まれます。<BR>
+出力文字数が <B><I>len</I></B> を下回る場合、全ての文字列と終端文字 '\0' が書き込まれます。<BR>
+出力文字数が <B><I>len</I></B> と同じかそれを上回る場合、<BR>
+(1) <B><I>len</I></B> が 0 でなければ <B><I>dst</I></B>[<B><I>len</I></B> - 1] に 終端終端文字 '\0' を書き込みます。<BR>
+(2) <B><I>len</I></B> が 0 であれば <B><I>dst</I></B> に対して何も行ないません。<BR>
+</P>
+
+<H2>説明</H2>
+<P>軽量版の書式文字列関数です。<A HREF="OS_VSNPrintf.html"><CODE>OS_VSNPrintf()</CODE></A>を機能拡張したものであり、標準でない変換指定子に対応しています。
+現在対応しているものは以下になります。
+<UL>
+    <LI>b,B : <UL>引数で指定された unsigned char 型配列の要素を符号なし16進数に変換します。b では abcdef、B では ABCDEF が使用されます。b,Bの前に精度を指定することができます。精度で指定されたバイト数が表示され、 . （ピリオド）を指定した場合は続けて指定されたバイト数で改行されるようになります。精度が指定されていない場合は1バイトのみ出力されることになります。またフラグ文字として % の後ろに空白、もしくは : （コロン）を加えることで1バイト毎に空白、もしくは : が出力されるようになります。<UL>例 : OS_TPrintfEx("%:6.3B\n", mac_address); -> 00:09:BF<改行>12:34:56</UL></UL>
+</UL>
+
+<P>この関数は weak シンボルでコンパイルされますので、ユーザが独自で関数を定義すれば、それで上書きされます。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_VSNPrintf.html">OS_VSNPrintf</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2006/10/23 初版</P>
+</BODY>
+</HTML>

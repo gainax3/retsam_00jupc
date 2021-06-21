@@ -1,0 +1,87 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_NdInitAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_NdInitAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nd/dwc_nd.h&gt;
+
+BOOL DWC_NdInitAsync( <a href="DWCNdCallback.html">DWCNdCallback</a> callback, char *gamecd, char *passwd );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  ダウンロードライブラリの初期化処理を開始します。<BR>
+		  初期化処理はバックグラウンドでHTTP通信を行いますので、処理中はメインスレッドよりも優先度の低いスレッドに十分な処理時間が渡るようにしてください。なお、ダウンロードサーバは、開発向けと製品向けの２種類が提供されますが、この切り替えは<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>関数による認証サーバの切り替えにあわせて行なわれます。
+		</P>
+		<P>
+		  引数として指定する<code>gamecd</code>および<code>passwd</code>に関しては、事前に弊社に申請していただく必要があります。
+		</P>
+		<P>
+		  初期化処理完了時に<code>callback</code>で指定したコールバック関数が呼び出されます。<BR>
+		  <FONT color="red">返り値に TRUE が返された時点からダウンロードライブラリは開始していますので、初期化の非同期処理中にエラーが発生しても、初期化処理に必要なメモリが確保されていることに注意してください。</FONT>
+		</P>
+
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>callback</CODE></STRONG></EM></TD>
+					<TD width="75%">ダウンロードライブラリが各種通知時に呼び出すコールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>gamecd</CODE></STRONG></EM></TD>
+					<TD width="75%">ダウンロードサーバへのアクセス時に必要となるゲーム名へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>passwd</CODE></STRONG></EM></TD>
+					<TD width="75%">ダウンロードサーバへのアクセス時に必要となるパスワード文字列へのポインタ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">成功。初期化処理終了時にコールバック関数が呼び出されます。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD width="75%">失敗<BR>
+					<code><a href="DWC_GetLastError.html">DWC_GetLastErrorEx</code></a>関数を使用してエラーの情報を取得してください</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<code>
+			<a href="DWCNdCallback.html">DWCNdCallback</a>,
+			<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>,
+			<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>
+			</code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/08/25 非同期処理中にエラーが発生した場合の注意を追記<BR>
+			2006/07/24 ダウンロードサーバの切り替えについて追記<BR>
+			2006/04/26 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

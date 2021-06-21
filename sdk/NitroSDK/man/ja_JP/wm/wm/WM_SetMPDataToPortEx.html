@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetMPDataToPortEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetMPDataToPortEx</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetMPDataToPortEx(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        void*           arg ,
+        const u16*      sendData ,
+        u16             sendDataSize ,
+        u16             destBitmap ,
+        u16             port ,
+        u16             prio
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">arg</FONT></STRONG></EM></TD>
+      <TD width="800">コールバック関数に渡されるユーザ定義のデータを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">sendData</FONT></STRONG></EM></TD>
+      <TD width="800">送信予約するデータへのポインタを指定します。<BR>
+      このデータの実体は強制的にキャッシュストアされる点に注意して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">sendDataSize</FONT></STRONG></EM></TD>
+      <TD width="800">送信予約するデータのサイズを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">destBitmap</FONT></STRONG></EM></TD>
+      <TD width="800">送信先子機のAIDを示すビットマップを指定します。(親機のみ有効)</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">port</FONT></STRONG></EM></TD>
+      <TD width="800">データを送信する<A href="WMPort.html">ポート番号</A>を指定します。0 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">prio</FONT></STRONG></EM></TD>
+      <TD width="800">データ送信の優先度を指定します。0 (最高) ～ 3 (最低) の値を指定して下さい。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>MPで特定のポートに送信するデータをセットします。WMが<A href="wm_state_diagram.html">MP_PARENTステート</A>もしくは<A href="wm_state_diagram.html">MP_CHILDステート</A>の場合に実行可能です。<BR>
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、MPにてデータ送信処理が完了した後にコールバックが発生します。コールバックが呼び出されるまでは引数sendDataの指しているバッファを書き換えてはいけません。他の無線APIの非同期関数と異なり、コールバックを待たずにこのAPIを連続して呼び出した際にcallbackにそれぞれ異なる関数ポインタを指定しても、正常に処理されます。
+但しコールバックを待たずに連続して呼び出せる回数は10回までという制限があり、10回を越えて連続で呼び出すとこのAPIは失敗し、エラーを返します。<BR>
+argに指定したユーザ定義のデータは、WMPortSendCallback構造体のargフィールドに格納されてcallbackに渡されます。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_EndMP.html">WM_EndMP</A>, <A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WM_SetPortCallback.html">WM_SetPortCallback</A>, <A href="WMPort.html">WMPort</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/07/08 非同期に連続して呼び出すことができる制限回数を追記<BR>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 port引数について指定可能範囲を追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/25 説明の加筆・修正<BR>
+2004/09/09 初版<BR>
+</P>
+</body>
+</html>

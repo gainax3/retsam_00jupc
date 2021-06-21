@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>STD_ConvertStringUnicodeToSjis</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">STD_ConvertStringUnicodeToSjis</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/std.h&gt;
+
+<a href="STDResult.html">STDResult</a> STD_ConvertStringUnicodeToSjis(char *dst, int *dst_len, const u16 *src, int *src_len, <A href="STDConvertSjisCallback.html">STDConvertSjisCallback</A> callback);</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="20%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="80%">変換先の ShiftJIS 文字列バッファ<br>NULL を指定した場合は格納処理が無視されます。</TD>
+    </TR>
+    <TR>
+      <TD width="20%"><EM><STRONG>dst_len</STRONG></EM></TD>
+      <TD width="80%">変換先バッファに格納できる最大バイトサイズを渡し、実際に格納されたバイトサイズを受けるためのポインタ<br>
+      NULLを指定した場合は無視されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="800">変換元の Unicode 文字列バッファ</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG>src_len</STRONG></EM></TD>
+      <TD width="800">変換すべき最大文字数を渡し、実際に変換された文字数を受けるためのポインタ<br>
+      バイトサイズでない点に注意してください。<br>
+      負の値を渡した場合、またはNULLを指定した場合はsrcの終端までの長さを指定したものとみなします。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="800">変換できない文字が現れたときに呼ばれるコールバックを指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>
+変換処理の結果を示す<a href="STDResult.html">STDResult</a>型の値を返します。<br>
+dstがNULLでない場合は、変換した文字列をdstへ格納しつつ変換後のバイトサイズをsrc_lenとdst_lenに返します。<br>
+dstがNULLの場合は、変換した文字列を格納せず変換後のバイトサイズのみを返します。<br>
+常に、終端のL'\0'は付与されず文字数にも含みません。</p>
+</p>
+
+<H2>説明</H2>
+<P>
+Unicode 形式の文字列を ShiftJIS 形式の文字列に変換します。<BR>
+API が変換できない Unicode 形式の文字が見つかった場合、その都度コールバックが発生します。<BR>
+コールバックを NULL で指定した場合、変換できない文字が現れた時点で処理を終了します。<BR>
+<br>
+dstにNULLを指定することにより、変換後の文字列長のみを求めることが出来ます。<br>
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<a href="STDResult.html">STDResult</a><br>
+<A href="STD_ConvertStringSjisToUnicode.html">STD_ConvertStringSjisToUnicode</A>, <A href="STD_ConvertCharSjisToUnicode.html">STD_ConvertCharSjisToUnicode</A>, <A href="STD_ConvertCharUnicodeToSjis.html">STD_ConvertCharUnicodeToSjis</A>, <A href="STDConvertSjisCallback.html">STDConvertSjisCallback</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2006/08/10 インタフェース変更。<br>
+2006/07/24 インタフェース変更。<br>
+2006/07/05 初版<br>
+</P>
+</body>
+</html>

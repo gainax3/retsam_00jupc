@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndUnlockChannel</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndUnlockChannel</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndUnlockChannel( u32 <var>chBitFlag</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>chBitFlag</code></strong></em></td>
+<td>ロックを解除するチャンネルのビットフラグ</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+チャンネルのロックを解除します。
+</p>
+      <p>
+<em><strong><code>chBitFlag</code></strong></em>で、ロックを解除するチャンネルを指定します。
+下位ビットから順に、チャンネル0、チャンネル1、チャンネル2、、、を表し、
+ビットが立っているチャンネル全てのロックを解除します。
+例えば、チャンネル2とチャンネル5をロックを解除したい場合は、、 (1 &lt;&lt; 2) | (1 &lt;&lt; 5) すなわち、0x0024 とします。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+<tt class="function"><a href="NNS_SndLockChannel.html">NNS_SndLockChannel</a></tt>関数と
+この関数は、必ず一対一対応で呼びだす必要があります。
+ロックしていないチャンネルのロック解除を行うなどすると、
+思わぬ誤動作を引き起こしますので、注意してください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndLockChannel.html">NNS_SndLockChannel</a></p>
+<h2>履歴</h2>
+<p>2004/10/25 初版<br></p>
+</div>
+</body>
+</html>

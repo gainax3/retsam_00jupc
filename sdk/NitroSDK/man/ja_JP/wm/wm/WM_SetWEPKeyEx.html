@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetWEPKeyEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetWEPKeyEx</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetWEPKeyEx(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        u16             wepmode ,
+        u16             wepkeyid ,
+        const u8*       wepkey
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">wepmode</FONT></STRONG></EM></TD>
+      <TD width="800">暗号通信機能の動作モードを指定します。以下の 0 ～ 3 のモードから指定して下さい。<BR>
+      <UL><LI>0 ： 暗号機能なし<BR>
+          <LI>1 ： RC4(  40 ビット )暗号モード<BR>
+          <LI>2 ： RC4( 104 ビット )暗号モード<BR>
+          <LI>3 ： RC4( 128 ビット )暗号モード
+      </UL></TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">wepkeyid</FONT></STRONG></EM></TD>
+      <TD width="800">4つのWEPキーの内どのキーを用いるかを 0 ～ 3 の値で指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">wepkey</FONT></STRONG></EM></TD>
+      <TD width="800">暗号キーデータ( 80バイト )へのポインタを指定します。<BR>
+      キーデータは4つのデータで構成され、それぞれ20バイトです。各20バイトのうち、
+      <UL><LI>40 ビットモードでは  5 バイト<BR>
+          <LI>104 ビットモードでは 13 バイト<BR>
+          <LI>128 ビットモードでは 16 バイト
+      </UL>
+      のデータが使用されます。<BR>
+      また、このデータの実体は強制的にキャッシュストアされる点に注意して下さい。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+暗号機能、暗号キーを設定します。<A href="WM_SetWEPKey.html">WM_SetWEPKey</A>より詳細に設定を行うことができます。
+WMが<A href="wm_state_diagram.html">IDLEステート</A>の場合に実行可能です。
+関数の戻り値がWM_ERRCODE_OPERATINGであった場合、暗号機能設定処理が完了した後にコールバックが発生します。<BR>
+<BR>
+WEPキーによる暗号化は、接続時の認証処理、及びインフラストラクチャモードでのデータ送受信に適用されます。
+<EM><STRONG><FONT face="Courier New">wepmode</FONT></STRONG></EM>は通信相手と同じ設定にしておく必要があります。
+<EM><STRONG><FONT face="Courier New">wepkeyid</FONT></STRONG></EM>はデータを送信する際の暗号化データ列の選択に用いられます。
+逆にデータ受信時の復号化には送信側が指定したIDのWEPキーが用いられます。
+共通鍵認証においては子機が暗号化し、親機が復号化することでキーの一致が確認されるため、親機でのIDの指定は実質意味を持ちません。
+また、インフラストラクチャモードでの受信データ復号化には、アクセスポイントが指定するIDのWEPキーが一致する必要があります。<BR>
+当関数によってWEP暗号設定が行われた親機に子機として接続する際には、当関数によりWEP設定を行った上で
+<A href="WM_StartConnectEx.html">WM_StartConnectEx関数</A>の<EM><STRONG><FONT face="Courier New">authMode</FONT></STRONG></EM>に共通鍵認証( WM_AUTHMODE_SHARED_KEY )であることを指定する必要がある点に注意して下さい。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetWEPKey.html">WM_SetWEPKey</A>, <A href="WM_StartConnectEx.html">WM_StartConnectEx</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/07 説明追記<BR>
+2005/03/02 wepmode引数について指定可能範囲を追記<BR>
+2005/02/14 初版<BR>
+</P>
+</body>
+</html>

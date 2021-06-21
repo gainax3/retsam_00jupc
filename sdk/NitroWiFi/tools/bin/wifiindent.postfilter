@@ -1,0 +1,35 @@
+#! sed -f
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - tools - wifiindent
+# File:     wifiindent.postfilter
+#
+# Copyright 2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: wifiindent.postfilter,v $
+# Revision 1.1  2006/03/15 09:53:13  kitase_hirotake
+# Initial Upload
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+/^[ ]*\/\/.*\*INDENT-OFF\*/,/^[ ]*\/\/.*\*INDENT-ON\*/s/^[ ]*\/\///;
+s/case A:[ 	]*\/\/-X-X-SDKINDENT-X-X-[ 	]*//
+s/^\/\/-X-X-SDKINDENT-X-X-//;
+s/X_X_SDKINDENT_4MB/4MB/;
+s/X_X_SDKINDENT_8MB/8MB/;
+s/X_X_SDKINDENT_4KB/4KB/;
+s/X_X_SDKINDENT_8KB/8KB/;
+s/X_X_SDKINDENT_16KB/16KB/;
+s/X_X_SDKINDENT_32KB/32KB/;
+s/X_X_SDKINDENT_64KB/64KB/;
+s/X_X_SDKINDENT_128KB/128KB/;
+s/X_X_SDKINDENT_256KB/256KB/;
+s/X_X_SDKINDENT_512KB/512KB/;
+s/X_X_SDKINDENT_1MB/1MB/;
+s/X_X_SDKINDENT_2MB/2MB/;
+s/\[SDK];[ ]*\/\/-X-X-SDKINDENT-X-X-[ ]*/\[/;

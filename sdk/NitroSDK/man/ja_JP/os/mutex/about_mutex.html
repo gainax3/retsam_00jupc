@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>排他制御(Mutex) (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">排他制御(Mutex) (overview)</H1>
+<H2>説明</H2>
+<P>mutex (ミューテック、mutual exclusion (service) ) は、スレッド間の排他制御のための機構です。プログラムの特定の個所について複数のスレッドからの同時実行を抑制し、データやレジスタなどのリソースが同時に複数のスレッドからアクセスされないようにします。</P>
+<HR>
+<P><B>mutex の初期化</B></P>
+<P>mutex の初期化は <CODE><A href="OS_InitMutex.html">OS_InitMutex()</A></CODE> で行ないます。 1つの OSMutex 構造体のオブジェクトに1つの mutex を設定することが出来ます。</P>
+<HR>
+<P><B>mutex の構造</B></P>
+<P>OSMutex 構造体は、</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>
+<pre>
+struct OSMutex
+{
+    OSThreadQueue   queue;
+    OSThread*       thread; // the current owner
+    s32             count;  // lock count
+
+    OSMutex*        prev;   // link for OSThread.queueMutex
+    OSMutex*        next;   // link for OSThread.queueMutex
+};
+</pre>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+となっています。このうち、prev と next は mutex をリスト構造で管理するためのメンバで、実質的に
+mutex の機能を為すものは queue と thread と count です。</P>
+<P>queue は、この mutex によって待たされているスレッドが登録されるスレッドキューです。</P>
+<P>thread は、この mutex で他のスレッドをロックしているカレントスレッドを登録するメンバです。</P>
+<P>count は、この mutex に対するロックのネストを管理するメンバです。</P>
+<P>Mutex を初期化したとき、各メンバは以下の値になっています。</P>
+<BLOCKQUOTE><IMG src="image_initial_member.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>mutex のロック</B></P>
+<P>mutex による ロックを行なう関数は <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> です。</P>
+<P>プログラムのある個所に <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> を記述すると、指定したmutex がその時点でロックに使用されていない場合、カレントスレッドを記憶してロックをかけます。</P>
+<P>すでにロックされている mutex を指定した <CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> が実行されると、mutex が現在のスレッドと同じスレッドによってロックされている場合は
+mutex の count をインクリメントした上で関数から戻り、異なるスレッドであった場合はロックが解除されるまで現在のスレッドは一時停止状態になります。このときスレッドのリスケジューリングが発生します。</P>
+<P>例えば、下図のように Mutex1 と、それを使ってロックをかけるプログラムがある場合を考えます。</P>
+<BLOCKQUOTE><IMG src="image_mutex_l1.gif" border="0"></BLOCKQUOTE>
+<P>このプログラムを thread1 が実行しようとします。thread1 は mutex のロック関数
+<CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行しますが、Mutex1 はこの時点でまだ使われていないので ( 使われていないという判断は
+Mutex1 の owner thread が NULL であることを利用しています。)、 thread1
+が Mutex1 の owner thread であることを記憶し、count を 1 にしてロック関数から戻ります。</P>
+<BLOCKQUOTE><IMG src="image_mutex_l2.gif" border="0"></BLOCKQUOTE>
+<P>ここで別のスレッド thread2 が同じプログラムを実行しようとした場合を考えます。thread2
+も <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行しますが、Mutex1 はすでにロックに使用されています。Mutex1 の owner
+thread　は thread2 ではないので thread2 はここから先に進むことが出来ません。結果、thread2
+は一時停止状態に入ります。この時、Mutex1 内の thread queue　にこのロックの解除を待っているスレッドとして、
+thread2 を登録しておきます。<BLOCKQUOTE><IMG src="image_mutex_l3.gif" border="0"></BLOCKQUOTE>
+<P>一方、therad1 が再びどこかの(同じ行であっても、別の行であっても) <CODE>OS_LockMutex( &amp;Mutex1 )</CODE> を実行する場合を考えます。Mutex1 はすでにロックに使用されていますが Mutex1　の
+owner thread は現在のスレッド thread1 と等しいので、そのまま通過することが出来ます。この時
+Mutex1 内の count をインクリメントします。<BLOCKQUOTE><IMG src="image_mutex_l4.gif" border="0"></BLOCKQUOTE>
+<P>なお、複数のスレッドが一つの mutex の thread queue に登録されることもあります。これらはすべてその
+mutex によってロックされているスレッドです。すべてのスレッドが同じ行で一時停止状態になっているとは限りません。mutex
+のロックが解除されると、登録されている全てのスレッドは実行可能状態になります。<BLOCKQUOTE><IMG src="image_mutex_l5.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>mutex のロックの解放</B></P>
+<P>mutex による ロックを解放する関数は <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A>です。</CODE></P>
+<P>ただし、必ず解放するわけではなく、mutex 内部の count 値をデクリメントした結果が
+0 であるときのみロックを解放します。0 でない場合は、count 値をデクリメントするのみで関数から戻ります。<P>例えば、下図のように thread1 が Mutex1 を用いて thread2 をロックしている状態で、thread1
+が <CODE>OS_UnlockMutex( &amp;Mutex1 )</CODE> を実行する場合を考えます。<BLOCKQUOTE><IMG src="image_mutex_u1.gif" border="0"></BLOCKQUOTE>
+<P>この時、count をデクリメントした結果0 となるので、thread queue に登録されているスレッドを実行可能状態にしてリスケジューリングします。この場合
+thread2 が実行可能状態になります。</P>
+<BLOCKQUOTE><IMG src="image_mutex_u2.gif" border="0"></BLOCKQUOTE>
+<P>もしも thread2 が thread1 より優先度の高いスレッドであれば、thread1 が一時停止状態となって、
+thread2 が実行状態となります。thread2 は <CODE><A href="OS_LockMutex.html">OS_LockMutex( &amp;Mutex1 )</A></CODE> を実行しようとして thread1 にロックされていたのですが、Mutex1 は初期化されていますので、今度は
+thread2 が Mutex1 を用いて他のスレッドをロックすることになります。<BLOCKQUOTE><IMG src="image_mutex_u3.gif" border="0"><BR>
+</BLOCKQUOTE>
+<P>thread1 が <CODE><A href="OS_UnlockMutex.html">OS_UnlockMutex()</A></CODE> を実行して、count 値をデクリメントしても 0 でない場合はまだ他のロックが解除されていないものと考え、そのままスルーします。この時はスレッドのリスケジューリングは発生しません。このように、ロックとロックの解放はネスト(入れ子)構造になっていても構いません。<BLOCKQUOTE><IMG src="image_mutex_u4.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>mutex のロック試行</B></P>
+<P><CODE><A href="OS_LockMutex.html">OS_LockMutex()</A></CODE> はロック出来るまで関数から戻りませんが、それに対し、ロックできればするが出来なければすぐに戻るという関数が
+<CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex() </A></CODE>です。
+
+<P><CODE><A href="OS_TryLockMutex.html">OS_TryLockMutex()</A></CODE> は、その返り値によりロックに成功したかどうかを知ることが出来ます。
+
+<HR>
+<P><B>スレッド終了時の処理</B></P>
+<P>スレッドが終了するときは、そのスレッドがロックしていた mutex はすべて解放されます。</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Mutex">OS関数一覧(排他制御)<BR>
+</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/12/14 用語や語尾など修正<BR>
+2004/11/11 初版</P>
+</BODY>
+</HTML>

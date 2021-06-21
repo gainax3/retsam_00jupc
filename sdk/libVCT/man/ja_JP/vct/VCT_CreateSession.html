@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_CreateSession</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_CreateSession</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code><a href="VCTSession.html">VCTSession</a>* VCT_CreateSession( u8 aid );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%" height="17">リモートクライアントのaid</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>成功の場合は作成された<a href="VCTSession.html">VCTSession</a>構造体、失敗の場合はNULL
+<H2>説明</H2>
+<P>新しいセッションを作成します。この関数は電話モードでのみ使用します。</P>
+<P>VCT_Initで2つ以上のセッションを確保していれば、複数のセッションを作成することが出来ます。</p>
+<h2>参照</h2>
+<p><CODE><a href="VCT_DeleteSession.html">VCT_DeleteSession</a>, <a href="VCT_Request.html">VCT_Request</a>, <a href="VCT_Response.html">VCT_Response</a></CODE></p>
+<H2>履歴</H2>
+<P>
+2006/04/17 戻り値の内容を修正<BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

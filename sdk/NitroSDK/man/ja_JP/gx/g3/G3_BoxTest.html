@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_BoxTest</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_BoxTest</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_BoxTest(const <A href="../gx/GXBoxTestParam.html">GXBoxTestParam</A> * box);
+
+// 以下ディスプレイリスト（コマンド列）作成用API
+void G3BS_BoxTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, const GXBoxTestParam * box);
+void G3B_BoxTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, const GXBoxTestParam * box);
+void G3CS_BoxTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, const GXBoxTestParam * box);
+void G3C_BoxTest(<A href="../gx/GXDLInfo.html">GXDLInfo</A> * info, const GXBoxTestParam * box);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="128"><em><strong><font face="Courier New">box</font></strong></em></TD>
+      <TD width="567">テストするボックスの座標データへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>引数に与えられたBoxにカレント行列を適応した結果が視体積に入るかどうかをテストします。*<B><I>box</I></B>にボックスのデータをセットします。結果は<A href="G3X_GetBoxTestResult.html">G3X_GetBoxTestResult</A>で取得します。<BR>
+<BR>
+※この関数を呼ぶ際には、あらかじめポリゴン属性の「FAR面交差クリッピングフラグ」と「１ドットポリゴン表示フラグ」を1に設定した状態にしておいてください。いずれかのフラグが0の場合正しいテスト結果が得られない場合があります。<BR>
+<BR>
+ポリゴン属性は、Beginコマンドが発行された時点で反映されますので、</P>
+<P>PolygonAttr -&gt; Begin -&gt; End -&gt; BoxTest</P>
+<P>の手順でBoxTestをおこなう必要があります。</P>
+<PRE><CODE>typedef union
+{
+    u32 val[3];
+    struct
+    {
+        fx16 x;      // 基準頂点のx座標
+        fx16 y;      // 基準頂点のy座標
+        fx16 z;      // 基準頂点のz座標
+        fx16 width;  // テストする直方体の横幅
+        fx16 height; // テストする直方体の高さ
+        fx16 depth;  // テストする直方体の奥行き
+    };
+}
+GXBoxTestParam;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G3_PositionTest.html">G3_PositionTest</A>, <A href="G3_VectorTest.html">G3_VectorTest</A>, <A href="G3X_GetBoxTestResult.html">G3X_GetBoxTestResult</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/07/29 ポリゴン属性の設定に関する記述追加<BR>
+Ver. 2004/01/19</P>
+</body>
+</html>

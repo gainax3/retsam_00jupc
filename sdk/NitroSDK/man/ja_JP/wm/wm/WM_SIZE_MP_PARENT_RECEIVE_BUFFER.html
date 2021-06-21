@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SIZE_MP_PARENT_RECEIVE_BUFFER</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SIZE_MP_PARENT_RECEIVE_BUFFER</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+WM_SIZE_MP_PARENT_RECEIVE_BUFFER( childMaxSize, maxEntry, ksFlag )
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">childMaxSize</FONT></STRONG></EM></TD>
+      <TD width="800">子機送信容量の最大値を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">maxEntry</FONT></STRONG></EM></TD>
+      <TD width="800">親機が接続を受け入れる子機の最大数を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">ksFlag</FONT></STRONG></EM></TD>
+      <TD width="800"><DEL>キーシェアリングを行うかどうかのブール値です。</DEL>現在は使用されていません。FALSE を指定してください。</TD>
+    </TR>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p><A href="WM_StartMP.html">WM_StartMP</A>の引数として渡される受信バッファに必要なサイズを返します。</p>
+
+<H2>説明</H2>
+<P>SDKがMP通信で内部的に使用する受信バッファに必要なサイズを定数値として求める関数マクロです。</P>
+
+<h2>参照</h2>
+<P><CODE>
+<A href="WM_StartMP.html">WM_StartMP</A>,
+<A href="WM_GetMPSendBufferSize.html">WM_GetMPSendBufferSize</A>,
+<A href="WM_SIZE_MP_PARENT_SEND_BUFFER.html">WM_SIZE_MP_PARENT_SEND_BUFFER</A>,
+<A href="WM_SIZE_MP_CHILD_RECEIVE_BUFFER.html">WM_SIZE_MP_CHILD_RECEIVE_BUFFER</A>,
+<A href="WM_SIZE_MP_CHILD_SEND_BUFFER.html">WM_SIZE_MP_CHILD_SEND_BUFFER</A> </CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/12/08 キーシェアリング関連の記述を削除<BR>
+2004/09/09 引数に ksFlag を追加<BR>
+2004/08/18 初版<BR>
+</P>
+</body>
+</html>

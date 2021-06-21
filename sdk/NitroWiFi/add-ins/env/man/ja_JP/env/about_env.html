@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>環境リソース管理 (overview) </TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">環境リソース (overview)</H1>
+<H2>説明</H2>
+<P>ENVライブラリでは、プログラムからリソースとして定義した値を容易に取得する手段を提供します。リソースとはリソース名の定義された、様々なパラメータや設定値です。プログラムからはリソース名の指定でリソース値を取得します。</P>
+<P>プログラムの開発途中で動作のためのパラメータを様々に変えて実験を行なうような場合や、複数のプログラムで共通の設定値を用いるような場合にこの環境リソースライブラリを用いると非常に便利です。</P>
+<HR>
+<P><B>リソース定義</B></P>
+<P>この ENV ライブラリでは、リソース名の問い合わせに対し、リソース値を返します。リソース名は、クラス名、&quot;.&quot; (ピリオド) 、メンバ名　で構成されます。</P>
+<BLOCKQUOTE><B>(例)</B><BR>
+<CODE>myServer.Hostname</CODE>　　というリソースの場合、<BR>
+<CODE>myServer </CODE>がクラス名で、 <CODE>Hostname</CODE> がメンバ名です。</BLOCKQUOTE>
+<P>こうしたリソースに対し、u8, s8, u16, s16, u32, s32, u64, s64, BOOL, string,
+binary のいずれかの値を持たせることが出来ます。string は文字列データで、binary
+はバイナリデータです。</P>
+<P>リソースは内部では１つの ENVResource 構造体で管理されます。( リソース値が
+64ビット値の場合は2つ使用します)</P>
+<BLOCKQUOTE>
+<P><CODE>struct ENVResource<BR>
+{<BR>
+　　char*　 name;<BR>
+　　u16 　　len;<BR>
+　　u16 　　type;<BR>
+　　void*　 ptr;<BR>
+};</CODE></P>
+</BLOCKQUOTE>
+<P>name はリソース名へのポインタです。len はりソースの長さです。type はりソースを宣言したときの型情報です。ptr は、string と binary の場合は、文字列やデータが実際に格納されている場所へのポインタです。u8, s8, u16, s16, u32, s32, BOOLの場合はその値が代入されます。u64 と s64 の場合は、連続する2つのリソースデータを用います。</P>
+<HR>
+<P><B>リソースデータの記述</B><BR>
+</P>
+<P>リソースデータは ENVResource 構造体の配列で定義します。前述の ENVResource
+構造体の、len, type, ptr メンバを一度に定義する以下のマクロが用意されていて、これを利用するとリソースの記述も簡単です。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>ENV_U8()</CODE></TD>
+      <TD><CODE>u8 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_S8() </CODE></TD>
+      <TD><CODE>s8 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_U16() </CODE></TD>
+      <TD><CODE>u16 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_S16() </CODE></TD>
+      <TD><CODE>s16 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_U32() </CODE></TD>
+      <TD><CODE>u32 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_S32() </CODE></TD>
+      <TD><CODE>s32 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_U64() </CODE></TD>
+      <TD><CODE>u64 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_S64() </CODE></TD>
+      <TD><CODE>s64 値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_BOOL() </CODE></TD>
+      <TD><CODE>BOOL値に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_STRING() </CODE></TD>
+      <TD><CODE>文字列に対するマクロ</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>ENV_BINARY()</CODE></TD>
+      <TD><CODE>バイナリデータに対するマクロ</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+これらを用いて、以下のように リソース名とリソースマクロの組でリソースを定義します。</P>
+<BLOCKQUOTE><CODE>ENVResource myResource[] = {<BR>
+　　&quot;myClass.str1&quot;,　　　　ENV_STRING( &quot;mario&quot; ),<BR>
+　　&quot;myClass.bin1&quot;,　　　　ENV_BINARY( &quot;\x12\x34\x56\x78&quot;
+),<BR>
+　　&quot;myClass2.data1&quot;,　　 ENV_S32( -500 ),<BR>
+　　&quot;myClass2.data2&quot;,　　 ENV_U16( 0x8000 ),<BR>
+　　ENV_RESOURCE_END<BR>
+};</CODE></BLOCKQUOTE>
+<P><CODE><FONT color="#ff0033">データの最後には ENV_RESOURCE_END を記述してください。</FONT></CODE></P>
+<P>上で定義したリソース配列は、内部ではこのように管理されます。</P>
+<BLOCKQUOTE><CODE><IMG src="image_envResource1.gif" border="0"><BR>
+</CODE></BLOCKQUOTE>
+<HR>
+<P><B>リソース配列のリスト</B></P>
+<P>リソースの検索はリソース配列から行なわれますが、ENVライブラリではシステムに複数のリソース配列を登録できるようになっています。リソース配列はシステム内でリストとして連結され、検索時はこのリストを元に、登録されているすべての配列を対象に行なわれます。検索はリストのより前、そして配列のより前から検索され、同じリソースがあった場合は先に見つかったほうが採用されます。</P>
+<P><CODE><A href="ENV_AppendResourceSet.html">ENV_AppendResourceSet()</A></CODE> は新たなリソース配列をリストの最後尾に追加します。<BR>
+<CODE><A href="ENV_PrependResourceSet.html">ENV_PrependResourceSet()</A></CODE> は新たなリソース配列をリストの先頭に追加します。<BR>
+<CODE><A href="ENV_InsertResourceSet.html">ENV_InsertResourceSet()</A></CODE> は新たなリソース配列を任意の位置に追加します。</P>
+<P><CODE><A href="ENV_SetResourceSet.html">ENV_SetResourceSet()</A></CODE>, <CODE><A href="ENV_SetResourceSetArray.html">ENV_SetResourceSetArray()</A></CODE> はこれまで登録されていたリストを破棄し、指定のものを登録します。</P>
+<P>登録できるリソース配列の数には制限があります。ENV_RESOURCE_SET_MAX 個です。(8
+に定義されています)</P>
+<BLOCKQUOTE><IMG src="image_envResource2.gif" border="0"></BLOCKQUOTE>
+<HR>
+<P><B>リソース配列の宣言</B></P>
+<P><CODE><A href="ENV_Init.html">ENV_Init()</A></CODE> で、ENV ライブラリの初期化と、使用するリソース配列の設定を行ないます。前もって resourceArray[] 配列に使用するリソース配列群を設定して、すべての ENV 関数の前に呼び出して下さい。また、<CODE><A href="ENV_Init.html">ENV_Init()</A></CODE> は一度呼べば結構です (2回以上呼んでも構いません)。</P>
+
+<HR>
+<P><B>リソース値の取得</B></P>
+<P>リソース名からリソース値を取得する関数は、リソースの定義によって以下のように使い分けてください。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetU8()</A></CODE></TD>
+      <TD><CODE>ENV_U8() で定義した u8 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetS8()</A> </CODE></TD>
+      <TD><CODE>ENV_S8() で定義した s8 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetU16()</A> </CODE></TD>
+      <TD><CODE>ENV_U16() で定義した u16 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetS16()</A> </CODE></TD>
+      <TD><CODE>ENV_S16() で定義した s16 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetU32()</A> </CODE></TD>
+      <TD><CODE>ENV_U32() で定義した u32 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetS32()</A> </CODE></TD>
+      <TD><CODE>ENV_S32() で定義した s32 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetU64()</A> </CODE></TD>
+      <TD><CODE>ENV_U64() で定義した u64 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetS64()</A> </CODE></TD>
+      <TD><CODE>ENV_S64() で定義した s64 値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetBOOL()</A> </CODE></TD>
+      <TD><CODE>ENV_BOOL() で定義した BOOL値</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetString()</A> </CODE></TD>
+      <TD><CODE>ENV_STRING() で定義した 文字列</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE><A href="ENV_GetXXX.html">ENV_GetBinary()</A></CODE></TD>
+      <TD><CODE>ENV_BINARY() で定義した バイナリデータ</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+取得値は引数に指定するポインタの先に格納されます。関数の返り値は取得に成功したかどうかを表します。</P>
+<P>文字列とバイナリ取得の関数は、その大きさを併せて取得するために、<CODE><A href="ENV_GetXXX.html">ENV_GetStringAndLength()</A></CODE>, <CODE><A href="ENV_GetXXX.html">ENV_GetBinaryAndSize()</A></CODE> が用意されています。</P>
+<HR>
+<P><B>クラス名の省略</B></P>
+<P>予め、クラス名を ENVライブラリに与えることで、リソース名を必要とする関数でクラス名の部分を省略してメンバ名のみで指定することが出来ます。メンバ名のみを指定するときには、&quot;.&quot;
+(ピリオド) を最初に付けてください。</P>
+<P>クラス名の宣言は、<CODE><A href="ENV_SetClass.html">ENV_SetClass()</A></CODE> で行ないます。</P>
+<BLOCKQUOTE><B>(例)</B><BR>
+<BR>
+<CODE>u32 d1, d2, d3;<BR>
+(void)ENV_GetU32( &quot;myClass.myData1&quot;, &amp;d1 );<BR>
+(void)ENV_GetU32( &quot;myClass.myData2&quot;, &amp;d2 );<BR>
+(void)ENV_GetU32( &quot;myClass.myData3&quot;, &amp;d3 );<BR>
+</CODE><BR>
+とすべてにクラス名を記述するところを、<BR>
+<BR>
+<CODE>u32 d1, d2, d3;<BR>
+ENV_SetClass( &quot;myClass&quot; );<BR>
+(void)ENV_GetU32( &quot;.myData1&quot;, &amp;d1 );<BR>
+(void)ENV_GetU32( &quot;.myData2&quot;, &amp;d2 );<BR>
+(void)ENV_GetU32( &quot;.myData3&quot;, &amp;d3 );<BR>
+</CODE><BR>
+というようにメンバ名のみで記述できます。</BLOCKQUOTE>
+<P>現在の設定値を取得する関数は <CODE><A href="ENV_GetClass.html">ENV_GetClass()</A></CODE> です。</P>
+<HR>
+<P><B>ENVライブラリ使用例</B></P>
+<P>以下は ENV ライブラリを使用した例です。</P>
+<BLOCKQUOTE><CODE>ENVResource myResource1[] = {<BR>
+　　　&quot;server1.hostName&quot;,　　ENV_STRING( &quot;myserver&quot; ),<BR>
+　　　&quot;server1.IP&quot;,　　ENV_BINARY( &quot;\xc0\xA8\x00\x01&quot; ),<BR>
+　　　&quot;server1.port&quot;,　　ENV_U16( 5000 ),<BR>
+　　　<B><FONT color="#ff0033">ENV_RESOURCE_END</FONT></B><BR>
+};<BR>
+<BR>
+ENVResource myResource2[] = {<BR>
+　　　&quot;server2.hostName&quot;,　　ENV_STRING( &quot;ftpserver&quot; ),<BR>
+　　　&quot;server2.IP&quot;,　　ENV_BINARY( &quot;\xc0\xA8\x00\x02&quot; ),<BR>
+　　　&quot;server2.port&quot;,　　ENV_U16( 21 ),<BR>
+　　　<B><FONT color="#ff0033">ENV_RESOURCE_END</FONT></B><BR>
+};<BR>
+<BR>
+ENVResource* resourceArray[]={ myResource1, myResource2, NULL };
+</CODE><BR>
+<BR>
+
+<BR>
+<BR>
+main()<BR>
+{<BR>
+　　　char* hostname;<BR>
+　　　u8* ipAddress;<BR>
+　　　int ipSize;<BR>
+　　　u16 portNum;<BR>
+<BR>
+　　　//---- ENV システムの初期化<BR>
+　　　ENV_Init();<BR>
+<BR>
+　　　//---- 省略時クラス名の指定<BR>
+　　　ENV_SetClass( &quot;server1&quot; );<BR>
+<BR>
+　　　//---- リソースの取得<BR>
+　　　if ( ! ENV_GetString( &quot;.hostName&quot;, &amp;hostname ) )<BR>
+　　　{<BR>
+　　　　　OS_Printf( &quot;error: hostname is not defined.\n&quot; );<BR>
+　　　};<BR>
+　　　if ( ! ENV_GetBinaryAndSize( &quot;.IP&quot;, &amp;ipAddress, &amp;ipSize
+) )<BR>
+　　 {<BR>
+　　　　　OS_Printf( &quot;error: ipAddress is not defined.\n&quot; );<BR>
+　　　};<BR>
+　　　if ( ! ENV_GetU16( &quot;.port&quot;, &amp;portNum ) )<BR>
+　　 {<BR>
+　　　　　OS_Printf( &quot;error: portNum is not defined.\n&quot; );<BR>
+　　　};<BR>
+}<BR>
+</CODE></BLOCKQUOTE>
+<HR>
+<P><B>特定の条件でリソースを検索</B></P>
+<P>特定のクラス名やメンバ名などで検索してリソースを検索するために ENVResourceIter
+構造体が定義されています。これを検索のイテレータとして用います。イテレータを操作してリソースを取得する関数として、<CODE><A href="ENV_InitIter.html">ENV_InitIter()</A></CODE> と、<CODE><A href="ENV_SearchByClass.html">ENV_SearchByClass()</A></CODE> 、 <CODE><A href="ENV_SearchByMember.html">ENV_SearchByMember()</A></CODE>、<CODE><A href="ENV_SearchByType.html">ENV_SearchByType()</A></CODE>、<CODE><A href="ENV_SearchByPartialName.html">ENV_SearchByPartialName()</A></CODE> があります。</P>
+<P>以下は特定のクラス &quot;className&quot; を持つリソースを取得しています。</P>
+<BLOCKQUOTE><FONT color="#ff0033"><CODE>ENVResourceiter　 iter;</CODE></FONT><CODE><BR>
+ENVResource* 　　　p;<BR>
+<BR>
+<FONT color="#ff0033">ENV_InitIter( &amp;iter );</FONT><BR>
+while( (p = <FONT color="#ff0033">ENV_SearchByClass( &amp;iter, &quot;className&quot; )</FONT> ) )<BR>
+{<BR>
+　　OS_Printf( &quot;resource = %s\n&quot;, p-&gt;name );<BR>
+}</CODE></BLOCKQUOTE>
+<P>特定のメンバ名 &quot;memberName&quot; を持つリソースを検索するには、以下のように記述します。メンバ名は、&quot;.&quot;(ピリオド)
+を含まない文字列となります。クラス、メンバの区切りのピリオド以外にピリオドがある場合、そこまでをメンバ名として比較します。</P>
+<BLOCKQUOTE><FONT color="#ff0033"><CODE>ENVResourceIter　 iter;</CODE></FONT><CODE><BR>
+ENVResource* 　　　p;<BR>
+<BR>
+<FONT color="#ff0033">ENV_InitIter( &amp;iter );</FONT><BR>
+while( (p = <FONT color="#ff0033">ENV_SearchByMember( &amp;iter, &quot;memberName&quot; )</FONT> ) )<BR>
+{<BR>
+　　OS_Printf( &quot;resource = %s\n&quot;, p-&gt;name );<BR>
+}</CODE></BLOCKQUOTE>
+<P>例えば、メンバ名「member」で検索する場合、</P>
+<BLOCKQUOTE><CODE>&quot;class.member&quot;<BR>
+&quot;class.member.001&quot;<BR>
+&quot;class.member.class&quot;</CODE></BLOCKQUOTE>
+<P><CODE>にはマッチしますが、</CODE></P>
+<BLOCKQUOTE><CODE>&quot;class.member001&quot;<BR>
+&quot;class.member2.member&quot;</CODE></BLOCKQUOTE>
+<P>にはマッチしません。</P>
+<HR>
+<P><B>リソースが含まれるリソース配列</B></P>
+<P>イテレータを用いてリソースを検索した直後、<CODE><A href="ENV_GetLastResourceSetForIter.html">ENV_GetLastResourceSetForIter()</A></CODE> で取得したリソースの所属するリソース配列を取得することが可能です。</P>
+<P>リソースを指定してその所属するリソース配列を取得するのは <CODE><A href="ENV_GetBelongingResourceSet.html">ENV_GetBelongingResourceSet()</A></CODE> です。<BR>
+</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="list_env.html">ENV関数一覧</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/08/29 リソース配列の複数登録に対応<BR>
+2005/08/17 初版</P>
+</BODY>
+</HTML>

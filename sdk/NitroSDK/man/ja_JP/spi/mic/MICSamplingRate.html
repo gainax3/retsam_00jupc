@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MICSamplingRate</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MICSamplingRate</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum
+{ 
+	MIC_SAMPLING_RATE_8K	= ( HW_CPU_CLOCK_ARM7 /  8000 ) ,
+	MIC_SAMPLING_RATE_11K	= ( HW_CPU_CLOCK_ARM7 / 11025 ) ,
+	MIC_SAMPLING_RATE_16K	= ( HW_CPU_CLOCK_ARM7 / 16000 ) ,
+	MIC_SAMPLING_RATE_22K	= ( HW_CPU_CLOCK_ARM7 / 22050 ) ,
+	MIC_SAMPLING_RATE_32K	= ( HW_CPU_CLOCK_ARM7 / 32000 )
+	MIC_SAMPLING_RATE_LIMIT	= 1024
+
+} MICSamplingRate;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_8K</font></strong></em></TD>
+      <TD width="700">8 kHz</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_11K</font></strong></em></TD>
+      <TD width="700">11.025 kHz</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_16K</font></strong></em></TD>
+      <TD width="700">16 kHz</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_22K</font></strong></em></TD>
+      <TD width="700">22.05 kHz</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_32K</font></strong></em></TD>
+      <TD width="700">32 kHz</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_RATE_LIMIT</font></strong></em></TD>
+      <TD width="700">サポートする最短のサンプリング周期</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>サンプリングレートを示す列挙型です。<BR>
+代表的なサンプリングレートをARM7のタイマー周期に換算した値を定義しています。</P>
+
+<H2>注意</H2>
+<P><FONT color=red>ARM7がマイクのサンプリングに専念した場合に<EM><STRONG><FONT face="Courier New">MIC_SAMPLING_RATE_LIMIT</FONT></STRONG></EM>までのサンプリングレートをサポートしますが、
+サウンド等の機能との併用を保証するものではありません。ARM7の負荷に応じて適度なレートを指定するようにして下さい。<BR>
+また、ARM7のタイマーはCPUクロック単位で設定される為、定義されている周波数には誤差が含まれる点をご了承下さい。</FONT></P>
+
+<h2>参照</h2>
+<P><CODE><A href="MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>, <A href="MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A></CODE></P>
+
+<H2>履歴</H2>
+<P>Ver. 2004/06/01 初版</P>
+</body>
+</html>

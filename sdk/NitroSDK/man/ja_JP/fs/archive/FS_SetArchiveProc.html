@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_SetArchiveProc</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_SetArchiveProc</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void	FS_SetArchiveProc(struct FSArchive *p_arc,
+	FS_ARCHIVE_PROC_FUNC proc, u32 flags);</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>proc</STRONG></EM></TD>
+      <TD width="87%">登録するユーザプロシージャ<br>
+	  ここで設定した関数は、アーカイブコマンドを使用するFS関数の内部から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>flags</STRONG></EM></TD>
+      <TD width="87%">ユーザプロシージャに送らせるコマンドの種類を示すビット集合<BR>
+	  これらは FS_ARCHIVE_PROC_* フラグの組み合わせで指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>アーカイブにユーザプロシージャを指定します。<BR>
+ユーザプロシージャは、アーカイブがコマンドを処理したり特定の状態になった時に<BR>
+コールバック関数として呼び出されます。<BR>
+このコールバック処理中で、コマンドそのものを独自の処理に置き換えたり、<BR>
+デフォルトの実装に任せたりすることができます。<BR>
+<BR>
+コマンドごとの動作については FSCommandType の説明を参照ください。<BR>
+<BR>
+<h2>参照</h2>
+<p>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_command_type_const.html">FSCommandType</A>
+<A href="../fs_archive_proc_consts.html">FS_ARCHIVE_PROC_*</A> 
+<BR>
+<A href="FS_LoadArchive.html">FS_LoadArchive</A> 
+<A href="FS_UnloadArchive.html">FS_UnloadArchive</A> 
+<BR>
+</p>
+<H2>履歴</H2>
+<P>
+2005/06/01 プロシージャがFS関数の内部から呼び出される旨を補足<br>
+2004/07/12 初版</P>
+</body>
+</html>

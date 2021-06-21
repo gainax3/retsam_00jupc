@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_LoadArchiveTables</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_LoadArchiveTables</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32	FS_LoadArchiveTables(FSArchive *p_arc, void *p_mem, u32 max_size);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_mem</STRONG></EM></TD>
+      <TD width="87%">テーブルのためにユーザが用意するメモリへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>max_size</STRONG></EM></TD>
+      <TD width="87%">メモリのバイトサイズ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>常に、テーブルのロードに必要なだけの充分なバイトサイズを返します。</p>
+
+<H2>説明</H2>
+<P>アーカイブのFAT情報およびFNT情報のテーブルデータを前もってメモリにすべてロードします。<BR>
+これにより、ディレクトリ操作に関するコマンドのアクセス効率の向上を図ります。<BR>
+<BR>
+指定したメモリサイズがテーブルを格納するのに充分であれば、<BR>
+各種テーブルのデータをメモリに読み込みます。<BR>
+このメモリは以降のファイルアクセスで内部的に使用されるので、<BR>
+ユーザはこれを使用することができなくなります。<BR>
+<BR>
+指定したメモリサイズが充分でない場合は、何も行いません。<BR>
+この場合、指定したメモリは使われずにユーザへ返されます。<BR>
+<BR>
+関数は常に、テーブルのロードに必要なだけの充分なバイトサイズを返します。<BR>
+この返り値がmax_sizeを上回るかmax_size以下であるかにより、格納されたかどうかが判断できます。<BR>
+<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 引数名の不一致を修正<br>
+2004/06/30 初版<br>
+</P>
+</body>
+</html>

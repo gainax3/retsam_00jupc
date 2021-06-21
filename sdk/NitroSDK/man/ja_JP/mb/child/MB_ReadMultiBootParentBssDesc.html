@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_Init</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_ReadMultiBootParentBssDesc</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void    MB_ReadMultiBootParentBssDesc(WMBssDesc *p_desc,<br>
+    u16 parent_max_size, u16 child_max_size, BOOL ks_flag, BOOL cs_flag);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_desc</STRONG></EM></TD>
+      <TD width="87%">親機情報を格納するWMBssDesc構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>parent_max_size</STRONG></EM></TD>
+      <TD width="87%">接続する親機が<a href="../../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>関数で設定しているMP親機の最大送信サイズ<BR>
+      このサイズは事前にアプリケーションで取り決めておいて指定する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>child_max_size</STRONG></EM></TD>
+      <TD width="87%">接続する親機が<a href="../../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>関数で設定しているMP子機の最大送信サイズ<BR>
+      このサイズは事前にアプリケーションで取り決めておいて指定する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>ks_flag</STRONG></EM></TD>
+      <TD width="87%">接続する親機が<a href="../../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>関数で設定しているキーシェアリング設定フラグ<BR>
+      この設定は事前にアプリケーションで取り決めておいて指定する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cs_flag</STRONG></EM></TD>
+      <TD width="87%">接続する親機が<a href="../../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>関数で設定している連続転送設定フラグ<BR>
+      この設定は事前にアプリケーションで取り決めておいて指定する必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>自身がマルチブート子機であれば、<A href="../common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>関数で得られる親機情報をもとに<BR>
+指定のメモリへ接続用情報を格納します。<BR>
+この関数によって格納されたWMBssDesc構造体はあたかも<a href="../../wm/wm/WM_StartScan.html">WM_StartScan<a>関数で取得した<BR>
+親機情報と同じように扱うことができ、<a href="../../wm/wm/WM_StartConnect.html">WM_StartConnect</a>関数の引数に与えることができます。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<a href="../../wm/wm/WM_SetParentParameter.html">WM_SetParentParameter</a>
+<a href="../../wm/wm/WM_StartScan.html">WM_StartScan<a> 
+<a href="../../wm/wm/WM_StartConnect.html">WM_StartConnect</a>
+<br>
+<A href="../common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2004/10/05 初版<BR>
+</P>
+</body>
+</html>

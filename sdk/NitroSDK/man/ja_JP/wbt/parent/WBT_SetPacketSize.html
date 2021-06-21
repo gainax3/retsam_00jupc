@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_SetPacketSize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_SetPacketSize</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_SetPacketSize(int send_packet_size, int recv_packet_size );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>send_packet_size</STRONG></EM></TD>
+      <TD width="87%">WBTのために使用することのできるMP通信の親機パケットサイズ<br>
+	  この値はWBT_PACKET_SIZE_MINバイト以上である必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>recv_packet_size</STRONG></EM></TD>
+      <TD width="87%">WBTのために使用することのできるMP通信の子機パケットサイズ<br>
+	  この値はWBT_PACKET_SIZE_MINバイト以上である必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>現在パケットサイズを変更可能であれば TRUE を、そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>WBT ライブラリの親機が<A href="../init/WBT_InitParent.html">WBT_InitParent</A>関数で指定したパケットサイズを<br>
+初期化後の任意のタイミングで動的に変更するために使用します。<br>
+成功すれば、関数はただちに制御を返します。<br>
+<br>
+データシェアリング等、WBT以外での通信ポート併用の有無に合わせて<br>
+この関数でパケットサイズを変更することで転送効率を調整することができます。<br>
+<br>
+<H2>注意</H2>
+<font color="#800000">
+この関数はユーザアプリケーション側での論理的な制御を前提として呼び出し可能なもので、<br>
+常に安全な動作を保証されているものではありません。<br>
+<br>
+各子機は<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>関数で最後に親機から取得したパケットサイズ設定に基づいて、<br>
+<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数での転送単位サイズやビットマップバッファサイズを計算します。<br>
+よって、任意の<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>データ受信が行われている最中にパケットサイズを変更することはできません。<br>
+<br>
+以下の条件を全て満たす場合にのみ、この関数を安全に使用できる点に注意してください。<br>
+<br>
+・親機がこの関数を呼び出す時点で<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数によるデータ転送を誰も実行中ではない<br>
+・親機がこの関数を呼び出した後、子機は<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数の前に必ず1回は<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>関数を呼び出す<br>
+<br>
+この関数自体が内部で行うことのできる判定は上記条件の一部分のみで、<br>
+この関数が TRUE を返したことが上記条件を全て満たしたことと同値ではない点にも注意してください。<br>
+<br></font>
+
+<h2>参照</h2>
+<p>
+<A href="../init/WBT_InitParent.html">WBT_InitParent</A>
+<A href="../command/WBT_RequestSync.html">WBT_RequestSync</A>
+<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>
+</P>
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dCharCanvasCalcCellDataSize*</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dCharCanvasCalcCellDataSize*</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+size_t NNS_G2dCharCanvasCalcCellDataSize1D(
+    const NNSG2dCharCanvas* pCC,
+    BOOL makeBR
+);
+
+size_t NNS_G2dCharCanvasCalcCellDataSize2DRect(
+    const NNSG2dCharCanvas* pCC,
+    BOOL makeBR
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCC</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>makeBR</STRONG></EM></TD>
+      <TD width="87%"> [IN] 境界矩形情報を付加するかどうかを指定します。 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	<a href="NNS_G2dCharCanvasMakeCellXXX.html"><code>NNS_G2dCharCanvasMakeCell1D()</code></a>
+	または
+	<a href="NNS_G2dCharCanvasMakeCellXXX.html"><code>NNS_G2dCharCanvasMakeCell2DRect()</code></a>
+	の第一引数として渡すべきバッファのサイズをバイト単位で返します。
+</P>
+
+<H2>説明</H2>
+<P>
+	<a href="NNS_G2dCharCanvasMakeCellXXX.html"><code>NNS_G2dCharCanvasMakeCell1D()</code></a>
+	または
+	<a href="NNS_G2dCharCanvasMakeCellXXX.html"><code>NNS_G2dCharCanvasMakeCell2DRect()</code></a>
+	の第一引数として渡すべきバッファのサイズを計算します。
+</P>
+<P>
+	これは以下のような計算式になっています。ただし、式中の<code>{CharCanvasを表示するのに必要なOBJ数}</code>は
+	<a href="NNS_G2dArrangeOBJXXX.html"><code>NNS_G2dArrangeOBJ1D()</code></a>
+	または
+	<a href="NNS_G2dArrangeOBJXXX.html"><code>NNS_G2dArrangeOBJ2DRect()</code></a>
+	によって求められる値です。
+<PRE>
+{バッファサイズ} = sizeof(NNSG2dCellData)
+                 + sizeof(NNSG2dCellOAMAttrData) * {CharCanvasを表示するのに必要なOBJ数}
+                 + sizeof(NNSG2dCellBoundingRectS16) * (makeBR ? 1: 0)
+</PRE>
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2005/07/12 初版</P>
+</BODY>
+
+</HTML>

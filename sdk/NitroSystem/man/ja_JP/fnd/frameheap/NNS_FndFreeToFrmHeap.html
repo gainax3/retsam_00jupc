@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndFreeToFrmHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_FndFreeToFrmHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>void NNS_FndFreeToFrmHeap(NNSFndHeapHandle heap, int mode);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    <td width="87%">フレームヒープのハンドル</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
+    <td width="87%">メモリブロックの解放方法(下記参照)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>メモリブロックをまとめて解放します。解放方法には、mode で指定します。mode は下記に示す値をとることが出来ます。</p>
+<table>
+  <tr>
+    <td><em><strong><font face="Courier New">NNS_FND_FRMHEAP_FREE_HEAD</font></strong></em></td>
+    
+  <td>ヒープ領域の前方から確保したメモリブロックを一括して解放します。</td>
+  </tr>
+  <tr>
+    <td><em><strong><font face="Courier New">NNS_FND_FRMHEAP_FREE_TAIL</font></strong></em></td>
+    
+  <td>ヒープ領域の後方から確保したメモリブロックを一括して解放します。</td>
+  </tr>
+  <tr>
+    <td><em><strong><font face="Courier New">NNS_FND_FRMHEAP_FREE_ALL</font></strong></em></td>
+    
+  <td>ヒープから確保した全てのメモリブロックを一括して解放します。 NNS_FND_FRMHEAP_FREE_HEAD と NNS_FND_FRMHEAP_FREE_TAIL 
+   を同時に指定した場合と同じです。 </td>
+  </tr>
+</table>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndAllocFromFrmHeap.html">NNS_FndAllocFromFrmHeap</A>, <A href="NNS_FndAllocFromFrmHeapEx.html">NNS_FndAllocFromFrmHeapEx</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

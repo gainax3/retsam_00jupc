@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_RecvCommandReply</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_RecvCommandReply</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">const SNDCommand* SND_RecvCommandReply( u32 <var>flags</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><font face="Courier New">flags</font></strong></em></td>
+<td>フラグです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>コマンド処理応答があると、処理したコマンドリストを返します。応答が無い場合はNULLを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+コマンド処理応答を受信します。
+</p>
+      <p>
+フラグ<em><strong><font face="Courier New">flags</font></strong></em>には、
+<span class="symbol">SND_COMMAND_BLOCK</span>または、<span class="symbol">SND_COMMAND_NOBLOCK</span>を指定します。
+<span class="symbol">SND_COMMAND_BLOCK</span>の場合、コマンド処理応答があるまで関数内でブロックします。
+<span class="symbol">SND_COMMAND_NOBLOCK</span>の場合は、コマンド処理応答が無いとNULLを返します。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+予約済みコマンドが無い状態で、<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数を
+呼びだしても、コマンド処理応答はありませんので、注意してください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_FlushCommand.html">SND_FlushCommand</a></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

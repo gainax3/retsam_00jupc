@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGlbGetInvV</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGlbGetInvV</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/glbstate.h&gt;</CODE></PRE>
+  <PRE><CODE>MtxFx43* NNS_G3dGlbGetInvCameraMtx(void);
+MtxFx43* NNS_G3dGlbGetInvV(void);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<P>なし。</P>
+
+<H2>返り値</H2>
+<P>カメラ行列の逆行列へのポインタを返します。</P>
+
+<H2>説明</H2>
+<P>
+G3Dライブラリ内部で保持しているグローバル状態に設定されているカメラ行列の逆行列へのポインタを返します。
+カメラ行列の逆行列が計算されていなかった場合には、逆行列を求めてから、その逆行列へのポインタを返します。
+</P>
+
+<H2>参照</H2>
+<P><A href="NNS_G3dGlbGetCameraMtx.html" target="_self">NNS_G3dGlbGetCameraMtx</A> </P>
+<H2>履歴</H2>
+<P>2004/10/13 NNS_G3dGlbGetInvCameraMtxは構文の欄にのみ残す<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

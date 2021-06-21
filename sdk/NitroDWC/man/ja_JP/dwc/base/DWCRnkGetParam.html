@@ -1,0 +1,108 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnkGetParam</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkGetParam</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef struct{
+    u32             size;
+    union{
+        u32         data;
+        struct{
+            u32 sort;
+            u32 since;
+        }           order;
+        struct{
+            u32 sort;
+            u32 limit;
+            u32 since;
+        }           toplist;
+        struct{
+            u32 sort;
+            u32 limit;
+            u32 since;
+        }           near;
+        struct{
+            u32 sort;
+            u32 limit;
+            u32 since;
+            s32 friends[64];
+        }           friends;
+    };
+} DWCRnkGetParam;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>関数で指定するパラメータを格納する構造体です。
+		</P>
+		<P>
+		  取得モードに応じて該当するパラメータに値をセットします。
+			<BR>取得モードがDWC_RNK_GET_MODE_ORDERの場合はDWCRnkGetParam.order以下を設定します。
+			<BR>取得モードがDWC_RNK_GET_MODE_TOPLISTの場合はDWCRnkGetParam.toplist以下を設定します。
+			<BR>取得モードがDWC_RNK_GET_MODE_NEARの場合はDWCRnkGetParam.near以下を設定します。
+			<BR>取得モードがDWC_RNK_GET_MODE_FRIENDSの場合はDWCRnkGetParam.friends以下を設定します。
+			<BR>取得モードがDWC_RNK_GET_MODE_NEAR_HIの場合はDWCRnkGetParam.near以下を設定します。
+			<BR>取得モードがDWC_RNK_GET_MODE_NEAR_LOWの場合はDWCRnkGetParam.near以下を設定します。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
+			<TD>後続のデータサイズ(共通)。
+					<BR>取得モードがDWC_RNK_GET_MODE_ORDERの場合はsizeof(DWCRnkGetParam.order)
+					<BR>取得モードがDWC_RNK_GET_MODE_TOPLISTの場合はsizeof(DWCRnkGetParam.toplist)
+					<BR>取得モードがDWC_RNK_GET_MODE_NEARの場合はsizeof(DWCRnkGetParam.near)
+					<BR>取得モードがDWC_RNK_GET_MODE_FRIENDSの場合はsizeof(DWCRnkGetParam.friends)
+					<BR>取得モードがDWC_RNK_GET_MODE_NEAR_HIの場合はsizeof(DWCRnkGetParam.near)
+					<BR>取得モードがDWC_RNK_GET_MODE_NEAR_LOWの場合はsizeof(DWCRnkGetParam.near)
+					<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>limit</CODE></STRONG></EM></TD>
+			<TD>取得する最大数を指定します。DWC_RNK_GET_MAX(30)以下の値を設定してください。下限値は、取得モードによって異なり、DWC_RNK_GET_MODE_TOPLISTの場合は１、DWC_RNK_GET_MODE_NEAR、DWC_RNK_GET_MODE_FRIENDS、DWC_RNK_GET_MODE_NEAR_HI、DWC_RNK_GET_MODE_NEAR_LOWのときは２となります。<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>sort</CODE></STRONG></EM></TD>
+			<TD>並び順<BR>DWC_RNK_ORDER_ASC:昇順<BR>DWC_RNK_ORDER_DES:降順</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>since</CODE></STRONG></EM></TD>
+			<TD>現時点から指定分前までに更新された中でのランキングを取得します。０を指定した場合はすべてのデータ中でのランキングを取得します。<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>friends[64]</CODE></STRONG></EM></TD>
+			<TD>友達のGSプロファイルIDリスト<BR>64個に満たない場合は、先頭から格納し、余った領域は0で埋めてください。</TD>
+          </TR>
+ 		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2007/07/21 DWC_RNK_GET_MODE_NEAR_HI と DWC_RNK_GET_MODE_NEAR_LOW についての記述を追加<br/>
+			2007/07/21 DWC_RNK_GET_MAX を 10→30 に変更<br/>
+			2006/07/24 limitの最大値に関する記述を追加<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

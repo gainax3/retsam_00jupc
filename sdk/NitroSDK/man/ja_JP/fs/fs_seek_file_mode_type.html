@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSSeekFileMode</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSSeekFileMode</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE><pre>
+typedef enum
+{
+   FS_SEEK_SET,   <font color="#008000">/* seek from begin */</font>
+   FS_SEEK_CUR,   <font color="#008000">/* seek from current */</font>
+   FS_SEEK_END    <font color="#008000">/* seek from end */</font>
+} FSSeekFileMode;
+  <br></pre></code>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>FS_SeekFile関数で指定する基準位置を表現する列挙型です。<BR>
+以下のように定義されます。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>FS_SEEK_SET</TD>
+      <TD>基準位置としてファイルの先頭を指定します。</TD>
+    </TR>
+    <TR>
+      <TD>FS_SEEK_CUR</TD>
+      <TD>基準位置としてファイルの現在位置を指定します。</TD>
+    </TR>
+    <TR>
+      <TD>FS_SEEK_END</TD>
+      <TD>基準位置としてファイルの終端を指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="file/FS_SeekFile.html">FS_SeekFile</A> 
+<A href="file/FS_SeekFileToBegin.html">FS_SeekFileToBegin</A> 
+<A href="file/FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

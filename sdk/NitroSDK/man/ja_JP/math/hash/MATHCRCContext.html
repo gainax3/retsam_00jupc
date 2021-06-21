@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATHCRC*Context</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATHCRC*Context</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/math/crc.h&gt;<BR>
+typedef u8  MATHCRC8Context;
+typedef u16 MATHCRC16Context;
+typedef u32 MATHCRC32Context;
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>説明</H2>
+<P>各種 CRC を計算するために使用するコンテキスト構造体です。<BR>
+<A href="MATH_CRCInit.html">MATH_CRC*Init</A> 関数で初期化した上で、
+入力データを <A href="MATH_CRCUpdate.html">MATH_CRC*Update</A> 関数で与え、
+<A href="MATH_CRCGetHash.html">MATH_CRC*GetHash</A> 関数でメッセージダイジェスト値を取り出します。<BR>
+<BR>
+CRC (Cyclic Redundancy Check: 巡回冗長検査) はチェック値を用いて誤り検出を行う手法です。<BR>
+</P>
+
+<h2>参照</h2>
+<P><A href="MATH_CRCInit.html">MATH_CRC*Init</A>, <A href="MATH_CRCUpdate.html">MATH_CRC*Update</A>, <A href="MATH_CRCGetHash.html">MATH_CRC*GetHash</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 初版<BR>
+</P>
+</body>
+</html>

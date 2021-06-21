@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Entity_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">エンティティ概要</h1>
+<H2>概念図</H2>
+<P><!--[if mso & !supportInlineShapes & supportFields]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:12.0pt;font-family:Century;
+mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:"Times New Roman";
+mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:JA;
+mso-bidi-language:AR-SA'><span style='mso-element:field-begin;mso-field-lock:
+yes'></span><span style='mso-spacerun:yes'>&nbsp;</span>SHAPE <span
+style='mso-spacerun:yes'>&nbsp;</span>\* MERGEFORMAT <span style='mso-element:field-separator'></span></span><![endif]--><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:12.0pt;font-family:Century;
+mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:"Times New Roman";
+mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:JA;
+mso-bidi-language:AR-SA'><IMG src="clip_image001.gif" width="681" height="252" border="0"></span><!--[if mso & !supportInlineShapes & supportFields]><span
+lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:12.0pt;font-family:Century;
+mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:"Times New Roman";
+mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:JA;
+mso-bidi-language:AR-SA'><v:shape id="_x0000_i1029" type="#_x0000_t75" style='width:410pt;
+ height:191pt'>
+ <v:imagedata croptop="-65520f" cropbottom="65520f"/>
+</v:shape><span style='mso-element:field-end'></span></span><![endif]--></P>
+<H2>説明</H2>
+エンティティはセルアニメーション、マルチセルアニメーションといったデータ構造より上位レイヤ（ユーザプログラム）よりの情報を管理、格納する概念として定義されました。<BR>
+G2D内部で定義されるデータ構造としては最上位レイヤに位置するものです。したがって、将来のバージョンにおいて、上位レイヤ（ユーザプログラム）よりの機能拡張がなされる場合はこのレイヤに対する変更が行われることが予想されます。
+<BR>
+
+
+
+<h2>Entityの内部データ</h2>
+
+Entityは、下記の情報を持ちます。
+<h3>エンティティデータへのポインタ</h3>
+ここには、メインメモリ上に読み出した エンティティデータ（.nenrファイル）へのポインタが格納されます。エンティティデータは静的なデータであり、書き換えられることは有りません。
+
+<h3>再生中のシーケンス番号</h3>
+ここには、現在再生中であるアニメーションシーケンスの番号が格納されます。アニメーションシーケンスの番号は、エンティティデータへのポインタが指し示すエンティティデータ中のアニメーションシーケンス番号に対応します。
+
+<h3>表示データへのポインタ</h3>
+ここには、現在描画中のセルアニメーションまたはマルチセルアニメーションへのポインタが格納されます。
+
+<h3>カラーパレット変換テーブルへのポインタ</h3>
+キャラクタには同じ物を使用し、そのキャラクタが使用するカラーパレットを変更することにより異なるキャラクタを表現する場合を想定し、カラーパレットを変換する為のテーブルを持っています。カラーパレットの変換テーブルには、16個のカラーパレットを、それぞれ何番のカラーパレットに変えるかを指定します。
+
+<BR>
+
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

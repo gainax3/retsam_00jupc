@@ -1,0 +1,358 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  libVCT - man
+  File:     changelog.html
+
+  Copyright (c) 2005-2007 Abiosso Networks, Inc. ALL RIGHTS RESERVED.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Abiosso Networks, Inc., and are protected
+  by Federal copyright law.  They may not be disclosed to third parties
+  or copied or duplicated in any form, in whole or in part,  without
+  the prior written consent of Abiosso.
+ ==========================================================================-->
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>libVCT CHANGELOG</TITLE>
+</HEAD>
+<BODY>
+<HR>
+<H1>libVCT 変更履歴</H1>
+<HR>
+
+<DL>
+  <DT><A href="#vct_1_31">■libVCT 1.3.1</A> (2008/04/01)
+  <DD><A href="#note08-01">Note 08-01: 内部キュー処理におけるアサーション発生の不具合を修正しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_30">■libVCT 1.3.0</A> (2008/02/04)
+  <DD><A href="#note07-01">Note 07-01: NitroSDK 4.2 + patch(2008/01/18版) / NitroSystem (2007/11/26版) + patch1 / NitroDWC 3.0 / NitroWiFi 2.1 + patch3(2007/09/20版) に対応しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_20">■libVCT 1.2.0</A> (2007/04/13)
+  <DD><A href="#note06-01">Note 06-01: NitroSDK 4.0 / NitroSystem (2007/03/14版) + patch1(2007/04/06版) / NitroDWC 2.0 / NitroWiFi 2.0 に対応しました</A>
+  <DD><A href="#note06-02">Note 06-02: VCT_Mainの注意制限事項を追記しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_11">■libVCT 1.1.1</A> (2006/11/15)
+  <DD><A href="#note05-01">Note 05-01: カンファレンスモードで特定のクライアントが離脱すると音声が届かなくなる不具合を修正しました</A>
+  <DD><A href="#note05-02">Note 05-02: NitroDWC 1.2対応にともない、GAME_NAMEとGAME_SECRET_KEYを修正しました</A>
+  <DD><A href="#note05-03">Note 05-03: ライブラリ解説ドキュメントとAPIリファレンスマニュアルを修正しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_10">■libVCT 1.1.0</A> (2006/10/02)
+  <DD><A href="#note04-01">Note 04-01: APIマニュアルのリンク切れとchangelogの記述ミスを修正しました</A>
+  <DD><A href="#note04-02">Note 04-02: VoiceChatDemoプログラムを一部修正、変更しました</A>
+  <DD><A href="#note04-03">Note 04-03: VCT_SetReportLevelのAPIマニュアルを追加しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_10rc1">■libVCT 1.1.0 RC1</A> (2006/08/31)
+  <DD><A href="#note03-01">Note 03-01: エコーキャンセル機能を実装しました</A>
+  <DD><A href="#note03-02">Note 03-02: VCT_SendAudio / VCT_ReceiveAudioの関数仕様を変更しました</A>
+  <DD><A href="#note03-03">Note 03-03: VCT_SetReportLevel関数を実装しました</A>
+  <DD><A href="#note03-04">Note 03-04: 悪環境下で無限ループが発生する不具合を修正しました</A>
+  <DD><A href="#note03-05">Note 03-05: VADデモプログラムを削除しました</A>
+  <DD><A href="#note03-06">Note 03-06: VCT_SetTransceiverClients関数の挙動を修正しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_01">■libVCT 1.0.1</A> (2006/07/10)
+  <DD><A href="#note02-01">Note 02-01: 使用されていないコードを削除しました</A>
+  <DD><A href="#note02-02">Note 02-02: CodeWarriorプロジェクトファイルの不具合を修正しました</A>
+  <DD><A href="#note02-03">Note 02-03: VADDemoから不要なコードを削除しました</A>
+  <DD><A href="#note02-04">Note 02-04: dbsのコードを削除しました</A>
+</DL>
+
+<DL>
+  <DT><A href="#vct_1_00">■libVCT 1.0.0</A> (2006/06/01)
+  <DD><A href="#note01-01">Note 01-01: 初版をリリースしました</A>
+</DL>
+
+<!---
+<DL>
+  <DT><A href="changelog-oldver.html">→ 過去の変更履歴</A>
+</DL>
+!--->
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_31" id="vct_1_31">■libVCT 1.3.1</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/04/01)</P>
+</DIV>
+<HR>
+
+<H3><A name="note08-01" id="note08-01">Note 08-01: 内部キュー処理におけるアサーション発生の不具合を修正しました</H3>
+<P>
+内部音声キュー処理中の不具合によるアサーション発生を修正しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_30" id="vct_1_30">■libVCT 1.3.0</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2008/02/04)</P>
+</DIV>
+<HR>
+
+<H3><A name="note07-01" id="note07-01">Note 07-01: NitroSDK 4.2 + patch(2008/01/18版) / NitroSystem (2007/11/26版) + patch1 / NitroDWC 3.0 / NitroWiFi 2.1 + patch3(2007/09/20版) に対応しました</H3>
+<P>
+libVCTのビルド環境をNitroSDK 4.2 + patch(2008/01/18版) / NitroSystem (2007/11/26版) + patch1 / NitroDWC 3.0 / NitroWiFi 2.1 + patch3(2007/09/20版) に対応しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_20" id="vct_1_20">■libVCT 1.2.0</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2007/04/13)</P>
+</DIV>
+<HR>
+
+<H3><A name="note06-01" id="note06-01">Note 06-01: NitroSDK 4.0 / NitroSystem (2007/03/14版) + patch1(2007/04/06版) / NitroDWC 2.0 / NitroWiFi 2.0に対応しました</H3>
+<P>
+libVCTのビルド環境をNitroSDK 4.0 / NitroSystem (2007/03/14版) + patch1(2007/04/06版) / NitroDWC 2.0 / NitroWiFi 2.0に対応しました。
+</P>
+
+<HR>
+
+<H3><A name="note06-02" id="note06-02">Note 06-02: VCT_Mainの注意制限事項を追記しました</H3>
+<P>
+割り込み処理中に<a href="vct/VCT_Main.html">VCT_Main</a>をコールできないという注意制限事項を追記しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_11" id="vct_1_11">■libVCT 1.1.1</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/11/15)</P>
+</DIV>
+<HR>
+
+<H3><A name="note05-01" id="note05-01">Note 05-01: カンファレンスモードで特定のクライアントが離脱すると音声が届かなくなる不具合を修正しました</H3>
+<P>
+カンファレンスモード実行時に、aidの小さいクライアントを<a href="vct/VCT_RemoveConferenceClient.html">VCT_RemoveConferenceClient</a>でカンファレンスから離脱させると、残ったクライアント間の音声通話が出来なくなる不具合がありました。<BR/>
+この問題を修正しました。
+</P>
+
+<HR>
+
+<H3><A name="note05-02" id="note05-02">Note 05-02: NitroDWC 1.2対応にともない、GAME_NAMEとGAME_SECRET_KEYを修正しました</H3>
+<P>
+libVCTのビルド環境をNitroWiFi 1.2 + NitroDWC 1.2に対応しました。これにともない、デモで使われているGAME_NAME, GAME_SECRET_KEY, GAME_PRODUCTIDを修正しました。また、サンプルコードから不要なログインパスワードを削除しました。
+</P>
+
+<H3><A name="note05-03" id="note05-03">Note 05-03: ライブラリ解説ドキュメントとAPIリファレンスマニュアルを修正しました</H3>
+<P>
+ライブラリ解説ドキュメントサンプルコードの一部が古いままになっていたため、修正しました。また、APIリファレンスの説明が一部1.1に対応していないのを修正しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_10" id="vct_1_10">■libVCT 1.1.0</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/10/02)</P>
+</DIV>
+<HR>
+
+<H3><A name="note04-01" id="note04-01">Note 04-01: APIマニュアルのリンク切れとchangelogの記述ミスを修正しました</H3>
+<P>
+APIマニュアルに古い関数へのリンクが残っていたのを削除しました。また、ChangeLog（このファイル）の内部リンク切れを修正しました。
+</P>
+
+<HR>
+
+<H3><A name="note04-02" id="note04-02">Note 04-02: VoiceChatDemoプログラムを一部修正、変更しました</H3>
+<P>
+VoiceChatDemoプログラム内のCodeWarriorプロジェクトファイルのパス設定の不具合を修正しました。また、マイクゲインのデフォルト値を40dbから160dbへ変更しました。
+</P>
+
+<HR>
+
+<H3><A name="note04-03" id="note04-03">Note 04-03: VCT_SetReportLevelのAPIマニュアルを追加しました</H3>
+<P>
+VCT_SetReportLevel関数のAPIマニュアルへの追記が抜けていました。これを追加しました。
+</P>
+
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_10rc1" id="vct_1_10rc1">■libVCT 1.1.0 RC1</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/08/31)</P>
+</DIV>
+<HR>
+<H3><A name="note03-01" id="note03-01">Note 03-01: エコーキャンセル機能を実装しました</H3>
+<P>
+エコーキャンセル機能を実装しました。これに伴い、以下の関数の仕様変更、追加、削除が行われています。
+<UL>
+<LI><code><a href="vct/VCT_SendAudio.html">VCT_SendAudio</a>, <a href="vct/VCT_ReceiveAudio.html">VCT_ReceiveAudio</a></code>関数の仕様が変更（<a href="#note03-02">Note 03-02</a>参考）。
+<LI><code>VCT_ReceiveMixedAudio, VCT_GetVADStatus</code>関数を廃止
+</UL>
+</P>
+
+<HR>
+<H3><A name="note03-02" id="note03-02">Note 03-02: VCT_SendAudio / VCT_ReceiveAudioの関数仕様を変更しました</H3>
+<P>
+エコーキャンセル機能の実装に伴い、<code><a href="vct/VCT_SendAudio.html">VCT_SendAudio</a>, <a href="vct/VCT_ReceiveAudio.html">VCT_ReceiveAudio</a></code>関数の仕様が変更されました。Version 1.0xを利用されている場合、以下の変更点に注意して下さい。
+<UL>
+<LI><code>VCT_SendAudio</code>内ではVADの判定は行われません。<code>VCT_SendAudio</code>の戻り値をVADの判定結果として利用している場合は、プログラムを書き直す必要があります。VADの判定には<code><a href="vct/VCT_GetVADInfo.html">VCT_GetVADInfo</a></code>関数を利用してください。
+<LI><code>VCT_ReceiveMixedAudio</code>は<code>VCT_ReceiveAudio</code>に関数に統合されました。Version 1.0xのように、複数チャンネルを用いて音声を再生することは出来なくなりました。
+</UL>
+</P>
+
+<HR>
+<H3><A name="note03-03" id="note03-03">Note 03-03: VCT_SetReportLevel関数を実装しました</H3>
+<P>
+デバッグ・情報表示用のprint出力を抑制するVCT_SetReportLevel関数を実装しました。
+</P>
+
+<HR>
+<H3><A name="note03-04" id="note03-04">Note 03-04: 悪環境下で無限ループが発生する不具合を修正しました</H3>
+<P>
+WiFiの電波が弱い環境において、大量のデータ送受信を一度に行なった際、VoiceChatライブラリ内部で無限ループが発生する不具合がありました。この問題を修正しました。
+</P>
+
+<HR>
+<H3><A name="note03-05" id="note03-05">Note 03-05: VADデモプログラムを削除しました</H3>
+<P>
+エコーキャンセル機能の実装にあわせてVADの処理手順が変更になり、VADデモプログラムの内容が実態に即さないものとなったため、VADテスト用のデモプログラムを削除しました。
+</P>
+
+<HR>
+<H3><A name="note03-06" id="note03-06">Note 03-06: VCT_SetTransceiverClients関数の挙動を修正しました</H3>
+<P>
+  VCT_SetTransceiverClients関数において、aidListに自分自身を含んでも良いにもかかわらず、８つのaidを指定するとエラーとなってしまっていたため、リファレンスマニュアルのサンプル通りに実装すると８人でのトランシーバー時にエラーになるという挙動になっていました。この仕様は分かりにくくかつプログラミングしにくいため、aidListに自分自身が含まれているときは８つまで、そうでないときは７つまで指定できるように修正しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_01" id="vct_1_01">■libVCT 1.0.1</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/07/10)</P>
+</DIV>
+
+<HR>
+<H3><A name="note02-01" id="note02-01">Note 02-01: 使用されていないコードを削除しました</H3>
+<P>
+以下の使用されていないコードを削除しました。
+<UL>
+<LI>build/demos/common/include/iwmanager.h</LI>
+<LI>build/demos/common/src/iwmanager.c</LI>
+<LI>build/demos/common/const.pl</LI>
+<LI>build/demos/VADDemo/vad_client.pl</LI>
+</UL>
+</P>
+
+<HR>
+<H3><A name="note02-02" id="note02-02">Note 02-02: CodeWarriorプロジェクトファイルの不具合を修正しました</H3>
+<P>
+VADDemo、およびVoiceChatDemoのCodeWarriorプロジェクトファイルにおいて、Release, ROMビルドが失敗する問題を修正しました。また、IRQのスタックサイズを他のNitroDWCプログラム同様、4096に変更しました（修正前は1024）。
+</P>
+
+<HR>
+<H3><A name="note02-03" id="note02-03">Note 02-03: VADDemoから不要なコードを削除しました</H3>
+<P>
+VADDemoプログラム内にあるVADのテスト用コードを削除しました。
+</P>
+
+<HR>
+<H3><A name="note02-04" id="note02-04">Note 02-04: dbsのコードを削除しました</H3>
+<P>
+dbsのコードをアーカイブから削除し、NitroDWCのサンプルプログラムにあるライブラリをリンクするように修正しました。
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<H2 style="line-height: 0"><A name="vct_1_00" id="vct_1_00">■libVCT 1.0.0</A></H2>
+<DIV style="text-align: right">
+<P style="line-height: 0">(2006/06/01)</P>
+</DIV>
+
+<HR>
+<H3><A name="note01-01" id="note01-01">Note 01-01: 初版をリリースしました</H3>
+<P>
+</P>
+
+<!--  ================================================================================ -->
+
+<HR>
+<P style="text-align: right">NINTENDO Technical Support Center</P>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

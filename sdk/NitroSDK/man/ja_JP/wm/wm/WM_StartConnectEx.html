@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_StartConnectEx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_StartConnectEx</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_StartConnectEx(
+    <A href="WMCallbackFunc.html">WMCallbackFunc</A>    callback ,
+    const <A href="WMBssDesc.html">WMBssDesc</A>*  pInfo ,
+    const u8*         ssid ,
+    BOOL              powerSave ,
+    u16               authMode
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理の状況通知、及び完了した際に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">pInfo</FONT></STRONG></EM></TD>
+      <TD width="800">接続する親機の情報を指定します。<BR>
+      <A href="WM_StartScan.html">WM_StartScan</A>もしくは<A href="WM_StartScanEx.html">WM_StartScanEx</A>にて取得した構造体をそのまま指定して下さい。<BR>
+      この構造体の実体は強制的にキャッシュストアされる点に注意して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">ssid</FONT></STRONG></EM></TD>
+      <TD width="800">親機に通知する子機情報 ( 24 バイト ( WM_SIZE_CHILD_SSID ) 固定サイズ ) を指定してください。<BR>
+        ここで指定したデータは、<A href="WMStartParentCallback.html">WM_StartParentのコールバック</A>で親機に通知されます。
+        NULLを指定した場合は、全て 0 である 24 バイトのデータが設定されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">powerSave</FONT></STRONG></EM></TD>
+      <TD width="800">省電力モードを使用する場合にTRUEを指定、常時待ち受けモードを使用する場合はFALSEを指定します。<BR>
+      通常はTRUEを指定して下さい。インフラストラクチャモードにて比較的頻繁にデータ送受信を行う必要がある場合のみFALSEを指定して下さい。
+      FALSEを指定すると省電力モードに比べて著しく電力を消耗します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">authMode</FONT></STRONG></EM></TD>
+      <TD width="800">認証モードを指定します。通常はオープンシステム認証( WM_AUTHMODE_OPEN_SYSTEM )を指定して下さい。<BR>
+      共通鍵認証( WM_AUTHMODE_SHARED_KEY )を指定する場合は、WEP暗号を用いた認証が行われますので、事前に<A href="WM_SetWEPKeyEx.html">WM_SetWEPKeyEx</A>関数などを用いて
+      通信相手と同じWEPキーを設定しておく必要があります。<BR>
+      この 2つ以外の値は指定できません。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>親機への接続処理を開始します。インフラストラクチャモードを使用する際などに<A href="WM_StartConnect.html">WM_StartConnect</A>より詳細に接続動作を制御可能ですが、通常は使用する必要はありません。
+WMが<A href="wm_state_diagram.html">IDLEステート</A>のときにのみ実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、接続処理が開始された時、及び親機によって認証されてAIDが割り当てられた時にコールバックが発生します。
+接続処理開始後、正常に接続状態まで移行できなかった場合にもコールバックが発生します。
+接続が完了した場合に、WMは<A href="wm_state_diagram.html">CHILDステート</A>に移行します。<BR>
+また、接続完了後に親機から切断された場合にはこの関数で指定したコールバックが発生します。
+親機が定期的に送信しているはずのビーコンを一定時間受信できない状態が続いた場合にもこの関数で指定したコールバックが発生します。<BR>
+接続処理の途中で失敗してコールバックを返した場合は、内部状態が不正になっていることがありますので、WM_StartConnectExをリトライする前に<A href="WM_Reset.html">WM_Reset</A>を呼び出すようにしてください。</P>
+
+<h2>注意</h2>
+<P>
+この関数を呼び出した後、正常に子機として接続が完了した場合にコールバックが発生しますが、場合によってはこのコールバックが発生する前に
+ビーコン受信通知や親機から切断されたことを示す通知が発生することがあります。
+子機としての初期化処理などを行う場合はコールバックが発生した際に行うのではなく、この関数を呼び出す前に行っておくようにして下さい。
+<br><br>
+APIの戻り値であるWM_ERRCODE_OVER_MAX_ENTRYは、親機に対してGGIDやTGIDが一致しない不適切なほかの子機が接続してきていた瞬間に
+一時的に発生することがあるため、リトライ処理を行うことが推奨されます。<br>
+特に、ダウンロードプレイにおける子機プログラムのブート直前の接続で、親機の古いビーコンを元に
+ダウンロードの接続にくる他のIPL子機が存在した場合が、問題の発生しやすいケースです。
+</P>
+
+<h2>参照</h2>
+<P><A href="WM_StartConnect.html">WM_StartConnect</A>, <A href="WM_StartScan.html">WM_StartScan</A>, <A href="WM_EndScan.html">WM_EndScan</A>, <A href="WM_Disconnect.html">WM_Disconnect</A></P>
+
+<H2>履歴</H2>
+<P>
+2007/04/12 WM_ERRCODE_OVER_MAX_ENTRYに関する注意追記<br>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 説明追記<BR>
+2005/02/14 初版<BR>
+</P>
+</body>
+</html>

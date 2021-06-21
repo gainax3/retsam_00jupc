@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_TrySetBankForARM7</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_TrySetBankForARM7</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx_vramcnt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL GX_TrySetBankForARM7(GXVRamARM7 arm7);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">arm7</font></strong></em></td>
+    <td width="87%">ARM7メモリ空間に割り当てるVRAMバンクを指定</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>
+正常にVRAMバンクが割り当てられた場合にTRUEを返します。<BR>
+割り当てようとするVRAMバンクが別ライブラリによってロックされている場合にはFALSEを返します。
+</p>
+<H2>説明</H2>
+<P>ARM7メモリ空間へ指定されたVRAMバンクの割り当てを試みます。指定されたVRAMバンクがDisableになっているか、LCDCに割り当てられている場合に、そのVRAMバンクをARM7メモリ空間に割り当てます。<BR>
+また、指定したVRAMバンクが他のライブラリによって排他ロックされている場合は割り当てに失敗します。
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>GX_VRAM_ARM7_NONE</CODE></TD>
+      <TD>ARM7メモリ空間にVRAMバンクを割り当てません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_ARM7_128_C</CODE></TD>
+      <TD>ARM7メモリ空間に128KBytes確保します。VRAM-Cを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_ARM7_128_D</CODE></TD>
+      <TD>ARM7メモリ空間に128KBytes確保します。VRAM-Dを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_VRAM_ARM7_256_CD</CODE></TD>
+      <TD>ARM7メモリ空間に256KBytes確保します。VRAM-C,Dを割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXVRamARM7</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_VRAM_ARM7_NONE   = 0x0000,
+    GX_VRAM_ARM7_128_C  = GX_VRAM_C,             // ARM7: 0x06000000   --&gt;   0x06020000
+    GX_VRAM_ARM7_128_D  = GX_VRAM_D,             // ARM7: 0x06000000   --&gt;   0x06020000
+    GX_VRAM_ARM7_256_CD = GX_VRAM_C | GX_VRAM_D  // ARM7: 0x06000000   --&gt;   0x06040000
+}
+GXVRamARM7;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_SetBankForARM7.html">GX_SetBankForARM7</A>, <A href="GX_GetBankForARM7.html">GX_GetBankForARM7</A>, <A href="GX_ResetBankForARM7.html">GX_ResetBankForARM7</A>, <A href="GX_DisableBankForARM7.html">GX_DisableBankForARM7</A>, <A href="GX_GetSizeOfARM7.html">GX_GetSizeOfARM7</A></P>
+<H2>履歴</H2>
+<P>Ver. 2005/02/15 初版</P>
+</body>
+</html>

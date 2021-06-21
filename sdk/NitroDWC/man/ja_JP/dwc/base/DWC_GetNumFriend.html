@@ -1,0 +1,58 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetNumFriend</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetNumFriend</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+int DWC_GetNumFriend( const <A href="DWCFriendData.html">DWCFriendData</A> friendList[],
+                      int friendListLen );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  ローカルの友達リストを参照して、友達リストに登録されている友達の数を返します。
+		  通信は行いません。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>friendList</CODE></STRONG></EM></TD>
+					<TD width="75%"><A href="DWCFriendData.html">DWCFriendData</A>構造体の友達リストへのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>friendListLen</CODE></STRONG></EM></TD>
+					<TD>友達リストの最大長（要素数）</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  友達リストに登録されている友達の数。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

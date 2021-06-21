@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_LoadArchive</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_LoadArchive</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL	FS_LoadArchive(FSArchive *p_arc,<BR>
+    u32 base, u32 fat, u32 fat_size, u32 fnt, u32 fnt_size,<BR>
+	FS_ARCHIVE_READ_FUNC read_func,<BR>
+	FS_ARCHIVE_WRITE_FUNC write_func);</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_arc</STRONG></EM></TD>
+      <TD width="87%">FSArchive構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>base</STRONG></EM></TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるベースオフセット値<BR>
+	これはアーカイブ実装の利便性のために用意されており、<BR>
+	FS_GetArchiveBase関数で取得するだけのものです。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>fat</STRONG></EM></TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるFATの先頭位置オフセット</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>fat_size</STRONG></EM></TD>
+      <TD width="87%">アーカイブのFATバイトサイズ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>fnt</STRONG></EM></TD>
+      <TD width="87%">アーカイブ固有のアドレス空間におけるFNTの先頭位置オフセット</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>fnt_size</STRONG></EM></TD>
+      <TD width="87%">アーカイブのFNTバイトサイズ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>read_func</STRONG></EM></TD>
+      <TD width="87%">アーカイブ固有のアドレス空間へリードアクセスするためのコールバック関数<br>
+	  このコールバックはアーカイブコマンドを内部で使用するFS関数の内部から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>write_func</STRONG></EM></TD>
+      <TD width="87%">アーカイブ固有のアドレス空間へライトアクセスするためのコールバック関数<br>
+	  このコールバックはアーカイブコマンドを内部で使用するFS関数の内部から呼び出されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>アーカイブが正しくファイルシステムにロードされた場合は TRUE を、そうでないなら FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定された実装のもとに、アーカイブをファイルシステムへロードします。<BR>
+アーカイブは、FS_RegisterArchiveName関数で前もって名前を登録してある必要があります。<BR>
+<BR>
+ファイルシステムは与えられた引数の組み合わせから、アーカイブに以下の動作を仮定します。<BR>
+<BR>
+・アーカイブは read_func および write_func でのみアクセス可能なリニアメモリ状の固有なデータ構造を持つ<BR>
+・アーカイブはfatの位置からfat_sizeバイト分の領域にNitroROMフォーマット準拠のFAT情報を持ち、read_func によってアクセスできる<BR>
+・アーカイブはfntの位置からfnt_sizeバイト分の領域にNitroROMフォーマット準拠のFNT情報を持ち、read_func によってアクセスできる<BR>
+・アーカイブはFAT情報で指定されるすべての範囲の領域にファイルデータを持ち、read_funcによってアクセスできる<BR>
+<BR>
+関数の成功後、アーカイブはファイルシステムからコールバック経由でアクセスされます。<BR>
+ロードしたアーカイブはFS_UnloadArchive関数でアンロードすることができます。<BR>
+<BR>
+この関数を呼び出す前にFS_SuspendArchive関数で明示的にサスペンド状態へ設定していない場合、<BR>
+関数の成功とともにアーカイブはファイルシステム内で有効な状態になります。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_name_len_max_const.html">FS_ARCHIVE_NAME_LEN_MAX</A>
+<BR>
+<A href="FS_ReleaseArchiveName.html">FS_ReleaseArchiveName</A> 
+<A href="FS_UnloadArchive.html">FS_UnloadArchive</A> 
+<BR></P>
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックがFS関数の内部から呼び出される旨を補足<br>
+2004/11/02 リンク先訂正<br>
+2004/06/30 初版<br>
+</P>
+</body>
+</html>

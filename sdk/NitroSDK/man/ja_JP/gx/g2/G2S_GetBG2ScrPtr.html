@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2S_GetBG2ScrPtr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2S_GetBG2ScrPtr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2.h&gt;</CODE><BR>
+<CODE>void *G2S_GetBG2ScrPtr();</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<P>BG2のスクリーンの格納領域へのポインタ</P>
+<H2>説明</H2>
+<P>サブ2DエンジンのBG2スクリーンデータのベースへのポインタを返します。つまり返り値は、</P>
+<P>キャラクタＢＧの場合：</P>
+<BLOCKQUOTE><CODE>HW_DB_BG_VRAM</CODE> + （<A href="G2S_SetBG2ControlText.html">G2S_SetBG2ControlText</A>等で指定した<CODE>GXBGScrBase</CODE>列挙型の値名の末尾の値）</BLOCKQUOTE>
+<P>ビットマップBGの場合：</P>
+<BLOCKQUOTE><CODE>HW_DB_BG_VRAM</CODE> + （<A href="G2S_SetBG2Control256Bmp.html">G2S_SetBG2Control256Bmp</A>等で指定した<CODE>GXBGBmpScrBase</CODE>列挙型の値名の末尾の値）</BLOCKQUOTE>
+<P>になります。</P>
+<h2>参照</h2>
+<P><A href="G2S_SetBG2ControlText.html">G2S_SetBG2ControlText</A>, ... , <A href="G2S_SetBG2Priority.html">G2S_SetBG2Priority</A>, <A href="G2S_BG2Mosaic.html">G2S_BG2Mosaic</A>, <A href="G2S_GetBG2CharPtr.html">G2S_GetBG2CharPtr</A>, <A href="G2S_SetBG2Offset.html">G2S_SetBG2Offset</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+</body>
+</html>

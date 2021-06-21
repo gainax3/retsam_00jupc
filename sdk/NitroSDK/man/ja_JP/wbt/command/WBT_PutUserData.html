@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_PutUserData</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_PutUserData</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_PutUserData(u16 target, const void *user_data, int size, WBTCallback callback);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">データを送信する対象のaidビットマップ<br>
+	  子機の場合、親機である "1" のみ指定可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>user_data</STRONG></EM></TD>
+      <TD width="87%">送信するデータが格納されたバッファ<br>
+	  このバッファは関数呼び出しの中で別のメモリにコピーされるので、この関数の後は自由に使用できます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>size</STRONG></EM></TD>
+      <TD width="87%">データ送信サイズ<br>
+	  WBT_SIZE_USER_DATAバイト以下の任意のサイズを指定可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">コマンド完了時に通知を受ける<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数
+	  <br>このコールバックは<a href="../parent/WBT_MpParentRecvHook.html">WBT_MpParentRecvHook</a>関数または<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。
+</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>現在処理中のコマンドが無ければコマンドを発行して TRUE を、<br>
+そうでないなら何もせず FALSE を返します。</p>
+
+<H2>説明</H2>
+<p>指定した対象機器へ任意の小規模なデータブロックを送信します。<br>
+<br>
+<font color="#800000">現在まだ処理中のコマンドがある場合、呼び出しは失敗します。</font>
+<br>
+</p>
+<H2>参照</H2>
+<A href="WBT_RequestSync.html">WBT_RequestSync</A>
+<A href="WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
+<A href="WBT_GetBlock.html">WBT_GetBlock</A>
+<br>
+<H2>履歴</H2>
+<P>
+2006/03/13 target引数の記述を修正<br>
+2005/06/01 コールバックがWBT_MpParentRecvHook関数またはWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

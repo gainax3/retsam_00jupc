@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGetMdlByName</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGetMdlByName</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/binres/res_struct_accessor.h&gt;</CODE></PRE>
+  <PRE><CODE>NNSG3dResMdl*
+NNS_G3dGetMdlByName(
+    const NNSG3dResMdlSet* mdlSet,
+    const NNSG3dResName*   name
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>mdlSet</STRONG></EM></TD>
+      <TD width="87%">モデルセットへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>name</STRONG></EM></TD>
+      <TD width="87%">リソース名へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>モデルへのポインタを返します。</P>
+
+<H2>説明</H2>
+<P>モデルセット<STRONG><EM>mdlSet</EM></STRONG>内のリソース名<STRONG><EM>name</EM></STRONG>を持つモデルを取得します。</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dGetMdlByIdx.html">NNS_G3dGetMdlByIdx</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

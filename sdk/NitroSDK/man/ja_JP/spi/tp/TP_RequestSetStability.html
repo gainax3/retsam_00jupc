@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_RequestSetStability</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_RequestSetStability</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>u32 TP_RequestSetStability( u16 retry, u16 range );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD><em><strong><font face="Courier New">retry</font></strong></em></TD>
+      <TD><FONT color="#ff0000">※この引数は互換のために残されていますが、内部では使用されておりません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">range</font></strong></em></TD>
+      <TD>値が安定したかどうかを判定するための閾値 ( 0～255 デフォルト値:20 ）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>要求が成功した場合には 0を返します。<BR>
+失敗した場合には 0 以外を返します。</p>
+<H2>説明</H2>
+<P>タッチパネルのチャタリング対策パラメータとして、安定した座標値だと判定するための振れ幅を設定します。<BR>
+タッチパネルから取得できる座標単位(0~4095)で最大255までの幅が設定可能です。<BR>
+<BR>
+この関数が実行されると、以降常に設定したパラメータでチャタリング対策をされた値が取得されます。<BR>
+<BR>
+座標値がこの設定の幅に収束しなかった場合には、<A href="TPData.html">TPData</A>で取得されるタッチパネル値のvalidityフラグが立つことで有効な値が取得できなかったことを示します。<BR>
+<BR>
+アプリケーション作成の際にはtouchの値がONかつvalidityの値がINVALIDである値が格納された場合でも異常な動作を行なわないよう、最後に取得されたVALID値の座標データを使用するなどの対策をとられることを推奨いたします。<BR>
+<BR>
+チャタリング対策パラメータはデフォルトで推奨パラメータ(閾値:20)に設定されますので、特に設定を変更する必要のない場合はこの関数をコールする必要はありません。</P>
+<P>
+ARM7へ要求を送った後、処理が完了するまで内部でウェイトを行います。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<P><FONT color="#ff0000">この関数はARM7からの完了応答を割り込みで待ちます。ARM7からのFIFO受信割り込みが禁止された状態でコールされるとウェイトから復帰できなくなりますのでご注意ください。</FONT></P>
+<h2>参照</h2>
+<P><A href="TPData.html">TPData</A><BR>
+</P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/29 retry引数が使用されなくなった旨の説明を追加<BR>
+Ver. 2004/04/21 非同期版を作成して同期化<BR>
+Ver. 2004/04/16 初版</P>
+</body>
+</html>

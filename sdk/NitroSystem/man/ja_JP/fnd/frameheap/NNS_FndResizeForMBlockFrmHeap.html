@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndResizeForMBlockFrmHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_FndResizeForMBlockFrmHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>u32 NNS_FndResizeForMBlockFrmHeap(
+        NNSFndHeapHandle    heap,
+        void*               memBlock,
+        u32                 size);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    <td width="87%">フレームヒープのハンドル</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">memBlock</font></strong></em></td>
+    <td width="87%">サイズを変更するメモリブロックへのポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">size</font></strong></em></td>
+    
+  <td width="87%">変更するメモリブロックのサイズ(バイト)。4未満の値を指定された場合は、4が指定されたものとして処理します。</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p> 関数が成功した場合、変更されたメモリブロックのサイズ(バイト)を返します。 関数が失敗した場合、0 を返します。</p>
+<H2>説明</H2>
+<p>フレームヒープから確保されたメモリブロックのサイズを変更します。ただし、サイズを変更できるメモリブロックには条件があり、次に示す条件を満たす必要があります。</p>
+<ul>
+ <li>ヒープの空き領域の前方から確保されたメモリブロックの中で、最後に確保されたメモリブロック</li>
+</ul>
+<p>ヒープの空き領域の前方からメモリブロックを確保するには、関数NNS_FndAllocFromFrmHeap()を使用するか、関数NNS_FndAllocFromFrmHeapEx()を使用するときにアライメント値に正の値を指定します。</p>
+<p>メモリブロックを今の大きさよりも大きくするとき、メモリブロックの後方にサイズを拡張するのに十分な空き領域が存在する必要があります。 十分な空き領域が存在しない場合は、関数は失敗し 
+ 0を返します。メモリブロックのサイズを大きくできた場合、メモリブロックの大きさが要求したサイズよりも大きい場合があります。</p>
+<p>メモリブロックを今の大きさより小さくするとき、小さくするサイズが数バイト程度と少ない場合は縮小できない場合があります。 そのときは、現在のメモリブロックのサイズを返します。</p>
+<P>この関数では、memBlockで指定された値が、この関数の条件を満たすメモリブロックへのポインタを指しているのかどうかのチェックは行っていません。条件を満たさない値を指定した場合の挙動は不定です。</p>
+<p></p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndAllocFromFrmHeap.html">NNS_FndAllocFromFrmHeap</A>, 
+<A href="NNS_FndAllocFromFrmHeapEx.html">NNS_FndAllocFromFrmHeapEx</A>, 
+<A href="NNS_FndCreateFrmHeap.html">NNS_FndCreateFrmHeap</A>, 
+<A href="NNS_FndCreateFrmHeapEx.html">NNS_FndCreateFrmHeapEx</A></CODE></p><H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</body>
+</html>

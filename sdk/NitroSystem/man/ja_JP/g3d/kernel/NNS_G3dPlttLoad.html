@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dPlttLoad</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dPlttLoad</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dPlttLoad(
+    NNSG3dResTex* pTex,
+    BOOL          exec_begin_end
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pTex</STRONG></EM></TD>
+      <TD width="87%">テクスチャリソースへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>exec_begin_end</STRONG></EM></TD>
+      <TD width="87%"><CODE>TRUE</CODE>の時、NITRO-SDKの<CODE>GX_BeginLoadTexPltt</CODE>関数と<CODE>GX_EndLoadTexPltt</CODE>関数を呼びます</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>テクスチャリソース内に格納されているパレットを、設定されているパレット・キーが指し示すVRAM領域にロードすると同時に、
+テクスチャリソース内のパレットをVRAMにロードした事を示すフラッグをセットします。
+この関数を呼ぶ前に、必ず<CODE>NNS_G3dPlttSetPlttKey</CODE>関数を用いて、パレット・キーを設定しておく必要があります。
+また、パレットのロードにDMA転送を使用するため、あらかじめ<CODE>DC_Flush*</CODE>/<CODE>DC_Store*</CODE>関数等を用いてパレットをメモリにライトバックしておく必要があります。</P>
+<P><B><I>exec_begin_end</I></B>に<CODE>TRUE</CODE>が指定されている場合、パレットデータのVRAMへのロードの前後に、 NITRO-SDKのAPIである<CODE>GX_BeginLoadTexPltt</CODE>関数と<CODE>GX_EndLoadTexPltt</CODE>関数を呼びます。 <I><B>exec_begin_end</B></I>に<CODE>FALSE</CODE>を指定した場合は、ユーザ側で<CODE>GX_BeginLoadTexPltt</CODE>関数と<CODE>GX_EndLoadTexPltt</CODE>関数を呼び出す必要があります。 連続してパレットデータをロードする場合には、<B><I>exec_begin_end</I></B>に<CODE>FALSE</CODE>を指定して、 ユーザ側で<CODE>GX_BeginLoadTexPltt</CODE>関数と<CODE>GX_EndLoadTexPltt</CODE>関数を呼び出した方が効率的です。</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dPlttSetPlttKey.html">NNS_G3dPlttSetPlttKey</A>
+<A href="NNS_G3dPlttReleasePlttKey.html">NNS_G3dPlttReleasePlttKey</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2008/01/23 DMA転送を使用する旨を追記<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

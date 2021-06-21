@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_Finish</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_Finish</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_Finish( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<P>なし。</P>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+WMライブラリを終了します。<A href="WM_End.html">WM_End関数</A>と異なり、ARM9側の終了処理のみを行う同期関数です。
+無線ハードウェアを使用していた状況からWMライブラリを終了する場合は、この前に<A href="WM_PowerOff.html">WM_PowerOff関数</A>、<A href="WM_Disable.html">WM_Disable関数</A>を
+使用して無線ハードウェアを停止させておく必要があります。<BR>
+なお、この関数は<A href="WM_End.html">WM_End関数</A>のコールバックが成功終了した後、自動的に呼び出されます。
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="WM_Init.html">WM_Init</A>, <A href="WM_Enable.html">WM_Enable</A>, <A href="WM_PowerOn.html">WM_PowerOn</A>, <A href="WM_PowerOff.html">WM_PowerOff</A>, <A href="WM_Disable.html">WM_Disable</A>, <A href="WM_Initialize.html">WM_Initialize</A>, <A href="WM_End.html">WM_End</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/22 返り値の型を変更<BR>
+2004/09/11 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<base target="main" />
+<title>ワイヤレスファイルシステムライブラリ(WFS)API 機能一覧</title>
+<link rel="stylesheet" href="../css/apilist.css" />
+</head>
+<body>
+<h1>ワイヤレスファイルシステムライブラリ(WFS)API 機能一覧</h1>
+<h3><a name="server" id="server">サーバ処理</a></h3>
+<h4>初期化</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_InitServer.html" target="_self">WFS_InitServer</a></th>
+      <td>WFSライブラリのサーバ側コンテキストを初期化します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_EndServer.html" target="_self">WFS_EndServer</a></th>
+      <td>WFSライブラリのサーバ側コンテキストを終了します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_RegisterServerTable.html" target="_self">WFS_RegisterServerTable</a></th>
+      <td>配信するROMのファイルテーブルをロードしてサーバに登録します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_ExecuteRomServerThread.html" target="_self">WFS_ExecuteRomServerThread</a></th>
+      <td>配信するROMのファイルテーブルを登録し、リクエスト自動応答用のスレッドも起動します。</td>
+    </tr>
+  </tbody>
+</table>
+<h4>フック</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_CallServerConnectHook.html" target="_self">WFS_CallServerConnectHook</a></th>
+      <td>新規子機が接続したことをライブラリへ通知します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_CallServerDisconnectHook.html" target="_self">WFS_CallServerDisconnectHook</a></th>
+      <td>子機が切断したことをライブラリへ通知します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_CallServerPacketSendHook.html" target="_self">WFS_CallServerPacketSendHook</a></th>
+      <td>子機群へ送信すべきMP通信パケットデータを取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_CallServerPacketRecvHook.html" target="_self">WFS_CallServerPacketRecvHook</a></th>
+      <td>子機群からのMP通信パケットデータを解析します。</td>
+    </tr>
+  </tbody>
+</table>
+<h4>設定</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_GetServerConnectedBitmap.html" target="_self">WFS_GetServerConnectedBitmap</a></th>
+      <td>現在接続している子機群の状況をビットマップで取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_GetServerBusyBitmap.html" target="_self">WFS_GetServerBusyBitmap</a></th>
+      <td>現在リクエスト発行中の子機群の状況をビットマップで取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_GetServerSyncBitmap.html" target="_self">WFS_GetServerSyncBitmap</a></th>
+      <td>リクエスト応答同期が設定されている子機群の状況をビットマップで取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_GetServerPacketLength.html" target="_self">WFS_GetServerPacketLength</a></th>
+      <td>親機のMP送信パケットサイズを取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_SetServerPacketLength.html" target="_self">WFS_SetServerPacketLength</a></th>
+      <td>親機のMP送信パケットサイズを設定します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="server/WFS_SetServerSync.html" target="_self">WFS_SetServerSync</a></th>
+      <td>親機子機群へのリクエスト応答同期を設定します。</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="client" id="client">クライアント処理</a></h3>
+<h4>初期化</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_InitClient.html" target="_self">WFS_InitClient</a></th>
+      <td>WFSライブラリのクライアント側コンテキストを初期化します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_EndClient.html" target="_self">WFS_EndClient</a></th>
+      <td>WFSライブラリのクライアント側コンテキストを終了します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_StartClient.html" target="_self">WFS_StartClient</a></th>
+      <td>クライアント通信処理を開始します。</td>
+    </tr>
+  </tbody>
+</table>
+<h4>フック</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_CallClientConnectHook.html" target="_self">WFS_CallClientConnectHook</a></th>
+      <td>親機へ接続したことをライブラリへ通知します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_CallClientDisconnectHook.html" target="_self">WFS_CallClientDisconnectHook</a></th>
+      <td>親機から切断したことをライブラリへ通知します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_CallClientPacketSendHook.html" target="_self">WFS_CallClientPacketSendHook</a></th>
+      <td>親機へ送信すべきMP通信パケットデータを取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_CallClientPacketRecvHook.html" target="_self">WFS_CallClientPacketRecvHook</a></th>
+      <td>親機からのMP通信パケットデータを解析します。</td>
+    </tr>
+  </tbody>
+</table>
+<h4>操作</h4>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_IsClientReady.html" target="_self">WFS_IsClientReady</a></th>
+      <td>子機側の準備が完了しているか判定します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_GetTableFormat.html" target="_self">WFS_GetTableFormat</a></th>
+      <td>親機から受信したROMのファイルテーブルを参照します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_RequestClientRead.html" target="_self">WFS_RequestClientRead</a></th>
+      <td>親機へのROM読み込みリクエストを発行します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_GetClientReadProgress.html" target="_self">WFS_GetClientReadProgress</a></th>
+      <td>ROM読み込みリクエストの進捗状況を取得します。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="client/WFS_ReplaceRomArchive.html" target="_self">WFS_ReplaceRomArchive</a></th>
+      <td>FSライブラリの"rom"アーカイブにWFSを直接マウントします。</td>
+    </tr>
+  </tbody>
+</table>
+<h3><a name="struct" id="struct">型・構造体</a></h3>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <th style="width:25%"><a href="WFSEventType.html" target="_self">WFSEventType</a></th>
+      <td>WFSライブラリの各種通知イベントを示す列挙値です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSEventCallback.html" target="_self">WFSEventCallback</a></th>
+      <td>WFSライブラリのイベント通知コールバック関数形式です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSRequestClientReadDoneCallback.html" target="_self">WFSRequestClientReadDoneCallback</a></th>
+      <td><a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数のコールバック関数形式です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSPacketBuffer.html" target="_self">WFSPacketBuffer</a></th>
+      <td>WFSライブラリのフック関数で使用する引数構造体です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSPeerInfo.html" target="_self">WFSPeerInfo</a></th>
+      <td>WFSライブラリのフック関数で使用する引数構造体です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSSegmentBuffer.html" target="_self">WFSSegmentBuffer</a></th>
+      <td>WFSライブラリのイベント通知で使用する引数構造体です。</td>
+    </tr>
+    <tr>
+      <th style="width:25%"><a href="WFSTableFormat.html" target="_self">WFSTableFormat</a></th>
+      <td>子機が取得するファイルテーブル情報をあらわす構造体です。</td>
+    </tr>
+  </tbody>
+</table>
+
+<table border="0" style="border-width:0px;height:100%;"><tr><td style="background-color:white;"></td></tr></table>
+
+</body>
+</html>

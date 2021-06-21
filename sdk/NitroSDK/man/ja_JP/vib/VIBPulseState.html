@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VIBPulseState</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VIBPulseState</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<PRE><code>typedef struct
+{
+	u32 pulse_num;
+	u32 rest_time;
+	u32 on_time[VIB_PULSE_NUM_MAX];
+	u32 off_time[VIB_PULSE_NUM_MAX];
+	u32 repeat_num;
+
+} VIBPulseState;</code></PRE></dd>
+</dl>
+<H2>説明</H2>
+<P>パルス振動のステータスを指定します。<BR>
+パルスはパルスセットと呼ばれる最大 <a href="Constant.html">VIB_PULSE_NUM_MAX</a> 回の ON-OFF と、常に OFF となる休止時間から構成されています。<br>
+1.5ms の ON、1.5ms の OFF、1.5msの ON というパルスが標準的な振動で、これによって最も強い振動を発生させることができます。<BR>
+</P>
+<p>	
+VIBPulseState の値は、ハードウェア仕様上、以下のルールを守る必要があります。<br>
+なお、以下のルールは <a href="VIB_StartPulse.html">VIB_StartPulse</a> 関数が呼ばれた際にチェックされます。
+</p>
+<ul>
+<li>一回の on_time は 1.5ms までとする。</li>
+<li>off_time[n] は直前の on_time[n] 以上の値を設定する。</li>
+<li>rest_time は 1.5ms 以上とする。</li>
+</ul>
+<p>
+<img src="pulse_vib.jpg">
+</p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pulse_num</STRONG></EM></TD>
+      <TD width="87%">一回のパルスで何回を発生させるか。1以上 <a href="Constant.html">VIB_PULSE_NUM_MAX</a> 以下である必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>rest_time</STRONG></EM></TD>
+      <TD width="87%">パルスセット間の休止時間の長さ。1=0.1ミリ秒となります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>on_time</STRONG></EM></TD>
+      <TD width="87%">各ON時間の長さ。0より大きい値としてください。1=0.1ミリ秒となります。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>off_time</STRONG></EM></TD>
+      <TD width="87%">各OFF時間の長さ。0より大きい値としてください。1=0.1ミリ秒となります。off_time[pulse_num-1] は使用されません。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>repeat_num</STRONG></EM></TD>
+      <TD width="87%">パルスセットを繰り返す数。0の時は、終わりなく繰り返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>参照</h2>
+<P><code><a href="VIB_StartPulse.html">VIB_StartPulse</a></code></P>
+<H2>履歴</H2>
+<P>
+2006/01/30 初版</P>
+</body>
+</html>

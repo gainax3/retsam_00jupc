@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FX_Mul</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FX_Mul</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/fx/fx.h&gt;
+
+fx32 FX_Mul(fx32 v1, fx32 v2);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">v1</font></strong></em></TD>
+      <TD width="593"><A href="fx32.html">fx32</A>型の固定小数</TD>
+    </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">v2</font></strong></em></TD>
+      <TD><A href="fx32.html">fx32</A>型の固定小数</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>v1とv2の乗算の結果</p>
+<H2>説明</H2>
+<P><A href="fx32.html">fx32</A>型同士の乗算を行います。結果を<A href="fx32.html">fx32</A>型で返します。内部では<A href="fx64.html">fx64</A>型で計算を行います。1/4096未満の値は丸められます。この関数が書かれた部分がTHUMBコードの場合は、関数呼び出しになり、ARMコードの場合はインライン関数として展開されます。</P>
+<P>また、計算により桁あふれが発生した場合、<A href="../os/debug/SDK_WARNING.html">SDK_WARNING()</A> により警告文が表示されます。</P>
+
+<h2>参照</h2>
+<P><A href="FX_Div.html">FX_Div</A>, <A href="FX_Sqrt.html">FX_Sqrt</A>, <A href="FX_Inv.html">FX_Inv</A></P>
+<H2>履歴</H2>
+<P>2006/04/28 桁あふれチェックの追加<br>
+2004/01/19 初版作成</P>
+</body>
+</html>

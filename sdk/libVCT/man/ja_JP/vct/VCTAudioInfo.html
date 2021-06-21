@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTAudioInfo</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTAudioInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef struct VCTAudioInfo
+{
+	u32         internalLatency;    
+	u32         bufferLatency;      
+	u32         bufferCount;        
+	int         clockSkew;          
+	u32         sequence;           
+	u32         dropCount;          
+	u32         jitter;             
+	u32         jamCount;           
+	u32         recoverCount;       
+	<a href="VCTCodec.html">VCTCodec</a>    codec;              
+} VCTAudioInfo;
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I><CODE>internalLatency</CODE></I></B></TD>
+      <TD width="70%">受信内部遅延量（ticks値）</TD>
+    </TR>
+    <TR>
+      <TD><B><I><CODE>bufferLatency</CODE></I></B></TD>
+      <TD>現在のジッタバッファの遅延量（ticks値）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>bufferCount</I></B></TD>
+      <TD width="70%">現在音声バッファに格納されているサンプル数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>clockSkew</I></B></TD>
+      <TD>clock-skewモニタの値（ticks値）</TD>
+    </TR>
+    <TR>
+      <TD><B><I>sequence</I></B></TD>
+      <TD>現在のオーディオシーケンス </TD>
+    </TR>
+    <TR>
+      <TD><B><I>dropCount</I></B></TD>
+      <TD>ドロップしたパケットの数 </TD>
+    </TR>
+    <TR>
+      <TD><B><I>jitter</I></B></TD>
+      <TD>最大ジッタ値（ticks値）</TD>
+    </TR>
+    <TR>
+      <TD><B><I>jamCount</I></B></TD>
+      <TD>パケットが順序どおりに到達しなかった回数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>recoverCount</I></B></TD>
+      <TD>ドロップしたパケットを隠蔽処理した回数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>codec</I></B></TD>
+      <TD>送信元のオーディオフォーマット </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P><code><a href="VCT_GetAudioInfo.html">VCT_GetAudioInfo</a></code>で取得できる音声ストリーミング情報を保存する構造体。</P>
+
+<h2>参照</h2>
+<P><code><A href="VCT_GetAudioInfo.html">VCT_GetAudioInfo</A></code></P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

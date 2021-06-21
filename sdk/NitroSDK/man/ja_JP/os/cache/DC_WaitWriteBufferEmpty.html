@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>DC_WaitWriteBufferEmpty</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">DC_WaitWriteBufferEmpty</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void DC_WaitWriteBufferEmpty( void );</CODE>
+</PRE>
+</DL>
+
+<H2>引数</H2>
+<P>なし。</P>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>ライトバッファが空になるのを待ちます。<BR>
+ライトバッファの内容が全てメモリに書き込まれるまで、ARM9 をストールさせることが可能です。<BR>
+<BR>
+キャッシュ不可/バッファ不可領域 への書き込みの前にはライトバッファの書き出しが行われるため、キャッシュのフラッシュ後などにI/Oレジスタへの書き込みを行なう場合は、明示的にライトバッファのエンプティ待ちを行う必要はありません。</P>
+<P>なお、I/Oレジスタからの読み込みについては、ライトバッファの書き出しは行われませんので、ご注意ください。</P>
+<h2>内部動作</h2>
+<P>システム制御コプロセッサのレジスタ7を操作しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="DC_StoreAll.html">DC_StoreAll</A><BR></CODE></P>
+
+<H2>履歴</H2>
+<P>2003/12/22 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndRecordStateForFrmHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_FndRecordStateForFrmHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>BOOL NNS_FndRecordStateForFrmHeap(NNSFndHeapHandle heap, u32 tagName);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    <td width="87%">フレームヒープのハンドル</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">tagName</font></strong></em></td>
+    
+  <td width="87%">状態記録に付けるタグ</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>状態を記録できた場合は TRUEを返します。状態出来なかった場合は FALSE を返します。</p>
+<H2>説明</H2>
+<P> フレームヒープの現在のメモリ使用状態を記録します。後でNNS_FndFreeByStateToFrmHeap()関数を呼び出すことで、記録したメモリ使用状況に戻すことができます。</p>
+<P>状態の記録にはタグを付けることができます。タグを付ける場合はtagNameに0以外の値をセットします。tagNameが0の場合はタグは付加されません。また、既に存在する状態記録と同じタグ値を指定してもエラーにはなりません。NNS_FndFreeByStateToFrmHeap()関数を使用するときに引数で指定したタグ値が複数の状態記録で使われている場合は、同じタグ値を持つ状態記録の中で最も後に記録された状態記録が使われます。</p>
+<P>状態を記録するために、空き領域の前方より数バイト使用します。記録する分のメモリを確保できなかった場合は、関数は失敗します。</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndFreeByStateToFrmHeap.html">NNS_FndFreeByStateToFrmHeap</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/10/15 タグについての解説を追加した。<br>
+ 2004/04/01 初版</P>
+</body>
+</html>

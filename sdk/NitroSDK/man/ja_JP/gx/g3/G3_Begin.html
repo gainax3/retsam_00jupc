@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_Begin</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_Begin</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE>
+<CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;</CODE><BR>
+<CODE>void G3_Begin(GXBegin primitive);</CODE>
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR><CODE>void G3B_Begin(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXBegin primitive);</CODE><BR><CODE>void G3C_Begin(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXBegin primitive);</CODE><BR><CODE>void G3BS_Begin(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXBegin primitive);</CODE><BR><CODE>void G3CS_Begin(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXBegin primitive);</CODE></PRE>
+  </dd></dl><h2>引数</h2><table border="1" width="100%"><tr><td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td><td width="87%">コマンドリスト情報</td></tr><tr><td width="13%"><em><strong><font face="Courier New">primitive</font></strong></em></td><td width="87%">プリミティブタイプ</td></tr></table><h2>返り値</h2><p>なし。</p><H2>説明</H2><P>頂点リストの開始を宣言します。<B><I>primitive</I></B> にはその頂点リストで作成するプリミティブタイプを指定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BEGIN_TRIANGLES</CODE></TD>
+      <TD>複数の三角形ポリゴン</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BEGIN_QUADS</CODE></TD>
+      <TD>複数の四角形ポリゴン</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BEGIN_TRIANGLE_STRIP</CODE></TD>
+      <TD>連結三角形ポリゴン</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BEGIN_QUAD_STRIP</CODE></TD>
+      <TD>連結四角形ポリゴン</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXBegin</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_BEGIN_TRIANGLES = 0,
+    GX_BEGIN_QUADS = 1,
+    GX_BEGIN_TRIANGLE_STRIP = 2,
+    GX_BEGIN_QUAD_STRIP = 3
+}
+GXBegin;</CODE></PRE>
+<H2>参照</H2>
+<P><A href="G3_End.html">G3*_End</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body></html> 

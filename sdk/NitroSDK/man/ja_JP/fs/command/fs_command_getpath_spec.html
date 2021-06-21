@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_COMMAND_GETPATH</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_COMMAND_GETPATH</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <BR>
+  <CODE>FSResult FS_ARCHIVE_PROC_FUNC(FSFile *p_file, FSCommandType command /*
+  = FS_COMMAND_GETPATH */);<br>
+  </CODE><br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_GETPATH の動作仕様を以下に示します</CODE>。<BR>
+<BR>
+<BR>
+
+<HR>
+<B>このコマンドに渡される引数</B>
+<BLOCKQUOTE>
+<PRE>p_file に格納された変数 arg.getpath をコマンド引数とします。 
+この変数は nitro/fs/file.h にて以下のように定義されています。
+
+typedef struct
+{
+    u8     *buf;
+    u32    buf_len;
+    u16    total_len;
+    u16    dir_id;
+} FSGetPathInfo; </PRE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>引数の内容は以下のとおりです。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1" width="50%">
+  <TBODY>
+    <TR>
+      <TD style="text-align : center;" width="95">引数</TD>
+      <TD style="text-align : center;" width="522">内容</TD>
+    </TR>
+    <TR>
+      <TD width="95" style="text-align : center;">buf</TD>
+      <TD width="522">取得した絶対パス名文字列を格納するメモリへのポインタを示します。<BR>
+      この値が NULL の場合、絶対パス名文字列の取得は不要です。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">buf_len</TD>
+      <TD>buf のメモリバイトサイズを示します。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">total_len</TD>
+      <TD>すでに計算済みの、正しい絶対パス名文字列長を示します。<BR>
+      この値が 0 の場合、正しく設定する必要があります。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">dir_id</TD>
+      <TD>対象がディレクトリであればその位置を、ファイルであればそれが属するディレクトリの位置を示します。<BR>
+      total_len が 0 の場合、この値を正しく設定する必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BR>
+<HR>
+<B>このコマンドに要求される動作</B>
+<BLOCKQUOTE>
+<PRE>p_file は、ファイル情報またはディレクトリ位置情報のいずれかを保持しています。
+どちらの情報を保持しているかは、FS_IsFile 関数または FS_IsDir 関数で判断することができます。
+引数の各変数を以下のように設定します。 
+
+・引数の total_len が 0 の場合、p_file を表す絶対パス名文字列の長さを終端の '\0' も含めて total_len に設定し、
+  p_file がディレクトリであればその値を、ファイルであればそれが属するディレクトリ位置を、dir_id に設定します。
+  total_len が 0 でない場合、すでにこのコマンドによって上記の設定が行われていることが保証されます。
+
+・引数の buf が NULL でなければ、p_file を表す絶対パス名文字列を終端の '\0' も含めてメモリへ格納します。
+  ただし、buf_len が total_len より小さい場合には FS_RESULT_FAILURE を返す必要があります。
+  このとき、可能な限り文字列を格納することも、全く格納しないことも許されます。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>デフォルトの実装</B><BR>
+<BR>
+<BLOCKQUOTE>与えられた引数から、FS_COMMAND_SEEKDIR コマンドと FS_COMMAND_READDIR コマンドのみを使用して結果を求めます。</BLOCKQUOTE>
+<HR>
+<B>コマンドの結果</B><BR>
+
+<BLOCKQUOTE>
+<PRE>FS_RESULT_SUCCESS を返した場合、total_len には正しい絶対パス名文字列長が設定され、
+かつ、buf が NULL でなければ終端の '\0' も含めた絶対パス名文字列が格納されたものと判断されます。
+そうでない場合、buf が NULL でなく buf_len が total_len 未満であったと判断されます。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドが使用される関数</B><BR>
+<BLOCKQUOTE>FS_GetPathLength<BR>
+FS_GetPathName</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<A href="../fs_command_type_const.html">FS_COMMAND_*</A>
+<BR>
+<A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/08/25 誤記修正 FS_IdFile → FS_IsFile<br>
+2004/07/12 初版<br>
+</P>
+</body>
+</html>

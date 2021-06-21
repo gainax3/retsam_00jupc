@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcStrmSetChannelPan</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcStrmSetChannelPan</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcStrmSetChannelPan(
+        NNSSndStrmHandle* <var>handle</var>,
+        int <var>chNo</var>,
+        int <var>pan</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>ストリームハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>chNo</code></strong></em></td>
+<td>チャンネル番号です。</td>
+</tr>
+<tr>
+<td><em><strong><code>pan</code></strong></em></td>
+<td>パン（定位）の値です。値の範囲は、0(左)～ 64(中央)～ 127(右) です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリームハンドル<em><strong><code>handle</code></strong></em>に結びつけられたストリームのチャンネルパンを変更します。
+ストリームハンドルが無効の場合は、何もしません。
+</p>
+      <p>
+チャンネル番号<em><strong><code>chNo</code></strong></em>は、ストリームデータ中でのチャンネル番号です。
+NITROサウンド回路に搭載されているチャンネルの番号とは、直接関係ありません。
+例えば、ステレオストリームデータの場合、左チャンネルがチャンネル番号0、右チャンネルがチャンネル番号1となります。
+</p>
+      <p>
+デフォルトでは、モノラルデータは中央(64)で再生され、ステレオデータはチャンネル0が左(0)から、チャンネル1が右(127)から出力されます。
+この関数を呼びだすと、このデフォルト設定の値を変更します。
+</p>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/08/10 初版<br></p>
+</div>
+</body>
+</html>

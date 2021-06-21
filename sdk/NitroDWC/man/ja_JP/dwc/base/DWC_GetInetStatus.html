@@ -1,0 +1,97 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetInetStatus</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetInetStatus</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCInetResult DWC_GetInetStatus( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  インターネット接続状態を確認します。
+		</P>
+		<p>
+		  もしエラーが発生した場合は、<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数でエラー状態を取得し、必要に応じてエラーメッセージとともにエラーコードを表示してください。メッセージについては、プログラミンガイドラインをご確認ください。
+		</p>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_NOT_INITIALIZED</CODE></STRONG></EM></TD>
+				<TD>初期化されていない</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_IDLE</CODE></STRONG></EM></TD>
+				<TD>接続開始されていない</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_OPERATING</CODE></STRONG></EM></TD>
+				<TD>処理中</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_OPERATED</CODE></STRONG></EM></TD>
+				<TD>処理完了</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_CONNECTED</CODE></STRONG></EM></TD>
+				<TD>インターネットへ接続済み</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_DISCONNECTING</CODE></STRONG></EM></TD>
+				<TD>インターネットから切断中</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_DISCONNECTED</CODE></STRONG></EM></TD>
+				<TD>インターネットから切断された</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_ERROR</CODE></STRONG></EM></TD>
+				<TD>エラーが発生した</TD>
+			  </TR>
+			  <TR>
+				<TD width="25%"><EM><STRONG><CODE>DWC_CONNECTINET_STATE_FATAL_ERROR</CODE></STRONG></EM></TD>
+				<TD>致命的なエラーが発生した</TD>
+			  </TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_SetAuthServer.html">DWC_SetAuthServer</A>,
+				<A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>,
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_ProcessInet.html">DWC_ProcessInet</A>,
+				<A href="DWC_CleanupInet.html">DWC_CleanupInet</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/02/24 参照先の文書名を変更<BR>
+		  2005/12/16 改訂<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

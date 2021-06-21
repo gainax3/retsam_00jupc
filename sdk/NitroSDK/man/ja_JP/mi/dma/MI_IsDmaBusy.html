@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_IsDmaBusy</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_IsDmaBusy</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL MI_IsDmaBusy( u32 dmaNo )</CODE><br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dmaNo</STRONG></EM></TD>
+      <TD width="87%">使用DMAチャンネル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>指定DMAチャンネルが使用中かどうかを返します。</p>
+
+<H2>説明</H2>
+<P>DMAチャンネルか使用中かどうかを取得します。<BR>
+返り値が TRUE の場合、まだbusyであることを示します。</P>
+<h2>内部動作</h2>
+<P>IOレジスタのDMAnコントロールレジスタ(0x40000B8 + 12n)を使用します。( n
+は 使用するDMAチャンネルです。)</P>
+<h2>参照</h2>
+<p><CODE><A href="MI_DmaCopy.html">MI_DmaCopy*</A>, <A href="MI_WaitDma.html">MI_WaitDma</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2003/12/01 初版</P>
+</body>
+</html>

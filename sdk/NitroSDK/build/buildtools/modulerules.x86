@@ -1,0 +1,206 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - modulerules - common rules for build system
+# File:     modulerules.x86
+#
+# Copyright 2003-2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules.x86,v $
+# Revision 1.16  2005/04/26 02:50:48  terui
+# Update copyright.
+#
+# Revision 1.15  2005/04/25 08:55:12  yasu
+# ROOT/include 以下のヘッダファイルへのパスを追加
+#
+# Revision 1.14  2004/09/10 01:23:56  yasu
+# Support make -n
+#
+# Revision 1.13  2004/09/09 02:37:14  yasu
+# Show $(MAKEFILE) if using non-default-Makefile
+#
+# Revision 1.12  2004/09/09 01:23:48  yasu
+# Fix '-s/-w/-k' option searching method
+#
+# Revision 1.11  2004/09/02 12:43:42  yasu
+# Add -DSDK_WIN32 to gcc options
+#
+# Revision 1.10  2004/09/02 09:49:51  yasu
+# Support X86 libraries
+#
+# Revision 1.9  2004/07/19 05:08:34  yasu
+# Add rule for super-clobber
+#
+# Revision 1.8  2004/07/18 07:12:01  yasu
+# Fix install rule
+#
+# Revision 1.7  2004/06/23 05:42:11  yasu
+# Add -g to gcc option if NITRO_DEBUG
+#
+# Revision 1.6  2004/06/18 06:16:19  yasu
+# support CXX_X86 and LD_X86
+#
+# Revision 1.5  2004/02/05 07:09:01  yasu
+# change SDK prefix iris -> nitro
+#
+# Revision 1.4  2004/02/03 12:34:13  yasu
+# fix "make clobber"
+#
+# Revision 1.3  2004/02/03 10:46:21  yasu
+# Workaround for SHELL=/bin/sh
+#
+# Revision 1.2  2004/02/03 07:37:04  yasu
+# Add target "autotest"
+#
+# Revision 1.1  2004/01/08 01:37:45  yasu
+# makefile for gcc
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+#----------------------------------------------------------------------------
+#	Implicit RULES
+#----------------------------------------------------------------------------
+WARNING		= -Wall
+
+LEX		= flex
+YACC		= bison -y
+
+# workaround for flex gen code to avoid warnings
+%.yy.o:WARNING	+= -Wno-unused-label -Wno-unused-function
+
+ifdef	DEBUG
+MACROS		+= -DDEBUG -g
+endif
+
+ifdef	NITRO_DEBUG
+MACROS		+= -g
+endif
+
+define COMPILE_C
+		$(CC_X86) $(MACROS) -DSDK_WIN32 $(WARNING) -c -I. -I$(NITRO_INCDIR) $< -o $@
+endef
+
+define COMPILE_CXX
+		$(CXX_X86) $(MACROS) -DSDK_WIN32 $(WARNING) -c -I. -I$(NITRO_INCDIR) $< -o $@
+endef
+
+%.o:		%.c
+		$(COMPILE_C)
+
+%.o:		%.cpp
+		$(COMPILE_CXX)
+
+%.yy.c:		%.l
+		$(LEX) -P$(basename $<)_yy -o$@ $<
+
+%.tab.c:	%.y
+		$(YACC) -d -p $(basename $<)_yy -b $(basename $<) $<
+
+%.tab.h:	%.tab.c
+
+#----------------------------------------------------------------------------
+#  MAKE TARGETS
+#----------------------------------------------------------------------------
+
+.PHONY:	all default build do-build install do-install \
+	clean clobber super-clobber
+
+
+#----------------------------------------------------------------------------
+
+define MAKE_SUBDIR
+    +$(foreach DIR,$(SUBDIRS),$(MAKE) -C $(DIR) $(MAKECMDGOALS) $(AND)) true
+    +$(foreach FILE,$(SUBMAKES),$(MAKE) -C $(dir $(FILE)) -f $(notdir $(FILE)) $(MAKECMDGOALS) $(AND)) true
+endef
+
+ifeq ($(MAKEFILE),Makefile)
+MAKEFILE_	=
+else
+MAKEFILE_	= /$(MAKEFILE)
+endif
+
+define ECHO_CURDIR
+	$(ECHO) "==== $(CURDIR)$(MAKEFILE_)";
+endef
+
+#----------------------------------------------------------------------------
+#  make build
+#----------------------------------------------------------------------------
+
+build:
+		@$(MAKE_SUBDIR)
+		@$(ECHO_CURDIR)
+ifdef	TARGETS
+ifdef	NEWDIRS
+		@$(MKDIRP) $(NEWDIRS)
+endif
+		@+$(REMAKE) do-build
+ifdef	INSTALL_TARGETS
+		@+$(REMAKE) do-install
+endif
+endif
+
+
+#----------------------------------------------------------------------------
+#  make install
+#----------------------------------------------------------------------------
+
+install:
+		@$(MAKE_SUBDIR)
+		@$(ECHO_CURDIR)
+ifdef	INSTALL_TARGETS
+		@+$(REMAKE) do-install
+endif
+
+
+define DO_INSTALL
+	$(INSTALL) -d $(INSTALL_DIR) $(AND)					\
+	$(foreach FILE, $(INSTALL_TARGETS),			   		\
+		if [ ! -e $(INSTALL_DIR)/$(notdir $(FILE)) -o			\
+			$(FILE) -nt $(INSTALL_DIR)/$(notdir $(FILE)) ];		\
+		then 								\
+			$(ECHO) "  install: $(FILE) -> $(INSTALL_DIR)" $(AND)	\
+			$(INSTALL) $(FILE) $(INSTALL_DIR)/$(notdir $(FILE));	\
+		fi $(AND) ) true
+endef
+
+
+do-install:
+	@$(DO_INSTALL)
+
+#----------------------------------------------------------------------------
+#  make do-autotest
+#----------------------------------------------------------------------------
+
+do-autotest:
+		@$(MAKE_SUBDIR)
+		@$(ECHO_CURDIR)
+
+
+#----------------------------------------------------------------------------
+#  make clobber & clean
+#----------------------------------------------------------------------------
+
+super-clobber clobber:
+		@$(MAKE_SUBDIR)
+		@$(ECHO_CURDIR)
+		-$(RM) $(GDIRT_CLEAN)   $(LDIRT_CLEAN)
+		-$(RM) $(GDIRT_CLOBBER) $(LDIRT_CLOBBER)
+		-$(RM) $(GDIRT_INSTALLED)
+
+
+#----------------------------------------------------------------------------
+
+clean:
+		@$(MAKE_SUBDIR)
+		@$(ECHO_CURDIR)
+		-$(RM) $(GDIRT_CLEAN)   $(LDIRT_CLEAN)
+
+
+#----- End of modulerules -----

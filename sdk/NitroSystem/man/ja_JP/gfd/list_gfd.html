@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<BASE target="main">
+	<TITLE>Graphics Foundation ライブラリAPI 機能一覧</TITLE>
+	<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+
+<BODY>
+
+<H1>Graphics Foundation ライブラリ(Gfd)API 機能一覧</H1>
+
+
+<H3><A name="TexVramMan">テクスチャVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="TexVramMan/NNS_GfdAllocTexVram.html" target="_self" >NNS_GfdAllocTexVram</A>
+			<TD>指定されたサイズのテクスチャ用のメモリブロックをVRAMから確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TexVramMan/NNS_GfdFreeTexVram.html" target="_self" >NNS_GfdFreeTexVram</A>
+			<TD>VRAMから確保したメモリブロックを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TexVramMan/NNS_GfdGetTexKeyAddr.html" target="_self" >NNS_GfdGetTexKeyAddr</A>
+			<TD>VRAM上の領域を示すキー・データからアドレスを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TexVramMan/NNS_GfdGetTexKeySize.html" target="_self" >NNS_GfdGetTexKeySize</A>
+			<TD>VRAM上の領域を示すキー・データからサイズを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TexVramMan/NNS_GfdGetTexKey4x4Flag.html" target="_self" >NNS_GfdGetTexKey4x4Flag</A>
+			<TD>VRAM上の領域を示すキー・データが4x4圧縮テクスチャ用領域であるかを調べます。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="FrmTexVramMan">フレームテクスチャVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdInitFrmTexVramManager.html" target="_self" >NNS_GfdInitFrmTexVramManager</A></TH>
+			<TD>フレームテクスチャVRAMマネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdAllocFrmTexVram.html" target="_self" >NNS_GfdAllocFrmTexVram</A></TH>
+			<TD>フレームテクスチャVRAMマネージャからテクスチャ用メモリを確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdFreeFrmTexVram.html" target="_self" >NNS_GfdFreeFrmTexVram</A></TH>
+			<TD>フレームテクスチャVRAMマネージャから確保したテクスチャ用メモリを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdGetFrmTexVramState.html" target="_self" >NNS_GfdGetFrmTexVramState</A></TH>
+			<TD>フレームテクスチャVRAMマネージャのテクスチャ用メモリ確保状態を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdSetFrmTexVramState.html" target="_self" >NNS_GfdSetFrmTexVramState</A></TH>
+			<TD>フレームテクスチャVRAMマネージャにテクスチャ用メモリ確保状態を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdResetFrmTexVramState.html" target="_self" >NNS_GfdResetFrmTexVramState</A></TH>
+			<TD>フレームテクスチャVRAMマネージャのテクスチャ用メモリ確保状態を初期状態に戻します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdDumpFrmTexVramManager.html" target="_self" >NNS_GfdDumpFrmTexVramManager</A></TH>
+			<TD>フレームテクスチャVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmTexVramMan/NNS_GfdDumpFrmTexVramManagerEx.html" target="_self" >NNS_GfdDumpFrmTexVramManagerEx</A></TH>
+			<TD>フレームテクスチャVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+		
+	</TBODY>
+</TABLE>
+
+
+
+<H3><A name="LnkTexVramMan">リンクドリストテクスチャVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdInitLnkTexVramManager.html" target="_self" >NNS_GfdInitLnkTexVramManager</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdAllocLnkTexVram.html" target="_self" >NNS_GfdAllocLnkTexVram</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャからテクスチャ用メモリを確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdFreeLnkTexVram.html" target="_self" >NNS_GfdFreeLnkTexVram</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャから確保したテクスチャ用メモリを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdGetLnkTexVramManagerWorkSize.html" target="_self" >NNS_GfdGetLnkTexVramManagerWorkSize</A></TH>
+			<TD>リンクドリストVRAMマネージャが管理情報のために必要とするメモリのバイトサイズを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdResetLnkTexVramState.html" target="_self" >NNS_GfdResetLnkTexVramState</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャのテクスチャ用メモリ確保状態を初期状態に戻します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdDumpLnkTexVramManager.html" target="_self" >NNS_GfdDumpLnkTexVramManager</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkTexVramMan/NNS_GfdDumpLnkTexVramManagerEx.html" target="_self" >NNS_GfdDumpLnkTexVramManagerEx</A></TH>
+			<TD>リンクドリストテクスチャVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="PlttVramMan">パレットVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="PlttVramMan/NNS_GfdAllocPlttVram.html" target="_self" >NNS_GfdAllocPlttVram</A>
+			<TD>指定されたサイズのパレットブロックをVRAMから確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="PlttVramMan/NNS_GfdFreePlttVram.html" target="_self" >NNS_GfdFreePlttVram</A>
+			<TD>VRAMから確保したパレットブロックを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="PlttVramMan/NNS_GfdGetPlttKeyAddr.html" target="_self" >NNS_GfdGetPlttKeyAddr</A>
+			<TD>パレットブロックを示すキー・データからアドレスを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="PlttVramMan/NNS_GfdGetPlttKeySize.html" target="_self" >NNS_GfdGetPlttKeySize</A>
+			<TD>パレットブロックを示すキー・データからサイズを取得します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="FrmPlttVramMan">フレームパレットVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdInitFrmPlttVramManager.html" target="_self" >NNS_InitFrmPlttVramManager</A></TH>
+			<TD>フレームパレットVRAMマネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdAllocFrmPlttVram.html" target="_self" >NNS_GfdAllocFrmPlttVram</A></TH>
+			<TD>フレームパレットVRAMマネージャからパレット用メモリを確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdFreeFrmPlttVram.html" target="_self" >NNS_GfdFreeFrmPlttVram</A></TH>
+			<TD>フレームパレットVRAMマネージャから確保したパレット用メモリを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdGetFrmPlttVramState.html" target="_self" >NNS_GfdGetFrmPlttVramState</A></TH>
+			<TD>フレームパレットVRAMマネージャのパレット用メモリ確保状態を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdSetFrmPlttVramState.html" target="_self" >NNS_GfdSetFrmPlttVramState</A></TH>
+			<TD>フレームパレットVRAMマネージャにパレット用メモリ確保状態を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdResetFrmPlttVramState.html" target="_self" >NNS_GfdResetFrmPlttVramState</A></TH>
+			<TD>フレームパレットVRAMマネージャのパレット用メモリ確保状態を初期状態に戻します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdDumpFrmPlttVramManager.html" target="_self" >NNS_GfdDumpFrmPlttVramManager</A></TH>
+			<TD>フレームパレットVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="FrmPlttVramMan/NNS_GfdDumpFrmPlttVramManagerEx.html" target="_self" >NNS_GfdDumpFrmPlttVramManagerEx</A></TH>
+			<TD>フレームパレットVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+<H3><A name="LnkPlttVramMan">リンクドリストパレットVRAMマネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdInitLnkPlttVramManager.html" target="_self" >NNS_GfdInitLnkPlttVramManager</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdAllocLnkPlttVram.html" target="_self" >NNS_GfdAllocLnkPlttVram</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャからパレット用メモリを確保します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdFreeLnkPlttVram.html" target="_self" >NNS_GfdFreeLnkPlttVram</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャから確保したパレット用メモリを解放します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdGetLnkPlttVramManagerWorkSize.html" target="_self" >NNS_GfdGetLnkPlttVramManagerWorkSize</A></TH>
+			<TD>リンクドリストVRAMマネージャが管理情報のために必要とするメモリのバイトサイズを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdResetLnkPlttVramState.html" target="_self" >NNS_GfdResetLnkPlttVramState</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャのパレット用メモリ確保状態を初期状態に戻します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdDumpLnkPlttVramManager.html" target="_self" >NNS_GfdDumpLnkPlttVramManager</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="LnkPlttVramMan/NNS_GfdDumpLnkPlttVramManagerEx.html" target="_self" >NNS_GfdDumpLnkPlttVramManagerEx</A></TH>
+			<TD>リンクドリストパレットVRAMマネージャの状態をコンソールにデバック出力します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<H3><A name="VramTransMan">VRAM転送マネージャ</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="VramTransMan/NNS_GfdInitVramTransferManager.html" target="_self">NNS_GfdInitVramTransferManager</A></TH>
+			<TD>VRAM転送マネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="VramTransMan/NNS_GfdClearVramTransferManagerQueue.html" target="_self">NNS_GfdClearVramTransferManagerQueue</A></TH>
+			<TD>VRAM転送マネージャのVRAM転送タスクをクリアします。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="VramTransMan/NNS_GfdRegisterNewVramTransferTask.html" target="_self">NNS_GfdRegisterNewVramTransferTask</A></TH>
+			<TD>VRAM転送マネージャにVRAM転送タスクを登録します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="VramTransMan/NNS_GfdDoVramTransfer.html"  target="_self">NNS_GfdDoVramTransfer</A></TH>
+			<TD>VRAM転送マネージャに登録されているVRAM転送タスクを実行し、データをVRAMに転送します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="VramTransMan/NNS_GfdGetVramTransferTaskTotalSize.html" target="_self">NNS_GfdGetVramTransferTaskTotalSize</A></TH>
+			<TD>VRAM転送マネージャに登録されているVRAM転送タスクの総転送量を取得します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

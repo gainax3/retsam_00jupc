@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SNDInstData</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SNDInstData</h1>
+<h2>定義</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct SNDInstData
+{
+    u8 type;
+    u8 padding_;
+
+    struct SNDInstParam {
+        u16 wave[2];
+        u8 original_key;
+        u8 attack;
+        u8 decay;
+        u8 sustain;
+        u8 release;
+        u8 pan;
+    } param;
+} SNDInstData;
+</code></pre></dd>
+<dd><pre class="funcprototype"></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDATMWT"></a>
+      <h2>要素</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>type</code></strong></em></td>
+<td>インストタイプです。</td>
+</tr>
+<tr>
+<td><em><strong><code>wave</code></strong></em></td>
+<td>波形データ情報配列です。</td>
+</tr>
+<tr>
+<td><em><strong><code>original_key</code></strong></em></td>
+<td>オリジナルキーです。60が中央のドです。</td>
+</tr>
+<tr>
+<td><em><strong><code>attack</code></strong></em></td>
+<td>エンベロープのアタックです。値の範囲は0～127で、値が大きいほど、速く立ち上がります。</td>
+</tr>
+<tr>
+<td><em><strong><code>decay</code></strong></em></td>
+<td>エンベロープのディケイです。値の範囲は0～127で、値が大きいほど、速く減衰します。</td>
+</tr>
+<tr>
+<td><em><strong><code>sustain</code></strong></em></td>
+<td>エンベロープのサステインです。値の範囲は0～127で、値が大きいほど、高いゲインを維持します。</td>
+</tr>
+<tr>
+<td><em><strong><code>release</code></strong></em></td>
+<td>エンベロープのリリースです。値の範囲は0～127で、値が大きいほど、速く減衰します。
+            （ただし値がSND_BANK_DISABLE_RELEASE(=255)の時は特別に、ノートオフしてもリリースしないように動作します。）</td>
+</tr>
+<tr>
+<td><em><strong><code>pan</code></strong></em></td>
+<td>パンです。値の範囲は、0(左)～64(中央)～127(右)です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDATOWT"></a>
+      <h2>説明</h2>
+      <p>
+インストデータ構造体です。バンクデータ中の各インスト毎のパラメータを保持しています。
+</p>
+      <p>
+この構造体は、
+<tt class="function"><a href="SND_ReadInstData.html">SND_ReadInstData</a></tt>関数で取得し、
+<tt class="function"><a href="SND_WriteInstData.html">SND_WriteInstData</a></tt>関数で
+更新することができます。
+</p>
+      <p>
+インストタイプ<em><strong><code>type</code></strong></em>は以下の値を取ります。
+</p>
+      <div class="table"><a name="IDALPWT"></a><p class="title"><b>表 . SNDInstType</b></p>
+<table summary="SNDInstType" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_INST_PCM</td>
+<td>PCM波形データ</td>
+</tr>
+<tr>
+<td>SND_INST_PSG</td>
+<td>PSG矩形波</td>
+</tr>
+<tr>
+<td>SND_INST_NOISE</td>
+<td>ノイズ</td>
+</tr>
+<tr>
+<td>SND_INST_DIRECTPCM</td>
+<td>PCM波形データ（直接アドレス指定）</td>
+</tr>
+<tr>
+<td>SND_INST_NULL</td>
+<td>空のインスト（発音しません）</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <p>
+波形情報配列<em><strong><code>wave</code></strong></em>には、波形データの情報などが入りますが、
+インストタイプ<em><strong><code>type</code></strong></em>毎に異なった意味を持ちます。
+</p>
+      
+      <div class="table"><a name="IDAORWT"></a><p class="title"><b>表 . 波形情報配列</b></p>
+<table summary="波形情報配列" border="1">
+<colgroup><col><col><col></colgroup>
+<thead>
+<tr>
+<th>インストタイプ</th>
+<th>wave[0]</th>
+<th>wave[1]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SND_INST_PCM</td>
+<td>波形アーカイブ中のインデックス番号</td>
+<td>バンク中での波形アーカイブ番号</td>
+</tr>
+<tr>
+<td>SND_INST_PSG</td>
+<td>デューティ比</td>
+<td>（未使用）</td>
+</tr>
+<tr>
+<td>SND_INST_NOISE</td>
+<td>（未使用）</td>
+<td>（未使用）</td>
+</tr>
+<tr>
+<td>SND_INST_DIRECTPCM</td>
+<td><a href="SNDWaveData.html">SNDWaveData</a>構造体のアドレスの下位16ビット</td>
+<td>SNDWaveData構造体のアドレスの上位16ビット</td>
+</tr>
+<tr>
+<td>SND_INST_NULL</td>
+<td>（未使用）</td>
+<td>（未使用）</td>
+</tr>
+</tbody>
+</table>
+</div>
+      
+    </div>
+<h2>参照</h2>
+<p><a href="SND_ReadInstData.html">SND_ReadInstData</a>, <a href="SND_WriteInstData.html">SND_WriteInstData</a>, <a href="SNDWaveData.html">SNDWaveData</a></p>
+<h2>履歴</h2>
+<p>2005/05/10 リリース255の時の動作に関する説明追加<br>2005/03/17 インストタイプSND_INST_NULLの追加<br>2005/01/19 SNDWaveDataへのリンク追加<br>2004/10/21 必要なインクルードファイルの誤り訂正<br>2004/07/20 初版<br></p>
+</div>
+</body>
+</html>

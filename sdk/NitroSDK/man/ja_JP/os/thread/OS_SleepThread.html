@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SleepThread</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SleepThread</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SleepThread( OSThreadQueue*  queue );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>queue</STRONG></EM></TD>
+      <TD width="87%">現在のスレッドを登録するスレッドキューへのポインタです。<BR>
+      NULL ならスレッドキューへの登録を行ないません。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>カレントスレッドを一時停止し、<B><I>queue</I></B> で指定したスレッドキューへ登録します。</P>
+<P>この <B><I>queue</I></B> を引数にして<CODE><A href="OS_WakeupThread.html">OS_WakeupThread()</A></CODE>関数が呼ばれるまで、一時停止状態のままとなります。ただし、それまでに<A href="OS_WakeupThreadDirect.html"><CODE>OS_WakeupThreadDirect()</CODE></A> でこのスレッドが指定されれば一時停止状態から実行可能状態に遷移します。</P>
+<P><B><I>queue</I></B> が<CODE>NULL</CODE>の場合はスレッドキューへの登録を行ないませんので、他スレッドからの <A href="OS_WakeupThreadDirect.html"><CODE>OS_WakeupThreadDirect()</CODE></A> でのみ復帰することが出来ます。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_CreateThread.html">OS_CreateThread</A>, <A href="OS_WakeupThread.html">OS_WakeupThread</A>, <A href="OS_WakeupThreadDirect.html">OS_WakeupThreadDirect</A><BR>
+<A href="OS_Sleep.html">OS_Sleep</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/07/18 queue がNULLの場合の記述などを追加<BR>
+2003/12/01 初版</P>
+</BODY>
+</HTML>

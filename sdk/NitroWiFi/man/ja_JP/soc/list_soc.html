@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>ソケット(SOC) 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>ソケット(SOC) 機能一覧</H1>
+
+<H3><A name="Socket">ソケット関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Socket.html" target="_self">SOC_Socket</A></TH>
+      <TD>バインドされていない新しいソケットを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Close.html" target="_self">SOC_Close</A></TH>
+      <TD>ソケットを閉じます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Shutdown.html" target="_self">SOC_Shutdown</A></TH>
+      <TD>ソケットの送受信を無効にします。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Bind.html" target="_self">SOC_Bind</A></TH>
+      <TD>ソケットをローカルホストに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Connect.html" target="_self">SOC_Connect</A></TH>
+      <TD>指定されたソケットへ接続を試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Listen.html" target="_self">SOC_Listen</A></TH>
+      <TD>ソケットを受信接続を待機する状態にします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Accept.html" target="_self">SOC_Accept</A></TH>
+      <TD>新しく作成された接続に対して新しいソケットを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Recv.html" target="_self">SOC_Read</A></TH>
+      <TD>指定されたソケットからデータを受信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Recv.html" target="_self">SOC_Recv</A></TH>
+      <TD>指定されたソケットからデータを受信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Recv.html" target="_self">SOC_RecvFrom</A></TH>
+      <TD>指定されたソケットからデータを受信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Send.html" target="_self">SOC_Write</A></TH>
+      <TD>指定されたソケットを通してデータを送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Send.html" target="_self">SOC_Send</A></TH>
+      <TD>指定されたソケットを通してデータを送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Send.html" target="_self">SOC_SendTo</A></TH>
+      <TD>指定されたソケットを通してデータを送信します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Fcntl.html" target="_self">SOC_Fcntl</A></TH>
+      <TD>ソケットを封鎖／非封鎖モードに設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Poll.html" target="_self">SOC_Poll</A></TH>
+      <TD>ソケットのステータスを確認します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetHostID.html" target="_self">SOC_GetHostID</A></TH>
+      <TD>ホストのプライマリ IPv4 アドレスを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetHostByAddr.html" target="_self">SOC_GetHostByAddr</A></TH>
+      <TD>アドレスに対応するホストについての情報を返します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetHostByName.html" target="_self">SOC_GetHostByName</A></TH>
+      <TD>名前に対応するホストについてのの情報を返します</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetSockName.html" target="_self">SOC_GetSockName</A></TH>
+      <TD>指定されたソケットのローカルにバインドされた名前を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Interface">インターフェース関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetMacAddr.html" target="_self">SOC_GetMacAddr</A></TH>
+      <TD>指定されたインターフェースのMACアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetAddr.html" target="_self">SOC_GetAddr</A></TH>
+      <TD>指定されたインターフェースのインターネット アドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetAlias.html" target="_self">SOC_GetAlias</A></TH>
+      <TD>指定されたインターフェースのインターネット エイリアス アドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetGateway.html" target="_self">SOC_GetGateway</A></TH>
+      <TD>指定されたインターフェースのデフォルト ゲートウェイアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetNetmask.html" target="_self">SOC_GetNetmask</A></TH>
+      <TD>指定されたインターフェースのネットマスクを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetBroadcastAddr.html" target="_self">SOC_GetBroadcastAddr</A></TH>
+      <TD>指定されたインターフェースのブロードキャスト アドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetMtu.html" target="_self">SOC_GetMtu</A></TH>
+      <TD>指定したインターフェースの最大転送長(MTU)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetLinkState.html" target="_self">SOC_GetLinkState</A></TH>
+      <TD>指定したネットワーク インターフェースがAPとリンクしているかどうかを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetConfigError.html" target="_self">SOC_GetConfigError</A></TH>
+      <TD>ホスト設定のエラーコードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_ClearConfigError.html" target="_self">SOC_ClearConfigError</A></TH>
+      <TD>ホスト設定のエラーコードをクリアします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="DHCP">DHCP関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_DHCPGetStatus.html" target="_self">SOC_DHCPGetStatus</A></TH>
+      <TD>DHCP の状態を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Convert">変換関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_NtoHl.html" target="_self">SOC_HtoNs</A></TH>
+      <TD>ローカルホストの2バイト整数をネットワークバイトオーダーへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_NtoHl.html" target="_self">SOC_HtoNl</A></TH>
+      <TD>ローカルホストの4バイト整数をネットワークバイトオーダーへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_NtoHl.html" target="_self">SOC_NtoHs</A></TH>
+      <TD>ネットワークバイトオーダーの2バイト整数をローカルホストのバイトオーダーへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_NtoHl.html" target="_self">SOC_NtoHl</A></TH>
+      <TD>ネットワークバイトオーダーの4バイト整数をローカルホストのバイトオーダーへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_InetAtoN.html" target="_self">SOC_InetAtoN</A></TH>
+      <TD>インターネットホストアドレスをドット10進記法からバイナリ形式へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_InetNtoA.html" target="_self">SOC_InetNtoA</A></TH>
+      <TD>インターネットホストアドレスをドット10進記法の文字列へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_InetPtoN.html" target="_self">SOC_InetPtoN</A></TH>
+      <TD>スタンダードテキスト表記のアドレスを数値バイナリ形式へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_InetNtoP.html" target="_self">SOC_InetNtoP</A></TH>
+      <TD>バイナリ形式のアドレスを適切なテキスト文字列へ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_U32to4U8.html" target="_self">SOC_U32to4U8</A></TH>
+      <TD>U32 の値を U8×4 の配列に変換します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Extend">拡張関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Startup.html" target="_self">SOC_Startup</A></TH>
+      <TD>ライブラリのソケット層を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_Cleanup.html" target="_self">SOC_Cleanup</A></TH>
+      <TD>全てのオープンされているソケットをクローズし、ソケットライブラリをシャットダウンします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_GetResolver.html" target="_self">SOC_GetResolver</A></TH>
+      <TD>プライマリおよびセカンダリのDNSサーバーアドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_SetResolver.html" target="_self">SOC_SetResolver</A></TH>
+      <TD>プライマリおよびセカンダリのDNSサーバーアドレスを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Ssl">SSL 通信関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_EnableSsl.html" target="_self">SOC_EnableSsl</A></TH>
+      <TD>特定のソケットを SSL 通信を行うように設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOC_AddRandomSeed.html" target="_self">SOC_AddRandomSeed</A></TH>
+      <TD>SSL 通信用の乱数プールを攪拌します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Type">構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/SOCInAddr.html" target="_self">SOCInAddr</A></TH>
+      <TD>IPv4インターネットホストアドレスを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCSockAddr.html" target="_self">SOCSockAddr</A></TH>
+      <TD>ソケットアドレスを表現するためのデータ型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCSockAddrIn.html" target="_self">SOCSockAddrIn</A></TH>
+      <TD>インターネットソケットアドレスを表現するためのデータ型です</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCConfig.html" target="_self">SOCConfig</A></TH>
+      <TD>ライブラリのソケット層を初期化する際に必要な情報を格納する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCHostEnt.html" target="_self">SOCHostEnt</A></TH>
+      <TD>ホストの情報を格納する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCSslConnection.html" target="_self">SOCSslConnection</A></TH>
+      <TD>SSL 通信の設定と状態を保持するための構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="soc/SOCCaInfo.html" target="_self">SOCCaInfo</A></TH>
+      <TD>SSL 通信で使用するサーバ証明書を表現するための構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Misc">情報</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="soc/Error.html" target="_self">エラーコード一覧</A></TH>
+      <TD>ソケットライブラリで使用されるエラーコードの一覧です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+</BODY>
+</HTML>
+
+

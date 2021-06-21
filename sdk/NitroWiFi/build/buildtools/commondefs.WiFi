@@ -1,0 +1,125 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - buildtools
+# File:     commondefs.WiFi
+#
+# Copyright 2005,2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: commondefs.WiFi,v $
+# Revision 1.15  2006/02/28 23:42:16  okubata_ryoma
+# Crypt切り出しのための変更
+#
+# Revision 1.14  2006/01/26 01:33:26  seiki_masashi
+# copyright 表記の修正
+#
+# Revision 1.13  2006/01/23 06:49:05  seiki_masashi
+# NWIFI_INSTALL_TOOLSDIR を追加
+#
+# Revision 1.12  2005/12/19 23:21:19  seiki_masashi
+# NitroWiFi の CRYPT ライブラリを新設し、電子署名検証機能を追加
+#
+# Revision 1.11  2005/11/21 00:35:34  terui
+# Abolish svc stub library.
+#
+# Revision 1.10  2005/10/25 04:17:53  terui
+# SVC_WaitVBlankIntrが弱シンボル化されている場合にリンクするライブラリを追加
+#
+# Revision 1.9  2005/09/13 08:57:45  yasu
+# SSL を有効無効にするためのスイッチ作成
+#
+# Revision 1.8  2005/08/23 04:43:03  yasu
+# NITROWIFI_INSTALL_ROOT 関連の修正
+#
+# Revision 1.7  2005/08/19 12:28:20  yasu
+# add-ins のサポート
+#
+# Revision 1.6  2005/07/29 05:11:21  terui
+# リンクするライブラリとして md5 に関するラッパーライブラリを追加。
+#
+# Revision 1.5  2005/07/15 13:33:25  yasu
+# soc ライブラリの追加
+#
+# Revision 1.4  2005/07/15 08:38:08  yasu
+# cps, ssl ライブラリファイル追加
+#
+# Revision 1.3  2005/07/12 00:42:24  yasu
+# libssl.a のリンク制御の仕組みを追加
+#
+# Revision 1.2  2005/07/07 10:47:41  terui
+# NITROWIFI_LIBS に libwcm.a を追加
+#
+# Revision 1.1  2005/06/22 11:07:57  yasu
+# ソースツリーテンプレート作成
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+#
+# WiFi SDK root directory
+#
+
+NITROWIFI_ROOT		?= $(NITROSDK_ROOT)/../NitroWiFi
+
+
+#----------------------------------------------------------------------------
+# Utilities
+#
+
+EMPTY	 		:=
+SPACE 			:= $(EMPTY) $(EMPTY)
+
+
+#----------------------------------------------------------------------------
+#  NITRO WiFi SDK path settings
+#
+
+NWIFI_ROOT		= $(subst $(SPACE),\ ,$(subst \,/,$(NITROWIFI_ROOT)))
+NWIFI_INCDIR		= $(NWIFI_ROOT)/include
+NWIFI_LIBDIR		= $(NWIFI_ROOT)/lib/$(NITRO_LIBTYPE)
+NWIFI_ADDINSDIR		= $(NWIFI_ROOT)/add-ins
+
+
+### SDK Library settings
+-include $(NWIFI_ROOT)/build/buildtools/commondefs.nossl
+
+NITROWIFI_LIBSSL	 = $(if $(NITROWIFI_NOSSL),libstubsssl$(NITRO_LIBSUFFIX).a,libssl$(NITRO_LIBSUFFIX).a)
+
+NITROWIFI_LIBS_DEFAULT	 = libsoc$(NITRO_LIBSUFFIX).a		\
+			   libcps$(NITRO_LIBSUFFIX).a		\
+			   $(NITROWIFI_LIBSSL)			\
+			   libwcm$(NITRO_LIBSUFFIX).a		\
+			   libstubsmd5$(NITRO_LIBSUFFIX).a
+
+NITROWIFI_LIBS		?= $(NITROWIFI_LIBS_DEFAULT)
+
+
+### SDK Extention Library settings
+
+EINCLUDES		+= $(NWIFI_INCDIR)
+ELIBRARY_DIRS		+= $(NWIFI_LIBDIR)
+ELIBRARIES		+= $(NITROWIFI_LIBS)
+
+
+#----------------------------------------------------------------------------
+#  NITRO WiFi SDK install path
+#
+
+ifdef	NITROWIFI_INSTALL_ROOT
+NITROWIFI_INSTALL_ROOT_	= $(NITROWIFI_INSTALL_ROOT)
+else
+NITROWIFI_INSTALL_ROOT_	= $(NITROWIFI_ROOT)
+endif
+
+NWIFI_INSTALL_ROOT  	= $(subst $(SPACE),\ ,$(subst \,/,$(NITROWIFI_INSTALL_ROOT_)))
+NWIFI_INSTALL_INCDIR	= $(NWIFI_INSTALL_ROOT)/include
+NWIFI_INSTALL_TOOLSDIR	= $(NWIFI_INSTALL_ROOT)/tools
+NWIFI_INSTALL_LIBDIR	= $(NWIFI_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
+
+
+#===== End of commondefs.WiFi =====

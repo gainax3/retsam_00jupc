@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>プロテクションユニット (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">プロテクションユニット (overview)</H1>
+<H2>説明</H2>
+<P>プロテクションユニットは、メモリのリード／ライト属性やキャッシュ／ライトバックの使用の有無を設定してメモリを保護するための機能です。8つのリージョンをメモリ空間にマッピングすることが可能で、それぞれに異なった属性を設定することができます。</P>
+<P>プロテクションユニットは ARM9 プロセッサでのみ使用可能です。</P>
+<HR>
+<P><B>プロテクションユニットのイネーブル・ディセーブル</B></P>
+<P>以下の関数で、プロテクションユニット自体をイネーブル、ディセーブルとすることが出来ます。</P>
+<P><CODE><A href="OS_EnableProtectionUnit.html">OS_EnableProtectionUnit()</A></CODE><BR>
+<CODE><A href="OS_DisableProtectionUnit.html">OS_DisableProtectionUnit()</A></CODE></P>
+<HR>
+<P><B>各リージョンの設定</B></P>
+<P>各プロテクションリージョンの設定を行なうための関数は以下の通りです。</P>
+<P><CODE><A href="OS_SetProtectionRegion.html">OS_SetProtectionRegion()</A></CODE><BR>
+<CODE><A href="OS_SetProtectionRegion.html">OS_SetProtectionRegionParam()</A></CODE></P>
+<P>設定を取得するための関数は以下の通りです。</P>
+<P><CODE><A href="OS_GetProtectionRegion.html">OS_GetProtectionRegionAddress()</A></CODE><BR>
+<CODE><A href="OS_GetProtectionRegion.html">OS_GetProtectionRegionSize()<BR>
+</A><A href="OS_GetProtectionRegion.html">OS_GetProtectionRegionParam()</A></CODE></P>
+<HR>
+<P><B>デフォルトのマッピング</B></P>
+<P>デフォルトでは各リージョンは以下のようにマッピングされています。<BR>
+リージョンが重なっている場合、リージョン番号の大きい方が優先されます。<BR>
+<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="55">リージョン番号</TH>
+      <TH width="172">用途</TH>
+      <TH width="107">ベースアドレス</TH>
+      <TH width="142">サイズ</TH>
+      <TH width="45">キャッシュ</TH>
+      <TH width="45">ライトバッファ</TH>
+
+      <TH width="45">ユーザ属性(命令)</TH>
+      <TH width="45">ユーザ属性(データ)</TH>
+    </TR>
+    <TR>
+      <TD width="55">-</TD>
+      <TD width="172">バックグラウンド</TD>
+      <TD width="107">0x00000000</TD>
+      <TD width="142">4GByte<BR>
+      ( 0x100000000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">NA</TD>
+      <TD width="45">NA</TD>
+    </TR>
+    <TR>
+      <TD width="55">0</TD>
+      <TD width="172">I/Oレジスタ, VRAM等</TD>
+      <TD width="107">HW_IOREG<BR>
+      ( 0x04000000 )</TD>
+      <TD width="142">64MByte<BR>
+      ( 0x4000000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">R/W</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+    <TR>
+      <TD width="55">1</TD>
+      <TD width="172">メインメモリ</TD>
+      <TD width="107">HW_MAIN_MEM_MAIN<BR>
+      ( 0x02000000 )</TD>
+      <TD width="142">4M / 8MByte <B><FONT color="#ff0033">(注1)</FONT></B><BR>
+      ( 0x400000/0x800000 )</TD>
+      <TD width="47">○</TD>
+      <TD>○</TD>
+      <TD width="63">R/W</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+    <TR>
+      <TD width="55">2</TD>
+      <TD width="172">ARM7専用</TD>
+      <TD width="107">HW_MAIN_MEM_MAIN_END/HW_MAIN_MEM_SUB<BR>
+      ( 0x23E0000/0x27E0000 )<BR>
+      <FONT color="#ff0033"><B>(注2)</B></FONT></TD>
+      <TD width="142">128KByte<BR>
+      ( 0x20000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">NA</TD>
+      <TD width="45">NA</TD>
+    </TR>
+    <TR>
+      <TD width="55">3</TD>
+      <TD width="172">カートリッジ</TD>
+      <TD width="107">HW_CTRDG_ROM<BR>
+      ( 0x08000000 )</TD>
+      <TD width="142">128MByte<BR>
+      ( 0x8000000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">NA</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+    <TR>
+      <TD width="55">4</TD>
+      <TD width="172">DTCM</TD>
+      <TD width="107">HW_DTCM<BR>
+      ( 0x027E0000 ) <B><FONT color="#ff0033">(注3)</FONT></B></TD>
+      <TD width="142">16KByte<BR>
+      ( 0x4000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">NA</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+    <TR>
+      <TD width="55">5</TD>
+      <TD width="172">ITCM</TD>
+      <TD width="107">HW_ITCM_IMAGE<BR>
+      ( 0x01000000 ) <FONT color="#ff0033"><B>(注4)</B></FONT></TD>
+      <TD width="142">16MByte<BR>
+      ( 0x1000000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">R/W</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+    <TR>
+      <TD width="55">6</TD>
+      <TD width="172">BIOS予約</TD>
+      <TD width="107">HW_BIOS<BR>
+      ( 0xFFFF0000 )</TD>
+      <TD width="142">32KByte<BR>
+      ( 0x8000 )</TD>
+      <TD align="center" width="47">○</TD>
+      <TD>×</TD>
+      <TD width="63">R</TD>
+      <TD width="45">R</TD>
+    </TR>
+    <TR>
+      <TD width="55">7</TD>
+      <TD width="172">共有メインメモリ</TD>
+      <TD width="107">HW_MAIN_MEM_SHARED<BR>
+      ( 0x027FF000 )</TD>
+      <TD width="142">4KByte <BR>
+      ( 0x1000 )</TD>
+      <TD align="center" width="47">×</TD>
+      <TD>×</TD>
+      <TD width="63">NA</TD>
+      <TD width="45">R/W</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<B><FONT color="#ff0033">(注1)</FONT></B><BR>
+メインメモリの保護を用途とするプロテクションリージョン1 のサイズは、デバッガ上で動作させる場合は、<CODE><A href="../arena/OS_EnableMainExArena.html">OS_EnableMainExArena()</A></CODE> を <CODE><A href="../arena/OS_InitArena.html">OS_InitArena()</A></CODE> や <CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> の前に指定することで 8MByte となります。実機の場合は上記の設定に依らず常に
+4MByte となります。</P>
+<P>以前のバージョンとの互換性のために、上記の指定の替わりに、OS ライブラリを
+NITRO_MEMSIZE=8M を指定してコンパイルすれば、プロテクションリージョン1
+のサイズは 8MByte となります ( デバッガ上で動作させる場合 )。</P>
+<P><FONT color="#ff0033"><B>(注2)</B></FONT><BR>
+ARM7 専用領域を保護するプロテクションリージョン2 の開始アドレスは、プロテクションリージョン1 のサイズが 4MByte の場合に 0x23E0000 、8MByte の場合に 0x27E0000 となります。</P>
+<P><B><FONT color="#ff0033">(注3)</FONT></B><BR>
+DTCM の開始位置は lsf ファイルで指定されています。0x027E0000 はデフォルトの値です。</P>
+<P><B><FONT color="#ff0033">(注4)</FONT></B><BR>
+NULL ポインタへのアクセスで例外を発生させるためにあえて 0x00000000 からにしていません。</P>
+<P><FONT color="#ff0033"><B>(注)</B></FONT><BR>
+TEG の場合、プロテクションリージョン2 の開始アドレス HW_MAIN_MEM_SUB は
+0x2780000、サイズは 512KByte となります。DTCM の開始位置はデフォルトで
+0x02780000 となり、プロテクションリージョン 4 の開始アドレスは 0x0280000
+となります<BR>
+</P>
+<P><BR>
+</P>
+<P>これを図で表すと次のようになります。</P>
+<BLOCKQUOTE><IMG src="image_protectionUnit_region1.gif" border="0"></BLOCKQUOTE>
+<P>さらにメインメモリと拡張メインメモリの領域部分を拡大したものが下の図です。
+この部分のデフォルトのリージョン設定はメインメモリのサイズ設定が8MByteの場合と4MByteの場合とで切り替わるようになっています。</P>
+<BLOCKQUOTE><IMG src="image_protectionUnit_region2.gif" border="0"><IMG src="image_protectionUnit_region3.gif"></BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#ProtectionUnit">OS関数一覧(プロテクションユニット)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2006/05/12 デフォルトのマッピング表の修正<BR>
+2005/04/13 ARM7専用・DTCMリージョンのアドレスを変更<BR>
+2004/12/14 用語や語尾など修正<BR>
+2004/11/17 初版</P>
+</BODY>
+</HTML>

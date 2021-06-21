@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_GetServerSyncBitmap</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_GetServerSyncBitmap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>int WFS_GetServerSyncBitmap(const WFSServerContext *context);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>リクエスト応答同期が設定されている子機群の状況を示すビットマップを返します。</p>
+
+<h2>説明</h2>
+<p><a href="WFS_SetServerSync.html">WFS_SetServerSync</a>関数によってリクエスト応答同期が設定されている子機群の状況をビットマップで取得します。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="WFS_GetServerConnectedBitmap.html">WFS_GetServerConnectedBitmap</a> 
+<a href="WFS_GetServerBusyBitmap.html">WFS_GetServerBusyBitmap</a> 
+<br /></code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

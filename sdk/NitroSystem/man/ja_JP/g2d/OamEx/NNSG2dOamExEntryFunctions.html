@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNSG2dOamExEntryFunctions</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNSG2dOamExEntryFunctions</h1>
+<H2>構造体定義</H2>
+<pre>
+typedef struct NNSG2dOamExEntryFunctions
+{
+    NNSG2dGetOamCpacityFuncPtr        getOamCapacity;
+    NNSG2dGetOamCpacityFuncPtr        getAffineCapacity;
+    NNSG2dEntryNewOamFuncPtr          entryNewOam;
+    NNSG2dEntryNewOamAffineFuncPtr    entryNewAffine;
+    
+}NNSG2dOamExEntryFunctions;
+
+typedef u16     (*NNSG2dGetOamCpacityFuncPtr)(); 
+typedef u16     (*NNSG2dGetOamAffineCpacityFuncPtr)(); 
+typedef BOOL    (*NNSG2dEntryNewOamFuncPtr)( const GXOamAttr* pOam, u16 index ); 
+typedef u16     (*NNSG2dEntryNewOamAffineFuncPtr)( const MtxFx22* mtx, u16 index ); 
+
+</pre>
+
+
+
+<H2>NNSG2dOamExEntryFunctions.getOamCapacity</H2>
+拡張OAMマネージャが利用可能な、OAMアトリビュートの個数を取得する関数へのポインタです。<BR>
+<BR>
+本関数の返り値である、OAMアトリビュートの個数は、実際にハードウェアOAMにロード可能なOAMアトリビュートの個数を表します。<BR>
+拡張OAMマネージャの初期化時にパラメータとして与える、OAMチャンクの個数(numPooledOam)とは異なる点にご注意ください。<BR>
+<BR>
+登録チャンク数 > getOamCapacity()の返り値 のときに、拡張OAMマネージャは
+登録されたOBJを複数フレームにわたって時分割表示します。<BR>
+
+
+
+
+
+<H2>NNSG2dOamExEntryFunctions.getAffineCapacity</H2>
+拡張OAMマネージャが利用可能な、OAMアフィンパラメータの個数を取得する関数へのポインタです。<BR>
+拡張OAMマネージャがアフィンパラメータを管理しない場合には、NULL に設定しても問題ありません。<BR>
+<BR>
+<BR>
+登録アフィンパラメータ数 > getAffineCapacity()の返り値 のときに、拡張OAMマネージャは<BR>
+登録されたアフィンパラメータを複数フレームにわたって時分割でロードし、<BR>
+アフィンパラメータを使用しているOBJを表示します。<BR>
+
+
+
+
+<H2>NNSG2dOamExEntryFunctions.entryNewOam</H2>
+OAMアトリビュートを登録する関数へのポインタです。<BR>
+OAMアトリビュートと、OAMアトリビュートの番号を引数にとります。<BR>
+OAMアトリビュートの番号indexは、entryNewOamが呼び出された回数と同義です。<BR>
+なお、G2dが提供するOAMマネージャをentryNewOamの実装として利用する場合には、indexパラメータは使用されません。<BR>
+
+<H3>実装例：OAMマネージャを使用する場合</H3>
+<pre>
+static u16 OamMgrExCBEntryOamAffine_( const MtxFx22* pMtx, u16 index )
+{
+#pragma unused( index )
+    return NNS_G2dEntryOamManagerAffine( &myOamMgr_, pMtx );
+}
+</pre>
+
+<H3>実装例：OAMマネージャを使用しない場合</H3>
+<pre>
+static BOOL CallBackEntryNewOam(const GXOamAttr* pOam, u16 index)
+{
+    const u32 szByte = sizeof( GXOamAttr );
+
+    DC_FlushRange( (void*)pOam, szByte );
+    GX_LoadOAM( pOam, index * szByte, szByte );
+
+    return TRUE;
+}
+</pre>
+
+
+
+
+<H2>NNSG2dOamExEntryFunctions.entryNewAffine</H2>
+OAMアフィンパラメータを登録する関数へのポインタです。<BR>
+アフィンパラメータを格納する行列と、アフィンパラメータの番号を引数にとります。<BR>
+拡張OAMマネージャがアフィンパラメータを管理しない場合には、NULL に設定しても問題ありません。<BR>
+entryNewOamの場合と同様に、アフィンパラメータの番号indexは、entryNewAffineが呼び出された回数と同義です。<BR>
+
+<H3>実装例：OAMマネージャを使用する場合</H3>
+<pre>
+static u16 OamMgrExCBEntryOamAffine_( const MtxFx22* pMtx, u16 index )
+{
+#pragma unused( index )
+    return NNS_G2dEntryOamManagerAffine( &myOamMgr_, pMtx );
+}
+</pre>
+
+<BR>
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dSetOamManExEntryFunctions.html">NNS_G2dSetOamManExEntryFunctions</A><br>
+<CODE><A href="NNS_G2dGetOamManExInstance.html">NNS_G2dGetOamManExInstance</A><br></CODE>
+</p>
+<H2>履歴</H2>
+<P>2005/06/06 初版</P>
+</body>
+</html>

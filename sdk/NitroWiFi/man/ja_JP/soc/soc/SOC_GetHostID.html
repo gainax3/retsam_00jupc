@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_GetHostID</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_GetHostID</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>long SOC_GetHostID( void );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+
+<p>なし。</p>
+
+<h2>返り値</h2>
+
+<p>ホストのプライマリ IPv4 アドレス（ネットワークバイトオーダー）。</p>
+
+<h2>説明</h2>
+
+<p>ホストのプライマリ IPv4 アドレスを返します。</p>
+
+<p><strong><em>注意</em></strong>：DHCPによるホストコンフィギュレーションが進行中は、<code>SOC_GetHostID()</code>は <code>SOC_INADDR_ANY</code> を返します。</p>
+
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>
+2005/12/12 説明の記述変更<BR>
+2005/09/13 初版</P>
+</body>
+</html>

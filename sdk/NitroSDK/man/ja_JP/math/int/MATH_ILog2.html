@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MATH_ILog2</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">MATH_ILog2</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/math.h&gt;</CODE></PRE>
+  <PRE><CODE>int MATH_ILog2( u32 x );
+ 
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>x</I></B></TD>
+      <TD>対数を求める数値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>x が非零の場合は x の 2 を底とした対数の整数部分。x == 0 の場合のみ特別に -1 を返す。</P>
+<H2>説明</H2>
+<P>2 を底とした対数を計算し、その整数部分を返します。実際にはこの演算は、x の中で最初に立っているビット位置を見つける演算と同等です。対数ですので、引数は正の数でなければなりません。0 を与えた場合は特別に -1 を返します。</P>
+<P>CLZ 命令をサポートする ARM9 の ARM コードでは、31 - clz(x) を計算するインライン関数となりますので、2命令で実行可能です。なお、ARM9 の Thumb コードや ARM7 では通常の関数として実装されています。</P>
+<H2>参照</H2>
+<P><CODE><A href="../bit/MATH_CountLeadingZeros.html">MATH_CountLeadingZeros</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/14 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_ReceiveMessage</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_ReceiveMessage</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL OS_ReceiveMessage(
+     OSMessageQueue*   mq,
+     OSMessage*        msg,
+     s32               flag );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>mq</STRONG></EM></TD>
+      <TD width="87%">メッセージキューへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>msg</STRONG></EM></TD>
+      <TD width="87%">受信するメッセージ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>flag</STRONG></EM></TD>
+      <TD><CODE>OS_MESSAGE_BLOCK</CODE>を設定した場合、<CODE>OS_ReceiveMessage</CODE>関数は、空のキューをブロックします。 <CODE>OS_MESSAGE_NOBLOCK</CODE>を設定した場合、<CODE>OS_ReceiveMessage</CODE>関数は、キューが空であろうとなかろうと、 すぐに返ります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+メッセージがうまく取り出せた場合、TRUE を返します。<BR>
+OS_MESSAGE_NOBLOCK が指定され、キューが空であった場合、FALSE を返します。
+</P>
+
+<H2>説明</H2>
+<P>メッセージキューからメッセージを取り出します。<br>
+また、このキューにメッセージを送るために待ち状態のスレッドをどれも実行可能状態にします。
+送信スレッドは、優先順位の順に実行されます。</P>
+
+<P><STRONG><EM><FONT face="Courier New">flag</FONT></EM></STRONG>に<CODE>OS_MESSAGE_BLOCK</CODE>を設定した場合、キューが空 
+(empty) であれば、この関数を呼び出したスレッドは一時停止されます。メッセージがキューに送られるとすぐに再開されます。 
+より高い優先順位の受信スレッドが他にあった場合、これらのスレッドが最初に実行し、
+メッセージを取り出す点に注意してください。このスレッドが実行する時にメッセージキューが空であった場合、
+他のメッセージがキューに送られるまで、このスレッドは再び一時停止します。</P>
+
+<P><FONT face="Courier New">
+<EM><STRONG>flag</STRONG></EM></FONT>に<CODE>OS_MESSAGE_NOBLOCK</CODE>を設定した場合、
+呼び出したスレッドにすぐに戻ります。 
+キューが空でなければ、<CODE>TRUE</CODE>を返し、キューが空であれば<CODE>FALSE</CODE>を返します。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_InitMessageQueue.html">OS_InitMessageQueue</A>, <A href="OS_SendMessage.html">OS_SendMessage</A>, <A href="OS_JamMessage.html">OS_JamMessage</A>, <A href="OS_ReadMessage.html">OS_ReadMessage</A><BR>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/03/12 参照にOS_ReadMessage追加<BR>
+2003/12/01 初版</P>
+</BODY>
+</HTML>

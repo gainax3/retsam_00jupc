@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>例外 (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">例外 (overview)</H1>
+<H2>説明</H2>
+<P>ここでは、ARM プロセッサによる例外が発生したときに NitroSDK でその例外の情報を表示するための例外表示システムについて説明します。</P>
+<HR>
+<P><B>例外表示のための初期化</B></P>
+<P>プロセッサ例外発生時にレジスタや例外の種類などを表示する機構が NitroSDK
+に用意されています。この例外表示システムを有効にするための初期化関数は
+<CODE><A href="OS_InitException.html">OS_InitException()</A></CODE> ですが、<A href="../init/OS_Init.html"><CODE>OS_Init()</CODE></A> から呼ばれていますので、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> をアプリケーションから呼んでいる場合は初期化関数を改めて呼ぶ必要はありません。</P>
+<P>この初期化関数では、例外が発生したときに制御の移るアドレス (SDKの例外ベクタ)
+を例外表示を行なう関数のアドレスに設定します。ただし、<FONT color="#ff0033">デバッグツールでは例外を使用して一部のデバッグ機能を実現しているため、例外表示は行ないません。</FONT>現在の動作環境は自動的に判別しますので、これに関してアプリケーションから何かをする必要はありません。</P>
+<P>例外表示システムはデバッグ用の機能なので FINALROM ビルドでは無効になります。</P>
+<HR>
+<P><B>例外ベクタの位置</B></P>
+<P>ARM プロセッサの仕様で、例外ベクタのアドレスを 0x00000000 ～ 0x0000001C
+か 0xFFFF0000 ～ 0xFFFF001C の何れかを選択できるようになっています。前者を「正規ベクタ」、後者を「ハイベクタ」と呼びます。</P>
+<P><CODE><A href="OS_SetExceptionVectorLower.html">OS_SetExceptionVectorLower()</A></CODE> で例外ベクタのアドレスを 0x0000000 ～ 0x0000001C (正規ベクタ) にします。</P>
+<P><CODE><A href="OS_SetExceptionVectorUpper.html">OS_SetExceptionVectorUpper()</A></CODE> で例外ベクタのアドレスを 0xFFFF0000 ～ 0xFFFF001C ( ハイベクタ) にします。</P>
+<P>NitroSDK ではデフォルトではハイベクタを使用しています。<FONT color="#ff0033">特に理由がなければハイベクタを使用し、この設定は変更しないでください。</FONT></P>
+<HR>
+<P><B>ユーザハンドラの設定</B></P>
+<P>例外が発生したときに、ユーザが設定した例外ハンドラに制御を移すことが可能です。<A href="OS_SetUserExceptionHandler.html" target="_self"><CODE>OS_SetUserExceptionHandler()</CODE></A> でハンドラを登録してください。</P>
+<HR>
+<P><B>例外が発生した後の処理</B></P>
+<P>ARM には以下の例外が存在します。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR bgcolor="red">
+      <TH>例外タイプ</TH>
+      <TH>正規ベクタアドレス</TH>
+      <TH>ハイベクタアドレス</TH>
+    </TR>
+    <TR>
+      <TD>リセット</TD>
+      <TD>0x00000000</TD>
+      <TD>0xFFFF0000</TD>
+    </TR>
+    <TR>
+      <TD>未定義命令</TD>
+      <TD>0x00000004</TD>
+      <TD>0xFFFF0004</TD>
+    </TR>
+    <TR>
+      <TD>ソフトウェア割り込み</TD>
+      <TD>0x00000008</TD>
+      <TD>0xFFFF0008</TD>
+    </TR>
+    <TR>
+      <TD>プリフェッチアボート</TD>
+      <TD>0x0000000C</TD>
+      <TD>0xFFFF000C</TD>
+    </TR>
+    <TR>
+      <TD>データアボート</TD>
+      <TD>0x00000010</TD>
+      <TD>0xFFFF0010</TD>
+    </TR>
+    <TR>
+      <TD>IRQ</TD>
+      <TD>0x00000018</TD>
+      <TD>0xFFFF0018</TD>
+    </TR>
+    <TR>
+      <TD>FIQ</TD>
+      <TD>0x0000001C</TD>
+      <TD>0xFFFF001C</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<BR>
+このうち IRQ 例外は割り込みとして使用していますので、以下のフローからは除外します。( <A href="../irq/about_irq.html">割り込み(概要)</A> を参照 )</P>
+<P>例外が発生すると、上の表に記載されているベクタアドレスのアドレスに制御が移ります。通常はハイベクタアドレスを使用します。</P>
+<P>その後、デバッグツールを使用している場合はデバッガ専用の処理ルーチンに制御が移ります。この場合はデバッガのための処理を行なってプログラムに復帰しますので、以下は
+デバッグツールを使用していない場合について記述しています。</P>
+<P>次にシステム領域内の HW_EXCP_VECTOR_MAIN に格納されているアドレスに制御が移ります。( ARM7 では専用ワークRAM のオフセット 0x7FDC の位置となります。) ここにはNitroSDK の例外表示のための関数のアドレスがセットされています。この設定は <CODE><A href="OS_InitException.html">OS_InitException()</A></CODE> で行なわれます。</P>
+<P>そのルーチン内で、例外表示を行ない、<CODE><A href="OS_SetUserExceptionHandler.html">OS_SetUserExceptionHandler()</A></CODE> で登録したユーザハンドラを (登録されていれば) 呼び出します。そしてプログラムを停止します。</P>
+<HR>
+<P><B>例</B></P>
+<P>下はデータアボート例外が発生した場合の例です。データアボート例外に対応するハイベクタのフックアドレスは
+0xFFFF0010 なので、0xFFFF0010 にジャンプします。その後、HW_EXCP_VECTOR_BUF
+に格納されたアドレスを手がかりにSDKの例外表示ルーチンに制御が移り、レジスタ情報などの例外表示を行なった後、ユーザハンドラが呼び出されます。</P>
+<P><IMG src="image_exception_flow.gif" border="0"></P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Exception">OS関数一覧(例外)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/14 用語や語尾など修正<BR>
+2004/11/16 初版</P>
+</BODY>
+</HTML>

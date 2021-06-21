@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dVisAnmResult</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dVisAnmResult</H1>
+<H2>構造体の定義</H2>
+<PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
+
+typedef struct NNSG3dVisAnmResult_
+{
+    BOOL isVisible;
+}
+NNSG3dVisAnmResult;</CODE></PRE>
+<H2>構造体の解説</H2>
+<P><CODE>NNS_G3dVisAnmResult</CODE>構造体は、ノードのビジビリティ情報を保持しています。G3Dはこの構造体に格納された情報を使用して、ノードに属するマテリアルとシェイプの情報をジオメトリエンジンに送信するかどうかを決定しています。この構造体は、<CODE>NNSi_G3dFuncSbc_NODE</CODE>関数(SBCのNODEコマンド処理時に呼び出される)の実行時に作成され、使用されます。<BR>
+<BR>
+ビジビリティアニメーションは、この構造体の<B><I>isVisible</I></B>メンバを<CODE>NNSi_G3dFuncSbc_NODE</CODE>関数内部においてアニメーションデータに従い設定することにより実装されています。<BR>
+<BR>
+また、<CODE><A href="../sbc/SBC_NODE.html">NNS_G3D_SBC_NODE</A></CODE>にコールバックを設定することによって、ノードのビジビリティをユーザープログラムからコントロールすることができます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="260"><CODE>NNS_G3dVisAnmResult</CODE>構造体のメンバ</TH>
+      <TH width="404">説明</TH>
+    </TR>
+    <TR>
+      <TD width="260"><B><I>isVisible</I></B></TD>
+      <TD width="404"><CODE>FALSE</CODE>ならばそのノードは表示されません。それ以外の場合は表示されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A> <A href="../list_g3d.html#SBC">描画エンジン</A></P>
+<H2>履歴</H2>
+<P>2004/10/13 初版</P>
+</BODY>
+
+</HTML>

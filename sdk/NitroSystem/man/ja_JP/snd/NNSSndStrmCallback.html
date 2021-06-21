@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNSSndStrmCallback</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNSSndStrmCallback</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">typedef void (*NNSSndStrmCallback)(
+        NNSSndStrmCallbackStatus <var>status</var>,
+        int <var>numChannles</var>,
+        void* <var>buffer</var>[],
+        u32 <var>len</var>,
+        NNSSndStrmFormat <var>format</var>,
+        void* <var>arg</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>status</code></strong></em></td>
+<td>コールバックの状態です。</td>
+</tr>
+<tr>
+<td><em><strong><code>numChannles</code></strong></em></td>
+<td>チャンネル数です。</td>
+</tr>
+<tr>
+<td><em><strong><code>buffer</code></strong></em></td>
+<td>各チャンネル毎のバッファの先頭アドレスの配列です。</td>
+</tr>
+<tr>
+<td><em><strong><code>len</code></strong></em></td>
+<td>各チャンネル毎のバッファのバイト長です。</td>
+</tr>
+<tr>
+<td><em><strong><code>format</code></strong></em></td>
+<td>サンプルデータフォーマットです。</td>
+</tr>
+<tr>
+<td><em><strong><code>arg</code></strong></em></td>
+<td>ユーザー引数です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA4NWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFOWT"></a>
+      <h2>説明</h2>
+      <p>
+ストリーム再生時に、波形データの補充が必要になったとき呼びだされるコールバック関数です。
+</p>
+      <p>
+このコールバック関数は、
+<tt class="function"><a href="NNS_SndStrmSetup.html">NNS_SndStrmSetup</a></tt>関数、
+<tt class="function"><a href="NNS_SndArcStrmStartEx2.html">NNS_SndArcStrmStartEx2</a></tt>関数、
+<tt class="function"><a href="NNS_SndArcStrmPrepareEx2.html">NNS_SndArcStrmPrepareEx2</a></tt>関数
+で登録されます。
+</p>
+      <p>
+<tt class="function">NNS_SndStrmSetup</tt>関数で登録したコールバック関数は、
+渡されたバッファに対して、波形データを供給する義務があります。
+<tt class="function">NNS_SndArcStrmStartEx2</tt>関数または、
+<tt class="function">NNS_SndArcStrmPrepareEx2</tt>関数で登録したコールバック関数は、
+サウンドアーカイブストリームライブラリによって、波形データが供給された後、呼びだされますので、
+波形データ供給の義務はありません。
+ただし、波形データを加工することは可能です。
+</p>
+      <p>
+コールバック関数は、２種類のタイミングで呼びだされます。
+１つは、ストリーム再生を始める前に、あらかじめストリームバッファ全体に波形データを満たしておく必要があるために
+呼びだされます。この時、コールバックの状態<em><strong><code>status</code></strong></em>に、
+<span class="symbol">NNS_SND_STRM_CALLBACK_SETUP</span>が渡されます。
+もう１つのコールバック呼び出しのタイミングは、ストリーム再生中に呼びだされるものです。
+これは、再生によって消費されたバッファに、続きの波形データを補充する必要があるために呼びだされます。
+この時は、コールバックの状態<em><strong><code>status</code></strong></em>に、
+<span class="symbol">NNS_SND_STRM_CALLBACK_INTERVAL</span>が渡されます。
+</p>
+      <p>
+チャンネル数<em><strong><code>numChannles</code></strong></em>には、ストリーム再生のために使用している
+チャンネル数が渡されます。
+バッファの先頭アドレスの配列<em><strong><code>buffer</code></strong></em>の要素数は、
+<em><strong><code>numChannles</code></strong></em>個になります。
+各チャンネル毎のバッファサイズは、<em><strong><code>len</code></strong></em>バイトです。
+</p>
+      <p>
+サンプルデータフォーマット<em><strong><code>format</code></strong></em>は、下記の値のいずれかです。
+</p>
+            <div class="table"><a name="IDAEQWT"></a><p class="title"><b>表 . NNSSndStrmFormat</b></p>
+<table summary="NNSSndStrmFormat" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>ラベル</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NNS_SND_STRM_FORMAT_PCM8</td>
+<td>8ビットPCM</td>
+</tr>
+<tr>
+<td>NNS_SND_STRM_FORMAT_PCM16</td>
+<td>16ビットPCM</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+波形データを補充（加工）した後は、メインメモリに確実に書き込まれるように、
+<tt class="function">DC_FlushRange</tt>関数などを呼びだすようにしてください。
+</p>
+<p>
+<tt class="function">NNS_SndStrmSetup</tt>関数で登録したコールバック関数は、割り込み禁止状態で呼びだされることに注意してください。
+一方、<tt class="function">NNS_SndArcStrmStartEx2</tt>関数または、
+<tt class="function">NNS_SndArcStrmPrepareEx2</tt>関数
+で登録したコールバック関数は、ストリームスレッドから呼びだされることに注意してください。
+</p>
+<p>
+必ずしもコールバック関数で、波形データの補充を完了させる必要はありませんが、
+次にその領域が再生されるまでに補充を完了しないと、
+正常な音声が出力されなくなります。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndStrmSetup.html">NNS_SndStrmSetup</a>, <a href="NNS_SndArcStrmStartEx2.html">NNS_SndArcStrmStartEx2</a>, <a href="NNS_SndArcStrmPrepareEx2.html">NNS_SndArcStrmPrepareEx2</a></p>
+<h2>履歴</h2>
+<p>2004/11/26 NNS_SndStrmSetup関数の説明から分離<br></p>
+</div>
+</body>
+</html>

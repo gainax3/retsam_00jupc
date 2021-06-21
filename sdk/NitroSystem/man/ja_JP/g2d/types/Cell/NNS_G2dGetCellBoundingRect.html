@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetCellBoundingRect</title>
+<LINK rel="stylesheet" href="../../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetCellBoundingRect</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/fmt/g2d_Cell_data.h&gt;</CODE></pre>
+  <pre><CODE>
+static inline const NNSG2dCellBoundingRectS16* 
+NNS_G2dGetCellBoundingRect( const NNSG2dCellData* pCell );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pCell</font></strong></em></td>
+    <td width="87%">[IN] セルデータ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>境界矩形(s16フォーマット)情報<BR>
+</p>
+<H2>説明</H2>
+<P>
+セルの境界矩形を取得します。<BR>
+内部ではセルが実際に境界矩形情報を持つかどうか判定しません。判定はユーザコードで行ってください。<BR>
+セルが境界矩形情報を持つかどうかは、NNS_G2dCellHasBR()で判定が可能です。<BR>
+境界矩形情報を持たないセルに対して本関数を実行した場合は不正な情報が返ります。<BR>
+<BR>
+境界矩形情報を持つセルデータを作成するには、-br オプションを指定してコンバートを行ってください。
+<BR>
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dCellHasBR.html">NNS_G2dCellHasBR</A><br>
+</CODE></p>
+<p><CODE><A href="NNS_G2dGetCellBoundingSphereR.html">NNS_G2dGetCellBoundingSphereR</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</body>
+</html>

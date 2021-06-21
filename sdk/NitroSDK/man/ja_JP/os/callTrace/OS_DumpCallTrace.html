@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_DumpCallTrace</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_DumpCallTrace</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_DumpCallTrace( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>関数コールトレース情報を表示します。</P>
+<P>この関数が呼ばれた時点のトレース情報を表示します。スレッドシステムを使用している場合はカレントスレッドの情報を表示します。特定のスレッドの情報を表示する場合は、<A href="OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace()</A> を使用してください。</P>
+<P>以下、スタックモードの場合のトレース情報について説明します。</P>
+<BLOCKQUOTE>(表示例)<BR>
+<BLOCKQUOTE><CODE>OS_DumpCallTrace: lr=0x02004438<BR>
+　　test3: lr=0x0200447c, r0=0x000000cb<BR>
+　test2: lr=0x020044b0, r0=0x000000c9<BR>
+test1: lr=0x0200426c, r0=0x000000c8</CODE></BLOCKQUOTE>
+この表示からは、「現在 OS_DumpCallTrace() が呼ばれてトレース情報を表示していてその関数からの戻りアドレスは0x2004438である。その前に
+test3() が呼ばれていて戻りアドレスは0x2004447cである。その前にtest2() が呼ばれていて戻りアドレスは0x20044b0
+である。その前にtest1() が呼ばれていて戻りアドレスは0x200426c である。」ということが解ります。(r0
+の表示についてはオプション)<BR>
+<IMG src="img02.jpg" border="0" width="560" height="322"></BLOCKQUOTE>
+<P>次にログモードについてのトレース情報について説明します。</P>
+<BLOCKQUOTE>(表示例)<BR>
+<BLOCKQUOTE><CODE>OS_DumpCallTrace: lr=0x02004438<BR>
+　　test3: lr=0x0200447c, r0=0x000000cb<BR>
+　test2: lr=0x020044b0, r0=0x000000c9<BR>
+test1: lr=0x0200426c, r0=0x000000c8<BR>
+　　test3: lr=0x0200447c, r0=0x000000cb<BR>
+　test2: lr=0x020044b0, r0=0x000000c9<BR>
+test1: lr=0x0200426c, r0=0x000000c8</CODE></BLOCKQUOTE>
+この表示からは、「現在 OS_DumpCallTrace() が呼ばれてトレース情報を表示していてその関数からの戻りアドレスは0x2004438である。」ということが解ります。さらに、この関数が呼ばれる以前に、profile機能がオンでコンパイルされた関数のうち、test1、test2、test3、test1、test2、test3
+をこの順に入ったことがわかります。どの関数がどの関数を呼び出した、という情報はわかりません。</BLOCKQUOTE>
+<P>R0～R3のレジスタ表示について：<BR>
+これらの情報を関数コールトレースバッファに含めるかどうかはオプションです。レジスタを1つ含めた場合、バッファは１関数呼び出しにつき4バイト余計に消費されることになります。R0～R3
+の４レジスタを含めると１関数呼び出しにつき16バイト余計に消費されることになります。<BR>
+表示しているR0は、関数が呼ばれた時の値で、C言語関数ならば、第一引数を表します。R1
+は第二引数、R2は第三引数、R3は第四引数です。該当の引数を取らない関数については特に意味のない不定値となります。OS_DumpCallTrace()
+、OS_DumpThreadCallTrace() 自体の呼び出しについてはR0以下の情報を表示しません。</P>
+<P>この関数はデバッグ用の関数ですので、最終ROM版(FINALROM)ライブラリでは何も動作を行ないません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitCallTrace.html">OS_InitCallTrace</A>, <A href="OS_DumpThreadCallTrace.html">OS_DumpThreadCallTrace</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/04/22 スタックモードとログモードの記述を追加<BR>
+2004/04/13 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3X_IsMtxStackOverflow</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3X_IsMtxStackOverflow</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3x.h&gt;
+
+s32 G3X_IsMtxStackOverflow(s32 *overflow);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE width="100%" border=1>
+<TBODY>
+<TR>
+<TD width=224>overflow</TD>
+<TD width=622>s32型へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<P>結果が取得できた(0)か、行列スタックがビジー状態（0以外）かの状態</P>
+<H2>説明</H2>
+<P>行列スタックにオーバーフロー／アンダーフローが発生しているかを取得します。返り値が0の場合、*<B><I>overflow</I></B>に行列スタックがオーバーフロー／アンダーフローしているかが格納されています。返り値が0以外の場合、行列スタックがビジー状態のため現在のオーパーフロー／アンダーフロー状態を取得できていません。</P>
+<P>この関数は、オーバーフローが発生した場合、<A href="G3X_ResetMtxStackOverflow.html">G3X_ResetMtxStackOverflow</A>をコールするまでオーバーフロー状態を返します。</P>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/03/02</P>
+<UL>
+  <LI>行列スタックのビジー状態判定を追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

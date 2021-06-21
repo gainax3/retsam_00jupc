@@ -1,0 +1,80 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCNdFileInfo</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCNdFileInfo</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nd/dwc_nd.h&gt;
+
+typedef struct {
+
+	char name[32+1];
+	short explain[50+1];
+	char param1[DWCI_NDI_FILEATTR_LEN+1];
+	char param2[DWCI_NDI_FILEATTR_LEN+1];
+	char param3[DWCI_NDI_FILEATTR_LEN+1];
+	unsigned int size;
+
+} DWCNdFileInfo;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  ダウンロードライブラリによって取得されるファイル情報を格納する構造体です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>name</CODE></STRONG></EM></TD>
+			<TD>ヌル文字終端した最長32文字のASCII文字列で表現されたファイル名<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>explain</CODE></STRONG></EM></TD>
+			<TD>ヌル文字終端した最長50文字のUTF16LE文字列で表現されたファイルの説明文<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>param1</CODE></STRONG></EM></TD>
+			<TD>ヌル文字終端した最長10文字のASCII文字列で表現された属性文字列1<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>param2</CODE></STRONG></EM></TD>
+			<TD>ヌル文字終端した最長10文字のASCII文字列で表現された属性文字列2<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>param3</CODE></STRONG></EM></TD>
+			<TD>ヌル文字終端した最長10文字のASCII文字列で表現された属性文字列3<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
+			<TD>ファイルサイズ<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<code>
+			<a href="DWC_NdGetFileListAsync.html">DWC_NdGetFileListAsync</a>,
+			<a href="DWC_NdGetFileAsync.html">DWC_NdGetFileAsync</a>
+			</code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/04/26 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

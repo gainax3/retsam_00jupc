@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dRepeatXinCellSpace</title>
+<LINK rel="stylesheet" href="../../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dRepeatXinCellSpace / NNS_G2dRepeatYinCellSpace</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/fmt/g2d_Cell_data.h&gt;</CODE></pre>
+  <pre><CODE>
+    static inline  s16 NNS_G2dRepeatXinCellSpace( s16 srcX );
+    static inline  s16 NNS_G2dRepeatYinCellSpace( s16 srcY )
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">srcX / srcY</font></strong></em></td>
+    <td width="87%">[IN] s16位置座標値</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>セル内における、OBJのとり得る値域でリピート処理を施したs16値。<BR>
+</p>
+<H2>説明</H2>
+<P>
+セル内における、OBJのとり得る値域でリピート処理を施したs16値を返します。<BR>
+具体的には、-256 - 255 までの間でリピートをするように値を補正します。<BR>
+05/06/06日版以前のバージョンでは、-128 - 127 までの間でリピートをするように値を補正していました。<BR>
+$(NITROSYSTEM＿ROOT)/include/nnsys/g2d/g2d_config.h内の、
+NNS_G2D_LIMIT_CELL_X_128 を定義して ライブラリを再ビルドしていただくことで以前のバージョンでの振舞いに戻すことが可能です。<BR>
+
+</p>
+<h2>参照</h2>
+<p>なし</p>
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</body>
+</html>

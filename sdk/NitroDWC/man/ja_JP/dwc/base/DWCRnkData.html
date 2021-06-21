@@ -1,0 +1,84 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnkData</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkData</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef struct{
+
+    u32                 order;
+    s32                 pid;
+    s32                 score;
+    DWCRnkRegion        region;
+    u32                 lastupdate;
+    u32                 size;
+    void*               userdata;
+
+} DWCRnkData;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>関数で取得するランキング情報を格納する構造体です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>order</CODE></STRONG></EM></TD>
+			<TD>順位<BR>自分の順位以外の行には0が格納されています。ただし、トップランキングリスト取得モード（DWC_RNK_GET_MODE_TOPLIST）では、自分のランキング情報が入っている行でも、orderの値は0が格納されます。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>pid</CODE></STRONG></EM></TD>
+			<TD>GSプロファイルID<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>score</CODE></STRONG></EM></TD>
+			<TD>スコア<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>region</CODE></STRONG></EM></TD>
+			<TD>リージョンコード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>lastupdate</CODE></STRONG></EM></TD>
+			<TD>前回の更新からの経過時間(分)<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>size</CODE></STRONG></EM></TD>
+			<TD>userdataのサイズ(bytes)<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>userdata</CODE></STRONG></EM></TD>
+			<TD>ユーザー定義データのバッファ<BR></TD>
+          </TR>
+ 		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<a href="DWC_RnkResGetRow.html">DWC_RnkResGetRow</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/11/01 lastupdateが抜けていた誤記を修正<BR>
+			2006/07/21 順位にランキング関する補足を追加<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

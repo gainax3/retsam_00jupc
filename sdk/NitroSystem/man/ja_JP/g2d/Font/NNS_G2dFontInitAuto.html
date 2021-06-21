@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dFontInitAuto</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dFontInitAuto</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_Font.h&gt;
+
+void NNS_G2dFontInitAuto(
+	NNSG2dFont* pFont,
+	void* pNftrFile
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pFont</STRONG></EM></TD>
+      <TD width="87%"> [OUT] フォント へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pNftrFile</STRONG></EM></TD>
+      <TD width="87%"> [IN] NFTR ファイルロード結果 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	フォントリソースのロード結果からランタイムライブラリで使用可能なフォントを構築します。<br>
+</P>
+<P>
+	この関数はフォントリソースの持つ情報から自動的に対象とする文字エンコーディングを決定します。
+	しかし、その代償として
+	<a href="NNS_G2dFontInitXXX.html"><code>NNS_G2dFontInitUTF8()</code></a> 
+	などの文字エンコーディング毎の構築関数と比較してコードサイズが増加します。
+</P>
+<P>
+	関数内で <EM><STRONG>pNftrFile</STRONG></EM> の内容を書き換えますので
+	同じデータに対して複数回実行しないで下さい。<br>
+	また、フォントの構築後 <EM><STRONG>pNftrFile</STRONG></EM> の内容は
+	<EM><STRONG>pFont</STRONG></EM> から参照されています。
+	<EM><STRONG>pFont</STRONG></EM> を使用している間は
+	<EM><STRONG>pNftrFile</STRONG></EM> を破棄しないで下さい。
+</P>
+<P>
+</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/09/29 引数のIN/OUT表示を修正<br>
+2005/05/25 初版
+</P>
+</BODY>
+
+</HTML>

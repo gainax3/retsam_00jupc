@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>Fnd Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>Foundationライブラリサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/fnd</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSystem/build/demos/fnd</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/fnd/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/fnd/archive/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSystem/build/demos/fnd/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<BR>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/fnd/archive/src/main.c">archive</A></CODE></STRONG></EM></TD>
+      <TD width="525">アーカイブからＢＧデータを読み込み、画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/fnd/archive2/src/main.c">archive2</A></CODE></STRONG></EM></TD>
+      <TD width="525">圧縮されたアーカイブからＢＧデータを読み込み、画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/fnd/heap/src/main.c">heap</A></CODE></STRONG></EM></TD>
+      <TD width="525">拡張ヒープ、フレームヒープ、ユニットヒープの簡単な使い方を示したサンプルです。
+画面には何も表示されませんが、デバッグ出力にヒープの状態が表示されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATOR、ensata での正常動作を確認しています。</P>
+<H2>参照</H2>
+<P><A href="../../fnd/list_fnd.html"><CODE>fnd関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>2005/01/21 実行方法において IS-NITRO-EMULATOR の記述を削除、動作環境において TEG の記述を削除し、TS を
+IS-NITRO-EMULATOR に変更。<br>
+2004/08/02 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_Init</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_Init</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+void GX_Init( void );<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>グラフィックスのレジスタで3D関連以外の各レジスタを初期化します。内部で<A href="GX_SetPower.html">GX_SetPower</A>(GX_POWER_ALL)をコールしています。<BR>
+<BR>
+<FONT color="#800000">GX関数では内部でデフォルトでDMA 3を使用します。</FONT><BR>
+使用するDMA番号を変更したい場合には、<A href="GX_InitEx.html">GX_InitEx</A>または<A href="GX_SetDefaultDMA.html">GX_SetDefaultDMA</A>で使用するDMA番号を設定してください。<br>
+<br>
+<FONT color="#800000">この関数を呼び出す前に、<A href="../../os/spinLock/OS_InitLock.html">OS_InitLock</A>関数または<A href="../../os/init/OS_Init.html">OS_Init</A>関数が呼び出されている必要があります。</FONT><BR>
+</P>
+
+<h2>参照</h2>
+<P><A href="../g3/G3X_Init.html">G3X_Init</A>, <A href="../g3/G3X_Reset.html">G3X_Reset</A>, <A href="../g3/G3X_InitTable.html">G3X_InitTable</A>, <A href="GX_InitEx.html">GX_InitEx</A></P>
+<H2>履歴</H2>
+<P>Ver. 2005/03/14</P>
+<UL>
+  <LI>リンクミス修正。
+</UL>
+<P>Ver. 2005/02/18</P>
+<UL>
+  <LI>事前に OS_Init の呼び出しを必要とする旨の注意を追加。
+</UL>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>内部でGX_SetPowerをコールするよう変更。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

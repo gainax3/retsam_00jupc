@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>STDResult</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">STDResult</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/std.h&gt;</CODE><BR>
+  <BR>
+  <CODE>typedef enum STDResult<br>
+{<br>
+    STD_RESULT_SUCCESS,<br>
+    STD_RESULT_ERROR,<br>
+    STD_RESULT_INVALID_PARAM,<br>
+    STD_RESULT_CONVERSION_FAILED<br>
+}<br>
+STDResult;<br>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>STDライブラリ関数の処理結果を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>STD_RESULT_SUCCESS</TD>
+      <TD>処理が正しく完了したことを表します。</TD>
+    </TR>
+    <TR>
+      <TD>STD_RESULT_INVALID_PARAM</TD>
+      <TD>関数に与えられた引数が異常なために処理が行われなかったことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>STD_RESULT_CONVERSION_FAILED</TD>
+      <TD>文字コード変換関数が文字コード変換に失敗して処理を終了したことを表します。</TD>
+    </TR>
+    <TR>
+      <TD>STD_RESULT_ERROR</TD>
+      <TD>上記いずれにも該当しないその他の異常で処理が失敗したことを表します。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="STD_ConvertStringSjisToUnicode.html">STD_ConvertStringSjisToUnicode</A> 
+<A href="STD_ConvertStringUnicodeToSjis.html">STD_ConvertStringUnicodeToSjis</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2006/08/10 初版<BR>
+</P>
+</body>
+</html>

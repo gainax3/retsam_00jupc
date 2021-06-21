@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2*_GetWndOutsidePlane</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2*_GetWndOutsidePlane</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2.h&gt;
+
+GXWndPlane G2_GetWndOutsidePlane( void );
+GXWndPlane G2S_GetWndOutsidePlane( void );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>ウィンドウの外側に表示される面の情報。</p>
+<H2>説明</H2>
+<P>ウィンドウの外側に表示される面の設定とカラー特殊効果の有無の設定をGXWndPlane構造体として取得します。<BR>
+<BR>
+G2_GetWndOutsidePlane関数ではメイン2Dエンジンの設定、G2S_GetWndOutsidePlane関数ではサブ2Dエンジンの設定が取得できます。<BR>
+<BR>
+返り値のGXWndPlaneには以下の情報が含まれます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><I><B><CODE>planeMask</CODE></B></I></TD>
+      <TD>ウィンドウの外側に表示される面の設定情報です。詳細は<A href="G2_SetWndOutsidePlane.html">G2_SetWndOutsidePlane</A>関数のリファレンスを参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><I><B><CODE>effect</CODE></B></I></TD>
+      <TD>ウィンドウ内部のカラー特殊効果の有無の設定です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXWndPlane</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef struct
+{
+        u8      planeMask       :5;
+        u8      effect          :1;
+        u8      _reserve        :2;
+}
+GXWndPlane;
+
+</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G2_SetWndOutsidePlane.html">G2_SetWndOutsidePlane</A><A href="G2_SetWndOutsidePlane.html"></A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/24</P>
+</body>
+</html>

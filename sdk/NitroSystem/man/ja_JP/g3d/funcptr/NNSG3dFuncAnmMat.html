@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNSG3dFuncAnmMat</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dFuncAnmMat</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/anm.h&gt;
+
+typedef void (*NNSG3dFuncAnmMat)(NNSG3dMatAnmResult* pAnmResult,
+                                 const NNSG3dAnmObj* pAnmObj,
+                                 u32 dataIdx);</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="166"><I><B>pAnmResult</B></I></TD>
+      <TD width="771">マテリアルアニメーションの結果へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="166"><B><I>pAnmObj</I></B></TD>
+      <TD width="771">アニメーションオブジェクトへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="166"><B><I>dataIdx</I></B></TD>
+      <TD width="771">リソース内インデックス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし</P>
+<H2>説明</H2>
+<P>マテリアルアニメーションの計算を行う関数の型です。<B><I>dataIdx</I></B>はマテリアルIDではなく、アニメーションリソース内のインデックスであることに注意してください。</P>
+<H2>参照</H2>
+<P><A href="NNSG3dFuncAnmJnt.html"><CODE>NNSG3dFuncAnmJnt</CODE></A> <A href="NNSG3dFuncAnmVis.html"><CODE>NNSG3dFuncAnmVis</CODE></A> <A href="../struct/NNSG3dMatAnmResult.html"><CODE>NNSG3dMatAnmResult</CODE></A></P>
+<H2>履歴</H2>
+<P>2004/10/19 初版</P>
+</BODY>
+
+</HTML>

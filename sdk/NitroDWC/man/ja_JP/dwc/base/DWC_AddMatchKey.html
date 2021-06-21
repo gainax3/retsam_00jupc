@@ -1,0 +1,154 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_AddMatchKey*</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_AddMatchKey*</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+u8 DWC_AddMatchKeyInt( u8 keyID,
+                       const char* keyString,
+                       const int* valueSrc );
+
+u8 DWC_AddMatchKeyString( u8 keyID,
+                          const char* keyString,
+                          const char* valueSrc );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  マッチメイクの指標となるキー（int型/char*型）を追加する関数です。
+		</P>
+		<P>
+		  追加されたキーは、<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A> / <A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>関数のマッチメイク条件文字列と、プレイヤー評価コールバック（<A href="DWCEvalPlayerCallback.html">DWCEvalPlayerCallback</A>）内で使用することができます。
+		</P>
+		<P>
+		  追加されたキーに関する全てのデータは、マッチメイクが完了した時点でクリアされるため、次にマッチメイクを行う場合は再びキーを登録し直す必要があります。
+		</P>
+	        <p>
+	          一回の呼び出しでのkeyString/valueSrcの値に長さの制限はありませんが、アプリケーション全体でセットした値を文字列としたときに、合計2048バイト以下に抑える必要があります。
+	        </p>
+	        <p>
+	          keyString/valueSrcには、数バイト～十数バイト程度の文字列の範囲の値なら問題ありませんが、バイナリデータをエンコードしたテキストなど比較的大きなデータはセットしないようにしてください。
+	        </p>
+		<BR>
+		<P>
+		  <FONT color="#ff0000" ><B>※キー名には使用できないものがあります。以下のキー名は使用しないでください。</B></FONT>
+		</P>
+
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD>country</TD>
+					<TD>region</TD>
+					<TD>hostname</TD>
+					<TD>gamename</TD>
+					<TD>gamever</TD>
+					<TD>hostport</TD>
+				</TR>
+				<TR>
+					<TD>mapname</TD>
+					<TD>gametype</TD>
+					<TD>gamevariant</TD>
+					<TD>numplayers</TD>
+					<TD>numteams</TD>
+					<TD>maxplayers</TD>
+				</TR>
+				<TR>
+					<TD>gamemode</TD>
+					<TD>teamplay</TD>
+					<TD>fraglimit</TD>
+					<TD>teamfraglimit</TD>
+					<TD>timeelapsed</TD>
+					<TD>timelimit</TD>
+				</TR>
+				<TR>
+					<TD>roundtime</TD>
+					<TD>roundelapsed</TD>
+					<TD>password</TD>
+					<TD>groupid</TD>
+					<TD>player_</TD>
+					<TD>score_</TD>
+				</TR>
+				<TR>
+					<TD>skill_</TD>
+					<TD>ping_</TD>
+					<TD>team_</TD>
+					<TD>deaths_</TD>
+					<TD>pid_</TD>
+					<TD>team_t</TD>
+				</TR>
+				<TR>
+					<TD>score_t</TD>
+					<TD>dwc_pid</TD>
+					<TD>dwc_mtype</TD>
+					<TD>dwc_mresv</TD>
+					<TD>dwc_mver</TD>
+					<TD>dwc_eval</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>keyID</CODE></STRONG></EM></TD>
+					<TD width="75%">キーIDを指定してセットしたい場合はここにキーIDを渡します。<BR>
+					  新規にキーIDを取得したければ DWC_QR2_GAME_KEY_START以下の値（0など）をセットしてください。<BR>
+					  既に使用中の追加キーIDを指定した場合は、使用中のものと同じkeyStringを渡せばvalueSrcをセットし直しますが、違うkeyStringを渡した場合は何もしません。<BR>
+					アプリケーションでセットできるキーは最大153個までです。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>keyString</CODE></STRONG></EM></TD>
+					<TD width="75%">キー名（キー識別のための文字列）へのポインタ。<BR>
+					  文字列はコピーしてライブラリ内で保持します。</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>valueSrc</CODE></STRONG></EM></TD>
+					<TD width="75%">キーに対応する値/文字列へのポインタで、GameSpyサーバからのポーリングがあると、このポインタから値を参照してGameSpyサーバに値をアップロードします。マッチメイクが完了するまでは、ポインタの参照先を保持する必要があります。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>keyID</CODE></STRONG></EM></TD>
+					<TD width="75%">追加したキーのキーID。<BR>
+					  パラメータエラー、もしくはキーの設定上限を越えたため追加できなかった場合は0を返す。<BR>
+					  <A href="DWC_Init.html">DWC_Init</A>関数が呼ばれるより前に呼び出しても0を返す。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_GetMatch_Value.html">DWC_GetMatch*Value</A>,
+				<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A>,
+				<A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>,
+				<A href="DWCEvalPlayerCallback.html">DWCEvalPlayerCallback</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+          2006/04/26 DWC_AddMatchKeyInt/DWC_AddMatchKeyStringを統合、セットできない指標キー一覧を追加<br>
+          2005/11/14 セットする値の制限について追記<br>
+          2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

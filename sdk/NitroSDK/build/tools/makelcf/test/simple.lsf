@@ -1,0 +1,67 @@
+#  Linker Command Script Spec File
+
+Static main
+{
+	Address		0x02000000
+	Object		*.o (.text)
+	Object		*.axxx
+	Object		OBJECT(func,*) (.text)
+	Objects		bin/ARM9-TEG/Release/*.o
+	Objects		"d:/Program Files/bin/ARM9-TEG/Release/*.o"
+	Object		A/B/C
+	Object		* GROUP(ROOT)
+	Object		. ..
+	Library		libos.a
+	Libraries	lib/libmi.a
+	SearchSymbol	overlay_0
+	SearchSymbol	overlay_1
+
+	StackSize	8192 1024
+}
+
+Autoload overlay_0
+{
+	Address		0x03f00000
+	Object		aaa.o bbb.o
+	Library		autoload_libos.a
+	Libraries	lib/autoload_libmi.a
+	SearchSymbol	overlay_1
+}
+
+Autoload overlay_1
+{
+	After		main
+	Object		ccc.o \
+			ddd.o
+	Library		autoload_libos.a
+	Libraries	lib/autoload_libmi.a
+}
+
+Autoload MAINEX
+{
+	Address		0x023e0000
+	Object		eee.o
+}
+
+Overlay MAINEX_overlay
+{
+	After		MAINEX
+}
+
+Overlay overlay_2
+{
+	Group		GroupA
+	After		overlay_1
+	Object		eee.o fff.o
+	SearchSymbol	overlay_0 overlay_1
+	Library		overlay_libos.a
+	Libraries	lib/overlay_libmi.a
+}
+
+Overlay overlay_3
+{
+	After		overlay_1
+	Object		eee.o fff.o
+	Library		overlay_libos.a
+	Libraries	lib/overlay_libmi.a
+}

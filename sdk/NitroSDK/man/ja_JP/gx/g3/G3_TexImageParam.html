@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_TexImageParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_TexImageParam</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;</CODE><BR><BR><CODE>void G3_TexImageParam(<BR>    GXTexFmt texFmt,<BR>    GXTexGen texGen,<BR>    GXTexSizeS s,<BR>    GXTexSizeT t,<BR>    GXTexRepeat repeat,<BR>    GXTexFlip flip,<BR>    GXTexPlttColor0 pltt0,
+    u32 addr
+);</CODE><BR>
+// 以下ディスプレイリスト（コマンド列）作成用API
+<CODE>void G3B_TexImageParam(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);</CODE><BR><CODE>void G3C_TexImageParam(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);</CODE><BR><CODE>void G3BS_TexImageParam(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);</CODE><BR><CODE>void G3CS_TexImageParam(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">texFmt</font></strong></em></td>
+    <td width="87%">テクスチャフォーマット</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">texGen</font></strong></em></TD>
+      <TD>テクスチャ座標変換モード</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">s</font></strong></em></TD>
+      <TD>テクスチャサイズs</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">t</font></strong></em></TD>
+      <TD>テクスチャサイズt</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">repeat</font></strong></em></TD>
+      <TD>リピートの指定</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">flip</font></strong></em></TD>
+      <TD>フリップの指定 (<B><I>repeat</I></B>が有効な場合のみ有効です)</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">pltt0</font></strong></em></TD>
+      <TD>パレットの0番カラーを使用するか透明色にするかを選択するフラグ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">addr</font></strong></em></TD>
+      <TD>テクスチャスロット内のテクスチャの先頭オフセットアドレスをそのまま指定します。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>テクスチャのパラメータを設定します。<A href="G3_TexImageParam.html" target="_self">G3*_TexImageParam</A>コマンドは通常は<A href="G3_Begin.html" target="_self">G3*_Begin</A>より前で発行しますが、<A href="G3_Begin.html" target="_self">G3*_Begin</A>, <A href="G3_End.html" target="_self">G3*_End</A>間で発行することもでき、その場合、<A href="G3_Begin.html" target="_self">G3*_Begin</A>, <A href="G3_End.html" target="_self">G3*_End</A>内の各ポリゴン毎に異なるテクスチャパラメータを設定することが出来ます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXFMT_NONE</CODE></TD>
+      <TD width="70%">テクスチャなし</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_A3I5</CODE></TD>
+      <TD>半透明テクスチャ(α3ビット, パレットカラーNo.5ビット)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_PLTT4</CODE></TD>
+      <TD>4色パレットテクスチャ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_PLTT16</CODE></TD>
+      <TD>16色パレットテクスチャ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_PLTT256</CODE></TD>
+      <TD>256色パレットテクスチャ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_COMP4x4</CODE></TD>
+      <TD>4x4テクセル圧縮テクスチャ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_A5I3</CODE></TD>
+      <TD>半透明テクスチャ(α5ビット, パレットカラーNo.3ビット)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFMT_DIRECT</CODE></TD>
+      <TD>ダイレクトテクスチャ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXGEN_NONE</CODE></TD>
+      <TD width="70%">テクスチャ座標変換なし</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXGEN_TEXCOORD</CODE></TD>
+      <TD>TexCoordソース</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXGEN_NORMAL</CODE></TD>
+      <TD>Normalソース</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXGEN_VERTEX</CODE></TD>
+      <TD>Vertexソース</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXSIZE_S8</CODE></TD>
+      <TD width="70%">Ｓ軸方向に8テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S16</CODE></TD>
+      <TD>Ｓ軸方向に16テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S32</CODE></TD>
+      <TD>Ｓ軸方向に32テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S64</CODE></TD>
+      <TD>Ｓ軸方向に64テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S128</CODE></TD>
+      <TD>Ｓ軸方向に128テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S256</CODE></TD>
+      <TD>Ｓ軸方向に256テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S512</CODE></TD>
+      <TD>Ｓ軸方向に512テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_S1024</CODE></TD>
+      <TD>Ｓ軸方向に1024テクセル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXSIZE_T8</CODE></TD>
+      <TD width="70%">T軸方向に8テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T16</CODE></TD>
+      <TD>T軸方向に16テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T32</CODE></TD>
+      <TD>T軸方向に32テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T64</CODE></TD>
+      <TD>T軸方向に64テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T128</CODE></TD>
+      <TD>T軸方向に128テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T256</CODE></TD>
+      <TD>T軸方向に256テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T512</CODE></TD>
+      <TD>T軸方向に512テクセル</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXSIZE_T1024</CODE></TD>
+      <TD>T軸方向に1024テクセル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXREPEAT_NONE</CODE></TD>
+      <TD width="70%">リピートしない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXREPEAT_S</CODE></TD>
+      <TD>S軸方向にリピート</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXREPEAT_T</CODE></TD>
+      <TD>T軸方向にリピート</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXREPEAT_ST</CODE></TD>
+      <TD>S軸T軸両方向にリピート</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXFLIP_NONE</CODE></TD>
+      <TD width="70%">フリップしない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFLIP_S</CODE></TD>
+      <TD>S軸方向にフリップ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFLIP_T</CODE></TD>
+      <TD>T軸方向にフリップ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXFLIP_ST</CODE></TD>
+      <TD>S軸T軸両方向にフリップ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_TEXPLTTCOLOR0_TRNS</CODE></TD>
+      <TD width="70%">カラー0を透明とみなす</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_TEXPLTTCOLOR0_USE</CODE></TD>
+      <TD>パレットのカラー0設定値が有効</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に列挙型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_TEXFMT_NONE = 0,
+    GX_TEXFMT_A3I5 = 1,
+    GX_TEXFMT_PLTT4 = 2,
+    GX_TEXFMT_PLTT16 = 3,
+    GX_TEXFMT_PLTT256 = 4,
+    GX_TEXFMT_COMP4x4 = 5,
+    GX_TEXFMT_A5I3 = 6,
+    GX_TEXFMT_DIRECT = 7
+}
+GXTexFmt;
+
+#define GX_TEXFMT_ALPHA ((GXTexFmt)GX_TEXFMT_A5I3) // Obsolete name
+
+typedef enum
+{
+    GX_TEXGEN_NONE = 0,
+    GX_TEXGEN_TEXCOORD = 1,
+    GX_TEXGEN_NORMAL = 2,
+    GX_TEXGEN_VERTEX = 3
+}
+GXTexGen;
+
+typedef enum
+{
+    GX_TEXSIZE_S8 = 0,
+    GX_TEXSIZE_S16 = 1,
+    GX_TEXSIZE_S32 = 2,
+    GX_TEXSIZE_S64 = 3,
+    GX_TEXSIZE_S128 = 4,
+    GX_TEXSIZE_S256 = 5,
+    GX_TEXSIZE_S512 = 6,
+    GX_TEXSIZE_S1024 = 7
+}
+GXTexSizeS;
+
+typedef enum
+{
+    GX_TEXSIZE_T8 = 0,
+    GX_TEXSIZE_T16 = 1,
+    GX_TEXSIZE_T32 = 2,
+    GX_TEXSIZE_T64 = 3,
+    GX_TEXSIZE_T128 = 4,
+    GX_TEXSIZE_T256 = 5,
+    GX_TEXSIZE_T512 = 6,
+    GX_TEXSIZE_T1024 = 7
+}
+GXTexSizeT;
+
+typedef enum
+{
+    GX_TEXREPEAT_NONE = 0,
+    GX_TEXREPEAT_S = 1,
+    GX_TEXREPEAT_T = 2,
+    GX_TEXREPEAT_ST = 3
+}
+GXTexRepeat;
+
+typedef enum
+{
+    GX_TEXFLIP_NONE = 0,
+    GX_TEXFLIP_S = 1,
+    GX_TEXFLIP_T = 2,
+    GX_TEXFLIP_ST = 3
+}
+GXTexFlip;
+
+typedef enum
+{
+    GX_TEXPLTTCOLOR0_USE = 0,
+    GX_TEXPLTTCOLOR0_TRNS = 1
+}
+GXTexPlttColor0;</CODE></PRE>
+
+<h2>参照</h2>
+<P><A href="G3_TexPlttBase.html" target="_self">G3*_TexPlttBase</A>, <A href="G3_TexCoord.html" target="_self">G3*_TexCoord</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

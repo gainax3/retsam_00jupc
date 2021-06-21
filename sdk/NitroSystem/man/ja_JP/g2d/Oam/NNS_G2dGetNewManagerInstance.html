@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetNewManagerInstance</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetNewManagerInstance</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Oam.h&gt;</CODE></pre>
+  <pre><CODE>BOOL NNS_G2dGetNewManagerInstance( 
+             NNSG2dOamManagerInstance* pMan, 
+             u16 from, 
+             u16 to, 
+             NNSG2dOamType type );</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMan</font></strong></em></td>
+    <td width="87%">[OUT] OAMマネージャ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>from</CODE></font></strong></em></td>
+    <td width="87%">[IN] OAM管理領域開始インデックス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>to</CODE></font></strong></em></td>
+    <td width="87%">[IN] OAM管理領域終了インデックス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>type</CODE></font></strong></em></td>
+    <td width="87%">[IN] OAM種類</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>成否<BR>
+</p>
+<H2>説明</H2>
+<P>OAMマネージャの実体を初期化します。<BR>
+OAMマネージャの実体を使用する前にかならず実行する必要があります。<BR>
+from &lt;= to を満たす必要があります。<BR>
+
+本関数は過去のバージョンとの互換性維持のために残されています。新規にご利用の場合はNNS_G2dGetNewOamManagerInstance()を御使用ください。
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dGetNewOamManagerInstance.html">NNS_G2dGetNewOamManagerInstance</A><br></CODE></p>
+<p><CODE><A href="NNS_G2dInitManagerInstanceAffine.html">NNS_G2dInitManagerInstanceAffine</A><br></CODE></p>
+<H2>履歴</H2>
+<P>2004/05/28 初版</P>
+</body>
+</html>

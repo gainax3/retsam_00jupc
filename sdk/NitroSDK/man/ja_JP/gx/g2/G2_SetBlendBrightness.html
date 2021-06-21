@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_SetBlendBrightness</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_SetBlendBrightness</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g2.h&gt;</CODE><BR>
+<CODE>void G2_SetBlendBrightness(<BR>    int plane /* GXBlendPlaneMask */,<BR>    int brightness<BR>);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="30"><em><strong><font face="Courier New">plane</font></strong></em></TD>
+      <TD width="672">輝度変更対象の平面を選択（GXBlendPlaneMask型の値でorをとったもの）</TD>
+    </tr>
+    <TR>
+      <TD width="30"><em><strong><font face="Courier New">brightness</font></strong></em></TD>
+      <TD width="672">輝度変更のための係数を指定します(-16 &lt;= brightness &lt;= 16)</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P><B><I>plane</I></B>で指定した面の輝度を変更します。<B><I>brightness</I></B>が正なら輝度アップ、負なら輝度ダウンです。GXBlendPlaneMask型については<A href="G2_SetBlendAlpha.html">G2_SetBlendAlpha</A>を参照してください。</P>
+<h2>参照</h2>
+<P><A href="G2_BlendNone.html">G2_BlendNone</A>, <A href="G2_SetBlendAlpha.html">G2_SetBlendAlpha</A>, <A href="G2_SetBlendBrightnessExt.html">G2_SetBlendBrightnessExt</A>, <A href="G2_ChangeBlendAlpha.html">G2_ChangeBlendAlpha</A>, <A href="G2_ChangeBlendBrightness.html">G2_ChangeBlendBrightness</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

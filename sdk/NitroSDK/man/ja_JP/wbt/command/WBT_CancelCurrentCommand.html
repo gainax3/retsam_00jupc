@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_CancelCurrentCommand</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_CancelCurrentCommand</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_CancelCurrentCommand(u16 target);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">コマンドをキャンセルする対象のaidビットマップ<br>
+	  子機の場合、親機である "1" のみ指定可能です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>現在処理中のコマンドが無ければ FALSE を、<br>
+あれば中断しそのコマンドコールバックを呼び出した後、TRUE を返します。</p>
+
+<H2>説明</H2>
+<p>現在発行中のコマンドをキャンセルします。<br>
+主に<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数を発行後、途中でキャンセル
+するのに使用します。
+<br>
+コマンドを要求された側では使用できません。<br>
+</font>
+<br>
+</p>
+<H2>参照</H2>
+<A href="WBT_RequestSync.html">WBT_RequestSync</A>
+<A href="WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
+<A href="WBT_GetBlock.html">WBT_GetBlock</A>
+<A href="WBT_PutUserData.html">WBT_PutUserData</A>
+<br>
+<H2>履歴</H2>
+<P>
+2004/10/05 初版<BR>
+</P>
+</body>
+</html>

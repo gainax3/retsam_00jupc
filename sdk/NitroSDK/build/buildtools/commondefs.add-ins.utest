@@ -1,0 +1,44 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - UnitTest Tool
+# File:     commondefs.add-ins.utest
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: commondefs.add-ins.utest,v $
+# Revision 1.1  2005/06/24 02:16:40  yasu
+# ユニットテスト用 add-in を追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+#
+# UNIT TEST on ARM9
+#
+ifeq	($(CODEGEN_PROC),ARM9)
+
+ELIBRARIES		+= libutest$(NITRO_LIBSUFFIX).a
+
+MAKE_UTEST_MAIN		 = $(NITRO_TOOLSDIR)/bin/make_utest_main__
+UTEST_MAIN_SRC		 = $(OBJDIR)/utest_main__.c
+UTEST_MAIN_BIN		 = utest_main__.srl
+
+ifdef	UTEST_CHECKASSERT
+MACRO_FLAGS		+= -DSDK_CHECKASSERT
+endif
+
+#
+# UNIT TEST on ARM7
+#
+else #	($(CODEGEN_PROC),ARM7)
+# Not support unit test on ARM7
+
+endif
+
+#===== End of commondefs.add-ins.utest =====

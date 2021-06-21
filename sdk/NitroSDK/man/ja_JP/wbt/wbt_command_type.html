@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTCommand</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTCommand</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+<pre>
+typedef struct {
+  WBTCommandType command;
+  WBTCommandType event;
+  u16 target_bmp;
+  u16 peer_bmp;
+  WBTCommandCounter my_cmd_counter;
+  WBTCommandCounter peer_cmd_counter; /* デバッグ用 */
+  WBTResult result;
+  WBTCallback callback;
+  union {
+    WBTRequestSyncCallback     sync;
+    WBTGetBlockDoneCallback    blockdone;
+    WBTPrepareSendDataCallback prepare_send_data;
+    WBTRecvUserDataCallback    user_data;
+    WBTGetBlockCallback        get;
+  };
+} WBTCommand;
+</pre>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>WBTの全てのコールバックで渡される構造体です。<BR>
+<br>
+各メンバの内容は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>command</TD>
+      <TD>コールバック発生の直接の原因を示す<a href="wbt_command_type_const.html">WBTCommandType</a>型のコマンド種類です。</TD>
+    </TR>
+    <TR>
+      <TD>event</TD>
+      <TD>コールバックの具体的な要因を示す<a href="wbt_command_type_const.html">WBTCommandType</a>型のイベント種類です。</TD>
+    </TR>
+    <TR>
+      <TD>target_bmp</TD>
+      <TD>コマンドのコールバックにおいて、未処理の対象を表すaidビットマップです。<br>
+	  0の場合、全ての対象に対してコマンドが完了したことを示します。</td>
+    </TR>
+    <TR>
+      <TD>peer_bmp</TD>
+      <TD>今回のコールバック要因となった対象を表すaidビットマップです。<br>
+	  必ず、特定のビットだけが1となっています。</td>
+    </TR>
+    <TR>
+      <TD>result</TD>
+      <TD>今回の結果を示す<a href="wbt_result_const.html">WBTResult</a>型の値です。</td>
+    </TR>
+    <TR>
+      <TD><font color="#808080">my_cmd_counter</font></TD>
+      <TD rowspan="3"><font color="#808080">内部で使用されます。</font></TD>
+    </TR>
+    <TR>
+      <TD><font color="#808080">peer_cmd_counter</font></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD><font color="#808080">callback</font></TD>
+      <TD></TD>
+    </TR>
+	<TR><td colspan="2">以下のメンバは、該当するコールバックの時のみ有効です。</td><td></td>
+	</tr>
+    <TR>
+      <TD>sync</TD>
+      <TD><A href="wbt_request_sync_callback_type.html">WBTRequestSyncCallback</A>型の結果情報を格納しています。</td>
+    </TR>
+    <TR>
+      <TD>blockdone</TD>
+      <TD><A href="wbt_get_block_done_callback_type.html">WBTGetBlockDoneCallback</A>型の結果情報を格納しています。</td>
+    </TR>
+    <TR>
+      <TD>prepare_send_data</TD>
+      <TD><A href="wbt_prepare_send_data_callback_type.html">WBTPrepareSendDataCallback</A>型の結果情報を格納しています。</td>
+    </TR>
+    <TR>
+      <TD>user_data</TD>
+      <TD><A href="wbt_recv_user_data_callback_type.html">WBTRecvUserDataCallback</A>型の結果情報を格納しています。</td>
+    </TR>
+    <TR>
+      <TD>get</TD>
+      <TD><A href="wbt_get_block_callback_type.html">WBTGetBlockCallback</A>型の結果情報を格納しています。</td>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<br>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="wbt_callback_type.html">WBTCallback</A><BR>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR></P>
+</body>
+</html>

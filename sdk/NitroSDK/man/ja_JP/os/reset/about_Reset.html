@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>リセット (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">リセット (overview)</H1>
+<H2>説明</H2>
+<P>NitroSDK にはリセットシステムが用意されています。これは、カードからメインメモリにROMデータを読み込んで適切なアドレスにPCを移動することで、プログラムを先頭から実行し直すための仕組みです。</P>
+<P>このリセットシステムを使用する場合は、予め <CODE><A href="OS_InitReset.html">OS_InitReset()</A></CODE>が呼ばれていなければなりませんが、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいる場合はその中で呼び出しを行なっていますので、特にアプリケーション側で呼び出す必要はありません。</P>
+<P>リセットをかけることが出来るのは、ARM9 からのみです。その命令は、 <CODE><A href="OS_ResetSystem.html">OS_ResetSystem()</A></CODE> となります。ARM7では、ARM9 からのリセット指示が出るまで、通常の動作を行ない、リセットの指示が
+PXI 経由で送られると( PXI 割り込みとして通達されます ) 、リセット処理を開始します。</P>
+<HR>
+<P><B>リセット処理の内部動作について</B></P>
+<P><CODE><A href="OS_ResetSystem.html">OS_ResetSystem()</A></CODE> を呼んだ後の２つのプロセッサの動作について説明します。</P>
+<BLOCKQUOTE><IMG src="image_resetChart.gif" border="0"></BLOCKQUOTE>
+<P>ARM9 側は、カードバスのロック解除を待ち、すぐにカードバスをロックします。次にすべてのDMAを終了させます。そしてARM7からの通信のためにPXI受信割り込みのみを有効にし、その他の割り込みを禁止します。そしてARM7
+にリセット通知を行ないます。</P>
+<P>ARM7側では、ARM9 からのリセット通知を受け取り、すべてのDMAを終了させ、ARM9からの通信のためにPXI受信割り込みのみを有効にします。またサウンドライブラリに停止を通達します。</P>
+<P>ここからは ARM9 は ITCM、ARM7 はWRAM上での動作となります。</P>
+<P>ARM7、ARM9 ともに全割り込みを禁止します。その後、ARM9がメインメモリの共有エリアに格納されているROMヘッダ情報にしたがって、カードからROMデータを読み込みます。</P>
+<P><IMG src="image_resetImg.gif" border="0"></P>
+<P>読み終わった後に一旦同期を取り、ARM7、ARM9とともに、メモリやレジスタのクリアを行ないます。</P>
+<P>ROMヘッダ情報に従い、開始アドレスを PC (program counter) に設定します。</P>
+<HR>
+<P align="left"><B>リセットパラメータについて</B></P>
+<P>リセットシステムには、現在のプログラム動作が電源投入後か、再実行後かの判定などに使用できる「リセットパラメータ」というu32値が用意されています。</P>
+<P>リセットパラメータを取得する関数は <CODE><A href="OS_GetResetParameter.html">OS_GetResetParameter()</A></CODE> です。この値は、電源投入後は常に 0 ですが、一度 <CODE><A href="OS_ResetSystem.html">OS_ResetSystem()</A></CODE> を呼び出した後は、その <CODE><A href="OS_ResetSystem.html">OS_ResetSystem()</A></CODE> の引数の値となります。複数回リセットした場合は、最後に呼び出された <CODE><A href="OS_ResetSystem.html">OS_ResetSystem()</A></CODE> の引数の値となります。</P>
+<P>リセットパラメータが格納されている領域は、メインメモリの共有領域内で、この部分はリセット処理ではクリアされませんのでリセット後のプログラムに値を渡すことが可能です。</P>
+<BLOCKQUOTE><IMG src="image_resetParam.gif" border="0"></BLOCKQUOTE>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Reset">OS関数一覧(リセット)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/13 用語や語尾など修正<BR>
+2004/11/02 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,90 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_SetCommonKeyValueString</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_SetCommonKeyValueString</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+int DWC_SetCommonKeyValueString( const char* key,
+                                 const char* value,
+                                 char* string,
+                                 char  separator );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  key/value文字列を作成します。
+		</P>
+		<P>
+		  key/value文字列とは、separatorを文字列の開始を示す記号として付加し、keyで指定された文字列とvalueで指定された文字列を並べた文字列です。
+		</P>
+		<P>
+		  例えば、key = "key1", value = "value1", separator = '/' と指定して本関数を呼び出した場合、stringには "/key1/value1" という文字列が返されます。
+		</P>
+		<P>
+		  データストレージサーバへのセーブデータを作成する際などに役立ちます。
+		  データストレージサーバへのセーブについては、<A href="DWC_SavePublicDataAsync.html">DWC_SavePublicDataAsync</A> / <A href="DWC_SavePrivateDataAsync.html">DWC_SavePrivateDataAsync</A>関数を参照してください。
+		</P>
+		<P>
+		  一度に作成できるkey/value文字列の文字数は4096文字（ヌル文字終端含む）までです。
+		</P>
+		<P>
+		  この文字列に更にkey/value文字列を追加する場合は、<A href="DWC_AddCommonKeyValueString.html">DWC_AddCommonKeyValueString</A>関数を使います。
+		  また、key/value文字列から、特定のkey文字列に対応するvalue文字列を取得したい場合は、<A href="DWC_GetCommonValueString.html">DWC_GetCommonValueString</A>関数を使います。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>key</CODE></STRONG></EM></TD>
+					<TD width="75%">セットしたいkey文字列へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>value</CODE></STRONG></EM></TD>
+					<TD>セットしたいvalue文字列へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>string</CODE></STRONG></EM></TD>
+					<TD>作成されたkey/value文字列の格納先ポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>separator</CODE></STRONG></EM></TD>
+					<TD>key/value文字列の、それぞれの文字列の開始を示すための文字</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+		  stringにセットされた文字列長（ヌル文字終端は含まない）
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_AddCommonKeyValueString.html">DWC_AddCommonKeyValueString</A>,
+				<A href="DWC_GetCommonValueString.html">DWC_GetCommonValueString</A>,
+				<A href="DWC_SavePublicDataAsync.html">DWC_SavePublicDataAsync</A>,
+				<A href="DWC_SavePrivateDataAsync.html">DWC_SavePrivateDataAsync</A>,
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_ClearOverlayImage</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_ClearOverlayImage</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_ClearOverlayImage(FSOverlayInfo *p_ovi);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_ovi</STRONG></EM></TD>
+      <TD width="87%">オーバーレイモジュールの情報が格納されたFSOverlayInfo構造体</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>オーバーレイモジュールの領域が正しくクリアされれば TRUE を返し、そうでない場合は、FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>
+オーバーレイモジュールの領域をクリアします。<BR>
+この関数は、FS_LoadOverlayImage関数の内部で呼び出されます。<br>
+<BR>
+この処理は、FS_GetOverlayAddress()関数で取得されるアドレスから<BR>
+FS_GetOverlayTotalSize()関数で取得される範囲に対して<BR>
+DTCM および ITCM を無効化したのちに全領域を0で初期化することと等価です。<BR>
+<BR>
+この関数は、<A href="FS_GetOverlayFileID.html">FS_GetOverlayFileID</A>関数などを組み合わせて<br>
+オーバーレイのロードを非同期に行うために使用されます。<br>
+同等の処理を行う他のオーバーレイ関数との関係については<br>
+<A href="FS_LoadOverlay.html">FS_LoadOverlay</A>関数のリファレンスに記載された例を参照ください。<br>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
+<br>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="FS_GetOverlayTotalSize.html">FS_GetOverlayTotalSize</A>
+<A href="FS_GetOverlayAddress.html">FS_GetOverlayAddress</A>
+<A href="FS_GetOverlayFileID.html">FS_GetOverlayFileID</A>
+<A href="FS_StartOverlay.html">FS_StartOverlay</A>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>
+<A href="FS_LoadOverlay.html">FS_LoadOverlay</A>
+<A href="FS_UnloadOverlayImage.html">FS_UnloadOverlayImage</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/19 記述とリンク先を若干修正<br>
+2004/09/24 各種オーバーレイ関数の関係について例を記述追加<br>
+2004/09/09 初版<BR>
+</P>
+</body>
+</html>

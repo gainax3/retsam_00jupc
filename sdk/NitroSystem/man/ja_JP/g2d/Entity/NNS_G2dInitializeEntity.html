@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dInitializeEntity</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dInitializeEntity</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Entity.h&gt;</CODE></pre>
+  <pre><CODE>void NNS_G2dInitializeEntity( 
+                        NNSG2dEntity*               pEntity, 
+                        void*                       pDrawStuff, 
+                        const NNSG2dEntityData*     pEntityData, 
+                        const NNSG2dAnimBankData*   pAnimDataBank );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pEntity</font></strong></em></td>
+    <td width="87%">[OUT] エンティティ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pDrawStuff</font></strong></em></td>
+    <td width="87%">[IN] 描画用データ( NNSG2dCellAnimation or NNSG2dMultiCellAnimation )</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pEntityData</font></strong></em></td>
+    <td width="87%">[IN] エンティティ定義データ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pAnimDataBank</font></strong></em></td>
+    <td width="87%">[IN] アニメーションデータバンク</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+エンティティを初期化します。<BR>
+pDrawStuff や pAnimDataBank は Entity のタイプによって適切なものを渡す必要があります。
+条件に合わない入力があった場合はアサートに失敗します。
+<BR>
+本関数はNNS_G2dInitEntity()へと改名されました。本関数は、互換性維持のため別名として残されます。
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dInitEntity.html">NNS_G2dInitEntity</A><br></CODE>
+
+<CODE><A href="NNS_G2dSetEntityCurrentAnimation.html">NNS_G2dSetEntityCurrentAnimation</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/08/02 改名の実施</P>
+<P>2004/05/28 初版</P>
+</body>
+</html>

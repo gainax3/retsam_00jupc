@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTRequestCode</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTRequestCode</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef enum {
+	VCT_REQUEST_INVITE = 0,
+	VCT_REQUEST_BYE,
+	VCT_REQUEST_CANCEL,
+	VCT_REQUEST_CONTACT,
+	VCT_REQUEST_NOTIFY,
+	VCT_REQUEST_END
+} VCTRequestCode;
+
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>VCT_REQUEST_INVITE</I></B></TD>
+      <TD width="70%">会話要求</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_REQUEST_BYE</I></B></TD>
+      <TD width="70%">会話終了要求</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_REQUEST_CANCEL</I></B></TD>
+      <TD width="70%">会話要求中止</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_REQUEST_CONTACT</I></B></TD>
+      <TD width="70%">トランシーバーリクエスト</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_REQUEST_NOTIFY</I></B></TD>
+      <TD width="70%">トランシーバー通知</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>SSPのリクエストコードです。<code><a href="VCT_Request.html">VCT_Request</a></code>で利用します。</P>
+
+<p><b><i>VCT_REQUEST_COTACT</i></b>と<b><i>VCT_REQUEST_NOTIFY</i></b>は内部で利用します。ユーザーはこれらのコードで<code>VCT_Request</code>を呼び出さないでください。</p>
+
+<h2>参照</h2>
+<P><code><a href="VCT_Request.html">VCT_Request</a></code></P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGetResultMtx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGetResultMtx</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/util.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL
+NNS_G3dGetResultMtx(
+    const NNSG3dRenderObj* pRenderObj,
+    MtxFx43*               pos,
+    MtxFx33*               nrm,
+    u32                    nodeID
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
+      <TD width="87%">RenderObj構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pos</STRONG></EM></TD>
+      <TD width="87%">クリップ座標行列が代入される行列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nrm</STRONG></EM></TD>
+      <TD width="87%">方向ベクトル行列が代入される行列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nodeID</STRONG></EM></TD>
+      <TD width="87%">ノードID</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>行列が取り出せた場合には<CODE>TRUE</CODE>を返します。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>NNS_G3dDraw</CODE>関数の実行後に、<B><I>nodeID</I></B>に対応する行列が行列スタックに残っている場合は、 その行列を行列スタックから取り出します。 行列が取り出せた場合には<CODE>TRUE</CODE>, 取り出せなかった場合には<CODE>FALSE</CODE>が返ります。 戻り値が<CODE>TRUE</CODE>の場合、行列モードはPosition/Vector行列モードに変更されています。 <B><I>pos</I></B>, <I><B>nrm</B></I>は<CODE>NULL</CODE>でない場合にセットされます。</P>
+<P>
+なお、得られる行列にはpos_scaleはかかっていないことにご注意ください。
+(.imd中間ファイルの&lt;model_info&gt;で指定される属性で、
+頂点座標をスケーリングしています。NNSG3dResMdlInfo::posScaleにfx32型で格納されています。)
+</P>
+<P>使用法と注意:</P>
+<P>
+g3cvtrで-sオプションをつけてコンバートした場合、ジョイント行列は全て行列スタックにストアされています。
+また、NNSG3dRenderObj::flagの<CODE>NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_DRAW</CODE>を設定して<CODE>NNS_G3dDraw</CODE>関数をコールした場合、
+描画をスキップすることができ、
+<CODE>NNS_G3D_RENDEROBJ_FLAG_SKIP_SBC_MTXCALC</CODE>を設定して<CODE>NNS_G3dDraw</CODE>関数をコールした場合、行列計算をスキップすることができます。
+</P>
+<P>
+この機能を利用すると、下記のようなプログラミングが可能になります。
+</P>
+<P>
+　　・最初に行列を行列スタックにセットしておく<BR>
+　　・行列スタックにセットされた行列を加工<BR>
+　　・加工された行列を用いて描画
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dSetResultMtx.html">NNS_G3dSetResultMtx</A>
+<A href="NNS_G3dGetCurrentMtx.html">NNS_G3dGetCurrentMtx</A></CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

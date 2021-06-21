@@ -1,0 +1,63 @@
+;*******************************************
+;	Nitro SeqArc for PictoChat Searcher
+;*******************************************
+
+#include "../bnk/sePCS.spdl"
+#include "../sound_data.sbdl"
+
+;******************
+;シーケンステーブル
+;******************
+
+@SEQ_TABLE	
+;　　　					bank 		vol 	chPr 	PlPr 	PlNum
+PCS_SE_ICON:	se_join_message,	BANK_SE_PCS,  	 60, 	96, 	64, 	15	;サーチャーアイコン（参加メッセージ）
+
+
+
+;******************
+;シーケンスデータ
+;******************
+
+@SEQ_DATA
+
+;サーチャーアイコン音
+se_join_message:
+	alloctrack TRACK_1 | TRACK_2 | TRACK_3
+	opentrack 1, _track1
+	opentrack 2, _track2
+	opentrack 3, _track3
+	pan 48
+;	pan 80
+	prg CELESTA_QUIT
+	pitchbend -10+30
+	gn6  60,  40
+	fin
+
+_track1:
+	pan 80
+;	pan 48
+	prg CELESTA_QUIT
+	pitchbend +10+30
+	wait 10-5
+	gn6 120,  40
+	fin
+
+_track2:
+	pan 127
+;	pan 0
+	prg CELESTA_QUIT
+	pitchbend 0+30
+	wait 20-5
+	gn6 120,  40
+	fin
+
+_track3:
+	pan 0
+;	pan 127
+	prg CELESTA_QUIT
+	pitchbend -5+30
+	wait 35-5
+	gn6  80,  40
+	fin
+

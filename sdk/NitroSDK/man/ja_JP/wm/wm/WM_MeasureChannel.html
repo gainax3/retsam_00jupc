@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_MeasureChannel</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_MeasureChannel</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_MeasureChannel(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback
+        u16             ccaMode ,
+        u16             edThreshold ,
+        u16             channel ,
+        u16             measureTime
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">ccaMode</FONT></STRONG></EM></TD>
+      <TD width="800">測定動作モードを以下の 0 ～ 3 の値から指定して下さい。
+      <UL><LI>0 ： キャリアセンスモード。ニンテンドーDSのワイヤレス通信に影響する強度の電波についてのみ測定します。
+          <LI>1 ： ED閾値指定モード。<EM><STRONG>edThreshold</STRONG></EM>に指定した電波強度以上の電波について測定します。
+          <LI>2 ： キャリアセンスとED閾値の論理積に該当する強度の電波について測定します。
+          <LI>3 ： キャリアセンスとED閾値の論理和に該当する強度の電波について測定します。
+      </UL></TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">edThreshold</FONT></STRONG></EM></TD>
+      <TD width="800">キャリアセンスモードでない場合に、測定する電波強度の下限を指定します。
+      0 ～ 61 ( -60dBm ～ -80dBm ) の値を指定してください。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">channel</FONT></STRONG></EM></TD>
+      <TD width="800">調査するチャンネルを指定します。 1 ～ 14 の値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">measureTime</FONT></STRONG></EM></TD>
+      <TD width="800">調査する期間を 1 ms単位で指定します。1 以上の値を指定して下さい。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+指定チャンネルの電波使用率を測定します。WMステートが<A href="wm_state_diagram.html">IDLEステート</A>の場合に実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、電波使用率の測定が完了した後にコールバックが発生します。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 説明追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

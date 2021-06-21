@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetRendererOverwrite*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetRendererOverwrite*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+<pre><CODE>
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePriority
+    (
+        NNSG2dRendererInstance*     pRend,
+        u16                         Priority
+    );
+    
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwritePlttNo
+    (
+        NNSG2dRendererInstance*     pRend,
+        u16                         plttNo
+    );
+    
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwriteMosaicFlag
+    (
+        NNSG2dRendererInstance*     pRend,
+        BOOL                        overwriteMosaicFlag
+    );
+    
+    NNS_G2D_INLINE void NNS_G2dSetRendererOverwriteOBJMode
+    (
+        NNSG2dRendererInstance*     pRend,
+        GXOamMode                   overwriteObjMode
+    );
+    
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">[OUT] レンダラ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">priority</font></strong></em></td>
+    <td width="87%">[IN] 上書きする描画優先度（0-3）</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">plttNo</font></strong></em></td>
+    <td width="87%">[IN] 上書きするパレット番号(0-15)</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">overwriteMosaicFlag</font></strong></em></td>
+    <td width="87%">[IN] 上書きするモザイクフラグ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">overwriteObjMode</font></strong></em></td>
+    <td width="87%">[IN] 上書きするオブジェモード（GXOamMode）</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+レンダラが描画するOBJに上書きするパラメータの値を設定します。<BR>
+NNS_G2dSetRendererOverwritePriority()は描画優先度を設定します。<BR>
+NNS_G2dSetRendererOverwritePlttNo()はパレット番号を設定します。<BR>
+NNS_G2dSetRendererOverwriteMosaicFlag()はモザイクフラグを設定します。<BR>
+NNS_G2dSetRendererOverwriteOBJMode()はオブジェモードを設定します。<BR>
+<BR>
+パラメータ上書き機能を有効にするために、NNS_G2dSetRendererOverwriteEnable()で適切なパラメータの上書き機能を有効に設定する必要があります。
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="NNS_G2dSetRendererOverwriteEnable.html">NNS_G2dSetRendererOverwriteEnable/Disable</A><br>
+</CODE>
+<CODE>
+<A href="NNS_G2dGetRendererOverwriteXXX.html">NNS_G2dGetRendererOverwrite*</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>
+2004/11/10 NNS_G2dSetRendererOverwriteMosaicFlag()、NNS_G2dSetRendererOverwriteOBJMode()を追加。<BR>
+2004/10/12 初版<BR>
+</P>
+</body>
+</html>

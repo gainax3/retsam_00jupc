@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_InitRand*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_InitRand*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/rand.h&gt;
+
+static inline void MATH_InitRand32( <A href="MATHRandContext.html">MATHRandContext32</A> *context, u64 seed );</CODE></PRE>
+  <PRE><CODE>static inline void MATH_InitRand16( <A href="MATHRandContext.html">MATHRandContext16</A> *context, u32 seed );<BR>
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    
+    
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">context</font></strong></em></TD>
+      <TD width="670">初期化する乱数のコンテキストへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">seed</font></strong></em></TD>
+      <TD>初期化用のSEED値。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>線形合同法による乱数コンテキストの初期化を行ないます。<BR>
+この関数によって、32ビット乱数では、乗数が 0x5D588B656C078965 、加数が
+0x269EC3 <BR>
+16ビット乱数では、乗数が 0x5D588B65、加数が0x269EC3 に初期化されます。<BR>
+<BR>
+このパラメータを変更する場合には、初期化後に<A href="MATHRandContext.html">MATHRandContext*</A>構造体のメンバを修正してください。</P>
+<h2>参照</h2>
+<P><A href="MATHRandContext.html">MATHRandContext*</A>, <A href="MATH_Rand.html">MATH_Rand*</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/13</P>
+</body>
+</html>

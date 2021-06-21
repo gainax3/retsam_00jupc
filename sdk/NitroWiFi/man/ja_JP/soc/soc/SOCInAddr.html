@@ -1,0 +1,48 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOCInAddr</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOCInAddr</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_INADDR_ANY       ((u32) 0x00000000)
+#define SOC_INADDR_BROADCAST ((u32) 0xffffffff)
+#define SOC_INADDR_LOOPBACK  ((u32) 0x7f000001)  // 127.0.0.1</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct SOCInAddr
+{
+    u32 addr;
+} SOCInAddr;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p><code>SOCInAddr</code>は IPv4 アドレスを格納するために使用されます。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_InetAtoN.html">SOC_InetAtoN</a></code>,
+<code><a href="SOC_InetNtoA.html">SOC_InetNtoA</a></code>,
+<code><a href="SOC_GetResolver.html">SOC_GetResolver</a></code>,
+<code><a href="SOC_SetResolver.html">SOC_SetResolver</a></code>,
+<code><a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>,
+<code><a href="SOCConfig.html">SOCConfig</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

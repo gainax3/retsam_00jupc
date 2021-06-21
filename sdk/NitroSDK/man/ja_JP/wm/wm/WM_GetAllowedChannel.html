@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetAllowedChannel</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetAllowedChannel</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+u16 WM_GetAllowedChannel( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>
+無線の1～14chのうち、使用を許可されたチャンネル群のビットフィールドを返します。
+最下位ビットから順に 1 チャンネル, 2 チャンネル……に対応します。
+また、初期化前などWMが不適切な状態の時に呼び出されるとエラーを示す0x8000を返します。
+</p>
+
+<H2>説明</H2>
+<P>
+無線通信において使用すべきチャンネルを取得します。WMが<A href="wm_state_diagram.html">IDLEステート</A>の場合のみ実行可能です。<BR>
+例えば 0x1041 が返された場合は、1、7、13 チャンネルが使用を許可されたチャンネルとなります。<BR>
+<A href="WM_SetParentParameter.html">WM_SetParentParameter関数</A>にて親機として活動を開始するチャンネルを指定する際にこの関数で得られたチャンネルのいずれかを指定しなければなりません。
+各チャンネルの電波状況を調べるには、<A href="WM_MeasureChannel.html">WM_MeasureChannel</A>を使用して下さい。<BR>
+また、<A href="WM_StartScan.html">WM_StartScan関数</A>にて子機として親機をスキャンする場合には、この関数で得られたチャンネルのいずれかで親機が
+活動しているはずですので、スキャンすべきチャンネルを絞ることができます。但しインフラストラクチャモードの場合には
+この限りではありません。
+</P>
+
+<h2>注意</h2>
+<p>
+この関数に0が返された場合は、使用すべきチャンネルが無い、つまり<font color=red>無線で通信してはいけない</font>ことを示します。
+無線通信が禁止された特殊な環境で使用される本体であった場合などに0が返される可能性がある点に注意して下さい。
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>, <A href="WM_StartParent.html">WM_StartParent</A>, <A href="WM_MeasureChannel.html">WM_MeasureChannel</A>, <A href="WM_StartScan.html">WM_StartScan</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/10/27 返り値にエラー値の記述を加筆<BR>
+2004/09/25 説明を加筆・修正<BR>
+2004/08/20 初版<BR>
+</P>
+</body>
+</html>

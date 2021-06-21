@@ -1,0 +1,489 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSCommandType</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSCommandType</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+<pre>
+typedef	enum {
+	FS_COMMAND_ASYNC_BEGIN = 0,
+	FS_COMMAND_READFILE = FS_COMMAND_ASYNC_BEGIN,
+	FS_COMMAND_WRITEFILE,
+	FS_COMMAND_ASYNC_END,
+
+	FS_COMMAND_SYNC_BEGIN = FS_COMMAND_ASYNC_END,
+	FS_COMMAND_SEEKDIR = FS_COMMAND_SYNC_BEGIN,
+	FS_COMMAND_READDIR,
+	FS_COMMAND_FINDPATH,
+	FS_COMMAND_GETPATH,
+	FS_COMMAND_OPENFILEFAST,
+	FS_COMMAND_OPENFILEDIRECT,
+	FS_COMMAND_CLOSEFILE,
+	FS_COMMAND_SYNC_END,
+
+	FS_COMMAND_STATUS_BEGIN = FS_COMMAND_SYNC_END,
+	FS_COMMAND_ACTIVATE = FS_COMMAND_STATUS_BEGIN,
+	FS_COMMAND_IDLE,
+	FS_COMMAND_STATUS_END,
+
+	FS_COMMAND_INVALID
+
+} FSCommandType;
+</pre>
+<br>
+  </CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブに対してファイルシステムが送るコマンドを表現する列挙型です。<BR>
+以下のように定義されます。<BR>
+<BR>
+
+<TABLE border="0" height="310">
+  <TBODY>
+    <TR>
+      <TD colspan="2">FS_COMMAND_STATUS_BEGIN</TD>
+      <TD>アーカイブ状態の変更に関するメッセージコマンドIDの先頭を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="2">FS_COMMAND_STATUS_END</TD>
+      <TD>アーカイブ状態の変更に関するメッセージコマンドIDの終端 + 1 を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17">以下は、FS_COMMAND_STATUS_BEGIN ～ FS_COMMAND_STATUS_END に含まれるメッセージです。</TD>
+    </TR>
+    <TR>
+      <TD width="33" height="10" rowspan="2" style="background-color : white;"></TD>
+      <TD width="207" height="10"><A href="command/fs_command_activate_spec.html">FS_COMMAND_ACTIVATE</A></TD>
+      <TD height="10">アイドル状態のアーカイブが最初の処理を始める前に発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="3"><A href="command/fs_command_idle_spec.html">FS_COMMAND_IDLE</A></TD>
+      <TD height="3">アーカイブが最後の処理を終えアイドル状態になった後に発生します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17"></TD>
+    </TR>
+    <TR>
+      <TD colspan="2" height="5">FS_COMMAND_SYNC_BEGIN</TD>
+      <TD height="5">同期系コマンドIDの先頭を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="2" height="13">FS_COMMAND_SYNC_END</TD>
+      <TD height="13">同期系コマンドIDの終端 + 1 を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17">以下は、FS_COMMAND_SYNC_BEGIN ～ FS_COMMAND_SYNC_END に含まれるメッセージです。</TD>
+    </TR>
+    <TR>
+      <TD width="33" height="15" rowspan="7" style="background-color : white;"></TD>
+      <TD width="207" height="15"><A href="command/fs_command_seekdir_spec.html">FS_COMMAND_SEEKDIR</A></TD>
+      <TD height="15">ディレクトリ位置を検索する必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="5"><A href="command/fs_command_readdir_spec.html">FS_COMMAND_READDIR</A></TD>
+      <TD height="5">ディレクトリエントリを読み出す必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="0"><A href="command/fs_command_openfiledirect_spec.html">FS_COMMAND_OPENFILEDIRECT</A></TD>
+      <TD height="0">領域の直接指定によってファイルを開く必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="command/fs_command_openfilefast_spec.html">FS_COMMAND_OPENFILEFAST</A></TD>
+      <TD>ファイルIDによってファイルを開く必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="command/fs_command_closefile_spec.html">FS_COMMAND_CLOSEFILE</A></TD>
+      <TD>ファイルを閉じる必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="0"><A href="command/fs_command_findpath_spec.html">FS_COMMAND_FINDPATH</A></TD>
+      <TD height="0">パス名でファイルやディレクトリを特定する関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="4"><A href="command/fs_command_getpath_spec.html">FS_COMMAND_GETPATH</A></TD>
+      <TD height="4">フルパス名またはその長さを必要とする関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17"></TD>
+    </TR>
+    <TR>
+      <TD colspan="2" height="5">FS_COMMAND_ASYNC_BEGIN</TD>
+      <TD height="5">非同期系コマンドIDの先頭を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="2" height="13">FS_COMMAND_ASYNC_END</TD>
+      <TD height="13">非同期系コマンドIDの終端 + 1 を表します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17">以下は、FS_COMMAND_ASYNC_BEGIN ～ FS_COMMAND_ASYNC_END に含まれるメッセージです。</TD>
+    </TR>
+    <TR>
+      <TD width="33" height="15" rowspan="2" style="background-color : white;"></TD>
+      <TD width="207" height="15"><A href="command/fs_command_readfile_spec.html">FS_COMMAND_READFILE</A></TD>
+      <TD height="15">ファイルへのリードアクセスを行う必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="5"><A href="command/fs_command_writefile_spec.html">FS_COMMAND_WRITEFILE</A></TD>
+      <TD height="5">ファイルへのライトアクセスを行う必要のある関数からのコマンドとして発生します。</TD>
+    </TR>
+    <TR>
+      <TD colspan="3" style="background-color : white;" height="17"></TD>
+    </TR>
+    <TR>
+      <TD colspan="2" height="0">FS_COMMAND_INVALID</TD>
+      <TD height="0">不正なコマンドを表す内部定数として用意されています。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<BR>
+<P>非同期コマンドは、単にアーカイブのコールバック関数を1回呼び出すことで完了するコマンドです。<BR>
+同期コマンドは、コールバック関数の呼び出しに加えて何らかの処理を行う必要があるコマンドです。<BR>
+<BR>
+デフォルトの実装における同期コマンドには依存関係があり、一部のコマンドは内部で下位コマンドを使用します。<BR>
+コマンド間の依存関係はおおむね以下のとおりです。<BR>
+</P>
+<TABLE border="1" width="768">
+  <TBODY>
+    <TR>
+      <TD valign="middle" align="center" rowspan="2" style="text-align : center;" width="25">No.</TD>
+      <TD rowspan="2" style="text-align : center;" width="464">コマンド</TD>
+      <TD colspan="15" style="text-align : center;">使用するコマンドおよびアーカイブ情報</TD>
+    </TR>
+    <TR>
+      <TD align="center">1</TD>
+      <TD align="center">2</TD>
+      <TD align="center">3</TD>
+      <TD align="center">4</TD>
+      <TD align="center">5</TD>
+      <TD align="center">6</TD>
+      <TD align="center">7</TD>
+      <TD align="center">8</TD>
+      <TD align="center">9</TD>
+      <TD align="center">10</TD>
+      <TD align="center">11</TD>
+      <TD align="center">12</TD>
+      <TD align="center">13</TD>
+      <TD align="center">14</TD>
+      <TD align="center">15</TD>
+    </TR>
+    <TR>
+      <TD width="25">1</TD>
+      <TD width="464">( FS_ARCHIVE_READ_FUNC )</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">2</TD>
+      <TD width="464">( FS_ARCHIVE_WRITE_FUNC )</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">3</TD>
+      <TD width="464">( FAT 情報 )</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">4</TD>
+      <TD width="464">( FNT 情報 )</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">5</TD>
+      <TD width="464"><A href="command/fs_command_activate_spec.html">FS_COMMAND_ACTIVATE</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">6</TD>
+      <TD width="464"><A href="command/fs_command_idle_spec.html">FS_COMMAND_IDLE</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">7</TD>
+      <TD width="464"><A href="command/fs_command_seekdir_spec.html">FS_COMMAND_SEEKDIR</A></TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">8</TD>
+      <TD width="464"><A href="command/fs_command_readdir_spec.html">FS_COMMAND_READDIR</A></TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">9</TD>
+      <TD width="464"><A href="command/fs_command_openfiledirect_spec.html">FS_COMMAND_OPENFILEDIRECT</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD width="25">10</TD>
+      <TD width="464"><A href="command/fs_command_openfilefast_spec.html">FS_COMMAND_OPENFILEFAST</A></TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD>11</TD>
+      <TD><A href="command/fs_command_closefile_spec.html">FS_COMMAND_CLOSEFILE</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD>12</TD>
+      <TD><A href="command/fs_command_findpath_spec.html">FS_COMMAND_FINDPATH</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD>13</TD>
+      <TD><A href="command/fs_command_getpath_spec.html">FS_COMMAND_GETPATH</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD>14</TD>
+      <TD><A href="command/fs_command_readfile_spec.html">FS_COMMAND_READFILE</A></TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+    <TR>
+      <TD>15</TD>
+      <TD><A href="command/fs_command_writefile_spec.html">FS_COMMAND_WRITEFILE</A></TD>
+      <TD align="center">－</TD>
+      <TD align="center">○</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+      <TD align="center">－</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_archive_type.html">FSArchive</A>
+<A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<BR>
+<A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/12 コマンドに関する記述全体を修正<BR>
+2004/06/30 初版</P>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>ROM ファイルシステム(FS)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>ROM ファイルシステム(FS)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="file/FS_Init.html" target="_self">FS_Init</A></TH>
+      <TD>ROM ファイルシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_IsAvailable.html" target="_self">FS_IsAvailable</A></TH>
+      <TD>ROM ファイルシステムが初期化されているか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_End.html" target="_self">FS_End</A></TH>
+      <TD>ROM ファイルシステムを終了します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_SetDefaultDMA.html" target="_self">FS_SetDefaultDMA</A></TH>
+      <TD>使用するDMA番号を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_LoadTable.html" target="_self">FS_LoadTable</A></TH>
+      <TD>内部で頻繁にアクセスされる各種テーブルをメモリにロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_UnloadTable.html" target="_self">FS_UnloadTable</A></TH>
+      <TD>テーブルのロードに使用していたメモリを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetTableSize.html" target="_self">FS_GetTableSize</A></TH>
+      <TD>内部のテーブルが必要とするメモリサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive_rom_spec.html" target="_self">ROM アーカイブ</A></TH>
+      <TD>デフォルトでファイルシステムにロードされるアーカイブです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="archive_mem_spec.html" target="_self">メモリファイルアーカイブ</A></TH>
+      <TD>デフォルトでファイルシステムにロードされるアーカイブです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="File">ファイルアクセス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="file/FS_InitFile.html" target="_self">FS_InitFile</A></TH>
+      <TD>FSFile構造体を初期化します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="file/FS_IsBusy.html" target="_self">FS_IsBusy</A></TH>
+      <TD>指定したファイルが現在非同期処理中か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_IsSucceeded.html" target="_self">FS_IsSucceeded</A></TH>
+      <TD>指定したファイルの最新の非同期処理が成功したか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_IsFile.html" target="_self">FS_IsFile</A></TH>
+      <TD>指定したファイルが現在ファイル情報を格納しているか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_IsDir.html" target="_self">FS_IsDir</A></TH>
+      <TD>指定したファイルが現在ディレクトリ位置を格納しているか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetResultCode.html" target="_self">FS_GetResultCode</A></TH>
+      <TD>指定したファイルの最後の処理の結果値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_OpenFile.html" target="_self">FS_OpenFile</A></TH>
+      <TD>パス名を指定してファイルを開きます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_OpenFileFast.html" target="_self">FS_OpenFileFast</A></TH>
+      <TD>IDを指定してファイルを開きます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_OpenFileDirect.html" target="_self">FS_OpenFileDirect</A></TH>
+      <TD>領域を指定してファイルを開きます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_CreateFileFromMemory.html" target="_self">FS_CreateFileFromMemory</A></TH>
+      <TD>指定のメモリ領域を一時的なファイルとみなして開きます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_CreateFileFromRom.html" target="_self">FS_CreateFileFromRom</A></TH>
+      <TD>指定の CARD-ROM 領域を一時的なファイルとみなして開きます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_ConvertPathToFileID.html" target="_self">FS_ConvertPathToFileID</A></TH>
+      <TD>指定したパス名からファイルIDを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_CloseFile.html" target="_self">FS_CloseFile</A></TH>
+      <TD>ファイルを閉じます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetPathName.html" target="_self">FS_GetPathName</A></TH>
+      <TD>開いているファイルまたはディレクトリのパス名を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetPathLength.html" target="_self">FS_GetPathLength</A></TH>
+      <TD>開いているファイルまたはディレクトリのパス名の長さを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetLength.html" target="_self">FS_GetLength</A></TH>
+      <TD>開いているファイルのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetPosition.html" target="_self">FS_GetPosition</A></TH>
+      <TD>開いているファイルの現在位置を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetAttachedArchive.html" target="_self">FS_GetAttachedArchive</A></TH>
+      <TD>ファイルに関連づけられたアーカイブを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetFileImageTop.html" target="_self">FS_GetFileImageTop</A></TH>
+      <TD>開いているファイルの領域先頭のオフセット値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_GetFileImageBottom.html" target="_self">FS_GetFileImageBottom</A></TH>
+      <TD>開いているファイルの領域終端のオフセット値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_ReadFile.html" target="_self">FS_ReadFile</A></TH>
+      <TD>開いているファイルからデータを読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_ReadFileAsync.html" target="_self">FS_ReadFileAsync</A></TH>
+      <TD>開いているファイルからデータを非同期モードで読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_WriteFile.html" target="_self">FS_WriteFile</A></TH>
+      <TD>開いているファイルへデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_WriteFileAsync.html" target="_self">FS_WriteFileAsync</A></TH>
+      <TD>開いているファイルへデータを非同期モードで書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_CancelFile.html" target="_self">FS_CancelFile</A></TH>
+      <TD>ファイルが実行している非同期処理のキャンセルを要求します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_WaitAsync.html" target="_self">FS_WaitAsync</A></TH>
+      <TD>ファイルが実行している非同期処理の完了を待ちます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_SeekFile.html" target="_self">FS_SeekFile</A></TH>
+      <TD>開いているファイルポインタの位置を移動します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_SeekFileToBegin.html" target="_self">FS_SeekFileToBegin</A></TH>
+      <TD>開いているファイルポインタの位置を先頭に移動します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_SeekFileToEnd.html" target="_self">FS_SeekFileToEnd</A></TH>
+      <TD>開いているファイルポインタの位置を終端に移動します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Directory">ディレクトリアクセス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="file/FS_ChangeDir.html" target="_self">FS_ChangeDir</A></TH>
+      <TD>カレントディレクトリを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_FindDir.html" target="_self">FS_FindDir</A></TH>
+      <TD>パス名を指定してディレクトリリストを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_ReadDir.html" target="_self">FS_ReadDir</A></TH>
+      <TD>ディレクトリリストからエントリを読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_TellDir.html" target="_self">FS_TellDir</A></TH>
+      <TD>ディレクトリリストの現在位置を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_SeekDir.html" target="_self">FS_SeekDir</A></TH>
+      <TD>ディレクトリリストの現在位置を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="file/FS_RewindDir.html" target="_self">FS_RewindDir</A></TH>
+      <TD>ディレクトリリストの現在位置を最初に戻します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Archive">アーカイブ</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="265"><A href="archive/FS_InitArchive.html" target="_self">FS_InitArchive</A></TD>
+      <TD width="625">アーカイブ構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_GetArchiveName.html" target="_self">FS_GetArchiveName</A></TD>
+      <TD width="625">アーカイブ名を取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_GetArchiveBase.html" target="_self">FS_GetArchiveBase</A></TD>
+      <TD width="625">アーカイブのベースオフセットを取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_GetArchiveFAT.html" target="_self">FS_GetArchiveFAT</A></TD>
+      <TD width="625">アーカイブの FAT オフセットを取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_GetArchiveFNT.html" target="_self">FS_GetArchiveFNT</A></TD>
+      <TD width="625">アーカイブの FNT オフセットを取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_GetArchiveOffset.html" target="_self">FS_GetArchiveOffset</A></TD>
+      <TD width="625">アーカイブのベースからの指定位置オフセットを取得します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_IsArchiveLoaded.html" target="_self">FS_IsArchiveLoaded</A></TD>
+      <TD width="625">アーカイブが現在ファイルシステムにロード済みか判定します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_IsArchiveTableLoaded.html" target="_self">FS_IsArchiveTableLoaded</A></TD>
+      <TD width="625">アーカイブが現在テーブルをプリロード済みか判定します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_IsArchiveSuspended.html" target="_self">FS_IsArchiveSuspended</A></TD>
+      <TD width="625">アーカイブが現在サスペンド中か判定します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_FindArchive.html" target="_self">FS_FindArchive</A></TD>
+      <TD width="625">指定した名前をもつアーカイブを検索します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_RegisterArchiveName.html" target="_self">FS_RegisterArchiveName</A></TD>
+      <TD width="625">アーカイブ名を登録し, アーカイブに関連付けます。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_ReleaseArchiveName.html" target="_self">FS_ReleaseArchiveName</A></TD>
+      <TD width="625">登録済みのアーカイブ名を解放します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_LoadArchive.html" target="_self">FS_LoadArchive</A></TD>
+      <TD width="625">アーカイブをファイルシステムにロードします。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_UnloadArchive.html" target="_self">FS_UnloadArchive</A></TD>
+      <TD width="625">アーカイブをファイルシステムからアンロードします。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_LoadArchiveTables.html" target="_self">FS_LoadArchiveTables</A></TD>
+      <TD width="625">FNT と FAT をプリロードしてアクセスの大部分を高効率化します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_UnloadArchiveTables.html" target="_self">FS_UnloadArchiveTables</A></TD>
+      <TD width="625">FNT と FAT のプリロードメモリを解放します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_SuspendArchive.html" target="_self">FS_SuspendArchive</A></TD>
+      <TD width="625">アーカイブの処理自体を停止します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_ResumeArchive.html" target="_self">FS_ResumeArchive</A></TD>
+      <TD width="625">停止していたアーカイブの処理を再開します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_SetArchiveProc.html" target="_self">FS_SetArchiveProc</A></TD>
+      <TD width="625">アーカイブのユーザプロシージャを設定します。</TD>
+    </TR>
+    <TR>
+      <TD width="265"><A href="archive/FS_NotifyArchiveAsyncEnd.html" target="_self">FS_NotifyArchiveAsyncEnd</A></TD>
+      <TD width="625">非同期で実行していたアーカイブ処理の完了を通知します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Overlay">オーバーレイ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_AttachOverlayTable.html" target="_self">FS_AttachOverlayTable</A></TH>
+      <TD>オーバーレイテーブルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_LoadOverlayInfo.html" target="_self">FS_LoadOverlayInfo</A></TH>
+      <TD>オーバーレイモジュールの情報をロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_GetOverlayTotalSize.html" target="_self">FS_GetOverlayTotalSize</A></TH>
+      <TD>オーバーレイモジュールの全体サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_GetOverlayImageSize.html" target="_self">FS_GetOverlayImageSize</A></TH>
+      <TD>オーバーレイモジュールのロードイメージサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_GetOverlayAddress.html" target="_self">FS_GetOverlayAddress</A></TH>
+      <TD>オーバーレイモジュールのメモリ先頭アドレスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_GetOverlayFileID.html" target="_self">FS_GetOverlayFileID</A></TH>
+      <TD>オーバーレイモジュールのロードイメージを格納しているファイルの ID を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_ClearOverlayImage.html" target="_self">FS_ClearOverlayImage</A></TH>
+      <TD>オーバーレイモジュールの領域をクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_LoadOverlayImage.html" target="_self">FS_LoadOverlayImage</A></TH>
+      <TD>オーバーレイモジュールのイメージをメモリへロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_LoadOverlayImageAsync.html" target="_self">FS_LoadOverlayImageAsync</A></TH>
+      <TD>オーバーレイモジュールのイメージをメモリへ非同期にロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_StartOverlay.html" target="_self">FS_StartOverlay</A></TH>
+      <TD>オーバーレイモジュールのイメージ初期化処理を実行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_EndOverlay.html" target="_self">FS_EndOverlay</A></TH>
+      <TD>オーバーレイモジュールの終了処理を実行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_UnloadOverlayImage.html" target="_self">FS_UnloadOverlayImage</A></TH>
+      <TD>オーバーレイモジュールのイメージをメモリからアンロードします。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="overlay/FS_LoadOverlay.html" target="_self">FS_LoadOverlay</A></TH>
+      <TD>オーバーレイモジュールをロードし、初期化処理を実行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_UnloadOverlay.html" target="_self">FS_UnloadOverlay</A></TH>
+      <TD>オーバーレイモジュールをアンロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="overlay/FS_RegisterOverlayToDebugger.html" target="_self"><font color="#808080">FS_RegisterOverlayToDebugger</font></A></TH>
+      <TD><font color="#808080">この関数は現在のバージョンでは不要となりました</font></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="const">定数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="fs_file_name_max_const.html" target="_self">FS_FILE_NAME_MAX</A></TH>
+      <TD>ファイル名およびパス名の最大文字数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_archive_name_len_max_const.html" target="_self">FS_ARCHIVE_NAME_LEN_MAX</A></TH>
+      <TD>アーカイブ名の最大文字数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_dma_not_use_const.html" target="_self">FS_DMA_NOT_USE</A></TH>
+      <TD>DMAチャンネルを使用せずCPU転送を指定する場合の定数です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_archive_proc_consts.html" target="_self">FS_ARCHIVE_PROC_*</A></TH>
+      <TD>アーカイブのユーザプロシージャ指定に使用する定数です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="type">型・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="fs_dir_pos_type.html" target="_self">FSDirPos</A></TH>
+      <TD>ディレクトリリスト位置を表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_seek_file_mode_type.html" target="_self">FSSeekFileMode</A></TH>
+      <TD>ファイルポインタ移動の基準位置を表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_file_id_type.html" target="_self">FSFileID</A></TH>
+      <TD>一意のファイルIDを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_file_type.html" target="_self">FSFile</A></TH>
+      <TD>ファイルアクセスに使用する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_dir_entry_type.html" target="_self">FSDirEntry</A></TH>
+      <TD>ディレクトリエントリの情報を格納する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_command_type_const.html" target="_self">FSCommandType</A></TH>
+      <TD>アーカイブへ送られるコマンドIDを表します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_result_const.html" target="_self">FSResult</A></TH>
+      <TD>アーカイブコマンドの結果を表します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_archive_rw_func_type.html" target="_self">FS_ARCHIVE_READ_FUNC</A></TH>
+      <TD>アーカイブへ指定するリードコールバック関数の形式を表します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_archive_rw_func_type.html" target="_self">FS_ARCHIVE_WRITE_FUNC</A></TH>
+      <TD>アーカイブへ指定するライトコールバック関数の形式を表します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fs_archive_type.html" target="_self">FSArchive</A></TH>
+      <TD>アーカイブの構築に使用する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_overlay_id_types.html" target="_self">FSOverlayID</A></TH>
+      <TD>オーバーレイモジュールのIDを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_overlay_info_type.html" target="_self">FSOverlayInfo</A></TH>
+      <TD>オーバーレイモジュールの情報を格納する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_overlay_id_types.html" target="_self">FS_EXTERN_OVERLAY</A></TH>
+      <TD>オーバーレイモジュールのIDを宣言するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fs_overlay_id_types.html" target="_self">FS_OVERLAY_ID</A></TH>
+      <TD>オーバーレイモジュールのIDを定義するマクロです。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dMdlUseMdlXXXXX</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dMdlUseMdlXXXXX</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/model.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G3dMdlUseMdlDiff(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlAmb(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlSpec(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlEmi(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlLightEnableFlag(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlPolygonMode(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlCullMode(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlPolygonID(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlAlpha(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlFogEnableFlag(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlDepthTestCond(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdl1Dot(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlFarClip(NNSG3dResMdl* pMdl);
+void NNS_G3dMdlUseMdlXLDepthUpdate(NNSG3dResMdl* pMdl);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pMdl</STRONG></EM></TD>
+      <TD width="87%">モデルリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><I><B>pMdl</B></I>で指定されるモデルの描画にモデルリソース内で設定されている値を使用するよう設定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlDiff</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのdiffuse 色を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlAmb</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのambient色を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlSpec</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのspecular色を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlEmi</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのemission色を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlLightEnableFlag</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのライトイネーブルフラグを使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlPolygonMode</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのポリゴンモードを使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlCullMode</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのカルモードを使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlPolygonID</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのポリゴンIDを使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlAlpha</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのα値を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlFogEnableFlag</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのフォグイネーブルフラグを使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlDepthTestCond</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのデプステスト条件を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdl1Dot</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルの１ドットポリゴン表示指定を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlFarClip</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルのFAR面交差ポリゴン表示指定を使うように指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="262"><CODE>NNS_G3dMdlUseMdlXLDepthUpdate</CODE></TD>
+      <TD width="1078">モデルリソース内で設定されている個々のマテリアルの半透明ポリゴンのデプス値更新イネーブルフラグを使うように指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>参照</H2>
+<P><CODE><A href="NNS_G3dMdlUseGlbXXXXX.html">NNS_G3dMdlUseGlbXXXXX</A></CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</BODY>
+
+</HTML>

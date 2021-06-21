@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdDumpFrmTexVramManagerEx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdDumpFrmTexVramManagerEx</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_GfdDumpFrmTexVramManagerEx( NNSGfdFrmTexVramDebugDumpCallBack pFunc, void* pUserContext );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR> 
+      <TD width="13%"><EM><STRONG>pFunc</STRONG></EM></TD>
+      <TD width="87%">ユーザ定義デバックコールバックをあらわす、NNSGfdFrmTexVramDebugDumpCallBack型の関数ポインタ。</TD>
+    </TR>
+    
+    <TR>
+      <TD width="13%"><EM><STRONG>pUserContext</STRONG></EM></TD>
+      <TD width="87%">ユーザ定義デバックコールバックに引数として渡される変数へのポインタ。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+ユーザ定義デバックコールバックを指定して、フレームテクスチャVRAMマネージャの状態をデバック出力します。<br>
+NNS_GfdDumpFrmTexVramManager()関数は、本関数を利用して実装されています。<br>
+NNS_GfdDumpFrmTexVramManagerが実装するコールバック関数の定義を以下にサンプルとして示します。<br>
+
+<PRE><code> 
+static void DefaultDebugDumpFunc_( 
+    int index, 
+    u32 startAddr, 
+    u32 endAddr, 
+    u32 blockMax, 
+    BOOL bActive, 
+    void* pUserContext 
+)
+{
+    NNSiGfdDefaultDebugContext*        pContext = (NNSiGfdDefaultDebugContext*)pUserContext;
+    NNS_GFD_NULL_ASSERT( pContext );
+    
+    
+    if( bActive )
+    {
+        OS_Printf("%02d    : 0x%08x  : 0x%08x  : 0x%08x  \n", 
+            index, 
+            startAddr, 
+            endAddr, 
+            endAddr - startAddr );
+        
+        pContext->szTotalFree      += endAddr - startAddr;
+        pContext->szTotalReserved  += blockMax;            
+    }else{
+        OS_Printf("%02d    : ----------  : ----------  : ----------  \n", index );
+    }
+}
+</code></PRE>
+
+</P>
+
+<H2>参照</H2>
+<P>なし。</P>
+
+<H2>履歴</H2>
+<P>2007/01/31 初版</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_SocPutChar</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_SocPutChar</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_SocPutChar(char c);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>c</strong></em></code></td>
+    <td>出力する文字。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>一文字出力します。CPSSocのoutbufにバッファのアドレスを設定しておく必要があります。outbufがフルになるまでバッファリングされます。<BR>
+	ブロックします。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocPuts.html">CPS_SocPuts</A></CODE>, 
+<CODE><A href="CPS_SocPrintf.html">CPS_SocPrintf</A></CODE>, 
+<CODE><A href="CPS_SocFlush.html">CPS_SocFlush</A></CODE>, 
+<CODE><A href="CPSSoc.html">CPSSoc</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_Init</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_Init</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_Init( void );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>MI 関連の初期化を行ないます。</P>
+<P>この関数は、<CODE><A href="../../os/init/OS_Init.html">OS_Init()</A></CODE> を使用している場合、そこから呼ばれますのでアプリケーションが改めて呼ぶ必要はありません。(ARM9 の場合。ARM7 では <A href="../../os/init/OS_Init.html"><CODE>OS_Init()</CODE></A> から呼んでいません。)</P>
+<P>具体的には以下のことを行なっています。</P>
+<BLOCKQUOTE>
+<P><B>ARM9</B><BR>
+共用の WRAM を全て ARM7 に割り当てます。( <CODE><A href="../wram/MI_SetWramBank.html">MI_SetWramBank( MI_WRAM_ARM7_ALL )</A></CODE> )<BR>
+DMA0 を確実に初期化します。これはDMAハードウェア不具合への対処です。( <CODE><A href="../dma/MI_StopDma.html">MI_StopDma( 0 )</A></CODE> )</P>
+</BLOCKQUOTE>
+<BLOCKQUOTE><B>ARM7</B>
+<BR>
+DMA0 を確実に初期化します。これはDMAハードウェア不具合への対処です。( <CODE><A href="../dma/MI_StopDma.html">MI_StopDma( 0 )</A></CODE> )</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+ <A href="../wram/MI_SetWramBank.html">MI_SetWramBank</A>,
+ <A href="../dma/MI_StopDma.html">MI_StopDma</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/02/08 初版</P>
+</body>
+</html>

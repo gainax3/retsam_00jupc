@@ -1,0 +1,50 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetNumConnectionHost</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetNumConnectionHost</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+int DWC_GetNumConnectionHost( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  自分も含めた接続中ホスト数を取得します。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+		<H2>返り値</H2>
+		<P>
+		  自分も含めた接続中ホスト数。マッチメイク途中の接続数もカウントされる。
+		  <A href="FriendsMatch.html">FriendsMatchライブラリ</A>非動作中に本関数を呼び出した場合は0を返す。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<A href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</A>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/03/09 誤記訂正<BR>
+			2006/01/31 返り値の説明をFriendsMatchライブラリを用いて修正<BR>
+			2005/12/16 マッチメイク中でも接続数を返すことを追記<BR>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

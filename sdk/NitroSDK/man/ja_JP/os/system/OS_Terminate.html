@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_Terminate</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_Terminate</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_Terminate( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>CPU を HALT 状態にしてループします。この関数から戻ることはありません。</P>
+<P>内部では、割り込み禁止状態にして<A href="OS_Halt.html"><CODE>OS_Halt()</CODE></A> を 呼んでいます。</P>
+<H2>参照</H2>
+<P><CODE><A href="../debug/OS_Panic.html">OS_Panic</A>, <A href="OS_Halt.html">OS_Halt</A>, <A href="OS_Exit.html">OS_Exit</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/04/05 初版</P>
+</BODY>
+</HTML>

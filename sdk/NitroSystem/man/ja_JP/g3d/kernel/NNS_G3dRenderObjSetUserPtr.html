@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dRenderObjSetUserPtr</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dRenderObjSetUserPtr</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>void*
+NNS_G3dRenderObjSetUserPtr(
+    NNSG3dRenderObj* pRenderObj,
+    void*            ptr
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
+      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>ptr</STRONG></EM></TD>
+      <TD width="87%">コールバック処理が利用する領域へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>この関数を呼び出した時点で設定されていたユーザー領域へのポインタ。</P>
+
+<H2>説明</H2>
+<P>レンダリングオブジェクトのユーザーポインタエントリにユーザー領域へのポインタを設定します。この領域にはコールバックの実行時にアクセスすることができます(<CODE>NNSG3dRenderObj</CODE>構造体の<CODE>ptrUser</CODE>メンバ)。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dRenderObjResetCallBack.html">NNS_G3dRenderObjResetCallBack</A>,
+<A href="NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

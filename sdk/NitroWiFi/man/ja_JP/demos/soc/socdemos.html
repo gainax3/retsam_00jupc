@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>SOC Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>ソケットライブラリサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroWiFi/build/demos/soc</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroWiFi/build/demos/soc</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroWiFi/build/demos/soc/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroWiFi/build/demos/soc/httpclient/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroWiFi/build/demos/soc/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>dhcp_monkey</CODE></STRONG></EM></TD>
+      <TD width="525">SOC ライブラリを使用して DHCP サーバへの接続/切断を繰り返すサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>ftpclient</CODE></STRONG></EM></TD>
+      <TD width="525">SOC ライブラリを使用して FTP クライアントとして FTP サーバに接続するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>httpclient</CODE></STRONG></EM></TD>
+      <TD width="525">SOC ライブラリを使用して HTTP クライアントとして HTTP サーバに接続するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>httpserver</CODE></STRONG></EM></TD>
+      <TD width="525">SOC ライブラリを使用して HTTP サーバとして HTTP クライアントと接続をするサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>telnet</CODE></STRONG></EM></TD>
+      <TD width="525">SOC ライブラリを使用して telnet に接続するサンプルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>エミュレータ</H2>
+<P><CODE>すべて動作します。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../soc/list_soc.html"><CODE>SOC関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2006/03/15 初版<BR>
+</P>
+</BODY>
+</HTML>

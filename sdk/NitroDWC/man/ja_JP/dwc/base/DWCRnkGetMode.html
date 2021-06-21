@@ -1,0 +1,79 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCRnkGetMode</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCRnkGetMode</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef enum{
+
+    DWC_RNK_GET_MODE_ORDER,
+    DWC_RNK_GET_MODE_TOPLIST,
+    DWC_RNK_GET_MODE_NEAR,
+    DWC_RNK_GET_MODE_FRIENDS,
+    DWC_RNK_GET_MODE_NEAR_HI,
+    DWC_RNK_GET_MODE_NEAR_LOW
+
+} DWCRnkGetMode;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  <a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>関数の取得モードを示す列挙型です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_ORDER</CODE></STRONG></EM></TD>
+			<TD>順位取得モード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_TOPLIST</CODE></STRONG></EM></TD>
+			<TD>トップランキングリスト取得モード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_NEAR</CODE></STRONG></EM></TD>
+			<TD>周辺ランキングリスト取得モード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_FRIENDS</CODE></STRONG></EM></TD>
+			<TD>友達ランキングリスト取得モード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_NEAR_HI</CODE></STRONG></EM></TD>
+			<TD>周辺ランキングリスト(自分より順位が高いもの)取得モード<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_RNK_GET_MODE_NEAR_LOW</CODE></STRONG></EM></TD>
+			<TD>周辺ランキングリスト(自分より順位が低いもの)取得モード<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<a href="DWC_RnkGetScoreAsync.html">DWC_RnkGetScoreAsync</a>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2007/07/21 2007/07/21 DWC_RNK_GET_MODE_NEAR_HI と DWC_RNK_GET_MODE_NEAR_LOW についての記述を追加<br/>
+			2006/07/21 語句統一<BR>
+			2006/04/14 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

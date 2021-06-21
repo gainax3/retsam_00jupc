@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_GetCompressionType</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_GetCompressionType</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>MICompressionType MI_GetCompressionType( const void* srcp );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">圧縮データが格納されているソースアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>圧縮の形式です。</p>
+
+<H2>説明</H2>
+<P>圧縮データのヘッダ情報を調べ、圧縮形式を取得します。<BR>
+データの先頭部分に埋め込まれた圧縮形式を読み、それを返すだけですので、実際に圧縮データの中身自体を調べるわけではありません。</P>
+<P>この関数はNITRO-SDKでサポートしている全ての圧縮形式のデータに対応しています。</P>
+<P>返り値は <CODE>MICompressType</CODE> 列挙型で以下の通りの意味を持ちます。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><CODE>MI_COMPRESSION_LZ</CODE></TD>
+      <TD>LZ77形式で圧縮されたデータ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>MI_COMPRESSION_HUFFMAN</CODE></TD>
+      <TD>Huffman 形式で圧縮されたデータ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>MI_COMPRESSION_RL</CODE></TD>
+      <TD>ランレングス形式で圧縮されたデータ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>MI_COMPRESSION_DIFF</CODE></TD>
+      <TD>差分フィルタがかけられたデータ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>内部動作</h2>
+<P>データの先頭４バイトを読み、その値をを元に圧縮タイプを決定します。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, <A href="MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="MI_UncompressRL.html">MI_UncompressRL*</A>, <A href="MI_UnfilterDiff.html">MI_UnfilterDiff*</A><BR>
+<A href="MI_GetUncompressedSize.html">MI_GetUncompressedSize</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/18 初版</P>
+</body>
+</html>

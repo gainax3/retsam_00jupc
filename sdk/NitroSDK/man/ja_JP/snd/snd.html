@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<base target="main">
+<title>サウンド(SND) 全リスト</title>
+<link rel="stylesheet" href="../css/titles.css">
+</head>
+<body>
+<h3>サウンド(SND)</h3>
+<p>[<b><a href="list_snd.html">機能一覧</a></b>]</p>
+<dl>
+<dt>初期化</dt>
+<dd><a href="SND_Init.html">SND_Init</a></dd>
+</dl>
+<dl>
+<dt>ARM7コマンド処理</dt>
+<dd><a href="SND_FlushCommand.html">SND_FlushCommand</a></dd>
+<dd><a href="SND_RecvCommandReply.html">SND_RecvCommandReply</a></dd>
+<dd><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></dd>
+<dd><a href="SND_WaitForFreeCommand.html">SND_WaitForFreeCommand</a></dd>
+<dd><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></dd>
+<dd><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></dd>
+<dd><a href="SND_CountFreeCommand.html">SND_CountFreeCommand</a></dd>
+<dd><a href="SND_CountReservedCommand.html">SND_CountReservedCommand</a></dd>
+<dd><a href="SND_CountWaitingCommand.html">SND_CountWaitingCommand</a></dd>
+</dl>
+<dl>
+<dt>シーケンスコマンド</dt>
+<dd><a href="SND_StartSeq.html">SND_StartSeq</a></dd>
+<dd><a href="SND_PrepareSeq.html">SND_PrepareSeq</a></dd>
+<dd><a href="SND_StartPreparedSeq.html">SND_StartPreparedSeq</a></dd>
+<dd><a href="SND_StopSeq.html">SND_StopSeq</a></dd>
+<dd><a href="SND_PauseSeq.html">SND_PauseSeq</a></dd>
+<dd><a href="SND_SetPlayerVolume.html">SND_SetPlayerVolume</a></dd>
+<dd><a href="SND_SetPlayerTempoRatio.html">SND_SetPlayerTempoRatio</a></dd>
+<dd><a href="SND_SetPlayerChannelPriority.html">SND_SetPlayerChannelPriority</a></dd>
+<dd><a href="SND_SetPlayerLocalVariable.html">SND_SetPlayerLocalVariable</a></dd>
+<dd><a href="SND_SetPlayerGlobalVariable.html">SND_SetPlayerGlobalVariable</a></dd>
+<dd><a href="SND_SetTrackMute.html">SND_SetTrackMute*</a></dd>
+<dd><a href="SND_SetTrackVolume.html">SND_SetTrackVolume</a></dd>
+<dd><a href="SND_SetTrackPitch.html">SND_SetTrackPitch</a></dd>
+<dd><a href="SND_SetTrackPan.html">SND_SetTrackPan</a></dd>
+<dd><a href="SND_SetTrackPanRange.html">SND_SetTrackPanRange</a></dd>
+<dd><a href="SND_SetTrackModDepth.html">SND_SetTrackModDepth</a></dd>
+<dd><a href="SND_SetTrackModSpeed.html">SND_SetTrackModSpeed</a></dd>
+<dd><a href="SND_SetTrackAllocatableChannel.html">SND_SetTrackAllocatableChannel</a></dd>
+</dl>
+<dl>
+<dt>チャンネルコマンド</dt>
+<dd><a href="SND_LockChannel.html">SND_LockChannel</a></dd>
+<dd><a href="SND_UnlockChannel.html">SND_UnlockChannel</a></dd>
+<dd><a href="SND_StopUnlockedChannel.html">SND_StopUnlockedChannel</a></dd>
+<dd><a href="SND_SetupChannelPcm.html">SND_SetupChannelPcm</a></dd>
+<dd><a href="SND_SetupChannelPsg.html">SND_SetupChannelPsg</a></dd>
+<dd><a href="SND_SetupChannelNoise.html">SND_SetupChannelNoise</a></dd>
+<dd><a href="SND_SetChannelVolume.html">SND_SetChannelVolume</a></dd>
+<dd><a href="SND_SetChannelTimer.html">SND_SetChannelTimer</a></dd>
+<dd><a href="SND_SetChannelPan.html">SND_SetChannelPan</a></dd>
+</dl>
+<dl>
+<dt>キャプチャコマンド</dt>
+<dd><a href="SND_SetupCapture.html">SND_SetupCapture</a></dd>
+</dl>
+<dl>
+<dt>アラームコマンド</dt>
+<dd><a href="SND_SetupAlarm.html">SND_SetupAlarm</a></dd>
+</dl>
+<dl>
+<dt>タイマーコマンド</dt>
+<dd><a href="SND_StartTimer.html">SND_StartTimer</a></dd>
+<dd><a href="SND_StopTimer.html">SND_StopTimer</a></dd>
+</dl>
+<dl>
+<dt>グローバル設定コマンド</dt>
+<dd><a href="SND_SetMasterVolume.html">SND_SetMasterVolume</a></dd>
+<dd><a href="SND_SetMasterPan.html">SND_SetMasterPan</a></dd>
+<dd><a href="SND_ResetMasterPan.html">SND_ResetMasterPan</a></dd>
+<dd><a href="SND_SetOutputSelector.html">SND_SetOutputSelector</a></dd>
+</dl>
+<dl>
+<dt>データ無効化コマンド</dt>
+<dd><a href="SND_InvalidateSeqData.html">SND_InvalidateSeqData</a></dd>
+<dd><a href="SND_InvalidateBankData.html">SND_InvalidateBankData</a></dd>
+<dd><a href="SND_InvalidateWaveData.html">SND_InvalidateWaveData</a></dd>
+</dl>
+<dl>
+<dt>ドライバ情報コマンド</dt>
+<dd><a href="SND_ReadDriverInfo.html">SND_ReadDriverInfo</a></dd>
+</dl>
+<dl>
+<dt>バンク</dt>
+<dd><a href="SND_AssignWaveArc.html">SND_AssignWaveArc</a></dd>
+<dd><a href="SND_DestroyBank.html">SND_DestroyBank</a></dd>
+<dd><a href="SND_DestroyWaveArc.html">SND_DestroyWaveArc</a></dd>
+<dd><a href="SND_ReadInstData.html">SND_ReadInstData</a></dd>
+<dd><a href="SND_WriteInstData.html">SND_WriteInstData</a></dd>
+<dd><a href="SND_GetFirstInstDataPos.html">SND_GetFirstInstDataPos</a></dd>
+<dd><a href="SND_GetNextInstData.html">SND_GetNextInstData</a></dd>
+<dd><a href="SND_GetWaveDataCount.html">SND_GetWaveDataCount</a></dd>
+<dd><a href="SND_GetWaveDataAddress.html">SND_GetWaveDataAddress</a></dd>
+<dd><a href="SND_SetWaveDataAddress.html">SND_SetWaveDataAddress</a></dd>
+<dd><a href="SNDInstData.html">SNDInstData</a></dd>
+<dd><a href="SNDWaveData.html">SNDWaveData</a></dd>
+</dl>
+<dl>
+<dt>情報取得</dt>
+<dd><a href="SND_GetPlayerStatus.html">SND_GetPlayerStatus</a></dd>
+<dd><a href="SND_GetChannelStatus.html">SND_GetChannelStatus</a></dd>
+<dd><a href="SND_GetCaptureStatus.html">SND_GetCaptureStatus</a></dd>
+<dd><a href="SND_GetPlayerLocalVariable.html">SND_GetPlayerLocalVariable</a></dd>
+<dd><a href="SND_GetPlayerGlobalVariable.html">SND_GetPlayerGlobalVariable</a></dd>
+<dd><a href="SND_GetPlayerTickCounter.html">SND_GetPlayerTickCounter</a></dd>
+<dd><a href="SND_ReadChannelInfo.html">SND_ReadChannelInfo</a></dd>
+<dd><a href="SND_ReadPlayerInfo.html">SND_ReadPlayerInfo</a></dd>
+<dd><a href="SND_ReadTrackInfo.html">SND_ReadTrackInfo</a></dd>
+<dd><a href="SNDChannelInfo.html">SNDChannelInfo</a></dd>
+<dd><a href="SNDPlayerInfo.html">SNDPlayerInfo</a></dd>
+<dd><a href="SNDTrackInfo.html">SNDTrackInfo</a></dd>
+</dl>
+<dl>
+<dt>ユーティリティ</dt>
+<dd><a href="SND_CalcDecibel.html">SND_CalcDecibel</a></dd>
+<dd><a href="SND_CalcDecibelSquare.html">SND_CalcDecibelSquare</a></dd>
+<dd><a href="SND_CalcTimer.html">SND_CalcTimer</a></dd>
+<dd><a href="SND_CalcChannelVolume.html">SND_CalcChannelVolume</a></dd>
+</dl>
+</body>
+</html>

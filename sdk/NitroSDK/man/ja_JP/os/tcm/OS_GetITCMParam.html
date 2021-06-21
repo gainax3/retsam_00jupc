@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetITCMParam</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetITCMParam</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>u32 OS_GetITCMParam( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>命令TCM のパラメータ。</P>
+<H2>説明</H2>
+<P>命令TCM のパラメータを取得します。<BR>
+このパラメータは 命令TCM の有効エリアサイズとなります。</P>
+<P>取得した値とサイズの対応は以下の通りです。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>HW_C9_TCMR_4KB</TD>
+      <TD>4KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_8KB</TD>
+      <TD>8KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_16KB</TD>
+      <TD>16KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_32KB</TD>
+      <TD>32KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_64KB</TD>
+      <TD>64KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_128KB</TD>
+      <TD>128KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_256KB</TD>
+      <TD>256KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_512KB</TD>
+      <TD>512KByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_1MB</TD>
+      <TD>1MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_2MB</TD>
+      <TD>2MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_4MB</TD>
+      <TD>4MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_8MB</TD>
+      <TD>8MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_16MB</TD>
+      <TD>16MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_32MB</TD>
+      <TD>32MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_64MB</TD>
+      <TD>64MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_128MB</TD>
+      <TD>128MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_256MB</TD>
+      <TD>256MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_512MB</TD>
+      <TD>512MByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_1GB</TD>
+      <TD>1GByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_2GB</TD>
+      <TD>2GByte</TD>
+    </TR>
+    <TR>
+      <TD>HW_C9_TCMR_4GB</TD>
+      <TD>4GByte</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>内部動作</H2>
+<P>システム制御コプロセッサ CP15 のレジスタ9を操作します。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_SetITCMParam.html">OS_SetITCMParam</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/01/15 初版</P>
+</BODY>
+</HTML>

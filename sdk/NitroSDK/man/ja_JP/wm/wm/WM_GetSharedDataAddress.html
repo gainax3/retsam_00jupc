@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetSharedDataAddress</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetSharedDataAddress</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+u16* WM_GetSharedDataAddress(
+        WMDataSharingInfo*  dsInfo ,
+        WMDataSet*          receiveData ,
+        u16                 aid
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">dsInfo</FONT></STRONG></EM></TD>
+      <TD width="800">データシェアリング情報構造体へのポインタを指定します。
+      <A href="WM_StartDataSharing.html">WM_StartDataSharing関数</A>にて指定した構造体を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">receiveData</FONT></STRONG></EM></TD>
+      <TD width="800">データ抽出元である受信データへのポインタを指定します。
+      <A href="WM_StepDataSharing.html">WM_StepDataSharing関数</A>にて受信したデータを指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">aid</FONT></STRONG></EM></TD>
+      <TD width="800">データを抽出する端末のAIDを指定します。0 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>指定端末から受信したデータへのアドレスを返します。指定端末からの受信データが存在しなければNULLを返します。</p>
+
+<H2>説明</H2>
+<P>
+データシェアリングにて取得したデータ構造体の中から、各端末のデータを抽出します。抽出に失敗した場合はNULLを返します。
+</P>
+
+<h2>参照</h2>
+<P><CODE>
+<A href="WM_StartDataSharing.html">WM_StartDataSharing</A>, <A href="WM_StepDataSharing.html">WM_StepDataSharing</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/03/02 aid引数について指定可能範囲を追記<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

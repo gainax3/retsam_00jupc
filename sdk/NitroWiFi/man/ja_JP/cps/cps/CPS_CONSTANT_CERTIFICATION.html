@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_CERT_*</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_CERT_*</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define CPS_CERT_OUTOFDATE 0x8000
+#define CPS_CERT_BADSERVER 0x4000
+
+#define CPS_CERT_ERRMASK 0x00ff
+
+enum {
+	CPS_CERT_NOERROR = 0,
+	CPS_CERT_NOROOTCA,
+	CPS_CERT_BADSIGNATURE,
+	CPS_CERT_UNKNOWN_SIGALGORITHM,
+	CPS_CERT_UNKNOWN_PUBKEYALGORITHM
+};</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>認証時に呼ばれるコールバック関数に渡されるエラー情報です。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>CPS_CERT_OUTOFDATE</CODE></STRONG></EM></TD>
+			<TD width="75%">証明書の有効期限が切れていることを示す独立したビット。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_BADSERVER</CODE></STRONG></EM></TD>
+			<TD>証明書のサーバ名(Common Name)が、指定したサーバ名と異なることを示す独立したビット。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_ERRMASK</CODE></STRONG></EM></TD>
+			<TD>下記のエラーコードを取り出すためのマスク。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_NOERROR</CODE></STRONG></EM></TD>
+			<TD>認証がなされた事を示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_NOROOTCA</CODE></STRONG></EM></TD>
+			<TD>ルート証明が存在しないことを示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_BADSIGNATURE</CODE></STRONG></EM></TD>
+			<TD>署名が一致しなかったことを示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_UNKNOWN_SIGALGORITHM</CODE></STRONG></EM></TD>
+			<TD>未知の署名アルゴリズムであることを示します。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPS_CERT_UNKNOWN_PUBKEYALGORITHM</CODE></STRONG></EM></TD>
+			<TD>未知の公開鍵アルゴリズムであることを示します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<h2>参照</h2>
+
+<p>
+</p>
+<H2>履歴</H2>
+<P>
+Ver. 2005/09/13 初版</P>
+</body>
+</html>

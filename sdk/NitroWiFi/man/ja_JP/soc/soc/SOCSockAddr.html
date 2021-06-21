@@ -1,0 +1,51 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOCSockAddr</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOCSockAddr</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>#define SOC_PF_INET   2    // ARPA Internet protocols</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct SOCSockAddr
+{
+    u8 len;
+    u8 family;
+    u8 data[6];
+} SOCSockAddr;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p><code>SOCSockAddr</code> はソケットアドレスを表現するための汎用データ型です。ソケットアドレス構造体を引数として関数に渡すときには、<code>len</code> 
+要素は<code>sizeof(SOCSockAddr)</code> に設定してください。</p>
+
+<p><strong><em>注意</em></strong>：DSソケットライブラリではソケットアドレス構造体の大きさを関数の引数にとりません。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_Bind.html">SOC_Bind</a></code>,
+<code><a href="SOC_Connect.html">SOC_Connect</a></code>,
+<code><a href="SOC_Accept.html">SOC_Accept</a></code>,
+<code><a href="SOC_GetSockName.html">SOC_GetSockName</a></code>,
+<code><a href="SOCInAddr.html">SOCInAddr</a></code>,
+<code><a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

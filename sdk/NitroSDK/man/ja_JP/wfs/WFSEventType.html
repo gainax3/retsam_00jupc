@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSEventType</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSEventType</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+<font color="#008000">/* イベントコールバック種別 */</font>
+typedef enum WFSEventType
+{
+    <font color="#008000">/*** 親機にのみ通知されるイベント ***/</font>
+
+    WFS_EVENT_SERVER_SEGMENT_REQUEST, <font color="#008000">/* 子機からの読み込みリクエスト. (引数は<a href="WFSSegmentBuffer.html">WFSSegmentBuffer*</a>) */</font>
+
+    <font color="#008000">/*** 子機にのみ通知されるイベント ***/</font>
+
+    WFS_EVENT_CLIENT_READY            <font color="#008000">/* 親機からのファイルテーブルの受信完了 */</font>
+}
+WFSEventType;
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p>WFSライブラリのイベントを表す列挙定数を示します。<br />
+各値の意味は以下の通りです。<br />
+</p>
+<table border="0">
+  <tbody>
+    <tr>
+      <td colspan="3" style="background-color:white">親機にのみ通知されるイベント</td>
+    </tr>
+    <tr>
+      <td>値</td>
+      <td>通知内容</td>
+	  <td>引数の意味</td>
+    </tr>
+    <tr>
+      <td>WFS_EVENT_SERVER_SEGMENT_REQUEST</td>
+      <td>子機からの読み込みリクエストが発生した時点で通知されます。<br />
+      親機は指定された領域のデータをデバイスから読み込む必要があります。</td>
+	  <td>リクエスト内容を保持する<a href="WFSSegmentBuffer.html">WFSSegmentBuffer</a>型へのポインタ</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="background-color:white">子機にのみ通知されるイベント</td>
+    </tr>
+    <tr>
+      <td>値</td>
+      <td>通知内容</td>
+	  <td>引数の意味</td>
+    </tr>
+    <tr>
+      <td>WFS_EVENT_CLIENT_READY</td>
+      <td>親機からファイルテーブルの受信が完了した時点で通知されます。<br />
+      この通知以降、<a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a>関数でファイルテーブルを参照可能になります。</td>
+	  <td>引数はありません。</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<h2>参照</h2>
+<p><code>
+<a href="WFSEventCallback.html">WFSEventCallback</a> 
+<a href="WFSSegmentBuffer.html">WFSSegmentBuffer</a> 
+<br />
+<a href="server/WFS_InitServer.html">WFS_InitServer</a> 
+<a href="client/WFS_InitClient.html">WFS_InitClient</a> 
+<a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a> 
+<a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/11 WFS_EVENT_CLIENT_READ_COMPLETEを削除<br />
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dDrawSprite*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dDrawSprite*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Softsprite.h&gt;</CODE></pre>
+  <pre><CODE>
+    void NNS_G2dDrawSpriteSimple  ( const NNSG2dSimpleSprite* pS );
+    void NNS_G2dDrawSpriteBasic   ( const NNSG2dBasicSprite* pB );
+    void NNS_G2dDrawSpriteExtended( const NNSG2dExtendedSprite* pE );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pS</font></strong></em></td>
+    <td width="87%">[IN] シンプルスプライト</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pB</font></strong></em></td>
+    <td width="87%">[IN] ベーシックスプライト</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pE</font></strong></em></td>
+    <td width="87%">[IN] 拡張スプライト</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+各種スプライトを描画します。<BR>
+Simple, Basic スプライトなどの簡易版スプライトを描画する際に不足する情報は、モジュール内部で保持する
+デフォルト値が参照されます。
+デフォルト値の設定はNNS_G2dSetSpriteDefaultAttr()を使用します。
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dGetSpriteDefaultAttr.html">NNS_G2dGetSpriteDefaultAttr</A><br>
+</CODE>
+<CODE><A href="NNS_G2dIsSpriteAttrEnable.html">NNS_G2dIsSpriteAttrEnable</A><br>
+</CODE>
+<CODE><A href="NNS_G2dSetSpriteDefaultAttr.html">NNS_G2dSetSpriteDefaultAttr</A><br>
+</CODE>
+<CODE><A href="NNS_G2dSetSpriteAttrEnable.html">NNS_G2dSetSpriteAttrEnable</A><br>
+</CODE>
+<CODE><A href="NNS_G2dDrawSpriteXXXFast.html">NNS_G2dDrawSprite*Fast</A><br>
+</CODE>
+
+
+</p>
+<H2>履歴</H2>
+<P>2004/05/28 初版</P>
+</body>
+</html>

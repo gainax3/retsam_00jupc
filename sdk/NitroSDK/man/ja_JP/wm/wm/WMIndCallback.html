@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMIndCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMIndCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMIndCallback
+{ 
+    u16     apiid;
+    u16     errcode;
+    u16     state;
+    u16     reason;
+
+} WMIndCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_INDICATIONに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の6つです。<BR>
+      WM_STATECODE_BEACON_RECV、WM_STATECODE_DISASSOCIATE、WM_STATECODE_REASSOCIATE、WM_STATECODE_AUTHENTICATE、WM_STATECODE_FIFO_ERROR、WM_STATECODE_INFORMATION。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New"><font color="#808080">reason</font></font></strong></em></TD>
+      <TD width="800"><font color="#808080">state の値に応じて indication の原因を示すコードが格納されます。</font></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_SetIndCallback.html">WM_SetIndCallback</A>で設定したコールバック関数に渡される構造体です。<BR>
+stateがWM_STATECODE_BEACON_RECVだった場合は、さらに<A href="WMBeaconRecvIndCallback.html">WMBeaconRecvIndCallback</A>にキャストすることで、ビーコンの詳細情報を得ることができます。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/07/29 要因にWM_STATECODE_INFORMATIONを追記<BR>
+2005/02/01 要因にWM_STATECODE_FIFO_ERRORを追記<BR>
+2004/11/10 reasonメンバについての説明を追記<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

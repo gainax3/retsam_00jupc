@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CARD_IsPulledOut</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CARD_IsPulledOut</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/card.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CARD_IsPulledOut( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>カード抜けを検出した場合 TRUE を、そうでない場合は FALSE を返します。一度でもカード抜けを検出した後は常に
+TRUE を返します。</P>
+<H2>説明</H2>
+<P>カード抜けを検出します。</P>
+<P>この関数を使用するためには、<CODE><A href="../common/CARD_Init.html">CARD_Init()</A></CODE> が予め呼ばれている必要があります。</P>
+<P>また、デフォルトではカード抜けを検出するとライブラリ内部で <CODE><A href="CARD_TerminateForPulledOut.html">OS_TerminateForPulledOut()</A></CODE> を呼び出します。そこでプログラムは停止しますので、<CODE>CARD_IsPulledOut()</CODE> でポーリングする場合などは <CODE><A href="CARD_SetPulledOutCallback.html">CARD_SetPulledOutCallback()</A></CODE> で FALSE を返すコールバックを設定しておく必要があります。</P>
+<H2>参照</H2>
+<P>
+<CODE><A href="../common/CARD_Init.html">CARD_Init</A>, <A href="CARD_SetPulledOutCallback.html">CARD_SetPulledOutCallback</A>, <A href="CARD_TerminateForPulledOut.html">CARD_TerminateForPulledOut</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/12/16 コールバックについての記述を追加<BR>
+2004/09/16 初版</P>
+</BODY>
+</HTML>

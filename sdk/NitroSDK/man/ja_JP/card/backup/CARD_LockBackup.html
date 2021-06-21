@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_LockBackup</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_LockBackup</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void	CARD_LockBackup(u16 lock_id);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>lock_id</STRONG></EM></TD>
+      <TD width="87%">カードのロックに用いるID<BR>
+	  これはOS_GetLockID関数で取得します</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>CARD バックアップデバイスへのアクセスバスをロックします。<BR>
+他のモジュールが別のIDですでにロックしている場合は解放までブロッキングします。<BR>
+この関数は常に成功し、ロックした後に制御を返します。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<P>
+<FONT color="#800000">
+CARD バックアップデバイスへアクセスするすべての関数は、事前にアクセスバスをロックする必要があります。<BR>
+また、CARD ROM デバイスとバックアップデバイスは同時にアクセスすることができません。<BR>
+一方のバスがロックされている間、他方のバスのロックが待たされる点に注意してください。<BR>
+</FONT>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../../os/spinLock/OS_GetLockID.html">OS_GetLockID</A> 
+<A href="../../os/spinLock/OS_LockCard.html">OS_LockCard</A> 
+<A href="../../os/spinLock/OS_LockCartridge.html">OS_LockCartridge</A> 
+<A href="CARD_UnlockBackup.html">CARD_UnlockBackup</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/06 プロトタイプの記述を修正<br>
+2004/08/31 関数が常に成功する旨の記述を追加<br>
+2004/07/23 ロックIDの型をu32からu16へ変更<BR>
+2004/07/13 CARD ROM デバイスとバックアップデバイスの排他制御に関して追加<BR>
+2004/07/10 初版<BR>
+</P>
+</body>
+</html>

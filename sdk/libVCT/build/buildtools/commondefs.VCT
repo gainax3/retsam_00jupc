@@ -1,0 +1,72 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  libVCT - build
+# File:     commondefs.VCT
+#
+# Copyright (c) 2005-2006 Abiosso Networks, Inc. ALL RIGHTS RESERVED.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Abiosso Networks, Inc., and are protected
+# by Federal copyright law.  They may not be disclosed to third parties
+# or copied or duplicated in any form, in whole or in part,  without
+# the prior written consent of Abiosso.
+#
+#----------------------------------------------------------------------------
+
+#
+# VoiceChat library root directory
+#
+
+NITROLIBVCT_ROOT		?= $(NITROSDK_ROOT)/../libVCT
+
+
+#----------------------------------------------------------------------------
+# Utilities
+#
+
+EMPTY	 		:=
+SPACE 			:= $(EMPTY) $(EMPTY)
+
+
+#----------------------------------------------------------------------------
+#  VoiceChat library path settings
+#
+
+NVCT_ROOT		= $(subst $(SPACE),\ ,$(subst \,/,$(NITROLIBVCT_ROOT)))
+NVCT_INCDIR		= $(NVCT_ROOT)/include
+NVCT_LIBDIR		= $(NVCT_ROOT)/lib/$(NITRO_LIBTYPE)
+NVCT_ADDINSDIR		= $(NVCT_ROOT)/add-ins
+
+
+### SDK Library settings
+-include $(NVCT_ROOT)/build/buildtools/commondefs.nossl
+
+
+NITROVCT_LIBS_DEFAULT	 = libvct$(NITRO_LIBSUFFIX).a
+
+NITROVCT_LIBS		?= $(NITROVCT_LIBS_DEFAULT)
+
+
+### SDK Extention Library settings
+
+EINCLUDES		+= $(NVCT_INCDIR)
+ELIBRARY_DIRS		+= $(NVCT_LIBDIR)
+ELIBRARIES		+= $(NITROVCT_LIBS)
+
+
+#----------------------------------------------------------------------------
+#  VoiceChat library install path
+#
+
+ifdef	NITROVCT_INSTALL_ROOT
+NITROVCT_INSTALL_ROOT_	= $(NITROVCT_INSTALL_ROOT)
+else
+NITROVCT_INSTALL_ROOT_	= $(NITROLIBVCT_ROOT)
+endif
+
+NVCT_INSTALL_ROOT  	= $(subst $(SPACE),\ ,$(subst \,/,$(NITROVCT_INSTALL_ROOT_)))
+NVCT_INSTALL_INCDIR	= $(NVCT_INSTALL_ROOT)/include
+NVCT_INSTALL_LIBDIR	= $(NVCT_INSTALL_ROOT)/lib/$(NITRO_LIBTYPE)
+
+
+#===== End of commondefs.VCT =====

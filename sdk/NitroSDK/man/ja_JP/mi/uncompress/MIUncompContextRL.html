@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MIUncompContextRL</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MIUncompContextRL</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/mi/uncomp_stream.h&gt;</CODE><BR>
+typedef struct
+{
+    u8* destp;       // 4B
+    s32 destCount;   // 4B
+    u16 destTmp;     // 2B
+    u8  destTmpCnt;  // 1B
+    u8  flags;       // 1B
+    u16 length;      // 2B
+    u8  _padding[2]; // 2B
+                     // 計 16B
+} MIUncompContextRL;
+</PRE>
+  </dd>
+</dl>
+<h2>説明</h2>
+<P>ランレングス圧縮されたデータをカードから読み込みながら順次ストリーミング展開をおこなう際に、<BR>
+データ展開状況を保存しておくためのコンテキスト構造体です。<BR>
+<A href="MI_InitUncompContextRL.html">MI_InitUncompContextRL</A>関数でコンテキストの初期化をおこない、<A href="MI_ReadUncompRL.html">MI_ReadUncompRL*</A>関数でこのコンテキストを使用して展開状況を保管します。<BR>
+</P>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開したデータの書き込み先領域へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destCount</STRONG></EM></TD>
+      <TD>残り書き込みサイズ </TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destTmp</STRONG></EM></TD>
+      <TD>書き込み途中のデータ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>destTmpCnt</STRONG></EM></TD>
+      <TD>書き込み途中のデータサイズ退避用</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>flags</STRONG></EM></TD>
+      <TD>圧縮フラグデータ退避用</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>length</STRONG></EM></TD>
+      <TD width="87%">連続書き込みサイズ退避用 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>参照</h2>
+<p><CODE><A href="MI_InitUncompContextRL.html">MI_InitUncompContextRL</A>, <A href="MI_ReadUncompRL.html">MI_ReadUncompRL*</A>, <A href="MIUncompContextLZ.html">MIUncompContextLZ</A>,<A href="MIUncompContextHuffman.html">MIUncompContextHuffman</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/11/30 初版</P>
+</body>
+</html>

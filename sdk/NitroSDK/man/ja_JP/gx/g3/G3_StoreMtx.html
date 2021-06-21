@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_StoreMtx</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_StoreMtx</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_StoreMtx(u32 num);</CODE>
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR><CODE>void G3B_StoreMtx(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, u32 num);</CODE><BR><CODE>void G3C_StoreMtx(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, u32 num);</CODE><BR><CODE>void G3BS_StoreMtx(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, u32 num);</CODE><BR><CODE>void G3CS_StoreMtx(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, u32 num);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">num</font></strong></em></td>
+    <td width="87%">行列スタックのインデックス(0～30, Projection行列では常に0)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>カレント行列をスタックの指定位置に格納します。<B><I>num</I></B> がその位置で、符号無し整数(整数部5ビット)で、0～30の値を設定可能です。行列モードがProjection
+の場合はスタックが1段しかないため、<B><I>num</I></B> は設定に関わらず0 と見なされます。また<A href="G3_PushMtx.html">G3*_PushMtx</A> と <A href="G3_PopMtx.html">G3*_PopMtx</A> コマンドでは移動する座標スタックポンタはこのコマンドでは変化しません。<BR>
+<BR>
+位置座標行列スタックと方向ベクトル行列は連動しているため、行列モードがPosition
+モードとPosition・Vector同時設定モードのどちらの場合でも、両方のスタックに対する操作となります。</P>
+<h2>参照</h2>
+<P><A href="G3_MtxMode.html" target="_self">G3*_MtxMode</A>, <A href="G3_Identity.html" target="_self">G3*_Identity</A>, <A href="G3_LoadMtx43.html" target="_self">G3*_LoadMtx43</A>, <A href="G3_LoadMtx44.html" target="_self">G3*_LoadMtx44</A>, <A href="G3_MultMtx43.html" target="_self">G3*_MultMtx43</A>, <A href="G3_MultMtx44.html" target="_self">G3*_MultMtx44</A>, <A href="G3_MultMtx33.html" target="_self">G3*_MultMtx33</A>, <A href="G3_PushMtx.html" target="_self">G3*_PushMtx</A>, <A href="G3_PopMtx.html" target="_self">G3*_PopMtx</A>, <A href="G3_RestoreMtx.html" target="_self">G3*_RestoreMtx</A>, <A href="G3_Scale.html" target="_self">G3*_Scale</A>, <A href="G3_Translate.html" target="_self">G3*_Translate</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

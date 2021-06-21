@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdGetTexKey4x4Flag</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdGetTexKey4x4Flag</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL NNS_GfdGetTexKey4x4Flag(NNSGfdTexKey memKey);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>memKey</STRONG></EM></TD>
+      <TD width="87%">VRAMから確保したテクスチャ用メモリのキー・データ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>確保したテクスチャ用メモリが4×4テクセル圧縮テクスチャ用の場合、真。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>memKey</CODE>で指定されたキー・データが示すテクスチャ用メモリが4×x4テクセル圧縮テクスチャ用なら真を返します。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdGetTexKeyAddr.html">NNS_GfdGetTexKeyAddr</A>
+<A href="NNS_GfdGetTexKeySize.html">NNS_GfdGetTexKeySize</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/07/16 初版</P>
+</BODY>
+
+</HTML>

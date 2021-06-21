@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_DisconnectChildren</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_DisconnectChildren</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_DisconnectChildren( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback , u16 aidBitmap );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">aidBitmap</FONT></STRONG></EM></TD>
+      <TD width="800">切断する子機のAIDビットフィールドを指定します。<BR>
+      最下位ビットは無視され、bit 1～15 がAID 1～15 の子機をそれぞれ示します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+親機として活動している際、指定した接続の確立している子機を一括で切断します。
+<CODE>aidBitmap</CODE>に示すビットの内、接続の確立していない子機のビットは無視されるため、
+0xFFFFを指定すると接続されている全子機を切断することができます。
+WMのステートが<A href="wm_state_diagram.html">PARENTステート</A>もしくは<A href="wm_state_diagram.html">MP_PARENTステート</A>の場合にのみ実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、切断処理が完了した後にコールバックが発生します。<BR>
+処理完了後も、指定した子機との接続が切断されるだけで、通信は継続されます。
+</P>
+
+<h2>参照</h2>
+<P><CODE><A href="WM_StartParent.html">WM_StartParent</A>, <A href="WM_Disconnect.html">WM_Disconnect</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/08/20 初版<BR>
+</P>
+</body>
+</html>

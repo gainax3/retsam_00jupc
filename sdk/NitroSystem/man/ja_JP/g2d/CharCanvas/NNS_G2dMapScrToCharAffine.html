@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dMapScrToCharAffine</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dMapScrToCharAffine</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+void NNS_G2dMapScrToCharAffine(
+    void* areaBase,
+    int areaWidth,
+    int areaHeight,
+    NNSG2dAffineBGWidth scnWidth,
+    int charNo
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaBase</STRONG></EM></TD>
+      <TD width="87%"> [OUT] CharCanvas 表示位置左上隅に対応するスクリーンへのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaWidth</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvasの幅 (キャラクタ単位) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaHeight</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvasの高さ (キャラクタ単位) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>scnWidth</STRONG></EM></TD>
+      <TD width="87%"> [IN] スクリーンの幅 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>charNo</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas に割り当てられているキャラクタの始点のキャラクタ番号 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	アフィン BG 面のスクリーンを CharCanvas を表示できるように設定します。<br>
+</P>
+<P>
+	<EM><STRONG>scnWidth</STRONG></EM> には以下のいずれかを指定します。
+</P>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="40%"> NNS_G2D_AFFINE_BG_WIDTH_128 </TD>
+      <TD width="60%"> スクリーン幅が128（スクリーンサイズが128x128）ピクセル </TD>
+    </TR>
+    <TR>
+      <TD width="40%"> NNS_G2D_AFFINE_BG_WIDTH_256 </TD>
+      <TD width="60%"> スクリーン幅が256（スクリーンサイズが256x256）ピクセル </TD>
+    </TR>
+    <TR>
+      <TD width="40%"> NNS_G2D_AFFINE_BG_WIDTH_512 </TD>
+      <TD width="60%"> スクリーン幅が512（スクリーンサイズが512x512）ピクセル </TD>
+    </TR>
+    <TR>
+      <TD width="40%"> NNS_G2D_AFFINE_BG_WIDTH_1024 </TD>
+      <TD width="60%"> スクリーン幅が1024（スクリーンサイズが1024x1024）ピクセル </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>
+	<img src="MapAffine.png" alt="概念図" border="1">
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2005/05/25 初版</P>
+</BODY>
+
+</HTML>

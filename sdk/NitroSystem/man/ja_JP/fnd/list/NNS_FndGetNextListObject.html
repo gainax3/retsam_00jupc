@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_FndGetNextListObject</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_FndGetNextListObject</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></PRE>
+  <PRE><CODE>void* NNS_FndGetNextListObject( NNSFndList* list, void* object );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>list</STRONG></EM></TD>
+      <TD width="87%">リスト構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>object</STRONG></EM></TD>
+      <TD width="87%">現在のオブジェクトへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	指定されたオブジェクトの次のオブジェクトへのポインタを返します。
+	次のオブジェクトが無かった場合には、NULLを返します。
+</P>
+
+<H2>説明</H2>
+<P>
+	<CODE>object</CODE>で指定されたオブジェクトの次に接続されているオブジェクトへのポインタを返します。
+	<CODE>object</CODE>にNULLを指定すると、リストの先頭に繋がれているオブジェクトへのポインタを返します。
+	次のオブジェクトが無かった場合には、NULLを返します。
+</P>
+<P>
+	リストの先頭から順番に、全てのオブジェクトへアクセスしたい場合には、以下の処理で行う事が出来ます。
+</P>
+<PRE><CODE>
+    void* object = NULL;
+
+    while ((object = NNS_FndGetNextListObject(list, object)) != NULL)
+    {
+        ......
+    }
+</CODE></PRE>
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_FndGetPrevListObject.html">NNS_FndGetPrevListObject</A>,
+<A href="NNS_FndGetNthListObject.html">NNS_FndNthListObject</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/10/21 説明中のサンプルコードを修正<BR>
+2004/02/02 初版
+</P>
+</BODY>
+
+</HTML>

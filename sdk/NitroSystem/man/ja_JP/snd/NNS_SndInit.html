@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndInit</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndInit</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndInit( <code>void )</code>;</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>引数</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1LWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドを初期化します。他の全てのサウンド関数より先に呼びだしてください。ただし、あらかじめ、OSを初期化しておく必要があります。
+</p>
+      <p>
+IRQ割り込みは有効にしてください。また、この関数の後で、<tt class="function">OS_SetIrqMask</tt>関数 などで割り込みの設定を上書きしないようにしてください。
+</p>
+      <p>
+内部では、ワークの初期化及び、ARM7との通信同期処理を行っています。
+</p>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>サウンド(SND) API機能一覧</title>
+<link rel="stylesheet" href="../css/apilist.css">
+</head>
+<body>
+<h1>サウンド(SND) API機能一覧</h1>
+<h2></h2>
+<h3><a name="Init">初期化</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_Init.html" target="_self">SND_Init</a></th>
+<td>サウンドを初期化します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Command">ARM7コマンド処理</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_FlushCommand.html" target="_self">SND_FlushCommand</a></th>
+<td>予約済みコマンドを発行します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_RecvCommandReply.html" target="_self">SND_RecvCommandReply</a></th>
+<td>コマンド処理応答を受信します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_WaitForCommandProc.html" target="_self">SND_WaitForCommandProc</a></th>
+<td>コマンド処理が完了するまで待ちます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_WaitForFreeCommand.html" target="_self">SND_WaitForFreeCommand</a></th>
+<td>空きコマンドができるまで待ちます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetCurrentCommandTag.html" target="_self">SND_GetCurrentCommandTag</a></th>
+<td>現在のコマンドタグを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_IsFinishedCommandTag.html" target="_self">SND_IsFinishedCommandTag</a></th>
+<td>コマンド処理が完了したかを調べます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CountFreeCommand.html" target="_self">SND_CountFreeCommand</a></th>
+<td>空きコマンド数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CountReservedCommand.html" target="_self">SND_CountReservedCommand</a></th>
+<td>予約済みコマンド数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CountWaitingCommand.html" target="_self">SND_CountWaitingCommand</a></th>
+<td>処理完了待ちコマンド数を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Seq_Command">シーケンスコマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_StartSeq.html" target="_self">SND_StartSeq</a></th>
+<td>シーケンスを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_PrepareSeq.html" target="_self">SND_PrepareSeq</a></th>
+<td>シーケンスの再生準備を行います。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_StartPreparedSeq.html" target="_self">SND_StartPreparedSeq</a></th>
+<td>再生準備を行ったシーケンスを再生します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_StopSeq.html" target="_self">SND_StopSeq</a></th>
+<td>シーケンスを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_PauseSeq.html" target="_self">SND_PauseSeq</a></th>
+<td>シーケンスを一時停止または再開します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetPlayerVolume.html" target="_self">SND_SetPlayerVolume</a></th>
+<td>プレイヤーのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetPlayerTempoRatio.html" target="_self">SND_SetPlayerTempoRatio</a></th>
+<td>プレイヤーのテンポを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetPlayerChannelPriority.html" target="_self">SND_SetPlayerChannelPriority</a></th>
+<td>プレイヤーの発音プライオリティを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetPlayerLocalVariable.html" target="_self">SND_SetPlayerLocalVariable</a></th>
+<td>プレイヤーローカル変数をセットします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetPlayerGlobalVariable.html" target="_self">SND_SetPlayerGlobalVariable</a></th>
+<td>プレイヤーグローバル変数をセットします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackMute.html" target="_self">SND_SetTrackMute*</a></th>
+<td>トラックをミュートします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackVolume.html" target="_self">SND_SetTrackVolume</a></th>
+<td>トラックのボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackPitch.html" target="_self">SND_SetTrackPitch</a></th>
+<td>トラックのピッチ（音程）を変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackPan.html" target="_self">SND_SetTrackPan</a></th>
+<td>トラックのパン（定位）を変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackPanRange.html" target="_self">SND_SetTrackPanRange</a></th>
+<td>トラックのパンレンジを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackModDepth.html" target="_self">SND_SetTrackModDepth</a></th>
+<td>トラックのモジュレーションデプスを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackModSpeed.html" target="_self">SND_SetTrackModSpeed</a></th>
+<td>トラックのモジュレーションスピードを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetTrackAllocatableChannel.html" target="_self">SND_SetTrackAllocatableChannel</a></th>
+<td>トラックの確保可能なチャンネルを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Channel_Command">チャンネルコマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_LockChannel.html" target="_self">SND_LockChannel</a></th>
+<td>チャンネルを直接操作できるようにロックをかけます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_UnlockChannel.html" target="_self">SND_UnlockChannel</a></th>
+<td>チャンネルのロックを解除します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_StopUnlockedChannel.html" target="_self">SND_StopUnlockedChannel</a></th>
+<td>ロックしていないチャンネルを停止します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetupChannelPcm.html" target="_self">SND_SetupChannelPcm</a></th>
+<td>PCM再生用にチャンネルをセットアップします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetupChannelPsg.html" target="_self">SND_SetupChannelPsg</a></th>
+<td>PSG矩形波再生用にチャンネルをセットアップします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetupChannelNoise.html" target="_self">SND_SetupChannelNoise</a></th>
+<td>ホワイトノイズ再生用にチャンネルをセットアップします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetChannelVolume.html" target="_self">SND_SetChannelVolume</a></th>
+<td>チャンネルボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetChannelTimer.html" target="_self">SND_SetChannelTimer</a></th>
+<td>チャンネルタイマーを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetChannelPan.html" target="_self">SND_SetChannelPan</a></th>
+<td>チャンネルパンを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Capture_Command">キャプチャコマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_SetupCapture.html" target="_self">SND_SetupCapture</a></th>
+<td>キャプチャをセットアップします。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Alarm_Command">アラームコマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_SetupAlarm.html" target="_self">SND_SetupAlarm</a></th>
+<td>サウンドアラームをセットアップします。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Timer_Command">タイマーコマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_StartTimer.html" target="_self">SND_StartTimer</a></th>
+<td>タイマーをスタートします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_StopTimer.html" target="_self">SND_StopTimer</a></th>
+<td>タイマーをストップします。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Global_Command">グローバル設定コマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_SetMasterVolume.html" target="_self">SND_SetMasterVolume</a></th>
+<td>マスターボリュームを変更します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetMasterPan.html" target="_self">SND_SetMasterPan</a></th>
+<td>マスターパンを設定します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_ResetMasterPan.html" target="_self">SND_ResetMasterPan</a></th>
+<td>マスターパンを無効にします。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetOutputSelector.html" target="_self">SND_SetOutputSelector</a></th>
+<td>出力セレクタを変更します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Invalidate_Command">データ無効化コマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_InvalidateSeqData.html" target="_self">SND_InvalidateSeqData</a></th>
+<td>シーケンスデータを無効化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_InvalidateBankData.html" target="_self">SND_InvalidateBankData</a></th>
+<td>バンクデータを無効化します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_InvalidateWaveData.html" target="_self">SND_InvalidateWaveData</a></th>
+<td>波形データを無効化します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="DriverInfo_Command">ドライバ情報コマンド</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_ReadDriverInfo.html" target="_self">SND_ReadDriverInfo</a></th>
+<td>サウンドドライバ情報を取得します。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Bank">バンク</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_AssignWaveArc.html" target="_self">SND_AssignWaveArc</a></th>
+<td>バンクに波形アーカイブを割り付けます。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_DestroyBank.html" target="_self">SND_DestroyBank</a></th>
+<td>バンクを破棄します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_DestroyWaveArc.html" target="_self">SND_DestroyWaveArc</a></th>
+<td>波形アーカイブを破棄します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_ReadInstData.html" target="_self">SND_ReadInstData</a></th>
+<td>バンクからインストデータを読みとります。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_WriteInstData.html" target="_self">SND_WriteInstData</a></th>
+<td>バンクのインストデータを更新します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetFirstInstDataPos.html" target="_self">SND_GetFirstInstDataPos</a></th>
+<td>インストデータ走査のための位置情報を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetNextInstData.html" target="_self">SND_GetNextInstData</a></th>
+<td>インストデータを順番に取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetWaveDataCount.html" target="_self">SND_GetWaveDataCount</a></th>
+<td>波形アーカイブ中の波形データの個数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetWaveDataAddress.html" target="_self">SND_GetWaveDataAddress</a></th>
+<td>波形アーカイブ中の波形データのアドレスを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_SetWaveDataAddress.html" target="_self">SND_SetWaveDataAddress</a></th>
+<td>波形アーカイブ中の波形データのアドレスを更新します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SNDInstData.html" target="_self">SNDInstData</a></th>
+<td>インストデータ構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SNDWaveData.html" target="_self">SNDWaveData</a></th>
+<td>波形データ構造体です。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="GetInfo">情報取得</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_GetPlayerStatus.html" target="_self">SND_GetPlayerStatus</a></th>
+<td>プレイヤーがアクティブかどうかを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetChannelStatus.html" target="_self">SND_GetChannelStatus</a></th>
+<td>チャンネルがアクティブかどうかを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetCaptureStatus.html" target="_self">SND_GetCaptureStatus</a></th>
+<td>サウンドキャプチャがアクティブかどうかを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetPlayerLocalVariable.html" target="_self">SND_GetPlayerLocalVariable</a></th>
+<td>シーケンスローカル変数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetPlayerGlobalVariable.html" target="_self">SND_GetPlayerGlobalVariable</a></th>
+<td>シーケンスグローバル変数を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_GetPlayerTickCounter.html" target="_self">SND_GetPlayerTickCounter</a></th>
+<td>シーケンスティックカウンタを取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_ReadChannelInfo.html" target="_self">SND_ReadChannelInfo</a></th>
+<td>チャンネル情報を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_ReadPlayerInfo.html" target="_self">SND_ReadPlayerInfo</a></th>
+<td>プレイヤー情報を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_ReadTrackInfo.html" target="_self">SND_ReadTrackInfo</a></th>
+<td>トラック情報を取得します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SNDChannelInfo.html" target="_self">SNDChannelInfo</a></th>
+<td>チャンネル情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SNDPlayerInfo.html" target="_self">SNDPlayerInfo</a></th>
+<td>プレイヤー情報構造体です。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SNDTrackInfo.html" target="_self">SNDTrackInfo</a></th>
+<td>トラック情報構造体です。</td>
+</tr>
+</tbody>
+</table>
+<h3><a name="Utility">ユーティリティ</a></h3>
+<table border="1" width="100%">
+<tbody>
+<tr>
+<th width="25%"><a href="SND_CalcDecibel.html" target="_self">SND_CalcDecibel</a></th>
+<td>デシベル値を計算します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CalcDecibelSquare.html" target="_self">SND_CalcDecibelSquare</a></th>
+<td>２乗スケールに対するデシベル値を計算します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CalcTimer.html" target="_self">SND_CalcTimer</a></th>
+<td>ピッチ変換後のタイマー値を計算します。</td>
+</tr>
+<tr>
+<th width="25%"><a href="SND_CalcChannelVolume.html" target="_self">SND_CalcChannelVolume</a></th>
+<td>チャンネルボリューム値を計算します。</td>
+</tr>
+</tbody>
+</table><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></body>
+</html>

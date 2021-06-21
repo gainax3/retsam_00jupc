@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTEvent</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTEvent</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef enum {
+    VCT_EVENT_NONE,
+    
+    VCT_EVENT_INCOMING,
+    VCT_EVENT_REJECT,
+    VCT_EVENT_BUSY,
+    VCT_EVENT_CANCEL,
+    VCT_EVENT_NOTIFY_FREE,
+    VCT_EVENT_NOTIFY_BUSY,
+    VCT_EVENT_CONNECTED,
+    VCT_EVENT_RESPONDBYE,
+    VCT_EVENT_DISCONNECTED,
+    VCT_EVENT_CONTACT,
+    VCT_EVENT_TIMEOUT,
+    VCT_EVENT_ABORT
+} VCTEvent;</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_NONE</I></B></TD>
+      <TD width="70%">イベント発生なし</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_INCOMING</I></B></TD>
+      <TD width="70%">通話要求を受信</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_REJECT</I></B></TD>
+      <TD width="70%">通話要求が拒否された</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_BUSY</I></B></TD>
+      <TD width="70%">相手は話中</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_CANCEL</I></B></TD>
+      <TD width="70%">通話要求のキャンセルがあった</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_NOTIFY_FREE</I></B></TD>
+      <TD width="70%">トランシーバーモードで他者の会話が終了した</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_NOTIFY_BUSY</I></B></TD>
+      <TD width="70%">トランシーバーモードで他者の会話が開始した</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_CONNECTED</I></B></TD>
+      <TD width="70%">会話の開始が許可された</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_RESPONDBYE</I></B></TD>
+      <TD width="70%">会話の終了要求を受けた</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_DISCONNECTED</I></B></TD>
+      <TD width="70%">会話の終了処理</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_CONTACT</I></B></TD>
+      <TD width="70%">トランシーバーリクエストを受信した</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_TIMEOUT</I></B></TD>
+      <TD width="70%">セッションのタイムアウトが発生</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_EVENT_ABORT</I></B></TD>
+      <TD width="70%">不正な処理などにより、セッションがアボートした</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>VoiceChatのイベントコードの列挙型です。</P>
+
+<h2>参照</h2>
+<P><code>
+<A href="VCTEventCallback.html">VCTEventCallback</A>
+</code></P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

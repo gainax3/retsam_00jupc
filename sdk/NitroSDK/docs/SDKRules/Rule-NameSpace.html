@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>関数・変数などのネーミング基本ルール</TITLE>
+<LINK rel="stylesheet" href="NitroSDKstandard.css" type="text/css">
+</HEAD>
+<BODY>
+<H1>関数・変数などのネーミング基本ルール</H1>
+<H2>カテゴリ</H2>
+<P>Nitro SDK の関数はその分野に応じてカテゴリとよばれる分類がされておりネーミングでもそれがわかるように配慮されています。</P>
+<DL>
+  <DT>カテゴリ
+  <DD>アルファベットの大文字が２つ以上続いたもの(グラフィクスのみ数字も併用)
+  <DD>
+  <BLOCKQUOTE>[A-Z][A-Z0-9]+</BLOCKQUOTE>
+</DL>
+<TABLE border="1" width="100%">
+  <COL span="1" width="100">
+  <TBODY>
+    <TR>
+      <TH align="left">OS</TH>
+      <TD>OS システムに関するもの</TD>
+    </TR>
+    <TR>
+      <TH align="left">G2,G3,GX...</TH>
+      <TD>グラフィクスに関するもの(例外的に数字が含まれる)</TD>
+    </TR>
+    <TR>
+      <TH align="left">MI</TH>
+      <TD>DMA などメモリのやり取りに関するもの</TD>
+    </TR>
+    <TR>
+      <TH align="left">SVC</TH>
+      <TD>システムコールに関するもの</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P align="right">(03/11/13)</P>
+<P align="left">※)カテゴリのメインプロセッサとサブプロセッサの区別はなくなり、全て大文字に統一されました</P>
+<P align="right">(04/01/18)</P>
+<H2>関数</H2>
+<P>関数のネーミングは以下のようになっています。[動詞] や[目的語] は単語毎に先頭一文字を大文字にしてアンダースコアなしに連結します。</P>
+<DL>
+  <DT>公開関数(API)
+  <DD>[カテゴリ名] _ [動詞] [目的語など]
+  <DD>
+  <BLOCKQUOTE>例 OS_SetInterruptMask, OS_IsLocked</BLOCKQUOTE>
+</DL>
+<DL>
+  <DT>非公開関数
+  <DD>[カテゴリ名] i_ [動詞] [目的語など]
+  <DD>
+  <BLOCKQUOTE>例 OSi_SetInterruptMaskBase</BLOCKQUOTE>
+</DL>
+<DL>
+  <DT>static 関数
+  <DD>自由に
+</DL>
+<P>ただし慣習としてこのルールに則さないものも一部あります。(OS_InterruptHandler
+とか)</P>
+<P align="right">(03/11/13)</P>
+<P>オブジェクトを生成初期化する関数の名称を決めるときに Create を使う場合と
+Init を使う場合の2つの方法が考えられます。この場合は明示的に廃棄のための関数呼び出しを行なわねば成らない場合は
+Create を使用し、廃棄処理を行なう必要のない場合は Init を使用するという使い分けをしてください。</P>
+<P align="right">(03/12/15)</P>
+<H2>変数型名</H2>
+<P>typedef でのネーミングは基本的にはGAMECUBEを踏襲しているので関数と形態が同じになっています。カテゴリ名の後が[動詞]ではないということなどで見分ける必要があります。</P>
+<DL>
+  <DT>変数型名
+  <DD>[カテゴリ名] [名詞]
+  <DD>
+  <BLOCKQUOTE>例 OSInterruptCallback</BLOCKQUOTE>
+</DL>
+<DL>
+  <DT>変数名(例外)
+  <DD>[カテゴリ名] [動詞] Mode
+  <DD>
+  <BLOCKQUOTE>例 OSCopyMode</BLOCKQUOTE>
+</DL>
+<P>例外としてAPI の動作そのもののコントロールをするための型として上記のような
+OSCopyModeという形のものもあります。この場合 GXCopy というような関数の動作のコントロールに使用されるのでしょう。同じようなものに
+GXCopyStatues, GXCopyType というのも考えられます。このような場合にはこの形式は自然なネーミングなので認められていますがあまり濫用しないように注意してください。</P>
+<P align="right">(03/11/13)</P>
+<H2>列挙名・マクロ名</H2>
+<P>enum, define, const で定義される定数は以下のような形式となります。</P>
+<DL>
+  <DT>定数名
+  <DD>[カテゴリ名] _ [A-Z0-9_]+
+  <DD>
+  <BLOCKQUOTE>例 OS_INTERRUPT_MAX, OS_INTERRUPT_MAX</BLOCKQUOTE>
+</DL>
+<P align="right">(04/01/18)</P>
+</BODY>
+</HTML>

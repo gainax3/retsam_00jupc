@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndUnlockCapture</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndUnlockCapture</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndUnlockCapture( u32 <var>capBitFlag</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>capBitFlag</code></strong></em></td>
+<td>ロックを解除するキャプチャのビットフラグ</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+キャプチャのロックを解除します。
+</p>
+      <p>
+<em><strong><code>capBitFlag</code></strong></em>で、ロックを解除するキャプチャを指定します。
+下位ビットから順に、キャプチャ0、キャプチャ1を表し、
+ビットが立っているキャプチャ全てのロックを解除します。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+<tt class="function"><a href="NNS_SndLockCapture.html">NNS_SndLockCapture</a></tt>関数と
+この関数は、必ず一対一対応で呼びだす必要があります。
+ロックしていないキャプチャのロック解除を行うなどすると、
+思わぬ誤動作を引き起こしますので、注意してください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndLockCapture.html">NNS_SndLockCapture</a></p>
+<h2>履歴</h2>
+<p>2004/10/25 初版<br></p>
+</div>
+</body>
+</html>

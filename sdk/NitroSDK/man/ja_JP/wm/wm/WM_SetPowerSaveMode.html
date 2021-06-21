@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetPowerSaveMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetPowerSaveMode</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetPowerSaveMode( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback , BOOL powerSave );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">powerSave</FONT></STRONG></EM></TD>
+      <TD width="800">省電力モードを使用する場合にTRUEを指定、常時待ち受けモードを使用する場合はFALSEを指定します。インフラストラクチャモードにて比較的頻繁にデータ送受信を行う必要がある場合はFALSEを指定します。TRUEを指定すると省電力モードになり、バッテリーの持ちがよくなりますが、通信が遅くなります。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>インフラストラクチャモード時に省電力モードを変更します。WMが<A href="wm_state_diagram.html">DCF_CHILDステート</A>の時にのみ実行可能です。<BR>
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、パラメータ設定処理が完了した後にコールバックが発生します。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartConnectEx.html">WM_StartConnectEx</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/07/27 初版<BR>
+</P>
+</body>
+</html>

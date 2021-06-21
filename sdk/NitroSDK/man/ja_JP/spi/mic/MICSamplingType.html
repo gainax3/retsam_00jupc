@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MICSamplingType</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MICSamplingType</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum
+{ 
+    MIC_SAMPLING_TYPE_8BIT = 0 ,
+    MIC_SAMPLING_TYPE_12BIT ,
+    MIC_SAMPLING_TYPE_SIGNED_8BIT ,
+    MIC_SAMPLING_TYPE_SIGNED_12BIT ,
+    MIC_SAMPLING_TYPE_12BIT_FILTER_OFF ,
+    MIC_SAMPLING_TYPE_SIGNED_12BIT_FILTER_OFF ,
+    MIC_SAMPLING_TYPE_MAX
+    
+} MICSamplingType;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_8BIT</font></strong></em></TD>
+      <TD width="700">有効ビット幅 8 ビット（符号なし）のサンプリング。<BR>
+        出力データの範囲は 0 ～ 255 になります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_12BIT</font></strong></em></TD>
+      <TD width="700">有効ビット幅 12 ビット（符号なし）のサンプリング。<BR>
+        出力データの範囲は 0 ～ 65520 になります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_SIGNED_8BIT</font></strong></em></TD>
+      <TD width="700">有効ビット幅 8 ビット（符号付き）のサンプリング。<BR>
+        出力データの範囲は -128 ～ 127 になります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_SIGNED_12BIT</font></strong></em></TD>
+      <TD width="700">有効ビット幅 12 ビット（符号付き）のサンプリング。<BR>
+        出力データの範囲は -32768 ～ 32752 になります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_12BIT_FILTER_OFF</font></strong></em></TD>
+      <TD width="700">フィルター無しの有効ビット幅 12 ビット（符号なし）のサンプリング。<BR>
+        出力データの範囲は 0 ～ 65520 になります。<BR>
+        他のSPIデバイスアクセスなどと競合し、サンプリングに失敗した場合には出力データが0xffff(65535)になります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_SAMPLING_TYPE_SIGNED_12BIT_FILTER_OFF</font></strong></em></TD>
+      <TD width="700">フィルター無しの有効ビット幅 12 ビット（符号付き）のサンプリング。<BR>
+        出力データの範囲は -32768 ～ 32752 になります。<BR>
+        他のSPIデバイスアクセスなどと競合し、サンプリングに失敗した場合には出力データが0xffff(-1)になります。
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>サンプリング種別を示す列挙型です。<BR>
+8 ビット、12 ビットの 2 種類の分解能でのサンプリングが可能です。
+また、出力データの形式を 符号なし、符号付き の 2 種類から選択可能です。
+8 ビットの場合は一回のサンプリングで 1 バイトのデータを取得します。
+12 ビットの場合は一回のサンプリングで 2 バイト(上位 12 ビットが有効、下位 4 ビットは 0 パディング)のデータを取得します。<BR>
+なお、有効ビット幅を越えるような音声が入力された場合は、出力データはクランプされて最大値もしくは最小値になります。
+有効ビット幅内でカバーする音量は、<A href="../pm/PM_SetAmpGain.html">PM_SetAmpGain関数</A>にて変更することができます。<BR>
+<BR>
+自動サンプリングを行う場合には、他のSPIデバイス(タッチパネル等)との競合により、サンプリングに失敗する場合があります。
+この時、通常は直前のサンプリングデータを用いてフィルターされますが、サンプリング種別に *_FILTER_OFF を指定した場合には
+フィルターが行われず、サンプリングに失敗した旨を示す値( 0xffff )が出力されます。
+</P>
+
+<h2>参照</h2>
+<P><CODE><A href="MIC_DoSampling.html">MIC_DoSampling</A>, <A href="MIC_DoSamplingAsync.html">MIC_DoSamplingAsync</A>, <A href="MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>, <A href="MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A>, <A href="../pm/PM_SetAmpGain.html">PM_SetAmpGain</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2004/12/03 フィルター無しのサンプリング種別を追加<BR>
+Ver. 2004/06/01 初版
+</P>
+</body>
+</html>

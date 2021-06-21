@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>MI 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H3>メモリインターフェイス(MI)</H3>
+<P>[<B><A href="list_mi.html">機能一覧</A></B>]</P>
+<DL>
+<DT>CPUによるメモリ操作
+
+<DD><A href="memory/MI_CpuCopy.html">MI_CpuCopy*</A>
+<DD><A href="memory/MI_CpuFill.html">MI_CpuFill*</A>
+<DD><A href="memory/MI_CpuClear.html">MI_CpuClear*</A>
+<DD><A href="memory/MI_CpuSend.html">MI_CpuSend*</A>
+</DL>
+<DL>
+<DT>DMAによるメモリ操作
+
+<DD><A href="dma/MI_DmaCopy.html">MI_DmaCopy*</A>
+<DD><A href="dma/MI_DmaFill.html">MI_DmaFill*</A>
+<DD><A href="dma/MI_DmaClear.html">MI_DmaClear*</A>
+<DD><A href="dma/MI_DmaSend.html">MI_DmaSend*</A>
+<DD><A href="dma/MI_HBlankDmaCopy.html">MI_HBlankDmaCopy*</A>
+<DD><A href="dma/MI_VBlankDmaCopy.html">MI_VBlankDmaCopy*</A>
+<DD><A href="dma/MI_DispMemDmaCopy.html">MI_DispMemDmaCopy</A>
+<DD><A href="dma/MI_SendGXCommand.html">MI_SendGXCommand*</A>
+<DD><A href="dma/MI_IsDmaBusy.html">MI_IsDmaBusy</A>
+<DD><A href="dma/MI_WaitDma.html">MI_WaitDma</A>
+<DD><A href="dma/MI_StopDma.html">MI_StopDma</A>
+</DL>
+
+<DL>
+<DT>外部メモリ制御
+<DD><A href="exmemory/MI_SetMainMemoryPriority.html">MI_SetMainMemoryPriority</A>
+<DD><A href="exmemory/MI_GetMainMemoryPriority.html">MI_GetMainMemoryPriority</A>
+<DD><A href="exmemory/MI_GetCardProcessor.html">MI_GetCardProcessor</A>
+<DD><A href="exmemory/MI_GetCartridgeProcessor.html">MI_GetCartridgeProcessor</A>
+<DD><A href="exmemory/MI_SetCartridgeRomCycle1st.html">MI_SetCartridgeRomCycle1st</A>
+<DD><A href="exmemory/MI_GetCartridgeRomCycle1st.html">MI_GetCartridgeRomCycle1st</A>
+<DD><A href="exmemory/MI_SetCartridgeRomCycle2nd.html">MI_SetCartridgeRomCycle2nd</A>
+<DD><A href="exmemory/MI_GetCartridgeRomCycle2nd.html">MI_GetCartridgeRomCycle2nd</A>
+<DD><A href="exmemory/MI_SetCartridgeRamCycle.html">MI_SetCartridgeRamCycle</A>
+<DD><A href="exmemory/MI_GetCartridgeRamCycle.html">MI_GetCartridgeRamCycle</A>
+<DD><A href="exmemory/MI_SetAgbCartridgeFastestRomCycle.html">MI_SetAgbCartridgeFastestRomCycle</A>
+</DL>
+
+<DL>
+<DT>ワークRAM設定
+<DD><A href="wram/MI_SetWramBank.html">MI_SetWramBank</A>
+</DL>
+
+<DL>
+<DT>メモリスワップ
+<DD><A href="swap/MI_Swap.html">MI_SwapByte</A>
+<DD><A href="swap/MI_Swap.html">MI_SwapWord</A>
+</DL>
+
+<DL>
+<DT>圧縮データ展開
+<DD><A href="uncompress/MI_UnpackBits.html">MI_UnpackBits</A>
+<DD><A href="uncompress/MI_UncompressLZ.html">MI_UncompressLZ8</A>
+<DD><A href="uncompress/MI_UncompressLZ.html">MI_UncompressLZ16</A>
+<DD><A href="uncompress/MI_UncompressHuffman.html">MI_UncompressHuffman</A>
+<DD><A href="uncompress/MI_UncompressRL.html">MI_UncompressRL8</A>
+<DD><A href="uncompress/MI_UncompressRL.html">MI_UncompressRL16</A>
+<DD><A href="uncompress/MI_UnfilterDiff.html">MI_UnfilterDiff8</A>
+  <DD><A href="uncompress/MI_UnfilterDiff.html">MI_UnfilterDiff16</A>
+  <DD><A href="uncompress/MI_GetUncompressedSize.html">MI_GetUncompressedSize</A>
+  <DD><A href="uncompress/MI_GetCompressionType.html">MI_GetCompressionType</A>
+  <DD><A href="uncompress/MI_InitUncompContextRL.html">MI_InitUncompContextRL</A>
+  <DD><A href="uncompress/MI_InitUncompContextLZ.html">MI_InitUncompContextLZ</A>
+  <DD><A href="uncompress/MI_InitUncompContextHuffman.html">MI_InitUncompContextHuffman</A>
+  <DD><A href="uncompress/MI_ReadUncompRL.html">MI_ReadUncompRL8</A>
+  <DD><A href="uncompress/MI_ReadUncompRL.html">MI_ReadUncompRL16</A>
+  <DD><A href="uncompress/MI_ReadUncompHuffman.html">MI_ReadUncompHuffman</A>
+  <DD><A href="uncompress/MI_ReadUncompLZ.html">MI_ReadUncompLZ8</A>
+  <DD><A href="uncompress/MI_ReadUncompLZ.html">MI_ReadUncompLZ16</A>
+  <DD><A href="uncompress/MI_CompressRL.html">MI_CompressRL</A>
+  <DD><A href="uncompress/MI_CompressLZ.html">MI_CompressLZ</A>
+  <DD><A href="uncompress/MI_CompressLZ.html">MI_CompressLZFast</A>
+  <DD><A href="uncompress/MI_CompressLZ.html">MI_CompressLZEx</A>
+  <DD><A href="uncompress/MI_CompressLZ.html">MI_CompressLZExFast</A>
+  <DD><A href="uncompress/MI_CompressHuffman.html">MI_CompressHuffman</A>
+</DL>
+<DL>
+<DT>バイトアクセス
+<DD><A href="byteAccess/MI_ReadByte.html">MI_ReadByte</A>
+<DD><A href="byteAccess/MI_WriteByte.html">MI_WriteByte</A>
+</DL>
+<DL>
+<DT>エンディアンを考慮するメモリアクセス
+<DD><A href="endian/MI_SwapEndian.html">MI_SwapEndian8</A>
+<DD><A href="endian/MI_SwapEndian.html">MI_SwapEndian16</A>
+<DD><A href="endian/MI_SwapEndian.html">MI_SwapEndian32</A>
+<DD><A href="endian/MI_HTo.html">MI_HToLE8</A>
+<DD><A href="endian/MI_HTo.html">MI_HToLE16</A>
+<DD><A href="endian/MI_HTo.html">MI_HToLE32</A>
+<DD><A href="endian/MI_HTo.html">MI_HToBE8</A>
+<DD><A href="endian/MI_HTo.html">MI_HToBE16</A>
+<DD><A href="endian/MI_HTo.html">MI_HToBE32</A>
+<DD><A href="endian/MI_ToH.html">MI_LEToH8</A>
+<DD><A href="endian/MI_ToH.html">MI_LEToH16</A>
+<DD><A href="endian/MI_ToH.html">MI_LEToH32</A>
+<DD><A href="endian/MI_ToH.html">MI_BEToH8</A>
+<DD><A href="endian/MI_ToH.html">MI_BEToH16</A>
+<DD><A href="endian/MI_ToH.html">MI_BEToH32</A>
+<DD><A href="endian/MI_Load.html">MI_LoadLE8</A>
+<DD><A href="endian/MI_Load.html">MI_LoadLE16</A>
+<DD><A href="endian/MI_Load.html">MI_LoadLE32</A>
+<DD><A href="endian/MI_Load.html">MI_LoadBE8</A>
+<DD><A href="endian/MI_Load.html">MI_LoadBE16</A>
+<DD><A href="endian/MI_Load.html">MI_LoadBE32</A>
+<DD><A href="endian/MI_Store.html">MI_StoreLE8</A>
+<DD><A href="endian/MI_Store.html">MI_StoreLE16</A>
+<DD><A href="endian/MI_Store.html">MI_StoreLE32</A>
+<DD><A href="endian/MI_Store.html">MI_StoreBE8</A>
+<DD><A href="endian/MI_Store.html">MI_StoreBE16</A>
+<DD><A href="endian/MI_Store.html">MI_StoreBE32</A>
+</DL>
+
+<DL>
+<DT>ユーティリティ
+<DD><A href="allocator/MI_InitAllocator.html">MI_InitAllocator</A>
+<DD><A href="allocator/MI_CallAlloc.html">MI_CallAlloc</A>
+<DD><A href="allocator/MI_CallFree.html">MI_CallFree</A>
+<DD><A href="device/MI_InitDevice.html">MI_InitDevice</A>
+<DD><A href="device/MI_ReadDevice.html">MI_ReadDevice</A>
+<DD><A href="device/MI_WriteDevice.html">MI_WriteDevice</A>
+<DD><A href="cache/MI_InitCache.html">MI_InitCache</A>
+<DD><A href="cache/MI_ReadCache.html">MI_ReadCache</A>
+<DD><A href="cache/MI_LoadCache.html">MI_LoadCache</A>
+<DD><A href="cache/MI_IsCacheLoading.html">MI_IsCacheLoading</A>
+</DL>
+
+<DL>
+  <DT>型・構造体
+</DL>
+<DL>
+  <DD><A href="uncompress/MICompressionHeader.html">MICompressionHeader</A>
+  <DD><A href="uncompress/MIUncompContextRL.html">MIUncompContextRL</A>
+  <DD><A href="uncompress/MIUncompContextLZ.html">MIUncompContextLZ</A>
+  <DD><A href="uncompress/MIUncompContextHuffman.html">MIUncompContextHuffman</A>
+  <DD><A href="allocator/MIAllocator.html">MIAllocator</A>
+  <DD><A href="allocator/MIAllocatorAllocFunction.html">MIAllocatorAllocFunction</A>
+  <DD><A href="allocator/MIAllocatorFreeFunction.html">MIAllocatorFreeFunction</A>
+  <DD><A href="device/MIDevice.html">MIDevice</A>
+  <DD><A href="device/MIDeviceReadFunction.html">MIDeviceReadFunction</A>
+  <DD><A href="device/MIDeviceWriteFunction.html">MIDeviceWriteFunction</A>
+  <DD><A href="cache/MICache.html">MICache</A>
+</DL>
+</BODY>
+</HTML>

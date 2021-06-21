@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_CallServerConnectHook</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFS_CallServerConnectHook</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_CallServerConnectHook(WFSServerContext *context, const <a href="../WFSPeerInfo.html">WFSPeerInfo</a> *peer);</code><br />
+  <br />
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSServerContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>peer</strong></em></td>
+      <td style="width:87%">接続した子機の情報が格納された<a href="../WFSPeerInfo.html">WFSPeerInfo</a>構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p>新規子機が接続したことをライブラリへ通知します。<br />
+アプリケーションはワイヤレス通信で子機が接続するたびにこの関数を呼び出す必要があります。
+</p>
+
+<h2>参照</h2>
+<p>
+<a href="WFS_InitServer.html">WFS_InitServer</a> 
+<a href="WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a>
+<a href="WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a>
+<a href="WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

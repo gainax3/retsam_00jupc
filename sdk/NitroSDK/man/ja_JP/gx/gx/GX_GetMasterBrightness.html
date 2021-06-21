@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_GetMasterBrightness</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX*_GetMasterBrightness</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+int GX_GetMasterBrightness( void );
+int GXS_GetMasterBrightness( void );<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>輝度を調整するための値(-16以上16以下)</p>
+<H2>説明</H2>
+<P>画像出力において、輝度調整パラメータを取得します。-16から16までの整数が取得でき、値が正であれば輝度は上がり、値が負であれば輝度は下がっています。<BR>
+GX_GetMasterBrightness関数ではメイングラフィックエンジンの設定を取得し、GXS_GetMasterBrightness関数ではサブグラフィックエンジンの設定を取得します。</P>
+<h2>参照</h2>
+<P><A href="../g2/G2_SetBlendBrightness.html">G2_SetBlendBrightness</A>, <A href="GX_SetMasterBrightness.html">GX_SetMasterBrightness</A>, <A href="GXS_SetMasterBrightness.html">GXS_SetMasterBrightness</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/24</P>
+</body>
+</html>

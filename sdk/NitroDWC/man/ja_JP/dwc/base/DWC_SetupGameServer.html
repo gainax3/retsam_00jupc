@@ -1,0 +1,106 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_SetupGameServer</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_SetupGameServer</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+ 
+BOOL DWC_SetupGameServer(
+             u8    maxEntry,
+             <A href="DWCMatchedSCCallback.html">DWCMatchedSCCallback</A> matchedCallback,
+             void* matchedParam,
+             <A href="DWCNewClientCallback.html">DWCNewClientCallback</A> newClientCallback,
+             void* newClientParam );	</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  自らをサーバDSとして動作させ、クライアントDSからの要求があれば、コネクションの接続・切断処理を行います。
+		  ここでのサーバDSとは、このサーバクライアントマッチメイクにおいて、DSワイヤレスコネクションの親機のような働きをするホストのことで、マッチメイク中にサーバDSがネットワークから切断すると、マッチメイクがエラーで終了してしまいます。
+		</P>
+		<P>
+		  本関数は、サーバクライアントマッチメイクを開始するための関数であり、<a href="DWC_CloseAllConnectionsHard.html">DWC_CloseAllConnectionsHard</a>関数、もしくは<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>関数が呼ばれるまでは、クライアントDSからの接続を受け付けます。
+		  そして、自分に接続を開始したクライアントDSを検知すれば、新規接続クライアント通知コールバックが呼ばれ、そのクライアントDSの接続処理が完了すれば、接続完了コールバックが呼ばれます。
+		</P>
+		<P>
+		  また、<a href="DWC_StopSCMatchingAsync.html">DWC_StopSCMatchingAsync</a>関数をサーバクライアントマッチメイク中に呼び出すことによって、マッチメイクを締め切り、以後のクライアントからの接続を拒否することができます。
+		</P>
+		<P>
+		  サーバクライアントマッチメイクでも、ピアマッチメイクと同じくメッシュ型ネットワークを構築しているので、サーバDSが接続を切断しても残りのクライアントDS同士の通信はできます。
+		  しかし、サーバDSが抜けた状態で引き続きマッチメイクを行うことはできないので、サーバDSが抜けた時点で全DSが接続を切断するよう実装することを推奨します。
+		</P>
+		<P>
+		  クライアントDSは<A href="DWC_ConnectToGameServerAsync.html">DWC_ConnectToGameServerAsync</A>関数を用いて、サーバDSに接続します。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>maxEntry</CODE></STRONG></EM></TD>
+					<TD width="75%">最大接続人数（自分を含む）。2～32の値が設定できる。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedCallback</CODE></STRONG></EM></TD>
+					<TD>接続完了コールバック関数へのポインタ。１人接続するごとに呼ばれる。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedParam</CODE></STRONG></EM></TD>
+					<TD>接続完了コールバック用パラメータ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>newClientCallback</CODE></STRONG></EM></TD>
+					<TD>新規接続クライアント通知コールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>newClientParam</CODE></STRONG></EM></TD>
+					<TD>新規接続クライアント通知コールバック用パラメータ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">処理完了</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD>本関数を呼んで良い状態ではない</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_ConnectToGameServerAsync.html">DWC_ConnectToGameServerAsync</A>,
+                <a href="DWC_CloseAllConnectionsHard.html">DWC_CloseAllConnectionsHard</a>,
+				<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>,
+				<a href="DWC_StopSCMatchingAsync.html">DWC_StopSCMatchingAsync</A>,
+				<A href="DWCMatchedSCCallback.html">DWCMatchedSCCallback</A>,
+				<A href="DWCNewClientCallback.html">DWCNewClientCallback</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/06/20 返り値の説明の誤記訂正<BR>
+		  2005/12/16 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

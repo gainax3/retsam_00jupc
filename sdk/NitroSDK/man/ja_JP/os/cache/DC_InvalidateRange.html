@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>DC_InvalidateRange</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">DC_InvalidateRange</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void DC_InvalidateRange( void* startAddr, u32 nBytes );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>startAddr</STRONG></EM></TD>
+      <TD width="87%">無効化する領域の最下位アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nBytes</STRONG></EM></TD>
+      <TD width="87%">無効化する領域のバイト数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>指定されたデータキャッシュ領域のデータを無効にします。</P>
+<P><CODE>startAddr</CODE> は32バイト単位で下位方向に丸められます。<CODE>startAddr+nBytes</CODE> は32バイト単位で上位方向に丸められます。</P>
+<P>ARM プロセッサのオフィシャルドキュメントでは、データキャッシュを無効化する動作を
+&quot;Flush&quot;、データキャッシュをライトバックしてクリーン状態にする動作を
+&quot;Clean&quot;、ライトバックして無効化する動作を &quot;Clean and Flush&quot;
+と記述してる場合がありますが、本 SDK の API では GAMECUBE や Nintendo64
+などの API との統一性を重視するため、無効化を &quot;Invalidate&quot;、ライトバックを
+&quot;Store&quot;、ライトバックして無効化する動作を &quot;Flush&quot; で統一しています。ご注意ください。</P>
+<H2>内部動作</H2>
+<P>システム制御コプロセッサのレジスタ7を操作しています。<br>
+この関数は指定領域をキャッシュライン単位に分割して操作を繰り返すため、領域サイズに比例した処理時間を必要とします。<br>
+</P>
+<H2>参照</H2>
+<P><CODE><A href="IC_InvalidateAll.html">IC_InvalidateAll</A> <A href="IC_InvalidateRange.html">IC_InvalidateRange</A><BR>
+<A href="DC_InvalidateAll.html">DC_InvalidateAll</A><BR>
+<A href="DC_StoreAll.html">DC_StoreAll</A> <A href="DC_StoreRange.html">DC_StoreRange</A><BR>
+<A href="DC_FlushAll.html">DC_FlushAll</A> <A href="DC_FlushRange.html">DC_FlushRange</A></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/04/19 領域サイズに比例した処理時間を要する旨を追記<br>
+2003/12/22 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBCommCState</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBCommCState</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>typedef enum
+{
+    MB_COMM_CSTATE_NONE,                    
+    MB_COMM_CSTATE_INIT_COMPLETE,           
+    MB_COMM_CSTATE_CONNECT,                 
+    MB_COMM_CSTATE_CONNECT_FAILED,          
+    MB_COMM_CSTATE_DISCONNECTED_BY_PARENT,  
+    MB_COMM_CSTATE_REQ_ENABLE,               
+    MB_COMM_CSTATE_REQ_REFUSED,              
+    MB_COMM_CSTATE_DLINFO_ACCEPTED,          
+    MB_COMM_CSTATE_RECV_PROCEED,             
+    MB_COMM_CSTATE_RECV_COMPLETE,            
+    MB_COMM_CSTATE_BOOTREQ_ACCEPTED,        
+    MB_COMM_CSTATE_BOOT_READY,               
+    MB_COMM_CSTATE_CANCELED,               
+    MB_COMM_CSTATE_AUTHENTICATION_FAILED,
+    MB_COMM_CSTATE_MEMBER_FULL,             
+    MB_COMM_CSTATE_GAMEINFO_VALIDATED,      
+    MB_COMM_CSTATE_GAMEINFO_INVALIDATED,    
+    MB_COMM_CSTATE_GAMEINFO_LOST,          
+    MB_COMM_CSTATE_GAMEINFO_LIST_FULL,     
+    MB_COMM_CSTATE_ERROR,                   
+    MB_COMM_CSTATE_FAKE_END
+} MBCommCState;</PRE>
+  <br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>マルチブート子機状態を表す列挙定数を示します。 <BR>
+これらの状態は、擬似MB子機ライブラリを使用する際にコールバックとして通知されます。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_NONE</TD>
+      <TD>MB子機の初期化前状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_INIT_COMPLETE</TD>
+      <TD>MB子機初期化完了状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_CONNECT</TD>
+      <TD>親機への接続が完了した状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_CONNECT_FAILED</TD>
+      <TD>親機への接続が失敗した状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_DISCONNECTED_BY_PARENT</TD>
+      <TD>親機から切断された状態を示します。</TD>
+    <TR>
+      <TD>MB_COMM_CSTATE_REQ_ENABLE</TD>
+      <TD>MPが確立してデータリクエストが可能になった状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_REQ_REFUSED</TD>
+      <TD>リクエストに対して親機からKICKされた状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_DLINFO_ACCEPTED</TD>
+      <TD>親機にリクエストが受理された状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_RECV_PROCEED</TD>
+      <TD>ダウンロードデータの受信開始状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_RECV_COMPLETE</TD>
+      <TD>ダウンロードデータの受信完了状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_BOOTREQ_ACCEPTED</TD>
+      <TD>親機からのブート要求受信状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_BOOT_READY</TD>
+      <TD>親機との通信を切断してブート完了した状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_CANCELED</TD>
+      <TD>途中でキャンセルされ、親機との切断が完了した状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_AUTHENTICATION_FAILED</TD>
+      <TD><FONT color="#999999">※MBフェイク子機でこの状態に遷移することはありません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_MEMBER_FULL</TD>
+      <TD>親機へのエントリー数が定員を超えていた場合の状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_GAMEINFO_VALIDATED</TD>
+      <TD><FONT color="#999999">※MBフェイク子機でこの状態に遷移することはありません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_GAMEINFO_INVALIDATED</TD>
+      <TD><FONT color="#999999">※MBフェイク子機でこの状態に遷移することはありません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_GAMEINFO_LOST</TD>
+      <TD><FONT color="#999999">※MBフェイク子機でこの状態に遷移することはありません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_GAMEINFO_LIST_FULL</TD>
+      <TD><FONT color="#999999">※MBフェイク子機でこの状態に遷移することはありません。</FONT></TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_ERROR</TD>
+      <TD>途中で通信エラーが発生した状態を示します。</TD>
+    </TR>
+    <TR>
+      <TD>MB_COMM_CSTATE_FAKE_END</TD>
+      <TD>フェイク子機の完了状態を示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<h2>参照</h2>
+<p><CODE><A href="fake_child/MB_FakeSetCStateCallback.html">MB_FakeSetCStateCallback</A></CODE>, <A href="mb_comm_cstate_callback_type.html">MBCommCStateCallback</A></p>
+
+<H2>履歴</H2>
+<P>2005/03/15 公開<BR>
+</P>
+</body>
+</html>

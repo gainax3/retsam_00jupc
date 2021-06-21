@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRCPrototypeEntry</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRCPrototypeEntry</h1>
+<h2>定義</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+typedef struct PRCPrototypeEntry
+{
+    BOOL                enabled;
+    u32                 kind;
+    u16                 code;
+    <A href="../../fx/fx16.html">fx16</A>                correction;
+    void*               data;
+    int                 pointIndex;
+    u16                 pointCount;
+    u16                 strokeCount;
+} PRCPrototypeEntry;
+</CODE></PRE></dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">enabled</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリが現在有効かどうか</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">kind</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリの種類をビットフィールドであらわしたもの</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">code</FONT></STRONG></EM></TD>
+      <TD width="87%">コード値</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">correction</FONT></STRONG></EM></TD>
+      <TD width="87%">スコアに対する補正値</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">data</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリに結び付けられたユーザデータ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pointIndex</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリの座標データは<CODE><A href="PRCPrototypeList.html">PRCPrototypeList</A>.pointArray</CODE> の何番目からか</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pointCount</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリを構成する座標データの個数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">strokeCount</FONT></STRONG></EM></TD>
+      <TD width="87%">このエントリを構成する画数</TD>
+    </TR>
+  </tbody>
+</table>
+<H2>説明</H2>
+<P>見本DBの各エントリの属性情報として、<CODE><A href="PRCPrototypeList.html">PRCPrototypeList</A></CODE> 構造体に含まれる構造体です。<CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A></CODE> の認識結果として返されます。</P>
+<P><CODE>correction</CODE> は認識アルゴリズム中でのこのエントリのスコア値に対する補正の数値です。補正前のスコア値を
+<CODE>score</CODE> と置いたとき、補正後の値は <CODE>FX_Mul(score, FX32_ONE - correction) + correction</CODE> となります。すなわち、<CODE>correction</CODE> が 0 で無補正、正に増えるとスコアは高めに補正され、負に減るとスコアは低く補正されることになります。</P>
+<P><CODE>kind</CODE> は <CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A></CODE> などの <CODE>kindMask</CODE> オプションでマッチング対象の図形種を限定するための属性です。図形種ごとに各ビットを立てるような形で使用してください。</P>
+<h2>参照</h2>
+<p><CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A>, <A href="PRC_GetEntryCode.html">PRC_GetEntryCode</A>, <A href="PRC_GetEntryData.html">PRC_GetEntryData</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
+</body>
+</html>

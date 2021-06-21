@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_HandleData </title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_HandleData</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL VCT_HandleData ( u8 aid, u8 *buffer, int size );  </CODE></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>aid</STRONG></EM></TD>
+      <TD width="87%" height="17">送信元aid </TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>buffer</STRONG></EM></TD>
+      <TD width="87%" height="17">受信したデータ </TD>
+    </TR>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>size</STRONG></EM></TD>
+      <TD width="87%" height="17">受信データサイズ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TRUE</CODE></TD>
+      <TD width="70%">受信したデータがVoiecChatのもの</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>FALSE</CODE></TD>
+      <TD width="70%">受信したデータがVoiecChatのものではない、またはVoiceChatライブラリが初期化されていない</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>VoiceChatのデータを処理します。DWC_SetUserRecvCallbackで指定する受信コールバックの中で呼び出してください。</P>
+
+<p><em><strong>buffer</strong></em>にはDWC_SetUserRecvCallbackから渡されたデータを渡し、<em><strong>size</strong></em>にバイト数を指定します。</p>
+
+<p>戻り値がTRUEの場合（受信したデータがVoiceChatデータの場合）、この関数から指定したコールバック関数が呼び出されますので、追加で処理を行う必要はありません。戻り値がFALSEの場合はVoiceChat以外のデータ（ゲーム上でやりとりするデータ）ですので、ゲームで必要な処理を実行するように実装してください。</p>
+<h2>参照</h2>
+<p><CODE><A href="VCT_Cleanup.html">VCT_Cleanup</A></CODE>, <CODE><A href="VCTConfig.html">VCTConfig</A></CODE></p>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

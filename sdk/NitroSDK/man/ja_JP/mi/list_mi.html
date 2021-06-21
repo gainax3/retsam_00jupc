@@ -1,0 +1,518 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>メモリインターフェイス(MI) API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>メモリインターフェイス(MI) API 機能一覧</H1>
+<H3><A name="memory">CPUによるメモリ操作</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="25%"><A href="memory/MI_CpuCopy.html" target="_self">MI_CpuCopy*</A></TH>
+      <TD>データをコピーします。</TD>
+    </TR>
+    <TR>
+      <TH nowrap width="25%"><A href="memory/MI_CpuFill.html" target="_self">MI_CpuFill*</A></TH>
+      <TD>メモリを指定のデータで埋めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="memory/MI_CpuClear.html" target="_self">MI_CpuClear*</A></TH>
+      <TD>メモリをゼロクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="memory/MI_CpuSend.html" target="_self">MI_CpuSend*</A></TH>
+      <TD>アドレスを固定してデータを送り込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H3><A name="dma">DMAによるメモリ操作</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="dma/MI_DmaCopy.html" target="_self">MI_DmaCopy*</A></TH>
+      <TD>データをコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_DmaFill.html" target="_self">MI_DmaFill*</A></TH>
+      <TD>メモリを指定のデータで埋めます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_DmaClear.html" target="_self">MI_DmaClear*</A></TH>
+      <TD>メモリをゼロクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_DmaSend.html" target="_self">MI_DmaSend*</A></TH>
+      <TD>アドレスを固定してデータを送り込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_HBlankDmaCopy.html" target="_self">MI_HBlankDmaCopy*</A></TH>
+      <TD>HブランクDMAコピーの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_VBlankDmaCopy.html" target="_self">MI_VBlankDmaCopy*</A></TH>
+      <TD>VブランクDMAコピーの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_DispMemDmaCopy.html" target="_self">MI_DispMemDmaCopy</A></TH>
+      <TD>メインメモリ表示DMAコピーの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_SendGXCommand.html" target="_self">MI_SendGXCommand*</A></TH>
+      <TD>コマンドFIFOにDMAでジオメトリコマンドを送ります。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_IsDmaBusy.html" target="_self">MI_IsDmaBusy</A></TH>
+      <TD>指定のDMAチャンネルが使用中かを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_WaitDma.html" target="_self">MI_WaitDma</A></TH>
+      <TD>指定のDMAの終了を待ちます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="dma/MI_StopDma.html" target="_self">MI_StopDma</A></TH>
+      <TD>指定のDMAをストップします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="exMemory">外部メモリ制御</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_SetMainMemoryPriority.html" target="_self">MI_SetMainMemoryPriority</A></TH>
+      <TD>メインメモリへのアクセス優先権を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetMainMemoryPriority.html" target="_self">MI_GetMainMemoryPriority</A></TH>
+      <TD>メインメモリへのアクセス優先権の設定を取得します。</TD>
+    </TR>
+<!--
+    <TR>
+      <TH width="25%"><A href="exmemory/MIi_SetCardProcessor.html" target="_self">MIi_SetCardProcessor</A></TH>
+      <TD>カードへのアクセス権を設定します。</TD>
+    </TR>
+-->
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetCardProcessor.html" target="_self">MI_GetCardProcessor</A></TH>
+      <TD>カードへのアクセス権の設定を取得します。</TD>
+    </TR>
+<!--
+    <TR>
+      <TH width="25%"><A href="exmemory/MIi_SetCartridgeProcessor.html" target="_self">MIi_SetCartridgeProcessor</A></TH>
+      <TD>カートリッジへのアクセス権を設定します。</TD>
+    </TR>
+-->
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetCartridgeProcessor.html" target="_self">MI_GetCartridgeProcessor</A></TH>
+      <TD>カートリッジへのアクセス権の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_SetCartridgeRomCycle1st.html" target="_self">MI_SetCartridgeRomCycle1st</A></TH>
+      <TD>カートリッジROM領域への1stアクセスサイクルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetCartridgeRomCycle1st.html" target="_self">MI_GetCartridgeRomCycle1st</A></TH>
+      <TD>カートリッジROM領域への1stアクセスサイクルの設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_SetCartridgeRomCycle2nd.html" target="_self">MI_SetCartridgeRomCycle2nd</A></TH>
+      <TD>カートリッジROM領域への2ndアクセスサイクルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetCartridgeRomCycle2nd.html" target="_self">MI_GetCartridgeRomCycle2nd</A></TH>
+      <TD>カートリッジROM領域への2ndアクセスサイクルの設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_SetCartridgeRamCycle.html" target="_self">MI_SetCartridgeRamCycle</A></TH>
+      <TD>カートリッジRAM領域のアクセスサイクルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_GetCartridgeRamCycle.html" target="_self">MI_GetCartridgeRamCycle</A></TH>
+      <TD>カートリッジRAM領域のアクセスサイクルの設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="exmemory/MI_SetAgbCartridgeFastestRomCycle.html" target="_self">MI_SetAgbCartridgeFastestRomCycle</A></TH>
+      <TD>AGBカートリッジROM領域への高速なアクセスサイクルを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H3><A name="wram">ワークRAM設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wram/MI_SetWramBank.html" target="_self">MI_SetWramBank</A></TH>
+      <TD>ARM7、ARAM9共用ワークRAMの割り当て設定を行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H3><A name="swap">メモリスワップ</A></H3>
+
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="swap/MI_Swap.html" target="_self">MI_SwapByte</A></TH>
+      <TD>指定のバイトデータとメモリデータをスワップします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="swap/MI_Swap.html" target="_self">MI_SwapWord</A></TH>
+      <TD>指定のワードデータとメモリデータをスワップします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H3><A name="uncompress">圧縮データ展開</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UnpackBits.html" target="_self">MI_UnpackBits</A></TH>
+      <TD>0固定のビットを詰めたデータを展開します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UncompressLZ.html" target="_self">MI_UncompressLZ8</A></TH>
+      <TD>LZ77圧縮データを8bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UncompressLZ.html" target="_self">MI_UncompressLZ16</A></TH>
+      <TD>LZ77圧縮データを16bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UncompressHuffman.html" target="_self">MI_UncompressHuffman</A></TH>
+      <TD>ハフマン圧縮データを32bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UncompressRL.html" target="_self">MI_UncompressRL8</A></TH>
+      <TD>ランレングス圧縮データを8bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MI_UncompressRL.html" target="_self">MI_UncompressRL16</A></TH>
+      <TD>ランレングス圧縮データを16bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_UnfilterDiff.html" target="_self">MI_UnfilterDiff8</A></TH>
+      <TD>差分フィルタをかけられたデータを8bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_UnfilterDiff.html" target="_self">MI_UnfilterDiff16</A></TH>
+      <TD>差分フィルタをかけられたデータを16bit単位で展開します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_GetUncompressedSize.html" target="_self">MI_GetUncompressedSize</A></TH>
+      <TD>圧縮データの展開後サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_GetCompressionType.html" target="_self">MI_GetCompressionType</A></TH>
+      <TD>圧縮データの圧縮形式を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_InitUncompContextRL.html" target="_self">MI_InitUncompContextRL</A></TH>
+      <TD>ランレングス圧縮のストリーミング展開コンテキストを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_InitUncompContextLZ.html" target="_self">MI_InitUncompContextLZ</A></TH>
+      <TD>LZ77圧縮のストリーミング展開コンテキストを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_InitUncompContextHuffman.html" target="_self">MI_InitUncompCOntextHuffman</A></TH>
+      <TD>ハフマン圧縮のストリーミング展開コンテキストを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_ReadUncompRL.html" target="_self">MI_ReadUncompRL*</A></TH>
+      <TD>ランレングス圧縮のストリーミング展開を実行します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_ReadUncompLZ.html" target="_self">MI_ReadUncompLZ*</A></TH>
+      <TD>LZ77圧縮のストリーミング展開を実行します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_ReadUncompHuffman.html" target="_self">MI_ReadUncompHuffman</A></TH>
+      <TD>ハフマン圧縮のストリーミング展開を実行します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressRL.html" target="_self">MI_CompressRL</A></TH>
+      <TD>データをランレングス圧縮します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressLZ.html" target="_self">MI_CompressLZ</A></TH>
+      <TD>データをLZ77圧縮します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressLZ.html" target="_self">MI_CompressLZFast</A></TH>
+      <TD>データをLZ77圧縮します。 ワークバッファを必要とする代わりに高速に処理をおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressLZ.html" target="_self">MI_CompressLZEx</A></TH>
+      <TD>データをLZ77拡張圧縮します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressLZ.html" target="_self">MI_CompressLZExFast</A></TH>
+      <TD>データをLZ77拡張圧縮します。 ワークバッファを必要とする代わりに高速に処理をおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MI_CompressHuffman.html" target="_self">MI_CompressHuffman</A></TH>
+      <TD>データをハフマン圧縮します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+
+<H3><A name="byteAccess">バイトアクセス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="byteAccess/MI_ReadByte.html" target="_self">MI_ReadByte</A></TH>
+      <TD>バイトデータをメモリから読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="byteAccess/MI_WriteByte.html" target="_self">MI_WriteByte</A></TH>
+      <TD>バイトデータをメモリに書き込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="endian">エンディアンを考慮するメモリアクセス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="endian/MI_SwapEndian.html" target="_self">MI_SwapEndian8</A></TH>
+      <TD>8bit値のエンディアンを反転するマクロです。<br><font color="gray">実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_SwapEndian.html" target="_self">MI_SwapEndian16</A></TH>
+      <TD>16bit値のエンディアンを反転するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_SwapEndian.html" target="_self">MI_SwapEndian32</A></TH>
+      <TD>32bit値のエンディアンを反転するマクロです。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToLE8</A></TH>
+      <TD>8bit値を現在の環境からリトルエンディアンへ変換するマクロです。<br><font color="gray">実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToLE16</A></TH>
+      <TD>16bit値を現在の環境からリトルエンディアンへ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToLE32</A></TH>
+      <TD>32bit値を現在の環境からリトルエンディアンへ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToBE8</A></TH>
+      <TD>8bit値を現在の環境からビッグエンディアンへ変換するマクロです。<br><font color="gray">実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToBE16</A></TH>
+      <TD>16bit値を現在の環境からビッグエンディアンへ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_HTo.html" target="_self">MI_HToBE32</A></TH>
+      <TD>32bit値を現在の環境からビッグエンディアンへ変換するマクロです。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_LEToH8</A></TH>
+      <TD>8bit値をリトルエンディアンから現在の環境へ変換するマクロです。<br><font color="gray">実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_LEToH16</A></TH>
+      <TD>16bit値をリトルエンディアンから現在の環境へ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_LEToH32</A></TH>
+      <TD>32bit値をリトルエンディアンから現在の環境へ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_BEToH8</A></TH>
+      <TD>8bit値をビッグエンディアンから現在の環境へ変換するマクロです。<br><font color="gray">実際には何の変換も行いませんが、
+ソースコードの視認性を統一するために用意されています。</font></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_BEToH16</A></TH>
+      <TD>16bit値をビッグエンディアンから現在の環境へ変換するマクロです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_ToH.html" target="_self">MI_BEToH32</A></TH>
+      <TD>32bit値をビッグエンディアンから現在の環境へ変換するマクロです。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load8LE</A></TH>
+      <TD>指定のアドレスから8bit値をリトルエンディアンとして読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load16LE</A></TH>
+      <TD>指定のアドレスから16bit値をリトルエンディアンとして読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load32LE</A></TH>
+      <TD>指定のアドレスから32bit値をリトルエンディアンとして読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load8BE</A></TH>
+      <TD>指定のアドレスから8bit値をビッグエンディアンとして読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load16BE</A></TH>
+      <TD>指定のアドレスから16bit値をビッグエンディアンとして読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Load.html" target="_self">MI_Load32BE</A></TH>
+      <TD>指定のアドレスから32bit値をビッグエンディアンとして読み出します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store8LE</A></TH>
+      <TD>8bit値をリトルエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store16LE</A></TH>
+      <TD>16bit値をリトルエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store32LE</A></TH>
+      <TD>32bit値をリトルエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store8BE</A></TH>
+      <TD>8bit値をビッグエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store16BE</A></TH>
+      <TD>16bit値をビッグエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="endian/MI_Store.html" target="_self">MI_Store32BE</A></TH>
+      <TD>32bit値をビッグエンディアンとして指定のアドレスへ書き込みます。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+
+<H3><A name="utility">ユーティリティ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+ 
+    <TR>
+      <TH width="25%"><A href="allocator/MI_InitAllocator.html" target="_self">MI_InitAllocator</A></TH>
+      <TD>メモリアロケータ構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/MI_CallAlloc.html" target="_self">MI_CallAlloc</A></TH>
+      <TD>アロケータからメモリを確保します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="allocator/MI_CallFree.html" target="_self">MI_CallFree</A></TH>
+      <TD>アロケータへメモリを解放します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="device/MI_InitDevice.html" target="_self">MI_InitDevice</A></TH>
+      <TD>デバイスインタフェース構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="device/MI_ReadDevice.html" target="_self">MI_ReadDevice</A></TH>
+      <TD>デバイスからデータを読み込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="device/MI_WriteDevice.html" target="_self">MI_WriteDevice</A></TH>
+      <TD>デバイスへデータを書き込みます。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="cache/MI_InitCache.html" target="_self">MI_InitCache</A></TH>
+      <TD>キャッシュ構造体を初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/MI_ReadCache.html" target="_self">MI_ReadCache</A></TH>
+      <TD>キャッシュページリストからデータを読み込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/MI_LoadCache.html" target="_self">MI_LoadCache</A></TH>
+      <TD>ロード待ち状態の全てのページをロードします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="cache/MI_IsCacheLoading.html" target="_self">MI_IsCacheLoading</A></TH>
+      <TD>ロード待ち状態のページが存在するかどうか判定します。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+
+<BR>
+<H3><A name="struct">型・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="uncompress/MICompressionHeader.html">MICompressionHeader</A></TH>
+      <TD>圧縮データのヘッダ情報構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="uncompress/MIUncompContextRL.html" target="_self">MIUncompContextRL</A></TH>
+      <TD>ランレングス圧縮のストリーミング展開を行なう際の、コンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MIUncompContextLZ.html" target="_self">MIUncompContextLZ</A></TH>
+      <TD>LZ77圧縮のストリーミング展開を行なう際の、コンテキスト構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="uncompress/MIUncompContextHuffman.html" target="_self">MIUncompContextHuffman</A></TH>
+      <TD>ハフマン圧縮のストリーミング展開を行なう際の、コンテキスト構造体です。</TD>
+    </TR>
+   
+    <TR>
+      <TH><A href="allocator/MIAllocator.html" target="_self">MIAllocator</A></TH>
+      <TD>メモリアロケータのインタフェース構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="allocator/MIAllocatorAllocFunction.html" target="_self">MIAllocatorAllocFunction</A></TH>
+      <TD>メモリ確保コールバックの関数プロトタイプです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="allocator/MIAllocatorFreeFunction.html" target="_self">MIAllocatorFreeFunction</A></TH>
+      <TD>メモリ解放コールバックの関数プロトタイプです。</TD>
+    </TR>
+
+
+    <TR>
+      <TH><A href="device/MIDevice.html" target="_self">MIDevice</A></TH>
+      <TD>デバイス制御をラップするためのインタフェース構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="device/MIDeviceReadFunction.html" target="_self">MIDeviceReadFunction</A></TH>
+      <TD>デバイス読み込みコールバックの関数プロトタイプです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="device/MIDeviceWriteFunction.html" target="_self">MIDeviceWriteFunction</A></TH>
+      <TD>デバイス書き込みコールバックの関数プロトタイプです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cache/MICache.html" target="_self">MICache</A></TH>
+      <TD>メモリキャッシュを実現するための構造体です。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

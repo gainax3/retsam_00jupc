@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_GetPlayerStatus</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_GetPlayerStatus</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">u32 SND_GetPlayerStatus( <code>void )</code>;</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>引数</h2>
+      
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1LWT"></a>
+      <h2>返り値</h2>
+
+      <p>各プレイヤーがアクティブかどうかをビットフラグで返します。下位ビットから順に、プレイヤー0、プレイヤー1、...を
+表します。ビットが立っているプレイヤーはアクティブです。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>説明</h2>
+      <p>
+プレイヤーがアクティブかどうかを取得します。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、ARM7コマンド関数とは非同期に実行されます。
+同期を取るためには、<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数などで、
+ARM7コマンドの処理が完了したことを確認する必要があります。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

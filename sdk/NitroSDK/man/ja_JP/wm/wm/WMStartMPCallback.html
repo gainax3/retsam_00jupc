@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMStartMPCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMStartMPCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMStartMPCallback
+{ 
+    u16             apiid;
+    u16             errcode;
+    u16             state;
+    u8              reserved[2];
+    WMMpRecvBuf*    recvBuf;
+    u16             timeStamp;
+    u16             rate_rssi;
+    u16             destAdrs[3];
+    u16             srcAdrs[3];
+    u16             seqNum;
+    u16             tmptt;
+    u16             pollbmp;
+    u16             reserved2;
+
+} WMStartMPCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_START_MPに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の4つです。<BR>
+      WM_STATECODE_MP_START、WM_STATECODE_MPEND_IND、WM_STATECODE_MP_IND、WM_STATECODE_MPACK_IND。<BR>
+      このうち、通常は WM_STATECODE_MP_START 以外をアプリケーションで処理する必要はありません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">recvBuf</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_MPEND_INDもしくはWM_STATECODE_MP_INDの場合、受信データ格納先のポインタが格納されます。<BR>
+      WM_StartMPにて指定した受信バッファはダブルバッファとして扱われ、そのどちらが最新データの格納先かを示します。<BR>
+      また、親機としてデータを受け取った場合はWMMpRecvHeader型へのポインタとなる点に注意。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">
+      timeStamp<BR>rate_rssi<BR>destAdrs<BR>srcAdrs<BR>seqNum<BR>tmptt<BR>pollbmp
+      </font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_MPACK_INDの場合、行われたMP通信の情報がそれぞれ格納されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_StartMPEx.html">WM_StartMPEx</A> に対するコールバック関数に渡される構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2007/07/18 state について追記<BR>
+2004/08/11 MP終了コールバック時に格納されるメンバを追加<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_MpChildSendHook</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_MpChildSendHook</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>int WBT_MpChildSendHook(void *sendbuf, int send_size);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>sendbuf</STRONG></EM></TD>
+      <TD width="87%">WBTのために<a href="../../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>関数などでMP通信する子機送信バッファ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>send_size</STRONG></EM></TD>
+      <TD width="87%">WBTに対して割り当てる、sendbufの子機パケットサイズ<br>
+	  この値はWBT_PACKET_SIZE_MINバイト以上である必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>実際に送信すべきデータが格納されたバイト数を返します。</p>
+
+<H2>説明</H2>
+<P>WBT ライブラリの子機がMP通信で送信すべきデータを送信バッファに格納します。<br>
+送信バッファにはWBTライブラリのプロトコルに基づいたデータが適宜設定され、<br>
+これをMP送信のたびに繰り返すことによって各種コマンドが実行されます。<br>
+<br>
+（注：この関数ではバッファにデータを格納するだけです。この後、<A href="../../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>などでバッファを送信して下さい。）<br>
+<br>
+任意の通信先から<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>によるデータ受信を要求されている場合、<br>
+設定によってはこの呼び出しの中で<A href="../wbt_command_type_const.html">WBT_CMD_PREPARE_SEND_DATA</A>コールバックが発生します。<br>
+<br>
+<h2>参照</h2>
+<p><BR></P>
+<H2>履歴</H2>
+<P>
+2005/03/14 リンク先の不具合を訂正<br>
+2005/02/18 WMライブラリとの関係について注意事項の追加<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

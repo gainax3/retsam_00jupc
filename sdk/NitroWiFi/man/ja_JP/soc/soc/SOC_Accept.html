@@ -1,0 +1,105 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_Accept</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Accept</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Accept ( int <em><strong>s</strong></em>, void* <em><strong>sockAddr</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td> <code>
+    <a href="SOC_Socket.html">SOC_Socket()</a></code>によって作成し、<code><a href="SOC_Bind.html">SOC_Bind()</a></code>によってアドレスをバインドし、<code><a href="SOC_Listen.html">SOC_Listen()</a></code>の呼び出しに成功したソケットを指定します。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>sockAddr</strong></em></code></td>
+    <td>ヌルポインタか、受け付けた接続相手のソケット アドレスを記録するためのソケットアドレス構造体(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)へのポインタを指定します。<br>
+非ヌルポインタを指定した場合は、ソケットアドレスの<code>len</code>フィールドは適切に初期化してください。(例 <code>sizeof(SOCSockAddrIn)</code>)</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0以上</td>
+    <td>受け付けた接続のソケット記述子。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EALREADY</code></td>
+    <td>接続処理を開始しています。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINVAL</code></td>
+    <td>無効な処理。(接続処理を開始しています、TCPソケットではありません、Listen 用のソケットが有効ではありません、など)</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EMFILE</code></td>
+    <td>ソケット記述子をこれ以上作れません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENETRESET</code></td>
+    <td>ソケットが初期化されていません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOBUFS</code></td>
+    <td>リソース不足。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOMEN</code></td>
+    <td>メモリー不足。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ETIMEDOUT</code></td>
+    <td>TCPのコネクトタイムアウト。</td>
+  </tr>
+  <tr>
+    <td> <code>SOC_EWOULDBLOCK</code></td>
+    <td>本関数は封鎖モードでないと実行できません。Listen 用ソケットが非封鎖モードの場合、このエラーコードを返して終了します。</td>
+  </tr>
+
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p>接続キューから先頭の接続要求を取り出して、指定したソケットと同じソケットタイプ、プロトコル、アドレスファミリー
+の新しいソケットを作成し、新しいソケット記述子を返します。元のソケットはさらに接続要求を受け付けられるようにそのまま残ります。</p>
+
+<p>現状では、この関数ではCPSの仕様にあわせて Socket の作成と Bindを行い、さらに Listen と Accept が同時に行われていますので、Listen 用のソケットが封鎖モードであるときのみ動作します。<br>
+また接続キューという概念もありません。</p>
+
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_Socket.html">SOC_Socket</a></code>,
+<code><a href="SOC_Bind.html">SOC_Bind</a></code>,
+<code><a href="SOC_Connect.html">SOC_Connect</a></code>,
+<code><a href="SOC_Listen.html">SOC_Listen</a></code>,
+<code><a href="SOC_Fcntl.html">SOC_Fcntl</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版<BR>
+2006/01/13 返値の修正</P>
+</body>
+</html>

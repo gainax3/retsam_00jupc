@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetRendererFlipMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetRendererFlipMode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+  <pre><CODE>
+void NNS_G2dSetRendererFlipMode( NNSG2dRendererInstance* pRend, 
+                                 BOOL bFlipH, 
+                                 BOOL bFlipV );
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">[OUT] レンダラ実体</td>
+  </tr>
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">bFlipH</font></strong></em></td>
+    <td width="87%">[IN] 水平方向フリップ</td>
+  </tr>
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">bFlipV</font></strong></em></td>
+    <td width="87%">[IN] 垂直方向フリップ</td>
+  </tr>
+ 
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+フリップ描画を行うようにレンダラを設定します。<BR>
+アフィン変換描画とは排他的に使用する必要があります。
+回転、スケールを適用しながらのフリップ描画は行えません。
+そういった場合はスケール値を負の値に設定していただくなどでフリップ描画を実現していただく必要があります。<BR>
+Begin - End rendering ブロックの内外どちらでも呼び出すことが可能です。<BR>
+<BR>
+<BR>
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/11/10 説明の追加</P>
+<P>2004/09/01 初版</P>
+</body>
+</html>

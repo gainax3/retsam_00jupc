@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>Renderer_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">レンダラ概要</h1>
+<H2>概念図</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'></span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><IMG width="431" height="254" src="clip_image0021.gif" v:shapes="_x0000_i1025"></span></P>
+<H2>説明</H2>
+レンダラは、キャラクタを画面に描画するためのＡＰＩを提供します。<BR>
+レンダラモジュールは、レンダラコアモジュールとレンダラモジュールに大別できます。<BR>
+レンダタコアモジュールはレンダラモジュールの描画処理を担当し、
+レンダラモジュールの下請けモジュールとして動作します。<BR>
+ユーザはレンダラコアモジュールを直接利用することも可能です。<BR>
+レンダラモジュールは行列スタックを内部に持ち、描画対象に対するアフィン変換操作を管理します。
+２つの2Dグラフィックエンジンへのアフィンパラメータの設定処理も行います。<BR>
+レンダラは、幾つかのレンダーサーフェスを持ちます。
+このレンダーサーフェスには、画面に表示される範囲を示す矩形領域と、
+その領域を描画するＡＰＩの情報に関する情報を持ちます。<BR>
+レンダーサーフェスを適切に設定することで、キャラクタが、メイン画面のＯＡＭ、
+サブ画面のＯＡＭ、ソフトウェアスプライトのいずれを使用して描画する場合でも、
+同じＡＰＩを使用して描画を行う事が出来ます。<BR>
+<BR>
+
+
+<h2>レンダーサーフェスと仮想画面</h2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:6in;
+ height:203.4pt' o:ole="">
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.wmz"
+  o:title=""/>
+</v:shape><![endif]--><IMG src="image3.gif" border="0" width="591" height="274"><!--[if gte mso 9]><xml>
+ <o:OLEObject Type="Embed" ProgID="MSDraw.Drawing.8.2" ShapeID="_x0000_i1025"
+  DrawAspect="Content" ObjectID="_1162376003">
+ </o:OLEObject>
+</xml><![endif]--></span><BR>
+</P>
+レンダラでは、１つの大きな仮想画面にゲームキャラクタが配置されているものとして扱われます。
+レンダラが持つそれぞれのレンダーサーフェスには、この仮想画面上の任意の矩形領域が設定されています。
+この矩形領域にゲームキャラクタが入った場合に、そのゲームキャラクタは画面に表示されます。
+<h2>レンダーサーフェスと描画API </h2>
+ゲームキャラクタが、何れかのレンダーサーフェスに設定された矩形領域内に入ると、
+そのゲームキャラクタは画面に描画されます。ゲームキャラクタをどのように描画がするかは、
+レンダーサーフェス自身が情報を持っています。<BR>
+この情報により、ゲームキャラクタは、メイン画面のＯＡＭ、サブ画面のＯＡＭ、
+ソフトウェアスプライトの３つの内のどれかに描画されます。<BR>
+
+<h2>レンダラ行列スタック</h2>
+レンダラは内部に行列スタックを持っています。行列スタックの一般的な説明については、専門書を御参考ください。<BR>
+レンダラは2Dグラフィックスエンジンのアフィンパラメータの消費量を最小限にとどめるように、処理を行います。<BR>
+<pre>
+基本的なルールを以下に箇条書きにします。
+
+    ･単一のBegin - End Rendering()間で使用できるアフィンパラメータの種類は３２が最大である。それ以上の場合は複数のレンダリングに分割する必要がある。３２を超えた場合、正しい描画結果が得られない。
+    ･平行移動操作は新たにアフィンパラメータを消費しない。
+    ･スケール、回転操作を行った場合はカレント行列変更フラグがたつ。
+    ･カレント行列変更フラグがたった状態で描画登録が起こった場合、カレント行列をアフィンパラメータに読み込む。その際、新たにアフィンパラメータがひとつ消費される。
+    ･回転に逆回転を加えるなどして、回転変換成分がゼロになったとしてもカレント行列変更フラグはリセットされない。
+    
+    (関連：<CODE><A href="Renderer_MtxState.html">レンダラ行列状態</A>）
+</pre>
+
+
+
+
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

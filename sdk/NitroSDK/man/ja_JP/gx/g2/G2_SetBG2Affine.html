@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G2_SetBG2Affine</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G2_SetBG2Affine</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/gx/g2.h&gt;
+
+void G2_SetBG2Affine(
+    const MtxFx22 * mtx,
+    int centerX,
+    int centerY,
+    int x1,
+    int y1
+);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+    <td width="13%"><em><strong><font face="Courier New">mtx</font></strong></em></td>
+    <td width="87%">変換行列へのポインタ</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">centerX</font></strong></em></TD>
+      <TD>回転中心座標のX成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">centerY</font></strong></em></TD>
+      <TD>回転中心座標のY成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">x1</font></strong></em></TD>
+      <TD>回転前座標のX成分</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">y1</font></strong></em></TD>
+      <TD>回転前座標のY成分</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>BG2のアフィン変換を設定します。アフィン変換後の点(x2, y2)は以下の式で求められます。</P>
+<P><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'></span><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><span style='mso-text-raise:-15.0pt'><IMG width="313" height="48" src="bg_affine_formula.gif" v:shapes="_x0000_i1025"></span></span></P>
+<h2>参照</h2>
+<P><A href="G2_SetBG3Affine.html">G2_SetBG3Affine</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

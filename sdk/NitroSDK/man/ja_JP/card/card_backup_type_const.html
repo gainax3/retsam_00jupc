@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARDBackupType</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARDBackupType</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+typedef	enum {<br>
+    CARD_BACKUP_TYPE_EEPROM_4KBITS   = CARD_BACKUP_TYPE_DEFINE(EEPROM,  9, 0),<br>
+    CARD_BACKUP_TYPE_EEPROM_64KBITS  = CARD_BACKUP_TYPE_DEFINE(EEPROM, 13, 0),<br>
+    CARD_BACKUP_TYPE_EEPROM_512KBITS = CARD_BACKUP_TYPE_DEFINE(EEPROM, 16, 0),<br>
+    CARD_BACKUP_TYPE_FLASH_2MBITS    = CARD_BACKUP_TYPE_DEFINE(FLASH, 18, 0),<br>
+    CARD_BACKUP_TYPE_FLASH_4MBITS    = CARD_BACKUP_TYPE_DEFINE(FLASH, 19, 0),<br>
+    CARD_BACKUP_TYPE_FLASH_8MBITS    = CARD_BACKUP_TYPE_DEFINE(FLASH, 20, 0),<br>
+    CARD_BACKUP_TYPE_FLASH_16MBITS   = CARD_BACKUP_TYPE_DEFINE(FLASH, 21, 0),<br>
+    CARD_BACKUP_TYPE_FLASH_64MBITS   = CARD_BACKUP_TYPE_DEFINE(FLASH, 23, 0),<br>
+    CARD_BACKUP_TYPE_FRAM_256KBITS   = CARD_BACKUP_TYPE_DEFINE(FRAM, 15, 0),<br>
+    CARD_BACKUP_TYPE_NOT_USE = 0<br>
+} CARDBackupType;
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>NITRO-CARD に搭載されるバックアップデバイスを識別する列挙定数を示します。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="common/CARD_IdentifyBackup.html">CARD_IdentifyBackup</A> 
+<A href="common/CARD_GetCurrentBackupType.html">CARD_GetCurrentBackupType</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/08/22 CARD_BACKUP_TYPE_FLASH_64MBITSを追加<br>
+2007/02/23 CARD_BACKUP_TYPE_FLASH_16MBITSを追加<br>
+2006/04/05 CARD_BACKUP_TYPE_FLASH_8MBITSを追加<BR>
+2005/10/19 CARD_BACKUP_TYPE_FLASH_4MBITSを追加<BR>
+2005/07/11 CARD_BACKUP_TYPE_FRAM_256KBITSを追加<BR>
+2005/06/15 CARD_BACKUP_TYPE_EEPROM_512KBITSを追加<BR>
+2004/09/09 CARD_BACKUP_TYPE_EEPROM_512KBITS, CARD_BACKUP_TYPE_EEPROM_1MBITSを削除<BR>
+2004/08/23 列挙値の形式を変更、CARD_BACKUP_TYPE_FLASH_2MBITSを追加<BR>
+2004/07/05 初版<BR>
+</P>
+</body>
+</html>

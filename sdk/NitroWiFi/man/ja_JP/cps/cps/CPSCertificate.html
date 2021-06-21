@@ -1,0 +1,39 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSCertificate</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSCertificate</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct {
+    int certificate_len;
+    u8 *certificate;
+} CPSCertificate;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>相手に提示する証明書を定義する構造体です。<BR>
+make_mycertユーティリティで作成されます。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SetMyCert.html">CPS_SetMyCert</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

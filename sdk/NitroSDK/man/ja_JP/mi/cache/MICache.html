@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MICache</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MICache</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <pre><code>#include &lt;nitro/mi.h&gt;</code><br />
+
+typedef struct MICachePage
+{
+    struct MICachePage *next;
+    u32                 offset;
+    u8                 *buffer;
+}
+MICachePage;
+
+typedef struct MICache
+{
+<span style="color:#008000">/* private: */</span>
+    u32             pagewidth;
+    MICachePage    *valid;
+    MICachePage    *invalid;
+    MICachePage    *loading;
+    int             valid_total;
+    int             invalid_total;
+    int             loading_total;
+}
+MICache;</pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p>
+<a href="../device/MIDevice.html">MIDevice</a>構造体に対するメモリキャッシュを実現するための構造体です。<br />
+</p>
+<p>
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+主に以下のような特長があります。
+<ul>
+<li>準局所的なランダムアクセスを行うデバイス制御コードの処理効率を向上させます。<br />
+以前に読み込まれたことのあるデータはページ単位で保持されるため、
+限られた範囲のデータを繰り返し参照する場合には初回しかデバイスへアクセスしません。</li>
+<li>環境やデバイスに依存しない柔軟な非同期処理を記述することが出来ます。<br />
+キャッシュへのアクセスと実際のロード処理はごく単純な形式で提供されているため、
+アプリケーションの動作に合った自由な完了待ちルーチンを実装することが出来ます。</li>
+</ul>
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitCache.html">MI_InitCache</a>
+<a href="MI_ReadCache.html">MI_ReadCache</a>
+<a href="MI_LoadCache.html">MI_LoadCache</a>
+<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
+<a href="../device/MIDevice.html">MIDevice</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

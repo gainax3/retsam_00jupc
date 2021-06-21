@@ -1,0 +1,235 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NITRO-System - buildtools
+# File:     commondefs.VC
+#
+# Copyright 2004-2007 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Revision: 1.4 $
+#----------------------------------------------------------------------------
+
+ifndef NITROSYSTEM_COMMONDEFS_VC_
+NITROSYSTEM_COMMONDEFS_VC_ = TRUE
+
+
+#----------------------------------------------------------------------------
+#
+# Utilities
+#
+
+EMPTY	:=
+SPACE 	:= $(EMPTY) $(EMPTY)
+
+
+# *****************************************************************************
+#
+#	プラットフォーム設定
+#
+#	NNS_DEVENV		 = [VS7 VS8]
+#
+# *****************************************************************************
+
+NNS_DEVENV			?= VS7
+
+
+# *****************************************************************************
+#
+#	NITRO-Systemツールビルド環境設定
+#
+# *****************************************************************************
+
+# -----------------------------------------------------------------------------
+# ビルドタイプ
+#
+#	one of [NNS_TOOL_DEBUG/NNS_TOOL_RELEASE]
+#
+
+ifdef NNS_TOOL_DEBUG
+
+NNS_BUILDNAME	:= Debug
+NNS_BUILDDIR	:= Debug
+NNS_SUFFIX		:= D
+
+else # NNS_TOOL_RELEASE (default)
+
+NNS_BUILDNAME	:= Release
+NNS_BUILDDIR	:= Release
+NNS_SUFFIX		:= 
+
+endif
+
+
+# *****************************************************************************
+#
+#	NITRO-Systemツールパス設定
+#
+# *****************************************************************************
+
+# -----------------------------------------------------------------------------
+# NITRO-Systemパス設定
+#
+
+NNS_SRCTREE_ROOT			:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_ROOT)))
+NNS_BUILDTOOLSDIR			:= $(NNS_SRCTREE_ROOT)/build/buildtools
+
+NNS_WIN_TOOLSDIR			:= $(NNS_SRCTREE_ROOT)/tools/win
+NNS_WIN_LIBDIR				:= $(NNS_SRCTREE_ROOT)/build/tools/win/lib/$(NNS_BUILDDIR)
+
+
+# -----------------------------------------------------------------------------
+# NITRO-Systemインストール設定
+#
+
+NITROSYSTEM_INSTALL_ROOT	?= $(NITROSYSTEM_ROOT)
+NNS_INSTALL_ROOT			:= $(subst $(SPACE),\ ,$(subst \,/,$(NITROSYSTEM_INSTALL_ROOT)))
+
+NNS_INSTALL_WIN_TOOLSDIR	:= $(NNS_INSTALL_ROOT)/tools/win
+NNS_INSTALL_WIN_LIBDIR		:= $(NNS_INSTALL_ROOT)/build/tools/win/lib/$(NNS_BUILDDIR)
+
+
+# -----------------------------------------------------------------------------
+# Dotfuscatorパス設定
+#
+
+ifdef DOTFUSCATORTOOLS
+DOTFUSCATOR	:= $(subst $(SPACE),\ ,$(subst \,/,$(DOTFUSCATORTOOLS)))/dotfuscator.exe
+endif
+
+
+# -----------------------------------------------------------------------------
+# コンパイラ設定
+#
+
+BINDIR	?= ./$(NNS_BUILDDIR)
+LIBDIR	?= ./$(NNS_BUILDDIR)
+INTDIR	?= ./$(NNS_BUILDDIR)
+
+TARGETS	 = $(addprefix $(BINDIR)/,$(TARGET_BIN)) \
+		   $(addprefix $(LIBDIR)/,$(TARGET_LIB))
+
+VC_LOGNAME	?= build.log
+VC_LOGFILE	 = ./$(VC_LOGNAME)
+
+ifeq ($(NNS_MSBUILD),TRUE)
+ifeq ($(ALWAYS_REBUILD),TRUE)
+BUILD_OPT := /t:Rebuild /p:Configuration=$(NNS_BUILDNAME) "/l:FileLogger,Microsoft.Build.Engine;logfile=$(VC_LOGFILE)"
+else
+BUILD_OPT :=            /p:Configuration=$(NNS_BUILDNAME) "/l:FileLogger,Microsoft.Build.Engine;logfile=$(VC_LOGFILE)"
+endif
+else
+ifeq ($(ALWAYS_REBUILD),TRUE)
+BUILD_OPT := /rebuild
+else
+BUILD_OPT := /build
+endif
+endif
+
+CLEAN_DIRS		:= ./$(NNS_BUILDDIR)
+
+CLOBBER_DIRS	:= $(VC_LOGFILE) \
+				   ./Release \
+				   ./Debug
+
+CLOBBER_INSTALLED	= $(addprefix $(INSTALL_DIR)/,$(notdir $(INSTALL_TARGETS)))
+
+
+# *****************************************************************************
+#
+#  Makeコマンド設定
+#
+# *****************************************************************************
+
+#----------------------------------------------------------------------------
+#
+#	--no-print-directory: 	No print directory when 'change directory'
+#	-r			no builtin rules
+#	-R			no builtin variables
+#	-j			do make with multi-thread (not used now)
+#
+
+MAKEFILE		= $(firstword $(MAKEFILE_LIST))
+MAKEFLAGS_SHORT	= $(filter -%,$(filter-out --%,$(MAKEFLAGS)))
+
+MAKEFLAGS		+= -R -r
+
+ifdef NNS_SILENT
+MAKEFLAGS		+= -s
+endif
+
+# Check -w option
+ifeq (,$(findstring w,$(MAKEFLAGS_SHORT)))
+MAKEFLAGS	+= --no-print-directory
+endif
+
+
+# Check -k option
+ifeq (,$(findstring k,$(MAKEFLAGS_SHORT)))
+AND		= &&
+else
+AND		= ;
+endif
+
+
+# Check -s option
+ifneq (,$(findstring s,$(MAKEFLAGS_SHORT)))
+NNS_STDOUT	= > /dev/null
+endif
+
+
+# -----------------------------------------------------------------------------
+#
+#	DEBUG ビルドにおいて、ターゲットが実行ファイルの時は、インストールの設定
+#	を無視します。
+#
+
+ifeq	($(NNS_BUILDNAME),Debug)
+ifneq	($(TARGET_BIN),)
+
+INSTALL_IGNORE	:= TRUE
+
+endif
+endif
+
+
+# *****************************************************************************
+#
+#  ツール設定
+#
+# *****************************************************************************
+
+CP		:= cp -rf
+RM		:= rm -rf
+MV		:= mv
+MKDIRP	:= mkdir -p
+SED		:= sed
+INSTALL	:= install
+REMAKE	:= $(MAKE) -f $(MAKEFILE)
+
+ifeq ($(NNS_DEVENV),VS7)
+	DEVENV	:= $(subst $(SPACE),\ ,$(subst \,/,$(VS71COMNTOOLS)))../IDE/devenv.com
+else
+ifeq ($(NNS_DEVENV),VS8)
+	DEVENV	:= $(subst $(SPACE),\ ,$(subst \,/,$(VS80COMNTOOLS)))../IDE/devenv.com
+endif
+endif
+
+MSBUILD	:= $(shell cygpath "$(SYSTEMROOT)")/Microsoft.NET/Framework/v2.0.50727/MSBuild.exe
+
+
+# *****************************************************************************
+#
+#  デフォルトターゲット
+#
+# *****************************************************************************
+
+default: build
+
+
+endif	# NITROSYSTEM_COMMONDEFS_VC_
+#----- End of commondefs.VC -----

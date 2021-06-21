@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetMCAnimationCurrentFrame</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetMCAnimationCurrentFrame</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_MultiCellAnimation.h&gt;</CODE></pre>
+  <pre><CODE>
+void NNS_G2dSetMCAnimationCurrentFrame
+( 
+    NNSG2dMultiCellAnimation*   pMultiCellAnim, 
+    u16                         frameIndex 
+);
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMultiCellAnim</font></strong></em></td>
+    <td width="87%">[OUT] マルチセルアニメーション</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">frameIndex</font></strong></em></td>
+    <td width="87%">[IN] アニメフレーム番号</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+マルチセルアニメーションの再生アニメーションフレームを設定します。<BR>
+不正なIndexが指定された場合は何もしません。<BR>
+<BR>
+注意：<BR>
+STOP方式のアニメーションシーケンスを終端まで再生した場合、アニメーションコントローラが停止状態に設定されます。<BR>
+そのため、再度、アニメーション更新を行うには、マルチセルアニメーションの持つアニメーションコントローラに対して、
+NNS_G2dStartAnimCtrl()を呼び出す必要があります。<BR>
+マルチセルアニメーションの持つアニメーションコントローラを取得するには、NNS_G2dGetMCAnimAnimCtrl()関数を使用します。<BR>
+<BR>
+また、マルチセルアニメーションを構成するセルアニメーション全体に対してNNS_G2dStartAnimCtrl()を呼び出す、
+NNS_G2dStartMCCellAnimationAll()関数が用意されています。<BR>
+<BR>
+アニメーション先頭からの再スタートを行う場合には、NNS_G2dRestartMCAnimation()関数をご利用ください。
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="../Animation/NNS_G2dSetAnimCtrlCurrentFrame.html">NNS_G2dSetAnimCtrlCurrentFrame</A><br></CODE>
+<CODE><A href="NNS_G2dSetMCAnimationCellAnimFrame.html">NNS_G2dSetMCAnimationCellAnimFrame</A><br></CODE>
+<CODE><A href="NNS_G2dGetMCAnimAnimCtrl.html">NNS_G2dGetMCAnimAnimCtrl</A><br></CODE>
+<CODE><A href="../Animation/NNS_G2dStartAnimCtrl.html">NNS_G2dStartAnimCtrl</A><br></CODE>
+<CODE><A href="NNS_G2dStartMCCellAnimationAll.html">NNS_G2dStartMCCellAnimationAll</A><br></CODE>
+<CODE><A href="NNS_G2dRestartMCAnimation.html">NNS_G2dRestartMCAnimation</A><br></CODE>
+</p>
+
+<H2>履歴</H2>
+<P>2006/05/29 注意書きの追加</P>
+<P>2004/05/28 初版</P>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GHTTPPostAddFileFromMemory</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GHTTPPostAddFileFromMemory</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_GHTTPPostAddFileFromMemory( DWCGHTTPPost *post,
+                                     const char *key,
+                                     const char *buffer,
+                                     int bufferlen,
+                                     const char *filename,
+                                     const char *contentType );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  HTTPサーバにアップロードするデータをDWCGHTTPPost型オブジェクトに追加します。
+		  DWCGHTTPPost型オブジェクトは、データをHTTPサーバにアップロードするための情報単位で、<A href="DWC_GHTTPNewPost.html">DWC_GHTTPNewPost</A>関数によって作成されます。
+        </P>
+		<P>
+		  データはファイルとしてHTTPサーバにアップロードされます。
+		  この呼び出しの中でデータはコピーされません。実際にアップロードを開始するときにデータが読み込まれまることに留意してください。
+		</P>
+		<P>
+		  実際にデータのアップロードを開始するためには、<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A>関数、<A href="DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2</A>関数を使います。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>post</CODE></STRONG></EM></TD>
+					<TD width="75%">データを追加するDWCGHTTPPost型オブジェクトへのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>key</CODE></STRONG></EM></TD>
+					<TD>追加するデータの名前を表す文字列。NULLおよび空文字列""は指定できません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>buffer</CODE></STRONG></EM></TD>
+					<TD>ファイルとしてアップロードするデータへのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>bufferlen</CODE></STRONG></EM></TD>
+					<TD>ファイルとしてアップロードするデータのバイト数</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>filename</CODE></STRONG></EM></TD>
+					<TD>HTTPサーバに通知するファイル名。NULLおよび空文字列""は指定できません。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>contentType</CODE></STRONG></EM></TD>
+					<TD>ファイルのMIMEタイプ。NULLの場合は"application/octet-stream"となります。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">データ追加成功</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD>パラメータエラー、もしくはメモリ確保エラーのためデータ追加失敗</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_GHTTPNewPost.html">DWC_GHTTPNewPost</A>,
+				<A href="DWC_PostGHTTPData.html">DWC_PostGHTTPData</A>,
+				<A href="DWC_GetGHTTPDataEx2.html">DWC_GetGHTTPDataEx2</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/12/27 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_GetVisibleWnd</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX*_GetVisibleWnd</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>int GX_GetVisibleWnd( void );</CODE></dd>
+  <dd>
+  <CODE>int GXS_GetVisibleWnd( void );</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p><CODE>GXWndMask</CODE>型の論理和で表示ウィンドウを取得します。</p>
+<H2>説明</H2>
+<P>表示するウィンドウを取得します。<CODE>GXWndMask</CODE>型の値で論理和をとったものを引数とします。<BR>
+GX_GetVisibleWnd関数ではメイングラフィックスエンジンの、GXS_GetVisibleWnd関数ではサブグラフィックスエンジンの設定を取得することができます。<BR>
+<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_WNDMASK_NONE</CODE></TD>
+      <TD width="70%">何も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_W0</CODE></TD>
+      <TD>ウィンドウ0を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_W1</CODE></TD>
+      <TD>ウィンドウ1を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_OW</CODE></TD>
+      <TD>OBJウィンドウを指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXWndMask</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_WNDMASK_NONE = 0x00,
+    GX_WNDMASK_W0 = 0x01,
+    GX_WNDMASK_W1 = 0x02,
+    GX_WNDMASK_OW = 0x04
+}
+GXWndMask;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_GetVisiblePlane.html">GX_GetVisiblePlane</A>, <A href="GX_SetVisibleWnd.html">GX_SetVisibleWnd</A>, <A href="GXS_SetVisibleWnd.html">GXS_SetVisibleWnd</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/12/24</P>
+</body>
+</html>

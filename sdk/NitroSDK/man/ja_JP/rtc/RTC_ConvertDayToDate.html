@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTC_ConvertDayToDate</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTC_ConvertDayToDate</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE>void RTC_ConvertDayToDate( <A href="RTCDate.html">RTCDate</A>* date, s32 day );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">date</font></strong></em></TD>
+      <TD width="700">日付データを格納するバッファへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">day</font></strong></em></TD>
+      <TD>2000年1月1日を 0 とした総経過日数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>2000年1月1日を 0 とした総経過日数を <A href="RTCDate.html">RTCDate</A>> 型に変換します。<BR>
+day は 0 以上、36524 以下である必要があり、0 未満であれば 0 に、36524 より大きければ 36524 に、修正した後に結果を返します。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTC_ConvertDateToDay.html">RTC_ConvertDateToDay</A>, <A href="RTCDate.html">RTCDate</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/05/17 初版<BR>
+</P>
+</body>
+</html>

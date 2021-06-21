@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_SetCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_SetCallback</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>void TP_SetCallback( <A href="TPRecvCallback.html">TPRecvCallback</A> callback );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">callback</font></strong></em></TD>
+      <TD width="700">ユーザコールバック関数へのポインタ<br>
+このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ARM7プロセッサへ送ったタッチパネルリクエストの結果を取得した時に呼び出されるユーザコールバック関数を設定します。<BR>
+引数がNULLの場合には以降再度設定されるまでユーザコールバックは呼び出されなくなります。<BR>
+(デフォルト値は NULL)</P>
+
+<h2>参照</h2>
+<P><A href="TPRecvCallback.html"><CODE>TPRecvCallback</CODE></A></P>
+<H2>履歴</H2>
+<P>Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+Ver. 2004/04/16 初版</P>
+</body>
+</html>

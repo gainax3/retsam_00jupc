@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_SetCartridgeRomCycle1st</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_SetCartridgeRomCycle1st</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_SetCartridgeRomCycle1st( MICartridgeRomCycle1st c1 )</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>c1</STRONG></EM></TD>
+      <TD width="87%">カートリッジROM領域へアクセスの1stアクセスサイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>カートリッジROM領域への1stアクセスサイクルを設定します。<BR>
+2nd以降のアクセスサイクルを設定するのは <A href="MI_SetCartridgeRomCycle2nd.html"><CODE>MI_SetCartridgeRomCycle2nd</CODE></A> 関数で行います。<br>
+アクセスサイクルの計算方法とAGBカートリッジに関する注意については、
+<A href="MI_SetAgbCartridgeFastestRomCycle.html">MI_SetAgbCartridgeFastestRomCycle</a> 関数のリファレンスを参照ください。<br>
+</P>
+<P>引数<B><I>c1</I></B> は、<CODE>MICartridgeRomCycle1st </CODE>列挙型で、以下の意味を持ちます。<BR>
+</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_6</CODE></TD>
+      <TD bgcolor="#eeeeee">6サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_8</CODE></TD>
+      <TD bgcolor="#eeeeee">8サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_10</CODE></TD>
+      <TD bgcolor="#eeeeee">10サイクル</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><CODE>MI_CTRDG_ROMCYCLE1_18</CODE></TD>
+      <TD bgcolor="#eeeeee">18サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_GetCartridgeRomCycle1st.html">MI_GetCartridgeRomCycle1st</A>,
+ <A href="MI_SetCartridgeRomCycle2nd.html">MI_SetCartridgeRomCycle2nd</A>,
+ <A href="MI_GetCartridgeRomCycle2nd.html">MI_GetCartridgeRomCycle2nd</A>,
+ <A href="MI_SetAgbCartridgeFastestRomCycle.html">MI_SetAgbCartridgeFastestRomCycle</a><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/01 リンク追加<br>
+2004/07/01 名前変更。1→1st<BR>
+2004/05/25 名前変更。Cartridge をつけた。<BR>
+2003/12/18 初版</P>
+</body>
+</html>

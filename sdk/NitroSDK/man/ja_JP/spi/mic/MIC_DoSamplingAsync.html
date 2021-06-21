@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MIC_DoSamplingAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MIC_DoSamplingAsync</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE><A href="MICResult.html">MICResult</A> MIC_DoSamplingAsync(
+            <A href="MICSamplingType.html">MICSamplingType</A>  type,
+            void*            buf,
+            <A href="MICCallback.html">MICCallback</A>      callback,
+            void*            arg );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">type</font></strong></em></TD>
+      <TD width="700"><A href="MICSamplingType.html">MICSamplingType列挙型</A>のサンプリング種別</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">buf</font></strong></em></TD>
+      <TD>サンプリング結果を格納するバッファへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">callback</font></strong></em></TD>
+      <TD>コールバック関数へのポインタ<br>
+このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD>コールバック関数へ渡す引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>
+		<A href="MICResult.html">MICResult列挙型</A>の処理結果を返します。<BR>
+		非同期処理を正常に開始できた場合に MIC_RESULT_SUCCESS が、何らかの原因で失敗した場合にはそれ以外の返り値が返されます。
+</p>
+
+<H2>説明</H2>
+<P>マイクのサンプリングを非同期に一回行います。<BR>
+この関数はARM7にサンプリング実行要求を発行し、ARM7からの応答を待たずに呼び出し元に戻ります。<BR>
+ARM7における処理結果はユーザコールバック関数に渡される<em><strong><font face="Courier New">result</font></strong></em>引数によって取得する必要があります。<BR>
+なお、入力音量が最大値及び最小値を越える場合には出力データはクランプされます。
+サンプリング可能な入力音量は、<A href="../pm/PM_SetAmpGain.html">PM_SetAmpGain関数</A>により事前に調整しておくことができます。<BR>
+<BR>
+この関数が失敗した場合は非同期的な操作は行われず、ユーザコールバック関数も呼び出されません。</P>
+
+<H2>注意</H2>
+<P><FONT color=red><em><strong><font face="Courier New">buf</font></strong></em>引数によって指定したバッファには関数とは非同期に値が書き込まれますので、ユーザコールバック関数によって非同期処理の完了を確認するまでは別の用途に使用しないようにして下さい。</FONT></P>
+
+<H2>参照</H2>
+<P><CODE><A href="MIC_DoSampling.html">MIC_DoSampling</A>, <A href="../pm/PM_SetAmpGain.html">PM_SetAmpGain</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+
+Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+Ver. 2005/01/11 返り値の修正<BR>
+Ver. 2004/08/10 入力音量に関する説明追加<BR>
+Ver. 2004/06/01 初版<BR>
+</P>
+</body>
+</html>

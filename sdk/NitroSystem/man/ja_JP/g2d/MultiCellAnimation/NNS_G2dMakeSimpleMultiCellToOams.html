@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dMakeSimpleMultiCellToOams</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dMakeSimpleMultiCellToOams</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_MultiCellAnimation.h&gt;</CODE></pre>
+  <pre><CODE>
+u16 NNS_G2dMakeSimpleMultiCellToOams
+( 
+    GXOamAttr*                      pDstOams, 
+    u16                             numDstOams,
+    const NNSG2dMultiCellInstance*  pMCellInst, 
+    const MtxFx22*                  pMtxSR, 
+    const NNSG2dFVec2*              pBaseTrans,
+    u16                             affineIndex,
+    BOOL                            bDoubleAffine 
+)
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pDstOams</font></strong></em></td>
+    <td width="87%">[OUT] 変換結果を格納するバッファの先頭ポインタ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">numDstOams</font></strong></em></td>
+    <td width="87%">[IN] 変換結果を格納するバッファ長</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMCellInst</font></strong></em></td>
+    <td width="87%">[IN] マルチセル実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMtxSR</font></strong></em></td>
+    <td width="87%">[IN] アフィン変換（任意）</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">affineIdx</font></strong></em></td>
+    <td width="87%">[IN] アフィンインデックス（任意）</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pBaseTrans</font></strong></em></td>
+    <td width="87%">[IN] 平行移動値（任意）</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">bDoubleAffine</font></strong></em></td>
+    <td width="87%">[IN] 倍角アフィンモードを利用するか</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>使用したOBJ数<BR>
+</p>
+<H2>説明</H2>
+<P>
+マルチセルを描画するOBJ列を書き出します。<BR>
+バッファに十分な容量を確保する必要があります。<BR>
+アフィン変換、平行移動値をしたくない場合は pMtxSR、pBaseTransにNULLを渡してください。<BR>
+アフィン変換を行う場合は、アフィンインデックスを指定してください。<BR>
+関数内部で自らの構成要素であるセルアニメーションを引数に NNS_G2dMakeCellToOams() を 実行しています 。<BR>
+<BR>
+・本関数が受け取るAffine変換行列は一般的な形式の行列である必要があります。2Dグラフィックスエンジンのアフィンパラメータとして使用されるスケール値が逆数の形式の行列は使用できない点にご注意ください。<BR>
+・Affine変換行列を適用した場合は、OBJに適用されているフリップ効果が得られなくなる点にご注意ください。<BR>
+<BR>
+<BR>
+本関数が正しく処理を行えるマルチセルは、
+マルチセルを構成するセルアニメーションがSR(スケール、回転)変換されていないマルチセルに限定されます。<BR>
+SR変換されたセルアニメーションから構成されるマルチセルを描画する場合には、レンダラモジュールなどの利用を検討ください。<BR>
+
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="../CellAnimation/NNS_G2dMakeCellToOams.html">NNS_G2dMakeCellToOams</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/09/01 マルチセル構成セルアニメに関する制限を追記</P>
+<P>2004/08/02 Affine変換適用時の制限を追記</P>
+<P>2004/05/28 初版</P>
+</body>
+</html>

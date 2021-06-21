@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dInitCellTransferStateManager</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dInitCellTransferStateManager</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_CellTransferManager.h&gt;</CODE></pre>
+  <pre><CODE>void 
+            NNS_G2dInitCellTransferStateManager( 
+                NNSG2dCellTransferState*            pCellStateArray, 
+                u32                                 numCellState,
+                VramTransferTaskRegisterFuncPtr     pTaskRegisterFunc );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pCellStateArray</font></strong></em></td>
+    <td width="87%">[IN] セルVRAM転送状態オブジェクトバッファ</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">numCellState</font></strong></em></td>
+    <td width="87%">[IN] セルVRAM転送状態オブジェクトバッファ長</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pTaskRegisterFunc</font></strong></em></td>
+    <td width="87%">[IN] VRAM転送登録関数のポインタ</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+セルVRAM転送状態オブジェクトマネージャを初期化します。<BR>
+セルVRAM転送状態オブジェクトバッファを引数として渡します。<BR>
+pTaskRegisterFunc は VRAM転送タスク登録を請求する関数へのポインタです。
+セルVRAM転送状態オブジェクトマネージャはセルVRAM転送状態オブジェクトの状態を判定し、必要があればVRAM転送タスクを発行します。<BR>
+実際にVRAM転送タスクを生成し、管理、実行する処理は外部モジュールに委譲しています。
+<BR>
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>なし</p>
+<H2>履歴</H2>
+<P>2004/07/20 初版</P>
+</body>
+</html>

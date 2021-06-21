@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsSeekFile</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsSeekFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>u32 NNS_McsSeekFile(
+        NNSMcsFile* pFile,
+        s32         distanceToMove,
+        u32         moveMethod,
+        u32*        pNewFilePointer);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">pFile</font></strong></em></td>
+  <td width="87%">ファイル情報構造体へのポインタ。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New"><CODE>distanceToMove</CODE></font></strong></em></td>
+  <td width="87%">ファイルポインタを移動するバイト数。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New"><CODE>moveMethod</CODE></font></strong></em></td>
+  <td width="87%">ファイルポインタの移動を開始する位置(詳細は説明を参照)。</td>
+ </tr>
+ <tr>
+  <td width="13%"><em><strong><font face="Courier New"><CODE>pNewFilePointer</CODE></font></strong></em></td>
+  <td width="87%">新しいファイルポインタを受け取る変数へのポインタ。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>ファイルポインタの移動に成功したら 0、 失敗したら 0以外の値を返します。返り値の詳細は説明を参照してください。</p>
+<H2>説明</H2>
+<p>指定された位置にファイル ポインタを移動します。引数<CODE>pNewFilePointer</CODE>で指定したポインタが指す変数に移動後のファイルポインタの位置がセットされます。この値が不要な場合はNULLをセットしてください。</p>
+<p>引数<CODE>distanceToMove</CODE>に0, 引数<CODE>moveMethod</CODE>に<code>NNS_MCS_FILEIO_SEEK_CURRENT</code>を指定して現在のファイルポインタの位置を取得することも出来ます。</p>
+<p>引数<CODE>moveMethod</CODE>は次の値のいずれかをとります。</p>
+<table>
+  <tbody>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_SEEK_BEGIN</font></strong></em></td>
+      <td>ファイルの先頭を開始点とします。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_SEEK_CURRENT</font></strong></em></td>
+      <td>現在のファイルポインタの位置を開始点とします。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_SEEK_END</font></strong></em></td>
+      <td>ファイルの終端の位置を開始点とします。</td>
+    </tr>
+  </tbody>
+</table>
+<p>返り値は次のいずれかの値をとります。</p>
+<table>
+  <tbody>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SUCCESS</font></strong></em> (0)</td>
+      <td>関数は成功しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_COMERROR</font></strong></em></td>
+      <td>通信エラーが発生しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_NOTCONNECT</font></strong></em></td>
+      <td>mcsサーバと接続されていません。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SERVERERROR</font></strong></em></td>
+      <td>mcsサーバ側でファイル操作に基づくエラーが発生しました。このエラーコードはWin32システムのエラーコードであり、関数<code>NNS_McsGetServerErrorCode</code>で取得できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h2>参照</h2>
+<p><CODE><a href="NNS_McsOpenFile.html">NNS_McsOpenFile</a></CODE></p>
+<H2>履歴</H2>
+<P>2005/02/03 初版</P>
+</body>
+</html>

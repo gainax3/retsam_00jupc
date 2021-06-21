@@ -1,0 +1,96 @@
+■ NitroSDK2.0FC → 2.0RC1 の WM の変更への対応例
+                                                                  2004年10月6日
+
+このドキュメントは 2.0RC1 でのプログラム上の非互換点の修正のサポートを
+目的として記述されたものです。
+全体の変更点については、changelog.html をご確認ください。
+
+1. ゲームグループIDの型変更
+===========================
+
+WMParentParam (旧名の WMpparam でも利用可能) の構造が変更されました。
+メンバ変数の3番目にパディング目的のダミーのu16変数が挿入されています。
+また、u16 ggid[2] は u32 ggid に変更されました。
+
+よって、以下のような変更が必要になります。
+
+  static const WMParentParam   wcDefaultParameter =
+  {
+      NULL ,  0 ,
+ -    { (u16)WC_GGID , (u16)(WC_GGID>>16) } ,  // ゲームグループID
+ +    0 ,                         // padding
+ +    WC_GGID ,                   // ゲームグループID
+      0x0000 ,                    // temporary ID (毎回+1される)
+      1 ,                         // エントリー許可フラグ
+
+WC_GGID の部分には任天堂から割り振られたゲームグループIDを u32 の値として
+設定してください。
+
+また、WMGameInfo も u16 ggid[2] から u32 ggid に変更されています。
+親機を WMStarScan でスキャンした結果のチェックで
+ggid の比較を行っている部分があるはずですので、
+そちらの変更を行う必要もあります。
+変更例は以下のようになります。
+
+      // GameGroupIDが一致するかを確認
+      if(
+          ( ( wcWmBssDesc->length * 2 ) >= ( 64 + 8 ) ) &&
+ -        ( wcWmBssDesc->gameInfo.ggid[ 0 ] == wcDefaultParameter.ggid[ 0 ] ) &&
+ -        ( wcWmBssDesc->gameInfo.ggid[ 1 ] == wcDefaultParameter.ggid[ 1 ] )
+ +        ( wcWmBssDesc->gameInfo.ggid == wcDefaultParameter.ggid )
+      )
+      {
+
+ ※ 今回の変更とは関係ありませんが、wcWmBssDesc->length を比較している部分が
+    古い SDK のデモでは抜けていたことに注意してください。
+    WMBssDesc.gameInfo に有効な値が入っているかのチェックが*必ず*必要ですので、
+    WMBssDesc.length または WMBssDesc.gameInfoLength の値のチェックが
+    きちんと為されているか、この機会にご確認ください。
+
+
+2. MACアドレスの型変更
+======================
+
+MACアドレスの表現が u16 macAddress[3] から u8 macAddress[6] に
+変更されています。
+WM_StartParent へのコールバックに来る WM_STATECODE_CONNECTED 通知を
+始めとした、MACアドレスを受け取る箇所を必要に応じて変更してください。
+
+また、スキャン時に設定する WMScanParam.bssid も u8 bssid[6] に
+変更になっていますので、例えば以下のような変更が必要になります。
+
+      wcScanParameter->channel = WC_DEFAULT_CHAN;
+      wcScanParameter->maxChannelTime = WC_SCAN_TIME_MAX;
+ -    wcScanParameter->bssid[ 0 ] = 0xffff;
+ -    wcScanParameter->bssid[ 1 ] = 0xffff;
+ -    wcScanParameter->bssid[ 2 ] = 0xffff;
+ +    wcScanParameter->bssid[ 0 ] = 0xff;
+ +    wcScanParameter->bssid[ 1 ] = 0xff;
+ +    wcScanParameter->bssid[ 2 ] = 0xff;
+ +    wcScanParameter->bssid[ 3 ] = 0xff;
+ +    wcScanParameter->bssid[ 4 ] = 0xff;
+ +    wcScanParameter->bssid[ 5 ] = 0xff;
+
+
+3. WM_StartMPEx のインターフェイス変更
+======================================
+
+WM_StartMPEx に引数 BOOL ignoreFatalError が追加されています。
+通常のアプリケーションでは引数の最後に FALSE を追加するようにしてください。
+なお、WM_StartMP を使っているアプリケーションでは変更はありません。
+
+      wmResult = WM_StartMPEx(
+          WcCb_StartMP ,
+          wcRecvBuffer ,
+          (u16)wcRecvBufferSize ,
+          wcSendBuffer ,
+          (u16)wcSendBufferSize ,
+          (u16)(wcParentParameter->CS_Flag ? 0 : 1),
+          0,
+          TRUE,
+          TRUE,
+          FALSE
+ +        , FALSE       // 今回追加された ignoreFatalError
+      );
+
+

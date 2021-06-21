@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_InitCache</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_InitCache</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  void MI_InitCache(<a href="./MICache.html">MICache</a> *cache, u32 page, void *buffer, u32 length);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>cache</strong></em></td>
+      <td width="87%">初期化する<a href="./MICache.html">MICache</a>構造体へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>page</strong></em></td>
+      <td width="87%">キャッシュ1ページあたりの大きさ<br />
+                      このサイズは4バイト以上かつ2のべき乗である必要があります。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>buffer</strong></em></td>
+      <td width="87%">キャッシュページ管理情報として使用するバッファ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>length</strong></em></td>
+      <td width="87%">bufferのバイトサイズ<br />
+                      ライブラリは、指定されたサイズで可能な限り多くのキャッシュページを用意します。<br />
+                      詳細は後述の「説明」をご参照ください。</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<h2>説明</h2>
+<p>管理情報用のバッファとページサイズを指定して<a href="./MICache.html">MICache</a>構造体を初期化します。<br />
+この構造体は、与えられたバッファを使用して内部でキャッシュページのリストを用意します。<br />
+この構造体を使用して<a href="./MI_ReadCache.html">MI_ReadCache</a>関数および<a href="./MI_LoadCache.html">MI_LoadCache</a>関数を呼び出すことができます。
+</p>
+<p>
+管理情報用バッファのサイズは用途に応じて任意のサイズを指定することが可能です。<br />
+ライブラリは、指定された page と length に対して
+</p>
+<p style="background-color:#FFFFF8;padding:2px;margin:1px">  length / ( sizeof(MICachePage) + page )</p>
+<p>
+で計算されるページ数を自動的に算出し、リスト構造として内部で管理します。<br />
+逆に、ページサイズと総数から所要バイト数を算出したい場合には
+</p>
+<p style="background-color:#FFFFF8;padding:2px;margin:1px">  MI_CACHE_BUFFER_WORKSIZE(page, total)</p>
+<p>
+のマクロで必要なサイズを取得することができます。
+</p>
+<p>
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+詳細は<a href="MICache.html">MICache</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_ReadCache.html">MI_ReadCache</a>
+<a href="MI_LoadCache.html">MI_LoadCache</a>
+<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
+<a href="MICache.html">MICache</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

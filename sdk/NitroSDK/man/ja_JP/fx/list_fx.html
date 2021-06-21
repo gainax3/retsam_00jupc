@@ -1,0 +1,568 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>固定小数関連 API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>固定小数関連 API 機能一覧</H1>
+<H2>データ型</H2>
+<H3><A name="TypeFixed">固定小数型</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="fx16.html">fx16</A></TH>
+      <TD width="70%">整数部 3ビット小数部12ビットの符号付固定小数を表す型です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="fx32.html">fx32</A></TH>
+      <TD width="70%">整数部19ビット小数部12ビットの符号付固定小数を表す型です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="fx64.html">fx64</A></TH>
+      <TD width="70%">整数部51ビット小数部12ビットの符号付固定小数を表す型です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="fx64c.html">fx64c</A></TH>
+      <TD width="70%">整数部31ビット小数部32ビットの符号付固定小数を表す型です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="TypeMtxVec">行列・ベクトル型</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="mtx/MtxFx22.html">MtxFx22</A></TH>
+      <TD width="70%">2x2行列で要素の型はfx32です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MtxFx33.html">MtxFx33</A></TH>
+      <TD width="70%">3x3行列で要素の型はfx32です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MtxFx43.html">MtxFx43</A></TH>
+      <TD width="70%">4x3行列で要素の型はfx32です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MtxFx44.html">MtxFx44</A></TH>
+      <TD width="70%">4x4行列で要素の型はfx32です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VecFx32.html">VecFx32</A></TH>
+      <TD width="70%">3次元ベクトルで要素の型はfx32です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VecFx16.html">VecFx16</A></TH>
+      <TD>3次元ベクトルで要素の型はfx16です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>初期化</H2>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="FX_Init.html">FX_Init</A></TH>
+      <TD width="70%">固定小数APIの初期化です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>計算</H2>
+<H3><A name="CalcSync">固定小数の計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="FX_Whole.html">FX_Whole</A></TH>
+      <TD width="70%">小数点以下を切り捨て結果を整数として返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Floor.html">FX_Floor</A></TH>
+      <TD width="70%">小数点以下を切り捨てます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="FX_Modf.html">FX_Modf</A></TH>
+      <TD>fx32型を整数部と小数部に分割します。</TD>
+    </TR>
+    <TR bgcolor="#ffffff">
+      <TH width="30%"><A href="FX_Mul.html">FX_Mul</A></TH>
+      <TD width="70%">fx32型同士の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Mul32x64c.html">FX_Mul32x64c</A></TH>
+      <TD width="70%">fx32型とfx64c型の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Div.html">FX_Div</A></TH>
+      <TD width="70%">fx32型同士の除算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_DivFx64c.html">FX_DivFx64c</A></TH>
+      <TD width="70%">fx32型同士の除算を行い、結果をfx64c型で返します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="FX_Mod.html">FX_Mod</A></TH>
+      <TD>fx32型同士で除算を行い、剰余を返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Sqrt.html">FX_Sqrt</A></TH>
+      <TD width="70%">fx32型の平方根を計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_InvSqrt.html">FX_InvSqrt</A></TH>
+      <TD width="70%">fx32型の平方根の逆数を計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Inv.html">FX_Inv</A></TH>
+      <TD width="70%">fx32型の逆数を計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_InvFx64c.html">FX_InvFx64c</A></TH>
+      <TD width="70%">fx32型の逆数を計算し、結果をfx64c型で返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_SinIdx.html">FX_SinIdx</A></TH>
+      <TD width="70%">正弦を計算します。16ビットのインデックスを受け取り、結果をfx16型で返します(テーブル引き)。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_CosIdx.html">FX_CosIdx</A></TH>
+      <TD width="70%">余弦を計算します。16ビットのインデックスを受け取り、結果をfx16型で返します(テーブル引き)。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_SinFx64c.html">FX_SinFx64c</A></TH>
+      <TD width="70%">正弦を計算します。fx32型でラジアンを受け取り、結果をfx64c型で返します(精度が必要な場合)。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_CosFx64c.html">FX_CosFx64c</A></TH>
+      <TD width="70%">余弦を計算します。fx32型でラジアンを受け取り、結果をfx64c型で返します(精度が必要な場合)。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_AtanIdx.html">FX_AtanIdx</A></TH>
+      <TD width="70%">逆正接を計算します。fx32型を受け取り、結果をu16型で返します（テーブル引き）</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Atan2Idx.html">FX_Atan2Idx</A></TH>
+      <TD width="70%">逆正接を計算します。(y,x)をfx32型で受け取り、結果をu16型で返します(テーブル引き)</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Atan.html">FX_Atan</A></TH>
+      <TD width="70%">逆正接を計算します。fx32型を受け取り、結果をfx16型(ラジアン単位)で返します（テーブル引き）</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_Atan2.html">FX_Atan2</A></TH>
+      <TD width="70%">逆正接を計算します。(y,x)をfx32型で受け取り、結果のfx16型(ラジアン単位)で返します(テーブル引き)</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_AsinIdx.html">FX_AsinIdx</A></TH>
+      <TD width="70%">逆正弦を計算します。fx32型を受け取り、結果をu16型で返します（テーブル引き）</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_AcosIdx.html">FX_AcosIdx</A></TH>
+      <TD width="70%">逆余弦を計算します。fx32型を受け取り、結果をu16型で返します（テーブル引き）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="CalcAsync">固定小数の計算（非同期版）</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="FX_DivAsync.html">FX_DivAsync</A></TH>
+      <TD width="70%">非同期の除算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_DivAsyncImm.html">FX_DivAsyncImm</A></TH>
+      <TD width="70%">非同期の除算を行います。除算モードの設定も行いません。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_GetDivResultFx64c.html">FX_GetDivResultFx64c</A></TH>
+      <TD width="70%">除算の計算結果をfx64c型で取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_GetDivResult.html">FX_GetDivResult</A></TH>
+      <TD width="70%">除算の計算結果をfx32型で取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_InvAsync.html">FX_InvAsync</A></TH>
+      <TD width="70%">非同期で逆数の計算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_InvAsyncImm.html">FX_InvAsyncImm</A></TH>
+      <TD width="70%">非同期で逆数の計算を行います。除算モードの設定も行いません。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_GetInvResultFx64c.html">FX_GetInvResultFx64c</A></TH>
+      <TD width="70%">FX_GetDivResultFx64cと同様です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_GetInvResult.html">FX_GetInvResult</A></TH>
+      <TD width="70%">FX_GetDivResultと同様です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_SqrtAsync.html">FX_SqrtAsync</A></TH>
+      <TD width="70%">非同期で平方根計算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_SqrtAsyncImm.html">FX_SqrtAsyncImm</A></TH>
+      <TD width="70%">非同期で平方根計算を行います。平方根演算モードの設定も行いません。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_GetSqrtResult.html">FX_GetSqrtResult</A></TH>
+      <TD width="70%">平方根計算の結果をfx32型で取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Calc2x2Mtx">2x2行列計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Identity22.html">MTX_Identity22</A></TH>
+      <TD width="70%">単位行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Transpose22.html">MTX_Transpose22</A></TH>
+      <TD width="70%">転置行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_Scale22.html">MTX_Scale22</A></TH>
+      <TD>スケール行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_ScaleApply22.html">MTX_ScaleApply22</A></TH>
+      <TD>スケール行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Rot22.html">MTX_Rot22</A></TH>
+      <TD width="70%">回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Inverse22.html">MTX_Inverse22</A></TH>
+      <TD width="70%">逆行列を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Concat22.html">MTX_Concat22</A></TH>
+      <TD width="70%">行列の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy22.html">MTX_Copy22</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Calc3x3Mtx">3x3行列計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Identity33.html">MTX_Identity33</A></TH>
+      <TD width="70%">単位行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy33To43.html">MTX_Copy33To43</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy33To44.html">MTX_Copy33To44</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Transpose33.html">MTX_Transpose33</A></TH>
+      <TD width="70%">転置行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Scale33.html">MTX_Scale33</A></TH>
+      <TD width="70%">スケール行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_ScaleApply33.html">MTX_ScaleApply33</A></TH>
+      <TD width="70%">スケール行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotX33.html">MTX_RotX33</A></TH>
+      <TD width="70%">X軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotY33.html">MTX_RotY33</A></TH>
+      <TD width="70%">Y軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotZ33.html">MTX_RotZ33</A></TH>
+      <TD width="70%">Z軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotAxis33.html">MTX_RotAxis33</A></TH>
+      <TD width="70%">任意の軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Inverse33.html">MTX_Inverse33</A></TH>
+      <TD width="70%">逆行列を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Concat33.html">MTX_Concat33</A></TH>
+      <TD width="70%">行列の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_MultVec33.html">MTX_MultVec33</A></TH>
+      <TD width="70%">行列にベクトルを左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy33.html">MTX_Copy33</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Calc4x3Mtx">4x3行列計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Identity43.html">MTX_Identity43</A></TH>
+      <TD width="70%">単位行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy43To33.html">MTX_Copy43To33</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy43To44.html">MTX_Copy43To44</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Transpose43.html">MTX_Transpose43</A></TH>
+      <TD width="70%">転置行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Scale43.html">MTX_Scale43</A></TH>
+      <TD width="70%">スケール行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_ScaleApply43.html">MTX_ScaleApply43</A></TH>
+      <TD width="70%">スケール行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotX43.html">MTX_RotX43</A></TH>
+      <TD width="70%">X軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotY43.html">MTX_RotY43</A></TH>
+      <TD width="70%">Y軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotZ43.html">MTX_RotZ43</A></TH>
+      <TD width="70%">Z軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotAxis43.html">MTX_RotAxis43</A></TH>
+      <TD width="70%">任意の軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Inverse43.html">MTX_Inverse43</A></TH>
+      <TD width="70%">逆行列を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Concat43.html">MTX_Concat43</A></TH>
+      <TD width="70%">行列の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_MultVec43.html">MTX_MultVec43</A></TH>
+      <TD width="70%">行列にベクトルを左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_TransApply43.html">MTX_TransApply43</A></TH>
+      <TD width="70%">行列に平行移動行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_LookAt.html">MTX_LookAt</A></TH>
+      <TD width="70%">行列にカメラ行列を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy43.html">MTX_Copy43</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Calc4x4Mtx">4x4行列計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Identity44.html">MTX_Identity44</A></TH>
+      <TD width="70%">単位行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy44To33.html">MTX_Copy44To33</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy44To43.html">MTX_Copy44To43</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Transpose44.html">MTX_Transpose44</A></TH>
+      <TD width="70%">転置行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Scale44.html">MTX_Scale44</A></TH>
+      <TD width="70%">スケール行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_ScaleApply44.html">MTX_ScaleApply44</A></TH>
+      <TD width="70%">スケール行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotX44.html">MTX_RotX44</A></TH>
+      <TD width="70%">X軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotY44.html">MTX_RotY44</A></TH>
+      <TD width="70%">Y軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotZ44.html">MTX_RotZ44</A></TH>
+      <TD width="70%">Z軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_RotAxis44.html">MTX_RotAxis44</A></TH>
+      <TD width="70%">任意の軸に関する回転行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Concat44.html">MTX_Concat44</A></TH>
+      <TD width="70%">行列の乗算を行います。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_TransApply44.html">MTX_TransApply44</A></TH>
+      <TD>行列に平行移動行列を左から乗じます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_Frustum.html">MTX_Frustum</A></TH>
+      <TD>射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_Perspective.html">MTX_Perspective</A></TH>
+      <TD>射影行列をセットします</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_Ortho.html">MTX_Ortho</A></TH>
+      <TD>射影行列をセットします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_FrustumW.html">MTX_FrustumW</A></TH>
+      <TD>射影行列をセットします。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_PerspectiveW.html">MTX_PerspectiveW</A></TH>
+      <TD>射影行列をセットします（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="mtx/MTX_OrthoW.html">MTX_OrthoW</A></TH>
+      <TD>射影行列をセットします。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="mtx/MTX_Copy44.html">MTX_Copy44</A></TH>
+      <TD width="70%">行列をコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="CalcVec">ベクトル計算</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="vec/VEC_Set.html">VEC_Set</A></TH>
+      <TD>fx32型の3次元ベクトルに値を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_Add.html">VEC_Add</A></TH>
+      <TD width="70%">2つのfx32型の3次元ベクトルを加算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_Subtract.html">VEC_Subtract</A></TH>
+      <TD width="70%">2つのfx32型の3次元ベクトルを減算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_DotProduct.html">VEC_DotProduct</A></TH>
+      <TD width="70%">fx32型の3次元ベクトルの内積を計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_CrossProduct.html">VEC_CrossProduct</A></TH>
+      <TD width="70%">fx32型の3次元ベクトルの外積を計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_Mag.html">VEC_Mag</A></TH>
+      <TD width="70%">fx32型の3次元ベクトルの長さを求めます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Distance.html">VEC_Distance</A></TH>
+      <TD>fx32型の2つの3次元ベクトル間の距離を求めます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="vec/VEC_Normalize.html">VEC_Normalize</A></TH>
+      <TD width="70%">fx32型の3次元ベクトルを正規化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_MultAdd.html">VEC_MultAdd</A></TH>
+      <TD>fx32型の3次元ベクトルのスカラー倍してfx32型の3次元ベクトルを加算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_MultSubtract.html">VEC_MultSubtract</A></TH>
+      <TD>fx32型の3次元ベクトルのスカラー倍してfx32型の3次元ベクトルを減算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Set.html">VEC_Fx16Set</A></TH>
+      <TD>fx16型の3次元ベクトルに値を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Add.html">VEC_Fx16Add</A></TH>
+      <TD>2つのfx16型の3次元ベクトルを加算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Subtract.html">VEC_Fx16Subtract</A></TH>
+      <TD>2つのfx16型の3次元ベクトルを減算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16DotProduct.html">VEC_Fx16DotProduct</A></TH>
+      <TD>fx16型の3次元ベクトルの内積を計算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16CrossProduct.html">VEC_Fx16CrossProduct</A></TH>
+      <TD>fx16型の3次元ベクトルの外積を計算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Mag.html">VEC_Fx16Mag</A></TH>
+      <TD>fx16型の3次元ベクトルの長さを求めます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Distance.html">VEC_Fx16Distance</A></TH>
+      <TD>fx16型の2つの3次元ベクトル間の距離を求めます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="vec/VEC_Fx16Normalize.html">VEC_Fx16Normalize</A></TH>
+      <TD>fx16型の3次元ベクトルを正規化します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>その他</H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="FX_DivS32.html">FX_DivS32</A></TH>
+      <TD width="70%">s32型同士の除算を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="FX_ModS32.html">FX_ModS32</A></TH>
+      <TD width="70%">s32型同士の剰余を求めます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロ</H2>
+<P><A href="fx16_macros.html">fx16型用のマクロ</A></P>
+<P><A href="fx32_macros.html">fx32型用のマクロ</A></P>
+<P><A href="fx64_macros.html">fx64型用のマクロ</A></P>
+<P><A href="fx64c_macros.html">fx64c型用のマクロ</A></P>
+<H2>定数</H2>
+<P><A href="fx16_const.html">fx16型の定数マクロ</A></P>
+<P><A href="fx32_const.html">fx32型の定数マクロ</A></P>
+<P><A href="fx64c_const.html">fx64c型の定数マクロ</A></P>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

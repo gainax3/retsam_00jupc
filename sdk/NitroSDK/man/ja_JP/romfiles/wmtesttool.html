@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>WMTestTool</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">WMTestTool</H1>
+<H2>概要</H2>
+WMTestToolはDS無線のテスト用に作られたプログラムです。<br>
+起動すると、画面下部にMacAddressが表示されます。MacAddressは、<a href="../os/ownerInfo/OS_GetMacAddress.html">OS_GetMacAddress</a>で取得した値です。<br>
+メインメニューには以下の4項目が表示されています。
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Scan Test</font></strong></TD>
+      <TD width="800">
+		GGID及びTGIDのチェックを行なえます。<br>
+		<a href="../wm/wm/WM_StartScan.html">WM_StartScan</a>を使用しています。<br>
+		無線LANのアクセスポイントであった場合は、GGID欄にSSIDが表示されます。
+      </TD>
+    </TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">ScanEx Test</font></strong></TD>
+      <TD width="800">
+		GGID及びTGIDのチェックを行なえます。<br>
+		<a href="../wm/wm/WM_StartScanEx.html">WM_StartScanEx</a>を使用しています。<br>
+		無線LANのアクセスポイントであった場合は、GGID欄にSSIDが表示されます。
+      </TD>
+    </TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">MeasureChannel Test</font></strong></TD>
+      <TD width="800">
+		指定チャンネルの使用率を表示します。0～100までの値で、大きいほど混み合っていることになります。<br>
+		<a href="../wm/wm/WM_MeasureChannel.html">WM_MeasureChannel</a>を使用しています。<br>
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><strong><font face="Courier New">Noise Mode</font></strong></TD>
+      <TD width="800">
+		指定チャンネルに妨害電波を送出します。<br>
+		非公開のテスト用コマンドを使用しています。<br>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H2>Scan Test</H2>
+十字ボタンの上下で項目を選びます。十字ボタンの左右でパラメータを変更します。<br>
+AボタンでScanを開始し、Bボタンで終了します。
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Channel</font></strong></TD>
+      <TD width="800">
+		seekになっている場合は1,7,13チャンネルを巡回します。<br>
+		1～13を指定した場合は、そのチャンネルのみをサーチします。<br>
+		ただし、その場合でも隣接した数チャンネルに存在する親機は見つかってしまいます。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">MaxChannelTime</font></strong></TD>
+      <TD width="800">
+		1つのチャンネルをサーチする最大時間です。<br>
+		10～300(ms)の範囲で設定可能です。
+	  </TD>
+	</TR>
+  </TBODY>
+</TABLE>
+
+<H2>ScanEx Test</H2>
+十字ボタンの上下で項目を選びます。十字ボタンの左右でパラメータを変更します。<br>
+AボタンでScanExを開始し、Bボタンで終了します。
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Channel</font></strong></TD>
+      <TD width="800">
+		Scanするチャンネルを指定します。<br>
+		1,7,13chになっている場合は、<a href="../wm/wm/WMScanExParam.html">WMScanExParam</a>のchannelListに0x1041が設定されます。<br>
+		1～13を指定した場合は、そのチャンネルのみをサーチします。<br>
+		ただし、その場合でも隣接した数チャンネルに存在する親機は見つかってしまいます。<br>
+		ScanTypeがActiveの場合は、1～13の全チャンネル指定としています。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">MaxChTime</font></strong></TD>
+      <TD width="800">
+		1つのチャンネルをサーチする最大時間です。<br>
+		10～300(ms)の範囲で設定可能です。<br>
+		ScanTypeがActiveの場合は、50ms固定としています。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">ScanType</font></strong></TD>
+      <TD width="800">
+		ScanTypeを設定します。<br>
+		DS親機はPassiveモードでしか見つけることができないことに注意してください。
+	  </TD>
+	</TR>
+  </TBODY>
+</TABLE>
+
+<H2>MeasureChannel Test</H2>
+十字ボタンの上下で項目を選びます。十字ボタンの左右でパラメータを変更します。<br>
+AボタンでMeasureChannelを開始し、Bボタンで終了します。
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Channel</font></strong></TD>
+      <TD width="800">
+		MeasureChannelを実行するチャンネルを指定します。<br>
+		ただし、隣接した数チャンネルの使用率の影響を受けることがあります。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">MeasureTime</font></strong></TD>
+      <TD width="800">
+		調査する時間(ms単位)を設定します。<br>
+		10～1000の値を10刻みで設定できます。
+	  </TD>
+	</TR>
+  </TBODY>
+</TABLE>
+
+<H2>Noise Mode</H2>
+十字ボタンの上下で項目を選びます。十字ボタンの左右でパラメータを変更します。<br>
+AボタンでNoise発生を開始し、Bボタンで終了します。<br>
+Noise発生を開始すると、上画面にNoise発生・非発生の回数が表示されます。<br>
+<TABLE border="1" width="100%">
+  <TBODY>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Channel</font></strong></TD>
+      <TD width="800">
+		Noiseを発生させるチャンネルを設定します。<br>
+		1～13の値を設定可能です。<br>
+		ただし、隣接した数チャンネルへも影響を与えます。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Noise rate</font></strong></TD>
+      <TD width="800">
+		Noise発生率を設定します。<br>
+		Frequency時間毎に、発生・非発生をランダムで決定します。<br>
+		電波の強さではなく、電波を出している時間的な率であることに注意してください。<br>
+		Noise発生を開始した後も変更可能です。<br>
+		なお、Noise rate 100% は極端な状況であり、この状態が長時間続くことは実環境ではまず起こりません。
+	  </TD>
+	</TR>
+	<TR>
+      <TD width="200"><strong><font face="Courier New">Frequency</font></strong></TD>
+      <TD width="800">
+		Noiseの発生・非発生を判定する周期(ms)です。
+		5～50の値を設定可能です。
+	  </TD>
+	</TR>
+  </TBODY>
+</TABLE>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/bin/ARM9-TS/Rom/WMTestTool.srl</CODE></P>
+
+<H2>参照</H2>
+
+<H2>履歴</H2>
+
+<P>
+2005/08/04 Noise rate についての注記を追加<br>
+2005/07/08 無線LANのアクセスポイントに関する表示が変更<br>
+2005/03/03 初版作成<br>
+</P>
+</BODY>
+</HTML>

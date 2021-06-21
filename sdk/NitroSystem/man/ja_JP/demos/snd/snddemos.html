@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>Snd Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>Sndサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/snd/</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSystem/build/demos/snd/</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/snd/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/snd/simple/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSystem/build/demos/snd/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/　</CODE>ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+<!--  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。-->
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<H4>サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/simple/src/main.c">simple</A></CODE></STRONG></EM></TD>
+      <TD width="576">BGMシーケンス及び、SEシーケンスを再生する単純なサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/stream/src/main.c">stream</A></CODE></STRONG></EM></TD>
+      <TD width="576">ストリームを再生する単純なサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/stream-2/src/main.c">stream-2</A></CODE></STRONG></EM></TD>
+      <TD width="576">複数のストリームデータをリアルタイムに結合して再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/stream-3/src/main.c">stream-3</A></CODE></STRONG></EM></TD>
+      <TD width="576">ストリームにエフェクトをかけて再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/moveVolume/src/main.c">moveVolume</A></CODE></STRONG></EM></TD>
+      <TD width="576">フェードインなど、シーケンスボリュームの時間変化を行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/reverb/src/main.c">reverb</A></CODE></STRONG></EM></TD>
+      <TD width="576">サウンドキャプチャを使って、音声出力全体にリバーブをかけるサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/effect/src/main.c">effect</A></CODE></STRONG></EM></TD>
+      <TD width="576">サウンドキャプチャを使って、音声出力全体にローパスフィルタをかけるサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/outputEffect/src/main.c">outputEffect</A></CODE></STRONG></EM></TD>
+      <TD width="576">出力エフェクト機能を使って、サラウンドモード・ヘッドフォンモード・モノラルモードを切り替えるサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/sampling/src/main.c">sampling</A></CODE></STRONG></EM></TD>
+      <TD width="576">サウンドキャプチャを使って、音声出力をサンプリングして出力ボリュームを計算するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/waveout/src/main.c">waveout</A></CODE></STRONG></EM></TD>
+      <TD width="576">マイクを使って録音し、録音した波形データを再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/micThrough/src/main.c">micThrough</A></CODE></STRONG></EM></TD>
+      <TD width="576">マイク入力をリアルタイムに再生するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/driverInfo/src/main.c">driverInfo</A></CODE></STRONG></EM></TD>
+      <TD width="576">サウンドドライバの情報を表示するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/snd/onMemory/src/main.c">onMemory</A></CODE></STRONG></EM></TD>
+      <TD width="576">サウンドアーカイブを全てメモリ上において使用するサンプルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATORでの正常動作を確認しています。</P>
+<p>現バージョンの ensata では動作させることができません。</p>
+<H2>参照</H2>
+<P><A href="../../snd/list_snd.html"><CODE>Snd関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2005/02/17 driverInfoデモ追加<br>
+2005/01/24 実行方法において IS-NITRO-EMULATOR の記述を削除、動作環境において TEG の記述を削除し、TS を
+IS-NITRO-EMULATOR に変更。<BR>
+2004/12/21 micThroughデモ追加<br>
+2004/11/26 stream-2, stream-3デモ追加<br>
+2004/10/04 outputEffectデモ追加<br>
+2004/09/13 samplingデモ追加<br>
+2004/08/02 初版
+</P>
+</BODY>
+</HTML>
+

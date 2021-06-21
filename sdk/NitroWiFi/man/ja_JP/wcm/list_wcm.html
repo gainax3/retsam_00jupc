@@ -1,0 +1,169 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - man
+  File:     list_wcm.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: list_wcm.html,v $
+  Revision 1.3  2005/09/10 03:11:47  terui
+  WCM_GetLinkLevelへの参照を追加。
+
+  Revision 1.2  2005/07/22 12:59:39  terui
+  "フェーズ"を"状態"に用語統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>[WCM] ワイヤレス接続管理ライブラリ 機能一覧</TITLE>
+		<LINK rel="stylesheet" href="../css/apilist.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>[WCM] ワイヤレス接続管理ライブラリ 機能一覧</H1>
+		<H3><A name="init">初期化・終了</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_Init.html" target="_self">WCM_Init</A></TD>
+					<TD widht="75%">ワイヤレス接続管理ライブラリを初期化します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_Finish.html" target="_self">WCM_Finish</A></TD>
+					<TD>ワイヤレス接続管理ライブラリを終了し、初期化前の状態に戻します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="async">非同期状態遷移</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_StartupAsync.html" target="_self">WCM_StartupAsync</A></TD>
+					<TD width="75%">無線通信機能の起動シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_CleanupAsync.html" target="_self">WCM_CleanupAsync</A></TD>
+					<TD>無線通信機能の停止シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_SearchAsync.html" target="_self">WCM_SearchAsync</A></TD>
+					<TD>無線アクセスポイント自動探索を開始、もしくは停止します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_BeginSearchAsync.html" target="_self">WCM_BeginSearchAsync</A></TD>
+					<TD>無線アクセスポイント自動探索の開始シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_EndSearchAsync.html" target="_self">WCM_EndSearchAsync</A></TD>
+					<TD>>無線アクセスポイント自動探索の停止シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_ConnectAsync.html" target="_self">WCM_ConnectAsync</A></TD>
+					<TD>無線アクセスポイントへの接続シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_DisconnectAsync.html" target="_self">WCM_DisconnectAsync</A></TD>
+					<TD>接続されている無線アクセスポイントからの切断シーケンスを開始します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_TerminateAsync.html" target="_self">WCM_TerminateAsync</A></TD>
+					<TD>WCM ライブラリの強制停止シーケンスを開始します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="util">動作設定</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_GetPhase.html" target="_self">WCM_GetPhase</A></TD>
+					<TD width="75%">WCM ライブラリの現在の内部状態を取得します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_UpdateOption.html" target="_self">WCM_UpdateOption</A></TD>
+					<TD>オプション項目の更新を行います。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_SetChannelScanTime.html" target="_self">WCM_SetChannelScanTime</A></TD>
+					<TD>１つのチャンネルを探索する限度時間を設定します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="aplist">無線アクセスポイント自動探索</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_LockApList.html" target="_self">WCM_LockApList</A></TD>
+					<TD width="75%">内部リストバッファの更新許可・禁止設定を行います。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_ClearApList.html" target="_self">WCM_ClearApList</A></TD>
+					<TD>内部リストバッファの内容を消去します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_CountApList.html" target="_self">WCM_CountApList</A></TD>
+					<TD>リストアップされている機器情報の数を取得します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_PointApList.html" target="_self">WCM_PointApList</A></TD>
+					<TD>リストアップされている機器情報の１つを取得します。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCM_PointApListLinkLevel.html" target="_self">WCM_PointApListLinkLevel</A></TD>
+					<TD>リストアップされている機器情報の１つを発見した際の電波強度を取得します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="others">その他</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_GetLinkLevel.html" target="_self">WCM_GetLinkLevel</A></TD>
+					<TD width="75%">無線アクセスポイントとの接続リンク強度を取得します。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="struct">型</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCMConfig.html" target="_self">WCMConfig</A></TD>
+					<TD width="75%">WCM ライブラリ内部動作設定を定義する構造体です。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCMNotify.html" target="_self">WCMNotify</A></TD>
+					<TD>WCM ライブラリからの非同期処理結果、及び不定期な通知を受け取るためのコールバック関数の型です。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCMNotice.html" target="_self">WCMNotice</A></TD>
+					<TD>WCM ライブラリからの通知関数に渡される通知の詳細を示す構造体です。</TD>
+				</TR>
+				<TR>
+					<TD><A href="wcm/WCMWepDesc.html" target="_self">WCMWepDesc</A></TD>
+					<TD>WEP 暗号化設定を定義する構造体です。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<H3><A name="const">定数</A></H3>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><A href="wcm/WCM_CONSTANT_NUMBER.html" target="_self">WCM ライブラリ定数</A></TD>
+					<TD width="75%">WCM ライブラリで使用される定数群についての解説です。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		<TABLE border="0" height="100%"><TR><TD style="background-color : white;"></TD></TR></TABLE>
+	</BODY>
+</HTML>

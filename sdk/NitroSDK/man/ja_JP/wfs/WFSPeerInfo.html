@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSPeerInfo</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSPeerInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+typedef struct WFSPeerInfo
+{
+    int     aid;            <font color="#008000">/* AID */</font>
+    u8      mac[6];         <font color="#008000">/* MAC アドレス */</font>
+    <font color="#808080">u8      padding[2];</font>
+}
+WFSPeerInfo;
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:200"><em><strong><font face="Courier New">aid</font></strong></em></td>
+      <td style="width:800">通知すべき対象局のAID</td>
+    </tr>
+    <tr>
+      <td style="width:200"><em><strong><font face="Courier New">mac</font></strong></em></td>
+      <td style="width:800">通知すべき対象局のMACアドレス</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>説明</h2>
+<p>WFSライブラリのMP通信フック関数に使用される引数構造体です。<br />
+通信先の接続や切断をWFSライブラリに検知させるため、この構造体に適切な情報を格納して該当するフック関数を呼び出す必要があります。<br />
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="server/WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a> 
+<a href="server/WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a> 
+<a href="client/WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a> 
+<a href="client/WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

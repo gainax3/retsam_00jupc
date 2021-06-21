@@ -1,0 +1,89 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCConnectionClosedCallback</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCConnectionClosedCallback</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+typedef void (*DWCConnectionClosedCallback)( DWCError error,
+                                             BOOL     isLocal,
+                                             BOOL     isServer,
+                                             u8       aid,
+                                             int      index,
+                                             void*    param );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+          他DSとの接続が切断されたときに呼び出されます。
+		</P>
+		<P>
+		  本コールバック関数は<a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>関数によって設定することができます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+                  <TD width="25%"><EM><STRONG><CODE>error</CODE></STRONG></EM></TD>
+                  <TD>DWCエラー種別。内容の詳細は、<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>を参照してください。</TD>
+                </TR>
+                <TR>
+                  <TD width="25%"><EM><STRONG><CODE>isLocal</CODE></STRONG></EM></TD>
+                  <TD>TRUE:自分がクローズした。<br>
+                    FALSE:他の誰かがクローズした。<br>
+                    マッチメイク中に応答のないホストを切断する時もTRUEになる。</TD>
+                </TR>
+                <TR>
+                  <TD width="25%"><EM><STRONG><CODE>isServer</CODE></STRONG></EM></TD>
+                  <TD>TRUE: サーバクライアントマッチメイクのサーバDSがクローズした。自分がサーバDSでisLocal = TRUE の時もTRUEになる。<br>
+                      FALSE:それ以外。サーバクライアントマッチメイク以外では必ずFALSEとなる。
+                  </TD>
+                </TR>
+                <TR>
+                  <TD width="25%"><EM><STRONG><CODE>aid</CODE></STRONG></EM></TD>
+                  <tD>クローズしたプレイヤーのAID</tD>
+                </TR>
+                <TR>
+                  <TD width="25%"><EM><STRONG><CODE>index</CODE></STRONG></EM></TD>
+                  <TD>クローズしたプレイヤーの友達リストインデックス。クローズしたプレイヤーが友達でなければ-1となる。</TD>
+                </TR>
+                <TR>
+                  <TD width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+                  <TD><a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>関数で指定したコールバック用パラメータ</TD>
+                </TR>
+              </TBODY>
+          </TABLE>
+
+
+		<H2>返り値</H2>
+		<P>
+          なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+          <code>
+            <a href="DWC_SetConnectionClosedCallback.html">DWC_SetConnectionClosedCallback</a>,
+            <a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>
+          </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 コールバック設定関数について追記<BR>
+			2005/11/01 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

@@ -1,0 +1,58 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_htons, CPS_htonl</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_htons<BR>CPS_htonl</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>static inline u16
+CPS_htons(u16 data)
+{
+    return (u16)((data >> 8) | (data << 8));
+}
+
+static inline u32
+CPS_htonl(u32 data)
+{
+    u32 tmp;
+
+    tmp = ((data >> 8) & 0x00ff00ff) | ((data << 8) & 0xff00ff00);
+    return (tmp >> 16) | (tmp << 16);
+}</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>data</strong></em></code></td>
+    <td>ホストバイトオーダーの値。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>ネットワークバイトオーダの値</P>
+
+<h2>説明</h2>
+
+<p>ホストバイトオーダーの値をネットワークバイトオーダの値に変換します。</p>
+
+<h2>参照</h2>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

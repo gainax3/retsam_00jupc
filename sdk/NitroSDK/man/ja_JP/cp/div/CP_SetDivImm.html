@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_SetDivImm</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_SetDivImm*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void CP_SetDivImm32_32( u32 numer, u32 denom );<br>
+  void CP_SetDivImm64_32( u64 numer, u32 denom );<br>
+  void CP_SetDivImm64_64( u64 numer, u64 denom ); </CODE></dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>numer</STRONG></EM></TD>
+      <TD width="87%">numerator。分数の分子という意味で、ここでは除算の被除数を表します。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>denom</STRONG></EM></TD>
+      <TD width="87%">denominator。分数の分母という意味で、ここでは除算の除数を表します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>除算のパラメータを設定します。<BR>
+除算モードの設定は行わず、被除数、除数をそれぞれのレジスタに格納するのみです。<BR>
+<BR>
+除算モードは以下の3つがあります。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>除算モード</TH>
+      <TH>計算</TH>
+      <TH>結果</TH>
+      <TH>計算サイクル</TH>
+      <TH>CPUサイクル換算</TH>
+    </TR>
+    <TR>
+      <TD>CP_DIV_32_32BIT_MODE</TD>
+      <TD>32ビット 割る 32ビット</TD>
+      <TD>商32ビット、余り32ビット</TD>
+      <TD>18サイクル</TD>
+      <TD>36サイクル</TD>
+    </TR>
+    <TR>
+      <TD>CP_DIV_64_32BIT_MODE</TD>
+      <TD>64ビット 割る 32ビット</TD>
+      <TD>商64ビット、余り32ビット</TD>
+      <TD>34サイクル</TD>
+      <TD>68サイクル</TD>
+    </TR>
+    <TR>
+      <TD>CP_DIV_64_64BIT_MODE</TD>
+      <TD>64ビット 割る 64ビット</TD>
+      <TD>商64ビット、余り64ビット</TD>
+      <TD>34サイクル</TD>
+      <TD>68サイクル</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<P><B>(注意)</B><BR>
+<B><FONT color="#ff3300">除算器は割り込み内で値が上書きされることがあります</FONT></B>。除算パラメータを設定して除算を行っている最中に割り込みが発生し除算器が使用された場合に、元の演算結果が破壊されてしまいます。従って割り込み内で除算器を使用する場合には<CODE><A href="../CP_SaveContext.html">CP_SaveContext()</A></CODE>, <A href="../CP_RestoreContext.html"><CODE>CP_RestoreContext()</CODE></A> を用いて除算器の状態を退避・復元する必要があります。<BR>
+<B><FONT color="#ff3300">スレッド切り替え時には、除算器の状態も自動的に保存・復元されます。</FONT></B></P>
+<BLOCKQUOTE><BR>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD style="background-color : #eeeeee;"><B>例</B>　除算器の状態を復元する<BR>
+      <BR>
+      <CODE>intr_func( void ) <BR>
+      {<BR>
+      　CPContext context;<BR>
+      　<BR>
+      　CP_SaveContext( &amp;context );<BR>
+      　CP_SetDiv32_32( 1000, 5 );<BR>
+      　CP_WaitDiv();<BR>
+      　result = CP_GetDivResult();<BR>
+      　CP_RestoreContext( &amp;context );<BR>
+      }</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BLOCKQUOTE>
+
+
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、DIV_NUMER(0x4000290)、DIV_DENOM(0x4000298) に値を格納します。<br>
+</CODE></p>
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SetDiv.html">CP_SetDiv*</A>, <A href="CP_IsDivBusy.html">CP_IsDivBusy</A>, <A href="CP_WaitDiv.html">CP_WaitDiv</A>, <A href="CP_GetDivResult.html">CP_GetDivResult*</A>, <A href="CP_GetDivRemainder.html">CP_GetDivRemainder*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2006/08/09 割り込み内での使用に関する注意を追加<BR>
+2004/11/02 内部動作のIOレジスタアドレスを修正<BR>
+2004/01/09 内容を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

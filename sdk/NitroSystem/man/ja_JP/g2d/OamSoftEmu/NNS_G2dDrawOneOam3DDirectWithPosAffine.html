@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dDrawOneOam3DDirectWithPosAffine</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dDrawOneOam3DDirectWithPosAffine</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OamSoftwareSpriteDraw.h&gt;</CODE></pre>
+  <pre><CODE>
+void    NNS_G2dDrawOneOam3DDirectWithPosAffine( 
+                            s16                             posX,
+                            s16                             posY,
+                            s16                             posZ,
+                            const GXOamAttr*                pOam, 
+                            const NNSG2dImageAttr*          pTexImageAttr,
+                            u32                             texBaseAddr,
+                            u32                             pltBaseAddr,
+                            const MtxFx22*                  pMtx );
+                            
+</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posX</font></strong></em></td>
+    <td width="87%">[IN] X位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posY</font></strong></em></td>
+    <td width="87%">[IN] Y位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">posZ</font></strong></em></td>
+    <td width="87%">[IN] Z位置</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[IN] OAMアトリビュート</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pTexImageAttr</font></strong></em></td>
+    <td width="87%">[IN] テクスチャ属性</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">texBaseAddr</font></strong></em></td>
+    <td width="87%">[IN] テクスチャベースアドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pltBaseAddr</font></strong></em></td>
+    <td width="87%">[IN] パレットベースアドレス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMtx</font></strong></em></td>
+    <td width="87%">[IN] アフィン行列</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<P>
+単一OBJを3Dグラフィックスエンジンを使用して、内部バッファを使用せずに直接描画します。<BR>
+OBJの描画に使用するアフィン行列とOBJの位置を指定することが可能です。<BR>
+<BR>
+3Dグラフィックスエンジンが使用するテクスチャデータ、パレットデータ、の設定のための情報を引数で指定します。<BR>
+カメラの設定をすませておくことが必要です。
+カメラの設定はNNS_G2dSetupSoftwareSpriteCamera（）を使用してください。<BR>
+NNS_G2dApplyOamManagerToHWSprite() 内でコールされています。<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="../Oam/NNS_G2dApplyOamManagerToHWSprite.html">NNS_G2dApplyOamManagerToHWSprite</A><br>
+<A href="../SoftwareSprite/NNS_G2dSetupSoftwareSpriteCamera.html">NNS_G2dSetupSoftwareSpriteCamera</A><br>
+<A href="NNS_G2dDrawOneOam3DDirectXXXFast.html">NNS_G2dDrawOneOam3DDirect*Fast</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/05/28 初版</P>
+</body>
+</html>

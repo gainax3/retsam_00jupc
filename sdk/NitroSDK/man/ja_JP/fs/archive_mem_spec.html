@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>メモリファイルアーカイブ</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">メモリファイルアーカイブ</h1>
+<h2>概要</h2>
+<p>
+この項では、ファイルシステムにデフォルトで用意される「メモリファイルアーカイブ」について説明します。
+</p>
+<H2>仕様</H2>
+<P>
+メモリファイルアーカイブの基本的な動作は以下の通りです。<br>
+<br>
+・<a href="file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory<a>関数の初回呼び出し時に自動的にロードされます。<br>
+<br>
+・指定されたメモリに<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数でアクセスし、ファイルとしての操作を実現します。内部でキャッシュの無効化やクリーンは行われません。<br>
+<br>
+・ファイルのリード/ライト操作以外(ディレクトリやパス名に関するコマンド全般)に対応しません。ファイルシステムへアーカイブ名も登録されません。<br>
+<br>
+・非同期版の関数を呼び出された場合にも、常に同期版として動作します。<br>
+<br>
+<BR>
+</p>
+<H2>実装</H2>
+<P>
+メモリファイルアーカイブの具体的な実装は以下の通りです。<br>
+<br>
+[リードコールバック]<br>
+<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数によってメモリからデータを読み出します。<br>
+常に FS_RESULT_SUCCESS を応答します。<br>
+<br>
+[ライトコールバック]<br>
+<a href="../mi/memory/MI_CpuCopy.html">MI_CpuCopy8</a>関数によってメモリへデータを書き込みます。<br>
+常に FS_RESULT_SUCCESS を応答します。<br>
+<br>
+[ユーザプロシージャ]<br>
+<TABLE border="0" height="310">
+  <TBODY>
+    <TR>
+      <TD width="207" height="10">
+	  <A href="command/fs_command_seekdir_spec.html">FS_COMMAND_SEEKDIR</A><br>
+	  <A href="command/fs_command_readdir_spec.html">FS_COMMAND_READDIR</A><br>
+	  <A href="command/fs_command_findpath_spec.html">FS_COMMAND_FINDPATH</A><br>
+	  <A href="command/fs_command_getpath_spec.html">FS_COMMAND_GETPATH</A><br>
+	  <A href="command/fs_command_openfilefast_spec.html">FS_COMMAND_OPENFILEFAST</A><br>
+	  </TD>
+      <TD height="5">これらのコマンドには対応せず、常に FS_RESULT_UNSUPPORTED を返します。</TD>
+    </TR>
+    <TR>
+      <TD width="207" height="15" style="background-color : white;">その他</TD>
+      <TD height="15">FS_RESULT_PROC_UNKNOWNを返し、デフォルトのコマンド実装に任せます。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_archive_type.html">FSArchive</A>
+<A href="fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<BR>
+<A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/28 初版<br>
+</P>
+</body>
+</html>

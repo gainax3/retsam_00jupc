@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_LoadTexMtxTexCoord</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_LoadTexMtxTexCoord</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3_util.h&gt;
+
+void G3_LoadTexMtxTexCoord(const MtxFx44 * mtx);
+
+// 以下ディスプレイリスト（コマンド列）作成用API
+void G3B_LoadTexMtxTexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const MtxFx44 * mtx);
+void G3C_LoadTexMtxTexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const MtxFx44 * mtx);
+void G3BS_LoadTexMtxTexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const MtxFx44 * mtx);
+void G3CS_LoadTexMtxTexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const MtxFx44 * mtx);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">mtx</font></strong></em></TD>
+      <TD width="512">テクスチャ行列にロードする行列へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>行列モードをTextureモードにしてテクスチャ行列をセットします。この際、TexCoordソースに設定した場合に行わなければならない補正を行います。<BR>
+結果として、新しいカレントテクスチャ行列C<SUB>new</SUB>は以下のようにセットされます。</P>
+<P><span lang=EN-US style='font-size:10.5pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ 明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><span style='mso-text-raise:-33.0pt'><IMG width="351" height="96" src="geo_texmtx_texcoord.gif" v:shapes="_x0000_i1025"></span></span></P>
+<h2>参照</h2>
+<P><A href="G3_LoadTexMtxEnv.html">G3*_LoadTexMtxEnv</A>, <A href="G3_MtxMode.html" target="_self">G3*_MtxMode</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

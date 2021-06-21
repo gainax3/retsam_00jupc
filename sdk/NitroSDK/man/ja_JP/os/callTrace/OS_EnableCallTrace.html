@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_EnableCallTrace</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_EnableCallTrace</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL OS_EnableCallTrace( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>この関数を呼ぶ前の状態です。TRUE なら enable であったことを表し、FALSE
+なら disable であったことを表します。</P>
+<H2>説明</H2>
+<P>関数コールトレースの機能を有効にします。</P>
+<P>このスイッチは、profile機能で挿入される、関数の入り口と出口の__PROFILE_ENTRY、__PROFILE_EXIT
+が有効になるかどうかを決定します。従って、スタックモードで関数コールトレース機能を使用する場合には、有効／無効の切り替えを行なうタイミングに注意して下さい。例えば、disable状態だったときにtest()という関数をコールしてその中で
+enable 状態にすると、関数の入り口__PROFILE_ENTRY では 何もしなかったのに、__PROFILE_EXIT
+でスタックから情報を捨てようとして整合性が取れません。ログモードでは__PROFILE_ENTRY
+で記録を取るだけなので、どこで状態を変更しても構いません。</P>
+<P>有効・無効のスイッチは、トレースバッファごとにセットされますので、全体がenableになるわけではありません。</P>
+<P>この関数はデバッグ用の関数ですので、最終ROM版(FINALROM)ライブラリでは何も動作を行ないません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitCallTrace.html">OS_InitCallTrace</A>, <A href="OS_DisableCallTrace.html">OS_DisableCallTrace</A>, <A href="OS_RestoreCallTrace.html">OS_RestoreCallTrace</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/04/23 初版</P>
+</BODY>
+</HTML>

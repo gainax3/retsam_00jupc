@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdInitLnkTexVramManager</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdInitLnkTexVramManager</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>
+void NNS_GfdInitLnkTexVramManager( 
+    u32     szByte, 
+    u32     szByteFor4x4,
+    void*   pManagementWork, 
+    u32     szByteManagementWork,
+    BOOL    useAsDefault );
+   </CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByte</STRONG></EM></TD>
+      <TD width="87%">管理するVRAM領域のバイトサイズ。(1Slot = 0x20000,最大4Slotとして計算する)</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByteFor4x4</STRONG></EM></TD>
+      <TD width="87%">管理領域中の4x4圧縮テクスチャに使用する領域のバイトサイズ。(1Slot = 0x20000,最大2Slotとして計算する)</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pManagementWork</STRONG></EM></TD>
+      <TD width="87%">管理情報として使用するメモリ領域へのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByteManagementWork</STRONG></EM></TD>
+      <TD width="87%">管理情報領域のサイズ。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>useAsDefault</STRONG></EM></TD>
+      <TD width="87%">リンクドリストテクスチャVRAMマネージャをカレントのマネージャとして使用するかどうか。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし</P>
+
+<H2>説明</H2>
+<P>
+VRAMマネージャを、テクスチャRAMの先頭からszByteで指定されたサイズ分の領域を管理するように初期化します。
+初期化時のパラメータとして、マネージャの管理するVRAM領域のバイトサイズと、
+管理領域中の4x4圧縮テクスチャに使用する領域のバイトサイズを指定する必要があります。<BR>
+szByteFor4x4がゼロで無い場合では以下のような条件を満たす必要があります。<BR>
+szByteFor4x4 <= 0x20000 の場合  szByte >= 0x20000 + szByteFor4x4 / 2 <BR>
+szByteFor4x4 > 0x20000 の場合  szByte >= 0x20000 + szByteFor4x4 <BR>
+
+<BR>
+リンクドリストVRAMマネージャは、空き領域の管理情報を必要とします。
+そのため、管理情報のためのメモリ領域を初期化時に渡してあげる必要があります。
+必要となる管理情報メモリのサイズはNNS_GfdGetLnkTexVramManagerWorkSize()によって取得可能です。<BR>
+<BR>
+useAsDefaultをTRUEに指定すると、リンクドリストテクスチャVRAMマネージャがNITRO-System のカレント VRAMマネージャとして設定されます。<BR>
+<BR>
+
+
+</P>
+
+<H3>大きな領域の確保に関する注意</H3>
+
+<P>
+4x4圧縮テクスチャを利用する場合、
+マネージャ内部で、通常テクスチャ用領域を分断するような形で、
+4x4圧縮テクスチャ用領域が確保されます。<BR>
+そのため、マネージャ内での連続するブロックの結合処理が十分に
+行えず、残りVRAM要領が十分であるにもかかわらず、大きなサイズの
+メモリアロケートに失敗する場合があります。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdGetLnkTexVramManagerWorkSize.html">NNS_GfdGetLnkTexVramManagerWorkSize</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/10/12 初版</P>
+</BODY>
+
+</HTML>

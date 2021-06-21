@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNSG3dAnmObj</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dAnmObj</H1>
+<H2>構造体の定義</H2>
+<PRE class="construction">#include &lt;nnsys/g3d/kernel.h&gt;
+
+typedef struct NNSG3dAnmObj_
+{
+    fx32                  frame;
+    fx32                  ratio;
+    void*                 resAnm;     // リソースファイル内アニメーションデータブロックへのポインタ
+    void*                 funcAnm;    // 各アニメーションの関数ポインタにキャストされる。デフォルトが入るが変更できる
+    struct NNSG3dAnmObj_* next;
+    const NNSG3dResTex*   resTex;     // テクスチャブロックの情報が必要な場合(テクスチャパターンアニメーションのみ)
+    u8                    priority;
+    u8                    numMapData;
+    u16                   mapData[1]; // numMapData個の配列になる(NNSG3dAnmObjMapData)
+}
+NNSG3dAnmObj;</PRE>
+
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dAnmObj</CODE>構造体は、アニメーションデータをアニメーションリソースから取り出すのに必要になるデータをまとめた構造体です。<CODE>NNSG3dAnmObj</CODE>構造体は以下のようなデータを保持しています。<CODE>mapData</CODE>は可変長の配列なので、<CODE>sizeof(NNSG3dAnmObj)</CODE>でサイズを取得することは正しくありません。<BR>
+</P>
+
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH width="320">NNSG3dAnmObj構造体のメンバ</TH>
+      <TH align="center" width="717">説明</TH>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>frame</B></I></TD>
+      <TD width="717">アニメーションのフレームカウント</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>ratio</B></I></TD>
+      <TD width="717">アニメーションのブレンド比率(モーションブレンドを行う場合に利用される)</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>resAnm</B></I></TD>
+      <TD width="717">１つのアニメーションリソースへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="320"><I><B>funcAnm</B></I></TD>
+      <TD width="717">アニメーションを計算する関数へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>next</I></B></TD>
+      <TD width="717"><CODE>NNS_G3dRenderObjBindAnmObj</CODE>, <CODE>NNS_G3dRenderObjReleaseAnmObj</CODE>で設定される。</TD>
+    </TR>
+    <TR>
+      <TD width="320"><B><I>resTex</I></B></TD>
+      <TD width="717">テクスチャリソースへのポインタ。テクスチャパターンアニメーションのときだけ使用される</TD>
+    </TR>
+    <TR>
+      <TD><B><I>priority</I></B></TD>
+      <TD><CODE>NNSG3dRenderObj</CODE>に登録される際の優先順位</TD>
+    </TR>
+    <TR>
+      <TD><B><I>numMapData</I></B></TD>
+      <TD>mapData配列の長さ</TD>
+    </TR>
+    <TR>
+      <TD><B><I>mapData</I></B></TD>
+      <TD>モデルリソースのマテリアルＩＤ・ジョイントＩＤとアニメーションリソースのインデックスを対応させるためのテーブル。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<CODE>NNSG3dAnmObj</CODE>は<A href="../kernel/NNS_G3dRenderObjAddAnmObj.html"><CODE>NNS_G3dRenderObjAddAnmObj</CODE></A>関数を用いて<A href="NNSG3dRenderObj.html"><CODE>NNSG3dRenderObj</CODE></A>構造体に登録することによって、アニメーションを再生するために用いられます。<CODE>NNSG3dAnmObj</CODE>を使用するためには以下のような処理が必要となります。</P>
+<OL>
+  <LI><A href="../mem/NNS_G3dAllocAnmObj.html" target="_self"><CODE>NNS_G3dAllocAnmObj</CODE></A>関数を使用して、構造体の領域を確保します。この構造体のサイズはモデルのマテリアルIDかジョイントＩＤの数によってサイズが異なることに注意してください。
+  <LI><A href="../kernel/NNS_G3dAnmObjInit.html"><CODE>NNS_G3dAnmObjInit</CODE></A>関数を使用して<CODE>NNSG3dAnmObj</CODE>構造体を初期化します。
+  <LI><A href="../kernel/NNS_G3dRenderObjAddAnmObj.html"><CODE>NNS_G3dRenderObjAddAnmObj</CODE></A>関数で<A href="NNSG3dRenderObj.html"><CODE>NNSG3dRenderObj</CODE></A>にアニメーションオブジェクトを登録します。
+  <LI><A href="../kernel/NNS_G3dAnmObjSetFrame.html" target="_self"><CODE>NNS_G3dAnmObjSetFrame</CODE></A>関数で再生するフレーム数を、<A href="../kernel/NNS_G3dAnmObjSetBlendRatio.html" target="_self"><CODE>NNS_G3dAnmObjSetBlendRatio</CODE></A>関数でブレンド比率（通常ジョイントアニメーションが複数登録されている場合のみ）を設定します。
+  <LI><A href="../sbc/NNS_G3dDraw.html"><CODE>NNS_G3dDraw</CODE></A>関数を使用してアニメーションつきモデルを描画します。
+  <LI>アニメーションの再生をやめる場合は、<A href="../kernel/NNS_G3dRenderObjRemoveAnmObj.html" target="_self"><CODE>NNS_G3dRenderObjRemoveAnmObj</CODE></A>関数でアニメーションオブジェクトを<A href="NNSG3dRenderObj.html"><CODE>NNSG3dRenderObj</CODE></A>から取り除きます。
+  <LI>もう<CODE>NNSG3dAnmObj</CODE>を使用しなくなった場合は<A href="../mem/NNS_G3dFreeAnmObj.html" target="_self"><CODE>NNS_G3dFreeAnmObj</CODE></A>関数を使用して、構造体の領域を解放します。
+</OL>
+<P>なお、<A href="../sbc/NNS_G3dDraw1Mat1Shp.html"><CODE>NNS_G3dDraw1Mat1Shp</CODE></A>関数を使用して描画する場合にはアニメーションを使用することはできません。</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A></P>
+<H2>履歴</H2>
+<P>2007/05/17 構造体の定義を追加<BR>
+2004/10/12 初版</P>
+</BODY>
+
+</HTML>

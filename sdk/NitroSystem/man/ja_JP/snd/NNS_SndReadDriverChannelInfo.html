@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndReadDriverChannelInfo</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAEMWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndReadDriverChannelInfo</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL NNS_SndReadDriverChannelInfo(
+        int <var>chNo</var>,
+        SNDChannelInfo* <var>info</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAUNWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>chNo</code></strong></em></td>
+<td>チャンネル番号です。0～15の値で指定します。</td>
+</tr>
+<tr>
+<td><em><strong><code>info</code></strong></em></td>
+<td>取得した情報を格納するチャンネル情報構造体のポインタです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAKOWT"></a>
+      <h2>返り値</h2>
+
+      <p>情報の取得に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAROWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドドライバのチャンネル情報を取得します。
+</p>
+      <p>
+<tt class="function"><a href="NNS_SndUpdateDriverInfo.html">NNS_SndUpdateDriverInfo</a></tt>関数で、
+最後にサウンドドライバ情報の更新に成功した時点での情報を取得することができます。
+一度もサウンドドライバ情報の更新に成功していない場合、この関数は失敗します。
+</p>
+      <p>
+情報の取得に成功すると、<a href="../snd_drv/SNDChannelInfo.html">SNDChannelInfo</a>型のチャンネル情報構造体<em><strong><code>info</code></strong></em>へ、チャンネルの情報が書き込まれます、
+</p>
+
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndUpdateDriverInfo.html">NNS_SndUpdateDriverInfo</a>, <a href="../snd_drv/SNDChannelInfo.html">SNDChannelInfo</a></p>
+<h2>履歴</h2>
+<p>2005/02/17 初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_GetRomHeader</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_GetRomHeader</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>const u8* CARD_GetRomHeader(void);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>なし</p>
+
+<h2>返り値</h2>
+<p>実際に挿入されているNITRO-CARDのROM内登録情報が格納されたバッファへのポインタを返します。<br>
+このポインタは<a href="../card_rom_header_type.html">CARDRomHeader</a>構造体へのポインタにキャストすることができます。<br>
+このバッファに格納されている内容を変更することは出来ません。</p>
+
+<H2>説明</H2>
+<P>本体に実際に挿入されているNITRO-CARDのROM内登録情報を取得します。<BR>
+<br>
+この関数は、ワイヤレスダウンロードによって起動されたプログラムが<br>
+実際に挿入されているNITRO-CARDの内容を識別するためのものです。<br>
+通常のプログラムでこの関数を呼び出して得られる情報は、<br>
+アドレス HW_ROM_HEADER_BUF 番地に格納されている自身の情報と同じ内容になります。<br>
+<br>
+<font color="red">ニンテンドーDS製品実機以外(IS-NITRO-EMULATORなど)の環境では正しい情報が得られませんので注意してください。</font>
+</P>
+<H2>履歴</H2>
+<P>
+2006/08/25 製品実機以外で正しい情報が取得できない旨を追記<BR>
+2006/06/22 返り値がCARDRomHeader構造体ポインタにキャスト可能な旨を追記<BR>
+2004/10/08 初版<BR>
+</P>
+</body>
+</html>

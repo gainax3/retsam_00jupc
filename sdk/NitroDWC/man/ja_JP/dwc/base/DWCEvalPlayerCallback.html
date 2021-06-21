@@ -1,0 +1,75 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCEvalPlayerCallback</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCEvalPlayerCallback</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+typedef int (*DWCEvalPlayerCallback)( int   index,
+                                      void* param );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+          ピアマッチメイクにおいて、マッチメイク対象プレイヤーを見つける度に呼び出されます。
+		  この関数の戻り値の大きいプレイヤーほど接続先として選ばれやすくなります。
+		  0以下の値を返した場合は、そのプレイヤーはマッチメイクの対象から外されます。
+		</P>
+        <P>
+          なおライブラリ内部では、この関数で返された値が正の数であった場合は、28ビット左シフトし、下位8ビットに乱数を付加することで、同じ評価値となる相手でもある程度分散して接続を試みる仕様となっています。0x007fffffより大きな正の数が返された場合は、全て0x007fffffと同じに扱われます。
+        </P>
+		<P>
+		  プレイヤーの評価に使うマッチメイク指標キーを取得するには、<a href="DWC_GetMatch_Value.html">DWC_GetMatchIntValue</a> / <a href="DWC_GetMatch_Value.html">DWC_GetMatchStringValue</a>関数を呼び出してください。
+		  これらの関数は、本コールバック関数内でしか使えない関数です。
+		</P>
+		<P>
+		  本コールバック関数は<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A> / <A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>関数によって設定することができます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+                  <TD width="25%"><EM><STRONG><CODE>index</CODE></STRONG></EM></TD>
+                  <td>ライブラリが使用する評価対象プレイヤーのインデックス。マッチメイク指標キーを取得する<a href="DWC_GetMatch_Value.html">DWC_GetMatchIntValue</a> / <a href="DWC_GetMatch_Value.html">DWC_GetMatchStringValue</a>関数に渡してください。</td>
+                </TR>
+                <tr>
+                  <TD width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+                  <td><A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A> / <A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>関数で指定したコールバック用パラメータ</td>
+                </tr>
+              </TBODY>
+          </TABLE>
+
+		<H2>返り値</H2>
+        <p>
+          評価値。大きい値ほどそのプレイヤーに接続を試みる確率が上がります。とりうる値の範囲はintですが、0x007fffffより大きな正の数は、全て0x007fffffと同じに扱われます。
+          0以下の値を返した場合は、そのプレイヤーへは接続しません。
+        </p>
+
+		<H2>参照</H2>
+		<P>
+          <code>
+			<A href="DWC_ConnectToAnybodyAsync.html">DWC_ConnectToAnybodyAsync</A>,
+			<A href="DWC_ConnectToFriendsAsync.html">DWC_ConnectToFriendsAsync</A>,
+            <a href="DWC_GetMatch_Value.html">DWC_GetMatch*Value</a>,
+          </code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 関数説明と返り値の説明を修正<BR>
+			2005/11/01 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

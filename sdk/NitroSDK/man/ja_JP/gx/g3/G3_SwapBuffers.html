@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_SwapBuffers</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_SwapBuffers</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;</CODE><BR>
+<CODE>void G3_SwapBuffers(GXSortMode am, GXBufferMode zw);</CODE>
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR><CODE>void G3B_SwapBuffers(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXSortMode am, GXBufferMode zw);</CODE><BR><CODE>void G3C_SwapBuffers(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXSortMode am, GXBufferMode zw);</CODE><BR><CODE>void G3BS_SwapBuffers(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXSortMode am, GXBufferMode zw);</CODE><BR><CODE>void G3CS_SwapBuffers(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, GXSortMode am, GXBufferMode zw);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">am</font></strong></em></td>
+    <td width="87%">半透明ポリゴンのYソーティング選択</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">zw</font></strong></em></TD>
+      <TD>デプスバッファリング選択</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>レンダリングエンジンが参照するデータ群をスワップします。<I><B>zw</B></I>はデプスバッファリング選択フラグで、デプステストに使用する値を選択します。なお、W値によるバッファリングは正射影では正常に機能しません。<B><I>am</I></B>は半透明ポリゴンソーティング選択フラグで、シャドウボリュームを使用するときなどにおいて、描画順序を指定したいときはマニュアルソートモードにして下さい。<BR>
+<BR>
+SwapBuffersコマンドを発行した直後のVブランク期間開始時に、ポリゴンリストRAM、頂点RAM、レンダリング関連レジスタ等、レンダリングエンジンが参照するデータを切り替えます。このため、書き込んだグラフィックスデータが描画へ反映されるのはSwapBuffersコマンドを発行した後に開始されるVブランクの次のフレームになります。<BR>
+<BR>
+<B>(注意1)</B> Vブランク開始以降にこの命令が発行された場合は、データの切り替えは次のVブランク開始時になります。<BR>
+<B>(注意2)</B> データの切り替えが行われるまで、ジオメトリエンジンはビジー状態を維持します。また、以降のジオメトリコマンドの処理も行いません。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_SORTMODE_AUTO</CODE></TD>
+      <TD width="70%">オートソートモード</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_SORTMODE_MANUAL</CODE></TD>
+      <TD width="70%">マニュアルソートモード</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BUFFERMODE_Z</CODE></TD>
+      <TD width="70%">Z値によるバッファリング</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BUFFERMODE_W</CODE></TD>
+      <TD width="70%">W値によるバッファリング(<A href="G3_Ortho.html">G3_Ortho</A>を使用した場合は正常に機能しません)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に、<CODE>GXSortMode</CODE>型と<CODE>GXBufferMode</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_SORTMODE_AUTO = 0,
+    GX_SORTMODE_MANUAL = 1
+}
+GXSortMode;
+
+typedef enum
+{
+    GX_BUFFERMODE_Z = 0,
+    GX_BUFFERMODE_W = 1
+}
+GXBufferMode;</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>注意書きを追加。
+</UL>
+<P>Ver. 2004/01/19</P>
+
+</body>
+</html>

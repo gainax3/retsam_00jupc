@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_Printf</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_Printf</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_Printf( const char *fmt, ... );</CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>fmt</I></B></TD>
+      <TD>出力書式文字列(フォーマット文字列)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>...</I></B></TD>
+      <TD>可変個引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>文字列を表示します。フォーマット文字列(出力書式文字列)に従い可変個の引数を与えることが可能です。</P>
+<P>この関数は weak シンボルでコンパイルされますので、ユーザが独自で関数を定義すれば、それで上書きされます。</P>
+<P>これはデバッグ用の関数です。最終ROM版(FINALROM)ライブラリでは出力動作を行ないません。</P>
+<BLOCKQUOTE>(例)<BR>
+<CODE>OS_Printf( &quot;variable test = %d\n&quot;, test );</CODE></BLOCKQUOTE>
+<H2>注意</H2>
+<P><FONT color="#000000">OS_Printfは多くのスタックを消費します。割り込み中やコールバック実行中などに使用されるIRQスタックはそれほど大きくありませんので、
+IRQ割り込み中の深いネストの中ではできるだけ軽量版の<A href="OS_TPrintf.html">OS_TPrintf</A>を使用するようにしてください。デバッグ出力をするとフリーズするような場合には、<A href="OS_TPrintf.html">OS_TPrintf</A>へ置き換えると状況が改善する場合があります。</FONT><BR>
+ただし、<A href="OS_TPrintf.html">OS_TPrintf</A>では浮動小数の出力がサポートされていません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_PutString.html">OS_PutString</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/11/25 weak シンボルの記述を追加<BR>
+2003/12/01 初版</P>
+</BODY>
+</HTML>

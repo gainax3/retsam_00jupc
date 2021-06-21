@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetOpt</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetOpt*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE>
+<CODE>int         OS_GetOpt( const char* optstring );</CODE>
+<CODE>int         OS_GetOptInd( void );</CODE>
+<CODE>const char *OS_GetOptArg( void );</CODE>
+<CODE>int         OS_GetOptOpt( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><EM><B>optstring　</B></EM></TD>
+      <TD>受け付けるオプション文字を示す文字列</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>発見したコマンドラインオプションの情報。(次項を参照)</P>
+<H2>説明</H2>
+<P><CODE><A href="OS_GetArgc.html">　OS_GetArgc()</A></CODE>, <CODE><A href="OS_GetArgc.html">OS_GetArgv()</A></CODE> で取得できるコマンドライン引数情報を分析して、オプションに関する情報を取得します。</P>
+<P><CODE>　OS_GetOpt()</CODE> は与えられた <EM><B>optstring</B></EM> 文字列に含まれる文字をオプションの識別文字と見なし、呼び出されるごとにコマンドライン引数を一つずつ、順に調査し、該当するオプションがある場合、そのオプション識別文字を返り値とします。</P>
+<P><CODE>　OS_GetOpt()</CODE> が現在調査しているコマンドライン引数のインデックス値は <CODE>OS_GetOptInd()</CODE> で取得できます。</P>
+<P>　また、<EM><B>optstring</B></EM> 内の文字の後に <CODE>&quot;:&quot;</CODE> あるいは <CODE>&quot;::&quot;</CODE> が付いている場合、そのオプションは引数を取ることを示します。このときオプション引数の情報を
+<CODE>OS_GetOptArg() </CODE>で取得することができます。<CODE>&quot;:&quot;</CODE>はオプション引数が必須であることを示します。また <CODE>&quot;::&quot;</CODE> はオプション引数は省略可能であることを示します。オプション引数が省略されたときは
+<CODE>OS_GetOptArg()</CODE> は NULL を返します。</P>
+<P>　コマンドライン引数に <EM><B>optstring</B></EM> に含まれないオプションがあった場合、および <CODE>&quot;:&quot;</CODE> による必須なオプション引数が無かった場合、<CODE>OS_GetOpt()</CODE> は文字コード <CODE>&quot;?&quot;</CODE> を返します。このときに原因となったオプションの識別文字は <CODE>OS_GetOptOpt()</CODE> で取得できます。</P>
+<P><CODE>　OS_GetOpt()</CODE> がオプションでない通常のコマンドライン引数を発見したときの動作として2種類の振る舞いが選択可能です。これは
+<EM><B>optstring</B></EM> の先頭文字が <CODE>&quot;-&quot;</CODE> (マイナス文字)であるかそれ以外であるかによって切り替わります。</P>
+<P>　<EM><B>optstring</B></EM> の先頭文字がマイナス文字でない場合(デフォルト)、通常のコマンドライン引数を発見したとき、またはこれ以降のコマンドライン引数が無くなったときに
+<CODE>OS_GetOpt()</CODE>は返値として<CODE>-1</CODE> を返します。そして、この位置で引数の評価を終了し、以降の引数の調査を行ないません。<CODE>OS_GetOptInd()</CODE>の返値はこの最初に現れた通常引数のインデックス値を返すことになります。<CODE>OS_GetOptArg()</CODE> は <CODE>NULL</CODE> を返します。アプリケーションは <CODE>OS_GetOptInd()</CODE>で得られた値から　<CODE>OS_GetArgc()-1</CODE> までの値を <CODE>OS_GetArgv()</CODE> のインデックスとして指定することによって、オプションを除いたコマンドライン引数を参照することができます。</P>
+<P>以下にサンプルコードを示します。</P>
+<PRE>        BOOL 　      opt_b = FALSE;
+        const char*  opt_s = NULL;
+        const char*  opt_t = NULL;
+        int          argc  = OS_GetArgc();
+        int          c, i;
+
+        while ((c = OS_GetOpt(&quot;bs:t::&quot;)) &gt; 0)
+        {
+                switch (c)
+                {
+                case 'b':       // スイッチ型のオプション
+                        opt_b = TRUE;
+                        break;
+
+                case 's':       // 引数が必須なオプション
+                        opt_s = OS_GetOptArg();
+                        break;
+
+                case 't':       // 引数が省略可能なオプション
+                        opt_t = OS_GetOptArg();
+                        break;
+
+                case '?':       // エラー処理
+                default:
+                        OS_Printf(&quot;Error --- option '%c'\n&quot;, OS_GetOptOpt());
+                        break;
+                }
+        }
+
+        // 通常のコマンドライン引数
+        for (i = OS_GetOptInd(); i &lt; argc; i ++)
+        { 
+                OS_Printf(&quot;ARG[%d]=%s\n&quot;, i, OS_GetArgv(i));
+        }</PRE>
+<P>　<EM><B>optstring</B></EM> の先頭文字がマイナス文字の場合、通常のコマンドライン引数を発見したとき、<CODE>OS_GetOpt()</CODE>は返値として <CODE>+1</CODE> を返します。この引数の値を <CODE>OS_GetOptArg()</CODE> で取得することができるため、アプリケーションは通常の引数を<CODE>OS_GetOpt()が</CODE>文字コード <CODE>1 </CODE>のオプション文字のように扱うことができます。デフォルトの動作とは異なり、これ以降の引数についての調査は継続され、<CODE>OS_GetOptInd()</CODE>の返値は<CODE>OS_GetOpt()の呼出し毎に</CODE>次の引数のインデックス値へと変化します。調査が進み、以降の引数が無くなったときに<CODE>OS_GetOpt()は -1 を返します。</CODE></P>
+<P>以下にサンプルコードを示します。</P>
+<PRE>        BOOL 　      opt_b = FALSE;
+        const char*  opt_s = NULL;
+        const char*  opt_t = NULL;
+        int          c;
+
+        while ((c = OS_GetOpt(&quot;-bs:t::&quot;)) &gt; 0)
+        {
+                switch (c)
+                {
+                case 1:        // 通常のコマンドライン引数
+                        OS_Printf(&quot;ARG=%s\n&quot;, OS_GetOptArg());
+                        break;
+
+                case 'b':       // スイッチ型のオプション
+                        opt_b = TRUE;
+                        break;
+
+                case 's':       // 引数が必須なオプション
+                        opt_s = OS_GetOptArg();
+                        break;
+
+                case 't':       // 引数が省略可能なオプション
+                        opt_t = OS_GetOptArg();
+                        break;
+
+                case '?':       // エラー処理
+                default:
+                        OS_Printf(&quot;Error --- option '%c'\n&quot;, OS_GetOptOpt());
+                        break;
+                }
+        }</PRE>
+<H2>参照</H2>
+<P><CODE><A href="OS_GetArgc.html">OS_GetArgc</A>, <A href="OS_GetArgv.html">OS_GetArgv</A>, <A href="../../tools/buryarg.html">buryarg ツール</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/09/06 調査動作切り替えについての解説を追加</P>
+<P>2005/08/30 初版</P>
+</BODY>
+</HTML>

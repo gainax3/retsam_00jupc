@@ -1,0 +1,170 @@
+#! bash -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - Tool - UnitTest
+# File:     make_utest_main__
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: make_utest_main__,v $
+# Revision 1.2  2007/07/17 01:58:53  yasu
+# CR コードを無視するように設定
+#
+# Revision 1.1  2005/06/24 03:04:43  yasu
+# ユニットテストの追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+(shopt -s igncr) 2>/dev/null && eval 'shopt -s igncr';#
+
+#--------------------------
+# Decode Command Line
+#   -o [outfile] infiles
+#--------------------------
+UTEST_IN=
+UTEST_OUT=utest_main__.c	# default outfile
+
+for i in `getopt 'c:' $*`
+do
+	case "$i" in \
+	-* )
+		opt=$i
+		;;
+	* )
+		case "$opt" in \
+		-c )
+			UTEST_OUT="$i"
+			;;
+		* )
+			UTEST_IN="$UTEST_IN $i"
+			;;
+		esac
+	esac
+done 
+
+if [ "$UTEST_IN" == "" ]
+then
+	echo "Usage: `basename $0` [-c output_c_source] objfile..." > /dev/stderr
+	exit -1;
+fi
+
+#echo $UTEST_IN  > /dev/stderr
+#echo $UTEST_OUT > /dev/stderr
+
+#--------------------------
+# Generate test code
+#    nm & perl
+#--------------------------
+/bin/nm -Ap $UTEST_IN |
+/bin/perl -e '
+	%filename = ();
+	%callback_begin = ();
+	%callback_end   = ();
+	@namelist = ();
+	while ( <> ) {
+		# Search UTESTBEGIN_XXXX
+		if ( ($file,$name) = /^(.+):00000000 T (UTESTBEGIN_[A-Za-z0-9_]+)$/ ) {
+			if ( ! exists $callback_begin{$file} ){
+				$callback_begin{$file} = $name;
+			}
+			else {
+				print STDERR "Warning: Initializer($name) redefined...\n";
+				print STDERR "             in  $file (skipped)\n";
+			}
+		}
+		# Search UTESTEND_XXXX
+		elsif ( ($file,$name) = /^(.+):00000000 T (UTESTEND_[A-Za-z0-9_]+)$/ ) {
+			if ( ! exists $callback_end{$file} ){
+				$callback_end{$file} = $name;
+			}
+			else {
+				print STDERR "Warning: Initializer($name) redefined...\n";
+				print STDERR "             in  $file (skipped)\n";
+			}
+		}
+		# Search UTEST_XXXX
+		elsif ( ($file,$name) = /^(.+):00000000 T (UTEST_[A-Za-z0-9_]+)$/ ) {
+			if ( ! exists $filename{$name} ){
+				$filename{$name} = $file;
+				unshift(@namelist,$name);
+			}
+			else {
+				print STDERR "Warning: $name redefined...\n";
+				print STDERR "             in  $filename{$name}\n";
+				print STDERR "             and $file (skipped)\n";
+			}
+		}
+	}
+	
+	if ( $#namelist < 0 ){
+		print STDERR "No test modules.\n";
+		exit 1;
+	}
+	
+	#
+	# include files
+	#
+	print "#include <nitro/utest.h>\n\n";
+
+	#
+	# prototypes
+	#
+	foreach $name ( values( %callback_begin ) ){
+		print "void $name(void);\n";
+	}
+	foreach $name ( values( %callback_end ) ){
+		print "void $name(void);\n";
+	}
+	foreach $name ( @namelist ){
+		print "void $name(void);\n";
+	}
+	print "\n";
+	
+	#
+	# list of test modules
+	#
+	print "static UTiModule Modules[] =\n";
+	print "{\n";
+	foreach $name ( @namelist ){
+		$file = $filename{$name};
+		$cb_begin = exists $callback_begin{$file} ? $callback_begin{$file} : "0";
+		$cb_end   = exists $callback_end{$file}   ? $callback_end{$file}   : "0";
+		print "    {\n";
+		print "        \"$file\",\n";
+		print "        \"$name\",\n";
+		print "         $name,\n";
+		print "         $cb_begin,\n";
+		print "         $cb_end,\n";
+		print "    },\n";
+	}
+	print "};\n";
+	print "\n";
+	
+	#
+	# number of test modules
+	#
+	print "static int NumModule = sizeof(Modules)/sizeof(UTiModule);\n";
+	print "\n";
+	
+	#
+	# NitroMain
+	#
+	print "void NitroMain(void);\n";
+	print "void NitroMain(void)\n";
+	print "{\n";
+	print "    UTi_Main(NumModule, Modules);\n";
+	print "}\n";
+	print "\n";
+' > $UTEST_OUT && echo "Create... $UTEST_OUT" || rm $UTEST_OUT
+
+#
+# 返値を常に TRUE にしているので $UTEST_OUT が出来るかどうかで次の処理に
+# 進むかどうかを判定するべし
+#
+
+#===== End of makeutest =====

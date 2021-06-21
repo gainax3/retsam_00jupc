@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>マルチブートライブラリ(MB)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>マルチブートライブラリ(MB)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="common/MB_Init.html" target="_self">MB_Init</A></TH>
+      <TD>ライブラリを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/MB_End.html" target="_self">MB_End</A></TH>
+      <TD>ライブラリを終了します。無線ライブラリは初期化前状態に遷移します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/MB_EndToIdle.html" target="_self">MB_EndToIdle</A></TH>
+      <TD>ライブラリを終了します。無線ライブラリはIDLEステートに遷移します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/MB_GetParentSystemBufSize.html" target="_self">MB_GetParentSystemBufSize</A></TH>
+      <TD>MBで使用するワークメモリのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/MB_GetTgid.html" target="_self">MB_GetTgid</A></TH>
+      <TD>初期化時に指定したTGIDを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Child">子機(マルチブート後)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="common/MB_IsMultiBootChild.html" target="_self">MB_IsMultiBootChild</A></TH>
+      <TD>プログラム自身がマルチブート子機か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/MB_GetMultiBootParentBssDesc.html" target="_self">MB_GetMultiBootParentBssDesc</A></TH>
+      <TD>マルチブート親機情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="child/MB_GetMultiBootDownloadParameter.html" target="_self">MB_GetMultiBootDownloadParameter</A></TH>
+      <TD>ダウンロード時のユーザ定義拡張パラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="child/MB_ReadMultiBootParentBssDesc.html" target="_self">MB_ReadMultiBootParentBssDesc</A></TH>
+      <TD>マルチブート親機情報をもとにWM_StartConnect関数のための情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="common/MB_GetUserVolatData.html">MB_GetUserVolatData</A></TH>
+      <TD>MB親機のビーコンの中からMBGameInfoVolatileに設定されたユーザデータを抽出します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Parent">親機</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="parent/MB_SetParentCommSize.html" target="_self">MB_SetParentCommSize</A></TH>
+      <TD>親機の通信データサイズを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_SetParentCommParam.html" target="_self">MB_SetParentCommParam</A></TH>
+      <TD>親機の通信データサイズと最大子機接続数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_SetPowerSaveMode.html" target="_self">MB_SetPowerSaveMode</A></TH>
+      <TD>親機のワイヤレス省電力モードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_SetLifeTime.html" target="_self">MB_SetLifeTime</A></TH>
+      <TD>親機のワイヤレス通信における各種ライフタイムを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_StartParent.html" target="_self">MB_StartParent</A></TH>
+      <TD>マルチブート親機としての処理を開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_StartParentFromIdle.html" target="_self">MB_StartParentFromIdle</A></TH>
+      <TD>無線ライブラリをIDLEステートとして、マルチブート親機の処理を開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommGetChildrenNumber.html" target="_self">MB_CommGetChildrenNumber</A></TH>
+      <TD>接続している子機の総数を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommGetChildUser.html" target="_self">MB_CommGetChildUser</A></TH>
+      <TD>指定した子機の接続情報を取得します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommGetParentState.html" target="_self">MB_CommGetParentState</A></TH>
+      <TD>現在の親機状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommSetParentStateCallback.html" target="_self">MB_CommSetParentStateCallback</A></TH>
+      <TD>親機状態の更新を通知するコールバック関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_GetSegmentLength.html" target="_self">MB_GetSegmentLength</A></TH>
+      <TD>指定したプログラムのセグメント情報のサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_ReadSegment.html" target="_self">MB_ReadSegment</A></TH>
+      <TD>指定したプログラムからセグメント情報を抽出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_RegisterFile.html" target="_self">MB_RegisterFile</A></TH>
+      <TD>指定したプログラムをダウンロード処理に登録します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_UnregisterFile.html" target="_self">MB_UnregisterFile</A></TH>
+      <TD>指定した登録済みプログラムをダウンロードリストから解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommResponseRequest.html" target="_self">MB_CommResponseRequest</A></TH>
+      <TD>接続を要求する子機に対して応答通知を送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommStartSending.html" target="_self">MB_CommStartSending</A></TH>
+      <TD>接続を許可した特定の子機に対してダウンロード開始通知を送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommStartSendingAll.html" target="_self">MB_CommStartSendingAll</A></TH>
+      <TD>接続を許可した全ての子機に対してダウンロード開始通知を送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommIsBootable.html" target="_self">MB_CommIsBootable</A></TH>
+      <TD>特定の子機がブート可能な状態か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommBootRequest.html" target="_self">MB_CommBootRequest</A></TH>
+      <TD>ブート可能な特定の子機に対してブート要求を送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_CommBootRequestAll.html" target="_self">MB_CommBootRequestAll</A></TH>
+      <TD>ブート可能な全ての子機に対してブート要求を送信します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="parent/MB_DisconnectChild.html" target="_self">MB_DisconnectChild</A></TH>
+      <TD>接続されている子機を強制切断します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/MB_GetGameEntryBitmap.html" target="_self">MB_GetGameEntryBitmap</A></TH>
+      <TD>指定したゲーム情報に対して現在エントリーしている全AIDビットマップを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="common/MB_SetSendVolatCallback.html">MB_SetSendVolatCallback</A></TH>
+      <TD>MBGameInfoVolatileをビーコンとして送信する際のコールバックを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="common/MB_SetUserVolatData.html">MB_SetUserVolatData</A></TH>
+      <TD>MBGameInfoVolatileへユーザー情報を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="FakeChild">擬似マルチブート子機</A></H3>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><A href="fake_child/MB_FakeInit.html">MB_FakeInit</A>
+      
+</TD>
+      <TD>擬似マルチブート子機の初期化をおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeEnd.html">MB_FakeEnd</A>
+      
+      </TD>
+      <TD>擬似マルチブート子機の処理を終了します。ダウンロード処理成功時、キャンセル時ともにこの関数を使用して終了します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeGetWorkSize.html">MB_FakeGetWorkSize</A>
+      
+  </TD>
+      <TD>擬似マルチブート子機に必要なバッファサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeStartScanParent.html">MB_FakeStartScanParent</A>
+      
+        </TD>
+      <TD>マルチブート親機のスキャンを開始します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeEndScan.html">MB_FakeEndScan</A>
+      
+        </TD>
+      <TD>マルチブート親機のスキャンを終了します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeSetCStateCallback.html">MB_FakeSetCStateCallback</A>
+      
+      </TD>
+      <TD>マルチブート親機へのエントリー状況を通知するコールバック関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeEntryToParent.html">MB_FakeEntryToParent</A>
+      
+      </TD>
+      <TD>マルチブート親機へのエントリーをおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeGetParentGameInfo.html">MB_FakeGetParentGameInfo</A>
+      
+        </TD>
+      <TD>スキャンしたマルチブート親機のゲーム情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeGetParentBssDesc.html">MB_FakeGetParentBssDesc</A>
+      
+        </TD>
+      <TD>スキャンしたマルチブート親機の接続情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeReadParentBssDesc.html">MB_FakeReadParentBssDesc</A></TD>
+      <TD>スキャンしたマルチブート親機の接続情報にフラグやパケットサイズの設定を付加した情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeSetVerboseScanCallback.html">MB_FakeSetVerboseScanCallback</A></TD>
+      <TD>マルチブート親機スキャン中に受信した生のビーコンをそのまま取得する為のコールバックを設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="fake_child/MB_FakeSetCompareGGIDCallback.html">MB_FakeSetCompareGGIDCallback</A></TD>
+      <TD>マルチブート親機スキャン処理のフィルタリングを行うコールバックを設定します。</TD>
+    </TR>
+    
+  </TBODY>
+</TABLE>
+<H3><A name="const">定数・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mb_comm_parent_consts.html" target="_self">MB_COMM_PARENT_*</A></TH>
+      <TD>マルチブート親機の通信サイズ設定に使用可能な範囲を示す定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_segment_buffer_min_const.html" target="_self">MB_SEGMENT_BUFFER_MIN</A></TH>
+      <TD><A href="parent/MB_ReadSegment.html" target="_self">MB_ReadSegment</A>関数が必要とする最低のバッファサイズを示す定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_game_consts.html" target="_self">MB_ICON_*</A></TH>
+      <TD>マルチブートアイコンのフォーマットを規定する各種の定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_game_consts.html" target="_self">MB_GAME_*</A></TH>
+      <TD>マルチブートゲーム情報のフォーマットを規定する各種の定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_game_consts.html" target="_self">MB_USER_*</A></TH>
+      <TD>マルチブートユーザ情報のフォーマットを規定する各種の定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_tgid_auto_const.html" target="_self">MB_TGID_AUTO</A></TH>
+      <TD>TGIDを自動生成することを指定するための定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_fake_work_size_const.html" target="_self">MB_FAKE_WORK_SIZE</A></TH>
+      <TD>擬似マルチブート子機に必要なワークバッファのサイズを表す定数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_error_status_type.html" target="_self">MBErrorStatus</A></TH>
+      <TD><A href="mb_comm_pstate_const.html" target="_self">MB_COMM_PSTATE_ERROR</A>コールバックの引数として渡される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_err_code_const.html" target="_self">MBErrCode</A></TH>
+      <TD>MB ライブラリのエラーコードを定義する列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_comm_pstate_const.html" target="_self">MBCommPState</A></TH>
+      <TD>親機状態を表す列挙値です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mb_comm_cstate_const.html" target="_self">MBCommCState</A></TH>
+      <TD>フェイク子機で使用される、子機状態を表す列挙値です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_comm_response_request_type_const.html" target="_self">MBCommResponseRequestType</A></TH>
+      <TD>子機接続要求への応答種類を表す列挙値です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_comm_pstate_callback_type.html" target="_self">MBCommPStateCallback</A></TH>
+      <TD>親機状態の更新を通知するコールバック関数の形式です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="mb_comm_cstate_callback_type.html" target="_self">MBCommCStateCallbackFunc</A></TH>
+      <TD>フェイク子機状態の更新を通知するコールバック関数の形式です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_game_registry_type.html" target="_self">MBGameRegistry</A></TH>
+      <TD>ダウンロード処理に登録するゲーム情報を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_icon_info_type.html" target="_self">MBIconInfo</A></TH>
+      <TD>ユーザアイコンの形式を示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_user_info_type.html" target="_self">MBUserInfo</A></TH>
+      <TD>ユーザ情報を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mb_parent_bss_desc_type.html" target="_self">MBParentBssDesc</A></TH>
+      <TD>マルチブート親機の接続情報を示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="common/MBGameInfo.html">MBGameInfo</A>
+      
+      </TH>
+      <TD>マルチブート親機のゲーム情報を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fake_child/MBFakeScanCallback.html">MBFakeScanCallback</A>
+      
+</TH>
+      <TD>親機スキャンコールバックで取得できる親機情報の構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fake_child/MBFakeScanCallbackFunc.html">MBFakeScanCallbackFunc</A></TH>
+      <TD>親機スキャンコールバックが通知されるコールバック関数です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fake_child/MBFakeCompareGGIDCallbackFunc.html">MBFakeCompareGGIDCallbackFunc</A></TH>
+      <TD>親機スキャンのフィルタリング処理を行うコールバック関数です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="fake_child/MBFakeScanErrorCallback.html">MBFakeScanErrorCallback</A></TH>
+      <TD>親機スキャン中にエラーが発生した場合にコールバック引数として通知されるエラー情報構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_RestoreInterrupts_IrqAndFiq</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_RestoreInterrupts_IrqAndFiq</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>OSIntrMode OS_RestoreInterrupts_IrqAndFiq( OSIntrMode state );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>state</STRONG></EM></TD>
+      <TD width="87%">設定する割り込み状態 (OSIntrMode 自体は u32 の typedefです)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>この関数を呼ぶ前の状態です。<BR>
+OSIntrMode_Irq 列挙型</p>
+<TABLE cellspacing="2">
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_INTRMODE_IRQ_DISABLE</TD>
+      <TD bgcolor="#eeeeee">IRQディセーブル(禁止)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_INTRMODE_IRQ_ENABLE</TD>
+      <TD bgcolor="#eeeeee">IRQイネーブル(許可)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<p>
+と、OSIntrMode_Fiq 列挙型
+</p>
+<TABLE cellspacing="2">
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_INTRMODE_FIQ_DISABLE</TD>
+      <TD bgcolor="#eeeeee">FIQディセーブル(禁止)</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_INTRMODE_FIQ_ENABLE</TD>
+      <TD bgcolor="#eeeeee">FIQイネーブル(許可)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>の論理和となります。</P>
+<H2>説明</H2>
+<P>割り込み状態を設定します。<BR>
+引数で与えた割り込み状態にします。与える状態はOSIntrMode_Irq 列挙型で表される
+IRQの状態と、OSIntrMode_Fiq 列挙型で表される FIQ の状態の論理和で与えます。<BR>
+主に、OS_EnableInterrupts_IrqAndFiq() や OS_DisableInterrupts_IrqAndFiq()
+の返り値である、以前の状態に戻す目的で使用することが想定されています。</P>
+<P>返り値は、この関数を呼ぶ以前の状態となります。</P>
+
+<h2>内部動作</h2>
+<P>CPSRレジスタ(current program status register)の IRQとFIQ割り込みの制御ビットをセット／リセットします。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="OS_EnableInterrupts_IrqAndFiq.html">OS_EnableInterrupts_IrqAndFiq</A>,
+ <A href="OS_DisableInterrupts_IrqAndFiq.html">OS_DisableInterrupts_IrqAndFiq</A>,
+ <A href="OS_RestoreInterrupts.html">OS_RestoreInterrupts</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/03/04 OS_RestoreInterrupts から移行</P>
+</body>
+</html>

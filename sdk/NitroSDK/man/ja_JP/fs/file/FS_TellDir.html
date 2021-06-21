@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_TellDir</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_TellDir</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL FS_TellDir( const FSFile *p_dir, FSDirPos *p_pos );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_dir</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_pos</STRONG></EM></TD>
+      <TD width="87%">ディレクトリ位置を格納する構造体のアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ディレクトリエントリが正当であれば現在位置を示す FSDirPos の値を格納して TRUE を返します。<BR>
+そうでない場合は、FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>指定したディレクトリリストが現在保持している列挙位置を、FSDirPos として取得します。<BR>
+この値を使用してFS_SeekDir関数を呼び出すことにより、<BR>
+再び現在の列挙位置を再現することができます。<BR>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="../fs_dir_pos_type.html">FSDirPos</A> 
+<A href="FS_FindDir.html">FS_FindDir</A> 
+<A href="FS_ReadDir.html">FS_ReadDir</A> 
+<A href="FS_SeekDir.html">FS_SeekDir</A> 
+<A href="FS_RewindDir.html">FS_RewindDir</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/05/14 FSDirPosの変更による記述修正<BR>
+2004/04/08 FSDirとFSFileの統合による記述修正<BR>
+2004/04/01 初版<BR>
+</P>
+</body>
+</html>

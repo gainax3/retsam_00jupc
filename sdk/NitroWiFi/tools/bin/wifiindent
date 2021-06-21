@@ -1,0 +1,32 @@
+#! bash -fx
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - tools - wifiindent
+# File:     wifiindent
+#
+# Copyright 2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: wifiindent,v $
+# Revision 1.1  2006/03/15 09:53:13  kitase_hirotake
+# Initial Upload
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+for i in "$@"
+do
+	( sed  -f $NITROWIFI_ROOT/tools/bin/wifiindent.prefilter  "$i" > "$i.pre.c"
+	  GC.exe -no-tab_out- -space_if- -code_len-120 -code_keep_empty_lines- -code_keep_more_empty_lines- -code_remove_empty_lines-1 -no-code_split_bool_before- -code_split_fctcall_style-1 -code_split_fctdef_style-1 -code_split_fctdecl_style-1 -stmt_force_brace-0 -no-stmt_concat_switch- -no-stmt_concat_macros- -no-stmt_concat_enum- -stmt_switch_eol-0 -stmt_static_init_style-1 -no-pp_align_to_code- -pp_style-0 -cmt_dont_modify- -no-cmt_add_gc_tag- -no-cmt_add_file- -no-cmt_add_fct_def- -no-cmt_add_fct_def_class- -no-cmt_add_class_access- -cmt_keep_cpp- -no-cmt_decl- -cmt_decl_max_level-0 -stmt_break_alone- -stmt_break_dowhile- -no-space_cast_after- -no-stmt_concat_if- -no-stmt_concat_if_and_else- -code_align_max_blanks-10 -no-space_cast_after- -code_split_for_style-1 -code_split_if_style-1 -no-replace_on- -cmt_sep_eol_before-0 -cmt_first_line_len-80 -code_split_decl_style-0 -code_decl_access_to_type- -file-"$1.pre.c"
+	  sed  -f $NITROWIFI_ROOT/tools/bin/wifiindent.postfilter "$i.pre.c" > "$i.tmp$$" ) && \
+	diff -q "$i" "$i.tmp$$"
+	if [ "$?" = "1" ]; then
+	    mv "$i" "$i.orig$$" && mv "$i.tmp$$" "$i"
+	else
+	    rm "$i.tmp$$"
+	fi
+	rm "$i.pre.c"
+done

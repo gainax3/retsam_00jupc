@@ -1,0 +1,100 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_Connect</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_Connect</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_Connect ( int <em><strong>s</strong></em>, const void* <em><strong>sockAddr</strong></em> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td>ソケット記述子。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>sockAddr</strong></em></code></td>
+    <td>相手アドレスを保持したソケットアドレス構造体(<code><a href="SOCSockAddr.html">SOCSockAddr</a>,<a href="SOCSockAddrIn.html">SOCSockAddrIn</a></code>)へのポインタ。 </td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td>0以上</td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINPROGRESS</code></td>
+    <td>接続がまだ完了していません。(<code>SOC_NONBLOCK</code> がソケット記述子に設定されていて、接続が非同期的に確立します。)</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EINVAL</code></td>
+    <td>無効な処理。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EISCONN</code></td>
+    <td>ソケットがすでに接続されています。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EMFILE</code></td>
+    <td>ソケット記述子をこれ以上作れません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENETRESET</code></td>
+    <td>ソケットが初期化されていません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ENOBUFS</code></td>
+    <td>リソース不足。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_ETIMEDOUT</code></td>
+    <td>TCPのコネクトタイムアウト。</td>
+  </tr>
+</table>
+
+<p><strong><em>注意</em></strong>：追加のエラーが今後のライブラリリリースで生じたり返されることがあります。すべての負の返り値は汎用のエラーとして扱ってください。</p>
+
+<h2>説明</h2>
+
+<p><code><a href="SOC_Bind.html">SOC_Bind()</a></code> でソケット構造体内部に保存された設定値を使用して、指定したソケットへ接続を試みます。ソケットがまだローカルアドレスにバインドされていなかった場合、<code>SOC_Connect()</code>によってソケット
+には使われていないローカルアドレスにバインドされます。</p>
+
+<p> <code>
+    SOC_SOCK_STREAM</code>(TCP)に対しては、<code>SOC_Connect()</code>は接続が確立するまで通常ブロックします。<code><a href="SOC_Fcntl.html">SOC_Fcntl()</a></code>によって
+ソケットが非封鎖モードに設定されている場合は<code>SOC_Connect()</code>は可能な限り早く返ります。</p>
+
+<p> <code>SOC_SOCK_DGRAM</code>ソケットに対しては、<code>SOC_Connect()</code>はソケットの相手アドレスを設定します。接続は作られません。後続の<code><a href="SOC_Send.html">SOC_Send()</a></code>によって送信されるデータグラムは、すべて指定した相手アドレスに向けられます。また後続の<code><a href="SOC_Recv.html">SOC_Recv()</a></code>は設定した相手アドレスからのデータグラムだけを受け取ります。<code><em><strong>sockAddr</strong></em></code>が
+そのプロトコルのヌルアドレスだった場合、ソケットの相手アドレスはリセットされます。</p>
+
+<h2>参照</h2>
+<p>
+<code><a href="SOC_Socket.html">SOC_Socket</a></code>
+<code><a href="SOC_Bind.html">SOC_Bind</a></code>,
+<code><a href="SOC_Recv.html">SOC_Recv</a></code>,
+<code><a href="SOC_Send.html">SOC_Send</a></code>,
+<code><a href="SOC_Fcntl.html">SOC_Fcntl</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版<BR>
+2006/01/13 返値の修正</P>
+</body>
+</html>

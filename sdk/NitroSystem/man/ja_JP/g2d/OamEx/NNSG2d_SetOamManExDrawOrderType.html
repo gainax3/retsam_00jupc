@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNSG2d_SetOamManExDrawOrderType</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNSG2d_SetOamManExDrawOrderType</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OAMEｘ.h&gt;</CODE></pre>
+  <pre><CODE>void NNSG2d_SetOamManExDrawOrderType( 
+                                NNSG2dOamManagerInstanceEx*    pOam, 
+                                NNSG2dOamExDrawOrder           drawOrderType );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[OUT] 拡張OAMマネージャ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">drawOrderType</font></strong></em></td>
+    <td width="87%">[IN] 描画順の種類</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+拡張OAMマネージャのOAM描画順の種類を設定します。<BR>
+<BR>
+OAM描画順の規定値は NNSG2D_OAMEX_DRAWORDER_BACKWARD になっている点にご注意ください。<BR>
+これは以前のバージョンとの互換性を維持するための対策です。<BR>
+<BR>
+以下に、描画登録順の種類 NNSG2dOamExDrawOrder の定義を示します。<BR>
+<BR>
+<pre>
+typedef enum NNSG2dOamExDrawOrder
+{
+    NNSG2D_OAMEX_DRAWORDER_BACKWARD = 0x0, // 登録した順番と逆の順番に外部モジュールへの登録がおこなわれる
+    NNSG2D_OAMEX_DRAWORDER_FORWARD  = 0x1  // 登録した順番と同じの順番に外部モジュールへの登録がおこなわれる
+
+}NNSG2dOamExDrawOrder;
+</pre>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dInitAffineManagerEx.html">NNS_G2dInitAffineManagerEx</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2005/03/28 初版</P>
+</body>
+</html>

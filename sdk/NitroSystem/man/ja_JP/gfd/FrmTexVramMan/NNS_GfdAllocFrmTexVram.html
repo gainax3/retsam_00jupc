@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdAllocFrmTexVram</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdAllocFrmTexVram</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>NNSGfdTexKey NNS_GfdAllocFrmTexVram(u32 szByte, BOOL is4x4comp, u32 opt);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByte</STRONG></EM></TD>
+      <TD width="87%">確保したいテクスチャ用メモリの大きさ( 16 - 524272 バイト )</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>is4x4comp</STRONG></EM></TD>
+      <TD width="87%">4×4テクセル圧縮テクスチャ用メモリを確保する場合、真</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>opt</STRONG></EM></TD>
+      <TD width="87%">VRAMメモリマネージャのオプション（未使用）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>テクスチャ用メモリを示すキー・データ。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>szByte</CODE>で指定された大きさのテクスチャ用メモリをVRAMから確保し、そのテクスチャ用メモリを示すキーを返します。
+テクスチャ用メモリの確保でエラーが発生した場合は、エラーを示すキーであるNNS_GFD_ALLOC_ERROR_TEXKEYを返します。
+この<CODE>NNS_GfdAllocFrmTexVram</CODE>では、optパラメータは使用されていません。
+</P>
+<P>
+<CODE>is4x4comp</CODE>に<CODE>TRUE</CODE>が指定されている場合には、
+４×４テクセル圧縮テクスチャ用にテクスチャ用メモリを確保します。
+この場合、テクスチャイメージ用領域に加え、パレットインデックス用領域も同時に確保します。
+テクスチャイメージ用領域とパレットインデックス用領域の両方が確保できた場合のみ、
+NNS_GfdAllocFrmTexVram()関数は成功した事になります。<BR>
+<BR>
+<BR>
+通常テクスチャの領域確保において開き領域がない場合は、4x4テクスチャ用パレット領域への領域確保を試みます。<BR>
+パレット領域が通常テクスチャによって利用された場合、その2倍の量の4x4テキスチャ用領域が利用不能になってしまいます(パレット領域の確保に失敗するため)。<BR>
+そのため、すべての4x4テクスチャ,すべての通常テクスチャの順でアロケートすることで、4x4テキスチャ用のパレット領域が通常テクスチャ
+によって利用されてしまう危険性を減らすことができ、効率的にメモリを利用することができます。<BR>
+<BR>
+
+</P>
+キーが表現可能な最小サイズより小さなサイズの確保請求があった場合、請求サイズを最小サイズに切り上げて確保します。<BR>
+キーが表現可能な最大サイズより大きなサイズの確保請求があった場合、確保処理を行わずエラーキーを返します。<BR>
+
+
+
+
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdInitFrmTexVramManager.html">NNS_GfdInitFrmTexVramManager</A>
+<A href="NNS_GfdFreeFrmTexVram.html">NNS_GfdFreeFrmTexVram</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/08/24 内部動作の説明と、効率的な利用方法についての注意書きを追加</P>
+<P>2005/01/31 サイズの値域に関する注意書きを追加</P>
+<P>2004/07/16 初版</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>pdic2c.pl</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">pdic2c.pl</H1>
+<H2>説明</H2>
+<P><CODE>pdic2c.pl</CODE> は、図形認識サンプルデモ<A href="../demos/prc/prcdemos.html">characterRecognition-2</A> を実行して得られたテキスト形式のパターンデータを、プログラムで直接使える
+C 言語のソースファイル形式に変換するサンプルツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% perl pdic2c.pl [-ch] [-C OUTPUT_SOURCE] [-H OUTPUT_HEADER] [-i INCLUDE_FILE] [-p PREFIX] NORMALIZE_SIZE [PATTERN_FILES]...</CODE></P>
+<P><CODE>PATTERN_FILES</CODE> で指定されたファイルに記述されているテキストデータを見本図形の辞書データとして解釈し、
+C 言語のソースファイルとヘッダファイルを連続して標準出力に出力します。<CODE>NORMALIZE_SIZE</CODE> には出力データの正規化サイズを指定します。
+<CODE>PATTERN_FILES</CODE> は省略可能で、省略時には標準入力から読まれます。</P>
+<P>オプションとして <CODE>-c, -h</CODE> のどちらかが指定されると、ソースファイル、ヘッダファイルのいずれかのみを出力します。無指定の場合は両者共に出力されます。
+また、<CODE>-C, -H</CODE> の各オプションを指定すると、標準出力の代わりに、出力先のソースファイル名、ヘッダファイル名を指定することができます。</P>
+<P>ソースファイルの中にはヘッダファイルを #include するコードが含まれますが、このパス名を指定するのが <CODE>-i</CODE> オプションです。
+<CODE>-i</CODE> オプションが無かった場合には、<CODE>-H</CODE> オプションで指定されたパス名のファイル名部分のみが使用されます。
+何も指定されていなかった場合は、"patternDict.h" が使用されます。</P>
+<P><CODE>-p<CODE> オプションで生成するソースファイルの中の識別子に付けるプレフィックスを指定することが可能です。</P>
+
+<H3>図形辞書テキストデータ書式</H3>
+<P><CODE>pdic2c.pl</CODE> は、テキストデータを以下の書式のもとに1行1項目として解釈します。</P>
+<PRE><CODE>  line   ::= &quot;PatternName&quot; Kind Correction NormalizeSize '|' stroke+
+  stroke ::= point+ '|'
+  point  ::= '(' X ',' Y ')'</CODE>
+</PRE>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>書式</TH>
+      <TH>意味</TH>
+      <TH>詳細</TH>
+    </TR>
+    <TR>
+      <TD><CODE>"Pattern Name"</CODE></TD>
+      <TD>項目名称</TD>
+      <TD>この項目の表す図形の名称です。名称の出現順に <CODE>code</CODE> 値が 0 から順番に割り振られ、<CODE>code</CODE> と名称の対応関係が <CODE>PatternName</CODE> 配列として出力されます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>Kind</CODE></TD>
+      <TD>文字種</TD>
+      <TD><CODE><A href="../prc/recognize/PRCPrototypeEntry.html">PRCPrototypeEntry</A></CODE> の <CODE>kind</CODE> に出力される値です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>Correction</CODE></TD>
+      <TD>補正値</TD>
+      <TD><CODE><A href="../prc/recognize/PRCPrototypeEntry.html">PRCPrototypeEntry</A></CODE> の <CODE>correction</CODE> に出力される値です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>NormalizeSize</CODE></TD>
+      <TD>正規化サイズ</TD>
+      <TD>この項目は左上が<CODE>(0, 0)</CODE>で右下が<CODE>(NormalizeSize-1, NormalizeSize-1)</CODE>であるようなバウンディングボックスを想定した値であることを表します。<CODE>pdic2c.pl</CODE> の引数と異なる場合は、引数にサイズを合わせるようにこの項目の続く座標値を拡縮させてから出力します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>'|'</CODE></TD>
+      <TD>画の切れ目</TD>
+      <TD>縦棒のところで、一回ペンが上がって画が切れたことを表します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>(X, Y)</CODE></TD>
+      <TD>座標</TD>
+      <TD>パターンの座標を表します。スクリーン座標とあわせるために、左上が <CODE>(0, 0)</CODE> であることに気をつけてください。</TD>
+    </TR>
+    <TR>
+      <TD># ...</TD>
+      <TD>コメント</TD>
+      <TD>明示的なコメント行と解釈し、なにも行わずに読み捨てます。
+    </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+このツールの利用シナリオとして、まず図形認識サンプルデモ <CODE><A href="../demos/prc/prcdemos.html">characterRecognition-2</A></CODE> で Y ボタンを押したときにデバッグ出力に出力されるパターンデータを切り貼りして、テキスト形式の図形見本データを作成します。そのテキストファイルを <CODE>pdic2c.pl</CODE> に通すことにより、図形認識 API で使用する図形見本一覧のソースコードを生成することができます。
+</P>
+<P>標準出力に全て出力した場合は、前半が図形一覧を利用する他のソースコードのためのヘッダファイル、後半が具体的なデータが入った
+ソースファイルとなっています。適宜分割して書き換えながら使用してください。</P>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/pdic2c.pl</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="../demos/prc/prcdemos.html">図形認識サンプルデモ characterRecognition-2</A></CODE></P>
+<H2>履歴</H2>
+<P>
+2005/10/04 引数の追加による追記<BR>
+2004/10/28 regularize を normalize に変更<BR>
+2004/06/30 初版
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_GetLatestCalibratedPointInAuto</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_GetLatestCalibratedPointInAuto</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>void TP_GetLatestCalibratedPointInAuto( <A href="TPData.html">TPData</A> * result );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">result</font></strong></em></TD>
+      <TD width="700">結果を取得するためのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>過去１フレームのオートサンプリング結果から、有効な最新のタッチパネル値を選んで取得することができます。<BR>
+過去１フレームの中で、有効なサンプリング値が発見されなかった場合には、validityのフラグが立った座標が取得されます。<BR>
+<BR>
+値のx,y座標はキャリブレーションされ画面座標の範囲の値をとります。（x座標:0～255、y座標:0～191）</P>
+<h2>参照</h2>
+<P><A href="TPData.html">TPData</A>、<A href="TP_GetLatestRawPointInAuto.html">TP_GetLatestRawPointInAuto</A>、<A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
+</body>
+</html>

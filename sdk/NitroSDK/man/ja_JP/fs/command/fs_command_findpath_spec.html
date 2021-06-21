@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_COMMAND_FINDPATH</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_COMMAND_FINDPATH</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <BR>
+  <CODE>FSResult FS_ARCHIVE_PROC_FUNC(FSFile *p_file, FSCommandType command /*
+  = FS_COMMAND_FINDPATH */);<br>
+  </CODE><br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブコマンド <CODE>FS_COMMAND_FINDPATH の動作仕様を以下に示します</CODE>。<BR>
+<BR>
+<BR>
+
+<HR>
+<B>このコマンドに渡される引数</B>
+<BLOCKQUOTE>
+<PRE>p_file に格納された変数 arg.findpath をコマンド引数とします。 
+この変数は nitro/fs/file.h にて以下のように定義されています。
+
+typedef struct
+{
+    FSDirPos    pos;
+    const char  *path;
+    BOOL    find_directory;
+    union {
+        FSFileID    *file;
+        FSDirPos    *dir;
+    } result;
+} FSFindPathInfo; </PRE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>引数の内容は以下のとおりです。<BR>
+</BLOCKQUOTE>
+<CENTER>
+<TABLE border="1" width="50%">
+  <TBODY>
+    <TR>
+      <TD style="text-align : center;" width="95">引数</TD>
+      <TD style="text-align : center;" width="522">内容</TD>
+    </TR>
+    <TR>
+      <TD width="95" style="text-align : center;">pos</TD>
+      <TD width="522">検索すべきファイルまたはディレクトリの基準となるディレクトリ位置を示します。<BR>
+      変数のうち、pos.index と pos.pos は無視して構いません。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">path</TD>
+      <TD>pos を基準とする相対パス文字列へのポインタを示します。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">find_directory</TD>
+      <TD>検索すべき対象がファイルなら FALSE を、ディレクトリなら TRUE が格納されています。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">result.file</TD>
+      <TD>find_directory が FALSE の場合、検索結果を格納するためのファイルIDへのポインタを示します。</TD>
+    </TR>
+    <TR>
+      <TD style="text-align : center;">result.dir</TD>
+      <TD>find_directory が TRUE の場合、検索結果を格納するためのディレクトリ位置へのポインタを示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</CENTER>
+<BR>
+<HR>
+<B>このコマンドに要求される動作</B>
+<BLOCKQUOTE>
+<PRE>p_file の情報は何も使用しません。
+引数の result.file または result.dir の指すメモリを以下のように設定します。 
+
+・引数 の find_directory が FALSE の場合、ディレクトリ位置 pos を基準として
+  path が指す相対パスの位置にあるファイルのIDを取得し、その値を result.file へ格納します。
+
+・引数 の find_directory が TRUE の場合、ディレクトリ位置 pos を基準として
+  path が指す相対パスの位置にあるディレクトリ位置を取得し、その値を result.dir へ格納します。
+
+いずれの場合も、指定されたパスが不正な場合は何も行いません。</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>デフォルトの実装</B><BR>
+<BR>
+<BLOCKQUOTE>与えられた引数から、FS_COMMAND_SEEKDIR コマンドと FS_COMMAND_READDIR コマンドのみを使用して結果を求めます。</BLOCKQUOTE>
+<HR>
+<B>コマンドの結果</B><BR>
+
+<BLOCKQUOTE>
+<PRE>FS_RESULT_SUCCESS を返した場合、result.file または result.dir には
+検索の結果見つかった正しい値が格納されていると判断されます。
+そうでない場合、指定されたパスは存在しないか、パス形式が不正であったか、
+またはその他のエラーにより失敗したと判断されます。
+</PRE>
+</BLOCKQUOTE>
+<HR>
+<B>このコマンドが使用される関数</B><BR>
+<BLOCKQUOTE>FS_ChangeDir<BR>
+FS_OpenFile<BR>
+FS_ConvertPathToFileID</BLOCKQUOTE>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_archive_type.html">FSArchive</A>
+<A href="../fs_archive_proc_func_type.html">FS_ARCHIVE_PROC_FUNC</A>
+<A href="../fs_command_type_const.html">FS_COMMAND_*</A>
+<BR>
+<A href="../archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/07/12 初版</P>
+</body>
+</html>

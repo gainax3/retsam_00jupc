@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>TCP/IPプロトコルスタック(CPS) 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>TCP/IPプロトコルスタック(CPS) 機能一覧</H1>
+<H3><A name="Init">初期化・終了</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_Startup.html" target="_self">CPS_Startup</A></TD>
+      <TD width="75%">CPSライブラリを使用可能にします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_Cleanup.html" target="_self">CPS_Cleanup</A></TD>
+      <TD>CPSライブラリの使用を終了します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Config">設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_GetThreadPriority.html" target="_self">CPS_GetThreadPriority</A></TD>
+      <TD width="75%">CPSライブラリが内部で生成するスレッドの優先度を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SetThreadPriority.html" target="_self">CPS_SetThreadPriority</A></TD>
+      <TD>CPSライブラリが内部で生成するスレッドの優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocRegister.html" target="_self">CPS_SocRegister</A></TD>
+      <TD>現スレッドでCPSライブラリが使用するソケット構造体を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocUnRegister.html" target="_self">CPS_SocUnRegister</A></TD>
+      <TD>現スレッドでCPSライブラリが使用するソケット構造体を未登録にします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocUse.html" target="_self">CPS_SocUse</A></TD>
+      <TD>現スレッドが、TCP/IP受信機能のサービス(TCPステートマシン等)を受けられるようにします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocRelease.html" target="_self">CPS_SocRelease</A></TD>
+      <TD>現スレッドが、TCP/IP受信機能のサービス(TCPステートマシン等)を受けられないようにします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocDup.html" target="_self">CPS_SocDup</A></TD>
+      <TD>指定したスレッドが、現スレッドのソケットに対して出力できるようにします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SetUdpCallback.html" target="_self">CPS_SetUdpCallback</A></TD>
+      <TD>UDPパケット受信の際に呼ばれるコールバック関数を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Socket">ソケット</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_SocBind.html" target="_self">CPS_SocBind</A></TD>
+      <TD width="75%">ソケットに自ポート、相手ポート、相手アドレスを割り当てます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocDatagramMode.html" target="_self">CPS_SocDatagramMode</A></TD>
+      <TD>ソケットをUDPモードにします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocPingMode.html" target="_self">CPS_SocPingMode</A></TD>
+      <TD>ソケットをPINGモードにします。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocRead.html" target="_self">CPS_SocRead</A></TD>
+      <TD>PING/UDP/TCPの受信を行います。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocConsume.html" target="_self">CPS_SocConsume</A></TD>
+      <TD>受信バッファからデータを取り除きます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocGetLength.html" target="_self">CPS_SocGetLength</A></TD>
+      <TD>受信バッファ内のデータ数を返します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocWrite.html" target="_self">CPS_SocWrite</A></TD>
+      <TD>PING/UDP/TCPの出力を行います。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_TcpConnect.html" target="_self">CPS_TcpConnect</A></TD>
+      <TD>アクティブTCPコネクションを確立します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_TcpListen.html" target="_self">CPS_TcpListen</A></TD>
+      <TD>パッシブTCPコネクションを確立します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocWho.html" target="_self">CPS_SocWho</A></TD>
+      <TD>通信相手に関する情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_TcpShutdown.html" target="_self">CPS_TcpShutdown</A></TD>
+      <TD>TCPコネクションをアクティブに切断します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_TcpClose.html" target="_self">CPS_TcpClose</A></TD>
+      <TD>TCPコネクションを終了します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_TcpAck.html" target="_self">CPS_TcpAck</A></TD>
+      <TD>ACKハンドシェークパケットを送信します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocGetEport.html" target="_self">CPS_SocGetEport</A></TD>
+      <TD>新しいエフェメラルポート番号を取得します。</TD>
+    </TR>
+  </TBODY>
+    <TR>
+      <TD><A href="cps/CPS_GetProperSize.html" target="_self">CPS_GetProperSize</A></TD>
+      <TD>その時点での最適なTCP送信パケットサイズを求めるのに使用される値を返します。</TD>
+    </TR>
+</TABLE>
+
+<H3><A name="SocketIO">ソケット入出力補助</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_SocGetChar.html" target="_self">CPS_SocGetChar</A></TD>
+      <TD width="75%">一文字入力するまで待ち、それを返します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocGets.html" target="_self">CPS_SocGets</A></TD>
+      <TD>一行入力します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocPutChar.html" target="_self">CPS_SocPutChar</A></TD>
+      <TD>一文字出力します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocPuts.html" target="_self">CPS_SocPuts</A></TD>
+      <TD>文字列を出力します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocPrintf.html" target="_self">CPS_SocPrintf</A></TD>
+      <TD>書式制御付きで文字列を出力します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SocFlush.html" target="_self">CPS_SocFlush</A></TD>
+      <TD>ソケット入出力補助関数によってバッファに蓄積されたデータを実際に送信します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Resolver">名前解決</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_Resolve.html" target="_self">CPS_Resolve</A></TD>
+      <TD width="75%">DNSサーバに対して問い合わせ、名前をIPアドレスに変えます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_RevResolve.html" target="_self">CPS_RevResolve</A></TD>
+      <TD>DNSサーバに対して問い合わせ、IPアドレスを名前に変えます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_NbResolve.html" target="_self">CPS_NbResolve</A></TD>
+      <TD>同一ネットワーク内にあるNetBios名をIPアドレスに変えます。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_EncodeNbName.html" target="_self">CPS_EncodeNbName</A></TD>
+      <TD>NetBios名をworkstationとして、NetBios Name query機能で使われる形式に変換します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="SSL">SSL</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_SetSsl.html" target="_self">CPS_SetSsl</A></TD>
+      <TD width="75%">SSLモードの有効・無効を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SetRootCa.html" target="_self">CPS_SetRootCa</A></TD>
+      <TD>ルート証明書を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SetMyCert.html" target="_self">CPS_SetMyCert</A></TD>
+      <TD>自分のサーバ証明書と私有鍵情報を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SslAddRandomSeed.html" target="_self">CPS_SslAddRandomSeed</A></TD>
+      <TD>SSL用乱数発生器が使用する乱数プールを設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_SetSslHandshakePriority.html" target="_self">CPS_SetSslHandshakePriority</A></TD>
+      <TD>SSLのハンドシェイク処理で、計算時間が長い部分の実行優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_GetSslHandshakePriority.html" target="_self">CPS_GetSslHandshakePriority</A></TD>
+      <TD>SSLのハンドシェイク処理で、計算時間が長い部分の実行優先度を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Utility">ユーティリティ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_htons.html" target="_self">CPS_htons</A></TD>
+      <TD width="75%">ホストバイトオーダーの値をネットワークバイトオーダの値に変換します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_htons.html" target="_self">CPS_htonl</A></TD>
+      <TD>ホストバイトオーダーの値をネットワークバイトオーダの値に変換します。</TD>
+    </TR>
+  </TBODY>
+    <TR>
+      <TD><A href="cps/CPS_MK_IPv4.html" target="_self">CPS_MK_IPv4</A></TD>
+      <TD>u32のIPv4アドレスを作成します。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_CV_IPv4.html" target="_self">CPS_CV_IPv4</A></TD>
+      <TD>u32のIPv4アドレスを、文字列表現への変換を目的としたprintfのパラメータに使用できるようにします。</TD>
+    </TR>
+</TABLE>
+
+<H3><A name="Struct">構造体・型</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="cps/CPSSoc.html" target="_self">CPSSoc</A></TH>
+      <TD width="75%">ソケットを定義する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cps/CPSSocBuf.html" target="_self">CPSSocBuf</A></TH>
+      <TD>CPSSocに設定するバッファ構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cps/CPSSslConnection.html" target="_self">CPSSslConnection</A></TH>
+      <TD>SSLの接続を定義する構造体です。</TD>
+    </TR>
+<!--
+    <TR>
+      <TH><A href="cps/CPSSslSession.html" target="_self">CPSSslSession</A></TH>
+      <TD>SSLセッションの定義です。</TD>
+    </TR>
+-->
+    <TR>
+      <TH><A href="cps/CPSCaInfo.html" target="_self">CPSCaInfo</A></TH>
+      <TD>証明書に関する情報の定義する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cps/CPSCertificate.html" target="_self">CPSCertificate</A></TH>
+      <TD>相手に提示する証明書の定義です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cps/CPSPrivateKey.html" target="_self">CPSPrivateKey</A></TH>
+      <TD>証明書の私有鍵に関する情報の定義です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="cps/CPSConfig.html" target="_self">CPSConfig</A></TH>
+      <TD>CPS_Startup()に渡す構成情報を定義する構造体です。</TD>
+    </TR>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_CONSTANT_TYPE.html" target="_self">CPS ライブラリ型</A></TD>
+      <TD width="75%">CPS ライブラリで使用される型についての解説です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Const">定数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_CONSTANT_NUMBER.html" target="_self">CPS用の定数</A></TD>
+      <TD width="75%">CPS ライブラリで使用される定数についての解説です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/SSL_CONSTANT_NUMBER.html" target="_self">SSL用の定数</A></TD>
+      <TD>SSL ライブラリで使用される定数についての解説です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_CONSTANT_SOCKET.html" target="_self">CPS_STT_*</A></TD>
+      <TD>CPS ライブラリでのソケットの状態を示す型についての解説です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_CONSTANT_IP.html" target="_self">CPS_NOIP_REASON_*</A></TD>
+      <TD>CPS ライブラリでのIPアドレスが設定されていない理由を示す定数についての解説です。</TD>
+    </TR>
+    <TR>
+      <TD><A href="cps/CPS_CONSTANT_CERTIFICATION.html" target="_self">CPS_CERT_*</A></TD>
+      <TD>認証時に呼ばれるコールバック関数に渡されるエラー情報の定義についての解説です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Global">大域変数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="25%"><A href="cps/CPS_GLOBAL_VARIABLE.html" target="_self">CPS*(大域変数)</A></TD>
+      <TD width="75%">CPS ライブラリで使用されている大域変数についての解説です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+
+</BODY>
+</HTML>
+
+

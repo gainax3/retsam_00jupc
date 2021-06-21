@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMStartDCFCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMStartDCFCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMStartDCFCallback
+{ 
+    u16           apiid;
+    u16           errcode;
+    u16           state;
+    u8            reserved[2];
+    WMDcfRecvBuf* recvBuf;
+
+} WMStartDCFCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_START_DCFに固定となります。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。発生しうる要因は以下の2つです。<BR>
+      WM_STATECODE_DCF_START、WM_STATECODE_DCF_IND。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">recvBuf</font></strong></em></TD>
+      <TD width="800">stateがWM_STATECODE_DCF_INDの場合、受信データ格納先のポインタが格納されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_StartDCF.html">WM_StartDCF</A>に対するコールバック関数に渡される構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

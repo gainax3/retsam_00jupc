@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMPortSendCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMPortSendCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>typedef struct WMPortSendCallback
+{
+    u16             apiid;
+    u16             errcode;
+    u16             wlCmdID;
+    u16             wlResult;
+    u16             state;
+    u16             port;
+    u16             destBitmap;
+    u16             restBitmap;
+    u16             sentBitmap;
+    u16             rsv;
+    const u16       *data;
+    u16             length;
+    u16             seqNo;
+    WMCallbackFunc  callback;
+    void            *arg;
+
+} WMPortSendCallback;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">apiid</font></strong></em></TD>
+      <TD width="800">コールバック発生の元となったAPIのIDです。<A href="WMApiid.html">WMApiid</A>列挙型と同義です。<BR>
+      ここではWM_APIID_PORT_SENDに固定となります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">errcode</font></strong></em></TD>
+      <TD width="800">非同期処理の結果です。<A href="WMErrCode.html">WMErrCode列挙型</A>と同義です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlCmdID</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなったコマンドのIDが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">wlResult</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_FAILEDの場合、無線ファームウェアでエラーとなった要因コードが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">state</font></strong></em></TD>
+      <TD width="800">errcodeがWM_ERRCODE_SUCCESSの場合、コールバックの発生した<A href="WMStateCode.html">要因種別</A>が格納されます。現在は WM_STATECODE_PORT_SEND しか発生しません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">port</font></strong></em></TD>
+      <TD width="800">データを送信したポートが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">destBitmap</font></strong></em></TD>
+      <TD width="800">送信先に指定した AID のビットマップが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">restBitmap</font></strong></em></TD>
+      <TD width="800">リトライを行わなくてはならない送信先の AID のビットマップが格納されます。
+      未接続や切断されたなどの理由で、送信が成功しないことが明らかな AID はこのビットマップには含まれません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">sentBitmap</font></strong></em></TD>
+      <TD width="800">destBitmap で指定した送信先のうち、実際に送信できた相手の AID のビットマップです。
+      sentBitmap に含まれている相手にデータが届いていることは保証されますが、
+      sentBitmap に含まれていない相手にはデータが届いていないということは保証されません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">rsv</font></strong></em></TD>
+      <TD width="800">予約されたメンバです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="800">データを送信したバッファのアドレスが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">length</font></strong></em></TD>
+      <TD width="800">送信したデータの長さが格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">seqNo</font></strong></em></TD>
+      <TD width="800">シーケンス番号が格納されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">callback</font></strong></em></TD>
+      <TD width="800">ライブラリが内部で使用するためのフィールドです。呼び出されたコールバック関数のアドレスが格納されています。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD width="800"><A href="WM_SetMPDataToPortEx.html">WM_SetMPDataToPortEx</A>関数で指定した引数が格納されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<A href="WM_SetMPDataToPort.html">WM_SetMPDataToPort</A>, <A href="WM_SetMPDataToPortEx.html">WM_SetMPDataToPortEx</A>,
+<A href="WM_SetMPData.html">WM_SetMPData</A>の各関数に対するコールバック関数に渡される構造体です。 
+</P>
+<P>
+errcodeフィールドには、送信に成功するとWM_ERRCODE_SUCCESS、送信に失敗するとWM_ERRCODE_SEND_FAILED、送信キューが一杯であるとWM_ERRCODE_SEND_QUEUE_FULL、
+の各値が入ります。
+destBitmapで指定された送信先に、未接続や送信中に切断されたなどの理由で送信不可能な AID が含まれていても、残りの送信可能な相手に全て送りきった場合は
+WM_ERRCODE_SUCCESSが返されることに注意してください。指定した送信先の全てに本当に送信されたかを確認したい場合はdestBitmapとsentBitmapとを比較をしてください。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/03/04 初版<BR>
+</P>
+</body>
+</html>

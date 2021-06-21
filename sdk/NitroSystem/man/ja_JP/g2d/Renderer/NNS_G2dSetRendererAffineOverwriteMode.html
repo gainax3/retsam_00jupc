@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetRendererAffineOverwriteMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetRendererAffineOverwriteMode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+  <pre><CODE>
+NNS_G2D_INLINE void NNS_G2dSetRendererAffineOverwriteMode( 
+                                NNSG2dRendererInstance*                 pRend, 
+                                NNSG2dRendererAffineTypeOverwiteMode    affineMode );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">[OUT] レンダラ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">affineMode</font></strong></em></td>
+    <td width="87%">[IN] アフィン変換モード書き換え方式</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+レンダラが2Dグラフィックスエンジンを使用してOBJ描画を行う再に、OBJのアフィン変換モードを書き換える処理方式を設定します。<BR>
+方式はNNSG2dRendererAffineTypeOverwiteModeで指定します。<BR>
+<BR>
+NNSG2dRendererAffineTypeOverwiteModeの定義は以下のようになっています。<BR>
+<dd><pre><CODE>
+typedef enum NNSG2dRendererAffineTypeOverwiteMode
+{
+    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // 上書きしない
+    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// 通常のアフィン変換方式に設定
+    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // 倍角アフィン変換方式に設定
+    
+}NNSG2dRendererAffineTypeOverwiteMode;
+</CODE></pre></dd>
+NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLEが指定された場合、レンダラは内部でOBJの位置補正を行います。<BR>
+05/06/06版から、位置補正処理は、実際にOBJのアフィン変換モードが変更された場合にだけ行われるように変更されました。<BR>
+(つまり、もともと倍角アフィンOBJとして作成されたデータには補正処理を行わいません。)<BR>        
+
+
+<BR>
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dGetRendererAffineOverwriteMode.html">NNS_G2dGetRendererAffineOverwriteMode</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2005/06/06 位置補正処理に関する注意書きを追加</P>
+<P>2004/10/04 初版</P>
+</body>
+</html>

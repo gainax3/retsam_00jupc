@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_StartOverlay</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_StartOverlay</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void FS_StartOverlay(FSOverlayInfo *p_ovi);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_ovi</STRONG></EM></TD>
+      <TD width="87%">オーバーレイモジュールの情報が格納された<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>構造体</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>オーバーレイモジュールの static initializer を実行します。<BR>
+static initializer とは、静的記憶期間を持つオブジェクトの初期化処理を指します。<BR>
+<BR>
+本関数は、<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>関数や<A href="FS_LoadOverlayImageAsync.html">FS_LoadOverlayImageAsync</A>関数などで<br>
+直接準備されたオーバーレイモジュールに対して一度だけ呼び出す必要があります。<BR>
+<br>
+<font color="#800000">ロードされた既存のオーバーレイと領域を競合する他のオーバーレイをロードする場合、<br>
+必ず以前のオーバーレイを<A href="FS_UnloadOverlay.html">FS_UnloadOverlay</A> 関数でアンロードする必要があります。</font>
+<br>
+<BR>
+同等の処理を行う他のオーバーレイ関数との関係については<br>
+<A href="FS_LoadOverlay.html">FS_LoadOverlay</A>関数のリファレンスに記載された例を参照ください。<br>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_overlay_info_type.html">FSOverlayInfo</A>
+<br>
+<A href="FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="FS_LoadOverlayImage.html">FS_LoadOverlayImage</A>
+<A href="FS_LoadOverlayImageAsync.html">FS_LoadOverlayImageAsync</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/16 FS_UnloadOverlayに関する注意を追加<BR>
+2004/11/16 リンク追加<br>
+2004/10/19 リンク追加<br>
+2004/09/24 各種オーバーレイ関数の関係について例を記述追加<br>
+2004/06/11 初版<BR>
+</P>
+</body>
+</html>

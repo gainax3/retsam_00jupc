@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>ジオメトリコマンドサイクル</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<H1 align="left">ジオメトリコマンドサイクル</H1>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>コマンド名</TD>
+      <TD align="center">対応するAPI</TD>
+      <TD align="center">実行サイクル数<BR>
+      (33MHz換算)</TD>
+      <TD align="center">備考</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_MODE</TD>
+      <TD><A href="g3/G3_MtxMode.html" target="_self">G3*_MtxMode</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_PUSH</TD>
+      <TD><A href="g3/G3_PushMtx.html" target="_self">G3*_PushMtx</A></TD>
+      <TD align="center">17</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_POP</TD>
+      <TD><A href="g3/G3_PopMtx.html" target="_self">G3*_PopMtx</A></TD>
+      <TD align="center">36</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_STORE</TD>
+      <TD><A href="g3/G3_StoreMtx.html" target="_self">G3*_StoreMtx</A></TD>
+      <TD align="center">17</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_RESTORE</TD>
+      <TD><A href="g3/G3_RestoreMtx.html" target="_self">G3*_RestoreMtx</A></TD>
+      <TD align="center">36</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_IDENTITY</TD>
+      <TD><A href="g3/G3_Identity.html" target="_self">G3*_Identity</A></TD>
+      <TD align="center">19</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_LOAD_4x4</TD>
+      <TD><A href="g3/G3_LoadMtx44.html" target="_self">G3*_LoadMtx44</A></TD>
+      <TD align="center">34</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_LOAD_4x3</TD>
+      <TD><A href="g3/G3_LoadMtx43.html" target="_self">G3*_LoadMtx43</A></TD>
+      <TD align="center">30</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_MULT_4x4</TD>
+      <TD><A href="g3/G3_MultMtx44.html" target="_self">G3*_MultMtx44</A></TD>
+      <TD align="center">35</TD>
+      <TD>Position&amp;Vectorモード時は65</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_MULT_4x3</TD>
+      <TD><A href="g3/G3_MultMtx43.html" target="_self">G3*_MultMtx43</A></TD>
+      <TD align="center">31</TD>
+      <TD>Position&amp;Vectorモード時は61</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_MULT_3x3</TD>
+      <TD><A href="g3/G3_MultMtx33.html" target="_self">G3*_MultMtx33</A></TD>
+      <TD align="center">28</TD>
+      <TD>Position&amp;Vectorモード時は58</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_SCALE</TD>
+      <TD><A href="g3/G3_Scale.html" target="_self">G3*_Scale</A></TD>
+      <TD align="center">22</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_MTX_TRANS</TD>
+      <TD><A href="g3/G3_Translate.html" target="_self">G3*_Translate</A></TD>
+      <TD align="center">22</TD>
+      <TD>Position&amp;Vectorモード時は52</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_COLOR</TD>
+      <TD><A href="g3/G3_Color.html" target="_self">G3*_Color</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_NORMAL</TD>
+      <TD><A href="g3/G3_Normal.html" target="_self">G3*_Normal</A></TD>
+      <TD align="center">9-12(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></TD>
+      <TD>ライトの数によって増加します。</TD>
+    </TR>
+    <TR>
+      <TD>G3OP_TEXCOORD</TD>
+      <TD><A href="g3/G3_TexCoord.html" target="_self">G3*_TexCoord</A></TD>
+      <TD align="center">1(+1)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_16</TD>
+      <TD><A href="g3/G3_Vtx.html" target="_self">G3*_Vtx</A></TD>
+      <TD align="center">9(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_10</TD>
+      <TD><A href="g3/G3_Vtx10.html" target="_self">G3*_Vtx10</A></TD>
+      <TD align="center">8(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_XY</TD>
+      <TD><A href="g3/G3_VtxXY.html" target="_self">G3*_VtxXY</A></TD>
+      <TD align="center">8(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_XZ</TD>
+      <TD><A href="g3/G3_VtxXZ.html" target="_self">G3*_VtxXZ</A></TD>
+      <TD align="center">8(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_YZ</TD>
+      <TD><A href="g3/G3_VtxYZ.html" target="_self">G3*_VtxYZ</A></TD>
+      <TD align="center">8(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VTX_DIFF</TD>
+      <TD><A href="g3/G3_VtxDiff.html" target="_self">G3*_VtxDiff</A></TD>
+      <TD align="center">8(+2)<A href="#attention_1"><SUP><FONT color="red">※1</FONT></SUP></A></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_POLYGON_ATTR</TD>
+      <TD><A href="g3/G3_PolygonAttr.html" target="_self">G3*_PolygonAttr</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_TEXIMAGE_PARAM</TD>
+      <TD><A href="g3/G3_TexImageParam.html" target="_self">G3*_TexImageParam</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_TEXPLTT_BASE</TD>
+      <TD><A href="g3/G3_TexPlttBase.html" target="_self">G3*_TexPlttBase</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_DIF_AMB</TD>
+      <TD><A href="g3/G3_MaterialColorDiffAmb.html" target="_self">G3*_MaterialColorDiffAmb</A></TD>
+      <TD align="center">4</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_SPE_EMI</TD>
+      <TD><A href="g3/G3_MaterialColorSpecEmi.html" target="_self">G3*_MaterialColorSpecEmi</A></TD>
+      <TD align="center">4</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_LIGHT_VECTOR</TD>
+      <TD><A href="g3/G3_LightVector.html" target="_self">G3*_LightVector</A></TD>
+      <TD align="center">6</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_LIGHT_COLOR</TD>
+      <TD><A href="g3/G3_LightColor.html" target="_self">G3*_LightColor</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_SHININESS</TD>
+      <TD><A href="g3/G3_Shininess.html" target="_self">G3*_Shininess</A></TD>
+      <TD align="center">32</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_BEGIN</TD>
+      <TD><A href="g3/G3_Begin.html" target="_self">G3*_Begin</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_END</TD>
+      <TD><A href="g3/G3_End.html" target="_self">G3*_End</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_SWAP_BUFFERS</TD>
+      <TD><A href="g3/G3_SwapBuffers.html" target="_self">G3*_SwapBuffers</A></TD>
+      <TD align="center">392</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VIEWPORT</TD>
+      <TD><A href="g3/G3_ViewPort.html" target="_self">G3*_ViewPort</A></TD>
+      <TD align="center">1</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_BOX_TEST</TD>
+      <TD><A href="g3/G3_BoxTest.html">G3*_BoxTest</A></TD>
+      <TD align="center">103</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_POS_TEST</TD>
+      <TD><A href="g3/G3_PositionTest.html">G3*_PositionTest</A></TD>
+      <TD align="center">9</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>G3OP_VEC_TEST</TD>
+      <TD><A href="g3/G3_VectorTest.html">G3*_VectorTest</A></TD>
+      <TD align="center">5</TD>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<A name="attention_1">※1 環境マップを使用した場合、各ソースに相当するコマンドのサイクル数が増えます。<BR>
+　　　　　（例）G3OP_TEXIMAGE_PARAM コマンドで GX_TEXGEN_TEXCOORD を指定した場合 G3OP_TEXCOORD コマンドのサイクル数が 1 増加</A>
+
+<H2>履歴</H2>
+<P>Ver. 2006/04/10</P>
+<UL>
+  <LI>環境マップ使用時のコマンドサイクル増加について追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

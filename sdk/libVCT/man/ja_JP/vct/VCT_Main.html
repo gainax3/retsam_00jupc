@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_Main</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_Main</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>void VCT_Main( void );</CODE></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<p>なし</p>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>VoiceChatのメインループを実行します。<code><a href="VCT_SendAudio.html">VCT_SendAudio</a></code>によってキューイングされている送信音声のVAD、エコーキャンセル、エンコード、および送信処理、<code><a href="VCT_HandleData.html">VCT_HandleData</a></code>で受信したデータのデコード処理、およびタイムアウトのチェックを行っています。</P>
+<P>定期的な送信が行われるよう、この関数を<B>必ず</B>１ピクチャーフレームに１回呼び出してください。 </P>
+<P>割り込み処理ルーチンからは、本関数を呼び出さないでください。</P>
+<h2>参照</h2>
+<P><CODE>
+<A href="VCT_SendAudio.html">VCT_SendAudio</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2007/01/15 呼び出しに関する制限事項を追記<BR>
+2006/08/31 処理内容を修正<BR>
+2006/04/17 呼び出し間隔に関する記述を修正<BR>
+2006/01/25 初版
+</P>
+</body>
+</html>

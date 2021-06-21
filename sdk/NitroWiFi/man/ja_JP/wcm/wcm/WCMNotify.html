@@ -1,0 +1,82 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCMNotify.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCMNotify.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCMNotify</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCMNotify</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+typedef void   (*WCMNotify)( <A href="WCMNotice.html">WCMNotice</A>* arg );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			WCM ライブラリからの非同期処理結果、及び不定期な通知を受け取るためのコールバック関数の型です。
+			引数に <A href="WCMNotice.html"><CODE>WCMNotice</CODE> 型</A>の通知種別と処理結果コード、及び詳細パラメータが格納された構造体へのポインタが渡されます。<BR>
+			なお、このコールバック関数は割り込みハンドラから呼び出されます。
+		</P>
+
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>arg</CODE></STRONG></EM></TD>
+					<TD width="75%"><A href="WCMNotice.html"><CODE>WCMNotice</CODE> 型</A>の通知に関する詳細が格納された構造体へのポインタが渡されます。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+			ありません。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_StartupAsync.html">WCM_StartupAsync</A>, <A href="WCMNotice.html">WCMNotice</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

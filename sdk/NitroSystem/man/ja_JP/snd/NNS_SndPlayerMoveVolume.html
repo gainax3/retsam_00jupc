@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerMoveVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerMoveVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerMoveVolume(
+        NNSSndHandle* <var>handle</var>,
+        int <var>targetVolume</var>,
+        int <var>frames</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAHMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>targetVolume</code></strong></em></td>
+<td>ボリュームの値です。値の範囲は、0～127です。</td>
+</tr>
+<tr>
+<td><em><strong><code>frames</code></strong></em></td>
+<td>変化するフレーム数です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAENWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDALNWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスのボリュームを徐々に変更します。
+</p>
+      <p>
+<em><strong><code>frames</code></strong></em>で指定したフレーム数で、徐々に現在のボリューム値から、
+<em><strong><code>targetVolume</code></strong></em>で指定したボリューム値へ変化します。
+</p>
+      <p>
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスのボリュームを変更します。
+サウンドハンドルが無効の場合は、何もしません。
+</p>
+      <p>
+<em><strong><code>frames</code></strong></em>が0の時、即座に現在のボリューム値が更新されます。
+たとえば、現在のボリューム値とは無関係に、ボリュームをある値から、別の値に時間変化させたい場合は、
+まず、<em><strong><code>frames</code></strong></em>を0としてこの関数を呼びだして、現在のボリューム値を更新した後、
+再び同じ関数で、目標とするボリューム値を指定します。 </p>
+      <p>
+シーケンススタート直後のボリューム値は0で、次の
+<tt class="function"><a href="NNS_SndMain.html">NNS_SndMain</a></tt>関数で、127 に変化します。
+このため、シーケンススタート直後にこの関数を呼びだすと、
+ボリューム0から徐々に指定のボリュームへ変化するような、フェードイン効果が得られます。
+</p>
+      <p>
+このボリューム値は、
+<tt class="function"><a href="NNS_SndPlayerSetVolume.html">NNS_SndPlayerSetVolume</a></tt>関数の値とは、
+独立して効果を発揮し、互いに重ね合わされます。
+ただし、フェードアウト中は、ここで設定した値は無視されます。 
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndMain.html">NNS_SndMain</a>, <a href="NNS_SndPlayerSetVolume.html">NNS_SndPlayerSetVolume</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 サウンドハンドルはシーケンスと結びつくように記述修正<br>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+#! /bin/bash -f
+#-----------------------------------------------------------------------
+# $Id: blxchecker,v 1.5 2007/07/17 01:58:53 yasu Exp $
+#   blx?? 命令に続く命令のチェック
+#
+#	blxeq   r0
+#	beq	xx   という形式をチェックする．
+#
+#-----------------------------------------------------------------------
+(shopt -s igncr) 2>/dev/null && eval 'shopt -s igncr';#
+
+if [ -z "$CWFOLDER_NITRO" ]; then
+	export CWFOLDER_NITRO=C:/Program\ Files/Metrowerks/CodeWarrior\ for\ NITRO\ V0.4.1
+fi
+
+export PATH=$PATH:`cygpath "$CWFOLDER_NITRO/ARM_Tools/Command_Line_Tools"`
+
+#
+# 逆アセンブルした *.o, *.a ファイルを gawk で解析
+#
+/bin/find . -name '*.[ao]' -print -exec mwldarm.exe -w off -dis -nostdlib -show only,code,hex -proc arm9tdmi {} \; |
+gawk '\
+
+/^[.]/{				# . で始まるのはファイル名
+	file  = $1;
+	lines = 0;
+	next;
+}
+
+$2 ~ /^[A-Za-z_][A-Za-z0-9_]*:/{# 関数名の取得 (英数字とコロン)
+	fun   = $2;
+	gsub( ":", "()", fun );
+	lines = 0;
+	next;
+}
+
+/^;/{				# コメント(;で始まる)は捨てる
+	next;
+}
+
+{				# 解析中
+	if ( lines > 0 ){
+		# cond フィールドチェック
+		if ( $2 ~ /^0x[0-9A-D].......$/ ){
+			if ( !findln ){
+				print "Warning: " file;
+				print "> " fun;
+				print codes;
+			}
+			print $0;
+			findln ++;
+		}
+		lines --;
+	}
+}
+
+# bl[xx] または blx[xx] という命令を探す
+$2 ~ /^0x[0-9A-D]12FFF3.$/ || 
+( $2 ~ /^0x[0-9A-D]B......$/ && $3 !~ "dcd" ) {
+	lines  = 30;		# 一応カウントに制限をつけておく
+	codes  = $0;
+	findln = 0;
+}
+
+# フラグを更新する命令および強制分岐なら調査を打ち切る
+$2 ~ /^0xE[0123][13579BDF].....$/ ||
+$2 ~ /^0xE[89][4567CDEF].....$/   ||
+$2 ~ /^0xE12FFF..$/ {
+	lines = 0;
+}
+'
+
+#-----------------------------------------------------------------------
+# $Log: blxchecker,v $
+# Revision 1.5  2007/07/17 01:58:53  yasu
+# CR コードを無視するように設定
+#
+# Revision 1.4  2004/04/23 12:47:11  yasu
+# check by opcode bitfield
+#
+# Revision 1.3  2004/04/22 07:03:14  yasu
+# Support *.a files
+#
+# Revision 1.2  2004/04/21 11:22:06  yasu
+# Support codecheck as workaround for blxeq/ne problem
+#
+# Revision 1.1  2004/04/21 10:59:16  yasu
+# Checker for illegal combination around blxeq/blxne
+#
+#-----------------------------------------------------------------------

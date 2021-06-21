@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_CheckFunctionCostBuffer</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_CheckFunctionCostBuffer</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL OS_CheckFunctionCostBuffer( void* buf );</CODE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><I><B>buf</B></I></TD>
+      <TD>関数コスト計測用バッファ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>バッファの最上位が書き換えられていれば FALSE を返します。<BR>
+そうでなければ TRUE を返します。</P>
+
+<H2>説明</H2>
+<P>関数コスト計測バッファの最上位が書き換えられているかを調べます。<BR>
+すなわち、関数コスト計測バッファが一杯まで使用されたかを調べます。</P>
+<P>関数コスト計測バッファは、関数を呼び出す度に消費されていきます。一杯になるとそれ以上関数呼び出しの記録をつけることをやめるだけで、エラー表示を行ったりプログラムが停止するということはありません。</P>
+<P>それを検知する仕組みは次の通りです。バッファの最上位にチェックコードを書き込んでおきます。そのコードが他の値で書き潰されていないかを調べます。他の値が書き込まれている場合、バッファがそこまで使用されたという可能性が非常に高いということになります。ただし、ここでわかるのは、その領域が使用された、ということであり、いつその領域に値が書き込まれたかはわかりません。</P>
+<P>チェックコードが書き込まれるのは以下の時です。 <CODE><A href="OS_InitFunctionCost.html">OS_InitFunctionCostBuffer()</A></CODE> を読んだとき。<CODE><A href="OS_CalcStatistics.html">OS_CalcStatistics()</A></CODE> 及び <CODE><A href="OS_CalcThreadStatistics.html">OS_CalcThreadStatistics()</A></CODE>  によって計測バッファの内容が集計バッファに反映された時。<CODE><A href="OS_ClearFunctionCostBuffer.html">OS_ClearFunctionCostBuffer()</A></CODE> でバッファを破棄した時。</P>
+<P>この関数はデバッグ用の関数ですので、最終ROM版(FINALROM)ライブラリでは単にTRUEを返す関数となります。</P>
+<P>なお、関数コスト計測バッファではなく、関数コスト集計バッファのチェックには
+<CODE><A href="OS_CheckStatisticsBuffer.html">OS_CheckStatisticsBuffer()</A></CODE> が用意されています。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitFunctionCost.html">OS_InitFunctionCostBuffer</A>, <A href="OS_CheckStatisticsBuffer.html">OS_CheckStatisticsBuffer</A>, <A href="OS_CalcStatistics.html">OS_CalcStatistics</A>, <A href="OS_CalcThreadStatistics.html">OS_CalcThreadStatistics</A>, <A href="OS_ClearFunctionCostBuffer.html">OS_ClearFunctionCostBuffer</A></CODE></P>
+<H2>履歴</H2>
+<P>2006/08/24 初版</P>
+</BODY>
+</HTML>

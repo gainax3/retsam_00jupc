@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerSetPlayerPriority</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerSetPlayerPriority</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetPlayerPriority(
+        NNSSndHandle* <var>handle</var>,
+        int <var>priority</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>priority</code></strong></em></td>
+<td>プレイヤープライオリティの値です。値の範囲は 0～127で、大きいほど優先度が高くなります。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスのプレイヤープライオリティを変更します。</p>
+      <p>
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスのプレイヤープライオリティを変更します。
+サウンドハンドルが無効の場合は、何もしません。
+</p>
+      <p>
+シーケンス再生時にプレイヤープライオリティを指定するときは、
+<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeqEx</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArcEx</a></tt>関数
+を使います。
+この関数は、再生後にプレイヤープライオリティを変更したい場合に、使用します。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeqEx</a>, <a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArcEx</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

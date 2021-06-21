@@ -1,0 +1,70 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_ProcessFriendsMatch</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_ProcessFriendsMatch</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_ProcessFriendsMatch( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  通信処理を実行する関数です。アプリケーションでは、
+		  最初に<a href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</a>関数を呼び出して<A href="FriendsMatch.html">FriendsMatchライブラリ</A>を初期化し、<a href="DWC_LoginAsync.html">DWC_LoginAsync</a>関数を呼び出してログイン処理を開始した後、ネットワークに接続してる間、毎ゲームフレーム程度の頻度で本関数を呼び出してください。
+		</P>
+		<P>
+		  ログイン完了後、他のホストへの接続を開始する間などのアプリケーションで意図したネットワーク処理がない場合でも、友達リストの更新などの通信処理が発生する可能性があるので、必ず呼び出すようにしてください。
+		</P>
+		<P>
+		  本関数内で発生したエラーの処理を行うために、本関数呼出し後に<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数でエラー状態を取得し、必要に応じてエラーメッセージとともにエラーコードを表示してください。
+		</P>
+		<P>
+		  なお、<a href="FriendsMatch.html">FriendsMatchライブラリ</a>を使用しない場合は、本関数の代わりに<a href="DWC_UpdateConnection.html">DWC_UpdateConnection</a>関数を呼び出してください。
+		</P>
+		
+		
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+		  <code>
+		  <a href="DWC_InitFriendsMatch.html">DWC_InitFriendsMatch</a>, 
+		  <a href="DWC_LoginAsync.html">DWC_LoginAsync</a>,<br>
+		  <a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>,
+		  <A href="DWC_GetLastError.html">DWC_GetLastErrorEx</A>,<br>
+		  <a href="DWC_UpdateConnection.html">DWC_UpdateConnection</a> 
+		</code>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/07/24 誤記修正<BR>
+			2006/07/03 関数説明にFriendsMatchライブラリを使用しない場合の説明を挿入<BR>
+			2006/01/31 関数説明に「FriendsMatchライブラリ」という用語を挿入<BR>
+			2005/12/16 エラーチェック推奨の記述を追加<BR>
+			2005/10/26 改訂<br>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

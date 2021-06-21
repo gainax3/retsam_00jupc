@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ENV_GetClass</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">ENV_GetClass</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/env.h&gt;</CODE></PRE>
+  <PRE><CODE>char* ENV_GetClass( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>現在設定されているクラス名を取得します。</P>
+<H2>説明</H2>
+<P>リソース名を必要とする関数の引数で、クラス名を省略した際に補完されるクラス名の、現在の設定値を取得します。</P>
+<P>設定は <CODE><A href="ENV_SetClass.html">ENV_SetClass()</A></CODE> で行ないます。詳細はそちらをご覧下さい。</P>
+<P><B>(注意)</B><BR>
+ここで取得出来る文字列ポインタは、ライブラリ内部で保持しているクラス文字列の領域をさしています。<FONT color="#ff0033">ユーザはこの領域を直接変更しないで下さい。</FONT></P>
+<H2>参照</H2>
+<P><CODE><A href="ENV_Init.html">ENV_Init</A>, <A href="ENV_SetClass.html">ENV_SetClass</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/17 初版</P>
+</BODY>
+</HTML>

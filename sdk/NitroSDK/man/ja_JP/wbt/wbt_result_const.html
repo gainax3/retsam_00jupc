@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTResult</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTResult</h1>
+<h2>定義</h2>
+<pre>
+typedef s16 WBTResult;
+#define WBT_RESULT_SUCCESS                       0
+#define WBT_RESULT_ERROR_TIMEOUT                 1
+#define WBT_RESULT_ERROR_UNKNOWN_USER_COMMAND    2
+#define WBT_RESULT_ERROR_UNKNOWN_PACKET_COMMAND  3
+#define WBT_RESULT_ERROR_PARSE_INVALID           4
+#define WBT_RESULT_ERROR_RECV_BUFFER_OVERFLOW    5
+#define WBT_RESULT_ERROR_SAVE_FAILURE            6
+</pre>
+<H2>説明</H2>
+<P>WBT ライブラリのコマンド関数における処理結果を表す列挙定数を示します。<BR>
+各値の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_SUCCESS</TD>
+      <TD>関数の処理が、正しく完了したことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_ERROR_TIMEOUT</TD>
+      <TD>待ち時間を伴う関数が規定の時間を越えて中止されたことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_ERROR_UNKNOWN_USER_COMMAND</TD>
+      <TD rowspan="2">無線のMP通信からフックされた転送バッファの中に不明なコマンドを検出したことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_ERROR_UNKNOWN_PACKET_COMMAND</TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_ERROR_PARSE_INVALID</TD>
+      <TD>無線のMP通信からフックされた転送バッファが異常なために処理が失敗したことを表します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_RESULT_ERROR_RECV_BUFFER_OVERFLOW</TD>
+      <TD>受信データの過多によりバッファが不足したことを表します。
+   </TD>
+    <TR>
+      <TD>WBT_RESULT_ERROR_SAVE_FAILURE</TD>
+      <TD>シーケンスの異常により受信データの保存に失敗したことを示します。<br>
+	  これは主に、<a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数で指定されたバッファが実際の受信サイズより小さい場合に発生します。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="wbt_command_type.html">WBTCommand</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

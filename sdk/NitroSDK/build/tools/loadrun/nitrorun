@@ -1,0 +1,233 @@
+#!/bin/bash -f
+
+#---------------------------------------------------------------------------
+#  Project:  NitroSDK - tools - loadrun
+#  File:     nitrorun
+#
+#  Copyright 2005 Nintendo.  All rights reserved.
+#
+#  These coded instructions, statements, and computer programs contain
+#  proprietary information of Nintendo of America Inc. and/or Nintendo
+#  Company Ltd., and are protected by Federal copyright law.  They may
+#  not be disclosed to third parties or copied or duplicated in any form,
+#  in whole or in part, without the prior written consent of Nintendo.
+#
+#  $Log: nitrorun,v $
+#  Revision 1.3  2005/09/02 08:21:40  kitase_hirotake
+#  tr to cygpath
+#
+#  Revision 1.2  2005/08/31 04:58:51  yada
+#  supported '-version'
+#
+#  Revision 1.1  2005/08/30 07:37:19  yada
+#  first release
+#
+#  $NoKeywords: $
+#---------------------------------------------------------------------------
+
+#---- SDK ルートディレクトリ
+SDKROOT=`cygpath -u "$NITROSDK_ROOT"`
+
+#---- 実行コマンド
+LOADRUN=$SDKROOT/tools/bin/loadrun.exe
+BURYARG=$SDKROOT/tools/bin/buryarg.exe
+COMMANDNAME=`basename $0`
+
+#---- コマンドオプション
+BOPTION=""
+LOPTION=""
+
+#---- 動作フラグ
+gVerboseMode=0
+gHelpMode=0
+gIsError=0
+gNoExecMode=0
+
+#----------------------------------------------------------------
+# showVersion
+#		バージョン表示
+#
+function showVersion()
+{
+    echo "$COMMANDNAME  1.2  Copyright 2005 Nintendo. All right reserved."
+    #
+    # 1.2 引数が""で囲まれて空白を含んだ文字列も受け取れるようになった
+    # 1.1 バージョン表示を入れた
+    # 1.0 first release
+    #
+}
+
+#----------------------------------------------------------------
+# showUsage
+#		使い方表示
+#
+function showUsage()
+{
+    echo "Usage: $COMMANDNAME [OPTION] [<SrlFile> [ARGUMENT]...]"
+    echo "Execute buryarg and loadrun."
+    echo ""
+    echo "Options:"
+    echo "  -h, --help            show this help."
+    echo "      --version         show version."
+    echo "  -v, --verbose         verbose mode."
+    echo "      --bopt            specify options for buryarg."
+    echo "      --lopt            specify options for loadrun."
+    echo "  -n, --noexec          do not execute commands. (for test)"
+    echo ""
+    echo "Example:"
+    echo "  $COMMANDNAME --lopt \"-t30 -a\\\"ABORT\\\" -l\" main.srl 100 300"
+    echo "      is done as:  "    
+    echo "  buryarg --stdout main.srl 100 300 | loadrun --stdin -t30 -a\"ABORT\" -l"
+}
+
+#----------------------------------------------------------------
+# checkError
+# 		ここまでのエラーチェック
+#
+function checkError
+{
+	local isShowUsage=0
+
+	if [ $gIsError -eq 1 ];
+	then
+		exit 1
+	fi;
+
+	if [ $gHelpMode -eq 1 ];
+	then
+		isShowUsage=1
+	fi;
+
+	if [ $ARGC -eq 0 ];
+	then
+		isShowUsage=1
+	fi;
+
+	if [ $isShowUsage -eq 1 ];
+	then
+		showUsage
+		exit 1
+	fi;
+}
+
+#----------------------------------------------------------------
+# checkExistence
+#		ファイルの存在確認
+#
+function checkExistence()
+{
+	#---- buryarg コマンドが存在するか
+	if [ ! -e $BURYARG ];
+	then
+		gIsError=1
+		echo "*** Error: $COMMANDNAME: buryarg command not exist"
+		return
+	fi;
+
+	#---- loadrun コマンドが存在するか
+	if [ ! -e $LOADRUN ];
+	then
+		gIsError=1
+		echo "*** Error: $COMMANDNAME: loadrun command not exist"
+		return
+	fi;
+
+	#---- srl ファイルが存在するか
+	if [ ! -e $1 ];
+	then
+		gIsError=1
+		echo "*** Error: $COMMANDNAME: srl file not exist"
+		return
+	fi;
+}
+
+#================================================================
+# main
+#		メイン
+#
+
+#---------------- オプションのチェック
+while [ 1 ];
+do
+	case $1 in
+		# ヘルプ
+		--help|-help|-h)
+			gHelpMode=1
+			shift 1
+			continue
+			;;
+		# バージョン
+		--version|-version)
+			showVersion
+			exit 1
+			;;
+		# buryarg に渡すオプション
+		--bopt*|-bopt*)
+			BOPTION=$2
+			shift 2
+			continue
+			;;
+		# loadrun に渡すオプション
+		--lopt*|-lopt*)
+			LOPTION=$2
+			shift 2
+			continue
+			;;
+		# verbose モード
+		--verbose|-v)
+			gVerboseMode=1
+			shift 1
+			continue
+			;;
+		# 実行しない
+		--noexec|-n)
+			gNoExecMode=1
+			shift 1
+			continue
+			;;
+		# 他のオプション
+		-*)
+			gIsError=1
+			echo "*** Error: $COMMANDNAME: Illegal option"
+			break;
+			;;
+		# オプションでないもの
+		*)
+			break;
+			;;
+	esac
+
+done
+
+#---------------- ファイルの存在などのエラーチェック
+ARGC=$#
+
+if [ $gIsError -eq 0 ];
+then
+	checkExistence $1
+fi;
+
+checkError
+
+#---------------- コマンド実行
+{
+	if [ $gVerboseMode -eq 1 ];
+	then
+		echo "buryarg option: $BOPTION"
+		echo "loadrun option: $LOPTION"
+	fi;
+
+	if [ $gVerboseMode -eq 1 ];
+	then
+		echo "$BURYARG $BOPTION --stdout $@ | $LOADRUN --stdin $LOPTION"
+	fi;
+
+
+	if [ $gNoExecMode -eq 0 ];
+	then
+		#---- ２つのコマンドをパイプで繋げ実行
+		$BURYARG $BOPTION --stdout "$@"  | $LOADRUN --stdin $LOPTION
+	fi;
+}
+
+exit 0

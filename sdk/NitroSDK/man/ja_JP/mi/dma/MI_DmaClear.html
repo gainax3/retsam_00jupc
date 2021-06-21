@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_DmaClear</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_DmaClear*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_DmaClear32( u32 dmaNo, void* dest, u32 size );</CODE><BR>
+  <CODE>void MI_DmaClear16( u32 dmaNo, void* dest, u32 size );</CODE><BR>
+  <BR>
+  <CODE>void MI_DmaClear32Async( u32 dmaNo, void* dest, u32 size,</CODE><BR>
+  　　<CODE> 　　　　　　　　MIDmaCallback callback, void* arg );</CODE><BR>
+  <CODE>void MI_DmaClear16Async( u32 dmaNo, void* dest, u32 size, </CODE><BR>
+  　<CODE> 　　　　　　　　 MIDmaCallback callback, void* arg );</CODE>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dmaNo</STRONG></EM></TD>
+      <TD width="87%">使用DMAチャンネル</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dest</STRONG></EM></TD>
+      <TD width="87%">クリア先アドレス</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>クリアサイズ
+      </TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>callback</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>arg</STRONG></EM></TD>
+      <TD>DMA終了時のコールバック引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>DMA を用いてメモリをゼロクリアします。</P>
+<P><CODE>MI_DmaClear16()</CODE> , <CODE>MI_DmaClear16Async()</CODE> は 16ビット単位でメモリを0で埋めます。クリア先アドレスは2バイトアラインメントする必要があります。<BR>
+<CODE>MI_DmaClear32()</CODE> , <CODE>MI_DmaClear32Async()</CODE> は 32ビット単位でメモリを0で埋めます。クリア先アドレスは4バイトアラインメントする必要があります。</P>
+<P><CODE>MI_DmaClear16()</CODE>, <CODE>MI_DmaClear32()</CODE> はDMAの終了を関数内で待ちます。<BR>
+<CODE>MI_DmaClear16Async()</CODE>, <CODE>MI_DmaClear32Async()</CODE> は、DMA終了時にコールバックを呼びます。コールバック <B><I>callback</I></B> は MIDmaCallback 型 ( void* 引数1つを取る void 型関数 ) です。<B><I>callback</I></B> は システムのDMA割り込みハンドラ内から呼び出されますので、割り込み禁止状態で呼び出されます。</P>
+<h2>内部動作</h2>
+<P><CODE><A href="MI_DmaFill.html">MI_DmaFill*</A></CODE> を呼んでいます。</P>
+<h2>参照</h2>
+<p><CODE><A href="MI_DmaCopy.html">MI_DmaCopy*</A>, <A href="MI_DmaFill.html">MI_DmaFill*</A>, <A href="MI_DmaSend.html">MI_DmaSend*</A>, <A href="../memory/MI_CpuClear.html">MI_CpuClear*</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/22 callback の呼び出しについての記述を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

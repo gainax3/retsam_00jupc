@@ -1,0 +1,56 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_InetAtoN</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_InetAtoN</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_InetAtoN ( const char* <em><strong>cp</strong></em>, <code><a href="SOCInAddr.html">SOCInAddr</a></code>* <strong><em>inp</em></strong> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>cp</strong></em></code></td>
+    <td>IPv4アドレスのドット10進記法。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>inp</strong></em></code></td>
+    <td>ネットワーク バイトオーダーのバイナリIPv4アドレス。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<p><code><em><strong>cp</strong></em></code>が有効なIPv4アドレス記法であれば(<code><strong><em>inp</em></strong> </code>が<code>NULL</code>でも)<code>TRUE</code>を返します。<code><em><strong>cp</strong></em></code>が有効なIPv4アドレス記法でなければ<code>FALSE</code>を返します。</p>
+
+<h2>説明</h2>
+
+<p>IP アドレスをドット10進記法からバイナリアドレスに変換します。</p>
+
+<h2>参照</h2>
+
+<p>
+<code><a href="SOC_InetNtoA.html">SOC_InetNtoA</a></code>,
+<code><a href="SOC_InetPtoN.html">SOC_InetPtoN</a></code>,
+<code><a href="SOC_InetNtoP.html">SOC_InetNtoP</a></code>,
+<code><a href="SOCInAddr.html">SOCInAddr</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

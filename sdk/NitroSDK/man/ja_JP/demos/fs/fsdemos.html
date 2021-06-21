@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>FS Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>ROM ファイルシステム(FS)サンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/fs</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/fs</CODE>ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/fs/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/fs/overlay/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+<P>FS は他の多くのデモと異なり、<CODE>makerom</CODE> の使用が必須となっていますので、<CODE>elftobin</CODE> を使ったビルド(<CODE>make NITRO_ELFTOBIN=TRUE</CODE>)はできません。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/fs/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>file-1</CODE></STRONG></EM></TD>
+      <TD width="525">FS を利用するために必要なプログラム構成の、ごく簡単な雛形です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>file-2</CODE></STRONG></EM></TD>
+      <TD width="525">ディレクトリとファイルを組み込み、プログラム内で読み出します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>file-3</CODE></STRONG></EM></TD>
+      <TD width="525"><A href="../../fs/file/FS_CreateFileFromMemory.html">FS_CreateFileFromMemory</a>関数と<A href="../../fs/file/FS_CreateFileFromRom.html">FS_CreateFileFromRom</a>関数の動作をテストします。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>async</CODE></STRONG></EM></TD>
+      <TD width="525">各スレッド内で同期リードを繰り返すサンプルです。<BR>
+                      実行されている環境が非同期動作に対応している場合は、<BR>
+                      ブロッキング時にスリープしてスレッドが切り替わります。<BR>
+                      そうでない場合は、常に単一のスレッドが同期リードを繰り返します。<BR>
+                      詳細はFS_ReadFileAsync関数の解説を参照ください。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>overlay</CODE></STRONG></EM></TD>
+      <TD width="525">オーバーレイの簡単なサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>overlay-compressed</CODE></STRONG></EM></TD>
+      <TD width="525">ビルドスイッチ NITRO_COMPRESS を指定して圧縮オーバーレイの動作をテストします。<br>
+                      プログラム自体は overlay サンプルデモと同様です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>overlay-staticinit</CODE></STRONG></EM></TD>
+      <TD width="525">sinit.h ヘッダと NitroStaticInit() 関数を定義し、C言語で書かれたオーバーレイから static initializer を使用するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>arc-1</CODE></STRONG></EM></TD>
+      <TD width="525">以下の２つのアーカイブを独自にロードするサンプルです。<br>
+	  <br>
+	  ・デフォルトの<A href="../../fs/archive_rom_spec.html">ROMアーカイブ</a>と同様の動作をするアーカイブ<br>
+	  ・ファイルとして格納されたプログラムバイナリ内部のファイルシステムへアクセスするアーカイブ<br>
+	  <br>
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>arc-2</CODE></STRONG></EM></TD>
+      <TD width="525">NitroROMフォーマットに準拠していない独自のディレクトリ構造を<br>
+	  アーカイブとしてロードするサンプルです。<br>
+	  このサンプルでは arc-1 サンプルと異なり、基本的なアクセスコマンドのいくつかを<br>
+	  ユーザプロシージャによってデフォルト処理から置き換える例を示します。<br>
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>エミュレータ</H2>
+<P><CODE>すべて正常に動作します。</CODE></P>
+<H2>参照</H2>
+<P><A href="../../fs/list_fs.html"><CODE>FS関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2005/06/28 file-3 サンプルの説明を追加<br>
+2005/05/10 overlay-compressed サンプルの説明を追加<br>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2005/01/19 overlay-staticinit サンプルの説明を追加<BR>
+2004/10/06 一部サンプルの説明抜けを修正・追加<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/06/18 実行方法 の記述を修正<BR>
+2004/05/20 初版</P>
+</BODY>
+</HTML>

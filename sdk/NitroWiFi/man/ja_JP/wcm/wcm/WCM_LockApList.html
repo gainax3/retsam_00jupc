@@ -1,0 +1,89 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - WCM - man
+  File:     WCM_LockApList.html
+
+  Copyright 2005 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: WCM_LockApList.html,v $
+  Revision 1.2  2005/07/22 13:00:24  terui
+  "フェーズ"を"状態"に用語統一
+  履歴の初版日を統一
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>WCM_LockApList</TITLE>
+		<LINK rel="stylesheet" href="../../css/nitro.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>WCM_LockApList</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;nitroWiFi/wcm.h&gt;
+
+s32   WCM_LockApList( s32 lock );
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+			無線アクセスポイント自動探索中に発見された機器の情報を退避しておく内部リストバッファへの不定期な書き込みを許可もしくは禁止する同期関数です。<BR>
+			WM ライブラリから機器の発見が割り込みハンドラ内で通知されるため、WCM 内部リストバッファは意図しないタイミングで更新される可能性があります。
+			この現象を考慮すると、内部リストバッファから情報を読み出す際には割り込み禁止状態である、もしくは割り込みが発生してもリストが更新されない状態で
+			ある必要があります。当関数では割り込みが発生してもリストが更新されない状態にしたり、通常通り更新される状態にしたりすることができます。<BR>
+			なお、内部リストバッファの更新許可・禁止設定は <A href="WCM_Init.html"><CODE>WCM_Init</CODE> 関数</A>を呼び出した時点で <CODE>WCM_APLIST_UNLOCK</CODE> に初期化されます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>lock</CODE></STRONG></EM></TD>
+					<TD width="75%">内部リストバッファの更新許可・禁止を制御する値を指定します。<BR>
+					<CODE>WCM_APLIST_LOCK</CODE> を指定すると内部リストバッファの更新は禁止され、見つかった機器情報は破棄されるようになります。
+					<CODE>WCM_APLIST_UNLOCK</CODE> を指定すると内部リストバッファの更新は許可され、見つかった機器情報で随時更新されるようになります。
+					これら以外の値を指定すると、<CODE>WCM_APLIST_LOCK</CODE> が指定された場合と同様に更新は禁止されます。<BR>
+					<B><FONT color="green">&lt; default は <CODE>WCM_APLIST_UNLOCK</CODE> です。&gt;</FONT></B></TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<P>
+			当関数を呼び出す前のの更新許可・禁止設定を <CODE>WCM_APLIST_LOCK</CODE> もしくは <CODE>WCM_APLIST_UNLOCK</CODE> のいずれかの値で返します。
+			WCM ライブラリを初期化前に呼び出すと、<CODE>WCM_APLIST_UNLOCK</CODE> を返します。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="WCM_Init.html">WCM_Init</A>, <A href="WCMConfig.html">WCMConfig</A>, <A href="WCM_ClearApList.html">WCM_ClearApList</A>,
+				<A href="WCM_CountApList.html">WCM_CountApList</A>, <A href="WCM_PointApList.html">WCM_PointApList</A>, <A href="WCM_PointApListLinkLevel.html">WCM_PointApListLinkLevel</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

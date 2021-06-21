@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>BG_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+
+<h1 align="left">BG概要</h1>
+<H2>説明</H2>
+<p>
+G2DのランタイムスクリーンデータはBGの表示に必要な情報をNITRO-CHARACTERのバイナリデータから継承しています。
+G2D BGモジュールではこの情報を使用してBG面制御およびグラフィックスデータのVRAMへの読み込みを自動的に行う機能を提供します。
+これによりプログラマは共通の初期化のほかにはVRAMの割り当て、BG可視状態の設定を行うだけでBGを表示する事ができます。
+<BR>
+G2D BGモジュール は静的なBGを表示するだけであり、スクロールなどの機能は持ちません。
+ただし、SDK関数を用いる事でBG面スクロールは可能です。<br>
+<br>
+</p>
+
+<pre>
+以下にBGモジュールを利用して、BG表示を実現するまでの処理の流れを示します。
+ 
+ =========== 初期化処理 =========== 
+ 1.BGの各種パラメータ設定を行います（SDK関数を利用）。
+
+	・必須
+		・VRAM 割り当て
+		・ベースオフセット
+	・任意
+		・BG 可視状態
+		・BG 優先度
+		・BG モザイク
+		・BG スクロール
+		・BG アフィン
+		・カラー特殊効果
+
+ 2.リソース(NCRL,NSCR,NCGR)をメインメモリにロードします。
+ 3.VRAMへのリソースデータの転送、BG モードの初期化を行います（NNS_G2dBGSetup()）。
+ 4.リソースデータをメインメモリから開放します(任意)。
+ 
+    =========== ゲームループ =========== 
+    5.任意のタイミングで表示するBG面の設定を変更します。(GX_SetVisiblePlane(), GXS_SetVisiblePlane())
+    
+=========== 終了処理 =========== 
+6.特に行うべき処理はありません。
+
+</pre>
+
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2005/01/31 初版</P>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTC_GetAlarmStatus</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTC_GetAlarmStatus</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE><A href="RTCResult.html">RTCResult</A> RTC_GetAlarmStatus( 
+            <A href="RTCAlarmChan.html">RTCAlarmChan</A>	chan, 
+            <A href="RTCAlarmStatus.html">RTCAlarmStatus</A>*	status );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">chan</font></strong></em></TD>
+      <TD width="700">アラームチャンネルを<A href="RTCAlarmChan.html">RTCAlarmChan列挙型</A>で指定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">status</font></strong></em></TD>
+      <TD>アラーム状態を受け取る<A href="RTCAlarmStatus.html">RTCAlarmStatus列挙型</A>の変数へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>要求が成功した場合に 0 を返します。<BR>
+要求が失敗した場合には 0 以外を返します。</p>
+
+<H2>説明</H2>
+<P>リアルタイムクロックからアラーム割り込み許可状態を読み出します。<BR>
+この関数はARM7にアラーム割り込み許可状態読み出し要求を発行し、ARM7からの応答を待って処理結果を返します。<BR>
+<A href="RTC_GetAlarmStatusAsync.html">RTC_GetAlarmStatusAsync</A>の同期版です。</P>
+
+<h2>注意</h2>
+<P><FONT color=red>この関数は同期を取る為にPXI割り込みを待ちますので、PXI割り込みを禁止した状態で呼び出さないようにして下さい。</FONT></P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTC_GetAlarmStatusAsync.html">RTC_GetAlarmStatusAsync</A>, <A href="RTC_SetAlarmStatus.html">RTC_SetAlarmStatus</A>, <A href="RTC_SetAlarmStatusAsync.html">RTC_SetAlarmStatusAsync</A>, <A href="RTCResult.html">RTCResult</A>, <A href="RTCAlarmChan.html">RTCAlarmChan</A>, <A href="RTCAlarmStatus.html">RTCAlarmStatus</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/03/08 用語統一 [割込み] → [割り込み]<br>
+Ver. 2004/05/18 初版</P>
+</body>
+</html>

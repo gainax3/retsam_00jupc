@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>makelcf</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">makelcf</H1>
+<H2>説明</H2>
+<P>　NITRO-SDK では、メモリに入りきらない大きなアプリケーションプログラムを実行するために、アプリケーションプログラムをファイルに分割、そしてROM
+イメージとして保持しておき、ROM イメージ上のコードが必要となったときにアプリケーションの指示でメモリ上にロード、初期化して実行する、いわゆるオーバーレイと呼ばれるテクニックを支援するためのツールを用意しています。</P>
+<P><CODE>　makelcf</CODE> は、NITRO 実行ファイルにおいてオーバーレイをサポートするためのリンカコマンドファイル(<CODE>LCF</CODE>)を自動的に作成するためのツールです。 <CODE>makelcf</CODE> は、リンカスペックファイル(<CODE>LSF</CODE>) と呼ばれるファイルの記述を元にして、<CODE>LCF</CODE> のテンプレートファイルから各アプリケーション用の <CODE>LCF</CODE> を生成します。</P>
+<P>　また <CODE>SDK 2.0</CODE> 以降において、以下の修正が追加されました。</P>
+<UL>
+  <LI>AUTOLOAD と呼ばれる起動時に複数の領域へプログラムをロードするための仕組みがサポートされました。
+  <LI>リンカのレスポンスファイル (リンカへ与えるコマンドラインオプションをファイルに記述したもの)
+  の生成に <CODE>makelcf</CODE> を利用するようになりました。
+</UL>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% makelcf [-DNAME=VALUE...] [-MDEFINES_FILE] [-V1|-V2] SPECFILE LCF-TEMPLATE
+[LCFILE]</CODE></P>
+<P>　<CODE>SPECFILE</CODE> で指定されたリンカスペックファイル(<CODE>LSF</CODE>) の記述にしたがって、<CODE>LCF-TEMPLATE</CODE> で指定された <CODE>LCF</CODE> テンプレートファイルから、リンカコマンドファイル(<CODE>LCF</CODE>) を <CODE>LCFILE</CODE> で指定された名前で作成します。<CODE>LCFILE</CODE> は省略可能です。省略時には生成された<CODE>LCF</CODE>の内容を標準出力へ書き出します。</P>
+<P><CODE>-D</CODE> オプションにより変数とその値を定義することができます。この変数の値はリンカスペックファイルの記述時に参照することができます。</P>
+<P><CODE>-M</CODE> オプションは <CODE>-D</CODE> オプションと同様に変数とその値を定義するものです。<CODE>[NAME=VALUE]</CODE> の列から成るテキストファイルを引数として受けます。このオプションによりコマンドラインの制限を超えてしまうような長さの変数とその値の定義の記述を行なうことができます。</P>
+<P><FONT color="#ff0000">CodeWarrior for NINTENDO DS(以下 CodeWarrior) のバージョン 2.0 以降において拡張された
+<CODE>LCF</CODE> ファイルによるオーバーレイ使用時におけるリンクシンボルを指定する機能（<CODE>SEARCH_SYMBOL 記述</CODE>）に対応するため、 lsf ファイル書式が拡張されています。</FONT><CODE>-V1</CODE> および <CODE>-V2</CODE> オプションは、<CODE>makelcf</CODE> が <CODE>LCF</CODE> のテンプレートファイルから <CODE>LCF</CODE> ファイルを出力する際に、CodeWarrior の 1.x または 2.x のどちらの書式を選択するかを指定するためのものです。<CODE>-V1</CODE> が指定される、あるいは <CODE>-V</CODE>オプションの指定がない場合は 1.x 用の書式が、<CODE>-V2</CODE> が指定されると 2.x 用の書式が採用されます。</P>
+<H3>リンカスペックファイルフォーマット</H3>
+<P>　オーバーレイにおいては、プログラムコードを、ブートアップ時に IPL によってメモリへ転送される“<EM>常駐モジュール</EM>”と、アプリケーションの指示に応じてメモリ上に展開される“<EM>オーバーレイモジュール</EM>”に分類します。ARM9/ARM7 各プロセッサに対応する常駐モジュールはそれぞれ
+1 つだけであるのに対し、オーバーレイモジュールはメモリなどの資源が許すならば必要に応じて複数個作成することができます。</P>
+<P>　リンカスペックファイル<CODE>(LSF)</CODE> は、このオーバーレイに関する諸設定を定義するためのファイルです。これを使って、アプリケーションプログラムを構成するコードの各オブジェクトファイルをどのように分類し、ファイル化するかを定義します。</P>
+<P><CODE>　LSF</CODE> は、以下に示した3種類のセクション定義から構成されるテキストファイルです。セクション定義の書式は、セクション定義開始の宣言部の後に引き続いて各セクションに関するパラメータが中括弧<CODE>{ }</CODE> で囲まれて記載されるという形式になっています。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>セクションの<BR>
+      定義対象</TH>
+      <TH>セクション定義の書式</TH>
+      <TH>定義例</TH>
+    </TR>
+    <TR>
+      <TD>常駐<BR>
+      モジュール<BR>
+      <CODE>(Static)</CODE></TD>
+      <TD>
+      <PRE><CODE>Static <I>[セクション名]</I>
+{
+  <I>[セクションパラメータ記述部]</I>
+  ....
+}</CODE></PRE>
+      </TD>
+      <TD>
+      <PRE><CODE>Static  main
+{
+  Address   0x02000000
+  Object    $(OBJS_STATIC)
+  Library   $(LLIBS) $(GLIBS) $(CW_LIBS)
+  StackSize 1024
+}</CODE></PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD>オートロード<BR>
+      モジュール<BR>
+      <CODE>(Autoload)</CODE></TD>
+      <TD>
+      <PRE><CODE>Autoload <I>[セクション名]</I>
+{
+  <I>[セクションパラメータ記述部]</I>
+  ....
+}</CODE></PRE>
+      </TD>
+      <TD>
+      <PRE><CODE>Autoload ITCM
+{
+  Address   0x01ff8000
+  Object    *                (.itcm)
+  Object    $(OBJS_AUTOLOAD) (.text)
+}</CODE></PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD>オーバーレイ<BR>
+      モジュール<BR>
+      <CODE>(Overlay)</CODE></TD>
+      <TD>
+      <PRE><CODE>Overlay <I>[セクション名]</I>
+{
+  <I>[セクションパラメータ記述部]</I>
+  ....
+}</CODE></PRE>
+      </TD>
+      <TD>
+      <PRE><CODE>Overlay  overlay_1
+{
+  After     main
+  Object    $(OBJDIR)/overlay.o
+}</CODE></PRE>
+      </TD>
+    </TR>
+    <TR>
+      <TD>付帯情報<BR>
+      <CODE>(Property)</CODE></TD>
+      <TD>
+      <PRE><CODE>Property
+{
+  <I>[付帯情報パラメータ記述部]</I>
+  ....
+}</CODE></PRE>
+      </TD>
+      <TD>
+      <PRE><CODE>Property
+{
+  OverlayDefs  %_defs
+  OverlayTable %_table
+  Suffix       .sbin
+}</CODE></PRE>
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<CODE>　Static,Overlay</CODE> のセクションそれぞれについてセクションを識別するためのセクション名を指定します(上のサンプル参照)。このセクション名を使って、オーバーレイ<CODE>ID</CODE> などを取得することができます。具体的な方法は、<A href="../fs/fs_overlay_id_types.html">FS ライブラリのオーバーレイ ID に関する説明</A>などを参考にしてください。</P>
+<P>　一つの<CODE>LSF</CODE>において常駐モジュールセクションは必ず一つ必要で、オーバーレイを使用しない場合でも省略はできません。オーバーレイモジュールセクションは分割したいオーバーレイモジュールの数と同数必要です。もしオーバーレイを使用しない場合は、オーバーレイモジュールセクションは必要ありません。付帯情報セクションは省略可能です。省略されたときは全ての付帯情報パラメータに対してそれぞれのデフォルト値が適用されます。</P>
+<P>以下に各セクションで設定するパラメータについて解説します。</P>
+<H3>セクションパラメータ</H3>
+<H4>Static セクション (常駐モジュール定義セクション)</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>Address</CODE> <I>[アドレス]</I>
+  <DD class="command_desc">　セクションが指定したアドレスに配置されるよう設定します。アドレスの指定には10進数のほか
+  C 言語と同様に先頭に<CODE>&quot;0x&quot;</CODE>や<CODE>&quot;0&quot;</CODE>を付けることで16進数や8進数が使用できます。
+  <DT class="command_item"><CODE>Object</CODE> <I>[オブジェクトファイル名...] [(セクション選択)]</I>
+  <DD class="command_desc">　常駐モジュール内に含むオブジェクトファイルを指定します。<BR>
+  <BR>
+  　SDK 2.0 以降において、リンカのレスポンスファイルの生成を行なう必要があるため、オブジェクトファイルの指定において、ファイル名とパスの指定が必須になりました。このため
+  <CODE>GROUP(*)</CODE>による指定は有効では無くなっています。SDK の <CODE>make</CODE> システムを使用している場合、オブジェクトへのパスは <CODE>$(OBJDIR)</CODE> として <CODE>makelcf</CODE> に与えられるために以下のような書式によりオブジェクトのパスの指定ができます。<BR>
+  <BLOCKQUOTE><CODE>Object $(OBJDIR)/main.o</CODE></BLOCKQUOTE>
+  　また<CODE>Makefile</CODE> 内で変数 <CODE>SRCS</CODE> に指定したソースファイルをコンパイルした結果、生成されるオブジェクトファイルが
+  <CODE>$(OBJS_STATIC)</CODE> としてパス付きで <CODE>makelcf</CODE> に与えられるため、上記のように逐次オブジェクトファイルを指定する必要のない場合には、以下のように表記することができます。
+  <BLOCKQUOTE><CODE>Object $(OBJS_STATIC)</CODE></BLOCKQUOTE>
+  <CODE>　Object</CODE> に記述されたオブジェクトファイルはパス付きでレスポンスファイル<CODE>(*.response)</CODE>へ渡されます。レスポンスファイルは <CODE>makelcf</CODE> によって実行バイナリと同様に <CODE>$(BINDIR)</CODE>ディレクトリに作成されます。 <BR>
+  <BR>
+  　ライブラリは Object 文には記述せずに、新設された Library 文に記述してください。<BR>
+  <BR>
+  　その他にも、ITCM / DTCM / WRAM へのロードをサポートする等の用途のために特殊なセクションをサポートできるように<CODE>&quot;*&quot;</CODE>を使った、以下のような指定方法が使用できます。<BR>
+  <BLOCKQUOTE><CODE>Object * (.itcm)</CODE></BLOCKQUOTE>
+  　これは <CODE>.itcm</CODE> という名のセクション内で定義されている全てのファイルを意味します。この記述はオートロードセクションで使用されることが多いです。
+  <DT class="command_item"><CODE>Library</CODE> <I>[ライブラリファイル名...]</I>
+  <DD class="command_desc">　常駐モジュール内に含むライブラリファイルを指定します。<BR>
+  <BR>
+  　SDK 2.0 以降において、リンカのレスポンスファイルの生成を行なう必要があるため、オブジェクトファイルの指定とは別にライブラリファイルの指定を行なう項目が追加されました。<BR>
+  <BR>
+  　SDK の <CODE>make</CODE> システムを使用している場合、<CODE>Makefile</CODE> 内で変数 <CODE>LLIBRARIES</CODE> に指定したライブラリ群、SDK のライブラリ群、および CodeWarrior のライブラリ群がそれぞれ、<CODE>$(LLIBS)</CODE>,<CODE>$(GLIBS)</CODE>,<CODE>$(CW_LIBS)</CODE> として <CODE>makelcf</CODE> に与えられるために以下のような書式によりライブラリの指定ができます。<BR>
+  <BLOCKQUOTE><CODE>Library $(LLIBS) $(GLIBS) $(CW_LIBS)</CODE></BLOCKQUOTE>
+  <CODE>　Library</CODE> に記述されたライブラリファイルは <CODE>-l</CODE> オプションと共にレスポンスファイルへ渡されます。
+  <DT class="command_item"><CODE>SearchSymbol</CODE> <I>[他のセクション名またはオーバーレイグループ名...]</I>
+  <DD class="command_desc">　同一名のシンボルが複数のセクションに渡って存在している場合に、その中のどのシンボルとリンクするのかを指定する為に設定します。この指定はセクション毎に設定することができます。<BR>
+<BR>
+  　リンカは現在のセクションから参照するシンボルを探すのに、まず自身のセクションの中を検索し、次に、この指定で記述されたセクションあるいはオーバーレイグループを順に検索していきます。もし、ここに記述されたセクションあるいはオーバーレイグループからは見つからなかった場合、リンクエラーとなります。<BR>
+<BR>
+  　省略時は、全てのセクションがシンボル検索対象になります。この場合、全体として該当する名前のシンボルが１つしか存在していない場合はそのシンボルがリンクされますが、全体として該当する名前のシンボルが複数存在している場合はリンカがどのシンボルを使用すれば良いのか判断出来ないのでリンクエラーとなります。<BR>
+  <BR>
+  　<FONT color="#ff0000">本機能を使用する場合には <CODE>makelcf</CODE> を CodeWarrior for NINTENDO DS バージョン 2.0 対応モード(⇒オプション
+  <CODE>-V2</CODE>) で起動させる必要があります。</FONT>
+  <DT class="command_item"><CODE>StackSize</CODE> <I>[スタックサイズ(byte数)]<BR>
+  </I>　または<BR>
+  <CODE>StackSize</CODE> <I>[スタックサイズ(byte数)] </I><I>[IRQ スタックサイズ(byte数)] </I>
+  <DD class="command_desc">　常駐モジュールで最初に実行される <CODE>NitroMain()</CODE> 関数のスタックサイズと IRQ のスタックサイズを指定します。それぞれのサイズ指定には
+  16/10/8 進数が使用できます。<BR>
+  <BR>
+  　スタックサイズ値は、数値の符号により以下のような意味となります。
+  <TABLE class="blockquoted_table">
+    <TBODY>
+      <TR>
+        <TD width="66">正のとき</TD>
+        <TD width="356">この値で指定されるバイト数をスタックに割り当てます。</TD>
+      </TR>
+      <TR>
+        <TD width="66">0 のとき</TD>
+        <TD width="356">確保できる最大サイズをスタックに割り当てます。</TD>
+      </TR>
+      <TR>
+        <TD width="66">負のとき</TD>
+        <TD width="356">確保できる最大サイズからこの値の絶対値を引いた分をスタックに割り当てます。</TD>
+      </TR>
+    </TBODY>
+  </TABLE>
+  <BR>
+  　IRQ スタックサイズはそのままの値が IRQ で使用するスタックサイズとして割り当てられます。<BR>
+  このスタックサイズ、IRQスタックサイズのそれぞれの指定は、省略可能です。省略時にはスタックサイズは0(最大限度まで確保)、IRQ
+  スタックサイズは 0x800 バイトとなります。
+</DL>
+</BLOCKQUOTE>
+<H4>Autoload セクション (オートロードモジュール定義セクション)</H4>
+<P>オートロードとはプログラムの起動時に複数の領域へモジュールを転送するための機構です。転送処理はcrt0.o
+内において通常のライブラリの呼び出しの前に処理されるため、OS や FS などのシステムライブラリでさえ
+ITCM / DTCM へ転送を行なうことが可能です。ITCM / DTCM へオートロードされるセクションの名前として、<CODE>ITCM</CODE> または <CODE>DTCM</CODE> が予約されています。このうちのどちらかを指定してください。</P>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>Address</CODE> <I>[アドレス]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>Address</CODE> パラメータと同様です。
+  <DT class="command_item"><CODE>After</CODE> <I>[他のセクション名...]</I>
+  <DD class="command_desc">　指定した他のセクションの直後に、現セクションが配置されます。<CODE>After</CODE> に複数のセクションが指定されている場合は、それらの全てのセクションと領域が重ならないように、最も終了アドレスが大きいセクションの直後に、現セクションが配置されます。同一セクション内で<CODE>Address</CODE>と<CODE>After</CODE>は同時には有効にはなりません。先に記述されているほうが優先されます。
+  <DT class="command_item"><CODE>Object</CODE> <I>[オブジェクトファイル名...]</I>
+  <DD class="command_desc"><CODE>　Static</CODE> セクションでの <CODE>Object</CODE> パラメータと同様です。<BR>
+  オートロードの場合、<CODE>Object &quot;*&quot; (セクション名)</CODE>という記述が良く使用されます。
+  <DT class="command_item"><CODE>Library</CODE> <I>[ライブラリファイル名...]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>Library</CODE> パラメータと同様です。<BR>
+  <DT class="command_item"><CODE>SearchSymbol</CODE> <I>[他のセクション名またはオーバーレイグループ名...]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>SearchSymbol</CODE> パラメータと同様です。<BR>
+</DL>
+</BLOCKQUOTE>
+<H4>Overlay セクション (オーバーレイモジュール定義セクション)</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>Address</CODE> <I>[アドレス]</I>
+  <DD class="command_desc"><CODE>Static</CODE> セクションでの <CODE>Address</CODE> パラメータと同様です。
+  <DT class="command_item"><CODE>After</CODE> <I>[他のセクション名...]</I>
+  <DD class="command_desc">　指定した他のセクションの直後に、現セクションが配置されます。<CODE>After</CODE> に複数のセクションが指定されている場合は、それらの全てのセクションと領域が重ならないように、最も終了アドレスが大きいセクションの直後に、現セクションが配置されます。同一セクション内で<CODE>Address</CODE>と<CODE>After</CODE>は同時には有効にはなりません。先に記述されているほうが優先されます。
+  <DT class="command_item"><CODE>Object</CODE> <I>[オブジェクトファイル名...]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>Object</CODE> パラメータと同様です。
+  <DT class="command_item"><CODE>Library</CODE> <I>[ライブラリファイル名...]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>Library</CODE> パラメータと同様です。
+  <DT class="command_item"><CODE>Group</CODE> <I>[オーバーレイグループ名]</I>
+  <DD class="command_desc">　現セクションが属するオーバーレイグループを指定します。<BR>
+  <BR>
+  　リンカは同一グループに属するオーバーレイが、同じメモリ領域上に配置されていると仮定します。互いに排他的なオーバーレイモジュールを同一のグループに指定しておくことで、そのオーバーレイ間の関数呼び出しをリンク時にエラーとして検出できます。また、コンパイラが
+  inline 宣言された関数を実際に inline 化する、あるいは inline 化しないの判断において、各オーバーレイモジュールのオーバーレイグループの設定も参照されます。DEBUG
+  ビルド時のみにおいて inline 関数の呼び出しに関する問題が発生している場合、オーバーレイグループの設定により問題を解決できる可能性があります。<BR>
+  <BR>
+  <FONT color="#ff0000">　このオーバーレイグループの指定機能は SDK 3.0RC1 からサポートされました。</FONT>互換性保持のため、オーバーレイグループ省略時には現セクション名と同じ名のグループが設定されます。<BR>
+  <DT class="command_item"><CODE>SearchSymbol</CODE> <I>[他のセクション名またはオーバーレイグループ名...]</I>
+  <DD class="command_desc">　<CODE>Static</CODE> セクションでの <CODE>SearchSymbol</CODE> パラメータと同様です。<BR>
+</DL>
+</BLOCKQUOTE>
+<H4>Property セクション (付帯情報定義セクション)</H4>
+<BLOCKQUOTE>
+<DL class="command_list">
+  <DT class="command_item"><CODE>OverlayDefs</CODE> <I>[オーバーレイネームファイル名(拡張子抜き)]</I>
+  <DD class="command_desc">　リンク時に生成されるオーバーレイネームファイルのファイル名の拡張子を除いた部分を指定します。ファイル名の先頭が<CODE>&quot;%&quot;</CODE>になっている場合は、<CODE>&quot;%&quot;</CODE>の部分が<CODE>Static</CODE> セクション開始部で指定された<I>[常駐部分のセクション名称]</I> に置換されます。省略可能で、省略時は <CODE>&quot;%_defs&quot;</CODE> が使われます。
+  <DT class="command_item"><CODE>OverlayTable</CODE> <I>[オーバーレイテーブルファイル名]</I>
+  <DD class="command_desc">　リンク時に生成されるオーバーレイテーブルファイルのファイル名の拡張子を除いた部分を指定します。ファイル名の先頭が<CODE>&quot;%&quot;</CODE>になっている場合は、<CODE>&quot;%&quot;</CODE>の部分が<CODE>Static</CODE> セクション開始部で指定された<I>[常駐部分のセクション名称]</I> に置換されます。省略可能で、省略時は <CODE>&quot;%_table&quot;</CODE> が使われます。
+  <DT class="command_item"><CODE>Suffix</CODE> <I>[アプリケーションバイナリファイルの拡張子]</I>
+  <DD class="command_desc">　リンク時に生成される各バイナリファイルの拡張子を指定します。省略可能で、省略時は
+  <CODE>&quot;.sbin&quot;</CODE> が使われます。
+</DL>
+</BLOCKQUOTE>
+<H3>変数参照と修飾オプション</H3>
+<P>　リンカスペックファイルの記述において<CODE> $(<I>[変数名</I>])</CODE>という記述により、ファイル外部で定義された変数の値を参照することができます。変数はコマンドラインオプションの
+<CODE>-D</CODE><I>[変数名]</I>=<I>[値]</I> あるいは環境変数で値を設定することができます。<CODE>-D</CODE> オプションと環境変数で同じ変数が定義された場合は <CODE>-D</CODE> オプションの定義が優先されます。以下は変数参照の記述例です。</P>
+<BLOCKQUOTE>
+<PRE class="sample_source"><CODE>Static $(TARGET_NAME)
+{
+    Address    $(START_ADDRESS)
+    Object     *
+}</CODE></PRE>
+</BLOCKQUOTE>
+<P>　また変数の値がファイルパスの形式であった場合に、変数名の直後に<CODE>:h</CODE>,<CODE>:t</CODE>,<CODE>:r</CODE>,<CODE>:e</CODE> という修飾オプションをつけることによって、以下のような値を参照することができます。</P>
+<BLOCKQUOTE><CODE>$(FILE)=C:/home/Nitro/readme.txt</CODE> の場合：
+<TABLE class="blockquoted_table">
+  <TBODY>
+    <TR>
+      <TD><CODE>:h</CODE></TD>
+      <TD>パスの最後のパス区切り文字以前の部分</TD>
+      <TD><CODE>$(FILE:h)=C:/home/Nitro/</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>:t</CODE></TD>
+      <TD>パスの最後のパス区切り文字より後ろの部分</TD>
+      <TD><CODE>$(FILE:t)=readme.txt</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>:r</CODE></TD>
+      <TD>パスのファイル拡張子を除いた部分</TD>
+      <TD><CODE>$(FILE:r)=C:/home/Nitro/readme</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>:e</CODE></TD>
+      <TD>パスのファイル拡張子の部分</TD>
+      <TD><CODE>$(FILE:e)=txt</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BLOCKQUOTE>
+<H3>その他の書式について</H3>
+<P>　セクション定義で使用される <CODE>&quot;Static&quot;</CODE> などのキーワードは <CODE>&quot;STATIC&quot;</CODE> のように全て大文字でも、あるいは <CODE>&quot;static&quot;</CODE> のように全て小文字でも同じものとして動作します。また '#' 以降の記述はコメントとして扱われます。</P>
+<BLOCKQUOTE>
+<PRE class="sample_source"><CODE>#
+# '#' で始まるとコメント
+#
+STATIC my_app  # 大文字でも OK
+{
+   ....
+}</CODE></PRE>
+</BLOCKQUOTE>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/makelcf.exe</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="makerom.html">makerom</A>, <A href="../fs/fs_overlay_id_types.html">FSOverlayID</A></CODE></P>
+<H2>履歴</H2>
+<P>2007/04/11 makelcf の引数 LCFILE 省略時の動作解説の変更。Overlay セクション以外への SearchSymbol の解説追加。<BR>
+2007/01/19 デフォルト IRQ スタックサイズ変更<BR>
+2006/05/09 リンク処理時において、シンボルを検索するオーバーレイグループを選択できるようにする<BR>
+2005/09/02 オーバーレイグループのサポートにともなう修正<BR>
+2004/07/20 SDK2.0 オーバーレイ動作変更にともなう修正<BR>
+2004/05/25 初版作成</P>
+</BODY>
+</HTML>

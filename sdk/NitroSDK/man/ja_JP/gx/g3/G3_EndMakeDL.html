@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>G3_EndMakeDL</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">G3_EndMakeDL</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/gx/g3.h&gt;<BR>
+u32 G3_EndMakeDL(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info);</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="208"><EM><STRONG><FONT face="Courier New">info</FONT></STRONG></EM></TD>
+      <TD width="945"><A href="../gx/GXDLInfo.html">GXDLInfo</A>構造体へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>作成されたディスプレイリストのサイズ(バイト単位)</P>
+<H2>説明</H2>
+<P>ディスプレイリスト作成後に呼び出します。内部ではパディング処理を行っています。ディスプレイリストのサイズを返します。この関数はキャッシュのフラッシュは行いませんので、この関数の実行後に<A href="../../os/cache/DC_FlushRange.html" target="_self">DC_FlushRange</A>等を実行してディスプレイリストが格納されている領域のキャッシュを確実にメインメモリに格納してください。</P>
+<H2>参照</H2>
+<P><A href="G3_BeginMakeDL.html">G3_BeginMakeDL</A>, <A href="../../os/cache/DC_FlushRange.html" target="_self">DC_FlushRange</A>, <A href="../../mi/dma/MI_SendGXCommand.html" target="_self">MI_SendGXCommand</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</BODY>
+</HTML>

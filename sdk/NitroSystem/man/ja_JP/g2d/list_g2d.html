@@ -1,0 +1,1465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<BASE target="main">
+	<TITLE>Graphics 2D ライブラリAPI 機能一覧</TITLE>
+	<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+
+<BODY>
+
+<H1>Graphics 2D ライブラリ(G2d)API 機能一覧</H1>
+
+    
+<H3><A name="structure">データ構造</A></H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetCellDataByIdx.html" target="_self" >NNS_G2dGetCellDataByIdx</A></TH>
+			<TD> セルバンクから指定インデックスのセルデータを取得します。</TD>
+		</TR>
+	    <TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dCellDataBankHasVramTransferData.html" target="_self" >NNS_G2dCellDataBankHasVramTransferData</A></TH>
+			<TD> セルバンクがVRAM転送情報を持っているか調査します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetSizeRequiredVramTransferCellDataBank.html" target="_self" >NNS_G2dGetSizeRequiredVramTransferCellDataBank</A></TH>
+			<TD> セルバンクがVRAM転送に必要とするVRAMバイトサイズを取得します。</TD>
+		</TR>
+	    <TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetAnimSequenceByIdx.html" target="_self" >NNS_G2dGetAnimSequenceByIdx</A></TH>
+			<TD> アニメーションバンクから指定インデックスのアニメシーケンスを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dCalcAnimSequenceTotalVideoFrames.html" target="_self" >NNS_G2dCalcAnimSequenceTotalVideoFrames</A></TH>
+			<TD> アニメシーケンスの総ビデオフレーム長を計算します（アニメーションフレームとは異なる点にご注意ください）。</TD>
+		</TR>
+		
+		
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dCellHasBR.html" target="_self" >NNS_G2dCellHasBR</A></TH>
+			<TD> セルが境界矩形を持つかどうかを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetCellBoundingRect.html" target="_self" >NNS_G2dGetCellBoundingRect</A></TH>
+			<TD> セルの境界矩形を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetCellBoundingSphereR.html" target="_self" >NNS_G2dGetCellBoundingSphereR</A></TH>
+			<TD> セルの境界球の半径を取得します。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetOAMSize.html" target="_self" >NNS_G2dGetOAMSize*</A></TH>
+			<TD> OBJのサイズを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dRepeatXinCellSpace.html" target="_self" >NNS_G2dRepeatXinCellSpace / NNS_G2dRepeatYinCellSpace</A></TH>
+			<TD> セル内における、OBJのとり得る値域でリピート処理を施したs16値を返します。</TD>
+		</TR>
+		
+		
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetAnimSequenceIndex.html" target="_self" >NNS_G2dGetAnimSequenceIndex</A></TH>
+			<TD> アニメーション情報バンク中の、アニメーションシーケンスの番号を取得します。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetUserExAnimAttrBank.html" target="_self" >NNS_G2dGetUserExAnimAttrBank</A></TH>
+			<TD> アニメーション情報バンク から アニメーションユーザ拡張アトリビュートバンク を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetUserExAnimSequenceAttr.html" target="_self" >NNS_G2dGetUserExAnimSequenceAttr</A></TH>
+			<TD> ユーザ拡張アトリビュートバンク から シーケンスユーザ拡張アトリビュート を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetUserExAnimFrameAttr.html" target="_self" >NNS_G2dGetUserExAnimFrameAttr</A></TH>
+			<TD> アニメーションシーケンスユーザ拡張アトリビュート から アニメーションフレームユーザ拡張アトリビュート を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetUserExAnimSeqAttrValue.html" target="_self" >NNS_G2dGetUserExAnimSeqAttrValue</A></TH>
+			<TD> アニメーションシーケンスユーザ拡張アトリビュート から u32型のユーザ拡張アトリビュート値を取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Animation/NNS_G2dGetUserExAnimFrmAttrValue.html" target="_self" >NNS_G2dGetUserExAnimFrmAttrValue</A></TH>
+			<TD> アニメーションフレームユーザ拡張アトリビュート から u32型のユーザ拡張アトリビュート値を取得します。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetUserExCellAttr.html" target="_self" >NNS_G2dGetUserExCellAttr</A></TH>
+			<TD> セル拡張アトリビュートバンク中のセルユーザ拡張アトリビュートをセル番号を指定して取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetUserExCellAttrBankFromCellBank.html" target="_self" >NNS_G2dGetUserExCellAttrBankFromCellBank</A></TH>
+			<TD> セルバンクからセル拡張アトリビュートバンクを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="types/Cell/NNS_G2dGetUserExCellAttrValue.html" target="_self" >NNS_G2dGetUserExCellAttrValue</A></TH>
+			<TD> セルユーザ拡張アトリビュートから実際のアトリビュート値を取得します。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="types/MultiCell/NNS_G2dGetUserExCellAttrBankFromMCBank.html" target="_self" >NNS_G2dGetUserExCellAttrBankFromMCBank</A></TH>
+			<TD> マルチセルバンクからセルユーザ拡張アトリビュートバンクを取得します。</TD>
+		</TR>
+		
+	</TBODY>
+</TABLE>
+
+<H3><A name="Load">ファイル読み込み</A>
+<A href="Load/RuntimeBinary_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="Load/NNS_G2dIsBinFileValid.html" target="_self" >NNS_G2dIsBinFileValid</A></TH>
+			<TD> バイナリファイルが指定した形式と一致する正当なものか調査します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Load/NNS_G2dFindBinaryBlock.html" target="_self" >NNS_G2dFindBinaryBlock</A></TH>
+			<TD> バイナリファイルから指定バイナリブロックを検索し、取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Load/NNS_G2dPrintXXX.html" target="_self">NNS_G2dPrint*</A></TH>
+			<TD>バイナリデータの内容をデバック出力に出力します。</TD>
+		</TR>
+        <TR>
+			<TH width="25%"><A href="Load/NNS_G2dUnPackXXX.html" target="_self" >NNS_G2dUnPack*</A></TH>
+			<TD> ファイルから読み込んだバイナリデータを実際に使用できる状態へと展開します。</TD>
+		</TR>
+        <TR>
+			<TH width="25%"><A href="Load/NNS_G2dGetUnpackedXXX.html" target="_self" >NNS_G2dGetUnpacked*</A></TH>
+			<TD>バイナリファイルから、各種データを展開した状態で取得します。</TD>
+		</TR>
+	</TBODY>
+
+</TABLE>
+
+
+
+
+
+
+<H3><A name="Animation">アニメーションコントローラ</A>
+<A href="Animation/AnimationController_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+    <TBODY>
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dBindAnimCtrl.html" target="_self" >NNS_G2dBindAnimCtrl</A></TH>
+			<TD> アニメーションコントローラと制御対象のアニメーションデータを関連付けます。 </TD></TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlType.html" target="_self" >NNS_G2dGetAnimCtrlType</A></TH>
+			<TD> アニメーションの種類を返します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlCurrentElement.html" target="_self" >NNS_G2dGetAnimCtrlCurrentElement</A></TH>
+			<TD> 現在のアニメーション結果の先頭を指す void ポインタを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlNextElement.html" target="_self" >NNS_G2dGetAnimCtrlNextElement</A></TH>
+			<TD> 現在の再生フレームの次フレームのアニメーション結果先頭を指す void ポインタを取得します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlNormalizedTime.html" target="_self" >NNS_G2dGetAnimCtrlNormalizedTime</A></TH>
+			<TD> 現在の再生フレームの表示期間で正規化された時間を取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dInitAnimCtrl.html" target="_self" >NNS_G2dInitAnimCtrl</A></TH>
+			<TD> NNSG2dAnimController 実体を初期化します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dInitAnimCtrlCallBackFunctor.html" target="_self" >NNS_G2dInitAnimCtrlCallBackFunctor</A></TH>
+			<TD> コントローラのコールバックを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dInitAnimCallBackFunctor.html" target="_self" >NNS_G2dInitAnimCallBackFunctor</A></TH>
+			<TD> コールバックファンクタを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dIsAnimCtrlActive.html" target="_self" >NNS_G2dIsAnimCtrlActive</A></TH>
+			<TD>アニメコントローラが再生中か取得します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlPlayModeOverridden.html" target="_self" >NNS_G2dSetAnimCtrlPlayModeOverridden</A></TH>
+			<TD>アニメ再生方式をオーバーライドします。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dResetAnimCtrlPlayModeOverridden.html" target="_self" >NNS_G2dResetAnimCtrlPlayModeOverridden</A></TH>
+			<TD>アニメ再生方式のオーバーライドをリセットします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dStartAnimCtrl.html" target="_self" >NNS_G2dStartAnimCtrl</A></TH>
+			<TD> アニメ再生を開始します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dStopAnimCtrl.html" target="_self" >NNS_G2dStopAnimCtrl</A></TH>
+			<TD> アニメ再生を停止します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlSpeed.html" target="_self" >NNS_G2dSetAnimCtrlSpeed</A></TH>
+			<TD>  アニメ再生スピードを設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlSpeed.html" target="_self" >NNS_G2dGetAnimCtrlSpeed</A></TH>
+			<TD>  アニメ再生スピードを取得します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dResetAnimCtrlState.html" target="_self" >NNS_G2dResetAnimCtrlState</A></TH>
+			<TD> アニメーションの状態をリセットします。 </TD>
+		</TR> 
+		
+		
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlCurrentFrame.html" target="_self" >NNS_G2dSetAnimCtrlCurrentFrame</A></TH>
+			<TD> 現在の再生フレームを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlCurrentFrame.html" target="_self" >NNS_G2dGetAnimCtrlCurrentFrame</A></TH>
+			<TD> 現在の再生フレームを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlCurrentTime.html" target="_self" >NNS_G2dSetAnimCtrlCurrentTime</A></TH>
+			<TD> アニメーションコントローラ の 現在のアニメフレーム表示時間を設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlCurrentTime.html" target="_self" >NNS_G2dGetAnimCtrlCurrentTime</A></TH>
+			<TD> アニメーションコントローラ の 現在のアニメフレーム表示時間を取得します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime.html" target="_self" >NNS_G2dSetAnimCtrlCurrentFrameNoResetCurrentTime</A></TH>
+			<TD> 現在の再生フレームを設定します。コントローラ内部の現在のフレーム表示時間カウンタをリセットしません。 </TD>
+		</TR> 
+		
+		
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlCallBackFunctor.html" target="_self" >NNS_G2dSetAnimCtrlCallBackFunctor</A></TH>
+			<TD> アニメーションコントローラにコールバックを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame.html" target="_self" >NNS_G2dSetAnimCtrlCallBackFunctorAtAnimFrame</A></TH>
+			<TD> アニメーションコントローラにフレーム指定コールバックを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dTickAnimCtrl.html" target="_self" >NNS_G2dTickAnimCtrl</A></TH>
+			<TD> アニメーションの時間を進めます。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlCurrentAnimSequence.html" target="_self" >NNS_G2dGetAnimCtrlCurrentAnimSequence</A></TH>
+			<TD> アニメーションコントローラに関連付けられたアニメーションシーケンスを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Animation/NNS_G2dGetAnimCtrlCurrentElemIdxVal.html" target="_self" >NNS_G2dGetAnimCtrlCurrentElemIdxVal</A></TH>
+			<TD> アニメーションコントローラの現在のアニメーション結果からインデックスの値(セルかマルチセルの番号)を取得します。</TD>
+		</TR> 
+		
+    </TBODY>
+</TABLE>
+
+
+
+
+
+
+<H3><A name="CellAnimation">セル</A>
+<A href="CellAnimation/CellAnimation_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dCopyCellAsOamAttr.html"	target="_self" >NNS_G2dCopyCellAsOamAttr</A></TH>
+			<TD> セルデータ内のOAMアトリビュート情報をGXOamAttrにコピーします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dInitCellAnimation.html"	target="_self" >NNS_G2dInitCellAnimation</A></TH>
+			<TD> セルアニメーションを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dInitCellAnimationVramTransfered.html" target="_self" >NNS_G2dInitCellAnimationVramTransfered</A></TH>
+			<TD> VRAM転送セルアニメーションを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dMakeCellToOams.html" target="_self" >NNS_G2dMakeCellToOams</A></TH>
+			<TD> セルを描画するOBJ列を書き出します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dSetCellAnimationCurrentFrame.html" target="_self" >NNS_G2dSetCellAnimationCurrentFrame</A></TH>
+			<TD> 現在の再生フレームを設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dSetCellAnimationSequenceNoReset.html"	target="_self" >NNS_G2dSetCellAnimationSequenceNoReset</A></TH>
+			<TD> セルアニメーションにアニメーションシーケンスを設定します。内部の再生アニメーションフレーム番号、現在フレーム表示時間をリセットしません。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dSetCellAnimationSequence.html" target="_self" >NNS_G2dSetCellAnimationSequence</A></TH>
+			<TD> セルアニメーションにアニメーションシーケンスを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dSetCellAnimationSpeed.html"			target="_self" >NNS_G2dSetCellAnimationSpeed</A></TH>
+			<TD> セルアニメーションの再生スピードを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dGetCellAnimationAnimCtrl.html"			target="_self" >NNS_G2dGetCellAnimationAnimCtrl</A></TH>
+			<TD> セルアニメーションを制御するアニメーションコントローラを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dGetCellAnimationCurrentCell.html"			target="_self" >NNS_G2dGetCellAnimationCurrentCell</A></TH>
+			<TD> セルアニメーションの現在表示している セル を取得します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dTickCellAnimation.html"			target="_self" >NNS_G2dTickCellAnimation</A></TH>
+			<TD> セルアニメーションの時間を進めます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="CellAnimation/NNS_G2dRestartCellAnimation.html"			target="_self" >NNS_G2dRestartCellAnimation</A></TH>
+			<TD> セルアニメーション再生を、アニメーション先頭から再スタートします。 </TD>
+		</TR> 
+	</TBODY>
+</TABLE>
+
+
+
+
+
+
+
+<H3><A name="MultiCellAnimation">マルチセル</A>
+<A href="MultiCellAnimation/MultiCellAnimation_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dGetMCWorkAreaSize.html" target="_self" >NNS_G2dGetMCWorkAreaSize</A></TH>
+			<TD> マルチセルデータバンク中のマルチセルを実体として初期化する際に必要になるワーク領域のサイズを取得します。</TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dInitMCAnimationInstance.html"	target="_self" >NNS_G2dInitMCAnimationInstance</A></TH>
+			<TD> マルチセルアニメーションを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dMakeSimpleMultiCellToOams.html"			target="_self" >NNS_G2dMakeSimpleMultiCellToOams</A></TH>
+			<TD> マルチセルを描画するOBJ列を書き出します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dSetAnimSequenceToMCAnimation.html"			target="_self" >NNS_G2dSetAnimSequenceToMCAnimation</A></TH>
+			<TD> マルチセルアニメーションに再生アニメーションシーケンスを設定します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dGetMCAnimAnimCtrl.html"			target="_self" >NNS_G2dGetMCAnimAnimCtrl</A></TH>
+			<TD> マルチセルアニメーションの保持する、アニメーションコントローラを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dSetMCAnimationCurrentFrame.html"			target="_self" >NNS_G2dSetMCAnimationCurrentFrame</A></TH>
+			<TD> 現在の再生フレームを設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dSetMCAnimationCellAnimFrame.html"			target="_self" >NNS_G2dSetMCAnimationCellAnimFrame</A></TH>
+			<TD> マルチセルを構成するセルアニメーションの再生フレームを設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dResetMCCellAnimationAll.html"			target="_self" >NNS_G2dResetMCCellAnimationAll</A></TH>
+			<TD> マルチセル実体を構成するセルアニメーションのセルアニメーションのアニメーションフレームをリセットします。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dStartMCCellAnimationAll.html"			target="_self" >NNS_G2dStartMCCellAnimationAll</A></TH>
+			<TD> マルチセル実体を構成するセルアニメーションをアニメーション再生開始状態に設定します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dSetMCAnimationSpeed.html"			target="_self" >NNS_G2dSetMCAnimationSpeed</A></TH>
+			<TD> マルチセルアニメーションの再生スピードを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dTickMCAnimation.html"			target="_self" >NNS_G2dTickMCAnimation</A></TH>
+			<TD> マルチセルアニメーションのアニメーションを更新します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dTickMCInstance.html"			target="_self" >NNS_G2dTickMCInstance</A></TH>
+			<TD> マルチセル実体を構成するセルアニメーションのアニメーションを更新します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dRestartMCAnimation.html"			target="_self" >NNS_G2dRestartMCAnimation</A></TH>
+			<TD> マルチセルアニメーション再生をアニメーション先頭から再スタートします。 </TD>
+		</TR> 
+		
+		
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dTraverseMCCellAnims.html"			target="_self" >NNS_G2dTraverseMCCellAnims</A></TH>
+			<TD> マルチセルを構成するセルアニメーションについて、それらを巡回しながら、各セルアニメーション、セルアニメ番号を引数にコールバック関数呼び出しを行います。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="MultiCellAnimation/NNS_G2dTraverseMCNodes.html"			target="_self" >NNS_G2dTraverseMCNodes</A></TH>
+			<TD> マルチセルを構成するノードについて、それらを巡回しながら、各ノード情報、セルアニメーション、ノード番号を引数にコールバック関数呼び出しを行います。</TD>
+		</TR> 
+		
+	</TBODY>
+</TABLE>
+
+
+
+
+
+
+<H3><A name="Oam">OAMマネージャ</A>
+<A href="Oam/OAM_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dApplyOamManagerToHW.html"		target="_self" >NNS_G2dApplyOamManagerToHW</A></TH>
+			<TD> OAMマネージャ の内部状態を実際のハードウエアに反映します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dApplyOamManagerToHWSprite.html"		target="_self" >NNS_G2dApplyOamManagerToHWSprite</A></TH>
+			<TD> 内部バッファの内容を3Dグラフィックスエンジンを使用して、描画します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dEntryOamManagerOam.html"		target="_self" >NNS_G2dEntryOamManagerOam</A></TH>
+			<TD> OBJをOAMマネージャに登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dEntryOamManagerAffine.html"		target="_self" >NNS_G2dEntryOamManagerAffine</A></TH>
+			<TD> OAMマネージャにアフィンパラメータを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dEntryOamManagerOamWithAffineIdx.html"		target="_self" >NNS_G2dEntryOamManagerOamWithAffineIdx</A></TH>
+			<TD> OBJをOAMマネージャに登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dSetOamManagerAffine.html"		target="_self" >NNS_G2dSetOamManagerAffine</A></TH>
+			<TD> OAMマネージャにアフィンパラメータをインデックス指定で設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dGetNewOamManagerInstance.html"		target="_self" >NNS_G2dGetNewOamManagerInstance</A>
+			<A href="Oam/NNS_G2dGetNewManagerInstance.html" target="_self" >(NNS_G2dGetNewManagerInstance)</A>
+			<A href="Oam/NNS_G2dInitManagerInstanceAffine.html" target="_self" >(NNS_G2dInitManagerInstanceAffine)</A></TH>
+			<TD> OAMマネージャの実体を初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dGetNewOamManagerInstanceAsFastTransferMode.html"		target="_self" >NNS_G2dGetNewOamManagerInstanceAsFastTransferMode</A>
+			<TD> バッファ内容の高速転送が可能なOAMマネージャの実体を初期化します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dGetOamManagerAffineCapacity.html"		target="_self" >NNS_G2dGetOamManagerAffineCapacity</A></TH>
+			<TD> OAMマネージャの利用可能 アフィンパラメータ 数 を取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dGetOamManagerOamCapacity.html"		target="_self" >NNS_G2dGetOamManagerOamCapacity</A></TH>
+			<TD> OAMマネージャの利用可能 OBJ 数 を取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dInitOamManagerModule.html"		target="_self" >NNS_G2dInitOamManagerModule</A></TH>
+			<TD> OAMマネージャモジュールを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dResetOamManagerBuffer.html"		target="_self" >NNS_G2dResetOamManagerBuffer</A></TH>
+			<TD> OAMマネージャの管理している範囲の 内部 OAM バッファ をリセットします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dSetOamManagerSpriteZoffsetStep.html"		target="_self" >NNS_G2dSetOamManagerSpriteZoffsetStep</A></TH>
+			<TD> ソフトウェアスプライトを描画する毎に、加算するZ値を指定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Oam/NNS_G2dGetOamBuffer.html"		target="_self" >NNS_G2dGetOamBuffer</A></TH>
+			<TD> OAMマネージャモジュールの内部バッファへのポインタを取得します。 </TD>
+		</TR> 
+		
+	</TBODY>
+</TABLE>
+
+
+<H3><A name="OamEx">拡張OAMマネージャ</A>
+<A href="OamEx/OAMEx_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dApplyOamManExToBaseModule.html"		target="_self">NNS_G2dApplyOamManExToBaseModule</A></TH>
+			<TD> 拡張OAMマネージャ の内容を 実際のハードウエアに適用します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dEntryOamManExAffine.html"		target="_self">NNS_G2dEntryOamManExAffine</A></TH>
+			<TD> 拡張OAMマネージャにアフィン行列を登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dEntryOamManExOam.html"		target="_self">NNS_G2dEntryOamManExOam</A></TH>
+			<TD> 拡張OAMマネージャにOBJを、描画時の登録順を指定して登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dEntryOamManExOamWithAffineIdx.html"		target="_self">NNS_G2dEntryOamManExOamWithAffineIdx</A></TH>
+			<TD> 拡張OAMマネージャにOBJを、描画時の登録順を指定して登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dGetOamManExInstance.html"		target="_self">NNS_G2dGetOamManExInstance</A></TH>
+			<TD> 拡張OAMOAMマネージャの実体を取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dResetOamManExBuffer.html"		target="_self">NNS_G2dResetOamManExBuffer</A></TH>
+			<TD> 拡張OAMマネージャ実体の管理している、内部バッファをリセットします。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNS_G2dSetOamManExEntryFunctions.html"		target="_self">NNS_G2dSetOamManExEntryFunctions</A></TH>
+			<TD> 拡張OAMマネージャOAMマネージャに登録関数を設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamEx/NNSG2d_SetOamManExDrawOrderType.html"		target="_self">NNSG2d_SetOamManExDrawOrderType</A></TH>
+			<TD> 拡張OAMマネージャのOAM描画順の種類を設定します。</TD>
+		</TR> 
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="SoftwareSprite">ソフトウェアスプライト</A>
+<A href="SoftwareSprite/SoftwareSprite_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dSetupSoftwareSpriteCamera.html"		target="_self" >NNS_G2dSetupSoftwareSpriteCamera</A></TH>
+			<TD> ソフトウェアスプライトを描画する際に使用するカメラの設定を行います。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dSetupSoftwareSpriteMaterial.html"		target="_self" >NNS_G2dSetupSoftwareSpriteMaterial</A></TH>
+			<TD> ソフトウェアスプライトを描画する際に使用するマテリアルの設定を行います。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dDrawSprite.html"		target="_self" >NNS_G2dDrawSprite</A></TH>
+			<TD> 各種パラメータを指定してソフトウェアスプライトを描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dDrawSpriteXXX.html"		target="_self" >NNS_G2dDrawSprite*</A></TH>
+			<TD> 各種スプライトを描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dDrawSpriteXXXFast.html"		target="_self" >NNS_G2dDrawSprite*Fast</A></TH>
+			<TD> 各種スプライトを描画します。カレント行列の内容を保存しない高速なバージョンです。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dGetSpriteDefaultAttr.html"		target="_self" >NNS_G2dGetSpriteDefaultAttr</A></TH>
+			<TD> モジュール内部で保持するデフォルト値へのポインタを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dIsSpriteAttrEnable.html"		target="_self" >NNS_G2dIsSpriteAttrEnable</A></TH>
+			<TD> ソフトウェアスプライトを描画する際の、各種描画属性が有効か取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dSetSpriteCurrentPolygonID.html"		target="_self" >NNS_G2dSetSpriteCurrentPolygonID</A></TH>
+			<TD> ソフトウェアスプライトを描画する際使用するポリゴンIDを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dSetSpriteDefaultAttr.html"		target="_self" >NNS_G2dSetSpriteDefaultAttr</A></TH>
+			<TD> モジュール内部で保持するデフォルト値を設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="SoftwareSprite/NNS_G2dSetSpriteAttrEnable.html"		target="_self" >NNS_G2dSetSpriteAttrEnable</A></TH>
+			<TD> ソフトウェアスプライトを描画する際に有効となる、各種属性を設定します。 </TD>
+		</TR> 
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="OAMSoftwareSpriteDraw">OAMソフトウェアスプライト描画</A>
+<A href="OamSoftEmu/OAMSoftEmu_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+    <TBODY>
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirect.html"		target="_self" >NNS_G2dDrawOneOam3DDirect</A></TH>
+			<TD> 単一OBJを3Dグラフィックスエンジンを使用して、内部バッファを使用せずに直接描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectWithPos.html"		target="_self" >NNS_G2dDrawOneOam3DDirectWithPos</A></TH>
+			<TD> 単一OBJを3Dグラフィックスエンジンを使用して描画します。OBJの位置を指定可能です。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectWithPosAffine.html"		target="_self" >NNS_G2dDrawOneOam3DDirectWithPosAffine</A></TH>
+			<TD> 単一OBJを3Dグラフィックスエンジンを使用して描画します。OBJの位置とアフィン変換行列を指定可能です。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectXXXFast.html"		target="_self" >NNS_G2dDrawOneOam3DDirect*Fast</A></TH>
+			<TD>単一OBJを3Dグラフィックスエンジンを使用して描画します。関数呼び出しの前後でジオメトリエンジンのカレント行列の内容が保存されません。</TD>
+		</TR> 
+		
+		
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dSetOamSoftEmuSpriteParamCache.html"		target="_self" >NNS_G2dSetOamSoftEmuSpriteParamCache</A></TH>
+			<TD>ソフトウエアスプライト描画に使用する、パラメータのキャッシュを設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dDrawOneOam3DDirectUsingParamCacheFast.html"		target="_self" >NNS_G2dDrawOneOam3DDirectUsingParamCacheFast</A></TH>
+			<TD>パラメータのキャッシュを使用してOAMをスプライト描画します。</TD>
+		</TR> 
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dSetOamSoftEmuUVFlipCorrectFunc.html"		target="_self" >NNS_G2dSetOamSoftEmuUVFlipCorrectFunc</A></TH>
+			<TD>OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタを設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="OamSoftEmu/NNS_G2dResetOamSoftEmuUVFlipCorrectFunc.html"		target="_self" >NNS_G2dResetOamSoftEmuUVFlipCorrectFunc</A></TH>
+			<TD>OAMソフトウェアスプライトエミュレーション で使用される UV値補正関数ポインタを無効に設定します。</TD>
+		</TR> 
+    </TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="Entity">エンティティ</A>
+<A href="Entity/Entity_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dInitEntity.html"		target="_self" >NNS_G2dInitEntity</A></TH>
+			<TD> エンティティを初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dIsEntityValid.html"		target="_self" >NNS_G2dIsEntityValid</A></TH>
+			<TD> エンティティの正当性を調査します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dIsEntityPaletteTblEnable.html"		target="_self" >NNS_G2dIsEntityPaletteTblEnable</A></TH>
+			<TD> エンティティのパレット変換テーブルが有効か判定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dResetEntityPaletteTable.html"		target="_self" >NNS_G2dResetEntityPaletteTable</A></TH>
+			<TD> エンティティのパレット変換テーブルを使用しない設定に設定します。 </TD>
+		</TR> 
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dGetEntityAnimCtrl.html"		target="_self" >NNS_G2dGetEntityAnimCtrl</A></TH>
+			<TD> エンティティが保持するアニメーションコントローラを取得します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dSetEntityCurrentAnimation.html"		target="_self" >NNS_G2dSetEntityCurrentAnimation</A></TH>
+			<TD> エンティティの再生アニメーションを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dSetEntityCurrentFrame.html"		target="_self" >NNS_G2dSetEntityCurrentFrame</A></TH>
+			<TD> エンティティの現在の再生フレームを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dSetEntityPaletteTable.html"		target="_self" >NNS_G2dSetEntityPaletteTable</A></TH>
+			<TD> エンティティにパレット変換テーブルを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dSetEntitySpeed.html"		target="_self" >NNS_G2dSetEntitySpeed</A></TH>
+			<TD> エンティティアニメーションスピードを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Entity/NNS_G2dTickEntity.html"		target="_self" >NNS_G2dTickEntity</A></TH>
+			<TD> エンティティのアニメーションを更新します。 </TD>
+		</TR> 
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="ImageLoad">画像イメージロード関連</A>
+<A href="Image/ImageProxy_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+    <TBODY>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dInitImageProxy.html" target="_self">NNS_G2dInitImageProxy</A></TH>
+			<TD>画像プロクシを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dInitImagePaletteProxy.html" target="_self">NNS_G2dInitImagePaletteProxy</A></TH>
+			<TD>画像パレットプロクシを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dLoadImage1DMapping.html" target="_self" >NNS_G2dLoadImage1DMapping</A></TH>
+			<TD>画像データをハードウエアにロードし、画像プロクシにロード結果、画像フォーマットを設定します。（1Dマッピング専用）</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dLoadImage2DMapping.html" target="_self" >NNS_G2dLoadImage2DMapping</A></TH>
+			<TD>画像データをハードウエアにロードし、画像プロクシにロード結果、画像フォーマットを設定します。（2Dマッピング専用）</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dLoadImageVramTransfer.html" target="_self" >NNS_G2dLoadImageVramTransfer</A></TH>
+			<TD>画像データをハードウエアにロードし、画像プロクシにロード結果、画像フォーマットを設定します。（Vram転送用データ専用）</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dLoadPalette.html" target="_self">NNS_G2dLoadPalette</A></TH>
+			<TD>画像パレットデータをハードウエアにロードし、画像パレットプロクシにロード結果、画像フォーマットを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dLoadPaletteEx.html" target="_self">NNS_G2dLoadPaletteEx</A></TH>
+			<TD>圧縮された、画像パレットデータをハードウエアにロードし、画像パレットプロクシにロード結果、画像フォーマットを設定します。</TD>
+		</TR>
+		
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dIsImageReadyToUse.html" target="_self">NNS_G2dIsImageReadyToUse</A></TH>
+			<TD>画像プロクシが使用可能な状態か調査します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dIsImagePaletteReadyToUse.html" target="_self">NNS_G2dIsImagePaletteReadyToUse</A></TH>
+			<TD>画像パレットプロクシが使用可能な状態か調査します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dSetImageExtPaletteFlag.html" target="_self">NNS_G2dSetImageExtPaletteFlag</A></TH>
+			<TD>画像プロクシの拡張パレット使用状況を設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dSetImageLocation.html" target="_self">NNS_G2dSetImageLocation</A></TH>
+			<TD>画像プロクシにVRAMアドレスを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dGetImageLocation.html" target="_self">NNS_G2dGetImageLocation</A></TH>
+			<TD>画像プロクシからVRAMアドレスを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dSetImagePaletteLocation.html" target="_self">NNS_G2dSetImagePaletteLocation</A></TH>
+			<TD>画像パレットプロクシにVRAMアドレスを設定します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Image/NNS_G2dGetImagePaletteLocation.html" target="_self">NNS_G2dGetImagePaletteLocation</A></TH>
+			<TD>画像パレットプロクシからVRAMアドレスを取得します。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="CellTransfer">セルVRAM転送状態マネージャ</A>
+<A href="CellTransfer/CellTransfer_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="CellTransfer/NNS_G2dInitCellTransferStateManager.html"	 target="_self">NNS_G2dInitCellTransferStateManager</A></TH>
+			<TD>セルVRAM転送状態オブジェクトマネージャを初期化します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CellTransfer/NNS_G2dGetNewCellTransferStateHandle.html" target="_self">NNS_G2dGetNewCellTransferStateHandle</A></TH>
+			<TD>セルVRAM転送状態オブジェクトのハンドルを取得します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CellTransfer/NNS_G2dFreeCellTransferStateHandle.html"	 target="_self">NNS_G2dFreeCellTransferStateHandle</A></TH>
+			<TD>セルVRAM転送状態オブジェクトのハンドルを返却します。</TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CellTransfer/NNS_G2dSetCellTransferStateRequested.html"target="_self">NNS_G2dSetCellTransferStateRequested</A></TH>
+			<TD>セルVRAM転送状態オブジェクトをVRAM転送請求状態に設定します。</TD>
+		</TR>	
+		<TR>
+			<TH width="25%"><A href="CellTransfer/NNS_G2dUpdateCellTransferStateManager.html"target="_self">NNS_G2dUpdateCellTransferStateManager</A></TH>
+			<TD>セルVRAM転送状態オブジェクトマネージャを更新します。</TD>
+		</TR>	
+	</TBODY>
+</TABLE>
+
+
+
+
+<H3><A name="Renderer">レンダラ</A>
+<A href="Renderer/Renderer_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+	    <TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dInitRenderer.html"		target="_self" >NNS_G2dInitRenderer</A></TH>
+			<TD> レンダラ 実体を初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dAddRendererTargetSurface.html"		target="_self" >NNS_G2dAddRendererTargetSurface</A></TH>
+			<TD> レンダラ 実体にレンダサーフェスを登録します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dOptimizeRenderer.html"		target="_self" ><S>NNS_G2dOptimizeRenderer</S></A></TH>
+			<TD>現在のレンダラの状態に合わせて、レンダラの最適化を行います。（廃止されました。）</TD>
+		</TR> 
+		
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dBeginRendering.html"		target="_self" >NNS_G2dBeginRendering</A></TH>
+			<TD> Renderer 描画前の設定を行います。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dBeginRenderingEx.html"		target="_self" >NNS_G2dBeginRenderingEx</A></TH>
+			<TD> Renderer 描画前の設定を行います。最適化のためのヒントフラグ情報を指定可能です。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dEndRendering.html"		target="_self" >NNS_G2dEndRendering</A></TH>
+			<TD> Renderer 描画後に呼び出してください。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dDrawCell.html"		target="_self" >NNS_G2dDrawCell</A></TH>
+			<TD> セルデータを描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dDrawCellAnimation.html"		target="_self" >NNS_G2dDrawCellAnimation</A></TH>
+			<TD> セルアニメーション実体を描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dDrawEntity.html"		target="_self" >NNS_G2dDrawEntity</A></TH>
+			<TD> エンティティを描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dDrawMultiCell.html"		target="_self" >NNS_G2dDrawMultiCell</A></TH>
+			<TD> マルチセル実体を描画します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dDrawMultiCellAnimation.html"		target="_self" >NNS_G2dDrawMultiCellAnimation</A></TH>
+			<TD> マルチセルアニメーションを描画します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dGetRendererPaletteTbl.html"		target="_self" >NNS_G2dGetRendererPaletteTbl</A></TH>
+			<TD> パレット変換テーブルを取得します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dInitRenderSurface.html"		target="_self" >NNS_G2dInitRenderSurface</A></TH>
+			<TD> レンダサーフェス を初期化します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dPopMtx.html"		target="_self" >NNS_G2dPopMtx</A></TH>
+			<TD> レンダラ内部行列スタックをポップします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dPushMtx.html"		target="_self" >NNS_G2dPushMtx</A></TH>
+			<TD> レンダラ内部行列スタックをプッシュします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dResetRendererPaletteTbl.html"		target="_self" >NNS_G2dResetRendererPaletteTbl</A></TH>
+			<TD> パレット変換テーブルを使用しないように設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dTranslate.html"		target="_self" >NNS_G2dTranslate</A></TH>
+			<TD> レンダラ内部行列スタックのカレント行列に平行移動行列を乗じます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetTrans.html"		target="_self" >NNS_G2dSetTrans</A></TH>
+			<TD> レンダラ内部行列スタックのカレント行列の平行移動行列を設定します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dRotZ.html"		target="_self" >NNS_G2dRotZ</A></TH>
+			<TD> レンダラ内部行列スタックのカレント行列にｚ軸回転行列を乗じます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dScale.html"		target="_self" >NNS_G2dScale</A></TH>
+			<TD> レンダラ内部行列スタックのカレント行列にスケール行列を乗じます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererFlipMode.html"		target="_self" >NNS_G2dSetRendererFlipMode</A></TH>
+			<TD> フリップ描画を行うようにレンダラを設定します。 </TD>
+		</TR> 
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererSurfaceActiveFlag.html"		target="_self" >NNS_G2dSetRendererSurfaceActiveFlag</A></TH>
+			<TD> レンダサーフェスのアクティブ状態を設定します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dGetRendererSurfaceActiveFlag.html"		target="_self" >NNS_G2dGetRendererSurfaceActiveFlag</A></TH>
+			<TD> レンダサーフェスのアクティブ状態を取得します。 </TD>
+		</TR> 
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererAffineOverwriteMode.html"		target="_self" >NNS_G2dSetRendererAffineOverwriteMode</A></TH>
+			<TD> レンダラが2Dグラフィックスエンジン使用時に行う、OBJのアフィン変換モードを書き換える処理方式を設定します。 </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dGetRendererAffineOverwriteMode.html"		target="_self" >NNS_G2dGetRendererAffineOverwriteMode</A></TH>
+			<TD> レンダラが2Dグラフィックスエンジン使用時に行う、OBJのアフィン変換モードを書き換える処理方式を取得します。 </TD>
+		</TR> 
+		
+		
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererImageProxy.html"		target="_self" >NNS_G2dSetRendererImageProxy</A></TH>
+			<TD> レンダラが使用する画像情報をセットします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererPaletteTbl.html"		target="_self" >NNS_G2dSetRendererPaletteTbl</A></TH>
+			<TD> パレット変換テーブルをセットします。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererSpriteZoffset.html"		target="_self" >NNS_G2dSetRendererSpriteZoffset</A></TH>
+			<TD> ソフトウェアスプライトを描画する毎に、加算するZ値を指定します。 </TD>
+		</TR> 
+		
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererOverwriteEnable.html"		target="_self" >NNS_G2dSetRendererOverwriteEnable / Disable</A></TH>
+			<TD> レンダラが上書きをおこなう、OAMパラメータを設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dSetRendererOverwriteXXX.html"		target="_self" >NNS_G2dSetRendererOverwrite*</A></TH>
+			<TD> レンダラが描画するOAMに上書きするパラメータの値を設定します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Renderer/NNS_G2dGetRendererOverwriteXXX.html"		target="_self" >NNS_G2dGetRendererOverwrite*</A></TH>
+			<TD> レンダラが描画するOAMに上書きするパラメータの値を取得します。 </TD>
+		</TR> 
+		
+	</TBODY>
+</TABLE>
+
+<H3><A name="RendererCore">レンダラコア</A>
+<A href="RendererCore/RendererCore_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+	    
+	     
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+	    <TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dInitRndCore.html"		target="_self" >NNS_G2dInitRndCore</A></TH>
+			<TD>レンダラコアモジュールを初期化します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dInitRndCoreSurface.html"		target="_self" >NNS_G2dInitRndCoreSurface</A></TH>
+			<TD>レンダラコア描画対象サーフェスを初期化します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dInitRndCore2DMtxCache.html"		target="_self" >NNS_G2dInitRndCore2DMtxCache</A></TH>
+			<TD>行列キャッシュを初期化します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCore2DMtxCacheMtxParams.html"		target="_self" >NNS_G2dSetRndCore2DMtxCacheMtxParams</A></TH>
+			<TD>行列キャッシュに行列を設定します。</TD>
+		</TR> 
+		
+		
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreCurrentMtx2D.html"		target="_self" >NNS_G2dSetRndCoreCurrentMtx2D</A></TH>
+			<TD>2D グラフィックスエンジン描画の際のOBJに適用する変換行列とアフィン変換パラメータを設定します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreCurrentMtx3D.html"		target="_self" >NNS_G2dSetRndCoreCurrentMtx3D</A></TH>
+			<TD>3D グラフィックスエンジン描画の際のレンダラコアにアフィン変換行列を設定します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dIsRndCoreFlipXXX.html"		target="_self" >NNS_G2dIsRndCoreFlip*</A></TH>
+			<TD>レンダラコアの描画フリップ状態を取得します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreFlipMode.html"		target="_self" >NNS_G2dSetRndCoreFlipMode</A></TH>
+			<TD>レンダラコアの描画フリップ状態を設定します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreImageProxy.html"		target="_self" >NNS_G2dSetRndCoreImageProxy</A></TH>
+			<TD>レンダラコアモジュールが描画の際に参照する画像プロクシを設定します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreOamRegisterFunc.html"		target="_self" >NNS_G2dSetRndCoreOamRegisterFunc</A></TH>
+			<TD>レンダラコアモジュールが描画OBJを表すOAMを外部モジュールに登録する際に使用する関数ポインタ群を設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreSurface.html"		target="_self" >NNS_G2dSetRndCoreSurface</A></TH>
+			<TD>レンダラコアに描画対象サーフェスを設定します。  </TD>
+		</TR> 
+		
+		
+		
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dRndCoreBeginRendering.html"		target="_self" >NNS_G2dRndCoreBeginRendering</A></TH>
+			<TD>レンダラコアの描画を開始します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dRndCoreEndRendering.html"		target="_self" >NNS_G2dRndCoreEndRendering</A></TH>
+			<TD>レンダラコアの描画を終了します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dRndCoreDrawCell.html"		target="_self" >NNS_G2dRndCoreDrawCell</A></TH>
+			<TD>セルを描画します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dRndCoreDrawCellFast2D.html"		target="_self" >NNS_G2dRndCoreDrawCellFast2D</A></TH>
+			<TD>2D グラフィックエンジン(OBJ機能)を利用してセルを高速に描画します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreCellCloneSource3D.html"		target="_self" >NNS_G2dSetRndCoreCellCloneSource3D</A></TH>
+			<TD>NNS_G2dRndCoreDrawCellClone3D()で参照される、UVパラメータを事前計算し、 UVパラメータキャッシュとして保存します。</TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dRndCoreDrawCellClone3D.html"		target="_self" >NNS_G2dRndCoreDrawCellClone3D</A></TH>
+			<TD>同一の画像データを持つOBJから構成されるセルをソフトウェアスプライトを使用して高速に描画します。  </TD>
+		</TR> 
+		
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCore3DSoftSpriteZvalue.html"		target="_self" >NNS_G2dSetRndCore3DSoftSpriteZvalue</A></TH>
+			<TD>ソフトウェアスプライト描画の際に使用されるスプライトのZ値を設定します。  </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="RendererCore/NNS_G2dSetRndCoreAffineOverwriteMode.html"		target="_self" >NNS_G2dSetRndCoreAffineOverwriteMode</A></TH>
+			<TD>アフィン変換モードの上書き動作を設定します。  </TD>
+		</TR> 
+		
+	</TBODY>
+</TABLE>
+
+
+
+<H3><A name="Bg">BG</A>
+<A href="Bg/BG_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dBGSetupXXX.html"			target="_self" >NNS_G2dBGSetup</A></TH>
+			<TD> BGの設定を行い、BGデータをVRAMに読み込みます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dBGSetupXXX.html"			target="_self" >NNS_G2dBGSetupEx</A></TH>
+			<TD> BGの設定を行い、BGデータをVRAMに読み込みます。圧縮パレットや部分キャラクタを使用することが出来ます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dBGLoadElementsXXX.html"		target="_self" >NNS_G2dBGLoadElements</A></TH>
+			<TD> BG で用いるグラフィックスデータを適切なVRAMに読み込みます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dBGLoadElementsXXX.html"		target="_self" >NNS_G2dBGLoadElementsEx</A></TH>
+			<TD> BG で用いるグラフィックスデータを適切なVRAMに読み込みます。圧縮パレットや部分キャラクタを使用することが出来ます。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dBGLoadScreenRect.html"		target="_self" >NNS_G2dBGLoadScreenRect</A></TH>
+			<TD> スクリーンデータから指定矩形部分をロードします。 </TD>
+		</TR> 
+
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dSetBGAreaOver.html"		target="_self" >NNS_G2dSetBGAreaOver</A></TH>
+			<TD> NNS_G2dBGSetup() が使用するエリアオーバー処理指定を設定します。 </TD>
+		</TR> 
+		<TR>
+			<TH width="25%"><A href="Bg/NNS_G2dGetBGAreaOver.html"		target="_self" >NNS_G2dGetBGAreaOver</A></TH>
+			<TD> NNS_G2dBGSetup() が使用するエリアオーバー処理指定を取得します。 </TD>
+		</TR> 
+	</TBODY>
+</TABLE>
+
+
+
+<H3><A name="Font">フォント</A>
+<A href="Font/Font_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontInitAuto.html" target="_self" >NNS_G2dFontInitAuto</A></TH>
+			<TD> 対応するエンコーディングを自動判別してフォントを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontInitXXX.html" target="_self" >NNS_G2dFontInitUTF8</A></TH>
+			<TD> UTF8 エンコーディングのフォントを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontInitXXX.html" target="_self" >NNS_G2dFontInitUTF16</A></TH>
+			<TD> UTF16 エンコーディングのフォントを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontInitXXX.html" target="_self" >NNS_G2dFontInitShiftJIS</A></TH>
+			<TD> ShiftJIS エンコーディングのフォントを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontInitXXX.html" target="_self" >NNS_G2dFontInitCP1252</A></TH>
+			<TD> Windowsコードページ1252 エンコーディングのフォントを構築します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetType.html" target="_self" >NNS_G2dFontGetType</A></TH>
+			<TD>フォントタイプを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetFlags.html" target="_self" >NNS_G2dFontGetFlags</A></TH>
+			<TD>フォントの特徴フラグを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetHeight.html" target="_self" >NNS_G2dFontGetHeight</A></TH>
+			<TD>フォントの高さを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCellHeight.html" target="_self" >NNS_G2dFontGetCellHeight</A></TH>
+			<TD>グリフイメージ格納領域の高さを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCellWidth.html" target="_self" >NNS_G2dFontGetCellWidth</A></TH>
+			<TD>グリフイメージ格納領域の幅を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetBpp.html" target="_self" >NNS_G2dFontGetBpp</A></TH>
+			<TD> グリフイメージの1ドットあたりのビット数を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetBaselinePos.html" target="_self" >NNS_G2dFontGetBaselinePos</A></TH>
+			<TD> グリフイメージの上端からみたベースラインの位置を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetMaxCharWidth.html" target="_self" >NNS_G2dFontGetMaxCharWidth</A></TH>
+			<TD>フォントに含まれる文字の最大幅を取得します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetLineFeed.html" target="_self" >NNS_G2dFontGetLineFeed</A></TH>
+			<TD> フォントの改行幅を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontSetLineFeed.html" target="_self" >NNS_G2dFontSetLineFeed</A></TH>
+			<TD> フォントの改行幅を設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetDefaultCharWidths.html" target="_self" >NNS_G2dFontGetDefaultCharWidths</A></TH>
+			<TD> フォントのデフォルトの文字幅情報を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontSetDefaultCharWidths.html" target="_self" >NNS_G2dFontSetDefaultCharWidths</A></TH>
+			<TD> フォントのデフォルトの文字幅情報を設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetAlternateGlyphIndex.html" target="_self" >NNS_G2dFontGetAlternateGlyphIndex</A></TH>
+			<TD> フォントでつかわれる代替文字グリフインデックスを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontSetAlternateGlyphIndex.html" target="_self" >NNS_G2dFontSetAlternateGlyphIndex</A></TH>
+			<TD> フォントでつかわれる代替文字グリフインデックスを指定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontSetAlternateChar.html" target="_self" >NNS_G2dFontSetAlternateChar</A></TH>
+			<TD> フォントでつかわれる代替文字グリフインデックスを文字コードで指定します。 </TD>
+		</TR>
+
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetGlyph.html" target="_self" >NNS_G2dFontGetGlyph</A></TH>
+			<TD> 文字コードからグリフデータを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetGlyphImage.html" target="_self" >NNS_G2dFontGetGlyphImage</A></TH>
+			<TD> 文字コードからグリフイメージを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCharWidth.html" target="_self" >NNS_G2dFontGetCharWidth</A></TH>
+			<TD> 文字コードから文字幅を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCharWidths.html" target="_self" >NNS_G2dFontGetCharWidths</A></TH>
+			<TD> 文字コードから文字幅情報を取得します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontFindGlyphIndex.html" target="_self" >NNS_G2dFontFindGlyphIndex</A></TH>
+			<TD> 文字コードからグリフインデックスを探します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetGlyphIndex.html" target="_self" >NNS_G2dFontGetGlyphIndex</A></TH>
+			<TD> 文字コードからグリフインデックスを取得します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetGlyphImageFromIndex.html" target="_self" >NNS_G2dFontGetGlyphImageFromIndex</A></TH>
+			<TD> グリフインデックスからグリフイメージを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetGlyphFromIndex.html" target="_self" >NNS_G2dFontGetGlyphFromIndex</A></TH>
+			<TD> グリフインデックスからグリフデータを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCharWidthFromIndex.html" target="_self" >NNS_G2dFontGetCharWidthFromIndex</A></TH>
+			<TD> グリフインデックスから文字幅を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetCharWidthsFromIndex.html" target="_self" >NNS_G2dFontGetCharWidthsFromIndex</A></TH>
+			<TD> グリフインデックスから文字幅情報を取得します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetStringWidth.html" target="_self" >NNS_G2dFontGetStringWidth</A></TH>
+			<TD> 文字列の1行分の描画幅を計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetTextWidth.html" target="_self" >NNS_G2dFontGetTextWidth</A></TH>
+			<TD> 文字列を描画した場合の幅を計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetTextHeight.html" target="_self" >NNS_G2dFontGetTextHeight</A></TH>
+			<TD> 文字列を描画した場合の高さを計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNS_G2dFontGetTextRect.html" target="_self" >NNS_G2dFontGetTextRect</A></TH>
+			<TD> 文字列を描画した場合の幅と高さを計算します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="Font/NNSG2dCharWidths.html" target="_self" >NNSG2dCharWidths</A></TH>
+			<TD> グリフの幅情報を格納します。。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNSG2dGlyph.html" target="_self" >NNSG2dGlyph</A></TH>
+			<TD> グリフのもつデータを格納します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="Font/NNSG2dTextRect.html" target="_self" >NNSG2dTextRect</A></TH>
+			<TD> 矩形の大きさを表します。 </TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<H3><A name="CharCanvas">文字描画</A>
+<A href="CharCanvas/CharCanvas_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasInitForBG.html" target="_self" >NNS_G2dCharCanvasInitForBG</A></TH>
+			<TD> BG用にCharCanvasを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasInitForOBJ1D.html" target="_self" >NNS_G2dCharCanvasInitForOBJ1D</A></TH>
+			<TD> 1次元マッピングのOBJ用にCharCanvasを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasInitForOBJ2DRect.html" target="_self" >NNS_G2dCharCanvasInitForOBJ2DRect</A></TH>
+			<TD> OBJキャラクタメモリ上の矩形領域用にCharCanvasを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasCalcCellDataSizeXXX.html" target="_self" >NNS_G2dCharCanvasCalcCellDataSize1D</A></TH>
+			<TD> NNS_G2dCharCanvasMakeCell1D() の第一引数として渡すバッファのサイズを計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasCalcCellDataSizeXXX.html" target="_self" >NNS_G2dCharCanvasCalcCellDataSize2DRect</A></TH>
+			<TD> NNS_G2dCharCanvasMakeCell2DRect() の第一引数として渡すバッファのサイズを計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasMakeCellXXX.html" target="_self" >NNS_G2dCharCanvasMakeCell1D</A></TH>
+			<TD> NNS_G2dCharCanvasInitForOBJ1D() で初期化した CharCanvas を表示するセルを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasMakeCellXXX.html" target="_self" >NNS_G2dCharCanvasMakeCell2DRect</A></TH>
+			<TD> NNS_G2dCharCanvasInitForOBJ2DRect() で初期化した CharCanvas を表示するセルを構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasDrawChar.html" target="_self" >NNS_G2dCharCanvasDrawChar</A></TH>
+			<TD> 文字コードを指定して文字を描画します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasDrawGlyph.html" target="_self" >NNS_G2dCharCanvasDrawGlyph</A></TH>
+			<TD> グリフを指定して文字を描画します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasClear.html" target="_self" >NNS_G2dCharCanvasClear</A></TH>
+			<TD> CharCanvas中のキャラクタを指定した色で塗りつぶします。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCharCanvasClearArea.html" target="_self" >NNS_G2dCharCanvasClearArea</A></TH>
+			<TD> CharCanvas中のキャラクタの指定範囲を指定した色で塗りつぶします。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dMapScrToCharText.html" target="_self" >NNS_G2dMapScrToCharText</A></TH>
+			<TD> 指定領域のスクリーンをキャラクタへ1対1に対応させます。テキストBG用です。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dMapScrToCharAffine.html" target="_self" >NNS_G2dMapScrToCharAffine</A></TH>
+			<TD> 指定領域のスクリーンをキャラクタへ1対1に対応させます。アフィンBG用です。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dMapScrToChar256x16Pltt.html" target="_self" >NNS_G2dMapScrToChar256x16Pltt</A></TH>
+			<TD> 指定領域のスクリーンをキャラクタへ1対1に対応させます。アフィン拡張BGの256x16パレットタイプ用です。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCalcRequiredOBJXXX.html" target="_self" >NNS_G2dCalcRequireOBJ1D</A></TH>
+			<TD> <code>NNS_G2dArrangeOBJ1D()</code>が必要とする OBJ の数を求めます。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dCalcRequiredOBJXXX.html" target="_self" >NNS_G2dCalcRequireOBJ2DRect</A></TH>
+			<TD> <code>NNS_G2dArrangeOBJ2DRect()</code>が必要とする OBJ の数を求めます。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dArrangeOBJXXX.html" target="_self" >NNS_G2dArrangeOBJ1D</A></TH>
+			<TD> <code>NNS_G2dCharCanvasInitForOBJ1D()</code> で初期化した CharCanvas が書き出すキャラクタを適切に表示できるように OBJ を並べます。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/NNS_G2dArrangeOBJXXX.html" target="_self" >NNS_G2dArrangeOBJ2DRect</A></TH>
+			<TD> <code>NNS_G2dCharCanvasInitForOBJ2DRect()</code> で初期化した CharCanvas が書き出すキャラクタを適切に表示できるように OBJ を並べます。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="CharCanvas/RequiredOBJTable.html" target="_self" >NNS_G2dCalcRequireOBJ* の計算結果表</A></TH>
+			<TD> <code>NNS_G2dArrangeOBJ*</code> が必要とするOBJの数を表にしたものです。 </TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<H3><A name="TextCanvas">文字列描画</A>
+<A href="TextCanvas/TextCanvas_Overview.html">(概要)</A>
+</H3>
+<TABLE border="1" width="100%">
+	<TBODY>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasInit.html" target="_self" >NNS_G2dTextCanvasInit</A></TH>
+			<TD> TextCanvas を構築します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetCharCanvas.html" target="_self" >NNS_G2dTextCanvasGetCharCanvas</A></TH>
+			<TD> TextCanvas の描画対象の CharCanvas を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasSetCharCanvas.html" target="_self" >NNS_G2dTextCanvasSetCharCanvas</A></TH>
+			<TD> TextCanvas の描画対象の CharCanvas を設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetFont.html" target="_self" >NNS_G2dTextCanvasGetFont</A></TH>
+			<TD> TextCanvas が文字描画に用いるフォントを取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasSetFont.html" target="_self" >NNS_G2dTextCanvasSetFont</A></TH>
+			<TD> TextCanvas が文字描画に用いるフォントを設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetHSpace.html" target="_self" >NNS_G2dTextCanvasGetHSpace</A></TH>
+			<TD> TextCanvas が文字列の描画時に用いる文字間を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasSetHSpace.html" target="_self" >NNS_G2dTextCanvasSetHSpace</A></TH>
+			<TD> TextCanvas が文字列の描画時に用いる文字間を設定します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetVSpace.html" target="_self" >NNS_G2dTextCanvasGetVSpace</A></TH>
+			<TD> TextCanvas が文字列の描画時に用いる行間を取得します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasSetVSpace.html" target="_self" >NNS_G2dTextCanvasSetVSpace</A></TH>
+			<TD> TextCanvas が文字列の描画時に用いる行間を設定します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetStringWidth.html" target="_self" >NNS_G2dTextCanvasGetStringWidth</A></TH>
+			<TD> 文字列の1行分の描画幅を計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetTextWidth.html" target="_self" >NNS_G2dTextCanvasGetTextWidth</A></TH>
+			<TD> 文字列を描画した場合の幅を計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetTextHeight.html" target="_self" >NNS_G2dTextCanvasGetTextHeight</A></TH>
+			<TD> 文字列を描画した場合の高さを計算します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasGetTextRect.html" target="_self" >NNS_G2dTextCanvasGetTextRect</A></TH>
+			<TD> 文字列を描画した場合の幅と高さを計算します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasDrawString.html" target="_self" >NNS_G2dTextCanvasDrawString</A></TH>
+			<TD> 文字列を1行分描画します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasDrawText.html" target="_self" >NNS_G2dTextCanvasDrawText</A></TH>
+			<TD> 文字列を描画します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasDrawTextRect.html" target="_self" >NNS_G2dTextCanvasDrawTextRect</A></TH>
+			<TD> 矩形を基準に位置合わせを行って文字列を描画します </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2dTextCanvasDrawTaggedText.html" target="_self" >NNS_G2dTextCanvasDrawTaggedText</A></TH>
+			<TD> 文字装飾命令を含んだ文字列を描画します。 </TD>
+		</TR>
+
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNSG2dTagCallback.html" target="_self" >NNSG2dTagCallback</A></TH>
+			<TD> タグの処理を行うコールバック関数を定義します。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNSG2dTagCallbackInfo.html" target="_self" >NNSG2dTagCallbackInfo</A></TH>
+			<TD> <code>NNSG2dTagCallback</code> に渡される描画情報構造体です。 </TD>
+		</TR>
+		<TR>
+			<TH width="25%"><A href="TextCanvas/NNS_G2D_UNICODE.html" target="_self" >NNS_G2D_UNICODE</A></TH>
+			<TD> 文字列描画ルーチンの文字種を切り替えます。 </TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

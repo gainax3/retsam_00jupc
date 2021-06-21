@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATHSHA1Context</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATHSHA1Context</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/math/dgt.h&gt;<BR>
+typedef struct MATHSHA1Context MATHSHA1Context;
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>要素</H2>
+<P>構造体の内部へ直接アクセスしないでください。</P>
+<H2>説明</H2>
+<P>SHA-1 を計算するために使用するコンテキスト構造体です。サイズは 104 バイトです。<BR>
+<A href="MATH_SHA1Init.html">MATH_SHA1Init</A> 関数で初期化した上で、
+入力データを <A href="MATH_SHA1Update.html">MATH_SHA1Update</A> 関数で与え、
+<A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A> 関数でメッセージダイジェスト値を取り出します。<BR>
+<BR>
+SHA-1 はメッセージダイジェスト値を求めるためのアルゴリズムです。詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 3174 を参照してください。<BR>
+</P>
+
+<h2>参照</h2>
+<P><A href="MATH_SHA1Init.html">MATH_SHA1Init</A>, <A href="MATH_SHA1Update.html">MATH_SHA1Update</A>, <A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 サイズに関する説明を追加<BR>
+2005/04/01 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>nitrorun</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">nitrorun</H1>
+<H2>説明</H2>
+<P>　<CODE>nitrorun</CODE> は、<CODE>buryarg</CODE> と<CODE>loadrun</CODE> を起動し、コマンドラインから引数を与え、srl ファイルの引数領域を書き換えて IS-NITRO-EMULATOR 等にダウンロードして実行するという一連の動作を行なうためのスクリプトです。</P>
+<P>具体的には、</P>
+<BLOCKQUOTE><CODE>buryarg --stdout ... | loadrun --stdin</CODE></BLOCKQUOTE>
+<P>と、<CODE><A href="buryarg.html">buryarg</A></CODE> と <CODE><A href="loadrun.html">loadrun</A></CODE> をパイプで結合し、<CODE>buryarg</CODE> の出力を標準出力に、<CODE>loadrun</CODE> の入力を標準入力から と指定することで実現しています。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% nitrorun [OPTION]... [[NITROSRLFILE] [ARGUMENT]...]</CODE></P>
+<P><CODE>NITROSRLFILE</CODE> は、実行する ROM ファイルです。srl ファイルを指定できます。</P>
+<P><CODE><B>-h</B></CODE> または <CODE><B>--help</B></CODE> オプションは、簡単な使い方を表示します。</P>
+<P><B><CODE>--bopt</CODE></B> オプションは、<CODE>buryarg</CODE> コマンドに渡すオプションを指定します。但し <CODE>--stdin</CODE> オプションは予め付けられるので記述する必要はありません。</P>
+<P><B><CODE>--lopt</CODE></B> オプションは、<CODE>loadrun</CODE> コマンドに渡すオプションを指定します。但し、<CODE>--stdin</CODE> オプションは予め付けられるので記述する必要はありません。</P>
+<P><CODE><B>-v</B></CODE> または <CODE><B>--verbose</B></CODE> オプションを指定すると、詳細な動作の説明を表示します。</P>
+<P><CODE><B>-n</B></CODE> または <CODE><B>--noexec</B></CODE> オプションは、指定するとコマンドの実行を行ないません。<CODE>-v</CODE> オプションと併せて使用することで、どのようなコマンドが実行されるかを確認することが可能です。</P>
+<P><CODE><B>--version</B></CODE> オプションは、コマンドのバージョンを表示します。</P>
+<P><B><BR>
+<BR>
+<BR>
+(例1)</B></P>
+<BLOCKQUOTE><CODE>nitrorun  <FONT color="#ff6600">main.srl</FONT> <FONT color="#cc0099">100 300</FONT></CODE></BLOCKQUOTE>
+<BLOCKQUOTE>は、</BLOCKQUOTE>
+<BLOCKQUOTE><CODE>buryarg --stdout <FONT color="#ff6600">main.srl</FONT> <FONT color="#cc0099">100 300</FONT> | loadrun --stdin</CODE></BLOCKQUOTE>
+<BLOCKQUOTE>というコマンドが実行されます。</BLOCKQUOTE>
+<P><B>(例2)</B></P>
+<BLOCKQUOTE><CODE>nitrorun --bopt　&quot;<FONT color="#0066ff">-f rep.dat</FONT>&quot; --lopt &quot;<FONT color="#ff0033">-t 300 -a \&quot;ABORT\&quot;</FONT> &quot; <FONT color="#ff6600">main.srl</FONT> <FONT color="#cc0099">100 300</FONT></CODE></BLOCKQUOTE>
+<BLOCKQUOTE>は、</BLOCKQUOTE>
+<BLOCKQUOTE><CODE>buryarg --stdout <FONT color="#0066ff">-f rep.dat</FONT> <FONT color="#ff6600">main.srl</FONT> <FONT color="#cc0099">100 300</FONT> | loadrun --stdin <FONT color="#ff0033">-t 300 -a &quot;ABORT&quot;</FONT></CODE></BLOCKQUOTE>
+<BLOCKQUOTE><CODE>というコマンドが実行されます。</CODE></BLOCKQUOTE>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/nitrorun</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="buryarg.html">buryarg</A>, <A href="loadrun.html">loadrun</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/31 初版作成</P>
+</BODY>
+</HTML>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="CONTENT-TYPE" content="text/html; charset=Shift_JIS">
+	<TITLE>Graphics 2D ライブラリ モジュール一覧</TITLE>
+	<BASE TARGET="main">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<META NAME="CREATED" CONTENT="20041104;9422305">
+	<META NAME="CHANGEDBY" CONTENT="木谷 寿一">
+	<META NAME="CHANGED" CONTENT="20041104;9575068">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<LINK rel="stylesheet" href="../../css/apilist.css">
+	<STYLE>
+	<!--
+		TD P { color: #000000; font-family: "Arial"; font-size: 10pt; font-style: normal; font-weight: medium; text-align: left ;}
+		H1 { color: #000000 ;}
+		P { color: #000000; font-family: "Arial"; font-size: 10pt ;}
+		H3 { margin-top: 0.85cm; margin-bottom: 0.11cm; color: #000000; font-size: 12pt ;}
+		TH P { color: #000000; font-family: "Arial"; font-size: 10pt; font-style: normal; font-weight: medium; text-align: left ;}
+		A:link { text-decoration: none ;}
+		A:visited { text-decoration: none ;}
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ja-JP" TEXT="#000000" BGCOLOR="#ffffff" DIR="LTR">
+<H1>描画関連モジュール</H1>
+
+<IMG src="g2dmod_draw.png" name="図1" align="BOTTOM" width="720" height="540" border="0">
+
+<H3><A NAME="structure"></A><FONT COLOR="#000000"></FONT><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><BR><FONT FACE="Arial, sans-serif">3D
+</FONT></SPAN></FONT>グラフィックスエンジン描画関連</H3>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#SoftwareSprite" TARGET="_self">ソフトウェアスプライト</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">3D </SPAN>グラフィックスエンジンを使用したスプライト描画機能を提供するモジュールです。</P>
+		</TD>
+	</TR>
+	<TR>
+		<TH WIDTH=25%>
+			<P><SPAN LANG="en-US"><A HREF="../list_g2d.html#OAMSoftwareSpriteDraw" TARGET="_self">OAMソフトウェアスプライト描画</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">OAM</SPAN>を<SPAN LANG="en-US">3D
+			</SPAN>グラフィックスエンジンを使用して描画します。下請けモジュールとしてソフトウェアスプライトモジュールを使用します。</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3><A NAME="structure1"></A><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><FONT FACE="Arial, sans-serif">2D
+</FONT></SPAN></FONT>グラフィックスエンジン描画関連</H3>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TH WIDTH=25%>
+			<P><SPAN LANG="en-US"><A HREF="../list_g2d.html#Oam" TARGET="_self">OAMマネージャ</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">2D </SPAN>グラフィックスエンジン（<SPAN LANG="en-US">OAM</SPAN>）の管理を行います。</P>
+		</TD>
+	</TR>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#OamEx" TARGET="_self">拡張<SPAN lang="en-US">OAMマネージャ</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">2D
+			</SPAN>グラフィックスエンジン（<SPAN LANG="en-US">OAM</SPAN>）の管理を行います。プライオリティの指定。多数<SPAN LANG="en-US">OBJ</SPAN>の時分割表示などの機能を持ちます。下請けモジュールとして<SPAN LANG="en-US">OAM</SPAN>マネージャを使用します。</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3><A NAME="structure2"></A><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><FONT FACE="Arial, sans-serif">VRAM</FONT></SPAN></FONT>関連</H3>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#ImageLoad" TARGET="_self">画像イメージロード関連</A></P>
+		</TH>
+		<TD>
+			<P>画像データの読み込み、管理を行います。</P>
+		</TD>
+	</TR>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#CellTransfer" TARGET="_self">セル<SPAN lang="en-US">VRAM転送状態マネージャ</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">VRAM</SPAN>転送セルアニメーションの転送処理状態を管理するモジュールです。実際の転送処理は<SPAN LANG="en-US">VRAM</SPAN>転送マネージャ<SPAN LANG="en-US">(Gfd)</SPAN>に処理を委譲しています。</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3><A NAME="structure3"></A><FONT FACE="Times New Roman, serif"><SPAN LANG="en-US"><FONT FACE="Arial, sans-serif">BG</FONT></SPAN></FONT>関連</H3>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TH WIDTH=25%>
+			<P><SPAN LANG="en-US"><A HREF="../list_g2d.html#Bg" TARGET="_self">BG関連</A></P>
+		</TH>
+		<TD>
+			<P><SPAN LANG="en-US">BG</SPAN>描画を設定、管理します。</P>
+		</TD>
+	</TR>
+</TABLE>
+<H3><A NAME="structure4"></A>上位描画関連</H3>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#RendererCore" TARGET="_self">レンダラコア</A></P>
+		</TH>
+		<TD>
+			<P>各モジュールを統合して、描画機能を実現するモジュールです。基本的な描画機能を提供します。ユーザが描画処理を細かくカスタマイズしたい場合、簡単な描画処理を高速に処理したい場合、などの使用を想定しています。</P>
+		</TD>
+	</TR>
+	<TR>
+		<TH WIDTH=25%>
+			<P><A HREF="../list_g2d.html#Renderer" TARGET="_self">レンダラ</A></P>
+		</TH>
+		<TD>
+			<P>描画機能を実現するモジュールです。内部で、レンダラコアモジュールを使用しており、より上位レベルのAPIを提供します。</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><SPAN LANG="en-US"><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></SPAN><BR><BR>
+</P>
+</BODY>
+</HTML>

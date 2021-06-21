@@ -1,0 +1,46 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - libraries - spi
+# File:     Makefile.CORE
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: Makefile.CORE,v $
+# Revision 1.1  2005/05/26 02:50:14  terui
+# ライブラリを作成するコア部分をMakefileから切り出して新規追加
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+SUBDIRS		=
+
+#----------------------------------------------------------------------------
+
+# build ARM & THUMB libraries
+NITRO_CODEGEN_ALL	?= True
+
+INCDIR			?= ../include
+
+SRCS			= tp.c mic.c pm.c
+
+TARGET_LIB		= libspi$(TS_VERSION)$(NITRO_LIBSUFFIX).a
+
+include	$(NITROSDK_ROOT)/build/buildtools/commondefs
+
+INSTALL_TARGETS		= $(TARGETS)
+INSTALL_DIR		= $(NITRO_INSTALL_LIBDIR)
+
+#----------------------------------------------------------------------------
+
+do-build:		$(TARGETS)
+
+include	$(NITROSDK_ROOT)/build/buildtools/modulerules
+
+
+#===== End of Makefile =====

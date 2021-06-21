@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNSSndArcPlayerInfo</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAEMWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNSSndArcPlayerInfo</h1>
+<h2>定義</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndArcPlayerInfo
+{
+    u8 seqMax;
+    u8 padding;
+    u16 allocChBitFlag;
+    u32 heapSize;
+} NNSSndArcPlayerInfo;
+</code></pre></dd>
+<dd><pre class="funcprototype"></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDASNWT"></a>
+      <h2>要素</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>seqMax</code></strong></em></td>
+<td>プレイヤーのシーケンス最大同時再生数です。</td>
+</tr>
+<tr>
+<td><em><strong><code>padding</code></strong></em></td>
+<td>パディングです。</td>
+</tr>
+<tr>
+<td><em><strong><code>allocChBitFlag</code></strong></em></td>
+<td>確保可能なチャンネルのビットフラグです。</td>
+</tr>
+<tr>
+<td><em><strong><code>heapSize</code></strong></em></td>
+<td>プレイヤーヒープのサイズです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAWOWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ中のプレイヤー情報構造体です。 
+</p>
+      <p>
+<tt class="function"><a href="NNS_SndArcGetPlayerInfo.html">NNS_SndArcGetPlayerInfo</a></tt>関数を使って、
+サウンドアーカイブからこの構造体を取得することができます。
+</p>
+      <p>
+<tt class="function"><a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></tt>関数では、
+この情報に基づいて、プレイヤーをセットアップします。
+</p>
+      <p>
+<em><strong><code>allocChBitFlag</code></strong></em>は、そのプレイヤーで再生するシーケンスが確保できるチャンネルを、
+チャンネル番号のビットフラグで指定します。
+下位ビットから順に、チャンネル0、チャンネル1、チャンネル2、、、を表し、
+ビットが立っているチャンネルからのみ確保することができます。
+値が0の場合は無制限となり、全てのチャンネルから確保することができます。
+</p>
+
+       <p>
+なお、チャンネルは16個ありますが、
+下記のように、チャンネル番号に応じてチャンネルの機能が異なっています。
+</p>
+
+      
+      <div class="table"><a name="IDAVPWT"></a><p class="title"><b>表 . チャンネルの番号別機能</b></p>
+<table summary="チャンネルの番号別機能" border="1">
+<colgroup><col><col></colgroup>
+<thead>
+<tr>
+<th>チャンネル番号</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, 2</td>
+<td>PCM/ADPCMを再生できます。このチャンネルの出力をサウンドキャプチャの入力とすることもできます。</td>
+</tr>
+<tr>
+<td>1, 3</td>
+<td>PCM/ADPCMを再生できます。サウンドキャプチャとタイマーを共用しているため、サウンドキャプチャを使うときは、サウンドキャプチャの出力チャンネルとしてしか使えません。</td>
+</tr>
+<tr>
+<td>4 ～ 7</td>
+<td>PCM/ADPCMを再生できます。シーケンス再生で波形データを再生するときには優先的に使っています。</td>
+</tr>
+<tr>
+<td>8 ～ 13</td>
+<td>PCM/ADPCMまたは、PSG矩形波を再生できます。</td>
+</tr>
+<tr>
+<td>14, 15</td>
+<td>PCM/ADPCMまたは、ホワイトノイズを再生できます。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+      
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcGetPlayerInfo.html">NNS_SndArcGetPlayerInfo</a>, <a href="NNS_SndArcPlayerSetup.html">NNS_SndArcPlayerSetup</a></p>
+<h2>履歴</h2>
+<p>2005/01/05 allocChBitFlagメンバの追加<br>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_SetMasterVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAFLWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_SetMasterVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_SetMasterVolume( int <var>volume</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0MWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>マスターボリューム値です。値の範囲は、0～127です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAJNWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQNWT"></a>
+      <h2>説明</h2>
+      <p>
+マスターボリュームを変更します。
+</p>
+      <p>
+マスターボリューム値<em><strong><code>volume</code></strong></em>のデフォルトは、127です。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
+</p>
+<p>
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
+<h2>履歴</h2>
+<p>2005/02/17 ARM7コマンド処理の注意書き追加<br>2004/07/20 初版<br></p>
+</div>
+</body>
+</html>

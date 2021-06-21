@@ -1,0 +1,72 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>SOC_InetPtoN</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">SOC_InetPtoN</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/soc.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int SOC_InetPtoN ( int <strong><em>af</em></strong>, const char* <strong><em>src</em></strong>, void* <strong><em>dst</em></strong> );</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><strong><em>af</em></strong></code></td>
+    <td>アドレスのファミリー(<code>SOC_PF_INET</code>である必要があります)。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>src</strong></em></code></td>
+    <td>渡された文字列へのポインタ。(例 <tt><code>
+    ddd.ddd.ddd.ddd</code></tt>)</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>dst</strong></em></code></td>
+    <td>数値形式のアドレスを記録するバッファへのポインタ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td><code>0</code></td>
+    <td>成功。</td>
+  </tr>
+  <tr>
+    <td><code>1</code></td>
+    <td><code><em><strong>src</strong></em></code> は有効なIPv4アドレス表記ではありません。</td>
+  </tr>
+  <tr>
+    <td><code>SOC_EAFNOSUPPORT</code></td>
+    <td><code><em><strong>af</strong></em></code>は<code>SOC_PF_INET</code>.ではありません。</td>
+  </tr>
+</table>
+
+<h2>説明</h2>
+
+<p>IP アドレスをドット10進記法からバイナリアドレスに変換します。</p>
+
+<h2>参照</h2>
+<p>
+<code><a href="SOC_InetAtoN.html">SOC_InetAtoN</a></code>,
+<code><a href="SOC_InetNtoA.html">SOC_InetNtoA</a></code>,
+<code><a href="SOC_InetNtoP.html">SOC_InetNtoP</a></code>
+</p>
+<H2>履歴</H2>
+<P>
+2005/09/13 初版</P>
+</body>
+</html>

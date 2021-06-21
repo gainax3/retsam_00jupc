@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBT_RequestSync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBT_RequestSync</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL WBT_RequestSync(u16 target, WBTCallback callback);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>target</STRONG></EM></TD>
+      <TD width="87%">同期を取る対象のaidビットマップ<br>
+	  子機の場合、親機である "1" のみ指定可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">コマンド完了時に通知を受ける<A href="../wbt_callback_type.html">WBTCallback</A>形式の関数
+	  <br>このコールバックは<a href="../child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</a>関数の内部から呼び出されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>現在処理中のコマンドが無ければコマンドを発行して TRUE を、<br>
+そうでないなら何もせず FALSE を返します。</p>
+
+<H2>説明</H2>
+<p>指定された対象機器と通信の同期を取ります。<br>
+この同期は親機 - 子機間で行われ、親機で設定されている送受信パケットサイズが子機へコピーされます。<br>
+<br>
+<font color="#800000">現在まだ処理中のコマンドがある場合、呼び出しは失敗します。</font><br>
+<br>
+<font color="#800000">
+各子機はこのサイズ設定に基づいて転送単位サイズやビットマップバッファサイズを計算するので、<br>
+<A href="../command/WBT_GetBlock.html">WBT_GetBlock</A>関数の呼び出しの前に少なくとも1回はこの関数を呼び出す必要があります。<br>
+</font>
+<br>
+</p>
+<H2>参照</H2>
+<A href="WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
+<A href="WBT_GetBlock.html">WBT_GetBlock</A>
+<A href="WBT_PutUserData.html">WBT_PutUserData</A>
+<br>
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックがWBT_MpChildRecvHook関数から呼び出される旨を補足<br>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

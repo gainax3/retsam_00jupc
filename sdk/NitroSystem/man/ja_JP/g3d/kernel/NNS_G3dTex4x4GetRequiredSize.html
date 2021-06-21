@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dTex4x4GetRequiredSize</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dTex4x4GetRequiredSize</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>u32
+NNS_G3dTex4x4GetRequiredSize(
+    const NNSG3dResTex* pTex
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pTex</STRONG></EM></TD>
+      <TD width="87%">テクスチャリソースへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>４×４テクセル圧縮テクスチャをVRAMに格納する為に必要なサイズ。</P>
+
+<H2>説明</H2>
+<P><I><B>pTex</B></I>で指定されたテクスチャリソース内に存在する４×４テクセル圧縮テクスチャを VRAMに格納する場合に必要となるサイズを返します。</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dTexGetRequiredSize.html">NNS_G3dTexGetRequiredSize</A>,
+<A href="NNS_G3dPlttGetRequiredSize.html">NNS_G3dPlttGetRequiredSize</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

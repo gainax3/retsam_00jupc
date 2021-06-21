@@ -1,0 +1,775 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_GetLastError*</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_GetLastError*</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+DWCError DWC_GetLastError( int* errorCode );
+
+DWCError DWC_GetLastErrorEx( int* errorCode, DWCErrorType* errorType );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  最後の通信エラーの情報を取得します。
+		  エラー状態に入るとDWCライブラリは、ほとんどすべての関数を受け付けなくなります。
+		  エラー状態から復帰するためには、適切なエラー処理を行ったのち<a href="DWC_ClearError.html">DWC_ClearError</a>関数を呼び出してください。
+		</P>
+		<p>
+		  エラーコード格納先ポインタの指すバッファに、アプリケーションがエラー発生時に表示すべきエラーコードが返ります。
+		  エラーコードは負の値で返りますので、符号を反転し、正の値にしてから画面に表示してください。<BR>
+		  ただし、エラーコードが 0 の場合やエラー処理タイプが DWC_ETYPE_LIGHT の場合は、ゲーム固有の表示のみで、エラーコード表示は必要ありません。
+		</p>
+		<p>
+		  エラー処理タイプ（errorType）を同時に取得する<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数の使用をお勧めします。<BR>
+		  errorType には、エラー発生後に必要な復帰処理やエラーコード表示に関する情報が格納されるので、この値ごとに定型的なエラー処理を作成することができます。
+		</p>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>errorCode</CODE></STRONG></EM></TD>
+					<TD width="75%">エラーコード格納先ポインタ。取得の必要がない場合は、NULLを指定してください</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>errorType</CODE></STRONG></EM></TD>
+					<TD width="75%">エラー処理タイプ格納先ポインタ。取得の必要がない場合は、NULLを指定してください</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+		
+		<h3>エラーコード(errorCode)</h3>
+		
+		<h5>目次</h5>
+		<p>
+		<a href="#ecode1">GameSpy SDK 関連(-60000 ～ -99999)</a><BR>
+		<a href="#ecode3">ダウンロード機能関連(-31000 ～ -31999)</a><BR>
+		<a href="#ecode4">不正文字列チェック機能関連(-33000 ～ -33999)</a><BR>
+		<a href="#ecode5">認証サーバ関連(-20000 ～ -29999)</a><BR>
+		<a href="#ecode6">インターネット接続処理関連(-50000 ～ -59999)</a><BR><BR>
+		</p>
+		<BR>
+		
+		<h4><a name="ecode1">GameSpy SDK 関連(-60000 ～ -99999)</a></h4>
+		<p>
+		GameSpy SDK(GameSpyサーバの機能を利用するライブラリ)に関連するエラーコードは、次の3種類の値の合計で表現されます。<BR>
+		「エラー処理が起こったシーケンス」＋「エラーの発生した GameSpy SDK 種別」＋「エラーの詳細情報」<BR>
+		<a href="FriendsMatch.html">FriendsMatchライブラリ</a>を使用しない場合はGameSpy SDK 関連のエラーは発生しません。
+		</p>
+		<h5>エラー処理が起こったシーケンス</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD width="30%"><EM><STRONG><CODE>DWC_ECODE_SEQ_LOGIN</CODE></STRONG></EM></TD>
+			  <TD align="right" width="10%"><EM><STRONG><CODE>-60000</CODE></STRONG></EM></TD>
+			  <TD>ログイン処理でのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_SEQ_FRIEND</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-70000</CODE></STRONG></EM></TD>
+			  <TD>友達管理処理でのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_SEQ_MATCH</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-80000</CODE></STRONG></EM></TD>
+			  <TD>マッチメイク処理でのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_SEQ_ETC</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-90000</CODE></STRONG></EM></TD>
+			  <TD>上記以外の処理でのエラー</TD>
+			</TR>  
+		  </TBODY>
+		</TABLE>
+		<h5>エラーの発生したGameSpySDK種別</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD width="30%"><EM><STRONG><CODE>DWC_ECODE_GS_GP</CODE></STRONG></EM></TD>
+			  <TD width="10%"><EM><STRONG><CODE>-1000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy GPのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_PERS</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-2000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy Persistentのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_STATS</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-3000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy Statsのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_QR2</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-4000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy QR2のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_SB</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-5000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy ServerBrowsingのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_NN</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-6000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy NatNegotiationのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_GT2</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-7000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy gt2のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_HTTP</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-8000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy HTTPのエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_GS_ETC</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-9000</CODE></STRONG></EM></TD>
+			  <TD>GameSpy その他のSDKのエラー</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		<h5>エラーの詳細情報</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD width="30%"><EM><STRONG><CODE>DWC_ECODE_TYPE_NETWORK</CODE></STRONG></EM></TD>
+			  <TD width="10%"><EM><STRONG><CODE>-10</CODE></STRONG></EM></TD>
+			  <TD>ネットワーク障害</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_SERVER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-20</CODE></STRONG></EM></TD>
+			  <TD>GameSpyサーバ障害</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_DNS</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-30</CODE></STRONG></EM></TD>
+			  <TD>DNS障害</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_DATA</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-40</CODE></STRONG></EM></TD>
+			  <TD>不正なデータを受信</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_SOCKET</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-50</CODE></STRONG></EM></TD>
+			  <TD>ソケット通信エラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_BIND</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-60</CODE></STRONG></EM></TD>
+			  <TD>ソケットのバインドエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_TIMEOUT</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-70</CODE></STRONG></EM></TD>
+			  <TD>タイムアウト発生</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PEER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-80</CODE></STRONG></EM></TD>
+			  <TD>１対１の通信で不具合</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_CONN_OVER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-100</CODE></STRONG></EM></TD>
+			  <TD>コネクション数オーバ</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_STATS_AUTH</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-200</CODE></STRONG></EM></TD>
+			  <TD>STATSサーバログインエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_STATS_LOAD</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-210</CODE></STRONG></EM></TD>
+			  <TD>STATSサーバデータロードエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_STATS_SAVE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-220</CODE></STRONG></EM></TD>
+			  <TD>STATSサーバデータセーブエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_NOT_FRIEND</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-400</CODE></STRONG></EM></TD>
+			  <TD>指定された相手が相互に登録された友達ではない</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_OTHER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-410</CODE></STRONG></EM></TD>
+			  <TD>相手が通信切断した（主にサーバクライアントマッチメイク時）</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_MUCH_FAILUR</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-420</CODE></STRONG></EM></TD>
+			  <TD>NATネゴシエーションに規定回数以上失敗した
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_SC_CL_FAIL</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-430</CODE></STRONG></EM></TD>
+			  <TD>サーバクライアントマッチメイク・クライアントDSの接続失敗
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_CLOSE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-600</CODE></STRONG></EM></TD>
+			  <TD>コネクションクローズ時のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_TRANS_HEADER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-610</CODE></STRONG></EM></TD>
+			  <TD>ありえない受信ステートでReliableデータを受信した時のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_TRANS_BODY</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-620</CODE></STRONG></EM></TD>
+			  <TD>受信バッファがオーバーフローした時のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_AC_FATAL</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-700</CODE></STRONG></EM></TD>
+			  <TD>自動接続処理中のACでのエラーグループ。この場合下位桁は専用のstate値。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_OPEN_FILE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-800</CODE></STRONG></EM></TD>
+			  <TD>GHTTPファイルオープン失敗</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_INVALID_POST</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-810</CODE></STRONG></EM></TD>
+			  <TD>GHTTP無効な送信</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_REQ_INVALID</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-820</CODE></STRONG></EM></TD>
+			  <TD>GHTTPファイル名等無効</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_UNSPECIFIED</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-830</CODE></STRONG></EM></TD>
+			  <TD>GHTTP詳細不明のエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_BUFF_OVER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-840</CODE></STRONG></EM></TD>
+			  <TD>GHTTPバッファオーバーフロー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PARSE_URL</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-850</CODE></STRONG></EM></TD>
+			  <TD>GHTTPURLの解析エラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_BAD_RESPONSE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-860</CODE></STRONG></EM></TD>
+			  <TD>GHTTPサーバからのレスポンス解析エラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_REJECTED</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-870</CODE></STRONG></EM></TD>
+			  <TD>GHTTPサーバからのリクエスト等拒否</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_FILE_RW</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-880</CODE></STRONG></EM></TD>
+			  <TD>GHTTPローカルファイルRead/Writeエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_INCOMPLETE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-890</CODE></STRONG></EM></TD>
+			  <TD>GHTTPダウンロード中断</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_TO_BIG</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-900</CODE></STRONG></EM></TD>
+			  <TD>GHTTPファイルサイズが大きすぎてダウンロード不可</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ENCRYPTION</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-910</CODE></STRONG></EM></TD>
+			  <TD>GHTTPエンクリプションエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ALLOC</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-1</CODE></STRONG></EM></TD>
+			  <TD>メモリ確保失敗</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PARAM</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-2</CODE></STRONG></EM></TD>
+			  <TD>パラメータエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_SO_SOCKET</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-3</CODE></STRONG></EM></TD>
+			  <TD>SOのエラーが原因のGameSpy gt2のソケットエラー</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_NOT_INIT</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-4</CODE></STRONG></EM></TD>
+			  <TD>インターネット接続の初期化がされていない</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_DUP_INIT</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-5</CODE></STRONG></EM></TD>
+			  <TD>ライブラリが二度初期化された</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_WM_INIT</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-6</CODE></STRONG></EM></TD>
+			  <TD>WMの初期化に失敗した</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_UNEXPECTED</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-9</CODE></STRONG></EM></TD>
+			  <TD>予期しない状態、もしくはUnkwonなGameSpyエラー発生</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		
+		
+		
+		<h4><a name="ecode3">ダウンロード機能関連(-31000 ～ -31999)</h4>
+		<p>
+		ダウンロード機能に関連するエラーコードは、次の3種類の値の合計で表現されます。<BR>
+		DWC_ECODE_SEQ_ADDINS(-30000)＋DWC_ECODE_FUNC_ND(-1000)＋「エラーの詳細情報」
+		</p>
+		<h5>エラーの詳細情報</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ND_ALLOC</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-1</CODE></STRONG></EM></TD>
+			  <TD>メモリ確保失敗</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ND_HTTP</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-20</CODE></STRONG></EM></TD>
+			  <TD>HTTP通信に失敗</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ND_BUFFULL</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-30</CODE></STRONG></EM></TD>
+			  <TD>受信したデータが確保された受信バッファより大きかった</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_ND_FATAL</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-9</CODE></STRONG></EM></TD>
+			  <TD>以上に定義されない致命的なエラーが発生した</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-101</CODE></STRONG></EM></TD>
+			  <TD>パラメータが不正</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-102</CODE></STRONG></EM></TD>
+			  <TD>サービス未登録</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-103</CODE></STRONG></EM></TD>
+			  <TD>トークン(サービスロケータ情報)が不正</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-104</CODE></STRONG></EM></TD>
+			  <TD>トークン(サービスロケータ情報)の有効期限が切れている</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-105</CODE></STRONG></EM></TD>
+			  <TD>コンテンツが存在しない</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-106</CODE></STRONG></EM></TD>
+			  <TD>属性が一致しない</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-107</CODE></STRONG></EM></TD>
+			  <TD>コンテンツの有効期限が切れている</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-108</CODE></STRONG></EM></TD>
+			  <TD>サービス対象でないアクセスポイントからのアクセス</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-109</CODE></STRONG></EM></TD>
+			  <TD>データベースに接続できない(ダウンロードサーバの問題)</TD>
+			</TR>
+			<TR>
+			  <TD><EM>(定義なし)</EM></TD>
+			  <TD><EM><STRONG><CODE>-110</CODE></STRONG></EM></TD>
+			  <TD>パスワードが一致していない</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		
+		
+		
+		<h4><a name="ecode4">不正文字列チェック機能関連(-33000 ～ -33999)</a></h4>
+		<p>
+		不正文字列チェック機能に関連するエラーコードは、次の3種類の値の合計で表現されます。<BR>
+		DWC_ECODE_SEQ_ADDINS(-30000)＋DWC_ECODE_FUNC_PROF(-3000)＋「エラーの詳細情報」
+		</p>
+		<h5>エラーの詳細情報</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PROF_CONN</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-10</CODE></STRONG></EM></TD>
+			  <TD>認証サーバとの接続に問題があった</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PROF_PARSE</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-20</CODE></STRONG></EM></TD>
+			  <TD>認証サーバの応答に問題があった</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ECODE_TYPE_PROF_OTHER</CODE></STRONG></EM></TD>
+			  <TD><EM><STRONG><CODE>-30</CODE></STRONG></EM></TD>
+			  <TD>その他の理由でエラーが発生した</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		
+		
+		
+		<h4><a name="ecode5">認証サーバ関連(-20000 ～ -29999)</a></h4>
+		<p>
+		認証サーバでのログイン処理や、サービスロケータ情報取得処理に関連するエラーコードです。
+		</p>
+		
+		
+		
+		<h4><a name="ecode6">インターネット接続処理関連(-50000 ～ -59999)</a></h4>
+		<p>
+		インターネット接続処理に関連するエラーコードは、次の2種類の値の合計で表現されます。<BR>
+		エラーの詳細情報 （＋接続先タイプ）
+		</p>
+		
+		<h5>エラーの詳細情報</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD><EM><STRONG><CODE>-50000</CODE></STRONG></EM></TD>
+			  <TD>インターネット自動接続処理が完了する前にAPから切断された。接続先タイプは 00～98。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-50099</CODE></STRONG></EM></TD>
+			  <TD>APのビーコンが全く見つからなかった。接続先タイプは 99。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-51099</CODE></STRONG></EM></TD>
+			  <TD>APのビーコンは見つかったが、接続候補のSSIDに一致するものが見つからなかった。接続先タイプは 99。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-51100</CODE></STRONG></EM></TD>
+			  <TD>WEPキーが異なっているため、APに接続できなかった。<BR>
+※認証要求に対するステータスコードが「15 : チャレンジの失敗による認証拒否(WEPキー間違い)」。<BR>
+【特例：接続先タイプが 03 の場合】PC側で接続許可になっていないため、ニンテンドーWi-Fiコネクタに接続できなかった。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-51200</CODE></STRONG></EM></TD>
+			  <TD>APに接続可能な上限台数を越えているため、APに接続できなかった。<BR>
+※アソシエーション要求に対するステータスコードが「17 : アクセスポイントの資源不足による接続拒否」。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-51300</CODE></STRONG></EM></TD>
+			  <TD>APのビーコンは見つかったが、接続候補のSSIDに一致するものが見つからなかった。接続先タイプは 99。</TD>
+			</TR>			
+			<TR>
+			  <TD><EM><STRONG><CODE>-52000</CODE></STRONG></EM></TD>
+			  <TD>DHCPに失敗した。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-52100</CODE></STRONG></EM></TD>
+			  <TD>(インターネット自動接続処理全般を通して)DNSに失敗した。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-52200</CODE></STRONG></EM></TD>
+			  <TD>インターネット上のHTTP接続テスト用サーバに接続できなかった。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-52300</CODE></STRONG></EM></TD>
+			  <TD>認証サーバのアカウント作成に失敗した。<BR>
+(一度もWi-Fiコネクションに接続したことのない本体では、インターネット自動接続処理中にアカウントの作成が行なわれます。)</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-53000</CODE></STRONG></EM></TD>
+			  <TD>認証サーバからホットスポット認証情報を取得できなかった。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-53100</CODE></STRONG></EM></TD>
+			  <TD>ホットスポットの認証処理に失敗した。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-53200</CODE></STRONG></EM></TD>
+			  <TD>ホットスポットの認証処理後に接続テスト用サーバに接続できなかった。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-54000</CODE></STRONG></EM></TD>
+			  <TD>通信中にネットワークから切断された。（無線接続）</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-54100</CODE></STRONG></EM></TD>
+			  <TD>通信中にネットワークから切断された。（インターネット接続）</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		
+		
+		<h5>接続先タイプ</h5>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD><EM><STRONG><CODE>0</CODE></STRONG></EM></TD>
+			  <TD>接続先1のアクセスポイント</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-1</CODE></STRONG></EM></TD>
+			  <TD>接続先2のアクセスポイント</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-2</CODE></STRONG></EM></TD>
+			  <TD>接続先3のアクセスポイント</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-3</CODE></STRONG></EM></TD>
+			  <TD>ニンテンドーWi-Fi USBコネクタ</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-4</CODE></STRONG></EM></TD>
+			  <TD>ニンテンドーWi-Fiステーション</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-5</CODE></STRONG></EM></TD>
+			  <TD>FREESPOT（フリースポット）</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-6</CODE></STRONG></EM></TD>
+			  <TD>Wayport(北米ホットスポット)</TD>
+			</TR>
+			<TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-7</CODE></STRONG></EM></TD>
+			  <TD>（予約）</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>-8</CODE></STRONG></EM></TD>
+			  <TD>nintendo spot</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+
+		
+		
+		<h3>エラー処理タイプ(errorType)</h3>
+		
+		<p>
+		エラー処理タイプ(DWCErrorType)は、エラー発生時にどの時点までライブラリを初期化すべきかを返します。
+		</p>
+
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_NO_ERROR</CODE></STRONG></EM></TD>
+			  <TD>エラーなし</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_LIGHT</CODE></STRONG></EM></TD>
+			  <TD>ゲーム固有の表示のみで、エラーコード表示は必要ありません。<BR>
+			  <A href="DWC_ClearError.html">DWC_ClearError</A>関数を呼び出せば、復帰可能です。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_SHOW_ERROR</CODE></STRONG></EM></TD>
+			  <TD>エラーコードを表示してください。<BR>
+			  <A href="DWC_ClearError.html">DWC_ClearError</A>関数を呼び出せば、復帰可能です。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_SHUTDOWN_FM</CODE></STRONG></EM></TD>
+			  <TD><A href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>関数を呼び出して、<A href="FriendsMatch.html">FriendsMatchライブラリ</A>を終了する必要があります。エラーコードを表示してください。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_SHUTDOWN_GHTTP</CODE></STRONG></EM></TD>
+			  <TD>以下の各ライブラリ解放関数を必要に応じて呼び出してください。<BR>
+			  <A href="DWC_ShutdownGHTTP.html">DWC_ShutdownGHTTP</A>関数(HTTP通信ライブラリ)<BR>
+			  <A href="DWC_RnkShutdown.html">DWC_RnkShutdown</A>関数(汎用ランキングライブラリ)<STRONG><FONT color=red>※</FONT></STRONG><BR>
+			  エラーコードを表示してください。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_SHUTDOWN_ND</CODE></STRONG></EM></TD>
+			  <TD><A href="DWC_NdCleanupAsync.html">DWC_NdCleanupAsync</A>関数を呼び出して、ダウンロードライブラリを終了する必要があります。エラーコードを表示してください。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_DISCONNECT</CODE></STRONG></EM></TD>
+			  <TD>以下の各ライブラリ解放関数を必要に応じて呼び出してください。<BR>
+			  <A href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>関数(FriendsMatchライブラリ)<BR>
+			  <A href="DWC_ShutdownGHTTP.html">DWC_ShutdownGHTTP</A>関数(HTTP通信ライブラリ)<BR>
+			  <A href="DWC_NdCleanupAsync.html">DWC_NdCleanupAsync</A>関数(ダウンロードライブラリ)<BR>
+			  <A href="DWC_RnkShutdown.html">DWC_RnkShutdown</A>関数(汎用ランキングライブラリ)<STRONG><FONT color=red>※</FONT></STRONG><BR>
+			  その後、<A href="DWC_CleanupInet.html">DWC_CleanupInet</A>あるいは<A href="DWC_CleanupInetAsync.html">DWC_CleanupInetAsync</A>関数で通信の切断も行う必要があります。
+			  エラーコードを表示してください。</TD>
+			</TR>
+			<TR>
+			  <TD><EM><STRONG><CODE>DWC_ETYPE_FATAL</CODE></STRONG></EM></TD>
+			  <TD>FatalError相当なので、電源OFFを促す必要があります。エラーコードを表示してください。</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+		<P>
+		<STRONG><FONT color=red>※</FONT></STRONG>汎用ランキングライブラリはHTTP通信ライブラリを使っているため、その初期化/終了処理の内部から<A href="DWC_InitGHTTP.html">DWC_InitGHTTP</A>関数、<A href="DWC_ShutdownGHTTP.html">DWC_ShutdownGHTTP</A>関数が呼び出されます。
+		</P>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+		  <TBODY>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_NONE</CODE></STRONG></EM></TD>
+			  <TD width="75%">エラーなし</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_DS_MEMORY_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">本体セーブデータに関するエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_AUTH_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">認証に関するエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_AUTH_OUT_OF_SERVICE</CODE></STRONG></EM></TD>
+			  <TD width="75%">サービス終了</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_AUTH_STOP_SERVICE</CODE></STRONG></EM></TD>
+			  <TD width="75%">サービス一時中断中</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_AC_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">自動接続に関するエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_NETWORK</CODE></STRONG></EM></TD>
+			  <TD width="75%">その他のネットワークエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_DISCONNECTED</CODE></STRONG></EM></TD>
+			  <TD width="75%">切断された</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_FATAL</CODE></STRONG></EM></TD>
+			  <TD width="75%">致命的なエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_FRIENDS_SHORTAGE</CODE></STRONG></EM></TD>
+			  <TD width="75%">指定の人数の有効な友達がいないのに友達指定ピアマッチメイクを始めようとした</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_NOT_FRIEND_SERVER</CODE></STRONG></EM></TD>
+			  <TD width="75%">サーバクライアントマッチメイクで、サーバDSに指定した友達が相互に友達ではない、もしくはサーバを立てていない</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_MO_SC_CONNECT_BLOCK</CODE></STRONG></EM></TD>
+			  <TD width="75%">サーバクライアントマッチメイクのマッチメイクオプションで、サーバDSから接続を拒否された</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_SERVER_FULL</CODE></STRONG></EM></TD>
+			  <TD width="75%">サーバクライアントマッチメイクのサーバDSが定員オーバー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_GHTTP_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">HTTP通信(GameSpy HTTP)のエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_ND_HTTP</CODE></STRONG></EM></TD>
+			  <TD width="75%">ダウンロードライブラリのHTTP通信エラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_ND_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">ダウンロードライブラリのその他のエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_SVL_HTTP</CODE></STRONG></EM></TD>
+			  <TD width="75%">サービスロケータ情報取得中のHTTP通信エラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_SVL_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">サービスロケータ情報取得中のその他のエラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_PROF_HTTP</CODE></STRONG></EM></TD>
+			  <TD width="75%">不正文字列チェックライブラリのHTTP通信エラー</TD>
+			</TR>
+			<TR>
+			  <TD width="25%"><EM><STRONG><CODE>DWC_ERROR_PROF_ANY</CODE></STRONG></EM></TD>
+			  <TD width="75%">不正文字列チェックライブラリのその他のエラー</TD>
+			</TR>
+		  </TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_ClearError.html">DWC_ClearError</A>,
+				<A href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</A>,
+				<A href="DWC_InitGHTTP.html">DWC_InitGHTTP</A>,
+				<A href="DWC_ShutdownGHTTP.html">DWC_ShutdownGHTTP</A>,
+				<A href="DWC_NdCleanupAsync.html">DWC_NdCleanupAsync</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2007/04/09 不正文字列チェック機能に関するエラー情報の追加<BR>
+		  2006/10/06 エラー処理タイプの<CODE>DWC_ETYPE_SHUTDOWN_GHTTP</CODE>に関する説明を追記<BR>
+		  2006/08/02 エラー表示の条件を変更（全て表示　→　エラーコード 0 の場合表示しなくても良い）<BR>
+		  2006/07/24 誤記修正<BR>
+		  2006/07/03 FriendsMatchライブラリを使用しない場合の説明を挿入<BR>
+		  2006/06/22 エラーコード -31030 の追加<BR>
+		  2006/06/14 エラー表示の条件を変更（0～-9999エラーの場合表示しなくても良い　→　全て表示）<BR>
+		  2005/06/05 DWC_GetLastError関数とDWC_GetLastErrorEx関数のリファレンスを統合<BR>
+		  2005/05/26 ダウンロード機能等に関するエラー情報の追加<BR>
+		</P>
+		<P>
+		  DWC_GetLastError関数の履歴<BR>
+		  2005/12/16 改訂<BR>
+		  2005/11/01 改訂<BR>
+		  2005/07/22 初版<BR>
+		</P>
+		<P>
+		  DWC_GetLastErrorEx関数の履歴<BR>
+		  2005/01/31 「FriendMatchライブラリ」へのリンクを設定<BR>
+		  2005/12/16 改訂<BR>
+		  2005/11/01 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

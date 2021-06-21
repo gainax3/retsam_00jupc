@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PM_ForceToPowerOff</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">PM_ForceToPowerOff*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/spi.h&gt;</CODE></PRE>
+  <PRE><CODE>u32 PM_ForceToPowerOff( void );
+
+u32 PM_ForceToPowerOffAsync( PMCallback callback, void* arg );
+</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD><EM><STRONG>callback</STRONG></EM></TD>
+      <TD>コマンドが終了したときに呼ばれるコールバック</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>arg</STRONG></EM></TD>
+      <TD>コールバックを呼ぶ際の引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>PM_RESULT_SUCCESS ならばコマンドの実行が成功した(同期関数の場合)か、コマンドをARM7に送信することに成功した(非同期関数の場合)ことを表します。ただし、電源がオフとなりますので実質的にはPM_RESULT_SUCCESS
+の後に何かをすることは出来ません。<BR>
+PM_RESULT_ERROR ならば ARM7側で何らかのエラーが発生したことを表します。</P>
+<H2>説明</H2>
+<P>電源を強制的にオフにします。<BR>
+<BR>
+この関数は ARM7 に該当動作を行うコマンドを PXI で送り、それを受け取った
+ARM7 側が PMIC を操作することで実行されます。従って関数を呼び出して即時に動作されるわけではありません。動作の終了まで待つ同期型の関数と、コマンドを
+ARM7 に送るだけの非同期型の関数が用意されていますので動作目的に合わせて使用してください。(関数名に
+Async がついているものが非同期関数です。)</P>
+<P>非同期関数を呼び出した場合、ARM7側での処理が終了したときに指定のコールバック
+<B><I>callback</I></B> が呼び出されます。コールバックの型 <CODE>PMCallback</CODE> は</P>
+<BLOCKQUOTE> <CODE>typedef void ( *PMCallback )( u32 result, void* arg );</CODE></BLOCKQUOTE>
+<P>で定義されます。このコールバックは PXI 割り込みハンドラから呼び出されます。</P>
+<P>コールバックの引数は、第一引数 result がコマンドの結果を表します。これは
+<CODE>PM_RESULT_SUCCESS</CODE> または <CODE>PM_RESULT_ERROR</CODE> となります。第二引数は <B><I>arg</I></B> を返します。</P>
+<P>ただし、ARM7側で電源オフの処理が成功するとそれ以上の処理は行えませんので、実際には処理が失敗したときのみコールバック関数が実行されることになります。</P>
+<P>この関数を使用する際は、あらかじめ <CODE><A href="PM_Init.html">PM_Init()</A></CODE> で PMライブラリを初期化してください。(一度呼べば結構です。また、<CODE><A href="../../os/init/OS_Init.html">OS_Init()</A></CODE> を呼ぶ場合は、その中から呼ばれますので必要ありません。)</P>
+<P>(注)<BR>
+返り値に PM_RESULT_ERROR が返った場合、殆どの場合それは復帰不能なエラーです。ARM7側の準備が出来ていなかったり、変数領域が破壊されている場合に返す可能性があります。これが返るようでしたらプログラム上に何か不具合があることが考えられます。</P>
+<H2>内部動作</H2>
+<P>PMIC のレジスタ PMIC_CTL を操作しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="PM_Init.html">PM_Init</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/07/07 返り値 PM_RESULT_ERRORについて言及した<BR>
+2005/06/02 コールバックの呼び元を明記した<BR>
+2004/07/31 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PRC_GetInputPatternBufferSize</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">PRC_GetRecognitionBufferSize*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+u32 PRC_GetRecognitionBufferSize(
+    int                         maxPointCount,
+    int                         maxStrokeCount,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB );
+
+u32 PRC_GetRecognitionBufferSizeEx(
+    int                         maxPointCount,
+    int                         maxStrokeCount,
+    const <A href="PRCPrototypeDB.html">PRCPrototypeDB</A>*       protoDB,
+    const <A href="PRCRecognizeParam.html">PRCRecognizeParam</A>*    param );
+</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">maxPointCount</FONT></STRONG></EM></TD>
+      <TD width="87%">加工後の最大点数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">maxStrokeCount</FONT></STRONG></EM></TD>
+      <TD width="87%">加工後の最大画数</TD>
+    </TR>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">protoDB</font></strong></em></td>
+      <td width="87%">見本DB</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">param</font></strong></em></td>
+      <td width="87%">認識アルゴリズム依存のその他のパラメータ値　（NULL でデフォルト値を使用）</td>
+    </tr>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>認識アルゴリズムを実行するのに必要なワークエリアのメモリサイズを返します。</P>
+<H2>説明</H2>
+<P>この返り値以上のサイズのメモリを確保した上で、<CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A></CODE>を呼び出してください。</P>
+<P><CODE>maxPointCount</CODE> と <CODE>maxStrokeCount</CODE> には認識対象の <CODE><A href="PRCInputPattern.html">PRCInputPattern</A></CODE> に想定されている点数と画数の最大値を与えます。</P>
+<P><CODE>PRC_GetRecognitionBufferSize</CODE> は <CODE>param</CODE> に <CODE>NULL</CODE> をセットした <CODE>PRC_GetRecognitionBufferSizeEx</CODE> の呼び出しと同等です。</P>
+<H2>参照</H2>
+<P><CODE><A href="PRC_GetRecognizedEntry.html">PRC_GetRecognizedEntry*</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2004/11/02 誤記訂正<BR>
+2004/06/25 初版
+</P>
+</BODY>
+</HTML>

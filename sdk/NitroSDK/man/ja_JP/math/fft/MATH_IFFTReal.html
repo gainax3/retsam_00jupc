@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_IFFTReal</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_IFFTReal</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/fft.h&gt;
+
+void MATH_IFFTReal( fx32* data, u32 nShift, const fx16* sinTable, const fx16* sinTable2 );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="670">変換するデータへのポインタ。変換後のデータは上書きされる。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">nShift</font></strong></em></TD>
+      <TD width="670">出力予定の実数の個数に2を底とした対数を取った値。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">sinTable</font></strong></em></TD>
+      <TD width="670">sin 値のテーブルのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">sinTable2</font></strong></em></TD>
+      <TD width="670">sinTable を一つおきに間引いた sin 値テーブルへのポインタ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>
+離散フーリエ変換の逆変換を高速フーリエ変換のアルゴリズムを用いて行います。<BR>
+<A href="MATH_FFTReal.html">MATH_FFTReal</A> 関数の出力形式の複素数列データを、同関数の入力形式である実数列データに変換します。
+</P>
+<P>
+以下、2<sup>nShift</sup>(2のnShift乗) を N と置きます。data は fx32 型の長さ N の配列で、<A href="MATH_FFTReal.html">MATH_FFTReal</A> 関数の出力形式のデータです。<BR>
+sinTable は <CODE>sinTable[k] = <i>sin</i>( (2π/N) * k )  (k = 0, 1,..., N*3/4-1)</CODE> となるように fx16 型の sin 値を代入した、長さ N*3/4 の配列へのポインタです。<A href="MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A> 関数で作成することもできます。<BR>
+sinTable2 は <CODE>sinTable2[k] = <i>sin</i>( (2π/(N/2)) * k )  (k = 0, 1,..., (N/2)*3/4-1)</CODE> となるように fx16 型の sin 値を代入した、長さ (N/2)*3/4 の配列へのポインタです。<A href="MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A> 関数で nShift 引数に1少ない値を与えて作成することもできます。<BR>
+</P>
+<P>
+固定小数点数を用いて計算しているため、大きな値を入力として与えると桁あふれを起こす危険があります。
+入力値を s32 型として見たときの絶対値が <CODE>0x80000000/N</CODE> 以上にならないことを目安としてください。
+また、順変換と逆変換を行った場合の誤差は最大で FX32_ONE の数倍程度となります。
+</P>
+<h2>参照</h2>
+<P><A href="MATH_MakeFFTSinTable.html">MATH_MakeFFTSinTable</A>, <A href="MATH_FFT.html">MATH_FFT</A>, <A href="MATH_IFFT.html">MATH_IFFT</A>, <A href="MATH_FFTReal.html">MATH_FFTReal</A></P>
+<H2>履歴</H2>
+<P>
+2005/07/21 sinTable の説明の修正<BR>
+2005/07/11 説明の修正<BR>
+2005/05/13 初版<BR>
+</P>
+</body>
+</html>

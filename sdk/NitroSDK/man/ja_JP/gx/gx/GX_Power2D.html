@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_Power2D</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_Power2D</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_Power2D(BOOL enable);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">enable</font></strong></em></td>
+    <td width="87%">FALSEの場合、2Dグラフィックエンジンが停止します。</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>メイン・サブ両方の2Dグラフィックエンジンをコントロールします。引数がFALSEの場合、2Dグラフィックエンジンが停止し、それ以外の場合は動作します。停止させることにより、消費電力を抑えることができます。</P>
+<h2>参照</h2>
+<P><A href="GX_SetPower.html">GX_SetPower</A>, <A href="GX_PowerGeometry.html">GX_PowerGeometry</A>, <A href="GX_PowerRender.html">GX_PowerRender</A>, <A href="../../spi/pm/PM_SetLCDPower.html" target="_self">PM_SetLCDPower</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>メイン・サブ両方の2DコントローラをON/OFFするように変更。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

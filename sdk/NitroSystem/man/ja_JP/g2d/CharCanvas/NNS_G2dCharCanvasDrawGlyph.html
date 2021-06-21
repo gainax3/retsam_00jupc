@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dCharCanvasDrawGlyph</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dCharCanvasDrawGlyph</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+void NNS_G2dCharCanvasDrawGlyph(
+	const NNSG2dCharCanvas* pCC,
+	const NNSG2dFont* pFont,
+	int x,
+	int y,
+	int cl,
+	const <a href="../Font/NNSG2dGlyph.html">NNSG2dGlyph</a>* pGlyph
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCC</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pFont</STRONG></EM></TD>
+      <TD width="87%"> [IN] フォント へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>x</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字の左上 x 座標 (CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>y</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字の左上 y 座標 (CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cl</STRONG></EM></TD>
+      <TD width="87%"> [IN] 文字の描画に用いる基準カラーNo. </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pGlyph</STRONG></EM></TD>
+      <TD width="87%"> [IN] 描画するグリフへのポインタ </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	CharCanvas <EM><STRONG>pCC</STRONG></EM> に フォント <EM><STRONG>pFont</STRONG></EM>
+	を使ってグリフ <EM><STRONG>pGlyph</STRONG></EM> を描画します。<br>
+	文字の描画には透過色と <EM><STRONG>cl</STRONG></EM> から連続する必要な数の色がつかわれます。
+	例えば 3bpp (2<sup>3</sup>=8色) のフォントで <EM><STRONG>cl</STRONG></EM> に 5 を指定すると
+	透過色(カラーNo. 0) とカラーNo. 5～11 の計8色を使って描画を行います。
+</P>
+<P>
+	座標は CharCanvas 左上隅を (0, 0) とする座標系をとります。<br>
+	<EM><STRONG>x</STRONG></EM>, <EM><STRONG>y</STRONG></EM> はそれぞれ<br>
+	- [文字のグリフ幅] &lt; <EM><STRONG>x</STRONG></EM> &lt; [CharCanvas領域幅]<br>
+	- [フォント高] &lt; <EM><STRONG>y</STRONG></EM> &lt; [CharCanvas領域高]<br>
+	 を満たしていなければなりません。<br>
+	 <br>
+	 文字は座標 (<EM><STRONG>x</STRONG></EM>, <EM><STRONG>y</STRONG></EM>) が下図の赤点の位置になるように描画されます。<br>
+	 <img src="DrawGlyph.png" alt="文字の描画位置">
+</P>
+
+<P class="warning">
+    この関数は縦書き/縦持ちフォントに対応していません。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G2dCharCanvasDrawChar.html">NNS_G2dCharCanvasDrawChar</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2007/03/14 縦書き/縦持ちフォントについて記述<br>
+2005/05/25 初版
+</P>
+</BODY>
+
+</HTML>

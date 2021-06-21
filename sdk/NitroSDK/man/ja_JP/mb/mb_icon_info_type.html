@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBIconInfo</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBIconInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef	struct
+{
+    u16    palette[ MB_ICON_COLOR_NUM ];
+    u16    data[ MB_ICON_DATA_SIZE / 2 ];
+} MBIconInfo;	/* 544byte */
+</PRE>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>ダウンロードファイル情報の一部となるアイコンデータの形式を規定する構造体です。<BR>
+各メンバの意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>メンバ</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>palette</TD>
+      <TD>アイコンのパレットカラーが格納された配列です。<BR>
+	  最大色数は 16 色で、これは MB_ICON_COLOR_NUM として定義されています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>data</TD>
+      <TD>アイコンのピクセルデータが格納された配列です。<BR>
+	  アイコンのサイズは縦横32ピクセルでビット深度が 4 bit(16色)であることから<BR>
+	  配列のサイズは 512 バイトとなり、これは MB_ICON_DATA_SIZE として定義されています。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="mb_game_registry_type.html">MBGameRegistry</A> <BR>
+<A href="parent/MB_RegisterFile.html">MB_RegisterFile</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

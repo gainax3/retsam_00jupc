@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_IsExisting</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_IsExisting</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CTRDG_IsExisting( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>カートリッジが存在していれば TRUE を、そうでない場合は FALSE となります。<BR>
+但し、一度カートリッジ抜けを検出した後は常に FALSE を返します。</P>
+<H2>説明</H2>
+<P>カートリッジが差さっているかどうか調べます。<br>
+<br>
+カートリッジバスがロックされている間は ARM7 による自動抜け検出処理が行われなくなりますので、<br>
+ゲームフレーム毎などのプレイヤーが再挿入できない間隔でこの関数を定期的に呼び出して下さい。<br>
+</P>
+
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_IsPulledOut.html">CTRDG_IsPulledOut</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 カートリッジバスのロックに関する記述を追加<br>
+2004/09/15 初版</P>
+</BODY>
+</HTML>

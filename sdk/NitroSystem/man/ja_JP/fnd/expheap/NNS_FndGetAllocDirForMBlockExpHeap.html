@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndGetAllocDirForMBlockExpHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndGetAllocDirForMBlockExpHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  <pre><CODE>u16 NNS_FndGetAllocDirForMBlockExpHeap(const void* memBlock);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+	<tr> 
+		<td width="13%"><em><strong><font face="Courier New">memBlock</font></strong></em></td>
+		<td width="87%">確保方向を取得するメモリブロックへのポインタ。確保方向については下記参照。</td>
+	</tr>
+</table>
+<h2>返り値</h2>
+<p>指定したメモリブロックの確保方向を返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープから確保されたメモリブロックの確保方向を取得します。</P>
+    
+<p>確保方向は次の値のいずれかを取ります。</P>
+<table>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_DIR_FRONT</font></strong></em></td>
+		<td>メモリブロックの確保時に、ヒープの空き領域の前方から確保しています。</td>
+	</tr>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_DIR_REAR</font></strong></em></td>
+		<td>メモリブロックの確保時に、ヒープの空き領域の後方から確保しています。</td>
+	</tr>
+</table>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndGetSizeForMBlockExpHeap.html">NNS_FndGetSizeForMBlockExpHeap</A>, 
+<A href="NNS_FndGetGroupIDForMBlockExpHeap.html">NNS_FndGetGroupIDForMBlockExpHeap</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

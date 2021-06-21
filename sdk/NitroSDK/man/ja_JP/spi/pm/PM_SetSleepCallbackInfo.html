@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PM_SetSleepCallbackInfo</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">PM_SetSleepCallbackInfo</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/spi.h&gt;</CODE></PRE>
+  <PRE><CODE>void PM_SetSleepCallbackInfo(
+　　　　 PMSleepCallbackInfo* info,
+　　　　 PMSleepCallback callback,
+　　　　 void* arg );
+
+</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>info</STRONG></EM></TD>
+      <TD width="87%">セットコールバック情報構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><B><I>callback</I></B></TD>
+      <TD>コールバック関数</TD>
+    </TR>
+    <TR>
+      <TD><B><I>arg</I></B></TD>
+      <TD>コールバックの引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スリープモードのコールバック情報を設定します。</P>
+<P>コールバック関数 <B><I>callback</I></B> と、その引数 <B><I>arg</I></B> を、<B><I> info</I></B> で示したコールバック情報構造体 に登録します。そして、この <B><I>info</I></B> を指定することでスリープモードのコールバック登録を行います。</P>
+<P>内部では、<B><I>info</I></B> のメンバに <I><B>callback</B></I> と <B><I>arg</I></B> をセットするだけの処理を行っています。</P>
+<H2>参照</H2>
+<P><CODE><A href="PM_Init.html">PM_Init</A>, <A href="PM_GetLEDPattern.html">PM_GoSleepMode</A>,<BR>
+<A href="PM_AppendPreSleepCallback.html">PM_AppendPreSleepCallback</A>, <A href="PM_PrependPreSleepCallback.html">PM_PrependPreSleepCallback</A>,<BR>
+<A href="PM_AppendPostSleepCallback.html">PM_AppendPostSleepCallback</A>, <A href="PM_PrependPostSleepCallback.html">PM_PrependPostSleepCallback</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/09/14 <CODE>PM_SetSleepCallback</CODE> → <CODE>PM_SetSleepCallbackInfo<BR>
+</CODE>2004/10/06 初版</P>
+</BODY>
+</HTML>

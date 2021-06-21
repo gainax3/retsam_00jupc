@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetDefaultDMA</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetDefaultDMA</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx.h&gt;
+
+u32 GX_SetDefaultDMA(u32 dma_no);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="237"><EM><STRONG><FONT face="Courier New">dma_no</FONT></STRONG></EM></TD>
+      <TD width="609">GXで使用するDMA番号を指定</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>この関数を呼ぶ前の設定を返します。</p>
+<H2>説明</H2>
+<P>GX関数が使用するDMA番号を変更します。<BR>
+引数にGX_DMA_NOT_USEを指定することで、DMAを使用しないように設定します。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="GX_GetDefaultDMA.html">GX_GetDefaultDMA</A>, <A href="GX_InitEx.html">GX_InitEx</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/07/28 初版</P>
+</body>
+</html>

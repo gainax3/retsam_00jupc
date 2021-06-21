@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>WM ブロック転送プロトコル(WBT)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>WM ブロック転送プロトコル(WBT)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="init/WBT_InitParent.html" target="_self">WBT_InitParent</A></TH>
+      <TD>無線親機としてライブラリを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="init/WBT_InitChild.html" target="_self">WBT_InitChild</A></TH>
+      <TD>無線子機としてライブラリを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="init/WBT_End.html" target="_self">WBT_End</A></TH>
+      <TD>ライブラリを終了します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Common">共通</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="common/WBT_AidbitmapToAid.html" target="_self">WBT_AidbitmapToAid</A></TH>
+      <TD>aidビットマップの最下位ビットをaidへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_AidToAidbitmap.html" target="_self">WBT_AidToAidbitmap</A></TH>
+      <TD>aidをaidビットマップへ変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_GetOwnAid.html" target="_self">WBT_GetOwnAid</A></TH>
+      <TD>自身に設定されたaidを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_CalcPacketbitmapSize.html" target="_self">WBT_CalcPacketbitmapSize</A></TH>
+      <TD>データの受信に必要なビットマップバッファのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_GetCurrentDownloadProgress.html" target="_self">WBT_GetCurrentDownloadProgress</A></TH>
+      <TD>現在の受信進捗状況を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_NumOfRegisteredBlock.html" target="_self">WBT_NumOfRegisteredBlock</A></TH>
+      <TD>現在登録されているデータブロックの総数を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_RegisterBlock.html" target="_self">WBT_RegisterBlock</A></TH>
+      <TD>データブロックを登録します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_UnregisterBlock.html" target="_self">WBT_UnregisterBlock</A></TH>
+      <TD>登録したデータブロックを解放します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/WBT_PrintBTList.html" target="_self">WBT_PrintBTList</A></TH>
+      <TD>現在のWBT内部状態をデバッグ出力します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Parent">親機設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="parent/WBT_SetPacketSize.html" target="_self">WBT_SetPacketSize</A></TH>
+      <TD>WBTで使用可能なMP通信パケットサイズを再設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/WBT_MpParentSendHook.html" target="_self">WBT_MpParentSendHook</A></TH>
+      <TD>MP通信で送信すべきWBTプロトコルパケットデータを生成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="parent/WBT_MpParentRecvHook.html" target="_self">WBT_MpParentRecvHook</A></TH>
+      <TD>MP通信で受信したWBTプロトコルパケットデータをWBTへ通知します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Child">子機設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="child/WBT_SetOwnAid.html" target="_self">WBT_SetOwnAid</A></TH>
+      <TD>自身のaidをWBTへ通知します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="child/WBT_MpChildSendHook.html" target="_self">WBT_MpChildSendHook</A></TH>
+      <TD>MP通信で送信すべきWBTプロトコルパケットデータを生成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="child/WBT_MpChildRecvHook.html" target="_self">WBT_MpChildRecvHook</A></TH>
+      <TD>MP通信で受信したWBTプロトコルパケットデータをWBTへ通知します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3><A name="Command">コマンド</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="command/WBT_RequestSync.html" target="_self">WBT_RequestSync</A></TH>
+      <TD>通信状態の同期を取ります。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="command/WBT_GetBlockInfo.html" target="_self">WBT_GetBlockInfo</A></TH>
+      <TD>相手に登録されているデータブロックの情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="command/WBT_GetBlock.html" target="_self">WBT_GetBlock</A></TH>
+      <TD>相手に登録されているデータブロックを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="command/WBT_PutUserData.html" target="_self">WBT_PutUserData</A></TH>
+      <TD>相手に任意の小規模データを送信します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="command/WBT_CancelCurrentCommand.html" target="_self">WBT_CancelCurrentCommand</A></TH>
+      <TD>現在発行中のＷＢＴコマンドを中断します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="const">定数・マクロ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wbt_num_max_block_info_id_const.html" target="_self">WBT_NUM_MAX_BLOCK_INFO_ID</A></TH>
+      <TD>同時に登録することのできるデータブロックの最大数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_block_id_min_const.html" target="_self">WBT_BLOCK_ID_MIN</A></TH>
+      <TD>データブロックとして登録できるIDの最小値です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_packet_size_min_const.html" target="_self">WBT_PACKET_SIZE_MIN</A></TH>
+      <TD>WBTライブラリに設定するMP通信パケットサイズの最小値です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_user_id_len_const.html" target="_self">WBT_USER_ID_LEN</A></TH>
+      <TD>登録ブロック情報に付与できるユーザ固有情報の最大サイズです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_size_user_data_const.html" target="_self">WBT_SIZE_USER_DATA</A></TH>
+      <TD><A href="command/WBT_PutUserData.html" target="_self">WBT_PutUserData</A>関数で送信可能なデータの最大サイズです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_result_const.html" target="_self">WBTResult</A></TH>
+      <TD>WBTライブラリのコマンド結果を表す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_command_type_const.html" target="_self">WBTCommandType</A></TH>
+      <TD>WBTのコールバックに通知されるコマンド種類を表す列挙型です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_packet_bitmap_size.html" target="_self">WBT_PACKET_BITMAP_SIZE</A></TH>
+      <TD>パケットサイズとデータサイズから、必要な受信ビットマップバッファのサイズを計算します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_aid_consts.html" target="_self">WBT_AID_*</A></TH>
+      <TD>aidに関するマクロ群です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="struct">構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="wbt_callback_type.html" target="_self">WBTCallback</A></TH>
+      <TD>WBTライブラリのコールバック関数の形式です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_command_type.html" target="_self">WBTCommand</A></TH>
+      <TD>WBTライブラリのコールバックに渡される情報の構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_block_info_type.html" target="_self">WBTBlockInfo</A></TH>
+      <TD>登録ブロックの情報を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_block_info_list_type.html" target="_self">WBTBlockInfoList</A></TH>
+      <TD>データブロックの登録に使用するリスト要素を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_block_info_table_type.html" target="_self">WBTBlockInfoTable</A></TH>
+      <TD>各相手局ごとに要求した登録ブロック情報の格納先ポインタを管理するテーブルです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_packet_bitmap_table_type.html" target="_self">WBTPacketBitmapTable</A></TH>
+      <TD>各相手局ごとに要求しているデータ受信の進捗管理用ビットマップバッファへのポインタを管理するテーブルです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_recv_buf_table_type.html" target="_self">WBTRecvBufTable</A></TH>
+      <TD>各相手局ごとに要求しているデータ受信の格納先へのポインタを管理するテーブルです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_request_sync_callback_type.html" target="_self">WBTRequestSyncCallback</A></TH>
+      <TD rowspan="5">コールバックの完了時に渡される構造体です。<BR>
+      詳細は<A href="wbt_command_type_const.html" target="_self">WBTCommandType</A>を参照ください。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_get_block_done_callback_type.html" target="_self">WBTGetBlockDoneCallback</A></TH>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_prepare_send_data_callback_type.html" target="_self">WBTPrepareSendDataCallback</A></TH>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_recv_user_data_callback_type.html" target="_self">WBTRecvUserDataCallback</A></TH>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="wbt_get_block_callback_type.html" target="_self">WBTGetBlockCallback</A></TH>
+      <TD></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

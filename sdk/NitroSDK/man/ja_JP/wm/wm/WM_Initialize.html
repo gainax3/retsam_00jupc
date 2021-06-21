@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_Initialize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_Initialize</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_Initialize(
+        void*           wmSysBuf ,
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        u16             dmaNo
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">wmSysBuf</FONT></STRONG></EM></TD>
+      <TD width="800">呼び出し元によって確保されたバッファへのポインタを指定します。
+      バッファのサイズはWM_SYSTEM_BUF_SIZEだけ必要であり、かつ32バイトアラインされている必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">dmaNo</FONT></STRONG></EM></TD>
+      <TD width="800">WMが使用するDMA番号を指定します。有効なDMA番号である 0 ～ 3 を指定して下さい。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+WMライブラリを初期化し、無線ハードウェアを起動します。APIの戻り値がWM_ERRCODE_OPERATINGであった場合、初期化処理が完了した後にコールバックが発生します。
+WMは<A href="wm_state_diagram.html">READYステート</A>から<A href="wm_state_diagram.html">IDLEステート</A>に移行します。 <BR>
+wmSysBufは、<A href="WM_Finish.html">WM_Finish関数</A>もしくは<A href="WM_End.html">WM_End関数</A>が成功終了するまでは開放しないでください。<BR>
+なお、この関数は<A href="WM_Init.html">WM_Init関数</A>、<A href="WM_Enable.html">WM_Enable関数</A>、<A href="WM_PowerOn.html">WM_PowerOn関数</A>の機能を統合したものですので、
+初期化処理を細かく制御する場合にはこれらの関数を別々に使用するようにして下さい。
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="WM_SetIndCallback.html">WM_SetIndCallback</A>, <A href="WM_Reset.html">WM_Reset</A>, <A href="WM_End.html">WM_End</A>, <A href="WM_Init.html">WM_Init</A>, <A href="WM_Enable.html">WM_Enable</A>, <A href="WM_PowerOn.html">WM_PowerOn</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 dmaNo引数について指定可能範囲を追記<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/11 機能分割関数群に関する説明を追記<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

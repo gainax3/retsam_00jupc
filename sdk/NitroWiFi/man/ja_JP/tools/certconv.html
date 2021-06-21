@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>certconv</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color  : #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">certconv</H1>
+<H2>説明</H2>
+<P>　<CODE>certconv</CODE> は、NITRO-WiFi の SOC_EnableSSL 関数に与えるルート証明書を作成するツールです。一般的な X.509 の DER 形式のルート証明書ファイルを SOCCaInfo 構造体の形に変換します。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<P><CODE>% certconv -n &lt;symbol_name&gt; [-o &lt;outfile&gt;] &lt;infile&gt;<BR>
+</CODE></P>
+<P>　infileで指定された X.509 の DER 形式のルート証明書ファイルを入力として、symbol_name で指定した名前のシンボル名を持つ <CODE><A href="../soc/soc/SOCCaInfo.html">SOCCaInfo</A></CODE> 型のデータを定義する C 言語のソースファイルを出力します。
+outfile が指定された場合は outfile に書き出し、指定されなかった場合は標準出力に出力します。</P>
+<P>X.509 の DER 形式の証明書データは、OpenSSL などの標準的な SSL Tool Kit を用いて作成することが可能です。
+詳しくは一般の SSL に関する書籍を参考にしてください。</P>
+<P>参考までに、openssl コマンドで X.509 の PEM 形式の証明書データを DER 形式に変換する方法は以下のとおりです。</P>
+<PRE><CODE> &gt; openssl x509 -inform pem -in &lt;入力 PEM ファイル&gt; -outform der -out &lt;出力 DER ファイル&gt;</CODE></PRE>
+<P>また、以下のコマンドでファイル形式が正しく DER 形式になっているかを確認することができます。</P>
+<PRE><CODE> &gt; openssl x509 -inform der -in &lt;入力 DER ファイル&gt; -text</CODE></PRE>
+<H2>場所</H2>
+<P><CODE>$NitroWiFi/tools/bin/certconv.exe</CODE></P>
+<H2>参照</H2>
+<P>
+<CODE><A href="../soc/soc/SOCCaInfo.html">SOCCaInfo</A></CODE>,
+<CODE><A href="../soc/soc/SOCSslConnection.html">SOCSslConnection</A></CODE>,
+<CODE><A href="../soc/soc/SOC_EnableSsl.html">SOC_EnableSsl</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2006/01/30 初版<BR>
+</P>
+</BODY>
+</HTML>

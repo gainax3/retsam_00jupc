@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNSG3dRenderObj</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dRenderObj</H1>
+<H2>構造体の定義</H2>
+<PRE class="construction">#include &lt;nnsys/g3d/kernel.h&gt;
+
+typedef struct NNSG3dRenderObj_
+{
+    u32 flag; // NNSG3dRenderObjFlag
+
+    NNSG3dResMdl*         resMdl;
+    NNSG3dAnmObj*         anmMat;
+    NNSG3dFuncAnmBlendMat funcBlendMat;
+    NNSG3dAnmObj*         anmJnt;
+    NNSG3dFuncAnmBlendJnt funcBlendJnt;
+    NNSG3dAnmObj*         anmVis;
+    NNSG3dFuncAnmBlendVis funcBlendVis;
+
+    // コールバック用情報
+    NNSG3dSbcCallBackFunc cbFunc;              // NULLならばコールバックはない。
+    u8                    cbCmd;               // 停止位置をコマンドで指定。NNS_G3D_SBC_*****(res_struct.hで定義)
+    u8                    cbTiming;            // NNSG3dSbcCallBackTiming(sbc.hで定義)
+    u16                   dummy_;
+
+    // レンダリング開始直前に呼ばれる。一般的にNNS_G3dRSの
+    // コールバックベクタを設定するために使われる。
+    NNSG3dSbcCallBackFunc cbInitFunc;
+
+    // ユーザーが管理する領域へのポインタ
+    // あらかじめポインタを設定しておけばコールバックでの使用が可能.
+    void*                 ptrUser;
+
+    u8*                   ptrUserSbc;
+
+    struct NNSG3dJntAnmResult_*   recJntAnm;
+    struct NNSG3dMatAnmResult_*   recMatAnm;
+
+    u32 hintMatAnmExist[NNS_G3D_SIZE_MAT_MAX / 32];
+    u32 hintJntAnmExist[NNS_G3D_SIZE_JNT_MAX / 32];
+    u32 hintVisAnmExist[NNS_G3D_SIZE_JNT_MAX / 32];
+}
+NNSG3dRenderObj;</PRE>
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dRenderObj</CODE>構造体は、モデルの描画に際して必要なデータをまとめた構造体です。<CODE>NNSG3dRenderObj</CODE>構造体は、以下のようなデータを保持しています。</P>
+<UL>
+  <LI>モデルリソース(<A href="NNSG3dResMdl.html"><CODE>NNSG3dResMdl</CODE></A>)へのポインタ
+  <LI>アニメーションオブジェクト(<A href="NNSG3dAnmObj.html"><CODE>NNSG3dAnmObj</CODE></A>)へのポインタ
+  <LI>アニメーションブレンド関数へのポインタ
+  <LI>コールバックの設定
+  <LI>イニシャライズ関数へのポインタ
+  <LI>アニメーション計算格納のためのバッファ(<A href="NNSG3dJntAnmResult.html"><CODE>NNSG3dJntAnmResult</CODE></A>, <A href="NNSG3dMatAnmResult.html"><CODE>NNSG3dMatAnmResult</CODE></A>)へのポインタ
+  <LI>動作の最適化やカスタマイズのためのフラグ群
+</UL>
+<P><CODE>NNSG3dRenderObj</CODE>構造体を利用してモデルを描画するためには、以下のような処理が必要となります。</P>
+<OL>
+  <LI><A href="../mem/NNS_G3dAllocRenderObj.html" target="_self"><CODE>NNS_G3dAllocRenderObj</CODE></A>関数を使用して（利用せずにスタックに確保しても可）、構造体の領域を確保します。
+  <LI><A href="../kernel/NNS_G3dRenderObjInit.html"><CODE>NNS_G3dRenderObjInit</CODE></A>関数を使用して、構造体を初期化します。
+  <LI>アニメーションさせる場合には、<A href="../kernel/NNS_G3dRenderObjAddAnmObj.html"><CODE>NNS_G3dRenderObjAddAnmObj</CODE></A>関数でアニメーションオブジェクトを追加します。
+  <LI>コールバック処理が必要な場合は、<A href="../kernel/NNS_G3dRenderObjSetCallBack.html"><CODE>NNS_G3dRenderObjSetCallBack</CODE></A>関数や<A href="../kernel/NNS_G3dRenderObjSetInitFunc.html"><CODE>NNS_G3dRenderObjSetInitFunc</CODE></A>関数でコールバック関数を登録します。
+  <LI>ジョイントやマテリアル計算の結果を再利用する場合には、<A href="../kernel/NNS_G3dRenderObjSetJntAnmBuffer.html"><CODE>NNS_G3dRenderObjSetJntAnmBuffer</CODE></A>関数や <A href="../kernel/NNS_G3dRenderObjSetMatAnmBuffer.html"><CODE>NNS_G3dRenderObjSetMatAnmBuffer</CODE></A>関数を使用してバッファを<CODE>NNSG3dRenderObj</CODE>構造体に登録します。
+  <LI><A href="../sbc/NNS_G3dDraw.html"><CODE>NNS_G3dDraw</CODE></A>関数を使用して描画します。
+  <LI>必要なくなったら、<A href="../mem/NNS_G3dFreeRenderObj.html" target="_self"><CODE>NNS_G3dFreeRenderObj</CODE></A>関数を使用して、確保した領域を解放します。
+</OL>
+<P>なお、<A href="../sbc/NNS_G3dDraw1Mat1Shp.html"><CODE>NNS_G3dDraw1Mat1Shp</CODE></A>関数を使用して描画する場合には<CODE>NNSG3dRenderObj</CODE>構造体を用意する必要はありません。</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#Kernel">カーネル</A></P>
+<H2>履歴</H2>
+<P>2007/05/17 構造体の定義を追加<BR>
+2004/10/12 初版</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetMPParameter</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetMPParameter</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetMPParameter(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>   callback ,
+        const <A href="WMMPParam.html">WMMPParam</A>* param
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">param</FONT></STRONG></EM></TD>
+      <TD width="800">MP 通信用のパラメータを格納した構造体へのポインタです。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>MP 通信用の各種パラメータを設定します。WM_Initialize 関数を呼んだ後であればいつでも呼び出すことができますが、設定するパラメータの内容によっては値を設定できるステートが決まっているものもあります。
+基本的には、<A href="WM_StartParent.html">WM_StartParent</A> や <A href="WM_StartConnect.html">WM_StartConnect</A> 関数を呼び出して接続した後、かつ <A href="WM_StartMP.html">WM_StartMP</A> 関数を呼び出す前に
+MP の詳細設定を行うために呼び出す関数です。<BR>
+この関数で設定した値は<A href="wm_state_diagram.html">READYステート</A>に戻るまで有効です。つまり、一度この関数で値を設定すると、<A href="wm_state_diagram.html">READYステート</A>に戻らずに連続して<A href="WM_StartMP.html">WM_StartMP</A>関数を呼び出した場合にはその値が引き続き使われます。ただし、<A href="WM_StartMP.html">WM_StartMP</A>関数および<A href="WM_StartMPEx.html">WM_StartMPEx</A>関数の引数で指定された設定値に関しては、その関数呼び出しによって遷移した<A href="wm_state_diagram.html">MP_PARENT または MP_CHILD ステート</A>の間だけ一時的に設定値が上書きされます。</P>
+<P>設定内容などの詳細は <A href="WMMPParam.html">WMMPParam</A> 構造体を参照してください。</P>
+<h2>参照</h2>
+<P><code><A href="WMMPParam.html">WMMPParam</A>, 
+<A href="WM_StartMP.html">WM_StartMP</A>, 
+<A href="WM_StartMPEx.html">WM_StartMPEx</A>, 
+<A href="WM_SetParentParameter.html">WM_SetParentParameter</A></code></P>
+
+<H2>履歴</H2>
+<P>
+2007/05/02 設定した値の有効な範囲を追記<BR>
+2005/11/24 初版<BR>
+</P>
+</body>
+</html>

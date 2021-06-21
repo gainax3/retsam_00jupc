@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_CalcSHA1</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_CalcSHA1</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/dgt.h&gt;
+
+static inline void MATH_CalcSHA1( void* digest, const void* data, u32 dataLength );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">digest</font></strong></em></TD>
+      <TD width="670">計算した SHA-1 値を格納するメモリへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">data</font></strong></em></TD>
+      <TD width="670">入力データへのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">dataLength</font></strong></em></TD>
+      <TD width="670">入力データのサイズ。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>この関数は、SHA-1 の計算を行います。<BR>
+生成される SHA-1 値の長さは 160 bit、すなわち MATH_SHA1_DIGEST_SIZE (= 20) バイトです。このサイズが格納できる領域を digest 引数に渡すようにしてください。<BR>
+入力データには任意のサイズ・任意のアラインメント位置のものが使用できます。<BR>
+<BR>
+<A href="MATH_SHA1Init.html">MATH_SHA1Init</A>, <A href="MATH_SHA1Update.html">MATH_SHA1Update</A>, <A href="MATH_SHA1GetHash.html">MATH_SHA1GetHash</A> の各関数を連続して呼び出すユーティリティ関数です。
+内部でスタックに <A href="MATHSHA1Context.html">MATHSHA1Context</A> 構造体を確保しますので、スタックに十分な余裕がある状態で呼び出してください。<BR>
+<BR>
+SHA-1 はメッセージダイジェスト値を求めるためのアルゴリズムです。詳細は IETF (The Internet Engineering Task Force) が発行している RFC (Request For Comments) 3174 を参照してください。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="MATH_CalcMD5.html">MATH_CalcMD5</A></P>
+<H2>履歴</H2>
+<P>
+2005/04/12 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGeSendDL</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGeSendDL</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/gecom.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dGeSendDL(
+    const void* src,
+    u32 szByte
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">ディスプレイリストへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByte</STRONG></EM></TD>
+      <TD width="87%">ディスプレイリストの大きさ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><EM><STRONG>src</STRONG></EM>で指定されるディスプレイリストをジオメトリエンジンに転送します。ディスプレイリストのサイズが256バイト未満であるかNITRO-SDKの<CODE>GX_InitEX</CODE>関数の設定でジオメトリコマンドのDMA転送が禁止されている場合にはCPUによってディスプレイリストを転送します。それ以外の場合は内部でNITRO-SDKの<CODE>MI_SendGXCommandAsync</CODE>関数を呼び出してDMA転送を行っています。<BR>
+<BR>
+<B>注意</B>：<BR>
+ジオメトリコマンドをジオメトリエンジンにDMA転送する場合は必ずこの関数を使用してください。<CODE>MI_SendGXCommandAsync</CODE>関数等を直接使用することは避けてください。</P>
+
+
+<H2>参照</H2>
+<P><CODE><A href="NNS_G3dGeBufferOP_N.html" target="_self">NNS_G3dGeBufferOP_N</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/10/15 記述の追加<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

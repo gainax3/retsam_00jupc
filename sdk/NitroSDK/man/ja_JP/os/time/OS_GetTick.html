@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetTick</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetTick</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>OSTick OS_GetTick( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>チック値です。</P>
+<H2>説明</H2>
+<P>チック値を取得します。<BR>
+この関数以前にOS_InitTick() でチック初期化が行われている必要があります。<BR>
+<BR>
+チック値の型 OSTick は u64 です。<BR>
+<BR>
+内部では16bit タイマカウンタ値と、そのタイマの割り込み回数カウンタからチック値を作成しています。<br>
+そのため、長い期間(65536 * OS_SYSTEM_CLOCK / 64 Hz、約7.5フレーム以上)割り込み禁止状態にするとカウンタの繰り上がりが失われ、
+その前後のチック値の差分に不整合が起こるという点に注意してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitTick.html">OS_InitTick</A>, <A href="OS_SetTick.html">OS_SetTick</A>, <A href="OS_GetTickLo.html">OS_GetTickLo</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/04/18 長期間の割り込み禁止に対する注意を追記<br>
+2004/02/25 systemClock→tickに<BR>
+2004/02/23 システムクロック値をフル64ビットに<BR>
+2004/02/04 初版</P>
+</BODY>
+</HTML>

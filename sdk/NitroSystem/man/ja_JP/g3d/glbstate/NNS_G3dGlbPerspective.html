@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dGlbPerspective</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dGlbPerspective</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/glbstate.h&gt;</CODE></PRE>
+  <PRE><CODE>void
+NNS_G3dGlbPerspective(
+    fx32 fovySin,
+    fx32 fovyCos,
+    fx32 aspect,
+    fx32 n,
+    fx32 f
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>fovySin</STRONG></EM></TD>
+      <TD width="87%">縦(y)方向の視界角度(画角)／２の正弦をとった値</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>fovyCos</STRONG></EM></TD>
+      <TD width="87%">縦(y)方向の視界角度(画角)／２の余弦をとった値</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>aspect</STRONG></EM></TD>
+      <TD width="87%">縦に対する横の視界の割合(縦横比:視界での幅／高さ)</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>n</STRONG></EM></TD>
+      <TD width="87%">視点からnearクリップ面までの距離</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>f</STRONG></EM></TD>
+      <TD width="87%">視点からfarクリップ面までの距離</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+G3Dライブラリ内部で保持しているグローバル状態に、透視射影行列をセットします。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G3dGlbPerspectiveW.html">NNS_G3dGlbPerspectiveW</A>,
+<A href="NNS_G3dGlbOrtho.html">NNS_G3dGlbOrtho</A>,
+<A href="NNS_G3dGlbFrustum.html">NNS_G3dGlbFrustum</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>CARD_SetCacheFlushThreshold</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 align="left">CARD_SetCacheFlushThreshold</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/card.h&gt;</code><br />
+  <br />
+  <code>void CARD_SetCacheFlushThreshold(u32 icache, u32 dcache);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>icache</strong></em></td>
+      <td width="87%">命令キャッシュの無効化閾値</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>dcache</strong></em></td>
+      <td width="87%">データキャッシュの無効化閾値</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<h2>説明</h2>
+<p>
+ライブラリ内部でDMA転送が必要とされる場合に行うキャッシュ無効化処理の方式を切り替える閾値を設定します。<br />
+</p>
+<p>
+キャッシュの無効化については、その範囲が小さなものであれば<a href="../../os/cache/IC_InvalidateRange.html">IC_InvalidateRange</a>関数や<a href="../../os/cache/DC_FlushRange.html">DC_FlushRange</a>関数などで部分的に処理すべきですが、
+ある程度の規模より大きなバッファに対してはあまりにも時間がかかりすぎるため<a href="../../os/cache/IC_InvalidateAll.html">IC_InvalidateAll</a>関数や<a href="../../os/cache/DC_FlushAll.html">DC_FlushAll</a>関数などで
+キャッシュ全体を無効化するほうが効率が良くなります。
+この関数は、そのようなキャッシュ無効化処理の方式を切り替えるべきサイズの閾値を変更することが出来ます。<br />
+</p>
+<p>
+CARDライブラリがDMA転送を行う際、ここで設定した閾値より小さなサイズであれば
+キャッシュを部分的に無効化し、そうでなければキャッシュ全体を無効化します。<br />
+デフォルト設定では、この値はicache,dcacheともに0xFFFFFFFFになっています。
+これは、転送サイズに関わらず常に部分的な無効化を行うことを示します。<br />
+</p>
+<h2>参照</h2>
+<p><code>
+<a href="CARD_GetCacheFlushThreshold.html">CARD_GetCacheFlushThreshold</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

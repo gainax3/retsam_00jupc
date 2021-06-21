@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_ReadMPData</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_ReadMPData</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+WMMpRecvData* WM_ReadMPData( const WMMpRecvHeader* header , u16 aid );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">header</FONT></STRONG></EM></TD>
+      <TD width="800">受信データ全体を示すヘッダ構造体へのポインタを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">aid</FONT></STRONG></EM></TD>
+      <TD width="800">データを抽出する子機のAIDを指定します。1 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>引数aidで指定した子機からの受信データ構造体へのポインタを返します。抽出に失敗した場合、NULLを返します。</p>
+
+<H2>説明</H2>
+<p>このAPIを用いてWM_STATECODE_MPEND_INDの通知から受信データを受け取るのは古い方法です。デバッグのために用いるのみとし、通常のデータの受信処理には<A href="WM_SetPortCallback.html">WM_SetPortCallback</A>で設定するcallbackを使用してください。</p>
+<p><A href="WM_StartMP.html">WM_StartMP</A>のコールバックに来るWM_STATECODE_MPEND_INDの通知時にWMStartMPCallback.recvBufに代入されている受信データ全体の構造体から、引数aidで指定した子機からの受信データ構造体へのポインタを返します。抽出に失敗した場合、NULLを返します。WMStartMPCallabck.recvBufはWMMpRecvBuf*型として定義されていますので、WMMpRecvHeader*型へキャストしてください。</p>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_EndMP.html">WM_EndMP</A>, <A href="WM_SetMPData.html">WM_SetMPData</A>, <A href="WM_SetPortCallback.html">WM_SetPortCallback</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/02 aid引数について指定可能範囲を追記<BR>
+2004/11/04 表現の修正<BR>
+2004/09/25 説明の追加・修正<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

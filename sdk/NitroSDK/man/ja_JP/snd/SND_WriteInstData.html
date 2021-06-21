@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_WriteInstData</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_WriteInstData</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">BOOL SND_WriteInstData(
+        SNDBankData* <var>bank</var>,
+        int <var>prgNo</var>,
+        int <var>key</var>,
+        const SNDInstData* <var>inst</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDACMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><font face="Courier New">bank</font></strong></em></td>
+<td>バンクデータのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">prgNo</font></strong></em></td>
+<td>プログラム番号です。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">key</font></strong></em></td>
+<td>キー番号です。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">inst</font></strong></em></td>
+<td>更新するインストデータを格納した構造体のポインタです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAGNWT"></a>
+      <h2>返り値</h2>
+
+      <p>
+インストデータの更新に成功するとTRUE、失敗するとFALSEを返します。
+</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDANNWT"></a>
+      <h2>説明</h2>
+      <p>
+バンク<em><strong><font face="Courier New">bank</font></strong></em>中のインストデータを、
+<a href="SNDInstData.html">SNDInstData</a>構造体で指定した値に更新します。
+</p>
+      <p>
+無効なプログラム番号<em><strong><font face="Courier New">prgNo</font></strong></em>を指定すると、関数は失敗します。
+</p>
+      <p>
+指定したプログラム番号<em><strong><font face="Courier New">prgNo</font></strong></em>が、ドラムセットまたはキースプリットを
+指していた場合、キー番号<em><strong><font face="Courier New">key</font></strong></em>に対応するインストデータのみ更新します。
+通常のインストを指していた場合、キー番号<em><strong><font face="Courier New">key</font></strong></em>は無視されます。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="SNDInstData.html">SNDInstData</a></p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

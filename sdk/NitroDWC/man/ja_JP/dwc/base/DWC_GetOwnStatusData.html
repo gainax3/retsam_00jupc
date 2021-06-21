@@ -1,0 +1,88 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_GetOwnStatusData</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_GetOwnStatusData</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+int DWC_GetOwnStatusData( char* statusData );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+	<P>
+      現在の自分の通信状態のうち、statusデータ（バイナリデータ）を取得します。
+    </P>
+	<P>
+	  プレイヤーの通信状態は、プレイヤーのオンライン、オフライン等の状態を表すstatusフラグと、status文字列というものから成っており、GameSpyサーバ上で管理されています。
+	  本関数では、status文字列をBase64でエンコードされた文字列と見なし、デコードしてstatusデータ（引数statusData）を取得します。
+	  statusフラグはDWCライブラリが自動的にセットしますが、statusデータは<a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>関数を用いてアプリケーションが設定することができます。
+	  statusフラグの種別については<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>関数の返り値の欄を参照してください。
+	</P>
+	<P>
+	  引数statusDataにNULLを指定すると、statusデータのデコードは行わずにバイナリデータのサイズのみを取得できます。
+	</P>
+	<P>
+	  本関数では、DWCライブラリ内に保存されている自分のStatusデータを取得するため、通信は行いません。
+	</P>
+	<P>
+	  この関数を使うためには、<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数によるログインまでを完了させておく必要があります。
+	</P>
+	<P>
+	  バイナリデータではなく文字列を設定／取得したい場合は、<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a> / <a href="DWC_GetOwnStatusString.html">DWC_GetOwnStatusString</a>関数を使用してください。
+	</P>
+
+    <H2>引数</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>statusData</CODE></STRONG></EM></TD>
+          <TD>statusデータ格納先ポインタ</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+
+    <H2>返り値</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>0以上</CODE></STRONG></EM></TD>
+          <TD>取得したバイナリデータのサイズ</TD>
+        </TR>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>負の値</CODE></STRONG></EM></TD>
+          <TD>ログイン前などで取得失敗</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+        <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>,
+		<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a>,
+		<a href="DWC_GetOwnStatusString.html">DWC_GetOwnStatusString</a>,
+		<a href="DWC_GetFriendStatusData.html">DWC_GetFriendStatusData</a>,
+		<a href="DWC_GetFriendStatusDataSC.html">DWC_GetFriendStatusDataSC</a>,
+		<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+	  2005/12/16 通信状態についての説明、他類似関数の紹介などを追加。<BR>
+      2005/11/07 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

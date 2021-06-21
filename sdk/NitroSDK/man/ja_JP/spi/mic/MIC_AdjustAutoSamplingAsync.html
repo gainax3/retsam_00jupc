@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+	<TITLE>
+		MIC_AdjustAutoSamplingAsync
+	</TITLE>
+</HEAD>
+
+<BODY>
+
+	<H1 align="left">MIC_AdjustAutoSamplingAsync</H1>
+
+	<H2>構文</H2>
+	<DL>
+		<DD>
+			<CODE>
+				#include &lt;nitro/spi.h&gt;
+			</CODE>
+
+<PRE><CODE><A href="MICResult.html">MICResult</A> MIC_AdjustAutoSamplingAsync(
+            u32             rate,
+            <A href="MICCallback.html">MICCallback</A>     callback,
+            void*           arg );
+</CODE></PRE>
+
+		</DD>
+	</DL>
+
+	<H2>引数</H2>
+	<TABLE border="1" width="100%">
+		<TBODY>
+			<TR>
+				<TD width="300"><EM><STRONG><FONT face="Courier New">rate</FONT></STRONG></EM></TD>
+				<TD width="700">サンプリング周期。ARM7のCPUタイマー周期を直接指定します。<BR>
+								<A href="MICSamplingRate.html">MICSamplingRate列挙型</A>から選択することもできます。</TD>
+			</TR>
+			<TR>
+				<TD><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+				<TD>コールバック関数へのポインタを指定します。<br>
+このコールバックは割り込みハンドラ内から呼び出されます。
+</TD>
+			</TR>
+			<TR>
+				<TD><EM><STRONG><FONT face="Courier New">arg</FONT></STRONG></EM></TD>
+				<TD>コールバック関数へ渡す引数を指定します。</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+
+	<H2>返り値</H2>
+	<P>
+		<A href="MICResult.html">MICResult列挙型</A>の処理結果を返します。<BR>
+		非同期処理を正常に開始できた場合に MIC_RESULT_SUCCESS が、何らかの原因で失敗した場合にはそれ以外の返り値が返されます。
+	</P>
+
+	<H2>説明</H2>
+	<P>
+		マイクの自動サンプリングにおけるサンプリングレートの調整を非同期に開始します。<BR>
+		自動サンプリングが開始されている場合にのみ有効であり、ARM7が要求を受け付けた時点でCPUタイマー周期が更新されます。<BR>
+		<BR>
+		この関数はARM7に自動サンプリング調整要求を発行し、ARM7からの応答を待たずに呼び出し元に戻ります。<BR>
+		ARM7における処理結果はユーザコールバック関数に渡される<EM><STRONG><FONT face="Courier New">result</FONT></STRONG></EM>引数によって取得する必要があります。<BR>
+		この関数が失敗した場合は非同期的な操作は行われず、ユーザコールバック関数も呼び出されません。
+	</P>
+
+	<H2>参照</H2>
+	<P>
+		<CODE>
+			<A href="MIC_AdjustAutoSampling.html">MIC_AdjustAutoSampling</A>,
+			<A href="MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A>,
+			<A href="MIC_StopAutoSamplingAsync.html">MIC_StopAutoSamplingAsync</A>
+		</CODE>
+	</P>
+
+	<H2>履歴</H2>
+	<P>
+		Ver. 2005/06/27 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+		Ver. 2005/01/11 初版<BR>
+	</P>
+
+</BODY>
+
+</HTML>

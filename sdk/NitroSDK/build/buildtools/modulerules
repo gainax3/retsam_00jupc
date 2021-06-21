@@ -1,0 +1,685 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - modulerules - common rules for build system
+# File:     modulerules
+#
+# Copyright 2003-2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules,v $
+# Revision 1.93  2005/08/23 05:17:27  yasu
+# make clobber 時に不要な削除を行なっていたことの修正
+#
+# Revision 1.92  2005/07/29 02:22:41  yasu
+# EDIRT_CLOBBER/CLEAN の追加
+#
+# Revision 1.91  2005/07/21 11:55:21  yasu
+# EDEPENDS_NEF/BIN を追加
+#
+# Revision 1.90  2005/07/14 08:57:14  yasu
+# makebanner 関連のコマンドを　NITRO_FORCE_BUILD のスコープ外に出す
+#
+# Revision 1.89  2005/07/14 07:58:45  yasu
+# SDK_FORCE_BUILD で不要な比較をやめる
+#
+# Revision 1.88  2005/07/08 01:26:14  yasu
+# full ビルド時に時間を出力するように修正
+#
+# Revision 1.87  2005/06/24 02:16:18  yasu
+# add-ins の読み込み処理を追加
+#
+# Revision 1.86  2005/04/05 23:52:58  yosizaki
+# fix copyright date.
+#
+# Revision 1.85  2005/04/05 11:29:45  yosizaki
+# add NITRO_ROMSPEED.
+#
+# Revision 1.84  2004/12/27 01:34:46  yasu
+# fix around NITRO_CODEGEN_ALL
+#
+# Revision 1.83  2004/10/08 06:01:58  yasu
+# add full-install
+#
+# Revision 1.82  2004/09/17 09:37:22  yasu
+# Add addbanner and makebanner-default
+#
+# Revision 1.81  2004/09/10 02:16:48  yasu
+# Error fix in DO_INSTALL
+#
+# Revision 1.80  2004/09/10 01:24:57  yasu
+# Add '+' mark to support 'make -n'
+# Fix for building ferret
+#
+# Revision 1.79  2004/09/09 11:41:32  yasu
+# Support NITRO_DIGEST
+#
+# Revision 1.78  2004/09/09 02:37:14  yasu
+# Show $(MAKEFILE) if using non-default-Makefile
+#
+# Revision 1.77  2004/09/09 01:23:48  yasu
+# Fix '-s/-w/-k' option searching method
+#
+# Revision 1.77  2004/09/09 00:53:08  yasu
+# 文面修正
+#
+# Revision 1.76  2004/09/08 11:55:10  yasu
+# fix around make full with $(AND)
+#
+# Revision 1.75  2004/09/08 00:12:34  yasu
+# NITRO_STDOUT moves to commondefs
+#
+# Revision 1.74  2004/09/08 00:06:26  yasu
+# Set NITRO_STDOUT to '> /dev/null' if -s option defined
+#
+# Revision 1.73  2004/09/04 01:25:06  yasu
+# Support "make super-full-install"
+#
+# Revision 1.72  2004/09/01 09:09:31  miya
+# add TARGET_SIGN_BIN
+#
+# Revision 1.71  2004/08/27 09:22:22  yasu
+# Fix around NITRO_CODEGEN_ALL
+#
+# Revision 1.70  2004/07/19 02:50:34  yasu
+# Support super-full and super-clobber to build on all platforms
+#
+# Revision 1.69  2004/07/19 00:45:04  yasu
+# Fix build error on Mingw
+# Always build TS version on make full
+#
+# Revision 1.68  2004/07/17 09:39:55  yasu
+# Check modification time on install
+#
+# Revision 1.67  2004/07/17 07:51:54  yasu
+# Rollback
+#
+# Revision 1.66  2004/07/17 07:21:42  yasu
+# Check time stamp to skip installing
+#
+# Revision 1.65  2004/07/15 13:19:50  yasu
+# Fix target 'makefull' again
+#
+# Revision 1.64  2004/07/15 06:46:10  yasu
+# Fix target 'makefull'
+#
+# Revision 1.63  2004/07/14 11:53:34  yasu
+# Support NITRO_CODEGEN=ALL
+#
+# Revision 1.62  2004/07/10 04:56:05  yasu
+# Support USE_MY_RULE_BIN and Clean up around makerom
+#
+# Revision 1.61  2004/07/10 04:20:41  yasu
+# Use response file to support overlay group.
+# Support SRCS_AUTOLOAD
+#
+# Revision 1.60  2004/07/06 04:04:23  yasu
+# Support makerom -F option
+#
+# Revision 1.59  2004/07/01 09:41:02  yasu
+# add TARGET_ROM
+#
+# Revision 1.58  2004/07/01 02:19:09  yasu
+# support srl making rules
+#
+# Revision 1.57  2004/06/28 10:49:40  yasu
+# No exec makedir without newdir
+#
+# Revision 1.56  2004/06/25 11:41:52  yasu
+# Exec linker whenever no SRCS defined
+#
+# Revision 1.55  2004/06/23 05:41:07  yasu
+# Add more information when make full
+#
+# Revision 1.54  2004/06/23 01:32:40  terui
+# make full 時にARM、THUMBの順にビルドするよう変更。
+#
+# Revision 1.53  2004/06/21 00:38:54  yasu
+# In 'make full', change build order like as 1)finalrom, 2)release, 3)debug.
+#
+# Revision 1.52  2004/04/20 07:53:57  yasu
+# Change build sequence like as RELEASE, DEBUG then FINALROM at 'make full'
+#
+# Revision 1.51  2004/04/20 03:49:38  yasu
+# add LDEPENDS_BIN/NEF for dependancies
+#
+# Revision 1.50  2004/04/14 11:28:48  yasu
+# support suffiex on MAKEROM_ARMx
+#
+# Revision 1.49  2004/04/09 11:04:43  yasu
+# support MAKEROM_FLAGS
+#
+# Revision 1.48  2004/04/09 05:44:22  yasu
+# Hide TS build rule
+#
+# Revision 1.47  2004/04/06 06:37:14  yasu
+# add default options for makerom
+#
+# Revision 1.46  2004/04/06 04:55:53  yasu
+# add more variables for default makerom option
+#
+# Revision 1.45  2004/04/03 06:35:42  yasu
+# fix mistakes when merging with branch
+#
+# Revision 1.44  2004/04/03 06:31:26  yasu
+# small change for MAKEROM
+#
+# Revision 1.43  2004/04/02 01:36:33  yasu
+# guard against re-including
+#
+# Revision 1.42  2004/03/30 07:16:48  yasu
+# fix autotest log sequence
+#
+# Revision 1.41  2004/03/26 13:12:15  yasu
+# fully support makerom
+#
+# Revision 1.40  2004/03/10 12:26:56  yasu
+# support SUBMAKES (Makefile recursive call) with directory
+#
+# Revision 1.39  2004/02/28 09:48:16  yasu
+# append SUBMAKES
+#
+# Revision 1.38  2004/02/25 12:44:50  yasu
+# Add dynamic dependancies rule instead of makefile.src
+#
+# Revision 1.37  2004/02/23 05:01:38  yasu
+# axf->nef
+#
+# Revision 1.36  2004/02/19 02:01:57  yasu
+# fix building Makefile.srcs
+#
+# Revision 1.35  2004/02/19 01:45:18  yasu
+# fix condition of include Makefile.srcs
+#
+# Revision 1.34  2004/02/18 13:06:17  yasu
+# rollback to 1.30
+#
+# Revision 1.33  2004/02/17 13:16:23  yasu
+# Don't make run if no binary
+#
+# Revision 1.32  2004/02/17 12:55:30  yasu
+# support wildcard for make install
+#
+# Revision 1.31  2004/02/17 09:25:46  yasu
+# reduce recursive call of make command as possible
+#
+# Revision 1.30  2004/02/16 10:19:17  yasu
+# fix in target full
+#
+# Revision 1.29  2004/02/16 01:24:24  yasu
+# support file dependancies
+#
+# Revision 1.28  2004/02/14 06:44:21  yasu
+# workaround ELFTOBIN
+#
+# Revision 1.27  2004/02/13 10:15:38  yasu
+# support ARM7 build setting with elftobin
+#
+# Revision 1.26  2004/02/09 13:14:33  yasu
+# fix for NITRO_CODEGEN
+#
+# Revision 1.25  2004/02/09 11:05:32  kitani_toshikazu
+# Work around IS-IRIS-EMU => IS=NITRO-EMU.
+#
+# Revision 1.24  2004/02/06 12:41:52  yasu
+# add do-autotest-test
+#
+# Revision 1.23  2004/02/06 11:55:00  kitani_toshikazu
+# Remove the TARGET_BIN condition for enabling autoTest log file setting.
+#
+# Revision 1.22  2004/02/06 09:19:53  kitani_toshikazu
+# Fix a bug around autoTest.
+#
+# Revision 1.21  2004/02/06 01:06:05  yasu
+# add command for autotest
+#
+# Revision 1.20  2004/02/05 07:29:20  yasu
+# rollback IS_NITRO_SDK -> IS_IRIS_SDK
+#
+# Revision 1.19  2004/02/05 07:09:01  yasu
+# change SDK prefix iris -> nitro
+#
+# Revision 1.18  2004/02/03 10:46:21  yasu
+# Workaround for SHELL=/bin/sh
+#
+# Revision 1.17  2004/02/03 07:37:04  yasu
+# Add target "autotest"
+#
+# Revision 1.16  2004/01/30 13:29:11  yasu
+# delete all installed target by 'make clobber'
+#
+# Revision 1.15  2004/01/19 06:52:54  yasu
+# Add comments
+#
+# Revision 1.14  2004/01/15 10:49:31  yasu
+# support overlay
+#
+# Revision 1.13  2003/12/29 01:37:16  yasu
+# Support a target "make run"
+#
+# Revision 1.12  2003/12/10 23:57:30  yasu
+# SRCS が定義されていないときは Makefile.srcs を作成しないようにした
+#
+# Revision 1.11  2003/12/10 05:12:48  yasu
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
+#
+# Revision 1.10  2003/12/02 02:40:23  yasu
+# IS-NITRO-EMULATOR 用ライブラリの定義追加
+#
+# Revision 1.9  2003/11/29 04:06:24  yasu
+# make full の追加
+#
+# Revision 1.8  2003/11/05 09:57:12  yasu
+# make の -k オプションを有効にした
+# NITRO_INC_DIR -> NITRO_INCDIR の修正
+#
+# Revision 1.7  2003/11/05 08:42:37  yasu
+# build が error で停止する様にした．
+# make -i で error を無視する．
+#
+# Revision 1.6  2003/11/05 07:13:21  yasu
+# SRCS の依存ルール追加
+#
+# Revision 1.5  2003/10/30 06:10:08  yasu
+# SUFFIXES ルールの設定
+#
+# Revision 1.4  2003/10/30 05:51:00  yasu
+# .PHONY: の追加
+#
+# Revision 1.3  2003/10/30 04:46:49  yasu
+# do-build/do-install の追加とそれに伴う修正
+#
+# Revision 1.2  2003/10/29 13:25:40  yasu
+# make の伝播のフレームワーク完成
+# all/install/clean/clobber が使える
+#
+# Revision 1.1  2003/10/29 06:47:28  yasu
+# Support "make clean/clobber" only
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+ifndef NITROSDK_MODULERULES_
+
+#----------------------------------------------------------------------------
+#	Implicit RULES
+#----------------------------------------------------------------------------
+.SUFFIXES:	# Delete all suffix rules
+
+ifneq	($(NITRO_FORCE_BUILD),)
+
+VPATH		= $(SRCDIR)
+
+SSRCFILES	= $(addprefix $(OBJDIR)/,$(notdir $(SRCS)))
+ASRCFILES	= $(addprefix $(OBJDIR)/,$(notdir $(SRCS_AUTOLOAD)))
+VSRCFILES	= $(addprefix $(OBJDIR)/,$(notdir $(SRCS_OVERLAY)))
+
+SOBJS_CC	= $(filter %.o,$(SSRCFILES:.c=.o))
+SOBJS_AS	= $(filter %.o,$(SSRCFILES:.s=.o))
+SOBJS_CXX	= $(filter %.o,$(SSRCFILES:.cpp=.o))
+AOBJS_CC	= $(filter %.o,$(ASRCFILES:.c=.o))
+AOBJS_AS	= $(filter %.o,$(ASRCFILES:.s=.o))
+AOBJS_CXX	= $(filter %.o,$(ASRCFILES:.cpp=.o))
+VOBJS_CC	= $(filter %.o,$(VSRCFILES:.c=.o))
+VOBJS_AS	= $(filter %.o,$(VSRCFILES:.s=.o))
+VOBJS_CXX	= $(filter %.o,$(VSRCFILES:.cpp=.o))
+
+OBJS_CC		= $(SOBJS_CC)  $(AOBJS_CC)  $(VOBJS_CC)
+OBJS_AS		= $(SOBJS_AS)  $(AOBJS_AS)  $(VOBJS_AS)
+OBJS_CXX	= $(SOBJS_CXX) $(AOBJS_CXX) $(VOBJS_CXX)
+OBJS_STATIC	= $(SOBJS_CC)  $(SOBJS_AS) $(SOBJS_CXX) $(EXT_OBJS)
+OBJS_AUTOLOAD	= $(AOBJS_CC)  $(AOBJS_AS) $(AOBJS_CXX) $(EXT_OBJS_AUTOLOAD)
+OBJS_OVERLAY	= $(VOBJS_CC)  $(VOBJS_AS) $(VOBJS_CXX) $(EXT_OBJS_OVERLAY)
+OBJS		= $(OBJS_STATIC) $(OBJS_AUTOLOAD) $(OBJS_OVERLAY)
+
+-include $(NITRO_BUILDTOOLSDIR)/modulerules.cctype.$(NITRO_CCTYPE)
+
+# Common Rules
+
+# .bin .srl
+ifdef	NITRO_MAKEROM
+#
+# MAKEROM
+#
+
+ROM_SPEC		?= $(DEFAULT_ROM_SPEC)
+MAKEROM_ARM9		?= $(DEFAULT_MAKEROM_ARM9)
+MAKEROM_ARM7		?= $(DEFAULT_MAKEROM_ARM7)
+MAKEROM_ROMROOT		?= $(DEFAULT_MAKEROM_ROMROOT)
+MAKEROM_ROMFILES	?= $(DEFAULT_MAKEROM_ROMFILES)
+MAKEROM_ROMSPEED	?= $(DEFAULT_MAKEROM_ROMSPEED)
+MAKEROM_FLAGS		?=
+MAKEROM_FLAGS		+= $(if $(NITRO_FINALROM),,-F)
+
+MAKEROM_DEFS		= -DNITROSDK_ROOT='$(ROOT)'			\
+			  -DTARGET_NAME='$(TARGET_NAME)'		\
+			  -DMAKEROM_ROMROOT='$(MAKEROM_ROMROOT)'	\
+			  -DMAKEROM_ROMFILES='$(MAKEROM_ROMFILES)'	\
+			  -DMAKEROM_ROMSPEED='$(MAKEROM_ROMSPEED)'	\
+			  -DBINDIR='$(BINDIR)'				\
+			  -DCOMPDIR='$(NITRO_COMPONENTSDIR)'		\
+			  -DCOMPTYPE9='$(NITRO_BUILDTYPE_ARM9)'		\
+			  -DCOMPTYPE7='$(NITRO_BUILDTYPE_ARM7)'		\
+			  -DPROC='$(CODEGEN_PROC)'			\
+			  -DPLATFORM='$(NITRO_PLATFORM)'		\
+			  -DCODEGEN='$(CODEGEN_ARCH)'			\
+			  -DBUILD='$(NITRO_BUILD_DIR)'			\
+			  -DCOMPSUFFIX9='$(COMPSUFFIX)'			\
+			  -DCOMPSUFFIX7=''
+
+TARGET_ROM	= $(strip $(findstring .srl,$(TARGET_BIN)) \
+				$(findstring .bin,$(TARGET_BIN)))
+
+ifneq	($(strip $(OBJS) $(LLIBRARIES)),)	# any object?
+ifeq	($(CODEGEN_PROC),ARM9)
+SDEPENDS_BIN	=	$(BINDIR)/%.nef $(MAKEROM_ARM7)
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $@)'	\
+			-DMAKEROM_ARM7='$(basename $(MAKEROM_ARM7))'
+else	# !ARM9
+SDEPENDS_BIN	=	$(BINDIR)/%.nef $(MAKEROM_ARM9)
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $(MAKEROM_ARM9))' \
+			-DMAKEROM_ARM7='$(basename $@)'
+endif	# -ARM9
+else	# !OBJS !LLIBRARIES
+SDEPENDS_BIN	=	$(MAKEROM_ARM9) $(MAKEROM_ARM7)
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $(MAKEROM_ARM9))' \
+			-DMAKEROM_ARM7='$(basename $(MAKEROM_ARM7))'
+endif	# -OBJS -LLIBRARIES
+
+ifndef	USE_MY_RULE_BIN
+$(BINDIR)/%.bin $(BINDIR)/%.srl: $(SDEPENDS_BIN) $(ROM_SPEC) $(LDEPENDS_BIN) $(EDEPENDS_BIN)
+	$(MAKEROM) $(MAKEROM_FLAGS) $(MAKEROM_DEFS) $(ROM_SPEC) $@
+endif	# -USE_MY_RULE_BIN
+
+$(BINDIR)/$(TARGET_SIGN_BIN): $(BINDIR)/$(TARGET_BIN)
+	$(NITROSDK_ROOT)/tools/bin/attachsign.exe -D $(addprefix $(BINDIR)/,$(TARGET_BIN))
+
+else	# !NITRO_MAKEROM
+#
+# ELFTOBIN
+#
+ifndef	USE_MY_RULE_BIN
+ifeq	($(CODEGEN_PROC),ARM9)
+$(BINDIR)/%.bin $(BINDIR)/%.srl: $(BINDIR)/%.nef $(LDEPENDS_BIN) $(EDEPENDS_BIN)
+	$(ELFTOBIN) $< $(ELFTOBIN_ARM7) $(ELFTOBIN_ROMHEADER) -o $@
+else	# !ARM9
+$(BINDIR)/%.bin $(BINDIR)/%.srl: $(BINDIR)/%.nef $(LDEPENDS_BIN) $(EDEPENDS_BIN)
+	$(ELFTOBIN) $(ELFTOBIN_ARM9) $< $(ELFTOBIN_ROMHEADER) -o $@
+endif	# -ARM9
+endif	# -USE_MY_RULE_BIN
+endif	# -NITRO_MAKEROM
+
+endif	# -NITRO_FORCE_BUILD
+
+# .bnr .bsf
+%.bnr:		%.bsf
+		$(MAKEBANNER) $(MAKEBANNER_FLAGS) $< $@
+
+%.nbfc %.nbfp:	%.bmp
+		$(NTEXCONV) -no -bg -bgb -bgnc $< >/dev/null
+
+#----------------------------------------------------------------------------
+#  MAKE TARGETS
+#----------------------------------------------------------------------------
+
+.PHONY:	all default build install clean clobber full super-full
+
+BUILDCMDS = all default build
+
+#----------------------------------------------------------------------------
+SUBDIR_FLAGS	+= $(if $(NITRO_CODEGEN_ALL),NITRO_CODEGEN_ALL=False)
+
+define MAKE_SUBDIR
+    +$(foreach DIR,$(SUBDIRS),$(MAKE) $(SUBDIR_FLAGS) -C $(DIR) $(MAKECMDGOALS) $(AND)) true
+    +$(foreach FILE,$(SUBMAKES),$(MAKE) $(SUBDIR_FLAGS) -C $(dir $(FILE)) -f $(notdir $(FILE)) $(MAKECMDGOALS) $(AND)) true
+endef
+
+ifeq ($(MAKEFILE),Makefile)
+MAKEFILE_	=
+else
+MAKEFILE_	= /$(MAKEFILE)
+endif
+
+define ECHO_CURDIR
+	$(ECHO) "==== $(CURDIR)$(MAKEFILE_)";
+endef
+
+define DO_INSTALL_FILES
+	$(INSTALL) -d $(1) $(AND)					\
+	$(foreach FILE, $(2),						\
+		if [ ! -e $(1)/$(notdir $(FILE)) -o			\
+			$(FILE) -nt $(1)/$(notdir $(FILE)) ];		\
+		then 							\
+			$(ECHO) "  install: $(FILE) -> $(1)" $(AND)	\
+			$(INSTALL) $(FILE) $(1)/$(notdir $(FILE));	\
+		fi $(AND) ) true
+endef
+
+DO_INSTALL	= $(call DO_INSTALL_FILES,$(INSTALL_DIR),$(INSTALL_TARGETS))
+
+INSTALL_INDEX_SRC	= $(firstword $(INSTALL_TARGETS))
+INSTALL_INDEX_DEST	= $(INSTALL_DIR)/$(notdir $(INSTALL_INDEX_SRC))
+
+define DO_INSTALL_WILDCARD
+	$(INSTALL) -d $(INSTALL_DIR) $(AND)					\
+	if [ ! -e $(INSTALL_INDEX_DEST) -o 					\
+			$(INSTALL_INDEX_SRC) -nt $(INSTALL_INDEX_DEST) ];	\
+	then									\
+		$(foreach FILE, $(INSTALL_TARGETS),			   	\
+			$(ECHO) "  install: $(FILE) -> $(INSTALL_DIR)" $(AND)	\
+			$(INSTALL) $(FILE) $(INSTALL_DIR) $(AND) ) true;	\
+	fi
+endef
+
+#----------------------------------------------------------------------------
+#  make parallelly
+#----------------------------------------------------------------------------
+
+SUBDIRS_PREFIX	 = make-subdir-p-
+SUBDIRS_PARALLEL = $(addprefix $(SUBDIRS_PREFIX),$(SUBDIRS_P))
+
+$(SUBDIRS_PARALLEL):$(SUBDIRS_PREFIX)%:
+	$(MAKE) -C $(*F) $(MAKECMDGOALS)
+
+#----------------------------------------------------------------------------
+#  make build
+#----------------------------------------------------------------------------
+.PHONY:	do-build
+
+build:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+ifneq	($(strip $(NEWDIRS)),)
+	@$(MKDIRP) $(NEWDIRS)
+endif
+	@+$(REMAKE) do-build
+ifdef	INSTALL_TARGETS
+	@$(DO_INSTALL)
+endif
+ifeq	($(NITRO_CODEGEN_ALL),True)
+ifeq	($(NITRO_CODEGEN),ARM)
+	@+$(REMAKE) NITRO_CODEGEN_ALL=False NITRO_CODEGEN=THUMB build
+endif
+endif
+
+
+#----------------------------------------------------------------------------
+#  make install
+#----------------------------------------------------------------------------
+
+install:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+ifdef	INSTALL_TARGETS
+	@$(DO_INSTALL)
+endif
+ifeq	($(NITRO_CODEGEN_ALL),True)
+ifeq	($(NITRO_CODEGEN),ARM)
+	@+$(REMAKE) NITRO_CODEGEN_ALL=False NITRO_CODEGEN=THUMB install
+endif
+endif
+
+
+#----------------------------------------------------------------------------
+#  make full
+#----------------------------------------------------------------------------
+
+define makefull
+	@echo [[[ make full $(1) $(CURDIR) ]]]
+	@+unset NITRO_DEBUG NITRO_RELEASE NITRO_FINALROM NITRO_CODEGEN_ALL; \
+	$(foreach b,FINALROM RELEASE DEBUG,			\
+	    $(foreach a,ARM THUMB,				\
+		date "+::: %Y/%m/%d %H:%M:%S $a-$b" $(AND)	\
+		$(REMAKE) NITRO_$b=TRUE NITRO_CODEGEN=$a NITRO_CODEGEN_ALL=False $(1) $(AND) \
+	    ) \
+	) true
+endef
+
+full:
+	$(call makefull,build)
+
+full-install:
+	$(call makefull,install)
+
+#----------------------------------------------------------------------------
+#  make super-full
+#----------------------------------------------------------------------------
+
+define makesuperfull
+	@echo [[[ make super-full $(1) $(CURDIR) ]]]
+	@+unset NITRO_DEBUG NITRO_RELEASE NITRO_FINALROM NITRO_CODEGEN_ALL; \
+	$(foreach p,TS TEG,					\
+	    $(foreach b,FINALROM RELEASE DEBUG,			\
+		$(foreach a,ARM THUMB,				\
+		    date "+::: %Y/%m/%d %H:%M:%S $a-$b" $(AND)	\
+		    $(REMAKE) NITRO_$b=TRUE NITRO_PLATFORM=$p NITRO_CODEGEN=$a NITRO_CODEGEN_ALL=False $(1) $(AND) \
+		)\
+	    )\
+	) true
+endef
+
+super-full:
+	$(call makesuperfull,build)
+
+super-full-install:
+	$(call makesuperfull,install)
+
+#----------------------------------------------------------------------------
+#  Autotest using IS-NITRO-EMULATOR
+#----------------------------------------------------------------------------
+ifdef	IS_NITRO_DIR
+
+AUTOTESTLOG	:= $(ROOT)/autotest.log
+
+.PHONY: 	autotest do-autotest do-autotest-test
+
+autotest:
+	@+$(REMAKE) clobber
+	@+$(REMAKE) build NITRO_AUTOTEST=TRUE
+	@$(RM) $(AUTOTESTLOG)
+	@+$(REMAKE) do-autotest
+	@$(SED) -e 's/\r//g;s/$$/\r/g;' $(AUTOTESTLOG) > $(AUTOTESTLOG).tmp
+	@$(MV)  $(AUTOTESTLOG).tmp $(AUTOTESTLOG)
+
+do-autotest:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+ifneq	($(TARGET_ROM),)
+	@+$(REMAKE) test-run
+endif
+endif
+
+
+#----------------------------------------------------------------------------
+#  make clobber & clean
+#----------------------------------------------------------------------------
+.PHONY: 	clobber-installed
+
+clobber:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+	-$(RM) $(GDIRT_CLEAN)   $(LDIRT_CLEAN)   $(EDIRT_CLEAN) 
+	-$(RM) $(GDIRT_CLOBBER) $(LDIRT_CLOBBER) $(EDIRT_CLOBBER)
+ifneq	($(GDIRT_INSTALLED),)
+ifneq	($(NITRO_FORCE_BUILD),)
+	$(call makefull,clobber-installed)
+else
+	@+$(REMAKE) clobber-installed
+endif
+endif
+
+clobber-installed:
+	-$(RM) $(GDIRT_INSTALLED)
+
+
+#----------------------------------------------------------------------------
+
+super-clobber:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+	-$(RM) $(GDIRT_CLEAN)   $(LDIRT_CLEAN)   $(EDIRT_CLEAN)
+	-$(RM) $(GDIRT_CLOBBER) $(LDIRT_CLOBBER) $(EDIRT_CLOBBER)
+ifneq	($(GDIRT_INSTALLED),)
+	$(call makesuperfull,clobber-installed)
+endif
+
+
+#----------------------------------------------------------------------------
+
+clean:
+	@$(MAKE_SUBDIR)
+	@$(ECHO_CURDIR)
+	-$(RM) $(GDIRT_CLEAN) $(LDIRT_CLEAN) $(EDIRT_CLEAN)
+
+
+#----------------------------------------------------------------------------
+#  source file dependancies
+#----------------------------------------------------------------------------
+
+#
+# dynamic dependancy generation
+#   like as $(OBJDIR)/main.o: main.c
+#
+DEP_SRCS_ALL = $(SRCS) $(SRCS_AUTOLOAD) $(SRCS_OVERLAY)
+
+define RuleCtoObj
+$$(OBJDIR)/$$(notdir $$(basename $(1))).o: $(1)
+
+endef
+endif	# NITROSDK_MODULERULES_
+
+# Put this sentance out of include-guard to avoid $(eval xxx) limitation
+$(foreach FILE,$(DEP_SRCS_ALL),$(eval $(call RuleCtoObj,$(FILE))))
+
+
+ifndef	NITROSDK_MODULERULES_
+#
+# include dependancies file
+#
+ifeq	($(MAKECMDGOALS),do-build)
+ifdef	SRCS
+-include $(DEPENDDIR)/*.d
+endif
+endif
+
+#----------------------------------------------------------------------------
+#  for IS-NITRO-EMULATOR
+#----------------------------------------------------------------------------
+ifdef	IS_NITRO_DIR
+-include $(NITRO_BUILDTOOLSDIR)/modulerules.emtype.ISD
+endif
+
+#----------------------------------------------------------------------------
+#  Load add-ins' modulerules
+#----------------------------------------------------------------------------
+-include $(NITRO_BUILDTOOLSDIR)/modulerules.add-ins.*
+
+#----------------------------------------------------------------------------
+NITROSDK_MODULERULES_ = TRUE
+endif	# NITROSDK_MODULERULES_
+#----- End of modulerules -----

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_RequestClientRead</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFS_RequestClientRead</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_RequestClientRead(WFSClientContext *context, void *buffer, u32 offset, u32 length,
+                                   <a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a> callback, void *arg);</code><br />
+  <br />
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>buffer</strong></em></td>
+      <td style="width:87%">読み込むデータの格納先メモリ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>offset</strong></em></td>
+      <td style="width:87%">読み込むデータのデバイス内アドレス</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>length</strong></em></td>
+      <td style="width:87%">読み込むデータサイズ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>callback</strong></em></td>
+      <td style="width:87%"><a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>形式の読み込み完了コールバック<br />
+      不要ならNULLを指定します。</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>arg</strong></em></td>
+      <td style="width:87%">読み込み完了コールバックに与える任意の引数</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p>親機へROMイメージ読み込みリクエストを発行します。ライブラリ内部では、これ以降のMP通信フック関数を経由して自動的にブロック転送が実行されます。<br />
+リクエストが完了するかリクエスト処理中に<a href="WFS_EndClient.html">WFS_EndClient</a>関数が呼び出されると、
+<a href="../WFSRequestClientReadDoneCallback.html">WFSRequestClientReadDoneCallback</a>形式で完了コールバックとして通知されます。</p>
+<p>
+この関数は、クライアントの準備が完了して<a href="../WFSEventType.html">WFS_EVENT_CLIENT_READY</a>イベント通知が発生した後でないと使用できません。
+また、前回のリクエストが完了するまでは再びこの関数を呼び出すことはできません。
+</p>
+<p>
+リクエストの進捗状況を確認するには<a href="WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a>関数を使用します。
+</p>
+<h2>参照</h2>
+<p>
+<a href="../WFSEventCallback.html">WFSEventCallback</a>
+<a href="../WFSEventType.html">WFSEventType</a>
+<br />
+<a href="WFS_GetClientReadProgress.html">WFS_GetClientReadProgress</a>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/11 引数追加<br />
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

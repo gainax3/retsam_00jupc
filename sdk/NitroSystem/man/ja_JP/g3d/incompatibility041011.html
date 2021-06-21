@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>2004-09-16版以前のバージョンとの非互換性についてのお知らせ</TITLE>
+	<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">2004-09-16版又はそれ以前のバージョンとの非互換性についてのお知らせ</H1>
+
+<H2>コールバックの非互換性</H2>
+<P>2004-10-11版では<A href="sbc/NNS_G3dDraw.html" target="_self">NNS_G3dDraw</A>関数内においてSBC１つにつき１つのコールバック関数を設定することができるようになっています（従来バージョンでは全体で１つのコールバック関数のみ）。しかしながら、そのために一部従来バージョンとの非互換性が生じています。</P>
+<UL>
+  <LI><A href="sbc/NNSG3dRS.html">NNSG3dRS</A>構造体から<B><I>cbFunc</I></B>, <B><I>cbCmdPtr</I></B>, <B><I>cbCmd</I></B>, <B><I>cbTiming</I></B>メンバが削除されました。従ってコールバック内でこれらのメンバを操作するコードを記述した場合、コンパイルが通らなくなります。
+  <LI><A href="kernel/NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>関数の第3引数が無効になりました。SBCのアドレスを指定してコールバックを起動する機能は削除されました。
+</UL>
+<H2>コールバック関係のコードがコンパイルできない場合の対処法</H2>
+<H3>コールバック内でコールバック関数、コールバック生起条件を変更している場合</H3>
+<P>コールバック関数内で<A href="sbc/NNSG3dRS.html">NNSG3dRS</A>構造体の<B><I>cbFunc</I></B>, <B><I>cbCmd</I></B>, <B><I>cbTiming</I></B>メンバを変更している場合、次のようにコードを置き換えます。</P>
+<OL>
+  <LI>コールバック関数内で<A href="sbc/NNSG3dRS.html#NNS_G3dRSResetCallBack" target="_self">NNS_G3dRSResetCallBack</A>関数を使用して現在使用しているコールバックを解除します。
+  <LI>その後、<A href="sbc/NNSG3dRS.html#NNS_G3dRSSetCallBack" target="_self">NNS_G3dRSSetCallBack</A>関数を使用して新たにコールバック関数や生起条件を指定します。
+</OL>
+<H3>複数のコールバックを使用する場合</H3>
+<P>2つ目以降のコールバックは、<A href="kernel/NNS_G3dRenderObjSetCallBack.html">NNS_G3dRenderObjSetCallBack</A>関数では登録することができません。NNSG3dRenderObj構造体のサイズが必要以上に大きくならないようにするため、<A href="sbc/NNS_G3dDraw.html" target="_self">NNS_G3dDraw</A>関数内で描画前に<A href="sbc/NNSG3dRS.html">NNSG3dRS</A>構造体の設定を行ない、コールバックを登録するようになっています。</P>
+<OL>
+  <LI><A href="kernel/NNS_G3dRenderObjSetInitFunc.html" target="_self">NNS_G3dRenderObjSetInitFunc</A>関数を使用して、<A href="sbc/NNS_G3dDraw.html" target="_self">NNS_G3dDraw</A>関数の実行時において描画前に実行される関数をNNSG3dRenderObj構造体に設定しておく。
+  <LI>設定された関数内で、<A href="sbc/NNSG3dRS.html#NNS_G3dRSSetCallBack" target="_self">NNS_G3dRSSetCallBack</A>関数を使用してコールバック関数や生起条件を指定します。
+</OL>
+<P>具体的には、サンプルcallback5を参照してください。</P>
+<H2>履歴</H2>
+<P>2004/10/11 初版</P>
+</BODY>
+
+</HTML>

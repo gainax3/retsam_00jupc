@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_GetDivResult</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_GetDivResult*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <BR>
+  <CODE>s64 CP_GetDivResult64( void )</CODE><br>
+  <CODE>s32 CP_GetDivResult32( void )</CODE><br>
+  <CODE>s16 CP_GetDivResult16( void )</CODE><br>
+  <CODE>s8 CP_GetDivResult8( void )</CODE><br>
+  <CODE>s64 CP_GetDivResultImm64( void )</CODE><br>
+  <CODE>s32 CP_GetDivResultImm32( void )</CODE><br>
+  <CODE>s16 CP_GetDivResultImm16( void )</CODE><br>
+  <CODE>s8 CP_GetDivResultImm8( void )</CODE>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>除算で得られる結果のうち、商(quotient)を返します。</p>
+
+<H2>説明</H2>
+<P>除算の結果のうち、商を返します。<BR>
+結果は8ビット、16ビット、32ビット、64ビットの何れかで取得できます。<BR>
+出ている結果以下のビット数で取得することも出来ますが、正確な値にはならないかもしれません。(例えば、商が0x100
+になっているときに、s8 の値で取得すると 0x0 となる)<BR>
+<BR>
+ビジー状態からレディ状態になるのを待つ関数と、レディ状態になっているものとして待たない関数がそれぞれ用意されています。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>関数</TH>
+      <TH>返り値の型</TH>
+      <TH>レディ状態になるのを待つかどうか</TH>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResult64</CODE></TD>
+      <TD>s64</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResult32</CODE></TD>
+      <TD>s32</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResult16</CODE></TD>
+      <TD>s16</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResult8</CODE></TD>
+      <TD>s8</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResultImm64</CODE></TD>
+      <TD>s64</TD>
+      <TD>待たない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResultImm32</CODE></TD>
+      <TD>s32</TD>
+      <TD>待たない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResultImm16</CODE></TD>
+      <TD>s16</TD>
+      <TD>待たない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetDivResultImm8</CODE></TD>
+      <TD>s8</TD>
+      <TD>待たない</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、DIV_RESULT(0x40002a0) の値を参照します。<BR>
+また、レディ状態のチェックにはDIVCNT(0x4000280)を参照します。<br>
+</CODE></p>
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SetDivImm.html">CP_SetDivImm*</A>, <A href="CP_SetDiv.html">CP_SetDiv*</A>, <A href="CP_IsDivBusy.html">CP_IsDivBusy</A>, <A href="CP_WaitDiv.html">CP_WaitDiv</A>, <A href="CP_GetDivRemainder.html">CP_GetDivRemainder*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/01/09 内容を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

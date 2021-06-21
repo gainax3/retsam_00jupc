@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dOptimizeRenderer</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dOptimizeRenderer</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Renderer.h&gt;</CODE></pre>
+  <pre><CODE>
+void NNS_G2dOptimizeRenderer( NNSG2dRendererInstance* pRend );
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRend</font></strong></em></td>
+    <td width="87%">[OUT] レンダラ実体</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし<BR>
+</p>
+<H2>説明</H2>
+<P>
+現在のレンダラの状態に合わせて、レンダラの最適化を行います。<BR>
+具体的にはレンダラが対象とするグラフィックスエンジンの種類を調査し、
+関係の無いグラフィックスエンジンのための処理コードを実行しないようにします。<BR>
+レンダサーフェスのサーフェス種類の変更後に実行してください。<BR>
+<BR>
+<BR>
+本関数は廃止されました。<BR>
+本関数を呼び出すと、警告メッセージが出力されます。<BR>
+本関数の代わりに、NNS_G2dBeginRenderingEx()が用意されました。<BR>
+<BR>
+<BR>
+<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE>
+<A href="NNS_G2dBeginRenderingEx.html">NNS_G2dBeginRenderingEx</A><br>
+</CODE>
+</p>
+<H2>履歴</H2>
+<P>2004/11/10 関数廃止</P>
+<P>2004/09/01 初版</P>
+</body>
+</html>

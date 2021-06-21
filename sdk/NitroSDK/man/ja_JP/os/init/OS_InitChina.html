@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_InitChina</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_InitChina</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_InitChina( const char** isbn );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="20%" rowspan="5"><EM><STRONG><FONT face="Courier New">isbn</FONT></STRONG></EM></TD>
+      <TD colspan="4">健康上の注意画面に表示する ISBN 番号等の文字列を4つ指定します。
+      文字列のフォーマットは以下のようになっています。なお、数字及び '-' 以外の文字は全て ' ' (スペース) として扱われます。</TD>
+    </TR>
+    <TR>
+      <TD width="5%"><CENTER>0</CENTER></TD>
+      <TD width="10%"><CODE>char[ 13 ]</CODE></TD>
+      <TD width="20%"><CODE>"*-******-**-*"</CODE></TD>
+      <TD width="45%">ISBN 番号</TD>
+    </TR>
+    <TR>
+      <TD><CENTER>1</CENTER></TD>
+      <TD><CODE>char[ 12 ]</CODE></TD>
+      <TD><CODE>"***-****-***"</CODE></TD>
+      <TD>合同登記号</TD>
+    </TR>
+    <TR>
+      <TD><CENTER>2</CENTER></TD>
+      <TD><CODE>char[ 4 ]</CODE></TD>
+      <TD><CODE>"****"</CODE></TD>
+      <TD>新出音管(左側に表示する情報)</TD>
+    </TR>
+    <TR>
+      <TD><CENTER>3</CENTER></TD>
+      <TD><CODE>char[ 4 ]</CODE></TD>
+      <TD><CODE>"****"</CODE></TD>
+      <TD>新出音管(右側に表示する情報)</TD>
+    </TR>
+  </tbody>
+</table>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P><A href="OS_Init.html">OS_Init関数</A>と同様にシステムを初期化した後、ハードウェアの起動制限を確認します。<BR>
+中国向けアプリケーションが中国を仕向地としていない本体から起動された場合に、
+アプリケーションの起動が制限され、この関数からは制御が戻されません。<BR>
+中国向けアプリケーションが中国を仕向地とする本体から正しく起動された場合には、この関数内で健康上の注意を喚起すると共に
+ ISBN 番号等の表示を義務付けられた情報を告知する画面表示が行われます。<BR>
+中国向けアプリケーションを作成する為には、<A href="OS_Init.html">OS_Init関数</A>の代わりに当関数を使用するほか、
+ROMイメージ内に中国語対応であることを示す付帯情報を定義する必要があります。
+詳細は <A href="../../tools/makerom.html">makerom</A> の説明を参照して下さい。<BR>
+<BR>
+システムの初期化については <A href="OS_Init.html">OS_Init関数</A>の説明を参照して下さい。<BR>
+</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_Init.html">OS_Init</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2005/05/14 説明追記<BR>
+2005/04/25 初版
+</P>
+</BODY>
+</HTML>

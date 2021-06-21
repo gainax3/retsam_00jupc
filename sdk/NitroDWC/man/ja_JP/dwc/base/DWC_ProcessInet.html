@@ -1,0 +1,66 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_ProcessInet</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_ProcessInet</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_ProcessInet( void );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  自動接続処理を実行します。
+		  <A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>関数を呼び出した後、本関数を毎ゲームフレーム程度の頻度で呼び出してください。
+		</P>
+		<P>
+		  接続中に発生したエラー処理を行うためには、本関数呼出し後に<a href="DWC_GetLastError.html">DWC_GetLastErrorEx</a>関数でエラー状態を取得し、必要に応じてエラーメッセージとともにエラーコードを表示してください。
+		  メッセージについては、「Nitendo Wi-Fi Connection プログラミングガイドライン」をご確認ください。
+		</P>
+		<P>
+		  接続状態は<a href="DWC_CheckInet.html">DWC_CheckInet</a>関数,
+		  <a href="DWC_GetInetStatus.html">DWC_GetInetStatus</a>関数を使用して取得することができます。
+		</P>
+
+		<H2>引数</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>返り値</H2>
+		<P>
+		  なし
+		</P>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_SetAuthServer.html">DWC_SetAuthServer</A>,
+				<A href="DWC_ConnectInetAsync.html">DWC_ConnectInetAsync</A>,
+				<A href="DWC_CheckInet.html">DWC_CheckInet</A>,
+				<A href="DWC_GetInetStatus.html">DWC_GetInetStatus</A>,
+				<A href="DWC_CleanupInet.html">DWC_CleanupInet</A>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2006/12/22 参照の誤リンクを削除<BR>
+		  2006/02/24 参照先の文書名を変更<BR>
+		  2005/12/16 説明を追加<BR>
+		  2005/10/26 改訂<br>
+		  2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

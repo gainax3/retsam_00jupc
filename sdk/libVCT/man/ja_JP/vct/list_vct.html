@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>VoiceChatライブラリ(VCT) API 機能一覧</TITLE>
+<LINK type="text/css" rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>VoiceChatライブラリ(VCT) API 機能一覧</H1>
+<H3><A name="Init">初期化、終了、メインループ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>	
+      <TH width="25%"><A href="VCT_Init.html" target="_self">VCT_Init</A></TH>
+      <TD>ライブラリの初期化を行います。</TD>
+    </TR>
+    <TR>	
+      <TH width="25%"><A href="VCT_Cleanup.html" target="_self">VCT_Cleanup</A></TH>
+      <TD>ライブラリの終了処理を行います。</TD>
+    </TR>
+    <TR>	
+      <TH width="25%"><a href="VCT_Main.html" target="_self">VCT_Main</a></TH>
+      <TD>VoiceChatのメインループを実行します。</TD>
+    </TR>
+    <TR>	
+      <TH width="25%"><A href="VCT_HandleData.html" target="_self">VCT_HandleData </A></TH>
+      <TD>VoiceChatのデータを処理します。</TD>
+    </TR>
+    <TR>	
+      <TH width="25%"><A href="VCT_SetReportLevel.html" target="_self">VCT_SetReportLevel </A></TH>
+      <TD>デバッグ表示レベルを指定します（デバッグ用）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="SSP">シンプルセッションプロトコル</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="VCT_CreateSession.html" target="_self">VCT_CreateSession</A></TH>
+      <TD>新しいセッションを作成します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_DeleteSession.html" target="_self">VCT_DeleteSession</A></TH>
+      <TD>セッションを削除します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_Request.html" target="_self">VCT_Request</A></TH>
+      <TD>SSPのリクエストを発行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_Response.html" target="_self">VCT_Response</A></TH>
+      <TD>SSPのレスポンスをを発行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetTransceiverMode.html" target="_self">VCT_SetTransceiverMode</A></TH>
+      <TD>トランシーバーモードのサーバとなるか、クライアントとなるかを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetTransceiverServer.html" target="_self">VCT_SetTransceiverServer</A></TH>
+      <TD>トランシーバーのサーバーマシンを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetTransceiverClients.html" target="_self">VCT_SetTransceiverClients</A></TH>
+      <TD>トランシーバーのクライアントのaidを指定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_Contact.html" target="_self">VCT_Contact</A></TH>
+      <TD>トランシーバーの会話要求を発行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_Release.html" target="_self">VCT_Release</A></TH>
+      <TD>トランシーバーの会話を終了します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetTransceiverTimeout.html" target="_self">VCT_SetTransceiverTimeout</A></TH>
+      <TD>トランシーバーのタイムアウト値を設定します</TD>
+    </TR>
+  	<TR>
+      <TH width="25%"><A href="VCT_AddConferenceClient.html" target="_self">VCT_AddConferenceClient</A></TH>
+      <TD>クライアントをカンファレンスに追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_RemoveConferenceClient.html" target="_self">VCT_RemoveConferenceClient</A></TH>
+      <TD>クライアントをカンファレンスから削除します。</TD>
+    </TR>
+    <TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Audio">音声ストリーミング</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="VCT_SendAudio.html" target="_self">VCT_SendAudio</A></TH>
+      <TD>オーディオデータを送信キューにキューイングします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_ReceiveAudio.html" target="_self">VCT_ReceiveAudio</A></TH>
+      <TD>受信バッファにあるオーディオデータを取り出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetCodec.html" target="_self">VCT_SetCodec</A></TH>
+      <TD>コーデックを変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_GetCodec.html" target="_self">VCT_GetCodec</A></TH>
+      <TD>現在設定されているコーデックを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="VCT_StartStreaming.html" target="_self">VCT_StartStreaming</A></TH>
+      <TD>オーディオのストリーミングを開始します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="VCT_StopStreaming.html" target="_self">VCT_StopStreaming</A></TH>
+      <TD>オーディオのストリーミングを停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_GetAudioInfo.html" target="_self">VCT_GetAudioInfo</A></TH>
+      <TD>現在の音声ストリーミングの情報を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VAD">VAD (Voice Activity Detection), エコーキャンセル</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="VCT_EnableVAD.html" target="_self">VCT_EnableVAD</A></TH>
+      <TD>VADをオン・またはオフにします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_SetVADReleaseTime.html" target="_self">VCT_SetVADReleaseTime</A></TH>
+      <TD>VADのリリース時間を設定します</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_GetVADInfo.html" target="_self">VCT_GetVADInfo</A></TH>
+      <TD>VADの内部パラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_ResetVAD.html" target="_self">VCT_ResetVAD</A></TH>
+      <TD>VADの内部パラメータをリセットします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="VCT_EnableEchoCancel.html" target="_self">VCT_EnableEchoCancel</A></TH>
+      <TD>エコーキャンセル機能をオン・またはオフにします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="const">変数型・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="VCTConfig.html" target="_self">VCTConfig</A></TH>
+      <TD>VoiceChatライブラリ初期化のための構造体</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTSession.html" target="_self">VCTSession</a></TH>
+      <TD>SSPセッション情報の構造体</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTAudioInfo.html" target="_self">VCTAudioInfo</a></TH>
+      <TD>音声ストリーミング情報の構造体</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTVADInfo.html" target="_self">VCTVADInfo</a></TH>
+      <TD>VADの情報を保存する構造体</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTRequestCode.html" target="_self">VCTRequestCode</a></TH>
+      <TD>SSPリクエストコード列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTResponseCode.html" target="_self">VCTResponseCode</a></TH>
+      <TD>SSPレスポンスコード列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTCodec.html" target="_self">VCTCodec</a></TH>
+      <TD>音声コーデック列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTMode.html" target="_self">VCTMode</a></TH>
+      <TD>VoiceChatライブラリのモードを示す列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTEvent.html" target="_self">VCTEvent</a></TH>
+      <TD>SSPのイベントを示す列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTEventCallback.html" target="_self">VCTEventCallback</a></TH>
+      <TD>SSPのイベント発生時のコールバックの定義です</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTState.html" target="_self">VCTState</a></TH>
+      <TD>セッションの内部状態を示す定義</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTReportLevel.html" target="_self">VCTReportLevel</a></TH>
+      <TD>デバッグプリント出力のレベルを示す定義</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><a href="VCTErrorCode.html" target="_self">エラーコード</a></TH>
+      <TD>エラーコード一覧</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GXS_LoadBGPltt</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GXS_LoadBGPltt</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/gx_load.h&gt;</CODE><BR>
+<CODE>void GXS_LoadBGPltt(const void *pSrc, u32 offset, u32 szByte);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">pSrc</font></strong></em></TD>
+      <TD width="512">転送元のポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">offset</font></strong></em></TD>
+      <TD width="512">オフセット</TD>
+    </TR>
+    <TR>
+      <TD width="190"><em><strong><font face="Courier New">szByte</font></strong></em></TD>
+      <TD width="512">転送サイズ（バイト単位）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>標準BGパレットデータをサブ2DエンジンのBG用パレットRAMにDMA転送します。転送先のアドレスにはオフセットを指定することができます。使用するDMAチャネルは<CODE>GX_DMAID</CODE>(gxcommon.hで定義)で、転送先アドレスはARM9メモリ空間の<CODE>HW_DB_BG_PLTT</CODE>+<em><strong><font face="Courier New">offset</font></strong></em>になります。<em><strong><font face="Courier New">offset</font></strong></em>と<em><strong><font face="Courier New">szByte</font></strong></em>は2の倍数である必要があります。</P>
+<P><B>(注意1) </B>内部でDMA転送を行うので、前もって転送元のデータを<A href="../../os/cache/DC_FlushRange.html" target="_self">DC_FlushRange</A>等を用いてメインメモリに書き出しておく必要があります。<BR>
+<B>(注意2) </B>転送元と転送先で領域が重なる場合については動作結果は不定です。</P>
+
+<h2>参照</h2>
+<P><A href="GXS_LoadBG0Scr.html">GXS_LoadBG0Scr</A>, <A href="GXS_LoadBG1Scr.html">GXS_LoadBG1Scr</A>, <A href="GXS_LoadBG2Scr.html">GXS_LoadBG2Scr</A>, <A href="GXS_LoadBG3Scr.html">GXS_LoadBG3Scr</A>, <A href="GXS_LoadBG0Char.html">GXS_LoadBG0Char</A>, <A href="GXS_LoadBG1Char.html">GXS_LoadBG1Char</A>, <A href="GXS_LoadBG2Char.html">GXS_LoadBG2Char</A>, <A href="GXS_LoadBG3Char.html">GXS_LoadBG3Char</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+</body>
+</html>

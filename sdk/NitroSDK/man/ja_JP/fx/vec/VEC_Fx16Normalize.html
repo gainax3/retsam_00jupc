@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VEC_Fx16Normalize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VEC_Fx16Normalize</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/fx/fx_vec.h&gt;
+
+void VEC_Fx16Normalize(const VecFx16 * pSrc, VecFx16 * pDst);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    
+    
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">pSrc</font></strong></em></TD>
+      <TD width="670">ベクトルへのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">pDst</font></strong></em></TD>
+      <TD>正規化されたベクトルへのポインタ</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P><A href="VecFx16.html">VecFx16</A>型ベクトルの正規化を行います。結果を*<B><I>pDst</I></B>に格納します。<BR>
+<B><I>*</I>pSrc</B>,<B><I>*pDst</I></B>は同じベクトルへのポインタでも構いません。<BR>
+除算器と平方根演算器を使用します。割り込み内で使用される場合には<A href="../../cp/div/about_div.html#use_in_intr">除算器の注意事項</A>をご確認ください。</P>
+
+
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/02/16</P>
+</body>
+</html>

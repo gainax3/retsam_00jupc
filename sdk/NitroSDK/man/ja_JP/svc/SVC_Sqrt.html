@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>SVC_Sqrt</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">SVC_Sqrt</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os/common/systemCall.h&gt;</CODE></PRE>
+  <PRE><CODE>u16 SVC_Sqrt( u32 src );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>src</I></B></TD>
+      <TD>平方根演算を行う値</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>平方根演算の結果です。</P>
+<H2>説明</H2>
+<P>平方根を算出します。</P>
+<P>精度をよくするために引数 <B><I>src</I></B> を2の倍数だけ左シフトして渡し、戻り値もシフトして桁合わせを行ってください。<BR>
+コードサイズを抑えているため、高速ではありません。</P>
+<H2>参照</H2>
+<P><CODE><A href="../cp/sqrt/CP_SetSqrt.html">CP_SetSqrt()</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/07/20 初版</P>
+</BODY>
+</HTML>

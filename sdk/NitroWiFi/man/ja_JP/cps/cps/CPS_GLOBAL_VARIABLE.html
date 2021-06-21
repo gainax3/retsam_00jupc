@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS*(大域変数)</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS*(大域変数)</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>
+CPSInAddr CPSMyIp;
+
+CPSInAddr CPSNetMask;
+
+CPSInAddr CPSGatewayIp;
+
+CPSInAddr CPSDnsIp[2];
+
+CPSMacAddress CPSMyMac;
+
+CPSInAddr CPSDhcpServerIp;
+
+int CPSNoIpReason;
+  </code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>CPS が使用している大域変数の一覧です。</p>
+<TABLE border="1">
+	<TBODY>
+		<TR>
+			<TD width="25%"><EM><STRONG><CODE>CPSMyIp</CODE></STRONG></EM></TD>
+			<TD width="75%">自IPv4アドレス。未割り当ての場合は0。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSNetMask</CODE></STRONG></EM></TD>
+			<TD>自IPv4ネットマスク。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSGatewayIp</CODE></STRONG></EM></TD>
+			<TD>ディフォルトゲートウエイアドレス。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSDnsIp[2]</CODE></STRONG></EM></TD>
+			<TD>DNSサーバアドレス。サーバが0個の場合は、CPSDnsIp[0]、CPSDnsIp[1]共に0、1個の場合は、CPSDnsIp[0]に設定され、<BR>
+			2個以上の場合は最初のサーバがCPSDnsIp[0]に、次のサーバがCPSDnsIp[1]に設定されます。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSMyMac</CODE></STRONG></EM></TD>
+			<TD>自MACアドレス。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSDhcpServerIp</CODE></STRONG></EM></TD>
+			<TD>DHCPサーバアドレス。</TD>
+		</TR>
+		<TR>
+			<TD><EM><STRONG><CODE>CPSNoIpReason</CODE></STRONG></EM></TD>
+			<TD>CPSMyIpが0の場合の理由コード。</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+
+<h2>参照</h2>
+<CODE><A href="CPSConfig.html">CPSConfig</A></CODE>
+<p>
+</p>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

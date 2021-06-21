@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CellTransfer_Overview</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">セルVRAM転送状態マネージャ概要</h1>
+<H2>概念図</H2>
+<P><span lang=EN-US style='font-size:9.0pt;mso-bidi-font-size:
+12.0pt;font-family:Century;mso-fareast-font-family:"ＭＳ Ｐ明朝";mso-bidi-font-family:
+"Times New Roman";mso-font-kerning:1.0pt;mso-ansi-language:EN-US;mso-fareast-language:
+JA;mso-bidi-language:AR-SA'><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:412.2pt;
+ height:169.2pt'>
+ <v:imagedata src="file:///C:\DOCUME~1\KITANI~1\LOCALS~1\Temp\msohtml1\01\clip_image001.emz"
+  o:title="図3" croptop="-2913f" cropleft="-3966f" cropright="-854f"
+  grayscale="t"/>
+</v:shape><![endif]--><IMG width="550" height="226" src="clip_image002.gif" v:shapes="_x0000_i1025"></span><BR>
+<H2>説明</H2>
+セルVRAM転送状態オブジェクトは、VRAM転送元のデータに関する情報、
+VRAM転送先に関する情報、
+持ち主であるセルアニメーションがVRAM転送を必要とする状態か、
+どんな画像が転送を転送する必要があるのか、セルは描画されているか、などの状態を管理しています。<BR>
+<BR>
+VRAM転送方式のセルアニメーションはセルVRAM転送状態オブジェクトをメンバとして保持します（正確にはハンドルを保持しています。）<BR>
+ユーザは初期化時に取得した、ハンドルを使用して、セルVRAM転送状態オブジェクトに対する操作を行います。<BR>
+セルVRAM転送状態マネージャは毎フレームごとにVRAM転送状態オブジェクトの状態をチェックし、
+VRAM転送を実行する必要があるか判定します。<BR>
+マネージャは必要となったVRAM転送タスクの実行請求を請求関数を利用して請求します。<BR>
+ここで、注意すべきは、マネージャは請求を行うだけで、
+実際のVRAM転送の実行、転送タスクの管理は外部モジュールに委譲している点です。
+実際のVRAM転送にはNitroSystem 、Gfd(グラフィックス基本)ライブラリ内のVRAM転送マネージャがご利用いただけます。
+APIの整合を守っていただけば、ユーザが独自に実装したVRAM転送モジュールを使用していただくことも可能です。<BR>
+<BR>
+<BR>
+
+<pre>
+以下にセルVRAM転送状態オブジェクトを利用して、VRAM転送セルアニメーションを実現するまでの処理の流れを示します。
+ 
+ =========== 初期化処理 =========== 
+ 1.セルVRAM転送状態オブジェクトマネージャを初期化します(NNS_G2dInitCellTransferStateManager())。
+ 2.セルVRAM転送状態オブジェクトハンドルを取得し(NNS_G2dGetNewCellTransferStateHandle())、
+   VRAM転送セルアニメーションを初期化します( NNS_G2dInitCellAnimationVramTransfered() )。
+   
+    =========== ゲームループ =========== 
+    3.転送状態を更新する（NNS_G2dSetCellTransferStateRequested()）
+    4.描画されたかどうかの状態を更新する( NNSi_G2dSetCellTransferStateCellDrawnFlag() )
+    5.セルVRAM転送状態オブジェクトマネージャを更新する（NNS_G2dUpdateCellTransferStateManager()）
+      ここで、使用されているオブジェクトで転送処理が必要な状態のものは転送処理が行われる。
+      
+=========== 終了処理 =========== 
+6.使用しなくなったセルVRAM転送状態オブジェクトハンドルをマネージャに返却します。( NNS_G2dFreeCellTransferStateHandle() )
+
+</pre>
+
+<BR>
+<h2>参照</h2>
+<p>
+なし
+</p>
+<H2>履歴</H2>
+<P>2004/12/06 初版</P>
+</body>
+</html>

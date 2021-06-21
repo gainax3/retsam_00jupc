@@ -1,0 +1,41 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSCaInfo</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSCaInfo</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct {
+	char *dn;			// distinguished name
+	int modulus_len;		// lendth of modulus
+	u8 *modulus;			// modulus
+	int exponent_len;		// length of public exponent
+	u8 *exponent;			// public exponent
+} CPSCaInfo;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>caに関する情報の定義。make_cacertユーティリティで作成される。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SetRootCa.html">CPS_SetRootCa</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

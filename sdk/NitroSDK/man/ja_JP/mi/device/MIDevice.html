@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MIDevice</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MIDevice</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <pre><code>#include &lt;nitro/mi.h&gt;</code><br />
+typedef struct MIDevice
+{
+<span style="color:#008000">/* private: */</span>
+    void                   *userdata;
+    MIDeviceReadFunction    Read;
+    MIDeviceWriteFunction   Write;
+}
+MIDevice;</pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p>
+デバイス制御をラップするためのインタフェース構造体です。<br />
+リニアなアドレス空間を持った任意のデバイスに対する透過的な制御コードを記述したい場合に利用することが出来ます。
+</p>
+<p>
+この機能は、モジュール設計からデバイス制御部分を分離するためのユーティリティです。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_InitDevice.html">MI_InitDevice</a>,
+<a href="MI_ReadDevice.html">MI_ReadDevice</a>
+<a href="MI_WriteDevice.html">MI_WriteDevice</a><br />
+<a href="MIDevice.html">MIDevice</a>,
+<a href="MIDeviceReadFunction.html">MIDeviceReadFunction</a>,
+<a href="MIDeviceWriteFunction.html">MIDeviceWriteFunction</a><br />
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/09 初版<br />
+</p>
+</body>
+</html>

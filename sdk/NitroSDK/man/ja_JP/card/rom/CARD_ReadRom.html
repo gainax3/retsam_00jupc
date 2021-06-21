@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_ReadRom</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_ReadRom</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void	CARD_ReadRom(u32 dma, const void *src, void *dst, u32 len);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>dma</STRONG></EM></TD>
+      <TD width="87%">転送に使用するDMAチャンネル<BR>
+	  範囲外のチャンネルに指定するとCPU転送によって実行されます。<BR>
+	  <FONT color="#800000">有効なDMAチャンネルを指定した場合、転送が完了するまでこのDMAチャンネルを使用できません。</FONT><br>
+	  <font color="#800000">また、カードアクセスの転送元はIOレジスタなのでDMAチャンネル0を指定することはできません。</font>
+	  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>src</STRONG></EM></TD>
+      <TD width="87%">転送元の CARD ROM アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dst</STRONG></EM></TD>
+      <TD width="87%">転送先のメモリアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>len</STRONG></EM></TD>
+      <TD width="87%">読み出すデータのバイト長</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>ROM の配置されたデバイスからデータを同期的に読み込みます。<BR>
+この関数を使用する場合、事前にアクセスバスをロックしている必要があります。<BR>
+<BR>
+この関数は、CARD_ReadRomAsync関数をコールバックの指定なしで呼び出して<BR>
+その完了を無条件に待つことと等価です。<BR>
+<BR>
+関数の内部動作に関してはCARD_ReadRomAsync関数の説明を参照ください。<BR>
+<BR>
+</P>
+<H2>注意</H2>
+<P>
+<FONT color="#800000">この関数で有効なDMAチャンネルを指定した場合、転送が完了するまでこのDMAチャンネルを使用できません。<BR>
+また、この関数は内部で割り込みを使用しますので、割り込みを禁止にしたまま待ち続けると処理が完了しないという点に注意してください。<BR>
+</FONT>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="CARD_LockRom.html">CARD_LockRom</A> 
+<A href="CARD_ReadRomAsync.html">CARD_ReadRomAsync</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/04/28 DMAチャンネル0が指定できない旨を追記<br>
+2004/11/02 引数名をヘッダファイルと同一に訂正<br>
+2004/07/13 DMAの使用における注意の追加<BR>
+2004/07/09 関数形式の変更による記述の修正<BR>
+2004/07/05 初版<BR>
+</P>
+</body>
+</html>

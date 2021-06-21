@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSDirEntry</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSDirEntry</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <CODE><pre>
+  <BR>
+<font color="#008000">/* file-and-directory entryr information structure. for FS_ReadDir() */</font>
+typedef  struct
+{
+  union {
+    FSFileID    file_id;                    <font color="#008000">/* valid if !is_directory */</font>
+    FSDirPos    dir_id;                     <font color="#008000">/* valid if is_directory */</font>
+  } ;
+  u32           is_directory;               <font color="#008000">/* directory ? 1 : 0 */</font>
+  u32           name_len;                   <font color="#008000">/* strlen(name) */</font>
+  char          name[FS_FILE_NAME_MAX + 1]; <font color="#008000">/* string with '\0' */</font>
+} FSDirEntry;
+  <br></pre></code>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>FS_ReadDir関数によってディレクトリエントリ情報を取得するための構造体です。<BR>
+各メンバの内容は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>file_id</TD>
+      <TD>is_directoryが0の場合に限り、有効なファイルIDを表します。<BR>
+	  この値は、FS_OpenFileFast関数で使用します。</TD>
+    </TR>
+    <TR>
+      <TD>dir_id</TD>
+      <TD>is_directoryが1の場合に限り、有効なディレクトリリスト位置を表します。<BR>
+	  この値は、FS_SeekDir関数で使用します。</TD>
+    </TR>
+    <TR>
+      <TD>is_directory</TD>
+      <TD>FS_ReadDir関数によってこの構造体へ格納された情報の種類を表します。<BR>
+	  この値が0であればファイルを、1であればディレクトリを表します。</TD>
+    </TR>
+    <TR>
+      <TD>name_len</TD>
+      <TD>nameへ格納されたファイル名またはディレクトリ名の文字数を表します。<BR>
+	  この文字数には終端のNULは含まれません。</TD>
+    </TR>
+    <TR>
+      <TD>name</TD>
+      <TD>ファイル名またはディレクトリ名の文字列を表します。<BR>
+	  FS_ReadDir関数はこの文字列へ終端の"\0"を付加します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<H2>注意</H2>
+<P>この型のサイズは将来の拡張で変更される可能性があります。<BR>
+現在の実装におけるサイズに依存したプログラミングは避けてください。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+<A href="fs_dir_pos_type.html">FSDirPos</A> 
+<A href="file/FS_OpenFileFast.html">FS_OpenFileFast</A> 
+<A href="file/FS_ReadDir.html">FS_ReadDir</A> 
+<A href="file/FS_SeekDir.html">FS_SeekDir</A> 
+<A href="fs_file_name_max_const.html">FS_FILE_NAME_MAX</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/05/14 file_idの型をu32からFSFileIDへ変更</P>
+<P>2004/04/01 初版</P>
+</body>
+</html>

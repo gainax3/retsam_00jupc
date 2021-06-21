@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_Shininess</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_Shininess</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_Shininess(const u32* table);
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR>void G3B_Shininess(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const u32* table);<BR>void G3C_Shininess(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const u32* table);<BR>void G3BS_Shininess(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const u32* table);<BR>void G3CS_Shininess(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, const u32* table);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">table</font></strong></em></td>
+    <td width="87%">鏡面反射輝度テーブルへのポインタ</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>鏡面反射輝度テーブルを設定します。鏡面反射の輝度を変換する 8ビット x 128
+のテーブルを設定します。各要素はそれぞれ小数部8ビットの固定小数です。ただし、引数はu32へのポインタで4バイトアラインメントされている必要があります。<A href="G3_MaterialColorSpecEmi.html" target="_self">G3*_MaterialColorSpecEmi</A>で、鏡面反射輝度テーブル・イネーブルフラグがFALSE以外に設定された場合、ジオメトリエンジンはスペキュラ計算結果を元にテーブルを引き、鏡面反射輝度の変換を行います。このテーブルの設定によって、鏡面反射の光り具合を調節することが可能です。また、鏡面反射輝度テーブルを書き換えることで、１フレーム中に複数の異なる鏡面反射効果を持ったポリゴンを表示出来ます。鏡面反射輝度テーブルを不規則な値に設定して、特殊なライティング効果を出すことも出来ます。<BR>
+<BR>
+<B>(注意)</B> 通常は、輝度テーブルの値をスペキュラのn乗に設定することにより、意図した鏡面反射効果を得ることになります。スペキュラの値の上位7ビットがテーブルへのインデックスになります。</P>
+<h2>参照</h2>
+<P><A href="G3_MaterialColorSpecEmi.html">G3_MaterialColorSpecEmi</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI>説明の追加
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

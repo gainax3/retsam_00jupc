@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_CommGetChildrenNumber</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_CommGetChildrenNumber</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u8 MB_CommGetChildrenNumber(void);<br></CODE>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>なし
+</p>
+
+<h2>返り値</h2>
+<p>現在親機に接続されている子機の総数を返します。</p>
+
+<H2>説明</H2>
+<P>現在親機に接続されている子機の総数を取得します。<BR>
+<br>
+『接続されている子機』として計上されるのは、<br>
+<A href="../mb_comm_pstate_const.html">MB_COMM_PSTATE_REQ_ACCEPTED</A>状態に遷移してから<br>
+<A href="../mb_comm_pstate_const.html">MB_COMM_PSTATE_DISCONNECTED</A>状態に遷移するまでの全ての子機です。<br>
+<br>
+<font color="#800000">
+子機からの通信が不意に切断されるなどした場合、親機がそれを検出し<br>
+MB_COMM_PSTATE_DISCONNECTED 状態に遷移するまでに<br>
+約 4 秒の遅延があることに注意してください。
+</font>
+<br>
+<h2>参照</h2>
+<p><CODE>
+<A href="../mb_comm_pstate_const.html">MBCommPState</A> <BR>
+<A href="MB_CommGetParentState.html">MB_CommGetParentState</A> 
+<A href="MB_CommGetChildUser.html">MB_CommGetChildUser</A> 
+<A href="MB_StartParent.html">MB_StartParent</A> 
+<A href="../common/MB_End.html">MB_End</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2004/10/21 NITRO-SDK 2.0 PR5 以前のバージョンのままであった仕様説明の記述を修正<BR>
+2004/09/10 記述修正<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

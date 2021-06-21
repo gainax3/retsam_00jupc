@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBGameRegistry</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBGameRegistry</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+<PRE>
+typedef	struct
+{
+    const char    *romFilePathp;
+    u16           *gameNamep;
+    u16           *gameIntroductionp;
+    const char    *iconCharPathp;
+    const char    *iconPalettePathp;
+    u32           ggid;
+    u8            maxPlayerNum;
+    u8            pad[3];
+    u8            userParam[MB_DOWNLOAD_PARAMETER_SIZE];
+} MBGameRegistry;
+</PRE>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>MB_RegistryFile関数によってダウンロードファイルを指定する際に使用する構造体です。<BR>
+各メンバの意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>メンバ</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>romFilePathp</TD>
+      <TD>プログラムバイナリのファイルパス文字列を指すポインタです。<BR>
+	  MB関数の現在の実装ではこのメンバを参照せずFSFile構造体へのポインタを要求しますが、<BR>
+	  将来の拡張のために用意されています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>gameNamep</TD>
+      <TD>ゲーム名の文字列を指すポインタです。<BR>
+	  文字列は<a href="mb_game_consts.html">MB_GAME_NAME_LENGTH</a>文字以内である必要があります。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>gameIntroductionp</TD>
+      <TD>ゲーム内容の説明文文字列を指すポインタです。<BR>
+	  文字列は<a href="mb_game_consts.html">MB_GAME_INTRO_LENGTH</a>文字以内である必要があります。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>iconCharPathp<br /></TD>
+      <TD rowspan="2">それぞれアイコンのキャラクタデータファイルとパレットデータファイルへのパス文字列を指すポインタです。<br/>
+DSダウンロードプレイのアイコン画像は16色のパレットデータと32ドット×32ドットのイメージデータで、バナーイメージと同じフォーマットです。データの作成には<a href="../tools/ntexconv.html">$NitroSDK/tools/bin/ntexconv.exe</a>を使用することができます。</TD>
+    </TR>
+    <TR>
+      <TD>iconPalettePathp</TD>
+    </TR>
+    <TR>
+      <TD>ggid</TD>
+      <TD>
+このゲームのダウンロード時に子機へ渡されるGGID値です。<br>
+この値はマルチブート子機が<A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>関数で取得する<br>
+<A href="mb_parent_bss_desc_type.html">MBParentBssDesc</A>構造体のssid[0],ssid[1],ssid[2],ssid[3]にリトルエンディアンで格納されます。<br>
+<A href="child/MB_ReadMultiBootParentBssDesc.html">MB_ReadMultiBootParentBssDesc</A>関数ではこの値を使用して<br>
+親機へ接続するための<a href="../wm/wm/WMBssDesc.html">WMBssDesc</a>情報を生成します。<br>
+<br>
+マルチブート子機側にて上記用途で使用しない場合は、任意のu32値として自由に扱うことができます。<br>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>maxPlayerNum</TD>
+      <TD>このゲームの親機を含む最大プレイ人数です。最大16台。<BR>
+      ここで設定する値は同時にエントリー可能な最大人数であり、<BR>
+      マルチブート時の最大同時接続子機台数は<A href="parent/MB_SetParentCommParam.html">MB_SetParentCommParam</A>で別に設定する必要があります。MB_SetParentCommParamで設定する値は親機を含まない台数ですので、MBGameRegistryの値よりも１小さくなります。</TD>
+    </TR>
+    <TR>
+      <TD>userParam</TD>
+      <TD>このゲームを起動した子機プログラムへ与えることのできるユーザ定義の拡張パラメータです。<br>
+      最大 MB_DOWNLOAD_PARAMETER_SIZE (=32) バイトまでの自由なデータを設定することができ、<br>
+	  起動した子機プログラムは<A href="child/MB_GetMultiBootDownloadParameter.html">MB_GetMultiBootDownloadParameter</A>関数を呼び出してこのデータを参照することができます。<br>
+	  </TD></TR>
+  </TBODY>
+</TABLE>
+<BR>
+<h2>参照</h2>
+<p><CODE>
+<a href="mb_game_consts.html">MB_GAME_*</a> 
+<A href="mb_icon_info_type.html">MBIconInfo</A>
+<A href="mb_parent_bss_desc_type.html">MBParentBssDesc</A>
+<a href="../wm/wm/WMBssDesc.html">WMBssDesc</a>
+<BR>
+<A href="common/MB_GetMultiBootParentBssDesc.html">MB_GetMultiBootParentBssDesc</A>
+<A href="child/MB_GetMultiBootDownloadParameter.html">MB_GetMultiBootDownloadParameter</A>
+<A href="child/MB_ReadMultiBootParentBssDesc.html">MB_ReadMultiBootParentBssDesc</A>
+<A href="parent/MB_RegisterFile.html">MB_RegisterFile</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/09/27 アイコンデータのフォーマットと作成方法に関する追記<br />
+2005/08/17 MB_GetMultiBootDownloadParameter関数へのリンクを追加<br>
+2005/05/20 メンバ userParam を追加<br>
+2004/11/02 メンバ名を訂正<br>
+2004/10/18 ggidに関する説明を修正<BR>
+2004/10/05 ggidに関する説明を修正<BR>
+2004/09/27 リンク追加<BR>
+2004/09/10 iconCharp, iconPalettepに関する記述を修正。<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

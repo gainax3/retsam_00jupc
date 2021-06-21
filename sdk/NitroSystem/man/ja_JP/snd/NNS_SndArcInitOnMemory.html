@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcInitOnMemory</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKYT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcInitOnMemory</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcInitOnMemory( NNSSndArc* <var>arc</var>, void* <var>data</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAMMYT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>arc</code></strong></em></td>
+<td>サウンドアーカイブを管理する
+            NNSSndArc構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>data</code></strong></em></td>
+<td>サウンドアーカイブデータのポインタです。32バイトアライメントされている必要があります。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNYT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAJNYT"></a>
+      <h2>説明</h2>
+      <p>
+メモリ上のサウンドアーカイブデータを使って、サウンドアーカイブ構造体を初期化します。
+サウンドアーカイブ構造体は静的に確保することを推奨します。
+動的に確保する場合は、後述の注意点に気をつけてください。
+</p>
+      <p>
+サウンドアーカイブの初期化は、この関数か
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数で行います。
+
+この関数でサウンドアーカイブを初期化すると、サウンドデータのメモリ管理やロードが不要になります。
+また、ファイルシステムが有効である必要はありません。
+ただし、より多くのメモリが必要となります。
+</p>
+     <p>
+初期化したサウンドアーカイブは、自動的にカレントサウンドアーカイブに設定されます。
+カレントサウンドアーカイブを変更するには、
+<tt class="function"><a href="NNS_SndArcSetCurrent.html">NNS_SndArcSetCurrent</a></tt>関数を使います。
+</p>      
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+サウンドアーカイブ構造体は、サウンドアーカイブが不要になった時点で破棄することができます。
+ただし、破棄するサウンドアーカイブ構造体のポインタが、
+カレントサウンドアーカイブとして、セットされている可能性について留意してください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcSetCurrent.html">NNS_SndArcSetCurrent</a></p>
+<h2>履歴</h2>
+<p>2005/10/18 アライメント値の誤記修正<br>2004/09/06 NNS_SndArc構造体の動的確保に関する注意書き追加<br>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

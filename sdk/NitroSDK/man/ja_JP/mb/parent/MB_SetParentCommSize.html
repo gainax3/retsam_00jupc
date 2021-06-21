@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_SetParentCommSize</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_SetParentCommSize</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>BOOL MB_SetParentCommSize( u16 sendSize );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>sendSize</STRONG></EM></TD>
+      <TD width="87%">MB親機のMP通信における送信バッファサイズ<BR>
+      このサイズは<a href="../mb_comm_parent_consts.html">MB_COMM_PARENT_SEND_MIN</a>バイト以上かつ<a href="../mb_comm_parent_consts.html">MB_COMM_PARENT_SEND_MAX</a>バイト以下である必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>設定値がただしい範囲であれば TRUE を、そうでなければ FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>MBライブラリの内部で駆動される通信の送信サイズを指定します。<BR>
+あらかじめ接続台数の上限がわかっている場合にこの関数を使用することで、<BR>
+MP通信パケットの効率を上げることができます。<BR>
+<BR>
+この関数は、<a href="../common/MB_Init.html">MB_Init</a>関数の呼び出し以降、<A href="MB_StartParent.html">MB_StartParent</A>関数を呼び出すまでの<br>
+タイミングでのみ呼び出すことが可能です。<BR>
+<br>
+この関数は、最大接続子機数を現状の設定で維持するという点以外は<br>
+<a href="MB_SetParentCommParam.html">MB_SetParentCommParam</a>関数と等価です。<br>
+<BR>
+親機受信サイズの変更はできません。<BR>
+</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../mb_comm_parent_consts.html">MB_COMM_PARENT_*</A>
+<A href="../mb_user_info_type.html">MBUserInfo</A> <br>
+<A href="../common/MB_Init.html">MB_Init</A> 
+<A href="MB_SetParentCommParam.html">MB_SetParentCommParam</A> 
+<A href="MB_StartParent.html">MB_StartParent</A> 
+<A href="MB_RegisterFile.html">MB_RegisterFile</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>2004/11/18 recvSize引数の廃止<BR>
+2004/10/05 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsOpenFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsOpenFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>u32 NNS_McsOpenFile(
+        NNSMcsFile* pFile,
+        const char* fileName,
+        u32         openFlag);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">pFile</font></strong></em></td>
+  <td width="87%">ファイル情報構造体へのポインタ。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">fileName</font></strong></em></td>
+  <td width="87%">作成または開くファイルを指す、NULLで終わる文字列へのポインタを指定します。NULLを指定すると、パソコン側でファイルを選択するためのダイアログウィンドウが表示されます。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">openFlag</font></strong></em></td>
+  <td width="87%">ファイルの作成あるいは開く方法および読み書きの種類(詳細は下記を参照)。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>ファイルのオープンに成功したら 0、 失敗したら 0以外の値を返します。返り値の詳細は説明を参照してください。</p>
+<H2>説明</H2>
+<p>PC上の既存のファイルのオープン、あるいは新規のファイルをオープンします。</p>
+<p>openFlagで、ファイルの開く方法を指定します。</p>
+<table>
+ <tr> 
+  <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_READ</font></strong></em></td>
+  <td>読み込み用に既存のファイルを開きます。</td>
+ </tr>
+ <tr> 
+  <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_WRITE</font></strong></em></td>
+  <td>書き込み用に新規にファイルを作成してオープンします。既にファイルが存在する場合は一度消去されます。</td>
+ </tr>
+ <tr> 
+  <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_FORCE</font></strong></em></td>
+  <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_WRITE</font></strong></em>を指定していて、既にファイルが存在する場合に、ユーザーにファイルを上書きする旨の確認を行いません。このフラグが指定されていない場合で既にファイルが存在するときは、上書きするかどうかの確認のためのダイアログをパソコン側に表示します。</td>
+ </tr>
+ <tr> 
+  <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_INCENVVAR</font></strong></em></td>
+  <td><em><strong><font face="Courier New">fileName</font></strong></em>で指定したファイル名文字列の中にパソコンの環境変数が含まれる場合にこのフラグを指定します。<br>
+   環境変数は「%NITROSYSTEM_ROOT%\SourceTreeMap.txt」のように「%」で囲みます。</td>
+ </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_CREATEDIR</font></strong></em></td>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_WRITE</font></strong></em>を指定して<em><strong><font face="Courier New">fileName</font></strong></em>で指定したファイルを作成する際に、ファイルが置かれるディレクトリが存在しない場合にディレクトリを作成します。<br>
+      ただし、<em><strong><font face="Courier New">NNS_MCS_FILEIO_FLAG_INCENVVAR</font></strong></em>が指定されている場合で、<em><strong><font face="Courier New">fileName</font></strong></em>で指定したファイル名文字列に含まれるパソコンの環境変数が実際には存在しない場合は、安全のためにディレクトリの作成は行わず、関数は失敗します。</td>
+    </tr>
+  </table>
+<p>返り値は次のいずれかの値をとります。</p>
+<table>
+  <tbody>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SUCCESS</font></strong></em> (0)</td>
+      <td>関数は成功しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_COMERROR</font></strong></em></td>
+      <td>通信エラーが発生しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_NOTCONNECT</font></strong></em></td>
+      <td>mcsサーバと接続されていません。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SERVERERROR</font></strong></em></td>
+      <td>mcsサーバ側でファイル操作に基づくエラーが発生しました。このエラーコードはWin32システムのエラーコードであり、関数<code>NNS_McsGetServerErrorCode</code>で取得できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h2>参照</h2>
+<p><CODE><A href="NNS_McsReadFile.html">NNS_McsReadFile</A></code>, 
+<A href="NNS_McsWriteFile.html"><code>NNS_McsWriteFile</code></A>,
+<code><A href="NNS_McsCloseFile.html">NNS_McsCloseFile</A></code></p>
+<H2>履歴</H2>
+<P>2005/01/24 エラーコードについての説明を追加。<br>
+2004/10/28 フラグ NNS_MCS_FILEIO_FLAG_INCENVVAR の解説を追加した。<br>
+ 2004/07/01 初版</P>
+</body>
+</html>

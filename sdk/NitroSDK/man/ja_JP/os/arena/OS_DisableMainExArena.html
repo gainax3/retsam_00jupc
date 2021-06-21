@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_DisableMainExArena</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_DisableMainExArena</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_DisableMainExArena( void );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>メインメモリ上の拡張アリーナの不使用を宣言します。</P>
+<P>ただし、物理的に拡張メインメモリがない状況では、常にメインメモリ拡張アリーナは使用できません。実機で動作する場合もそれに当てはまります。</P>
+<P>この関数を呼ぶ場合は、<CODE>OS_InitArena()</CODE> や、<CODE>OS_Init()</CODE> の前に呼んでください。( <CODE>OS_InitArena()</CODE> は <CODE>OS_Init()</CODE> から呼ばれています。)</P>
+<P>以前のバージョンとの互換性のために OS ライブラリのコンパイル時に NITRO_MEMSIZE=4M
+と指定する方法もあります。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitArena.html">OS_InitArena</A>, <A href="OS_EnableMainExArena.html">OS_EnableMainExArena</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/21 初版</P>
+</BODY>
+</HTML>

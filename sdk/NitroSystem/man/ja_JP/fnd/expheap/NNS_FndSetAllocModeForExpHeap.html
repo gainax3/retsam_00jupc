@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndSetAllocModeForExpHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_FndSetAllocModeForExpHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+  <pre><CODE>u16 NNS_FndSetAllocModeForExpHeap(
+	      NNSFndHeapHandle    heap,
+	      u16                 mode);</CODE></pre></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+    <td width="87%">拡張ヒープのハンドル</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
+    <td width="87%">メモリ確保モード(下記参照)</td>
+  </tr>
+</table>
+<h2>返り値</h2>
+<p>以前の拡張ヒープのメモリ確保モードを返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープのメモリ確保モードをセットします。</P>
+<P>mode でメモリ確保モードを指定します。</P>
+<table>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_MODE_FIRST</font></strong></em></td>
+		<td>確保しようとしているメモリブロックのサイズ以上の大きさを持つ、最初に見つかった空き領域からメモリブロックを確保します。</td>
+	</tr>
+	<tr>
+		<td><em><strong><font face="Courier New">NNS_FND_EXPHEAP_ALLOC_MODE_NEAR</font></strong></em></td>
+		<td>確保しようとしているメモリブロックのサイズに一番近いサイズの空き領域を探し、その空き領域からメモリブロックを確保します。</td>
+	</tr>
+</table>
+<p>ヒープ作成直後は、NNS_FND_EXPHEAP_ALLOC_MODE_FIRST の状態になっています。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndGetAllocModeForExpHeap.html">NNS_FndGetAllocModeForExpHeap</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

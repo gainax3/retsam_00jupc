@@ -1,0 +1,157 @@
+#! make -f
+#----------------------------------------------------------------------------
+#  Project:  NitroSDK - buildtools - debugger dependant settings for ISDbgr
+#  File:     commondefs.emtype.ISD
+#
+#  Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded instructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: commondefs.emtype.ISD,v $
+# Revision 1.23  2005/08/07 13:15:37  yasu
+# ライブラリパスを vpath に設定するための対策
+#
+# Revision 1.22  2005/08/02 00:46:51  okubata_ryoma
+# change definition of ISD_NITRO_DEBUGGER
+#
+# Revision 1.21  2005/06/21 06:36:27  yasu
+# 使用ツールを切り替え可能にする
+#
+# Revision 1.20  2005/06/17 03:14:16  yasu
+# copyright 表記の修正
+#
+# Revision 1.19  2005/06/15 06:27:33  yasu
+# パスの扱いに関する小さな修正
+#
+# Revision 1.18  2004/09/04 10:38:15  yasu
+# Support nitload in "make run"
+#
+# Revision 1.17  2004/07/13 04:57:20  yada
+# change to that libstubsisd library is always included regardless to environment
+#
+# Revision 1.16  2004/02/25 09:14:03  yasu
+# add cw stubs
+#
+# Revision 1.15  2004/02/20 11:29:35  yasu
+# fix bug on ARM7 library selection
+#
+# Revision 1.14  2004/02/16 12:28:40  yasu
+# change to ISD_LIBS = libisdmainpthumb.a
+#
+# Revision 1.13  2004/02/13 09:00:09  yasu
+# setup ARM7 build flags
+#
+# Revision 1.12  2004/02/09 13:04:52  yasu
+# fix libsyscall.thumb.a -> libsyscall.a
+#
+# Revision 1.11  2004/02/09 11:16:06  yasu
+# CODEGEN_TYPE -> NITRO_CODEGEN
+#
+# Revision 1.10  2004/02/09 11:05:36  kitani_toshikazu
+# Work around IS-IRIS-EMU => IS=NITRO-EMU.
+#
+# Revision 1.9  2004/02/05 10:28:19  yasu
+# rollback ISNITROEMULATOR -> ISIRISEMULATOR
+#
+# Revision 1.8  2004/02/05 07:29:20  yasu
+# rollback IS_NITRO_SDK -> IS_IRIS_SDK
+#
+# Revision 1.7  2004/02/05 07:09:01  yasu
+# change SDK prefix iris -> nitro
+#
+# Revision 1.6  2003/12/29 01:37:16  yasu
+# Support a target "make run"
+#
+# Revision 1.5  2003/12/10 12:20:04  yasu
+# ISD ライブラリの無い環境のための libstubsisd リンクの設定．
+#
+# Revision 1.4  2003/12/10 05:12:48  yasu
+# ソースファイル指定に xxxx/src.c の形式を使えるように変更
+# Makefile.srcs の追加
+# IS_NITRO_DIR が定義してある場合に IS Debugger ライブラリをリンクするよう修正
+#
+# Revision 1.3  2003/12/09 12:08:46  yasu
+# ARM/THUMB 判定ミスの修正
+#
+# Revision 1.2  2003/12/02 04:54:02  yasu
+# NITROSDK_ROOT のパス区切り文字の \ への対応
+#
+# Revision 1.1  2003/12/02 03:59:47  yasu
+# IS-NITRO-EMULATOR 定義ファイル
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+ifdef		IS_NITRO_DIR
+
+#----------------------------------------------------------------------------
+#  Setting for IS-NITRO-EMULATOR
+#----------------------------------------------------------------------------
+
+EMPTY	 		?=
+SPACE 			?= $(EMPTY) $(EMPTY)
+ISD_ROOT		:= $(patsubst %/,%,$(subst $(SPACE),\ ,$(subst \,/,$(IS_NITRO_DIR))))
+ISD_EMULATOR		:= $(ISD_ROOT)/X86/bin/ISNITROEMULATOR.exe
+ISD_NITRO_DEBUGGER	:= $(ISD_ROOT)/X86/bin/ISND.exe
+ISD_NITLOAD		:= $(ISD_ROOT)/Samples/download/X86/Release/nitload.exe
+ISD_NITLOAD_GCC		:= $(NITRO_TOOLSDIR)/bin/_nitload.exe
+ISD_ROOT_NOSPACE	:= $(subst \,/,$(shell cygpath -d $(ISD_ROOT)))
+
+#----------------------------------------------------------------------------
+
+NITRO_LINK_ISD	:= yes
+MACRO_FLAGS	+= -DSDK_LINK_ISD
+
+#----------------------------------------------------------------------------
+
+ifeq	($(CODEGEN_PROC),ARM9)
+
+ISD_INCDIRS	:= $(ISD_ROOT)/TEG/mainp/include
+ISD_LIBDIRS	:= $(ISD_ROOT_NOSPACE)/TEG/mainp/lib
+
+ifeq	($(NITRO_CODEGEN),ARM)
+ISD_LIBS	?= libisdmainparm.a
+else #	($(NITRO_CODEGEN),THUMB)
+ISD_LIBS	?= libisdmainpthumb.a
+endif
+
+STUBS_LIBS	+= libstubsisd$(NITRO_LIBSUFFIX).a
+
+else #	($(CODEGEN_PROC),ARM7)
+
+ISD_INCDIRS 	:= $(ISD_ROOT)/TEG/subp/include
+ISD_LIBDIRS 	:= $(ISD_ROOT_NOSPACE)/TEG/subp/lib
+
+ifeq	($(NITRO_CODEGEN),ARM)
+ISD_LIBS    	?= libisdsubparm.a
+else #	($(NITRO_CODEGEN),THUMB)
+ISD_LIBS    	?= libisdsubpthumb.a
+endif
+
+STUBS_LIBS	+= libstubsisd_sp$(NITRO_LIBSUFFIX).a
+
+endif
+
+#----------------------------------------------------------------------------
+
+else
+#----------------------------------------------------------------------------
+#  Setting for stubs of IS-NITRO-EMULATOR
+#----------------------------------------------------------------------------
+
+ifeq	($(CODEGEN_PROC),ARM9)
+STUBS_LIBS	+= libstubsisd$(NITRO_LIBSUFFIX).a
+else #	($(CODEGEN_PROC),ARM7)
+STUBS_LIBS	+= libstubsisd_sp$(NITRO_LIBSUFFIX).a
+endif
+
+#----------------------------------------------------------------------------
+
+
+endif
+
+#----- End of commondefs.emtype.ISD -----

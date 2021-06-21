@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>IC_Unlockdown</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">IC_Unlockdown</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void IC_Unlockdown( u32 num );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>num</STRONG></EM></TD>
+      <TD width="87%">解放するロックダウンブロックの個数を指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P><A href="IC_LockdownRange.html">IC_LockdownRange</A>でロックされ破棄されないように設定されている命令キャッシュを、キャッシュ置き換えの際に破棄できるように解放します。<BR>
+この関数により、最後に<A href="IC_LockdownRange.html">IC_LockdownRange</A>関数でロックされた領域から順に<I>num</I>個のロックダウンブロックが解放されます。<BR>
+設定可能なロックダウンブロックは最大3つまでですので、<I>num</I>で指定できるロックダウンブロックの最大数は3になります。<BR>
+</P>
+<H2>内部動作</H2>
+<P>システム制御コプロセッサのレジスタ7, 9を操作しています。</P>
+<H2>参照</H2>
+<P><CODE><A href="IC_LockdownRange.html">IC_LockdownRange</A>,<A href="IC_UnlockdownAll.html">IC_UnlockdownAll</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/01/21 初版</P>
+</BODY>
+</HTML>

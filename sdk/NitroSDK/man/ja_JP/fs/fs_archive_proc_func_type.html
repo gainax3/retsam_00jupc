@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_ARCHIVE_PROC_FUNC</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_ARCHIVE_PROC_FUNC</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+typedef	FSResult (*FS_ARCHIVE_PROC_FUNC)(struct FSFile*, FSCommandType);</CODE><BR>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>アーカイブに指定するユーザプロシージャの関数形式を定義します。<BR>
+ファイルシステムは必要に応じてこの関数をコールバックとして呼び出し、<BR>
+ユーザプロシージャは何らかの処理の後に適切な値を返す必要があります。<BR>
+<BR>
+返すべき値については FSResult の説明を参照ください。<BR>
+<BR>
+返り値として FS_RESULT_PROC_ASYNC を返した場合は、非同期処理の完了時に<BR>
+FS_NotifyArchiveAsyncEnd 関数を呼び出してアーカイブへ通知する必要があります。<BR>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_archive_type.html">FSArchive</A>
+<A href="fs_command_type_const.html">FSCommandType</A>
+<A href="fs_result_const.html">FSResult</A>
+<BR>
+<A href="archive/FS_SetArchiveProc.html">FS_SetArchiveProc</A> 
+<A href="archive/FS_NotifyArchiveAsyncEnd.html">FS_NotifyArchiveAsyncEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/11/02 関数宣言をヘッダファイルと同一に訂正<br>
+2004/07/12 戻り値に関する記述を追加<BR>
+2004/06/30 初版<BR>
+</P>
+</body>
+</html>

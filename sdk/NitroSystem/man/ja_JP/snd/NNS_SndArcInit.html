@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcInit*</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcInit*</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcInit(
+        NNSSndArc* <var>arc</var>,
+        const char* <var>filePath</var>,
+        NNSSndHeapHandle <var>heap</var>,
+        BOOL <var>symbolLoadFlag</var> );</code><br><code class="funcprototype">BOOL NNS_SndArcInitWithResult(
+        NNSSndArc* <var>arc</var>,
+        const char* <var>filePath</var>,
+        NNSSndHeapHandle <var>heap</var>,
+        BOOL <var>symbolLoadFlag</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAUNWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>arc</code></strong></em></td>
+<td>サウンドアーカイブを管理する
+            NNSSndArc構造体のポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>filePath</code></strong></em></td>
+<td>サウンドアーカイブデータファイルのROMファイルシステム上のパスです。</td>
+</tr>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+<tr>
+<td><em><strong><code>symbolLoadFlag</code></strong></em></td>
+<td>シンボルデータをロードするかどうかのフラグです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAYOWT"></a>
+      <h2>返り値</h2>
+
+      <p><tt class="function">NNS_SndArcInit</tt>関数は、返り値はありません。</p>
+      <p><tt class="function">NNS_SndArcInitWithResult</tt>関数は、初期化に成功したかどうかを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFPWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ構造体を初期化します。
+サウンドアーカイブ構造体は静的に確保することを推奨します。
+動的に確保する場合は、後述の注意点に気をつけてください。
+</p>
+      <p>
+ROMファイルシステム上の、サウンドアーカイブデータファイル<em><strong><code>filePath</code></strong></em>を使って、
+サウンドアーカイブ構造体を初期化します。
+あらかじめ、ファイルシステムが有効になっていなければなりません。
+</p>
+      <p>
+サウンドヒープ<em><strong><code>heap</code></strong></em>上に、サウンドアーカイブ管理に必要なデータがロードされます。
+この領域を開放すると、サウンドアーカイブが使えなくなります。
+再度使用できるようにするためには、
+<tt class="function"><a href="NNS_SndArcSetup.html">NNS_SndArcSetup</a></tt>関数を呼びだします。
+</p>
+     <p>
+シンボルデータをロードするかどうかのフラグ<em><strong><code>symbolLoadFlag</code></strong></em>にTRUEを入れると、
+<tt class="function"><a href="NNS_SndArcGetSymbol.html">NNS_SndArcGet*Symbol</a></tt>関数を使って、
+シンボル名を取得できるようになりますが、より多く、サウンドヒープ<em><strong><code>heap</code></strong></em>を消費します。
+</p>
+     <p>
+初期化したサウンドアーカイブは、自動的にカレントサウンドアーカイブに設定されます。
+カレントサウンドアーカイブを変更するには、
+<tt class="function"><a href="NNS_SndArcSetCurrent.html">NNS_SndArcSetCurrent</a></tt>関数を使います。
+</p>
+      <p>
+<tt class="function">NNS_SndArcInit</tt>関数は、初期化に失敗するとアサーションにひっかかりますが、
+<tt class="function">NNS_SndArcInitWithResult</tt>関数は、初期化に成功したかどうかを返り値で返します。
+</p>
+     <p>
+ファイルシステムを使わない場合や、全てのサウンドアーカイブデータをメモリ上に置く場合には、
+これらの関数の代わりに、
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数を使います。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+サウンドアーカイブ構造体は、全てのサウンドヒープを解放した後で破棄することができます。
+１つでもヒープ領域が残っていると、メモリ破壊を引き起こす可能性があります。
+また、破棄するサウンドアーカイブ構造体のポインタが、
+カレントサウンドアーカイブとして、セットされている可能性についても留意してください。
+</p>
+<p>
+初期化に失敗する主な原因は、サウンドアーカイブデータファイルの読み込み失敗です。
+ファイル読み込みに失敗する可能性がある状況では、<tt class="function">NNS_SndArcInitWithResult</tt>関数を使って
+返り値をチェックしてください。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcSetup.html">NNS_SndArcSetup</a>, <a href="NNS_SndArcGetSymbol.html">NNS_SndArcGet*Symbol</a>, <a href="NNS_SndArcSetCurrent.html">NNS_SndArcSetCurrent</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></p>
+<h2>履歴</h2>
+<p>2005/08/18 NNS_SndArcInitWithResult関数の説明追加<br>2004/09/06 NNS_SndArc構造体の動的確保に関する注意書き追加<br>2004/09/02 NNS_SndArcSetup関数に関する説明追加<br>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

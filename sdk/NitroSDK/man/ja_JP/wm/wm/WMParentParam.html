@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMParentParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMParentParam</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMParentParam
+{
+    u16*    userGameInfo;
+    u16     userGameInfoLength;
+    u16     padding
+    u32     ggid;
+    u16     tgid;
+    u16     entryFlag;
+    u16     maxEntry;
+    u16     multiBootFlag;
+    u16     KS_Flag;
+    u16     CS_Flag;
+    u16     beaconPeriod;
+    u16     rsv1[4];
+    u16     rsv2[8];
+    u16     channel;
+    u16     parentMaxSize;
+    u16     childMaxSize;
+    u16     rsv[4];
+
+} WMParentParam;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">userGameInfo</font></strong></em></TD>
+      <TD width="800">ユーザーゲーム情報へのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">userGameInfoLength</font></strong></em></TD>
+      <TD width="800">ユーザーゲーム情報のバイト単位でのサイズです。最大で 112 バイトまで指定することが出来ます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ggid</font></strong></em></TD>
+      <TD width="800">ゲームグループIDです。タイトルやシリーズごとに割り当てられます。4バイトのデータとして指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">tgid</font></strong></em></TD>
+      <TD width="800">テンポラリーグループIDです。親機として活動を開始する度に異なる値である必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">entryFlag</font></strong></em></TD>
+      <TD width="800">子機からの接続を許可するフラグです。0 か 1 を指定して下さい。1 の場合に、子機からの接続を許可します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">maxEntry</font></strong></em></TD>
+      <TD width="800">接続を許可する子機の数です。この数を越えて子機が接続してきた場合、接続が拒否されます。
+      最大15台までの子機と接続することが可能ですので、1 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">multiBootFlag</font></strong></em></TD>
+      <TD width="800">マルチブート親機であることを示すフラグです。0 か 1 を指定して下さい。
+      1 の場合に、マルチブート用のデータを送信する親機として活動します。
+      なお、マルチブート親機となる場合は MB ライブラリにより自動的に 1 に設定されますので、通常は 0 を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">KS_Flag</font></strong></em></TD>
+      <TD width="800">過去との互換性のために用意されているフィールドです。0を指定してください。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">CS_Flag</font></strong></em></TD>
+      <TD width="800">過去との互換性のために用意されているフィールドで、現在は使用されていません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">beaconPeriod</font></strong></em></TD>
+      <TD width="800">子機に対するブロードキャストデータ(当構造体のデータ)を定期的に送信する間隔をms単位で指定します。10 ～ 1000 の値を指定して下さい。<BR>
+                      通常は<A href="WM_GetDispersionBeaconPeriod.html">WM_GetDispersionBeaconPeriod関数</A>にて取得した値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">rsv1<BR>rsv2</font></strong></em></TD>
+      <TD width="800">予約された領域です。これらのメンバは将来削除される可能性があります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">channel</font></strong></em></TD>
+      <TD width="800">親機として活動する無線チャンネルを指定します。
+      1 ～ 13 の値の内、<A href="WM_GetAllowedChannel.html">WM_GetAllowedChannel関数</A>にて使用許可を確認できたチャンネルを指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">parentMaxSize</font></strong></em></TD>
+      <TD width="800">MP 通信の親機送信容量のデフォルト値を指定します。送信容量は2の倍数である必要があります。
+      最大で 512 バイトまでの値を指定できます。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">childMaxSize</font></strong></em></TD>
+      <TD width="800">MP 通信の子機送信容量のデフォルト値を指定します。送信容量は2の倍数である必要があります。
+      最大で 512 バイトまでの値を指定できます。
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+親機として活動を開始する際に設定すべき情報をまとめた構造体です。<BR>
+userGameInfoにはユーザ定義の自由なデータをセットすることができます。<A href="WM_SetGameInfo.html">WM_SetGameInfo</A>で後から変更することが可能です。<BR>
+userGameInfoLengthは最大でWM_SIZE_USER_GAMEINFOバイトです（現時点では112バイト）。<BR>
+entryFlagは<A href="WM_SetEntry.html">WM_SetEntry</A>で後から変更することが可能です。<BR>
+beaconPeriodをあまり短く設定すると、通常のMP通信が阻害されます。数百msに設定するのが標準的です。<BR>
+channelは<A href="WM_GetAllowedChannel.html">WM_GetAllowedChannel</A>で許可されたチャンネルの中から1つを選んで指定してください。<BR>
+parentMaxSize および childMaxSize は親子それぞれの送信容量のデフォルト値を指定しますが、プログラミングガイドラインに記載されている通りの制限があります。
+<A href="wm_time_calc.html">無線通信時間計算シート</A>を用いて、1回のMP通信にかかる時間が 5600μs を超えないように設定してください。<BR>
+KS_Flag は過去との互換のために残されているフィールドです。0 を指定するようにしてください。
+なお、過去との互換のため、KS_Flagを 1 に設定すると内部的に parentMaxSizeに 36+6、childMaxSizeに 2+4 が加算されます。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/12/08 キーシェアリング関連の記述を削除<BR>
+2005/12/08 送信容量は偶数である必要があることを明記<BR>
+2005/12/06 「最大送信サイズ」を「送信容量のデフォルト値」に変更<BR>
+2005/03/14 リンク先のミスを訂正<BR>
+2005/03/02 構造体メンバの指定可能範囲について追記<BR>
+2004/11/12 userGameInfoLength の単位について追記<BR>
+2004/10/18 beaconPeriodに指定すべき値について追記<BR>
+2004/10/04 ゲームグループIDをu32型に変更<BR>
+2004/09/24 説明の追加<BR>
+2004/09/21 説明の追加<BR>
+2004/08/27 構造体メンバの変更に伴う修正<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 初版<BR>
+</P>
+</body>
+</html>

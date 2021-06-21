@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_RequestSamplingAsync</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_RequestSamplingAsync</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>void TP_RequestSamplingAsync( void );</CODE></PRE>
+  </dd>
+</dl>
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ARM7に対してその時点での１回のタッチパネル値を要求する非同期関数です。<BR>
+<BR>
+この関数をコールした後<A href="TP_WaitRawResult.html">TP_WaitRawResult</A>または、<A href="TP_WaitCalibratedResult.html">TP_WaitCalibratedResult</A>でタッチパネル値を読み出すことができます。<BR>
+このコマンドはTPの自動サンプリング中には使用できません。<BR>
+<BR>
+※MICの自動サンプリング中でも、この関数でのタッチパネル値取得は可能です。(TP自動サンプリングは不可)<BR>
+ただし、次のマイクサンプリング終了のタイミングで実行されるため、結果の応答までに通常より少し時間がかかる場合があります。<BR>
+</P>
+<h2>参照</h2>
+<P><A href="TP_WaitRawResult.html">TP_WaitRawResult</A>、<A href="TP_WaitCalibratedResult.html">TP_WaitCalibratedResult</A>、<A href="TP_RequestRawSampling.html">TP_RequestRawSampling</A>、<A href="TP_RequestCalibratedSampling.html">TP_RequestCalibratedSampling</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/21 初版</P>
+</body>
+</html>

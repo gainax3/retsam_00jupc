@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetCapture</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetCapture</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/gx_capture.h&gt;
+
+void GX_SetCapture(
+    GXCaptureSize sz,
+    GXCaptureMode mode,
+    GXCaptureSrcA a,
+    GXCaptureSrcB b,
+    GXCaptureDest dest,
+    int eva,
+    int evb
+);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="237"><EM><STRONG><FONT face="Courier New">sz</FONT></STRONG></EM></TD>
+      <TD width="609">キャプチャサイズ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">mode</FONT></STRONG></EM></TD>
+      <TD>キャプチャモード(A単独/B単独/ABをブレンドしたものをキャプチャするか選択)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">a</FONT></STRONG></EM></TD>
+      <TD>キャプチャデータ元A(3D/2Dブレンディング後の画面か3D面のみかを選択）</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">b</FONT></STRONG></EM></TD>
+      <TD>キャプチャデータ元B(VRAM/メインメモリを選択)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">dest</FONT></STRONG></EM></TD>
+      <TD>キャプチャデータ書き込み先(VRAM-A,B,C,Dとオフセットの組み合わせを選択)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">eva</FONT></STRONG></EM></TD>
+      <TD>キャプチャデータ元Aに対するブレンディング係数(0から16)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><FONT face="Courier New">evb</FONT></STRONG></EM></TD>
+      <TD>キャプチャデータ元Bに対するブレンディング係数(0から16)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+<H2>説明</H2>
+<P>次フレームの0ライン目から1画面分のデータをキャプチャするよう設定します。毎フレームキャプチャする場合には、フレーム毎にこの関数を呼び出さなくてはいけません。<BR>
+<BR>
+<B>(注意1)</B> 対象となるVRAMはLCDCメモリにマップされている必要があります。<BR>
+<B>(注意2)</B> <B><I>b</I></B>にVRAMを設定した場合、対象VRAMは<B><I>dest</I></B>で指定されるVRAMと同じになります。<BR>
+<B>(注意3)</B> VRAM表示モード時には<B><I>b</I></B>にオフセットありのVRAMを設定した場合でも、VRAMのオフセット指定は無効になります。又、読み込み中にオフセットが0x20000を超えた場合は、0x00000に回り込んで読み込まれます。<BR>
+<B>(注意4)</B> <B><I>dest</I></B>への書き込み中にオフセットが0x20000を超えた場合には、0x00000に回り込んで書き込まれます。<BR>
+<B>(注意5)</B>RAM側のキャプチャ時は常に１ラインが256ドットのイメージとして読み込まれるため、128×128ドットの設定ではブレンディングしてキャプチャすることはできません。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CAPTURE_SIZE_128x128</CODE></TD>
+      <TD>128x128ドット(0x08000バイト)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SIZE_256x64</CODE></TD>
+      <TD>256x64ドット(0x08000バイト)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SIZE_256x128</CODE></TD>
+      <TD>256x128ドット(0x10000バイト)</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SIZE_256x192</CODE></TD>
+      <TD>256x192ドット(0x18000バイト)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CAPTURE_MODE_A</CODE></TD>
+      <TD>キャプチャ元Aのデータをキャプチャします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_MODE_B</CODE></TD>
+      <TD>キャプチャ元Bのデータをキャプチャします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_MODE_AB</CODE></TD>
+      <TD>キャプチャ元AとBのデータをブレンディングしてキャプチャします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CAPTURE_SRCA_2D3D</CODE></TD>
+      <TD>グラフィックス表示画面(3D/2Dブレンディング後)を取り込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SRCA_3D</CODE></TD>
+      <TD>3D面を取り込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CAPTURE_SRCB_VRAM_0x00000</CODE></TD>
+      <TD>VRAMのオフセット0x00000から読み込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SRCB_MRAM</CODE></TD>
+      <TD>メインメモリ表示モードでの表示結果をキャプチャします。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x08000</CODE></TD>
+      <TD>VRAMのオフセット0x08000から読み込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x10000</CODE></TD>
+      <TD>VRAMのオフセット0x10000から読み込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_SRCB_VRAM_0x18000</CODE></TD>
+      <TD>VRAMのオフセット0x18000から読み込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CAPTURE_DEST_VRAM_A_0x00000</CODE></TD>
+      <TD>VRAM-Aのオフセット0x00000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x00000</CODE></TD>
+      <TD>VRAM-Bのオフセット0x00000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x00000</CODE></TD>
+      <TD>VRAM-Cのオフセット0x00000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x00000</CODE></TD>
+      <TD>VRAM-Dのオフセット0x00000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x08000</CODE></TD>
+      <TD>VRAM-Aのオフセット0x08000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x08000</CODE></TD>
+      <TD>VRAM-Bのオフセット0x08000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x08000</CODE></TD>
+      <TD>VRAM-Cのオフセット0x08000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x08000</CODE></TD>
+      <TD>VRAM-Dのオフセット0x08000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x10000</CODE></TD>
+      <TD>VRAM-Aのオフセット0x10000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x10000</CODE></TD>
+      <TD>VRAM-Bのオフセット0x10000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x10000</CODE></TD>
+      <TD>VRAM-Cのオフセット0x10000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x10000</CODE></TD>
+      <TD>VRAM-Dのオフセット0x10000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_A_0x18000</CODE></TD>
+      <TD>VRAM-Aのオフセット0x18000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_B_0x18000</CODE></TD>
+      <TD>VRAM-Bのオフセット0x18000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_C_0x18000</CODE></TD>
+      <TD>VRAM-Cのオフセット0x18000から書き込みます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_CAPTURE_DEST_VRAM_D_0x18000</CODE></TD>
+      <TD>VRAM-Dのオフセット0x18000から書き込みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に引数に使用される列挙型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_CAPTURE_SIZE_128x128 = 0,
+    GX_CAPTURE_SIZE_256x64 = 1,
+    GX_CAPTURE_SIZE_256x128 = 2,
+    GX_CAPTURE_SIZE_256x192 = 3
+}
+GXCaptureSize;
+
+typedef enum
+{
+    GX_CAPTURE_MODE_A = 0,
+    GX_CAPTURE_MODE_B = 1,
+    GX_CAPTURE_MODE_AB = 2
+}
+GXCaptureMode;
+
+typedef enum
+{
+    GX_CAPTURE_SRCA_2D3D = 0,
+    GX_CAPTURE_SRCA_3D = 1
+}
+GXCaptureSrcA;
+
+typedef enum
+{
+    GX_CAPTURE_SRCB_VRAM_0x00000 = 0,
+    GX_CAPTURE_SRCB_MRAM = 1,
+    GX_CAPTURE_SRCB_VRAM_0x08000 = 2,
+    GX_CAPTURE_SRCB_VRAM_0x10000 = 4,
+    GX_CAPTURE_SRCB_VRAM_0x18000 = 6
+}
+GXCaptureSrcB;
+
+typedef enum
+{
+    GX_CAPTURE_DEST_VRAM_A_0x00000 = 0,
+    GX_CAPTURE_DEST_VRAM_B_0x00000 = 1,
+    GX_CAPTURE_DEST_VRAM_C_0x00000 = 2,
+    GX_CAPTURE_DEST_VRAM_D_0x00000 = 3,
+
+    GX_CAPTURE_DEST_VRAM_A_0x08000 = 4,
+    GX_CAPTURE_DEST_VRAM_B_0x08000 = 5,
+    GX_CAPTURE_DEST_VRAM_C_0x08000 = 6,
+    GX_CAPTURE_DEST_VRAM_D_0x08000 = 7,
+
+    GX_CAPTURE_DEST_VRAM_A_0x10000 = 8,
+    GX_CAPTURE_DEST_VRAM_B_0x10000 = 9,
+    GX_CAPTURE_DEST_VRAM_C_0x10000 = 10,
+    GX_CAPTURE_DEST_VRAM_D_0x10000 = 11,
+
+    GX_CAPTURE_DEST_VRAM_A_0x18000 = 12,
+    GX_CAPTURE_DEST_VRAM_B_0x18000 = 13,
+    GX_CAPTURE_DEST_VRAM_C_0x18000 = 14,
+    GX_CAPTURE_DEST_VRAM_D_0x18000 = 15
+}
+GXCaptureDest;</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

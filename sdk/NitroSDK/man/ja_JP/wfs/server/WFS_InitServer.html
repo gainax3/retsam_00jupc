@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_InitServer</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_InitServer</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_InitServer(WFSServerContext *context,
+                    void *userdata, <a href="../WFSEventCallback.html">WFSEventCallback</a> callback, MIAllocator *allocator, int packet);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">初期化するWFSServerContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>userdata</strong></em></td>
+      <td style="width:87%">コンテキストに関連付ける任意のユーザ定義値</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>callback</strong></em></td>
+      <td style="width:87%">WFSライブラリからのイベント通知を受けるコールバック関数<br />
+      不要ならNULLを指定します。</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>allocator</strong></em></td>
+      <td style="width:87%">ライブラリが内部で使用するアロケータ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>packet</strong></em></td>
+      <td style="width:87%">WFSのために親機が使用可能なMP送信パケットサイズ<br />
+      この設定は<a href="WFS_SetServerPacketLength.html">WFS_SetServerPacketLength</a>関数で変更することもできます。</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p>WFSライブラリのサーバコンテキスト構造体を初期化します。<br />
+WFSServerContext構造体を使用する前に、必ず1回だけこの関数を呼び出しておく必要があります。<br />
+この関数はWFSServerContext構造体の内容を初期化するだけなのでOSやワイヤレスの状態には一切影響を及ぼしません。<br />
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="../WFSEventCallback.html">WFSEventCallback</a>
+<br />
+<a href="WFS_EndServer.html">WFS_EndServer</a> 
+<a href="WFS_RegisterServerTable.html">WFS_RegisterServerTable</a> 
+<a href="WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a> 
+<a href="WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a> 
+<a href="WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a> 
+<a href="WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a> 
+<br /></code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3X_SetFog</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3X_SetFog</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g3x.h&gt;</CODE><BR>
+<CODE>void G3X_SetFog(
+    BOOL enable,<BR>    GXFogBlend fogMode,<BR>    GXFogSlope fogSlope,<BR>    int fogOffset<BR>);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+      <TD width="109"><em><strong><font face="Courier New">enable</font></strong></em></TD>
+      <TD width="593">フォグを有効にするかどうかを設定します。</TD>
+    </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">fogMode</font></strong></em></TD>
+      <TD>α値に加えてカラーにもフォグをかけるかどうかを設定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">fogSlope</font></strong></em></TD>
+      <TD>フォグのかかり方の勾配を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">fogOffset</font></strong></em></TD>
+      <TD>フォグ計算が開始されるデプス値を設定します。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>フォグの有効／無効の設定と、フォグのかけかたの設定をします。GXFogSlope型のシンボルの末尾の数字は、一般に値が大きいほどフォグのかかり方が緩やかだということを表します。つまり、この値をxとすると、デプス値が、<B><I>fogOffset</I></B>から<B><I>fogOffset</I></B> + xまでにかけてフォグが段階的に濃くなっていく（参照するフォグテーブルのインデックスが大きくなっていく）ことになります。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_FOGBLEND_COLOR_ALPHA</CODE></TD>
+      <TD><CODE>ピクセルのカラー値とα値にフォグブレンディング</CODE></TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGBLEND_ALPHA</CODE></TD>
+      <TD><CODE>ピクセルのα値のみにフォグブレンディング</CODE></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_FOGSLOPE_0x8000</CODE></TD>
+      <TD>フォグがデプス値で0x8000の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x4000</CODE></TD>
+      <TD>フォグがデプス値で0x4000の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x2000</CODE></TD>
+      <TD>フォグがデプス値で0x2000の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x1000</CODE></TD>
+      <TD>フォグがデプス値で0x1000の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0800</CODE></TD>
+      <TD>フォグがデプス値で0x0800の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0400</CODE></TD>
+      <TD>フォグがデプス値で0x0400の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0200</CODE></TD>
+      <TD>フォグがデプス値で0x0200の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0100</CODE></TD>
+      <TD>フォグがデプス値で0x0100の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0080</CODE></TD>
+      <TD>フォグがデプス値で0x0080の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0040</CODE></TD>
+      <TD>フォグがデプス値で0x0040の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FOGSLOPE_0x0020</CODE></TD>
+      <TD>フォグがデプス値で0x0020の幅で段階的に濃くなっていきます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に引数に使用される列挙型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_FOGBLEND_COLOR_ALPHA = 0,
+    GX_FOGBLEND_ALPHA = 1
+}
+GXFogBlend;
+
+typedef enum
+{
+    GX_FOGSLOPE_0x8000 = 0,
+    GX_FOGSLOPE_0x4000 = 1,
+    GX_FOGSLOPE_0x2000 = 2,
+    GX_FOGSLOPE_0x1000 = 3,
+    GX_FOGSLOPE_0x0800 = 4,
+    GX_FOGSLOPE_0x0400 = 5,
+    GX_FOGSLOPE_0x0200 = 6,
+    GX_FOGSLOPE_0x0100 = 7,
+    GX_FOGSLOPE_0x0080 = 8,
+    GX_FOGSLOPE_0x0040 = 9,
+    GX_FOGSLOPE_0x0020 = 10
+}
+GXFogSlope;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="G3X_SetFogColor.html">G3X_SetFogColor</A>, <A href="G3X_SetFogTable.html">G3X_SetFogTable</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

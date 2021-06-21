@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_GetSharedDataAddress</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_GetMPReceiveBufferSize</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+int WM_GetMPReceiveBufferSize( void );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p><A href="WM_StartMP.html">WM_StartMP</A>の引数として渡される受信バッファに必要なサイズを返します。</p>
+
+<H2>説明</H2>
+<P>SDKがMP通信で内部的に使用する受信バッファに必要なサイズを求めます。WMが<A href="wm_state_diagram.html">PARENTステート</A>、もしくは<A href="wm_state_diagram.html">CHILDステート</A>の場合のみ実行可能です。 </P>
+<P>子機側では外部から得た beacon 情報に基づいて返り値を計算します。そのため、受信バッファのメモリ確保のために使用する場合には、この関数の返り値が妥当な値かを確認するか、メモリ確保の後にメモリがきちんと確保できたかを確認するか、いずれかを必ずようにしてください。</P>
+
+<h2>参照</h2>
+<P><CODE>
+<A href="WM_StartMP.html">WM_StartMP</A>, <A href="WM_GetMPSendBufferSize.html">WM_GetMPSendBufferSize</A> </CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/12/21 子機側では値を信用してはならないことを明記<BR>
+2004/08/18 初版<BR>
+</P>
+</body>
+</html>

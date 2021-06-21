@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_InitReset</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_InitReset</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <code>void OS_InitReset( void );</CODE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>リセットシステムを初期化します。</P>
+<P><CODE>OS_InitReset() </CODE>は、リセットシステムの関数を呼ぶ前に一度だけ呼ばれている必要があります。ただし、アプリケーションが<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいる場合はその中から呼ばれますので、アプリケーションで改めて呼びなおす必要はありません。</P>
+<P><CODE><A href="OS_GetResetParameter.html">OS_GetResetParameter()</A></CODE> に限り、<CODE>OS_InitReset()</CODE> の前に呼び出しても構いません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_ResetSystem.html">OS_ResetSystem</A>, <A href="OS_GetResetParameter.html">OS_GetResetParameter</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/09/01 初版</P>
+</BODY>
+</HTML>

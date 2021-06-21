@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>CARD_GetCacheFlushThreshold</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1 align="left">CARD_GetCacheFlushThreshold</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/card.h&gt;</code><br />
+  <br />
+  <code>void CARD_GetCacheFlushThreshold(u32 *icache, u32 *dcache);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>icache</strong></em></td>
+      <td width="87%">命令キャッシュの無効化閾値を格納するポインタ<br />
+      必要ない場合はNULLを指定することができます。</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong>dcache</strong></em></td>
+      <td width="87%">データキャッシュの無効化閾値を格納するポインタ<br />
+      必要ない場合はNULLを指定することができます。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<h2>説明</h2>
+<p>ライブラリ内部でDMA転送が必要とされる場合に行うキャッシュ無効化処理の方式を切り替える閾値を取得します。<br />
+詳細は<a href="CARD_SetCacheFlushThreshold.html">CARD_SetCacheFlushThreshold</a>関数の説明をご参照ください。<br />
+</p>
+<h2>参照</h2>
+<p><code>
+<a href="CARD_SetCacheFlushThreshold.html">CARD_SetCacheFlushThreshold</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

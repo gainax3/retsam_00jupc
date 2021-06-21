@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBGameInfo</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBGameInfo</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE>/ * 親機ゲーム情報のうち、変化しない情報. */<BR>
+  typedef struct MBGameInfoFixed<BR>
+{<BR>    MBIconInfo icon;                           <BR>    MBUserInfo parent;                         <BR>    u8         maxPlayerNum;                   <BR>    u8         pad[1];<BR>    u16 gameName[ MB_GAME_NAME_LENGTH ];       <BR>    u16 gameIntroduction[ MB_GAME_INTRO_LENGTH ];<BR>} MBGameInfoFixed;<BR>
+<BR>
+<BR>/* 親機ゲーム情報のうち、流動的に変化する情報。*/<BR>typedef struct MBGameInfoVolatile<BR>
+{<BR>    u8  nowPlayerNum;<BR>    u8  pad[1];<BR>    u16 nowPlayerFlag;<BR>    u16 changePlayerFlag;<BR>    MBUserInfo member[ MB_MEMBER_MAX_NUM ];
+    u8  userVolatData[ MB_USER_VOLAT_DATA_SIZE ];<BR>} MBGameInfoVolatile;<BR>
+<BR>/* 親機ゲーム情報ビーコン */<BR>
+typedef struct  MBGameInfo<BR>
+{<BR>    MBGameInfoFixed fixed;<BR>    MBGameInfoVolatile volat;<BR>    u16 broadcastedPlayerFlag;<BR>    u8 dataAttr;              <BR>    u8 seqNoFixed;            <BR>    u8 seqNoVolat;            <BR>    u8 fileNo;                <BR>    u8 pad[2];<BR>    u32 ggid;                 <BR>    struct MBGameInfo *nextp;<BR>} MBGameInfo;</PRE>
+  </dd>
+</dl>
+<h2>要素</h2>
+<P><BR>
+<B>MBGameInfo</B>の要素</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>fixed</I></B></TD>
+      <TD colspan="2">親機ゲーム情報のうち変化しない情報。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>volat</I></B></TD>
+      <TD colspan="2">親機ゲーム情報のうち流動的に変化する情報。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>broadcastedPlayerFlag</I></B></TD>
+      <TD colspan="2">配信済みプレイヤー情報がピットで示される。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>dataAttr</I></B></TD>
+      <TD colspan="2">親機が配信するビーコン属性。<BR>
+      MB_BEACON_DATA_ATTR_FIXED_NORMAL<BR>
+      MB_BEACON_DATA_ATTR_FIXED_NO_ICON<BR>MB_BEACON_DATA_ATTR_VOLAT</TD>
+    </TR>
+    <TR>
+      <TD><B><I>seqNoFixed</I></B></TD>
+      <TD colspan="2">固定領域のシーケンス番号。この番号が更新されるとfixedのデータを再受信する。（ただし通常は固定）</TD>
+    </TR>
+    <TR>
+      <TD><B><I>seqNoVolat</I></B></TD>
+      <TD colspan="2">流動領域のシーケンス番号。この番号が更新されるとvolatのデータを再受信する。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>fileNo</I></B></TD>
+      <TD colspan="2">ファイルNo。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>ggid</I></B></TD>
+      <TD colspan="2">GGID。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>nextp</I></B></TD>
+      <TD colspan="2">次のGameInfoへのポインタ（片方向リスト）。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B><BR>
+MBGameInfoFixed</B>の要素</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>icon</I></B></TD>
+      <TD>アイコンデータ。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>parent</I></B></TD>
+      <TD>親機ユーザー情報。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>maxPlayerNum</I></B></TD>
+      <TD>最大プレイヤー人数。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>gameName</I></B></TD>
+      <TD>ゲームタイトル。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>gameIntroduction</I></B></TD>
+      <TD>ゲーム内容説明。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+<B>MBGameInfoVolatile</B>の要素</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>nowPlayerNum</I></B></TD>
+      <TD>現在のプレイヤー数。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>nowPlayerFlag</I></B></TD>
+      <TD>現在の全プレイヤーのプレイヤー番号をビットで示す。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>changePlayerFlag</I></B></TD>
+      <TD>最新の更新で変更されたプレイヤー情報の番号をフラグで示す。</TD>
+    </TR>
+    <TR>
+      <TD><B><I>member</I></B></TD>
+      <TD>メンバー情報</TD>
+    </TR>
+    <TR>
+      <TD><B><I>userVolatData</I></B></TD>
+      <TD>ユーザ設定データ、親機が<A href="MB_SetUserVolatData.html">MB_SetUserVolatData</A>関数で設定したデータが格納される。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>マルチブート親機がビーコンで配信している親機情報を示す構造体です。<CODE><font color="#800000"><BR>
+</font></CODE></p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fake_child/MB_FakeStartScanParent.html">MB_FakeStartScanParent</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>2004/11/25 初版<BR>
+</P>
+</body>
+</html>

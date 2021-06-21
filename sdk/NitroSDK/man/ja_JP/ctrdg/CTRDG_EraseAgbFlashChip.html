@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_Read</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_EraseAgbFlashChip</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>u16 CTRDG_EraseAgbFlashChip(void);
+  </CODE></PRE>
+  <PRE>対応するAGB時の関数：<A href="coordinate.html"><CODE>u16 (*EraseFlashChip)()</CODE></A></PRE>
+</DL>
+<H2>引数</H2>
+<p>なし。</p>
+<H2>返り値</H2>
+<P>消去に成功すれば 0 を返します。失敗した場合は 0 以外を返します。</P>
+<H2>説明</H2>
+<P>AGBバックアップデバイスのチップ全体のデータを完全に消去します。</P>
+<P>アクセスサイクルの設定は関数内で行いますので、事前に行う必要はありません。<br>
+また、この関数ではタイムアウト測定用にチックを使用しますので事前に <CODE><A href="../os/time/OS_InitTick.html">OS_InitTick</A></CODE> 関数を呼んでおく必要があります。</P>
+<P>※この関数内では一定期間全ての割り込みが禁止され、カートリッジバスがロックされますので注意して下さい。<br>
+特に、本関数コール時はダイレクトサウンドおよびＶ・Ｈブランク同期、表示同期、カートリッジリクエスト等の特定のタイミングで自動起動するＤＭＡは使用しないで下さい。</P>
+<P>また IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスすることはできませんので、注意してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_EraseAgbFlashSector.html">CTRDG_EraseAgbFlashSector</A>, <A href="CTRDG_EraseAgbFlashChipAsync.html">CTRDG_EraseAgbFlashChipAsync</A>, <A href="CTRDG_EraseAgbFlashSectorAsync.html">CTRDG_EraseAgbFlashSectorAsync</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2006/05/25 IS-NITRO-DEBUGGER 1.66 以前のバージョンでは AGB バックアップデバイスに正常にアクセスできないことを追記<BR>
+2006/04/07 初版</P>
+</BODY>
+</HTML>

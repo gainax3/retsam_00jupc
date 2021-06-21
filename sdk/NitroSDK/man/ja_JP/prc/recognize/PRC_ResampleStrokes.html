@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>PRC_ResampleStrokes</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">PRC_ResampleStrokes*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+BOOL PRC_ResampleStrokes_Distance(
+    u16*                    selectedPoints,
+    int*                    pSelectedPointNum,
+    int                     maxPointCount,
+    int                     maxStrokeCount,
+    const <A href="../stroke/PRCStrokes.html">PRCStrokes</A>*       strokes,
+    int                     threshold,
+    void*                   buffer );
+
+BOOL PRC_ResampleStrokes_Angle(
+    u16*                    selectedPoints,
+    int*                    pSelectedPointNum,
+    int                     maxPointCount,
+    int                     maxStrokeCount,
+    const <A href="../stroke/PRCStrokes.html">PRCStrokes</A>*       strokes,
+    int                     threshold,
+    void*                   buffer );
+
+BOOL PRC_ResampleStrokes_Recursive(
+    u16*                    selectedPoints,
+    int*                    pSelectedPointNum,
+    int                     maxPointCount,
+    int                     maxStrokeCount,
+    const <A href="../stroke/PRCStrokes.html">PRCStrokes</A>*       strokes,
+    int                     threshold,
+    void*                   buffer );
+</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">selectedPoints</FONT></STRONG></EM></TD>
+      <TD width="87%">採用された点の番号が昇順で返ってくる配列へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">pSelectedPointNum</FONT></STRONG></EM></TD>
+      <TD width="87%"><CODE>selectedPoints</CODE> にいくつ返ってきたのかを受け取る int 変数へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">maxPointCount</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプリング後の最大点数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">maxStrokeCount</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプリング後の最大画数</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">strokes</FONT></STRONG></EM></TD>
+      <TD width="87%">生の入力点列データ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">threshold</FONT></STRONG></EM></TD>
+      <TD width="87%">リサンプリングの閾値</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG><FONT face="Courier New">buffer</FONT></STRONG></EM></TD>
+      <TD width="87%">処理中に使用されるメモリ領域へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>リサンプリングに成功し、長さのある点列が得られたら真を返します。</P>
+<H2>説明</H2>
+<P>点列データを各リサンプリングアルゴリズムでリサンプリングします。結果は、<CODE>strokes-&gt;points</CODE> 中の何番目の点がリサンプリング結果に残ったかが、<CODE>u16</CODE>の配列 <CODE>selectedPoints</CODE> に、その個数が <CODE>pSelectedPointNum</CODE> に返ります。配列には番号が昇順で格納されています。<CODE>selectedPoints</CODE> には <CODE>maxPointCount</CODE> 以上の長さを確保しておく必要があります。</P>
+<P><CODE>buffer</CODE> には、リサンプリングの処理で使用されるワークエリアへのポインタを与えます。ワークエリアは <CODE>sizeof(int)*maxPointCount</CODE> だけ必要ですので、あらかじめ確保しておいてください。</P>
+<P>各リサンプリングのアルゴリズムと閾値の意味は、<CODE><A href="PRCResampleMethod.html">PRCResampleMethod</A></CODE> を参照してください。</P>
+<P>通常の図形認識の手順では、このAPIが必要になることはありません。<CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A></CODE> の中で自動的に呼び出されます。</P>
+<H2>参照</H2>
+<P><CODE><A href="PRCResampleMethod.html">PRCResampleMethod</A>, <A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/03/04 返り値を void から BOOL に変更</P>
+<P>2004/07/06 初版</P>
+</BODY>
+</HTML>

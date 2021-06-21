@@ -1,0 +1,55 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_LogoutFromStorageServer</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_LogoutFromStorageServer</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+void DWC_LogoutFromStorageServer( void );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+      データストレージサーバからログアウトします。この関数を呼び出さずに<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>関数を呼び出すと、自動的にログアウトします。<br/>
+      本関数をコールバック関数<a href="DWCStorageLoginCallback.html">DWCStorageLoginCallback</a>、<a href="DWCSaveToServerCallback.html">DWCSaveToServerCallback</a>、<a href="DWCLoadFromServerCallback.html">DWCLoadFromServerCallback</a>の内部から呼び出さないでください。
+    </P>
+
+    <H2>引数</H2>
+    <p>
+      なし。
+    </p>
+
+    <H2>返り値</H2>
+    <p>
+      なし。
+    </p>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+        <a href="DWC_LoginToStorageServerAsync.html">DWC_LoginToStorageServerAsync</a>,
+        <a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>,
+        <a href="DWCStorageLoginCallback.html">DWCStorageLoginCallback</a>,
+        <a href="DWCSaveToServerCallback.html">DWCSaveToServerCallback</a>,
+        <a href="DWCLoadFromServerCallback.html">DWCLoadFromServerCallback</a>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+      2007/05/18 呼び出しに関する注意を追記<BR>
+      2005/11/02 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

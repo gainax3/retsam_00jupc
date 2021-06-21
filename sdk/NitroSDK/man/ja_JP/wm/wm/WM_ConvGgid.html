@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_ConvGgid</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_ConvGgid*</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+void WM_ConvGgid32to16( u32* src , u16* dst );
+void WM_ConvGgid16to32( u16* src , u32* dst );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<p>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New"><CODE>src</CODE></FONT></STRONG></EM></TD>
+      <TD width="800">GGIDの変換元変数へのポインタを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New"><CODE>dst</CODE></FONT></STRONG></EM></TD>
+      <TD width="800">変換後のデータを格納するバッファへのポインタを指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+</p>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>
+32ビットで表されるゲームグループIDについて、u32型で表された状態とu16型配列で表された状態が存在しますが、
+これを互いに変換します。<BR>
+<BR>
+WM_ConvGgid32to16 は u32型のGGIDをu16型配列に変換します。<BR>
+WM_ConvGgid16to32 は u16型配列のGGIDをu32型に変換します。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>, <A href="WM_SetGameInfo.html">WM_SetGameInfo</A>, <A href="WMParentParam.html">WMParentParam</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/08/25 初版<BR>
+</P>
+</body>
+</html>

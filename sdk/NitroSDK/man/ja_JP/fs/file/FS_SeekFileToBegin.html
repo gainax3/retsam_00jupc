@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_SeekFileToBegin</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_SeekFileToBegin</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>inline BOOL FS_SeekFileToBegin( FSFile *p_file );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>ファイルポインタが正しく移動されれば TRUE を返し、そうでない場合は FALSE を返します。</p>
+
+<H2>説明</H2>
+<P>
+ファイルポインタをファイルの先頭へ移動します。<BR>
+この関数は FS_SeekFile(p_file, 0, FS_SEEK_SET) と等価です。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A> 
+<A href="../fs_seek_file_mode_type.html">FSSeekFileMode</A> 
+<A href="FS_SeekFile.html">FS_SeekFile</A> 
+<A href="FS_SeekFileToEnd.html">FS_SeekFileToEnd</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/04/01 初版</P>
+</body>
+</html>

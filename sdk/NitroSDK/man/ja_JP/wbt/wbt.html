@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<BASE target="main">
+<TITLE>WBT 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H3>WM ブロック転送プロトコル(WBT)</H3>
+<P>[<B><A href="list_wbt.html">機能一覧</A></B>]</P>
+<DL>
+  <DT>初期化
+  <DD><A href="init/WBT_InitParent.html">WBT_InitParent</A>
+  <DD><A href="init/WBT_InitChild.html">WBT_InitChild</A>
+  <DD><A href="init/WBT_End.html">WBT_End</A>
+</DL>
+<DL>
+  <DT>共通
+  <DD><A href="common/WBT_AidbitmapToAid.html">WBT_AidbitmapToAid</A>
+  <DD><A href="common/WBT_AidToAidbitmap.html">WBT_AidToAidbitmap</A>
+  <DD><A href="common/WBT_GetOwnAid.html">WBT_GetOwnAid</A>
+  <DD><A href="common/WBT_CalcPacketbitmapSize.html">WBT_CalcPacketbitmapSize</A>
+  <DD><A href="common/WBT_GetCurrentDownloadProgress.html">WBT_GetCurrentDownloadProgress</A>
+  <DD><A href="common/WBT_NumOfRegisteredBlock.html">WBT_NumOfRegisteredBlock</A>
+  <DD><A href="common/WBT_RegisterBlock.html">WBT_RegisterBlock</A>
+  <DD><A href="common/WBT_UnregisterBlock.html">WBT_UnregisterBlock</A>
+  <DD><A href="common/WBT_PrintBTList.html">WBT_PrintBTList</A>
+</DL>
+<DL>
+  <DT>親機設定
+  <DD><A href="parent/WBT_SetPacketSize.html">WBT_SetPacketSize</A>
+  <DD><A href="parent/WBT_MpParentSendHook.html">WBT_MpParentSendHook</A>
+  <DD><A href="parent/WBT_MpParentRecvHook.html">WBT_MpParentRecvHook</A>
+</DL>
+<DL>
+  <DT>子機設定
+  <DD><A href="child/WBT_SetOwnAid.html">WBT_SetOwnAid</A>
+  <DD><A href="child/WBT_MpChildSendHook.html">WBT_MpChildSendHook</A>
+  <DD><A href="child/WBT_MpChildRecvHook.html">WBT_MpChildRecvHook</A>
+</DL>
+<DL>
+  <DT>コマンド
+  <DD><A href="command/WBT_RequestSync.html">WBT_RequestSync</A>
+  <DD><A href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</A>
+  <DD><A href="command/WBT_GetBlock.html">WBT_GetBlock</A>
+  <DD><A href="command/WBT_PutUserData.html">WBT_PutUserData</A>
+  <DD><A href="command/WBT_CancelCurrentCommand.html">WBT_CancelCurrentCommand</A>
+</DL>
+<H4><B>定数・マクロ</B></H4>
+<A href="wbt_num_max_block_info_id_const.html">WBT_NUM_MAX_BLOCK_INFO_ID</A><BR>
+<A href="wbt_block_id_min_const.html">WBT_BLOCK_ID_MIN</A><BR>
+<A href="wbt_packet_size_min_const.html">WBT_PACKET_SIZE_MIN</A><BR>
+<A href="wbt_user_id_len_const.html">WBT_USER_ID_LEN</A><BR>
+<A href="wbt_size_user_data_const.html">WBT_SIZE_USER_DATA</A><BR>
+<A href="wbt_result_const.html">WBTResult</A><BR>
+<A href="wbt_command_type_const.html">WBTCommandType</A><BR>
+<A href="wbt_packet_bitmap_size.html">WBT_PACKET_BITMAP_SIZE</A><BR>
+<A href="wbt_aid_consts.html">WBT_AID_*</A><BR>
+<H4><B>構造体</B></H4>
+<A href="wbt_callback_type.html">WBTCallback</A><BR>
+<A href="wbt_command_type.html">WBTCommand</A><BR>
+<A href="wbt_block_info_type.html">WBTBlockInfo</A><BR>
+<A href="wbt_block_info_list_type.html">WBTBlockInfoList</A><BR>
+<A href="wbt_block_info_table_type.html">WBTBlockInfoTable</A><BR>
+<A href="wbt_packet_bitmap_table_type.html">WBTPacketBitmapTable</A><BR>
+<A href="wbt_recv_buf_table_type.html">WBTRecvBufTable</A><BR>
+<A href="wbt_request_sync_callback_type.html">WBTRequestSyncCallback</A><BR>
+<A href="wbt_get_block_done_callback_type.html">WBTGetBlockDoneCallback</A><BR>
+<A href="wbt_prepare_send_data_callback_type.html">WBTPrepareSendDataCallback</A><BR>
+<A href="wbt_recv_user_data_callback_type.html">WBTRecvUserDataCallback</A><BR>
+<A href="wbt_get_block_callback_type.html">WBTGetBlockCallback</A><BR>
+</BODY>
+</HTML>

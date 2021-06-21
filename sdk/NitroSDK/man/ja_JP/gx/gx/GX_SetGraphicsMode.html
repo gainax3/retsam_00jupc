@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetGraphicsMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetGraphicsMode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_SetGraphicsMode(GXDispMode dispMode, GXBGMode bgMode, GXBG0As bg0_2d3d);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">dispMode</font></strong></em></td>
+    <td width="87%">ディスプレイモード(グラフィクス表示モード・VRAM表示モード・メインメモリ表示モードから選択)</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">bgMode</font></strong></em></td>
+    <td width="87%">BGモードを選択</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">bg0_2d3d</font></strong></em></TD>
+      <TD>BG0を3Dに割り当てるかどうかを選択</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>メイングラフィックスエンジンの表示モードを設定します。<B><I>dispMode</I></B>により、グラフィクス表示モード・VRAM表示モード・メインメモリ表示モードを選択します。<B><I>bgMode</I></B>は、BGモードを選択するための引数です。<B><I>bg0_2d3d</I></B>はBG0を2D面として使用するか、3D面として使用するかを選択するための引数です。<BR>
+<B><I>bgMode</I></B>と<B><I>bg0_2d3d</I></B>の値は<B><I>dispMode</I></B>でグラフィクス表示モード以外を選択している場合には、グラフィックス表示画面のキャプチャでのみ利用されます。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_GRAPHICS</CODE></TD>
+      <TD width="70%">2D/3Dグラフィックス表示</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_VRAM_A</CODE></TD>
+      <TD width="70%">VRAM表示モード（VRAM-Aを表示）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_VRAM_B</CODE></TD>
+      <TD width="70%">VRAM表示モード（VRAM-Bを表示）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_VRAM_C</CODE></TD>
+      <TD width="70%">VRAM表示モード（VRAM-Cを表示）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_VRAM_D</CODE></TD>
+      <TD width="70%">VRAM表示モード（VRAM-Dを表示）</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_DISPMODE_MMEM</CODE></TD>
+      <TD width="70%">メインメモリ表示モード(<A href="../../mi/dma/MI_DispMemDmaCopy.html">MI_DispMemDmaCopy</A>で転送)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_0</CODE></TD>
+      <TD width="70%">BG0=テキスト／3D, BG1=テキスト, BG2=テキスト, BG3=テキスト</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_1</CODE></TD>
+      <TD>BG0=テキスト／3D, BG1=テキスト, BG2=テキスト, BG3=アフィン</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_2</CODE></TD>
+      <TD>BG0=テキスト／3D, BG1=テキスト, BG2=アフィン, BG3=アフィン</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_3</CODE></TD>
+      <TD>BG0=テキスト／3D, BG1=テキスト, BG2=テキスト, BG3=アフィン拡張BG</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_4</CODE></TD>
+      <TD>BG0=テキスト／3D, BG1=テキスト, BG2=アフィン, BG3=アフィン拡張BG</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_5</CODE></TD>
+      <TD>BG0=テキスト／3D, BG1=テキスト, BG2=アフィン拡張BG, BG3=アフィン拡張BG</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BGMODE_6</CODE></TD>
+      <TD>BG0=3D, BG1=なし, BG2=大画面256色ビットマップ, BG3=なし</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_BG0_AS_2D</CODE></TD>
+      <TD width="70%">BG0をテキスト表示にします。<CODE>GX_BGMODE_6</CODE>を選択した場合は無視されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_BG0_AS_3D</CODE></TD>
+      <TD>BG0を3D表示にします。<CODE>GX_BGMODE_6</CODE>を選択した場合は無視されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下にGXDispMode型とGXBGMode型とGXBG0As型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_DISPMODE_GRAPHICS = 0x01,
+    GX_DISPMODE_VRAM_A = 0x02,
+    GX_DISPMODE_VRAM_B = 0x06,
+    GX_DISPMODE_VRAM_C = 0x0a,
+    GX_DISPMODE_VRAM_D = 0x0e,
+    GX_DISPMODE_MMEM = 0x03
+}
+GXDispMode;
+
+typedef enum
+{
+    GX_BGMODE_0 = 0,
+    GX_BGMODE_1 = 1,
+    GX_BGMODE_2 = 2,
+    GX_BGMODE_3 = 3,
+    GX_BGMODE_4 = 4,
+    GX_BGMODE_5 = 5,
+    GX_BGMODE_6 = 6
+}
+GXBGMode;
+
+typedef enum
+{
+    GX_BG0_AS_2D = 0,
+    GX_BG0_AS_3D = 1
+}
+GXBG0As;</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/08/03</P>
+<UL>
+  <LI><CODE>GX_DISPMODE_GRAPHICS以外の場合にもbgMode, bg0_2d3dの値をレジスタに反映するように変更</CODE>。
+</UL>
+<P>Ver. 2004/02/09</P>
+<UL>
+  <LI><CODE>GX_DISPMODE_OFF</CODE>を削除。<A href="GX_DispOff.html">GX_DispOff</A>を使用するようにしてください。
+</UL>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

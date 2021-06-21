@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MATH_MakeFFTSinTable</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MATH_MakeFFTSinTable</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;nitro/math/fft.h&gt;
+
+void MATH_MakeFFTSinTable( fx16* sinTable, u32 nShift );
+</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">sinTable</font></strong></em></TD>
+      <TD width="670">sin 値のテーブルのポインタ。</TD>
+    </TR>
+    <TR>
+      <TD width="176"><em><strong><font face="Courier New">nShift</font></strong></em></TD>
+      <TD width="670">データ長に2を底とした対数を取った値。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>
+高速フーリエ変換に必要な sin 値のテーブルを作成します。<BR>
+</P>
+<P>
+以下、2<sup>nShift</sup>(2のnShift乗) を N と置きます。
+sinTable には fx16 型の長さ N*3/4 の配列へのポインタを与えます。
+この関数を呼び出すと、sinTable に <CODE>sinTable[k] = <i>sin</i>( (2π/N) * k )  (k = 0, 1,..., N*3/4-1)</CODE> となるように
+fx16 型の sin 値を代入します。
+その際、<A href="../../fx/FX_SinIdx.html">FX_SinIdx</A> 関数が使用されます。
+</P>
+<h2>参照</h2>
+<P><A href="../../fx/FX_SinIdx.html">FX_SinIdx</A>, <A href="MATH_FFT.html">MATH_FFT</A>, <A href="MATH_IFFT.html">MATH_IFFT</A>, <A href="MATH_FFTReal.html">MATH_FFTReal</A>, <A href="MATH_IFFTReal.html">MATH_IFFTReal</A></P>
+<H2>履歴</H2>
+<P>
+2005/07/21 sinTable の説明の修正<BR>
+2005/05/13 初版<BR>
+</P>
+</body>
+</html>

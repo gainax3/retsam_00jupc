@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTSession</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTSession</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef struct
+{
+    <a href="VCTMode.html">VCTMode</a>         mode;
+    u8              aid;
+    u8              talking;
+    u32             aidBitmap;
+
+    <a href="VCTState.html">VCTState</a>        state;
+    void*           userData;
+} VCTSession;
+</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>mode</I></B></TD>
+      <TD width="70%">セッションのモード（電話 / トランシーバー / カンファレンス）</TD>
+    </TR>
+    <TR>
+      <TD><B><I>aid</I></B></TD>
+      <TD>通信相手のaid</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>talking</I></B></TD>
+      <TD width="70%">トランシーバーモードでの会話中のaid</TD>
+    </TR>
+    <TR>
+      <TD><B><I>aidBitmap</I></B></TD>
+      <TD>トランシーバー、カンファレンスに参加しているクライアントのaidビットマップ</TD>
+    </TR>
+    <TR>
+      <TD><B><I>state</I></B></TD>
+      <TD>このセッションの現在の状態</TD>
+    </TR>
+    <TR>
+      <TD><B><I>userData</I></B></TD>
+      <TD>ユーザーのコンテキスト保存用</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>
+SSP のセッションを保存する構造体です。<br>
+セッションは１つの会話に対して１つ必要です。このため、電話モード、およびトランシーバーモードのように、常に一人だけが会話をする場合は１つ必要、カンファレンスモードのように複数人が同時に会話をする場合は会話のセッションだけ必要（最大参加人数 - 1のセッションが必要）となります。なお、電話モード時において、割り込み要求などに対応する場合は、割り込み処理のためにセッションが必要なため、２つ以上のセッションが必要になります。
+</P>
+
+<P><code><a href="VCT_Init.html">VCT_Init</a></code>関数で、あらかじめ必要となるセッションを用意しておく必要があります。
+
+<h2>参照</h2>
+<P><CODE>
+<A href="VCT_Init.html">VCT_Init</A>, <A href="VCT_CreateSession.html">VCT_CreateSession</A>
+</CODE></P>
+<H2>履歴</H2>
+<P>2006/01/25 初版</P>
+</body>
+</html>

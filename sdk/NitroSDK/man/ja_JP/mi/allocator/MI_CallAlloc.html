@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_CallAlloc</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_CallAlloc</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  void* MI_CallAlloc(<a href="MIAllocator.html">MIAllocator</a> *allocator, u32 length, u32 alignment);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>allocator</strong></em></td>
+      <td style="width:87%">アクセスする<a href="MIAllocator.html">MIAllocator</a>構造体へのポインタ<br />
+      <a href="MI_InitAllocator.html">MI_InitAllocator</a>関数で初期化されている必要があります。</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>length</strong></em></td>
+      <td style="width:87%">確保すべきメモリサイズ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>alignment</strong></em></td>
+      <td style="width:87%">メモリアドレスに要求される境界整合</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>返り値</h2>
+<p>成功すれば実際に確保されたメモリ、失敗すればNULL。</p>
+
+<h2>説明</h2>
+<p><a href="MIAllocator.html">MIAllocator</a>構造体を使用してアロケータからメモリを確保します。<br />
+内部では、単に<a href="MI_InitAllocator.html">MI_InitAllocator</a>関数で指定されたメモリ確保用コールバック関数を呼び出します。<br />
+詳細は<a href="MIAllocator.html">MIAllocator</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MIAllocator.html">MIAllocator</a>
+<a href="MIAllocatorAllocFunction.html">MIAllocatorAllocFunction</a>
+<a href="MIAllocatorFreeFunction.html">MIAllocatorFreeFunction</a>
+<br />
+<a href="MI_InitAllocator.html">MI_InitAllocator</a>
+<a href="MI_CallFree.html">MI_CallFree</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/06/12 初版<br />
+</p>
+</body>
+</html>

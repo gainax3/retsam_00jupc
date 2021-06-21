@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<base target="main" />
+<title>概要一覧</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>ワイヤレスファイルシステムライブラリ(WFS) 概要</h1>
+
+<h2>はじめに</h2>
+<p>
+WFSライブラリは、DSダウンロードプレイなどで起動したROMを持たないプログラムが
+ワイヤレスなどを経由して外部のROMイメージを参照するための機能を提供します。
+また、ROMイメージ自体をネットワーク越しの仮想的なドライブとして
+FSライブラリのファイルシステムに容易にマウントするための機能も用意しています。
+</p>
+<p>
+WFSのシステムはROMイメージを供給する1個のサーバ側プログラムと
+それを要求する複数のクライアント側プログラムとで構成され、
+WMライブラリのMP通信で1個のポートを使用して相互にコミュニケーションします。
+ただしWFSライブラリ自身が直接WMライブラリの関数を呼び出すことはなく、
+通信に必要な処理は全てフック関数として提供されています。
+そのため、アプリケーションは特定のワイヤレス制御フレームワークに依存せずこれを導入することができます。
+</p>
+<p>
+WFSライブラリは、従来 $NitroSDK/build/demos/wireless_shared/wfs
+以下に収録されていたサンプルコードのプロトコル部分のみをライブラリ化したものです。
+</p>
+<div style="text-align:center">
+<img src="overview/image_WFS.gif" alt="WFSライブラリのレイヤ" />
+</div>
+
+<h3>処理の流れ</h3>
+<p>
+WFSライブラリのおおよその処理の流れは以下のとおりです。
+</p>
+
+<ol>
+
+<li>コンテキストの初期化
+<p>
+まず、WFSライブラリのためのコンテキスト構造体を用意して初期化します。<br />
+サーバとなる親機では<a href="server/WFS_InitServer.html">WFS_InitServer</a>関数を呼び出したのち
+<a href="server/WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>関数または<a href="server/WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a>関数でROMイメージを登録します。<br />
+クライアントとなる子機側では単に<a href="client/WFS_InitClient.html">WFS_InitClient</a>関数を呼び出します。<br />
+どちらも、ワイヤレス通信を開始する前にこの初期化処理を行っておく必要があります。
+</p>
+
+</li>
+<li>ワイヤレス通信の確立
+<p>
+初期化を終えてから、アプリケーションでワイヤレス通信を開始してMP通信可能な状態へ遷移します。<br />
+子機は、親機と接続して自身のAIDが決定した時点で<a href="client/WFS_StartClient.html">WFS_StartClient</a>関数を呼び出す必要があります。
+</p>
+</li>
+
+<li>MP通信のフック開始
+<p>
+アプリケーションがMP通信可能になったら、WFSライブラリのために任意のポートを1個使用してMP連続通信を実行します。
+具体的には、親子ともMP通信に関する各々のタイミングで以下のフック関数を呼び出します。
+</p>
+<table>
+<tr><td>タイミング</td><td>親機</td><td>子機</td></tr>
+<tr><td>相手の新規接続を検知</td>
+ <td><a href="server/WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a>関数を呼び出す。</td>
+ <td><a href="client/WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a>関数を呼び出す。</td></tr>
+<tr><td>相手の切断を検知</td>
+ <td><a href="server/WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a>関数を呼び出す。</td>
+ <td><a href="client/WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a>関数を呼び出す。</td></tr>
+<tr><td>自身からのMPパケット送信が可能</td>
+ <td><a href="server/WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a>関数を呼び出して得られたパケットデータを<a href="../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>関数で送信。</td>
+ <td><a href="client/WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a>関数を呼び出して得られたパケットデータを<a href="../wm/wm/WM_SetMPDataToPort.html">WM_SetMPDataToPort</a>関数で送信。</td></tr>
+<tr><td>相手からのMPパケット受信</td>
+ <td>受信したパケットデータを指定して<a href="server/WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a>関数を呼び出す。</td>
+ <td>受信したパケットデータを指定して<a href="client/WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a>関数を呼び出す。</td></tr>
+</table>
+</li>
+
+<li>イベント通知の発生
+<p>
+上記フック関数を繰り返し呼び出して通信を継続するうち、アプリケーションへ各種イベントが通知されます。
+基本的には親機での通知は子機へROMイメージデータを供給するために発生し、
+子機での通知は必要なデータが準備されたことを知らせるために発生します。<br />
+イベント種別の詳細は<a href="WFSEventType.html">WFSEventType</a>をご参照ください。
+</p>
+</li>
+
+<li>ROMイメージの読み込み
+<p>
+子機は、<a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数を使用して
+親機から任意のROMイメージを読み込むことが出来ます。<br />
+これは転送速度の違いを除けばおおよそ<a href="../card/rom/CARD_ReadRom.html">CARD_ReadRom</a>関数と同等の機能であり、
+後述するファイルシステムのマウント処理はこの機能を応用して実現されます。
+(ファイルシステムが不要であれば、単にこの関数だけを直接使用してもかまいません)
+</p>
+</li>
+
+<li>ファイルシステムのマウント
+<p>
+子機が<a href="client/WFS_GetTableFormat.html">WFS_GetTableFormat</a>関数で参照できる情報には
+FSライブラリのファイルシステムへアーカイブをマウントするために必要な情報がすべて含まれています。
+このデータと<a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数の呼び出しを組み合わせて
+アーカイブプロシージャを記述すれば、通常のROMアプリケーションと同じようにFSライブラリ関数を使用してファイルアクセスを実行することができます。<br />
+WFSライブラリではこのようなWFSアーカイブの単純な実装のひとつを<a href="client/WFS_ReplaceRomArchive.html">WFS_ReplaceRomArchive</a>関数として提供していますので、
+ファイルアクセス機能を簡単に利用したい場合は通常これを呼び出すだけでよいでしょう。
+</p>
+</li>
+
+<li>コンテキストの解放
+<p>
+MP通信が終了したら、親子ともWFSライブラリのコンテキスト構造体を解放して終了処理を行う必要があります。<br />
+親機は、全ての子機が切断してMP通信親機を終了した段階で<a href="server/WFS_EndServer.html">WFS_EndServer</a>関数を呼び出します。これにより、WFSライブラリ内部で自動的に生成されたスレッドは終了し、コンテキスト構造体と各種のメモリはユーザアプリケーションのもとへ解放されます。<br />
+子機は、親機から切断した段階で<a href="client/WFS_EndClient.html">WFS_EndClient</a>関数を呼び出します。これにより、マウントされていたアーカイブは処理を終了して無効となります。<font color="red">子機から親機へのファイルアクセス中にMP通信が終了した場合は<a href="client/WFS_EndClient.html">WFS_EndClient</a>関数を呼び出さない限り完了通知されずに処理がブロッキングしたままになりますので、この点に注意が必要です。</font>
+</p>
+</li>
+
+</ol>
+
+<p>
+以上のおおまかな処理の流れを下図にまとめます。
+</p>
+
+
+<table style="border-style:none;border-collapse:collapse;">
+<tr style="background-color:white;">
+<td colspan="2" style="border-style:none dotted dotted none;background-color:white;text-align:center;width:50%">サーバ(親機)</td>
+<td colspan="2" style="border-style:none none dotted dotted;background-color:white;text-align:center;width:50%">クライアント(子機)</td>
+</tr>
+
+
+<tr>
+<td colspan="2" style="border-style:none dotted none none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(WFSの初期化)<br />
+<a href="server/WFS_InitServer.html">WFS_InitServer</a><br />
+<a href="server/WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>または<a href="server/WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a><br />
+<br />
+(親機ワイヤレス通信の開始)<br />
+.<br />
+.<br />
+.<br />
+(親機ワイヤレス通信の確立)<br />
+</p>
+</td>
+<td colspan="2" style="border-style:none none none dotted;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(WFSの初期化)<br />
+<a href="client/WFS_InitClient.html">WFS_InitClient</a><br />
+<br />
+(子機ワイヤレス通信の開始)<br />
+.<br />
+.<br />
+.<br />
+(子機ワイヤレス通信の確立)<br />
+<a href="client/WFS_StartClient.html">WFS_StartClient</a><br />
+</p>
+</td>
+</tr>
+
+
+<tr>
+<td colspan="4" style="border-style:none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(MP通信フック関数の呼び出し開始)<br />
+<a href="server/WFS_CallServerConnectHook.html">WFS_CallServerConnectHook</a>---<a href="client/WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a><br />
+<a href="server/WFS_CallServerDisconnectHook.html">WFS_CallServerDisconnectHook</a>---<a href="client/WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a><br />
+<a href="server/WFS_CallServerPacketSendHook.html">WFS_CallServerPacketSendHook</a>---<a href="client/WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a><br />
+<a href="server/WFS_CallServerPacketRecvHook.html">WFS_CallServerPacketRecvHook</a>---<a href="client/WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a><br />
+※双方とも、上記フック関数呼び出しを適宜繰り返す
+</p>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" style="border-style:none dotted none none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(リクエスト待ちうけ開始)<br />
+</p>
+</td>
+<td colspan="2" style="border-style:none none none dotted;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+<a href="WFSEventType.html">WFS_EVENT_CLIENT_READY</a>イベント通知<br />
+</p>
+</td>
+</tr>
+
+<tr>
+<td colspan="1" style="border-style:none dotted none none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(<a href="server/WFS_ExecuteRomServerThread.html">WFS_ExecuteRomServerThread</a>関数を使用した場合は内部スレッドが自動的に応答)<br />
+</td>
+
+<td style="border-style:none dotted none none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+(<a href="server/WFS_RegisterServerTable.html">WFS_RegisterServerTable</a>関数を使用した場合)
+</p>
+<p style="text-align:right">
+<a href="WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUESTイベント通知</a>---<br />
+<a href="WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUESTイベント通知</a>---<br />
+<a href="WFSEventType.html">WFS_EVENT_SERVER_SEGMENT_REQUESTイベント通知</a>---<br />
+<br />
+</p>
+</td>
+
+<td colspan="1" style="border-style:none none none dotted;color:gray;background-color:white;vertical-align:top;width:25%">
+<p style="text-align:center">
+(アプリケーションが直接制御する場合)<br />
+</p>
+<p style="text-align:left">
+---<a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a><br />
+(データ転送実行中)<br />
+<br />
+<br />
+<br />
+---<a href="WFSRequestClientReadDoneCallback.html">完了コールバック</a><br />
+</p>
+</td>
+<td colspan="1" style="border-style:none none none dotted;color:gray;background-color:white;vertical-align:top;width:25%">
+<p style="text-align:center">
+(用意されているアーカイブを利用する場合)<br />
+<a href="client/WFS_ReplaceRomArchive.html">WFS_ReplaceRomArchive</a><br />
+</p>
+<p style="text-align:left">
+<a href="../fs/file/FS_OpenFile.html">FS_OpenFile</a>(file, "rom:/abc.data");<br />
+<a href="../fs/file/FS_ReadFile.html">FS_ReadFile</a>(file, buffer, length);<br />
+</p>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" style="border-style:none dotted none none;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+<br />
+(親機ワイヤレス通信の終了)<br />
+<a href="server/WFS_EndServer.html">WFS_EndServer</a><br />
+</p>
+</td>
+<td colspan="2" style="border-style:none none none dotted;color:gray;background-color:white;vertical-align:top;">
+<p style="text-align:center">
+<br />
+(子機ワイヤレス通信の終了)<br />
+<a href="client/WFS_EndClient.html">WFS_EndClient</a><br />
+</p>
+</td>
+</tr>
+
+</table>
+
+<h2>履歴</h2>
+<p>
+2007/09/27 終了処理に関する子機側の注意事項を追記<br />
+2007/06/14 WFS_ExecuteRomServerThread関数追加にともない詳細追記<br />
+2007/06/11 関数追加にともない詳細追記<br />
+2007/06/06 初版<br />
+</p>
+
+<table border="0" style="border-width:0px;height:100%;"><tr><td style="background-color:white;"></td></tr></table>
+
+</body>
+</html>

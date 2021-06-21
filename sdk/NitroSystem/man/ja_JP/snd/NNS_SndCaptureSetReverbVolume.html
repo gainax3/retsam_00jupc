@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndCaptureSetReverbVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndCaptureSetReverbVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndCaptureSetReverbVolume( int <var>volume</var>, int <var>frames</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>リバーブ成分の目標ボリュームです。値の範囲は、0～63です。</td>
+</tr>
+<tr>
+<td><em><strong><code>frames</code></strong></em></td>
+<td>ボリューム変化のフレーム数です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+リバーブ成分のボリュームを変更します。リバーブが動作していない場合は、何もしません。 
+</p>
+      <p>
+<em><strong><code>frames</code></strong></em>で指定したフレーム数で、徐々に現在のボリューム値から、
+<em><strong><code>volume</code></strong></em>で指定したボリューム値へ変化します。
+<em><strong><code>volume</code></strong></em>が最大の63の時、ミキサー出力の約半分の音量がフィードバックされます。 
+</p>
+      <p>
+<em><strong><code>frames</code></strong></em>が0の時、即座に現在のボリューム値が更新されます。
+たとえば、現在のボリューム値とは無関係に、ボリュームをある値から、別の値に時間変化させたい場合は、
+まず<em><strong><code>frames</code></strong></em>を0としてこの関数を呼びだして、
+現在のボリューム値を更新した後、再び同じ関数で、目標とするボリューム値を指定します。 
+</p>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/04/01 初版<br></p>
+</div>
+</body>
+</html>

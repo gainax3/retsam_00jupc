@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_AssignWaveArc</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_AssignWaveArc</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_AssignWaveArc(
+        SNDBankData* <var>bank</var>,
+        int <var>index</var>,
+        SNDWaveArc* <var>waveArc</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA4LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><font face="Courier New">bank</font></strong></em></td>
+<td>バンクデータのポインタです。32バイトアライメントされている必要があります。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">index</font></strong></em></td>
+<td>何番の波形アーカイブとして登録するかを示したインデックス番号です。値の範囲は0～3です。</td>
+</tr>
+<tr>
+<td><em><strong><font face="Courier New">waveArc</font></strong></em></td>
+<td>波形アーカイブのポインタです。32バイトアライメントされている必要があります。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA1MWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>説明</h2>
+      <p>
+バンク<em><strong><font face="Courier New">bank</font></strong></em>に、<em><strong><font face="Courier New">index</font></strong></em>番の波形アーカイブとして、
+<em><strong><font face="Courier New">waveArc</font></strong></em>を割り付けます。
+</p>
+      <p>
+バンク<em><strong><font face="Courier New">bank</font></strong></em>の<em><strong><font face="Courier New">index</font></strong></em>番に、
+別の波形アーカイブがすでに割り付けられていた場合、
+一旦その割付を解除した後、指定した波形アーカイブ<em><strong><font face="Courier New">waveArc</font></strong></em>を割り付けます。
+</p>
+      <p>
+<em><strong><font face="Courier New">bank</font></strong></em>、<em><strong><font face="Courier New">waveArc</font></strong></em>共に、
+32バイトアライメントされている必要があります。
+</p>
+    </div>
+<h2>参照</h2>
+<p>なし。</p>
+<h2>履歴</h2>
+<p>2004/07/20初版<br></p>
+</div>
+</body>
+</html>

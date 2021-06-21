@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CP_GetSqrtResult</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CP_GetSqrtResult*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/cp.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+  u32 CP_GetSqrtResult32( void )<br>
+  u16 CP_GetSqrtResult16( void )<br>
+  u8  CP_GetSqrtResult8( void ) <br>
+  u32 CP_GetSqrtResultImm32( void )<br>
+  u16 CP_GetSqrtResultImm16( void )<br>
+  u8  CP_GetSqrtResultImm8( void )
+</CODE>
+</dl>
+
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>平方根演算で得られた結果です。</p>
+
+<H2>説明</H2>
+<P>平方根演算の結果を返します。<BR>
+結果は8ビット、16ビット、32ビットの何れかで取得できます。<BR>
+出ている結果以下のビット数で取得することも出来ますが、正確な値にはならないかもしれません。<BR>
+(例えば、結果が0x100 になっているときに、u8 の値で取得すると 0x0 となる)<BR>
+<BR>
+ビジー状態からレディ状態になるのを待つ関数と、レディ状態になっているものとして待たない関数がそれぞれ用意されています。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH>関数</TH>
+      <TH>返り値の型</TH>
+      <TH>レディ状態になるのを待つかどうか</TH>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResult32</CODE></TD>
+      <TD>u32</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResult16</CODE></TD>
+      <TD>u16</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResult8</CODE></TD>
+      <TD>u8</TD>
+      <TD>待つ</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResultImm32</CODE></TD>
+      <TD>u32</TD>
+      <TD>待たない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResultImm16</CODE></TD>
+      <TD>u16</TD>
+      <TD>待たない</TD>
+    </TR>
+    <TR>
+      <TD><CODE>CP_GetSqrtResultImm8</CODE></TD>
+      <TD>u8</TD>
+      <TD>待たない</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>内部動作</h2>
+<p><CODE>IOレジスタの、SQRT_RESULT(0x40002B4) の値を参照します。<BR>
+また、レディ状態のチェックにはSQRTCNT(0x40002B0)を参照します。<br>
+</CODE></p>
+
+<h2>参照</h2>
+<p><CODE><A href="CP_SetSqrtImm.html">CP_SetSqrtImm*</A>, <A href="CP_SetSqrt.html">CP_SetSqrt*</A>, <A href="CP_IsSqrtBusy.html">CP_IsSqrtBusy</A>, <A href="CP_WaitSqrt.html">CP_WaitSqrt</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/11/02 64ビット値の結果を取得出来るという記述を削除<BR>
+2004 01/09 内容を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

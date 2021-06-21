@@ -1,0 +1,96 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_ConnectToGameServerAsync</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_ConnectToGameServerAsync</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_ConnectToGameServerAsync(
+             int serverIndex,
+             <A href="DWCMatchedSCCallback.html">DWCMatchedSCCallback</A> matchedCallback,
+             void* matchedParam,
+             <A href="DWCNewClientCallback.html">DWCNewClientCallback</A> newClientCallback,
+             void* newClientParam );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  友達リストのインデックスで接続するサーバDSを指定し、そこへ接続します。
+		  サーバDSとは、このサーバクライアントマッチメイクにおける<A href="DWC_SetupGameServer.html">DWC_SetupGameServer</A>関数を呼び出し、クライアントDSの接続を待っているDSのことを指します。
+		  本関数呼出し後、<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>関数を呼び続ければマッチメイク処理が進行し、マッチメイクが成功、エラー、キャンセルのいずれかの状態で完了すれば、マッチメイク完了コールバックが呼び出されます。
+		</P>
+		<P>
+		  サーバDSへの接続後は、サーバDSへ新たに接続に来たクライアントDSがあれば、新規接続クライアント通知コールバックが呼び出されます。
+		  また、その新規接続クライアントの接続処理が完了すれば、再びマッチメイク完了コールバックが呼び出されます。<BR>
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>serverIndex</CODE></STRONG></EM></TD>
+					<TD width="75%">接続先サーバDSの友達リストインデックス</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedCallback</CODE></STRONG></EM></TD>
+					<TD>接続完了コールバック関数へのポインタ。１人接続するごとに呼ばれる。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>matchedParam</CODE></STRONG></EM></TD>
+					<TD>接続完了コールバック用パラメータ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>newClientCallback</CODE></STRONG></EM></TD>
+					<TD>新規接続クライアント通知コールバック関数へのポインタ</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>newClientParam</CODE></STRONG></EM></TD>
+					<TD>新規接続クライアント通知コールバック用パラメータ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+					<TD width="75%">処理開始。コールバック関数で結果が通知される。</TD>
+				</TR>
+				<TR>
+					<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+					<TD>本関数を呼んで良い状態ではない</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+			<CODE>
+				<A href="DWC_SetupGameServer.html">DWC_SetupGameServer</A>,
+				<A href="DWC_SetupGameServerAsync.html">DWC_SetupGameServerAsync</A>,
+				<A href="DWCMatchedSCCallback.html">DWCMatchedSCCallback</A>,
+				<A href="DWCNewClientCallback.html">DWCNewClientCallback</A>,
+				<a href="DWC_ProcessFriendsMatch.html">DWC_ProcessFriendsMatch</a>
+			</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		  2005/12/16 詳細な関数説明を追加。返り値の表記間違いを修正。<BR>
+          2005/11/07 改訂<br>
+          2005/07/22 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

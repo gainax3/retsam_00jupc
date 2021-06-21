@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>CARD_ROM_PAGE_SIZE</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CARD_ROM_PAGE_SIZE</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/card.h&gt;</CODE><BR>
+  <BR>
+  <CODE>#define CARD_ROM_PAGE_SIZE	512;</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>CARD ROM デバイスへアクセス可能なページ単位バイト数を示します。<BR>
+アクセス関数は内部でこのサイズ制限を考慮して動作しますが、<BR>
+制限を外れる際に転送効率は低下します。<BR>
+詳細はCARD_ReadRomAsync関数の説明を参照ください。<BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="rom/CARD_ReadRomAsync.html">CARD_ReadRomAsync</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/07/09 CARD_ReadRomAsync関数形式の変更による記述の修正<BR>
+2004/07/05 初版<BR>
+</P>
+</body>
+</html>

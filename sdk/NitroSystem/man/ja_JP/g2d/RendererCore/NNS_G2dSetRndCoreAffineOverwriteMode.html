@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dSetRndCoreAffineOverwriteMode</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dSetRndCoreAffineOverwriteMode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_RendererCore.h&gt;</CODE></pre>
+<pre><CODE>
+    
+    void NNS_G2dSetRndCoreAffineOverwriteMode
+    ( 
+        NNSG2dRndCoreInstance*                  pRnd, 
+        NNSG2dRendererAffineTypeOverwiteMode    mode 
+    );
+
+
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pRnd</font></strong></em></td>
+    <td width="87%">[OUT] レンダラコア</td>    
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
+    <td width="87%">[IN] アフィン変換モードの上書き動作をあらわす列挙子<BR>
+                   （NNSG2dRendererAffineTypeOverwiteMode）</td>    
+  </tr>
+  
+  </table>
+<h2>返り値</h2>
+<p>なし。<BR>
+</p>
+<H2>説明</H2>
+<p>
+アフィン変換モードの上書き動作を設定します。<BR>
+<BR>
+上書き動作の種類を表す列挙子の定義は以下のとおりです。<BR>
+<CODE>
+<pre>
+typedef enum NNSG2dRendererAffineTypeOverwiteMode
+{
+    NNS_G2D_RND_AFFINE_OVERWRITE_NONE,  // 上書きしない
+    NNS_G2D_RND_AFFINE_OVERWRITE_NORMAL,// 通常のアフィン変換方式に設定
+    NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLE // 倍角アフィン変換方式に設定
+  
+}NNSG2dRendererAffineTypeOverwiteMode;
+</pre>
+</CODE>
+本関数は、Begin-EndRenderingブロックの内外で呼び出しが可能です。<BR>
+<BR>    
+NNS_G2D_RND_AFFINE_OVERWRITE_DOUBLEが指定された場合、レンダラは内部でOBJの位置補正を行います。<BR>
+05/06/06版から、位置補正処理は、実際にOBJのアフィン変換モードが変更された場合にだけ行われるように変更されました。<BR>
+(つまり、もともと倍角アフィンOBJとして作成されたデータには補正処理を行わいません。)<BR>        
+</P>
+<h2>参照</h2>
+<p>
+なし。
+</p>
+
+<H2>履歴</H2>
+<P>2005/06/06 位置補正処理に関する注意書きを追加</P>
+<P>2004/11/10 初版</P>
+</body>
+</html>

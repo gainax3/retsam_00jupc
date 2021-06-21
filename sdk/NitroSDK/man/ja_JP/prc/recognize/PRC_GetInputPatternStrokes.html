@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PRC_GetInputPatternStrokes</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PRC_GetInputPatternStrokes</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/prc.h&gt;
+
+void* PRC_GetInputPatternStrokes(
+    <A href="../stroke/PRCStrokes.html">PRCStrokes</A>* strokes,
+    const <A href="PRCInputPattern.html">PRCInputPattern</A>* input );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">strokes</font></strong></em></td>
+      <td width="87%">点列を保存する <A href="../stroke/PRCStrokes.html">PRCStrokes</A> 構造体へのポインタ</td>
+    </tr>
+    <tr>
+      <td width="13%"><em><strong><font face="Courier New">input</font></strong></em></td>
+      <td width="87%">入力パターンへのポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A></CODE> で整形された入力パターンから整形後の点列データを取り出します。結果の <CODE>strokes</CODE> 内では入力パターン構造体を構成する点列情報へのポインタが張られますので、<CODE>strokes</CODE> の点列データを書き換えてはいけません。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="PRC_InitInputPattern.html">PRC_InitInputPattern*</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2004/06/23 初版</P>
+</body>
+</html>

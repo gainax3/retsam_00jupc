@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MICCallback</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MICCallback</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef void ( *MICCallback )( 
+            <A href="MICResult.html">MICResult</A>	result, 
+            void*	arg );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">result</font></strong></em></TD>
+      <TD width="700">非同期処理の結果を示す<A href="MICResult.html">MICResult列挙型</A>の値</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">arg</font></strong></em></TD>
+      <TD>非同期関数を呼び出す際に指定された引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>マイクを非同期的に操作する関数によって起動された非同期処理が完了した際に呼び出されるユーザコールバック関数の形式です。<BR>
+<B><I><FONT face="Courier New">result</FONT></I></B>引数には<A href="MICResult.html">MICResult列挙型</A>の処理結果が、<B><I><FONT face="Courier New">arg</FONT></I></B>引数には非同期関数を呼び出す際に指定した引数が、それぞれ渡されます。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="MICResult.html">MICResult</A></CODE></P>
+
+<H2>履歴</H2>
+<P>Ver. 2004/06/01 初版</P>
+</body>
+</html>

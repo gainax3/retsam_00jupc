@@ -1,0 +1,76 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_SetFriendStatusCallback</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_SetFriendStatusCallback</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_SetFriendStatusCallback( <A href="DWCFriendStatusCallback.html">DWCFriendStatusCallback</A> callback, void* param );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+	<P>
+	  友達の通信状態が変化した時に呼び出されるコールバック関数を設定します。
+	  通信状態については<A href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</A>関数の説明を参照してください。
+	</P>
+	<P>
+	  このコールバック関数は、通常は友達リスト同期処理の<A href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</A>関数の引数としてセットしますが、友達リスト同期処理が必要ない場合でも友達の通信状態をリアルタイムで把握したい場合に、本関数を用いてコールバック関数を設定してください。
+	</P>
+	<P>
+	  ここでセットしたコールバック関数は、友達の通信状態が変化する度に呼び出されます。
+	</P>
+
+    <H2>引数</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>callback</CODE></STRONG></EM></TD>
+          <TD>友達状態変化通知コールバック関数へのポインタ</TD>
+        </TR>
+        <TR>
+          <TD><EM><STRONG><CODE>param</CODE></STRONG></EM></TD>
+          <TD>コールバック用パラメータ</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+
+    <H2>返り値</H2>
+	<TABLE border="1">
+		<TBODY>
+			<TR>
+				<TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+				<TD width="75%">コールバック関数設定成功</TD>
+			</TR>
+			<TR>
+				<TD><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+				<TD><A href="FriendsMatch.html">FriendsMatchライブラリ</A>非動作中で設定失敗</TD>
+			</TR>
+		</TBODY>
+	</TABLE>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+		<A href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</A>,
+        <a href="DWCFriendStatusCallback.html">DWCFriendStatusCallback</a>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+      2006/01/18 初版
+    </P>
+
+  </BODY>
+</HTML>

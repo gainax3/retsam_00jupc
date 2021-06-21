@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FS_GetAttachedArchive</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FS_GetAttachedArchive</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE>static inline FSArchive*	FS_GetAttachedArchive(const FSFile *p_file);</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>p_file</STRONG></EM></TD>
+      <TD width="87%">FSFile構造体のアドレス<BR>
+	  これはファイル情報またはディレクトリ位置を保持している必要があります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>指定のファイルに関連付けられたアーカイブへのポインタを返します。</p>
+
+<H2>説明</H2>
+<P>指定されたファイルに関連付けられたアーカイブへのポインタを返します。<BR>
+もし存在すれば、そのアーカイブのポインタを返します。<BR>
+ファイル情報またはディレクトリ位置のいずれも保持していないFSFile構造体に対して<BR>
+この関数を呼び出したときに返される値は未定義です。<BR>
+<BR></p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../fs_file_type.html">FSFile</A>
+<A href="../fs_archive_type.html">FSArchive</A>
+<BR></code></p>
+<H2>履歴</H2>
+<p>
+2004/07/13 初版<BR>
+</p>
+</body>
+</html>

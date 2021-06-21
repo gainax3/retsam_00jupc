@@ -1,0 +1,216 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+<head>
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=Shift_JIS" />
+<meta http-equiv="Content-style-type" content="css/text; charset=Shift_JIS" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<title>無線通信時間計算シート</title>
+
+</head>
+<body>
+<!-- 内容 ここから -->
+<script language="JavaScript">
+<!--
+function calcMPTime()
+{
+  var seed     = document.seed ;
+  var cond     = document.MP ;
+
+  var preamble   = parseInt( seed.Preamble.value ) ; // C21
+  var header     = parseInt( seed.Header.value ) ;   // C22
+  var fcs        = parseInt( seed.FCS.value ) ;      // C23
+  var txop       = parseInt( seed.TXOP.value ) ;     // C24
+  var sifs       = parseInt( seed.SIFS.value ) ;     // C25
+
+  var wmHeader   = parseInt( seed.wmHeader.value ) ;       // C27
+  var wmFooterP  = parseInt( seed.wmFooterParent.value ) ; // C28
+  var wmFooterC  = parseInt( seed.wmFooterChild.value ) ;  // C29
+
+  var parent     = parseInt( cond.parent.value ) ;  // B3
+  var child      = parseInt( cond.child.value ) ;   // C3
+  var num        = parseInt( cond.num.value ) ;     // D3
+
+  // (C21 + (C22+C23+C24+B3+C27+C28) * 4 )
+  //  + (C25 + C21 + (C22+C23+C3+C27+C29) * 4 + 6 ) * D3
+  //  + C25 + C21 + (C22+C23+C24) * 4
+  cond.result.value = 
+     (preamble + ( header + fcs + txop + parent + wmHeader + wmFooterP ) * 4 )
+      + (sifs + preamble + ( header + fcs + child + wmHeader + wmFooterC ) * 4 + 6 ) * num
+      + sifs + preamble + ( header + fcs + txop ) * 4 ;
+}
+
+function calcMPKeyTime()
+{
+  var seed     = document.seed ;
+  var cond     = document.MPKey ;
+
+  var preamble   = parseInt( seed.Preamble.value ) ; // C21
+  var header     = parseInt( seed.Header.value ) ;   // C22
+  var fcs        = parseInt( seed.FCS.value ) ;      // C23
+  var txop       = parseInt( seed.TXOP.value ) ;     // C24
+  var sifs       = parseInt( seed.SIFS.value ) ;     // C25
+
+  var wmHeader   = parseInt( seed.wmHeader.value ) ;       // C27
+  var wmFooterP  = parseInt( seed.wmFooterParent.value ) ; // C28
+  var wmFooterC  = parseInt( seed.wmFooterChild.value ) ;  // C29
+
+  var wmKeySP    = parseInt( seed.KeySharingParent.value ) ; // C31
+  var wmKeySC    = parseInt( seed.KeySharingChild.value ) ;  // C32
+
+  var addHeader  = parseInt( seed.additionalHeader.value ) ;       // C34
+  var addFooterP = parseInt( seed.additionalFooterParent.value ) ; // C35
+  var addFooterC = parseInt( seed.additionalFooterChild.value ) ;  // C36
+
+  var parent     = parseInt( cond.parent.value ) ;  // B9
+  var child      = parseInt( cond.child.value ) ;   // C9
+  var num        = parseInt( cond.num.value ) ;     // D9
+
+  // (C21 + (C22+C23+C24+B9+C27+C28+C31+C34+C35) * 4)
+  //  + (C25 + C21 + (C22+C23+C9+C27+C29+C32+C34+C36) * 4 + 6 ) * D9
+  //  + C25 + C21 + (C22+C23+C24) * 4
+  cond.result.value = 
+     (preamble + ( header + fcs + txop + parent + wmHeader + wmFooterP + wmKeySP + addHeader + addFooterP ) * 4 )
+      + (sifs + preamble + ( header + fcs + child + wmHeader + wmFooterC + wmKeySC + addHeader + addFooterC ) * 4 + 6 ) * num
+      + sifs + preamble + ( header + fcs + txop ) * 4 ;
+}
+
+function calcMPDataTime()
+{
+  var seed     = document.seed ;
+  var cond     = document.MPData ;
+
+  var preamble   = parseInt( seed.Preamble.value ) ; // C21
+  var header     = parseInt( seed.Header.value ) ;   // C22
+  var fcs        = parseInt( seed.FCS.value ) ;      // C23
+  var txop       = parseInt( seed.TXOP.value ) ;     // C24
+  var sifs       = parseInt( seed.SIFS.value ) ;     // C25
+
+  var wmHeader   = parseInt( seed.wmHeader.value ) ;       // C27
+  var wmFooterP  = parseInt( seed.wmFooterParent.value ) ; // C28
+  var wmFooterC  = parseInt( seed.wmFooterChild.value ) ;  // C29
+
+  var addHeader  = parseInt( seed.additionalHeader.value ) ;       // C34
+  var addFooterP = parseInt( seed.additionalFooterParent.value ) ; // C35
+  var addFooterC = parseInt( seed.additionalFooterChild.value ) ;  // C36
+
+  var parent     = parseInt( cond.parent.value ) ;  // B15
+  var child      = parseInt( cond.child.value ) ;   // C15
+  var num        = parseInt( cond.num.value ) ;     // D15
+  var share      = parseInt( cond.share.value ) ;   // B17
+
+  // (C21 + (C22+C23+C24+B15+C27+C28+( B17 * ( D15 + 1 ) + 4 )+C34+C35) * 4)
+  // + (C25 + C21 + (C22+C23+C15+C27+C29+B17+C34+C36) * 4 + 6) * D15
+  // + C25 + C21 + (C22+C23+C24) * 4
+  cond.result.value = 
+     (preamble + ( header + fcs + txop + parent + wmHeader + wmFooterP + ( share * ( num + 1 ) + 4 ) + addHeader + addFooterP ) * 4 )
+      + (sifs + preamble + ( header + fcs + child + wmHeader + wmFooterC + share + addHeader + addFooterC ) * 4 + 6 ) * num
+      + sifs + preamble + ( header + fcs + txop ) * 4 ;
+}
+//-->
+</script>
+<h2>無線通信時間計算シート</h2>
+<h3>MP通信</h3>
+<div>
+<form name="MP">
+<table>
+<tr>
+<th>親機送信容量
+<td><input size=6 style="text-align:right;" type=text name="parent" value=128 onChange="calcMPTime()">Byte
+<tr>
+<th>子機送信容量
+<td><input size=6 style="text-align:right;" type=text name="child" value=16 onChange="calcMPTime()">Byte
+<tr>
+<th>子機台数
+<td><input size=6 style="text-align:right;" type=text name="num" value=15 onChange="calcMPTime()">台
+<tr>
+<th>所要時間
+<td><input size=6 readonly style="text-align:right;" type=text name="result" value=5554>&micro;s
+</table>
+</form>
+</div>
+<!--
+<h3>MP通信(キーシェアリング使用時)</h3>
+<div>
+<form name="MPKey">
+<table>
+<tr>
+<th>親機サイズ
+<td><input size=6 style="text-align:right;" type=text name="parent" value=96 onChange="calcMPKeyTime()">Byte
+<tr>
+<th>子機サイズ
+<td><input size=6 style="text-align:right;" type=text name="child" value=10 onChange="calcMPKeyTime()">Byte
+<tr>
+<th>子機台数
+<td><input size=6 style="text-align:right;" type=text name="num" value=15 onChange="calcMPKeyTime()">台
+<tr>
+<th>所要時間
+<td><input size=6 readonly style="text-align:right;" type=text name="result" value=5594>&micro;s
+</table>
+</form>
+</div>
+-->
+<h3>MP通信(データシェアリング使用時)</h3>
+<div>
+<form name="MPData">
+<table>
+<tr>
+<th>データシェアリングの共有データサイズ
+<td><input size=6 style="text-align:right;" type=text name="share" value=4 onChange="calcMPDataTime()">Byte
+<tr>
+<th>上記を除いた親機送信データサイズ
+<td><input size=6 style="text-align:right;" type=text name="parent" value=64 onChange="calcMPDataTime()">Byte
+<tr>
+<th>上記を除いた子機送信データサイズ
+<td><input size=6 style="text-align:right;" type=text name="child" value=8 onChange="calcMPDataTime()">Byte
+<tr>
+<th>子機台数
+<td><input size=6 style="text-align:right;" type=text name="num" value=15 onChange="calcMPDataTime()">台
+<tr>
+<th>所要時間
+<td><input size=6 readonly style="text-align:right;" type=text name="result" value=5594>&micro;s
+</table>
+</form>
+</div>
+<h3>計算用データ</h3>
+<div>
+<form name="seed">
+<table>
+<tr>
+<th>Preamble<td><input size=6 style="text-align:right;" type=text name="Preamble" value=96 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">&micro;s
+<tr>
+<th>802.11Header<td><input size=6 style="text-align:right;" type=text name="Header" value=24 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>FCS<td><input size=6 style="text-align:right;" type=text name="FCS" value=4 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>TXOP+PollBitmap<td><input size=6 style="text-align:right;" type=text name="TXOP" value=4 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>SIFS<td><input size=6 style="text-align:right;" type=text name="SIFS" value=10 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">&micro;s
+
+<tr>
+<th>wmHeader<td><input size=6 style="text-align:right;" type=text name="wmHeader" value=2 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>wmFooterParent<td><input size=6 style="text-align:right;" type=text name="wmFooterParent" value=4 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>wmFooterChild<td><input size=6 style="text-align:right;" type=text name="wmFooterChild" value=2 onChange="calcMPTime();calcMPKeyTime();calcMPDataTime()">Byte
+
+<tr>
+<th>KeySharingParent<td><input size=6 style="text-align:right;" type=text name="KeySharingParent" value=36 onChange="calcMPKeyTime()">Byte
+<tr>
+<th>KeySharingChild<td><input size=6 style="text-align:right;" type=text name="KeySharingChild" value=2 onChange="calcMPKeyTime()">Byte
+
+<tr>
+<th>additionalHeader<td><input size=6 style="text-align:right;" type=text name="additionalHeader" value=2 onChange="calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>additionalFooterParent<td><input size=6 style="text-align:right;" type=text name="additionalFooterParent" value=4 onChange="calcMPKeyTime();calcMPDataTime()">Byte
+<tr>
+<th>additionalFooterChild<td><input size=6 style="text-align:right;" type=text name="additionalFooterChild" value=2 onChange="calcMPKeyTime();calcMPDataTime()">Byte
+</table>
+</form>
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>PAD_Read</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">PAD_Read</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/pad.h&gt;</CODE><BR>
+  <BR>
+  u16<CODE> PAD_Read( void );</CODE></dd>
+</dl>
+
+<h2>引数</h2>
+<P>なし。</P>
+
+<h2>返り値</h2>
+<p>現在のキー情報です。</p>
+
+<H2>説明</H2>
+<P>キーやボタンの押下情報を取得します。<BR>
+キーやボタンの情報は以下の値の論理和となります。<BR>
+
+</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_A</TD>
+      <TD bgcolor="#eeeeee">Aボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_B</TD>
+      <TD bgcolor="#eeeeee">Bボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_SELECT</TD>
+      <TD bgcolor="#eeeeee">SELECTボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_START</TD>
+      <TD bgcolor="#eeeeee">STARTボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_KEY_RIGHT</TD>
+      <TD bgcolor="#eeeeee">十字キー右を押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_KEY_LEFT</TD>
+      <TD bgcolor="#eeeeee">十字キー左を押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_KEY_UP</TD>
+      <TD bgcolor="#eeeeee">十字キー上を押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_KEY_DOWN</TD>
+      <TD bgcolor="#eeeeee">十字キー下を押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_R</TD>
+      <TD bgcolor="#eeeeee">Rボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">PAD_BUTTON_L</TD>
+      <TD bgcolor="#eeeeee">Lボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD>PAD_BUTTON_X</TD>
+      <TD>Xボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD>PAD_BUTTON_Y</TD>
+      <TD>Yボタンを押している</TD>
+    </TR>
+    <TR>
+      <TD>PAD_BUTTON_DEBUG</TD>
+      <TD>DEBUGボタンを押している</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+X,Yボタンは、ARM7が汎用ポートを調べそれを共有領域に書くことでARM9から読むことが出来ます。従って、ARM7の読み込みモジュールが動作していない場合はX,Yボタンは読み込めません。<BR>
+<BR>
+ボタン(PAD_BUTTON_～) のすべての和として、PAD_BUTTON_MASK が、キー(PAD_KEY_～)のすべての和として、PAD_PLUS_KEY_MASKが定義されています。さらにボタン、キーすべての和として、PAD_ALL_MASK
+が定義されています。<BR>
+<BR>
+ARM7が読み込むX,YボタンとDEBUGボタンの和はPAD_RCNTPORT_MASK として定義されています。それ以外のボタン・キーの和はPAD_KEYPORT_MASK
+として定義されています。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD></TD>
+      <TD>D<BR>
+      E<BR>
+      B<BR>
+      U<BR>
+      G</TD>
+      <TD>N<BR>
+      /<BR>
+      A<BR>
+      </TD>
+      <TD>Y<BR>
+      </TD>
+      <TD>X<BR>
+      </TD>
+      <TD>L<BR>
+      </TD>
+      <TD>R<BR>
+      </TD>
+      <TD>D<BR>
+      O<BR>
+      W<BR>
+      N<BR>
+      </TD>
+      <TD>U<BR>
+      P<BR>
+      </TD>
+      <TD>L<BR>
+      E<BR>
+      F<BR>
+      T</TD>
+      <TD>R<BR>
+      I<BR>
+      G<BR>
+      H<BR>
+      T</TD>
+      <TD>S<BR>
+      T<BR>
+      A<BR>
+      R<BR>
+      T</TD>
+      <TD>S<BR>
+      E<BR>
+      L<BR>
+      E<BR>
+      C<BR>
+      T</TD>
+      <TD>B<BR>
+      </TD>
+      <TD>A<BR>
+      </TD>
+      <TD>VALUE</TD>
+    </TR>
+    <TR>
+      <TD>PAD_BUTTON_MASK</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : silver;" align="center">0x2F0F</TD>
+    </TR>
+    <TR>
+      <TD>PAD_PLUS_KEY_MASK</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD style="background-color : silver;" align="center">0x00F0</TD>
+    </TR>
+    <TR>
+      <TD>PAD_ALL_MASK</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : silver;" align="center">0x2FFF</TD>
+    </TR>
+    <TR>
+      <TD>PAD_RCNPORT_MASK</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD style="background-color : silver;" align="center">0x2C00</TD>
+    </TR>
+    <TR>
+      <TD>PAD_KEYPORT_MASK</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD>0</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : #ffc0c0;">1</TD>
+      <TD style="background-color : silver;" align="center">0x03FF</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+<BLOCKQUOTE>(例)<BR>
+<CODE>u16 padData = PAD_Read();<BR>
+<BR>
+if ( padData &amp; PAD_BUTTON_A )<BR>
+{<BR>
+OS_Printf( &quot;you're pushing A-BUTTON\n&quot; );<BR>
+}<BR>
+<BR>
+if ( padData &amp; PAD_PLUS_KEY_MASK )<BR>
+{<BR>
+OS_Printf( &quot;you're pushing any PLUS-KEY\n&quot; );<BR>
+}</CODE></BLOCKQUOTE>
+<P>本関数 <CODE>PAD_Read()</CODE> は、内部的には、IO レジスタの KEYINPUT を読み込み、ARM7が取り込んだ汎用ポートRCNT レジスタからの値を合わせ、キー・ボタンのマスク PAD_ALL_MASK をかけたものを返しています。</P>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>2004/08/06 参照から PAD_SetIrq, PAD_ClearIrq を削除<BR>
+2004/04/13 DEBUGボタン追加<BR>
+2004/02/19 X,Y ボタン追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

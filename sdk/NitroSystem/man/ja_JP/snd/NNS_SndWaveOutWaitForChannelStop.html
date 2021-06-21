@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndWaveOutWaitForChannelStop</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndWaveOutWaitForChannelStop</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndWaveOutWaitForChannelStop(
+        NNSSndWaveOutHandle <var>handle</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAWLWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>波形再生ハンドルです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAFMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>説明</h2>
+      <p>
+チャンネルが完全に停止するまで待ちます。
+</p>
+      <p>
+波形再生ハンドル<em><strong><code>handle</code></strong></em>が取得しているチャンネルの再生が
+完全に停止するまで待ちます。
+一度再生した波形データのメモリ領域を別の用途に使ったり、
+波形データを更新したりできることを保証するためには、
+この関数を呼ぶ必要があります。</p>
+      <p>
+<tt class="function"><a href="NNS_SndWaveOutStop.html">NNS_SndWaveOutStop</a></tt>関数を
+呼んだ後なら、この関数は比較的早く処理を返します。
+呼んでいない場合は、関数内で再生が自然に停止するのを待ち続けます。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndWaveOutStop.html">NNS_SndWaveOutStop</a></p>
+<h2>履歴</h2>
+<p>2004/07/01 初版<br></p>
+</div>
+</body>
+</html>

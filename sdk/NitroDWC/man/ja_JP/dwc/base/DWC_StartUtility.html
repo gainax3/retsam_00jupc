@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>DWC_StartUtility</title>
+  <link rel="stylesheet" href="../../css/function.css">
+  <base target="main">
+</head>
+<body>
+<h1>DWC_StartUtility*</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+    <pre><code>#include &lt;dwc.h&gt;
+
+int DWC_StartUtility( void* work, int language, int param );
+
+int DWC_StartUtilityEx( int language, int param );</code></pre>
+  </dd>
+</dl>
+<h2>説明</h2>
+<p>Wi-Fiコネクション設定を開始します。<br/>
+必要なバッファを外部から与える DWC_StartUtility関数と static に確保されたものを使用する DWC_StartUtilityEx関数があります。</p>
+<p>呼び出し時には次の点に留意してください。</p>
+<ul>
+<li><font color="red"><strong>すべての処理を終了させてから呼び出してください。</strong></font><br>具体的な注意点は、以下のとおりです。
+<ul class="sub">
+<li>DSワイヤレス通信の使用を中止してください。</li>
+<li>タッチパネルのオートサンプリングを停止させてください。</li>
+<li>割り込みやコールバック関数等により、アプリケーション側のプログラムが呼ばれることのないようにしてください。</li>
+</ul>
+</li>
+<li>内部で NITRO-DWC 以外の NITRO-SDK、NITRO-System、NITRO-WiFi の各ライブラリを呼び出しています。</br>
+<font color="red"><strong>これらに関連するライブラリは 「Wi-Fi コネクション設定」 の実行時に予めメモリにロードされている必要があります</strong></font>ので、
+下記リストのライブラリをオーバレイモジュールとして使用する場合はご注意ください。<br/>
+また、<font color="red"><strong>これらのライブラリをカスタマイズした場合は正常に動作しない可能性があります</strong></font>のでご注意ください。<br/>
+<ul class="sub">
+  <LI><STRONG><U>NITRO-SDK</U></STRONG>
+  <UL class="sub">
+    <LI>オペレーティングシステム (<STRONG>OS</STRONG>)
+    <LI>グラフィックス (<STRONG>GX</STRONG>/<STRONG>G2</STRONG>)
+    <LI>メモリインターフェイス (<STRONG>MI</STRONG>)
+    <LI>固定少数 (<STRONG>FX</STRONG>)
+    <LI>数学演算 (<STRONG>MATH</STRONG>)
+    <LI>ARM7 プロセッサ周辺装置 (<STRONG>TP</STRONG>/<STRONG>PM</STRONG>)
+    <LI>リアルタイムクロック (<STRONG>RTC</STRONG>)
+    <LI>ROM ファイルシステム (<STRONG>FS</STRONG>)
+    <LI>CARD モジュール (<STRONG>CARD</STRONG>)
+    <LI>ワイヤレスマネージャ (<STRONG>WM</STRONG>)
+    <LI>マルチブートライブラリ (<STRONG>MB</STRONG>)
+    <BR>
+  </UL>
+  <LI><STRONG><U>NITRO-SYSTEM</U></STRONG>
+  <UL class="sub">
+    <LI>Foundation ライブラリ (<STRONG>Fnd</STRONG>)
+    <LI>Graphics 2D ライブラリ (<STRONG>G2d</STRONG>)
+    <LI>NITRO コンポーザ (<STRONG>Snd</STRONG>)<BR>
+    <BR>
+  </UL>
+  <LI><STRONG><U>NITRO-WiFi</U></STRONG>
+  <UL class="sub">
+    <LI>ソケットライブラリ (<STRONG>SOC</STRONG>)
+    <LI>TCP/IP プロトコルスタック (<STRONG>CPS</STRONG>)
+    <LI>ワイヤレス接続管理ライブラリ (<STRONG>WCM</STRONG>)<BR>
+    <BR>
+  </UL>
+</UL>
+</li>
+<li>製品版作成時には、<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>関数を用いて、認証サーバを製品向け認証サーバに変更してください。</li>
+<li>Wi-Fiコネクション設定は、白単色の画面から始まるように作成されています。そのため、アプリケーションを白単色の画面にしてから呼び出すと、自然に繋がります。</li>
+</ul>
+
+<p>また、関数が正常終了した後は次の点に留意してください。(引数エラーで終了した場合は何も処理されません)</p>
+<ul>
+<li>LCDへの出力がOFFの状態で終了します。</li>
+<li>すべての IRQ 割り込みを禁止した状態で終了します。</li>
+<li>VRAM の状態は不定です。</li>
+<li>2Dグラフィックスエンジンの設定も不定です。</li>
+<li>NITROコンポーザを使用していますので同ライブラリを使用している際は再設定が必要です。</li>
+</ul>
+<p>Wi-Fiコネクション設定は、NITRO-SDKのファイルシステムによりDSカード上のファイルを参照します。$(NITRODWC_ROOT)/file/dwc/utility.bin をルートディレクトリにディレクトリ名dwc/で配置してください。
+アプリケーションで、ファイルシステムを使用しない場合は、ROM スペックファイルの RomSpec セッションに下記の記述を付け加え、
+アプリケーション側でFS_Init()を呼び出してファイルシステムを使用できるようにしてください。</p>
+	
+<pre class="sample"><code>RomSpec
+{
+	...
+	# ここから
+	HostRoot	./file/dwc    # PC 側ファイルディレクトリ名
+	Root	/dwc
+	File	utility.bin
+	# ここまで
+}</code></pre>
+
+<h2>引数</h2>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="25%"><em><strong><code>work</code></strong></em></td>
+      <td width="75%">32バイトアライメントされたDWC_UTILITY_WORK_SIZE バイトのバッファへのポインタ。関数終了後は破棄してかまいません。</td>
+    </tr>
+    <tr>
+      <td><em><strong><code>language</code></strong></em></td>
+      <td>アプリケーションで使用している言語<br>
+DWC_LANGUAGE_JAPANESE　　// 日本語<br>
+DWC_LANGUAGE_ENGLISH 　　// 英語<br>
+DWC_LANGUAGE_FRENCH　　　// フランス語<br>
+DWC_LANGUAGE_GERMAN　　　// ドイツ語<br>
+DWC_LANGUAGE_ITALIAN 　　// イタリア語<br>
+DWC_LANGUAGE_SPANISH 　　// スペイン語<br>
+DWC_LANGUAGE_HANGUL　　　// 韓国語<br>
+      </td>
+    </tr>
+    <tr>
+      <td><em><strong><code>param</code></strong></em></td>
+      <td>仕向地、設定ユーティリティの開始位置を指定します。仕向地により設定ユーティリティで表示されるサポート用電話番号、らくらく無線
+スタートの有無が変わります。<br>
+DWC_UTILITY_TOP_MENU_FOR_USA　　// 仕向地北米　トップメニューから開始<br>
+DWC_UTILITY_SETTING_FOR_USA 　　// 仕向地北米　接続先の選択から開始<br>
+DWC_UTILITY_TOP_MENU_FOR_EUR　　// 仕向地欧州　トップメニューから開始<br>
+DWC_UTILITY_SETTING_FOR_EUR 　　// 仕向地欧州　接続先の選択から開始<br>
+DWC_UTILITY_TOP_MENU_FOR_JPN　　// 仕向地日本　トップメニューから開始<br>
+DWC_UTILITY_SETTING_FOR_JPN 　　// 仕向地日本　接続先の選択から開始<br>
+DWC_UTILITY_TOP_MENU_COMMON 　　// 仕向地共通　トップメニューから開始<br>
+DWC_UTILITY_SETTING_COMMON　　　// 仕向地共通 　接続先の選択から開始<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<p><strong>言語と仕向地の組み合わせとサポート用電話番号・らくらく無線スタートの有無</strong></p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td style="text-align: center;" width="20%"><em><strong><code>言語</code></strong></em></td>
+      <td style="text-align: center;" width="20%"><em><strong><code>仕向地</code></strong></em></td>
+      <td style="text-align: center;" width="25%"><em><strong><code>サポート用電話番号</code></strong></em></td>
+      <td style="text-align: center;" width="25%"><em><strong><code>らくらく無線スタート</code></strong></em></td>
+      <td style="text-align: center;" width="10%"><em><strong><code>備考</code></strong></em></td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">日本語</td>
+      <td style="text-align: center;">日本</td>
+      <td style="text-align: center;">無し</td>
+      <td style="text-align: center;">有り</td>
+      <td style="text-align: center;">---</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">日本語</td>
+      <td style="text-align: center;">日本以外</td>
+      <td style="text-align: center;">---</td>
+      <td style="text-align: center;">---</td>
+      <td style="text-align: center;">エラー</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">日本語以外</td>
+      <td style="text-align: center;">北米・欧州・共通</td>
+      <td style="text-align: center;">無し</td>
+      <td style="text-align: center;">無し</td>
+      <td style="text-align: center;">---</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">日本語以外</td>
+      <td style="text-align: center;">日本</td>
+      <td style="text-align: center;">---</td>
+      <td style="text-align: center;">---</td>
+      <td style="text-align: center;">エラー</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="25%"><em><strong><code>0</code></strong></em></td>
+      <td width="75%">正常終了</td>
+    </tr>
+    <tr>
+      <td><em><strong><code>それ以外</code></strong></em></td>
+      <td>引数エラー</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>参照</h2>
+<p>
+  <code>
+	<a href="DWC_SetAuthServer.html">DWC_SetAuthServer</a>
+  </code>
+</p>
+<h2>履歴</h2>
+<p>
+2007/03/28 言語が「英語」、仕向地が「北米」の組み合わせでサポート用電話番号が「無し」に変更されました<br/>
+2007/03/22 使用するライブラリのカスタマイズに関する注意を追記<br/>
+2007/03/22 DWC_StartUtilityEx関数と統合<br/>
+2006/12/27 韓国語の追加、注意点を強調<BR>
+2006/11/07 オーバーレイに関する注意を追加<BR>
+2006/02/22 NITROコンポーザについての記述を追加<BR>
+2005/12/16 改訂<BR>
+2005/09/30 説明に留意点を追記、引数の誤記訂正、言語と仕向地の組み合わせに関する表を追記<br>
+2005/07/22 初版<br>
+</p>
+</body>
+</html>

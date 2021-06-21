@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>IC_LockdownRange</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">IC_LockdownRange</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void IC_LockdownRange( const void* startAddr, u32 nBytes );</CODE>
+</PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>startAddr</STRONG></EM></TD>
+      <TD width="87%">ロックダウンする範囲の最下位アドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>nBytes</STRONG></EM></TD>
+      <TD width="87%">ロックダウンする範囲のバイト数(最大2KB)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>指定領域にヒットしている命令キャッシュの内容をロックして破棄されないようにします。<BR>
+ただし、2KBのロックダウンブロック単位でロックされますので、この関数を一度呼び出す度に、キャッシュとして使用できる領域が2KBずつロックされることになり、ミス率が上昇します。<BR>
+最大で3ブロック分の命令キャッシュをロックダウンすることができます。<BR>
+<BR>
+startAddr は32バイト単位で下位方向に丸められます。startAddr+nBytes は32バイト単位で上位方向に丸められます。</P>
+
+<h2>内部処理</h2>
+<P>この関数は、システム制御コプロセッサのレジスタ 7, 9 を操作しています。<BR>
+指定されたデータをキャッシュにロードする期間、内部で割り込みが禁止されます。<BR>
+この関数を使用するとITCMに配置されます。</P>
+
+
+<H2>参照</H2>
+<P><CODE><A href="IC_PrefetchRange.html">IC_PrefetchRange</A>,<A href="IC_Unlockdown.html">IC_Unlockdown</A>, <A href="IC_UnlockdownAll.html">IC_UnlockdownAll</A><BR>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/11/14 startAddrの型をconst void*に変更<br>
+2005/01/21 ロックダウンブロックに関する記述を追加<BR>
+2003/12/22 初版</P>
+</BODY>
+</HTML>

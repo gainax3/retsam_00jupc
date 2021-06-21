@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GXS_SetVisiblePlane</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GXS_SetVisiblePlane</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GXS_SetVisiblePlane(int plane);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">plane</font></strong></em></td>
+    <td width="87%"><CODE>GXPlaneMask</CODE>型の論理和で表示面を指定します。</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>表示する面を選択します。<CODE>GXPlaneMask</CODE>型の値で論理和をとったものを引数とします。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_PLANEMASK_NONE</CODE></TD>
+      <TD>何も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_PLANEMASK_BG0</CODE></TD>
+      <TD>BG0を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_PLANEMASK_BG1</CODE></TD>
+      <TD>BG1を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_PLANEMASK_BG2</CODE></TD>
+      <TD>BG2を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_PLANEMASK_BG3</CODE></TD>
+      <TD>BG3を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_PLANEMASK_OBJ</CODE></TD>
+      <TD>OBJを指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXPlaneMask</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_PLANEMASK_NONE = 0x00,
+    GX_PLANEMASK_BG0 = 0x01,
+    GX_PLANEMASK_BG1 = 0x02,
+    GX_PLANEMASK_BG2 = 0x04,
+    GX_PLANEMASK_BG3 = 0x08,
+    GX_PLANEMASK_OBJ = 0x10
+}
+GXPlaneMask;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GXS_SetVisibleWnd.html">GXS_SetVisibleWnd</A>, <A href="GX_GetVisiblePlane.html">GXS_GetVisiblePlane</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_GetMainMemoryPriority</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_GetMainMemoryPriority</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>MIProcessor MI_GetMainMemoryPriority( void )</CODE></dd>
+</dl>
+<h2>引数</h2>
+<p>なし。</p>
+
+<h2>返り値</h2>
+<p>メインメモリへのアクセス優先権設定。</p>
+
+<H2>説明</H2>
+<P>メインメモリへのアクセス優先権の設定を取得します。<BR>
+これはARM7とARM9が同時にアクセスした場合の優先権設定です。<BR>
+返り値は <CODE>MIProcessor</CODE> 列挙型で、以下の意味を持ちます。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_PROCESSOR_ARM9</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM9を優先する</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#e0e0e0"><CODE>MI_PROCESSOR_ARM7</CODE></TD>
+      <TD bgcolor="#e0e0e0">ARM7を優先する</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>内部動作</h2>
+<P>IOレジスタの、EXMEMCNT(0x4000204)にアクセスしています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_SetMainMemoryPriority.html">MI_SetMainMemoryPriority</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2003/12/25 enum名をMIProcessor に変更<BR>
+2003/12/18 初版</P>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_CompressRL</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_CompressRL</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32 MI_CompressRL( const u8 *srcp, u32 size, u8 *dstp );<BR>
+</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">圧縮するデータが格納されているソースアドレス。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>size</STRONG></EM></TD>
+      <TD>圧縮するソースデータサイズ。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>dstp</STRONG></EM></TD>
+      <TD width="87%">圧縮先バッファへのポインタ、ソースデータサイズ以上の領域が必要です。要4バイトアライン。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>圧縮データのサイズを返します。<BR>
+もしも圧縮後のデータがソースファイルよりも大きくなる場合には、圧縮を行なわずに0を返します。</p>
+
+<H2>説明</H2>
+<P>データをランレングス圧縮し、指定のメモリ領域に書き込みます。<BR>
+圧縮先のバッファにはソースデータと同じサイズの領域を用意する必要があります。</P>
+<P><CODE>8bit単位で書き込みますので、dstpにVRAM上のアドレスを指定することはできません。</CODE><BR>
+ｓｒｃｐにはVRAM上のアドレスを指定することが可能です。</P>
+
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="MI_UncompressRL.html">MI_UncompressRL*</A>, 
+<A href="MI_ReadUncompRL.html">MI_ReadUncompRL</A> , 
+<A href="MI_CompressLZ.html">MI_CompressLZ*</A>, 
+<A href="MI_CompressHuffman.html">MI_CompressHuffman</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/02/01 初版</P>
+</body>
+</html>

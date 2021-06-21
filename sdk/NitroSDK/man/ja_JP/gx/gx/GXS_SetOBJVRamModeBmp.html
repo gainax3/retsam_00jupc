@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GXS_SetOBJVRamModeBmp</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GXS_SetOBJVRamModeBmp</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/gx.h&gt;<BR>
+void GXS_SetOBJVRamModeBmp(GXOBJVRamModeBmp mode);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  
+    <tr>
+    <td width="13%"><em><strong><font face="Courier New">mode</font></strong></em></td>
+    <td width="87%">マッピングモード</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>サブ2DエンジンのビットマップOBJのOBJ-VRAM容量とマッピングモードを設定します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_OBJVRAMMODE_BMP_2D_W128</CODE></TD>
+      <TD>横128ドットで2次元マッピングモードを選択します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_OBJVRAMMODE_BMP_2D_W256</CODE></TD>
+      <TD>横256ドットで2次元マッピングモードを選択します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_OBJVRAMMODE_BMP_1D_128K</CODE></TD>
+      <TD>1次元マッピングモードで、OBJ-VRAM容量を128KBytesとします。先頭キャラクタネーム境界は128バイトです。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_OBJVRAMMODE_BMP_1D_256K</CODE></TD>
+      <TD><FONT color="#ff0000">※サブ２Dエンジンでは設定禁止</FONT></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXOBJVRamModeBmp</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_OBJVRAMMODE_BMP_2D_W128 = (0 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT + 1) | (0 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT + 2),
+    GX_OBJVRAMMODE_BMP_2D_W256 = (1 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT + 1) | (0 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT + 2),
+    GX_OBJVRAMMODE_BMP_1D_128K = (2 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT + 1) | (0 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT + 2),
+    GX_OBJVRAMMODE_BMP_1D_256K = (2 &lt;&lt; REG_GX_DISPCNT_OBJMAP_SHIFT + 1) | (1 &lt;&lt; REG_GX_DISPCNT_EXOBJ_SHIFT + 2)
+}
+GXOBJVRamModeBmp;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GXS_SetOBJVRamModeChar.html">GXS_SetOBJVRamModeChar</A>, <A href="GX_GetOBJVRamModeBmp.html">GXS_GetOBJVRamModeBmp</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/02/09</P>
+
+</body>
+</html>

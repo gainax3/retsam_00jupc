@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>G2D Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>G2Dサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSystem/build/demos/g2d/</CODE></P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSystem/build/demos/g2d/</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/g2d/samples/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSystem/build/demos/g2d/samples/Cell_Simple/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSystem/build/demos/g2d/(samples|bg|Text)/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/　</CODE>ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<H4>OBJ サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Cell_Simple/src/main.c">Cell_Simple</A></CODE></STRONG></EM></TD>
+      <TD width="576">Cellの単純な描画をおこなうサンプル。下位レベルAPIを利用した描画サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/CellAnimation/src/main.c">CellAnimation</A></CODE></STRONG></EM></TD>
+      <TD width="576">セルアニメーションを描画、更新するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Entity/src/main.c">Entity</A></CODE></STRONG></EM></TD>
+      <TD width="576">エンティティを用いてセルアニメーションを表示するサンプルです。カラーパレットの切り替えも行います。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/MultiCellAnimation/src/main.c">MultiCellAnimation</A></CODE></STRONG></EM></TD>
+      <TD width="576">マルチセルアニメーションを描画、更新するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/OamManagerEx/src/main.c">OamManagerEx</A></CODE></STRONG></EM></TD>
+      <TD width="576">拡張 OAM マネージャのサンプルです。<BR>
+      128 個より多くの OBJ を時分割で表示、OBJの描画順指定を用い表示優先度つきで OBJ表示、を行います。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/OamManagerEx2/src/main.c">OamManagerEx2</A></CODE></STRONG></EM></TD>
+      <TD width="576">拡張 OAM マネージャのサンプルです。<BR>
+      OAMマネージャと拡張 OAM マネージャを組み合わせて使用する利用方法のサンプルになっています。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/OamManagerEx3/src/main.c">OamManagerEx3</A></CODE></STRONG></EM></TD>
+      <TD width="576">拡張 OAM マネージャとレンダラを組み合わせて使用するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_2LCD/src/main.c">Renderer_2LCD</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラ モジュールを用いて2画面表示を行うサンプルです。画面表示領域を変更することが可能です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_Simple/src/main.c">Renderer_Simple</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラ モジュールを用いてセルアニメーションを描画するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/SoftwareSprite/src/main.c">SoftwareSprite</A></CODE></STRONG></EM></TD>
+      <TD width="576">ソフトウェアスプライトの描画サンプルです。多数のスプライトを画面に表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/SoftwareSprite2/src/main.c">SoftwareSprite2</A></CODE></STRONG></EM></TD>
+      <TD width="576">ソフトウェアスプライトの描画サンプルです。様々な属性を適用してスプライトを画面に表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/VRamAnimation/src/main.c">VRamAnimation</A></CODE></STRONG></EM></TD>
+      <TD width="576">VRAM転送アニメーションを描画するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_Callback1/src/main.c">Renderer_Callback1</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラのコールバック関数を使用して、ユーザ個別のカスタマイズを行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_Callback2/src/main.c">Renderer_Callback2</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラのコールバック関数を使用して、OBJ単位の可視カリングを行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_PerfCheck/src/main.c">Renderer_PerfCheck</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラのパフォーマンスを比較するサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/RendererCore/src/main.c">RendererCore</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラコア単体での使用方法を示すサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/RendererCore2/src/main.c">RendererCore2</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラコアAPIの使用方法を示すサンプルです。パフォーマンスの比較も行います。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/OamSoftwareSpriteDraw/src/main.c">OamSoftwareSpriteDraw</A></CODE></STRONG></EM></TD>
+      <TD width="576">各種OAMソフトウェアスプライト描画APIのパフォーマンスの比較を行うデモです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/Renderer_CharChange/src/main.c">Renderer_CharChange</A></CODE></STRONG></EM></TD>
+      <TD width="576">レンダラの使用する画像プロクシを、複数切り替えて描画を行うサンプルです。コンバータの-crオプションによる部分的キャラクタデータ変換機能の利用も行います。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/UserExAttribute/src/main.c">UserExAttribute</A></CODE></STRONG></EM></TD>
+      <TD width="576">ユーザ拡張アトリビュートを利用するデモです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/samples/MultiCell_UILayout/src/main.c">MultiCell_UILayout</A></CODE></STRONG></EM></TD>
+      <TD width="576">マルチセルを応用して、ユーザインタフェース処理を行うデモです。</TD>
+    </TR>
+    
+    
+  </TBODY>
+</TABLE>
+
+<H4>BG サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/bg/MinimumBg/src/main.c">MinimumBG</A></CODE></STRONG></EM></TD>
+      <TD width="576">上下画面に BG を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/bg/ShareBg/src/main.c">ShareBG</A></CODE></STRONG></EM></TD>
+      <TD width="576">キャラクタとカラーパレットを共有した BG を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/bg/BgEx/src/main.c">BgEx</A></CODE></STRONG></EM></TD>
+      <TD width="576">圧縮パレットと部分キャラクタデータを使用した BG を表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4>文字描画 サンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/BGText/src/main.c">BGText</A></CODE></STRONG></EM></TD>
+      <TD width="576">テキストBGで文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/BGAffine/src/main.c">BGAffine</A></CODE></STRONG></EM></TD>
+      <TD width="576">アフィンBGで文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/OBJ1D/src/main.c">OBJ1D</A></CODE></STRONG></EM></TD>
+      <TD width="576">1DマッピングOBJで文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/OBJ2DRect/src/main.c">OBJ2DRect</A></CODE></STRONG></EM></TD>
+      <TD width="576">2DマッピングOBJで文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/CanvasCell/src/main.c">CanvasCell</A></CODE></STRONG></EM></TD>
+      <TD width="576">CharCanvas をセルとして表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/ShiftJISText/src/main.c">ShiftJISText</A></CODE></STRONG></EM></TD>
+      <TD width="576">ShiftJIS文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/UTF16Text/src/main.c">UTF16Text</A></CODE></STRONG></EM></TD>
+      <TD width="576">UTF16文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/UTF8Text/src/main.c">UTF8Text</A></CODE></STRONG></EM></TD>
+      <TD width="576">UTF8文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/CP1252Text/src/main.c">CP1252Text</A></CODE></STRONG></EM></TD>
+      <TD width="576">CP1252文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/DoubleBuffering/src/main.c">DoubleBuffering</A></CODE></STRONG></EM></TD>
+      <TD width="576">オフスクリーンバッファを用いて文字列を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/DrawLetter/src/main.c">DrawLetter</A></CODE></STRONG></EM></TD>
+      <TD width="576">文字描画関数の使用サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/DrawLetters/src/main.c">DrawLetters</A></CODE></STRONG></EM></TD>
+      <TD width="576">文字列描画関数の使用サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/DrawTaggedText/src/main.c">DrawTaggedText</A></CODE></STRONG></EM></TD>
+      <TD width="576"><code><a href="../../g2d/TextCanvas/NNS_G2dTextCanvasDrawTaggedText.html">NNS_G2dTextCanvasDrawTaggedText()</a></code>の使用サンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/MinimumCanvas/src/main.c">MinimumCanvas</A></CODE></STRONG></EM></TD>
+      <TD width="576">文字列にあわせて動的に CharCanvas を構築します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/PortraitHW/src/main.c">PortraitHW</A></CODE></STRONG></EM></TD>
+      <TD width="576">BG の回転を使用して縦持ち表示を行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/PortraitSW/src/main.c">PortraitSW</A></CODE></STRONG></EM></TD>
+      <TD width="576">縦持ち用フォントを使用して縦持ち表示を行うサンプルです。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/DrawVertical/src/main.c">DrawVertical</A></CODE></STRONG></EM></TD>
+      <TD width="576">縦書き表示のサンプルです。ビルドには日本語 Windows 環境が必要です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE><A href="../../../../build/demos/g2d/Text/SimpleFontView/src/main.c">SimpleFontView</A></CODE></STRONG></EM></TD>
+      <TD width="576">フォントリソース中のグリフイメージを簡易表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H2>動作環境</H2>
+<P>すべてのサンプルについて、IS-NITRO-EMULATOR、ensata での正常動作を確認しています。</P>
+<H2>参照</H2>
+<P><A href="../../g2d/list_g2d.html"><CODE>G2D関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+<pre>
+2007/03/14 サンプル PortraitHW, PortraitSW, DrawVertical を追加。
+2006/05/29 サンプル CP1252Text を追加
+2005/09/01 サンプル Renderer_CharChange UserExAttribute MultiCell_UILayout を追加
+2005/07/12 サンプル CanvasCell を追加
+2005/06/27 サンプル BgEx を追加
+2005/06/06 サンプル（Renderer_CharChange）を追加
+2005/05/25 文字描画サンプルを追加
+2005/03/28 OamManagerEx3を追加
+
+2005/01/24 実行方法において IS-NITRO-EMULATOR の記述を削除、動作環境において TEG の記述を削除し、TS を
+           IS-NITRO-EMULATOR に変更
+
+2004/12/06 サンプル OamManagerEx2 を追加
+
+2004/11/10 6 つのサンプル(Renderer_Callback1 
+                          Renderer_Callback2 
+                          Renderer_PerfCheck 
+                          RendererCore
+                          RendererCore2 
+                          OamSoftwareSpriteDraw)を追加
+                          
+2004/09/02 BGサンプルを追加
+2004/08/02 初版
+</pre>
+</P>
+</BODY>
+</HTML>

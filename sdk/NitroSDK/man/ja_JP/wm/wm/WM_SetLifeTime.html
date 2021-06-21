@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetLifeTime</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetLifeTime</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetLifeTime(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback
+        u16             tableNumber ,
+        u16             camLifeTime ,
+        u16             frameLifeTime ,
+        u16             mpLifeTime
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">tableNumber</FONT></STRONG></EM></TD>
+      <TD width="800">ライフタイムを設定するCAMテーブル番号を指定します。<BR>
+      CAMテーブルとは、通信相手端末それぞれについて状態管理されているテーブルです。
+      通常は全てのCAMテーブルに対するタイムアウト時間を一括設定するために、0xFFFFを指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">camLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">CAMテーブルのライフタイムを100ms単位で指定します。
+      0xFFFFを指定すると、ライフタイムは無効となります。初期値は 40（4秒）です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">frameLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">接続・切断に関する管理用通信とインフラストラクチャモード時のデータ通信のライフタイムをビーコン間隔単位で指定します。1 ～ 63 の値、もしくは 0xFFFF を指定して下さい。<BR>
+      0xFFFFを指定すると、ライフタイムは無効となります。初期値は 5 です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">mpLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">親機の場合はMP通信で子機がNull応答を返しつづけた際に許容する時間を、
+      子機の場合はMP通信で親機からのMPフレームを受信できない状態が続いた際に許容する時間を100ms単位で指定します。<BR>
+      0xFFFFを指定すると、ライフタイムは無効となります。初期値は 40（4秒）です。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+通信時のライフタイム( タイムアウトまでの時間 )を設定します。WMステートが<A href="wm_state_diagram.html">IDLEステート</A>の場合に実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、ライフタイム設定処理が完了した後にコールバックが発生します。
+この関数を呼んでいない場合のデフォルトは、CAMライフタイムが 4 秒、フレームライフタイムがビーコン 5 回分、MP通信ライフタイムが 4 秒という状態です。
+</P>
+<P>
+CAMライフタイムは通信状態の悪化による通信途絶時間の許容値を示します。
+CAMライフタイムは何らかの通信を受信すれば切れることはありません。<BR>
+一方、MP通信ライフタイムはMP通信の途絶時間の許容値を示します。
+意味のあるMP通信を相手から受信したときにライフタイムが更新されます。<BR>
+いずれにせよ、ライフタイムが切れると自動的に通信が切断されます。
+</P>
+<P>
+ワイヤレス通信ハードウェアが MP 通信を行っている状況で、CPU が暴走してしまった場合などに、
+CAMライフタイムだけでは正常に切断できないことがあります。
+例えば、親機であればビーコンが出つづける状態になることがあり、
+子機であれば親機のMPフレームに自動的にNull応答を返しつづける状態になることがあります。
+このような状況でも正常に切断できるためにMP通信ライフタイムが用意されています。
+</P>
+<P>
+フレームライフタイムは他の2つのライフタイムとは少々毛色が異なります。
+MP通信を行っている場合は接続と切断時の通信にのみ影響します。
+また、インフラストラクチャモードでは、全てのフレームのライフタイムに影響しますが、
+特殊な事情がない限りはデフォルト値から変更しないようにしてください。
+特に、フレームライフタイムを無効にしてしまった場合、
+状況によっては切断処理のコールバックが呼び出されなくなることがあります。
+</P>
+
+<H2>履歴</H2>
+<P>
+2006/01/13 説明の書き直しとフレームライフライムを0xFFFFに設定しないように追記<br>
+2005/12/06 フレームライフタイムの説明に追記<br>
+2005/10/03 フレームライフタイムのデフォルト値の記述を修正<br>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2005/03/02 framLifeTime引数について指定可能範囲を追記<BR>
+2004/11/19 mpLifeTimeの説明を変更<BR>
+2004/11/09 引数に mpLifeTime を追加<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_StartDataSharing</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_StartDataSharing</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_StartDataSharing(
+        WMDataSharingInfo*  dsInfo ,
+        u16                 port ,
+        u16                 aidBitmap ,
+        u16                 dataLength ,
+        BOOL                doubleMode
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">dsInfo</FONT></STRONG></EM></TD>
+      <TD width="800">データシェアリング情報構造体へのポインタを指定します。
+      バッファの実体はデータシェアリングを行うグループごとに別々に確保しておく必要があります。
+      また、バッファの実体はキャッシュ制御されるため、32バイトアラインされている必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">port</FONT></STRONG></EM></TD>
+      <TD width="800">データシェアリングを行う<A href="WMPort.html">ポート番号</A>を指定します。0 ～ 15 の値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">aidBitmap</FONT></STRONG></EM></TD>
+      <TD width="800">データシェアリングを行う相手端末のAIDのビットマップを指定します。
+      最大の16台でデータシェアする場合は 0xFFFF となります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">dataLength</FONT></STRONG></EM></TD>
+      <TD width="800">共有データの１端末辺りのデータ長を指定します。2 の倍数バイトである必要があります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">doubleMode</FONT></STRONG></EM></TD>
+      <TD width="800">1フレームに1回のMP通信を行うモードで、毎フレーム DataSharing を行いたい場合は、ここに TRUE を指定します。</TD>
+    </TR>
+   </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+データシェアリングを初期化します。WMが<A href="wm_state_diagram.html">MP_PARENTステート</A>、もしくは<A href="wm_state_diagram.html">MP_CHILDステート</A>の場合に実行可能です。
+この関数は同期関数ですので、処理に成功した場合即座にWM_ERRCODE_SUCCESSを返します。必ず<A href="WM_StartMP.html">WM_StartMP</A>直後に呼び出すようにしてください。
+このAPIを呼んだだけで定期的に処理や通信が発生することはありません。<A href="WM_StepDataSharing.html">WM_StepDataSharing</A>を呼びだすことで処理が開始されます。<BR>
+<BR>
+親機の場合は複数のグループに対して平行してデータシェアリングを行うことが可能です。
+グループごとにWMDataSharingInfo構造体を用意し、異なるポート番号で複数回この関数を呼び出して下さい。
+また、親機が一度に送信可能なデータ長の制限から、( データシェアリングを行うグループの端末数 × 共有データサイズ )が許容範囲(508Bytes)を越えるような指定はできません。<BR>
+<BR>
+doubleMode にTRUEを指定した場合、<A href="WM_StepDataSharing.html">WM_StepDataSharing</A>で取得できる値は、2回前の<A href="WM_StepDataSharing.html">WM_StepDataSharing</A>で設定した値になりますが、
+MP通信1回ごとに<A href="WM_StepDataSharing.html">WM_StepDataSharing</A>を呼び出すことができます。
+FALSE の場合は、直前で指定した値を取得することが可能ですが、その代わり呼び出し間隔を最低MP通信2回分空けなければ<A href="WM_StepDataSharing.html">WM_StepDataSharing</A>は成功しません。<BR>
+</P>
+
+<P><A href="WM_StartMP.html">WM_StartMP</A>の引数mpFreqとWM_StartDataSharingのパラメータに対して、データシェリングの成功間隔と共有データの通信遅延の対応は以下のとおりです。
+</P>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><EM><STRONG>mpFreq</STRONG></EM></td>
+      <td><EM><STRONG>doubleMode</STRONG></EM></td>
+      <td><STRONG>データシェアリング間隔</STRONG></td>
+      <td><STRONG>遅延</STRONG></td>
+      <td><STRONG>備考</STRONG></td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>TRUE</td>
+      <td>毎フレーム</td>
+      <td>2フレーム</td>
+      <td>doubleModeをTRUEにすると途中で1セット分のバッファリングが入る形になりますので、遅延が増えます。</td>
+    </tr>
+    <tr>
+      <td>2以上 or 0（連続通信モード）</td>
+      <td>FALSE</td>
+      <td>毎フレーム</td>
+      <td>1フレーム</td>
+      <td>1フレームに2回以上のMP通信を行えばdoubleModeがFALSEでも毎フレームでシェアできますが、エラーに弱くなり、電力消費も多くなるため、利用に際しては慎重に検討してください。</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>FALSE</td>
+      <td>2フレーム以上</td>
+      <td>同左</td>
+      <td>2フレーム以上の間隔でデータシェアリングを行う場合は、mpFreqが1の場合でもdoubleModeをFALSEで運用できるため、遅延もデータシェアリング間隔と等しくなります。</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<h2>参照</h2>
+<P><CODE>
+<A href="WM_EndDataSharing.html">WM_EndDataSharing</A>, <A href="WM_StepDataSharing.html">WM_StepDataSharing</A>, <A href="WMPort.html">WMPort</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/03/02 port引数について指定可能範囲を追記<BR>
+2004/10/25 共有データ総計の最大値を508バイトに変更<BR>
+2004/10/22 返り値の型を変更<BR>
+2004/09/25 説明の加筆・修正<BR>
+2004/08/31 引数に doubleMode を追加<BR>
+2004/08/11 初版<BR>
+</P>
+</body>
+</html>

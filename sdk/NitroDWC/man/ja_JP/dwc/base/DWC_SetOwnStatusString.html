@@ -1,0 +1,88 @@
+<HTML>
+  <HEAD>
+    <META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+    <META http-equiv="Content-Style-Type" content="text/css">
+    <TITLE>DWC_SetOwnStatusString</TITLE>
+    <LINK rel="stylesheet" href="../../css/function.css">
+    <BASE target="main">
+  </HEAD>
+  <BODY>
+    <H1>DWC_SetOwnStatusString</H1>
+
+    <H2>構文</H2>
+    <DL>
+      <DD>
+        <PRE><CODE>#include &lt;dwc.h&gt;
+
+BOOL DWC_SetOwnStatusString( const char* statusString );</CODE></PRE>
+      </DD>
+    </DL>
+
+    <H2>説明</H2>
+    <P>
+      自分の通信状態のうち、status文字列をセットします。
+	</P>
+	<P>
+	  プレイヤーの通信状態は、プレイヤーのオンライン、オフライン等の状態を表すstatusフラグと、アプリケーションが設定できるstatus文字列から成っており、GameSpyサーバ上で管理されています。
+	  statusフラグの種別については<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>関数の返り値の欄を参照してください。
+	</P>
+	<P>
+	  この関数を使うためには、<A href="DWC_LoginAsync.html">DWC_LoginAsync</A>関数によるログインまでを完了させておく必要があります。
+	</P>
+	<P>
+      セットされた文字列は、他のホストから<a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>*関数で取得することができます。
+    </P>
+    <P>
+      '/'と'\\'は識別文字としてライブラリが使うので、status文字列中に使用しないで下さい。これらの文字列を使用したい場合は、
+      <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>関数を用いて、バイナリデータとして保存してください。
+    </P>
+    <P>
+      セットされた文字列は、<a href="DWC_ShutdownFriendsMatch.html">DWC_ShutdownFriendsMatch</a>関数を呼び出した時にクリアされます。
+    </P>
+
+    <H2>引数</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>statusString</CODE></STRONG></EM></TD>
+          <TD>
+			status文字列にセットする文字列。255文字＋ヌル文字終端まで。<BR>
+			これ以上の長さの文字列を指定した場合は、256文字目以降は切り捨てられます。
+		  </TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+
+    <H2>返り値</H2>
+    <TABLE border="1">
+      <TBODY>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>TRUE</CODE></STRONG></EM></TD>
+          <TD>セット成功</TD>
+        </TR>
+        <TR>
+          <TD width="25%"><EM><STRONG><CODE>FALSE</CODE></STRONG></EM></TD>
+          <TD>ログイン前などの理由でセット失敗</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+
+    <H2>参照</H2>
+    <P>
+      <code>
+        <a href="DWC_GetFriendStatus.html">DWC_GetFriendStatus</a>,
+        <a href="DWC_GetFriendStatusSC.html">DWC_GetFriendStatusSC</a>,
+        <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>,
+        <a href="DWC_GetOwnStatusString.html">DWC_GetOwnStatusString</a>
+      </code>
+    </P>
+
+    <H2>履歴</H2>
+    <P>
+	  2005/12/16 通信状態についての説明を追加。<BR>
+      2005/11/07 初版<BR>
+    </P>
+
+  </BODY>
+</HTML>

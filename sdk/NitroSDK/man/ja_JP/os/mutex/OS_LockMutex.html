@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_LockMutex</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_LockMutex</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_LockMutex( OSMutex* mutex );</CODE></dd>
+</dl>
+
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>mutex</STRONG></EM></TD>
+      <TD width="87%">Mutex構造体へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>呼び出したスレッドは、<B><I>mutex</I></B> で指定したミューテックスのロックを試みます。</P>
+<P><B><I>mutex</I></B> が、別のスレッドによって保持されている場合、<B><I>mutex</I></B> が解放されるまで呼び出したスレッドは一時停止されます。<B><I>mutex</I></B> が、現在のスレッドに既に保持されている場合はすぐに戻ります。但し、OS_LockMutex() を呼び出した回数は記録されていて、同じ回数だけアンロックされなければ <B><I>mutex</I></B>　は解放されません。</P>
+<P><B><I>mutex</I></B>をロックしているスレッドが <A href="../thread/OS_ExitThread.html">OS_ExitThread()</A> によって終了したときは、その<B><I>mutex</I></B>は自動的にアンロックされます。</P>
+<h2>参照</h2>
+<p><CODE><A href="OS_InitMutex.html">OS_InitMutex</A>, <A href="OS_UnlockMutex.html">OS_UnlockMutex</A>, <A href="OS_TryLockMutex.html">OS_TryLockMutex</A>, <A href="../thread/OS_ExitThread.html">OS_ExitThread</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/04/05 OS_ExitThread() によってmutexがアンロックされる記述を追加<BR>
+2003/12/01 初版</P>
+</body>
+</html>

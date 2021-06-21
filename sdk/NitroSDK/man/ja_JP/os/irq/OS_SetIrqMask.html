@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_SetIrqMask</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_SetIrqMask</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>OSIrqMask OS_SetIrqMask( OSIrqMask intr );</CODE></dd>
+</dl><h2>引数</h2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><I>intr</I></B></TD>
+      <TD>設定するIRQ割り込み要因</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>この関数を呼ぶ前の、IRQ割り込み要因設定。</p>
+<H2>説明</H2>
+<P>IRQ割り込みの要因を設定します。<BR>
+<A href="OS_EnableIrq.html"><CODE>OS_EnableIrq()</CODE></A> などでIRQ割り込みのマスターイネーブルを許可にセットすると、この関数でイネーブルにしたIRQ割り込み要因に対応するIRQ割り込みだけが発生します。</P>
+<P>引数<B><I>intr</I></B> は、以下の要因の論理和で表されます。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_V_BLANK</TD>
+      <TD bgcolor="#eeeeee">Vブランク割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_H_BLANK</TD>
+      <TD bgcolor="#eeeeee">Hブランク割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_V_COUNT</TD>
+      <TD bgcolor="#eeeeee">Vカウンター割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER0</TD>
+      <TD bgcolor="#eeeeee">タイマー0割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER1</TD>
+      <TD bgcolor="#eeeeee">タイマー1割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER2</TD>
+      <TD bgcolor="#eeeeee">タイマー2割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_TIMER3</TD>
+      <TD bgcolor="#eeeeee">タイマー3割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA0</TD>
+      <TD bgcolor="#eeeeee">DMA0割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA1</TD>
+      <TD bgcolor="#eeeeee">DMA1割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA2</TD>
+      <TD bgcolor="#eeeeee">DMA2割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_DMA3</TD>
+      <TD bgcolor="#eeeeee">DMA3割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_KEY</TD>
+      <TD bgcolor="#eeeeee">キー割り込み <B><FONT color="#ff0033">*1</FONT></B></TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARTRIDGE</TD>
+      <TD bgcolor="#eeeeee">カートリッジIREQ/DREQ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SUBP</TD>
+      <TD bgcolor="#eeeeee">ARM7割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SPFIFO_SEND</TD>
+      <TD bgcolor="#eeeeee">ARM9・ARM7間送信FIFOエンプティ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_SPFIFO_RECV</TD>
+      <TD bgcolor="#eeeeee">ARM9・ARM7間受信FIFOノットエンプティ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARD_DATA</TD>
+      <TD bgcolor="#eeeeee">カードデータ転送終了割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_CARD_IREQ</TD>
+      <TD bgcolor="#eeeeee">カードIREQ割り込み</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">OS_IE_GXFIFO</TD>
+      <TD bgcolor="#eeeeee">ジオメトリコマンドFIFO割り込み</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><B><FONT color="#ff0033"><BR>
+<BR>
+*1</FONT></B>　キー割り込みはハードウェアの仕様上、使用しないで下さい。ただし、スリープからの復帰に使用することは可能です。</P>
+<BLOCKQUOTE><BR>
+(例)<BR>
+<CODE>// Vブランク割り込みと、DMA0割り込みを許可する<BR>
+OS_SetIrqMask( OS_IE_V_BLANK | OS_IE_DMA0 );<BR>
+<BR>
+// IRQ マスターイネーブル<BR>
+OS_EnableIrq();</CODE><BR>
+</BLOCKQUOTE>
+<P><B>(注意)</B><BR>
+<CODE>OS_SetIrqMask()</CODE> は、「<FONT color="#ff0000">IRQ割り込み要因を指定のものに上書き設定する</FONT>」関数であり、<FONT color="#ff0000">指定の要因を追加する関数ではありません</FONT>。割り込み要因の中にはシステム側で設定しているものもありますので、通常は無闇に設定を上書きすることはしないで下さい。例えば、チックやアラームはタイマ割り込みを使用しているので、該当タイマのIRQ割り込み要因は許可になっていなければなりません。<BR>
+IRQ割り込み要因をこれまでの設定に追加する場合は、<A href="OS_EnableIrqMask.html"><CODE>OS_EnableIrqMask()</CODE></A> を使用してください。</P>
+<h2>内部動作</h2>
+<P>IOレジスタの一つ、IE (Interrupt Enable) レジスタを操作しています。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="OS_GetIrqMask.html">OS_GetIrqMask</A>, <A href="OS_EnableIrqMask.html">OS_EnableIrqMask</A>, <A href="OS_DisableIrqMask.html">OS_DisableIrqMask</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/08 OS_IE_KEY についての注意を追加<BR>
+2004/11/24 OS_IE_SIO を削除<BR>
+2004/09/01 「サブプロセッサ」を「ARM7」に、「サブプロセッサ間」を「ARM9・ARM7間」に変更<BR>
+2004/03/12 <CODE>OS_EnableIrqMask()</CODE> との違いを強調<BR>
+2003/12/01 初版</P>
+</body>
+</html>

@@ -1,0 +1,60 @@
+#! sed -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - tools - sdkindent
+# File:     sdkindent.prefilter
+#
+# Copyright 2003-2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: sdkindent.prefilter,v $
+# Revision 1.9  2006/11/17 10:09:39  kitase_hirotake
+# インデント回避対応の追加
+#
+# Revision 1.8  2006/01/19 07:41:34  kitase_hirotake
+# 年次変更
+#
+# Revision 1.6  2005/03/15 01:34:46  yasu
+# SDK_WEAK_SYMBOL の対応
+#
+# Revision 1.5  2005/02/24 11:52:51  yosizaki
+# copyright の年を修正.
+#
+# Revision 1.4  2005/02/24 07:33:16  yasu
+# cplusplus の判定の修正
+#
+# Revision 1.3  2004/10/04 11:56:37  yasu
+# OS_SetProtectionRegion 対策
+#
+# Revision 1.2  2004/10/04 00:35:40  yasu
+# Fix for one-line asm
+#
+# Revision 1.1  2004/09/29 02:05:00  yasu
+# Add code beautifier for NITRO-SDK
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+/^#[ 	]*ifdef[ 	][ 	]*__cplusplus/,/^#[ 	]*endif/s/^\([^#]\)/\/\/-X-X-SDKINDENT-X-X-\1/;
+/^__declspec[ 	]*([ 	]*weak[ 	]*)[ 	]*asm[ 	].*{.*}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^__declspec[ 	]*([ 	]*weak[ 	]*)[ 	]*asm[ 	]/,/^}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^SDK_FORCE_EXPORT[ 	]*static[ 	]*asm[ 	]/,/^}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^SDK_WEAK_SYMBOL[ 	]*asm[ 	].*{.*}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^SDK_WEAK_SYMBOL[ 	]*asm[ 	]/,/^}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^static[ 	][ 	]*asm[ 	]/,/^}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/^asm[ 	]/,/^}/s/^/\/\/-X-X-SDKINDENT-X-X-/;
+/,[ ]*4MB[ ]*)/s/4MB/X_X_SDKINDENT_4MB/;
+/,[ ]*8MB[ ]*)/s/8MB/X_X_SDKINDENT_8MB/;
+/,[ ]*4KB[ ]*)/s/4KB/X_X_SDKINDENT_4KB/;
+/,[ ]*8KB[ ]*)/s/8KB/X_X_SDKINDENT_8KB/;
+/,[ ]*16KB[ ]*)/s/16KB/X_X_SDKINDENT_16KB/;
+/,[ ]*32KB[ ]*)/s/32KB/X_X_SDKINDENT_32KB/;
+/,[ ]*64KB[ ]*)/s/64KB/X_X_SDKINDENT_64KB/;
+/,[ ]*128KB[ ]*)/s/128KB/X_X_SDKINDENT_128KB/;
+/,[ ]*256KB[ ]*)/s/256KB/X_X_SDKINDENT_256KB/;
+/,[ ]*512KB[ ]*)/s/512KB/X_X_SDKINDENT_512KB/;
+/,[ ]*1MB[ ]*)/s/1MB/X_X_SDKINDENT_1MB/;
+/,[ ]*2MB[ ]*)/s/2MB/X_X_SDKINDENT_2MB/;

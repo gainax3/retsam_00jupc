@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_GetOwnerRtcOffset</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_GetOwnerRtcOffset</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>s64 OS_GetOwnerRtcOffset( void );
+  </CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<P>なし。</P>
+
+<H2>返り値</H2>
+<P>
+s64型のオフセット値を返します。
+</P>
+
+<H2>説明</H2>
+<P>
+ニンテンドーDS本体に保存されているRTCオフセット値を取得します。<BR>
+RTCオフセット値とは、エンドユーザーがRTCの日付・時刻を変更した際に
+どれだけ未来に進めたか、もしくは過去へ戻したかを秒単位で保存しておく
+累積オフセット値です。<BR>
+アプリケーションでは起動の都度このオフセット値を確認することで、
+エンドユーザーが行なったリアル時間の改変を知ることができます。
+</P>
+
+<H2>注意</H2>
+<P><font color="red">
+<A href="../../rtc/RTC_SetTime.html">RTC_SetTime</A>などのデバッグ用関数によって日付・時刻が変更された場合には
+このRTCオフセット値は更新されません。
+</font></P>
+
+<H2>参照</H2>
+<P><CODE><A href="OS_GetOwnerInfo.html">OS_GetOwnerInfo</A>, <A href="OS_GetMacAddress.html">OS_GetMacAddress</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/09/03 初版<BR>
+</P>
+</BODY>
+</HTML>

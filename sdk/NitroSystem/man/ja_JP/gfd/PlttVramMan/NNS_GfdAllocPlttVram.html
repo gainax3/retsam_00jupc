@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_GfdAllocPlttVram</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_GfdAllocPlttVram</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/gfd.h&gt;</CODE></PRE>
+  <PRE><CODE>NNSGfdPlttKey NNS_GfdAllocPlttVram(u32 szByte, BOOL is4pltt, u32 opt);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>szByte</STRONG></EM></TD>
+      <TD width="87%">確保したいパレット用メモリの大きさ( 8 - 524280 バイト )</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>is4pltt</STRONG></EM></TD>
+      <TD width="87%">４色パレット用メモリを確保する場合、真</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>opt</STRONG></EM></TD>
+      <TD width="87%">パレットVRAMメモリマネージャのオプション</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>パレット用メモリを示すキー・データ。</P>
+
+<H2>説明</H2>
+<P>
+<CODE>szByte</CODE>で指定された大きさのパレット用メモリをVRAMから確保します。
+NITRO-SystemのライブラリがパレットRAMからパレット用メモリを確保する場合には、この関数が使用されます。
+</P>
+<P>
+<CODE>NNS_GfdAllocPlttTVram</CODE>関数は以下のように定義されており、内部処理は
+グローバルな関数ポインタである<CODE>NNS_GfdDefaultFuncAllocPlttVram</CODE>に設定されている関数を呼び出しているのみとなっています。
+</P>
+<PRE>
+static inline NNSGfdPlttKey
+NNS_GfdAllocPlttVram(u32 szByte, BOOL is4pltt, u32 opt)
+{
+    return (*NNS_GfdDefaultFuncAllocPlttVram)( szByte, is4pltt, opt );
+}
+</PRE>
+<P>
+この関数ポインタに適当なパレット用メモリ確保関数を登録する事により、<CODE>NNS_GfdAllocPlttVram</CODE>は機能します。
+このような仕組みにより、ライブラリからのパレット用メモリの確保をユーザ側でコントロールする事を可能にしています。
+なお初期状態では、<CODE>NNS_GfdDefaultFuncAllocPlttVram</CODE>には、何も処理をせずにエラーを返す関数が設定されています。
+パレット用メモリの確保でエラーが発生した場合は、エラーを示すキーであるNNS_GFD_ALLOC_ERROR_PLTTKEYが返ります。
+</P>
+<P>
+<CODE>opt</CODE>は、<CODE>NNS_GfdDefaultFuncAllocPlttVram</CODE>に設定するパレット用メモリ確保関数で
+用途を自由に決めて使用できるパラメータとして用意されています。
+</P>
+<p>
+パレットキー内部のビット表現の仕様から、指定可能なサイズに制限があります。<BR>
+また、実際にメモリ確保を行うVRAMマネージャの実装によって、一度に確保可能なサイズに制限がある場合があります。
+</p>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_GfdFreePlttVram.html">NNS_GfdFreePlttVram</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/01/31 確保サイズに関する注意書きを追加</P>
+<P>2005/01/31 サイズの値域に関する注意書きを追加</P>
+<P>2004/07/16 初版</P>
+</BODY>
+
+</HTML>

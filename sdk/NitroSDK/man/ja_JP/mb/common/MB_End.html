@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_End</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_End</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void    MB_End(void);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+なし
+</p>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>MBライブラリを終了します。<BR>
+<A href="../parent/MB_StartParent.html">MB_StartParent</A>関数で親機として動作している場合はその処理を自動的に終了します。<BR>
+<BR>
+<A href="MB_Init.html">MB_Init</A>関数で指定したメモリやDMAチャンネルは解放され、再びユーザが使用可能となります。<BR>
+終了処理が完了すると、<A href="../parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A>のコールバックとして、引数 status が MB_COMM_PSTATE_END の値で渡されて返ってきます。
+<BR>
+<BR>
+<font color="#800000">
+この関数は<A href="../parent/MB_StartParent.html">MB_StartParent</A>関数の呼び出しと対応して呼び出される必要があります。</font>
+</CODE></p>
+<BR>
+<h2>内部動作</h2>
+<p><CODE>
+<font color="#800000">
+この関数は内部で無線を駆動していれば<a href="../../wm/wm/WM_End.html">WM_End</a>関数を呼び出し、通信を終了します。<br>
+完了コールバックが呼び出された時点で、無線ライブラリの状態は<a href="../../wm/wm/wm_state_diagram.html">初期化前の状態</a>になっています。<BR>
+</font></CODE></p>
+<h2>参照</h2>
+<p><CODE>
+<A href="MB_Init.html">MB_Init</A> 
+<A href="../parent/MB_StartParent.html">MB_StartParent</A> 
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2004/10/18 MB_StartParentとの対応を明記<BR>
+2004/10/15 完了時のWM状態に関する記述修正<BR>
+2004/10/05 完了時のWM状態に関する記述追加<BR>
+2004/09/10 コールバックに関する記述追加<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

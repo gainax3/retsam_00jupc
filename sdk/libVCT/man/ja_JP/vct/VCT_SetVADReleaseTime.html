@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCT_SetVADReleaseTime</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCT_SetVADReleaseTime</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><code>void VCT_SetVADReleaseTime( int count );</code></PRE></dd> 
+</dl>
+
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%" height="17"><EM><STRONG>count</STRONG></EM></TD>
+      <TD width="87%" height="17">リリース時間（パケット数）</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<p>VAD(Voice Activity Detection)が無音と判定してから、実際にパケットの送出を停止するまでの期間を設定します。</p>
+<p>会話途中の息継ぎなどでVADが無音を判定してしまうことを避けるために、500ms以上のリリース時間を設定してください。</p>
+
+<p><em><strong>count</strong></em>に無音を判定してから実際に送信をやめるまでの時間をパケット単位で指定します。10を設定すると68 * 10 = 680ms となります。なお、デフォルトは15パケット分（68 * 15 = 1020ms）となっております。</p>
+
+<h2>参照</h2>
+なし
+<H2>履歴</H2>
+<P>
+2006/04/13 送信間隔の変更と、デフォルト値の記述を追記<br>
+2006/01/25 初版
+</P>
+</body>
+</html>

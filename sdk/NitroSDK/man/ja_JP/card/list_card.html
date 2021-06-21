@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>CARD モジュール(CARD)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>CARD モジュール(CARD)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="common/CARD_Init.html" target="_self">CARD_Init</A></TH>
+      <TD>モジュールを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_IsAvailable.html" target="_self">CARD_IsAvailable</A></TH>
+      <TD>モジュールが初期化されているか判定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Common">共通</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="common/CARD_IsEnabled.html" target="_self">CARD_IsEnabled</A></TH>
+      <TD>NITRO-CARDへのアクセスが許可されているか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_Enable.html" target="_self">CARD_Enable</A></TH>
+      <TD>NITRO-CARDへのアクセス許可状態を変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetResultCode.html" target="_self">CARD_GetResultCode</A></TH>
+      <TD>最後に処理した関数の結果を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetThreadPriority.html" target="_self">CARD_GetThreadPriority</A></TH>
+      <TD>CARD非同期処理スレッドの優先度を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_SetThreadPriority.html" target="_self">CARD_SetThreadPriority</A></TH>
+      <TD>CARD非同期処理スレッドの優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetRomHeader.html" target="_self">CARD_GetRomHeader</A></TH>
+      <TD>本体に実際に挿入されているNITRO-CARDのROM内登録情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetCacheFlushThreshold.html" target="_self">CARD_GetCacheFlushThreshold</A></TH>
+      <TD>キャッシュ無効化処理の方式を切り替える閾値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_SetCacheFlushThreshold.html" target="_self">CARD_SetCacheFlushThreshold</A></TH>
+      <TD>キャッシュ無効化処理の方式を切り替える閾値を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Backup">バックアップ全般</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="backup/CARD_LockBackup.html" target="_self">CARD_LockBackup</A></TH>
+      <TD>バックアップデバイスのアクセスバスをロックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="backup/CARD_UnlockBackup.html" target="_self">CARD_UnlockBackup</A></TH>
+      <TD>バックアップデバイスのアクセスバスをアンロックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_IdentifyBackup.html" target="_self">CARD_IdentifyBackup</A></TH>
+      <TD>バックアップデバイスを指定します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetCurrentBackupType.html" target="_self">CARD_GetCurrentBackupType</A></TH>
+      <TD>指定されているバックアップデバイスの種類を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetBackupTotalSize.html" target="_self">CARD_GetBackupTotalSize</A></TH>
+      <TD>指定されているバックアップデバイスの全体サイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetBackupSectorSize.html" target="_self">CARD_GetBackupSectorSize</A></TH>
+      <TD>指定されているバックアップデバイスのセクタサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="common/CARD_GetBackupPageSize.html" target="_self">CARD_GetBackupPageSize</A></TH>
+      <TD>指定されているバックアップデバイスのページサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="backup/CARD_TryWaitBackupAsync.html" target="_self">CARD_TryWaitBackupAsync</A></TH>
+      <TD>バックアップデバイスへの非同期処理が完了したか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="backup/CARD_WaitBackupAsync.html" target="_self">CARD_WaitBackupAsync</A></TH>
+      <TD>バックアップデバイスへの非同期処理が完了するまで待機します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="backup/CARD_CancelBackupAsync.html" target="_self">CARD_CancelBackupAsync</A></TH>
+      <TD>バックアップデバイスへの非同期処理のキャンセルを要求します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Eeprom">バックアップ EEPROM デバイス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_IsBackupEeprom.html" target="_self">CARD_IsBackupEeprom</A></TH>
+      <TD>指定されているバックアップデバイスが EEPROM か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_ReadEeprom.html" target="_self">CARD_ReadEeprom</A></TH>
+      <TD>EEPROM デバイスからデータを読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_ReadEepromAsync.html" target="_self">CARD_ReadEepromAsync</A></TH>
+      <TD>EEPROM デバイスからデータを非同期に読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_WriteEeprom.html" target="_self">CARD_WriteEeprom</A></TH>
+      <TD>EEPROM デバイスへデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_WriteEepromAsync.html" target="_self">CARD_WriteEepromAsync</A></TH>
+      <TD>EEPROM デバイスへデータを非同期に書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_VerifyEeprom.html" target="_self">CARD_VerifyEeprom</A></TH>
+      <TD>EEPROM デバイスのデータを比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_VerifyEepromAsync.html" target="_self">CARD_VerifyEepromAsync</A></TH>
+      <TD>EEPROM デバイスのデータを非同期に比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_WriteAndVerifyEeprom.html" target="_self">CARD_WriteAndVerifyEeprom</A></TH>
+      <TD>EEPROM デバイスへデータを書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="eeprom/CARD_WriteAndVerifyEepromAsync.html" target="_self">CARD_WriteAndVerifyEepromAsync</A></TH>
+      <TD>EEPROM デバイスへ非同期にデータを書き込み、比較確認します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="FLASH">バックアップ FLASH デバイス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_IsBackupFlash.html" target="_self">CARD_IsBackupFlash</A></TH>
+      <TD>指定されているバックアップデバイスが FLASH か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ReadFlash.html" target="_self">CARD_ReadFlash</A></TH>
+      <TD>FLASH デバイスからデータを読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ReadFlashAsync.html" target="_self">CARD_ReadFlashAsync</A></TH>
+      <TD>FLASH デバイスからデータを非同期に読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteFlash.html" target="_self">CARD_WriteFlash</A></TH>
+      <TD>FLASH デバイスへデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteFlashAsync.html" target="_self">CARD_WriteFlashAsync</A></TH>
+      <TD>FLASH デバイスへデータを非同期に書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_VerifyFlash.html" target="_self">CARD_VerifyFlash</A></TH>
+      <TD>FLASH デバイスのデータを比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_VerifyFlashAsync.html" target="_self">CARD_VerifyFlashAsync</A></TH>
+      <TD>FLASH デバイスのデータを非同期に比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteAndVerifyFlash.html" target="_self">CARD_WriteAndVerifyFlash</A></TH>
+      <TD>FLASH デバイスへデータを書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteAndVerifyFlashAsync.html" target="_self">CARD_WriteAndVerifyFlashAsync</A></TH>
+      <TD>FLASH デバイスへ非同期にデータを書き込み、比較確認します。</TD>
+    </TR>
+ 
+    <TR>
+      <TH width="25%"><A href="flash/CARD_EraseFlashSector.html" target="_self">CARD_EraseFlashSector</A></TH>
+      <TD>FLASH デバイスのデータをセクタ単位で消去します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_EraseFlashSectorAsync.html" target="_self">CARD_EraseFlashSectorAsync</A></TH>
+      <TD>FLASH デバイスのデータをセクタ単位で非同期に消去します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ProgramFlash.html" target="_self">CARD_ProgramFlash</A></TH>
+      <TD>FLASH デバイスの消去済み領域へデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ProgramFlashAsync.html" target="_self">CARD_ProgramFlashAsync</A></TH>
+      <TD>FLASH デバイスの消去済み領域へデータを非同期に書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ProgramAndVerifyFlash.html" target="_self">CARD_ProgramAndVerifyFlash</A></TH>
+      <TD>FLASH デバイスの消去済み領域へデータを書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_ProgramAndVerifyFlashAsync.html" target="_self">CARD_ProgramAndVerifyFlashAsync</A></TH>
+      <TD>FLASH デバイスの消去済み領域へ非同期にデータを書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteFlashSector.html" target="_self">CARD_WriteFlashSector</A></TH>
+      <TD>FLASH デバイスへデータをセクタ単位で書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteFlashSectorAsync.html" target="_self">CARD_WriteFlashSectorAsync</A></TH>
+      <TD>FLASH デバイスへ非同期にセクタ単位でデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteAndVerifyFlashSector.html" target="_self">CARD_WriteAndVerifyFlashSector</A></TH>
+      <TD>FLASH デバイスへデータをセクタ単位で書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="flash/CARD_WriteAndVerifyFlashSectorAsync.html" target="_self">CARD_WriteAndVerifyFlashSectorAsync</A></TH>
+      <TD>FLASH デバイスへ非同期にセクタ単位でデータを書き込み、比較確認します。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<H3><A name="FRAM">バックアップ FRAM デバイス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_IsBackupFram.html" target="_self">CARD_IsBackupFram</A></TH>
+      <TD>指定されているバックアップデバイスが FRAM か判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_ReadFram.html" target="_self">CARD_ReadFram</A></TH>
+      <TD>FRAM デバイスからデータを読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_ReadFramAsync.html" target="_self">CARD_ReadFramAsync</A></TH>
+      <TD>FRAM デバイスからデータを非同期に読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_WriteFram.html" target="_self">CARD_WriteFram</A></TH>
+      <TD>FRAM デバイスへデータを書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_WriteFramAsync.html" target="_self">CARD_WriteFramAsync</A></TH>
+      <TD>FRAM デバイスへデータを非同期に書き込みます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_VerifyFram.html" target="_self">CARD_VerifyFram</A></TH>
+      <TD>FRAM デバイスのデータを比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_VerifyFramAsync.html" target="_self">CARD_VerifyFramAsync</A></TH>
+      <TD>FRAM デバイスのデータを非同期に比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_WriteAndVerifyFram.html" target="_self">CARD_WriteAndVerifyFram</A></TH>
+      <TD>FRAM デバイスへデータを書き込み、比較確認します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="fram/CARD_WriteAndVerifyFramAsync.html" target="_self">CARD_WriteAndVerifyFramAsync</A></TH>
+      <TD>FRAM デバイスへ非同期にデータを書き込み、比較確認します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Rom">ROM アクセス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+  
+    <TR>
+      <TH width="25%"><A href="rom/CARD_GetRomRegionFAT.html" target="_self">CARD_GetRomRegionFAT</A></TH>
+      <TD>ROM 内登録情報からFAT領域情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_GetRomRegionFNT.html" target="_self">CARD_GetRomRegionFNT</A></TH>
+      <TD>ROM 内登録情報からFNT領域情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_LockRom.html" target="_self">CARD_LockRom</A></TH>
+      <TD>ROM が配置されているデバイスのアクセスバスをロックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_UnlockRom.html" target="_self">CARD_UnlockRom</A></TH>
+      <TD>ROM が配置されているデバイスのアクセスバスをアンロックします。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_ReadRom.html" target="_self">CARD_ReadRom</A></TH>
+      <TD>ROM デバイスからデータを同期的に読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_ReadRomAsync.html" target="_self">CARD_ReadRomAsync</A></TH>
+      <TD>ROM デバイスからデータを非同期的に読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_TryWaitRomAsync.html" target="_self">CARD_TryWaitRomAsync</A></TH>
+      <TD>ROM デバイスへの非同期処理が完了したか判定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="rom/CARD_WaitRomAsync.html" target="_self">CARD_WaitRomAsync</A></TH>
+      <TD>ROM デバイスへの非同期処理が完了するまで待機します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="pulledOut">抜き検出</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="pulledOut/CARD_IsPulledOut.html" target="_self">CARD_IsPulledOut</A></TH>
+      <TD>カードの抜き検出を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pulledOut/CARD_SetPulledOutCallback.html" target="_self">CARD_SetPulledOutCallback</A></TH>
+      <TD>カード抜きコールバックを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pulledOut/CARD_TerminateForPulledOut.html" target="_self">CARD_TerminateForPulledOut</A></TH>
+      <TD>カード抜きに対し、ARM7と共に停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pulledOut/CARD_CheckPulledOut.html" target="_self">CARD_CheckPulledOut</A></TH>
+      <TD>カードの抜き検出をARM9からただちに行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+
+<H3><A name="const">定数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="card_rom_page_size_const.html" target="_self">CARD_ROM_PAGE_SIZE</A></TH>
+      <TD>CARD ROM デバイスのページ単位バイト数です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="card_backup_type_const.html" target="_self">CARDBackupType</A></TH>
+      <TD>NITRO-CARD に搭載されるバックアップデバイスの種類です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="card_result_const.html" target="_self">CARDResult</A></TH>
+      <TD>CARD関数が最後に実行したアクセス処理の結果を表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="card_thread_priority_default_const.html" target="_self">CARD_THREAD_PRIORITY_DEFAULT</A></TH>
+      <TD>CARD非同期処理スレッドの優先度の初期値です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="struct">構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="card_rom_region_type.html" target="_self">CARDRomRegion</A></TH>
+      <TD>NitroROMフォーマットに基づくFNT、FATおよびOVTの情報を表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="card_rom_header_type.html" target="_self">CARDRomHeader</A></TH>
+      <TD>ROM 内登録データの情報を表す構造体です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

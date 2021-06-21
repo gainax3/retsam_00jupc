@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTBlockInfoTable</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTBlockInfoTable</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+<pre>
+typedef struct {
+  WBTBlockInfo *block_info[WBT_NUM_OF_AID];
+} WBTBlockInfoTable;
+</pre>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>各相手局ごとに要求した登録ブロック情報の格納先ポインタを管理するテーブルです。<BR>
+これらは<a href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</a>関数で相手から受信する際に、<br>
+該当するaidのインデックス要素にデータ格納先を指すポインタを指定しておく必要があります。<br>
+<br>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR></P>
+</body>
+</html>

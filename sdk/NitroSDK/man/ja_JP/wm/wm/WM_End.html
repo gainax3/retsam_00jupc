@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_End</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_End</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_End( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>無線関連の全機能を停止し、WMライブラリを終了します。
+WMが<A href="wm_state_diagram.html">IDLEステート</A>のときにのみ実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、終了処理が完了した後にコールバックが発生します。
+この場合はコールバックが発生した時点でWMライブラリは<A href = "wm_state_diagram.html">初期化前の状態</A>に戻っており、ライブラリが使用していたワーク用バッファも解放されています。<BR>
+再びWMを使用する場合は、<A href="WM_Initialize.html">WM_Initialize</A>もしくは<A href="WM_Init.html">WM_Init</A>からやり直してください。<BR>
+なお、この関数は<A href="WM_PowerOff.html">WM_PowerOff関数</A>、<A href="WM_Disable.html">WM_Disable関数</A>、<A href="WM_Finish.html">WM_Finish関数</A>の機能を統合したものですので、終了処理を細かく制御する場合にはこれらの関数を別々に使用するようにして下さい。
+</P>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_Initialize.html">WM_Initialize</A>, <A href="WM_Init.html">WM_Init</A>, <A href="WM_SetIndCallback.html">WM_SetIndCallback</A>, <A href="WM_Reset.html">WM_Reset</A>, <A href="WM_PowerOff.html">WM_PowerOff</A>, <A href="WM_Disable.html">WM_Disable</A>, <A href="WM_Finish.html">WM_Finish</A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/10/21 コールバック発生時の状態に関する説明変更<BR>
+2004/09/11 機能分割関数群に関する説明を追記<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

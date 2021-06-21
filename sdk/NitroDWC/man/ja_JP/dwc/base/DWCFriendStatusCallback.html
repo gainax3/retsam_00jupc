@@ -1,0 +1,113 @@
+<HTML lang="ja">
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCFriendStatusCallback</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCFriendStatusCallback</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+typedef void (*DWCFriendStatusCallback)( int index,
+                                         u8  status,
+                                         const char* statusString,
+                                         void* param );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+          友達の通信状態が変化したときに呼び出されます。
+		</P>
+		<P>
+		  プレイヤーの通信状態は、statusで表されるstatusフラグと、statusStringで表されるstatus文字列から成っており、GameSpyサーバ上で管理されています。
+		  statusフラグはDWCライブラリが自動的にセットしますが、status文字列は<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a> / <a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>関数を用いてアプリケーションが設定することができます。
+		</P>
+		<P>
+		  本コールバック関数は<A href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</A>関数によって設定することができます。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>index</CODE></STRONG></EM></TD>
+					<TD width="75%">状態が変化した友達の友達リストインデックス</TD>
+				</TR>
+				<tr>
+                  <td width="25%"><EM><STRONG><CODE>status</CODE></STRONG></EM></td>
+					<td width="75%">友達の状態。DWC_STATUS_* の列挙子。</td>
+				</tr>
+				<tr>
+                  <td width="25%"><EM><STRONG><CODE>statusString</CODE></STRONG></EM></td>
+					<td width="75%">友達のstatus文字列。文字列は最大255文字＋NULL終端。</td>
+				</tr>
+				<tr>
+                  <td width="25%"><EM><STRONG><CODE>param</CODE></STRONG></EM></td>
+					<td width="75%"><A href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</A>関数で指定したコールバック用パラメータ</td>
+				</tr>
+			</TBODY>
+		</TABLE>
+
+        <p>statusの値は、以下のいずれかになります。</p>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_OFFLINE</CODE></STRONG></EM></td>
+                  <td>オフライン<BR>自分がオフラインの時、または相手と友達関係が成立していないとき</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_ONLINE</CODE></STRONG></EM></td>
+                  <td>オンライン（Wi-Fiコネクションサーバにログイン済み）</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_PLAYING</CODE></STRONG></EM></td>
+                  <td>ゲームプレイ中（マッチメイク完了後の状態）</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_MATCH_ANYBODY</CODE></STRONG></EM></td>
+                  <td>友達無指定ピアマッチメイク中</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_MATCH_FRIEND</CODE></STRONG></EM></td>
+                  <td>友達指定ピアマッチメイク中</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_MATCH_SC_CL</CODE></STRONG></EM></td>
+                  <td>サーバクライアントマッチメイク中のクライアントDS</td>
+                </TR>
+                <TR>
+                  <td width="25%"><EM><STRONG><CODE>DWC_STATUS_MATCH_SC_SV</CODE></STRONG></EM></td>
+                  <td>サーバクライアントマッチメイク中のサーバDS</td>
+                </TR>
+              </TBODY>
+          </TABLE>        
+        
+		<H2>返り値</H2>
+		<P>
+          なし。
+		</P>
+
+		<H2>参照</H2>
+		<P>
+		<CODE>
+			<A href="DWC_UpdateServersAsync.html">DWC_UpdateServersAsync</A>,
+			<a href="DWC_SetOwnStatusString.html">DWC_SetOwnStatusString</a>,
+			<a href="DWC_SetOwnStatusData.html">DWC_SetOwnStatusData</a>
+		</CODE>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2005/12/16 通信状態、コールバック設定関数について追記<BR>
+			2005/11/01 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

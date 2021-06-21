@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MIC_GetLastSamplingAddress</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MIC_GetLastSamplingAddress</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>void*  MIC_GetLastSamplingAddress( void );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<P>なし。</P>
+
+<h2>返り値</h2>
+<p>最後にサンプリングされたデータが格納されたアドレスを返します。</p>
+
+<H2>説明</H2>
+<P>
+マイクの自動サンプリングを実行中もしくは実行後に、最後にサンプリングされたデータが保存されたバッファのアドレスを取得します。<BR>
+MICライブラリの初期化直後や、<A href="MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>により自動サンプリングが開始された直後の
+一度もサンプリングしていない状態では、NULLを返します。
+</P>
+
+<H2>参照</H2>
+<P><CODE><A href="MIC_StartAutoSampling.html">MIC_StartAutoSampling</A>, <A href="MIC_StartAutoSamplingAsync.html">MIC_StartAutoSamplingAsync</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2004/11/04 サンプリングが行われる前の返り値を明記<BR>
+Ver. 2004/06/01 初版
+</P>
+</body>
+</html>

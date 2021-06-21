@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>関数リファレンストップページ</TITLE>
+<LINK rel="stylesheet" href="css/main.css">
+</HEAD>
+<BODY>
+
+<DIV class="title">
+	<IMG src="img/logo-b.gif" alt="NITRO-System" width="480" height="120"><BR>
+	関数リファレンスマニュアル<BR>
+	（日本語版）
+</DIV>
+<DIV class="version">
+	NITRO-System 2007年11月26日版対応
+</DIV>
+
+<P class="confidential">
+	&quot;Confidential&quot;
+</P>
+<P class="caution-en">
+	This document contains confidential and proprietary information of Nintendo
+	and is also protected under the copyright laws of the United States and
+	foreign countries. No part of this document may be released, distributed,
+	transmitted or reproduced in any form or by any electronic or mechanical
+	means, including information storage and retrieval systems, without permission
+	in writing from Nintendo.
+</P>
+
+<P class="caution-jp">
+	[注意！]　このドキュメントの内容は、秘密情報であるため、厳重な取扱い、管理を行なってください。
+</P>
+
+<P class="copyright">
+	&copy; 2004-2007 Nintendo Co.,Ltd. All rights reserved.
+</P>
+<P class="browser">
+	Microsoft Internet Explorer 5.0以降推奨
+</P>
+
+
+<HR>
+<H1 class="caution">注意事項</H1>
+<H2 class="caution">マルチスレッドでの動作について</H2>
+<P class="caution">
+	NITRO-Systemライブラリは、基本的にスレッドセーフ（マルチスレッドに対応した形）に設計されていません。
+	このため、NITRO-Systemの各ライブラリのAPIを割り込みハンドラや異なるスレッドから呼び出した場合、
+	正常に動作しない可能性があります。
+</P>
+<P class="caution">
+	ただし、サウンドドライバ(SND)の関数はスレッドセーフですので、
+	割り込みハンドラや異なるスレッドから呼び出すことができます。
+</P>
+
+<H2 class="caution">除算器の使用について</H2>
+<P class="caution">
+	NITRO-SystemのG2DおよびG3Dライブラリでは除算器を使用しています。
+	そのため、割り込み処理内で除算器の状態の退避/復元を行わずにNITRO-Systemを使用しますと、
+	割り込み元の演算結果を破壊してしまう可能性があります。
+があります。
+</P>
+<P class="caution">
+	割り込み処理でNITRO-Systemを使用する場合には、
+	NITRO-SDKのCP_SaveContext(),CP_RestoreContext()を使用して、
+	除算器の状態を退避・復元するようにしてください。
+</P>
+
+
+<HR>
+<H1>今回の関数リファレンスにおける新規・変更点《2007/11/26》</H1>
+
+<H2>新規</H2>
+<TABLE>
+	<TBODY>
+		<TR><TD><A href="./g2d/SoftwareSprite/NNS_G2dSetupSoftwareSpriteMaterial.html">NNS_G2dSetupSoftwareSpriteMaterial</A></TD></TR>
+		<TR><TD><A href="./gfd/VramTransMan/NNS_GfdClearVramTransferManagerQueue.html">NNS_GfdClearVramTransferManagerQueue</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcGetLoadBlockSize.html">NNS_SndArcGetLoadBlockSize</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcSetLoadBlockSize.html">NNS_SndArcSetLoadBlockSize</A></TD></TR>
+	</TBODY>
+</TABLE>
+
+<H2>変更</H2>
+<TABLE>
+	<TBODY>
+		<TR><TD><A href="./g2d/CellAnimation/NNS_G2dInitCellAnimationVramTransfered.html">NNS_G2dInitCellAnimationVramTransfered</A></TD></TR>
+		<TR><TD><A href="./g2d/CellAnimation/NNS_G2dInitializeCellAnimationVramTransfered.html">NNS_G2dInitializeCellAnimationVramTransfered</A></TD></TR>
+		<TR><TD><A href="./g2d/Oam/NNS_G2dApplyOamManagerToHWSprite.html">NNS_G2dApplyOamManagerToHWSprite</A></TD></TR>
+		<TR><TD><A href="./g2d/OamSoftEmu/OAMSoftEmu_Overview.html">OAMソフトウエアスプライト描画モジュール</A></TD></TR>
+		<TR><TD><A href="./g2d/SoftwareSprite/NNS_G2dSetupSoftwareSpriteCamera.html">NNS_G2dSetupSoftwareSpriteCamera</A></TD></TR>
+		<TR><TD><A href="./g2d/SoftwareSprite/SoftwareSprite_Overview.html">ソフトウェアスプライト概要</A></TD></TR>
+		<TR><TD><A href="./g3d/kernel/NNS_G3dPlttLoad.html">NNS_G3dPlttLoad</A></TD></TR>
+		<TR><TD><A href="./g3d/kernel/NNS_G3dRenderObjTestFlag.html">NNS_G3dRenderObjTestFlag</A></TD></TR>
+		<TR><TD><A href="./g3d/kernel/NNS_G3dTexLoad.html">NNS_G3dTexLoad</A></TD></TR>
+		<TR><TD><A href="./g3d/sbc/NNS_G3dDraw.html">NNS_G3dDraw</A></TD></TR>
+		<TR><TD><A href="./g3d/sbc/NNS_G3dDraw1Mat1Shp.html">NNS_G3dDraw1Mat1Shp</A></TD></TR>
+		<TR><TD><A href="./g3d/struct/NNSG3dAnmObj.html">NNSG3dAnmObj</A></TD></TR>
+		<TR><TD><A href="./g3d/struct/NNSG3dGlb.html">NNSG3dGlb</A></TD></TR>
+		<TR><TD><A href="./g3d/struct/NNSG3dRenderObj.html">NNSG3dRenderObj</A></TD></TR>
+		<TR><TD><A href="./g3d/struct/NNSG3dResMdl.html">NNSG3dResMdl</A></TD></TR>
+		<TR><TD><A href="./g3d/struct/NNSG3dResTex.html">NNSG3dResTex</A></TD></TR>
+		<TR><TD><A href="./g3d/util/NNS_G3dResDefaultRelease.html">NNS_G3dResDefaultRelease</A></TD></TR>
+		<TR><TD><A href="./g3d/util/NNS_G3dResDefaultSetup.html">NNS_G3dResDefaultSetup</A></TD></TR>
+		<TR><TD><A href="./gfd/FrmTexVramMan/NNS_GfdAllocFrmTexVram.html">NNS_GfdAllocFrmTexVram</A></TD></TR>
+		<TR><TD><A href="./gfd/LnkTexVramMan/NNS_GfdAllocLnkTexVram.html">NNS_GfdAllocLnkTexVram</A></TD></TR>
+		<TR><TD><A href="./mcs/nitro/NNS_McsInit.html">NNS_McsInit</A></TD></TR>
+		<TR><TD><A href="./mcs/nitro/NNS_McsInitFileIO.html">NNS_McsInitFileIO</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcLoadBank.html">NNS_SndArcLoadBank*</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcLoadGroup.html">NNS_SndArcLoadGroup</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcLoadSeq.html">NNS_SndArcLoadSeq*</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcLoadSeqArc.html">NNS_SndArcLoadSeqArc</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcLoadWaveArc.html">NNS_SndArcLoadWaveArc</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndArcReadFile.html">NNS_SndArcReadFile</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndCaptureStartReverb.html">NNS_SndCaptureStartReverb</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndHeapAlloc.html">NNS_SndHeapAlloc</A></TD></TR>
+		<TR><TD><A href="./snd/NNS_SndPlayerSetTrackAllocatableChannel.html">NNS_SndPlayerSetTrackAllocatableChannel</A></TD></TR>
+	</TBODY>
+</TABLE>
+
+<H2>削除</H2>
+<TABLE>
+	<TBODY>
+		<TR><TD>NNS_G3dGetPosMtxFromStack</TD></TR>
+	</TBODY>
+</TABLE>
+
+<BR>
+<BR>
+</BODY>
+</HTML>

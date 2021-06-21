@@ -1,0 +1,2145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>グラフィックス(GX/G2/G3/G3X) API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>グラフィックス(GX/G2/G3/G3X) API 機能一覧</H1>
+<H1><A name="gx"></A>2D/3Dグラフィックス全般(GX)</H1>
+<H2>2Dグラフィックスエンジン共通</H2>
+<H3><A name="Power">パワーコントロール</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetPower.html">GX_SetPower</A></TH>
+      <TD width="70%">各種パワーコントロールを一括設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetPower.html">GX_GetPower</A></TH>
+      <TD>各種パワーコントロールの状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_Power2D.html">GX_Power2D</A></TH>
+      <TD>メイン・サブの２ＤエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_Power3D.html">GX_Power3D</A></TH>
+      <TD>ジオメトリエンジンとレンダリングエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_Power2DMain.html">GX_Power2DMain</A></TH>
+      <TD>メイン２ＤエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_Power2DSub.html">GX_Power2DSub</A></TH>
+      <TD>サブ２ＤエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_PowerGeometry.html">GX_PowerGeometry</A></TH>
+      <TD>ジオメトリエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_PowerRender.html">GX_PowerRender</A></TH>
+      <TD>レンダリングエンジンのON/OFFを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_SetDispSelect.html">GX_SetDispSelect</A></TH>
+      <TD>LCD出力先を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetDispSelect.html">GX_GetDispSelect</A></TH>
+      <TD>LCD出力先の設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Init2D">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_Init.html">GX_Init</A></TH>
+      <TD width="70%">グラフィックスシステムを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_InitEx.html">GX_InitEx</A></TH>
+      <TD>グラフィックスシステムを初期化します。またGXのデフォルトDMA番号の変更をおこないます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetDefaultDMA.html">GX_SetDefaultDMA</A></TH>
+      <TD width="70%">GXの使用するDMA番号の設定を変更します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetDefaultDMA.html">GX_GetDefaultDMA</A></TH>
+      <TD>GXの使用するDMA番号の設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VRAM1">VRAMバンクのリソースへの割り当て</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForBG.html">GX_SetBankForBG</A></TH>
+      <TD width="70%">VRAMバンクを指定してメイン2DエンジンのBGに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForBGEx.html">GX_SetBankForBGEx</A></TH>
+      <TD width="70%">連続的なアドレスに割り当てることができない組み合わせのVRAMバンクを指定してメイン2DエンジンのBGに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForOBJ.html">GX_SetBankForOBJ</A></TH>
+      <TD width="70%">VRAMバンクを指定してメイン2DエンジンのOBJに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForBGExtPltt.html">GX_SetBankForBGExtPltt</A></TH>
+      <TD width="70%">VRAMバンクを指定してメイン2DエンジンのBG拡張パレットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForOBJExtPltt.html">GX_SetBankForOBJExtPltt</A></TH>
+      <TD width="70%">VRAMバンクを指定してメイン2DエンジンのOBJ拡張パレットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForTex.html">GX_SetBankForTex</A></TH>
+      <TD width="70%">VRAMバンクを指定してテクスチャイメージスロットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForTexPltt.html">GX_SetBankForTexPltt</A></TH>
+      <TD width="70%">VRAMバンクを指定してテクスチャパレットスロットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForClearImage.html">GX_SetBankForClearImage</A></TH>
+      <TD width="70%">VRAMバンクを指定してクリアイメージに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForSubBG.html">GX_SetBankForSubBG</A></TH>
+      <TD width="70%">VRAMバンクを指定してサブ2DエンジンのBGに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForSubOBJ.html">GX_SetBankForSubOBJ</A></TH>
+      <TD width="70%">VRAMバンクを指定してサブ2DエンジンのOBJに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForSubBGExtPltt.html">GX_SetBankForSubBGExtPltt</A></TH>
+      <TD width="70%">VRAMバンクを指定してサブ2DエンジンのBG拡張パレットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForSubOBJExtPltt.html">GX_SetBankForSubOBJExtPltt</A></TH>
+      <TD width="70%">VRAMバンクを指定してサブ2DエンジンのOBJ拡張パレットに割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForARM7.html">GX_SetBankForARM7</A></TH>
+      <TD width="70%">VRAMバンクを指定してＡＲＭ７メモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBankForLCDC.html">GX_SetBankForLCDC</A></TH>
+      <TD width="70%">VRAMバンクを指定してLCDCメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForBG.html">GX_TrySetBankForBG</A></TH>
+      <TD width="70%">メイン2DエンジンのBGへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForBGEx.html">GX_TrySetBankForBGEx</A></TH>
+      <TD width="70%">メイン2DエンジンのBGへ、連続的なアドレスに割り当てることができない組み合わせのVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForOBJ.html">GX_TrySetBankForOBJ</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForBGExtPltt.html">GX_TrySetBankForBGExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのBG拡張パレットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForOBJExtPltt.html">GX_TrySetBankForOBJExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJ拡張パレットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForTex.html">GX_TrySetBankForTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForTexPltt.html">GX_TrySetBankForTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForClearImage.html">GX_TrySetBankForClearImage</A></TH>
+      <TD width="70%">クリアイメージへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForSubBG.html">GX_TrySetBankForSubBG</A></TH>
+      <TD width="70%">サブ2DエンジンのBGへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForSubOBJ.html">GX_TrySetBankForSubOBJ</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForSubBGExtPltt.html">GX_TrySetBankForSubBGExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのBG拡張パレットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForSubOBJExtPltt.html">GX_TrySetBankForSubOBJExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJ拡張パレットへVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForARM7.html">GX_TrySetBankForARM7</A></TH>
+      <TD width="70%">ＡＲＭ７メモリ空間へVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_TrySetBankForLCDC.html">GX_TrySetBankForLCDC</A></TH>
+      <TD width="70%">LCDCメモリ空間へVRAMバンクの割り当てを試みます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VRAM1_1">リソースに割り当てられたVRAMバンク情報の取得</A></H3>
+<TABLE border="1" width="100%">
+  <COL span="1" width="30%">
+  <COL span="1" width="70%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_GetBankForBG.html">GX_GetBankForBG</A></TH>
+      <TD width="70%">メイン2DエンジンのBGに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForOBJ.html">GX_GetBankForOBJ</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForBGExtPltt.html">GX_GetBankForBGExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのBG拡張パレットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForOBJExtPltt.html">GX_GetBankForOBJExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForTex.html">GX_GetBankForTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForTexPltt.html">GX_GetBankForTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForClearImage.html">GX_GetBankForClearImage</A></TH>
+      <TD width="70%">クリアイメージに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetBankForSubBG.html">GX_GetBankForSubBG</A></TH>
+      <TD width="70%">サブ2DエンジンのBGに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetBankForSubOBJ.html">GX_GetBankForSubOBJ</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetBankForSubBGExtPltt.html">GX_GetBankForSubBGExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのBG拡張パレットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetBankForSubOBJExtPltt.html">GX_GetBankForSubOBJExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForARM7.html">GX_GetBankForARM7</A></TH>
+      <TD width="70%">ARM7メモリ空間に割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="200"><A href="gx/GX_GetBankForLCDC.html">GX_GetBankForLCDC</A></TH>
+      <TD width="70%">LCDCに割り当てられたVRAMバンク情報を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VRAM2">リソースに割り当てられたVRAMバンクのＬＣＤＣメモリ空間への切り替え</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForBG.html">GX_ResetBankForBG</A></TH>
+      <TD width="70%">メイン2DエンジンのBGに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForOBJ.html">GX_ResetBankForOBJ</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForBGExtPltt.html">GX_ResetBankForBGExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのBG拡張パレットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForOBJExtPltt.html">GX_ResetBankForOBJExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForTex.html">GX_ResetBankForTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForTexPltt.html">GX_ResetBankForTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForClearImage.html">GX_ResetBankForClearImage</A></TH>
+      <TD width="70%">クリアイメージに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForSubBG.html">GX_ResetBankForSubBG</A></TH>
+      <TD width="70%">サブ2DエンジンのBGに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForSubOBJ.html">GX_ResetBankForSubOBJ</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForSubBGExtPltt.html">GX_ResetBankForSubBGExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのBG拡張パレットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForSubOBJExtPltt.html">GX_ResetBankForSubOBJExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンクをＬＣＤＣメモリ空間に割り当てます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_ResetBankForARM7.html">GX_ResetBankForARM7</A></TH>
+      <TD width="70%">ARM7に割り当てられたVRAMバンクをLCDCメモリ空間に割り当てます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VRAM3">リソースに割り当てられたVRAMバンクの解除</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForBG.html">GX_DisableBankForBG</A></TH>
+      <TD width="70%">メイン2DエンジンのBGに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForOBJ.html">GX_DisableBankForOBJ</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForBGExtPltt.html">GX_DisableBankForBGExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのBG拡張パレットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForOBJExtPltt.html">GX_DisableBankForOBJExtPltt</A></TH>
+      <TD width="70%">メイン2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForTex.html">GX_DisableBankForTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForTexPltt.html">GX_DisableBankForTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForClearImage.html">GX_DisableBankForClearImage</A></TH>
+      <TD width="70%">クリアイメージに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForSubBG.html">GX_DisableBankForSubBG</A></TH>
+      <TD width="70%">サブ2DエンジンのBGに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForSubOBJ.html">GX_DisableBankForSubOBJ</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForSubBGExtPltt.html">GX_DisableBankForSubBGExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのBG拡張パレットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForSubOBJExtPltt.html">GX_DisableBankForSubOBJExtPltt</A></TH>
+      <TD width="70%">サブ2DエンジンのOBJ拡張パレットに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForARM7.html">GX_DisableBankForARM7</A></TH>
+      <TD width="70%">ARM7に割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DisableBankForLCDC.html">GX_DisableBankForLCDC</A></TH>
+      <TD width="70%">LCDCに割り当てられたVRAMバンクを無効にします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3>各リソースのサイズの取得</H3>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfBG.html">GX_GetSizeOfBG</A></TD>
+      <TD width="70%">メイン2DエンジンのBGのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfOBJ.html">GX_GetSizeOfOBJ</A></TD>
+      <TD width="70%">メイン2DエンジンのOBJのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfBGExtPltt.html">GX_GetSizeOfBGExtPltt</A></TD>
+      <TD width="70%">メイン2DエンジンのBG拡張パレットのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfOBJExtPltt.html">GX_GetSizeOfOBJExtPltt</A></TD>
+      <TD width="70%">メイン2DエンジンのOBJ拡張パレットのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfTex.html">GX_GetSizeOfTex</A></TD>
+      <TD width="70%">テクスチャイメージのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfTexPltt.html">GX_GetSizeOfTexPltt</A></TD>
+      <TD width="70%">テクスチャパレットのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfClearImage.html">GX_GetSizeOfClearImage</A></TD>
+      <TD width="70%">クリアイメージのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfSubBG.html">GX_GetSizeOfSubBG</A></TD>
+      <TD width="70%">サブ2DエンジンのBGのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfSubOBJ.html">GX_GetSizeOfSubOBJ</A></TD>
+      <TD width="70%">サブ2DエンジンのOBJのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfSubBGExtPltt.html">GX_GetSizeOfSubBGExtPltt</A></TD>
+      <TD width="70%">サブ2DエンジンのBG拡張パレットのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfSubOBJExtPltt.html">GX_GetSizeOfSubOBJExtPltt</A></TD>
+      <TD width="70%">サブ2DエンジンのOBJ拡張パレットのサイズをバイト単位で返します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><A href="gx/GX_GetSizeOfARM7.html">GX_GetSizeOfARM7</A></TD>
+      <TD width="70%">ARM7に割り当てられているVRAMのサイズをバイト単位で返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Interrupt">割り込み・その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_GetVCount.html">GX_GetVCount</A></TH>
+      <TD width="70%">Vカウンタ値を読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetVCount.html">GX_SetVCount</A></TH>
+      <TD width="70%">Ｖカウンタ値を書き出します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_IsHBlank.html">GX_IsHBlank</A></TH>
+      <TD width="70%">Hブランク期間中かをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_IsVBlank.html">GX_IsVBlank</A></TH>
+      <TD width="70%">Vブランク期間中かをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_IsVCountEq.html">GX_IsVCountEq</A></TH>
+      <TD width="70%">Vカウンター一致期間中かをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_VCountEqIntr.html">GX_VCountEqIntr</A></TH>
+      <TD width="70%">Vカウンター一致割り込みを許可／不許可に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetVCountEqVal.html">GX_SetVCountEqVal</A></TH>
+      <TD width="70%">Vカウンター一致設定値を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_GetVCountEqVal.html">GX_GetVCountEqVal</A></TH>
+      <TD width="70%">Vカウンター一致設定値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_HBlankIntr.html">GX_HBlankIntr</A></TH>
+      <TD width="70%">Hブランク割り込みを許可／不許可に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_VBlankIntr.html">GX_VBlankIntr</A></TH>
+      <TD width="70%">Vブランク割り込みを許可／不許可に設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>メイン2Dグラフィックスエンジン</H2>
+<H3><A name="GraphicsMode">表示モードの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetGraphicsMode.html">GX_SetGraphicsMode</A></TH>
+      <TD width="70%">表示モードとBGモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetDispCnt.html">GX_GetDispCnt</A></TH>
+      <TD>表示コントロールレジスタの値を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Visibility">表示・非表示の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetVisiblePlane.html">GX_SetVisiblePlane</A></TH>
+      <TD width="70%">BG, OBJの表示／非表示を選択します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetVisiblePlane.html">GX_GetVisiblePlane</A></TH>
+      <TD>BG, OBJの表示／非表示設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetVisibleWnd.html">GX_SetVisibleWnd</A></TH>
+      <TD width="70%">ウィンドウの表示／非表示を選択します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetVisibleWnd.html">GX_GetVisibleWnd</A></TH>
+      <TD>ウィンドウの表示／非表示設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DispOn.html">GX_DispOn</A></TH>
+      <TD width="70%">LCDへの出力をONにします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_DispOff.html">GX_DispOff</A></TH>
+      <TD width="70%">LCDへの出力をＯＦＦにします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_BlankScr.html">GX_BlankScr</A></TH>
+      <TD width="70%"><I>このＡＰＩは将来のリリースにおいて削除される予定です。</I></TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_HBlankOBJProc.html">GX_HBlankOBJProc</A></TH>
+      <TD width="70%">Hブランク期間にOBJを処理するかどうかを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="OffsetMem">オフセットの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBGScrOffset.html">GX_SetBGScrOffset</A></TH>
+      <TD width="70%">スクリーンオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetBGCharOffset.html">GX_SetBGCharOffset</A></TH>
+      <TD width="70%">キャラクタオフセットを設定します。</TD>
+    </TR>
+
+  </TBODY>
+</TABLE>
+<H3><A name="MappingMode">OBJマッピングモードの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetOBJVRamModeChar.html">GX_SetOBJVRamModeChar</A></TH>
+      <TD width="70%">キャラクタＯＢＪのマッピングモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetOBJVRamModeChar.html">GX_GetOBJVRamModeChar</A></TH>
+      <TD>キャラクタＯＢＪのマッピングモード設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetOBJVRamModeBmp.html">GX_SetOBJVRamModeBmp</A></TH>
+      <TD width="70%">ビットマップＯＢＪのマッピングモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetOBJVRamModeBmp.html">GX_GetOBJVRamModeBmp</A></TH>
+      <TD>ビットマップＯＢＪのマッピングモード設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ResLoadG2Util">各種リソースのロード(2D)</A></H3>
+<TABLE border="1" width="475">
+  <TBODY>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadOBJ.html">GX_LoadOBJ</A></TH>
+      <TD width="70%">OBJデータをOBJ-VRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadOAM.html">GX_LoadOAM</A></TH>
+      <TD width="70%">OAMデータをOAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBGPltt.html">GX_LoadBGPltt</A></TH>
+      <TD width="70%">標準BGパレットデータを標準BGパレットRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadOBJPltt.html">GX_LoadOBJPltt</A></TH>
+      <TD width="70%">標準OBJパレットデータを標準OBJパレットRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG0Scr.html">GX_LoadBG0Scr</A></TH>
+      <TD width="70%">BG0スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG1Scr.html">GX_LoadBG1Scr</A></TH>
+      <TD width="70%">BG1スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG2Scr.html">GX_LoadBG2Scr</A></TH>
+      <TD width="70%">BG2スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG3Scr.html">GX_LoadBG3Scr</A></TH>
+      <TD width="70%">BG3スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_LoadBG2Bmp.html">GX_LoadBG2Bmp</A></TH>
+      <TD>BG2にビットマップデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_LoadBG3Bmp.html">GX_LoadBG3Bmp</A></TH>
+      <TD>BG3にビットマップデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG0Char.html">GX_LoadBG0Char</A></TH>
+      <TD width="70%">BG0キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG1Char.html">GX_LoadBG1Char</A></TH>
+      <TD width="70%">BG1キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG2Char.html">GX_LoadBG2Char</A></TH>
+      <TD width="70%">BG2キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBG3Char.html">GX_LoadBG3Char</A></TH>
+      <TD width="70%">BG3キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_BeginLoadBGExtPltt.html">GX_BeginLoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadBGExtPltt.html">GX_LoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_EndLoadBGExtPltt.html">GX_EndLoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットへのデータを転送が全て終った後に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_BeginLoadOBJExtPltt.html">GX_BeginLoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_LoadOBJExtPltt.html">GX_LoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="166"><A href="gx/GX_EndLoadOBJExtPltt.html">GX_EndLoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットへのデータ転送が全て終った後に呼びます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ResLoadG3Util">各種リソースのロード(3D)</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_BeginLoadTex.html">GX_BeginLoadTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_LoadTex.html">GX_LoadTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_EndLoadTex.html">GX_EndLoadTex</A></TH>
+      <TD width="70%">テクスチャイメージスロットにデータを転送が全て終った後に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_LoadTexEx.html">GX_LoadTexEx</A></TH>
+      <TD>テクスチャイメージスロットに割り当て可能なVRAMバンクにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_BeginLoadTexPltt.html">GX_BeginLoadTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_LoadTexPltt.html">GX_LoadTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_EndLoadTexPltt.html">GX_EndLoadTexPltt</A></TH>
+      <TD width="70%">テクスチャパレットスロットにデータを転送が全て終った後に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_LoadTexPlttEx.html">GX_LoadTexPlttEx</A></TH>
+      <TD>テクスチャパレットスロットに割り当て可能なVRAMバンクにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_BeginLoadClearImage.html">GX_BeginLoadClearImage</A></TH>
+      <TD width="70%">クリアイメージスロットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_LoadClearImageColor.html">GX_LoadClearImageColor</A></TH>
+      <TD width="70%">クリアイメージスロットにカラーデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_LoadClearImageDepth.html">GX_LoadClearImageDepth</A></TH>
+      <TD width="70%">クリアイメージスロットにデプスデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_EndLoadClearImage.html">GX_EndLoadClearImage</A></TH>
+      <TD width="70%">クリアイメージスロットにデータを転送が全て終った後に呼びます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MiscA">その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetCapture.html">GX_SetCapture</A></TH>
+      <TD width="70%">画面キャプチャを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_ResetCapture.html">GX_ResetCapture</A></TH>
+      <TD>画面キャプチャを解除します。通常はキャプチャ完了後自動で解除されます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GX_SetMasterBrightness.html">GX_SetMasterBrightness</A></TH>
+      <TD width="70%">マスター輝度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetMasterBrightness.html">GX_GetMasterBrightness</A> </TH>
+      <TD>マスター輝度を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>サブ2Dグラフィックスエンジン</H2>
+<H3><A name="GraphicsModeB">表示モードの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetGraphicsMode.html">GXS_SetGraphicsMode</A></TH>
+      <TD width="70%">BGモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GXS_GetDispCnt.html">GXS_GetDispCnt</A></TH>
+      <TD>表示コントロールレジスタの設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="VisibilityB">表示・非表示の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetVisiblePlane.html">GXS_SetVisiblePlane</A></TH>
+      <TD width="70%">BG, OBJの表示／非表示を選択します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetVisiblePlane.html">GXS_GetVisiblePlane</A></TH>
+      <TD>BG, OBJの表示／非表示設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetVisibleWnd.html">GXS_SetVisibleWnd</A></TH>
+      <TD width="70%">ウィンドウの表示／非表示を選択します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetVisibleWnd.html">GXS_GetVisibleWnd</A></TH>
+      <TD>ウィンドウの表示／非表示設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_DispOn.html">GXS_DispOn</A></TH>
+      <TD width="70%">LCDへの出力をONにします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_DispOff.html">GXS_DispOff</A></TH>
+      <TD width="70%">LCDへの出力をOFFにします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_HBlankOBJProc.html">GXS_HBlankOBJProc</A></TH>
+      <TD width="70%">Hブランク期間にOBJを処理するかどうかを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MappingModeB">OBJマッピングモードの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetOBJVRamModeChar.html">GXS_SetOBJVRamModeChar</A></TH>
+      <TD width="70%">キャラクタＯＢＪのマッピングモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetOBJVRamModeChar.html">GXS_GetOBJVRamModeChar</A></TH>
+      <TD>キャラクタＯＢＪのマッピングモード設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetOBJVRamModeBmp.html">GXS_SetOBJVRamModeBmp</A></TH>
+      <TD width="70%">ビットマップＯＢＪのマッピングモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetOBJVRamModeBmp.html">GXS_GetOBJVRamModeBmp</A></TH>
+      <TD>ビットマップＯＢＪのマッピングモード設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ResLoadB">各種リソースのロード</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadOBJ.html">GXS_LoadOBJ</A></TH>
+      <TD width="70%">OBJデータをOBJ-VRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadOAM.html">GXS_LoadOAM</A></TH>
+      <TD width="70%">OAMデータをOAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBGPltt.html">GXS_LoadBGPltt</A></TH>
+      <TD width="70%">標準BGパレットデータを標準BGパレットRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadOBJPltt.html">GXS_LoadOBJPltt</A></TH>
+      <TD width="70%">標準OBJパレットデータを標準OBJパレットRAMに転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG0Scr.html">GXS_LoadBG0Scr</A></TH>
+      <TD width="70%">BG0スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG1Scr.html">GXS_LoadBG1Scr</A></TH>
+      <TD width="70%">BG1スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG2Scr.html">GXS_LoadBG2Scr</A></TH>
+      <TD width="70%">BG2スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG3Scr.html">GXS_LoadBG3Scr</A></TH>
+      <TD width="70%">BG3スクリーンにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG2Bmp.html">GXS_LoadBG2Bmp</A></TH>
+      <TD width="70%">BG2にビットマップデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG3Bmp.html">GXS_LoadBG3Bmp</A></TH>
+      <TD width="70%">BG3にビットマップデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG0Char.html">GXS_LoadBG0Char</A></TH>
+      <TD width="70%">BG0キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG1Char.html">GXS_LoadBG1Char</A></TH>
+      <TD width="70%">BG1キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG2Char.html">GXS_LoadBG2Char</A></TH>
+      <TD width="70%">BG2キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBG3Char.html">GXS_LoadBG3Char</A></TH>
+      <TD width="70%">BG3キャラクタにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_BeginLoadBGExtPltt.html">GXS_BeginLoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadBGExtPltt.html">GXS_LoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_EndLoadBGExtPltt.html">GXS_EndLoadBGExtPltt</A></TH>
+      <TD width="70%">BG拡張パレットへのデータを転送が全て終った後に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_BeginLoadOBJExtPltt.html">GXS_BeginLoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットにデータを転送する前に呼びます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_LoadOBJExtPltt.html">GXS_LoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットにデータを転送します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_EndLoadOBJExtPltt.html">GXS_EndLoadOBJExtPltt</A></TH>
+      <TD width="70%">OBJ拡張パレットへのデータ転送が全て終った後に呼びます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MiscB">その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="gx/GXS_SetMasterBrightness.html">GXS_SetMasterBrightness</A></TH>
+      <TD width="70%">マスター輝度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GX_GetMasterBrightness.html">GXS_GetMasterBrightness</A></TH>
+      <TD>マスター輝度設定を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H1><A name="g2"></A>2Dグラフィックス(G2)</H1>
+<H2>2Dグラフィックスエンジン共通</H2>
+<H3><A name="OAM">OAM</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJAttr.html">G2_SetOBJAttr</A></TH>
+      <TD width="70%">オブジェクトの各アトリビュートを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJAffine.html">G2_SetOBJAffine</A></TH>
+      <TD width="70%">オブジェクトのアフィン変換を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJPosition.html">G2_SetOBJPosition</A></TH>
+      <TD width="70%">オブジェクトのXY座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJPriority.html">G2_SetOBJPriority</A></TH>
+      <TD width="70%">オブジェクトの表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJMode.html">G2_SetOBJMode</A></TH>
+      <TD width="70%">オブジェクトのOBJモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJEffect.html">G2_SetOBJEffect</A></TH>
+      <TD width="70%">オブジェクトのフリップ/アフィン変換パラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJShape.html">G2_SetOBJShape</A></TH>
+      <TD width="70%">オブジェクトの形状を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJCharName.html">G2_SetOBJCharName</A></TH>
+      <TD width="70%">オブジェクトの先頭キャラクタネームを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_SetOBJColorMode.html">G2_SetOBJColorMode</A></TH>
+      <TD>オブジェクトのカラーモードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_OBJMosaic.html">G2_OBJMosaic</A></TH>
+      <TD width="70%">OBJのモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJPosition.html">G2_GetOBJPosition</A></TH>
+      <TD width="70%">オブジェクトのXY座標を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJPriority.html">G2_GetOBJPriority</A></TH>
+      <TD width="70%">オブジェクトの表示優先度を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJMode.html">G2_GetOBJMode</A></TH>
+      <TD width="70%">オブジェクトのOBJモードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJColorParam.html">G2_GetOBJColorParam</A></TH>
+      <TD width="70%">オブジェクトのカラーパラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJEffect.html">G2_GetOBJEffect</A></TH>
+      <TD width="70%">オブジェクトのフリップ/アフィンモードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJShape.html">G2_GetOBJShape</A></TH>
+      <TD width="70%">オブジェクトの形状を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJCharName.html">G2_GetOBJCharName</A></TH>
+      <TD width="70%">オブジェクトの先頭キャラクタネームを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetOBJColorMode.html">G2_GetOBJColorMode</A></TH>
+      <TD>オブジェクトのカラーモードを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>メイン2Dグラフィックスエンジン</H2>
+<H3><A name="BGCNT">BGコントロール</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG0Control.html">G2_SetBG0Control</A></TH>
+      <TD width="70%">BG0の各種コントロールを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG0Control.html">G2_GetBG0Control</A></TH>
+      <TD>BG0の各種コントロール設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG1Control.html">G2_SetBG1Control</A></TH>
+      <TD width="70%">BG1の各種コントロールを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG1Control.html">G2_GetBG1Control</A></TH>
+      <TD>BG1の各種コントロール設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2ControlText.html">G2_SetBG2ControlText</A></TH>
+      <TD width="70%">BG2の各種コントロール(テキストモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ControlText.html">G2_GetBG2ControlText</A></TH>
+      <TD>BG2の各種コントロール設定(テキストモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2ControlAffine.html">G2_SetBG2ControlAffine</A></TH>
+      <TD width="70%">BG2の各種コントロール(アフィンモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ControlAffine.html">G2_GetBG2ControlAffine</A></TH>
+      <TD>BG2の各種コントロール設定(アフィンモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2Control256x16Affine.html">G2_SetBG2Control256x16Affine</A></TH>
+      <TD width="70%">BG2の各種コントロール(256x16パレットキャラクタBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2Control256x16Affine.html">G2_GetBG2Control256x16Affine</A></TH>
+      <TD>BG2の各種コントロール設定(256x16パレットキャラクタBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2Control256Bmp.html">G2_SetBG2Control256Bmp</A></TH>
+      <TD width="70%">BG2の各種コントロール(256ビットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2Control256Bmp.html">G2_GetBG2Control256Bmp</A></TH>
+      <TD>BG2の各種コントロール設定(256ビットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2ControlDCBmp.html">G2_SetBG2ControlDCBmp</A></TH>
+      <TD width="70%">BG2の各種コントロール(ダイレクトカラービットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ControlDCBmp.html">G2_GetBG2ControlDCBmp</A></TH>
+      <TD>BG2の各種コントロール設定(ダイレクトカラービットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2ControlLargeBmp.html">G2_SetBG2ControlLargeBmp</A></TH>
+      <TD width="70%">BG2の各種コントロール(大画面256色ビットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ControlLargeBmp.html">G2_GetBG2ControlLargeBmp</A></TH>
+      <TD>BG2の各種コントロール設定(大画面256色ビットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3ControlText.html">G2_SetBG3ControlText</A></TH>
+      <TD width="70%">BG3の各種コントロール(テキストモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3ControlText.html">G2_GetBG3ControlText</A></TH>
+      <TD>BG3の各種コントロール設定(テキストモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3ControlAffine.html">G2_SetBG3ControlAffine</A></TH>
+      <TD width="70%">BG3の各種コントロール(アフィンモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3ControlAffine.html">G2_GetBG3ControlAffine</A></TH>
+      <TD>BG3の各種コントロール設定(アフィンモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3Control256x16Affine.html">G2_SetBG3Control256x16Affine</A></TH>
+      <TD width="70%">BG3の各種コントロール(256x16パレットキャラクタBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3Control256x16Affine.html">G2_GetBG3Control256x16Affine</A></TH>
+      <TD>BG3の各種コントロール設定(256x16パレットキャラクタBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3Control256Bmp.html">G2_SetBG3Control256Bmp</A></TH>
+      <TD width="70%">BG3の各種コントロール(256ビットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3Control256Bmp.html">G2_GetBG3Control256Bmp</A></TH>
+      <TD>BG3の各種コントロール設定(256ビットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3ControlDCBmp.html">G2_SetBG3ControlDCBmp</A></TH>
+      <TD width="70%">BG3の各種コントロール(ダイレクトカラービットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3ControlDCBmp.html">G2_GetBG3ControlDCBmp</A></TH>
+      <TD>BG3の各種コントロール設定(ダイレクトカラービットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ExtMode.html">G2_GetBG2ExtMode</A></TH>
+      <TD>BG2のアフィン拡張BGタイプを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3ExtMode.html">G2_GetBG3ExtMode</A></TH>
+      <TD>BG3のアフィン拡張BGタイプを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGPriority">BGの表示優先度の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG0Priority.html">G2_SetBG0Priority</A></TH>
+      <TD width="70%">BG0の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG1Priority.html">G2_SetBG1Priority</A></TH>
+      <TD width="70%">BG1の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2Priority.html">G2_SetBG2Priority</A></TH>
+      <TD width="70%">BG2の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3Priority.html">G2_SetBG3Priority</A></TH>
+      <TD width="70%">BG3の表示優先度を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGMosaicApply">BGのモザイク適用/不適用の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_BG0Mosaic.html">G2_BG0Mosaic</A></TH>
+      <TD width="70%">BG0のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_BG1Mosaic.html">G2_BG1Mosaic</A></TH>
+      <TD width="70%">BG1のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_BG2Mosaic.html">G2_BG2Mosaic</A></TH>
+      <TD width="70%">BG2のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_BG3Mosaic.html">G2_BG3Mosaic</A></TH>
+      <TD width="70%">BG3のモザイク適用/不適用を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="GetPointer">ポインタの取得</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG0ScrPtr.html">G2_GetBG0ScrPtr</A></TH>
+      <TD width="70%">BG0のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG1ScrPtr.html">G2_GetBG1ScrPtr</A></TH>
+      <TD width="70%">BG1のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2ScrPtr.html">G2_GetBG2ScrPtr</A></TH>
+      <TD width="70%">BG2のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3ScrPtr.html">G2_GetBG3ScrPtr</A></TH>
+      <TD width="70%">BG3のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG0CharPtr.html">G2_GetBG0CharPtr</A></TH>
+      <TD width="70%">BG0のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG1CharPtr.html">G2_GetBG1CharPtr</A></TH>
+      <TD width="70%">BG1のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2CharPtr.html">G2_GetBG2CharPtr</A></TH>
+      <TD width="70%">BG2のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3CharPtr.html">G2_GetBG3CharPtr</A></TH>
+      <TD width="70%">BG3のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetOBJCharPtr.html">G2_GetOBJCharPtr</A></TH>
+      <TD width="70%">OBJのキャラクタベースへのポインタを返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Offset2D">BG平面のオフセットの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR bgcolor="#ffffff">
+      <TH width="30%"><A href="g2/G2_SetBG0Offset.html">G2_SetBG0Offset</A></TH>
+      <TD width="70%">BG0平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG1Offset.html">G2_SetBG1Offset</A></TH>
+      <TD width="70%">BG1平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2Offset.html">G2_SetBG2Offset</A></TH>
+      <TD width="70%">BG2平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3Offset.html">G2_SetBG3Offset</A></TH>
+      <TD width="70%">BG3平面のオフセットを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGAffine">BG平面のアフィン変換の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG2Affine.html">G2_SetBG2Affine</A></TH>
+      <TD width="70%">BG2平面に適用されるアフィン変換を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBG3Affine.html">G2_SetBG3Affine</A></TH>
+      <TD width="70%">BG3平面に適用されるアフィン変換を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Window">ウィンドウの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWnd0InsidePlane.html">G2_SetWnd0InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ0の内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWnd0InsidePlane.html">G2_GetWnd0InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ0の内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWnd1InsidePlane.html">G2_SetWnd1InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ1の内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWnd1InsidePlane.html">G2_GetWnd1InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ1の内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWndOutsidePlane.html">G2_SetWndOutsidePlane</A></TH>
+      <TD width="70%">ウィンドウの外側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWndOutsidePlane.html">G2_GetWndOutsidePlane</A></TH>
+      <TD width="70%">ウィンドウの外側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWndOBJInsidePlane.html">G2_SetWndOBJInsidePlane</A></TH>
+      <TD width="70%">OBJウィンドウの内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWndOBJInsidePlane.html">G2_GetWndOBJInsidePlane</A></TH>
+      <TD width="70%">OBJウィンドウの内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWnd0Position.html">G2_SetWnd0Position</A></TH>
+      <TD width="70%">ウィンドウ0の位置設定をします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetWnd1Position.html">G2_SetWnd1Position</A></TH>
+      <TD width="70%">ウィンドウ1の位置設定をします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGMosaic">モザイク</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBGMosaicSize.html">G2_SetBGMosaicSize</A></TH>
+      <TD width="70%">BGにかかるモザイクサイズを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetOBJMosaicSize.html">G2_SetOBJMosaicSize</A></TH>
+      <TD width="70%">OBJにかかるモザイクサイズを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Effect">カラー特殊効果</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2_BlendNone.html">G2_BlendNone</A></TH>
+      <TD width="70%">カラー特殊効果を行わないよう設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBlendAlpha.html">G2_SetBlendAlpha</A></TH>
+      <TD width="70%">αブレンディングを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBlendBrightness.html">G2_SetBlendBrightness</A></TH>
+      <TD width="70%">輝度のコントロールを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_SetBlendBrightnessExt.html">G2_SetBlendBrightnessExt</A></TH>
+      <TD width="70%">輝度のコントロールを行い、OBJと3Dに対してはαブレンディングを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_ChangeBlendAlpha.html">G2_ChangeBlendAlpha</A></TH>
+      <TD width="70%">αブレンディングの係数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_ChangeBlendBrightness.html">G2_ChangeBlendBrightness</A></TH>
+      <TD width="70%">輝度変更係数を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>サブ2Dグラフィックスエンジン</H2>
+<H3><A name="BGCNTB">BGコントロール</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG0Control.html">G2S_SetBG0Control</A></TH>
+      <TD width="70%">BG0の各種コントロールを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG0Control.html">G2S_GetBG0Control</A></TH>
+      <TD width="70%">BG0の各種コントロール設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG1Control.html">G2S_SetBG1Control</A></TH>
+      <TD width="70%">BG1の各種コントロールを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG1Control.html">G2S_GetBG1Control</A></TH>
+      <TD width="70%">BG1の各種コントロール設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2ControlText.html">G2S_SetBG2ControlText</A></TH>
+      <TD width="70%">BG2の各種コントロール(テキストモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2ControlText.html">G2S_GetBG2ControlText</A></TH>
+      <TD width="70%">BG2の各種コントロール設定(テキストモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2ControlAffine.html">G2S_SetBG2ControlAffine</A></TH>
+      <TD width="70%">BG2の各種コントロール(アフィンモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2ControlAffine.html">G2S_GetBG2ControlAffine</A></TH>
+      <TD width="70%">BG2の各種コントロール設定(アフィンモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2Control256x16Affine.html">G2S_SetBG2Control256x16Affine</A></TH>
+      <TD width="70%">BG2の各種コントロール(256x16パレットキャラクタBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2Control256x16Affine.html">G2S_GetBG2Control256x16Affine</A></TH>
+      <TD width="70%">BG2の各種コントロール設定(256x16パレットキャラクタBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2Control256Bmp.html">G2S_SetBG2Control256Bmp</A></TH>
+      <TD width="70%">BG2の各種コントロール(256ビットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2Control256Bmp.html">G2S_GetBG2Control256Bmp</A></TH>
+      <TD width="70%">BG2の各種コントロール設定(256ビットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2ControlDCBmp.html">G2S_SetBG2ControlDCBmp</A></TH>
+      <TD width="70%">BG2の各種コントロール(ダイレクトカラービットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG2ControlDCBmp.html">G2S_GetBG2ControlDCBmp</A></TH>
+      <TD width="70%">BG2の各種コントロール設定(ダイレクトカラービットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3ControlText.html">G2S_SetBG3ControlText</A></TH>
+      <TD width="70%">BG3の各種コントロール(テキストモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3ControlText.html">G2S_GetBG3ControlText</A></TH>
+      <TD width="70%">BG3の各種コントロール設定(テキストモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3ControlAffine.html">G2S_SetBG3ControlAffine</A></TH>
+      <TD width="70%">BG3の各種コントロール(アフィンモードの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3ControlAffine.html">G2S_GetBG3ControlAffine</A></TH>
+      <TD width="70%">BG3の各種コントロール設定(アフィンモードの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3Control256x16Affine.html">G2S_SetBG3Control256x16Affine</A></TH>
+      <TD width="70%">BG3の各種コントロール(256x16パレットキャラクタBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3Control256x16Affine.html">G2S_GetBG3Control256x16Affine</A></TH>
+      <TD width="70%">BG3の各種コントロール設定(256x16パレットキャラクタBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3Control256Bmp.html">G2S_SetBG3Control256Bmp</A></TH>
+      <TD width="70%">BG3の各種コントロール(256ビットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3Control256Bmp.html">G2S_GetBG3Control256Bmp</A></TH>
+      <TD width="70%">BG3の各種コントロール設定(256ビットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3ControlDCBmp.html">G2S_SetBG3ControlDCBmp</A></TH>
+      <TD width="70%">BG3の各種コントロール(ダイレクトカラービットマップBGの場合)を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetBG3ControlDCBmp.html">G2S_GetBG3ControlDCBmp</A></TH>
+      <TD width="70%">BG3の各種コントロール設定(ダイレクトカラービットマップBGの場合)を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG2ExtMode.html">G2S_GetBG2ExtMode</A></TH>
+      <TD>BG2のアフィン拡張BGタイプを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g2/G2_GetBG3ExtMode.html">G2S_GetBG3ExtMode</A></TH>
+      <TD>BG3のアフィン拡張BGタイプを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGPriorityB">BGの表示優先度の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG0Priority.html">G2S_SetBG0Priority</A></TH>
+      <TD width="70%">BG0の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG1Priority.html">G2S_SetBG1Priority</A></TH>
+      <TD width="70%">BG1の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2Priority.html">G2S_SetBG2Priority</A></TH>
+      <TD width="70%">BG2の表示優先度を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3Priority.html">G2S_SetBG3Priority</A></TH>
+      <TD width="70%">BG3の表示優先度を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGMosaicApplyB">BGのモザイク適用/不適用の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_BG0Mosaic.html">G2S_BG0Mosaic</A></TH>
+      <TD width="70%">BG0のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_BG1Mosaic.html">G2S_BG1Mosaic</A></TH>
+      <TD width="70%">BG1のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_BG2Mosaic.html">G2S_BG2Mosaic</A></TH>
+      <TD width="70%">BG2のモザイク適用/不適用を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_BG3Mosaic.html">G2S_BG3Mosaic</A></TH>
+      <TD width="70%">BG3のモザイク適用/不適用を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="GetPointerB">ポインタの取得</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG0ScrPtr.html">G2S_GetBG0ScrPtr</A></TH>
+      <TD width="70%">BG0のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG1ScrPtr.html">G2S_GetBG1ScrPtr</A></TH>
+      <TD width="70%">BG1のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG2ScrPtr.html">G2S_GetBG2ScrPtr</A></TH>
+      <TD width="70%">BG2のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG3ScrPtr.html">G2S_GetBG3ScrPtr</A></TH>
+      <TD width="70%">BG3のスクリーンベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG0CharPtr.html">G2S_GetBG0CharPtr</A></TH>
+      <TD width="70%">BG0のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG1CharPtr.html">G2S_GetBG1CharPtr</A></TH>
+      <TD width="70%">BG1のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG2CharPtr.html">G2S_GetBG2CharPtr</A></TH>
+      <TD width="70%">BG2のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetBG3CharPtr.html">G2S_GetBG3CharPtr</A></TH>
+      <TD width="70%">BG3のキャラクタベースへのポインタを返します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_GetOBJCharPtr.html">G2S_GetOBJCharPtr</A></TH>
+      <TD width="70%">OBJのキャラクタベースへのポインタを返します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Offset2DB">BG平面のオフセットの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR bgcolor="#ffffff">
+      <TH width="30%"><A href="g2/G2S_SetBG0Offset.html">G2S_SetBG0Offset</A></TH>
+      <TD width="70%">BG0平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG1Offset.html">G2S_SetBG1Offset</A></TH>
+      <TD width="70%">BG1平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2Offset.html">G2S_SetBG2Offset</A></TH>
+      <TD width="70%">BG2平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3Offset.html">G2S_SetBG3Offset</A></TH>
+      <TD width="70%">BG3平面のオフセットを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGAffineB">BG平面のアフィン変換の設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG2Affine.html">G2S_SetBG2Affine</A></TH>
+      <TD width="70%">BG2平面に適用されるアフィン変換を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBG3Affine.html">G2S_SetBG3Affine</A></TH>
+      <TD width="70%">BG3平面に適用されるアフィン変換を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="WindowB">ウィンドウの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWnd0InsidePlane.html">G2S_SetWnd0InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ0の内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWnd0InsidePlane.html">G2S_GetWnd0InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ0の内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWnd1InsidePlane.html">G2S_SetWnd1InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ1の内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWnd1InsidePlane.html">G2S_GetWnd1InsidePlane</A></TH>
+      <TD width="70%">ウィンドウ1の内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWndOutsidePlane.html">G2S_SetWndOutsidePlane</A></TH>
+      <TD width="70%">ウィンドウの外側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWndOutsidePlane.html">G2S_GetWndOutsidePlane</A></TH>
+      <TD width="70%">ウィンドウの外側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWndOBJInsidePlane.html">G2S_SetWndOBJInsidePlane</A></TH>
+      <TD width="70%">OBJウィンドウの内側にくる平面の設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2_GetWndOBJInsidePlane.html">G2S_GetWndOBJInsidePlane</A></TH>
+      <TD width="70%">OBJウィンドウの内側にくる平面の設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWnd0Position.html">G2S_SetWnd0Position</A></TH>
+      <TD width="70%">ウィンドウ0の位置設定をします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetWnd1Position.html">G2S_SetWnd1Position</A></TH>
+      <TD width="70%">ウィンドウ1の位置設定をします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="BGMosaicB">モザイク</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBGMosaicSize.html">G2S_SetBGMosaicSize</A></TH>
+      <TD width="70%">BGにかかるモザイクサイズを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetOBJMosaicSize.html">G2S_SetOBJMosaicSize</A></TH>
+      <TD width="70%">OBJにかかるモザイクサイズを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="EffectB">カラー特殊効果</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_BlendNone.html">G2S_BlendNone</A></TH>
+      <TD width="70%">カラー特殊効果を行わないよう設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBlendAlpha.html">G2S_SetBlendAlpha</A></TH>
+      <TD width="70%">αブレンディングを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBlendBrightness.html">G2S_SetBlendBrightness</A></TH>
+      <TD width="70%">輝度のコントロールを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_SetBlendBrightnessExt.html">G2S_SetBlendBrightnessExt</A></TH>
+      <TD width="70%">輝度のコントロールを行い、OBJと3Dに対してはαブレンディングを行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_ChangeBlendAlpha.html">G2S_ChangeBlendAlpha</A></TH>
+      <TD width="70%">αブレンディングの係数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g2/G2S_ChangeBlendBrightness.html">G2S_ChangeBlendBrightness</A></TH>
+      <TD width="70%">輝度変更係数を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H1><A name="g3"></A>3Dジオメトリ(G3*)</H1>
+<P><A href="Cycle.html" name="GeometryCommandCycle">ジオメトリコマンドサイクル一覧</A></P>
+<H3><A name="GeometryAndVertices">ジオメトリと頂点</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="30%"><A href="g3/G3_Begin.html" target="_self">G3*_Begin</A></TH>
+      <TD width="70%">頂点リストの開始を宣言します。</TD>
+    </TR>
+    <TR>
+      <TH nowrap width="30%"><A href="g3/G3_End.html" target="_self">G3*_End</A></TH>
+      <TD width="70%">頂点リストの終了を宣言します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Vtx.html" target="_self">G3*_Vtx</A></TH>
+      <TD width="70%">頂点座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Vtx10.html" target="_self">G3*_Vtx10</A></TH>
+      <TD width="70%">頂点座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_VtxXY.html" target="_self">G3*_VtxXY</A></TH>
+      <TD width="70%">頂点のＸＹ座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_VtxXZ.html" target="_self">G3*_VtxXZ</A></TH>
+      <TD width="70%">頂点のＸＺ座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_VtxYZ.html" target="_self">G3*_VtxYZ</A></TH>
+      <TD width="70%">頂点のＹＺ座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_VtxDiff.html" target="_self">G3*_VtxDiff</A></TH>
+      <TD width="70%">頂点座標を最後に設定したデータの差分値で指定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Normal.html" target="_self">G3*_Normal</A></TH>
+      <TD width="70%">法線ベクトルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH nowrap width="30%"><A href="g3/G3_Color.html" target="_self">G3*_Color</A></TH>
+      <TD width="70%">頂点カラーを直接設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_TexCoord.html" target="_self">G3*_TexCoord</A></TH>
+      <TD width="70%">テクスチャ座標を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_PolygonAttr.html" target="_self">G3*_PolygonAttr</A></TH>
+      <TD width="70%">ポリゴン関連属性値を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MatrixAndViewport">行列とビューポート</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MtxMode.html" target="_self">G3*_MtxMode</A></TH>
+      <TD width="70%">行列モードを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Identity.html" target="_self">G3*_Identity</A></TH>
+      <TD width="70%">カレント行列を単位行列に初期化します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LoadMtx43.html" target="_self">G3*_LoadMtx43</A></TH>
+      <TD width="70%">カレント行列に４ｘ３行列を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LoadMtx44.html" target="_self">G3*_LoadMtx44</A></TH>
+      <TD width="70%">カレント行列に４ｘ４行列を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MultMtx43.html" target="_self">G3*_MultMtx43</A></TH>
+      <TD width="70%">カレント行列に４ｘ３行列を乗算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MultMtx44.html" target="_self">G3*_MultMtx44</A></TH>
+      <TD width="70%">カレント行列に４ｘ４行列を乗算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MultMtx33.html" target="_self">G3*_MultMtx33</A></TH>
+      <TD width="70%">カレント行列に３ｘ３行列を乗算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/G3_MultTransMtx33.html" target="_self">G3*_MultTransMtx33</A></TH>
+      <TD>カレント行列に平行移動行列と３ｘ３行列の乗算を行ないます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_PushMtx.html" target="_self">G3*_PushMtx</A></TH>
+      <TD width="70%">カレント行列をスタックへプッシュします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_PopMtx.html" target="_self">G3*_PopMtx</A></TH>
+      <TD width="70%">カレント行列をスタックからポップします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_StoreMtx.html" target="_self">G3*_StoreMtx</A></TH>
+      <TD width="70%">カレント行列をスタックの指定位置に格納します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_RestoreMtx.html" target="_self">G3*_RestoreMtx</A></TH>
+      <TD width="70%">スタックの指定位置から行列を読み出します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Scale.html" target="_self">G3*_Scale</A></TH>
+      <TD width="70%">カレント行列にスケール（拡大縮小）行列を乗算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Translate.html" target="_self">G3*_Translate</A></TH>
+      <TD width="70%">カレント行列に平行移動行列を乗算します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_ViewPort.html" target="_self">G3*_ViewPort</A></TH>
+      <TD width="70%">ビューポートを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Lighting">ライティング</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LightColor.html" target="_self">G3*_LightColor</A></TH>
+      <TD width="70%">ライトカラーを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LightVector.html" target="_self">G3*_LightVector</A></TH>
+      <TD width="70%">ライトの方向ベクトルを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MaterialColorDiffAmb.html" target="_self">G3*_MaterialColorDiffAmb</A></TH>
+      <TD width="70%">材質の拡散反射色と環境反射色を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_MaterialColorSpecEmi.html" target="_self">G3*_MaterialColorSpecEmi</A></TH>
+      <TD width="70%">材質の鏡面反射色と放射光色を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Shininess.html" target="_self">G3*_Shininess</A></TH>
+      <TD width="70%">鏡面反射輝度テーブルを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><STRONG><A name="Texture">テクスチャ</A></STRONG></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_TexImageParam.html" target="_self">G3*_TexImageParam</A></TH>
+      <TD width="70%">テクスチャのパラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_TexPlttBase.html" target="_self">G3*_TexPlttBase</A></TH>
+      <TD width="70%">テクスチャパレットのベースアドレスを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/G3_MakeTexPlttBaseParam.html">G3_MakeTexPlttBaseParam</A></TH>
+      <TD>テクスチャのパレットベースアドレスを計算します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="GeometryEngine">コントロール</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_SwapBuffers.html" target="_self">G3*_SwapBuffers</A></TH>
+      <TD width="70%">レンダリングエンジンが参照するデータ群をスワップします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Nop.html" target="_self">G3*_Nop</A></TH>
+      <TD width="70%">何もしません。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ViewingTest">ジオメトリ可視判定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="30%"><A href="g3/G3_BoxTest.html">G3*_BoxTest</A></TH>
+      <TD width="70%">引数で与えられたBoxにカレント行列を適応した結果が視体積に入るかどうかをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_PositionTest.html">G3*_PositionTest</A></TH>
+      <TD width="70%">位置座標をカレントクリップ座標行列により座標変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_VectorTest.html">G3*_VectorTest</A></TH>
+      <TD width="70%">方向ベクトルをカレント方向ベクトル行列により座標変換します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="DirectWrite">ダイレクト書き込み</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Direct0.html">G3*_Direct0</A></TH>
+      <TD width="70%">コマンドとパラメータを直接記述したい場合の関数で、引数の数が0の場合に使用します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Direct1.html">G3*_Direct1</A></TH>
+      <TD width="70%">コマンドとパラメータを直接記述したい場合の関数で、引数の数が1の場合に使用します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Direct2.html">G3*_Direct2</A></TH>
+      <TD width="70%">コマンドとパラメータを直接記述したい場合の関数で、引数の数が2の場合に使用します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Direct3.html">G3*_Direct3</A></TH>
+      <TD width="70%">コマンドとパラメータを直接記述したい場合の関数で、引数の数が3の場合に使用します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="MatrixG3Util">ユーティリティ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Frustum.html">G3_Frustum</A></TH>
+      <TD width="70%">カレントProjection行列に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Perspective.html">G3_Perspective</A></TH>
+      <TD width="70%">カレントProjection行列に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_Ortho.html">G3_Ortho</A></TH>
+      <TD width="70%">カレントProjection行列に設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/G3_FrustumW.html">G3_FrustumW</A></TH>
+      <TD>カレントProjection行列に設定します。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/G3_PerspectiveW.html">G3_PerspectiveW</A></TH>
+      <TD>カレントProjection行列に設定します。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/G3_OrthoW.html">G3_OrthoW</A></TH>
+      <TD>カレントProjection行列に設定します。（scaleWパラメータ付）</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LookAt.html">G3_LookAt</A></TH>
+      <TD width="70%">カレントPosition/Vector行列に設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_RotX.html">G3_RotX</A></TH>
+      <TD width="70%">カレントPosition/Vector行列にX軸に関する回転行列を乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_RotY.html">G3_RotY</A></TH>
+      <TD width="70%">カレントPosition/Vector行列にY軸に関する回転行列を乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_RotZ.html">G3_RotZ</A></TH>
+      <TD width="70%">カレントPosition/Vector行列にZ軸に関する回転行列を乗じます。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LoadTexMtxTexCoord.html">G3*_LoadTexMtxTexCoord</A></TH>
+      <TD width="70%">カレントTexture行列にTexCoordソース用の補正を行った行列を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_LoadTexMtxEnv.html">G3*_LoadTexMtxEnv</A></TH>
+      <TD width="70%">カレントTexture行列にNormalソース・Vertexソース用の補正を行った行列を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="DL">動的ディスプレイリスト(コマンドリスト)生成</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3_BeginMakeDL.html">G3_BeginMakeDL</A></TH>
+      <TD width="70%">コマンドリスト作成前に呼び出します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_EndMakeDL.html">G3_EndMakeDL</A></TH>
+      <TD width="70%">コマンドリスト作成後に呼び出します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_GetDLStart.html">G3_GetDLStart</A></TH>
+      <TD width="70%">コマンドリストへのポインタを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_GetDLLength.html">G3_GetDLLength</A></TH>
+      <TD width="70%">コマンドリストバッファのサイズを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3_GetDLSize.html">G3_GetDLSize</A></TH>
+      <TD width="70%">コマンドリストのサイズを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H1><A name="g3x"></A>3Dグラフィックス制御(G3X)</H1>
+<H3><A name="Init3D">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH nowrap width="30%"><A href="g3/G3X_Init.html">G3X_Init</A></TH>
+      <TD width="70%">３Ｄ関係各種の初期化をします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_InitTable.html">G3X_InitTable</A></TH>
+      <TD width="70%">Fogテーブル等の初期化をします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_InitMtxStack.html">G3X_InitMtxStack</A></TH>
+      <TD width="70%">行列スタックの初期化をします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_Reset.html">G3X_Reset</A></TH>
+      <TD width="70%">オーバーフロー等のリセットをします。普通各フレーム描画処理の最初に実行します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_ResetMtxStack.html">G3X_ResetMtxStack</A></TH>
+      <TD width="70%">行列スタックの初期化をしますが、プロジェクション行列には単位行列を代入しません。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Funcs3D">各種機能の有効／無効</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_AlphaTest.html">G3X_AlphaTest</A></TH>
+      <TD width="70%">αテストの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_AlphaBlend.html">G3X_AlphaBlend</A></TH>
+      <TD width="70%">αブレンドを有効／無効を選択します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_AntiAlias.html">G3X_AntiAlias</A></TH>
+      <TD width="70%">アンチエイリアスの有効／無効を選択します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Toon">トゥーン／ハイライトシェーディング</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetShading.html">G3X_SetShading</A></TH>
+      <TD width="70%">トゥーン／ハイライトシェーディングを選択します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetToonTable.html">G3X_SetToonTable</A></TH>
+      <TD width="70%">トゥーン／ハイライトテーブルを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="EdgeColor">エッジカラー</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_EdgeMarking.html">G3X_EdgeMarking</A></TH>
+      <TD width="70%">エッジマーキングの有効／無効を選択します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetEdgeColorTable.html">G3X_SetEdgeColorTable</A></TH>
+      <TD width="70%">エッジカラーテーブルの設定を行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Fog">フォグ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetFog.html">G3X_SetFog</A></TH>
+      <TD width="70%">フォグの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetFogColor.html">G3X_SetFogColor</A></TH>
+      <TD width="70%">フォグカラーの設定を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetFogTable.html">G3X_SetFogTable</A></TH>
+      <TD width="70%">フォグテーブルの設定を行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Offset3D">オフセットの設定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetHOffset.html">G3X_SetHOffset</A></TH>
+      <TD width="70%">BG0平面のオフセットを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetClearImageOffset.html">G3X_SetClearImageOffset</A></TH>
+      <TD width="70%">クリアイメージを使用する場合のオフセットを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="ClearColor">クリアカラーとクリアデプス</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetClearColor.html">G3X_SetClearColor</A></TH>
+      <TD width="70%">クリアカラーを設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Test3D">テスト結果・演算結果の取得</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetBoxTestResult.html">G3X_GetBoxTestResult</A></TH>
+      <TD width="70%">ボックステストの結果を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetPositionTestResult.html">G3X_GetPositionTestResult</A></TH>
+      <TD width="70%">ポジションテストの結果を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetVectorTestResult.html">G3X_GetVectorTestResult</A></TH>
+      <TD width="70%">ベクトルテストの結果を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetClipMtx.html">G3X_GetClipMtx</A></TH>
+      <TD width="70%">カレントクリップ座標行列を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetVectorMtx.html">G3X_GetVectorMtx</A></TH>
+      <TD width="70%">カレント方向ベクトル行列を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Misc3D">その他</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetMtxStackLevelPV.html">G3X_GetMtxStackLevelPV</A></TH>
+      <TD width="70%">PositionVector行列スタックのレベルを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetMtxStackLevelPJ.html">G3X_GetMtxStackLevelPJ</A></TH>
+      <TD width="70%">Projection行列スタックのレベルを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_IsGeometryBusy.html">G3X_IsGeometryBusy</A></TH>
+      <TD width="70%">ジオメトリエンジンがビジーであるかどうかをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_IsMtxStackOverflow.html">G3X_IsMtxStackOverflow</A></TH>
+      <TD width="70%">行列スタックのオーバーフローフラグをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_IsLineBufferUnderflow.html">G3X_IsLineBufferUnderflow</A></TH>
+      <TD width="70%">レンダリングエンジンのラインズオーバーフラグをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_IsListRamOverflow.html">G3X_IsListRamOverflow</A></TH>
+      <TD width="70%">ポリゴンリストRAM及び頂点リストRAMのオーバーフローフラグをテストします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_ResetMtxStackOverflow.html">G3X_ResetMtxStackOverflow</A></TH>
+      <TD width="70%">行列スタックのオーバーフローフラグをクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_ResetLineBufferUnderflow.html">G3X_ResetLineBufferUnderflow</A></TH>
+      <TD width="70%">レンダリングエンジンのラインズオーバーフラグをクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_ResetListRamOverflow.html">G3X_ResetListRamOverflow</A></TH>
+      <TD width="70%">ポリゴンリストRAM及び頂点リストRAMのオーバーフローフラグをクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_ClearFifo.html">G3X_ClearFifo</A></TH>
+      <TD width="70%">コマンドFIFOを全てクリアします。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetPolygonListRamCount.html">G3X_GetPolygonListRamCount</A></TH>
+      <TD width="70%">ポリゴンリストRAMカウンタの値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetVtxListRamCount.html">G3X_GetVtxListRamCount</A></TH>
+      <TD width="70%">頂点RAMカウンタの値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetRenderedLineCount.html">G3X_GetRenderedLineCount</A></TH>
+      <TD width="70%">レンダリング済みライン数の最小値を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetCommandFifoCount.html">G3X_GetCommandFifoCount</A></TH>
+      <TD width="70%">現在コマンドＦＩＦＯに格納されているコマンド／データの数を参照します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_GetCommandFifoStatus.html">G3X_GetCommandFifoStatus</A></TH>
+      <TD width="70%">コマンドFIFOステータスを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetFifoIntrCond.html">G3X_SetFifoIntrCond</A></TH>
+      <TD width="70%">コマンドＦＩＦＯ割り込み要求発生条件を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="g3/G3X_SetDisp1DotDepth.html">G3X_SetDisp1DotDepth</A></TH>
+      <TD width="70%">1ドットポリゴン表示境界デプス値レジスタの値を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Type">主要な型とマクロ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="30%"><A href="Type.html">GXRgb</A></TH>
+      <TD width="70%">RGB各5ビットの色を表す型です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="Type.html">GXRgba</A></TH>
+      <TD width="70%">RGB各5ビット+αフラグを表す型です。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="Type.html">VexVtx10</A></TH>
+      <TD width="70%">s3.6形式の3次元ベクトルをパックしたものです。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="Type.html">VecVtxDiff</A></TH>
+      <TD width="70%">G3_VtxDiffのコマンドパラメタを示します。</TD>
+    </TR>
+    <TR>
+      <TH width="30%"><A href="gx/GXBoxTestParam.html">GXBoxTestParam</A></TH>
+      <TD width="70%">G3_BoxTestの引数として使用される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GXDLInfo.html">GXDLInfo</A></TH>
+      <TD>ディスプレイリスト作成関数のパラメタとして使用される構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GXOamAttr.html">GXOamAttr</A></TH>
+      <TD>OAMのアトリビュートを示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="gx/GXOamAffine.html">GXOamAffine</A></TH>
+      <TD>OAMのアフィン変換パラメータを示す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="Macro.html">マクロ</A></TH>
+      <TD>GXの型変換等のマクロです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="DLMacro.html">ディスプレイリスト記述用マクロ</A></TH>
+      <TD>ジオメトリコマンドのパラメータをパックするマクロです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="Screen2D.html">２Ｄスクリーン関係のマクロや構造体</A></TH>
+      <TD>2Dスクリーンのスクリーンデータやキャラクタデータを格納するための構造体・マクロです。</TD>
+    </TR>
+    <TR>
+      <TH><A href="g3/MakeDL.html">ディスプレイリスト作成 API 接頭語</A></TH>
+      <TD>ディスプレイリスト作成用APIの接頭語の説明です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

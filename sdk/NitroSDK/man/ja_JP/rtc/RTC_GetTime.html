@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>RTC_GetTime</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">RTC_GetTime</h1>
+
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/rtc.h&gt;</CODE><BR>
+  <PRE><CODE><A href="RTCResult.html">RTCResult</A> RTC_GetTime( <A href="RTCTime.html">RTCTime</A>* time );</CODE></PRE>
+  </dd>
+
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">time</font></strong></em></TD>
+      <TD width="700">時刻データを取得するバッファへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>要求が成功した場合に 0 を返します。<BR>
+要求が失敗した場合には 0 以外を返します。</p>
+
+<H2>説明</H2>
+<P>リアルタイムクロックから時刻データを読み出します。<BR>
+この関数はARM7に時刻データ読み出し要求を発行し、ARM7からの応答を待って処理結果を返します。<BR>
+<A href="RTC_GetTimeAsync.html">RTC_GetTimeAsync</A>の同期版です。</P>
+
+<h2>注意</h2>
+<P><FONT color=red>この関数は同期を取る為にPXI割り込みを待ちますので、PXI割り込みを禁止した状態で呼び出さないようにして下さい。</FONT></P>
+
+<h2>参照</h2>
+<P><CODE><A href="RTC_GetTimeAsync.html">RTC_GetTimeAsync</A>, <A href="RTC_SetTime.html">RTC_SetTime</A>, <A href="RTC_SetTimeAsync.html">RTC_SetTimeAsync</A>, <A href="RTCResult.html">RTCResult</A>, <A href="RTCTime.html">RTCTime</A></CODE></P>
+
+<H2>履歴</H2>
+<P>
+Ver. 2005/03/08 用語統一 [割込み] → [割り込み]<br>
+Ver. 2004/05/18 初版</P>
+</body>
+</html>

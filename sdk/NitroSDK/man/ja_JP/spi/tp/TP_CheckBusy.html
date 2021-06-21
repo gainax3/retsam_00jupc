@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>TP_CheckBusy</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">TP_CheckBusy</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>u32 TP_CheckBusy( TPRequestCommandFlag command_flgs );</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">command_flgs</font></strong></em></TD>
+      <TD width="700">どのコマンドに対するビジーチェックを行うかを指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>リクエスト実行中でなければ 0、実行中であれば 0以外を返します。</p>
+<H2>説明</H2>
+<P>ARM7へ送信されたタッチパネルリクエストが実行中であるかをチェックします。<BR>
+複数のフラグの論理和を引数に与えて同時にチェックすることも可能です。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_FLAG_SAMPLING</CODE></TD>
+      <TD width="70%">サンプリングを１回実行要求。<A href="TP_RequestSamplingAsync.html">TP_RequestSampling*</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_FLAG_AUTO_ON</CODE></TD>
+      <TD width="70%">オートサンプリング開始要求。<A href="TP_RequestAutoSamplingStart.html">TP_RequestAutoSamplingStart</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_FLAG_AUTO_OFF</CODE></TD>
+      <TD width="70%">オートサンプリング停止要求。<A href="TP_RequestAutoSamplingStop.html">TP_RequestAutoSamplingStop</A>で送信されます。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>TP_REQUEST_COMMAND_FLAG_SET_STABILITY</CODE></TD>
+      <TD width="70%">チャタリング対策パラメータの設定要求。<A href="TP_RequestSetStability.html">TP_RequestSetStability</A>で送信されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>以下に引数の列挙型の型定義を記しておきます。</P>
+<PRE><CODE>// タッチパネルへ発行する命令種別
+typedef enum {
+    TP_REQUEST_COMMAND_FLAG_SAMPLING      =  1 &lt;&lt; TP_REQUEST_COMMAND_SAMPLING,
+    TP_REQUEST_COMMAND_FLAG_AUTO_ON       =  1 &lt;&lt; TP_REQUEST_COMMAND_AUTO_ON,
+    TP_REQUEST_COMMAND_FLAG_AUTO_OFF      =  1 &lt;&lt; TP_REQUEST_COMMAND_AUTO_OFF,
+    TP_REQUEST_COMMAND_FLAG_SET_STABILITY =  1 &lt;&lt; TP_REQUEST_COMMAND_SET_STABILITY
+} TPRequestCommandFlag;
+</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/04/19 初版</P>
+</body>
+</html>

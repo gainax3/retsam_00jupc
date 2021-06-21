@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_Init</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_Init</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_Init( void );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>
+なし
+</P>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>システムを初期化します。<BR>
+具体的には以下のことを行なっています。</P>
+<BLOCKQUOTE><B>ARM9</B><BR>
+アリーナの初期化を行ないます。( <CODE><A href="../arena/OS_InitArena.html">OS_InitArena()</A></CODE> )<BR>
+プロセッサ間通信システムの初期化を行ないます。 ( <CODE>PXI_Init()</CODE> )<BR>
+ロックシステムの初期化を行ないます。(<CODE><A href="../spinLock/OS_InitLock.html"> OS_InitLock()</A></CODE> )<BR>
+拡張メインメモリアリーナの初期設定を行ないます。 ( <CODE>OS_InitArenaEx()</CODE> )<BR>
+IRQ割り込みテーブルの初期化を行ないます。( <CODE><A href="../irq/OS_InitIrqTable.html">OS_InitIrqTable()</A></CODE> )<BR>
+IRQスタックのチェックデータを埋め込みます。( <CODE><A href="../stack/OS_SetIrqStackChecker.html">OS_SetIrqStackChecker()</A></CODE> )<BR>
+例外表示システムの初期化を行ないます。( <CODE><A href="../exception/OS_InitException.html">OS_InitException()</A></CODE> )<BR>
+MI 関連の初期化を行ないます。 ( <CODE><A href="../../mi/init/MI_Init.html">MI_Init()</A></CODE> )<BR>
+Vカウントアラームシステムの初期化を行ないます。 ( <CODE><A href="../valarm/OS_InitVAlarm.html">OS_InitVAlarm()</A></CODE> )<BR>
+スレッドシステムの初期化を行ないます。 ( <CODE><A href="../thread/OS_InitThread.html">OS_InitThread()</A></CODE> )<BR>
+リセットシステムの初期化を行ないます。(<CODE><A href="../reset/OS_InitReset.html"> OS_InitReset()</A></CODE> )<BR>
+カートリッジライブラリの初期化を行ないます。( <CODE><A href="../../ctrdg/CTRDG_Init.html">CTRDG_Init()</A></CODE> )<BR>
+カードライブラリの初期化を行ないます。( <CODE><A href="../../card/common/CARD_Init.html">CARD_Init()</A></CODE> )<BR>
+パワー制御システムの初期化を行ないます。 ( <CODE><A href="../../spi/pm/PM_Init.html">PM_Init()</A></CODE> )<BR>
+</BLOCKQUOTE>
+<BLOCKQUOTE><B>ARM7</B><BR>
+アリーナの初期化を行ないます。(<CODE> <A href="../arena/OS_InitArena.html">OS_InitArena()</A></CODE> )<BR>
+プロセッサ間通信システムの初期化を行ないます。( <CODE>PXI_Init()</CODE> )<BR>
+ロックシステムの初期化を行ないます。( <CODE><A href="../spinLock/OS_InitLock.html">OS_InitLock()</A></CODE> )<BR>
+IRQ割り込みテーブルの初期化を行ないます。( <CODE><A href="../irq/OS_InitIrqTable.html">OS_InitIrqTable()</A></CODE> )<BR>
+例外表示システムの初期化を行ないます。( <CODE><A href="../exception/OS_InitException.html">OS_InitException()</A></CODE> )<BR>
+チックシステムの初期化を行ないます。( <CODE><A href="../time/OS_InitTick.html">OS_InitTick()</A></CODE> )<BR>
+アラームシステムの初期化を行ないます。( <CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm()</A></CODE> )<BR>
+スレッドシステムの初期化を行ないます。( <CODE><A href="../thread/OS_InitThread.html">OS_InitThread()</A></CODE>)<BR>
+リセットシステムの初期化を行ないます。( <CODE><A href="../reset/OS_InitReset.html">OS_InitReset()</A></CODE> )<BR>
+カートリッジライブラリの初期化を行ないます。( <CODE><A href="../../ctrdg/CTRDG_Init.html">CTRDG_Init()</A></CODE> )</BLOCKQUOTE>
+<P>この <CODE>OS_Init()</CODE> は通常、ユーザの <CODE>NitroMain()</CODE> 関数に制御が移って最初に呼び出される関数となります。特に理由がなければ最初に呼び出してください。</P>
+<P>ARM9 側の <CODE>OS_Init()</CODE> では、チックシステムの初期化やアラームシステムの初期化は行なっていません。必要ならば、<CODE>OS_Init()</CODE> の後に <CODE><A href="../time/OS_InitTick.html">OS_InitTick()</A></CODE> 、<CODE><A href="../alarm/OS_InitAlarm.html">OS_InitAlarm()</A></CODE> を(この順で)呼び出してください。</P>
+<H2>参照</H2>
+<P><CODE><A href="../thread/OS_InitThread.html">OS_InitThread</A>, <A href="../arena/OS_InitArena.html">OS_InitArena</A>, <A href="../irq/OS_InitIrqTable.html">OS_InitIrqTable</A>, <A href="../time/OS_InitTick.html">OS_InitTick</A>, <BR>
+<A href="../valarm/OS_InitVAlarm.html">OS_InitVAlarm</A>, <A href="../exception/OS_InitException.html">OS_InitException</A>, <A href="../spinLock/OS_InitLock.html">OS_InitLock</A>, <A href="../../mi/init/MI_Init.html">MI_Init</A>,<BR>
+<A href="../../spi/pm/PM_Init.html">PM_Init</A>, <A href="../reset/OS_InitReset.html">OS_InitReset</A>, <A href="../../ctrdg/CTRDG_Init.html">CTRDG_Init</A>, <A href="../../card/common/CARD_Init.html">CARD_Init</A>,<BR>
+<A href="../time/OS_InitTick.html">OS_InitTick</A>, <A href="../alarm/OS_InitAlarm.html">OS_InitAlarm</A>, <A href="../stack/OS_SetIrqStackChecker.html">OS_SetIrqStackChecker</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/07/19 <CODE>OS_SetIrqStackChecker()</CODE> を追加<BR>
+2005/03/14 リンク先のミスを訂正<BR>
+2005/02/09 <CODE>MI_Init()</CODE> 追加、<CODE>OS_InitLock()</CODE> へのリンクを追加<BR>
+2004/12/08 <CODE>OS_Init()</CODE> が最初に呼ばれるべき関数であると記述<BR>
+2004/09/27 <CODE>CARD_Init()</CODE> 追加<BR>
+2004/09/15 修正<BR>
+2004/08/09 修正<BR>
+2004/02/19 修正<BR>
+2003/12/24 初版</P>
+</BODY>
+</HTML>

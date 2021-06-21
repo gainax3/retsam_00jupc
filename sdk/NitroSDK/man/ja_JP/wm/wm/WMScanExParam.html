@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMScanExParam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMScanExParam</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMScanExParam
+{
+    WMBssDesc*  scanBuf;
+    u16         scanBufSize;
+    u16         channelList;
+    u16         maxChannelTime;
+    u8          bssid[ 6 ];
+    u16         scanType;
+    u16         ssidLength;
+    u8          ssid[ 32 ];
+    u16         ssidMatchLength;
+
+} WMScanExParam;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">scanBuf</font></strong></em></TD>
+      <TD width="800">探索の結果発見された親機の情報を格納するバッファへのポインタを指定します。
+      ARM7がこのバッファへ直接データを書き出しますので、キャッシュに注意して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">scanBufSize</font></strong></em></TD>
+      <TD width="800">親機情報を格納するバッファのサイズを指定します。
+      最低でも親機情報が１つは格納できるだけのサイズ ( 64 バイト ) は必要であり、最大では 1024 バイトまで指定可能です。<BR>
+      複数の親機情報を格納できるだけのサイズを指定すると、バッファサイズの許す限り連続してスキャンが行われるようになります。
+      また、発見する親機情報のサイズは 64 ～ 192 バイトの間でまちまちである可能性がある為、
+      親機発見の都度その親機情報は詰めてバッファに格納されます。親機がニンテンドーDSである場合の親機情報は、80 バイト + ゲーム固有情報のサイズ となります。<BR>
+      なお、親機情報を格納した際にバッファの残りサイズが64バイトに満たなくなった時には、その時点でスキャン動作が打ち切られ、コールバックが返されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">channelList</font></strong></em></TD>
+      <TD width="800">探索する無線チャンネルをビットフィールド形式で指定します。
+      <A href="WM_GetAllowedChannel.html">WM_GetAllowedChannel</A>関数で得られるビットフィールドと同様の形式です。<BR>
+      ここで指定する各チャンネル毎に<em><strong><font face="Courier New">maxChannelTime</font></strong></em>ずつ連続してスキャンが行われるようになります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">maxChannelTime</font></strong></em></TD>
+      <TD width="800">ひとつのチャンネルにつき継続して探索する最大時間をms単位で指定します。10 ～ 1000 の値を指定して下さい。<BR>
+      通常は<A href="WM_GetDispersionScanPeriod.html">WM_GetDispersionScanPeriod関数</A>にて取得した値を指定して下さい。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">bssid</font></strong></em></TD>
+      <TD width="800">探索の対象とする親機のMACアドレスを指定します。
+      全て0xFFの場合はMACアドレスによる抽出を行わず、全親機を対象として探索します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">scanType</font></strong></em></TD>
+      <TD width="800">スキャン種別を指定します。通常はパッシブスキャン( WM_SCANTYPE_PASSIVE )を指定します。
+      アクティブスキャン( WM_SCANTYPE_ACTIVE )はインフラストラクチャモードにおいて接続先アクセスポイントが特定されている場合など、特殊な用途でのみ使用します。<BR>
+      特殊なアクセスポイントにおいて SSID が動的に変更される場合などに、部分的に SSID をマッチングする必要がある場合には
+      WM_SCANTYPE_PASSIVE_CUSTOM 及び WM_SCANTYPE_ACTIVE_CUSTOM を指定することもできます。<BR>
+      これら４つ以外の値は指定できません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ssidLength</font></strong></em></TD>
+      <TD width="800">スキャン対象となる親機を抽出する為のSSIDの長さをバイト単位で指定します。0 ～ 32 の値を指定して下さい。<BR>
+      0 を指定した場合はSSIDによる抽出を行わず、全親機を対象として探索します。
+      0 以外の値を指定した場合には、SSID の先頭から指定された長さまでの一致を確認してフィルターしますので、複数の親機が見つかる可能性があります。
+    </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ssid</font></strong></em></TD>
+      <TD width="800">スキャン対象となる親機を抽出する為のSSIDを指定します。
+      インフラストラクチャモードにおいて特定のSSIDをビーコン出力しているアクセスポイントのみ探索する場合に指定して下さい。<BR>
+      なお、ニンテンドーDSの無線親機はSSIDをビーコン出力しないため、SSIDによる抽出はできません。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ssidMatchLength</font></strong></em></TD>
+      <TD width="800"><em><strong><font face="Courier New">scanType</font></strong></em>に WM_SCANTYPE_PASSIVE_CUSTOM もしくは WM_SCANTYPE_ACTIVE_CUSTOM を指定した場合に、
+      SSID を部分的にマッチングする長さをバイト単位で指定します。SSID の最大長は 32 ですので、0 ～ 32 までの値を指定することができます。
+      <em><strong><font face="Courier New">scanType</font></strong></em>に WM_SCANTYPE_PASSIVE もしくは WM_SCANTYPE_ACTIVE を指定した場合には、この設定は無視されます。
+      </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+子機として親機の探索を開始する際に、詳細にスキャン動作を制御する場合に設定すべき情報をまとめた構造体です。
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/09/07 scanType・ssidMatchLength メンバについての説明追記<BR>
+2005/03/07 構造体の各メンバについて説明追記<BR>
+2005/02/14 初版<BR>
+</P>
+</body>
+</html>

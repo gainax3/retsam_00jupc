@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_StartClient</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFS_StartClient</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>void WFS_StartClient(WFSClientContext *context, const <a href="../WFSPeerInfo.html">WFSPeerInfo</a> *peer);</code><br />
+  <br />
+  </dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+    <tr>
+      <td style="width:13%"><em><strong>peer</strong></em></td>
+      <td style="width:87%">自身の接続情報が格納された<a href="../WFSPeerInfo.html">WFSPeerInfo</a>構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p>なし</p>
+
+<h2>説明</h2>
+<p>WFSクライアントとしてMP通信を開始したことをライブラリへ通知します。<br />
+MP通信のフック関数を呼び出す前にこの関数を呼び出しておく必要があります。</p>
+
+<h2>参照</h2>
+<p>
+<a href="WFS_InitClient.html">WFS_InitClient</a> 
+<a href="WFS_EndClient.html">WFS_EndClient</a> 
+<a href="WFS_CallClientConnectHook.html">WFS_CallClientConnectHook</a>
+<a href="WFS_CallClientDisconnectHook.html">WFS_CallClientDisconnectHook</a>
+<a href="WFS_CallClientPacketSendHook.html">WFS_CallClientPacketSendHook</a>
+<a href="WFS_CallClientPacketRecvHook.html">WFS_CallClientPacketRecvHook</a>
+</p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

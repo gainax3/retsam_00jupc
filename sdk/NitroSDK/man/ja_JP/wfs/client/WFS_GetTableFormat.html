@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFS_GetTableFormat</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+
+<h1>WFS_GetTableFormat</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+  <code>const <a href="../WFSTableFormat.html">WFSTableFormat</a> *WFS_GetTableFormat(const WFSClientContext *context);</code><br />
+  <br />
+  </dd>
+</dl>
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td style="width:13%"><em><strong>context</strong></em></td>
+      <td style="width:87%">WFSClientContext構造体のポインタ</td>
+    </tr>
+  </tbody>
+</table>
+<h2>返り値</h2>
+<p>ROMイメージのファイルテーブル情報が抽出された<a href="../WFSTableFormat.html">WFSTableFormat</a>構造体へのポインタ、またはNULLを返します。</p>
+
+<h2>説明</h2>
+<p>親機から自動的に取得したROMイメージのファイルテーブル情報を<a href="../WFSTableFormat.html">WFSTableFormat</a>構造体の形式で参照します。<br />
+この情報はFSライブラリでファイルシステムをマウントする目的などに利用することが出来ます。<br />
+ここで得られるポインタが指す内容は<a href="WFS_EndClient.html">WFS_EndClient</a>関数を呼び出すまで不変であることが保証されています。</p>
+<p>この関数は<a href="../WFSEventType.html">WFS_EVENT_CLIENT_READY</a>イベントが通知される以前に呼び出してもNULLを返します。</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="../WFSEventType.html">WFSEventType</a>
+<a href="../WFSTableFormat.html">WFSTableFormat</a>
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/06 初版<br />
+</p>
+</body>
+</html>

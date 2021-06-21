@@ -1,0 +1,34 @@
+#! bash -f
+#----------------------------------------------------------------------------
+# Project:  NitroSDK - tools - sdkindent
+# File:     sdkindent
+#
+# Copyright 2003,2004,2006 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: sdkindent,v $
+# Revision 1.2  2006/01/16 00:38:57  kitase_hirotake
+# 2005->2006 不必要なインデントを行わないように変更
+#
+# Revision 1.1  2004/09/29 02:05:00  yasu
+# Add code beautifier for NITRO-SDK
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+for i in "$@"
+do
+	( sed  -f $NITROSDK_ROOT/tools/bin/sdkindent.prefilter  "$i" | \
+	  bash -f $NITROSDK_ROOT/tools/bin/sdkindent.beautifier -st  | \
+	  sed  -f $NITROSDK_ROOT/tools/bin/sdkindent.postfilter > "$i.tmp$$" ) && \
+	diff -q "$i" "$i.tmp$$"
+	if [ "$?" = "1" ]; then
+	    mv "$i" "$i.orig$$" && mv "$i.tmp$$" "$i"
+	else
+	    rm "$i.tmp$$"
+	fi
+done

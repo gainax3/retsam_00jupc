@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>OS_InitIrqTable</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">OS_InitIrqTable</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/os.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void OS_InitIrqTable( void );</CODE></dd>
+</dl><h2>引数</h2>
+<P>なし。</P>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>IRQ割り込みテーブルの初期化を行ないます。</P>
+<P>このテーブルは、IRQ割り込みが発生したときにジャンプする関数をIRQ割り込み要因別に登録しておくためのものです。殆どの割り込みに対し、何も行わない関数がセットされますが、DMA
+と TIMER 割り込みはOS 側で用意した割り込みハンドラを登録します。この割り込みだけは、ユーザがハンドラを登録した場合はＯＳのハンドラからコールされますが、最初は何も登録されていません。この違いはユーザが区別する必要はありません。従って<CODE>OS_InitIrqTable()</CODE> を呼び出した後、ユーザからはすべての割り込みで何も行わない（あるいは何も行わない関数が呼び出される）ように見えます。</P>
+<P><CODE>OS_InitIrqTable()</CODE> は <CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> から呼び出されますので、<CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> を呼んでいる場合は呼ぶ必要はありません。</P>
+<h2>参照</h2>
+<p><CODE><A href="OS_SetIrqFunction.html">OS_SetIrqFunction</A>, <A href="OS_GetIrqFunction.html">OS_GetIrqFunction</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2005/07/19 <CODE><A href="../init/OS_Init.html">OS_Init()</A></CODE> から呼ばれている記述を追加<BR>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/03/01 初期化時動作の記述を更新<BR>
+2003/12/01 初版</P>
+</body>
+</html>

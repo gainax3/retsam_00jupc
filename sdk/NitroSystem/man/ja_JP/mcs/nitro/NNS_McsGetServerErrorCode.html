@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsGetServerErrorCode</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsGetServerErrorCode</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>u32 NNS_McsGetServerErrorCode(NNSMcsFile* pFile);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">pFile</font></strong></em></td>
+  <td width="87%">ファイル情報構造体へのポインタ。</td>
+ </tr>
+  </table>
+<h2>返り値</h2>
+<p>mcsサーバ側で発生したファイル操作に基づくエラーのエラーコードを返します。</p>
+<H2>説明</H2>
+<p>mcsライブラリのファイル入出力関数やディレクトリ検索関数を呼び出したあとの返り値が<em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SERVERERROR</font></strong></em>のときの、mcsサーバ側のエラーコードを取得します。このエラーコードはWin32システムのエラーコードの値です。</p>
+<h2>参照</h2>
+<p><CODE><a href="NNS_McsOpenFile.html">NNS_McsOpenFile</a></code></p>
+<H2>履歴</H2>
+<P>2004/12/24 初版</P>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>MI_IsCacheLoading</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css" />
+</head>
+<body>
+<h1>MI_IsCacheLoading</h1>
+<h2>構文</h2>
+<dl>
+  <dd>
+<code>#include &lt;nitro/mi.h&gt;<br />
+  <br />
+  void MI_IsCacheLoading(const <a href="./MICache.html">MICache</a> *cache);</code></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td width="13%"><em><strong>cache</strong></em></td>
+      <td width="87%"><a href="./MICache.html">MICache</a>構造体へのポインタ<br />
+      <a href="./MI_InitCache.html">MI_InitCache</a>関数で初期化されている必要があります。</td>
+    </tr>
+  </TBODY>
+</table>
+
+<h2>返り値</h2>
+<p>ロード待ち状態のページが1個以上あればTRUE、そうでなければFALSE。</p>
+
+<h2>説明</h2>
+<p><a href="./MI_ReadCache.html">MI_ReadCache</a>関数の呼び出しによってロード待ち状態となったページが存在しているか判定します。<br />
+ロード待ち状態のページは、<a href="./MI_LoadCache.html">MI_LoadCache</a>関数を呼び出してロード済み状態にすることができます。
+</p>
+<p>
+この機能は、デバイス読み込みアクセスを効率よく行うためのユーティリティです。<br />
+詳細は<a href="MICache.html">MICache</a>構造体のリファレンスをご参照ください。
+</p>
+
+<h2>参照</h2>
+<p><code>
+<a href="MI_ReadCache.html">MI_ReadCache</a>
+<a href="MI_LoadCache.html">MI_LoadCache</a>
+<a href="MI_IsCacheLoading.html">MI_IsCacheLoading</a><br />
+<a href="MICache.html">MICache</a>
+</code></p>
+<h2>履歴</h2>
+<p>
+2007/05/16 初版<br />
+</p>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#  Linker Command Script Spec File
+
+Static main
+{
+	Address		0x02000000
+	Object		*.o (.text)
+	Object		*.axxx (.ctor)
+	StackSize	8192 1024
+}
+
+Overlay overlay_0
+{
+	Address		0x03f00000
+	Object		aaa.o bbb.o
+}
+
+Overlay overlay_1
+{
+	After		main
+	Object		ccc.o \
+			ddd.o
+}
+
+Overlay overlay_2
+{
+	After		overlay_1
+	Object		eee.o fff.o
+}

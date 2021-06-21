@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndArcStrmInit</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndArcStrmInit</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndArcStrmInit( u32 <var>threadPrio</var>, NNSSndHeapHandle <var>heap</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAMMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>threadPrio</code></strong></em></td>
+<td>ストリームスレッドの優先度です。</td>
+</tr>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAJNWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブストリームライブラリを初期化します。
+他の全てのNNS_SndArcStrm関数より先に呼びだしてください。
+</p>
+      <p>
+あらかじめ、
+<tt class="function"><a href="NNS_SndArcInit.html">NNS_SndArcInit</a></tt>関数または、
+<tt class="function"><a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a></tt>関数で、
+サウンドアーカイブが初期化されている必要があります。
+</p>
+      <p>
+関数内では、ストリームスレッドを起動し、ストリームプレイヤーのセットアップを行います。
+ストリームプレイヤーのセットアップのために、<em><strong><code>heap</code></strong></em>で指定したサウンドヒープから、
+ストリーム用のバッファを確保します。
+</p>
+      <p>
+ストリームバッファを確保したサウンドヒープの領域を解放すると、
+自動的にストリームプレイヤーは停止し、使用できなくなります。
+再度使用できるようにするためには、<tt class="function"><a href="NNS_SndArcStrmSetupPlayer.html">NNS_SndArcStrmSetupPlayer</a></tt>関数を呼びだします。
+</p>
+      <p>
+ストリームスレッドでは、NITROカードからストリームデータをロードする処理などを行います。
+優先度が低いと、ストリーム再生が途切れる可能性があります。
+</p>
+      <p>
+ストリーム用バッファのサイズは、１つのストリームプレイヤー毎に、2048 × チャンネル数 [Byte] 必要です。
+何番のストリームプレイヤーが何チャンネル使用するかは、サウンドアーカイブで定義されています。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcInit.html">NNS_SndArcInit</a>, <a href="NNS_SndArcInitOnMemory.html">NNS_SndArcInitOnMemory</a>, <a href="NNS_SndArcStrmSetupPlayer.html">NNS_SndArcStrmSetupPlayer</a></p>
+<h2>履歴</h2>
+<p>2005/08/26 NNS_SndArcInitOnMemory関数で初期化したサウンドアーカイブへの対応<br>2004/09/02 NNS_SndArcStrmSetupPlayer関数に関する説明追加<br>2004/08/10 初版<br></p>
+</div>
+</body>
+</html>

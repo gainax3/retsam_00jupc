@@ -1,0 +1,430 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>GX Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>グラフィックスサンプルデモ</H1>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/gx/UnitTours</CODE></P>
+<P>またグラフィックサンプルデモはすべて、<CODE>$NitroSDK/build/demos/gx/UnitTours/DEMOLib</CODE> 以下の <CODE>DEMO.h</CODE> および <CODE>libDEMO.a</CODE> を共通して利用しています。</P>
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/gx/UnitTours</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/gx/UnitTours/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/gx/UnitTours/2D_Oam_1/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/gx/UnitTours/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/　</CODE>ディレクトリに移り、以下のうちの一つを行います。
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<H4>ＢＧのサンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_1</CODE></STRONG></EM></TD>
+      <TD width="576">テキストモードでBGを表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_2</CODE></STRONG></EM></TD>
+      <TD width="576">アフィンモードでBGを表示します。キー操作で画面を回転させることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_3</CODE></STRONG></EM></TD>
+      <TD width="576">アフィンモードでBGを表示します。キー操作で画面を拡大縮小させることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_4</CODE></STRONG></EM></TD>
+      <TD width="576">BGにオフセットを設定します。キー操作で画面をスクロールさせることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_5</CODE></STRONG></EM></TD>
+      <TD width="576">BGの各キャラクタをフリップさせます。キー操作で画面の各キャラクタをフリップさせることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_6</CODE></STRONG></EM></TD>
+      <TD width="576">BGにモザイクをかけます。キー操作でモザイクのサイズを変更することができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_7</CODE></STRONG></EM></TD>
+      <TD width="576">2つのBGをαブレンディングします。キー操作でブレンド係数の調整をすることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_8</CODE></STRONG></EM></TD>
+      <TD width="576">2つのウィンドウを表示します。キー操作でウィンドウの位置とサイズを変更することができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_9</CODE></STRONG></EM></TD>
+      <TD width="576">BGの輝度を設定します。キー操作で輝度の変更ができます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_CharBg_256_16</CODE></STRONG></EM></TD>
+      <TD>アフィン拡張BGで256色×16パレットを使用して画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_CharBg_256BMP</CODE></STRONG></EM></TD>
+      <TD>アフィン拡張256色ビットマップBGを使用して画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_CharBg_Direct</CODE></STRONG></EM></TD>
+      <TD>アフィン拡張BGでダイレクトカラービットマップBGを使用して画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_BmpBg_Vram</CODE></STRONG></EM></TD>
+      <TD width="576">VRAM表示モードを用いて画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_BmpBg_MainRam</CODE></STRONG></EM></TD>
+      <TD width="576">メインメモリ表示モードを用いて画面を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_CharBg_BankEx</CODE></STRONG></EM></TD>
+      <TD width="576"><a href="../../gx/gx/GX_SetBankForBGEx.html">GX_SetBankForBGEx</a> 関数でBG-VRAMを直接指定して画面を表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4>OBJのサンプル</H4>
+<TABLE width="798">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_Oam_1</CODE></STRONG></EM></TD>
+      <TD width="596">OBJを表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_Oam_2</CODE></STRONG></EM></TD>
+      <TD width="596">OBJをアフィンモードで回転させます。キー操作でOBJを回転させることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_Oam_3</CODE></STRONG></EM></TD>
+      <TD width="596">OBJをアフィン倍角モードで拡大縮小します。キー操作でOBJを拡大縮小させることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_Oam_4</CODE></STRONG></EM></TD>
+      <TD width="596">OBJをフリップさせます。キー操作でOBJをフリップさせることができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>2D_Oam_5</CODE></STRONG></EM></TD>
+      <TD width="596">OBJにモザイクをかけます。キー操作でモザイクのサイズを変更することができます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_256_16</CODE></STRONG></EM></TD>
+      <TD>256色×16拡張パレットOBJを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_Direct</CODE></STRONG></EM></TD>
+      <TD>2次元マッピングのビットマップOBJを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_Bmp1D</CODE></STRONG></EM></TD>
+      <TD>1次元マッピングのビットマップOBJを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_Char1D</CODE></STRONG></EM></TD>
+      <TD>1次元マッピングのキャラクタOBJを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_Translucent</CODE></STRONG></EM></TD>
+      <TD>半透明OBJを表示します。キー操作で半透明OBJのブレンディング係数を変更することができます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>2D_Oam_OBJWindow</CODE></STRONG></EM></TD>
+      <TD>背景のBGを円形のOBJウィンドウを通して表示します。キー操作によってOBJウィンドウを移動することができます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4>3Dのサンプル</H4>
+<TABLE width="798">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_OneTri</CODE></STRONG></EM></TD>
+      <TD width="596">画面に三角形を１つ表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Simple</CODE></STRONG></EM></TD>
+      <TD width="596">ライトや頂点カラー無しに回転する立方体を表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Simple2</CODE></STRONG></EM></TD>
+      <TD width="596">立方体を表示しますが、<A href="../../gx/g3/G3_VtxXY.html">G3_VtxXY</A>, <A href="../../gx/g3/G3_VtxXZ.html">G3_VtxXZ</A>, <A href="../../gx/g3/G3_VtxYZ.html">G3_VtxYZ</A>関数を使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Simple3</CODE></STRONG></EM></TD>
+      <TD width="596">立方体を表示しますが、<A href="../../gx/g3/G3_Vtx10.html">G3_Vtx10</A>関数を使用します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Color</CODE></STRONG></EM></TD>
+      <TD width="596">立方体を、<A href="../../gx/g3/G3_Color.html">G3_Color</A>関数で頂点カラーを設定して表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Light</CODE></STRONG></EM></TD>
+      <TD width="596">立方体を、<A href="../../gx/g3/G3_Normal.html">G3_Normal</A>関数で法線ベクトルを設定して表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_LightColor</CODE></STRONG></EM></TD>
+      <TD width="596"><A href="../../gx/g3/G3_Color.html">G3_Color</A>関数と<A href="../../gx/g3/G3_Normal.html">G3_Normal</A>関数の順序の違いによる表示の違いを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Tex4_Plett</CODE></STRONG></EM></TD>
+      <TD width="596">立方体に4色パレットテクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Tex16_Plett</CODE></STRONG></EM></TD>
+      <TD width="596">立方体に16色パレットテクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Tex256_Plett</CODE></STRONG></EM></TD>
+      <TD width="596">立方体に256色パレットテクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>3D_Pol_Tex32768</CODE></STRONG></EM></TD>
+      <TD width="596">立方体にダイレクトテクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Tex4x4</CODE></STRONG></EM></TD>
+      <TD width="596">立方体に4x4texel圧縮テクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Tex_Alpha</CODE></STRONG></EM></TD>
+      <TD width="596">立方体に半透明テクスチャをはって表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Tex_Decal</CODE></STRONG></EM></TD>
+      <TD width="596">立方体にテクスチャをデカルモードではって表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Toon</CODE></STRONG></EM></TD>
+      <TD width="596">トゥーンシェーディングを使用して椅子を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_High_Light</CODE></STRONG></EM></TD>
+      <TD width="596">ハイライトシェーディングを使用して椅子を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_TexSRT</CODE></STRONG></EM></TD>
+      <TD width="596"><A href="../../gx/g3/G3_TexImageParam.html">G3_TexImageParam</A>関数でTexCoordソースを指定して、テクスチャの回転拡大縮小と平行移動を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Env_Mapping</CODE></STRONG></EM></TD>
+      <TD width="596"><A href="../../gx/g3/G3_TexImageParam.html">G3_TexImageParam</A>関数でNormalソースを指定して、環境マップの表示を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Vertex_Source</CODE></STRONG></EM></TD>
+      <TD><A href="../../gx/g3/G3_TexImageParam.html">G3_TexImageParam</A>関数でVertexソースを指定して、投影マッピングの表示を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Translucent</CODE></STRONG></EM></TD>
+      <TD width="596">半透明ポリゴンを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Transparent</CODE></STRONG></EM></TD>
+      <TD width="596">透明（ワイヤーフレーム表示）ポリゴンを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Shininess</CODE></STRONG></EM></TD>
+      <TD width="596">鏡面反射輝度テーブルを設定し、鏡面反射輝度の変換を行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Fog</CODE></STRONG></EM></TD>
+      <TD width="596">フォグがかかった空間を立方体が移動します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Edge_Marking</CODE></STRONG></EM></TD>
+      <TD width="596">3つの立方体にそれぞれ違ういろのエッジマーキングを施して表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Alpha_Test</CODE></STRONG></EM></TD>
+      <TD width="596">αテストを行います。立方体を2つ描画していますが、表示されるのは１つだけです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Command_Pack</CODE></STRONG></EM></TD>
+      <TD width="596">あらかじめ用意されたコマンドリスト（ディスプレイリスト)をDMA転送し、モデルを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_MakeDL</CODE></STRONG></EM></TD>
+      <TD width="596">コマンドリスト（ディスプレイリスト)をプログラム内で動的に生成し、モデルを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Pol_Split</CODE></STRONG></EM></TD>
+      <TD>Hブランク中に出力ディスプレイを切り替えることで両方のスクリーンに3Dオブジェクトを表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_PolAttr_1Dot</CODE></STRONG></EM></TD>
+      <TD><A href="../../gx/g3/G3_PolygonAttr.html">G3_PolygonAttr</A>関数でMISC_DISP_1DOTを指定して1ドットポリゴンの表示抑制を行います。キー操作によって1ドットポリゴンの表示・非表示を切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_PolAttr_DpthTest</CODE></STRONG></EM></TD>
+      <TD><A href="../../gx/g3/G3_PolygonAttr.html">G3_PolygonAttr</A>関数でMISC_DEPTHTEST_DECALを指定して、デカルポリゴンとしての表示を行ないます。キー操作によって効果のON/OFFを切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_PolAttr_DpthUpdate</CODE></STRONG></EM></TD>
+      <TD><A href="../../gx/g3/G3_PolygonAttr.html">G3_PolygonAttr</A>関数でMISC_XLU_DEPTH_UPDATEを指定して、半透明ポリゴン描画時のデプスバッファの更新行います。キー操作によって効果のON/OFFを切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_PolAttr_FARClip</CODE></STRONG></EM></TD>
+      <TD><A href="../../gx/g3/G3_PolygonAttr.html">G3_PolygonAttr</A>関数のFAR面交差ポリゴンのクリッピングを行います。キー操作によってFAR面の移動及びクリッピング効果のON/OFFを切り替えを行います。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_Shadow_Pol</CODE></STRONG></EM></TD>
+      <TD>シャドウポリゴンンを使用して影を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>3D_BoxTest</CODE></STRONG></EM></TD>
+      <TD>ボックステストを行います。回転移動する球体が立方体の面に接触しているかどうかの判定結果によって通常描画とワイヤーフレーム描画を切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>AntiAlias</CODE></STRONG></EM></TD>
+      <TD>ポリゴンのアンチエイリアスをおこないます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>FlipRepeat</CODE></STRONG></EM></TD>
+      <TD>テクスチャのフリップ、リピート設定を行ない表示します。キー操作によって設定を切り替えます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>ClearColor</CODE></STRONG></EM></TD>
+      <TD>クリアカラーを設定して、カラーバッファの初期値を設定します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>ClearImage</CODE></STRONG></EM></TD>
+      <TD>クリアイメージを使用してクリアカラーバッファの初期値に画像を設定して表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>ClearDepthOnly</CODE></STRONG></EM></TD>
+      <TD>クリアカラーイメージスロットにVRAMを設定せずに、クリアデプスイメージのみ単体で使用します。この時クリアカラーはすべて0で初期化されます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>CurrentMtx</CODE></STRONG></EM></TD>
+      <TD>カレントクリップ行列を取得しデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>PosVecTest</CODE></STRONG></EM></TD>
+      <TD>カレントクリップ座標行列によって変換した位置座標と、カレント方向ベクトル行列によって変換したベクトルを取得してデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>LinesOver</CODE></STRONG></EM></TD>
+      <TD>ラインズオーバーの発生を検出してデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>RamOverFlow</CODE></STRONG></EM></TD>
+      <TD>ポリゴンリストRAM, 頂点リストRAMのオーバーフローを検出してデバッグ出力に表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>ViewPort</CODE></STRONG></EM></TD>
+      <TD>ビューポートを設定して表示します。キー操作によってビューポートのサイズと位置を移動することができます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4>画面効果を使用するサンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>MasterBright</CODE></STRONG></EM></TD>
+      <TD width="576">輝度アップ／ダウンの特殊効果を使用して画面を表示します。キー操作によって画面輝度を変更することができまます。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Capture</CODE></STRONG></EM></TD>
+      <TD>画面のキャプチャー機能を使用してモーションブラー効果を表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Window</CODE></STRONG></EM></TD>
+      <TD>Hブランク割り込み処理を使用してウィンドウを変形表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Window_HDMA</CODE></STRONG></EM></TD>
+      <TD>Hブランク自動起動DMAを使用してウィンドウを変形表示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4>サブグラフィックスエンジンとBottom LCDを使用するサンプル</H4>
+<TABLE width="800">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_1</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_1</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_2</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_2</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_3</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_3</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_4</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_4</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_5</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_5</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_6</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_6</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_7</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_7</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_8</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_8</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>Sub_CharBg_9</CODE></STRONG></EM></TD>
+      <TD width="576"><EM><STRONG><CODE>2D_CharBg_9</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Oam_1</CODE></STRONG></EM></TD>
+      <TD><EM><STRONG><CODE>2D_Oam_1</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Oam_2</CODE></STRONG></EM></TD>
+      <TD><EM><STRONG><CODE>2D_Oam_2</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Oam_3</CODE></STRONG></EM></TD>
+      <TD><EM><STRONG><CODE>2D_Oam_3</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Oam_4</CODE></STRONG></EM></TD>
+      <TD><EM><STRONG><CODE>2D_Oam_4</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Oam_5</CODE></STRONG></EM></TD>
+      <TD><EM><STRONG><CODE>2D_Oam_5</CODE></STRONG></EM>と同様の操作をサブグラフィックスエンジンに対して行い、Bottom LCDに表示します。</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG><CODE>Sub_Double3D</CODE></STRONG></EM></TD>
+      <TD>キャプチャを用いることにより上下のLCDに3D面表示を擬似的に行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>エミュレータ</H2>
+<P><CODE>3D_Pol_Transparent</CODE> は正常に動作しません。</P>
+<H2>参照</H2>
+<P><A href="../../gx/list_gx.html"><CODE>グラフィックス関数一覧</CODE></A></P>
+<H2>履歴</H2>
+<P>
+2007/02/23 VCount デモの削除
+2006/02/27 2D_CharBg_256BMPの解説が誤っていたのを修正。<br>
+2005/07/22 サンプルデモ名の誤りを修正。<br>
+2005/05/10 2D_CharBg_BankEx サンプルデモの説明を追加。<br>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/02/20 サブグラフィックスエンジンとBottom LCD使用サンプルを追加。<BR>
+2004/01/09 初版</P>
+</BODY>
+</HTML>

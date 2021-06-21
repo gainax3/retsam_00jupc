@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<title>WFSRequestClientReadDoneCallback</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css" />
+</head>
+
+<body>
+
+<h1>WFSRequestClientReadDoneCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<code>#include &lt;nitro/wfs.h&gt;</code><br />
+  <br />
+<pre>
+typedef void (*WFSRequestClientReadDoneCallback)(WFSClientContext *context, BOOL succeeded, void *arg);
+</pre>
+  <br />
+  </dd>
+</dl>
+
+<h2>説明</h2>
+<p><a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数で使用される完了コールバックのプロトタイプ宣言です。<br />
+各引数の意味は以下の通りです。</p>
+
+<h2>要素</h2>
+<table border="1" width="100%">
+  <tbody>
+    <tr>
+      <td>context</td>
+      <td>WFSClientContext構造体のポインタ</td>
+    </tr>
+   <tr>
+      <td>succeeded</td>
+      <td>リクエストが正常に完了すればTRUE、失敗すればFALSE<br />
+      リクエストを処理中に<a href="client/WFS_EndClient.html">WFS_EndClient</a>関数が呼び出された場合に失敗します。</td>
+   </tr>
+   <tr>
+      <td>arg</td>
+      <td><a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a>関数で指定した任意の引数</td>
+   </tr>
+  </tbody>
+</table>
+
+<h2>参照</h2>
+<p><code>
+<a href="client/WFS_RequestClientRead.html">WFS_RequestClientRead</a> 
+<a href="client/WFS_EndClient.html">WFS_EndClient</a> 
+</code></p>
+
+<h2>履歴</h2>
+<p>
+2007/06/11 初版<br />
+</p>
+</body>
+</html>

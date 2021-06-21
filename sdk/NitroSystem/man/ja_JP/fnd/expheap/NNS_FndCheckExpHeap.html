@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_FndCheckExpHeap</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_FndCheckExpHeap</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></pre>
+	  
+  <pre><CODE>BOOL  NNS_FndCheckExpHeap(
+          NNSFndHeapHandle    heap,
+          u32                 optFlag);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">heap</font></strong></em></td>
+  <td width="87%">拡張ヒープのハンドル</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">optFlag</font></strong></em></td>
+  <td width="87%">チェックについてのオプション(詳細は下記を参照)</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>拡張ヒープにエラーが発見されなかった場合、TRUE を返します。エラーが発見された場合、FALSEを 返します。</p>
+<H2>説明</H2>
+<P>拡張ヒープが破壊されていないかどうかのチェックを行います。具体的には、拡張ヒープの各メモリブロックが持つ管理領域が正常であるかをチェックします。</p>
+<p>optFlag で、チェックのオプションを指定できます。</P>
+<table>
+ <tr> 
+  <td><em><strong><font face="Courier New">NNS_FND_HEAP_ERROR_PRINT</font></strong></em></td>
+  <td>ヒープにエラーを発見したとき、エラーの内容をOS_Printf()関数で出力します。</td>
+ </tr>
+</table>
+<p>この関数はデバッグ用です。最終ROM版(FINALROM)ライブラリでは何も行わず、常に TRUE を返します。</p>
+<h2>参照</h2>
+<p><CODE><A href="NNS_FndCheckForMBlockExpHeap.html">NNS_FndCheckForMBlockExpHeap</A></CODE></p>
+<H2>履歴</H2>
+<P>2004/10/28 最終ROM版においての動作について追記した。<br>
+2004/08/20 初版</P>
+</body>
+</html>

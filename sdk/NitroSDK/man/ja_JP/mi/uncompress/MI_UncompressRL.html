@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MI_UncompressRL*</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MI_UncompressRL*</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mi.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MI_UncompressRL8( const void* srcp, void* destp );</CODE><br>
+  <CODE>void MI_UncompressRL16( const void* srcp, void* destp );</CODE></dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>srcp</STRONG></EM></TD>
+      <TD width="87%">ランレングス圧縮データが格納されているソースアドレス</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>destp</STRONG></EM></TD>
+      <TD width="87%">展開するディスティネーションアドレス</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>ランレングス圧縮データを展開し、指定のメモリ領域に書き込みます。<BR>
+ソースアドレスは4byte境界に合わせてください。</P>
+<P><CODE>MI_UncompressRL8()</CODE> は 8bit単位で書き込みます。<BR>
+VRAMに直接展開することは出来ません。<BR>
+<BR>
+<CODE>MI_UncompressRL16()</CODE>は、16bit単位で書き込みます。<BR>
+VRAMにも直接展開できますが、<CODE>MI_UncompressRL8()</CODE> より低速です。</P>
+
+<h2>内部動作</h2>
+<P>システムコール、DMAは使用せずCPUだけで処理します。</P>
+
+<h2>参照</h2>
+<p><CODE><A href="MI_UncompressLZ.html">MI_UncompressLZ*</A>, <A href="MI_UncompressHuffman.html">MI_UncompressHuffman</A>, <A href="MI_UnfilterDiff.html">MI_UnfilterDiff*</A>,<A href="../../svc/SVC_UncompressRL.html">SVC_UncompressRL*</A>, <A href="MI_ReadUncompRL.html">MI_ReadUncompRL</A>, <A href="MI_CompressRL.html">MI_CompressRL</A><br>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>2005/03/02 データサイズの4バイトアライメント推奨に関する記述を削除<BR>
+2004/05/28 内部動作記述修正<BR>
+2004/01/30 初版</P>
+</body>
+</html>

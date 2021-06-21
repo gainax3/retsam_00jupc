@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>TP_WaitCalibratedResult</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">TP_WaitCalibratedResult</H1>
+<H2>構文</H2>
+<DL>
+  <DD><CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>u32 TP_WaitCalibratedResult( <A href="TPData.html">TPData</A> * result );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><EM><STRONG><FONT face="Courier New">result</FONT></STRONG></EM></TD>
+      <TD width="700">タッチパネル値を取得するための変数へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>タッチパネル値の取得に成功した場合には 0を返します。 <BR>
+なんらかのエラーにより失敗した場合には 0以外を返します。</P>
+<H2>説明</H2>
+<P><A href="TP_RequestSamplingAsync.html">TP_RequestSamplingAsync</A>によって要求したタッチパネル値がARM7からセットされているかをチェックし、キャリブレートされた画面座標として取得します。（x値は0～255,y値は0～191の範囲をとる）<BR>
+ここでは既にチャタリング対策済みの値が取得されます。<BR>
+<BR>
+ARM7からの応答がまだ届いていない場合には、応答があるまで内部でウェイトします。</P>
+<H2>注意</H2>
+<P><FONT color="#ff0000">この関数がARM7からの応答受信前にコールされた場合には、完了応答を割り込みで待ちます。このためARM7からのFIFO受信割り込みが禁止された状態でコールされるとウェイトから復帰できなくなる場合がありますのでご注意ください。<BR>
+タッチパネルのコールバック中で呼ばれる場合には、<A href="TP_GetCalibratedResult.html">TP_GetCalibratedResult</A> をお使いください。<BR>
+</FONT></P>
+<H2>参照</H2>
+<P><A href="TP_RequestSamplingAsync.html">TP_RequestSamplingAsync</A>, <A href="TP_GetCalibratedResult.html">TP_GetCalibratedResult</A>, <A href="TP_WaitRawResult.html">TP_WaitRawResult</A>, <A href="TPData.html">TPData</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/04/16 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>ENV_GetXXX</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">ENV_Get*</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/env.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL ENV_GetS8( const char* name, s8* retVal );
+BOOL ENV_GetU8( const char* name, u8* retVal );
+BOOL ENV_GetS16( const char* name, s16* retVal );
+BOOL ENV_GetU16( const char* name, u16* retVal );
+BOOL ENV_GetS32( const char* name, s32* retVal );
+BOOL ENV_GetU32( const char* name, u32* retVal );
+BOOL ENV_GetS64( const char* name, s64* retVal );
+BOOL ENV_GetU64( const char* name, u64* retVal );
+BOOL ENV_GetBOOL( const char* name, BOOL* retVal );
+
+BOOL ENV_GetString( const char* name, char** retPtr );
+BOOL ENV_GetStringAndLength( const char* name, char** retPtr, int* length );
+BOOL ENV_GetBinary( const char* name, void** retPtr );
+BOOL ENV_GetBinaryEAndSize( const char* name, void** retPtr, int* size );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="20%"><EM><STRONG>name</STRONG></EM></TD>
+      <TD>リソース名へのポインタ。ただし、この文字列が &quot;<CODE>.</CODE>&quot;(ピリオド) から始まる場合はクラス名を省略したものとしてカレントクラスを前に補完してリソース名とします。</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>length</B></EM></TD>
+      <TD>文字列リソースを取得する際に、文字列長を格納するためのポインタです。</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>retVal</B></EM></TD>
+      <TD>取得したリソースを格納するためのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>retPtr</B></EM></TD>
+      <TD>取得したリソースへのポインタを格納するためのポインタ</TD>
+    </TR>
+    <TR>
+      <TD><EM><B>size</B></EM></TD>
+      <TD>バイナリリソースを取得する際に、サイズを格納するためのポインタです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>取得に成功したかどうかを返します。取得できた場合は TRUE となります。指定のリソースが無かった場合は
+FALSE となります。</P>
+<H2>説明</H2>
+<P>指定のリソースの値を取得します。</P>
+<P><EM><B>name</B></EM> はりソース名で、これと同じリソース名定義のリソースを検索しますが、<EM><B>name</B></EM> が &quot;<CODE>.</CODE>&quot; (ピリオド) で始まっている場合は <CODE><A href="ENV_SetClass.html">ENV_SetClass()</A></CODE> でセットしたカレントクラスを前に補完します。</P>
+<BLOCKQUOTE>(例)<BR>
+<CODE>以下の２つは同じ値を返します。<BR>
+//　(1)<BR>
+ENV_GetU32( &quot;MYCLASS.U32VALUE&quot;, &amp;retVal );<BR>
+<BR>
+//　(2)<BR>
+ENV_SetClass( &quot;MYCLASS&quot; );<BR>
+ENV_GetU32( &quot;.U32VALUE&quot;, &amp;retVal );<BR>
+<BR>
+</CODE></BLOCKQUOTE>
+<P>検索は、システム内に登録されているすべてのリソース配列から行なわれます。同じリソース名のリソースがあった場合、システム内のリストの順に検索していき、先に見つかったほうを返します。</P>
+<P><CODE>ENV_GetS8()</CODE> は s8 型として値を取得します。リソース定義は <CODE>ENV_S8()</CODE> で行なってください。<BR>
+<CODE>ENV_GetU8()</CODE> は u8 型として値を取得します。リソース定義は <CODE>ENV_U8()</CODE> で行なってください。<BR>
+<CODE>ENV_GetS16()</CODE> は s16 型として値を取得します。リソース定義は <CODE>ENV_S16()</CODE> で行なってください。<BR>
+<CODE>ENV_GetU16()</CODE> は u16 型として値を取得します。リソース定義は <CODE>ENV_U16()</CODE> で行なってください。<BR>
+<CODE>ENV_GetS32()</CODE> は s32 型として値を取得します。リソース定義は <CODE>ENV_S32()</CODE> で行なってください。<BR>
+<CODE>ENV_GetU32()</CODE> は u32 型として値を取得します。リソース定義は <CODE>ENV_U32()</CODE> で行なってください。<BR clear="">
+<CODE>ENV_GetS64()</CODE> は s64 型として値を取得します。リソース定義は <CODE>ENV_S64()</CODE> で行なってください。<BR clear="">
+<CODE>ENV_GetU64()</CODE> は u64 型として値を取得します。リソース定義は <CODE>ENV_U64()</CODE> で行なってください。<BR clear="">
+<CODE>ENV_GetBOOL()</CODE> は BOOL 型として値を取得します。リソース定義は <CODE>ENV_BOOL()</CODE> で行なってください。取得値は必ず TRUE か FALSE のどちらかの値になります。(すなわち、格納されている値が
+TRUE を表す値以外の 非0の値の場合でも TRUE となります)。</P>
+<P>取得した値は <EM><B>retVal</B></EM> の示す先に格納されます。値を取得できた場合は、返り値は TRUE となります。取得できない場合は返り値は FALSE となり、<EM><B>retVal</B></EM> の示す先には 0 が代入されます。</P>
+<P><CODE>ENV_GetString()</CODE> は 文字列へのポインタを char* 型として取得します。リソース定義は <CODE>ENV_STRING()</CODE> で行なってください。 取得したポインタは <EM><B>retPtr</B></EM> の示す先に格納されます。取得できた場合は TRUE を返しますが、取得できない場合は
+FALSE を返します。格納される値は NULL です。<CODE>ENV_GetStringAndLength()</CODE> は <CODE>ENV_GetString()</CODE> に加え、文字列長を <EM><B>length</B></EM> の示す先に格納します。</P>
+<P><CODE>ENV_GetBinary()</CODE> は バイナリデータへのポインタを void* 型として取得します。リソース定義は
+<CODE>ENV_BINARY()</CODE> で行なってください。取得したポインタは <EM><B>retPtr</B></EM> の示す先に格納されます。取得できた場合は TRUE を返しますが、取得できない場合は
+FALSE を返します。格納される値は NULL です。<CODE>ENV_GetBinaryAndSize()</CODE> は <CODE>ENV_GetBinary()</CODE> に加え、バイナリデータサイズを <EM><B>size</B></EM> に格納します。</P>
+
+<H2>参照</H2>
+<P><CODE><A href="ENV_Init.html">ENV_Init</A>, <A href="ENV_GetSize.html">ENV_GetSize</A>, <A href="ENV_GetType.html">ENV_GetType</A>, <A href="ENV_SetClass.html">ENV_SetClass</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/08/29 関数名記述ミス修正<BR>
+2005/08/23 リソース値の取得方法を変更<BR>
+2005/08/16 初版</P>
+</BODY>
+</HTML>

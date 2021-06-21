@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_SetLifeTime</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_SetLifeTime</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MB_SetLifeTime(u16 tableNumber, u16 camLifeTime, u16 frameLifeTime, u16 mpLifeTime);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">tableNumber</FONT></STRONG></EM></TD>
+      <TD width="800">ライフタイムを設定するCAMテーブル番号<br>
+	  この設定はデフォルトでは 0xFFFF (全て)になっています。<br>
+	  引数の意味は<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>関数と同様です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">camLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">CAMテーブルのライフタイム<br>
+	  この設定はデフォルトでは 40 (4秒)になっています。<br>
+	  引数の意味は<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>関数と同様です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">frameLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">インフラストラクチャモード時のライフタイム<br>
+	  この設定はデフォルトでは 5 になっています。<br>
+	  引数の意味は<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>関数と同様です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">mpLifeTime</FONT></STRONG></EM></TD>
+      <TD width="800">MP通信ライフタイム<br>
+	  この設定はデフォルトでは 40 (4秒)になっています。<br>
+	  引数の意味は<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>関数と同様です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし</p>
+
+<H2>説明</H2>
+<P>MBライブラリの内部で駆動されるWMライブラリの各種ライフタイムを指定します。<br>
+この関数で指定された値は、そのまま<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>関数の引数として内部で使用されます。<br>
+<br>
+通常のゲームアプリケーションにおいてはデフォルトの設定がもっとも適しているので、明示的にこの関数を呼び出す必要はありません。<br>
+<br>
+この関数は、<a href="../common/MB_Init.html">MB_Init</a>関数の呼び出し以降、<A href="MB_StartParent.html">MB_StartParent</A>関数を呼び出すまでのタイミングでのみ呼び出すことが可能です。<BR>
+<br>
+</p>
+<h2>参照</h2>
+<p><CODE>
+<A href="../common/MB_Init.html">MB_Init</A> 
+<A href="MB_StartParent.html">MB_StartParent</A> 
+<a href="../../wm/wm/WM_SetLifeTime.html">WM_SetLifeTime</a>
+<BR></CODE></P>
+<H2>履歴</H2>
+<P>
+2006/07/19 デフォルト値を変更<BR>
+2005/04/11 初版<BR>
+</P>
+</body>
+</html>

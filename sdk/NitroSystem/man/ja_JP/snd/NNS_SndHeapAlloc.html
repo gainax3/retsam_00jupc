@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndHeapAlloc</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndHeapAlloc</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef void (*NNSSndHeapDisposeCallback)( void* <var>mem</var>, u32 <var>size</var>, u32 <var>data1</var>, u32 <var>data2</var> );</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void* NNS_SndHeapAlloc(
+        NNSSndHeapHandle <var>heap</var>,
+        u32 <var>size</var>,
+        NNSSndHeapDisposeCallback <var>callback</var>,
+        u32 <var>data1</var>,
+        u32 <var>data2</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDARMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>heap</code></strong></em></td>
+<td>サウンドヒープハンドルです。</td>
+</tr>
+<tr>
+<td><em><strong><code>size</code></strong></em></td>
+<td>確保するメモリサイズです。</td>
+</tr>
+<tr>
+<td><em><strong><code>callback</code></strong></em></td>
+<td>メモリブロックが解放されるときに呼びだされるコールバック関数です。</td>
+</tr>
+<tr>
+<td><em><strong><code>data1, data2</code></strong></em></td>
+<td>コールバック関数の引数用のユーザーデータです。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAVNWT"></a>
+      <h2>返り値</h2>
+
+      <p>確保したメモリブロックの先頭アドレスを返します。確保に失敗すると、NULLを返します。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA2NWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドヒープからメモリを確保します。確保されたメモリブロックの先頭アドレスは、32バイトアライメントされます。
+</p>
+      <p>
+各メモリブロックには、管理領域が必要になります。そのため実際には、確保するメモリサイズ<em><strong><code>size</code></strong></em>
+よりも、少し大きな空き容量が必要になります。空き容量が足りない場合は、関数は失敗します。
+</p>
+      <p>
+コールバック関数<em><strong><code>callback</code></strong></em>は、
+<tt class="function"><a href="NNS_SndHeapClear.html">NNS_SndHeapClear</a></tt>関数または、
+<tt class="function"><a href="NNS_SndHeapLoadState.html">NNS_SndHeapLoadState</a></tt>関数によって、
+メモリブロックが解放されたときに呼びだされます。
+コールバック関数の引数には、メモリブロックの先頭アドレス<em><strong><code>mem</code></strong></em>、メモリブロックのサイズ<em><strong><code>size</code></strong></em>、
+ユーザーデータ<em><strong><code>data1</code></strong></em>、<em><strong><code>data2</code></strong></em>が渡されます。
+コールバック関数が不要の時は、<em><strong><code>callback</code></strong></em>にNULLを入れます。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndHeapClear.html">NNS_SndHeapClear</a>, <a href="NNS_SndHeapLoadState.html">NNS_SndHeapLoadState</a></p>
+<h2>履歴</h2>
+<p>
+  2007/04/24 アライメントに関する説明追加<br>
+  2004/06/01 初版<br>
+</p>
+</div>
+</body>
+</html>

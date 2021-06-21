@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_SetTrackPanRange</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAFLWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_SetTrackPanRange</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_SetTrackPanRange(
+        int <var>playerNo</var>,
+        u32 <var>trackBitMask</var>,
+        int <var>panRange</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAZMWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>playerNo</code></strong></em></td>
+<td>プレイヤー番号です。値の範囲は、0～15です。</td>
+</tr>
+<tr>
+<td><em><strong><code>trackBitMask</code></strong></em></td>
+<td>トラックビットマスクです。どのトラックを操作するかを指定します。</td>
+</tr>
+<tr>
+<td><em><strong><code>panRange</code></strong></em></td>
+<td>パンレンジの値です。値の範囲は、0～127です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDAWNWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDA3NWT"></a>
+      <h2>説明</h2>
+      <p>
+プレイヤー番号<em><strong><code>playerNo</code></strong></em>のプレイヤーで再生中のシーケンスのトラックパンレンジを変更します。
+</p>
+      <p>
+どのトラックを操作するのかは、トラックビットマスク<em><strong><code>trackBitMask</code></strong></em>で指定します。
+各ビットは、最下位ビットがトラック0で、以下順にトラック1、トラック2、、、を表しています。
+ビットが立っているものに対応するトラックに対してのみ、操作を行います。
+</p>
+      <p>
+<em><strong><code>panRange</code></strong></em>は、サウンドデータ中で設定されているパンの変化幅を指定します。
+0～127の値で、0～100%を表します。デフォルト値は127です。
+値を小さくすると、サウンドデータ中で設定されているパンの変化幅が小さくなります。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+パンレンジの設定は、サウンドデータ中で設定されているパンに対してのみ影響を与えます。
+<tt class="function"><a href="SND_SetTrackPan.html">SND_SetTrackPan</a></tt>関数で設定した
+パンに対しては、効果がありません。
+</p>
+<p>
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
+</p>
+<p>
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_SetTrackPan.html">SND_SetTrackPan</a>, <a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
+<h2>履歴</h2>
+<p>2005/03/02 初版<br></p>
+</div>
+</body>
+</html>

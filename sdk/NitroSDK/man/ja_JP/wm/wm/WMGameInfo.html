@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WMGameInfo</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WMGameInfo</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wm.h&gt;</CODE><BR>
+  <PRE><CODE>
+typedef struct WMGameInfo
+{
+  u16 magicNumber;
+  u8 ver;
+  u8 reserved[1];
+  u32 ggid;
+  u16 tgid;
+  u8 userGameInfoLength;
+  u8 attribute;
+  u16 parentMaxSize;
+  u16 childMaxSize;
+  union {
+    u16 userGameInfo[WM_SIZE_USER_GAMEINFO/sizeof(u16)];
+    struct {
+      u16 userName[WM_SIZE_USERNAME/sizeof(u16)];
+      u16 gameName[WM_SIZE_GAMENAME/sizeof(u16)];
+      u16 padd1[44];
+    } old_type;
+  };
+} WMGameInfo;
+</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">magicNumber</font></strong></em></TD>
+      <TD width="800">この構造体のマジックナンバーです。<br>
+      WM_GAMEINFO_MAGIC_NUMBER (== 0x0001) で固定です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ver</font></strong></em></TD>
+      <TD width="800">この構造体のバージョン番号です。<br>
+      ライブラリの内部で管理され、ユーザが意識する必要はありません。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">ggid</font></strong></em></TD>
+      <TD width="800">ゲームグループIDです。<br>
+      これは通信互換性のあるゲームアプリケーションを識別するための一意な値です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">tgid</font></strong></em></TD>
+      <TD width="800">テンポラリグループIDです。<br>
+      これは同一機体で同一ゲームアプリケーションが複数回通信を確立する場合に<br>
+      一意性を持たせるため親機側で設定する動的な値です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">userGameInfoLength</font></strong></em></TD>
+      <TD width="800">userGameInfoに格納された有効なデータの、バイト単位でのサイズです。最大で 112 バイトとなります。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">userGameInfo</font></strong></em></TD>
+      <TD width="800">アプリケーション固有の任意情報が格納された配列です。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">attribute</font></strong></em></TD>
+      <TD width="800">エントリー受付中、ダウンロードプレイ可などの親機属性を示す値です。</TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">parentMaxSize</font></strong></em></TD>
+      <TD width="800">MP通信における親機送信データの最大サイズです。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><em><strong><font face="Courier New">childMaxSize</font></strong></em></TD>
+      <TD width="800">MP通信における子機送信データの最大サイズです。</TD>
+    </TR>
+
+    <TR>
+      <TD width="200"><font color="#808080">reserved</font></TD>
+      <TD width="800" rowspan="1"><font color="#808080">予約域です。<br>
+      ユーザはこのメンバを使用する必要はありません。</font></TD>
+    </TR>
+    <TR>
+      <TD width="200"><font color="#808080">old_type</font></TD>
+      <TD width="800" rowspan="1"><font color="#808080">旧形式との互換のために用意されています。<br>
+      ユーザはこのメンバを使用する必要はありません。</font></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>
+<a href="WM_StartScan.html">WM_StartScan</a>関数による探索の結果発見された親機の情報が格納される構造体です。<br>
+</P>
+<P><B><I>attribute</I></B> フィールドは、以下の論理和で構成されます。</P>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300">WM_ATTR_FLAG_ENTRY</TD>
+      <TD width="700">エントリー受付中</TD>
+    </TR>
+    <TR>
+      <TD width="300">WM_ATTR_FLAG_MB</TD>
+      <TD width="700">ダウンロードプレイ可</TD>
+    </TR>
+    <TR>
+      <TD width="300"><DEL>WM_ATTR_FLAG_KS</DEL></TD>
+      <TD width="700"><DEL>キーシェアリング中</DEL>現在は使用されていません</TD>
+    </TR>
+    <TR>
+      <TD width="300"><DEL>WM_ATTR_FLAG_CS</DEL></TD>
+      <TD width="700"><DEL>連続通信モード</DEL>現在は使用されていません</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>WMGameInfo 構造体の各フィールドにアクセスする前に、必ずmagicNumberフィールドがWM_GAMEINFO_MAGIC_NUMBER (== 0x0001) であることを確認する必要があります。
+magicNumberフィールドの確認は<A href="WM_IsValidGameInfo.html">WM_IsValidGameInfo</A>関数または<A href="WM_IsValidGameBeacon.html">WM_IsValidGameBeacon</A>関数で行えます。
+また、WMGameInfo構造体は、magicNumberが等しい限り下位互換を保つように拡張されますので、
+verフィールドが未知の値であった場合は現在のバージョンと同等の機能を持つものとして扱うようにしてください。</P>
+
+<H2>履歴</H2>
+<P>
+2006/02/20 version を削除し、magicNumber と ver を追加。説明の追記。<BR>
+2005/12/08 キーシェアリング関連の記述を削除<BR>
+2005/03/02 userGameInfoLengthメンバについて範囲を追記<BR>
+2004/12/20 gameNameCount_attribute についての説明を追記<BR>
+2004/11/12 userGameInfoLength の単位を修正<BR>
+2004/10/06 初版<BR>
+</P>
+</body>
+</html>

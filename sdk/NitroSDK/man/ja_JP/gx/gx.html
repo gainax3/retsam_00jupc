@@ -1,0 +1,728 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>GX 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/titles.css">
+</HEAD>
+<BODY>
+<H2>グラフィックス(GX/G2/G2Util/G3/G3Util/G3X)</H2>
+<P>[<B><A href="list_gx.html">機能一覧</A></B>]</P>
+<H3><A name="gx"></A>2D/3Dグラフィックス一般(GX)</H3>
+<H4>2Dグラフィックスエンジン共通</H4>
+<DL>
+  <DT>パワーコントロール
+  <DD><A href="gx/GX_SetPower.html">GX_SetPower</A>
+  <DD><A href="gx/GX_GetPower.html">GX_GetPower</A>
+  <DD><A href="gx/GX_Power2D.html">GX_Power2D</A>
+  <DD><A href="gx/GX_Power3D.html">GX_Power3D</A>
+  <DD><A href="gx/GX_Power2DMain.html">GX_Power2DMain</A>
+  <DD><A href="gx/GX_Power2DSub.html">GX_Power2DSub</A>
+  <DD><A href="gx/GX_PowerGeometry.html">GX_PowerGeometry</A>
+  <DD><A href="gx/GX_PowerRender.html">GX_PowerRender</A>
+  <DD><A href="gx/GX_SetDispSelect.html">GX_SetDispSelect</A>
+  <DD><A href="gx/GX_GetDispSelect.html">GX_GetDispSelect</A>
+</DL>
+<DL>
+  <DT>初期化
+  <DD><A href="gx/GX_Init.html">GX_Init</A>
+  <DD><A href="gx/GX_InitEx.html">GX_InitEx</A>
+  <DD><A href="gx/GX_SetDefaultDMA.html">GX_SetDefaultDMA</A>
+  <DD><A href="gx/GX_GetDefaultDMA.html">GX_GetDefaultDMA</A>
+</DL>
+<DL>
+  <DT>VRAMバンクのリソースへの割り当て
+  <DD><A href="gx/GX_SetBankForBG.html">GX_SetBankForBG</A>
+  <DD><A href="gx/GX_SetBankForBGEx.html">GX_SetBankForBGEx</A>
+  <DD><A href="gx/GX_SetBankForOBJ.html">GX_SetBankForOBJ</A>
+  <DD><A href="gx/GX_SetBankForBGExtPltt.html">GX_SetBankForBGExtPltt</A>
+  <DD><A href="gx/GX_SetBankForOBJExtPltt.html">GX_SetBankForOBJExtPltt</A>
+  <DD><A href="gx/GX_SetBankForTex.html">GX_SetBankForTex</A>
+  <DD><A href="gx/GX_SetBankForTexPltt.html">GX_SetBankForTexPltt</A>
+  <DD><A href="gx/GX_SetBankForClearImage.html">GX_SetBankForClearImage</A>
+  <DD><A href="gx/GX_SetBankForSubBG.html">GX_SetBankForSubBG</A>
+  <DD><A href="gx/GX_SetBankForSubOBJ.html">GX_SetBankForSubOBJ</A>
+  <DD><A href="gx/GX_SetBankForSubBGExtPltt.html">GX_SetBankForSubBGExtPltt</A>
+  <DD><A href="gx/GX_SetBankForSubOBJExtPltt.html">GX_SetBankForSubOBJExtPltt</A>
+  <DD><A href="gx/GX_SetBankForARM7.html">GX_SetBankForARM7</A>
+  <DD><A href="gx/GX_SetBankForLCDC.html">GX_SetBankForLCDC</A>
+  <DD><A href="gx/GX_TrySetBankForBG.html">GX_TrySetBankForBG</A>
+  <DD><A href="gx/GX_TrySetBankForBGEx.html">GX_TrySetBankForBGEx</A>
+  <DD><A href="gx/GX_TrySetBankForOBJ.html">GX_TrySetBankForOBJ</A>
+  <DD><A href="gx/GX_TrySetBankForBGExtPltt.html">GX_TrySetBankForBGExtPltt</A>
+  <DD><A href="gx/GX_TrySetBankForOBJExtPltt.html">GX_TrySetBankForOBJExtPltt</A>
+  <DD><A href="gx/GX_TrySetBankForTex.html">GX_TrySetBankForTex</A>
+  <DD><A href="gx/GX_TrySetBankForTexPltt.html">GX_TrySetBankForTexPltt</A>
+  <DD><A href="gx/GX_TrySetBankForClearImage.html">GX_TrySetBankForClearImage</A>
+  <DD><A href="gx/GX_TrySetBankForSubBG.html">GX_TrySetBankForSubBG</A>
+  <DD><A href="gx/GX_TrySetBankForSubOBJ.html">GX_TrySetBankForSubOBJ</A>
+  <DD><A href="gx/GX_TrySetBankForSubBGExtPltt.html">GX_TrySetBankForSubBGExtPltt</A>
+  <DD><A href="gx/GX_TrySetBankForSubOBJExtPltt.html">GX_TrySetBankForSubOBJExtPltt</A>
+  <DD><A href="gx/GX_TrySetBankForARM7.html">GX_TrySetBankForARM7</A>
+  <DD><A href="gx/GX_TrySetBankForLCDC.html">GX_TrySetBankForLCDC</A>
+</DL>
+<DL>
+  <DT>リソースに割り当てられたVRAMバンク情報の取得
+  <DD><A href="gx/GX_GetBankForBG.html">GX_GetBankForBG</A>
+  <DD><A href="gx/GX_GetBankForOBJ.html">GX_GetBankForOBJ</A>
+  <DD><A href="gx/GX_GetBankForBGExtPltt.html">GX_GetBankForBGExtPltt</A>
+  <DD><A href="gx/GX_GetBankForOBJExtPltt.html">GX_GetBankForOBJExtPltt</A>
+  <DD><A href="gx/GX_GetBankForTex.html">GX_GetBankForTex</A>
+  <DD><A href="gx/GX_GetBankForTexPltt.html">GX_GetBankForTexPltt</A>
+  <DD><A href="gx/GX_GetBankForClearImage.html">GX_GetBankForClearImage</A>
+  <DD><A href="gx/GX_GetBankForSubBG.html">GX_GetBankForSubBG</A>
+  <DD><A href="gx/GX_GetBankForSubOBJ.html">GX_GetBankForSubOBJ</A>
+  <DD><A href="gx/GX_GetBankForSubBGExtPltt.html">GX_GetBankForSubBGExtPltt</A>
+  <DD><A href="gx/GX_GetBankForSubOBJExtPltt.html">GX_GetBankForSubOBJExtPltt</A>
+  <DD><A href="gx/GX_GetBankForARM7.html">GX_GetBankForARM7</A>
+  <DD><A href="gx/GX_GetBankForLCDC.html">GX_GetBankForLCDC</A>
+</DL>
+<DL>
+  <DT>LCDCメモリ空間への切り替え
+  <DD><A href="gx/GX_ResetBankForBG.html">GX_ResetBankForBG</A>
+  <DD><A href="gx/GX_ResetBankForOBJ.html">GX_ResetBankForOBJ</A>
+  <DD><A href="gx/GX_ResetBankForBGExtPltt.html">GX_ResetBankForBGExtPltt</A>
+  <DD><A href="gx/GX_ResetBankForOBJExtPltt.html">GX_ResetBankForOBJExtPltt</A>
+  <DD><A href="gx/GX_ResetBankForTex.html">GX_ResetBankForTex</A>
+  <DD><A href="gx/GX_ResetBankForTexPltt.html">GX_ResetBankForTexPltt</A>
+  <DD><A href="gx/GX_ResetBankForClearImage.html">GX_ResetBankForClearImage</A>
+  <DD><A href="gx/GX_ResetBankForSubBG.html">GX_ResetBankForSubBG</A>
+  <DD><A href="gx/GX_ResetBankForSubOBJ.html">GX_ResetBankForSubOBJ</A>
+  <DD><A href="gx/GX_ResetBankForSubBGExtPltt.html">GX_ResetBankForSubBGExtPltt</A>
+  <DD><A href="gx/GX_ResetBankForSubOBJExtPltt.html">GX_ResetBankForSubOBJExtPltt</A>
+  <DD><A href="gx/GX_ResetBankForARM7.html">GX_ResetBankForARM7</A>
+</DL>
+<DL>
+  <DT>VRAMバンクのリソース割り当ての解除
+  <DD><A href="gx/GX_DisableBankForBG.html">GX_DisableBankForBG</A>
+  <DD><A href="gx/GX_DisableBankForOBJ.html">GX_DisableBankForOBJ</A>
+  <DD><A href="gx/GX_DisableBankForBGExtPltt.html">GX_DisableBankForBGExtPltt</A>
+  <DD><A href="gx/GX_DisableBankForOBJExtPltt.html">GX_DisableBankForOBJExtPltt</A>
+  <DD><A href="gx/GX_DisableBankForTex.html">GX_DisableBankForTex</A>
+  <DD><A href="gx/GX_DisableBankForTexPltt.html">GX_DisableBankForTexPltt</A>
+  <DD><A href="gx/GX_DisableBankForClearImage.html">GX_DisableBankForClearImage</A>
+  <DD><A href="gx/GX_DisableBankForSubBG.html">GX_DisableBankForSubBG</A>
+  <DD><A href="gx/GX_DisableBankForSubOBJ.html">GX_DisableBankForSubOBJ</A>
+  <DD><A href="gx/GX_DisableBankForSubBGExtPltt.html">GX_DisableBankForSubBGExtPltt</A>
+  <DD><A href="gx/GX_DisableBankForSubOBJExtPltt.html">GX_DisableBankForSubOBJExtPltt</A>
+  <DD><A href="gx/GX_DisableBankForARM7.html">GX_DisableBankForARM7</A>
+  <DD><A href="gx/GX_DisableBankForLCDC.html">GX_DisableBankForLCDC</A>
+</DL>
+<DL>
+  <DT><B>VRAMバンクの割り当てサイズ取得</B>
+</DL>
+<DL>
+  <DD><A href="gx/GX_GetSizeOfBG.html">GX_GetSizeOfBG</A>
+  <DD><A href="gx/GX_GetSizeOfOBJ.html">GX_GetSizeOfOBJ</A>
+  <DD><A href="gx/GX_GetSizeOfBGExtPltt.html">GX_GetSizeOfBGExtPltt</A>
+  <DD><A href="gx/GX_GetSizeOfOBJExtPltt.html">GX_GetSizeOfOBJExtPltt</A>
+  <DD><A href="gx/GX_GetSizeOfTex.html">GX_GetSizeOfTex</A>
+  <DD><A href="gx/GX_GetSizeOfTexPltt.html">GX_GetSizeOfTexPltt</A>
+  <DD><A href="gx/GX_GetSizeOfClearImage.html">GX_GetSizeOfClearImage</A>
+  <DD><A href="gx/GX_GetSizeOfSubBG.html">GX_GetSizeOfSubBG</A>
+  <DD><A href="gx/GX_GetSizeOfSubOBJ.html">GX_GetSizeOfSubOBJ</A>
+  <DD><A href="gx/GX_GetSizeOfSubBGExtPltt.html">GX_GetSizeOfSubBGExtPltt</A>
+  <DD><A href="gx/GX_GetSizeOfSubOBJExtPltt.html">GX_GetSizeOfSubOBJExtPltt</A>
+  <DD><A href="gx/GX_GetSizeOfARM7.html">GX_GetSizeOfARM7</A>
+</DL>
+
+<DL>
+  <DT>割り込み・その他
+  <DD><A href="gx/GX_GetVCount.html">GX_GetVCount</A>
+  <DD><A href="gx/GX_SetVCount.html">GX_SetVCount</A>
+  <DD><A href="gx/GX_IsHBlank.html">GX_IsHBlank</A>
+  <DD><A href="gx/GX_IsVBlank.html">GX_IsVBlank</A>
+  <DD><A href="gx/GX_IsVCountEq.html">GX_IsVCountEq</A>
+  <DD><A href="gx/GX_VCountEqIntr.html">GX_VCountEqIntr</A>
+  <DD><A href="gx/GX_SetVCountEqVal.html">GX_SetVCountEqVal</A>
+  <DD><A href="gx/GX_GetVCountEqVal.html">GX_GetVCountEqVal</A>
+  <DD><A href="gx/GX_HBlankIntr.html">GX_HBlankIntr</A>
+  <DD><A href="gx/GX_VBlankIntr.html">GX_VBlankIntr</A>
+</DL>
+<H4>メイン2Dグラフィックスエンジン</H4>
+<DL>
+  <DT>表示モードとBGモードの設定
+  <DD><A href="gx/GX_SetGraphicsMode.html">GX_SetGraphicsMode</A>
+  <DD><A href="gx/GX_GetDispCnt.html">GX_GetDispCnt</A>
+</DL>
+<DL>
+  <DT>表示・非表示の設定
+  <DD><A href="gx/GX_SetVisiblePlane.html">GX_SetVisiblePlane</A>
+  <DD><A href="gx/GX_GetVisiblePlane.html">GX_GetVisiblePlane</A>
+  <DD><A href="gx/GX_SetVisibleWnd.html">GX_SetVisibleWnd</A>
+  <DD><A href="gx/GX_GetVisibleWnd.html">GX_GetVisibleWnd</A>
+  <DD><A href="gx/GX_DispOn.html">GX_DispOn</A>
+  <DD><A href="gx/GX_DispOff.html">GX_DispOff</A>
+  <DD><A href="gx/GX_BlankScr.html">GX_BlankScr</A>
+  <DD><A href="gx/GX_HBlankOBJProc.html">GX_HBlankOBJProc</A>
+</DL>
+<DL>
+  <DT>オフセットの設定
+  <DD><A href="gx/GX_SetBGScrOffset.html">GX_SetBGScrOffset</A>
+  <DD><A href="gx/GX_SetBGCharOffset.html">GX_SetBGCharOffset</A>
+</DL>
+<DL>
+  <DT>OBJマッピングモードの設定
+  <DD><A href="gx/GX_SetOBJVRamModeChar.html">GX_SetOBJVRamModeChar</A>
+  <DD><A href="gx/GX_GetOBJVRamModeChar.html">GX_GetOBJVRamModeChar</A>
+  <DD><A href="gx/GX_SetOBJVRamModeBmp.html">GX_SetOBJVRamModeBmp</A>
+  <DD><A href="gx/GX_GetOBJVRamModeBmp.html">GX_GetOBJVRamModeBmp</A>
+</DL>
+<DL>
+  <DT>各種リソースのロード(2D)
+  <DD><A href="gx/GX_LoadOBJ.html">GX_LoadOBJ</A>
+  <DD><A href="gx/GX_LoadOAM.html">GX_LoadOAM</A>
+  <DD><A href="gx/GX_LoadBGPltt.html">GX_LoadBGPltt</A>
+  <DD><A href="gx/GX_LoadOBJPltt.html">GX_LoadOBJPltt</A>
+  <DD><A href="gx/GX_LoadBG0Scr.html">GX_LoadBG0Scr</A>
+  <DD><A href="gx/GX_LoadBG1Scr.html">GX_LoadBG1Scr</A>
+  <DD><A href="gx/GX_LoadBG2Scr.html">GX_LoadBG2Scr</A>
+  <DD><A href="gx/GX_LoadBG3Scr.html">GX_LoadBG3Scr</A>
+  <DD><A href="gx/GX_LoadBG2Bmp.html">GX_LoadBG2Bmp</A>
+  <DD><A href="gx/GX_LoadBG3Bmp.html">GX_LoadBG3Bmp</A>
+  <DD><A href="gx/GX_LoadBG0Char.html">GX_LoadBG0Char</A>
+  <DD><A href="gx/GX_LoadBG1Char.html">GX_LoadBG1Char</A>
+  <DD><A href="gx/GX_LoadBG2Char.html">GX_LoadBG2Char</A>
+  <DD><A href="gx/GX_LoadBG3Char.html">GX_LoadBG3Char</A>
+  <DD><A href="gx/GX_BeginLoadBGExtPltt.html">GX_BeginLoadBGExtPltt</A>
+  <DD><A href="gx/GX_LoadBGExtPltt.html">GX_LoadBGExtPltt</A>
+  <DD><A href="gx/GX_EndLoadBGExtPltt.html">GX_EndLoadBGExtPltt</A>
+  <DD><A href="gx/GX_BeginLoadOBJExtPltt.html">GX_BeginLoadOBJExtPltt</A>
+  <DD><A href="gx/GX_LoadOBJExtPltt.html">GX_LoadOBJExtPltt</A>
+  <DD><A href="gx/GX_EndLoadOBJExtPltt.html">GX_EndLoadOBJExtPltt</A>
+</DL>
+<DL>
+  <DT>各種リソースのロード(3D)
+  <DD><A href="gx/GX_BeginLoadTex.html">GX_BeginLoadTex</A>
+  <DD><A href="gx/GX_LoadTex.html">GX_LoadTex</A>
+  <DD><A href="gx/GX_EndLoadTex.html">GX_EndLoadTex</A>
+  <DD><A href="gx/GX_BeginLoadTexPltt.html">GX_BeginLoadTexPltt</A>
+  <DD><A href="gx/GX_LoadTexPltt.html">GX_LoadTexPltt</A>
+  <DD><A href="gx/GX_EndLoadTexPltt.html">GX_EndLoadTexPltt</A>
+  <DD><A href="gx/GX_BeginLoadClearImage.html">GX_BeginLoadClearImage</A>
+  <DD><A href="gx/GX_LoadClearImageColor.html">GX_LoadClearImageColor</A>
+  <DD><A href="gx/GX_LoadClearImageDepth.html">GX_LoadClearImageDepth</A>
+  <DD><A href="gx/GX_EndLoadClearImage.html">GX_EndLoadClearImage</A>
+</DL>
+<DL>
+  <DT>その他
+  <DD><A href="gx/GX_SetCapture.html">GX_SetCapture</A>
+  <DD><A href="gx/GX_ResetCapture.html">GX_ResetCapture</A>
+  <DD><A href="gx/GX_SetMasterBrightness.html">GX_SetMasterBrightness</A>
+  <DD><A href="gx/GX_GetMasterBrightness.html">GX_GetMasterBrightness</A>
+</DL>
+<H4>サブ2Dグラフィックスエンジン</H4>
+<DL>
+  <DT>表示モードの設定
+  <DD><A href="gx/GXS_SetGraphicsMode.html">GXS_SetGraphicsMode</A>
+  <DD><A href="gx/GXS_GetDispCnt.html">GXS_GetDispCnt</A>
+</DL>
+<DL>
+  <DT>表示・非表示の設定
+  <DD><A href="gx/GXS_SetVisiblePlane.html">GXS_SetVisiblePlane</A>
+  <DD><A href="gx/GX_GetVisiblePlane.html">GXS_GetVisiblePlane</A>
+  <DD><A href="gx/GXS_SetVisibleWnd.html">GXS_SetVisibleWnd</A>
+  <DD><A href="gx/GX_GetVisibleWnd.html">GXS_GetVisibleWnd</A>
+  <DD><A href="gx/GXS_DispOn.html">GXS_DispOn</A>
+  <DD><A href="gx/GXS_DispOff.html">GXS_DispOff</A>
+  <DD><A href="gx/GXS_HBlankOBJProc.html">GXS_HBlankOBJProc</A>
+</DL>
+<DL>
+  <DT>OBJマッピングモードの設定
+  <DD><A href="gx/GXS_SetOBJVRamModeChar.html">GXS_SetOBJVRamModeChar</A>
+
+  <DD><A href="gx/GX_GetOBJVRamModeChar.html">GXS_GetOBJVRamModeChar</A>
+
+  <DD><A href="gx/GXS_SetOBJVRamModeBmp.html">GXS_SetOBJVRamModeBmp</A>
+
+  <DD><A href="gx/GX_GetOBJVRamModeBmp.html">GXS_GetOBJVRamModeBmp</A>
+</DL>
+<DL>
+  <DT>各種リソースのロード
+  <DD><A href="gx/GXS_LoadOBJ.html">GXS_LoadOBJ</A>
+
+  <DD><A href="gx/GXS_LoadOAM.html">GXS_LoadOAM</A>
+
+  <DD><A href="gx/GXS_LoadBGPltt.html">GXS_LoadBGPltt</A>
+
+  <DD><A href="gx/GXS_LoadOBJPltt.html">GXS_LoadOBJPltt</A>
+
+  <DD><A href="gx/GXS_LoadBG0Scr.html">GXS_LoadBG0Scr</A>
+
+  <DD><A href="gx/GXS_LoadBG1Scr.html">GXS_LoadBG1Scr</A>
+
+  <DD><A href="gx/GXS_LoadBG2Scr.html">GXS_LoadBG2Scr</A>
+
+  <DD><A href="gx/GXS_LoadBG3Scr.html">GXS_LoadBG3Scr</A>
+
+  <DD><A href="gx/GXS_LoadBG2Bmp.html">GXS_LoadBG2Bmp</A>
+  <DD><A href="gx/GXS_LoadBG3Bmp.html">GXS_LoadBG3Bmp</A>
+  <DD><A href="gx/GXS_LoadBG0Char.html">GXS_LoadBG0Char</A>
+
+  <DD><A href="gx/GXS_LoadBG1Char.html">GXS_LoadBG1Char</A>
+
+  <DD><A href="gx/GXS_LoadBG2Char.html">GXS_LoadBG2Char</A>
+
+  <DD><A href="gx/GXS_LoadBG3Char.html">GXS_LoadBG3Char</A>
+
+  <DD><A href="gx/GXS_BeginLoadBGExtPltt.html">GXS_BeginLoadBGExtPltt</A>
+
+  <DD><A href="gx/GXS_LoadBGExtPltt.html">GXS_LoadBGExtPltt</A>
+
+  <DD><A href="gx/GXS_EndLoadBGExtPltt.html">GXS_EndLoadBGExtPltt</A>
+
+  <DD><A href="gx/GXS_BeginLoadOBJExtPltt.html">GXS_BeginLoadOBJExtPltt</A>
+
+  <DD><A href="gx/GXS_LoadOBJExtPltt.html">GXS_LoadOBJExtPltt</A>
+
+  <DD><A href="gx/GXS_EndLoadOBJExtPltt.html">GXS_EndLoadOBJExtPltt</A>
+</DL>
+<DL>
+  <DT>その他
+  <DD><A href="gx/GXS_SetMasterBrightness.html">GXS_SetMasterBrightness</A>
+  <DD><A href="gx/GX_GetMasterBrightness.html">GXS_GetMasterBrightness</A>
+</DL>
+<H3><A name="g2"></A>2Dグラフィクス関連(G2)</H3>
+<P>[<B><A href="list_gx.html#g2">機能一覧</A></B>]</P>
+<H4>2Dグラフィックスエンジン共通</H4>
+<DL>
+  <DT>OAM
+  <DD><A href="g2/G2_SetOBJAttr.html">G2_SetOBJAttr</A>
+  <DD><A href="g2/G2_SetOBJAffine.html">G2_SetOBJAffine</A>
+  <DD><A href="g2/G2_SetOBJPosition.html">G2_SetOBJPosition</A>
+  <DD><A href="g2/G2_SetOBJPriority.html">G2_SetOBJPriority</A>
+  <DD><A href="g2/G2_SetOBJMode.html">G2_SetOBJMode</A>
+  <DD><A href="g2/G2_SetOBJEffect.html">G2_SetOBJEffect</A>
+  <DD><A href="g2/G2_SetOBJShape.html">G2_SetOBJShape</A>
+  <DD><A href="g2/G2_SetOBJCharName.html">G2_SetOBJCharName</A>
+  <DD><A href="g2/G2_SetOBJColorMode.html">G2_SetOBJColorMode</A>
+  <DD><A href="g2/G2_OBJMosaic.html">G2_OBJMosaic</A>
+  <DD><A href="g2/G2_GetOBJPosition.html">G2_GetOBJPosition</A>
+  <DD><A href="g2/G2_GetOBJPriority.html">G2_GetOBJPriority</A>
+  <DD><A href="g2/G2_GetOBJMode.html">G2_GetOBJMode</A>
+  <DD><A href="g2/G2_GetOBJColorParam.html">G2_GetOBJColorParam</A>
+  <DD><A href="g2/G2_GetOBJEffect.html">G2_GetOBJEffect</A>
+  <DD><A href="g2/G2_GetOBJShape.html">G2_GetOBJShape</A>
+  <DD><A href="g2/G2_GetOBJCharName.html">G2_GetOBJCharName</A>
+  <DD><A href="g2/G2_GetOBJColorMode.html">G2_GetOBJColorMode</A>
+</DL>
+<H4>メイン2Dグラフィックスエンジン</H4>
+<DL>
+  <DT>BGコントロール
+  <DD><A href="g2/G2_SetBG0Control.html">G2_SetBG0Control</A>
+  <DD><A href="g2/G2_GetBG0Control.html">G2_GetBG0Control</A>
+  <DD><A href="g2/G2_SetBG1Control.html">G2_SetBG1Control</A>
+  <DD><A href="g2/G2_GetBG1Control.html">G2_GetBG1Control</A>
+  <DD><A href="g2/G2_SetBG2ControlText.html">G2_SetBG2ControlText</A>
+  <DD><A href="g2/G2_GetBG2ControlText.html">G2_GetBG2ControlText</A>
+  <DD><A href="g2/G2_SetBG2ControlAffine.html">G2_SetBG2ControlAffine</A>
+  <DD><A href="g2/G2_GetBG2ControlAffine.html">G2_GetBG2ControlAffine</A>
+  <DD><A href="g2/G2_SetBG2Control256x16Affine.html">G2_SetBG2Control256x16Affine</A>
+  <DD><A href="g2/G2_GetBG2Control256x16Affine.html">G2_GetBG2Control256x16Affine</A>
+  <DD><A href="g2/G2_SetBG2Control256Bmp.html">G2_SetBG2Control256Bmp</A>
+  <DD><A href="g2/G2_GetBG2Control256Bmp.html">G2_GetBG2Control256Bmp</A>
+  <DD><A href="g2/G2_SetBG2ControlDCBmp.html">G2_SetBG2ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG2ControlDCBmp.html">G2_GetBG2ControlDCBmp</A>
+  <DD><A href="g2/G2_SetBG2ControlLargeBmp.html">G2_SetBG2ControlLargeBmp</A>
+  <DD><A href="g2/G2_GetBG2ControlLargeBmp.html">G2_GetBG2ControlLargeBmp</A>
+  <DD><A href="g2/G2_SetBG3ControlText.html">G2_SetBG3ControlText</A>
+  <DD><A href="g2/G2_GetBG3ControlText.html">G2_GetBG3ControlText</A>
+  <DD><A href="g2/G2_SetBG3ControlAffine.html">G2_SetBG3ControlAffine</A>
+  <DD><A href="g2/G2_GetBG3ControlAffine.html">G2_GetBG3ControlAffine</A>
+  <DD><A href="g2/G2_SetBG3Control256x16Affine.html">G2_SetBG3Control256x16Affine</A>
+  <DD><A href="g2/G2_GetBG3Control256x16Affine.html">G2_GetBG3Control256x16Affine</A>
+  <DD><A href="g2/G2_SetBG3Control256Bmp.html">G2_SetBG3Control256Bmp</A>
+  <DD><A href="g2/G2_GetBG3Control256Bmp.html">G2_GetBG3Control256Bmp</A>
+  <DD><A href="g2/G2_SetBG3ControlDCBmp.html">G2_SetBG3ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG3ControlDCBmp.html">G2_GetBG3ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG2ExtMode.html">G2_GetBG2ExtMode</A>
+  <DD><A href="g2/G2_GetBG3ExtMode.html">G2_GetBG3ExtMode</A>
+</DL>
+<DL>
+  <DT>BGの表示優先度の設定
+  <DD><A href="g2/G2_SetBG0Priority.html">G2_SetBG0Priority</A>
+  <DD><A href="g2/G2_SetBG1Priority.html">G2_SetBG1Priority</A>
+  <DD><A href="g2/G2_SetBG2Priority.html">G2_SetBG2Priority</A>
+  <DD><A href="g2/G2_SetBG3Priority.html">G2_SetBG3Priority</A>
+</DL>
+<DL>
+  <DT>BGのモザイク適用／不適用の設定
+  <DD><A href="g2/G2_BG0Mosaic.html">G2_BG0Mosaic</A>
+  <DD><A href="g2/G2_BG1Mosaic.html">G2_BG1Mosaic</A>
+  <DD><A href="g2/G2_BG2Mosaic.html">G2_BG2Mosaic</A>
+  <DD><A href="g2/G2_BG3Mosaic.html">G2_BG3Mosaic</A>
+</DL>
+<DL>
+  <DT>ポインタの取得
+  <DD><A href="g2/G2_GetBG0ScrPtr.html">G2_GetBG0ScrPtr</A>
+  <DD><A href="g2/G2_GetBG1ScrPtr.html">G2_GetBG1ScrPtr</A>
+  <DD><A href="g2/G2_GetBG2ScrPtr.html">G2_GetBG2ScrPtr</A>
+  <DD><A href="g2/G2_GetBG3ScrPtr.html">G2_GetBG3ScrPtr</A>
+  <DD><A href="g2/G2_GetBG0CharPtr.html">G2_GetBG0CharPtr</A>
+  <DD><A href="g2/G2_GetBG1CharPtr.html">G2_GetBG1CharPtr</A>
+  <DD><A href="g2/G2_GetBG2CharPtr.html">G2_GetBG2CharPtr</A>
+  <DD><A href="g2/G2_GetBG3CharPtr.html">G2_GetBG3CharPtr</A>
+  <DD><A href="g2/G2_GetOBJCharPtr.html">G2_GetOBJCharPtr</A>
+</DL>
+<DL>
+  <DT>BG平面のオフセットの設定
+  <DD><A href="g2/G2_SetBG0Offset.html">G2_SetBG0Offset</A>
+  <DD><A href="g2/G2_SetBG1Offset.html">G2_SetBG1Offset</A>
+  <DD><A href="g2/G2_SetBG2Offset.html">G2_SetBG2Offset</A>
+  <DD><A href="g2/G2_SetBG3Offset.html">G2_SetBG3Offset</A>
+</DL>
+<DL>
+  <DT>BG平面のアフィン変換の設定
+  <DD><A href="g2/G2_SetBG2Affine.html">G2_SetBG2Affine</A>
+  <DD><A href="g2/G2_SetBG3Affine.html">G2_SetBG3Affine</A>
+</DL>
+<DL>
+  <DT>ウィンドウの設定
+  <DD><A href="g2/G2_SetWnd0InsidePlane.html">G2_SetWnd0InsidePlane</A>
+  <DD><A href="g2/G2_GetWnd0InsidePlane.html">G2_GetWnd0InsidePlane</A>
+  <DD><A href="g2/G2_SetWnd1InsidePlane.html">G2_SetWnd1InsidePlane</A>
+  <DD><A href="g2/G2_GetWnd1InsidePlane.html">G2_GetWnd1InsidePlane</A>
+  <DD><A href="g2/G2_SetWndOutsidePlane.html">G2_SetWndOutsidePlane</A>
+  <DD><A href="g2/G2_GetWndOutsidePlane.html">G2_GetWndOutsidePlane</A>
+  <DD><A href="g2/G2_SetWndOBJInsidePlane.html">G2_SetWndOBJInsidePlane</A>
+  <DD><A href="g2/G2_GetWndOBJInsidePlane.html">G2_GetWndOBJInsidePlane</A>
+  <DD><A href="g2/G2_SetWnd0Position.html">G2_SetWnd0Position</A>
+  <DD><A href="g2/G2_SetWnd1Position.html">G2_SetWnd1Position</A>
+</DL>
+<DL>
+  <DT>モザイク
+  <DD><A href="g2/G2_SetBGMosaicSize.html">G2_SetBGMosaicSize</A>
+  <DD><A href="g2/G2_SetOBJMosaicSize.html">G2_SetOBJMosaicSize</A>
+</DL>
+<DL>
+  <DT>カラー特殊効果
+  <DD><A href="g2/G2_BlendNone.html">G2_BlendNone</A>
+  <DD><A href="g2/G2_SetBlendAlpha.html">G2_SetBlendAlpha</A>
+  <DD><A href="g2/G2_SetBlendBrightness.html">G2_SetBlendBrightness</A>
+  <DD><A href="g2/G2_ChangeBlendAlpha.html">G2_ChangeBlendAlpha</A>
+  <DD><A href="g2/G2_ChangeBlendBrightness.html">G2_ChangeBlendBrightness</A>
+</DL>
+<H4>サブ2Dグラフィックスエンジン</H4>
+<DL>
+  <DT>BGコントロール
+  <DD><A href="g2/G2S_SetBG0Control.html">G2S_SetBG0Control</A>
+  <DD><A href="g2/G2_GetBG0Control.html">G2S_GetBG0Control</A>
+  <DD><A href="g2/G2S_SetBG1Control.html">G2S_SetBG1Control</A>
+  <DD><A href="g2/G2_GetBG1Control.html">G2S_GetBG1Control</A>
+  <DD><A href="g2/G2S_SetBG2ControlText.html">G2S_SetBG2ControlText</A>
+  <DD><A href="g2/G2_GetBG2ControlText.html">G2S_GetBG2ControlText</A>
+  <DD><A href="g2/G2S_SetBG2ControlAffine.html">G2S_SetBG2ControlAffine</A>
+  <DD><A href="g2/G2_GetBG2ControlAffine.html">G2S_GetBG2ControlAffine</A>
+  <DD><A href="g2/G2S_SetBG2Control256x16Affine.html">G2S_SetBG2Control256x16Affine</A>
+  <DD><A href="g2/G2_GetBG2Control256x16Affine.html">G2S_GetBG2Control256x16Affine</A>
+  <DD><A href="g2/G2S_SetBG2Control256Bmp.html">G2S_SetBG2Control256Bmp</A>
+  <DD><A href="g2/G2_GetBG2Control256Bmp.html">G2S_GetBG2Control256Bmp</A>
+  <DD><A href="g2/G2S_SetBG2ControlDCBmp.html">G2S_SetBG2ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG2ControlDCBmp.html">G2S_GetBG2ControlDCBmp</A>
+  <DD><A href="g2/G2S_SetBG3ControlText.html">G2S_SetBG3ControlText</A>
+  <DD><A href="g2/G2_GetBG3ControlText.html">G2S_GetBG3ControlText</A>
+  <DD><A href="g2/G2S_SetBG3ControlAffine.html">G2S_SetBG3ControlAffine</A>
+  <DD><A href="g2/G2_GetBG3ControlAffine.html">G2S_GetBG3ControlAffine</A>
+  <DD><A href="g2/G2S_SetBG3Control256x16Affine.html">G2S_SetBG3Control256x16Affine</A>
+  <DD><A href="g2/G2_GetBG3Control256x16Affine.html">G2S_GetBG3Control256x16Affine</A>
+  <DD><A href="g2/G2S_SetBG3Control256Bmp.html">G2S_SetBG3Control256Bmp</A>
+  <DD><A href="g2/G2_GetBG3Control256Bmp.html">G2S_GetBG3Control256Bmp</A>
+  <DD><A href="g2/G2S_SetBG3ControlDCBmp.html">G2S_SetBG3ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG3ControlDCBmp.html">G2S_GetBG3ControlDCBmp</A>
+  <DD><A href="g2/G2_GetBG2ExtMode.html">G2S_GetBG2ExtMode</A>
+  <DD><A href="g2/G2_GetBG3ExtMode.html">G2S_GetBG3ExtMode</A>
+</DL>
+<DL>
+  <DT>BGの表示優先度の設定
+  <DD><A href="g2/G2S_SetBG0Priority.html">G2S_SetBG0Priority</A>
+  <DD><A href="g2/G2S_SetBG1Priority.html">G2S_SetBG1Priority</A>
+  <DD><A href="g2/G2S_SetBG2Priority.html">G2S_SetBG2Priority</A>
+  <DD><A href="g2/G2S_SetBG3Priority.html">G2S_SetBG3Priority</A>
+</DL>
+<DL>
+  <DT>BGのモザイク適用／不適用の設定
+  <DD><A href="g2/G2S_BG0Mosaic.html">G2S_BG0Mosaic</A>
+  <DD><A href="g2/G2S_BG1Mosaic.html">G2S_BG1Mosaic</A>
+  <DD><A href="g2/G2S_BG2Mosaic.html">G2S_BG2Mosaic</A>
+  <DD><A href="g2/G2S_BG3Mosaic.html">G2S_BG3Mosaic</A>
+</DL>
+<DL>
+  <DT>ポインタの取得
+  <DD><A href="g2/G2S_GetBG0ScrPtr.html">G2S_GetBG0ScrPtr</A>
+  <DD><A href="g2/G2S_GetBG1ScrPtr.html">G2S_GetBG1ScrPtr</A>
+  <DD><A href="g2/G2S_GetBG2ScrPtr.html">G2S_GetBG2ScrPtr</A>
+  <DD><A href="g2/G2S_GetBG3ScrPtr.html">G2S_GetBG3ScrPtr</A>
+  <DD><A href="g2/G2S_GetBG0CharPtr.html">G2S_GetBG0CharPtr</A>
+  <DD><A href="g2/G2S_GetBG1CharPtr.html">G2S_GetBG1CharPtr</A>
+  <DD><A href="g2/G2S_GetBG2CharPtr.html">G2S_GetBG2CharPtr</A>
+  <DD><A href="g2/G2S_GetBG3CharPtr.html">G2S_GetBG3CharPtr</A>
+  <DD><A href="g2/G2S_GetOBJCharPtr.html">G2S_GetOBJCharPtr</A>
+</DL>
+<DL>
+  <DT>BG平面のオフセットの設定
+  <DD><A href="g2/G2S_SetBG0Offset.html">G2S_SetBG0Offset</A>
+  <DD><A href="g2/G2S_SetBG1Offset.html">G2S_SetBG1Offset</A>
+  <DD><A href="g2/G2S_SetBG2Offset.html">G2S_SetBG2Offset</A>
+  <DD><A href="g2/G2S_SetBG3Offset.html">G2S_SetBG3Offset</A>
+</DL>
+<DL>
+  <DT>BG平面のアフィン変換の設定
+  <DD><A href="g2/G2S_SetBG2Affine.html">G2S_SetBG2Affine</A>
+  <DD><A href="g2/G2S_SetBG3Affine.html">G2S_SetBG3Affine</A>
+</DL>
+<DL>
+  <DT>ウィンドウの設定
+  <DD><A href="g2/G2S_SetWnd0InsidePlane.html">G2S_SetWnd0InsidePlane</A>
+  <DD><A href="g2/G2_GetWnd0InsidePlane.html">G2S_GetWnd0InsidePlane</A>
+  <DD><A href="g2/G2S_SetWnd1InsidePlane.html">G2S_SetWnd1InsidePlane</A>
+  <DD><A href="g2/G2_GetWnd1InsidePlane.html">G2S_GetWnd1InsidePlane</A>
+  <DD><A href="g2/G2S_SetWndOutsidePlane.html">G2S_SetWndOutsidePlane</A>
+  <DD><A href="g2/G2_GetWndOutsidePlane.html">G2S_GetWndOutsidePlane</A>
+  <DD><A href="g2/G2S_SetWndOBJInsidePlane.html">G2S_SetWndOBJInsidePlane</A>
+  <DD><A href="g2/G2_GetWndOBJInsidePlane.html">G2S_GetWndOBJInsidePlane</A>
+  <DD><A href="g2/G2S_SetWnd0Position.html">G2S_SetWnd0Position</A>
+  <DD><A href="g2/G2S_SetWnd1Position.html">G2S_SetWnd1Position</A>
+</DL>
+<DL>
+  <DT>モザイク
+  <DD><A href="g2/G2S_SetBGMosaicSize.html">G2S_SetBGMosaicSize</A>
+  <DD><A href="g2/G2S_SetOBJMosaicSize.html">G2S_SetOBJMosaicSize</A>
+</DL>
+<DL>
+  <DT>カラー特殊効果
+  <DD><A href="g2/G2S_BlendNone.html">G2S_BlendNone</A>
+  <DD><A href="g2/G2S_SetBlendAlpha.html">G2S_SetBlendAlpha</A>
+  <DD><A href="g2/G2S_SetBlendBrightness.html">G2S_SetBlendBrightness</A>
+  <DD><A href="g2/G2S_SetBlendBrightnessExt.html">G2S_SetBlendBrightnessExt</A>
+  <DD><A href="g2/G2S_ChangeBlendAlpha.html">G2S_ChangeBlendAlpha</A>
+  <DD><A href="g2/G2S_ChangeBlendBrightness.html">G2S_ChangeBlendBrightness</A>
+</DL>
+<H3><A name="g3"></A>3Dジオメトリ関連(G3*)</H3>
+<P>[<B><A href="list_gx.html#g3">機能一覧</A></B>]</P>
+<DL>
+  <DD><A href="Cycle.html">ジオメトリコマンドサイクル一覧</A>
+</DL>
+<DL>
+  <DT>ジオメトリと頂点
+  <DD><A href="g3/G3_Begin.html">G3*_Begin</A>
+  <DD><A href="g3/G3_End.html">G3*_End</A>
+  <DD><A href="g3/G3_Vtx.html">G3*_Vtx</A>
+  <DD><A href="g3/G3_Vtx10.html">G3*_Vtx10</A>
+  <DD><A href="g3/G3_VtxXY.html">G3*_VtxXY</A>
+  <DD><A href="g3/G3_VtxXZ.html">G3*_VtxXZ</A>
+  <DD><A href="g3/G3_VtxYZ.html">G3*_VtxYZ</A>
+  <DD><A href="g3/G3_VtxDiff.html">G3*_VtxDiff</A>
+  <DD><A href="g3/G3_Normal.html">G3*_Normal</A>
+  <DD><A href="g3/G3_Color.html">G3*_Color</A>
+  <DD><A href="g3/G3_TexCoord.html">G3*_TexCoord</A>
+  <DD><A href="g3/G3_PolygonAttr.html">G3*_PolygonAttr</A>
+</DL>
+<DL>
+  <DT><B>行列とビューポート</B>
+  <DD><A href="g3/G3_MtxMode.html">G3*_MtxMode</A>
+  <DD><A href="g3/G3_Identity.html">G3*_Identity</A>
+  <DD><A href="g3/G3_LoadMtx43.html">G3*_LoadMtx43</A>
+  <DD><A href="g3/G3_LoadMtx44.html">G3*_LoadMtx44</A>
+  <DD><A href="g3/G3_MultMtx43.html">G3*_MultMtx43</A>
+  <DD><A href="g3/G3_MultMtx44.html">G3*_MultMtx44</A>
+  <DD><A href="g3/G3_MultMtx33.html">G3*_MultMtx33</A>
+  <DD><A href="g3/G3_MultTransMtx33.html">G3*_MultTransMtx33</A>
+  <DD><A href="g3/G3_PushMtx.html">G3*_PushMtx</A>
+  <DD><A href="g3/G3_PopMtx.html">G3*_PopMtx</A>
+  <DD><A href="g3/G3_StoreMtx.html">G3*_StoreMtx</A>
+  <DD><A href="g3/G3_RestoreMtx.html">G3*_RestoreMtx</A>
+  <DD><A href="g3/G3_Scale.html">G3*_Scale</A>
+  <DD><A href="g3/G3_Translate.html">G3*_Translate</A>
+  <DD><A href="g3/G3_ViewPort.html">G3*_ViewPort</A>
+</DL>
+<DL>
+  <DT><B>ライティング</B>
+  <DD><A href="g3/G3_LightColor.html">G3*_LightColor</A>
+  <DD><A href="g3/G3_LightVector.html">G3*_LightVector</A>
+  <DD><A href="g3/G3_MaterialColorDiffAmb.html">G3*_MaterialColorDiffAmb</A>
+  <DD><A href="g3/G3_MaterialColorSpecEmi.html">G3*_MaterialColorSpecEmi</A>
+  <DD><A href="g3/G3_Shininess.html">G3*_Shininess</A>
+</DL>
+<DL>
+  <DT><B>テクスチャ</B>
+  <DD><A href="g3/G3_TexImageParam.html">G3*_TexImageParam</A>
+  <DD><A href="g3/G3_TexPlttBase.html">G3*_TexPlttBase</A>
+  <DD><A href="g3/G3_MakeTexPlttBaseParam.html">G3_MakeTexPlttBaseParam</A>
+  <DT>
+  <DT>
+</DL>
+<DL>
+  <DT>コントロール
+  <DD><A href="g3/G3_SwapBuffers.html">G3*_SwapBuffers</A>
+  <DD><A href="g3/G3_Nop.html">G3*_Nop</A>
+</DL>
+<DL>
+  <DT><B>ジオメトリ可視判定</B>
+  <DD><A href="g3/G3_BoxTest.html">G3_BoxTest</A>
+  <DD><A href="g3/G3_PositionTest.html">G3_PositionTest</A>
+  <DD><A href="g3/G3_VectorTest.html">G3_VectorTest</A>
+</DL>
+<DL>
+  <DT>ダイレクト書き込み
+  <DD><A href="g3/G3_Direct0.html">G3*_Direct0</A>
+  <DD><A href="g3/G3_Direct1.html">G3*_Direct1</A>
+  <DD><A href="g3/G3_Direct2.html">G3*_Direct2</A>
+  <DD><A href="g3/G3_Direct3.html">G3*_Direct3</A>
+</DL>
+<DL>
+  <DT>ユーティリティ
+  <DD><A href="g3/G3_Frustum.html">G3_Frustum</A>
+  <DD><A href="g3/G3_Perspective.html">G3_Perspective</A>
+  <DD><A href="g3/G3_Ortho.html">G3_Ortho</A>
+  <DD><A href="g3/G3_FrustumW.html">G3_FrustumW</A>
+  <DD><A href="g3/G3_PerspectiveW.html">G3_PerspectiveW</A>
+  <DD><A href="g3/G3_OrthoW.html">G3_OrthoW</A>
+  <DD><A href="g3/G3_LookAt.html">G3_LookAt</A>
+  <DD><A href="g3/G3_RotX.html">G3_RotX</A>
+  <DD><A href="g3/G3_RotY.html">G3_RotY</A>
+  <DD><A href="g3/G3_RotZ.html">G3_RotZ</A>
+  <DD><A href="g3/G3_LoadTexMtxTexCoord.html">G3*_LoadTexMtxTexCoord</A>
+  <DD><A href="g3/G3_LoadTexMtxEnv.html">G3*_LoadTexMtxEnv</A>
+</DL>
+<DL>
+  <DT>動的ディスプレイリスト生成
+  <DD><A href="g3/MakeDL.html">ディスプレイリスト作成 API 接頭語</A>
+  <DD><A href="g3/G3_BeginMakeDL.html">G3_BeginMakeDL</A>
+  <DD><A href="g3/G3_EndMakeDL.html">G3_EndMakeDL</A>
+  <DD><A href="g3/G3_GetDLStart.html">G3_GetDLStart</A>
+  <DD><A href="g3/G3_GetDLLength.html">G3_GetDLLength</A>
+  <DD><A href="g3/G3_GetDLSize.html">G3_GetDLSize</A>
+</DL>
+<H3><A name="g3x"></A>3Dグラフィクス制御(G3X)</H3>
+<P>[<B><A href="list_gx.html#g3x">機能一覧</A></B>]</P>
+<DL>
+  <DT>初期化
+  <DD><A href="g3/G3X_Init.html">G3X_Init</A>
+  <DD><A href="g3/G3X_InitTable.html">G3X_InitTable</A>
+  <DD><A href="g3/G3X_InitMtxStack.html">G3X_InitMtxStack</A>
+  <DD><A href="g3/G3X_Reset.html">G3X_Reset</A>
+  <DD><A href="g3/G3X_ResetMtxStack.html">G3X_ResetMtxStack</A>
+</DL>
+<DL>
+  <DT>各種機能の有効／無効
+  <DD><A href="g3/G3X_AlphaTest.html">G3X_AlphaTest</A>
+  <DD><A href="g3/G3X_AlphaBlend.html">G3X_AlphaBlend</A>
+  <DD><A href="g3/G3X_AntiAlias.html">G3X_AntiAlias</A>
+</DL>
+<DL>
+  <DT>トゥーン／ハイライトシェーディング
+  <DD><A href="g3/G3X_SetShading.html">G3X_SetShading</A>
+  <DD><A href="g3/G3X_SetToonTable.html">G3X_SetToonTable</A>
+</DL>
+<DL>
+  <DT>エッジカラー
+  <DD><A href="g3/G3X_EdgeMarking.html">G3X_EdgeMarking</A>
+  <DD><A href="g3/G3X_SetEdgeColorTable.html">G3X_SetEdgeColorTable</A>
+</DL>
+<DL>
+  <DT>フォグ
+  <DD><A href="g3/G3X_SetFog.html">G3X_SetFog</A>
+  <DD><A href="g3/G3X_SetFogColor.html">G3X_SetFogColor</A>
+  <DD><A href="g3/G3X_SetFogTable.html">G3X_SetFogTable</A>
+</DL>
+<DL>
+  <DT>オフセットの設定
+  <DD><A href="g3/G3X_SetHOffset.html">G3X_SetHOffset</A>
+  <DD><A href="g3/G3X_SetClearImageOffset.html">G3X_SetClearImageOffset</A>
+</DL>
+<DL>
+  <DT>クリアカラーとクリアデプス
+  <DD><A href="g3/G3X_SetClearColor.html">G3X_SetClearColor</A>
+</DL>
+<DL>
+  <DT>テスト結果・演算結果の取得
+  <DD><A href="g3/G3X_GetBoxTestResult.html">G3X_GetBoxTestResult</A>
+  <DD><A href="g3/G3X_GetPositionTestResult.html">G3X_GetPositionTestResult</A>
+  <DD><A href="g3/G3X_GetVectorTestResult.html">G3X_GetVectorTestResult</A>
+  <DD><A href="g3/G3X_GetClipMtx.html">G3X_GetClipMtx</A>
+  <DD><A href="g3/G3X_GetVectorMtx.html">G3X_GetVectorMtx</A>
+</DL>
+<DL>
+  <DT>その他
+  <DD><A href="g3/G3X_GetMtxStackLevelPV.html">G3X_GetMtxStackLevelPV</A>
+  <DD><A href="g3/G3X_GetMtxStackLevelPJ.html">G3X_GetMtxStackLevelPJ</A>
+  <DD><A href="g3/G3X_IsGeometryBusy.html">G3X_IsGeometryBusy</A>
+  <DD><A href="g3/G3X_IsMtxStackOverflow.html">G3X_IsMtxStackOverflow</A>
+  <DD><A href="g3/G3X_IsLineBufferUnderflow.html">G3X_IsLineBufferUnderflow</A>
+  <DD><A href="g3/G3X_IsListRamOverflow.html">G3X_IsListRamOverflow</A>
+  <DD><A href="g3/G3X_ResetMtxStackOverflow.html">G3X_ResetMtxStackOverflow</A>
+  <DD><A href="g3/G3X_ResetLineBufferUnderflow.html">G3X_ResetLineBufferUnderflow</A>
+  <DD><A href="g3/G3X_ResetListRamOverflow.html">G3X_ResetListRamOverflow</A>
+  <DD><A href="g3/G3X_ClearFifo.html">G3X_ClearFifo</A>
+  <DD><A href="g3/G3X_GetPolygonListRamCount.html">G3X_GetPolygonListRamCount</A>
+  <DD><A href="g3/G3X_GetVtxListRamCount.html">G3X_GetVtxListRamCount</A>
+  <DD><A href="g3/G3X_GetRenderedLineCount.html">G3X_GetRenderedLineCount</A>
+  <DD><A href="g3/G3X_GetCommandFifoCount.html">G3X_GetCommandFifoCount</A>
+  <DD><A href="g3/G3X_GetCommandFifoStatus.html">G3X_GetCommandFifoStatus</A>
+  <DD><A href="g3/G3X_SetFifoIntrCond.html">G3X_SetFifoIntrCond</A>
+  <DD><A href="g3/G3X_SetDisp1DotDepth.html">G3X_SetDisp1DotDepth</A>
+</DL>
+<H3>主要な型とマクロ</H3>
+<DL>
+  <DD><A href="Type.html">GXRgb</A>
+  <DD><A href="Type.html">GXRgba</A>
+  <DD><A href="Type.html">VexVtx10</A>
+  <DD><A href="Type.html">VecVtxDiff</A>
+  <DD><A href="Type.html">GXRgba</A>
+  <DD><A href="gx/GXBoxTestParam.html">GXBoxTestParam</A>
+  <DD><A href="gx/GXDLInfo.html">GXDLInfo</A>
+  <DD><A href="gx/GXOamAttr.html">GXOamAttr</A>
+  <DD><A href="gx/GXOamAffine.html">GXOamAffine</A>
+  <DD><A href="Macro.html">マクロ</A>
+  <DD><A href="DLMacro.html">ディスプレイリスト記述用マクロ</A>
+  <DD><A href="Screen2D.html">２Ｄスクリーン関係のマクロや構造体</A>
+  <DD><A href="g3/MakeDL.html">ディスプレイリスト作成 API 接頭語</A>
+</DL>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</BODY>
+</HTML>

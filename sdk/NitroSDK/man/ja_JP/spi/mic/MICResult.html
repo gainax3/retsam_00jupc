@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MICResult</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MICResult</h1>
+
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/spi.h&gt;</CODE><BR>
+  <PRE><CODE>typedef enum
+{ 
+	MIC_RESULT_SUCCESS = 0 ,
+	MIC_RESULT_BUSY ,
+	MIC_RESULT_ILLEGAL_PARAMETER ,
+	MIC_RESULT_SEND_ERROR ,
+	MIC_RESULT_INVALID_COMMAND ,
+	MIC_RESULT_ILLEGAL_STATUS ,
+	MIC_RESULT_FATAL_ERROR ,
+	MIC_RESULT_MAX
+	
+} MICResult;</CODE></PRE>
+  </dd>
+
+</dl><h2>要素</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_RESULT_SUCCESS</font></strong></em></TD>
+      <TD width="700">処理が正常に完了したことを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_RESULT_BUSY</font></strong></em></TD>
+      <TD width="700">別のSPI操作処理を実行中であった為、要求は実行できなかったことを示します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">MIC_RESULT_ILLEGAL_PARAMETER</font></strong></em></TD>
+      <TD>指定されたパラメータが不正であった為、要求は実行されなかったことを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_RESULT_SEND_ERROR</font></strong></em></TD>
+      <TD width="700">PXI通信によるARM7へのリクエスト発行に失敗したことを示します。</TD>
+    </TR>
+    <TR>
+      <TD width="300"><em><strong><font face="Courier New">MIC_RESULT_INVALID_COMMAND</font></strong></em></TD>
+      <TD width="700">ARM7で受け取ったリクエストがサポート外のコマンドであった為要求は実行不可能であったことを示します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">MIC_RESULT_ILLEGAL_STATUS</font></strong></em></TD>
+      <TD>MICライブラリ内部状態により、要求を実行できなかったことを示します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">MIC_RESULT_FATAL_ERROR</font></strong></em></TD>
+      <TD>上記以外のなんらかの要因で正常に処理できなかったことを示します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>説明</H2>
+<P>マイクを操作する関数の結果を示す共通の列挙型です。<BR>
+同期型／非同期型関数の返り値、非同期型関数のユーザコールバックに渡される<B><I><FONT face="Courier New">result</FONT></I></B>引数として用いられます。</P>
+
+<h2>参照</h2>
+<P><CODE><A href="MICCallback.html">MICCallback</A></CODE></P>
+
+<H2>履歴</H2>
+<P>Ver. 2004/06/01 初版</P>
+</body>
+</html>

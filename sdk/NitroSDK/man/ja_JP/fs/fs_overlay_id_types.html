@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>FSOverlayID, FS_OVERLAY_ID, FS_EXTERN_OVERLAY</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">FSOverlayID, FS_OVERLAY_ID, FS_EXTERN_OVERLAY</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/fs.h&gt;</CODE><BR>
+  <BR>
+  <CODE><pre>
+typedef u32 FSOverlayID;
+#define  FS_EXTERN_OVERLAY(name)   extern u32 SDK_OVERLAY_ ## name ## _ID[1]
+#define  FS_OVERLAY_ID(name)       ((u32)&amp;(SDK_OVERLAY_ ## name ## _ID))
+</pre></CODE><br>
+</dd>
+</dl>
+
+<H2>説明</H2>
+<P><A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>関数、<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>関数に指定するオーバーレイモジュールのIDを定義します。<BR>
+これらは makerom によりリンク時に生成されるので、プログラム側では以下のように使用します。<BR>
+<BR>
+<BR>
+(1) .lsf ファイルにてオーバーレイを指定します。<BR>
+<BR>
+例:<BR>
+<CODE>Overlay overlay_1<BR>
+{<BR>
+  After  main<BR>
+  Object  func_1.o<BR>
+}</CODE><BR>
+<BR>
+(2) プログラム内にてマクロを使用してオーバーレイIDを宣言します。<BR>
+<BR>
+例:<BR>
+<CODE>FS_EXTERN_OVERLAY(overlay_1);</CODE><BR>
+<BR>
+<BR>
+(3) <A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A>関数、<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A>関数にオーバーレイIDを指定します。<BR>
+<BR>
+例:<BR>
+<CODE>FS_LoadOverlay(MI_PROCESSOR_ARM9, FS_OVERLAY_ID(overlay_1));</CODE><BR>
+<BR>
+または<BR>
+<BR>
+<CODE>FSOverlayID id = FS_OVERLAY_ID(overlay_1);<BR>
+FS_LoadOverlay(MI_PROCESSOR_ARM9, id);</CODE><BR>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="fs_overlay_info_type.html">FSOverlayInfo</A><BR>
+<A href="overlay/FS_LoadOverlayInfo.html">FS_LoadOverlayInfo</A>
+<A href="overlay/FS_LoadOverlay.html">FS_LoadOverlay</A> 
+<A href="overlay/FS_UnloadOverlay.html">FS_UnloadOverlay</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2005/06/02 &amp;を&amp;amp;へ修正<br>
+2004/11/02 構造体定義をヘッダファイルと同一に訂正<br>
+2004/09/24 リンク修正<br>
+2004/04/08 FSOverlayID の型変更による記述修正<BR>
+2004/04/05 初版<BR>
+</P>
+</body>
+</html>

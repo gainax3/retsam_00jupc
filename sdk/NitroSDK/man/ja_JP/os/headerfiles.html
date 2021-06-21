@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>NITRO-SDK ヘッダファイル解説</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>NITRO-SDK ヘッダファイル解説</H1>
+<H3><A name="System">NITRO-SDK システムヘッダ</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%">nitro.h</TH>
+      <TD>NITRO-SDK 標準ライブラリに関する定義ファイルです。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro_win32.h</TH>
+      <TD>NITRO-SDK における特殊な変数型など Windows PC 上でツールを作成するときに必要な定義を集めたファイルです。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>NITRO-SDK を使用するモジュールがインクルードする必要のあるヘッダファイルです。</P>
+<H3><A name="Sinit">モジュール初期化関数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH>nitro/sinit.h</TH>
+      <TD>モジュール初期化関数 <CODE><A href="init/NitroStaticInit.html">NitroStaticInit</A></CODE> を使用可能にします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>C 言語においてスタティックイニシャライザ <CODE><A href="init/NitroStaticInit.html">NitroStaticInit()</A></CODE> を利用するためのヘッダファイルです。</P>
+<P><CODE><A href="init/NitroStaticInit.html">NitroStaticInit()</A></CODE> の本体を定義しているモジュールでのみインクルードします。オーバーレイモジュールのスタティックイニシャライザはオーバーレイのリンク時に起動されるので、この仕組みを利用することで、関数のポインタ用のエントリを用意しておき、オーバーレイモジュールのリンク時に
+<CODE><A href="init/NitroStaticInit.html">NitroStaticInit()</A></CODE> 内で対応する関数を登録するといった処理が可能となります。</P>
+<H3><A name="Arch">ARM/THUMB 命令セット切り替え</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%">nitro/code32.h</TH>
+      <TD>これ以降のコードを ARM 命令(32bitコード)で出力します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro/code16.h</TH>
+      <TD>これ以降のコードを THUMB 命令(16bitコード)で出力します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro/codereset.h</TH>
+      <TD>これ以降のコードをコンパイル時にオプションで指定した命令セットで出力します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>NINTENDO DS の ARM9, ARM7 の CPU では 2 種類の命令セット(ARM 命令, THUMB
+命令) を利用することが出来ます。この2つの命令セットを幾つかのジャンプ命令によって相互に切り替えることが出来ます。C
+言語においてこのジャンプ命令による切り替えは関数呼び出しという形で行われるため、通常どちらの命令セットを使用するかは関数単位で選択されます。</P>
+<P>code32.h および code16.h は codereset.h と組にして使用します。命令セットを
+ARM で固定したい関数を code32.h と codereset.h で囲み、THUMB で固定したい関数を
+code16.h と codereset.h で囲みます。特にアセンブラコードを使用するときは、必ず命令セットに応じて
+code32.h か code16.h で囲むようにしてください。</P>
+<BLOCKQUOTE>
+<PRE>#include &lt;nitro/code32.h&gt;     // 以下の arm_inst() を ARM 命令セットで出力する
+int arm_inst(int n)<BR>{<BR>    // 32bit code area
+    return n * n;
+}<BR>#include &lt;nitro/codereset.h&gt;  // 命令セットを元に(コンパイラのオプション通りに)戻す</PRE>
+</BLOCKQUOTE>
+<H3><A name="TCM_Section">TCM メモリの利用</A>(TCMセクションの指定)</H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%">nitro/dtcm_begin.h<BR>
+      nitro/dtcm_end.h</TH>
+      <TD>この間のコードを <CODE>.dtcm</CODE> セクションに出力します。SDK 標準の設定では <CODE>.dtcm</CODE> セクションは ARM9 の DTCM (データ用 TCM)へ配置されます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro/itcm_begin.h<BR>
+      nitro/itcm_end.h</TH>
+      <TD>この間のコードを <CODE>.itcm</CODE> セクションに出力します。SDK 標準の設定では <CODE>.itcm</CODE> セクションは ARM9 の ITCM (命令用 TCM)へ配置されます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>NINTENDO DS の ARM9 プロセッサには TCM と呼ばれる CPU 内部におけるスクラッチパッド領域(メモリマップ上に固定された高速なバッファ領域)
+が用意されています。この領域は CPU 内部キャッシュと同等速度でのアクセスが可能であるため、この領域をうまく利用することでキャッシュミスに伴う処理速度低下を抑えられる可能性があります。</P>
+<P>TCM 領域に配置したい関数を定義するときに以下のように nitro/itcm_begin.h
+と nitro/itcm_end.h で囲みます。こうして囲まれた関数領域は起動時に命令用
+TCM(ITCM) 領域へ転送されます。</P>
+<BLOCKQUOTE>
+<PRE>#include &lt;nitro/itcm_begin.h&gt;  // 以下の tcm_inst() を ITCM に配置する
+int tcm_inst(int n)
+{
+    // 32bit code area
+    return n * n;
+}
+#include &lt;nitro/item_end.h&gt;    // 配置先を通常に戻す</PRE>
+</BLOCKQUOTE>
+<P>またデータブロックを、データ用 TCM (DTCM) 領域へ配置したいときは以下のように
+nitro/dtcm_begin.h と nitro/dtcm_end.h で囲みます。</P>
+<BLOCKQUOTE>
+<PRE>#include &lt;nitro/dtcm_begin.h&gt;  // 以下の tcm_data() を DTCM に配置する
+u32  tcm_data[] =
+{
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+}
+#include &lt;nitro/dtem_end.h&gt;    // 配置先を通常に戻す</PRE>
+</BLOCKQUOTE>
+<H3><A name="OtherSection">特殊セクションの指定</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%">nitro/parent_begin.h<BR>
+      nitro/parent_end.h</TH>
+      <TD>この間のコードを <CODE>.parent</CODE> セクションに出力します。クローンブート動作時に使用します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro/version_begin.h<BR>
+      nitro/version_end.h</TH>
+      <TD>この間のコードを <CODE>.version</CODE> セクションに出力します。NITRO-SDK ライブラリで予約されていますので使用しないでください。</TD>
+    </TR>
+    <TR>
+      <TH width="25%">nitro/wram_begin.h<BR>
+      nitro/wram_end.h</TH>
+      <TD>この間のコードを <CODE>.wram</CODE> セクションに出力します。ARM7 においてのみ有効です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>TCM セクション以外にも特殊なセクションがあります。</P>
+<P>.parent セクションについてはDSダウンロードプレイの一形態であるクローンブートを行なうときに重要となります。詳しくはDSダウンロードプレイ解説のドキュメント($NitroSDK/docs/TechnicalNotes/AboutMultiBoot.pdf)
+のクローンブートに関する記載をご確認ください。</P>
+<P>.version セクションおよび .wram セクションに関しては NITRO-SDK 実装において内部で使用されるセクションですのでご利用される際に意識していただく必要はございません。</P>
+<H3><A name="Version">NITRO-SDK バージョン情報</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH>nitro/version.h</TH>
+      <TD>NITRO-SDK のバージョン情報です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P>NITRO-SDK のバージョン情報を定義しています。</P>
+<TABLE border="0" height="100%">
+  <TBODY>
+    <TR>
+      <TD style="background-color : white;"></TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</BODY>
+</HTML>

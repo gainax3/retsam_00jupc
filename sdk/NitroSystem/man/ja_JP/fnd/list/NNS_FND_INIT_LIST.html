@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_FND_INIT_LIST</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_FND_INIT_LIST</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/fnd.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_FND_INIT_LIST( NNSFndList* list, structName, linkName );</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>list</STRONG></EM></TD>
+      <TD width="87%">リスト構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>StructName</STRONG></EM></TD>
+      <TD width="87%">リンクで接続したい構造体名</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>LinkName</STRONG></EM></TD>
+      <TD width="87%">NNSFndLink型のメンバ変数名</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>なし。</P>
+
+<H2>説明</H2>
+<P>
+	リスト構造体を初期化するためのマクロです。
+	実際の初期化は、NNS_FndInitList()関数により行われます。
+	このマクロでは、指定された構造体名とNNSFndLink型メンバ変数名から、
+	stddef.hで定義されているoffsetofマクロを使ってオフセットを求め、
+	NNS_FndInitList関数に渡しています。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_FndInitList.html">NNS_FndInitList</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2004/02/02 初版<BR>
+2004/04/16 関数名とタイトルが間違っていたのを修正。
+</P>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 Trial for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_McsReadFile</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">NNS_McsReadFile</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		
+  <pre><CODE>#include &lt;nnsys/mcs.h&gt;</CODE></pre>
+	  
+  <pre><CODE>u32 NNS_McsReadFile(
+        NNSMcsFile* pFile,
+        void*       buffer,
+        u32         length,
+        u32*        pReadBytes);</CODE></pre>
+	</dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">pFile</font></strong></em></td>
+  <td width="87%">ファイル情報構造体へのポインタ。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">buffer</font></strong></em></td>
+  <td width="87%">バッファへのポインタ。読み取りが成功した場合、このバッファに読み込んだ内容が格納されます。</td>
+ </tr>
+ <tr> 
+  <td width="13%"><em><strong><font face="Courier New">length</font></strong></em></td>
+  <td width="87%">読み込むバイト数。</td>
+ </tr>
+ <tr>
+  <td width="13%"><em><strong><font face="Courier New">pReadBytes</font></strong></em></td>
+  <td width="87%">変数へのポインタ。読み取りが成功した場合に、この変数に実際に読み込んだバイト数が格納されます。</td>
+ </tr>
+</table>
+<h2>返り値</h2>
+<p>ファイルからの読み込みに成功したら 0、 失敗したら 0以外の値を返します。返り値の詳細は説明を参照してください。</p>
+<H2>説明</H2>
+<p>PC上のファイルからデータを読み込みます。</p>
+<p>返り値は次のいずれかの値をとります。</p>
+<table>
+  <tbody>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SUCCESS</font></strong></em> (0)</td>
+      <td>関数は成功しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_COMERROR</font></strong></em></td>
+      <td>通信エラーが発生しました。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_NOTCONNECT</font></strong></em></td>
+      <td>mcsサーバと接続されていません。</td>
+    </tr>
+    <tr>
+      <td><em><strong><font face="Courier New">NNS_MCS_FILEIO_ERROR_SERVERERROR</font></strong></em></td>
+      <td>mcsサーバ側でファイル操作に基づくエラーが発生しました。このエラーコードはWin32システムのエラーコードであり、関数<code>NNS_McsGetServerErrorCode</code>で取得できます。</td>
+    </tr>
+  </tbody>
+</table>
+<h2>参照</h2>
+<p><CODE><A href="NNS_McsOpenFile.html">NNS_McsOpenFile</A>, 
+<A href="NNS_McsWriteFile.html">NNS_McsWriteFile</A>, 
+<A href="NNS_McsCloseFile.html">NNS_McsCloseFile</A>
+</CODE></p>
+<H2>履歴</H2>
+<P>2005/01/24 エラーコードについての説明を追加。<br>
+2004/07/01 初版</P>
+</body>
+</html>

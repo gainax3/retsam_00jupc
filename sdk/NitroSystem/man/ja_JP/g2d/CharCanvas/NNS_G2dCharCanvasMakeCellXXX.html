@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dCharCanvasMakeCell*</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dCharCanvasMakeCell*</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+void NNS_G2dCharCanvasMakeCell1D(
+    NNSG2dCellData*         pCell,
+    const NNSG2dCharCanvas* pCC,
+    int                     x,
+    int                     y,
+    int                     priority,
+    GXOamMode               mode,
+    BOOL                    mosaic,
+    GXOamEffect             effect,
+    GXOamColorMode          color,
+    int                     charName,
+    int                     cParam,
+    NNSG2dOBJVramMode       vramMode,
+    BOOL                    makeBR
+);
+
+void NNS_G2dCharCanvasMakeCell2DRect(
+    NNSG2dCellData*         pCell,
+    const NNSG2dCharCanvas* pCC,
+    int                     x,
+    int                     y,
+    int                     priority,
+    GXOamMode               mode,
+    BOOL                    mosaic,
+    GXOamEffect             effect,
+    GXOamColorMode          color,
+    int                     charName,
+    int                     cParam,
+    BOOL                    makeBR
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCell</STRONG></EM></TD>
+      <TD width="87%"> [OUT] セルデータを格納するバッファへのポインタ。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCC</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>x</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルの中心座標(CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>y</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルの中心座標(CharCanvas座標系) </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>priority</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルのプライオリティ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>mode</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルのOBJモード </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>mosaic</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルのモザイクの有無 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>effect</STRONG></EM></TD>
+      <TD width="87%"> [IN] セルのエフェクト </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>color</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas のカラーモード </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>charName</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas が使用している先頭キャラクタネーム </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>cParam</STRONG></EM></TD>
+      <TD width="87%"> [IN] カラーパレットNo. </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>vramMode</STRONG></EM></TD>
+      <TD width="87%"> [IN] OBJ VRAM 容量 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>makeBR</STRONG></EM></TD>
+      <TD width="87%"> [IN] 境界矩形情報を付加するかどうかを指定します。 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	<code><a href="NNS_G2dCharCanvasInitForOBJ1D.html">NNS_G2dCharCanvasInitForOBJ1D()</a></code>
+	および
+	<code><a href="NNS_G2dCharCanvasInitForOBJ2DRect.html">NNS_G2dCharCanvasInitForOBJ2DRect()</a></code>
+	で初期化した CharCanvas を実際に画面に表示するためのセルを構築します。
+	この関数で構築したセルをG2Dレンダラを用いて描画することで
+	CharCanvasを容易に回転/拡縮/移動させながら表示する事が出来ます。
+</p>
+<p>
+	<EM><STRONG>pCell</STRONG></EM> にはセルデータとセルデータから参照される各種情報を格納するのに
+	十分な大きさのバッファを確保して指定します。
+	必要なバッファのサイズは
+	<a href="NNS_G2dCharCanvasCalcCellDataSizeXXX.html"><code>NNS_G2dCharCanvasCalcCellDataSize1D()</code></a>
+	または
+	<a href="NNS_G2dCharCanvasCalcCellDataSizeXXX.html"><code>NNS_G2dCharCanvasCalcCellDataSize2DRect()</code></a>
+	で求めることが出来ます。
+</P>
+<P>
+	<EM><STRONG>pCC</STRONG></EM>にはセルとして表示するCharCanvasへのポインタを指定します。
+</P>
+<P>
+	中心座標(<EM><STRONG>x</STRONG></EM>, <EM><STRONG>y</STRONG></EM>)はレンダラでセルを
+	描画する場合に配置の基準となる点です。
+	特に回転を行う場合は、この点を中心として回転することになります。
+</P>
+<P>
+	OBJ VRAM容量 <EM><STRONG>vramMode</STRONG></EM> にはハードウェアのVRAM最大容量設定に応じて、以下のいずれかを指定します。
+</P>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD>NNS_G2D_OBJVRAMMODE_32K</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 32KB</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G2D_OBJVRAMMODE_64K</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 64KB</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G2D_OBJVRAMMODE_128K</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 128KB</TD>
+    </TR>
+    <TR>
+      <TD>NNS_G2D_OBJVRAMMODE_256K</TD>
+      <TD>使用可能 OBJ VRAM 最大容量 256KB</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<P>
+	<EM><STRONG>makeBR</STRONG></EM> では境界矩形情報を付加するかどうかを指定します。
+	これは <code>g2dcvtr</code> の <code>-br</code> オプションに相当します。
+</P>
+<P>
+	上記以外の引数については SDK API リファレンスの <code>G2_SetOBJAttr()</code> を参照してください。
+</P>
+<P>
+	この関数は内部での作業用バッファをスタックに確保します。
+	作業用バッファのサイズは <EM><STRONG>pCell</STRONG></EM> に必要なバッファサイズの約4/3倍で、
+	比較的大きなサイズとなるためスタックオーバーフローが発生しないように注意してください。
+</P>
+<P>
+	この関数は使用するOBJ数/キャラクタ数を最小にしようとしますので
+	8x32ピクセル等の細長いOBJを使用する可能性があります。
+	このような細長いOBJを回転させるとOBJの端が欠ける事となってしまいます。
+	細長いOBJがセルに含まれないようにするためにはキャラクタ単位でのCharCanvasの幅や高さが
+	素因数として2を多く含むようにします。
+	幅と高さが共にキャラクタ単位で8の倍数であれば細長いOBJは含まれません。
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/02/16 初版</P>
+<P>2005/07/12 初版</P>
+</BODY>
+
+</HTML>

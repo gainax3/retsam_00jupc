@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>キャッシュ (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">キャッシュ (overview)</H1>
+<H2>説明</H2>
+<P>ARM9 には、キャッシュ機構が用意されており、局所的なメモリアクセス効率を向上させることができます。ARM9
+のキャッシュには 8KByte の命令キャッシュと 4KByte のデータキャッシュがあります。</P>
+<P>これらの関数は、OS カテゴリに属しますが、用途が特殊であるため、接頭語は「
+OS_ 」ではなく、データキャッシュ関連の関数は 「<FONT color="#ff0033"> DC_ </FONT>」、命令キャッシュ関連の命令は「<FONT color="#ff0033"> IC_</FONT> 」となります。</P>
+<HR>
+<P><B>データキャッシュの有効・無効設定</B></P>
+<P>データキャッシュを有効にする関数は、<CODE><A href="DC_Enable.html">DC_Enable()</A></CODE> です。</P>
+<P>無効にする関数は、 <CODE><A href="DC_Disable.html">DC_Disable()</A></CODE> です。</P>
+<P>有効か無効かを指定の状態に設定する関数は、<CODE><A href="DC_Restore.html">DC_Restore()</A></CODE> です。</P>
+<P>これらの命令でデータキャッシュを有効に設定しても、プロテクションリージョンの設定でデータキャッシュが無効になっている場合は有効に切り替えることは出来ません。</P>
+<HR>
+<P><B>データキャッシュの操作</B></P>
+<P>データキャッシュ中の全てのデータを破棄する関数は <CODE><A href="DC_InvalidateAll.html">DC_InvalidateAll()</A></CODE> です。<BR>
+領域を指定してデータキャッシュ中のデータを破棄する関数は <CODE><A href="DC_InvalidateRange.html">DC_InvalidRange()</A></CODE> です。</P>
+<P>データキャッシュ中の全てのデータを書き戻す関数は <CODE><A href="DC_StoreAll.html">DC_StoreAll()</A></CODE> です。<BR>
+領域を指定してデータキャッシュ中のデータを書き戻す関数は <CODE><A href="DC_StoreRange.html">DC_StoreRange()</A></CODE> です。</P>
+<P>データキャッシュ中の全てのデータを書き戻して破棄する関数は <CODE><A href="DC_FlushAll.html">DC_FlushAll()</A></CODE> です。<BR>
+領域を指定してデータキャッシュ中のデータを書き戻して破棄する関数は <CODE><A href="DC_FlushRange.html">DC_FlushRange()</A></CODE> です。</P>
+<P>データキャッシュに指定領域のデータを先読みする関数は <CODE><A href="DC_TouchRange.html">DC_TouchRange()</A></CODE> です。</P>
+<P>データキャッシュ中の指定領域のデータが別のキャッシュで置換されないようにロックする関数は
+<CODE><A href="DC_LockdownRange.html">DC_LockdownRange()</A></CODE> です。</P>
+<P>キャッシュの書き戻しを終え、ライトバッファが空になったかどうかを調べる関数は
+<CODE><A href="DC_WaitWriteBufferEmpty.html">DC_WaitWriteBufferEmpty()</A></CODE> です。</P>
+<HR>
+<P><B>命令キャッシュの有効・無効設定</B></P>
+<P>命令キャッシュを有効にする関数は、 <CODE><A href="IC_Enable.html">IC_Enable()</A></CODE> です。</P>
+<P>無効にする関数は、 <CODE><A href="IC_Disable.html">IC_Disable()</A></CODE> です。</P>
+<P>有効か無効化を指定の状態に設定する関数は、 <CODE><A href="IC_Restore.html">IC_Restore()</A></CODE> です。</P>
+<P>これらの命令で命令キャッシュを有効に設定しても、プロテクションリージョンの設定で命令キャッシュが無効になっている場合は有効に切り替えることは出来ません。</P>
+<HR>
+<P><B>命令キャッシュの操作</B></P>
+<P>命令キャッシュの中の全てのデータを破棄する関数は <CODE><A href="IC_InvalidateAll.html">IC_InvalidateAll()</A></CODE> です。</P>
+<P>領域を指定して命令キャッシュの中のデータを破棄する関数は <CODE><A href="IC_InvalidateRange.html">IC_InvalidateRange()</A></CODE> です。</P>
+<P>命令キャッシュに指定領域の命令コードを先読みする関数は <CODE><A href="IC_PrefetchRange.html">IC_PrefetchRange()</A></CODE> です。</P>
+<P>命令キャッシュの中の指定領域のデータが別のキャッシュで置換されないようにロックする関数は、
+<CODE><A href="IC_LockdownRange.html">IC_LockdownRange()</A></CODE> です。</P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Cache">OS関数一覧(キャッシュ)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/12/16 初版</P>
+</BODY>
+</HTML>

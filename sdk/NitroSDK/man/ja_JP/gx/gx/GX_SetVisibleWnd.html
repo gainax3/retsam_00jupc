@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_SetVisibleWnd</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_SetVisibleWnd</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_SetVisibleWnd(int window);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">window</font></strong></em></td>
+    <td width="87%"><CODE>GXWndMask</CODE>型の論理和で表示ウィンドウを指定します。</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>表示するウィンドウを選択します。<CODE>GXWndMask</CODE>型の値で論理和をとったものを引数とします。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_WNDMASK_NONE</CODE></TD>
+      <TD width="70%">何も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_W0</CODE></TD>
+      <TD>ウィンドウ0を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_W1</CODE></TD>
+      <TD>ウィンドウ1を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_WNDMASK_OW</CODE></TD>
+      <TD>OBJウィンドウを指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXWndMask</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_WNDMASK_NONE = 0x00,
+    GX_WNDMASK_W0 = 0x01,
+    GX_WNDMASK_W1 = 0x02,
+    GX_WNDMASK_OW = 0x04
+}
+GXWndMask;</CODE></PRE>
+<h2>参照</h2>
+<P><A href="GX_SetVisiblePlane.html">GX_SetVisiblePlane</A>, <A href="GX_GetVisibleWnd.html">GX_GetVisibleWnd</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

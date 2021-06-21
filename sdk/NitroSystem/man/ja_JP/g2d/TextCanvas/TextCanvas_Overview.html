@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>文字列描画概要</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">文字列描画概要</H1>
+
+<H2>文字列描画ライブラリ</H2>
+<P>
+	文字列描画ライブラリは
+	<a href="../CharCanvas/CharCanvas_Overview.html">文字描画ライブラリ</a>
+	を用いて文字列の描画を行うライブラリです。
+	文字列をエンコーディングに従って文字に分解し、
+	レイアウトした上で文字描画ライブラリを用いて描画していきます。
+</P>
+
+<H2>TextCanvas</H2>
+<P>
+	文字列描画ライブラリでは TextCanvas と呼ぶ仮想描画面に対して文字列描画を行います。<br>
+	TextCanvas は内部に CharCanvas を持ち、TextCanvas への文字列描画は
+	最終的には CharCanvas が描画対象とするキャラクタに対して行われます。<br>
+	
+	この他に TextCanvas は文字間隔や行間隔などの文字列を描画するために必要なパラメータも
+	持っています。
+
+	<br>
+	<img src="TextCanvas.png" alt="文字列描画→TextCanvas→文字描画→CharCanvas">
+</P>
+
+<H2>文字列描画関数</H2>
+<P>
+	文字列描画ライブラリの関数は以下のように大きく4つのグループに分ける事ができます。
+</p>
+
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="40%">
+			<strong>TextCanvas 構築</strong><br>
+			TextCanvas を初期化・構築する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dTextCanvasInit.html">NNS_G2dTextCanvasInit()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>TextCanvas アクセサ</strong><br>
+			TextCanvas の各パラメータを取得・設定する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dTextCanvasGetCharCanvas.html">NNS_G2dTextCanvasGetCharCanvas()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasSetCharCanvas.html">NNS_G2dTextCanvasSetCharCanvas()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetFont.html">NNS_G2dTextCanvasGetFont()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasSetFont.html">NNS_G2dTextCanvasSetFont()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetHSpace.html">NNS_G2dTextCanvasGetHSpace()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasSetHSpace.html">NNS_G2dTextCanvasSetHSpace()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetVSpace.html">NNS_G2dTextCanvasGetVSpace()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasSetVSpace.html">NNS_G2dTextCanvasSetVSpace()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>文字列描画サイズ計算</strong><br>
+			文字列の描画サイズを計算する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dTextCanvasGetStringWidth.html">NNS_G2dTextCanvasGetStringWidth()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetTextWidth.html">NNS_G2dTextCanvasGetTextWidth()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetTextHeight.html">NNS_G2dTextCanvasGetTextHeight()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasGetTextRect.html">NNS_G2dTextCanvasGetTextRect()</a></code><br>
+	      </TD>
+	    </TR>
+	    <TR>
+	      <TD width="40%">
+			<strong>文字列描画</strong><br>
+			TextCanvas に文字列を描画する関数群です。
+	      </TD>
+	      <TD width="60%">
+			<code><a href="NNS_G2dTextCanvasDrawString.html">NNS_G2dTextCanvasDrawString()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasDrawText.html">NNS_G2dTextCanvasDrawText()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasDrawTextRect.html">NNS_G2dTextCanvasDrawTextRect()</a></code><br>
+			<code><a href="NNS_G2dTextCanvasDrawTaggedText.html">NNS_G2dTextCanvasDrawTaggedText()</a></code><br>
+	      </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+
+<p>
+	この分類と<a href="../CharCanvas/CharCanvas_Overview.html">文字描画ライブラリ</a>の関数分類を用いると
+	文字列描画の大まかな流れは以下のようになります。<br>
+</p>
+	<pre>
+    (1) CharCanvas 構築関数で CharCanvas を構築する。
+        スクリーン・OAM設定関数でスクリーンまたはOAMの設定を行う。
+        またはセル構築関数でセルを構築する
+        ↓
+    (2) TextCanvas 構築関数で TextCanvas を構築する。
+        ↓
+    (3) CharCanvas 塗りつぶし関数で CharCanvas をクリア。
+        ↓
+    (4) 文字列描画関数で文字列描画
+        ↓
+    以下(3)(4)を必要な時に必要なだけ行う。
+
+    (5) (1) でセルの構築を行った場合はレンダラを用いてセルの描画を行う
+	</pre>
+<p>
+
+
+<H2>文字エンコーディング</H2>
+<P>
+	TextCanvas が扱うことのできる文字エンコーディングは使用するフォントに依存します。
+	<br>
+	文字列を引数とする関数は
+	マクロ <a href="NNS_G2D_UNICODE.html"><code>NNS_G2D_UNICODE</code></a>
+	を定義する事でワイド文字列を引数とするように変更する事が出来ますが、
+	それだけではワイド文字列を表示する事が出来ません。
+	ワイド文字列を表示するには
+	<a href="NNS_G2D_UNICODE.html"><code>NNS_G2D_UNICODE</code></a>
+	を定義した上で UTF-16 エンコーディング用のフォントを使用する必要があります。
+	<br>
+	逆に 
+	<a href="NNS_G2D_UNICODE.html"><code>NNS_G2D_UNICODE</code></a>
+	を定義していない場合でも Shift_JIS や UTF-8 文字を表示するには
+	それぞれのエンコーディング用のフォントを使用する必要があります。
+
+	<br>
+	<br>
+	<img src="encoding.png" alt="バイト列―[TextCanvas]→文字コード列―[Font]→文字列">
+</P>
+
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/07/12 セルを用いる場合を追加<br>
+2005/05/25 初版<br>
+</P>
+</BODY>
+
+</HTML>

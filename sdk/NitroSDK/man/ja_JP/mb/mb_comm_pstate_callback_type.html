@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MBCommPStateCallback</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MBCommPStateCallback</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+typedef void (*MBCommPStateCallback)(u16 child_aid, u32 status, void* arg);<br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>親機の状態が変更するごとに呼び出されるコールバック関数の形式を定義します。<BR>
+引数の意味は以下の通りです。<BR>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>引数</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>child_aid</TD>
+      <TD>コールバックが特定の1台の子機に対する通知である場合、その子機の aid を示します。<BR>
+	  この値を指定してMB_CommGetChildUser関数を呼び出すことで、<BR>
+	  特定の子機についての詳細を取得することができます。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>status</TD>
+      <TD>MBCommPStateで表されるいずれかの状態を示します。<BR>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>arg</TD>
+      <TD>通知される状態に応じた変数が渡されます。<br>
+	  各状態ごとの詳細は、<A href="mb_comm_pstate_const.html">MBCommPState</A>の説明を参照ください。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</P>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="mb_comm_pstate_const.html">MBCommPState</A> <BR>
+<A href="parent/MB_CommGetChildUser.html">MB_CommGetChildUser</A> 
+<A href="parent/MB_CommSetParentStateCallback.html">MB_CommSetParentStateCallback</A> 
+<A href="parent/MB_CommGetParentState.html">MB_CommGetParentState</A> 
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/10 引数 arg の拡張に関する記述の追加<BR>
+2004/08/09 初版<BR>
+</P>
+</body>
+</html>

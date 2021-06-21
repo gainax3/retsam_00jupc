@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2D_UNICODE</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2D_UNICODE</H1>
+
+<H2>定義</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2di_Char.h&gt;
+
+#ifdef NNS_G2D_UNICODE
+    #define NNS_G2D_TRANSCODE(str)  L##str
+    typedef wchar_t NNSG2dChar;
+#else
+    #define NNS_G2D_TRANSCODE(str)  str
+    typedef char NNSG2dChar;
+#endif
+</CODE></PRE>
+</DL>
+
+<H2>説明</H2>
+<P>
+	文字列処理ルーチンが扱う文字種を切り替えます。
+</P>
+<P>
+	NNS_G2D_UNICODE が定義されていないと char を文字種として扱います。
+	定義されていると wchar_t を文字種として扱います。<br>
+	NNS_G2D_UNICODE の定義はヘッダファイルを include する前に行ってください。<br>
+</P>
+<P>
+	文字種の切り替えのためにライブラリを再ビルドする必要はありません。
+</P>
+
+<H2>サンプルコード</H2>
+<CODE><pre>
+// Unicode を使う
+#define NNS_G2D_UNICODE
+
+#include &lt;nitro.h&gt;
+#include &lt;nnsys/g2d/g2d_Font.h&gt;
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+#include &lt;nnsys/g2d/g2d_TextCanvas.h&gt;
+
+// .....
+</pre></CODE>
+
+
+<H2>参照</H2>
+<P><CODE>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2005/05/25 初版</P>
+</BODY>
+
+</HTML>

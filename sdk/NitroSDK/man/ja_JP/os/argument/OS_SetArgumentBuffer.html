@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetArgumentsBuffer</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetArgumentBuffer</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SetArgumentBuffer( const char* buffer );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><EM><B>buffer</B></EM></TD>
+      <TD>設定する引数バッファへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P><A href="OS_GetArgc.html"><CODE>OS_GetArgc</CODE></A> や <CODE><A href="OS_GetArgv.html">OS_GetArgv</A></CODE> や <CODE><A href="OS_GetOpt.html">OS_GetOpt</A></CODE> などで使われる引数バッファを設定します。</P>
+<P>デフォルトでは、システム内で持っている引数バッファ領域 ( <CODE><A href="../../tools/buryarg.html">buryarg</A></CODE> ツールによって引数データが埋め込まれます) が用いられますが、この関数で変更することが出来ます。</P>
+<P>引数データは <CODE><A href="OS_ConvertToArguments.html">OS_ConvertToArguments()</A></CODE> を使えば、文字列から容易に変換出来ます。</P>
+<P>FINALROM ビルドでは何もしません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_GetArgv.html">OS_GetArgv</A>, <A href="OS_GetArgc.html">OS_GetArgc</A>, <A href="OS_GetOpt.html">OS_GetOpt</A>, 
+<A href="../../tools/buryarg.html">buryarg ツール</A>,</CODE><BR>
+<CODE><A href="OS_GetArgumentBuffer.html">OS_GetArgumentBuffer</A>, <A href="OS_ConvertToArguments.html">OS_ConvertToArguments</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/09/09 初版</P>
+</BODY>
+</HTML>

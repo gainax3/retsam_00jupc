@@ -1,0 +1,77 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWC_CreateFriendKey</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWC_CreateFriendKey</H1>
+
+		<H2>構文</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>#include &lt;dwc.h&gt;
+
+u64 DWC_CreateFriendKey( const <A href="DWCUserData.html">DWCUserData</A>* userdata );</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  ユーザデータから、相手に渡す友達登録鍵を生成します。
+		  この関数で取得した友達登録鍵を10進12桁の数値として表示してください。
+		</p>
+		<p>
+		  友達登録では、ユーザが入力した友達登録鍵を<A href="DWC_CheckFriendKey.html">DWC_CheckFriendKey</A>関数で正当性を確認した後、<A href="DWC_CreateFriendKeyToken.html">DWC_CreateFriendKeyToken</A>関数を用いて友達情報を作成し、作成した友達情報を友達リストに追加してください。
+		</P>
+		<P>
+		  また、ユーザが入力した友達登録鍵が間違っていることも想定して、友達関係が成立するまでは、
+		  友達登録鍵を再度入力できるインタフェースを準備してください。
+		</P>
+		<P>
+		  一度もWi-Fiコネクションに接続していない場合は、友達登録鍵を生成できませんので、接続してから生成するようなインタフェースを準備するか、その旨のメッセージを表示してください。
+		</P>
+
+		<H2>引数</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>userdata</CODE></STRONG></EM></TD>
+					<TD width="75%">ユーザデータが格納された<A href="DWCUserData.html">DWCUserData</A>構造体へのポインタ</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+
+
+		<H2>返り値</H2>
+		<TABLE border="1">
+			<TBODY>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>正の値</CODE></STRONG></EM></TD>
+					<TD width="75%">友達登録鍵</TD>
+				</TR>
+				<TR>
+					<TD width="25%"><EM><STRONG><CODE>0</CODE></STRONG></EM></TD>
+					<TD width="75%">プロファイルを取得していないため、失敗しました。</TD>
+				</TR>
+			</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		<A href="DWC_CreateFriendKeyToken.html">DWC_CreateFriendKeyToken</A>,
+		<A href="DWC_CheckFriendKey.html">DWC_CheckFriendKey</A>
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+		2007/01/25 友達登録鍵の確認方法を追記<BR>
+		2005/12/16 改訂<BR>
+		2005/10/20 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>

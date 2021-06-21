@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>システム状態 (overview)</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">システム状態 (overview)</H1>
+<H2>説明</H2>
+<P>このカテゴリに入っている関数は、主にCPSR ( Current Program Status Register
+) やコプロセッサ15 (CP15) 内の状態を扱うものになります。</P>
+<P>CPSR 内部には、FIQ 割り込みと IRQ 割り込みに対する許可ビットが存在します。</P>
+<BLOCKQUOTE><IMG src="image_cpsr.gif" border="0"></BLOCKQUOTE>
+<P>I ビットがセットされている場合は IRQ 割り込みがディセーブルとなり、F ビットがセットされている場合は
+FIQ 割り込みがディセーブルとなります。</P>
+<HR>
+<P><B>割り込み状態 (IRQ)</B></P>
+<P><CODE><A href="OS_EnableInterrupts.html">OS_EnableInterrupts()</A></CODE> は I ビットをクリアします。すなわち、IRQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_DisableInterrupts.html">OS_DisableInterrupts()</A></CODE> は I ビットをセットします。すなわち、IRQ 割り込みをディセーブルにします。</P>
+<P><CODE><A href="OS_RestoreInterrupts.html">OS_RestoreInterrupts()</A></CODE> は I ビットを指定の状態にします。すなわち IRQ割り込みを指定の状態に設定します。</P>
+<P>これらの関数は、変更する以前の状態を返しますので、<CODE>OS_EnableInterrupts()</CODE> や <CODE>OS_DisableInterrupts()</CODE> で状態を変更して何らかの処理を行なった後は <CODE>OS_RestoreInterrupts()</CODE> で元の状態に戻すことが可能です。実際に、通常は次の例のように割り込み状態の変化とその復帰とをペアで使用します。</P>
+<BLOCKQUOTE><CODE>(例)<BR>
+OSIntrMode enabled = OS_EnableInterrups();<BR>
+　　　　:<BR>
+(void)OS_RestoreInterrupts( enabled );</CODE></BLOCKQUOTE>
+<HR>
+<P><B>割り込み状態 (IRQ と FIQ)</B></P>
+<P><FONT color="#ff0033">FIQ 割り込みはデバッグツールで使用しているため、通常アプリケーションが使用することは出来ません。また使う必要もありません。</FONT></P>
+<P>IRQ 割り込みに関する関数と同様に、IRQ 割り込みと FIQ 割り込みの両方を同時に設定する関数も用意されています。</P>
+<P><CODE><A href="OS_EnableInterrupts_IrqAndFiq.html">OS_EnableInterrupts_IrqAndFiq()</A></CODE> は I ビットと F ビットをクリアします。すなわち、IRQ 割り込みと FIQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_DisableInterrupts_IrqAndFiq.html">OS_DisableInterrupts_IrqAndFiq()</A></CODE> は I ビットと F ビットをセットします。すなわち、IRQ 割り込みと FIQ 割り込みをイネーブルにします。</P>
+<P><CODE><A href="OS_RestoreInterrupts_IrqAndFiq.html">OS_RestoreInterrups()_IrqAndFiq()</A></CODE> は I ビットと F ビットを指定の状態にします。すなわち IRQ 割り込みと FIQ
+割り込みを指定の状態に設定します。</P>
+<P>これら IRQ 割り込みと FIQ 割り込みに関する関数群も、状態復帰のために <CODE>OS_RestoreInterrupts_IrqAndFiq()</CODE> が用いられ、Enable - Restore または Disable - Restore のペアで通常は使用します。</P>
+<HR>
+<P><B>状態取得(IRQ, プロセッサモード)</B></P>
+<P>現在の IRQ 割り込みの設定を取得するには <CODE><A href="OS_GetCpsrIrq.html">OS_GetCpsrIrq()</A></CODE> を用います。</P>
+<P>現在のプロセッサモードを取得するには、<CODE><A href="OS_GetProcMode.html">OS_GetProcMode()</A></CODE> を用います。なお、通常は システムモードで動作しています。</P>
+<P>プロセッサモードとは、ARMアーキテクチャの CPU 動作モードで、ユーザモード、FIQモード、IRQモード、スーパバイザモード、アボートモード、未定義モード、システムモードの7つが存在します。</P>
+<HR>
+<P><B>プログラムの停止</B></P>
+<P>現在のプロセッサの実行を停止する関数として、<CODE><A href="OS_Terminate.html">OS_Terminate()</A></CODE> が用意されています。この関数の内部では、IRQ 割り込みをディセーブルにして、<CODE>OS_Halt()</CODE> を呼ぶループとなっています。ここからは他のスレッドに移行することもありませんし、割り込みハンドラが呼ばれることもありません。</P>
+<HR>
+<P><B>CPU HALT</B></P>
+<P>CPU で何もすることが無いときに、CPU をHALTさせて消費電力を節約をすることが出来ます。HALT
+状態であっても割り込みを受け付け、復帰します。ARM9 、ARM7 ともに <CODE><A href="OS_Halt.html">OS_Halt()</A></CODE> でHALT状態になります。</P>
+<P>なお、特にアプリケーション側で意識する必要はありませんが、ARM9 では CP15
+の機能でHALT状態となり、ARM7 ではシステムコールを使用しています。</P>
+<HR>
+<P><B>ウェイト</B></P>
+<P><A href="OS_SpinWait.html"><CODE>OS_SpinWait()</CODE></A> は CPU によるループで指定の時間だけウェイトします。しかし、CPU でループしているだけですので、割り込みが発生したりすることで指定の時間よりも長い間、関数から戻ってこない場合があります。指定の時間は「最低限のウェイト時間」と解釈して下さい。</P>
+<H2>参照</H2>
+<P><CODE><A href="../list_os.html#Cpsr">OS関数一覧(システム状態)</A></CODE></P>
+<H2>履歴</H2>
+<P>2004/12/14 用語や語尾など修正<BR>
+2004/11/09 初版</P>
+</BODY>
+</HTML>

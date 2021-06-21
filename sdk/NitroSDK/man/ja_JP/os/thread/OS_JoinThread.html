@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_JoinThread</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_JoinThread</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_JoinThread( OSThread* thread );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>thread</STRONG></EM></TD>
+      <TD width="87%">結合するスレッドへのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>スレッドを結合し、指定のスレッドが終了するまで待ちます。既にスレッドが終了しているときには何もしません。</P>
+<P>この関数の中では、呼び出したスレッドは指定のスレッド<B><I>thread</I></B> の持つスレッドキューに自らのスレッド(呼び出したスレッド)を登録して <A href="OS_SleepThread.html"><CODE>OS_SleepThread()</CODE></A>　でスリープ状態になります。そして、指定のスレッド <B><I>thread</I></B> が <A href="OS_ExitThread.html"><CODE>OS_ExitThread()</CODE></A> で終了するときにスレッドキューに登録されたスレッド全てを(それらのスレッドの状態に関わらず)
+実行可能状態にしてリスケジューリングします。</P>
+<P>複数のスレッドが、一つのスレッドに対し <CODE>OS_JoinThread()</CODE> しても構いません。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_SleepThread.html">OS_SleepThread</A>, <A href="OS_ExitThread.html">OS_ExitThread</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2004/11/10 説明を解りやすく修正<BR>
+2004/06/25 初版</P>
+</BODY>
+</HTML>

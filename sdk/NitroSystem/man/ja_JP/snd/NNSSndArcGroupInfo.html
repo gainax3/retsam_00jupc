@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNSSndArcGroupInfo</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNSSndArcGroupInfo</h1>
+<h2>定義</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcsynopsisinfo"><code>typedef struct NNSSndArcGroupInfo
+{
+    u32 count;
+    struct <a href="NNSSndArcGroupItem.html"><span class="structname">NNSSndArcGroupItem</span></a> item[ 0 ];
+} NNSSndArcGroupInfo;
+</code></pre></dd>
+<dd><pre class="funcprototype"></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDAULWT"></a>
+      <h2>要素</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>count</code></strong></em></td>
+<td>グループ項目の個数です。</td>
+</tr>
+<tr>
+<td><em><strong><code>item</code></strong></em></td>
+<td>グループ項目の配列です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAKMWT"></a>
+      <h2>説明</h2>
+      <p>
+サウンドアーカイブ中のグループ情報構造体です。 
+</p>
+      <p>
+<tt class="function"><a href="NNS_SndArcGetGroupInfo.html">NNS_SndArcGetGroupInfo</a></tt>関数を使って、
+サウンドアーカイブからこの構造体を取得することができます。
+</p>
+      <p>
+<tt class="function"><a href="NNS_SndArcLoadGroup.html">NNS_SndArcLoadGroup</a></tt>関数では、
+この情報に基づいて、サウンドデータをロードします。
+</p>
+    </div>
+<h2>参照</h2>
+<p><a href="NNSSndArcGroupItem.html"><span class="structname">NNSSndArcGroupItem</span></a>, <a href="NNS_SndArcGetGroupInfo.html">NNS_SndArcGetGroupInfo</a>, <a href="NNS_SndArcLoadGroup.html">NNS_SndArcLoadGroup</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

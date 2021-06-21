@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_TexCoord</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_TexCoord</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_TexCoord(fx32 s, fx32 t);
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR>void G3B_TexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 s, fx32 t);<BR>void G3C_TexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 s, fx32 t);<BR>void G3BS_TexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 s, fx32 t);<BR>void G3CS_TexCoord(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx32 s, fx32 t);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">s</font></strong></em></td>
+    <td width="87%">S座標</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">t</font></strong></em></TD>
+      <TD>T座標</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P><B><I>s</I></B>,<B><I>t</I></B>共に、-2048(0xFF800000)以上、2047.9735(0x007FFF00)以下の値である必要があります。内部で符号+整数部11ビット+小数部4ビットの固定小数に変換され、1ワードのパラメータにパッキングされます。テクスチャ座標は次の<A href="G3_TexCoord.html">G3*_TexCoord</A>コマンドでカレントテクスチャ座標が再設定されるまで有効です。このため、複数の頂点でテクスチャ座標を共有することが出来ます。<BR>
+<BR>
+なお、テクスチャマッピングを行う場合、<A href="G3_TexCoord.html">G3*_TexCoord</A>, <A href="G3_Normal.html">G3*_Normal</A>, <A href="G3_Vtx.html">G3*_Vtx</A> の順でコマンドを発行すればジオメトリエンジンが高速に処理できます。</P>
+<h2>参照</h2>
+<P><A href="G3_Normal.html">G3*_Normal</A>, <A href="G3_Vtx.html">G3*_Vtx</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

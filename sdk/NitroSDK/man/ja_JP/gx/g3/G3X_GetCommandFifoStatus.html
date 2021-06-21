@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3X_GetCommandFifoStatus</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3X_GetCommandFifoStatus</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3x.h&gt;
+
+GXFifoStat G3X_GetCommandFifoStatus(void);<BR></CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+<P>なし</P>
+<h2>返り値</h2>
+<p>コマンドFIFOの大まかな状態</p>
+<H2>説明</H2>
+<P>コマンドFIFOの状態を、空・半分以下・半分以上・一杯の4種類の状態として返します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_FIFOSTAT_EMPTY</CODE></TD>
+      <TD>コマンドFIFOは空です。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FIFOSTAT_UNDERHALF</CODE></TD>
+      <TD>コマンドFIFOは半分以下ですが空ではありません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FIFOSTAT_OVERHALF</CODE></TD>
+      <TD>コマンドFIFOは半分以上ですが一杯ではありません。</TD>
+    </TR>
+    <TR>
+      <TD><CODE>GX_FIFOSTAT_FULL</CODE></TD>
+      <TD>コマンドFIFOは一杯です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下にGXFifoStat型の型定義を記しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_FIFOSTAT_EMPTY = 6,
+    GX_FIFOSTAT_UNDERHALF = 2,
+    GX_FIFOSTAT_OVERHALF = 0,
+    GX_FIFOSTAT_FULL = 1
+}
+GXFifoStat;</CODE></PRE>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_Startup</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_Startup</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_Startup(CPSConfig *config);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>config</strong></em></code></td>
+    <td>構成情報。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>CPSライブラリを使用可能にします。<BR>
+	二つのスレッドが生成されます。<BR>
+	SSLライブラリを使用する際は、RTC_Init()でRTCが初期化されている必要があります。<BR>
+	ブロックはしません。
+</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_Cleanup.html">CPS_Cleanup</A></CODE>, 
+<CODE><A href="CPSConfig.html">CPSConfig</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

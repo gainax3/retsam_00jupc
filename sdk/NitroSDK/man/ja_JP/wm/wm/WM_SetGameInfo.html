@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_SetGameInfo</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_SetGameInfo</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_SetGameInfo(
+        <A href="WMCallbackFunc.html">WMCallbackFunc</A>  callback ,
+        const u16*      userGameInfo ,
+        u16             userGameInfoSize ,
+        u32             ggid,
+        u16             tgid,
+        u8              attr
+);
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">userGameInfo</FONT></STRONG></EM></TD>
+      <TD width="800">ユーザーゲーム情報へのポインタを指定します。<BR>
+      データの実体は強制的にキャッシュストアされる点に注意して下さい。
+      </TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">userGameInfoSize</FONT></STRONG></EM></TD>
+      <TD width="800">ユーザーゲーム情報のサイズを指定します。最大で 112 バイトまで指定することが出来ます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">ggid</FONT></STRONG></EM></TD>
+      <TD width="800">ゲームグループIDを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">tgid</FONT></STRONG></EM></TD>
+      <TD width="800">テンポラリーグループIDを指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">attr</FONT></STRONG></EM></TD>
+      <TD width="800">エントリー受付中、ダウンロードプレイ可などの属性を指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>ビーコンにて送信するゲーム固有情報を再設定します。
+WMが<A href="wm_state_diagram.html">PARENTステート</A>もしくは<A href="wm_state_diagram.html">MP_PARENTステート</A>の場合にのみ実行可能です。
+APIの戻り値がWM_ERRCODE_OPERATINGであった場合、情報再設定処理が完了した後にコールバックが発生します。<BR>
+<A href="WM_SetParentParameter.html">WM_SetParentParameter</A>により初期値はセットされていますので、これを変更する場合に用います。</P>
+<P>引数<B><I>attr</I></B> は、以下の論理和で表されます。</P>
+<TABLE>
+  <TBODY>
+    <TR>
+      <TD bgcolor="#eeeeee">WM_ATTR_FLAG_ENTRY</TD>
+      <TD bgcolor="#eeeeee">エントリー受付中</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee">WM_ATTR_FLAG_MB</TD>
+      <TD bgcolor="#eeeeee">ダウンロードプレイ可</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><DEL>WM_ATTR_FLAG_KS</DEL></TD>
+      <TD bgcolor="#eeeeee"><DEL>キーシェアリング</DEL>現在は使用されていません（※このビットは立てないようにしてください）</TD>
+    </TR>
+    <TR>
+      <TD bgcolor="#eeeeee"><DEL>WM_ATTR_FLAG_CS</DEL></TD>
+      <TD bgcolor="#eeeeee"><DEL>連続通信モード</DEL>現在は使用されていません</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<h2>参照</h2>
+<p><CODE><A href="WM_SetParentParameter.html">WM_SetParentParameter</A>, <A href="WM_StartParent.html">WM_StartParent<A></CODE></p>
+
+<H2>履歴</H2>
+<P>
+2006/02/20 引数の名前を変更<BR>
+2005/12/08 キーシェアリング関連の記述を削除<BR>
+2005/06/08 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/10/22 返り値の型を変更<BR>
+2004/09/24 説明の追加・訂正<BR>
+2004/08/02 構造体名の統一<BR>
+2004/07/29 説明の追加等<BR>
+2004/07/23 初版<BR>
+</P>
+</body>
+</html>

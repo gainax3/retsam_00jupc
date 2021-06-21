@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>xml2env</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+<STYLE type="text/css">
+<!--
+.sample_source{
+  background-color : #e8e8e8;
+}
+H3{
+  color : teal;
+}
+.command_list{
+  margin-bottom : 16pt;
+}
+.command_desc{
+  }
+.command_item{
+  margin-top : 16pt;
+  background-color : #e8e8e8;
+}
+.blockquoted_table {
+  border : 1px;
+  width : 80%;
+}
+TD,TH{
+  border-color	: #c0d8d8;
+  padding       : 1pt 4pt 1pt 4pt;
+  border-width  : 1px;
+  border-style  : solid;
+}
+-->
+</STYLE>
+</HEAD>
+<BODY>
+<H1 align="left">xml2env</H1>
+<H2>説明</H2>
+<P><CODE>　xml2env</CODE> は、XML 形式で書かれた ENV ライブラリ用リソースデータを、C のソースファイル形式に変換するためのツールです。</P>
+<H2>使用方法</H2>
+<H3>起動コマンド</H3>
+<PRE><CODE>% perl init2env.pl RESOURCE_FILE
+                  [-o OUTPUT_FILE]</CODE></PRE>
+<P><CODE>RESOURCE_FILE</CODE> で指定された XML 形式で書かれたリソースデータを C のソースファイル形式へ変換し、<CODE>RESOURCE_FILE.result.c</CODE> という名で出力します。<br>
+ただし、<CODE>RESOURCE_FILE</CODE> には変換したいファイルの絶対パスを入れる必要があります。</P>
+<P><CODE>-o</CODE> オプションで、出力ファイル名を <CODE>RESOURCE_FILE.result.c</CODE> から<CODE>OUTPUT_FILE</CODE> という名に変えます。</P>
+<P>※もし XML::Parser が使用できない環境の場合は、cygwin のセットアップで perl の最新版と expat ライブラリを入れる必要があります。</P>
+
+<BR>
+<P><B>XML 形式での ENV ライブラリ用リソースデータの記述例</B></P>
+<BR>
+<P>変換前の XML 形式のリソースデータ</P>
+<BLOCKQUOTE><CODE>&ltenvlist&gt<BR>
+　&ltresource name="environment1"&gt<BR>
+　　&ltclass name="myClass11"&gt<BR>
+　　　&ltstring name="str1"&gtmario&lt/string&gt<BR>
+　　　&lthexbinary name="bin1"&gt12345678&lt/hexbinary&gt<BR>
+　　&lt/class&gt<BR>
+　&lt/resource&gt<BR>
+　&ltresource name="environment2"&gt<BR>
+　　&ltclass name="myClass21"&gt<BR>
+　　　&ltstring name="str1"&gtmario&lt/string&gt<BR>
+　　　&lthexbinary name="bin1"&gtabcd123&lt/hexbinary&gt<BR>
+　　　&lthexbinary name="bin2" src="../test/test.txt"/&gt<BR>
+　　&lt/class&gt<BR>
+　　&ltclass name="myClass22"&gt<BR>
+　　　&lts32 name="data1"&gt-500&lt/s32&gt<BR>
+　　　&ltu16 name="data2"&gt0x8000&lt/u16&gt<BR>
+　　&lt/class&gt<BR>
+　&lt/resource&gt<BR>
+&lt/envlist&gt</CODE></BLOCKQUOTE>
+<BR>
+<P>変換後の C のソースファイル形式のリソースデータ</P>
+<BLOCKQUOTE><CODE>ENVResource myResource1[] = {<BR>
+　　　&quot;myClass11.str1&quot,　　ENV_STRING( &quot;mario&quot; ),<BR>
+　　　&quot;myClass11.bin1&quot,　　ENV_BINARY( &quot;\x31\x32\x33\x34\x35\x36\x37\x38&quot; ),<BR>
+　　　ENV_RESOUCE_END<BR>
+};<BR>
+<BR>
+ENVResource myResource2[] = {<BR>
+　　　&quot;myClass21.str1&quot,　　ENV_STRING( &quot;mario&quot; ),<BR>
+　　　&quot;myClass21.bin1&quot,　　ENV_BINARY( &quot;\x61\x62\x63\x64\x31\x32\x33&quot; ),<BR>
+　　　&quot;myClass21.bin2&quot,　　ENV_BINARY( &quot;test.txt ファイルの内容&quot ),<BR>
+　　　&quot;myClass22.data1&quot,　 ENV_S32( -500 ),<BR>
+　　　&quot;myClass22.data2&quot,　 ENV_U16( 0x8000 ),<BR>
+　　　ENV_RESOUCE_END<BR>
+};<BR>
+<BR>
+ENVResource* resourceArray[]={ myResource1, myResource2, NULL };
+</CODE></BLOCKQUOTE>
+
+<P>リソースのタイプが BINARY の場合に限り、要素の中にsrcという属性の内容にファイルの相対パスを<CODE> &quot;&quot; </CODE>で囲んで指定することにより、自動的にファイルの内容をその要素のデータとすることができます。</P>
+
+<P>生成した C のソースファイルを ENV を使用するプログラムと一緒にコンパイルすることで、そのままリソースデータを使うことができます。</P><BR>
+<H2>場所</H2>
+<P><CODE>$NitroSDK/tools/bin/xml2env.pl</CODE></P>
+<H2>参照</H2>
+<P><CODE><A href="../env/about_env.html">ENV</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/10/20 初版</P>
+</BODY>
+</HTML>

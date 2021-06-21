@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>VCTCodec</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">VCTCodec</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+  <PRE><CODE>#include &lt;vct.h&gt;</CODE></PRE>
+  <PRE><CODE>
+typedef enum {
+    VCT_CODEC_8BIT_RAW,
+    VCT_CODEC_G711_ULAW,
+    VCT_CODEC_2BIT_ADPCM,
+    VCT_CODEC_3BIT_ADPCM,
+    VCT_CODEC_4BIT_ADPCM,
+    VCT_CODEC_END
+} VCTCodec;</CODE></PRE>
+  </dd>
+</dl>
+<H2>定義</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><B><I>VCT_CODEC_8BIT_RAW</I></B></TD>
+      <TD width="70%">8Bit 8KHz RAW オーディオフォーマット(64kbps)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>VCT_CODEC_G711_ULAW</I></B></TD>
+      <TD>G.711 u-Law フォーマット(64kbps)</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><B><I>VCT_CODEC_2BIT_ADPCM</I></B></TD>
+      <TD width="70%">2bit IMA-ADPCM (非標準）(16kbps)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>VCT_CODEC_3BIT_ADPCM</I></B></TD>
+      <TD>3bit IMA-ADPCM (24kbps)</TD>
+    </TR>
+    <TR>
+      <TD><B><I>VCT_CODEC_4BIT_ADPCM</I></B></TD>
+      <TD>4bit IMA-ADPCM (32kbps)</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>説明</H2>
+<P>VoiceChatライブラリが利用できる音声フォーマットです。</P>
+
+<P>トランシーバー、およびカンファレンスモード時は帯域が足りなくなるため、8bit 8KHz RAWフォーマットと、G.711 u-Lawフォーマットは利用できません。</P>
+
+<h2>参照</h2>
+<P><code>
+<A href="VCT_SetCodec.html">VCT_SetCodec</A>, <a href="VCT_GetCodec.html">VCT_GetCodec</a>
+</code></P>
+<H2>履歴</H2>
+<P>2006/04/10 トランシーバー、カンファレンスモード時のコーデックの制限について追記</P>
+<P>2006/01/25 初版</P>
+</body>
+</html>

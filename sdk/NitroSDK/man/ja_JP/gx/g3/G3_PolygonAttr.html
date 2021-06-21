@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_PolygonAttr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_PolygonAttr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE>
+<CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;</CODE><BR>
+<CODE>void G3_PolygonAttr(
+    int light,
+    GXPolygonMode polyMode,
+    GXCull cullMode,
+    int polygonID,
+    int alpha,
+    int misc
+</CODE>);<BR>
+// 以下ディスプレイリスト（コマンド列）作成用API
+<CODE>void G3B_PolygonAttr(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);
+void G3C_PolygonAttr(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);
+void G3BS_PolygonAttr(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);
+</CODE><CODE>void G3CS_PolygonAttr(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, ...);</CODE></PRE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">light</font></strong></em></td>
+    <td width="87%">どのライトを点灯するかを指定する4ビットのマスクです。</td>
+  </tr>
+    <TR>
+      <TD><em><strong><font face="Courier New">polyMode</font></strong></em></TD>
+      <TD>ポリゴンモードを指定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">cullMode</font></strong></em></TD>
+      <TD>どの面をカリングするかを指定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">polygonID</font></strong></em></TD>
+      <TD>ポリゴンＩＤを指定します</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">alpha</font></strong></em></TD>
+      <TD>α値を指定します。</TD>
+    </TR>
+    <TR>
+      <TD><em><strong><font face="Courier New">misc</font></strong></em></TD>
+      <TD>その他のポリゴン属性を指定するためのビットフィールドです。</TD>
+    </TR>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>ポリゴン関連属性値を設定します。<BR>
+<BR>
+<I><B>light</B></I>は4ビットのフラグで、下位4ビットで下位から順に、ライト0, ライト1, ライト2,
+ライト3のON/OFFを指定します。<BR>
+<B><I>polyMode</I></B>はポリゴンモードを指定する引数で、<CODE>GXPolygonMode</CODE>型の値を指定します。<BR>
+<B><I>cullMode</I></B>はポリゴンのカリング方式を指定する引数で、<CODE>GXCull</CODE>型の値を指定します。<BR>
+<B><I>polygonID</I></B>はポリゴンＩＤを指定する引数で、0以上63以下を指定できます。半透明ポリゴン、シャドウポリゴン、及びエッジマーキング描画時に使用されます。<BR>
+<B><I>alpha</I></B>はポリゴンのα値を指定する引数で、0以上31以下を指定できます。31の場合不透明ポリゴンで、0の場合ワイヤーフレーム表示（<A href="G3X_AlphaTest.html">G3X_AlphaTest</A>の設定で表示しないようにすることが可能）、1以上30以下の場合は、半透明ポリゴンになります。<BR>
+<B><I>misc</I></B>はその他の属性フラグをまとめたビットフィールドで、<CODE>GXPolygonAttrMisc</CODE>型の値の論理和を渡します。<BR>
+</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGONMODE_MODULATE</CODE></TD>
+      <TD width="70%">モジュレーションモード</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGONMODE_DECAL</CODE></TD>
+      <TD width="70%">デカルモード</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGONMODE_TOON</CODE></TD>
+      <TD width="70%">トゥーンシェーディング／ハイライトシェーディングモード</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGONMODE_SHADOW</CODE></TD>
+      <TD width="70%">シャドウポリゴンモード</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_CULL_ALL</CODE></TD>
+      <TD width="70%">両面表示しない</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_CULL_FRONT</CODE></TD>
+      <TD width="70%">表面を表示しない</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_CULL_BACK</CODE></TD>
+      <TD width="70%">裏面を表示しない</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_CULL_NONE</CODE></TD>
+      <TD width="70%">両面表示する</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P></P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_NONE</CODE></TD>
+      <TD width="70%">何も指定しません。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_XLU_DEPTH_UPDATE</CODE></TD>
+      <TD width="70%">半透明ポリゴン描画時にデプスバッファを更新します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_FAR_CLIPPING</CODE></TD>
+      <TD width="70%">ポリゴンがFAR面と交差したらクリッピングします（指定しない場合は交差したら消去）。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_DISP_1DOT</CODE></TD>
+      <TD width="70%">１ドットのポリゴンを表示します。<A href="G3X_SetDisp1DotDepth.html">G3X_SetDisp1DotDepth</A>も参照してください。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_DEPTHTEST_DECAL</CODE></TD>
+      <TD width="70%">フラグメントのデプス値がデプスバッファのデプス値と等しい場合に描画します。<BR>
+      指定しない場合は、デプス値より小さい場合に描画します。</TD>
+    </TR>
+    <TR>
+      <TD width="30%"><CODE>GX_POLYGON_ATTR_MISC_FOG</CODE></TD>
+      <TD width="70%">レンダリングエンジンでフォグブレンディングを行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<P><BR>
+以下に<CODE>GXPolygonMode</CODE>型と<CODE>GXCull</CODE>型と<CODE>GXPolygonAttrMisc</CODE>型の型定義を示しておきます。</P>
+<PRE><CODE>typedef enum
+{
+    GX_POLYGONMODE_MODULATE = 0,
+    GX_POLYGONMODE_DECAL = 1,
+    GX_POLYGONMODE_TOON = 2,
+    GX_POLYGONMODE_SHADOW = 3
+}
+GXPolygonMode;
+
+typedef enum
+{
+    GX_CULL_ALL = 0,
+    GX_CULL_FRONT = 1,
+    GX_CULL_BACK = 2,
+    GX_CULL_NONE = 3
+}
+GXCull;
+
+typedef enum
+{
+    GX_POLYGON_ATTR_MISC_NONE = 0,
+    GX_POLYGON_ATTR_MISC_XLU_DEPTH_UPDATE = 1 &lt;&lt; REG_G3_POLYGON_ATTR_XL_SHIFT,
+    GX_POLYGON_ATTR_MISC_FAR_CLIPPING = 1 &lt;&lt; REG_G3_POLYGON_ATTR_FC_SHIFT,
+    GX_POLYGON_ATTR_MISC_DISP_1DOT = 1 &lt;&lt; REG_G3_POLYGON_ATTR_D1_SHIFT,
+    GX_POLYGON_ATTR_MISC_DEPTHTEST_DECAL = 1 &lt;&lt; REG_G3_POLYGON_ATTR_DT_SHIFT,
+    GX_POLYGON_ATTR_MISC_FOG = 1 &lt;&lt; REG_G3_POLYGON_ATTR_FE_SHIFT
+}
+GXPolygonAttrMisc;</CODE></PRE>
+<H2>参照</H2>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+<PRE>
+</PRE>
+</body></html> 

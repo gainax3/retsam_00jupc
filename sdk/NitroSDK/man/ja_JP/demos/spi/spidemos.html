@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" type="text/css" href="../../css/nitro.css">
+<TITLE>SPI Demos</TITLE>
+</HEAD>
+<BODY>
+<H1>ARM7プロセッサ周辺装置 サンプルデモ</H1>
+
+<H2>場所</H2>
+<P><CODE>$NitroSDK/build/demos/spi</CODE></P>
+
+<H2>コンパイル方法</H2>
+<P><CODE>$NitroSDK/build/demos/spi</CODE> ディレクトリに移り、</P>
+<BLOCKQUOTE><CODE>% make</CODE></BLOCKQUOTE>
+<P>と入力します。実行ファイル(<CODE>.nef</CODE>, <CODE>.srl</CODE> ファイル) が、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/spi/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE></BLOCKQUOTE>
+<P>の下に生成されます。例えば、</P>
+<BLOCKQUOTE><CODE>$NitroSDK/build/demos/spi/tp-1/bin/ARM9-TS/Release/</CODE></BLOCKQUOTE>
+<P>のようになります。</P>
+
+<H2>実行方法</H2>
+<P><CODE>$NitroSDK/build/demos/spi/(サンプル名)/bin/(プラットフォーム)/(ターゲット)/</CODE> ディレクトリに移り、以下のうちの一つを行います。</P>
+<UL>
+  <LI>ensata で <CODE>*.nef</CODE>, <CODE>*.srl</CODE> を実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.nlf</CODE> ファイルを読みこんで実行する。
+  <LI>IS-NITRO-DEBUGGER で <CODE>*.srl</CODE> を実行する。
+</UL>
+
+<H2>説明</H2>
+<br>
+
+<TABLE width="720">
+  <TBODY>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>tp-1</CODE></STRONG></EM></TD>
+      <TD width="525">タッチパネルの入力位置を画面表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>tp-2</CODE></STRONG></EM></TD>
+      <TD width="525">タッチパネルの入力位置の軌跡を画面表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>mic-1</CODE></STRONG></EM></TD>
+      <TD width="525">マイクによる音声入力状態を画面に波形表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>mic-2</CODE></STRONG></EM></TD>
+      <TD width="525">マイクによる音声入力状態を画面に波形表示し、テキストデータを出力します。<BR>
+      得られたデータは <A href="../../tools/mic2wav.html">mic2wav.exe</A> ツールにより wav ファイルに変換することができます。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>spiMonkey</CODE></STRONG></EM></TD>
+      <TD width="525">BGMを鳴らしながら、タッチパネル及びマイクの入力状態を画面表示します。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>spiMonkey2</CODE></STRONG></EM></TD>
+      <TD width="525">BGMを鳴らしながら、タッチパネル及びマイクの入力状態を画面表示します。<BR>
+      <EM><STRONG><CODE>spiMokey</CODE></STRONG></EM>との違いは、マイクのサンプリングに自動サンプリングを用いている点です。</TD>
+    </TR>
+    <TR>
+      <TD width="187"><EM><STRONG><CODE>pm-1</CODE></STRONG></EM></TD>
+      <TD width="525">ボタン操作やふたを閉じることでスリープしたりパワーセーブモードに入ります。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>動作</H2>
+<P><CODE>ensata では mic-1, mic-2, spiMonkey, spiMonkey2, pm-1 は正常動作をしません。<BR>
+<BR>
+tp-1, tp-2, spiMonkey, spiMonkey2 は本体内部の不揮発メモリ(NVRAM)からタッチパネル校正設定値を読み出そうと試みます。
+正常に読み出せない場合は異常終了しますので、本体に内蔵されているDS起動メニューを用いてキャリブレーション結果を NVRAM へ保存してください。
+</CODE></P>
+
+<H2>参照</H2>
+<P><A href="../../spi/list_spi.html"><CODE>SPI関数一覧</CODE></A></P>
+
+<H2>履歴</H2>
+<P>
+2005/05/10 spiMonkey2 に関する記述を追加<BR>
+2005/03/02 記述内容を現在のサポート環境の状況に合うよう修正<BR>
+2004/08/17 IS-NITRO-EMULATORについての表記を統一<BR>
+2004/08/03 pm-1 追加<BR>
+2004/07/10 .bin から .srl へ変更。<BR>
+2004/06/18 初版</P>
+
+</BODY>
+</HTML>

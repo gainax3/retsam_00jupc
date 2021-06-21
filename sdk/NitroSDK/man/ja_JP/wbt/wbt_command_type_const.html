@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WBTCommandType</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WBTCommandType</h1>
+<h2>定義</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/wbt.h&gt;</CODE><BR>
+  <BR>
+  <CODE>
+typedef	enum {<br>
+  WBT_CMD_REQ_NONE = 0,<br>
+  WBT_CMD_REQ_WAIT,<br>
+  WBT_CMD_REQ_SYNC,<br>
+  WBT_CMD_RES_SYNC,<br>
+  WBT_CMD_REQ_GET_BLOCK,<br>
+  WBT_CMD_RES_GET_BLOCK,<br>
+  WBT_CMD_REQ_GET_BLOCKINFO,<br>
+  WBT_CMD_RES_GET_BLOCKINFO,<br>
+  WBT_CMD_REQ_GET_BLOCK_DONE,<br>
+  WBT_CMD_RES_GET_BLOCK_DONE,<br>
+  WBT_CMD_REQ_USER_DATA,<br>
+  WBT_CMD_RES_USER_DATA,<br>
+  WBT_CMD_SYSTEM_CALLBACK,<br>
+  WBT_CMD_PREPARE_SEND_DATA,<br>
+  WBT_CMD_REQ_ERROR,<br>
+  WBT_CMD_RES_ERROR,<br>
+  WBT_CMD_CANCEL<br>
+} WBTCommandType;<br>
+</CODE><br>
+  <br>
+  </dd>
+</dl>
+
+<H2>説明</H2>
+<P>WBT でコールバックに通知される各コマンドを識別する列挙定数を示します。<br>
+コールバック引数の<A href="wbt_command_type.html">WBTCommand</A>に格納されている command メンバには<br>
+コールバック発生の直接の原因を示す以下の各値のいずれかが設定されます。<br>
+<br>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>command の値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_SYNC</TD>
+      <TD><a href="command/WBT_RequestSync.html">WBT_RequestSync</a>関数が発生させたコールバックです。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_GET_BLOCK</TD>
+      <TD><a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数が発生させたコールバックです。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_GET_BLOCKINFO</TD>
+      <TD><a href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</a>関数が発生させたコールバックです。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_USER_DATA</TD>
+      <TD><a href="command/WBT_PutUserData.html">WBT_PutUserData</a>関数が発生させたコールバックです。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_SYSTEM_CALLBACK</TD>
+      <TD>コマンド完了とは別に任意のタイミングで発生したコールバックです。
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br>
+また、コールバック引数の<A href="wbt_command_type.html">WBTCommand</A>に格納されている event メンバには<br>
+コールバックの具体的な要因を示す以下の各値のいずれかが設定されます。<br>
+<br>
+<TABLE border="0">
+  <TBODY>
+    <TR>
+      <TD>event の値</TD>
+      <TD>意味</TD>
+    </TR>
+    <TR>
+      <TD colspan="2"><p align="center"><br><br>以下の要因は各コマンドで指定したコールバック関数に通知されます。</p><br></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_RES_SYNC</TD>
+      <TD><a href="command/WBT_RequestSync.html">WBT_RequestSync</a>関数の完了を示します。<br>
+	  コールバック引数の<A href="wbt_request_sync_callback_type.html">sync</A>メンバが有効な情報を格納しています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_RES_GET_BLOCKINFO</TD>
+      <TD><a href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</a>関数の完了を示します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_RES_GET_BLOCK</TD>
+      <TD><a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数の完了を示します。<br>
+	  コールバック引数の<A href="wbt_get_block_callback_type.html">get</A>メンバが有効な情報を格納しています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_RES_USER_DATA</TD>
+      <TD><a href="command/WBT_PutUserData.html">WBT_PutUserData</a>関数の完了を示します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_RES_ERROR</TD>
+      <TD>発行したコマンドが何らかの要因で失敗したことを示します。</TD>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_CANCEL</TD>
+      <TD>現在発行中のコマンドが<a href="command/WBT_CancelCurrentCommand.html">WBT_CancelCurrentCommand</a>関数によってキャンセルされたことを示します。</TD>
+	  </TD>
+    </TR>
+    <TR>
+      <TD colspan="2"><p align="center"><br><br>以下の要因は<A href="init/WBT_InitParent.html">WBT_InitParent</A>または<A href="init/WBT_InitChild.html">WBT_InitChild</a>で指定したコールバック関数に通知されます。</p><br></TD>
+      <TD></TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_PREPARE_SEND_DATA</TD>
+      <TD><a href="common/WBT_RegisterBlock.html">WBT_RegisterBlock</a>関数をバッファ無指定で登録した場合のデータ準備要求を示します。<br>
+	  コールバック引数の<A href="wbt_prepare_send_data_callback_type.html">prepare_send_data</A>メンバが有効な情報を格納しています。<br>
+	  また、このメンバに応答結果を格納して送信バッファを準備させます。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_SYNC</TD>
+      <TD>通信先から<a href="command/WBT_RequestSync.html">WBT_RequestSync</a>関数による要求を受信したことを示します。<br>
+	  コールバック引数の<A href="wbt_request_sync_callback_type.html">sync</A>メンバが有効な情報を格納しています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_GET_BLOCKINFO</TD>
+      <TD>通信先から<a href="command/WBT_GetBlockInfo.html">WBT_GetBlockInfo</a>関数による要求を受信したことを示します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_GET_BLOCK</TD>
+      <TD>通信先から<a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数による要求を受信したことを示します。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_GET_BLOCK_DONE</TD>
+      <TD>通信先からの<a href="command/WBT_GetBlock.html">WBT_GetBlock</a>関数による要求が完了したことを示します。<br>
+	  コールバック引数の<A href="wbt_get_block_done_callback_type.html">blockdone</A>メンバが有効な情報を格納しています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_USER_DATA</TD>
+      <TD>通信先から<a href="command/WBT_PutUserData.html">WBT_PutUserData</a>関数によるデータを受信したことを示します。<br>
+	  コールバック引数の<A href="wbt_recv_user_data_callback_type.html">user_data</A>メンバが有効な情報を格納しています。
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_ERROR</TD>
+      <TD>通信先からのリクエストが何らかの要因で失敗したことを示します。</TD>
+	  </TD>
+    </TR>
+    <TR>
+      <TD>WBT_CMD_REQ_NONE</TD>
+      <TD>いずれのコマンドでもないことを示す定義値です。</TD>
+    </TR>
+    <TR>
+      <TD><font color="#808080">WBT_CMD_REQ_WAIT</font></TD>
+      <TD rowspan="7"><font color="#808080">ライブラリ内部で使用されます。</font>
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<BR>
+</P>
+<h2>参照</h2>
+<p><CODE>
+<A href="wbt_callback_type.html">WBTCallback</A>
+<A href="wbt_command_type.html">WBTCommand</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2004/09/21 初版<BR>
+</P>
+</body>
+</html>

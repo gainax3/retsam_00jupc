@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.1.0 for Windows">
+	<TITLE>NNSG3dGlb</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNSG3dGlb</H1>
+<H2>構造体の定義</H2>
+<PRE class="construction">#include &lt;nnsys/g3d/glbstate.h&gt;
+
+typedef struct
+{
+    u32     cmd0;             // G3_MtxMode -&gt; G3_LoadMtx44 -&gt; G3_MtxMode -&gt; G3_LoadMtx43
+    u32     mtxmode_proj;     // GX_MTXMODE_PROJECTION
+    MtxFx44 projMtx;          // 射影行列
+    //
+    u32     mtxmode_posvec;   // GX_MTXMODE_POSITION_VECTOR
+    MtxFx43 cameraMtx;        // カメラ行列
+    
+    u32     cmd1;             // G3_LightVector * 4
+    u32     lightVec[4];      // ライトベクトル
+
+    u32     cmd2;             // G3_MatColorDiffAmb -&gt; G3_MatColorSpecEmi -&gt; G3_PolygonAttr -&gt; G3_ViewPort
+    u32     prmMatColor0;
+    u32     prmMatColor1;
+    u32     prmPolygonAttr;
+    u32     prmViewPort;
+
+    u32     cmd3;             // G3_LightColor * 4
+    u32     lightColor[4];    // ライトカラー
+
+    u32     cmd4;             // G3_MultMtx43 -&gt; G3_Scale -&gt; G3_TexImageParam
+    MtxFx33 prmBaseRot;
+    VecFx32 prmBaseTrans;
+    VecFx32 prmBaseScale;
+    u32     prmTexImageParam;
+
+    u32 flag;   // NNSG3dGlbFlag
+    MtxFx43 invCameraMtx;
+    MtxFx43 srtCameraMtx;
+    MtxFx43 invSrtCameraMtx;
+
+    MtxFx43 invBaseMtx;
+
+    MtxFx44 invProjMtx;
+    MtxFx44 invCameraProjMtx;
+
+    VecFx32 camPos;
+    VecFx32 camUp;
+    VecFx32 camTarget;
+}
+NNSG3dGlb;</PRE>
+
+<H2>構造体の解説</H2>
+<P><CODE>NNSG3dGlb</CODE>構造体は、射影行列・ライトの色や方向・カメラ位置や向き、といった複数のモデルやシーン全体で使用されるデータを管理する構造体です。<CODE>NNSG3dGlb</CODE>構造体は、以下のようなデータを保持しています。</P>
+<UL>
+  <LI>射影行列
+  <LI>カメラ行列（カメラの位置・視点・上方向）
+  <LI>ライトの方向
+  <LI>ライトカラー
+  <LI>ビューポート
+  <LI>オブジェクトのワールド変換行列（SRT）
+  <LI>デフォルトのマテリアルカラー、ポリゴンアトリビュート
+  <LI>キャッシュされた各種行列
+</UL>
+<P>NNSG3dGlb構造体のインスタンスは、グローバル変数の<CODE>NNS_G3dGlb</CODE>のみであり、使用前に<A href="../glbstate/NNS_G3dGlbInit.html"><CODE>NNS_G3dGlbInit</CODE></A>関数を呼び出すことで初期化することができます。構造体の持つデータメンバへのアクセスはNNS_G3dGlb*関数群を通すようにしてください。<BR>
+<BR>
+一般に、<A href="../sbc/NNS_G3dDraw.html"><CODE>NNS_G3dDraw</CODE></A>関数を使用して描画する前に<A href="../glbstate/NNS_G3dGlbFlush.html"><CODE>NNS_G3dGlbFlushP</CODE></A>・<A href="../glbstate/NNS_G3dGlbFlushVP.html"><CODE>NNS_G3dGlbFlushVP</CODE></A>・<A href="../glbstate/NNS_G3dGlbFlushAlt.html"><CODE>NNS_G3dGlbFlushWVP</CODE></A>関数のどれかを使用することにより、<CODE>NNSG3dGlb</CODE>構造体に設定されたデータをジオメトリエンジンに反映させることができます。デフォルトのマテリアルカラー等は、<CODE>NNS_G3dMdlUseGlbXXXXX</CODE>関数をモデルリソースに対して使用した場合、この構造体の設定が使用されるようになります。<BR>
+<BR>
+なお、ビルボードを含むモデル等、描画中にカメラ行列等の情報が必要となった場合、G3Dは<CODE>NNSG3dGlb</CODE>構造体に記録されているデータを使用する場合があることに注意してください。</P>
+<H2>参照</H2>
+<P><A href="../list_g3d.html#GlobalState">グローバルステート</A></P>
+<H2>履歴</H2>
+<P>2007/05/17 構造体の定義を追加<BR>
+2004/10/12 初版</P>
+</BODY>
+
+</HTML>

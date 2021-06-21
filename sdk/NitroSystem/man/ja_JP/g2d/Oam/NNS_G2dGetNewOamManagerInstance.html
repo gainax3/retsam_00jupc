@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dGetNewOamManagerInstance</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dGetNewOamManagerInstance</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_Oam.h&gt;</CODE></pre>
+  <pre><CODE>
+BOOL NNS_G2dGetNewOamManagerInstance
+( 
+    NNSG2dOamManagerInstance*   pMan, 
+    u16                         fromOBJ, 
+    u16                         numOBJ, 
+    u16                         fromAffine, 
+    u16                         numAffine, 
+    NNSG2dOamType               type 
+);
+</CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMan</font></strong></em></td>
+    <td width="87%">[OUT] OAMマネージャ 実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>fromOBJ</CODE></font></strong></em></td>
+    <td width="87%">[IN] OAM管理領域開始インデックス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>numOBJ</CODE></font></strong></em></td>
+    <td width="87%">[IN] 使用するOAMアトリビュート個数(非ゼロであること)</td>
+  </tr>
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>fromAffine</CODE></font></strong></em></td>
+    <td width="87%">[IN] アフィンパラメータ管理領域開始インデックス</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>numAffine</CODE></font></strong></em></td>
+    <td width="87%">[IN] 使用するアフィンパラメータ個数(ゼロも有効)</td>
+  </tr>
+  
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New"><CODE>type</CODE></font></strong></em></td>
+    <td width="87%">[IN] OAM種類</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>成否<BR>
+</p>
+<H2>説明</H2>
+<P>OAMマネージャの実体を初期化します。<BR>
+OAMマネージャの実体を使用する前にかならず実行する必要があります。<BR>
+<BR>
+高速なバッファ転送が可能なOAMマネージャの実体を初期化するNNS_G2dGetNewOamManagerInstanceAsFastTransferMode()も用意されています。<BR>
+管理するOAMの種類種類をあらわす列挙子NNSG2dOamTypeに定義は以下のようになっています。<BR>
+
+<BR>
+<CODE><pre>
+typedef enum NNSG2dOamType 
+{
+    NNS_G2D_OAMTYPE_MAIN = 0,               // メイン2DグラフィックスエンジンのOAM
+    NNS_G2D_OAMTYPE_SUB,                    // サブ2DグラフィックスエンジンのOAM
+    NNS_G2D_OAMTYPE_SOFTWAREEMULATION,      // 3D Graphics Engine を 使用した エミュレーション
+    NNS_G2D_OAMTYPE_INVALID,                // 不正な種類
+    NNS_G2D_OAMTYPE_MAX         
+    
+}NNSG2dOamType;
+</pre></CODE>
+<BR>
+<BR>
+NNS_G2D_OAMTYPE_SOFTWAREEMULATIONが指定された場合は、3Dグラフィックスエンジンを使用してソフトウェアスプライトで描画処理が行われます。<BR>
+以前に、NNS_G2dGetNewManagerInstance()、NNS_G2dInitManagerInstanceAffine()の2つの関数呼び出しによって行っていた処理をひとつにした関数です。<BR>
+NNS_G2dGetNewManagerInstance()、NNS_G2dInitManagerInstanceAffine()は互換性維持のために残されますが、新規に利用される場合は本関数をお使いください。
+
+
+<BR>
+
+</p>
+
+<h2>参照</h2>
+<p><CODE><A href="NNS_G2dGetNewOamManagerInstanceAsFastTransferMode.html">NNS_G2dGetNewOamManagerInstanceAsFastTransferMode</A><br></CODE></p>
+<p><CODE><A href="NNS_G2dGetNewManagerInstance.html">NNS_G2dGetNewManagerInstance</A><br></CODE></p>
+<p><CODE><A href="NNS_G2dInitManagerInstanceAffine.html">NNS_G2dInitManagerInstanceAffine</A><br>
+</CODE></p>
+<H2>履歴</H2>
+<P>2004/08/02 初版</P>
+</body>
+</html>

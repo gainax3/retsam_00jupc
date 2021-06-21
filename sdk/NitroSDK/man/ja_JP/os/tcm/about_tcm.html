@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>TCM (overview) </TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">TCM (overview)</H1>
+<H2>説明</H2>
+<P>TCM は Tightly-Coupled Memory の略で、直接 ARM9 コアと接続された高速なメモリです。ARM9バスに接続されていませんので、DMA
+中であっても TCM を使用してARM9 が処理を行なうことが出来ます。</P>
+<P>TCM には、命令TCM ( ITCM ) とデータTCM ( DTCM ) の２種類があります。ITCM
+は 32KByte、DTCM は 16KByte の容量を持ちます。ITCM には命令とデータを配置することが可能です。DTCM
+にはデータのみを配置することは出来、命令を配置することは出来ません。</P>
+<HR>
+<P><B>マッピング</B></P>
+<P>ITCM は 32KByte の倍数のアドレスに、DTCM は 16KByte の倍数のアドレスにマッピングすることが可能です。NitroSDK
+では ITCM を 0x01FF8000 ～ 0x01FFFFFF に、 DTCM を 0x027E0000 ～ 0x027E3FFF
+にマッピングしています。この位置は一定の条件で変更することが可能ですが、特に必要ない場合はこのままの設定で開発することを推奨します。</P>
+
+<HR>
+<P><B>イネーブル・ディセーブル</B></P>
+<P>以下の関数で、ITCM、DTCM をそれぞれイネーブル、ディセーブルとすることが出来ます。</P>
+<P><CODE><A href="OS_EnableITCM.html">OS_EnableITCM()</A></CODE><BR>
+<CODE><A href="OS_DisableITCM.html">OS_DisableITCM()</A></CODE><BR>
+<CODE><A href="OS_EnableDTCM.html">OS_EnableDTCM()</A></CODE><BR>
+<CODE><A href="OS_DisableDTCM.html">OS_DisableDTCM()</A></CODE></P>
+<HR>
+<P><B>TCM のアドレス設定と取得</B></P>
+<P>DTCM については、<CODE><A href="OS_GetDTCMAddress.html">OS_GetDTCMAddress()</A></CODE> という関数でマッピングされているアドレスを取得することが出来ます。アドレスを設定する関数は
+<CODE><A href="OS_SetDTCMAddress.html">OS_SetDTCMAddress()</A></CODE> です。しかし、DTCM はスタック領域や各種フックベクタなどがマッピングされていており、プログラム動作中にマッピング位置を変更すると暴走する恐れがありますので、一つのプログラムで頻繁に変更することは避けてください。</P>
+<P>ITCM については取得関数として、<CODE><A href="OS_GetITCMAddress.html">OS_GetITCMAddress()</A></CODE> が用意されており、定数 <CODE>HW_ITCM</CODE> が取得できます。なお、定数 <CODE>HW_ITCM</CODE> は 通常の ITCM の開始アドレスである 0x01FF8000 として定義されています。</P>
+<HR>
+<P><B>TCMに関するCP15設定</B></P>
+<P>ITCM や DTCM の設定は、コプロセッサ15 (CP15) の内部レジスタの設定に依ります。NitroSDK
+ではこのレジスタに直接アクセスするAPIを用意しています。ITCM と DTCM それぞれに、レジスタに与える(あるいは読み込む)パラメータの設定関数と取得関数が用意されていますが、これら(特に設定関数)の使用に当たっては、動作原理を理解する必要があります。</P>
+<P><CODE><A href="OS_SetITCMParam.html">OS_SetITCMParam()</A></CODE><BR>
+<CODE><A href="OS_GetITCMParam.html">OS_GetITCMParam()</A></CODE><BR>
+<CODE><A href="OS_SetDTCMParam.html">OS_SetDTCMParam()</A></CODE><BR>
+<CODE><A href="OS_GetDTCMParam.html">OS_GetDTCMParam()</A></CODE></P>
+<H2>参照</H2>
+<P><CODE>
+<A href="../list_os.html#Tcm">OS関数一覧(TCM)</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/04/13 DTCMのデフォルトアドレスを変更<BR>
+2004/12/14 用語や語尾など修正<BR>
+2004/11/09 初版</P>
+</BODY>
+</HTML>

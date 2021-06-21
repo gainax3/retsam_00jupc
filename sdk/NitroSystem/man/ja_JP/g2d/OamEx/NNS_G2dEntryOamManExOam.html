@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>NNS_G2dEntryOamManExOam</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+<h1 align="left">NNS_G2dEntryOamManExOam</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+		<pre><CODE>#include &lt;nnsys/g2d/g2d_OAMEｘ.h&gt;</CODE></pre>
+  <pre><CODE>BOOL NNS_G2dEntryOamManExOam( 
+                            NNSG2dOamManagerInstanceEx*     pMan, 
+                            const GXOamAttr*                pOam, 
+                            u8                              priority );
+  </CODE></pre>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pMan</font></strong></em></td>
+    <td width="87%">[OUT] 拡張OAMマネージャ実体</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">pOam</font></strong></em></td>
+    <td width="87%">[IN] OAM アトリビュート</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">priority</font></strong></em></td>
+    <td width="87%">[IN] 表示優先度（描画時の登録順）</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>登録の成否<BR>
+</p>
+<H2>説明</H2>
+<P>
+拡張OAMマネージャにOBJを、描画時の登録順を指定して登録します。<BR>
+実際にハードウエアに適用されるときに、指定した表示優先度順でOAMへの登録を行います。<BR>
+<BR>
+<H2>同一表示優先度OAMグループでの描画順に関する注意点</H2>
+<pre>
+   ・同一表示優先度が指定されたOAMグループは、マネージャ内部でリストによって管理されます。
+     マネージャは、内部リスト先頭から、末尾に向かって走査し登録関数呼び出し処理を実行します。
+     OAMは登録された順に内部リスト先頭に追加されますので、登録した順番と逆順に登録関数が呼ばれることになります。
+     
+   ・アフィン変換されたOAMはマネージャ内部で別リストで管理されており、NNS_G2dApplyOamManExToBaseModule()関数
+     呼び出しのタイミングで実際のアフィンパラメータ番号の解決が行われた後、通常のOAMリストの先頭へと移動されます。
+     そのため、同一表示優先度が指定されたOAMグループ内では、アフィン変換されたOAMは、
+     アフィン変換されていないOAMよりも先に登録関数呼び出しが行われることになります。
+     
+</pre>
+
+本関数はNNS_G2dEntryNewOamExから改名されました。以前の関数は互換性維持のために別名として残されます。<BR>
+</p>
+
+<h2>参照</h2>
+<p>
+<CODE><A href="NNS_G2dEntryNewOamEx.html">NNS_G2dEntryNewOamEx</A><br></CODE>
+<CODE><A href="NNS_G2dEntryOamManExOamWithAffineIdx.html">NNS_G2dEntryOamManExOamWithAffineIdx</A><br>
+</CODE>
+</P>
+<H2>履歴</H2>
+<P>2005/03/28 同一の表示優先度が指定されたOAMグループの描画順に関する注意を追加</P>
+<P>2004/08/02 関数改名の実施</P><P>2004/06/22 初版</P>
+</body>
+</html>

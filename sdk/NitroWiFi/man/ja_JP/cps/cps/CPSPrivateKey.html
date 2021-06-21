@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPSPrivateKey</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPSPrivateKey</h1>
+
+
+<h2>定義</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>typedef struct {
+    int modulus_len;
+    u8 *modulus;
+    int prime1_len;
+    u8 *prime1;
+    int prime2_len;
+    u8 *prime2;
+    int exponent1_len;
+    u8 *exponent1;
+    int exponent2_len;
+    u8 *exponent2;
+    int coefficient_len;
+    u8 *coefficient;
+} CPSPrivateKey;</code></pre>
+  </dd>
+</dl>
+
+<h2>説明</h2>
+
+<p>証明書の私有鍵に関する情報を定義する構造体です。<BR>
+make_mykeyユーティリティで作成されます。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SetMyCert.html">CPS_SetMyCert</A></CODE>, <CODE><A href="CPSSslConnection.html">CPSSslConnection</A></CODE>
+</P>
+<H2>履歴</H2>
+<P>
+Ver. 2005/10/24 初版</P>
+</body>
+</html>

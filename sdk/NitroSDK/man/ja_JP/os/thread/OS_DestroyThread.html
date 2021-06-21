@@ -1,0 +1,42 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_DestroyThread</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_DestroyThread</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_DestroyThread( OSThread* thread );</CODE></PRE>
+</DL>
+<H2>引数</H2>
+<P>なし。</P>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD><B><EM>thread</EM></B></TD>
+      <TD>終了させるスレッド</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>指定のスレッドを終了します。その後、他の実行可能なスレッドに切り替わります。</P>
+<P><CODE>OS_DestroyThread()</CODE> では、<CODE><A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor()</A></CODE> でスレッドデストラクタを予め設定していた場合であっても、デストラクタ関数は呼び出されません。(<CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> ではデストラクタ関数が呼び出されます。)</P>
+<P>スレッド <EM><B>thread</B></EM> にカレントスレッドを指定することも出来ます。この場合、自分自身を終了して次に実行可能な他のスレッドに切り替わります。この場合も、スレッドデストラクタは呼び出されません。</P>
+<P>スレッド <EM><B>thread</B></EM> が mutex をロックしている場合は、それらロックしている全ての mutex をアンロックします。</P>
+<P><CODE>OS_DestroyThread()</CODE> は指定のスレッド <EM><B>thread</B></EM> を予告なく突然終了させるという少々危険な関数です。スレッドの動作構造を理解して使用するようにしてください。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitThread.html">OS_InitThread</A>, <A href="OS_ExitThread.html">OS_ExitThread</A>, <A href="OS_KillThread.html">OS_KillThread*</A>, <A href="OS_SetThreadDestructor.html">OS_SetThreadDestructor</A></CODE></P>
+<H2>履歴</H2>
+<P>2005/07/12 <CODE><A href="OS_KillThread.html">OS_KillThread*()</A></CODE> との違いを記述<BR>
+2004/12/27 初版</P>
+</BODY>
+</HTML>

@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>fx32型の定数マクロ</title>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">fx32型の定数マクロ</h1>
+<h2>説明</h2>
+<TABLE border="0" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="160">FX32_ONE</TD>
+      <TD width="424">1です。 FX32_CONST( 1.0f ) と同等です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_HALF</TD>
+      <TD width="424">1/2です。FX32_CONST( 0.5f ) と同等です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_SQRT2</TD>
+      <TD width="424">2の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_SQRT1_2</TD>
+      <TD width="424">1/2の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_SQRT3</TD>
+      <TD width="424">3の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_SQRT1_3</TD>
+      <TD width="424">1/3の平方根です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_SIN[0-359]</TD>
+      <TD width="424">0度から359度までの正弦です。</TD>
+    </TR>
+    <TR>
+      <TD width="160">FX32_COS[0-359]</TD>
+      <TD width="424">0度から359度までの余弦です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>マクロの定義</H2>
+<P><CODE>NitroSDK/include/nitro/fx/fx_const.h</CODE>に定義されています。
+</P>
+<PRE><CODE>#define FX32_ONE                         ((fx32) 0x00001000L)     // 1.000
+#define FX32_HALF                        ((fx32) 0x00000800L)     // 0.500
+#define FX32_SQRT2                       ((fx32) 0x000016a1L)     // 1.414
+#define FX32_SQRT1_2                     ((fx32) 0x00000b50L)     // 0.707
+#define FX32_SQRT3                       ((fx32) 0x00001bb6L)     // 1.732
+#define FX32_SQRT1_3                     ((fx32) 0x0000093dL)     // 0.577</CODE>
+.....</PRE>
+<H2>履歴</H2>
+<P>Ver. 2004/02/25</P>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>MB_FakeStartScanParent</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_FakeStartScanParent</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb/mb_fake_child.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void MB_FakeStartScanParent( <A href="MBFakeScanCallbackFunc.html">MBFakeScanCallbackFunc</A> callback, u32 ggid );</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>callback</STRONG></EM></TD>
+      <TD width="87%">親機の発見時、喪失時に通知するためのコールバック関数を指定。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>ggid</STRONG></EM></TD>
+      <TD width="87%">ゲームグループIDを4バイトで指定します。ここで指定したggidの親機以外を発見することはありません。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<h2>返り値</h2>
+<p>なし。</p>
+
+<H2>説明</H2>
+<P>マルチブート親機の検索を開始します。引数のggidと同じマルチブート親機が発見された場合などにコールバックを通知します。<BR>
+一度この関数を実行すると<A href="MB_FakeEndScan.html">MB_FakeEndScan</A>を呼ばれるまでの間、利用可能なすべてのチャンネルを巡回しながらggidの等しいマルチブート親機を検索し続けます。<BR>
+親機を発見した場合にはMB_FAKESCAN_PARENT_FOUND、見失った場合にはMB_FAKESCAN_PARENT_LOSTをコールバックとして返し、何らかの理由で通信エラーが発生した場合にはMB_FAKESCAN_API_ERRORを返します。<BR>
+</p>
+<h2>参照</h2>
+<p><CODE><A href="MB_FakeEndScan.html">MB_FakeEndScan</A>、<A href="MBFakeScanCallbackFunc.html">MBFakeScanCllbackFunc</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/06/01 コールバックが割り込みハンドラから呼び出される旨を補足<br>
+2004/11/25 初版<BR>
+</P>
+</body>
+</html>

@@ -1,0 +1,28 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;  	Sound Archive
+;;	for PictoChat Searcher
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Wave Archive
+
+@WAVEARC
+ @PATH "bnk" 
+WAVE_SE_PCS	: AUTO, "sePCS.swls"
+	
+;;;;;;;;;;;;;;;;;;;;;;
+;; Bank
+
+@BANK
+ @PATH "bnk" 
+BANK_SE_PCS	: TEXT, "sePCS.bnk"  , WAVE_SE_PCS
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; Sequence Archive
+
+@SEQARC
+ @PATH "mus"
+SEQARC_SE_PCS   : TEXT, "sePCS.mus"
+

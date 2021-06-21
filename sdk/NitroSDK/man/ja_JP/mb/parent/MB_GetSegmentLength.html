@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>MB_GetSegmentLength</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">MB_GetSegmentLength</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/mb.h&gt;</CODE><BR>
+  <BR>
+  <CODE>u32 MB_GetSegmentLength(FSFile *file);</CODE><br>
+  <br>
+  </dd>
+</dl>
+<h2>引数</h2>
+<p>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>file</STRONG></EM></TD>
+      <TD width="87%">プログラムファイルのハンドルを保持するFSFile構造体<BR>
+	  このファイルのシーク位置はプログラムバイナリの先頭を指している必要があります。<BR>
+	  また、シーク位置はこの関数から返ったときに元の位置を保持します。<br>
+	  <br>
+	  このポインタにNULLを指定した場合は親機アプリケーション自身を<br>
+	  ダウンロードプログラムファイルとみなしてサイズを計算します。<br>
+	  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</p>
+
+<h2>返り値</h2>
+<p>正しいプログラムである場合、0 よりも大きいバイトサイズを返し、そうでない場合は 0 を返します。</p>
+
+<H2>説明</H2>
+<P>指定したプログラムファイルをマルチブート処理へ登録するために必要なメモリサイズを取得します。<br>
+詳細は<A href="MB_ReadSegment.html">MB_ReadSegment</A>関数を参照ください。<br>
+<BR>
+この関数は内部でFS_ReadFile関数を呼び出します。
+</p>
+<h2>参照</h2>
+<p>
+<A href="../mb_segment_buffer_min_const.html">MB_SEGMENT_BUFFER_MIN</A>
+<br>
+<A href="MB_ReadSegment.html">MB_ReadSegment</A> 
+<A href="MB_RegisterFile.html">MB_RegisterFile</A> 
+</p>
+<H2>履歴</H2>
+<P>
+2004/11/11 クローンブート公開に伴う記述変更. 遅延リード方式追加に伴う記述変更.<br>
+2004/09/10 ファイルポインタにNULLを指定した際の動作説明を追加<br>
+2004/08/09 初版<br>
+</P>
+</body>
+</html>

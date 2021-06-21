@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>SND_SetTrackModDepth</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAFLWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>SND_SetTrackModDepth</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nitro/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void SND_SetTrackModDepth(
+        int <var>playerNo</var>,
+        u32 <var>trackBitMask</var>,
+        int <var>depth</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDACNWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>playerNo</code></strong></em></td>
+<td>プレイヤー番号です。値の範囲は、0～15です。</td>
+</tr>
+<tr>
+<td><em><strong><code>trackBitMask</code></strong></em></td>
+<td>トラックビットマスクです。どのトラックを操作するかを指定します。</td>
+</tr>
+<tr>
+<td><em><strong><code>depth</code></strong></em></td>
+<td>モジュレーションの深さです。値の範囲は、0～255です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+    </div>
+<div class="refsection" lang="ja"><a name="IDA5NWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAGOWT"></a>
+      <h2>説明</h2>
+      <p>
+プレイヤー番号<em><strong><code>playerNo</code></strong></em>のプレイヤーで再生中のシーケンスのトラックモジュレーションデプスを変更します。
+</p>
+      <p>
+どのトラックを操作するのかは、トラックビットマスク<em><strong><code>trackBitMask</code></strong></em>で指定します。
+各ビットは、最下位ビットがトラック0で、以下順にトラック1、トラック2、、、を表しています。
+ビットが立っているものに対応するトラックに対してのみ、操作を行います。
+</p>
+      <p>
+モジュレーションの深さ<em><strong><code>depth</code></strong></em>のデフォルトは0で、モジュレーション効果がかかりません。
+値が大きいほど効果が大きくなります。
+例えば、モジュレーションタイプがデフォルトの「音程変化」だった場合、
+127ではちょうど±１半音の深さになります。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+シーケンスデータ中でも、モジュレーションデプスを設定していた場合は、後から設定した方が有効になります。 
+</p>
+<p>
+この関数は、ARM7コマンド予約関数です。
+この関数を呼びだした後、
+<tt class="function"><a href="SND_FlushCommand.html">SND_FlushCommand</a></tt>関数で
+コマンドを発行して始めて、処理が行われます。
+</p>
+<p>
+また、処理の完了と同期を取る必要がある場合は、
+まず、この関数呼び出しの直後に、
+<tt class="function"><a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a></tt>関数で、コマンドタグを取得しておきます。
+そしてコマンド発行後に、取得したコマンドタグを使って
+<tt class="function"><a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a></tt>関数または、
+<tt class="function"><a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></tt>関数を呼びだして、
+処理の完了をチェックしたり、待ったりします。
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="SND_FlushCommand.html">SND_FlushCommand</a>, <a href="SND_GetCurrentCommandTag.html">SND_GetCurrentCommandTag</a>, <a href="SND_IsFinishedCommandTag.html">SND_IsFinishedCommandTag</a>, <a href="SND_WaitForCommandProc.html">SND_WaitForCommandProc</a></p>
+<h2>履歴</h2>
+<p>2005/02/17 ARM7コマンド処理の注意書き追加<br>2004/07/01 初版<br></p>
+</div>
+</body>
+</html>

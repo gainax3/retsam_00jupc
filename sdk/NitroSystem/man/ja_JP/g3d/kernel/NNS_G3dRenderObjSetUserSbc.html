@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+	<TITLE>NNS_G3dRenderObjSetUserSbc</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G3dRenderObjSetUserSbc</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g3d/kernel.h&gt;</CODE></PRE>
+  <PRE><CODE>u8*
+NNS_G3dRenderObjSetUserSbc(
+    NNSG3dRenderObj* pRenderObj,
+    u8*              sbc
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pRenderObj</STRONG></EM></TD>
+      <TD width="87%"><CODE>NNSG3dRenderObj</CODE>構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>sbc</STRONG></EM></TD>
+      <TD width="87%">SBC（Structure Byte Code）へのポインタ</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>以前に設定されていたポインタ</P>
+
+<H2>説明</H2>
+<P><I><B>pRenderObj</B></I>で指定されるレンダリングオブジェクトに <CODE>sbc</CODE>で指定されるSBC（Structure Byte Code）を登録します。SBCは<CODE>NNS_G3dDraw</CODE>関数を実行中に一種のインタープリタで解釈されるバイトコードで、モデルのジョイント構造やどのシェイプをどのマテリアルに設定するか、といったことを決定しています。通常は、g3dcvtrによって作成され、モデルリソース内に格納されているSBCを使用して描画しますが、ユーザーが自分で作成したSBCを使用することもできます。</P>
+<H2>参照</H2>
+
+<H2>履歴</H2>
+<P>2004/10/15 記述の改訂<BR>
+2004/08/02 初版</P>
+</BODY>
+
+</HTML>

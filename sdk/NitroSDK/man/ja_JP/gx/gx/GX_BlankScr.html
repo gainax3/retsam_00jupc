@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>GX_BlankScr</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">GX_BlankScr</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<CODE>#include &lt;nitro/gx/gx.h&gt;</CODE><BR>
+  <BR>
+  <CODE>void GX_BlankScr(BOOL blank);</CODE></dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">blank</font></strong></em></td>
+    <td width="87%">FALSEでない場合ＬＣＤ画面は白を表示した状態になります。</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>FALSE以外の場合、CPUによって強制的に2Dグラフィックス回路を停止します。強制ブランク中は2Dグラフィックス回路がVRAMへアクセスせず、LCD画面は白を表示した状態になります。ただし、強制ブランク中においても、内部HV同期カウンタは動作しています。内部HV同期カウンタが表示期間中に強制ブランクを変更すると、ONからOFFにした場合は設定直後に、OFFからONにした場合は3ライン後の先頭からON/OFFが切り替わります。</P>
+<h2>参照</h2>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

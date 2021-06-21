@@ -1,0 +1,55 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_EncodeNbName</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_EncodeNbName</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>void CPS_EncodeNbName(u8 *d, u8 *s);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>d</strong></em></code></td>
+    <td>変換された形式。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>s</strong></em></code></td>
+    <td>NetBios名。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+<P>なし。</P>
+
+<h2>説明</h2>
+
+<p>NetBios名をworkstationとして、NetBios Name query機能で使われる形式に変換します。<BR>
+	ブロックしません。<BR>
+	CPSライブラリが使用可能でなくても呼び出すことができます。</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_Resolve.html">CPS_Resolve</A></CODE>, 
+<CODE><A href="CPS_NbResolve.html">CPS_NbResolve</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/10/21 初版</P>
+</body>
+</html>

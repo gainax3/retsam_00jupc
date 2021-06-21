@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<!DOCTYPE report [
+ <!ELEMENT envlist (resource*)>
+ <!ELEMENT resource (class*)>
+ <!ELEMENT class ((string|hexbinary|bool|s64|u64|s32|u32|s16|u16|s8|u8)*)>
+ <!ELEMENT string (#PCDATA)>
+ <!ELEMENT hexbinary (#PCDATA)>
+ <!ELEMENT bool (#PCDATA)>
+ <!ELEMENT s64 (#PCDATA)>
+ <!ELEMENT u64 (#PCDATA)>
+ <!ELEMENT s32 (#PCDATA)>
+ <!ELEMENT u32 (#PCDATA)>
+ <!ELEMENT s16 (#PCDATA)>
+ <!ELEMENT u16 (#PCDATA)>
+ <!ELEMENT s8 (#PCDATA)>
+ <!ELEMENT u8 (#PCDATA)>
+ <!ELEMENT src (#PCDATA)>
+
+ <!ATTLIST resource name CDATA #REQUIRED>
+ <!ATTLIST class name CDATA #REQUIRED>
+ <!ATTLIST string name CDATA #REQUIRED>
+ <!ATTLIST hexbinary name CDATA #REQUIRED
+                     src  CDATA #IMPLIED>
+ <!ATTLIST bool name CDATA #REQUIRED>
+ <!ATTLIST s64 name CDATA #REQUIRED>
+ <!ATTLIST u64 name CDATA #REQUIRED>
+ <!ATTLIST s32 name CDATA #REQUIRED>
+ <!ATTLIST u32 name CDATA #REQUIRED>
+ <!ATTLIST s16 name CDATA #REQUIRED>
+ <!ATTLIST u16 name CDATA #REQUIRED>
+ <!ATTLIST s8 name CDATA #REQUIRED>
+ <!ATTLIST u8 name CDATA #REQUIRED>
+
+]]>

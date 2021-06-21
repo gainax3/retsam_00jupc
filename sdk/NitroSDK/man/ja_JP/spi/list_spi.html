@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>ARM7プロセッサ周辺装置API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>ARM7プロセッサ周辺装置(SPI)API 機能一覧</H1>
+<H3><FONT color="#ff0000">ARM7側に接続されている周辺装置をARM9から扱うためのインターフェイスです。<BR>
+タッチパネル、NVRAM、マイク、パワー制御IC へのアクセスは排他制御が行われるため、リクエストに対してエラーが返される場合があります。同時にアクセスする場合には注意が必要です。</FONT></H3>
+<H3>タッチパネル(TP)</H3>
+<H4><A name="TP_Init">&lt; 初期化 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="tp/TP_Init.html" target="_self">TP_Init</A></TH>
+      <TD>タッチパネルAPIを初期化します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_SetCallback.html" target="_self">TP_SetCallback</A></TH>
+      <TD>ARM7へのリクエスト命令完了時のコールバック関数を設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_SetCalibrateParam.html" target="_self">TP_SetCalibrateParam</A></TH>
+      <TD>キャリブレーションのために使用されるパラメータを設定します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestSetStability.html" target="_self">TP_RequestSetStability</A></TH>
+      <TD>ARM7へチャタリング対策パラメータの設定要求をおこないます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4><A name="TP_SamplingNow">&lt; リクエストによるサンプリング &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="tp/TP_RequestRawSampling.html" target="_self">TP_RequestRawSampling</A></TH>
+      <TD>ARM7へ１回分のタッチパネル値の要求をおこない、座標値を変換されない生のタッチパネル値として取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestCalibratedSampling.html" target="_self">TP_RequestCalibratedSampling</A></TH>
+      <TD>ARM7へ１回分のタッチパネル値の要求をおこない、座標値を画面座標へ変換して取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestSamplingAsync.html" target="_self">TP_RequestSamplingAsync</A></TH>
+      <TD>ARM7へ１回分のタッチパネル値の要求を非同期でおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_WaitRawResult.html" target="_self">TP_WaitRawResult</A></TH>
+      <TD>１回分の座標値を変換されない生のタッチパネル値として取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_WaitCalibratedResult.html" target="_self">TP_WaitCalibratedResult</A></TH>
+      <TD>１回分の座標値を画面座標へ変換して取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetCalibratedResult.html" target="_self">TP_GetCalibratedResult</A></TH>
+      <TD>到着済みの座標値を画面座標へ変換して取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4><A name="TP_SamplingAuto">&lt; オートサンプリング &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="tp/TP_RequestAutoSamplingStart.html" target="_self">TP_RequestAutoSamplingStart</A></TH>
+      <TD>ARM7へオートサンプリングの開始要求をおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestAutoSamplingStartAsync.html" target="_self">TP_RequestAutoSamplingStartAsync</A></TH>
+      <TD>ARM7へオートサンプリングの開始要求を非同期でおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestAutoSamplingStop.html" target="_self">TP_RequestAutoSamplingStop</A></TH>
+      <TD>ARM7へオートサンプリングの停止要求をおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_RequestAutoSamplingStopAsync.html" target="_self">TP_RequestAutoSamplingStopAsync</A></TH>
+      <TD>ARM7へオートサンプリングの停止要求を非同期でおこないます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetLatestRawPointInAuto.html" target="_self">TP_GetLatestRawPointInAuto</A></TH>
+      <TD>オートサンプリングで最後に取得された有効な値を変換されない生のタッチパネル値として取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetLatestCalibratedPointInAuto.html" target="_self">TP_GetLatestCalibratedPointInAuto</A></TH>
+      <TD>オートサンプリングで最後に取得された有効な値を変換後の画面座標として取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetLatestIndexInAuto.html">TP_GetLatestIndexInAuto</A></TH>
+      <TD>オートサンプリングで最後に格納されたデータのインデックスを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4><A name="TP_Calibration">&lt; キャリブレーション &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="tp/TP_GetUserInfo.html" target="_self">TP_GetUserInfo</A></TH>
+      <TD>本体内フラッシュメモリからキャリブレーションのためのパラメータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_CalcCalibrateParam.html" target="_self">TP_CalcCalibrateParam</A></TH>
+      <TD>２点の座標からキャリブレーションのためのパラメータを計算します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetCalibratedPoint.html" target="_self">TP_GetCalibratedPoint</A></TH>
+      <TD>生のタッチパネル値を変換して画面座標を取得します。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_GetUnCalibratedPoint.html" target="_self">TP_GetUnCalibratedPoint</A></TH>
+      <TD>画面座標を逆変換してタッチパネル値を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4><A name="TP_Check">&lt; 成否判定 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH><A href="tp/TP_WaitBusy.html" target="_self">TP_WaitBusy</A></TH>
+      <TD>ARM7から特定のリクエストの終了応答が返るのを待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_WaitAllBusy.html" target="_self">TP_WaitAllBusy</A></TH>
+      <TD>ARM7から全リクエストの終了応答が返るのを待ちます。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_CheckBusy.html" target="_self">TP_CheckBusy</A></TH>
+      <TD>ARM7からの終了応答を非同期でチェックします。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TP_CheckError.html" target="_self">TP_CheckError</A></TH>
+      <TD>ARM7での処理が正常に終了しているかどうかをチェックします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H4><A name="TP_Struct">&lt; 型・構造体 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="tp/TPData.html" target="_self">TPData</A></TH>
+      <TD>タッチパネルの指す座標をあらわす構造体です。</TD>
+    </TR>
+    <TR>
+      <TH><A href="tp/TPRecvCallback.html" target="_self">TPRecvCallback</A></TH>
+      <TD>ARM7へのリクエスト命令完了時のコールバック関数を設定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3>マイク(MIC)</H3>
+<H4><A name="MIC_Init">&lt; 初期化 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_Init.html" target="_self">MIC_Init</A></TH>
+      <TD>マイクAPIを初期化します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="MIC_Sampling">&lt; サンプリング &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_DoSampling.html" target="_self">MIC_DoSampling</A></TH>
+      <TD>マイクのサンプリングを一回行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_DoSamplingAsync.html" target="_self">MIC_DoSamplingAsync</A></TH>
+      <TD>非同期的にマイクのサンプリングを一回行います。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="MIC_Auto">&lt; 自動サンプリング &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_StartAutoSampling.html" target="_self">MIC_StartAutoSampling</A></TH>
+      <TD>マイクの自動サンプリングを開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_StartAutoSamplingAsync.html" target="_self">MIC_StartAutoSamplingAsync</A></TH>
+      <TD>非同期的にマイクの自動サンプリングを開始します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_StopAutoSampling.html" target="_self">MIC_StopAutoSampling</A></TH>
+      <TD>マイクの自動サンプリングを停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_StopAutoSamplingAsync.html" target="_self">MIC_StopAutoSamplingAsync</A></TH>
+      <TD>非同期的にマイクの自動サンプリングを停止します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_AdjustAutoSampling.html" target="_self">MIC_AdjustAutoSampling</A></TH>
+      <TD>マイクの自動サンプリングにおけるサンプリングレートを変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_AdjustAutoSamplingAsync.html" target="_self">MIC_AdjustAutoSamplingAsync</A></TH>
+      <TD>非同期的にマイクの自動サンプリングにおけるサンプリングレートを変更します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MIC_GetLastSamplingAddress.html" target="_self">MIC_GetLastSamplingAddress</A></TH>
+      <TD>最新のマイクサンプリング結果の格納されたアドレスを取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="MIC_Type">&lt; 型・構造体 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="mic/MICAutoParam.html" target="_self">MICAutoParam</A></TH>
+      <TD>マイクの自動サンプリング設定 構造体</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MICSamplingType.html" target="_self">MICSamplingType</A></TH>
+      <TD>マイクのサンプリング種別 列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MICSamplingRate.html" target="_self">MICSamplingRate</A></TH>
+      <TD>マイクのサンプリングレート 列挙型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MICCallback.html" target="_self">MICCallback</A></TH>
+      <TD>マイクの非同期関数用コールバック 関数型</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="mic/MICResult.html" target="_self">MICResult</A></TH>
+      <TD>マイクのAPI関数群共通の処理結果 列挙型</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H3>パワー制御(PM)</H3>
+<H4><A name="PM_Init">&lt; 初期化 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="pm/PM_Init.html" target="_self">PM_Init</A></TH>
+      <TD>パワー制御APIを初期化します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="PM_Utility">&lt; PMIC操作 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="pm/PM_ForceToPowerOff.html" target="_self">PM_ForceToPowerOff</A>*</TH>
+      <TD>強制的に電源スイッチを切ります。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_SetBackLight.html" target="_self">PM_SetBackLight*</A></TH>
+      <TD>バックライトの状態を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_SetAmp.html" target="_self">PM_SetAmp*</A></TH>
+      <TD>プログラマブルゲインアンプの出力スイッチを切り替えます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_SetAmpGain.html" target="_self">PM_SetAmpGain*</A></TH>
+      <TD>プログラマブルゲインアンプのゲインを設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_SetLCDPower.html" target="_self">PM_SetLCDPower</A></TH>
+      <TD>LCDのスイッチを切り替えます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="PM_GetPMIC">&lt; PMIC状態 &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetBattery.html" target="_self">PM_GetBattery</A></TH>
+      <TD>バッテリーパックの電池残量を調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetBackLight.html" target="_self">PM_GetBackLight</A></TH>
+      <TD>バックライトの状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetAmp.html" target="_self">PM_GetAmp</A></TH>
+      <TD>プログラマブルゲインアンプの出力スイッチ設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetAmpGain.html" target="_self">PM_GetAmpGain</A></TH>
+      <TD>プログラマブルゲインアンプのゲイン設定を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetLCDPower.html" target="_self">PM_GetLCDPower</A></TH>
+      <TD>LCDのスイッチの状態を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GetLEDPattern.html" target="_self">PM_GetLEDPattern</A></TH>
+      <TD>LEDの状態を取得します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H4><A name="PM_Sleep">&lt; スリープ &gt;</A></H4>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="pm/PM_GoSleepMode.html" target="_self">PM_GoSleepMode</A></TH>
+      <TD>スリープモードへ移行します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_SetSleepCallbackInfo.html" target="_self">PM_SetSleepCallbackInfo</A></TH>
+      <TD>スリープモードのコールバック情報を設定します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_AppendPreSleepCallback.html" target="_self">PM_AppendPreSleepCallback</A></TH>
+      <TD>スリープモードへ移行する時のコールバック関数をリスト末尾に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_PrependPreSleepCallback.html" target="_self">PM_PrependPreSleepCallback</A></TH>
+      <TD>スリープモードへ移行する時のコールバック関数をリスト先頭に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_AppendPostSleepCallback.html" target="_self">PM_AppendPostSleepCallback</A></TH>
+      <TD>スリープモードから復帰する時のコールバック関数をリスト末尾に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_PrependPostSleepCallback.html" target="_self">PM_PrependPostSleepCallback</A></TH>
+      <TD>スリープモードから復帰する時のコールバック関数をリスト先頭に追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_DeletePreSleepCallback.html" target="_self">PM_DeletePreSleepCallback</A></TH>
+      <TD>登録していた、スリープモードへ移行する時のコールバック関数を削除します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="pm/PM_DeletePreSleepCallback.html" target="_self">PM_DeletePostSleepCallback</A></TH>
+      <TD>登録していた、スリープモードから復帰する時のコールバック関数を削除します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

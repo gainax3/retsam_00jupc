@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dBGSetupEx</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dBGSetup*</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nnsys/g2d/g2d_Screen.h&gt;</CODE></PRE>
+  <PRE><CODE>void NNS_G2dBGSetup(
+    NNSG2dBGSelect bg,
+    const NNSG2dScreenData* pScnData,
+    const NNSG2dCharacterData* pChrData,
+    const NNSG2dPaletteData* pPltData,
+    GXBGScrBase scnBase,
+    GXBGCharBase chrBase
+);</CODE></PRE>
+  <PRE><CODE>void NNS_G2dBGSetupEx(
+    NNSG2dBGSelect bg,
+    const NNSG2dScreenData* pScnData,
+    const NNSG2dCharacterData* pChrData,
+    const NNSG2dPaletteData* pPltData,
+    const NNSG2dCharacterPosInfo* pPosInfo,
+    const NNSG2dPaletteCompressInfo* pCmpInfo,
+    GXBGScrBase scnBase,
+    GXBGCharBase chrBase
+);</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>bg</STRONG></EM></TD>
+      <TD width="87%"> [IN] 対象の BG 面</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pScnData</STRONG></EM></TD>
+      <TD width="87%"> [IN] BG で使用するスクリーンデータへのポインタ、NULL 指定は不可です</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pChrData</STRONG></EM></TD>
+      <TD width="87%"> [IN] BG で使用するキャラクタデータへのポインタ、NULL 指定も可能です</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pPltData</STRONG></EM></TD>
+      <TD width="87%"> [IN] BG で使用するパレットデータへのポインタ、NULL 指定も可能です</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pPosInfo</STRONG></EM></TD>
+      <TD width="87%"> [IN] <EM><STRONG>pChrData</STRONG></EM> のキャラクタ抽出領域情報。<EM><STRONG>pChrData</STRONG></EM> が部分キャラクタでない場合は NULL を指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCmpInfo</STRONG></EM></TD>
+      <TD width="87%"> [IN] <EM><STRONG>pPltData</STRONG></EM> のパレット圧縮情報。 <EM><STRONG>pPltData</STRONG></EM> が圧縮パレットでない場合は NULL を指定します。 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>scnBase</STRONG></EM></TD>
+      <TD width="87%"> [IN] BG のスクリーンベース</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>chrBase</STRONG></EM></TD>
+      <TD width="87%"> [IN] BG のキャラクタベース。 </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+なし。
+</P>
+
+<H2>説明</H2>
+<P>
+キャラクタ BG の設定を行うと共に、BG で用いるグラフィックスデータをVRAMに読み込みます。
+</P>
+
+<P>
+<EM><STRONG>bg</STRONG></EM> には以下のいずれかを指定します。<br>
+<br>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_MAIN0</CODE></TD>
+      <TD width="55%">メイン画面の BG 0 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_MAIN1</CODE></TD>
+      <TD width="55%">メイン画面の BG 1 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_MAIN2</CODE></TD>
+      <TD width="55%">メイン画面の BG 2 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_MAIN3</CODE></TD>
+      <TD width="55%">メイン画面の BG 3 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_SUB0</CODE></TD>
+      <TD width="55%">サブ画面の BG 0 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_SUB1</CODE></TD>
+      <TD width="55%">サブ画面の BG 1 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_SUB2</CODE></TD>
+      <TD width="55%">サブ画面の BG 2 を指定します。</TD>
+    </TR>
+    <TR>
+      <TD width="45%"><CODE>NNS_G2D_BGSELECT_SUB3</CODE></TD>
+      <TD width="55%">サブ画面の BG 3 を指定します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+</P>
+
+<P>
+<EM><STRONG>pScnData</STRONG></EM> が持つスクリーン情報に従って BGControl を行い、
+その上で各グラフィックスデータを適切な VRAM にロードします。
+
+BGControl では <EM><STRONG>pScnData</STRONG></EM> 全体を表示できる
+最小のサイズにBGを設定します。
+<EM><STRONG>pScnData</STRONG></EM> がBGの最大サイズより大きい場合は最大サイズに設定します。
+
+
+必要に応じて 表示モード、BGモード、メイン BG0 の 3D 割り当ての変更を行います。
+このBGモードの変更によって <EM><STRONG>bg</STRONG></EM> 以外の BG 面の
+BGタイプが変わってしまう場合は Warning を出力します。
+</P>
+
+<P>
+アフィン BG およびアフィン拡張 BG のエリアオーバー処理指定には
+<CODE><A href="NNS_G2dSetBGAreaOver.html">NNS_G2dSetBGAreaOver()</A></CODE> で
+設定された値を用います。エリアオーバー処理が未設定の場合は
+<CODE>GX_BG_AREAOVER_XLU</CODE> を用います。
+</P>
+
+<P>
+<EM><STRONG>pPltData</STRONG></EM> や <EM><STRONG>pChrData</STRONG></EM> に
+<CODE>NULL</CODE>が指定された場合は、それぞれのグラフィックスデータの読み込みが行われません。
+これは、パレットやキャラクタを複数のBGで共有する場合の利用を想定しています。
+</P>
+
+<P>
+内部で <CODE><A href="NNS_G2dBGLoadElementsXXX.html">NNS_G2dBGLoadElements()</A></CODE> を呼び出しています。
+</P>
+
+<P>
+この関数は以下の設定を変更します。<br>
+</P>
+<ul>
+	<li>BG Control 
+	<li>表示モード
+	<li>BG モード
+	<li>メイン画面 BG0 の 2D 割り当て
+</ul>
+
+<P>
+一方、以下の設定は変更しませんので必要に応じて設定を行ってください。
+特に VRAM割り当て と ベースオフセット は、この関数を呼び出す前に設定しておく必要があります。
+なお、BG はデフォルトでは不可視となっていますので BG を表示するためには任意のタイミングで
+BG を可視にする必要があります。<BR>
+</P>
+<ul>
+	<li>VRAM 割り当て (拡張パレットロードのための LCDC 割り当てを除く)
+	<li>ベースオフセット
+	<li>BG 可視状態
+	<li>BG 優先度
+	<li>BG モザイク
+	<li>BG スクロール
+	<li>BG アフィン
+	<li>カラー特殊効果
+</ul>
+
+<H2>参照</H2>
+<P><CODE>
+<A href="NNS_G2dBGLoadElementsXXX.html">NNS_G2dBGLoadElements</A>, 
+<A href="NNS_G2dSetBGAreaOver.html">NNS_G2dSetBGAreaOver</A>, 
+<A href="NNS_G2dGetBGAreaOver.html">NNS_G2dGetBGAreaOver</A>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>
+2005/06/27 フリーサイズスクリーンに対応<br>
+2005/06/06 フリーサイズスクリーンに対応していない旨を明記<br>
+2004/09/02 初版
+</P>
+</BODY>
+
+</HTML>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+	<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+	<META http-equiv="Content-Style-Type" content="text/css">
+	<TITLE>NNS_G2dCharCanvasInitForOBJ2DRect</TITLE>
+	<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+
+<BODY>
+
+<H1 align="left">NNS_G2dCharCanvasInitForOBJ2DRect</H1>
+
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>
+#include &lt;nnsys/g2d/g2d_CharCanvas.h&gt;
+
+void NNS_G2dCharCanvasInitForOBJ2DRect(
+    NNSG2dCharCanvas* pCC,
+    void* charBase,
+    int areaWidth,
+    int areaHeight,
+    NNSG2dCharaColorMode colorMode
+);
+</CODE></PRE>
+</DL>
+
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>pCC</STRONG></EM></TD>
+      <TD width="87%"> [OUT] CharCanvas へのポインタ </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>charBase</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas に割り当てるキャラクタの始点へのポインタ。4バイトアライメントされていなければなりません。  </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaWidth</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas の水平方向キャラクタ数 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>areaHeight</STRONG></EM></TD>
+      <TD width="87%"> [IN] CharCanvas の垂直方向キャラクタ数 </TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>colorMode</STRONG></EM></TD>
+      <TD width="87%"> [IN] 対象 OBJ のカラーモード  </TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<H2>返り値</H2>
+<P>
+	なし。
+</P>
+
+<H2>説明</H2>
+<P>
+	2次元マッピングOBJにおいてキャラクタメモリ上の矩形領域を CharCanvas として使うように初期化します。<br>
+	ハードウェアの仕様上 <EM><STRONG>areaWidth</STRONG></EM> の最大値は 16色モードで 32キャラクタ(=256ピクセル)、
+	256色モードで 16キャラクタ(=128ピクセル)に制限されます。
+	また <EM><STRONG>areaHeight</STRONG></EM> の最大値はカラーモードによらず 32キャラクタ(=256ピクセル)となります。
+</P>
+<P>
+	<EM><STRONG>colorMode</STRONG></EM> には以下のいずれかの値を指定します。
+</P>
+	<TABLE border="1" width="100%">
+	  <TBODY>
+	    <TR>
+	      <TD width="13%">NNS_G2D_CHARA_COLORMODE_16</TD>
+	      <TD width="87%"> 16色カラーのキャラクタを使用します。 </TD>
+	    </TR>
+	    <TR>
+	      <TD width="13%">NNS_G2D_CHARA_COLORMODE_256</TD>
+	      <TD width="87%"> 256色カラーのキャラクタを使用します。 </TD>
+	    </TR>
+	  </TBODY>
+	</TABLE>
+<P>
+	この関数では <EM><STRONG>charBase</STRONG></EM> が指すキャラクタを基点として、
+	水平方向に <EM><STRONG>areaWidth</STRONG></EM>、
+	垂直方向に <EM><STRONG>areaHeight</STRONG></EM> のキャラクタを CharCanvas に割り当てます。<br>
+	<br>
+	<img src="2DRect.png" alt="引数の説明">
+</P>
+
+<P>
+	<EM><STRONG>areaWidth</STRONG></EM> と <EM><STRONG>areaHeight</STRONG></EM>
+	の組み合わせが OBJ のサイズにない場合、CharCanvas は複数の OBJ を使って表示する事になります。
+	これらの OBJ を適切に配置するには
+	<code><a href="NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ2DRect()</a></code>
+	を用います。
+	また、表示に必要な OBJ の数は
+	<code><a href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequiredOBJ2DRect()</a></code>
+	で求める事ができます。
+	
+	
+</P>
+
+<H2>参照</H2>
+<P><CODE>
+<a href="NNS_G2dArrangeOBJXXX.html">NNS_G2dArrangeOBJ2DRect</a>, 
+<a href="NNS_G2dCalcRequiredOBJXXX.html">NNS_G2dCalcRequiredOBJ2DRect</a>
+</CODE></P>
+
+<H2>履歴</H2>
+<P>2007/01/11 第5引数の型が NNSG2dColorMode になっていたのを NNSG2dCharaColorMode に修正<br>
+2005/09/29 引数のIN/OUT表示を修正<br>
+2005/05/25 初版</P>
+</BODY>
+
+</HTML>

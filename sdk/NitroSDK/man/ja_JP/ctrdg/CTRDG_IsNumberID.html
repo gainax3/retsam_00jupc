@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>CTRDG_IsNumberID</TITLE>
+<LINK rel="stylesheet" href="../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">CTRDG_IsNumberID</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/ctrdg.h&gt;</CODE></PRE>
+  <PRE><CODE>BOOL CTRDG_IsNumberID( u8 numberID );
+  </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD width="115"><B><I>numberID</I></B></TD>
+      <TD width="532">ナンバーID　</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>カートリッジにナンバーIDへ該当する周辺機器が存在している場合に TRUE を、そうでない場合は FALSE を返します。一度でもカートリッジ抜けを検出した後は常に FALSE を返します。</P>
+<H2>説明</H2>
+<P>ビットID、ナンバーIDとはカートリッジへ搭載される周辺機器毎に割り当てられるIDのことです。<BR>
+ナンバーIDの方は割り当てられた番号を確認することによって周辺機器の有無が識別されます。<BR>
+1つのカートリッジへ複数の周辺機器が搭載されている場合にはIDも複数格納されます。AGBカートリッジへIDが格納されていればAGBカートリッジ上の周辺機器も識別できます。</P>
+<P>この関数ではカートリッジにナンバーIDへ該当する周辺機器が存在しているかどうかを検出をします。</P>
+<P>通常は周辺機器用のライブラリにて、周辺機器が存在しているかどうかを確認する関数等を実装するために使用されます。アプリケーションは周辺機器ライブラリ経由で呼び出すようにして下さい。この関数を直接呼び出すことは推奨されません。<br>
+<br>
+この関数は、<a href="../os/spinLock/OS_LockCartridge.html">OS_LockCartridge</a>関数でカートリッジバスをロックした状態でも呼び出すことができます。<br>
+ただしバスがロックされている間は ARM7 による自動抜け検出処理が行われなくなりますので、<br>
+ゲームフレーム毎などのプレイヤーが再挿入できない間隔で<A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A>関数を定期的に呼び出して下さい。<br>
+(なお、この関数の内部でも<A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A>関数が呼び出されています)<br>
+</P>
+
+
+<H2>参照</H2>
+<P><CODE><A href="CTRDG_Init.html">CTRDG_Init</A>, <A href="CTRDG_IsBitID.html">CTRDG_IsBitID</A>, <A href="CTRDG_IsOptionCartridge.html">CTRDG_IsOptionCartridge</A>, <A href="CTRDG_IsAgbCartridge.html">CTRDG_IsAgbCartridge</A>, <A href="CTRDG_IsExisting.html">CTRDG_IsExisting</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>2005/04/12 カートリッジバスのロックに関する記述を追加<br>
+2004/10/19 初版</P>
+</BODY>
+</HTML>

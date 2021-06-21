@@ -1,0 +1,27 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  NitroWiFi - buildtools
+# File:     modulerules
+#
+# Copyright 2005 Nintendo.  All rights reserved.
+#
+# These coded insructions, statements, and computer programs contain
+# proprietary information of Nintendo of America Inc. and/or Nintendo
+# Company Ltd., and are protected by Federal copyright law.  They may
+# not be disclosed to third parties or copied or duplicated in any form,
+# in whole or in part, without the prior written consent of Nintendo.
+#
+# $Log: modulerules,v $
+# Revision 1.2  2005/06/24 13:15:53  yasu
+# commondefs.utest などを削除
+#
+# Revision 1.1  2005/06/23 11:12:36  yasu
+# make ルールをまとめたファイルとして作成
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+include  $(NITROSDK_ROOT)/build/buildtools/modulerules
+include  $(NITROWIFI_ROOT)/build/buildtools/modulerules.WiFi
+
+#===== End of modulerules =====

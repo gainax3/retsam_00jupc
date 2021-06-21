@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META http-equiv="Content-Style-Type" content="text/css">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.0.0 for Windows">
+<BASE target="main">
+<TITLE>図形認識(PRC)API 機能一覧</TITLE>
+<LINK rel="stylesheet" href="../css/apilist.css">
+</HEAD>
+<BODY>
+<H1>図形認識(PRC)API 機能一覧</H1>
+<H3><A name="Init">初期化</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_Init.html" target="_self">PRC_Init</A></TH>
+      <TD>図形認識システムを初期化します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Stroke">入力点処理</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_InitStrokes.html" target="_self">PRC_InitStrokes</A></TH>
+      <TD>PRCStrokes構造体を初期化します。</TD>
+    </TR>
+
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_AppendPoint.html" target="_self">PRC_AppendPoint</A></TH>
+      <TD>入力点列データに新しい点を追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_AppendPenUpMarker.html" target="_self">PRC_AppendPenUpMarker</A></TH>
+      <TD>入力点列データにペンが上がったことを示すマーカーを追加します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_Clear.html" target="_self">PRC_Clear</A></TH>
+      <TD>入力点列データを初期化直後の状態に戻します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_IsFull.html" target="_self">PRC_IsFull</A></TH>
+      <TD>入力点列データが一杯かどうか調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_IsEmpty.html" target="_self">PRC_IsEmpty</A></TH>
+      <TD>入力点列データが空かどうか調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_IsPenUpMarker.html" target="_self">PRC_IsPenUpMarker</A></TH>
+      <TD>点データがペンが上がったことを示すマーカーかどうかを調べます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRC_CopyStrokes.html" target="_self">PRC_CopyStrokes</A></TH>
+      <TD>PRCStrokes 構造体をディープコピーします。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="PrototypeList">図形見本DB操作</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetPrototypeDBBufferSize.html" target="_self">PRC_GetPrototypeDBBufferSize*</A></TH>
+      <TD>PRC_InitPrototypeDB* で必要なメモリ量を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_InitPrototypeDB.html" target="_self">PRC_InitPrototypeDB*</A></TH>
+      <TD>見本パターンのリストを展開して認識で用いる見本DBに変換します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Input">入力パターン操作</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetInputPatternBufferSize.html" target="_self">PRC_GetInputPatternBufferSize*</A></TH>
+      <TD>PRC_InitInputPattern* で必要なメモリ量を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_InitInputPattern.html" target="_self">PRC_InitInputPattern*</A></TH>
+      <TD>生の入力点列データを整形して認識で用いる入力パターンデータに変換します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetInputPatternStrokes.html" target="_self">PRC_GetInputPatternStrokes</A></TH>
+      <TD>入力パターンデータから点列データを得ます。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_ResampleStrokes.html" target="_self">PRC_ResampleStrokes*</A></TH>
+      <TD>生の入力点列データをリサンプルして点数を削減します。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H3><A name="Recognize">図形認識</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetRecognitionBufferSize.html" target="_self">PRC_GetRecognitionBufferSize*</A></TH>
+      <TD>PRC_GetRecognizedEntry* で必要なメモリ量を取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetRecognizedEntry.html" target="_self">PRC_GetRecognizedEntry*</A></TH>
+      <TD>入力パターンと見本DBのマッチングにより、図形認識を行います。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetEntryCode.html" target="_self">PRC_GetEntryCode</A></TH>
+      <TD>見本DBエントリから図形コードを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetEntryData.html" target="_self">PRC_GetEntryData</A></TH>
+      <TD>見本DBエントリに関連付けられたユーザデータを取得します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRC_GetEntryStrokes.html" target="_self">PRC_GetEntryStrokes</A></TH>
+      <TD>見本DBエントリに対応する点列データを得ます。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<!--
+<H3><A name="const">定数</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="const.html" target="_self">定数一覧</A></TH>
+      <TD>図形認識APIで用いる定数一覧です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+-->
+<H3><A name="type">型・構造体</A></H3>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TH width="25%"><A href="stroke/PRCPoint.html" target="_self">PRCPoint</A></TH>
+      <TD>タッチパネルからの入力点の座標を表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="stroke/PRCStrokes.html" target="_self">PRCStrokes</A></TH>
+      <TD>入力座標値の列を保持する構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCPrototypeList.html" target="_self">PRCPrototypeList</A></TH>
+      <TD>認識で用いる見本パターンのリストを表す構造体です。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCPrototypeEntry.html" target="_self">PRCPrototypeEntry</A></TH>
+      <TD>見本DBの各エントリの属性を表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCPrototypeDB.html" target="_self">PRCPrototypeDB</A></TH>
+      <TD>図形認識APIで用いる見本DBを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCInputPattern.html" target="_self">PRCInputPattern</A></TH>
+      <TD>認識APIで用いるために整形された入力パターンデータを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCPrototypeDBParam.html" target="_self">PRCPrototypeDBParam</A></TH>
+      <TD>見本DBを展開する際のパラメータを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCInputPatternParam.html" target="_self">PRCInputPatternParam</A></TH>
+      <TD>入力パターンデータを整形する際のパラメータを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCRecognizeParam.html" target="_self">PRCRecognizeParam</A></TH>
+      <TD>認識する際のパラメータを表します。</TD>
+    </TR>
+    <TR>
+      <TH width="25%"><A href="recognize/PRCResampleMethod.html" target="_self">PRCResampleMethod</A></TH>
+      <TD>リサンプリングのアルゴリズムを指定するための列挙型です。</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+
+<table border="0" height="100%"><tr><td style="background-color : white;"></td></tr></table>
+
+</BODY>
+</HTML>

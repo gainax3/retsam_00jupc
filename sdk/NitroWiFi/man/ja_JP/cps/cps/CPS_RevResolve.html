@@ -1,0 +1,79 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=shift_jis">
+<title>CPS_RevResolve</title>
+<link rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">CPS_RevResolve</h1>
+
+
+<h2>構文</h2>
+
+<dl>
+  <dd><pre><code>#include &lt;nitroWiFi/cps.h&gt;</code></pre>
+  </dd>
+  <dd><pre><code>int CPS_RevResolve(CPSInAddr ip, char *name, u32 name_max);</code></pre>
+  </dd>
+</dl>
+
+<h2>引数</h2>
+
+<table width="100%">
+  <tr>
+    <td><code><em><strong>ip</strong></em></code></td>
+    <td>IPアドレス。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>name</strong></em></code></td>
+    <td>名前。</td>
+  </tr>
+  <tr>
+    <td><code><em><strong>name_max</strong></em></code></td>
+    <td>名前のサイズ。</td>
+  </tr>
+</table>
+
+<h2>返り値</h2>
+
+<table width="100%">
+  <tr>
+    <td><em>0</em></td>
+    <td>成功</td>
+  </tr>
+  <tr>
+    <td ><EM>1</EM></td>
+    <td >問い合わせに失敗</td>
+  </tr>
+  <tr>
+    <td ><EM>-1</EM></td>
+    <td >結果を格納する領域のサイズが不足</td>
+  </tr>
+</table>
+
+<h2>説明</h2>
+
+<p>
+DNSサーバに対して問い合わせ、IPアドレスを名前に変えます。結果はキャッシュされることはないので、
+必要ならアプリケーション側でキャッシュしてください。この機能自体UDPを使用するので、既にCPS_SocUseの状態になっている場合は使用できません。
+CPS_SocRegisterは実行されている必要があります。<BR>
+結果を格納するエリアへのポインタとその領域のサイズを指定します。サイズは終端の'\0'を含む長さです。<BR>
+成功すると0、問い合わせに失敗すると1、結果を格納する領域のサイズが不足している場合は-1を返します。<BR>
+ブロックします。
+</p>
+
+<h2>参照</h2>
+<P>
+<CODE><A href="CPS_SocRegister.html">CPS_SocRegister</A></CODE>, 
+<CODE><A href="CPS_SocUse.html">CPS_SocUse</A></CODE>, 
+<CODE><A href="CPS_Resolve.html">CPS_Resolve</A></CODE>
+</P>
+
+<H2>履歴</H2>
+<P>
+2005/11/09 初版</P>
+</body>
+</html>

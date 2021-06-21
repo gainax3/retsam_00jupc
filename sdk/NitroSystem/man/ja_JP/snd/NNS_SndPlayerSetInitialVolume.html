@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>NNS_SndPlayerSetInitialVolume</title>
+<link rel="stylesheet" href="../css/nitro.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.65.1">
+</head>
+<body>
+<div class="refentry" lang="ja"><a name="IDAKKWT"></a><div class="titlepage">
+<div></div>
+<div></div>
+</div>
+<h1>NNS_SndPlayerSetInitialVolume</h1>
+<h2>構文</h2>
+<dl>
+<dd><pre class="funcsynopsisinfo"><code>#include &lt;nnsys/snd.h&gt;</code></pre></dd>
+<dd><pre class="funcprototype"><code class="funcprototype">void NNS_SndPlayerSetInitialVolume(
+        NNSSndHandle* <var>handle</var>,
+        int <var>volume</var> );</code><br></pre></dd>
+</dl>
+<div class="refsection" lang="ja"><a name="IDA0LWT"></a>
+      <h2>引数</h2>
+      
+      <div class="variablelist">
+<table border="0">
+<col align="left" valign="top">
+<tbody>
+<tr>
+<td><em><strong><code>handle</code></strong></em></td>
+<td>サウンドハンドルのポインタです。</td>
+</tr>
+<tr>
+<td><em><strong><code>volume</code></strong></em></td>
+<td>初期ボリュームの値です。値の範囲は、0～127です。</td>
+</tr>
+</tbody>
+</table>
+</div>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAQMWT"></a>
+      <h2>返り値</h2>
+
+      <p>なし。</p>
+    </div>
+<div class="refsection" lang="ja"><a name="IDAXMWT"></a>
+      <h2>説明</h2>
+      <p>
+シーケンスの初期ボリューム値を設定します。</p>
+      <p>
+サウンドハンドル<em><strong><code>handle</code></strong></em>に結びつけられたシーケンスの初期ボリューム値を設定します。
+サウンドハンドルが無効の場合は、何もしません。
+</p>
+      <p>
+ボリューム<em><strong><code>volume</code></strong></em>のデフォルト値は、最大の127です。
+この値の影響は、シーケンス全体にかかります。
+</p>
+      <div class="note">
+<h3 class="title">注意</h3>
+<p>
+この関数は、<tt class="function"><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a></tt>関数と
+<tt class="function"><a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArc*</a></tt>関数内で
+呼びだされています。
+再度、この関数を呼びだすと、設定した値が上書きされます。上書きしたくない場合は、
+<tt class="function"><a href="NNS_SndPlayerSetVolume.html">NNS_SndPlayerSetVolume</a></tt>関数などを使ってください。 
+</p>
+</div>
+    </div>
+<h2>参照</h2>
+<p><a href="NNS_SndArcPlayerStartSeq.html">NNS_SndArcPlayerStartSeq*</a>, <a href="NNS_SndArcPlayerStartSeqArc.html">NNS_SndArcPlayerStartSeqArc*</a>, <a href="NNS_SndPlayerSetVolume.html">NNS_SndPlayerSetVolume</a></p>
+<h2>履歴</h2>
+<p>2004/06/01 初版<br></p>
+</div>
+</body>
+</html>

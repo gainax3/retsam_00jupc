@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>G3_VtxXY</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">G3*_VtxXY</h1>
+<h2>構文</h2>
+
+<dl>
+  <dd>
+<PRE><CODE>#include &lt;nitro/gx/g3imm.h&gt;
+#include &lt;nitro/gx/g3b.h&gt;
+#include &lt;nitro/gx/g3c.h&gt;
+
+void G3_VtxXY(fx16 x, fx16 y);
+
+// 以下ディスプレイリスト（コマンド列）作成用API<BR>void G3B_VtxXY(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y);<BR>void G3C_VtxXY(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y);<BR>void G3BS_VtxXY(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y);<BR>void G3CS_VtxXY(<A href="../gx/GXDLInfo.html">GXDLInfo</A>* info, fx16 x, fx16 y);</CODE></PRE>
+  </dd>
+</dl><h2>引数</h2>
+
+<table border="1" width="100%">
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">info</font></strong></em></td>
+    <td width="87%">コマンドリスト情報</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">x</font></strong></em></td>
+    <td width="87%">頂点X座標</td>
+  </tr>
+  <tr>
+    <td width="13%"><em><strong><font face="Courier New">y</font></strong></em></td>
+    <td width="87%">頂点Y座標</td>
+  </tr>
+  </table>
+<h2>返り値</h2>
+<p>なし。</p>
+<H2>説明</H2>
+<P>頂点のX,Y座標を設定します。Z座標は最後に設定したデータを使用します。パラメータはそれぞれ符号付固定小数点数で、符号+整数部3ビット+小数部12ビットとなり、1ワードにパッキングされます。</P>
+<h2>参照</h2>
+<P><A href="G3_Vtx.html">G3*_Vtx</A>, <A href="G3_Vtx10.html">G3*_Vtx10</A>, <A href="G3_VtxXZ.html">G3*_VtxXZ</A>, <A href="G3_VtxYZ.html">G3*_VtxYZ</A>, <A href="G3_VtxDiff.html">G3*_VtxDiff</A></P>
+<H2>履歴</H2>
+<P>Ver. 2004/01/19</P>
+</body>
+</html>

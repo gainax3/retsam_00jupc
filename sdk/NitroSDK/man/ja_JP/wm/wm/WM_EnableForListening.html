@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 8.0.2.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<title>WM_EnableForListening</title>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</head>
+
+<body>
+
+<h1 align="left">WM_EnableForListening</h1>
+<h2>構文</h2>
+<dl>
+  <dd><PRE><CODE>#include &lt;nitro/wm.h&gt;
+
+<A href="WMErrCode.html">WMErrCode</A> WM_EnableForListening( <A href="WMCallbackFunc.html">WMCallbackFunc</A> callback, BOOL blink );
+</CODE></PRE></dd>
+</dl>
+
+<h2>引数</h2>
+<table border="1" width="100%">
+  <tbody>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">callback</FONT></STRONG></EM></TD>
+      <TD width="800">非同期処理が完了した時に呼び出されるコールバック関数を指定します。<br>このコールバックは割り込みハンドラ内から呼び出されます。</TD>
+    </TR>
+    <TR>
+      <TD width="200"><EM><STRONG><FONT face="Courier New">blink</FONT></STRONG></EM></TD>
+      <TD width="800">電源 LED を変速点滅させる場合には TRUE を指定します。</TD>
+    </TR>
+  </tbody>
+</table>
+
+<h2>返り値</h2>
+<p><A href="WMErrCode.html">WMErrCode列挙型</A>の処理結果を返します。</p>
+
+<H2>説明</H2>
+<P>
+無線ハードウェアを受信専用モードで使用可能な状態にします。APIの戻り値がWM_ERRCODE_OPERATINGであった場合、無線ハードウェアの使用許可処理が完了した後に
+コールバックが発生します。WMが<A href="wm_state_diagram.html">READYステート</A>の場合のみ呼び出し可能であり、<A href="wm_state_diagram.html">STOPステート</A>に移行します。
+この後実際に通信する場合は、<A href="WM_PowerOn.html">WM_PowerOn関数</A>を使用して無線ハードウェアへの電力供給を開始する必要があります。
+</P>
+<P>
+<A href="WM_Enable.html">WM_Enable関数</A>とは異なり、この関数で初期化を行うと、電波を発信するようなオペレーションは一切行えません。その代わり、電源 LED を点滅させないことが可能となっています。電波を発信しないオペレーションとしては、Passive モードでのスキャンと、チャンネル占有率の計測があります。
+</P>
+
+<h2>参照</h2>
+<p><CODE>
+<A href="WM_Enable.html">WM_Enable</A>, <A href="WM_Init.html">WM_Init</A>, <A href="WM_PowerOn.html">WM_PowerOn</A>, <A href="WM_PowerOff.html">WM_PowerOff</A>, <A href="WM_Disable.html">WM_Disable</A>, <A href="WM_Finish.html">WM_Finish</A>, <A href="WM_InitializeForListening.html">WM_InitializeForListening</A>, <A href="WM_End.html">WM_End</A>
+</CODE></p>
+
+<H2>履歴</H2>
+<P>
+2007/11/12 初版<BR>
+</P>
+</body>
+</html>

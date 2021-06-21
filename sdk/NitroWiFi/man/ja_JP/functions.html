@@ -1,0 +1,133 @@
+<!--DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"-->
+<!--==========================================================================
+  Project:  NitroWiFi - man
+  File:     functions.html
+
+  Copyright 2005,2006 Nintendo.  All rights reserved.
+
+  These coded instructions, statements, and computer programs contain
+  proprietary information of Nintendo of America Inc. and/or Nintendo
+  Company Ltd., and are protected by Federal copyright law.  They may
+  not be disclosed to third parties or copied or duplicated in any form,
+  in whole or in part, without the prior written consent of Nintendo.
+
+  $Log: functions.html,v $
+  Revision 1.15  2006/03/15 05:08:27  okubata_ryoma
+  デモのリファレンス追加
+
+  Revision 1.14  2006/02/28 08:49:26  okubata_ryoma
+  NitroCrypto切り出しによる変更
+
+  Revision 1.13  2006/02/01 08:26:12  okubata_ryoma
+  NitroWiFi 1.0 RC4 リリースのための変更
+
+  Revision 1.12  2006/01/30 02:38:02  seiki_masashi
+  tools を追加
+
+  Revision 1.11  2005/12/27 12:42:16  seiki_masashi
+  RC4 関数の追加
+
+  Revision 1.10  2005/12/21 14:46:29  seiki_masashi
+  CRYPT ライブラリに「その他」を追加
+
+  Revision 1.9  2005/12/21 13:01:53  seiki_masashi
+  SOC ライブラリに　SSL 関連のリファレンスを追加
+
+  Revision 1.8  2005/12/21 07:42:54  seiki_masashi
+  CRYPT ライブラリの電子署名ライブラリを新規追加
+
+  Revision 1.7  2005/10/25 01:00:33  kitase_hirotake
+  CPSの分類を変更
+
+  Revision 1.6  2005/10/24 04:31:35  kitase_hirotake
+  型とマクロを分離
+
+  Revision 1.5  2005/10/24 01:49:35  kitase_hirotake
+  add CPS
+
+  Revision 1.4  2005/09/21 09:44:46  terui
+  "NITRO-WIFI" -> "NITRO-SDK Wi-Fi ライブラリ"へ用語統一
+
+  Revision 1.3  2005/09/14 08:49:30  okubata_ryoma
+  微修正
+
+  Revision 1.2  2005/09/12 08:58:53  okubata_ryoma
+  SOCのリファレンス追加
+
+  Revision 1.1  2005/07/20 13:11:10  terui
+  Initial upload
+
+  $NoKeywords: $
+ ==========================================================================-->
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>NITRO-SDK Wi-Fi ライブラリ 関数リファレンス</TITLE>
+		<LINK rel="stylesheet" href="css/titles.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H3><A name="SOC">[SOC] ソケットライブラリ</A></H3>
+		<DL>
+			<DD>[ <A href="soc/soc.html" target="_self">全リスト</A> / <A href="soc/list_soc.html">機能一覧</A> ]</DD>
+		</DL>
+		<DL>
+		        <DD><A href="soc/list_soc.html#Socket"     target="main">ソケット関数</A></DD>
+			<DD><A href="soc/list_soc.html#Interface"  target="main">インターフェース関数</A></DD>
+			<DD><A href="soc/list_soc.html#DHCP"    target="main">DHCP関数</A></DD>
+		        <DD><A href="soc/list_soc.html#Convert"    target="main">変換関数</A></DD>
+		        <DD><A href="soc/list_soc.html#Extend"     target="main">拡張関数</A></DD>
+		        <DD><A href="soc/list_soc.html#Ssl"     target="main">SSL 通信関数</A></DD>
+		        <DD><A href="soc/list_soc.html#Type"       target="main">構造体</A></DD>
+		        <DD><A href="soc/list_soc.html#Misc"       target="main">情報</A></DD>
+		</DL>
+		<H3><A name="CPS">[CPS] TCP/IPプロトコルスタック</A></H3>
+		<DL>
+			<DD>[ <A href="cps/cps.html" target="_self">全リスト</A> / <A href="cps/list_cps.html">機能一覧</A> ]</DD>
+		</DL>
+		<DL>
+		        <DD><A href="cps/list_cps.html#Init"       target="main">初期化・終了</A></DD>
+		        <DD><A href="cps/list_cps.html#Config"       target="main">設定</A></DD>
+		        <DD><A href="cps/list_cps.html#Socket"       target="main">ソケット</A></DD>
+		        <DD><A href="cps/list_cps.html#SocketIO"       target="main">ソケット入出力補助</A></DD>
+		        <DD><A href="cps/list_cps.html#Resolver"       target="main">名前解決</A></DD>
+		        <DD><A href="cps/list_cps.html#SSL"       target="main">SSL</A></DD>
+		        <DD><A href="cps/list_cps.html#Utility"       target="main">ユーティリティ</A></DD>
+		        <DD><A href="cps/list_cps.html#Struct"       target="main">構造体・型</A></DD>
+		        <DD><A href="cps/list_cps.html#Const"       target="main">定数</A></DD>
+		        <DD><A href="cps/list_cps.html#Global"       target="main">大域変数</A></DD>
+		</DL>
+
+		<H3><A name="WCM">[WCM] ワイヤレス接続管理ライブラリ</A></H3>
+		<DL>
+			<DD>[ <A href="wcm/wcm.html" target="_self">全リスト</A> / <A href="wcm/outline_wcm.html">概要</A> / <A href="wcm/list_wcm.html">機能一覧</A> ]
+		</DL>
+		<DL>
+			<DD><A href="wcm/list_wcm.html#init">初期化・終了</A>
+			<DD><A href="wcm/list_wcm.html#async">非同期状態遷移</A>
+			<DD><A href="wcm/list_wcm.html#util">動作設定</A>
+			<DD><A href="wcm/list_wcm.html#aplist">無線アクセスポイント自動探索</A>
+			<DD><A href="wcm/list_wcm.html#struct">型</A>
+			<DD><A href="wcm/list_wcm.html#const">定数</A>
+		</DL>
+
+		<H3><A name="SAMPLE">サンプルデモ</A></H3>
+		<DL>
+                        <DD><A href="demos/soc/socdemos.html">SOCサンプルデモ</A>
+                        <DD><A href="demos/cps/cpsdemos.html">CPSサンプルデモ</A>
+                        <DD><A href="demos/ssl/ssldemos.html">SSLサンプルデモ</A>
+                        <DD><A href="demos/wcm/wcmdemos.html">WCMサンプルデモ</A>
+		</DL>
+
+		<H3><A name="TOOL">ツール</A></H3>
+		<DL>
+			<DD>[ <A href="tools/tools.html" target="_self">全リスト</A> / <A href="tools/list_tools.html">機能一覧</A> ]
+		</DL>
+		<DL>
+			<DD><A href="tools/list_tools.html#SSL">SSL 通信用ツール</A>
+		</DL>
+
+		<TABLE border="0" height="100%"><TR><TD style="background-color : white;"></TD></TR></TABLE>
+	</BODY>
+</HTML>

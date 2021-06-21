@@ -1,0 +1,78 @@
+<HTML>
+	<HEAD>
+		<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+		<META http-equiv="Content-Style-Type" content="text/css">
+		<TITLE>DWCNasLoginState</TITLE>
+		<LINK rel="stylesheet" href="../../css/function.css">
+		<BASE target="main">
+	</HEAD>
+	<BODY>
+		<H1>DWCNasLoginState</H1>
+
+		<H2>定義</H2>
+		<DL>
+			<DD>
+				<PRE><CODE>
+#include &lt;dwc.h&gt;
+
+typedef enum {
+	DWC_NASLOGIN_STATE_DIRTY	= 0,
+	DWC_NASLOGIN_STATE_IDLE,// 現在は使用されません
+	DWC_NASLOGIN_STATE_HTTP,
+	DWC_NASLOGIN_STATE_SUCCESS,
+	DWC_NASLOGIN_STATE_ERROR,
+	DWC_NASLOGIN_STATE_CANCELED,
+	DWC_NASLOGIN_STATE_MAX
+} DWCNasLoginState;
+				</CODE></PRE>
+			</DD>
+		</DL>
+
+		<H2>説明</H2>
+		<P>
+		  任天堂認証サーバへの認証処理の状況を示す列挙型です。
+		</P>
+		<TABLE border="1">
+		<TBODY>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_DIRTY</CODE></STRONG></EM></TD>
+			<TD>認証処理が初期化されていません。<BR></TD>
+          </TR>
+          <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_IDLE</CODE></STRONG></EM></TD>
+			<TD>認証処理が開始されていません。待機状態です。現在は使用されません。</TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_HTTP</CODE></STRONG></EM></TD>
+			<TD>認証処理のためのHTTP通信を実行中です。<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_SUCCESS</CODE></STRONG></EM></TD>
+			<TD>認証処理が成功しました。<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_ERROR</CODE></STRONG></EM></TD>
+			<TD>認証処理が失敗しました。<BR></TD>
+          </TR>
+		  <TR>
+			<TD width="25%"><EM><STRONG><CODE>DWC_NASLOGIN_STATE_CANCELED</CODE></STRONG></EM></TD>
+			<TD>認証処理がキャンセルされました。<BR></TD>
+          </TR>
+		</TBODY>
+		</TABLE>
+
+		<H2>参照</H2>
+		<P>
+		なし
+		</P>
+
+		<H2>履歴</H2>
+		<P>
+			2006/12/29 DWC_NASLOGIN_STATE_IDLEが使用されなくなったことによる追記<BR>
+			2006/03/27 型名、定数名変更<BR>
+			2006/03/23 初版<BR>
+		</P>
+
+	</BODY>
+</HTML>
+

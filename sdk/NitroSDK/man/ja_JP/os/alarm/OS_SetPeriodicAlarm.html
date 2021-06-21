@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<META name="GENERATOR" content="IBM WebSphere Studio Homepage Builder Version 7.0.0.0 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>OS_SetPeriodicAlarm</TITLE>
+<LINK rel="stylesheet" href="../../css/nitro.css" type="text/css">
+</HEAD>
+<BODY>
+<H1 align="left">OS_SetPeriodicAlarm</H1>
+<H2>構文</H2>
+<DL>
+  <DD>
+  <PRE><CODE>#include &lt;nitro/os.h&gt;</CODE></PRE>
+  <PRE><CODE>void OS_SetPeriodicAlarm(
+                OSAlarm*        alarm,
+                OSTick          start,
+                OSTick          period,
+                OSAlarmHandler  handler,
+                void*           arg );
+ </CODE></PRE>
+</DL>
+<H2>引数</H2>
+<TABLE border="1" width="100%">
+  <TBODY>
+    <TR>
+      <TD width="13%"><EM><STRONG>alarm</STRONG></EM></TD>
+      <TD width="87%">アラームを設定するアラーム構造体へのポインタ</TD>
+    </TR>
+    <TR>
+      <TD width="13%"><EM><STRONG>start</STRONG></EM></TD>
+      <TD width="87%">最初にアラームが発動する(ハンドラを呼び出す)チックカウント(現在からの相対値ではなく絶対値)</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>period</STRONG></EM></TD>
+      <TD>周期的にアラームを発動させる間隔</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>handler</STRONG></EM></TD>
+      <TD>アラームハンドラ</TD>
+    </TR>
+    <TR>
+      <TD><EM><STRONG>arg</STRONG></EM></TD>
+      <TD>アラームハンドラが呼ばれる際の引数</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<H2>返り値</H2>
+<P>なし。</P>
+<H2>説明</H2>
+<P>周期的なアラームを設定します。</P>
+<P>最初に<B><I>handler</I></B> が呼び出されるタイミングは、チック値が <B><I>start </I></B>になった時で、それ以降はチックの<B><I>period</I></B> カウントごとに呼び出されます。<B><I>handler</I></B> は、</P>
+<BLOCKQUOTE><CODE>typedef void (*OSAlarmHandler)( void* );</CODE></BLOCKQUOTE>
+<P>で定義された <CODE>OSAlarmHandler</CODE> 型の関数です。<B><I>handler</I></B> が呼び出されるとき、<B><I>arg</I></B> を引数に取ります。<B><I>handler</I></B> は OS のタイマ割り込みのハンドラから呼び出されます。従って割り込みは禁止状態となっています。</P>
+<P>チックカウントの1単位はハードウェアのシステムクロックの64分周です。</P>
+<P>すでにアラームがセットされている OSAlarm構造体へのポインタを <B><I>alarm</I></B> に指定した場合、<CODE><A href="../debug/OS_Panic.html">OS_Panic()</A></CODE> で停止します。</P>
+<P>アラームを停止したい場合は、<CODE><A href="OS_CancelAlarm.html">OS_CancelAlarm()</A> </CODE>などを使用します。</P>
+<H2>参照</H2>
+<P><CODE><A href="OS_InitAlarm.html">OS_InitAlarm</A>,
+ <A href="OS_CreateAlarm.html">OS_CreateAlarm</A>,
+ <A href="OS_SetAlarm.html">OS_SetAlarm</A>,
+ <A href="OS_CancelAlarm.html">OS_CancelAlarm</A><BR>
+<A href="../time/OS_SecondsToTicks.html">OS_*SecondsToTick</A><BR>
+</CODE></P>
+<H2>履歴</H2>
+<P>
+2005/03/08 用語統一 [割込み] → [割り込み]<br>
+2004/12/22 アラームハンドラはタイマ割り込みのハンドラから呼び出される記述を追加<BR>
+2004/08/30 セットされているアラーム構造体は使用できない記述を追加<BR>
+2004/02/25 systemClock→tickに<BR>
+2004/02/04 初版</P>
+</BODY>
+</HTML>
