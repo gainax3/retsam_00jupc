@@ -1,0 +1,232 @@
+//====================================================================
+//								c01r0602
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c01r0602.h"
+	//.include	"../eventdata/zone_c01r0602evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c01r0602
+_EVENT_DATA		ev_c01r0602_artist
+_EVENT_DATA		ev_c01r0602_mount
+_EVENT_DATA		ev_c01r0602_girl2
+_EVENT_DATA		ev_c01r0602_woman2
+_EVENT_DATA		ev_c01r0602_oldwoman1
+_EVENT_DATA		ev_c01r0602_middlewoman1
+_EVENT_DATA		ev_c01r0602_woman1
+_EVENT_DATA		ev_c01r0602_girl1
+_EVENT_DATA		ev_c01r0602_babygirl1
+_EVENT_DATA		ev_c01r0602_poster1
+_EVENT_DATA		ev_c01r0602_poster2
+_EVENT_DATA		ev_gds_box
+_EVENT_DATA		ev_gds_dress
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						絵描き							*/
+/********************************************************************/
+ev_c01r0602_artist:
+	_EASY_OBJ_MSG	msg_c01r0602_artist_01
+	_END
+
+/********************************************************************/
+/*						山男							*/
+/********************************************************************/
+ev_c01r0602_mount:
+	_EASY_OBJ_MSG	msg_c01r0602_mount_01
+	_END
+
+/********************************************************************/
+/*						活発少女 							*/
+/********************************************************************/
+ev_c01r0602_girl2:
+	_EASY_OBJ_MSG	msg_c01r0602_girl2_01
+	_END
+
+/********************************************************************/
+/*						お洒落姉さん							*/
+/********************************************************************/
+ev_c01r0602_woman2:
+	_EASY_OBJ_MSG	msg_c01r0602_woman2_01
+	_END
+
+/********************************************************************/
+/*						老婆							*/
+/********************************************************************/
+ev_c01r0602_oldwoman1:
+	_EASY_OBJ_MSG	msg_c01r0602_oldwoman1_01
+	_END
+
+/********************************************************************/
+/*						おばさん							*/
+/********************************************************************/
+ev_c01r0602_middlewoman1:
+	_EASY_OBJ_MSG	msg_c01r0602_middlewoman1_01
+	_END
+
+/********************************************************************/
+/*						姉さん							*/
+/********************************************************************/
+ev_c01r0602_woman1:
+	_EASY_OBJ_MSG	msg_c01r0602_woman1_01
+	_END
+
+/********************************************************************/
+/*						少女							*/
+/********************************************************************/
+ev_c01r0602_girl1:
+	_EASY_OBJ_MSG	msg_c01r0602_girl1_01
+	_END
+
+/********************************************************************/
+/*						女の子							*/
+/********************************************************************/
+ev_c01r0602_babygirl1:
+	_EASY_OBJ_MSG	msg_c01r0602_babygirl1_01
+	_END
+
+/********************************************************************/
+/*						貼紙１							*/
+/********************************************************************/
+ev_c01r0602_poster1:
+	_EASY_MSG	msg_c01r0602_poster1_01
+	_END
+
+/********************************************************************/
+/*						貼紙２							*/
+/********************************************************************/
+ev_c01r0602_poster2:
+	_EASY_MSG	msg_c01r0602_poster2_01
+	_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+//ev_c01r0602_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_c01r0602:
+	_END
+
+
+/********************************************************************/
+/*							ボックスショット						*/
+/********************************************************************/
+ev_gds_box:
+	_TALK_START
+	_LDVAL			SCWK_TEMP1,BR_MODE_GDS_BOX
+	_JUMP			ev_gds_box_menu
+	_END
+
+/*メニュー*/
+ev_gds_box_menu:
+	_TALK_KEYWAIT	msg_machine4_01
+	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*つかう*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*やめる*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_gds_box_01
+	_CASE_JUMP		1,ev_gds_box_02
+	_JUMP			ev_gds_box_03
+	_END
+
+ev_gds_box_03:
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+/*つかう*/
+ev_gds_box_01:
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_box_03			/*失敗→終了へ*/
+
+	_TALK_CLOSE
+	_CHG_COMMON_SCR	SCRID_GDS_CALL
+	_TALK_END
+	_END
+
+/*せつめい*/
+ev_gds_box_02:
+	_TALK_KEYWAIT	msg_machine4_02
+	_JUMP			ev_gds_box_menu
+	_END
+
+
+/********************************************************************/
+/*						ドレスアップショット						*/
+/********************************************************************/
+ev_gds_dress:
+	_TALK_START
+	_LDVAL			SCWK_TEMP1,BR_MODE_GDS_DRESS
+	_JUMP			ev_gds_dress_menu
+	_END
+
+/*メニュー*/
+ev_gds_dress_menu:
+	_TALK_KEYWAIT	msg_machine3_01
+	_BMPMENU_INIT_EX	21,11,0,1,SCWK_ANSWER				/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_01,0	/*つかう*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_02,1	/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_c01r0602_machine_choice_03,2	/*やめる*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_gds_dress_01
+	_CASE_JUMP		1,ev_gds_dress_02
+	_JUMP			ev_gds_dress_03
+	_END
+
+ev_gds_dress_03:
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+/*つかう*/
+ev_gds_dress_01:
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_gds_dress_03		/*失敗→終了へ*/
+
+	_TALK_CLOSE
+	_CHG_COMMON_SCR	SCRID_GDS_CALL
+	_TALK_END
+	_END
+
+/*せつめい*/
+ev_gds_dress_02:
+	_TALK_KEYWAIT	msg_machine3_02
+	_JUMP			ev_gds_dress_menu
+	_END
+
+

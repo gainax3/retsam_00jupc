@@ -1,0 +1,2181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-06-19T21:00:57"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="165"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="3" width="243"/>
+		<erase position="-1" width="100"/>
+		<attribute japanese="キャラ指定" english="キャラ指定" type="string" default="" position="1" width="100">
+		</attribute>
+		<language japanese="日本語" english="日本語">
+			<message position="2" width="198"/>
+			<font default=" 0:font_talk" position="4" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="-1" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="16" top="43" right="632" bottom="665" maximized="no" rayout="Vertical2">
+		<comment-input left="659" top="507" right="1006" bottom="659" visible="yes"/>
+		<tag-palette left="659" top="47" right="1009" bottom="445" visible="yes"/>
+		<band id="0" index="0" style="0000" width="608"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="287"/>
+		<band id="3" index="3" style="0000" width="152"/>
+		<band id="4" index="4" style="0000" width="608"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="msg_t06r0101_oldman1_01" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂
+・初回イベント時
+・プラチナで内容変更</comment>
+		<attribute name="キャラ指定">和風老人</attribute>
+		<language name="日本語" width="216">ほう！？　きみが！
+バクの　ともだち　じゃな！▼
+バクからも　マキシからも
+はなしは　きいているぞ！▼
+かんげいしよう！　ここは
+シンオウの　ジムリーダーたち▼
+あるいは　ジムリーダーに
+しょうかいを　された　ものだけが▽
+つどい　たかみをめざす　みせ▽
+そのなも　しょうぶどころ　じゃよ！</language>
+	</row>
+
+	<row id="msg_t06r0101_oldman1_02" text-color="#0000ff,,,#0000ff,,#0000ff,#0000ff,,,,,,">
+		<comment>♂
+・２回目以降＋ヒードランと戦闘前
+・プラチナで内容変更</comment>
+		<attribute name="キャラ指定">和風老人</attribute>
+		<language name="日本語" width="216">そうだな……　きょうは
+ハードマウンテンと　よばれる▽
+かざんの はなしでも　してやろう▼
+もともと　あの　かざんは
+じかんと　くうかんが　まざりあい▽
+シンオウちほうが　できたときに▼
+こぼれだした　ひのたまが　たまり
+ポケモンになって　できたものじゃ▼
+で　むやみに　ポケモンが　あばれ
+かざんが　ふんか　せぬように▽
+おきいしで　おさえつけたそうじゃ</language>
+	</row>
+
+	<row id="msg_t06r0101_oldman1_03" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂
+・２回目以降＋ヒードランと戦闘後
+・プラチナで内容変更</comment>
+		<attribute name="キャラ指定">和風老人</attribute>
+		<language name="日本語" width="216">ようこそ　しょうぶどころ　へ！
+いつものように　すきにしていきな</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_01_01" text-color="#0000ff,,,#0000ff,,#0000ff,#0000ff,,,,,," back-color="#80ff80,,,#80ff80,,#80ff80,#80ff80,,,,,,">
+		<comment>♂
+・初回イベント時
+0＝ライバル名
+1＝主人公名
+
+・プラチナで新規作成</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『……ここ　すごいな！▼
+ジムリーダーと　ポケモン　みんなで
+きそいあって　つよくなるんだ！▼
+そうだよな！　ひとりで　がんばっても
+あいてが　いないとさ▽
+どれだけ　つよくなったか▽
+たしかめようが　ないもんな！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_01_01" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#80ffff,,,#80ffff,,#80ffff,#80ffff,,,,,,">
+		<comment>♂
+・初回イベント時
+0＝ライバル名
+
+・プラチナで新規作成</comment>
+		<attribute name="キャラ指定">マキシマム仮面</attribute>
+		<language name="日本語" width="216">マキシ『ほかの　ジムリーダーたちも
+おまえたちとの　ポケモンしょうぶを▽
+きっと　たのしんで　くれるだろう！▼
+……[1:03:トレーナー名:0]の　でしいりを
+みとめないかわりに　ここを▽
+しょうかい　したんじゃないぞぉ</language>
+	</row>
+
+	<row id="msg_t06r0101_baku_01" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂
+・初回イベント時
+・メッセージ表示後
+　タワーに出現
+・プラチナで内容変更</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『おれの　いえは
+まじで　つよい　トレーナーだけが▽
+はいれるんだぜ！！▼
+ほんとうは　ジムリーダーの
+しょうかいが　ひつよう　だけど▽
+おまえは　とくべつな！▼
+じゃ　おれ　フロンティアにいくよ！▼
+タワーで　どこまで　かちぬけるか
+ちからを　ためしてみたいしさ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_baku_02" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・プラチナで内容変更</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『まさか　かざんのおきいしが
+あの　ポケモンを　ねむらせてたのか！▼
+それにしても　へへ！
+おまえ　やるじゃん！▼
+おれさ　こんど　バトルタワーにいく
+そこで　さいきょうを　めざすぜ！▼
+おまえの　せっかちともだちにも
+そこで　たたかおうって　いっといて！</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_01" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・ランダムその１
+・未使用</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『いろいろ　その１</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_02" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・ランダムその２
+・未使用</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『いろいろ　その２</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_03" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・ランダムその３
+・未使用</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『いろいろ　その３</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_04" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・ランダムその４
+・未使用</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『いろいろ　その４</language>
+	</row>
+
+	<row id="msg_t06r0101_rival_05" text-color="#000000,,,#000000,,#000000,#000000,,,,,," back-color="#808080,,,#808080,,#808080,#808080,,,,,,">
+		<comment>♂
+・ランダムその５
+・未使用</comment>
+		<attribute name="キャラ指定">ライバル</attribute>
+		<language name="日本語" width="216">[1:03:トレーナー名:0]『いろいろ　その５</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_01" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+・トウガンがいるとき→11</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『まいにち　まいにち
+ちかつうろで　かせきを　ほりつづけ▽
+きたえなおした　ボクの　ポケモン▼
+その　すごさを
+しょうぶで　みてくれないかな？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『いくよ！　これが　じまんの
+ロックな　ポケモンたち　だよ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『はなし　かわるけど
+ちかつうろで　みつかる　タマって▽
+どうして　おおきく　なるんだろう？▼
+これって　じみだけど　すごく
+ふしぎなことだと　おもわない？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『こちらから　おねがいするよ▼
+せっかく　ここで　あえたんだ
+きみに　しょうぶを　もうしこみたい！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『……まけちゃったか▼
+うーん　こんどは　ちかつうろで
+かせきほり　しょうぶを　したいな</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08
+・トウガンがいるとき→11</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『しょうぶ　しない？▼
+ボクも　ポケモンジムとでは
+ちがう　すがたを　おみせするよ！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『それじゃ　ボクは
+とうさんの　ボスゴドラよりも▽
+つよい　バンギラスを　だすよ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『むむむ……
+それは　かなしい　へんじ　だね</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_09" text-color="#0000ff,,,#0000ff,,#0000ff,#0000ff,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『やっぱり　たたかう？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『おおむかしの　ポケモン……
+まだ　みつかっていない　かせき……▼
+シンオウちほうを　ぜんぶ　ほれば
+あたらしい　かせき　みつからないかな</language>
+	</row>
+
+	<row id="msg_t06r0101_leader1_11" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂
+・トウガンがいるとき
+・戦闘なし</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ヒョウタ</attribute>
+		<language name="日本語" width="216">ヒョウタ『ジムリーダーに　なって
+はじめて　とうさんは▽
+ほんとうに　すごいと　しったよ▼
+もっとも　そんなことは
+ほんにんには　いわないけどね</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『げんきに　してた？▼
+うーん！　とにかく
+ポケモンしょうぶ　しよーよ！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『そーそー！
+ひさしぶりで　しょうぶをすれば▽
+げんきだったか　わかるもんね！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『しょうぶ　しないのー？
+そっか　そんな　きぶんじゃ　ないか▼
+そんなときは　バッジを　みがけば
+なんだか　はればれ　するかもよ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『あら？
+やっぱり　たたかうのね？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『ポケモンジムに　いない
+ジムリーダーは　ただの▽
+ポケモントレーナー　だけど▽
+どこにいても　つよさを　もとめるの▼
+だって　トレーナーの　せきにんで
+まけちゃったら　ポケモンに　わるいし</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『あたしの　くさポケモンたち
+いい　かんじに　そだったの！▼
+あなたが　いま　どんなポケモンと
+いるのかも　きになるし▽
+ちょっとでいいから　しょうぶしよ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『たしかに　くさタイプって
+じゃくてんが　おおいけれど▼
+それだけでは　かちまけは
+きまらないこと　おしえてあげるね！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『あたしの　くさポケモンたち
+いい　かんじに　そだったのに……</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『あたしの　くさポケモンたち
+いい　かんじに　そだったの！▼
+ね！　ね！
+ちょっとでいいから　あいてしてよ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader2_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+ナタネ</attribute>
+		<language name="日本語" width="216">ナタネ『ところで……
+もりのようかんに　いった……？▼
+あたし？　あたしは　ほら
+ジムリーダーの　しごと　あるし▼
+って　ここに　きたえに
+というか　あそびに　きてるけど▼
+あははは！
+いまの　わすれて！！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『おまちして　ました！！▼
+アナタ　チャレンジ　しなさい
+アタシ　かってみせます▼
+さらに　つよくなった
+アタシに　おどろくと　いいです！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">[FF:01:サイズ:200]オーホッホッホ！！[FF:01:サイズ:100]▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『アナタ…　アタシを
+がっかりさせること　すごい▼
+だけど　それでは
+アタシ　かつことが　できないです</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『こんどこそ
+アナタ　チャレンジ　しなさい▽
+アタシ　かってみせます▼
+さらに　さらに　つよくなった
+アタシに　おどろくと　いいです！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『アナタ　すごいひと！▼
+アタシは　アナタに　かつという
+もくてき　できて　うれしい！▽
+これ　アナタからの　プレゼントね！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『おや　アナタ？
+コンテストは　いいのですか？▼
+コンテスト　しないなら
+ここで　アタシと　たたかいなさい</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『ポケモンしょうぶは
+いつだって　たのしいです！▼
+なぜなら　いま　この　しゅんかん
+アタシたちは　マジメだからです▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『ウーン
+それでも　いいか！▼
+アナタの　かおをみて
+アタシの　きもち　うれしくなったし</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『どーした？　アナタ
+しょうぶするなら　うけてたつ　です！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader3_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+メリッサ</attribute>
+		<language name="日本語" width="216">メリッサ『ダンスを　おどるように
+ポケモンの　しょうぶを　したいです</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『おなじ　あいてに　まけたって
+いいと　おもうんです　あたし▼
+だって　しょうぶ　することで
+じぶんと　ポケモンたちが　どれだけ▽
+かわったか　わかりますから！▼
+ということで　[1:03:トレーナー名:0]さん
+もういちど　しょうぶ　してください</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『はい！　それでは
+しょうぶの　まえに　れい！▼
+[1:03:トレーナー名:0]さん
+ぜんりょくで　いきますからね！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『はぁー▼
+しょうぶかな　って　おもっていたので
+なんだか　きが　ぬけちゃいました</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『はい　なんですか
+[1:03:トレーナー名:0]さん▽
+ひょっとして　おてあわせ　でしょうか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘後
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『ここに　くるとですね▼
+おじいさんが　おいしい　ごはんを
+つくってくれるんです！▼
+しかも！　おかわり　じゆうなんです
+すごくないですか！　[1:03:トレーナー名:0]さん！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『ポケモンと　いっしょだから
+ずっと　がんばって　きました！▼
+だから　[1:03:トレーナー名:0]さん！
+おてあわせ　おねがい　します！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『それでは　いきますよ
+[1:03:トレーナー名:0]さん！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『わかりました！▼
+[1:03:トレーナー名:0]さんと
+しょうぶ　できるように▽
+もっともっと　がんばります！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『[1:03:トレーナー名:0]さん！
+もういちど　おねがい　します▽
+おてあわせ　してください！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader4_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘後
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スモモ</attribute>
+		<language name="日本語" width="216">スモモ『[1:03:トレーナー名:0]さん！▼
+はだしで　あるいたほうが
+けんこうに　いいそうですよ！▼
+かんがえてみれば　ポケモンも
+みんな　はだし　ですもんね！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『この　いえで
+ポケモントレーナーどうし　することは▽
+とうぜん　ポケモンしょうぶ　だろ！？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『おれさまの　ポケモンたちが
+あらたに　おぼえた　みずのわざ！▽
+うけとめられるかぁ　みせてみろぉ！！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『では　うたうと　するか
+うぉっほん！▼
+リングは　おれの　うみ♪
+あれる　うなばら　おおなみこなみ▼
+マックス！　マックス！　マキシマム！
+マックス！　マックス！　マキシマム！▼
+ウォーター　ストリーム
+すべてを　のみこみ　ながしさる！▼
+ほのおを　けしされ　マキシマム！
+でんきは　にがてだ　マキシマム！▼
+あー　あー　あー
+リングは　おれの　うみ～♪</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『ことばは　いらない！
+たたかうことで　あいてを　りかいする！▽
+それが　おれたち　トレーナーだろ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘後
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『かっても　まけても
+すがすがしくなれる　しょうぶ……▽
+それが　おれさまの　りそう▼
+いつのひか　ぜんせかいの
+ひとりひとりと　たたかいたい……▽
+なぁ　[1:03:トレーナー名:0]！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『よぉーく　きたッ！！▼
+みずのちからで　きたえた
+おれさまの　ポケモンはぁ！▼
+おまえの　こうげきを
+ぜんぶ　うけとめた　うえで▽
+しょうり　するから　かかってこぉい！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『よし　きたぁ！
+かかって　こぉーいッ！！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『うおっとぉ！▼
+みごとな　すかしっぷり！
+やるなぁ！　[1:03:トレーナー名:0]め！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『で　どうなんだ？
+やっぱり　たたかうのかぁ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader5_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+マキシ</attribute>
+		<language name="日本語" width="216">マキシ『きたえても　きたえても
+まだまだ　つよいヤツは　たくさんいる！▼
+つよくなっても　つよくなっても
+ゴールなんて　みえやしない！▼
+みちは　はてしなく　とおい！▼
+だけど　となりには　いつも
+ポケモンが　いてくれるんだよなあ！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+ヒョウタがいるとき→11</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『ポケモンジムで　おおくの
+ちょうせんしゃを　むかえうち▼
+こうてつじまで　じぶんじしんを
+みつめなおす　まいにち……▼
+いまの　わたしには　きみを
+うちまかす　じしんが　ある……▽
+どうだろう　しょうぶ　してみないか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『じぶんを　とぎすませてくれる
+それが　つよい　あいてとの　たたかい▽
+では　よろしく　たのむよ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『ポケモンジムに　きたときの
+きみは　もっと　ぎらぎらとしていた</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『いまの　わたしには　きみを
+うちまかす　じしんが　ある……▽
+どうだろう　しょうぶ　してくれないか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『ポケモンたちと　いっしょに
+こうてつじまの　はがねを▽
+なぐりつづけ　きたえたが……▼
+グハハハハ！
+まだまだ　やわだったと　いうことか！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08
+
+ヒョウタがいるとき→11</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『さて……▼
+きみに　まけてから　わたしなりに
+きたえなおした　つもりだ▼
+よければ　もういちど　わたしと
+たたかって　もらえないだろうか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『ありがとう！▼
+わたしの　ポケモンたちも　きみとの
+しょうぶを　まっていたのだ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『グハハハハ！
+そいつは　ざんねんだ！▼
+きみと　たたかうことで
+まなぶことも　おおいからな▽
+きたい　していたのだぞ</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『よければ　もういちど
+たたかって　もらえないだろうか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『うーん
+ちから　およばず……▼
+こうなれば　ヒョウタに
+とっくんを　もうしこんでみるか……？▼
+いや　それはな……
+うーん　むずかしい　ところだ</language>
+	</row>
+
+	<row id="msg_t06r0101_leader6_11" text-color="#0000ff,,,,,,,,,,,,">
+		<comment>♂
+・ヒョウタがいるとき
+・戦闘なし</comment>
+		<attribute name="キャラ指定">ジムリーダー
+トウガン</attribute>
+		<language name="日本語" width="216">トウガン『……なるほどな　ヒョウタめ
+わたしも　まだまだ　あまいな▼
+おお　きみか！
+いやなに　きにしないで　くれたまえ</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『やー　げんきー！？▼
+あたしの　かんがえてること
+あなたに　わかるかなー？▼
+こたえ　いっちゃうと
+あなたと　しょうぶ　したいんだけど！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『こんかいは　スズナが
+きあいで　おしきるんだからッ！！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『あらら……　あたしの　きあい
+からまわり　しちゃった　かんじ</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『ねーねー　やっぱり
+スズナと　たたかってみようよ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『ねーねー
+その　マフラー　オシャレだねー▽
+スズナも　そんなの　ほしいな！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『こおりポケモンたちを！▼
+とかすほどに！▼
+いまの　スズナは　もえてます！▼
+というわけで
+しょうぶ　してください！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『よーしッ！　スズナの……▼
+じゃなくて　ポケモンたちの
+いいところ　みせちゃうからー！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『もーっ！！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『ほんとうは
+あたしと　たたかいたいでしょ？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader7_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+スズナ</attribute>
+		<language name="日本語" width="216">スズナ『もーっ！！▼
+こうなったら
+スズナじしんが　きあいパンチを▽
+つかえるように　なります！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『きみの　ポケモン……
+つよさが　つたわってくるぜ！▼
+もっとも　オレの　ポケモンたちの
+つよさも　つたわっているだろ？▽
+さあ　たたかわせてくれ！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『きたきたッ！　この！
+しびれる　かんじが　たまらない！▼
+さあ！　オレと　きみとで
+スパークする　たたかいを　しようぜ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『おいおい……
+オレを　がっかり　させるなよ……</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『ん？　どうした
+やっぱり　しょうぶ　するのか？</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♂：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『かてば　うれしく
+まければ　くやしい……▼
+そんな　あたりまえの　ことが
+オレを　もっと　つよくしてくれる！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『オレの　エレキブルが
+つよいあいてを　もとめている……！▽
+たのむ！　たたかってくれ！！</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『オレと！　きみとで！
+いっしょに　しびれようぜ！！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『まっ　エレキブルだもんな
+こんなことも　あるさ……</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『ん？　どうした
+オレの　エレキブルを！▽
+ポケモンたちを　きたえてくれるのか</language>
+	</row>
+
+	<row id="msg_t06r0101_leader8_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">ジムリーダー
+デンジ</attribute>
+		<language name="日本語" width="216">デンジ『どうしても　はずせない
+ポケモンって　いるんだよな▼
+オレにとって　エレキブルが
+そんな　ポケモン　なんだよな……　</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『あら　きょうの　おあいては
+[1:03:トレーナー名:0]さん　ですか</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『あたしの　ポケモンたち
+たたかいたくて　ウズウズしてたの▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『あたしの　ポケモンたち
+たたかいたくて　ウズウズしてるのに</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『[1:03:トレーナー名:0]さん
+おあいて　してくださいますか</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『ありがとう　[1:03:トレーナー名:0]さん！▼
+あなたの　おかげで
+あたしの　かわいい　ポケモンたち▽
+また　たくましくなりました</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『おひさしぶり……　かな？▼
+よければ　あたしと
+ポケモンしょうぶ　しませんこと？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『あたしの　ポケモンたち
+けっこう　ヤンチャ　ですわよ▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『うふふ……▼
+しょうぶ　ばかり　だと
+ポケモンも　つかれちゃうよね</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『……はい？
+やっぱり　しょうぶ　なさいますか？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven1_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♀：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+モミ</attribute>
+		<language name="日本語" width="216">モミ『ポケモンって　むずかしいのね▼
+しょうぶ　すれば　するほど
+あたらしい　はっけんが　あるし……▼
+でも　あたし……
+そんな　ポケモンが　だいすきなの！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん！
+ポケモン　おしえてください！！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん！▼
+もう　まよったりしない　ってところ
+[1:03:トレーナー名:0]さんに　みせるからね！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『ちょっと　がっかりです……
+ミルの　ポケモン　つよくなったのに</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん
+やっぱり　おねがいです！▽
+ポケモン　おしえてください！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘後
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん
+また　ポケモン　おしえてね！▼
+ミル　[1:03:トレーナー名:0]さんみたいに
+もっともっと　つよくなりたいから！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん！
+ミル　つよくなったの！▽
+ねっ　だから　しょうぶして！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん
+ビックリしちゃいますよ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『ほんとうに　つよくなったんだよ
+[1:03:トレーナー名:0]さんに　みてほしかったのに</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_09" text-color="#0000ff,,,#0000ff,,#0000ff,#0000ff,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『やっぱり　たたかう？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven2_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘後
+
+0＝主人公名</comment>
+		<attribute name="キャラ指定">５人衆
+ミル</attribute>
+		<language name="日本語" width="216">ミル『[1:03:トレーナー名:0]さん
+ポケモンと　いつも　いっしょだから▽
+そんなに　つよくなったんだよね▼
+ミルも　そのこと　わかってきたよ！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『トレーナーどうし　だ▼
+いろいろ　かたりあうより
+まず　ポケモンしょうぶ！▽
+それが　わたしの　りゅうぎ！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『ポケモンしょうぶ　こそが
+わたしたちの　あいさつ　さ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『わかった！　それでは
+きみの　はなしを　きこうか</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『やっぱり　たたかわないと
+なんだか　しっくり　こないだろ？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『あいての　ポケモン▼
+その　ポケモンが　おぼえられる　わざ▼
+それらを　しっていれば
+かてる　かくりつは　あがるだろうね</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『ひさしぶり　だね▼
+きみさえ　よければ　いま　ここで　
+ポケモンしょうぶを　もうしこみたい</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『ぜんりょくを　だして
+きみの　ポケモンを　たおしてみせるよ▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『ああ　それでは　きみの
+じゅんびが　できるまで　まっているよ</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『その　かお……
+たたかう　じゅんびは　できたかな？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven3_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+ゲン</attribute>
+		<language name="日本語" width="216">ゲン『あのとき　わたしが
+こうてつじまに　いなかったら……▼
+あのとき　きみが
+こうてつじまに　こなかったら……▼
+ずっと　であわないまま　だったのか
+それとも　どこかで　あっていたのか</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_01" text-color="#000000,,,#000000,,#000000,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『あたし……　あなたと
+ポケモンしょうぶ　しても　いい？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_02" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……わかった
+できるだけ　がんばるから▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_03" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……えっ
+そんな　イジワル　いうんだ……？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_04" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……どうするの？
+しょうぶ　してくれるの？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_05" text-color="#000000,,,,,,,,,,,,">
+		<comment>♀：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……あなたが　つよいと
+あたしまで　うれしいかも▼
+……なぜだか　わからないけど
+こういう　きもちって　ふしぎ……</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……えっ
+あたしと　しょうぶ？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……わかった
+あたし……　まけないから……！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……なによ
+あなたのこと　ちょっぴり　キライかも</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……しょうぶ　してくれないと
+あたし　もう　ここに　こないかも……</language>
+	</row>
+
+	<row id="msg_t06r0101_seven4_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,,">
+		<comment>♀：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+マイ</attribute>
+		<language name="日本語" width="216">マイ『……あたし　あなたとする
+ポケモンしょうぶ　すきかも▼
+……ほんの　ちょっぴり
+ほんの　ちょっぴり　だけど　ね</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_01" text-color="#000000,,,#000000,,#000000,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『いひひ……！　きたきた！
+さあさあ！　しょうぶ　しようぜ！！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_02" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『……いっとくけど
+おれ　つよいからな！　おどろけよ！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_03" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『あら？
+ひょうしぬけ　だぜ▼
+ま　せっかく　きたんだし
+ゆっくり　していけよな！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_04" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→02
+　いいえ→03</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『なんだよ　なんだよ！
+やっぱり　たたかうのかよ！？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_05" text-color="#000000,,,,,,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン１
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『たぁー！　つええなあ！
+バトルタワーで　きたえなおすか</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_06" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『ひとーつ
+ポケモンしょうぶに　ちかみちなし！▼
+ふたーつ……
+まあいいや　しょうぶ　しようぜ！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_07" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・はい選択</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『モンスターボールの　なかで
+おれの　ポケモンたち　ふるえてる！▽
+これ　むしゃぶるいって　やつだな！▼</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_08" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘前
+・いいえ選択</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『ここ！
+しょうぶどころ　なんだぞー！！</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_09" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・いいえ選択後、再度会話
+・はい／いいえの選択肢表示
+　はい　→07
+　いいえ→08</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『どうだ？
+しょうぶ　するきに　なったか？</language>
+	</row>
+
+	<row id="msg_t06r0101_seven5_10" text-color="#0000ff,,,#0000ff,,#0000ff,,,,,,," back-color="#ffff80,,,#ffff80,,#ffff80,#ffff80,,,,,,">
+		<comment>♂：パターン２
+・戦闘後</comment>
+		<attribute name="キャラ指定">５人衆
+バク</attribute>
+		<language name="日本語" width="216">バク『たぁー！　つええなあ！
+ハードマウンテンで　きたえなおすか</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

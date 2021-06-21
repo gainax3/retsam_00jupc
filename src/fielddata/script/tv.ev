@@ -1,0 +1,209 @@
+//====================================================================
+//						tv.ev(TV放送)
+//						テレビ用スクリプト・データ
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+
+	.include	"../../../include/msgdata/msg_tv_program.h"
+
+#include "../../field/scr_tv.h"
+
+//============================================================================================
+//============================================================================================
+//--------------------------------------------------------------------
+//					     スクリプト呼び出しテーブル
+//--------------------------------------------------------------------
+
+_EVENT_DATA		ev_tv
+_EVENT_DATA_END						//終了
+
+
+//============================================================================================
+//
+//
+//			テレビ用コマンド定義
+//
+//	EV_SEQ_TV(TV放送処理 scr_tv.c EvCmdBroadcastTV)
+//
+//============================================================================================
+
+//--------------------------------------------------------------------
+//	コマーシャルメッセージ取得
+//--------------------------------------------------------------------
+	.macro	_TV_GET_CM_MSG	arc_wk, msg_wk
+	.short	EV_SEQ_TV
+	.short	TV_CMD_GET_CM_MSG
+	.short	\arc_wk
+	.short	\msg_wk
+	.endm
+
+//--------------------------------------------------------------------
+//	決まり文句のセット
+//--------------------------------------------------------------------
+	.macro	_TV_GET_PROG_MSG	msg_id, arc_wk, msg_wk
+	.short	EV_SEQ_TV
+	.short	TV_CMD_GET_PROG_MSG
+	.short	\msg_id
+	.short	\arc_wk
+	.short	\msg_wk
+	.endm
+
+//--------------------------------------------------------------------
+//	状態取得
+//--------------------------------------------------------------------
+	.macro	_TV_GET_STATUS		ret_wk
+	.short	EV_SEQ_TV
+	.short	TV_CMD_GET_STATUS
+	.short	\ret_wk
+	.endm
+
+//--------------------------------------------------------------------
+//	終了フラグセット
+//--------------------------------------------------------------------
+	.macro	_TV_SET_ENDFLAG
+	.short	EV_SEQ_TV
+	.short	TV_CMD_SET_END_FLAG
+	.endm
+
+//--------------------------------------------------------------------
+//	メッセージデータ生成
+//--------------------------------------------------------------------
+	.macro	_TV_MAKE_MSG	idx,	arc_wk,	msg_wk
+	.short	EV_SEQ_TV
+	.short	TV_CMD_GET_MSG
+	.short	\idx
+	.short	\arc_wk
+	.short	\msg_wk
+	.endm
+
+//--------------------------------------------------------------------
+//	指定データ取得(全パターン)
+//--------------------------------------------------------------------
+	.macro	_TV_GET_DATA_TOTAL	ret_wk
+	.short	EV_SEQ_TV
+	.short	TV_CMD_GET_DATA_TOTAL
+	.short	\ret_wk
+	.endm
+
+
+//============================================================================================
+//
+//
+//			テレビ用スクリプト本体
+//
+//
+//============================================================================================
+//--------------------------------------------------------------------
+//		開始(マップアトリビュートはなしかけ ev_check.c)
+//--------------------------------------------------------------------
+ev_tv:
+	_TALK_START
+
+	_RECORD_INC		RECID_TV_COUNT
+
+	//ここにイベントの場合の分岐を入れる
+
+	/*状態取得*/
+	_TV_GET_STATUS	SCWK_ANSWER
+	_DEBUG_WATCH_WORK	SCWK_ANSWER
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		TV_STATUS_PROGRAM_END,	ev_tv_cm		//番組終了状態
+	_CASE_JUMP		TV_STATUS_TOPIC_END,	ev_tv_topic_end	//４つトピックを放送した
+	_CASE_JUMP		TV_STATUS_START,		ev_tv_start		//番組開始直後
+	_CASE_JUMP		TV_STATUS_ONAIR,		ev_tv_onair		//番組放送中（2つ目以降）
+
+	_JUMP			ev_tv_cm
+	_END
+
+//--------------------------------------------------------------------
+//		CM(番組終了状態)
+//--------------------------------------------------------------------
+ev_tv_cm:
+	/*コマーシャルメッセージ取得*/
+	_TV_GET_CM_MSG	SCWK_TEMP0, SCWK_TEMP1
+	_TALKMSG_ARC	SCWK_TEMP0, SCWK_TEMP1
+	_LAST_KEYWAIT
+	_JUMP			ev_tv_end
+	_END
+
+
+//--------------------------------------------------------------------
+//		トピック４つ放送後→終了メッセージ
+//--------------------------------------------------------------------
+ev_tv_topic_end:
+	/*(決まり文句)終了MSG表示06*/
+	_TV_GET_PROG_MSG	TV_PROG_MSG_ENDING, SCWK_TEMP0, SCWK_TEMP1
+	_TALKMSG_ARC		SCWK_TEMP0, SCWK_TEMP1
+	_LAST_KEYWAIT
+
+	//終了フラグをセット
+	_TV_SET_ENDFLAG
+	_JUMP				ev_tv_end
+	_END
+
+
+//--------------------------------------------------------------------
+//		放送開始→開始メッセージ
+//--------------------------------------------------------------------
+ev_tv_start:
+	/*(決まり文句)開始MSG表示（朝01、昼02、晩03三択）*/
+	_TV_GET_PROG_MSG		TV_PROG_MSG_OPENING, SCWK_TEMP0, SCWK_TEMP1
+	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
+
+	/*放送中へ*/
+	_JUMP				ev_tv_onair
+	_END
+
+
+//--------------------------------------------------------------------
+//		放送中
+//--------------------------------------------------------------------
+ev_tv_onair:
+	/*指定データ取得(全パターン)*/
+	_TV_GET_DATA_TOTAL		SCWK_TEMP2
+	_IFVAL_JUMP				SCWK_TEMP2,NE,0, ev_tv_topic	/*データがある*/
+	_JUMP					ev_tv_no_topic
+	_END
+
+ev_tv_no_topic:
+	/*データを作ってねMSG表示07*/
+	_TV_GET_PROG_MSG		TV_PROG_MSG_PLEASE, SCWK_TEMP0, SCWK_TEMP1
+	_DEBUG_WATCH_WORK		SCWK_TEMP0
+	_DEBUG_WATCH_WORK		SCWK_TEMP1
+	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
+	//終了フラグをセット
+	_TV_SET_ENDFLAG
+	_LAST_KEYWAIT
+	_JUMP					ev_tv_end
+	_END
+
+ev_tv_topic:
+	//(決まり文句)前フリMSG
+	_TV_GET_PROG_MSG		TV_PROG_MSG_INTRO, SCWK_TEMP0, SCWK_TEMP1
+	_DEBUG_WATCH_WORK		SCWK_TEMP0
+	_DEBUG_WATCH_WORK		SCWK_TEMP1
+	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
+
+	//(メッセージデータ生成)記事のメッセージ
+	_TV_MAKE_MSG			SCWK_TEMP2, SCWK_TEMP0, SCWK_TEMP1
+	_DEBUG_WATCH_WORK		SCWK_TEMP2
+	_DEBUG_WATCH_WORK		SCWK_TEMP0
+	_DEBUG_WATCH_WORK		SCWK_TEMP1
+	_TALKMSG_ARC			SCWK_TEMP0, SCWK_TEMP1
+	_LAST_KEYWAIT
+	_JUMP					ev_tv_end
+	_END
+
+
+//--------------------------------------------------------------------
+//	共通終了
+//--------------------------------------------------------------------
+ev_tv_end:
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+

@@ -1,0 +1,205 @@
+//====================================================================
+//								d04r0101
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d04r0101.h"
+	//.include	"../eventdata/zone_d04r0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d04r0101_flag_change
+_EVENT_DATA		ev_d04r0101_middleman2
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d04r0101_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D04R0101	//到着
+	_END
+
+
+/********************************************************************/
+/*							金持ちおじさん							*/
+/********************************************************************/
+ev_d04r0101_middleman2:
+	_TALK_OBJ_START
+
+	/*ほしのかけらの話しをした*/
+	_IF_FLAGON_JUMP	FE_D04R0101_MIDDLEMAN2_TALK,ev_d04r0101_middleman2_04
+
+	/*ほしのかけらを入手していたら*/
+	_IF_FLAGON_JUMP	FE_D04R0101_ITEM_GET,ev_d04r0101_middleman2_03
+
+	/*「記念にこれをどうぞ」*/
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_01
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_HOSINOKAKERA
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d04r0101_middleman2_item_event_fail	//バッグがいっぱい
+
+	_FLAG_SET		FE_D04R0101_ITEM_GET
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_JUMP			ev_d04r0101_middleman2_03
+	_END
+
+//--------------------------------------------------------------------
+/*					ほしのかけらを入手していたら					*/
+//--------------------------------------------------------------------
+ev_d04r0101_middleman2_03:
+	/*ほしのかけらをもっているか*/
+	_ITEM_CHK		ITEM_HOSINOKAKERA,1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d04r0101_hosinokakera
+
+	/*アイテム入手後、ほしのかけらを持っていない*/
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_02
+	_JUMP			ev_d04r0101_hosinokakera_end
+	_END
+
+/*アイテム入手後、ほしのかけらを持っている*/
+ev_d04r0101_hosinokakera:
+	/*ほしのかけらの話しをした*/
+	_FLAG_SET		FE_D04R0101_MIDDLEMAN2_TALK
+
+	_TALKMSG		msg_d04r0101_middleman2_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,d04r0101_yes_koukan
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,d04r0101_no_koukan
+	_END
+
+/*ほしのかけらの話しをした(2回目の会話)*/
+ev_d04r0101_middleman2_04:
+	/*ほしのかけらをもっているか*/
+	_ITEM_CHK		ITEM_HOSINOKAKERA,1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d04r0101_hosinokakera_none_2
+
+	_TALKMSG		msg_d04r0101_middleman2_05
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,d04r0101_yes_koukan
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,d04r0101_no_koukan
+	_END
+
+//--------------------------------------------------------------------
+/*				ほしのかけらをもっていない(2回目の会話)				*/
+//--------------------------------------------------------------------
+ev_d04r0101_hosinokakera_none_2:
+	_TALKMSG		msg_d04r0101_middleman2_04
+	_JUMP			ev_d04r0101_hosinokakera_end
+	_END
+
+/*共通終了*/
+ev_d04r0101_hosinokakera_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*交換しない*/
+d04r0101_no_koukan:
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_08
+	_JUMP			ev_d04r0101_hosinokakera_end
+	_END
+
+//--------------------------------------------------------------------
+/*							交換する								*/
+//--------------------------------------------------------------------
+d04r0101_yes_koukan:
+	_GET_ITEM_NUM	ITEM_HOSINOKAKERA,SCWK_PARAM0
+
+	/*ほしのかけらの数が10個以上*/
+	_IFVAL_JUMP		SCWK_PARAM0,GE,10,d04r0101_hosinokakera_num_2
+
+	/*ほしのかけらの数が10個未満*/
+	_JUMP			d04r0101_hosinokakera_num_1
+	_END
+
+
+/********************************************************************/
+/*					ほしのかけらの数が10個未満						*/
+/********************************************************************/
+d04r0101_hosinokakera_num_1:
+	_RECORD_INC		RECID_CHANGE_HOSHINOKAKERA
+	_SUB_ITEM		ITEM_HOSINOKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_AKAIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_AOIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_KIIROIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_MIDORINOKAKERA,1,SCWK_ANSWER
+
+	_JUMP			ev_d04r0101_hosinokakera_koukan_after
+	_END
+
+
+/********************************************************************/
+/*						ほしのかけらの数が10個以上					*/
+/********************************************************************/
+d04r0101_hosinokakera_num_2:
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_06
+
+	_BMPMENU_INIT		25,11,0,1,SCWK_PARAM1			//Bキャンセル有効
+	_BMPMENU_MAKE_LIST16	msg_waza_tatara_01,0		/*１こ*/
+	_BMPMENU_MAKE_LIST16	msg_waza_tatara_02,1		/*１０こ*/
+	_BMPMENU_MAKE_LIST16	msg_ev_win_012,2			/*やめる*/
+	_BMPMENU_START
+
+	/*削除個数を代入*/
+	_LDVAL			SCWK_TEMP3,10
+
+	_SWITCH			SCWK_PARAM1
+	_CASE_JUMP		0,d04r0101_hosinokakera_num_1		/*１こ*/
+	_CASE_JUMP		1,d04r0101_hosinokakera_all			/*１０こ*/
+	_JUMP			d04r0101_no_koukan
+	_END
+
+/*10こ*/
+d04r0101_hosinokakera_all:
+	_SUB_WK			SCWK_TEMP3,1
+	_RECORD_INC		RECID_CHANGE_HOSHINOKAKERA
+
+	_ADD_ITEM		ITEM_AKAIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_AOIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_KIIROIKAKERA,1,SCWK_ANSWER
+	_ADD_ITEM		ITEM_MIDORINOKAKERA,1,SCWK_ANSWER
+
+	_SUB_ITEM		ITEM_HOSINOKAKERA,1,SCWK_ANSWER
+	//_IFVAL_JUMP	SCWK_ANSWER,EQ,FALSE,ev_d04r0101_hosinokakera_koukan_after	/*なくなった*/
+	_IFVAL_JUMP		SCWK_TEMP3,EQ,0,ev_d04r0101_hosinokakera_koukan_after		/*10コ交換した*/
+
+	_JUMP			d04r0101_hosinokakera_all
+	_END
+
+/*交換後*/
+ev_d04r0101_hosinokakera_koukan_after:
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_07
+	_TALK_KEYWAIT	msg_d04r0101_middleman2_09
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//アイテム入手失敗
+ev_d04r0101_middleman2_item_event_fail:
+	//アイテム取得失敗イベント(共通メッセージを出す、専用を使用するときはいらない)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/********************************************************************/

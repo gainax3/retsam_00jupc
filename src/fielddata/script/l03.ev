@@ -1,0 +1,137 @@
+//====================================================================
+//								l03
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_l03.h"
+	.include	"../eventdata/zone_l03evc.h"
+	.include	"../eventdata/zone_l03evd.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_l03_flag_change
+_EVENT_DATA		ev_l03_init_change
+_EVENT_DATA		ev_l03_sign1
+_EVENT_DATA		pos_l03_rival
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						INIT_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_l03_init_change:
+	_IF_FLAGOFF_JUMP	FE_D27R0102_GKANBU_WIN,ev_l03_door_exit_move_1
+	_IF_FLAGON_JUMP		FE_D27R0102_GKANBU_WIN,ev_l03_door_exit_move_2
+	_END
+
+/*L01でギンガ団と戦闘前はd29r0102には入れない！*/
+ev_l03_door_exit_move_1:
+	_SXY_EXIT_POS_CHANGE	L03_SP_MAT01,305,229
+	_SXY_EXIT_POS_CHANGE	L03_SP_MAT02,306,229
+	_END
+
+/*L01でギンガ団と戦闘後はd29r0101には入れない！*/
+ev_l03_door_exit_move_2:
+	_SXY_EXIT_POS_CHANGE	L03_DOOR01,305,229
+	_SXY_EXIT_POS_CHANGE	L03_DOOR02,306,229
+	_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_l03_flag_change:
+	/*キッサキジムバッジを取得していたら*/
+	_SYS_FLAG_BADGE_GET		BADGE_ID_C09,LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_l03_flag_change_leader
+
+	_IF_FLAGOFF_JUMP	FE_D27R0102_GKANBU_WIN,ev_l03_door_exit_move_1
+	_IF_FLAGON_JUMP		FE_D27R0102_GKANBU_WIN,ev_l03_door_exit_move_2
+	_END
+
+/*c09pc0101のスモモ削除*/
+ev_l03_flag_change_leader:
+	_FLAG_SET		FV_C09PC0101_LEADER
+	_FLAG_RESET		FV_C07GYM0101_LEADER		/*トバリジムに戻す*/
+	_RET
+
+
+/********************************************************************/
+/*							標識									*/
+/********************************************************************/
+ev_l03_sign1:
+	_EASY_BOARD_MSG	msg_l03_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+
+/********************************************************************/
+/*						ライバルのPOS								*/
+/********************************************************************/
+pos_l03_rival:
+	_EVENT_START
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+
+	/*カメラ上に移動*/
+	_VANISH_DUMMY_OBJ_ADD	SCWK_TEMP0,SCWK_TEMP1
+
+	//ダミーOBJを動かす
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_l03_dummy_01
+	_OBJ_ANIME_WAIT
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	/*「おーい」*/
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_l03_rival_01
+	_TALK_CLOSE
+
+	/*ライバル洞窟へ*/
+	_OBJ_ANIME		L03_RIVAL,anm_l03_rival_01
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		L03_RIVAL
+
+	/*カメラ元に戻す*/
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_l03_dummy_02
+	_OBJ_ANIME_WAIT
+
+	//カメラ移動
+	//ダミーOBJ削除
+	_VANISH_DUMMY_OBJ_DEL
+
+	_LDVAL			WK_SCENE_L03,1
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//ダミーOBJ	カメラを移動させる
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_l03_dummy_01
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ダミーOBJ	カメラを移動させる(もどに戻す)
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_l03_dummy_02
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	洞窟に移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_l03_rival_01
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	ACMD_END,0
+
+

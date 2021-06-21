@@ -1,0 +1,77 @@
+
+//============================================================================
+/**
+ *
+ *@file		sub_278.s
+ *@brief	戦闘シーケンス
+ *			先制系のアイテム効果発動チェック
+ *@author	HisashiSogabe
+ *@data		2006.06.22
+ *
+ */
+//============================================================================
+	.text
+
+	.include	"waza_seq_def.h"
+
+SUB_278:
+//2vs2戦のときに、場に４体以内場合はこのチェックではだめなので、プラチナで修正
+//	VALUE_WORK			VAL_GET,BUF_PARA_CLIENT_SET_MAX,BUF_PARA_TEMP_WORK
+//	VALUE				VAL_SUB,BUF_PARA_TEMP_WORK,1
+
+#if 0
+//プラチナでの修正バージョン
+	//最後のClientはチェックしない
+	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
+
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,1,SUB_278_NEXT
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,0,SUB_278_END
+SUB_278_NEXT:
+	STATUS_EFFECT		SIDE_ATTACK,STATUS_ITEM_POKE
+	SERVER_WAIT
+	IF_PSP				IF_FLAG_NE,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,1,SUB_278_CHECK
+SUB_278_ONCE_AGI_UP:
+	MESSAGE				ItemSenseiMineMsg,TAG_NICK_ITEM,SIDE_ATTACK,SIDE_ATTACK
+	SERVER_WAIT
+	WAIT				MSG_WAIT
+SUB_278_CHECK:
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0,SUB_278_CHECK_NEXT
+	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0
+SUB_278_CHECK_NEXT:
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,0,SUB_278_END
+	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,0
+	KILL_ITEM			SIDE_ATTACK
+SUB_278_END:
+	SEQ_END
+#endif
+
+//プラチナでの修正バージョン
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,1,SUB_278_ONCE_AGI_UP
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0,SUB_278_END
+
+SUB_278_SENSEI_FLAG:
+	//最後のClientはチェックしない
+	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
+	STATUS_EFFECT		SIDE_ATTACK,STATUS_ITEM_POKE
+	SERVER_WAIT
+	BRANCH				SUB_278_CHECK
+
+SUB_278_ONCE_AGI_UP:
+	STATUS_EFFECT		SIDE_ATTACK,STATUS_ITEM_POKE
+	SERVER_WAIT
+	//最後のClientはメッセージを出さない
+	IF					IF_FLAG_EQ,BUF_PARA_CLIENT_WORKING_COUNT,1,SUB_278_CHECK
+	MESSAGE				ItemSenseiMineMsg,TAG_NICK_ITEM,SIDE_ATTACK,SIDE_ATTACK
+	SERVER_WAIT
+	WAIT				MSG_WAIT
+
+SUB_278_CHECK:
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0,SUB_278_CHECK_NEXT
+	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_wkw_sensei_flag,0
+SUB_278_CHECK_NEXT:
+	IF_PSP				IF_FLAG_EQ,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,0,SUB_278_END
+	PSP_VALUE			VAL_SET,SIDE_ATTACK,ID_PSP_wkw_once_agi_up,0
+	KILL_ITEM			SIDE_ATTACK
+SUB_278_END:
+	SEQ_END
+

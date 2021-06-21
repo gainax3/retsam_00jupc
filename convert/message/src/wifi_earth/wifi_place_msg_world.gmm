@@ -1,0 +1,1346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="tomoya_takahashi" host="W00148" date="2007-12-19T22:24:15"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="100"/>
+		<group default=" 0:デフォルト" position="1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="100"/>
+		<erase position="3" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="4" width="100"/>
+			<font default="" position="5" width="100">
+			</font>
+			<size position="6" width="100"/>
+			<space position="7" width="100"/>
+			<width position="8" width="100"/>
+			<line position="9" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="100" top="358" right="805" bottom="986" maximized="no" rayout="Vertical2">
+		<comment-input left="805" top="834" right="1152" bottom="986" visible="yes"/>
+		<tag-palette left="805" top="436" right="1152" bottom="834" visible="yes"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="country000">
+		<language name="日本語">なし</language>
+	</row>
+
+	<row id="country001">
+		<language name="日本語">アフガニスタン</language>
+	</row>
+
+	<row id="country002">
+		<language name="日本語">アルバニア</language>
+	</row>
+
+	<row id="country003">
+		<language name="日本語">アルジェリア</language>
+	</row>
+
+	<row id="country004">
+		<language name="日本語">アメリカりょうサモア</language>
+	</row>
+
+	<row id="country005">
+		<language name="日本語">アンドラ</language>
+	</row>
+
+	<row id="country006">
+		<language name="日本語">アンゴラ</language>
+	</row>
+
+	<row id="country007">
+		<language name="日本語">アンギラ</language>
+	</row>
+
+	<row id="country008">
+		<language name="日本語">アンティグア・バーブーダ</language>
+	</row>
+
+	<row id="country009">
+		<language name="日本語">アルゼンチン</language>
+	</row>
+
+	<row id="country010">
+		<language name="日本語">アルメニア</language>
+	</row>
+
+	<row id="country011">
+		<language name="日本語">アルバ</language>
+	</row>
+
+	<row id="country012">
+		<language name="日本語">オーストラリア</language>
+	</row>
+
+	<row id="country013">
+		<language name="日本語">オーストリア</language>
+	</row>
+
+	<row id="country014">
+		<language name="日本語">アゼルバイジャン</language>
+	</row>
+
+	<row id="country015">
+		<language name="日本語">バハマ</language>
+	</row>
+
+	<row id="country016">
+		<language name="日本語">バーレーン</language>
+	</row>
+
+	<row id="country017">
+		<language name="日本語">バングラデシュ</language>
+	</row>
+
+	<row id="country018">
+		<language name="日本語">バルバドス</language>
+	</row>
+
+	<row id="country019">
+		<language name="日本語">ベラルーシ</language>
+	</row>
+
+	<row id="country020">
+		<language name="日本語">ベルギー</language>
+	</row>
+
+	<row id="country021">
+		<language name="日本語">ベリーズ</language>
+	</row>
+
+	<row id="country022">
+		<language name="日本語">ベナン</language>
+	</row>
+
+	<row id="country023">
+		<language name="日本語">バミューダ</language>
+	</row>
+
+	<row id="country024">
+		<language name="日本語">ブータン</language>
+	</row>
+
+	<row id="country025">
+		<language name="日本語">ボリビア</language>
+	</row>
+
+	<row id="country026">
+		<language name="日本語">ボスニア・ヘルツェゴビナ</language>
+	</row>
+
+	<row id="country027">
+		<language name="日本語">ボツワナ</language>
+	</row>
+
+	<row id="country028">
+		<language name="日本語">ブラジル</language>
+	</row>
+
+	<row id="country029">
+		<language name="日本語">イギリスりょうバージンしょとう</language>
+	</row>
+
+	<row id="country030">
+		<language name="日本語">ブルネイ</language>
+	</row>
+
+	<row id="country031">
+		<language name="日本語">ブルガリア</language>
+	</row>
+
+	<row id="country032">
+		<language name="日本語">ブルキナファソ</language>
+	</row>
+
+	<row id="country033">
+		<language name="日本語">ブルンジ</language>
+	</row>
+
+	<row id="country034">
+		<language name="日本語">カンボジア</language>
+	</row>
+
+	<row id="country035">
+		<language name="日本語">カメルーン</language>
+	</row>
+
+	<row id="country036">
+		<language name="日本語">カナダ</language>
+	</row>
+
+	<row id="country037">
+		<language name="日本語">カーボベルデ</language>
+	</row>
+
+	<row id="country038">
+		<language name="日本語">ケイマンしょとう</language>
+	</row>
+
+	<row id="country039">
+		<language name="日本語">ちゅうおうアフリカ</language>
+	</row>
+
+	<row id="country040">
+		<language name="日本語">チャド</language>
+	</row>
+
+	<row id="country041">
+		<language name="日本語">チャネルしょとう</language>
+	</row>
+
+	<row id="country042">
+		<language name="日本語">チリ</language>
+	</row>
+
+	<row id="country043">
+		<language name="日本語">ちゅうごく</language>
+	</row>
+
+	<row id="country044">
+		<language name="日本語">クリスマスとう</language>
+	</row>
+
+	<row id="country045">
+		<language name="日本語">コロンビア</language>
+	</row>
+
+	<row id="country046">
+		<language name="日本語">コモロ</language>
+	</row>
+
+	<row id="country047">
+		<language name="日本語">コンゴみんしゅきょうわこく</language>
+	</row>
+
+	<row id="country048">
+		<language name="日本語">コンゴきょうわこく</language>
+	</row>
+
+	<row id="country049">
+		<language name="日本語">クックしょとう</language>
+	</row>
+
+	<row id="country050">
+		<language name="日本語">コスタリカ</language>
+	</row>
+
+	<row id="country051">
+		<language name="日本語">コートジボワール</language>
+	</row>
+
+	<row id="country052">
+		<language name="日本語">クロアチア</language>
+	</row>
+
+	<row id="country053">
+		<language name="日本語">キューバ</language>
+	</row>
+
+	<row id="country054">
+		<language name="日本語">キプロス</language>
+	</row>
+
+	<row id="country055">
+		<language name="日本語">チェコ</language>
+	</row>
+
+	<row id="country056">
+		<language name="日本語">デンマーク</language>
+	</row>
+
+	<row id="country057">
+		<language name="日本語">ジブチ</language>
+	</row>
+
+	<row id="country058">
+		<language name="日本語">ドミニカ</language>
+	</row>
+
+	<row id="country059">
+		<language name="日本語">ドミニカきょうわこく</language>
+	</row>
+
+	<row id="country060">
+		<language name="日本語">エクアドル</language>
+	</row>
+
+	<row id="country061">
+		<language name="日本語">エジプト</language>
+	</row>
+
+	<row id="country062">
+		<language name="日本語">エルサルバドル</language>
+	</row>
+
+	<row id="country063">
+		<language name="日本語">せきどうギニア</language>
+	</row>
+
+	<row id="country064">
+		<language name="日本語">エリトリア</language>
+	</row>
+
+	<row id="country065">
+		<language name="日本語">エストニア</language>
+	</row>
+
+	<row id="country066">
+		<language name="日本語">エチオピア</language>
+	</row>
+
+	<row id="country067">
+		<language name="日本語">フェローしょとう</language>
+	</row>
+
+	<row id="country068">
+		<language name="日本語">フォークランド（マルビナス)しょとう</language>
+	</row>
+
+	<row id="country069">
+		<language name="日本語">フィジーしょとう</language>
+	</row>
+
+	<row id="country070">
+		<language name="日本語">フィンランド</language>
+	</row>
+
+	<row id="country071">
+		<language name="日本語">フランス</language>
+	</row>
+
+	<row id="country072">
+		<language name="日本語">フランスりょうギアナ</language>
+	</row>
+
+	<row id="country073">
+		<language name="日本語">フランスりょうポリネシア</language>
+	</row>
+
+	<row id="country074">
+		<language name="日本語">ガボン</language>
+	</row>
+
+	<row id="country075">
+		<language name="日本語">ガンビア</language>
+	</row>
+
+	<row id="country076">
+		<language name="日本語">グルジア</language>
+	</row>
+
+	<row id="country077">
+		<language name="日本語">ドイツ</language>
+	</row>
+
+	<row id="country078">
+		<language name="日本語">ガーナ</language>
+	</row>
+
+	<row id="country079">
+		<language name="日本語">ジブラルタル</language>
+	</row>
+
+	<row id="country080">
+		<language name="日本語">ギリシャ</language>
+	</row>
+
+	<row id="country081">
+		<language name="日本語">グリーンランド</language>
+	</row>
+
+	<row id="country082">
+		<language name="日本語">グレナダ</language>
+	</row>
+
+	<row id="country083">
+		<language name="日本語">グアドループとう</language>
+	</row>
+
+	<row id="country084">
+		<language name="日本語">グアム</language>
+	</row>
+
+	<row id="country085">
+		<language name="日本語">グアテマラ</language>
+	</row>
+
+	<row id="country086">
+		<language name="日本語">ギニア</language>
+	</row>
+
+	<row id="country087">
+		<language name="日本語">ギニアビサウ</language>
+	</row>
+
+	<row id="country088">
+		<language name="日本語">ガイアナ</language>
+	</row>
+
+	<row id="country089">
+		<language name="日本語">ハイチ</language>
+	</row>
+
+	<row id="country090">
+		<language name="日本語">ホンジュラス</language>
+	</row>
+
+	<row id="country091">
+		<language name="日本語">ホンコン</language>
+	</row>
+
+	<row id="country092">
+		<language name="日本語">ハンガリー</language>
+	</row>
+
+	<row id="country093">
+		<language name="日本語">アイスランド</language>
+	</row>
+
+	<row id="country094">
+		<language name="日本語">インド</language>
+	</row>
+
+	<row id="country095">
+		<language name="日本語">インドネシア</language>
+	</row>
+
+	<row id="country096">
+		<language name="日本語">イラン</language>
+	</row>
+
+	<row id="country097">
+		<language name="日本語">イラク</language>
+	</row>
+
+	<row id="country098">
+		<language name="日本語">アイルランド</language>
+	</row>
+
+	<row id="country099">
+		<language name="日本語">マンとう</language>
+	</row>
+
+	<row id="country100">
+		<language name="日本語">イスラエル</language>
+	</row>
+
+	<row id="country101">
+		<language name="日本語">イタリア</language>
+	</row>
+
+	<row id="country102">
+		<language name="日本語">ジャマイカ</language>
+	</row>
+
+	<row id="country103">
+		<language name="日本語">にほん</language>
+	</row>
+
+	<row id="country104">
+		<language name="日本語">ヨルダン</language>
+	</row>
+
+	<row id="country105">
+		<language name="日本語">カシミール</language>
+	</row>
+
+	<row id="country106">
+		<language name="日本語">カザフスタン</language>
+	</row>
+
+	<row id="country107">
+		<language name="日本語">ケニア</language>
+	</row>
+
+	<row id="country108">
+		<language name="日本語">キリバス</language>
+	</row>
+
+	<row id="country109">
+		<language name="日本語">きたちょうせん</language>
+	</row>
+
+	<row id="country110">
+		<language name="日本語">かんこく</language>
+	</row>
+
+	<row id="country111">
+		<language name="日本語">クウェート</language>
+	</row>
+
+	<row id="country112">
+		<language name="日本語">キルギス</language>
+	</row>
+
+	<row id="country113">
+		<language name="日本語">ラオス</language>
+	</row>
+
+	<row id="country114">
+		<language name="日本語">ラトビア</language>
+	</row>
+
+	<row id="country115">
+		<language name="日本語">レバノン</language>
+	</row>
+
+	<row id="country116">
+		<language name="日本語">レソト</language>
+	</row>
+
+	<row id="country117">
+		<language name="日本語">リベリア</language>
+	</row>
+
+	<row id="country118">
+		<language name="日本語">リビア</language>
+	</row>
+
+	<row id="country119">
+		<language name="日本語">リヒテンシュタイン</language>
+	</row>
+
+	<row id="country120">
+		<language name="日本語">リトアニア</language>
+	</row>
+
+	<row id="country121">
+		<language name="日本語">ルクセンブルク</language>
+	</row>
+
+	<row id="country122">
+		<language name="日本語">マカオ</language>
+	</row>
+
+	<row id="country123">
+		<language name="日本語">マケドニアきゅうユーゴスラビア</language>
+	</row>
+
+	<row id="country124">
+		<language name="日本語">マダガスカル</language>
+	</row>
+
+	<row id="country125">
+		<language name="日本語">マラウイ</language>
+	</row>
+
+	<row id="country126">
+		<language name="日本語">マレーシア</language>
+	</row>
+
+	<row id="country127">
+		<language name="日本語">モルディブ</language>
+	</row>
+
+	<row id="country128">
+		<language name="日本語">マリ</language>
+	</row>
+
+	<row id="country129">
+		<language name="日本語">マルタ</language>
+	</row>
+
+	<row id="country130">
+		<language name="日本語">マーシャルしょとう</language>
+	</row>
+
+	<row id="country131">
+		<language name="日本語">マルチニーク</language>
+	</row>
+
+	<row id="country132">
+		<language name="日本語">モーリタニア</language>
+	</row>
+
+	<row id="country133">
+		<language name="日本語">モーリシャス</language>
+	</row>
+
+	<row id="country134">
+		<language name="日本語">マヨット</language>
+	</row>
+
+	<row id="country135">
+		<language name="日本語">メキシコ</language>
+	</row>
+
+	<row id="country136">
+		<language name="日本語">ミクロネシア</language>
+	</row>
+
+	<row id="country137">
+		<language name="日本語">モルドバ</language>
+	</row>
+
+	<row id="country138">
+		<language name="日本語">モナコ</language>
+	</row>
+
+	<row id="country139">
+		<language name="日本語">モンゴル</language>
+	</row>
+
+	<row id="country140">
+		<language name="日本語">モロッコ</language>
+	</row>
+
+	<row id="country141">
+		<language name="日本語">モザンビーク</language>
+	</row>
+
+	<row id="country142">
+		<language name="日本語">ミャンマー</language>
+	</row>
+
+	<row id="country143">
+		<language name="日本語">ナミビア</language>
+	</row>
+
+	<row id="country144">
+		<language name="日本語">ナウル</language>
+	</row>
+
+	<row id="country145">
+		<language name="日本語">ネパール</language>
+	</row>
+
+	<row id="country146">
+		<language name="日本語">オランダ</language>
+	</row>
+
+	<row id="country147">
+		<language name="日本語">オランダりょうアンティル</language>
+	</row>
+
+	<row id="country148">
+		<language name="日本語">ニューカレドニア</language>
+	</row>
+
+	<row id="country149">
+		<language name="日本語">ニュージーランド</language>
+	</row>
+
+	<row id="country150">
+		<language name="日本語">ニカラグア</language>
+	</row>
+
+	<row id="country151">
+		<language name="日本語">ニジェール</language>
+	</row>
+
+	<row id="country152">
+		<language name="日本語">ナイジェリア</language>
+	</row>
+
+	<row id="country153">
+		<language name="日本語">ニウエ</language>
+	</row>
+
+	<row id="country154">
+		<language name="日本語">ノーフォークとう</language>
+	</row>
+
+	<row id="country155">
+		<language name="日本語">きたマリアナしょとう</language>
+	</row>
+
+	<row id="country156">
+		<language name="日本語">ノルウェー</language>
+	</row>
+
+	<row id="country157">
+		<language name="日本語">オマーン</language>
+	</row>
+
+	<row id="country158">
+		<language name="日本語">パキスタン</language>
+	</row>
+
+	<row id="country159">
+		<language name="日本語">パラオ</language>
+	</row>
+
+	<row id="country160">
+		<language name="日本語">パナマ</language>
+	</row>
+
+	<row id="country161">
+		<language name="日本語">パプアニューギニア</language>
+	</row>
+
+	<row id="country162">
+		<language name="日本語">パラグアイ</language>
+	</row>
+
+	<row id="country163">
+		<language name="日本語">ペルー</language>
+	</row>
+
+	<row id="country164">
+		<language name="日本語">フィリピン</language>
+	</row>
+
+	<row id="country165">
+		<language name="日本語">ピトケアン</language>
+	</row>
+
+	<row id="country166">
+		<language name="日本語">ポーランド</language>
+	</row>
+
+	<row id="country167">
+		<language name="日本語">ポルトガル</language>
+	</row>
+
+	<row id="country168">
+		<language name="日本語">プエルトリコ</language>
+	</row>
+
+	<row id="country169">
+		<language name="日本語">カタール</language>
+	</row>
+
+	<row id="country170">
+		<language name="日本語">レユニオン</language>
+	</row>
+
+	<row id="country171">
+		<language name="日本語">ルーマニア</language>
+	</row>
+
+	<row id="country172">
+		<language name="日本語">ロシア</language>
+	</row>
+
+	<row id="country173">
+		<language name="日本語">ルワンダ</language>
+	</row>
+
+	<row id="country174">
+		<language name="日本語">セントヘレナとう</language>
+	</row>
+
+	<row id="country175">
+		<language name="日本語">セントクリストファー・ネービス</language>
+	</row>
+
+	<row id="country176">
+		<language name="日本語">セントルシア</language>
+	</row>
+
+	<row id="country177">
+		<language name="日本語">サンピエール・ミクロン</language>
+	</row>
+
+	<row id="country178">
+		<language name="日本語">セントビンセント・グレナディーン</language>
+	</row>
+
+	<row id="country179">
+		<language name="日本語">サモア</language>
+	</row>
+
+	<row id="country180">
+		<language name="日本語">サンマリノ</language>
+	</row>
+
+	<row id="country181">
+		<language name="日本語">サントメ・プリンシペ</language>
+	</row>
+
+	<row id="country182">
+		<language name="日本語">サウジアラビア</language>
+	</row>
+
+	<row id="country183">
+		<language name="日本語">セネガル</language>
+	</row>
+
+	<row id="country184">
+		<language name="日本語">セルビア・モンテネグロ</language>
+	</row>
+
+	<row id="country185">
+		<language name="日本語">セーシェル</language>
+	</row>
+
+	<row id="country186">
+		<language name="日本語">シエラレオネ</language>
+	</row>
+
+	<row id="country187">
+		<language name="日本語">シンガポール</language>
+	</row>
+
+	<row id="country188">
+		<language name="日本語">スロバキア</language>
+	</row>
+
+	<row id="country189">
+		<language name="日本語">スロベニア</language>
+	</row>
+
+	<row id="country190">
+		<language name="日本語">ソロモンしょとう</language>
+	</row>
+
+	<row id="country191">
+		<language name="日本語">ソマリア</language>
+	</row>
+
+	<row id="country192">
+		<language name="日本語">みなみアフリカ</language>
+	</row>
+
+	<row id="country193">
+		<language name="日本語">スペイン</language>
+	</row>
+
+	<row id="country194">
+		<language name="日本語">スリランカ</language>
+	</row>
+
+	<row id="country195">
+		<language name="日本語">スーダン</language>
+	</row>
+
+	<row id="country196">
+		<language name="日本語">スリナム</language>
+	</row>
+
+	<row id="country197">
+		<language name="日本語">スバールバル・ヤンマンエンとう</language>
+	</row>
+
+	<row id="country198">
+		<language name="日本語">スワジランド</language>
+	</row>
+
+	<row id="country199">
+		<language name="日本語">スウェーデン</language>
+	</row>
+
+	<row id="country200">
+		<language name="日本語">スイス</language>
+	</row>
+
+	<row id="country201">
+		<language name="日本語">シリア</language>
+	</row>
+
+	<row id="country202">
+		<language name="日本語">たいわん</language>
+	</row>
+
+	<row id="country203">
+		<language name="日本語">タジキスタン</language>
+	</row>
+
+	<row id="country204">
+		<language name="日本語">タンザニア</language>
+	</row>
+
+	<row id="country205">
+		<language name="日本語">タイ</language>
+	</row>
+
+	<row id="country206">
+		<language name="日本語">ひがしティモール</language>
+	</row>
+
+	<row id="country207">
+		<language name="日本語">トーゴ</language>
+	</row>
+
+	<row id="country208">
+		<language name="日本語">トケラウ</language>
+	</row>
+
+	<row id="country209">
+		<language name="日本語">トンガ</language>
+	</row>
+
+	<row id="country210">
+		<language name="日本語">トリニダード・トバゴ</language>
+	</row>
+
+	<row id="country211">
+		<language name="日本語">チュニジア</language>
+	</row>
+
+	<row id="country212">
+		<language name="日本語">トルコ</language>
+	</row>
+
+	<row id="country213">
+		<language name="日本語">トルクメニスタン</language>
+	</row>
+
+	<row id="country214">
+		<language name="日本語">タークス・カイコスしょとう</language>
+	</row>
+
+	<row id="country215">
+		<language name="日本語">ツバル</language>
+	</row>
+
+	<row id="country216">
+		<language name="日本語">ウガンダ</language>
+	</row>
+
+	<row id="country217">
+		<language name="日本語">ウクライナ</language>
+	</row>
+
+	<row id="country218">
+		<language name="日本語">アラブしゅちょうこく</language>
+	</row>
+
+	<row id="country219">
+		<language name="日本語">イギリス</language>
+	</row>
+
+	<row id="country220">
+		<language name="日本語">アメリカ</language>
+	</row>
+
+	<row id="country221">
+		<language name="日本語">アメリカりょうバージンしょとう</language>
+	</row>
+
+	<row id="country222">
+		<language name="日本語">ウルグアイ</language>
+	</row>
+
+	<row id="country223">
+		<language name="日本語">ウズベキスタン</language>
+	</row>
+
+	<row id="country224">
+		<language name="日本語">バヌアツ</language>
+	</row>
+
+	<row id="country225">
+		<language name="日本語">バチカン</language>
+	</row>
+
+	<row id="country226">
+		<language name="日本語">ベネズエラ</language>
+	</row>
+
+	<row id="country227">
+		<language name="日本語">ベトナム</language>
+	</row>
+
+	<row id="country228">
+		<language name="日本語">ワリス・フテュナしょとう</language>
+	</row>
+
+	<row id="country229">
+		<language name="日本語">パレスチナじちく</language>
+	</row>
+
+	<row id="country230">
+		<language name="日本語">にしサハラ</language>
+	</row>
+
+	<row id="country231">
+		<language name="日本語">イエメン</language>
+	</row>
+
+	<row id="country232">
+		<language name="日本語">ザンビア</language>
+	</row>
+
+	<row id="country233">
+		<language name="日本語">ジンバブエ</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

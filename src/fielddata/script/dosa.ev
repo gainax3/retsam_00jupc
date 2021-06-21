@@ -1,0 +1,1428 @@
+//====================================================================
+//								dosa
+//
+//	各ポケモン1階に入った時にLOCALWORKを使用するので注意！
+//
+//	OBJCHRWORK10	常に使用するので注意！
+//	OBJCHRWORK11
+//
+//	SCWK_TEMP0		一人目か、二人目か
+//	SCWK_TEMP1		対戦するトレーナーID
+//
+//	OBJCODEで判別しているので、同じゾーンにレポーターとインタビュアーを配置してはダメ！
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_circuit_trainer.h"
+	//.include	"../eventdata/zone_dosaevc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_dosa_flag_change
+_EVENT_DATA		ev_dosa_obj1
+_EVENT_DATA		ev_dosa_obj2
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_dosa_flag_change:
+
+	_FLAG_SET	FV_DOSA_TR1
+	_FLAG_SET	FV_DOSA_TR2
+
+	/*バトルサーチャーを取得していなかったらキャラ表示しない*/
+	_IF_FLAGOFF_JUMP SYS_FLAG_BS_LV1,ev_dosa_flag_change_end
+
+	/*曜日によってセットされるキャラが変わる*/
+	_CALL		ev_dosa_week
+	_END
+
+ev_dosa_flag_change_end:
+	_END
+
+
+/********************************************************************/
+/*						曜日によって分岐							*/
+/********************************************************************/
+ev_dosa_week:
+	_CHK_WEEK		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_SUNDAY,ev_dosa_week_sunday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_MONDAY,ev_dosa_week_monday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_TUESDAY,ev_dosa_week_tuesday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_WEDNESDAY,ev_dosa_week_wednesday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_THURSDAY,ev_dosa_week_thursday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_FRIDAY,ev_dosa_week_friday
+	_IFVAL_CALL		LOCALWORK0,EQ,RTC_WEEK_SATURDAY,ev_dosa_week_saturday
+	_RET
+
+
+/********************************************************************/
+/*						現在のゾーンID取得							*/
+/********************************************************************/
+ev_dosa_week_sunday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_guitar
+	_RET
+
+ev_dosa_week_monday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_char_set_guitar
+	_RET
+
+ev_dosa_week_tuesday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_char_set_guitar
+	_RET
+
+ev_dosa_week_wednesday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	//_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_idol			/*★*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_report		/*★*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_camera		/*★*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_guitar		/*★*/
+	_RET
+
+ev_dosa_week_thursday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_char_set_guitar
+	_RET
+
+ev_dosa_week_friday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_char_set_guitar
+	_RET
+
+ev_dosa_week_saturday:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_char_set_idol
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_char_set_report
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_char_set_camera
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_char_set_piero
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_char_set_interview
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_char_set_pokegirl
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_char_set_guitar
+	_RET
+
+
+/********************************************************************/
+/*							キャラセット							*/
+/********************************************************************/
+ev_dosa_char_set_idol:
+	_FLAG_RESET		FV_DOSA_TR1
+	_LDVAL			OBJCHRWORK10,IDOL
+	_RET
+
+ev_dosa_char_set_report:
+	_FLAG_RESET		FV_DOSA_TR1
+	_FLAG_RESET		FV_DOSA_TR2
+	_LDVAL			OBJCHRWORK10,REPORTER
+	_LDVAL			OBJCHRWORK11,CAMERAMAN
+	_RET
+
+ev_dosa_char_set_camera:
+	_FLAG_RESET		FV_DOSA_TR1
+	_FLAG_RESET		FV_DOSA_TR2
+	_LDVAL			OBJCHRWORK10,REPORTER
+	_LDVAL			OBJCHRWORK11,CAMERAMAN
+	_RET
+
+ev_dosa_char_set_piero:
+	_FLAG_RESET		FV_DOSA_TR1
+	_LDVAL			OBJCHRWORK10,CLOWN
+	_RET
+
+ev_dosa_char_set_interview:
+	_FLAG_RESET		FV_DOSA_TR1
+	_FLAG_RESET		FV_DOSA_TR2
+	_LDVAL			OBJCHRWORK10,REPORTER
+	_LDVAL			OBJCHRWORK11,CAMERAMAN
+	_RET
+
+ev_dosa_char_set_pokegirl:
+	_FLAG_RESET		FV_DOSA_TR1
+	_LDVAL			OBJCHRWORK10,PIKACHU
+	_RET
+
+ev_dosa_char_set_guitar:
+	_FLAG_RESET		FV_DOSA_TR1
+	_LDVAL			OBJCHRWORK10,MAN2
+	_RET
+
+
+/********************************************************************/
+/*																	*/
+/*						各トレーナー呼び出し						*/
+/*																	*/
+/********************************************************************/
+ev_dosa_obj1:
+	_TALK_OBJ_START
+	_LDVAL			SCWK_TEMP0,0			/*一人目*/
+
+	/*すでに勝利しているかチェック*/
+	_LDVAL			SCWK_TEMP2,0
+	_IFVAL_CALL		OBJCHRWORK10,EQ,IDOL,ev_dosa_11_00
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_11_01
+	//_IFVAL_CALL		OBJCHRWORK10,EQ,CAMERAMAN,ev_dosa_11_02		/*二人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,CLOWN,ev_dosa_11_03
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_11_04
+	_IFVAL_CALL		OBJCHRWORK10,EQ,PIKACHU,ev_dosa_11_05
+	_IFVAL_CALL		OBJCHRWORK10,EQ,MAN2,ev_dosa_11_06
+
+	/*すでに勝利していたら*/
+	_IFVAL_JUMP		SCWK_TEMP2,EQ,1,ev_dosa_common_05
+
+	_JUMP			ev_dosa_common_01
+	_END
+
+ev_dosa_obj2:
+	_TALK_OBJ_START
+	_LDVAL			SCWK_TEMP0,1			/*二人目*/
+
+	/*すでに勝利しているかチェック*/
+	_LDVAL			SCWK_TEMP2,0
+	_IFVAL_CALL		OBJCHRWORK11,EQ,IDOL,ev_dosa_11_00
+	//_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_11_01		/*一人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CAMERAMAN,ev_dosa_11_02
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CLOWN,ev_dosa_11_03
+	_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_11_04
+	_IFVAL_CALL		OBJCHRWORK11,EQ,PIKACHU,ev_dosa_11_05
+	_IFVAL_CALL		OBJCHRWORK11,EQ,MAN2,ev_dosa_11_06
+
+	/*すでに勝利していたら*/
+	_IFVAL_JUMP		SCWK_TEMP2,EQ,1,ev_dosa_common_05
+
+	_JUMP			ev_dosa_common_01
+	_END
+
+
+/********************************************************************/
+/*							共通処理								*/
+/********************************************************************/
+ev_dosa_common_01:
+
+	/*ダブルチェック*/
+	_LDVAL			SCWK_PARAM0,1
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_double_check_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_double_check_01
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_dosa_battle_poke_one
+
+	/*二人目の時*/
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,ev_dosa_camera_talk
+
+	/*確認メッセージ*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,IDOL,ev_dosa_01_00
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_01_01
+	//_IFVAL_CALL		OBJCHRWORK10,EQ,CAMERAMAN,ev_dosa_01_02		/*二人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,CLOWN,ev_dosa_01_03
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_01_04
+	_IFVAL_CALL		OBJCHRWORK10,EQ,PIKACHU,ev_dosa_01_05
+	_IFVAL_CALL		OBJCHRWORK10,EQ,MAN2,ev_dosa_01_06
+	_JUMP			ev_dosa_common_03
+	_END
+
+/*二人目の時*/
+ev_dosa_camera_talk:
+	/*確認メッセージ*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,IDOL,ev_dosa_01_00
+	//_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_01_01		/*一人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CAMERAMAN,ev_dosa_01_02
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CLOWN,ev_dosa_01_03
+	_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_01_04_double
+	_IFVAL_CALL		OBJCHRWORK11,EQ,PIKACHU,ev_dosa_01_05
+	_IFVAL_CALL		OBJCHRWORK11,EQ,MAN2,ev_dosa_01_06
+	_JUMP			ev_dosa_common_03
+	_END
+
+ev_dosa_common_03:
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,dosa_yes_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,dosa_no_01
+	_END
+
+
+/********************************************************************/
+/*					ダブルだけど、ポケモンが足りない				*/
+/********************************************************************/
+ev_dosa_battle_poke_one:
+
+	/*二人目の時*/
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,ev_dosa_battle_poke_one_2
+
+	_CALL			ev_dosa_ng_04
+	_JUMP			dosa_common_end
+	_END
+
+ev_dosa_battle_poke_one_2:
+	_CALL			ev_dosa_ng_04_double
+	_JUMP			dosa_common_end
+	_END
+
+/*ダブルチェック*/
+ev_dosa_double_check_01:
+	_IFVAL_JUMP		OBJCHRWORK10,EQ,REPORTER,ev_dosa_double_check_02
+	_RET
+
+ev_dosa_double_check_02:
+	_2VS2_BATTLE_CHECK	SCWK_PARAM0
+	_RET
+
+
+/********************************************************************/
+/*							「はい」								*/
+/********************************************************************/
+dosa_yes_01:
+
+	/*二人目の時*/
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,ev_dosa_camera_talk_02
+
+	/*戦闘前メッセージ+戦闘トレーナーIDセット*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,IDOL,ev_dosa_02_00
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_02_01
+	//_IFVAL_CALL		OBJCHRWORK10,EQ,CAMERAMAN,ev_dosa_02_02		/*二人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,CLOWN,ev_dosa_02_03
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_02_04
+	_IFVAL_CALL		OBJCHRWORK10,EQ,PIKACHU,ev_dosa_02_05
+	_IFVAL_CALL		OBJCHRWORK10,EQ,MAN2,ev_dosa_02_06
+	_JUMP			ev_dosa_common_04
+	_END
+
+ev_dosa_camera_talk_02:
+	/*戦闘前メッセージ+戦闘トレーナーIDセット*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,IDOL,ev_dosa_02_00
+	//_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_02_01		/*一人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CAMERAMAN,ev_dosa_02_02
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CLOWN,ev_dosa_02_03
+	_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_02_04_double
+	_IFVAL_CALL		OBJCHRWORK11,EQ,PIKACHU,ev_dosa_02_05
+	_IFVAL_CALL		OBJCHRWORK11,EQ,MAN2,ev_dosa_02_06
+	_JUMP			ev_dosa_common_04
+	_END
+
+
+/********************************************************************/
+/*							戦闘呼び出し							*/
+/********************************************************************/
+ev_dosa_common_04:
+	_TALK_CLOSE
+	_TRAINER_BTL_SET	SCWK_TEMP1,0
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_dosa_common_battle_lose
+	_JUMP				ev_dosa_common_05
+	_END
+
+ev_dosa_common_05:
+
+	/*二人目の時*/
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,ev_dosa_camera_talk_04
+
+	/*戦闘後メッセージ+勝利フラグセット*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,IDOL,ev_dosa_04_00
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_04_01
+	//_IFVAL_CALL		OBJCHRWORK10,EQ,CAMERAMAN,ev_dosa_04_02		/*二人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,CLOWN,ev_dosa_04_03
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_04_04
+	_IFVAL_CALL		OBJCHRWORK10,EQ,PIKACHU,ev_dosa_04_05
+	_IFVAL_CALL		OBJCHRWORK10,EQ,MAN2,ev_dosa_04_06
+	_JUMP			dosa_common_end
+	_END
+
+/*二人目の時*/
+ev_dosa_camera_talk_04:
+	/*戦闘後メッセージ+勝利フラグセット*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,IDOL,ev_dosa_04_00
+	//_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_04_01		/*一人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CAMERAMAN,ev_dosa_04_02
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CLOWN,ev_dosa_04_03
+	_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_04_04_double
+	_IFVAL_CALL		OBJCHRWORK11,EQ,PIKACHU,ev_dosa_04_05
+	_IFVAL_CALL		OBJCHRWORK11,EQ,MAN2,ev_dosa_04_06
+	_JUMP			dosa_common_end
+	_END
+
+
+/********************************************************************/
+/*							「いいえ」								*/
+/********************************************************************/
+dosa_no_01:
+
+	/*二人目の時*/
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,1,ev_dosa_camera_talk_03
+
+	/*断りメッセージ*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,IDOL,ev_dosa_03_00
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_03_01
+	//_IFVAL_CALL		OBJCHRWORK10,EQ,CAMERAMAN,ev_dosa_03_02		/*二人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK10,EQ,CLOWN,ev_dosa_03_03
+	_IFVAL_CALL		OBJCHRWORK10,EQ,REPORTER,ev_dosa_03_04
+	_IFVAL_CALL		OBJCHRWORK10,EQ,PIKACHU,ev_dosa_03_05
+	_IFVAL_CALL		OBJCHRWORK10,EQ,MAN2,ev_dosa_03_06
+	_JUMP			dosa_common_end
+	_END
+
+/*二人目の時*/
+ev_dosa_camera_talk_03:
+	/*断りメッセージ*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,IDOL,ev_dosa_03_00
+	//_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_03_01		/*一人目しかいない*/
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CAMERAMAN,ev_dosa_03_02
+	_IFVAL_CALL		OBJCHRWORK11,EQ,CLOWN,ev_dosa_03_03
+	_IFVAL_CALL		OBJCHRWORK11,EQ,REPORTER,ev_dosa_03_04_double
+	_IFVAL_CALL		OBJCHRWORK11,EQ,PIKACHU,ev_dosa_03_05
+	_IFVAL_CALL		OBJCHRWORK11,EQ,MAN2,ev_dosa_03_06
+	_JUMP			dosa_common_end
+	_END
+
+/*共通終了*/
+dosa_common_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							共通敗北処理							*/
+/********************************************************************/
+ev_dosa_common_battle_lose:
+	_TRAINER_LOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							メッセージ								*/
+/********************************************************************/
+//確認
+ev_dosa_01_00:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_msg_01_00_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_01_00_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_msg_01_00_03
+	_RET
+
+ev_dosa_msg_01_00_01:
+	_TALKMSG		msg_c03pc0101_idol_01				/*c03*/
+	_RET
+
+ev_dosa_msg_01_00_02:
+	_TALKMSG		msg_c06pc0101_idol_01				/*c06*/
+	_RET
+
+ev_dosa_msg_01_00_03:
+	_TALKMSG		msg_c09pc0101_idol_01				/*c09*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_01:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_01_01_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_01_01_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_01_01_03
+	_RET
+
+ev_dosa_msg_01_01_01:
+	_TALKMSG		msg_c01pc0101_reporter_01			/*c01*/
+	_RET
+
+ev_dosa_msg_01_01_02:
+	_TALKMSG		msg_c05pc0101_reporter_01			/*c05*/
+	_RET
+
+ev_dosa_msg_01_01_03:
+	_TALKMSG		msg_c11pc0101_reporter_01			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_02:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+
+	/*レポーターとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_01_02_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_01_02_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_01_02_03
+
+	/*インタビュアーとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_01_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_01_04_02_double
+	_RET
+
+ev_dosa_msg_01_02_01:
+	_TALKMSG		msg_c01pc0101_cameraman_01			/*c01*/
+	_RET
+
+ev_dosa_msg_01_02_02:
+	_TALKMSG		msg_c05pc0101_cameraman_01			/*c05*/
+	_RET
+
+ev_dosa_msg_01_02_03:
+	_TALKMSG		msg_c11pc0101_cameraman_01			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_03:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_01_03_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_01_03_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_msg_01_03_03
+	_RET
+
+ev_dosa_msg_01_03_01:
+	_TALKMSG		msg_c01pc0101_pierrot_01			/*c05*/
+	_RET
+
+ev_dosa_msg_01_03_02:
+	_TALKMSG		msg_c06pc0101_pierrot_01			/*c06*/
+	_RET
+
+ev_dosa_msg_01_03_03:
+	_TALKMSG		msg_t05pc0101_pierrot_01			/*t05*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_04:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_01_04_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_01_04_02
+	_RET
+
+ev_dosa_msg_01_04_01:
+	_TALKMSG		msg_c04pc0101_interview2_02			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_01_04_02:
+	_TALKMSG		msg_c07pc0101_interview2_02			/*c07ダブル*/
+	_RET
+
+ev_dosa_01_04_double:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_01_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_01_04_02_double
+	_RET
+
+ev_dosa_msg_01_04_01_double:
+	_TALKMSG		msg_c04pc0101_interview1_02			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_01_04_02_double:
+	_TALKMSG		msg_c07pc0101_interview1_02			/*c07ダブル*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_05:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_msg_01_05_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_msg_01_05_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_msg_01_05_03
+	_RET
+
+ev_dosa_msg_01_05_01:
+	_TALKMSG		msg_t03pc0101_pokegirl_01			/*t03*/
+	_RET
+
+ev_dosa_msg_01_05_02:
+	_TALKMSG		msg_t04pc0101_pokegirl_01			/*t04*/
+	_RET
+
+ev_dosa_msg_01_05_03:
+	_TALKMSG		msg_t07pc0101_pokegirl_01			/*t07*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_01_06:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_msg_01_06_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_01_06_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_msg_01_06_03
+	_RET
+
+ev_dosa_msg_01_06_01:
+	_TALKMSG		msg_c02pc0101_guitarist_01			/*c02*/
+	_RET
+
+ev_dosa_msg_01_06_02:
+	_TALKMSG		msg_c06pc0101_guitarist_01			/*c06*/
+	_RET
+
+ev_dosa_msg_01_06_03:
+	_TALKMSG		msg_c08pc0101_guitarist_01			/*c08*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+//戦闘前+対戦トレーナーIDセット
+ev_dosa_02_00:
+	_CALL			ev_dosa_tr1_set
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_msg_02_00_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_02_00_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_msg_02_00_03
+	_RET
+
+ev_dosa_msg_02_00_01:
+	_TALKMSG		msg_c03pc0101_idol_02				/*c03*/
+	_RET
+
+ev_dosa_msg_02_00_02:
+	_TALKMSG		msg_c06pc0101_idol_02				/*c06*/
+	_RET
+
+ev_dosa_msg_02_00_03:
+	_TALKMSG		msg_c09pc0101_idol_02				/*c09*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_01:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_02_01_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_02_01_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_02_01_03
+	_RET
+
+ev_dosa_msg_02_01_01:
+	_CALL			ev_dosa_tr2_set
+	_TALKMSG		msg_c01pc0101_reporter_02			/*c01*/
+	_RET
+
+ev_dosa_msg_02_01_02:
+	_CALL			ev_dosa_tr2_set
+	_TALKMSG		msg_c05pc0101_reporter_02			/*c05*/
+	_RET
+
+ev_dosa_msg_02_01_03:
+	_CALL			ev_dosa_tr2_set
+	_TALKMSG		msg_c11pc0101_reporter_02			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_02:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+
+	/*レポーターとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_02_02_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_02_02_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_02_02_03
+
+	/*インタビュアーとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_02_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_02_04_02_double
+	_RET
+
+ev_dosa_msg_02_02_01:
+	_CALL			ev_dosa_tr3_set
+	_TALKMSG		msg_c01pc0101_cameraman_02			/*c01*/
+	_RET
+
+ev_dosa_msg_02_02_02:
+	_CALL			ev_dosa_tr3_set
+	_TALKMSG		msg_c05pc0101_cameraman_02			/*c05*/
+	_RET
+
+ev_dosa_msg_02_02_03:
+	_CALL			ev_dosa_tr3_set
+	_TALKMSG		msg_c11pc0101_cameraman_02			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_03:
+	_CALL			ev_dosa_tr4_set
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_02_03_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_02_03_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_msg_02_03_03
+	_RET
+
+ev_dosa_msg_02_03_01:
+	_TALKMSG		msg_c01pc0101_pierrot_02			/*c05*/
+	_RET
+
+ev_dosa_msg_02_03_02:
+	_TALKMSG		msg_c06pc0101_pierrot_02			/*c06*/
+	_RET
+
+ev_dosa_msg_02_03_03:
+	_TALKMSG		msg_t05pc0101_pierrot_02			/*t05*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_04:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_02_04_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_02_04_02
+	_RET
+
+ev_dosa_msg_02_04_01:
+	_CALL			ev_dosa_tr5_set
+	_TALKMSG		msg_c04pc0101_interview2_03			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_02_04_02:
+	_CALL			ev_dosa_tr5_set
+	_TALKMSG		msg_c07pc0101_interview2_03			/*c07ダブル*/
+	_RET
+
+ev_dosa_02_04_double:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_02_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_02_04_02_double
+	_RET
+
+ev_dosa_msg_02_04_01_double:
+	_CALL			ev_dosa_tr5_set
+	_TALKMSG		msg_c04pc0101_interview1_03			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_02_04_02_double:
+	_CALL			ev_dosa_tr5_set
+	_TALKMSG		msg_c07pc0101_interview1_03			/*c07ダブル*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_05:
+	_CALL			ev_dosa_tr6_set
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_msg_02_05_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_msg_02_05_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_msg_02_05_03
+	_RET
+
+ev_dosa_msg_02_05_01:
+	_TALKMSG		msg_t03pc0101_pokegirl_02			/*t03*/
+	_RET
+
+ev_dosa_msg_02_05_02:
+	_TALKMSG		msg_t04pc0101_pokegirl_02			/*t04*/
+	_RET
+
+ev_dosa_msg_02_05_03:
+	_TALKMSG		msg_t07pc0101_pokegirl_02			/*t07*/
+	_RET
+
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_02_06:
+	_CALL			ev_dosa_tr7_set
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_msg_02_06_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_02_06_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_msg_02_06_03
+	_RET
+
+ev_dosa_msg_02_06_01:
+	_TALKMSG		msg_c02pc0101_guitarist_02			/*c02*/
+	_RET
+
+ev_dosa_msg_02_06_02:
+	_TALKMSG		msg_c06pc0101_guitarist_02			/*c06*/
+	_RET
+
+ev_dosa_msg_02_06_03:
+	_TALKMSG		msg_c08pc0101_guitarist_02			/*c08*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+//断り
+ev_dosa_03_00:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_msg_03_00_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_03_00_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_msg_03_00_03
+	_RET
+
+ev_dosa_msg_03_00_01:
+	_TALKMSG		msg_c03pc0101_idol_03				/*c03*/
+	_RET
+
+ev_dosa_msg_03_00_02:
+	_TALKMSG		msg_c06pc0101_idol_03				/*c06*/
+	_RET
+
+ev_dosa_msg_03_00_03:
+	_TALKMSG		msg_c09pc0101_idol_03				/*c09*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_01:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_03_01_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_03_01_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_03_01_03
+	_RET
+
+ev_dosa_msg_03_01_01:
+	_TALKMSG		msg_c01pc0101_reporter_03			/*c01*/
+	_RET
+
+ev_dosa_msg_03_01_02:
+	_TALKMSG		msg_c05pc0101_reporter_03			/*c05*/
+	_RET
+
+ev_dosa_msg_03_01_03:
+	_TALKMSG		msg_c11pc0101_reporter_03			/*c11*/
+	_RET
+
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_02:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+
+	/*レポーターとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_03_02_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_03_02_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_03_02_03
+
+	/*インタビューとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_03_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_03_04_02_double
+	_RET
+
+ev_dosa_msg_03_02_01:
+	_TALKMSG		msg_c01pc0101_cameraman_03			/*c01*/
+	_RET
+
+ev_dosa_msg_03_02_02:
+	_TALKMSG		msg_c05pc0101_cameraman_03			/*c05*/
+	_RET
+
+ev_dosa_msg_03_02_03:
+	_TALKMSG		msg_c11pc0101_cameraman_03			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_03:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_03_03_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_03_03_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_msg_03_03_03
+	_RET
+
+ev_dosa_msg_03_03_01:
+	_TALKMSG		msg_c01pc0101_pierrot_03			/*c01*/
+	_RET
+
+ev_dosa_msg_03_03_02:
+	_TALKMSG		msg_c06pc0101_pierrot_03			/*c06*/
+	_RET
+
+ev_dosa_msg_03_03_03:
+	_TALKMSG		msg_t05pc0101_pierrot_03			/*t05*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_04:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_03_04_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_03_04_02
+	_RET
+
+ev_dosa_msg_03_04_01:
+	_TALKMSG		msg_c04pc0101_interview2_04			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_03_04_02:
+	_TALKMSG		msg_c07pc0101_interview2_04			/*c07ダブル*/
+	_RET
+
+ev_dosa_03_04_double:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_03_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_03_04_02_double
+	_RET
+
+ev_dosa_msg_03_04_01_double:
+	_TALKMSG		msg_c04pc0101_interview1_04			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_03_04_02_double:
+	_TALKMSG		msg_c07pc0101_interview1_04			/*c07ダブル*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_05:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_msg_03_05_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_msg_03_05_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_msg_03_05_03
+	_RET
+
+ev_dosa_msg_03_05_01:
+	_TALKMSG		msg_t03pc0101_pokegirl_03			/*t03*/
+	_RET
+
+ev_dosa_msg_03_05_02:
+	_TALKMSG		msg_t04pc0101_pokegirl_03			/*t04*/
+	_RET
+
+ev_dosa_msg_03_05_03:
+	_TALKMSG		msg_t07pc0101_pokegirl_03			/*t07*/
+	_RET
+
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_03_06:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_msg_03_06_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_03_06_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_msg_03_06_03
+	_RET
+
+ev_dosa_msg_03_06_01:
+	_TALKMSG		msg_c02pc0101_guitarist_03			/*c02*/
+	_RET
+
+ev_dosa_msg_03_06_02:
+	_TALKMSG		msg_c06pc0101_guitarist_03			/*c06*/
+	_RET
+
+ev_dosa_msg_03_06_03:
+	_TALKMSG		msg_c08pc0101_guitarist_03			/*c08*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+//戦闘後
+ev_dosa_04_00:
+	_FLAG_SET		TMFLG_DOSA_TR1_WIN
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C03PC0101,ev_dosa_msg_04_00_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_04_00_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C09PC0101,ev_dosa_msg_04_00_03
+	_RET
+
+ev_dosa_msg_04_00_01:
+	_TALKMSG		msg_c03pc0101_idol_04				/*c03*/
+	_RET
+
+ev_dosa_msg_04_00_02:
+	_TALKMSG		msg_c06pc0101_idol_04				/*c06*/
+	_RET
+
+ev_dosa_msg_04_00_03:
+	_TALKMSG		msg_c09pc0101_idol_04				/*c09*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_01:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_04_01_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_04_01_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_04_01_03
+	_RET
+
+ev_dosa_msg_04_01_01:
+	_FLAG_SET		TMFLG_DOSA_TR2_WIN
+	_TALKMSG		msg_c01pc0101_reporter_04			/*c01*/
+	_RET
+
+ev_dosa_msg_04_01_02:
+	_FLAG_SET		TMFLG_DOSA_TR2_WIN
+	_TALKMSG		msg_c05pc0101_reporter_04			/*c05*/
+	_RET
+
+ev_dosa_msg_04_01_03:
+	_FLAG_SET		TMFLG_DOSA_TR2_WIN
+	_TALKMSG		msg_c11pc0101_reporter_04			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_02:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+
+	/*レポーターとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_msg_04_02_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_04_02_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_msg_04_02_03
+
+	/*インタビュアーとカメラマン*/
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_04_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_04_04_02_double
+	_RET
+
+ev_dosa_msg_04_02_01:
+	_FLAG_SET		TMFLG_DOSA_TR3_WIN
+	_TALKMSG		msg_c01pc0101_cameraman_04			/*c01*/
+	_RET
+
+ev_dosa_msg_04_02_02:
+	_FLAG_SET		TMFLG_DOSA_TR3_WIN
+	_TALKMSG		msg_c05pc0101_cameraman_04			/*c05*/
+	_RET
+
+ev_dosa_msg_04_02_03:
+	_FLAG_SET		TMFLG_DOSA_TR3_WIN
+	_TALKMSG		msg_c11pc0101_cameraman_04			/*c11*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_03:
+	_FLAG_SET		TMFLG_DOSA_TR4_WIN
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_msg_04_03_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_04_03_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T05PC0101,ev_dosa_msg_04_03_03
+	_RET
+
+ev_dosa_msg_04_03_01:
+	_TALKMSG		msg_c01pc0101_pierrot_04			/*c05*/
+	_RET
+
+ev_dosa_msg_04_03_02:
+	_TALKMSG		msg_c06pc0101_pierrot_04			/*c06*/
+	_RET
+
+ev_dosa_msg_04_03_03:
+	_TALKMSG		msg_t05pc0101_pierrot_04			/*t05*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_04:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_04_04_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_04_04_02
+	_RET
+
+ev_dosa_msg_04_04_01:
+	_FLAG_SET		TMFLG_DOSA_TR5_WIN
+	_TALKMSG		msg_c04pc0101_interview2_05			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_04_04_02:
+	_FLAG_SET		TMFLG_DOSA_TR5_WIN
+	_TALKMSG		msg_c07pc0101_interview2_05			/*c07ダブル*/
+	_RET
+
+ev_dosa_04_04_double:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_04_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_04_04_02_double
+	_RET
+
+ev_dosa_msg_04_04_01_double:
+	_FLAG_SET		TMFLG_DOSA_TR5_WIN
+	_TALKMSG		msg_c04pc0101_interview1_05			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_04_04_02_double:
+	_FLAG_SET		TMFLG_DOSA_TR5_WIN
+	_TALKMSG		msg_c07pc0101_interview1_05			/*c07ダブル*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_05:
+	_FLAG_SET		TMFLG_DOSA_TR6_WIN
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T03PC0101,ev_dosa_msg_04_05_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T04PC0101,ev_dosa_msg_04_05_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_T07PC0101,ev_dosa_msg_04_05_03
+	_RET
+
+ev_dosa_msg_04_05_01:
+	_TALKMSG		msg_t03pc0101_pokegirl_04			/*t03*/
+	_RET
+
+ev_dosa_msg_04_05_02:
+	_TALKMSG		msg_t04pc0101_pokegirl_04			/*t04*/
+	_RET
+
+ev_dosa_msg_04_05_03:
+	_TALKMSG		msg_t07pc0101_pokegirl_04			/*t07*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_04_06:
+	_FLAG_SET		TMFLG_DOSA_TR7_WIN
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C02PC0101,ev_dosa_msg_04_06_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C06PC0101,ev_dosa_msg_04_06_02
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C08PC0101,ev_dosa_msg_04_06_03
+	_RET
+
+ev_dosa_msg_04_06_01:
+	_TALKMSG		msg_c02pc0101_guitarist_04			/*c02*/
+	_RET
+
+ev_dosa_msg_04_06_02:
+	_TALKMSG		msg_c06pc0101_guitarist_04			/*c06*/
+	_RET
+
+ev_dosa_msg_04_06_03:
+	_TALKMSG		msg_c08pc0101_guitarist_04			/*c08*/
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+/*インタビューのダブル出来ないよメッセージ*/
+ev_dosa_ng_04:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_ng_04_01
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_ng_04_02
+	_RET
+
+ev_dosa_msg_ng_04_01:
+	_TALKMSG		msg_c04pc0101_interview2_01			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_ng_04_02:
+	_TALKMSG		msg_c07pc0101_interview2_01			/*c07ダブル*/
+	_RET
+
+ev_dosa_ng_04_double:
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_msg_ng_04_01_double
+	_IFVAL_CALL		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_msg_ng_04_02_double
+	_RET
+
+ev_dosa_msg_ng_04_01_double:
+	_TALKMSG		msg_c04pc0101_interview1_01			/*c04ダブル*/
+	_RET
+
+ev_dosa_msg_ng_04_02_double:
+	_TALKMSG		msg_c07pc0101_interview1_01			/*c07ダブル*/
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr1_set:
+	_LDVAL			SCWK_TEMP1,IDOL_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr1_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr1_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr1_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr1_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr1_set_05
+	_RET
+
+ev_dosa_tr1_set_01:
+	_LDVAL			SCWK_TEMP1,IDOL_11
+	_RET
+
+ev_dosa_tr1_set_02:
+	_LDVAL			SCWK_TEMP1,IDOL_12
+	_RET
+
+ev_dosa_tr1_set_03:
+	_LDVAL			SCWK_TEMP1,IDOL_13
+	_RET
+
+ev_dosa_tr1_set_04:
+	_LDVAL			SCWK_TEMP1,IDOL_14
+	_RET
+
+ev_dosa_tr1_set_05:
+	_LDVAL			SCWK_TEMP1,IDOL_15
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr2_set:
+	_LDVAL			SCWK_TEMP1,REPORTER_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr2_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr2_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr2_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr2_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr2_set_05
+	_RET
+
+ev_dosa_tr2_set_01:
+	_LDVAL			SCWK_TEMP1,REPORTER_07
+	_RET
+
+ev_dosa_tr2_set_02:
+	_LDVAL			SCWK_TEMP1,REPORTER_08
+	_RET
+
+ev_dosa_tr2_set_03:
+	_LDVAL			SCWK_TEMP1,REPORTER_09
+	_RET
+
+ev_dosa_tr2_set_04:
+	_LDVAL			SCWK_TEMP1,REPORTER_10
+	_RET
+
+ev_dosa_tr2_set_05:
+	_LDVAL			SCWK_TEMP1,REPORTER_11
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr3_set:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr3_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr3_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr3_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr3_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr3_set_05
+	_RET
+
+ev_dosa_tr3_set_01:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_09
+	_RET
+
+ev_dosa_tr3_set_02:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_10
+	_RET
+
+ev_dosa_tr3_set_03:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_11
+	_RET
+
+ev_dosa_tr3_set_04:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_12
+	_RET
+
+ev_dosa_tr3_set_05:
+	_LDVAL			SCWK_TEMP1,CAMERAMAN_13
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr4_set:
+	_LDVAL			SCWK_TEMP1,PIERROT_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr4_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr4_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr4_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr4_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr4_set_05
+	_RET
+
+ev_dosa_tr4_set_01:
+	_LDVAL			SCWK_TEMP1,PIERROT_12
+	_RET
+
+ev_dosa_tr4_set_02:
+	_LDVAL			SCWK_TEMP1,PIERROT_13
+	_RET
+
+ev_dosa_tr4_set_03:
+	_LDVAL			SCWK_TEMP1,PIERROT_14
+	_RET
+
+ev_dosa_tr4_set_04:
+	_LDVAL			SCWK_TEMP1,PIERROT_15
+	_RET
+
+ev_dosa_tr4_set_05:
+	_LDVAL			SCWK_TEMP1,PIERROT_16
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr5_set:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr5_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr5_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr5_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr5_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr5_set_05
+	_RET
+
+ev_dosa_tr5_set_01:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_06
+	_RET
+
+ev_dosa_tr5_set_02:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_07
+	_RET
+
+ev_dosa_tr5_set_03:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_08
+	_RET
+
+ev_dosa_tr5_set_04:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_09
+	_RET
+
+ev_dosa_tr5_set_05:
+	_LDVAL			SCWK_TEMP1,INTERVIEW_10
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr6_set:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr6_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr6_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr6_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr6_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr6_set_05
+	_RET
+
+ev_dosa_tr6_set_01:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_12
+	_RET
+
+ev_dosa_tr6_set_02:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_13
+	_RET
+
+ev_dosa_tr6_set_03:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_14
+	_RET
+
+ev_dosa_tr6_set_04:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_15
+	_RET
+
+ev_dosa_tr6_set_05:
+	_LDVAL			SCWK_TEMP1,POKEGIRL_16
+	_RET
+
+
+/********************************************************************/
+/*						対戦トレーナーIDセット						*/
+/********************************************************************/
+ev_dosa_tr7_set:
+	_LDVAL			SCWK_TEMP1,GUITARIST_07
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV1,ev_dosa_tr7_set_01
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV2,ev_dosa_tr7_set_02
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV3,ev_dosa_tr7_set_03
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV4,ev_dosa_tr7_set_04
+	_IF_FLAGON_CALL	SYS_FLAG_BS_LV5,ev_dosa_tr7_set_05
+	_RET
+
+ev_dosa_tr7_set_01:
+	_LDVAL			SCWK_TEMP1,GUITARIST_20
+	_RET
+
+ev_dosa_tr7_set_02:
+	_LDVAL			SCWK_TEMP1,GUITARIST_21
+	_RET
+
+ev_dosa_tr7_set_03:
+	_LDVAL			SCWK_TEMP1,GUITARIST_22
+	_RET
+
+ev_dosa_tr7_set_04:
+	_LDVAL			SCWK_TEMP1,GUITARIST_23
+	_RET
+
+ev_dosa_tr7_set_05:
+	_LDVAL			SCWK_TEMP1,GUITARIST_24
+	_RET
+
+
+
+/********************************************************************/
+/*					すでに勝利しているかチェック					*/
+/********************************************************************/
+ev_dosa_11_00:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR1_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_01:
+	/*レポートとインタビュアーが同じキャラコードなのでゾーンチェックする*/
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C01PC0101,ev_dosa_11_01_zone
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C05PC0101,ev_dosa_11_01_zone
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C11PC0101,ev_dosa_11_01_zone
+	_RET
+
+ev_dosa_11_01_zone:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR2_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_02:
+	/*インタビュアーとカメラマンの「カメラマン」なら参照フラグ変更*/
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_11_04
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_11_04
+
+	/*レポートとインタビュアーはこっち*/
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR3_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_03:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR4_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_04:
+	/*レポートとインタビュアーが同じキャラコードなのでゾーンチェックする*/
+	_GET_NOW_ZONE_ID	LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C04PC0101,ev_dosa_11_04_zone
+	_IFVAL_JUMP		LOCALWORK1,EQ,ZONE_ID_C07PC0101,ev_dosa_11_04_zone
+	_RET
+
+ev_dosa_11_04_zone:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR5_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_05:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR6_WIN,ev_dosa_common_win_set
+	_RET
+
+//////////////////////////////////////////////////////////////////////
+ev_dosa_11_06:
+	_IF_FLAGON_JUMP	TMFLG_DOSA_TR7_WIN,ev_dosa_common_win_set
+	_RET
+
+/*すでに勝利している*/
+ev_dosa_common_win_set:
+	_LDVAL			SCWK_TEMP2,1
+	_RET
+
+

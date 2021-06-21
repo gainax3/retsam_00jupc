@@ -1,0 +1,342 @@
+//====================================================================
+//								d34r0109
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0109.h"
+	//.include	"../eventdata/zone_d34r0109evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0109_flag_change
+_EVENT_DATA		ev_d34r0109_gira_warp
+_EVENT_DATA		ev_d34r0109_sirona00
+_EVENT_DATA		ev_d34r0109_siroaka00
+_EVENT_DATA		ev_d34r0109_akagi_talk00
+_EVENT_DATA		ev_d34r0109_sirona_talk00
+_EVENT_DATA_END
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0109_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+/********************************************************************/
+/*	八層ギラティナへ移動											*/
+/********************************************************************/
+ev_d34r0109_gira_warp:
+	_MAP_CHANGE ZONE_ID_D34R0110, 0, 15, 25, DIR_UP
+	_END
+
+/********************************************************************/
+/*	八層到達時のシロナアニメ										*/
+/********************************************************************/
+ev_d34r0109_sirona00:
+	_EVENT_START
+	
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona00
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0109_champion_01
+	_TALK_CLOSE
+	
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona01
+	_OBJ_ANIME_WAIT
+	
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_08_00
+	_END
+	
+/********************************************************************/
+/*	シロナ、アカギ会話												*/
+/********************************************************************/
+ev_d34r0109_siroaka00:
+	_EVENT_START
+	
+	_TALK_KEYWAIT	msg_d34r0109_champion_02
+	_TALK_CLOSE
+	
+	_OBJ_ANIME		TW_OBJID_0109_AKAGI,anm_d34r0109_akagi00
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona02
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0109_champion_03
+	_TALK_KEYWAIT	msg_d34r0109_gingaboss_01
+	_NEXT_ANM_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*	アカギ話しかけ＆戦闘＆戦闘後									*/
+/********************************************************************/
+ev_d34r0109_akagi_talk00:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT	msg_d34r0109_gingaboss_02
+	_TALK_CLOSE
+	
+	/*アカギ戦闘*/
+	_TRAINER_BTL_SET	GINGALBOSS_02, 0
+	_TRAINER_LOSE_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d34r0109_akagi_lose
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_08_02
+	
+	/*戦闘後*/
+	_TALK_KEYWAIT	msg_d34r0109_gingaboss_03
+	_TALK_CLOSE
+	
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_JUMP		SCWK_TEMP0,EQ,86,ev_d34r0109_akagi_talk_after_right
+	
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki01
+	_JUMP			ev_d34r0109_akagi_talk01
+
+ev_d34r0109_akagi_talk_after_right:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki04
+	
+ev_d34r0109_akagi_talk01:
+	_OBJ_ANIME		TW_OBJID_0109_AKAGI,anm_d34r0109_akagi01
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona05
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL		TW_OBJID_0109_AKAGI
+	
+	/*アカギ退場後のシロナメッセージ開始*/
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona03
+	_OBJ_ANIME_WAIT
+	
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,74,ev_d34r0109_akagi_talk01_anm_r
+	
+	/*会話前のアニメセット 下*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki05d
+	_JUMP			ev_d34r0109_akagi_talk01_msg
+	
+	/*会話前のアニメセット 右*/
+ev_d34r0109_akagi_talk01_anm_r:
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona06
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki05r
+	
+	/*アカギ退場後のシロナメッセージ*/
+ev_d34r0109_akagi_talk01_msg:
+	_TALK_KEYWAIT	msg_d34r0109_champion_04
+	_OBJ_ANIME_WAIT
+	
+	/*回復前の座標チェック*/
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,74,ev_d34r0109_akagi_recover_b_r
+	
+	/*回復前の向き別アニメ　下*/
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona07
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki06d
+	_JUMP			ev_d34r0109_akagi_recover
+	
+	/*回復前の向き別アニメ　右*/
+ev_d34r0109_akagi_recover_b_r:
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona08
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki06r
+	
+	/*回復*/
+ev_d34r0109_akagi_recover:
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d34r0109_champion_08
+	_ME_PLAY		SEQ_ASA
+	_ME_WAIT
+	_PC_KAIFUKU
+	_OBJ_ANIME_WAIT
+	
+	/*連れ歩き開始*/
+	_TALK_KEYWAIT	msg_d34r0109_champion_09
+	_TALK_CLOSE
+	_OBJ_ANIME		TW_OBJID_0109_SIRONA,anm_d34r0109_sirona04
+	
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,74,ev_d34r0109_akagi_talk02
+	
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki02
+	_JUMP			ev_d34r0109_akagi_talk03
+	
+ev_d34r0109_akagi_talk02:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0109_jiki03
+	
+ev_d34r0109_akagi_talk03:
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0109_champion_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_END
+	
+/*アカギに敗れる*/
+ev_d34r0109_akagi_lose:
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_08_01
+	_TRAINER_LOSE
+	_EVENT_END
+	_END
+
+/********************************************************************/
+/*	シロナ話しかけ													*/
+/********************************************************************/
+/* アカギ対決前＆後共通 */
+ev_d34r0109_sirona_talk00:	
+	_TALK_OBJ_START_TURN_NOT
+	_IFVAL_JUMP	SYS_WORK_TW_EVSEQ,GE,TWEVSEQ_08_02,ev_d34r0109_sirona_talk01
+	
+	/*そんな・・・*/
+	_TALK_KEYWAIT	msg_d34r0109_champion_07
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/*わかってる*/
+ev_d34r0109_sirona_talk01:
+	_TALK_KEYWAIT	msg_d34r0109_champion_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//		自機アニメ
+//--------------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0109_jiki00		//八層到着後の自機向き変更
+	_ANIME_DATA AC_WAIT_16F,2
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_jiki01		//アカギ戦闘後の自機移動
+	_ANIME_DATA AC_WALK_R_8F,1
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki02		//自機連れ歩き
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki03		//自機連れ歩き 場所違い1
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki04 //アカギ戦闘後の自機アニメ 右位置
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki05d //戦闘後シロナ会話中の振り向き
+	_ANIME_DATA AC_WAIT_32F,2
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_jiki05r //戦闘後シロナ会話中の振り向き
+	_ANIME_DATA AC_WAIT_32F,2
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki06d //戦闘後シロナ回復中のその場歩き
+	_ANIME_DATA AC_WAIT_4F,1
+	_ANIME_DATA AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_jiki06r //戦闘後シロナ回復中のその場歩き
+	_ANIME_DATA AC_WAIT_4F,1
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA ACMD_END,0
+
+//--------------------------------------------------------------------
+//		シロナアニメ
+//--------------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0109_sirona00	//八層到着後の向き変更
+	_ANIME_DATA AC_WAIT_16F,2
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA AC_WAIT_16F,2
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_sirona01	//八層到着後の初回移動
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA AC_JUMP_U_3G_24F,1
+	_ANIME_DATA AC_WALK_U_8F,7
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_sirona02	//アカギ登場時の左移動
+	_ANIME_DATA AC_WAIT_8F,3
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_sirona03	//アカギ戦闘後の一歩移動
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_sirona04	//自機連れ歩き
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_sirona05	//戦闘後のアカギ位置振り向き
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_sirona06 //戦闘後右位置でのシロナの振り向き
+	_ANIME_DATA AC_WAIT_32F,2
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_sirona07 //戦闘後回復時のシロナその場歩き　下向き
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0109_sirona08 //戦闘後回復時のシロナその場歩き　右向き
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+//--------------------------------------------------------------------
+//		アカギアニメ
+//--------------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0109_akagi00	//アカギ登場アニメ
+	_ANIME_DATA	AC_WALK_D_8F,4
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL		anm_d34r0109_akagi01	//アカギ退場アニメ
+	_ANIME_DATA	AC_WALK_D_8F,7
+	_ANIME_DATA AC_JUMP_D_3G_24F,1
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA ACMD_END,0

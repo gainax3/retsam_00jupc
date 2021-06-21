@@ -1,0 +1,28 @@
+
+static const u16 code_num[] = { n0_,n1_,n2_,n3_,n4_,n5_,n6_,n7_,n8_,n9_,EOM_ };
+static const u16 code_etc[] = { period_,atmark_,under_,bou_,anpersand_,EOM_ };
+static const u16 code_A_M[] = { A__,B__,C__,D__,E__,F__,G__,H__,I__,J__,K__,L__,M__,EOM_ };
+static const u16 code_N_Z[] = { N__,O__,P__,Q__,R__,S__,T__,U__,V__,W__,X__,Y__,Z__,EOM_ };
+static const u16 code_a_m[] = { a__,b__,c__,d__,e__,f__,g__,h__,i__,j__,k__,l__,m__,EOM_ };
+static const u16 code_n_z[] = { n__,o__,p__,q__,r__,s__,t__,u__,v__,w__,x__,y__,z__,EOM_ };
+static const u16 code_btn[] = { EOM_,EOM_,EOM_ };
+
+#define CODE_num_MAX	( NELEMS( code_num ) - 1)
+#define CODE_etc_MAX	( NELEMS( code_etc ) - 1 )
+#define CODE_A_M_MAX	( NELEMS( code_A_M ) - 1 )
+#define CODE_N_Z_MAX	( NELEMS( code_N_Z ) - 1 )
+#define CODE_a_m_MAX	( NELEMS( code_a_m ) - 1 )
+#define CODE_n_z_MAX	( NELEMS( code_n_z ) - 1 )
+#define CODE_btn_MAX	( NELEMS( code_btn ) - 1 )
+
+static const u16* code_tbl[] = {
+	code_num,
+	code_etc,
+	code_A_M,
+	code_N_Z,
+	code_a_m,
+	code_n_z,
+	code_btn,
+};
+
+#define CODE_TBL_Y_MAX	( 6 )

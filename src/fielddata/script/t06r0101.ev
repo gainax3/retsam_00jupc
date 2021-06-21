@@ -1,0 +1,1541 @@
+//====================================================================
+//								t06r0101
+//
+//	FH_01 - FH_04	会話フラグとして使用(配置する人数分)
+//	FH_05 - FH_08	対戦したかフラグとして使用(配置する人数分)
+//
+//	LOCALWORK1		判別用のキャラコード
+//	LOCALWORK5		トレーナーデータ
+//	SYS_WORK_T06R0101_TALK		パターン0か1か
+//
+//	OBJCODE 名前		ゾーン		msg
+//	LEADER1	ヒョウタ	c03			1		OK
+//	LEADER2	ナタネ		c04			2		OK
+//	LEADER3	マキシ		c06			5
+//	LEADER4	スモモ		c07			4
+//	LEADER5 メリッサ	c05			3
+//	LEADER6	スズナ		c09			7
+//	LEADER7	トウガン	c02			6
+//	LEADER8	デンジ		c08			8		OK
+//
+//	SEVEN1	モミ
+//	SEVEN2	ゲン
+//	SEVEN3	マイ
+//	SEVEN4	バク
+//	SEVEN5	ミル
+//
+//
+//	トレーナーID
+//	ヒョウタ	leader1
+//	ナタネ　	leader2
+//	メリッサ	leader5
+//	スモモ　	leader4
+//	マキシ　	leader3
+//	トウガン	leader7
+//	スズナ　	leader6
+//	デンジ　	leader8
+//
+//	モミ		btfive1
+//	ミル		btfive5
+//	ゲン		btfive2
+//	マイ		btfive3
+//	バク		btfive4
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t06r0101.h"
+	.include	"../eventdata/zone_t06r0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t06r0101_oldman1
+_EVENT_DATA		ev_t06r0101_seven2
+_EVENT_DATA		ev_t06r0101_oldman1_auto
+_EVENT_DATA		ev_t06r0101_flag_change
+_EVENT_DATA		ev_t06r0101_tr1
+_EVENT_DATA		ev_t06r0101_tr2
+_EVENT_DATA		ev_t06r0101_tr3
+_EVENT_DATA		ev_t06r0101_tr4
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_t06r0101_flag_change:
+	_FLAG_SET			FE_T06R0101_IN	/*施設に入った*/
+	_IF_FLAGOFF_JUMP	TMFLG_T06R0101_REMATCH,ev_t06r0101_flag_reset
+
+	/*見た目ワークに追加*/
+	_CALL			ev_t06r0101_sys_work_set
+	_END
+
+/*1日経過していたら*/
+ev_t06r0101_flag_reset:
+	_FLAG_SET		TMFLG_T06R0101_REMATCH
+
+	/*キャラコードセット*/
+	_GET_CHAR_CODE_T06R0101	SYS_WORK_T06R0101_OBJ1,SYS_WORK_T06R0101_OBJ2,SYS_WORK_T06R0101_OBJ3,SYS_WORK_T06R0101_OBJ4
+
+	/*見た目ワークに追加*/
+	_CALL			ev_t06r0101_sys_work_set
+
+	_FLAG_RESET		FV_T06R0101_TR1
+	_FLAG_RESET		FV_T06R0101_TR2
+	_FLAG_RESET		FV_T06R0101_TR3
+	_FLAG_RESET		FV_T06R0101_TR4
+
+	/*もれたものは表示しない*/
+	//_FLAG_SET		FV_T06R0101_TR1
+	_IFVAL_CALL		OBJCHRWORK2,EQ,0xfff,ev_t06r0101_tr2_vanish_on
+	_IFVAL_CALL		OBJCHRWORK3,EQ,0xfff,ev_t06r0101_tr3_vanish_on
+	_IFVAL_CALL		OBJCHRWORK4,EQ,0xfff,ev_t06r0101_tr4_vanish_on
+
+	/*5人衆イベントチェック*/
+	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN1,ev_t06r0101_tr4_seven1_check
+	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN2,ev_t06r0101_tr4_seven2_check
+	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN3,ev_t06r0101_tr4_seven3_check
+	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN4,ev_t06r0101_tr4_seven4_check
+	_IFVAL_CALL		OBJCHRWORK4,EQ,SEVEN5,ev_t06r0101_tr4_seven5_check
+
+	/*クリア*/
+	_FLAG_RESET		FH_01
+	_FLAG_RESET		FH_02
+	_FLAG_RESET		FH_03
+	_FLAG_RESET		FH_04
+	_FLAG_RESET		FH_05
+	_FLAG_RESET		FH_06
+	_FLAG_RESET		FH_07
+	_FLAG_RESET		FH_08
+
+	/*会話のパターンが2通りあるのでどちらか決定する*/
+	_GET_RND		SYS_WORK_T06R0101_TALK,2
+	_END
+
+ev_t06r0101_tr2_vanish_on:
+	_FLAG_SET		FV_T06R0101_TR2
+	_RET
+
+ev_t06r0101_tr3_vanish_on:
+	_FLAG_SET		FV_T06R0101_TR3
+	_RET
+
+ev_t06r0101_tr4_vanish_on:
+	_FLAG_SET		FV_T06R0101_TR4
+	_RET
+
+/*seven1:モミ　チェック*/
+ev_t06r0101_tr4_seven1_check:
+	_IF_FLAGOFF_CALL	FE_SEVEN1_CLEAR,ev_t06r0101_tr4_vanish_on
+	_RET
+	
+/*seven2:ゲン　チェック*/
+ev_t06r0101_tr4_seven2_check:
+	//_IF_FLAGOFF_CALL	FE_SEVEN2_CLEAR,ev_t06r0101_tr4_vanish_on
+	_IF_FLAGOFF_CALL	FE_SEVEN3_CLEAR,ev_t06r0101_tr4_vanish_on
+	_RET
+
+/*seven3:マイ　チェック*/
+ev_t06r0101_tr4_seven3_check:
+	//_IF_FLAGOFF_CALL	FE_SEVEN3_CLEAR,ev_t06r0101_tr4_vanish_on
+	_IF_FLAGOFF_CALL	FE_SEVEN4_CLEAR,ev_t06r0101_tr4_vanish_on
+	_RET
+	
+/*seven4:バク　チェック*/
+ev_t06r0101_tr4_seven4_check:
+	//_IF_FLAGOFF_CALL	FE_SEVEN4_CLEAR,ev_t06r0101_tr4_vanish_on
+	_IF_FLAGOFF_CALL	FE_SEVEN5_CLEAR,ev_t06r0101_tr4_vanish_on
+	_RET
+	
+/*seven5:ミル　チェック*/
+ev_t06r0101_tr4_seven5_check:
+	//_IF_FLAGOFF_CALL	FE_SEVEN5_CLEAR,ev_t06r0101_tr4_vanish_on
+	_IF_FLAGOFF_CALL	FE_SEVEN2_CLEAR,ev_t06r0101_tr4_vanish_on
+	_RET
+
+/*見た目ワークに追加*/
+ev_t06r0101_sys_work_set:
+	_LDWK			OBJCHRWORK1,SYS_WORK_T06R0101_OBJ1
+	_LDWK			OBJCHRWORK2,SYS_WORK_T06R0101_OBJ2
+	_LDWK			OBJCHRWORK3,SYS_WORK_T06R0101_OBJ3
+	_LDWK			OBJCHRWORK4,SYS_WORK_T06R0101_OBJ4
+	_RET
+
+
+/********************************************************************/
+/*							和風老人(会話)							*/
+/********************************************************************/
+ev_t06r0101_oldman1:
+	_TALK_OBJ_START
+
+	/*ヒードランと遭遇後*/
+	_IF_FLAGON_JUMP	FE_HIIDORAN_SEE,ev_t06r0101_oldman1_03
+
+	_TALKMSG		msg_t06r0101_oldman1_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*ヒードランと遭遇後*/
+ev_t06r0101_oldman1_03:
+	_TALKMSG		msg_t06r0101_oldman1_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			５人衆(火山置石入手後～話しかけるまで存在)				*/
+/********************************************************************/
+ev_t06r0101_seven2:
+	_TALK_OBJ_START
+
+	//この話を聞くとヒードラン出現
+	_FLAG_SET		FE_D16R0103_LEGEND_UNSEAL
+	
+	_TALK_KEYWAIT	msg_t06r0101_baku_01
+	_TALK_CLOSE
+
+	/*外に出て行く*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,7,ev_t06r0101_seven2_out01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,8,ev_t06r0101_seven2_out02
+	_IFVAL_CALL		SCWK_TEMP1,EQ,9,ev_t06r0101_seven2_out03
+
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		T06R0101_SEVEN2
+
+	//バクがバトルタワーに出現するようになる
+	_FLAG_SET		FE_SEVEN5_CLEAR
+
+	//この場所からバクはいなくなる
+	_FLAG_SET		FV_T06R0101_SEVEN2
+	_TALK_OBJ_END
+	_END
+
+ev_t06r0101_seven2_out01:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t06r0101_player_01
+	_OBJ_ANIME		T06R0101_SEVEN2,anm_t06r0101_seven2_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t06r0101_seven2_out02:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t06r0101_player_02
+	_OBJ_ANIME		T06R0101_SEVEN2,anm_t06r0101_seven2_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t06r0101_seven2_out03:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t06r0101_player_03
+	_OBJ_ANIME		T06R0101_SEVEN2,anm_t06r0101_seven2_03
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	５人衆見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t06r0101_player_01
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t06r0101_player_02
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t06r0101_player_03
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//５人衆	出て行く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t06r0101_seven2_01
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t06r0101_seven2_02
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t06r0101_seven2_03
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							和風老人(強制)							*/
+/********************************************************************/
+ev_t06r0101_oldman1_auto:
+	_EVENT_START
+
+	_LDVAL			WK_SCENE_T06R0101,1
+
+	/*気づく*/
+	_OBJ_ANIME		T06R0101_OLDMAN1_01,anm_t06r0101_oldman1_100
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t06r0101_player_100
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_t06r0101_oldman1_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//和風老人	気づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t06r0101_oldman1_100
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	５人衆見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t06r0101_player_100
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							1人目(FH_01)							*/
+/********************************************************************/
+ev_t06r0101_tr1:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+
+	/*判別用にワークにキャラセット*/
+	_LDWK			LOCALWORK1,OBJCHRWORK1
+
+	/*すでに勝利していたら*/
+	_IF_FLAGON_JUMP		FH_05,ev_t06r0101_tr_common_02
+
+	/*すでに勝利していたら*/
+	_CALL			ev_t06r0101_trainer_win_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
+
+	/*「いいえ」選択後か*/
+	_IF_FLAGOFF_CALL	FH_01,ev_t06r0101_tr1_02
+	_IF_FLAGON_CALL		FH_01,ev_t06r0101_tr1_03
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t06r0101_tr1_01
+
+	_CALL			ev_t06r0101_tr_common_01
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_t06r0101_common_battle_lose
+
+	_FLAG_SET		FH_05
+	_CALL			ev_t06r0101_trainer_win
+	_JUMP			ev_t06r0101_tr_common_02
+	_END
+
+ev_t06r0101_tr_common_01:
+	_CALL			ev_t06r0101_talk02
+	_TALK_CLOSE
+
+	_RECORD_INC			RECID_LEADERHOUSE_BATTLE
+
+	//戦闘呼び出し
+	_CALL				ev_t06r0101_trainer
+	_TRAINER_BTL_SET	LOCALWORK5,0
+	_TRAINER_LOSE_CHECK SCWK_PARAM0
+	_RET
+
+ev_t06r0101_tr_common_02:
+	_CALL			ev_t06r0101_ex
+	_IFVAL_JUMP		SCWK_PARAM1,EQ,2,ev_t06r0101_ex_talk
+
+	_CALL			ev_t06r0101_talk05
+	_JUMP			t06r0101_end
+	_END
+
+/*「いいえ」選択前*/
+ev_t06r0101_tr1_02:
+	_CALL			ev_t06r0101_talk01
+	_RET
+
+/*「いいえ」選択後*/
+ev_t06r0101_tr1_03:
+	_CALL			ev_t06r0101_talk04
+	_RET
+
+t06r0101_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							「いいえ」								*/
+/********************************************************************/
+no_t06r0101_tr1_01:
+	_FLAG_SET		FH_01
+	_CALL			ev_t06r0101_talk03
+	_JUMP			t06r0101_end
+	_END
+
+
+/********************************************************************/
+/*								敗北								*/
+/********************************************************************/
+ev_t06r0101_common_battle_lose:
+	_TRAINER_LOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*				ヒョウタ・トウガン専用メッセージ					*/
+/********************************************************************/
+ev_t06r0101_ex_talk:
+	_IFVAL_CALL		LOCALWORK1,EQ,LEADER1,ev_t06r0101_ex_talk_sub_01
+	_IFVAL_CALL		LOCALWORK1,EQ,LEADER7,ev_t06r0101_ex_talk_sub_06
+	_JUMP			t06r0101_end
+	_END
+
+ev_t06r0101_ex_talk_sub_01:
+	_TALKMSG		msg_t06r0101_leader1_11
+	_RET
+
+ev_t06r0101_ex_talk_sub_06:
+	_TALKMSG		msg_t06r0101_leader6_11
+	_RET
+
+
+/********************************************************************/
+/*							2人目(FH_02)							*/
+/********************************************************************/
+ev_t06r0101_tr2:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+
+	/*判別用にワークにキャラセット*/
+	_LDWK			LOCALWORK1,OBJCHRWORK2
+
+	/*すでに勝利していたら*/
+	_IF_FLAGON_JUMP		FH_06,ev_t06r0101_tr_common_02
+
+	/*すでに勝利していたら*/
+	_CALL			ev_t06r0101_trainer_win_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
+
+	/*「いいえ」選択後か*/
+	_IF_FLAGOFF_CALL	FH_02,ev_t06r0101_tr1_02
+	_IF_FLAGON_CALL		FH_02,ev_t06r0101_tr1_03
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t06r0101_tr2_01
+
+	_CALL			ev_t06r0101_tr_common_01
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_t06r0101_common_battle_lose
+
+	_FLAG_SET		FH_06
+	_CALL			ev_t06r0101_trainer_win
+	_JUMP			ev_t06r0101_tr_common_02
+	_END
+
+/*「いいえ」*/
+no_t06r0101_tr2_01:
+	_FLAG_SET		FH_02
+	_CALL			ev_t06r0101_talk03
+	_JUMP			t06r0101_end
+	_END
+
+
+/********************************************************************/
+/*							3人目(FH_03)							*/
+/********************************************************************/
+ev_t06r0101_tr3:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+
+	/*判別用にワークにキャラセット*/
+	_LDWK			LOCALWORK1,OBJCHRWORK3
+
+	/*すでに勝利していたら*/
+	_IF_FLAGON_JUMP		FH_07,ev_t06r0101_tr_common_02
+
+	/*すでに勝利していたら*/
+	_CALL			ev_t06r0101_trainer_win_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
+
+	/*「いいえ」選択後か*/
+	_IF_FLAGOFF_CALL	FH_03,ev_t06r0101_tr1_02
+	_IF_FLAGON_CALL		FH_03,ev_t06r0101_tr1_03
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t06r0101_tr3_01
+
+	_CALL			ev_t06r0101_tr_common_01
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_t06r0101_common_battle_lose
+
+	_FLAG_SET		FH_07
+	_CALL			ev_t06r0101_trainer_win
+	_JUMP			ev_t06r0101_tr_common_02
+	_END
+
+/*「いいえ」*/
+no_t06r0101_tr3_01:
+	_FLAG_SET		FH_03
+	_CALL			ev_t06r0101_talk03
+	_JUMP			t06r0101_end
+	_END
+
+
+/********************************************************************/
+/*							4人目(FH_04)							*/
+/********************************************************************/
+ev_t06r0101_tr4:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+
+	/*判別用にワークにキャラセット*/
+	_LDWK			LOCALWORK1,OBJCHRWORK4
+
+	/*すでに勝利していたら*/
+	_IF_FLAGON_JUMP		FH_08,ev_t06r0101_tr_common_02
+
+	/*すでに勝利していたら*/
+	_CALL			ev_t06r0101_trainer_win_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t06r0101_tr_common_02
+
+	/*「いいえ」選択後か*/
+	_IF_FLAGOFF_CALL	FH_04,ev_t06r0101_tr1_02
+	_IF_FLAGON_CALL		FH_04,ev_t06r0101_tr1_03
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t06r0101_tr4_01
+
+	_CALL			ev_t06r0101_tr_common_01
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_t06r0101_common_battle_lose
+
+	_FLAG_SET		FH_08
+	_CALL			ev_t06r0101_trainer_win
+	_JUMP			ev_t06r0101_tr_common_02
+	_END
+
+/*「いいえ」*/
+no_t06r0101_tr4_01:
+	_FLAG_SET		FH_04
+	_CALL			ev_t06r0101_talk03
+	_JUMP			t06r0101_end
+	_END
+
+
+/********************************************************************/
+/*			ヒョウタ・トウガン(SCWK_PARAM1=2で二人いる)				*/
+/********************************************************************/
+ev_t06r0101_ex:
+	_LDVAL			SCWK_PARAM1,0
+
+	/*ヒョウタかトウガンに話しかけていたら*/
+	_IFVAL_JUMP		LOCALWORK1,EQ,LEADER1,ev_t06r0101_ex_sub
+	_IFVAL_JUMP		LOCALWORK1,EQ,LEADER7,ev_t06r0101_ex_sub
+	_RET
+
+/*ヒョウタとトウガンがいるか探す*/
+ev_t06r0101_ex_sub:
+	_IFVAL_CALL		OBJCHRWORK1,EQ,LEADER1,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK2,EQ,LEADER1,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK3,EQ,LEADER1,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK4,EQ,LEADER1,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK1,EQ,LEADER7,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK2,EQ,LEADER7,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK3,EQ,LEADER7,ev_t06r0101_ex_01
+	_IFVAL_CALL		OBJCHRWORK4,EQ,LEADER7,ev_t06r0101_ex_01
+	_RET
+
+/*いたらワークに+1*/
+ev_t06r0101_ex_01:
+	_ADD_WK			SCWK_PARAM1,1
+	_RET
+
+
+/********************************************************************/
+/*						トレーナーデータセット						*/
+/********************************************************************/
+ev_t06r0101_trainer:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_trainer_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_trainer_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_trainer_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_trainer_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_trainer_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_09			/*モミ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_10			/*ゲン*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_11			/*マイ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_12			/*バク*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_13			/*ミル*/
+	_RET
+
+ev_t06r0101_trainer_01:
+	_LDVAL		LOCALWORK5,LEADER1_02
+	_RET
+
+ev_t06r0101_trainer_02:
+	_LDVAL		LOCALWORK5,LEADER2_02
+	_RET
+
+ev_t06r0101_trainer_03:
+	_LDVAL		LOCALWORK5,LEADER3_02
+	_RET
+
+ev_t06r0101_trainer_04:
+	_LDVAL		LOCALWORK5,LEADER4_02
+	_RET
+
+ev_t06r0101_trainer_05:
+	_LDVAL		LOCALWORK5,LEADER5_02
+	_RET
+
+ev_t06r0101_trainer_06:
+	_LDVAL		LOCALWORK5,LEADER6_02
+	_RET
+
+ev_t06r0101_trainer_07:
+	_LDVAL		LOCALWORK5,LEADER7_02
+	_RET
+
+ev_t06r0101_trainer_08:
+	_LDVAL		LOCALWORK5,LEADER8_02
+	_RET
+
+ev_t06r0101_trainer_09:
+	_LDVAL		LOCALWORK5,BTFIVE1_02
+	_RET
+
+ev_t06r0101_trainer_10:
+	_LDVAL		LOCALWORK5,BTFIVE2_02
+	_RET
+
+ev_t06r0101_trainer_11:
+	_LDVAL		LOCALWORK5,BTFIVE3_02
+	_RET
+
+ev_t06r0101_trainer_12:
+	_LDVAL		LOCALWORK5,BTFIVE4_02
+	_RET
+
+ev_t06r0101_trainer_13:
+	_LDVAL		LOCALWORK5,BTFIVE5_02
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐1								*/
+/********************************************************************/
+ev_t06r0101_talk01:
+	/*別パターンか*/
+	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk06
+
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk01_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk01_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk01_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk01_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk01_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk01_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk01_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk01_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk01_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk01_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk01_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk01_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk01_13
+	_RET
+
+ev_t06r0101_talk01_01:
+	_TALKMSG		msg_t06r0101_leader1_01
+	_RET
+
+ev_t06r0101_talk01_02:
+	_TALKMSG		msg_t06r0101_leader2_01
+	_RET
+
+ev_t06r0101_talk01_03:
+	_TALKMSG		msg_t06r0101_leader5_01
+	_RET
+
+ev_t06r0101_talk01_04:
+	_TALKMSG		msg_t06r0101_leader4_01
+	_RET
+
+ev_t06r0101_talk01_05:
+	_TALKMSG		msg_t06r0101_leader3_01
+	_RET
+
+ev_t06r0101_talk01_06:
+	_TALKMSG		msg_t06r0101_leader7_01
+	_RET
+
+ev_t06r0101_talk01_07:
+	_TALKMSG		msg_t06r0101_leader6_01
+	_RET
+
+ev_t06r0101_talk01_08:
+	_TALKMSG		msg_t06r0101_leader8_01
+	_RET
+
+ev_t06r0101_talk01_09:
+	_TALKMSG		msg_t06r0101_seven1_01
+	_RET
+
+ev_t06r0101_talk01_10:
+	_TALKMSG		msg_t06r0101_seven3_01
+	_RET
+
+ev_t06r0101_talk01_11:
+	_TALKMSG		msg_t06r0101_seven4_01
+	_RET
+
+ev_t06r0101_talk01_12:
+	_TALKMSG		msg_t06r0101_seven5_01
+	_RET
+
+ev_t06r0101_talk01_13:
+	_TALKMSG		msg_t06r0101_seven2_01
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐2								*/
+/********************************************************************/
+ev_t06r0101_talk02:
+	/*別パターンか*/
+	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk07
+
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk02_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk02_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk02_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk02_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk02_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk02_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk02_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk02_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk02_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk02_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk02_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk02_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk02_13
+	_RET
+
+ev_t06r0101_talk02_01:
+	_TALKMSG		msg_t06r0101_leader1_02
+	_RET
+
+ev_t06r0101_talk02_02:
+	_TALKMSG		msg_t06r0101_leader2_02
+	_RET
+
+ev_t06r0101_talk02_03:
+	_TALKMSG		msg_t06r0101_leader5_02
+	_RET
+
+ev_t06r0101_talk02_04:
+	_TALKMSG		msg_t06r0101_leader4_02
+	_RET
+
+ev_t06r0101_talk02_05:
+	_TALKMSG		msg_t06r0101_leader3_02
+	_RET
+
+ev_t06r0101_talk02_06:
+	_TALKMSG		msg_t06r0101_leader7_02
+	_RET
+
+ev_t06r0101_talk02_07:
+	_TALKMSG		msg_t06r0101_leader6_02
+	_RET
+
+ev_t06r0101_talk02_08:
+	_TALKMSG		msg_t06r0101_leader8_02
+	_RET
+
+ev_t06r0101_talk02_09:
+	_TALKMSG		msg_t06r0101_seven1_02
+	_RET
+
+ev_t06r0101_talk02_10:
+	_TALKMSG		msg_t06r0101_seven3_02
+	_RET
+
+ev_t06r0101_talk02_11:
+	_TALKMSG		msg_t06r0101_seven4_02
+	_RET
+
+ev_t06r0101_talk02_12:
+	_TALKMSG		msg_t06r0101_seven5_02
+	_RET
+
+ev_t06r0101_talk02_13:
+	_TALKMSG		msg_t06r0101_seven2_02
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐3								*/
+/********************************************************************/
+ev_t06r0101_talk03:
+	/*別パターンか*/
+	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk08
+
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk03_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk03_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk03_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk03_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk03_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk03_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk03_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk03_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk03_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk03_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk03_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk03_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk03_13
+	_RET
+
+ev_t06r0101_talk03_01:
+	_TALKMSG		msg_t06r0101_leader1_03
+	_RET
+
+ev_t06r0101_talk03_02:
+	_TALKMSG		msg_t06r0101_leader2_03
+	_RET
+
+ev_t06r0101_talk03_03:
+	_TALKMSG		msg_t06r0101_leader5_03
+	_RET
+
+ev_t06r0101_talk03_04:
+	_TALKMSG		msg_t06r0101_leader4_03
+	_RET
+
+ev_t06r0101_talk03_05:
+	_TALKMSG		msg_t06r0101_leader3_03
+	_RET
+
+ev_t06r0101_talk03_06:
+	_TALKMSG		msg_t06r0101_leader7_03
+	_RET
+
+ev_t06r0101_talk03_07:
+	_TALKMSG		msg_t06r0101_leader6_03
+	_RET
+
+ev_t06r0101_talk03_08:
+	_TALKMSG		msg_t06r0101_leader8_03
+	_RET
+
+ev_t06r0101_talk03_09:
+	_TALKMSG		msg_t06r0101_seven1_03
+	_RET
+
+ev_t06r0101_talk03_10:
+	_TALKMSG		msg_t06r0101_seven3_03
+	_RET
+
+ev_t06r0101_talk03_11:
+	_TALKMSG		msg_t06r0101_seven4_03
+	_RET
+
+ev_t06r0101_talk03_12:
+	_TALKMSG		msg_t06r0101_seven5_03
+	_RET
+
+ev_t06r0101_talk03_13:
+	_TALKMSG		msg_t06r0101_seven2_03
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐4								*/
+/********************************************************************/
+ev_t06r0101_talk04:
+	/*別パターンか*/
+	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk09
+
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk04_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk04_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk04_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk04_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk04_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk04_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk04_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk04_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk04_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk04_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk04_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk04_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk04_13
+	_RET
+
+ev_t06r0101_talk04_01:
+	_TALKMSG		msg_t06r0101_leader1_04
+	_RET
+
+ev_t06r0101_talk04_02:
+	_TALKMSG		msg_t06r0101_leader2_04
+	_RET
+
+ev_t06r0101_talk04_03:
+	_TALKMSG		msg_t06r0101_leader5_04
+	_RET
+
+ev_t06r0101_talk04_04:
+	_TALKMSG		msg_t06r0101_leader4_04
+	_RET
+
+ev_t06r0101_talk04_05:
+	_TALKMSG		msg_t06r0101_leader3_04
+	_RET
+
+ev_t06r0101_talk04_06:
+	_TALKMSG		msg_t06r0101_leader7_04
+	_RET
+
+ev_t06r0101_talk04_07:
+	_TALKMSG		msg_t06r0101_leader6_04
+	_RET
+
+ev_t06r0101_talk04_08:
+	_TALKMSG		msg_t06r0101_leader8_04
+	_RET
+
+ev_t06r0101_talk04_09:
+	_TALKMSG		msg_t06r0101_seven1_04
+	_RET
+
+ev_t06r0101_talk04_10:
+	_TALKMSG		msg_t06r0101_seven3_04
+	_RET
+
+ev_t06r0101_talk04_11:
+	_TALKMSG		msg_t06r0101_seven4_04
+	_RET
+
+ev_t06r0101_talk04_12:
+	_TALKMSG		msg_t06r0101_seven5_04
+	_RET
+
+ev_t06r0101_talk04_13:
+	_TALKMSG		msg_t06r0101_seven2_04
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐5								*/
+/********************************************************************/
+ev_t06r0101_talk05:
+	/*別パターンか*/
+	_IFVAL_JUMP	SYS_WORK_T06R0101_TALK,EQ,1,ev_t06r0101_talk10
+
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk05_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk05_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk05_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk05_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk05_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk05_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk05_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk05_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk05_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk05_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk05_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk05_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk05_13
+	_RET
+
+ev_t06r0101_talk05_01:
+	_TALKMSG		msg_t06r0101_leader1_05
+	_RET
+
+ev_t06r0101_talk05_02:
+	_TALKMSG		msg_t06r0101_leader2_05
+	_RET
+
+ev_t06r0101_talk05_03:
+	_TALKMSG		msg_t06r0101_leader5_05
+	_RET
+
+ev_t06r0101_talk05_04:
+	_TALKMSG		msg_t06r0101_leader4_05
+	_RET
+
+ev_t06r0101_talk05_05:
+	_TALKMSG		msg_t06r0101_leader3_05
+	_RET
+
+ev_t06r0101_talk05_06:
+	_TALKMSG		msg_t06r0101_leader7_05
+	_RET
+
+ev_t06r0101_talk05_07:
+	_TALKMSG		msg_t06r0101_leader6_05
+	_RET
+
+ev_t06r0101_talk05_08:
+	_TALKMSG		msg_t06r0101_leader8_05
+	_RET
+
+ev_t06r0101_talk05_09:
+	_TALKMSG		msg_t06r0101_seven1_05
+	_RET
+
+ev_t06r0101_talk05_10:
+	_TALKMSG		msg_t06r0101_seven3_05
+	_RET
+
+ev_t06r0101_talk05_11:
+	_TALKMSG		msg_t06r0101_seven4_05
+	_RET
+
+ev_t06r0101_talk05_12:
+	_TALKMSG		msg_t06r0101_seven5_05
+	_RET
+
+ev_t06r0101_talk05_13:
+	_TALKMSG		msg_t06r0101_seven2_05
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐6								*/
+/********************************************************************/
+ev_t06r0101_talk06:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk06_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk06_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk06_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk06_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk06_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk06_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk06_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk06_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk06_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk06_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk06_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk06_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk06_13
+	_RET
+
+ev_t06r0101_talk06_01:
+	_TALKMSG		msg_t06r0101_leader1_06
+	_RET
+
+ev_t06r0101_talk06_02:
+	_TALKMSG		msg_t06r0101_leader2_06
+	_RET
+
+ev_t06r0101_talk06_03:
+	_TALKMSG		msg_t06r0101_leader5_06
+	_RET
+
+ev_t06r0101_talk06_04:
+	_TALKMSG		msg_t06r0101_leader4_06
+	_RET
+
+ev_t06r0101_talk06_05:
+	_TALKMSG		msg_t06r0101_leader3_06
+	_RET
+
+ev_t06r0101_talk06_06:
+	_TALKMSG		msg_t06r0101_leader7_06
+	_RET
+
+ev_t06r0101_talk06_07:
+	_TALKMSG		msg_t06r0101_leader6_06
+	_RET
+
+ev_t06r0101_talk06_08:
+	_TALKMSG		msg_t06r0101_leader8_06
+	_RET
+
+ev_t06r0101_talk06_09:
+	_TALKMSG		msg_t06r0101_seven1_06
+	_RET
+
+ev_t06r0101_talk06_10:
+	_TALKMSG		msg_t06r0101_seven3_06
+	_RET
+
+ev_t06r0101_talk06_11:
+	_TALKMSG		msg_t06r0101_seven4_06
+	_RET
+
+ev_t06r0101_talk06_12:
+	_TALKMSG		msg_t06r0101_seven5_06
+	_RET
+
+ev_t06r0101_talk06_13:
+	_TALKMSG		msg_t06r0101_seven2_06
+	_RET
+
+
+
+/********************************************************************/
+/*						メッセージ分岐7								*/
+/********************************************************************/
+ev_t06r0101_talk07:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk07_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk07_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk07_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk07_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk07_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk07_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk07_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk07_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk07_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk07_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk07_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk07_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk07_13
+	_RET
+
+ev_t06r0101_talk07_01:
+	_TALKMSG		msg_t06r0101_leader1_07
+	_RET
+
+ev_t06r0101_talk07_02:
+	_TALKMSG		msg_t06r0101_leader2_07
+	_RET
+
+ev_t06r0101_talk07_03:
+	_TALKMSG		msg_t06r0101_leader5_07
+	_RET
+
+ev_t06r0101_talk07_04:
+	_TALKMSG		msg_t06r0101_leader4_07
+	_RET
+
+ev_t06r0101_talk07_05:
+	_TALKMSG		msg_t06r0101_leader3_07
+	_RET
+
+ev_t06r0101_talk07_06:
+	_TALKMSG		msg_t06r0101_leader7_07
+	_RET
+
+ev_t06r0101_talk07_07:
+	_TALKMSG		msg_t06r0101_leader6_07
+	_RET
+
+ev_t06r0101_talk07_08:
+	_TALKMSG		msg_t06r0101_leader8_07
+	_RET
+
+ev_t06r0101_talk07_09:
+	_TALKMSG		msg_t06r0101_seven1_07
+	_RET
+
+ev_t06r0101_talk07_10:
+	_TALKMSG		msg_t06r0101_seven3_07
+	_RET
+
+ev_t06r0101_talk07_11:
+	_TALKMSG		msg_t06r0101_seven4_07
+	_RET
+
+ev_t06r0101_talk07_12:
+	_TALKMSG		msg_t06r0101_seven5_07
+	_RET
+
+ev_t06r0101_talk07_13:
+	_TALKMSG		msg_t06r0101_seven2_07
+	_RET
+
+
+
+/********************************************************************/
+/*						メッセージ分岐8								*/
+/********************************************************************/
+ev_t06r0101_talk08:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk08_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk08_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk08_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk08_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk08_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk08_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk08_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk08_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk08_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk08_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk08_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk08_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk08_13
+	_RET
+
+ev_t06r0101_talk08_01:
+	_TALKMSG		msg_t06r0101_leader1_08
+	_RET
+
+ev_t06r0101_talk08_02:
+	_TALKMSG		msg_t06r0101_leader2_08
+	_RET
+
+ev_t06r0101_talk08_03:
+	_TALKMSG		msg_t06r0101_leader5_08
+	_RET
+
+ev_t06r0101_talk08_04:
+	_TALKMSG		msg_t06r0101_leader4_08
+	_RET
+
+ev_t06r0101_talk08_05:
+	_TALKMSG		msg_t06r0101_leader3_08
+	_RET
+
+ev_t06r0101_talk08_06:
+	_TALKMSG		msg_t06r0101_leader7_08
+	_RET
+
+ev_t06r0101_talk08_07:
+	_TALKMSG		msg_t06r0101_leader6_08
+	_RET
+
+ev_t06r0101_talk08_08:
+	_TALKMSG		msg_t06r0101_leader8_08
+	_RET
+
+ev_t06r0101_talk08_09:
+	_TALKMSG		msg_t06r0101_seven1_08
+	_RET
+
+ev_t06r0101_talk08_10:
+	_TALKMSG		msg_t06r0101_seven3_08
+	_RET
+
+ev_t06r0101_talk08_11:
+	_TALKMSG		msg_t06r0101_seven4_08
+	_RET
+
+ev_t06r0101_talk08_12:
+	_TALKMSG		msg_t06r0101_seven5_08
+	_RET
+
+ev_t06r0101_talk08_13:
+	_TALKMSG		msg_t06r0101_seven2_08
+	_RET
+
+
+/********************************************************************/
+/*						メッセージ分岐9								*/
+/********************************************************************/
+ev_t06r0101_talk09:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk09_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk09_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk09_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk09_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk09_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk09_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk09_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk09_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk09_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk09_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk09_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk09_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk09_13
+	_RET
+
+ev_t06r0101_talk09_01:
+	_TALKMSG		msg_t06r0101_leader1_09
+	_RET
+
+ev_t06r0101_talk09_02:
+	_TALKMSG		msg_t06r0101_leader2_09
+	_RET
+
+ev_t06r0101_talk09_03:
+	_TALKMSG		msg_t06r0101_leader5_09
+	_RET
+
+ev_t06r0101_talk09_04:
+	_TALKMSG		msg_t06r0101_leader4_09
+	_RET
+
+ev_t06r0101_talk09_05:
+	_TALKMSG		msg_t06r0101_leader3_09
+	_RET
+
+ev_t06r0101_talk09_06:
+	_TALKMSG		msg_t06r0101_leader7_09
+	_RET
+
+ev_t06r0101_talk09_07:
+	_TALKMSG		msg_t06r0101_leader6_09
+	_RET
+
+ev_t06r0101_talk09_08:
+	_TALKMSG		msg_t06r0101_leader8_09
+	_RET
+
+ev_t06r0101_talk09_09:
+	_TALKMSG		msg_t06r0101_seven1_09
+	_RET
+
+ev_t06r0101_talk09_10:
+	_TALKMSG		msg_t06r0101_seven3_09
+	_RET
+
+ev_t06r0101_talk09_11:
+	_TALKMSG		msg_t06r0101_seven4_09
+	_RET
+
+ev_t06r0101_talk09_12:
+	_TALKMSG		msg_t06r0101_seven5_09
+	_RET
+
+ev_t06r0101_talk09_13:
+	_TALKMSG		msg_t06r0101_seven2_09
+	_RET
+
+
+
+/********************************************************************/
+/*						メッセージ分岐10							*/
+/********************************************************************/
+ev_t06r0101_talk10:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_talk10_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_talk10_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_talk10_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_talk10_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_talk10_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_talk10_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_talk10_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_talk10_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_talk10_09
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_talk10_10
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_talk10_11
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_talk10_12
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_talk10_13
+	_RET
+
+ev_t06r0101_talk10_01:
+	_TALKMSG		msg_t06r0101_leader1_10
+	_RET
+
+ev_t06r0101_talk10_02:
+	_TALKMSG		msg_t06r0101_leader2_10
+	_RET
+
+ev_t06r0101_talk10_03:
+	_TALKMSG		msg_t06r0101_leader5_10
+	_RET
+
+ev_t06r0101_talk10_04:
+	_TALKMSG		msg_t06r0101_leader4_10
+	_RET
+
+ev_t06r0101_talk10_05:
+	_TALKMSG		msg_t06r0101_leader3_10
+	_RET
+
+ev_t06r0101_talk10_06:
+	_TALKMSG		msg_t06r0101_leader7_10
+	_RET
+
+ev_t06r0101_talk10_07:
+	_TALKMSG		msg_t06r0101_leader6_10
+	_RET
+
+ev_t06r0101_talk10_08:
+	_TALKMSG		msg_t06r0101_leader8_10
+	_RET
+
+ev_t06r0101_talk10_09:
+	_TALKMSG		msg_t06r0101_seven1_10
+	_RET
+
+ev_t06r0101_talk10_10:
+	_TALKMSG		msg_t06r0101_seven3_10
+	_RET
+
+ev_t06r0101_talk10_11:
+	_TALKMSG		msg_t06r0101_seven4_10
+	_RET
+
+ev_t06r0101_talk10_12:
+	_TALKMSG		msg_t06r0101_seven5_10
+	_RET
+
+ev_t06r0101_talk10_13:
+	_TALKMSG		msg_t06r0101_seven2_10
+	_RET
+
+
+/********************************************************************/
+/*					一日一回勝利フラグを立てる						*/
+/********************************************************************/
+ev_t06r0101_trainer_win:
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER1,ev_t06r0101_trainer_win_01
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER2,ev_t06r0101_trainer_win_02
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER3,ev_t06r0101_trainer_win_03
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER4,ev_t06r0101_trainer_win_04
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER5,ev_t06r0101_trainer_win_05
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_win_06
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_win_07
+	_IFVAL_CALL	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_win_08
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_09			/*モミ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_10			/*ゲン*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_11			/*マイ*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_12			/*バク*/
+	_IFVAL_CALL	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_13			/*ミル*/
+	_RET
+
+ev_t06r0101_trainer_win_01:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR1
+	_RET
+
+ev_t06r0101_trainer_win_02:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR2
+	_RET
+
+ev_t06r0101_trainer_win_03:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR3
+	_RET
+
+ev_t06r0101_trainer_win_04:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR4
+	_RET
+
+ev_t06r0101_trainer_win_05:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR5
+	_RET
+
+ev_t06r0101_trainer_win_06:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR6
+	_RET
+
+ev_t06r0101_trainer_win_07:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR7
+	_RET
+
+ev_t06r0101_trainer_win_08:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR8
+	_RET
+
+ev_t06r0101_trainer_win_09:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR9
+	_RET
+
+ev_t06r0101_trainer_win_10:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR10
+	_RET
+
+ev_t06r0101_trainer_win_11:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR11
+	_RET
+
+ev_t06r0101_trainer_win_12:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR12
+	_RET
+
+ev_t06r0101_trainer_win_13:
+	_FLAG_SET	TMFLG_T06R0101_WIN_TR13
+	_RET
+
+
+/********************************************************************/
+/*					一日一回勝利フラグのチェック					*/
+/********************************************************************/
+ev_t06r0101_trainer_win_check:
+	_LDVAL		SCWK_ANSWER,0
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER1,ev_t06r0101_trainer_win_check_01
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER2,ev_t06r0101_trainer_win_check_02
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER3,ev_t06r0101_trainer_win_check_03
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER4,ev_t06r0101_trainer_win_check_04
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER5,ev_t06r0101_trainer_win_check_05
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER6,ev_t06r0101_trainer_win_check_06
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER7,ev_t06r0101_trainer_win_check_07
+	_IFVAL_JUMP	LOCALWORK1,EQ,LEADER8,ev_t06r0101_trainer_win_check_08
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN1,ev_t06r0101_trainer_win_check_09			/*モミ*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN2,ev_t06r0101_trainer_win_check_10			/*ゲン*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN3,ev_t06r0101_trainer_win_check_11			/*マイ*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN4,ev_t06r0101_trainer_win_check_12			/*バク*/
+	_IFVAL_JUMP	LOCALWORK1,EQ,SEVEN5,ev_t06r0101_trainer_win_check_13			/*ミル*/
+	_RET
+
+ev_t06r0101_trainer_win_check_01:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR1,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_02:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR2,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_03:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR3,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_04:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR4,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_05:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR5,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_06:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR6,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_07:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR7,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_08:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR8,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_09:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR9,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_10:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR10,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_11:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR11,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_12:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR12,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_13:
+	_IF_FLAGON_JUMP	TMFLG_T06R0101_WIN_TR13,ev_t06r0101_trainer_win_check_on
+	_RET
+
+ev_t06r0101_trainer_win_check_on:
+	_LDVAL			SCWK_ANSWER,1			/*対戦済み*/
+	_RET
+
+

@@ -1,0 +1,351 @@
+//============================================================================================
+/**
+* MapEditNH2 [*.evt] -> Pokemon D/P SXY Data [*.evp]
+*/
+//============================================================================================
+
+const u32 PosEv_zone_d11r0101_num = 31;
+
+const POS_EVENT_DATA PosEv_zone_d11r0101[31] =
+{
+	{
+		SCRID_POS_D11R0101_INFO_01,
+		12,
+		46,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101,
+	},
+
+	{
+		SCRID_POS_D11R0101_INFO_02,
+		12,
+		47,
+		1,
+		1,
+		0*0x1000,
+		1,
+		WK_SCENE_D11R0101,
+	},
+
+	{
+		SCRID_POS_D11R0101_INFO_03,
+		51,
+		46,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101,
+	},
+
+	{
+		SCRID_POS_D11R0101_INFO_04,
+		51,
+		47,
+		1,
+		1,
+		0*0x1000,
+		1,
+		WK_SCENE_D11R0101,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP1,
+		17,
+		17,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP2,
+		16,
+		18,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP3,
+		18,
+		18,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP4,
+		35,
+		16,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP5,
+		34,
+		17,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP6,
+		36,
+		17,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP7,
+		52,
+		26,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP8,
+		51,
+		27,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP9,
+		53,
+		27,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP10,
+		47,
+		9,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP11,
+		46,
+		10,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP12,
+		48,
+		10,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP13,
+		15,
+		11,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP14,
+		14,
+		12,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP15,
+		16,
+		12,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP16,
+		33,
+		8,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP17,
+		32,
+		9,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP18,
+		34,
+		9,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP19,
+		26,
+		10,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP20,
+		25,
+		11,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP21,
+		27,
+		11,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP22,
+		41,
+		17,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP23,
+		40,
+		18,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP24,
+		42,
+		18,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP25,
+		47,
+		35,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP26,
+		46,
+		36,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+
+	{
+		SCRID_POS_D11R0101_WARP27,
+		48,
+		36,
+		1,
+		1,
+		0*0x1000,
+		0,
+		WK_SCENE_D11R0101_WARP,
+	},
+};

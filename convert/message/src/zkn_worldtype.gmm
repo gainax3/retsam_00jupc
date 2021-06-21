@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-07-07T22:18:22"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="256"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="214"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDTYPE_0">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">-----</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_1">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_2">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_3">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_4">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lizard Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_5">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flame Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_6">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flame Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_7">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Turtle Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_8">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Turtle Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_9">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shellfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_10">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Worm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_11">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cocoon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_12">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Butterfly Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_13">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hairy Bug Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_14">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cocoon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_15">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Bee Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_16">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_17">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_18">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_19">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_20">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_21">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_22">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Beak Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_23">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Snake Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_24">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cobra Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_25">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_26">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_27">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_28">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_29">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Pin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_30">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Pin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_31">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Drill Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_32">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Pin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_33">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Pin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_34">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Drill Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_35">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fairy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_36">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fairy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_37">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fox Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_38">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fox Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_39">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Balloon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_40">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Balloon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_41">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_42">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_43">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Weed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_44">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Weed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_45">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_46">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mushroom Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_47">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mushroom Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_48">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Insect Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_49">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Moth Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_50">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mole Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_51">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mole Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_52">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Scratch Cat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_53">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Classy Cat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_54">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Duck Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_55">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Duck Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_56">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pig Monkey Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_57">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pig Monkey Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_58">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Puppy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_59">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Legendary Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_60">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tadpole Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_61">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tadpole Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_62">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tadpole Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_63">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Psi Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_64">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Psi Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_65">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Psi Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_66">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Superpower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_67">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Superpower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_68">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Superpower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_69">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_70">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flycatcher Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_71">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flycatcher Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_72">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jellyfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_73">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jellyfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_74">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_75">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_76">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Megaton Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_77">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fire Horse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_78">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fire Horse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_79">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dopey Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_80">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hermit Crab Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_81">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Magnet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_82">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Magnet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_83">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wild Duck Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_84">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Twin Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_85">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Triple Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_86">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Lion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_87">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Lion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_88">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sludge Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_89">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sludge Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_90">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bivalve Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_91">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bivalve Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_92">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Gas Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_93">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Gas Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_94">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shadow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_95">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Snake Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_96">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hypnosis Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_97">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hypnosis Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_98">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">River Crab Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_99">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pincer Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_100">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ball Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_101">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ball Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_102">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Egg Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_103">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Coconut Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_104">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lonely Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_105">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bone Keeper Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_106">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Kicking Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_107">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Punching Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_108">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Licking Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_109">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Gas Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_110">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Gas Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_111">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spikes Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_112">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Drill Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_113">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Egg Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_114">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Vine Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_115">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Parent Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_116">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_117">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_118">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Goldfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_119">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Goldfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_120">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Star Shape Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_121">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mysterious Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_122">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Barrier Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_123">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mantis Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_124">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Human Shape Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_125">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Electric Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_126">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spitfire Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_127">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Stag Beetle Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_128">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wild Bull Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_129">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_130">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Atrocious Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_131">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Transport Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_132">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Transform Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_133">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Evolution Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_134">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bubble Jet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_135">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lightning Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_136">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flame Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_137">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Virtual Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_138">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spiral Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_139">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spiral Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_140">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shellfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_141">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shellfish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_142">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fossil Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_143">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sleeping Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_144">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Freeze Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_145">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Electric Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_146">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flame Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_147">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_148">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_149">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_150">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Genetic Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_151">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">New Species Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_152">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Leaf Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_153">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Leaf Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_154">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Herb Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_155">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fire Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_156">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Volcano Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_157">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Volcano Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_158">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Jaw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_159">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Jaw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_160">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Jaw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_161">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Scout Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_162">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Body Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_163">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Owl Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_164">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Owl Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_165">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Five Star Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_166">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Five Star Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_167">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">String Spit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_168">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Leg Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_169">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_170">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Angler Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_171">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Light Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_172">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_173">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Star Shape Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_174">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Balloon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_175">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spike Ball Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_176">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Happiness Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_177">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_178">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mystic Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_179">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wool Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_180">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wool Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_181">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Light Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_182">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_183">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Aqua Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_184">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Aqua Rabbit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_185">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Imitation Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_186">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Frog Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_187">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cottonweed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_188">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cottonweed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_189">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cottonweed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_190">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Tail Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_191">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_192">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sun Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_193">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Clear Wing Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_194">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Water Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_195">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Water Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_196">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sun Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_197">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Moonlight Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_198">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Darkness Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_199">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Royal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_200">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Screech Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_201">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Symbol Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_202">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Patient Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_203">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Neck Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_204">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bagworm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_205">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bagworm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_206">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Land Snake Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_207">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">FlyScorpion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_208">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Snake Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_209">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fairy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_210">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fairy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_211">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Balloon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_212">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pincer Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_213">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mold Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_214">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Single Horn Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_215">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sharp Claw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_216">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Little Bear Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_217">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hibernator Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_218">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lava Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_219">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lava Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_220">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pig Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_221">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Swine Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_222">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Coral Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_223">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_224">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_225">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Delivery Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_226">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Kite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_227">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Armor Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_228">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dark Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_229">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dark Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_230">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_231">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Nose Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_232">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Armor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_233">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Virtual Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_234">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Horn Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_235">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Painter Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_236">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Scuffle Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_237">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Handstand Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_238">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Kiss Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_239">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Electric Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_240">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Live Coal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_241">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Milk Cow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_242">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Happiness Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_243">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Thunder Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_244">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Volcano Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_245">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Aurora Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_246">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Skin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_247">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hard Shell Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_248">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Armor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_249">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Diving Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_250">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rainbow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_251">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Time Travel Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_252">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wood Gecko Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_253">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wood Gecko Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_254">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Forest Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_255">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Chick Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_256">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Young Fowl Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_257">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Blaze Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_258">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mud Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_259">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mud Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_260">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mud Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_261">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_262">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_263">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">TinyRaccoon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_264">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rushing Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_265">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Worm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_266">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cocoon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_267">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Butterfly Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_268">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cocoon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_269">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Moth Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_270">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Water Weed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_271">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jolly Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_272">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Carefree Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_273">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Acorn Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_274">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wily Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_275">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wicked Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_276">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">TinySwallow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_277">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Swallow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_278">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seagull Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_279">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Water Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_280">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Feeling Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_281">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Emotion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_282">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Embrace Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_283">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pond Skater Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_284">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Eyeball Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_285">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mushroom Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_286">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mushroom Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_287">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Slacker Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_288">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wild Monkey Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_289">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lazy Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_290">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Trainee Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_291">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ninja Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_292">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shed Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_293">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Whisper Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_294">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Voice Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_295">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Loud Noise Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_296">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Guts Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_297">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Arm Thrust Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_298">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Polka Dot Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_299">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Compass Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_300">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Kitten Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_301">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Prim Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_302">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Darkness Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_303">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Deceiver Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_304">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Armor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_305">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Armor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_306">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Armor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_307">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Meditate Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_308">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Meditate Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_309">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lightning Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_310">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Discharge Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_311">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cheering Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_312">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cheering Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_313">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Firefly Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_314">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Firefly Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_315">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Thorn Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_316">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Stomach Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_317">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Poison Bag Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_318">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Savage Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_319">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Brutal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_320">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ball Whale Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_321">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Float Whale Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_322">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Numb Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_323">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Eruption Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_324">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Coal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_325">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bounce Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_326">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Manipulate Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_327">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spot Panda Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_328">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ant Pit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_329">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Vibration Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_330">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mystic Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_331">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cactus Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_332">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Scarecrow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_333">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cotton Bird Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_334">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Humming Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_335">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cat Ferret Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_336">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fang Snake Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_337">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Meteorite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_338">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Meteorite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_339">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Whiskers Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_340">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Whiskers Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_341">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ruffian Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_342">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rogue Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_343">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Clay Doll Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_344">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Clay Doll Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_345">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Lily Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_346">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Barnacle Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_347">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Old Shrimp Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_348">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Plate Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_349">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_350">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tender Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_351">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Weather Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_352">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Color Swap Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_353">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Puppet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_354">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Marionette Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_355">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Requiem Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_356">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Beckon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_357">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fruit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_358">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wind Chime Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_359">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Disaster Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_360">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bright Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_361">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Snow Hat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_362">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Face Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_363">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Clap Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_364">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ball Roll Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_365">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ice Break Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_366">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bivalve Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_367">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Deep Sea Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_368">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">South Sea Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_369">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Longevity Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_370">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rendezvous Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_371">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Head Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_372">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Endurance Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_373">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Dragon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_374">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Ball Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_375">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Claw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_376">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Leg Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_377">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rock Peak Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_378">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iceberg Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_379">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Iron Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_380">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Eon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_381">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Eon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_382">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Basin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_383">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Continent Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_384">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sky High Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_385">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_386">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">DNA Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_387">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Leaf Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_388">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Grove Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_389">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Continent Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_390">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Chimp Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_391">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Playful Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_392">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flame Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_393">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Penguin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_394">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Penguin Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_395">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Emperor Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_396">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Starling Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_397">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Starling Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_398">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Predator Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_399">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Plump Mouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_400">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Beaver Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_401">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cricket Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_402">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cricket Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_403">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Flash Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_404">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spark Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_405">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Gleam Eyes Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_406">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bud Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_407">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bouquet Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_408">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Head Butt Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_409">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Head Butt Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_410">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shield Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_411">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Shield Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_412">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bagworm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_413">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bagworm Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_414">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Moth Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_415">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiny Bee Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_416">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Beehive Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_417">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">EleSquirrel Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_418">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Weasel Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_419">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Weasel Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_420">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cherry Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_421">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Blossom Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_422">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Slug Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_423">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Slug Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_424">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Long Tail Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_425">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Balloon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_426">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Blimp Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_427">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rabbit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_428">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Rabbit Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_429">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Magical Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_430">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Boss Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_431">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Catty Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_432">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Tiger Cat Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_433">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bell Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_434">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Skunk Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_435">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Skunk Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_436">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bronze Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_437">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bronze Bell Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_438">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bonsai Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_439">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mime Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_440">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Playhouse Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_441">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Music Note Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_442">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Forbidden Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_443">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Land Shark Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_444">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Cave Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_445">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Mach Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_446">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Big Eater Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_447">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Emanation Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_448">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Aura Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_449">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Hippo Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_450">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Heavyweight Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_451">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Scorpion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_452">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ogre Scorp Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_453">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Toxic Mouth Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_454">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Toxic Mouth Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_455">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Bug Catcher Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_456">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Wing Fish Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_457">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Neon Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_458">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Kite Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_459">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Frost Tree Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_460">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Frost Tree Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_461">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sharp Claw Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_462">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Magnet Area Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_463">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Licking Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_464">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Drill Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_465">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Vine Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_466">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Thunderbolt Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_467">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Blast Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_468">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Jubilee Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_469">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Ogre Darner Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_470">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Verdant Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_471">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fresh Snow Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_472">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Fang Scorp Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_473">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Twin Tusk Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_474">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Virtual Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_475">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Blade Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_476">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Compass Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_477">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Gripper Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_478">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Snow Land Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_479">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Plasma Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_480">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Knowledge Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_481">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Emotion Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_482">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Willpower Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_483">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Temporal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_484">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Spatial Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_485">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lava Dome Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_486">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Colossal Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_487">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Renegade Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_488">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Lunar Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_489">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Sea Drifter Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_490">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Seafaring Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_491">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pitch-Black Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_492">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Gratitude Pokémon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_493">
+		<comment>アメリカ</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Alpha Pokémon</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

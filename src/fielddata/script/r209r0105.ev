@@ -1,0 +1,128 @@
+//====================================================================
+//								r209r0105
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r209r0105.h"
+	//.include	"../eventdata/zone_r209r0105evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_r209r0105_oldwoman2a
+_EVENT_DATA		ev_r209r0105_oldwoman2b
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_r209r0105_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_r209r0105_oldwoman2a:
+	_TALK_OBJ_START
+
+	/*きりばらい使用前*/
+	_IF_FLAGOFF_JUMP	FE_R209R0105_KIRI_USE,ev_r209r0105_oldwoman2a_before
+
+	/*すでにアイテム入手していたら*/
+	_IF_FLAGON_JUMP	FE_R209R0105_ITEM_A_GET,ev_r209r0105_oldwoman2a_end
+
+	_TALK_KEYWAIT	msg_r209r0105_oldwoman2a_01
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_NOROINOOHUDA
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r209r0105_oldwoman2b_item_event_fail
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*送りカーソル待ちあり*/
+
+	_FLAG_SET		FE_R209R0105_ITEM_A_GET
+	_JUMP			ev_r209r0105_oldwoman2a_end
+	_END
+
+ev_r209r0105_oldwoman2a_end:
+	_TALKMSG		msg_r209r0105_oldwoman2a_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+/*きりばらい使用前*/
+ev_r209r0105_oldwoman2a_before:
+	_TALKMSG		msg_r209r0105_oldwoman2a_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							ばあさん								*/
+/********************************************************************/
+ev_r209r0105_oldwoman2b:
+	_TALK_OBJ_START
+
+	/*きりばらい使用前*/
+	_IF_FLAGOFF_JUMP	FE_R209R0105_KIRI_USE,ev_r209r0105_oldwoman2b_before
+
+	/*すでにアイテム入手していたら*/
+	_IF_FLAGON_JUMP	FE_R209R0105_ITEM_B_GET,ev_r209r0105_oldwoman2b_02
+
+	_TALK_KEYWAIT	msg_r209r0105_oldwoman2b_01
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_KIYOMENOOHUDA
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_r209r0105_oldwoman2b_item_event_fail
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*送りカーソル待ちあり*/
+
+	_FLAG_SET		FE_R209R0105_ITEM_B_GET
+	_JUMP			ev_r209r0105_oldwoman2b_02
+	_END
+
+/*すでにアイテム入手していたら*/
+ev_r209r0105_oldwoman2b_02:
+	_TALKMSG		msg_r209r0105_oldwoman2b_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*アイテム入手失敗*/
+ev_r209r0105_oldwoman2b_item_event_fail:
+	//アイテム取得失敗イベント(共通メッセージを出す、専用を使用するときはいらない)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*きりばらい使用前*/
+ev_r209r0105_oldwoman2b_before:
+	_TALKMSG		msg_r209r0105_oldwoman2b_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+

@@ -1,0 +1,635 @@
+//====================================================================
+//								c07r0207
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c07r0207.h"
+	//.include	"../eventdata/zone_c07r0207evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c07r0207_middleman2
+_EVENT_DATA		ev_c07r0207_middlewoman2
+_EVENT_DATA		ev_c07r0207_middlewoman2a
+_EVENT_DATA		ev_c07r0207_depart
+_EVENT_DATA		ev_c07r0207_depart1
+_EVENT_DATA		ev_c07r0207_depart2
+_EVENT_DATA		ev_c07r0207_doctor
+_EVENT_DATA		ev_c07r0207_shop1
+_EVENT_DATA		ev_c07r0207_shop2
+_EVENT_DATA		ev_c07r0207_shop3
+_EVENT_DATA		ev_c07r0207_fix_shop_01
+_EVENT_DATA		ev_c07r0207_poster
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+//ev_c07r0207_flag_change:
+//	_END
+
+/********************************************************************/
+/*							紳士									*/
+/********************************************************************/
+ev_c07r0207_middleman2:
+	_EASY_OBJ_MSG	msg_c07r0207_middleman2_01
+	_END
+
+/********************************************************************/
+/*							淑女1									*/
+/********************************************************************/
+ev_c07r0207_middlewoman2:
+	_EASY_OBJ_MSG	msg_c07r0207_middlewoman2_01
+	_END
+
+/********************************************************************/
+/*							淑女2									*/
+/********************************************************************/
+ev_c07r0207_middlewoman2a:
+	_EASY_OBJ_MSG	msg_c07r0207_middlewoman2a_01
+	_END
+
+/********************************************************************/
+/*							受付									*/
+/********************************************************************/
+ev_c07r0207_depart:
+	_EASY_OBJ_MSG	msg_c07r0207_depart_01
+	_END
+
+
+/********************************************************************/
+/*							受付１									*/
+/********************************************************************/
+ev_c07r0207_depart1:
+	_EASY_OBJ_MSG	msg_c07r0207_depart1_01
+	_END
+
+
+/********************************************************************/
+/*							受付２									*/
+/********************************************************************/
+ev_c07r0207_depart2:
+	_EASY_OBJ_MSG	msg_c07r0207_depart2_01
+	_END
+
+
+/********************************************************************/
+/*							ナナカマド								*/
+/********************************************************************/
+ev_c07r0207_doctor:
+	_TALK_OBJ_START_TURN_NOT
+
+	/*すでに会話している*/
+	_IF_FLAGON_JUMP	FE_C07R0207_DOCTOR_TALK,ev_c07r0207_doctor_02
+
+	_FLAG_SET		FE_C07R0207_DOCTOR_TALK
+	_FLAG_SET		FV_C07R0207_DOCTOR			/*次にマップに入った時はいない*/
+	_TALK_KEYWAIT	msg_c07r0207_doctor_01
+
+	_TURN_HERO_SITE
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_c07r0207_doctor_02
+	_JUMP			ev_c07r0207_doctor_end
+	_END
+
+/*すでに会話している*/
+ev_c07r0207_doctor_02:
+	_TURN_HERO_SITE
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_c07r0207_doctor_02
+	_JUMP			ev_c07r0207_doctor_end
+	_END
+
+/*共通終了*/
+ev_c07r0207_doctor_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//						品物固定の店員(OBJ名shopm)
+/********************************************************************/
+ev_c07r0207_fix_shop_01:
+	_TALK_OBJ_START
+
+	_CHG_COMMON_SCR		SCRID_SHOP_START_TALK
+	_TALK_CLOSE_NO_CLEAR
+	_FIX_SHOP_CALL		ID_SHOP_ITEM_C07_DEPT_00_00
+
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//							せんべい屋
+/********************************************************************/
+ev_c07r0207_shop1:
+	_TALK_OBJ_START
+
+	_GOLD_WIN_WRITE		20,2
+
+	_TALK_KEYWAIT	msg_c07r0207_shop1_01
+	_BMPMENU_INIT_EX	24,11,0,1,SCWK_ANSWER		/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_01,0	/*１こ*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_02,1	/*１０こ*/
+	_BMPMENU_MAKE_LIST	msg_c07r0207_senbai_03,2	/*いらない*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_c07r0207_shop1_1			/*１こ*/
+	_CASE_JUMP		1,ev_c07r0207_shop1_2			/*１０こ*/
+	_JUMP			ev_c07r0207_shop1_yameru		/*いらない*/
+	_END
+
+/*１こ*/
+ev_c07r0207_shop1_1:
+	_LDVAL			SCWK_TEMP0,1
+	_LDVAL			SCWK_TEMP1,200
+
+	/*バックに空きがあるか*/
+	_ADD_ITEM_CHK	ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_bag_non
+
+	/*お金があるか*/
+	_COMP_MY_GOLD	SCWK_ANSWER,200
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_gold_non
+
+	_TALK_KEYWAIT	msg_c07r0207_shop1_02
+	_JUMP			ev_c07r0207_shop1_common
+	_END
+
+/*１０こ*/
+ev_c07r0207_shop1_2:
+	_LDVAL			SCWK_TEMP0,10
+	_LDVAL			SCWK_TEMP1,2000
+
+	/*バックに空きがあるか*/
+	_ADD_ITEM_CHK	ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_bag_non
+
+	/*お金があるか*/
+	_COMP_MY_GOLD	SCWK_ANSWER,2000
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop1_gold_non
+
+	_TALK_KEYWAIT	msg_c07r0207_shop1_03
+	_JUMP			ev_c07r0207_shop1_common
+	_END
+
+/*実際にアイテムを加えて、ゴールドを減らす*/
+ev_c07r0207_shop1_common:
+	_ADD_ITEM		ITEM_HUENSENBEI,SCWK_TEMP0,SCWK_ANSWER
+	_SE_PLAY		SEQ_SE_DP_REGI
+	_RECORD_ADD_EX	RECID_SHOPPING_MONEY,SCWK_TEMP1
+	_SUB_MY_GOLD	SCWK_TEMP1
+	_GOLD_WRITE
+	_SE_WAIT		SEQ_SE_DP_REGI
+
+	/*デパート買い物カウントを足す*/
+	_IFVAL_CALL		SYS_WORK_DEPART_COUNT,LT,10000,ev_c07r0207_depart_count_add
+
+	_JUMP			ev_c07r0207_shop1_yameru_sub
+	_END
+
+/*バッグに空きがない*/
+ev_c07r0207_shop1_bag_non:
+	_TALK_KEYWAIT	msg_c07r0207_shop1_04
+	_JUMP			ev_c07r0207_shop1_yameru_sub
+	_END
+
+/*お金が足りない*/
+ev_c07r0207_shop1_gold_non:
+	_TALK_KEYWAIT	msg_c07r0207_shop1_05
+	_JUMP			ev_c07r0207_shop1_yameru_sub
+	_END
+
+/*いらない*/
+ev_c07r0207_shop1_yameru:
+	_TALK_KEYWAIT	msg_c07r0207_shop1_06
+	_JUMP			ev_c07r0207_shop1_yameru_sub
+	_END
+
+ev_c07r0207_shop1_yameru_sub:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_GOLD_WIN_DEL
+
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//							ポフィン屋(NORMAL)
+//	
+//	SCWK_TEMP0	旨み
+//	SCWK_TEMP3	味1
+//	SCWK_PARAM0	味1
+//	SCWK_PARAM1	味1
+//	SCWK_PARAM2	味1
+//	SCWK_PARAM3	味1
+//
+//	SCWK_TEMP1	追加個数
+/********************************************************************/
+#define POFIN_NUM1			(1)
+#define POFIN_GOLD1_NORMAL	(6400)
+#define POFIN_STATUS_NORMAL	(32)				/*味*/
+#define POFIN_TASTE_NORMAL	(20)				/*旨み*/
+
+ev_c07r0207_shop2:
+	_TALK_OBJ_START
+
+	_GOLD_WIN_WRITE		20,2
+
+	_TALK_KEYWAIT	msg_c07r0207_shop2_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c07r0207_shop2_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c07r0207_shop2_01
+	_END
+
+/*「はい」*/
+yes_c07r0207_shop2_01:
+
+	/*ポフィンケースもっているか*/
+	_ITEM_CHK		ITEM_POFINKEESU,1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_case_non
+
+	_CALL			ev_c07r0207_pofin_menu
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_c07r0207_shop2_1
+	_CASE_JUMP		1,ev_c07r0207_shop2_2
+	_CASE_JUMP		2,ev_c07r0207_shop2_3
+	_CASE_JUMP		3,ev_c07r0207_shop2_4
+	_CASE_JUMP		4,ev_c07r0207_shop2_5
+	_CASE_JUMP		5,ev_c07r0207_shop2_6
+	_CASE_JUMP		6,ev_c07r0207_shop2_7
+	_CASE_JUMP		7,ev_c07r0207_shop2_8
+	_CASE_JUMP		8,ev_c07r0207_shop2_9
+	_CASE_JUMP		9,ev_c07r0207_shop2_10
+	_JUMP			no_c07r0207_shop2_01								/*いらない*/
+	_END
+
+//--------------------------------------------------------------------
+/*「いいえ」*/
+//--------------------------------------------------------------------
+no_c07r0207_shop2_01:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_07
+	_JUMP			no_c07r0207_shop2_01_sub
+	_END
+	
+no_c07r0207_shop2_01_sub:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_GOLD_WIN_DEL
+
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+/*からしぶポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_1:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_karashibu_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*からあまポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_2:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_karaama_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*からにがポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_3:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_karaniga_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*からすっぱポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_4:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_karasuupa_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*しぶあまポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_5:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_shibuama_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*しぶにがポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_6:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_shibuniga_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*しぶすっぱポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_7:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_shibusuupa_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*あまにがポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_8:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_amaniga_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*あまずっぱポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_9:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_amazuupa_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+//--------------------------------------------------------------------
+/*にがずっぱポフィン　１こ*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_10:
+	_COMP_GOLD		SCWK_ANSWER,POFIN_GOLD1_NORMAL
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_c07r0207_shop2_gold_non		/*お金がない*/
+
+	_LDVAL			SCWK_TEMP1,POFIN_NUM1
+	_CALL			ev_pofin_nigasuupa_normal
+	_JUMP			ev_c07r0207_shop2_common
+	_END
+
+/*実際にポフィンを加えて、ゴールドを減らす*/
+ev_c07r0207_shop2_common:
+
+	/*ポフィンケースに空きがない*/
+	_POFIN_AKI_COUNT_GET	SCWK_ANSWER
+	_IFWK_JUMP		SCWK_ANSWER,LT,SCWK_TEMP1,ev_c07r0207_shop2_pofin_non
+
+	_JUMP			ev_c07r0207_shop2_pofin_add
+	_END
+	
+/*購入個数分の処理をまわす*/
+ev_c07r0207_shop2_pofin_add:
+
+	/*全て追加しおえたら終了*/
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,0,ev_c07r0207_shop2_pofin_add_end
+
+	_POFIN_ADD	SCWK_ANSWER,SCWK_TEMP3,SCWK_PARAM0,SCWK_PARAM1,SCWK_PARAM2,SCWK_PARAM3,POFIN_TASTE_NORMAL
+	_RECORD_ADD_EX	RECID_SHOPPING_MONEY,POFIN_GOLD1_NORMAL
+	_SUB_MY_GOLD	POFIN_GOLD1_NORMAL
+	_SUB_WK			SCWK_TEMP1,1
+	_JUMP			ev_c07r0207_shop2_pofin_add
+	_END
+
+/*全て追加しおえたら終了*/
+ev_c07r0207_shop2_pofin_add_end:
+	_SE_PLAY		SEQ_SE_DP_REGI
+	_GOLD_WRITE
+
+	/*デパート買い物カウントを足す*/
+	_IFVAL_CALL		SYS_WORK_DEPART_COUNT,LT,10000,ev_c07r0207_depart_count_add
+
+	_TALK_KEYWAIT	msg_c07r0207_shop2_04
+	_JUMP			ev_c07r0207_shop2_yameru_sub
+	_END
+
+/*ポフィンケースに空きがない*/
+ev_c07r0207_shop2_pofin_non:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_06
+	_JUMP			ev_c07r0207_shop2_yameru_sub
+	_END
+
+/*お金が足りない*/
+ev_c07r0207_shop2_gold_non:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_05
+	_JUMP			ev_c07r0207_shop2_yameru_sub
+	_END
+
+//--------------------------------------------------------------------
+/*ポフィンケースがない*/
+//--------------------------------------------------------------------
+ev_c07r0207_shop2_case_non:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_08
+	_JUMP			ev_c07r0207_shop2_yameru_sub
+	_END
+
+/*いらない*/
+ev_c07r0207_shop2_yameru:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_07
+	_JUMP			ev_c07r0207_shop2_yameru_sub
+	_END
+
+ev_c07r0207_shop2_yameru_sub:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_GOLD_WIN_DEL
+
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+/*					ポフィンパラメータセット(NORMAL)				*/
+//--------------------------------------------------------------------
+/*からしぶセット*/
+ev_pofin_karashibu_normal:
+	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*からあまセット*/
+ev_pofin_karaama_normal:
+	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*からにがセット*/
+ev_pofin_karaniga_normal:
+	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*からすっぱセット*/
+ev_pofin_karasuupa_normal:
+	_LDVAL			SCWK_TEMP3,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
+	_RET
+
+/*しぶあまセット*/
+ev_pofin_shibuama_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM1,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*しぶにがセット*/
+ev_pofin_shibuniga_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*しぶすっぱセット*/
+ev_pofin_shibusuupa_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
+	_RET
+
+/*あまにがセット*/
+ev_pofin_amaniga_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM2,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+/*あまずっぱセット*/
+ev_pofin_amazuupa_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM2,0
+	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
+	_RET
+
+/*にがすっぱセット*/
+ev_pofin_nigasuupa_normal:
+	_LDVAL			SCWK_TEMP3,0
+	_LDVAL			SCWK_PARAM0,0
+	_LDVAL			SCWK_PARAM1,0
+	_LDVAL			SCWK_PARAM2,POFIN_STATUS_NORMAL
+	_LDVAL			SCWK_PARAM3,POFIN_STATUS_NORMAL
+	_RET
+
+//--------------------------------------------------------------------
+/*						ポフィンメニュー							*/
+//--------------------------------------------------------------------
+ev_c07r0207_pofin_menu:
+	_TALK_KEYWAIT	msg_c07r0207_shop2_02
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER									/*Bキャンセル有効*/
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_01,EV_WIN_TALK_MSG_NONE,0
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_02,EV_WIN_TALK_MSG_NONE,1
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_03,EV_WIN_TALK_MSG_NONE,2
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_04,EV_WIN_TALK_MSG_NONE,3
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_05,EV_WIN_TALK_MSG_NONE,4
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_06,EV_WIN_TALK_MSG_NONE,5
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_07,EV_WIN_TALK_MSG_NONE,6
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_08,EV_WIN_TALK_MSG_NONE,7
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_09,EV_WIN_TALK_MSG_NONE,8
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_10,EV_WIN_TALK_MSG_NONE,9
+	_BMPLIST_MAKE_LIST	msg_c07r0207_pofin_11,EV_WIN_TALK_MSG_NONE,10		/*いらない*/
+	_BMPLIST_START
+	_RET
+
+
+/********************************************************************/
+//							ポフィン屋(GOOD)
+/********************************************************************/
+ev_c07r0207_shop3:
+	_END
+
+
+/********************************************************************/
+/*						デパート買い物カウントを足す				*/
+/********************************************************************/
+ev_c07r0207_depart_count_add:
+	_ADD_WK		SYS_WORK_DEPART_COUNT,1
+	_RET
+
+
+/********************************************************************/
+/*								ポスター							*/
+/********************************************************************/
+ev_c07r0207_poster:
+	_EASY_MSG		msg_c07r0207_poster_01
+	_END
+
+

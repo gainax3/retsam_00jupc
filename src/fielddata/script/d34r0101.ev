@@ -1,0 +1,235 @@
+//====================================================================
+//								d34r0101
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0101.h"
+//	.include	"../eventdata/zone_d34r0101evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0101_flag_change
+_EVENT_DATA		ev_d34r0101_hole
+_EVENT_DATA		ev_d34r0101_sirona00
+_EVENT_DATA		ev_d34r0101_sirona01
+_EVENT_DATA		ev_d34r0101_sirona02
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0101_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+/********************************************************************/
+/*						テンガンザンに戻る							*/
+/********************************************************************/
+ev_d34r0101_hole:
+	_TALK_START
+
+	_TALKMSG		msg_d34r0101_hole_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d34r0101_hole
+
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+/*「はい」*/
+yes_d34r0101_hole:
+	_PLAYER_NAME	0
+	_TALKMSG		msg_d34r0101_hole_02
+	_TALK_CLOSE
+
+	_SE_PLAY		SEQ_SE_PL_SYUWA
+	_GIRATHINA_FORM_UPDATE	0
+	//_MAP_CHANGE_NONE_FADE	ZONE_ID_D05R0115, 0, 31, 33, DIR_DOWN
+	_MAP_CHANGE		ZONE_ID_D05R0115, 0, 31, 33, DIR_DOWN
+	_END
+
+/********************************************************************/
+/*						シロナ00									*/
+/********************************************************************/
+ev_d34r0101_sirona00:
+	_EVENT_START
+	
+	/*ブラックイン*/
+	//_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	//_WIPE_FADE_END_CHECK
+
+	/* 自機登場 */
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0101_player_00
+	_OBJ_ANIME_WAIT
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0101_player_01
+	_OBJ_ANIME_WAIT
+	
+	/* シロナ登場 */
+	_TW_OBJ_ADD		TW_OBJID_0101_SIRONA_00
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0101_champion_01
+	_TALK_CLOSE_NO_CLEAR
+	
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d34r0101_champion_02
+	_TALK_CLOSE_NO_CLEAR
+	
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_02
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d34r0101_champion_03
+	_TALK_CLOSE
+	
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0101_player_02
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_03
+	_OBJ_ANIME_WAIT
+	
+	/* ギラティナ影登場 */
+	_TW_GIRAS_SET	TW_GIRASNO_0101_00	
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0101_player_03
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_04
+	_OBJ_ANIME_WAIT
+	
+	_TIME_WAIT		30,SCWK_ANSWER
+	_TW_GIRAS_DEL
+	
+	/* ギラティナ影去りシロナコメント */
+	_TALK_KEYWAIT	msg_d34r0101_champion_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	/* 自機とシロナ会話 */
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0101_player_04
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_05
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d34r0101_champion_07
+	_TALK_CLOSE
+	
+	/* シロナ先へ逝く */
+	_OBJ_ANIME		TW_OBJID_0101_SIRONA_00,anm_d34r0101_sirona_06
+	_OBJ_ANIME_WAIT
+	
+	_TW_OBJ_DEL		TW_OBJID_0101_SIRONA_00
+	
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_01_01
+	
+	_EVENT_END
+	_END
+
+/********************************************************************/
+/*						シロナ01									*/
+/********************************************************************/
+ev_d34r0101_sirona01:
+	_EVENT_START
+	
+	_TALK_KEYWAIT	msg_d34r0101_champion_04
+	_NEXT_ANM_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*						シロナ02									*/
+/********************************************************************/
+ev_d34r0101_sirona02:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT	msg_d34r0101_champion_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+//-------------------------------------------------------------
+//	主人公アニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0101_player_00	//自機登場
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0101_player_01	//自機振り向き
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0101_player_02	//自機シロナ移動方向に向く
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0101_player_03	//ギラティナに気づく
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA AC_DIR_R,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0101_player_04	//シロナの方向へ向く
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	シロナアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0101_sirona_00	//シロナ登場
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_WAIT_16F,2
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA AC_STAY_WALK_U_8F,1
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0101_sirona_01	//シロナ前向く
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0101_sirona_02	//シロナ自機の方向へ向く
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0101_sirona_03	//シロナ去りそう
+	_ANIME_DATA AC_WALK_D_8F,2
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0101_sirona_04	//ギラティナに気づく
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA AC_DIR_R,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0101_sirona_05	//自機の方向を向く
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0101_sirona_06	//シロナ去る
+	_ANIME_DATA AC_WALK_L_8F,3
+	_ANIME_DATA AC_WALK_D_8F,3
+	_ANIME_DATA AC_WALK_L_8F,2
+	_ANIME_DATA AC_WALK_D_8F,1
+	_ANIME_DATA AC_WALK_L_8F,6
+	_ANIME_DATA ACMD_END,0

@@ -1,0 +1,118 @@
+//====================================================================
+//								d07r0105
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d07r0105.h"
+	.include	"../eventdata/zone_d07r0105evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d07r0105_mount
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_d07r0105_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_d07r0105_mount:
+	_TALK_OBJ_START
+
+	/*アイテム入手していたら*/
+	_IF_FLAGON_JUMP	FE_D07R0105_MOUNT_ITEM_GET,ev_d07r0105_mount_04
+
+	/*「いいえ」選択してから、再度会話*/
+	_IF_FLAGON_JUMP	FE_D07R0105_MOUNT,ev_d07r0105_mount_03
+
+	/*「秘伝マシン０５」をもっている時*/
+	_ITEM_CHK		ITEM_HIDENMASIN05,1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d07r0105_mount_02
+
+	_TALKMSG		msg_d07r0105_mount_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「秘伝マシン０５」をもっている時*/
+ev_d07r0105_mount_02:
+	_TALKMSG		msg_d07r0105_mount_02
+	_JUMP			ev_d07r0105_mount_03
+	_END
+
+ev_d07r0105_mount_03:
+	/*！*/
+	_OBJ_ANIME		D07R0105_MOUNT,anm_d07r0105_mount_01
+	_OBJ_ANIME_WAIT
+
+	_TALKMSG		msg_d07r0105_mount_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,d07r0105_mount_yes
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,d07r0105_mount_no
+	_END
+
+d07r0105_mount_yes:
+	_TALKMSG		msg_d07r0105_mount_04
+
+	_LDVAL			SCWK_TEMP0,ITEM_MIDORINOKAKERA
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d07r0105_mount_item_event_fail
+
+	_FLAG_SET		FE_D07R0105_MOUNT_ITEM_GET
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+ev_d07r0105_mount_item_event_fail:
+	//アイテム取得失敗イベント(共通メッセージを出す、専用を使用するときはいらない)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+d07r0105_mount_no:
+	_FLAG_SET		FE_D07R0105_MOUNT
+	_TALKMSG		msg_d07r0105_mount_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*アイテム入手していたら*/
+ev_d07r0105_mount_04:
+	_TALKMSG		msg_d07r0105_mount_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+//--------------------------------------------------------------------
+//山男	驚く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d07r0105_mount_01
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+

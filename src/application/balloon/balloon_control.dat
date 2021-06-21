@@ -1,0 +1,61 @@
+//==============================================================================
+/**
+ * @file	balloon_control.dat
+ * @brief	風船ミニゲームのデータ設定ファイル
+ * @author	matsuda
+ * @date	2008.02.21(木)
+ */
+//==============================================================================
+
+///参加人数毎に定まっているデータ
+static const BALLOON_NUM_PARTICIPATION_DATA BalloonParicipationData[] = {
+	{3000,  6000,  8000},		//1origin化の為のダミー
+	{1000,  1000,  1000},		//参加人数1人　※デバッグ用
+	{6566, 8442, 10318},		//参加人数2人	HP-LV1,2,3
+	{8428, 10836, 13244},		//参加人数3人
+	{9800, 12600, 15400},		//参加人数4人
+};
+
+///風船レベル毎に定まっているデータ
+static const BALLOON_LEVEL_DATA BalloonLevelData[] = {
+	{
+		MINI_FUSEN_MIDORIFUSEN_NCGR,
+		MINI_FUSEN_MIDORIFUSEN_NSCR,
+		0x1400 - BALLOON_SCALE_MIN,		//LV1最大スケール
+	},
+	{
+		MINI_FUSEN_KIIROFUSEN_NCGR, 
+		MINI_FUSEN_KIIROFUSEN_NSCR, 
+		0x1a00 - BALLOON_SCALE_MIN,		//LV2最大スケール
+	},
+	{
+		MINI_FUSEN_AKAFUSEN_NCGR, 
+		MINI_FUSEN_AKAFUSEN_NSCR, 
+		0x2000 - BALLOON_SCALE_MIN,		//LV3	FX32_ONE * 2 - BALLOON_SCALE_MIN
+	},
+};
+
+
+
+//==============================================================================
+//	ブースター
+//==============================================================================
+///ブースターの移動データ(周回毎)
+static const BOOSTER_MOVE_DATA BoosterMoveDataTbl[] = {
+	{8, 20, 7},	//1周目		move, wait, hit_anime_time(moveより必ず小さくすること！)
+	{8, 17, 7},	//2周目		move, wait
+	{8, 14, 6},	//3周目
+	{8, 10, 6},	//4周目
+	{8, 6, 5},	//5周目
+};
+
+
+//==============================================================================
+//	空気量
+//==============================================================================
+///ソーナンスのレアゲームによる空気量補正(パーセンテージで指定)
+const s32 AirRareRevision[] = {
+	100,				//ノーマル	MNGM_RAREGAME_BALLOON_NORMAL
+	125,				//レア(太)
+	88,					//レア(細)
+};

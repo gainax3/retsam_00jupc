@@ -1,0 +1,72 @@
+//==============================================================================
+/**
+ * @file		msg_debug_ohno.h
+ * @brief		メッセージID参照用ヘッダファイル
+ *
+ * このファイルはコンバータにより自動生成されています
+ */
+//==============================================================================
+#ifndef __MSG_DEBUG_OHNO_H__
+#define __MSG_DEBUG_OHNO_H__
+
+#define	DebugOhno_ScriptBattle		(0)
+#define	DebugOhno_ScriptContest		(1)
+#define	DebugOhno_Stone99Bag		(2)
+#define	DebugOhno_TresureBug1		(3)
+#define	DebugOhno_TresureBug2		(4)
+#define	DebugOhno_list		(5)
+#define	DebugOhno_RecordMax		(6)
+#define	DebugOhno_FriendMax		(7)
+#define	DebugOhno_DANDP		(8)
+#define	DebugOhno_Channel		(9)
+#define	msg_debugohno_name01		(10)
+#define	DebugOhno_EasyBattle_Child		(11)
+#define	DebugOhno_EasyBattle_Child0001		(12)
+#define	DebugOhno_EasyBattle_Child0002		(13)
+#define	DebugOhno_EasyBattle_Child0003		(14)
+#define	DebugOhno_EasyBattle_Child0004		(15)
+#define	DebugOhno_EasyBattle_Child0005		(16)
+#define	DebugOhno_EasyBattle_Parent		(17)
+#define	DebugOhno_EasyBattle_Parent0001		(18)
+#define	DebugOhno_EasyBattle_Parent0002		(19)
+#define	DebugOhno_EasyBattle_Parent0003		(20)
+#define	DebugOhno_EasyBattle_Parent0004		(21)
+#define	DebugOhno_EasyBattle_Parent0005		(22)
+#define	DebugOhno_EasyContest_Child		(23)
+#define	DebugOhno_EasyContest_Parent		(24)
+#define	DebugOhno_EasyContest_Type01		(25)
+#define	DebugOhno_EasyContest_Type02		(26)
+#define	DebugOhno_EasyContest_Type03		(27)
+#define	DebugOhno_EasyContest_Type04		(28)
+#define	DebugOhno_EasyContest_Type05		(29)
+#define	DebugOhno_EasyContest_Rank01		(30)
+#define	DebugOhno_EasyContest_Rank02		(31)
+#define	DebugOhno_EasyContest_Rank03		(32)
+#define	DebugOhno_EasyContest_Rank04		(33)
+#define	DebugOhno_Under		(34)
+#define	DebugOhno_CommQuantity		(35)
+#define	DebugOhno_CommQuantity01		(36)
+#define	DebugOhno_ID		(37)
+#define	DebugOhno_AutoMove		(38)
+#define	DebugOhno_Goods		(39)
+#define	DebugOhno_GoodsPenaDel		(40)
+#define	DebugOhno_Trap		(41)
+#define	DebugOhno_DigFossil		(42)
+#define	DebugOhno_Down		(43)
+#define	DebugOhno_Down0002		(44)
+#define	DebugOhno_Down0003		(45)
+#define	DebugOhno_Down0004		(46)
+#define	DebugOhno_Down0005		(47)
+#define	DebugOhno_Down0006		(48)
+#define	DebugOhno_PlatinaReturn		(49)
+#define	DebugOhno_FlagLEVEL01		(50)
+#define	DebugOhno_FlagLEVEL02		(51)
+#define	DebugOhno_FlagLEVEL03		(52)
+#define	DebugOhno_FlagLEVEL04		(53)
+#define	DebugOhno_FlagLEVEL00		(54)
+#define	DebugOhno_WifiMatch		(55)
+#define	DebugOhno_WifiFriend		(56)
+#define	DebugOhno_Platina		(57)
+#define	DebugOhno_Stone99		(58)
+
+#endif

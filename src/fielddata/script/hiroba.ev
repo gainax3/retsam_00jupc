@@ -1,0 +1,266 @@
+//====================================================================
+//								hiroba
+//
+//	LOCALWORK3使用中
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_hiroba.h"
+	.include	"../eventdata/zone_hirobaevc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_hiroba_go
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+//ev_hiroba_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_hiroba_go:
+	_EVENT_START
+
+	/*ワープ前に行くアニメをランダムにする*/
+	_GET_RND		SCWK_PARAM0,5
+	_SWITCH			SCWK_PARAM0
+	_CASE_JUMP		0,ev_hiroba_go_02
+	_CASE_JUMP		1,ev_hiroba_go_03
+	_CASE_JUMP		2,ev_hiroba_go_04
+	_CASE_JUMP		3,ev_hiroba_go_05
+	_CASE_JUMP		4,ev_hiroba_go_06
+	_END
+
+/*歩く*/
+ev_hiroba_go_02:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_11
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_11
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_hiroba_go_common_01
+	_END
+
+ev_hiroba_go_03:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_12
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_12
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_hiroba_go_common_01
+	_END
+
+ev_hiroba_go_04:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_13
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_13
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_hiroba_go_common_01
+	_END
+
+ev_hiroba_go_05:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_14
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_14
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_hiroba_go_common_01
+	_END
+
+ev_hiroba_go_06:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_15
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_15
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_hiroba_go_common_01
+	_END
+
+ev_hiroba_go_common_01:
+	/*「それではいってらっしゃい」*/
+	_TALK_KEYWAIT	msg_hiroba_staff_01
+	_AB_KEYWAIT
+	_TALK_CLOSE
+
+	/*ワープに乗って広場へ*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_30
+	_OBJ_ANIME		HIROBA_WIFISW,anm_hiroba_wifisw_30
+	_OBJ_ANIME_WAIT
+
+	_SE_PLAY		SEQ_SE_DP_TELE2
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_hiroba_player_30_2
+	_OBJ_ANIME_WAIT
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+#if 1	//timing on
+	_LDVAL			LOCALWORK3,1
+
+	/*
+	受付でセーブした時の主人公の座標が記録されていて、
+	ここで、マップを前に戻してからセーブして、
+	ソフトリセットをかけると、
+	ゾーンは受付で、座標も受付位置になっている
+
+	ソフトリセットせずに進めると、
+	マップ遷移コマンドで指定した座標から、
+	ドアを開けて出てくるアニメが始まる
+	*/
+
+	/*ポケセン地下に戻る*/
+	//_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,6,DIR_DOWN
+	_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,2,DIR_DOWN
+#endif
+
+	_FINISH_MAP_PROC
+
+	/*WIFI接続し初回ID取得*/
+	_DPW_INIT_PROC	SCWK_ANSWER
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*退避*/
+
+	/*WIFI広場開始*/
+	_WIFILOBBY_SET_PROC	SCWK_TEMP0
+	_SET_MAP_PROC
+
+#if 0	//timing off
+	/*一応、強制スクリプトが起動しないように値を変える*/
+	_LDVAL			LOCALWORK3,1
+#endif
+
+	/*ポケセン地下に戻ってきた時にスクリプト起動するようする(広場ではセーブはないらしい)*/
+	_LDVAL			WK_SCENE_PC_UG_HIROBA,1
+
+#if 0	//timing off
+	/*ポケセン地下に戻る*/
+	//_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,6,DIR_DOWN
+	_MAP_CHANGE_NONE_FADE	SYS_WORK_PC_UG_ZONE_ID,0,5,2,DIR_DOWN
+#endif
+
+	_OBJ_INVISIBLE	FLDOBJ_ID_PLAYER
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	ワープ前まで移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_hiroba_player_11
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_L_8F,11
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_player_12
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_L_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_player_13
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_L_8F,7
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_player_14
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_player_15
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ワープに乗って広場へ
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_hiroba_player_30
+	_ANIME_DATA	AC_WALK_U_8F,1
+	//回転
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_player_30_2
+	//上昇
+	_ANIME_DATA	AC_WARP_UP,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受付	ワープ前まで移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_hiroba_wifisw_11
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_L_8F,12
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_wifisw_12
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_L_8F,10
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_wifisw_13
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_L_8F,8
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_wifisw_14
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_L_8F,6
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_hiroba_wifisw_15
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受付	見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_hiroba_wifisw_30
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+

@@ -1,0 +1,363 @@
+//====================================================================
+//						r227
+//					フィールド・ロード227
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r227.h"
+	.include	"../eventdata/zone_r227evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		pos_r227_gymleader
+_EVENT_DATA		ev_r227_sign1
+_EVENT_DATA		pos_r227_seven2
+_EVENT_DATA		ev_r227_seven2
+_EVENT_DATA_END
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_r227_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*					ジムリーダーとライバル(POS)						*/
+/********************************************************************/
+#define POS_R227_GYMLEADER_X1	(738)
+#define POS_R227_GYMLEADER_X2	(739)
+
+pos_r227_gymleader:
+	_EVENT_START
+
+	//主人公の位置情報取得
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R227_GYMLEADER_X2,pos_r227_gymleader_set_x
+
+	/*主人公に気づく*/
+	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_01
+	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_01
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_00	/*左からPOSに進入した時の対処*/
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_r227_gymleader_01_01
+	_TALK_CLOSE
+
+	/*ライバル、ジムリーダーの方を向く*/
+	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_02
+	_OBJ_ANIME_WAIT
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_RIVAL_NAME		1
+	_TALK_KEYWAIT	msg_r227_rival_01
+	_TALK_CLOSE
+
+	/*マキシ、ライバルの方を向く*/
+	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_50
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_r227_gymleader_02
+
+	_RIVAL_NAME		1
+	_TALK_KEYWAIT	msg_r227_rival_02
+
+	/*マキシ、下を向く*/
+	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_55
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_r227_gymleader_03
+	_TALK_CLOSE
+
+	/*R226へ去っていく*/
+	_OBJ_ANIME		R227_GYMLEADER,anm_r227_gymleader_04
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_03
+	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_103
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		R227_GYMLEADER
+
+	/*ライバル、主人公の方を向く*/
+	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_03
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_210
+	_OBJ_ANIME_WAIT
+
+	_TIME_WAIT		5,SCWK_ANSWER
+
+	_RIVAL_NAME		1
+	_TALK_KEYWAIT	msg_r227_rival_03
+
+	_TALK_KEYWAIT	msg_r227_rival_04
+	_TALK_CLOSE
+
+	_OBJ_ANIME		R227_RIVAL,anm_r227_rival_100
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_228
+	_OBJ_ANIME_WAIT
+
+	_OBJ_DEL		R227_RIVAL
+	_LDVAL			WK_SCENE_R227,1
+	_EVENT_END
+	_END
+
+/*マキシの前に来るようにする*/
+pos_r227_gymleader_set_x:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_200
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	マキシの前に来るようにする
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_200
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	上を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_00
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ライバルに近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_210
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ライバルを見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_228
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ジムリーダーを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_02
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ジムリーダーを見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_03
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_r227_player_04
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	！
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_rival_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	ジムリーダーの方を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_rival_02
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	ジムリーダー見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_rival_103
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	主人公の方を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_rival_03
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_rival_100
+	_ANIME_DATA	AC_WALK_D_4F,9
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_r227_rival_101
+	_ANIME_DATA	AC_WALK_D_4F,9
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	！
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	ライバルの方を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_50
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_55
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	ライバルを見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_02
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_03
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジムリーダー	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_gymleader_04
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_D_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_r227_gymleader_05
+	_ANIME_DATA	AC_WALK_D_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							道路看板								*/
+/********************************************************************/
+ev_r227_sign1:
+	_EASY_BOARD_MSG	msg_r227_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+
+/********************************************************************/
+/*							５人衆									*/
+/********************************************************************/
+ev_r227_seven2:
+	_EASY_OBJ_MSG	msg_r227_seven2_05
+	_END
+
+
+/********************************************************************/
+/*							５人衆(POS)								*/
+/********************************************************************/
+pos_r227_seven2:
+	_EVENT_START
+
+	/*主人公に気づく*/
+	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_01
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r227_player_100
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_r227_seven2_2
+	_END
+
+ev_r227_seven2_2:
+	_PLAYER_NAME	0
+	_TALKMSG		msg_r227_seven2_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_r227_seven2
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_r227_seven2
+	_END
+
+/*「いいえ」*/
+no_r227_seven2:
+	_TALKMSG		msg_r227_seven2_04
+	_JUMP			ev_r227_seven2_2
+	_END
+
+/*「はい」*/
+yes_r227_seven2:
+	/*上向き*/
+	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_50
+	_OBJ_ANIME_WAIT
+
+	_TALKMSG		msg_r227_seven2_02
+
+	/*主人公と向き合って*/
+	_OBJ_ANIME		R227_SEVEN2,anm_r227_seven2_55
+	_OBJ_ANIME_WAIT
+
+	_TALKMSG		msg_r227_seven2_03
+	_TALK_CLOSE
+
+	_LDVAL			WK_SCENE_R227_SEVEN2,1
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	上を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_100
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	５人衆を見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_player_30
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//５人衆	近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_seven2_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//５人衆	上を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_seven2_50
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//５人衆	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_r227_seven2_55
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+

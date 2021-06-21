@@ -1,0 +1,1461 @@
+//====================================================================
+//						d32r0401(ステージロビー)
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d32r0401.h"
+	.include	"../eventdata/zone_d32r0401evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_stage_lobby
+_EVENT_DATA		ev_stage_lobby_continue
+_EVENT_DATA		ev_stage_lobby_continue_ng
+_EVENT_DATA		ev_stage_lobby_7win
+_EVENT_DATA		ev_stage_lobby_give
+_EVENT_DATA		ev_stage_lobby_multi
+_EVENT_DATA		ev_d32r0401_mount
+_EVENT_DATA		ev_d32r0401_girl4
+_EVENT_DATA		ev_d32r0401_babygirl1
+_EVENT_DATA		ev_d32r0401_poke
+_EVENT_DATA		ev_d32r0401_oldman1
+_EVENT_DATA		ev_d32r0401_idol
+_EVENT_DATA		ev_d32r0401_middlewoman1
+_EVENT_DATA		ev_d32r0401_maid
+_EVENT_DATA		ev_d32r0401_boy
+_EVENT_DATA		ev_d32r0401_flag_change
+_EVENT_DATA		ev_d32r0401_bonus
+_EVENT_DATA		ev_d32r0401_fanboy
+_EVENT_DATA		ev_d32r0401_fangirl
+_EVENT_DATA		ev_d32r0401_ouen
+_EVENT_DATA		ev_d32r0401_init_change
+_EVENT_DATA		ev_d32r0401_obj_change
+_EVENT_DATA_END
+
+
+//--------------------------------------------------------------------
+//					    デバック定義(★全てコメントにする！)
+//--------------------------------------------------------------------
+#ifdef SCRIPT_PM_DEBUG
+//#define	DEBUG_SAVE_OFF			//セーブなし
+//#define	DEBUG_POKE_CHK_OFF		//同じポケモンで挑戦しているかチェックなし(有効でデバック)
+#endif
+
+
+//--------------------------------------------------------------------
+//							定義
+//--------------------------------------------------------------------
+//カウンター定義
+#define STAGE_COUNTER_LEFT		(0)
+#define STAGE_COUNTER_RIGHT		(1)
+
+
+/********************************************************************/
+/*						OBJ_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d32r0401_obj_change:
+
+	/*レコードがある数を取得してファンの位置を移動*/
+	_STAGE_RECORD_POKE_GET	LOCALWORK0
+	_IFVAL_CALL			LOCALWORK0,GE,11,ev_d32r0401_fan_pos_move_2
+	_IFVAL_CALL			LOCALWORK0,GE,101,ev_d32r0401_fan_pos_move_3
+	_END
+
+/*レコードがある数を取得*/
+ev_d32r0401_fan_pos_move_3:
+	_SXY_POS_CHANGE		D32R0401_FANBOY,8,11
+	_OBJ_POS_CHANGE		D32R0401_FANBOY,8,0,11,DIR_LEFT
+	//_SXY_POS_CHANGE		D32R0401_FANGIRL,13,12
+	_RET
+
+ev_d32r0401_fan_pos_move_2:
+	_SXY_POS_CHANGE		D32R0401_FANBOY,13,11
+	_OBJ_POS_CHANGE		D32R0401_FANBOY,13,0,11,DIR_LEFT
+	//_SXY_POS_CHANGE		D32R0401_FANGIRL,8,12
+	_RET
+
+
+/********************************************************************/
+/*						INIT_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d32r0401_init_change:
+	/*7連勝した時*/
+	_IFVAL_JUMP		WK_SCENE_STAGE_LOBBY,EQ,1,ev_d32r0401_init_change_7_win
+	//_JUMP		ev_d32r0401_init_change_7_win		//★DEBUG
+	_END
+
+/*7連勝した時*/
+ev_d32r0401_init_change_7_win:
+
+	/*TVインタビュアー"7連勝後"チェック*/
+	_CALL			ev_d32r0401_tv_interview_check_7_win
+
+	_GET_RND		LOCALWORK7,100
+
+	/*応援が表示されていたら削除する*/
+	_IF_FLAGOFF_CALL	FV_D32R0401_OUEN,ev_d32r0401_init_change_ouen_del
+
+	////////////////////////////////////////
+	/*デバック用に100%処理に行くようにする*/
+	////////////////////////////////////////
+	_IFVAL_JUMP		LOCALWORK7,LT,30,ev_d32r0401_init_change_7_win_ouen
+	//_JUMP			ev_d32r0401_init_change_7_win_ouen	//★DEBUG
+	_END
+
+/*応援が表示されていたら削除する*/
+ev_d32r0401_init_change_ouen_del:
+	_OBJ_DEL		D32R0401_OUEN					/*擬似3Dなのでフラグ操作だけではダメ！*/
+	_FLAG_SET		FV_D32R0401_OUEN
+	_RET
+
+/*30%で応援出現*/
+ev_d32r0401_init_change_7_win_ouen:
+	_IF_FLAGOFF_JUMP	TMFLG_STAGE_OUEN,ev_d32r0401_init_change_7_win_ouen_tmflag
+	//_JUMP			ev_d32r0401_init_change_7_win_ouen_tmflag	//★DEBUG
+	_END
+
+/*一日一回*/
+ev_d32r0401_init_change_7_win_ouen_tmflag:
+	_FLAG_SET		TMFLG_STAGE_OUEN
+
+	/*トータルレコードによって分岐*/
+	_STAGE_TOTAL_RECORD_GET_EX	LOCALWORK8
+	_IFVAL_JUMP		LOCALWORK8,GE,10000,ev_d32r0401_init_change_7_win_ouen_3
+	_IFVAL_JUMP		LOCALWORK8,GE,1000,ev_d32r0401_init_change_7_win_ouen_2
+	_IFVAL_JUMP		LOCALWORK8,GE,500,ev_d32r0401_init_change_7_win_ouen_1
+	_END
+
+ev_d32r0401_init_change_7_win_ouen_3:
+	_GET_RND		SYS_WORK_STAGE_OUEN,4		/*再度インした時にワークの値が必要*/
+	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
+	_END
+
+ev_d32r0401_init_change_7_win_ouen_2:
+	_GET_RND		SYS_WORK_STAGE_OUEN,2		/*再度インした時にワークの値が必要*/
+	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
+	_END
+
+ev_d32r0401_init_change_7_win_ouen_1:
+	_LDVAL			SYS_WORK_STAGE_OUEN,0		/*再度インした時にワークの値が必要*/
+	_JUMP			ev_d32r0401_init_change_7_win_ouen_common
+	_END
+
+ev_d32r0401_init_change_7_win_ouen_common:
+	_FLAG_RESET		FV_D32R0401_OUEN
+	_CALL			ev_d32r0401_ouen1_char_code_set/*応援キャラコードセット*/
+	_OBJ_ADD		D32R0401_OUEN				/*擬似3Dなのでフラグ操作だけではダメ！*/
+	_END
+
+/////////////////////////////////////////////////////////////////////////////////////////
+/*TVインタビュアー"7連勝後"チェック*/
+/////////////////////////////////////////////////////////////////////////////////////////
+ev_d32r0401_tv_interview_check_7_win:
+
+	/*"7連勝後"インタビュアーが表示されていたら削除する*/
+	_IF_FLAGOFF_CALL	FV_TV_INTERVIEW_14,ev_d32r0401_init_change_interview_del
+
+#if 0
+	//FLAG_CHANGE_LABEL
+	インタビューを受けて、外に出て、再度入った時に、インタビューを消す必要がある
+
+	//INIT_CHANGE_LABEL
+	挑戦後、連勝数を見て、インタビュアーを追加する必要がある
+	再度、挑戦した時に、インタビュアーがすでにいるかで削除するか、そのままか、など
+#endif
+
+	/*インタビュアーフラグが立っているか*/
+	_TV_INTERVIEWER_CHECK	14,LOCALWORK0
+	_IFVAL_JUMP			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
+
+	/*挑戦したポケモンが50連勝しているかチェック*/
+	_TV_STAGE_RENSYOU_CHECK	LOCALWORK0
+	_IFVAL_JUMP			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
+
+	_FLAG_RESET		FV_TV_INTERVIEW_14
+	_OBJ_ADD		D32R0401_TV_INTERVIEW_14			/*擬似3Dなのでフラグ操作だけではダメ！*/
+	_RET
+
+/*インタビューバニッシュフラグON*/
+ev_d32r0401_flagchange_vanish:
+	_FLAG_SET			FV_TV_INTERVIEW_14
+	_RET
+
+/*インタビュアーが表示されていたら削除する*/
+ev_d32r0401_init_change_interview_del:
+	_OBJ_DEL		D32R0401_TV_INTERVIEW_14			/*擬似3Dなのでフラグ操作だけではダメ！*/
+	_FLAG_SET		FV_TV_INTERVIEW_14
+	_RET
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+/*バトルステージインタビュー*/
+ev_d32r0401_flag_change:
+
+	/*ファンのキャラコードセット*/
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_d32r0401_fangirl_set
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_d32r0401_fanboy_set
+
+	/*応援キャラコードセット*/
+	_CALL			ev_d32r0401_ouen1_char_code_set
+
+	/*インタビュアーフラグが立っているか*/
+	_TV_INTERVIEWER_CHECK	14,LOCALWORK0
+	_IFVAL_CALL			LOCALWORK0,EQ,0,ev_d32r0401_flagchange_vanish
+
+	//マップに入ってきたタイミングでは、すでに表示されているインタビュアーならそのまま
+	//インタビューを受けた後なら、消えるようにフラグを立てる
+	//いない状態から表示にするかは、INIT_CHANGEの7連勝後のタイミングで行う
+	//_FLAG_RESET			FV_TV_INTERVIEW_14
+	_END
+
+/*応援キャラコードセット*/
+ev_d32r0401_ouen1_char_code_set:
+	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,0,ev_d32r0401_flag_change_ouen1
+	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,1,ev_d32r0401_flag_change_ouen2
+	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,2,ev_d32r0401_flag_change_ouen3
+	_IFVAL_CALL		SYS_WORK_STAGE_OUEN,EQ,3,ev_d32r0401_flag_change_ouen4
+	_RET
+
+/*応援キャラコードセット*/
+ev_d32r0401_flag_change_ouen1:
+	_GET_MY_SEX		LOCALWORK9
+	_IFVAL_JUMP		LOCALWORK9,EQ,0,d32r0401_support_male_01	//サポート女
+	_IFVAL_JUMP		LOCALWORK9,EQ,1,d32r0401_support_female_01	//サポート男
+	_RET
+
+d32r0401_support_male_01:	//サポート女
+	_LDVAL			OBJCHRWORK1,HEROINE
+	_RET
+
+d32r0401_support_female_01:	//サポート男
+	_LDVAL			OBJCHRWORK1,HERO
+	_RET
+
+ev_d32r0401_flag_change_ouen2:
+	_LDVAL			OBJCHRWORK1,MAMA
+	_RET
+
+ev_d32r0401_flag_change_ouen3:
+	_LDVAL			OBJCHRWORK1,OOKIDO
+	_RET
+
+ev_d32r0401_flag_change_ouen4:
+	_LDVAL			OBJCHRWORK1,MIKAN
+	_RET
+
+/*ファンのキャラコードセット*/
+ev_d32r0401_fangirl_set:
+	_LDVAL			OBJCHRWORK3,GIRL2
+	_RET
+
+ev_d32r0401_fanboy_set:
+	_LDVAL			OBJCHRWORK3,BOY2
+	_RET
+
+
+/********************************************************************/
+//						シングル、ダブル受付(左)
+//
+//	SCWK_TEMP0
+//	WK_SCENE_STAGE_TYPE			シングル、ダブル、マルチ、wifiマルチ
+//	LOCALWORK1					ポケモンナンバー
+//	LOCALWORK2					ポケモンリストで選択した位置
+//	LOCALWORK5					ポケモンリストで選択した位置2
+//	LOCALWORK3					初期化、継続
+//	LOCALWORK4					左(シングル、ダブル)、右(マルチ)どちらの受付か
+//
+/********************************************************************/
+ev_stage_lobby:
+	_TALK_OBJ_START
+
+	_LDVAL			LOCALWORK3,0
+	_LDVAL			LOCALWORK4,STAGE_COUNTER_LEFT
+
+	_JUMP			common_01_stage01
+	_END
+
+
+/********************************************************************/
+//							マルチ受付(右)
+//
+//	SCWK_TEMP0
+//	WK_SCENE_STAGE_TYPE			シングル、ダブル、マルチ、wifiマルチ
+//	LOCALWORK1					ポケモンナンバー
+//	LOCALWORK2					ポケモンリストで選択した位置
+//	LOCALWORK5					ポケモンリストで選択した位置2
+//	LOCALWORK3					初期化、継続
+//	LOCALWORK4					左(シングル、ダブル)、右(マルチ)どちらの受付か
+//
+/********************************************************************/
+ev_stage_lobby_multi:
+	_TALK_OBJ_START
+
+	_LDVAL			LOCALWORK3,0
+	_LDVAL			LOCALWORK4,STAGE_COUNTER_RIGHT
+
+	_JUMP			common_01_stage01
+	_END
+
+
+/********************************************************************/
+//							共通処理
+/********************************************************************/
+common_01_stage01:
+
+	/*ヒープチェック*/
+	_HEAP_CHECK		0
+
+	/*「バトルステージへ　ようこそ！」*/
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p01_park_stage01
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_RIGHT,ev_mode03_p01_park_stage01
+	_JUMP			park_stage01_start
+	_END
+
+park_stage01_start:
+	/*「バトルトレード　挑戦しますか？」*/
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p02_park_stage01
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_RIGHT,ev_mode03_p02_park_stage01
+
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_04,2	/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_05,3	/*やめる*/
+	_BMPMENU_START
+
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_lobby_choice_01		/*シングル*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_lobby_choice_02		/*ダブル*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,2,ev_lobby_choice_03		/*説明*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,4,ev_lobby_choice_05		/*挑戦する*/
+	_JUMP				ev_lobby_choice_04
+	_END
+
+
+/********************************************************************/
+//					メニュー「せつめいをきく」	
+/********************************************************************/
+ev_lobby_choice_03:
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_LEFT,ev_mode01_p03_park_stage01
+	_IFVAL_CALL		LOCALWORK4,EQ,STAGE_COUNTER_RIGHT,ev_mode03_p03_park_stage01
+	_JUMP			park_stage01_start
+	_END
+
+
+/********************************************************************/
+//					メニュー「やめる」	
+/********************************************************************/
+ev_lobby_choice_04:
+	_JUMP			park_stage01_end
+	_END
+
+park_stage01_end:
+	_LDVAL			WK_SCENE_STAGE_LOBBY,0
+
+	/*またのご利用をお待ちしております*/
+	_TALKMSG		msg_stage_lobby_10
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//	選択したタイプをセット「シングルバトル、ダブルバトル、マルチ」
+/********************************************************************/
+ev_lobby_choice_01:
+	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_SINGLE
+
+	/*手持ちポケモン数チェック*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1匹チェック
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_poke_num_ng					//NG
+	
+	_JUMP			ev_lobby_choice_pokesel
+	_END
+
+ev_lobby_choice_02:
+	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_DOUBLE
+
+	/*手持ちポケモン数チェック*/
+	/*手持ちに複数同じポケモンがいるかチェック*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,2,SCWK_ANSWER				//2匹チェック
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_double_error					//NG
+
+	//_TEMOTI_POKE_CHK_NUM	SCWK_ANSWER,0									//同じ種類2匹チェック
+	//_IFVAL_JUMP				SCWK_ANSWER,EQ,0,ev_stage_double_error			//NG
+
+	_JUMP			ev_lobby_choice_pokesel
+	_END
+
+ev_lobby_choice_05:
+	_LDVAL			WK_SCENE_STAGE_TYPE,STAGE_TYPE_MULTI
+
+	/*手持ちポケモン数チェック*/
+	_BSTAGE_TOOLS	STAGE_TOOL_CHK_ENTRY_POKE_NUM,1,SCWK_ANSWER				//1匹チェック
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_poke_num_ng					//NG
+	
+	_JUMP			ev_lobby_choice_pokesel
+	_END
+
+
+/********************************************************************/
+/*					参加出来るポケモンが足りない					*/
+/********************************************************************/
+ev_stage_poke_num_ng:
+	/*「参加出来るポケモンが足りません」*/
+	_TALKMSG		msg_stage_lobby_32
+	_TALKMSG_NG_POKE_NAME	msg_stage_lobby_37,1,0,0,0
+	_JUMP			ev_lobby_choice_04
+	_END
+
+/*ダブルバトルを選んでも、手持ちに複数同じポケモンがいないですよ*/
+ev_stage_double_error:
+	_TALKMSG		msg_stage_lobby_36
+	_TALKMSG_NG_POKE_NAME	msg_stage_lobby_37,2,0,0,0
+	_JUMP			ev_lobby_choice_04
+	_END
+
+
+/********************************************************************/
+/*						出場ポケモンを選択する						*/
+/********************************************************************/
+ev_lobby_choice_pokesel:
+
+	/*参加するポケモンを選んでください*/
+	_TALKMSG			msg_stage_lobby_30
+	_TALK_CLOSE
+
+	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*ポケモンリスト呼び出し*/
+	_BSTAGE_TOOLS		STAGE_TOOL_SELECT_POKE,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
+
+	/*選択したポケモンの並び番号取得*/
+	_BATTLE_STAGE_POKELIST_GET_RESULT	LOCALWORK2,LOCALWORK5
+	_SET_MAP_PROC
+
+	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*キャンセルチェック*/
+	_IFVAL_JUMP			LOCALWORK2,EQ,0xff,ev_lobby_choice_04
+
+	/*はっきんだまチェック(キャンセルチェック後に処理する)*/
+	_SODATEYA_POKE_FORM_RETURN	LOCALWORK2,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_stage_gira_ng
+
+	/*はっきんだまチェック(キャンセルチェック後に処理する)*/
+	_SODATEYA_POKE_FORM_RETURN	LOCALWORK5,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_stage_gira_ng
+
+	/*手持ちー＞ポケモン番号変換　同時にタマゴチェックも行っています*/
+	_TEMOTI_MONSNO		LOCALWORK2,LOCALWORK1
+	//_IFVAL_JUMP		LOCALWORK1,EQ,0,ev_lobby_choice_tamago			/*タマゴ*/
+	_IFVAL_JUMP			LOCALWORK1,EQ,0,ev_lobby_choice_04				/*タマゴ*/
+	/*ポケモンリストでタマゴが選択出来ないようにしている*/
+
+	//連勝中かチェック
+	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_FLAG,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_10					/*新規挑戦*/
+
+	//連勝中のポケモンナンバーと一致するかチェック
+	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_MONSNO,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
+
+#ifdef	DEBUG_POKE_CHK_OFF	/********************************************/
+	/*デバックで連勝数を操作した時に、クリアしたポケモンナンバーが0のままなので、*/
+	/*同じポケモンで挑戦しているかチェックはスルーさせる*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_10
+	//_JUMP			ev_stage_lobby_10
+#endif	/************************************************************/
+
+	_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
+	_IFWK_JUMP		SCWK_ANSWER,EQ,LOCALWORK1,ev_stage_lobby_10			/*連勝中*/
+
+	/*連勝中で、新規ポケモンで挑戦しようとした時*/
+	_JUMP			ev_lobby_choice_pokesel_02
+	_END
+
+
+/********************************************************************/
+/*						記録があるけどどうする？					*/
+/********************************************************************/
+ev_lobby_choice_pokesel_02:
+	/*「○での連勝記録がありますが、記録を消して□で新たに挑戦しますか？」*/
+	//_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
+	_POKEMON_NAME_EXTRA	1,LOCALWORK1,0,0
+	_TALKMSG			msg_stage_lobby_31
+	_BMPMENU_INIT		25,13,1,1,SCWK_ANSWER		/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_ev_win_046,0			/*はい*/
+	_BMPMENU_MAKE_LIST	msg_ev_win_047,1			/*いいえ*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_stage_menu_yes			/*はい*/
+	_JUMP			ev_lobby_choice_04			/*いいえ*/
+	_END
+
+ev_stage_menu_yes:
+	/*タイプごとのレベル、7連勝したかフラグのクリア、現在の連勝数をクリア*/
+	_BSTAGE_TOOLS	STAGE_TOOL_SET_NEW_CHALLENGE,WK_SCENE_STAGE_TYPE,SCWK_ANSWER
+	_JUMP			ev_stage_lobby_10
+	_END
+
+
+/********************************************************************/
+//					挑戦する前にセーブする？
+/********************************************************************/
+ev_stage_lobby_10:
+	//_TALKMSG		msg_stage_lobby_12
+	//_YES_NO_WIN		SCWK_ANSWER
+	//_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_lobby_choice_04
+	_JUMP			ev_stage_save
+	_END
+
+
+/********************************************************************/
+//							挑戦前セーブ
+/********************************************************************/
+ev_stage_save:
+
+	/*シングル、ダブルの時は、このタイミングで不正ワークセット*/
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_stage_ng_work_set
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_stage_ng_work_set
+
+	//ローカル変数は、0にしてセーブする
+	_LDVAL			LOCALWORK0,0
+
+	//回復
+	_PC_KAIFUKU
+
+#ifndef	DEBUG_SAVE_OFF	/********************************************/
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_lobby_choice_04
+#endif	/************************************************************/
+
+	/*マルチの時は親子選択へ*/
+	_IFVAL_JUMP		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_stage_multi_oyako_sel
+
+	_JUMP			park_stage01_battle_saikai
+	_END
+
+
+/********************************************************************/
+//							親子選択
+/********************************************************************/
+ev_stage_multi_oyako_sel:
+	_TALKMSG		msg_stage_multi_01
+	
+	_BMPMENU_INIT		18,1,0,1,SCWK_ANSWER	//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_ev_win_014,0
+	_BMPMENU_MAKE_LIST	msg_ev_win_015,1
+	_BMPMENU_MAKE_LIST	msg_ev_win_006,2
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_stage_connect_group		//グループ
+	_CASE_JUMP		1,ev_stage_connect_leader		//リーダー
+	_JUMP			ev_lobby_choice_04				//終了へ
+	_END
+
+
+/********************************************************************/
+//						グループに入る
+/********************************************************************/
+ev_stage_connect_group:
+	/*「ＤＳワイヤレス通信を始めますか？」*/
+	_TALKMSG		msg_stage_multi_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_stage_multi_oyako_sel
+
+	_TALK_CLOSE
+
+	//親機を選択するウィンドウを開く
+
+	//LV50、オープンで通信を変える
+	_SEL_PARENT_WIN	COMM_MODE_STAGE_MULTI,0,0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_stage_connect_group_cancel	//cancel
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_stage_connect_group_error		//error
+
+	//それ以外は成功
+	_JUMP			ev_stage_connect_pokechk
+	_END
+
+//グループキャンセル
+ev_stage_connect_group_cancel:
+	_JUMP			ev_stage_multi_oyako_sel
+	_END
+
+//グループ通信エラー
+ev_stage_connect_group_error:
+	_COMM_DIRECT_END
+	_JUMP			ev_stage_multi_oyako_sel
+	_END
+
+
+/********************************************************************/
+//						リーダーになる
+/********************************************************************/
+ev_stage_connect_leader:
+	/*「ＤＳワイヤレス通信を始めますか？」*/
+	_TALKMSG		msg_stage_multi_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_stage_multi_oyako_sel
+
+	_TALK_CLOSE
+
+	//子機を選択するウィンドウを開く
+
+	//LV50、オープンで通信を変える
+	_SEL_CHILD_WIN	COMM_MODE_STAGE_MULTI,0,0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_CANCEL,ev_stage_connect_leader_cancel	//cancel
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,COMM_RETVAL_ERROR,ev_stage_connect_leader_error	//error
+
+	//それ以外は成功
+	_JUMP			ev_stage_connect_pokechk		
+	_END
+
+//リーダーキャンセル
+ev_stage_connect_leader_cancel:
+	_JUMP			ev_stage_multi_oyako_sel
+	_END
+
+//リーダー通信エラー
+ev_stage_connect_leader_error:
+	_COMM_DIRECT_END
+	_JUMP			ev_stage_multi_oyako_sel
+	_END
+
+
+/********************************************************************/
+//						親子選択　成功
+/********************************************************************/
+ev_stage_connect_pokechk:
+	/*通信同期(お友達の選択を待っています)*/
+	_COMM_RESET
+	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_POKE_SELECT
+
+	/*お互いが選んだポケモンデータを交換*/
+	_STAGE_COMM_MONSNO		LOCALWORK1,SCWK_ANSWER	/*ポケモンナンバーが格納されているワーク*/
+
+	/*ポケモンが同じでない*/
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_stage_gate_connect_poke_same01
+
+	_COMM_RESET
+	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_GO_SAVE
+
+	/*「ご案内の　前に　レポートを　書きます！」*/
+	_TALKMSG		msg_stage_multi_03
+
+	/*マルチの時は、このタイミングで不正ワークセット*/
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_stage_ng_work_set
+
+	/*オートセーブ*/
+	_CALL			ev_stage_common_auto_save
+	
+	//それではバトルルームへ
+	_JUMP			park_stage01_battle_saikai
+	_END
+
+/*不正状態をセットしてセーブ*/
+ev_stage_ng_work_set:
+	_LDVAL			WK_SCENE_STAGE_LOBBY,255
+	_RET
+
+
+/********************************************************************/
+/*						ポケモンが同じでない						*/
+/********************************************************************/
+ev_stage_gate_connect_poke_same01:
+	_CALL			ev_stage_common_sioend
+	_TALK_KEYWAIT	msg_stage_lobby_29
+	_JUMP			ev_lobby_choice_04				//終了へ
+	_END
+
+
+/********************************************************************/
+/*						通信切断処理コール							*/
+/********************************************************************/
+ev_stage_common_sioend:
+	//_COMM_RESET
+	//_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_SIO_END
+	_COMM_DIRECT_END
+	_RET
+
+
+/********************************************************************/
+//							バトルルームへ
+/********************************************************************/
+park_stage01_battle_saikai:
+	//バトルモードで分岐
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_mode01_p04_park_stage01
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_mode02_p04_park_stage01
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_mode03_p04_park_stage01
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+
+	_JUMP			frontier_system_go
+	_END
+
+frontier_system_go:
+	/*ステージへ*/
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//バトルモードで分岐
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_mode01_p04_park_stage01_2
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_mode02_p04_park_stage01_2
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,ev_mode03_p04_park_stage01_2
+	//_SAVE_FIELD_OBJ
+
+	_RECORD_INC			RECID_FRONTIER_COUNT
+	_FNOTE_DATA_MAKE	FNOTE_ID_PL_STAGE,0,0,0,0
+
+	_FINISH_MAP_PROC
+	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_STAGE_WAY
+
+	/*通信終了*/
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_MULTI,frontier_system_go_comm_end
+
+	/*フィールドプロセス復帰*/
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*ヒープチェック*/
+	_HEAP_CHECK		1
+
+	_END
+
+frontier_system_go_comm_end:
+	_COMM_DIRECT_END
+	_RET
+
+
+/********************************************************************/
+//						話しかけOBJIDセット
+/********************************************************************/
+ev_mode01_p04_park_stage01:
+	/*「さあさあ　こちらに　どうぞ！」*/
+	_TALK_KEYWAIT	msg_stage_lobby_13
+	_AB_KEYWAIT
+	_TALK_CLOSE
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_01
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_mode02_p04_park_stage01:
+	/*「さあさあ　こちらに　どうぞ！」*/
+	_TALK_KEYWAIT	msg_stage_lobby_13
+	_AB_KEYWAIT
+	_TALK_CLOSE
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_01
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_mode03_p04_park_stage01:
+	/*「さあさあ　こちらに　どうぞ！」*/
+	_TALKMSG_NOSKIP	msg_stage_lobby_13
+	_TIME_WAIT		10,SCWK_ANSWER
+
+	/*初期化*/
+	_COMM_RESET
+
+	/*通信同期*/
+	_COMM_SYNCHRONIZE	STAGE_COMM_MULTI_AUTO_SAVE
+
+	_TALK_CLOSE
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_02
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*元の位置に戻す*/
+ev_mode01_p04_park_stage01_2:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_01_2
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_01_2
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_mode02_p04_park_stage01_2:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_01_2
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_01_2
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_mode03_p04_park_stage01_2:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_player_stage_btl_in_02_2
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_target_stage_btl_in_02_2
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*「バックがいっぱい。はっきんだまを外せません」*/
+ev_stage_gira_ng:
+	_LDVAL			WK_SCENE_STAGE_LOBBY,0
+	_CHG_COMMON_SCR	SCRID_GIRA_ITEM_NG
+	_END
+
+//--------------------------------------------------------------------
+//主人公	バトル部屋へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_player_stage_btl_in_01
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_player_stage_btl_in_02
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受付	バトル部屋へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_target_stage_btl_in_01
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_target_stage_btl_in_02
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	元の位置に戻す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_player_stage_btl_in_01_2
+	_ANIME_DATA	AC_WALK_R_2F,4
+	_ANIME_DATA	AC_WALK_U_2F,3
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_player_stage_btl_in_02_2
+	_ANIME_DATA	AC_WALK_R_2F,2
+	_ANIME_DATA	AC_WALK_D_2F,1
+	_ANIME_DATA	AC_WALK_R_2F,2
+	_ANIME_DATA	AC_WALK_U_2F,3
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受付	元の位置に戻す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_target_stage_btl_in_01_2
+	_ANIME_DATA	AC_WALK_U_2F,3
+	_ANIME_DATA	AC_WALK_R_2F,3
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_target_stage_btl_in_02_2
+	_ANIME_DATA	AC_WALK_U_2F,2
+	_ANIME_DATA	AC_WALK_R_2F,3
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+
+//====================================================================
+//
+//						メッセージ分岐
+//
+//====================================================================
+
+/********************************************************************/
+/*						「ようこそ！」								*/
+/********************************************************************/
+//シングル、ダブル
+ev_mode01_p01_park_stage01:
+	_TALK_KEYWAIT	msg_stage_lobby_01
+	_RET
+
+//マルチ
+ev_mode03_p01_park_stage01:
+	_TALK_KEYWAIT	msg_stage_lobby_07
+	_RET
+
+
+/********************************************************************/
+/*						「挑戦しますか？」							*/
+/********************************************************************/
+//シングル、ダブル
+ev_mode01_p02_park_stage01:
+	_BMPMENU_INIT_EX	20,9,0,1,SCWK_ANSWER		/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_01,0	/*シングルバトル*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_02,1	/*ダブルバトル*/
+	_TALKMSG		msg_stage_lobby_02
+	_RET
+
+//マルチ
+ev_mode03_p02_park_stage01:
+	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER		/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_stage_lobby_choice_03,4	/*ちょうせんする*/
+	_TALKMSG		msg_stage_lobby_08
+	_RET
+
+
+/********************************************************************/
+/*							説明									*/
+/********************************************************************/
+//シングル、ダブル
+ev_mode01_p03_park_stage01:
+	_TALKMSG		msg_stage_lobby_03
+	_RET
+
+//マルチ
+ev_mode03_p03_park_stage01:
+	_TALKMSG		msg_stage_lobby_09
+	_RET
+
+
+//====================================================================
+//
+//				続きから再開(SCENE_CHANGE_LABELで起動)
+//
+//====================================================================
+ev_stage_lobby_continue:
+
+	/*ヒープチェック*/
+	_HEAP_CHECK		0
+
+	_LDVAL			LOCALWORK3,1
+
+	/*途中で_ENDに行くかもしれないのでクリアする*/
+	_LDVAL			WK_SCENE_STAGE_LOBBY,0
+
+	//セーブデータが有効かチェック
+	//_STAGE_SCRWORK	STAGE_SCRWORK_IS_SAVE_DATA_ENABLE,0,0,SCWK_ANSWER
+	//_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_lobby_continue_ng
+
+	/*有効だった*/
+
+	/*「おまちしておりました！」*/
+	_TALK_KEYWAIT	msg_stage_lobby_27
+
+	/*セーブ前に再度、不正状態をセットしておく*/
+	_CALL			ev_stage_ng_work_set
+
+	/*オートセーブ*/
+	_CALL			ev_stage_common_auto_save
+
+	//それではバトルルームへ
+	_JUMP			park_stage01_battle_saikai
+	_END
+
+//強制レポート　コモン
+ev_stage_common_auto_save:
+#ifndef	DEBUG_SAVE_OFF	/********************************************/
+	_ADD_WAITICON
+	_REPORT_SAVE	SCWK_ANSWER
+	_DEL_WAITICON
+	_SE_PLAY		SEQ_SE_DP_SAVE
+	_SE_WAIT		SEQ_SE_DP_SAVE
+#endif	/************************************************************/
+	_RET
+
+
+/********************************************************************/
+//			レポートされていなかったときの終了コモン
+/********************************************************************/
+ev_stage_lobby_continue_ng:
+	/*「お客様！」*/
+	_TALK_KEYWAIT	msg_stage_lobby_28
+
+	/*不正終了時のパラメータ処理*/
+	//_STAGE_SCRWORK	STAGE_SCRWORK_SET_NG_SCORE,0,0,SCWK_ANSWER
+
+	/*10連勝(クリア)したかフラグのリセット*/
+	_STAGE_SET_CONTINUE_NG	WK_SCENE_STAGE_TYPE,SCWK_ANSWER
+
+	_JUMP			ev_lobby_choice_04
+	_END
+
+
+/********************************************************************/
+//						7連勝して戻ってきた
+/********************************************************************/
+ev_stage_lobby_7win:
+
+	/*スコア加算(シングルプレイ)*/
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_SINGLE,ev_stage_single_score_add
+	_IFVAL_CALL		WK_SCENE_STAGE_TYPE,EQ,STAGE_TYPE_DOUBLE,ev_stage_single_score_add
+
+	/*リボンとかをあげる処理*/
+
+	/*記念リボンをあげる*/
+	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_STAGE,EQ,MEMORY_PRINT_PUT_1ST,stage_m_print_put_1st
+	_IFVAL_CALL		SYS_WORK_MEMORY_PRINT_STAGE,EQ,MEMORY_PRINT_PUT_2ND,stage_m_print_put_2nd
+
+	/*仮で共通終了へ*/
+	_JUMP			ev_lobby_choice_04
+	_END
+
+/*スコア加算*/
+ev_stage_single_score_add:
+	_SCORE_ADD		SCORE_ID_STAGE_ROUND
+	_RET
+
+/*記念リボンをあげる*/
+stage_m_print_put_1st:
+	_TALK_KEYWAIT	msg_stage_lobby_33
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_stage_lobby_35
+	_ME_PLAY		SEQ_FANFA4
+	_ME_WAIT
+
+	_LDVAL			SYS_WORK_MEMORY_PRINT_STAGE,MEMORY_PRINT_PUT_OK_1ST
+	_RET
+
+stage_m_print_put_2nd:
+	_TALK_KEYWAIT	msg_stage_lobby_33
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_stage_lobby_34
+	_ME_PLAY		SEQ_FANFA4
+	_ME_WAIT
+
+	_LDVAL			SYS_WORK_MEMORY_PRINT_STAGE,MEMORY_PRINT_PUT_OK_2ND
+	_CHG_COMMON_SCR	SCRID_MEMORY_PRINT_CHECK	/*全て取得しているかチェックしてスコア加算*/
+	_RET
+
+
+/********************************************************************/
+//						リタイヤして戻ってきた
+/********************************************************************/
+ev_stage_lobby_give:
+	/*リボンとかをあげる処理*/
+
+	/*仮で共通終了へ*/
+	_JUMP			ev_lobby_choice_04
+	_END
+
+
+/********************************************************************/
+//
+//							アニメ
+//
+/********************************************************************/
+
+//--------------------------------------------------------------------
+//主人公	シングル、ダブル部屋へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_stage_lobby_roomin_left
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	マルチ部屋へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_stage_lobby_roomin_right
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*								山男								*/
+/********************************************************************/
+ev_d32r0401_mount:
+	_EASY_OBJ_MSG	msg_d32r0401_mount_01
+	_END
+
+/********************************************************************/
+/*							厚着少女								*/
+/********************************************************************/
+ev_d32r0401_girl4:
+	_EASY_OBJ_MSG	msg_d32r0401_girl4_01
+	_END
+
+/********************************************************************/
+/*							女の子									*/
+/********************************************************************/
+ev_d32r0401_babygirl1:
+	_EASY_OBJ_MSG	msg_d32r0401_babygirl1_01
+	_END
+
+/********************************************************************/
+/*						ポケモン	パチリス						*/
+/********************************************************************/
+ev_d32r0401_poke:
+	_EASY_VOICE_MSG	msg_d32r0401_poke_01,MONSNO_PATIRISSU,0
+	_END
+
+/********************************************************************/
+/*							和風老人								*/
+/********************************************************************/
+ev_d32r0401_oldman1:
+	_EASY_OBJ_MSG	msg_d32r0401_oldman1_01
+	_END
+
+/********************************************************************/
+/*							アイドル								*/
+/********************************************************************/
+ev_d32r0401_idol:
+	_EASY_OBJ_MSG	msg_d32r0401_idol_01
+	_END
+
+/********************************************************************/
+/*							おばさん								*/
+/********************************************************************/
+ev_d32r0401_middlewoman1:
+	_EASY_OBJ_MSG	msg_d32r0401_middlewoman1_01
+	_END
+
+/********************************************************************/
+/*							メイド									*/
+/********************************************************************/
+ev_d32r0401_maid:
+	_EASY_OBJ_MSG	msg_d32r0401_maid_01
+	_END
+
+/********************************************************************/
+/*							少年									*/
+/********************************************************************/
+ev_d32r0401_boy:
+	_EASY_OBJ_MSG	msg_d32r0401_boy_01
+	_END
+
+
+/********************************************************************/
+/*							ボーナス								*/
+/********************************************************************/
+ev_d32r0401_bonus:
+	_TALK_OBJ_START
+
+	/*初回会話*/
+	_IF_FLAGOFF_JUMP	FE_D32R0401_BONUS_TALK,ev_d32r0401_bonus_first
+
+	_STAGE_TOTAL_NUMBER_NAME	1,2,3,4,SYS_WORK_STAGE_TOTAL_LV,SCWK_ANSWER
+
+	/*記録がない時*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d32r0401_bonus_0
+
+	/*レコード更新してない時*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,2,ev_d32r0401_bonus_2
+
+	/*全てゲットした時*/
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,3,ev_d32r0401_bonus_3
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d32r0401_bonus_02
+
+	/*ごほうびにBPをさしあげます*/
+	_TALK_KEYWAIT	msg_d32r0401_bonus_03
+
+	_ME_PLAY		ME_BP_GET
+	_TALK_KEYWAIT	msg_d32r0401_bonus_05
+	_ME_WAIT
+
+	_JUMP			ev_d32r0401_bonus_end
+	_END
+
+/*記録がない時*/
+ev_d32r0401_bonus_0:
+	_TALK_KEYWAIT	msg_d32r0401_bonus_01
+	_JUMP			ev_d32r0401_bonus_end
+	_END
+
+/*レコード更新してない時*/
+ev_d32r0401_bonus_2:
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d32r0401_bonus_06
+	_TALK_KEYWAIT	msg_d32r0401_bonus_04
+	_JUMP			ev_d32r0401_bonus_end
+	_END
+
+/*全てゲットした時*/
+ev_d32r0401_bonus_3:
+	_TALK_KEYWAIT	msg_d32r0401_bonus_07
+	_JUMP			ev_d32r0401_bonus_end
+	_END
+
+/*初回会話*/
+ev_d32r0401_bonus_first:
+	_FLAG_SET		FE_D32R0401_BONUS_TALK
+	_TALK_KEYWAIT	msg_d32r0401_bonus_01
+	_JUMP			ev_d32r0401_bonus_end
+	_END
+
+ev_d32r0401_bonus_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							ファン									*/
+/********************************************************************/
+ev_d32r0401_fanboy:
+	_TALK_OBJ_START
+
+	_GET_MY_SEX		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d32r0401_fangirl_sub
+
+	_JUMP			ev_d32r0401_fanboy_sub
+	_END
+
+ev_d32r0401_fanboy_sub:
+	_PLAYER_NAME	0
+
+	/*レコードがある数を取得*/
+	_STAGE_RECORD_POKE_GET	SCWK_TEMP1
+
+	_IFVAL_JUMP		SCWK_TEMP1,GE,475,ev_d32r0401_fanboy_10
+	_IFVAL_JUMP		SCWK_TEMP1,GE,351,ev_d32r0401_fanboy_9
+	_IFVAL_JUMP		SCWK_TEMP1,GE,251,ev_d32r0401_fanboy_8
+	_IFVAL_JUMP		SCWK_TEMP1,GE,151,ev_d32r0401_fanboy_7
+	_IFVAL_JUMP		SCWK_TEMP1,GE,101,ev_d32r0401_fanboy_6
+	_IFVAL_JUMP		SCWK_TEMP1,GE,51,ev_d32r0401_fanboy_5
+	_IFVAL_JUMP		SCWK_TEMP1,GE,31,ev_d32r0401_fanboy_4
+	_IFVAL_JUMP		SCWK_TEMP1,GE,11,ev_d32r0401_fanboy_3
+	_IFVAL_JUMP		SCWK_TEMP1,GE,1,ev_d32r0401_fanboy_2
+
+	/*0匹*/
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_01
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*475匹～*/
+ev_d32r0401_fanboy_10:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_10
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*351匹～*/
+ev_d32r0401_fanboy_9:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_09
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*251匹～*/
+ev_d32r0401_fanboy_8:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_08
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*151匹～*/
+ev_d32r0401_fanboy_7:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_07
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*101匹～*/
+ev_d32r0401_fanboy_6:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_06
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*51匹～*/
+ev_d32r0401_fanboy_5:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_05
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*31匹～*/
+ev_d32r0401_fanboy_4:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_04
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*11匹～*/
+ev_d32r0401_fanboy_3:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_03
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*1匹～*/
+ev_d32r0401_fanboy_2:
+	_TALK_KEYWAIT	msg_d32r0401_fanboy_02
+	_JUMP			ev_d32r0401_fanboy_end
+	_END
+
+/*共通終了*/
+ev_d32r0401_fanboy_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							ファン(女)								*/
+/********************************************************************/
+ev_d32r0401_fangirl:
+	_TALK_OBJ_START
+
+	_GET_MY_SEX		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d32r0401_fanboy_sub
+
+	_JUMP			ev_d32r0401_fangirl_sub
+	_END
+
+ev_d32r0401_fangirl_sub:
+	_PLAYER_NAME	0
+
+	/*レコードがある数を取得*/
+	_STAGE_RECORD_POKE_GET	SCWK_TEMP1
+
+	_IFVAL_JUMP		SCWK_TEMP1,GE,475,ev_d32r0401_fangirl_10
+	_IFVAL_JUMP		SCWK_TEMP1,GE,351,ev_d32r0401_fangirl_9
+	_IFVAL_JUMP		SCWK_TEMP1,GE,251,ev_d32r0401_fangirl_8
+	_IFVAL_JUMP		SCWK_TEMP1,GE,151,ev_d32r0401_fangirl_7
+	_IFVAL_JUMP		SCWK_TEMP1,GE,101,ev_d32r0401_fangirl_6
+	_IFVAL_JUMP		SCWK_TEMP1,GE,51,ev_d32r0401_fangirl_5
+	_IFVAL_JUMP		SCWK_TEMP1,GE,31,ev_d32r0401_fangirl_4
+	_IFVAL_JUMP		SCWK_TEMP1,GE,11,ev_d32r0401_fangirl_3
+	_IFVAL_JUMP		SCWK_TEMP1,GE,1,ev_d32r0401_fangirl_2
+
+	/*0匹*/
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_01
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*475匹～*/
+ev_d32r0401_fangirl_10:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_10
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*351匹～*/
+ev_d32r0401_fangirl_9:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_09
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*251匹～*/
+ev_d32r0401_fangirl_8:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_08
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*151匹～*/
+ev_d32r0401_fangirl_7:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_07
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*101匹～*/
+ev_d32r0401_fangirl_6:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_06
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*51匹～*/
+ev_d32r0401_fangirl_5:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_05
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*31匹～*/
+ev_d32r0401_fangirl_4:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_04
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*11匹～*/
+ev_d32r0401_fangirl_3:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_03
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*1匹～*/
+ev_d32r0401_fangirl_2:
+	_TALK_KEYWAIT	msg_d32r0401_fangirl_02
+	_JUMP			ev_d32r0401_fangirl_end
+	_END
+
+/*共通終了*/
+ev_d32r0401_fangirl_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							有名人									*/
+/********************************************************************/
+ev_d32r0401_ouen:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+
+	/*判別用にワークにキャラセット*/
+	_LDWK			LOCALWORK1,OBJCHRWORK1
+
+	_IFVAL_JUMP		LOCALWORK1,EQ,HERO,ev_d32_r0401_hero
+	_IFVAL_JUMP		LOCALWORK1,EQ,HEROINE,ev_d32_r0401_heroine
+	_IFVAL_JUMP		LOCALWORK1,EQ,MAMA,ev_d32_r0401_mama
+	_IFVAL_JUMP		LOCALWORK1,EQ,OOKIDO,ev_d32_r0401_ookido
+	_IFVAL_JUMP		LOCALWORK1,EQ,MIKAN,ev_d32_r0401_mikan
+	_END
+
+ev_d32_r0401_hero:
+	_TALK_KEYWAIT	msg_d32r0401_hero_01
+	_JUMP			ev_d32r0401_end
+	_END
+
+ev_d32_r0401_heroine:
+	_TALK_KEYWAIT	msg_d32r0401_heroine_01
+	_JUMP			ev_d32r0401_end
+	_END
+
+ev_d32_r0401_mama:
+	_TALK_KEYWAIT	msg_d32r0401_mama_01
+	_JUMP			ev_d32r0401_end
+	_END
+
+ev_d32_r0401_ookido:
+	_TALK_KEYWAIT	msg_d32r0401_ookido_01
+	_JUMP			ev_d32r0401_end
+	_END
+
+ev_d32_r0401_mikan:
+	_TALK_KEYWAIT	msg_d32r0401_mikan_01
+	_JUMP			ev_d32r0401_end
+	_END
+
+ev_d32r0401_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+

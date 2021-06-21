@@ -1,0 +1,280 @@
+//====================================================================
+//								d05r0115
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d05r0115.h"
+	.include	"../eventdata/zone_d05r0115evc.h"
+	.include	"../../field/scr_climaxdemo.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d05r0115_champ
+_EVENT_DATA		ev_d05r0115_champ_exit
+_EVENT_DATA		ev_d05r0115_gkanbu3
+_EVENT_DATA		ev_d05r0115_gkanbu1
+_EVENT_DATA		ev_d05r0115_gingam
+_EVENT_DATA		ev_d05r0115_gingaw
+_EVENT_DATA		ev_d05r0115_break1
+_EVENT_DATA		ev_d05r0115_break2
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_d05r0115_flag_change:
+//	_END
+
+//SPPOKE2を配置、31,28
+//CHAMPを配置　穴の前
+
+/********************************************************************/
+/*						シロナ強制イベント							*/
+/********************************************************************/
+ev_d05r0115_champ:
+	_EVENT_START
+
+	_FLAG_RESET		FV_D05R0115_SPPOKE2
+	_OBJ_ADD		D05R0115_SPPOKE2
+	_OBJ_INVISIBLE	D05R0115_SPPOKE2
+
+	/*シロナ登場*/
+	_SXY_POS_CHANGE	D05R0115_CHAMP,32,34
+	_SXY_DIR_CHANGE	D05R0115_CHAMP,DIR_UP
+	_SXY_MV_CHANGE	D05R0115_CHAMP,MV_UP
+	_FLAG_RESET		FV_D05R0115_CHAMP
+	_OBJ_ADD		D05R0115_CHAMP
+
+	//カメラ移動
+	_VANISH_DUMMY_OBJ_ADD	30,30
+
+	//ダミーOBJを動かす
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d05r0115_dummy_01
+	_OBJ_ANIME_WAIT
+
+	_BLACK_IN		SCR_WIPE_DIV, SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK	
+
+	_LDVAL			WK_SCENE_D05R0115,2
+
+	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_01
+	_OBJ_ANIME_WAIT
+
+	/*「なんてこと」*/
+	_TALK_KEYWAIT	msg_d05r0115_champion_01
+	_TALK_CLOSE
+
+	/*3匹が破れた世界に突入*/
+	_CLIMAX_DEMO	CLIMAX_DEMO_GINGA_START,SCWK_ANSWER
+	_TIME_WAIT		30,SCWK_ANSWER
+
+demo_loop2:
+	_CLIMAX_DEMO	CLIMAX_DEMO_GINGA_ENDCHK, SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,demo_loop2
+	
+	_OBJ_DEL		D05R0115_SPPOKE2
+
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d05r0115_dummy_11
+	_OBJ_ANIME_WAIT
+
+	//カメラ移動
+	//ダミーOBJ削除
+	_VANISH_DUMMY_OBJ_DEL
+
+	/*向き合う*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0115_player_11
+	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_11
+	_OBJ_ANIME_WAIT
+
+	/*「ごめんなさい」*/
+	_TALK_KEYWAIT	msg_d05r0115_champion_02
+	_TALK_CLOSE
+
+	/*左右を見渡す*/
+	_OBJ_ANIME		D05R0115_CHAMP,anm_d05r0115_champ_21
+	_OBJ_ANIME_WAIT
+
+	/*「はしらがゆがんでいる」*/
+	_TALK_KEYWAIT	msg_d05r0115_champion_03
+
+	/*トバリのプルートを削除*/
+	_FLAG_SET		FV_D26R0107_GKANBU2
+
+	_JUMP			ev_d05r0115_champ_exit_start
+	_END
+
+ev_d05r0115_champ_exit_start:
+	_TALK_KEYWAIT	msg_d05r0115_champion_04
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d05r0115_champ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d05r0115_champ
+	_END
+
+/*「はい」*/
+yes_d05r0115_champ:
+	_TALK_KEYWAIT	msg_d05r0115_champion_05
+	_TALK_CLOSE
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*突入デモ*/
+	_HAKAI_WARP_SET_PROC
+	_SET_MAP_PROC
+
+	//_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	//_WIPE_FADE_END_CHECK
+
+	/*やぶれた世界へ*/
+	_GIRATHINA_FORM_UPDATE	1
+	_MAP_CHANGE_NONE_FADE	ZONE_ID_D34R0101, 0, 55, 40, DIR_DOWN
+
+	/*この後がイベントの時と、通常の時がある*/
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+	_END
+
+/*「いいえ」*/
+no_d05r0115_champ:
+	_TALK_KEYWAIT	msg_d05r0115_champion_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d05r0115_player_11
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d05r0115_champ_01
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d05r0115_champ_11
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	左右を見渡す
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d05r0115_champ_21
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ダミーOBJ	上、下
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d05r0115_dummy_01
+	_ANIME_DATA	AC_WALK_R_8F,1			/*ずらす*/
+	_ANIME_DATA	AC_WALK_U_8F,5
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_d05r0115_dummy_11
+	_ANIME_DATA	AC_WALK_D_8F,5
+	_ANIME_DATA	AC_WALK_L_8F,1			/*ずらす*/
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*						シロナ(やぶれた世界へ)						*/
+/********************************************************************/
+ev_d05r0115_champ_exit:
+	_TALK_OBJ_START
+
+	_TALK_KEYWAIT	msg_d05r0115_champion_04
+	_YES_NO_WIN		SCWK_ANSWER
+	//_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d05r0115_champ_talk
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d05r0115_champ
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d05r0115_champ_talk
+	_END
+
+/*「はい」*/
+#if 0
+yes_d05r0115_champ_talk:
+	_TALK_KEYWAIT	msg_d05r0115_champion_05
+	_TALK_CLOSE
+
+	/*やぶれた世界へ*/
+	_GIRATHINA_FORM_UPDATE	1
+	_MAP_CHANGE		ZONE_ID_D34R0101, 0, 55, 40, DIR_DOWN
+	_END
+#endif
+
+/*「いいえ」*/
+no_d05r0115_champ_talk:
+	_TALK_KEYWAIT	msg_d05r0115_champion_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*								幹部								*/
+/********************************************************************/
+ev_d05r0115_gkanbu3:
+	_EASY_OBJ_MSG	msg_d05r0115_gkanbu2_04
+	_END
+
+
+/********************************************************************/
+/*								幹部								*/
+/********************************************************************/
+ev_d05r0115_gkanbu1:
+	_EASY_OBJ_MSG	msg_d05r0115_gkanbu1_02
+	_END
+
+
+/********************************************************************/
+/*					ギンガ団(メッセージ男女共通)					*/
+/********************************************************************/
+ev_d05r0115_gingam:
+	_EASY_OBJ_MSG	msg_d05r0115_gingam_04
+	_END
+
+
+/********************************************************************/
+/*					ギンガ団(メッセージ男女共通)					*/
+/********************************************************************/
+ev_d05r0115_gingaw:
+	_EASY_OBJ_MSG	msg_d05r0115_gingam_04
+	_END
+
+
+/********************************************************************/
+/*						ディアルガ裂け目							*/
+/********************************************************************/
+ev_d05r0115_break1:
+	_EASY_MSG	msg_d05r0115_break1_01
+	_END
+
+
+/********************************************************************/
+/*						パルキア裂け目								*/
+/********************************************************************/
+ev_d05r0115_break2:
+	_EASY_MSG	msg_d05r0115_break2_01
+	_END
+
+

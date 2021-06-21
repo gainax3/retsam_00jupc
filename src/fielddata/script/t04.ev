@@ -1,0 +1,272 @@
+//====================================================================
+//					フィールド・タウン０４
+//						ズイタウン
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t04.h"
+	.include	"../eventdata/zone_t04evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t04_farmer1
+_EVENT_DATA		ev_t04_cowgirl1
+_EVENT_DATA		ev_t04_babygirl1
+_EVENT_DATA		ev_t04_woman3
+_EVENT_DATA		ev_t04_sportsman
+_EVENT_DATA		ev_t04_explore
+_EVENT_DATA		ev_t04_sign1
+_EVENT_DATA		ev_t04_sign2
+_EVENT_DATA		ev_t04_sign3
+_EVENT_DATA		ev_t04_flag_change
+_EVENT_DATA		ev_t04_obj_change
+_EVENT_DATA		pos_t04_rival
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						　OBJ CHANGE								*/
+/********************************************************************/
+ev_t04_obj_change:
+	_END
+
+/********************************************************************/
+/*						　FLAG CHANGE								*/
+/********************************************************************/
+ev_t04_flag_change:
+	_SODATEYA_TAMAGO_CHK	LOCALWORK0
+	_IFVAL_JUMP		LOCALWORK0,NE,0,t04_sodateya_m_move
+	_END
+
+//じいさんの位置変更
+t04_sodateya_m_move:
+	_SXY_DIR_CHANGE	SODATEYA_M,DIR_RIGHT
+	_END
+
+
+/********************************************************************/
+/*						　牧場おじさん								*/
+/********************************************************************/
+ev_t04_farmer1:
+	_EASY_OBJ_MSG	msg_t04_farmer_01
+	_END
+
+/********************************************************************/
+/*						　牧場少女									*/
+/********************************************************************/
+ev_t04_cowgirl1:
+	_TALK_OBJ_START
+
+	/*ヨスガバッチ取得済み*/
+	_SYS_FLAG_BADGE_GET	BADGE_ID_C05,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t04_cowgirl1_02
+
+	_TALK_KEYWAIT	msg_t04_cowgirl_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*ヨスガバッチ取得済み*/
+ev_t04_cowgirl1_02:
+	_TALK_KEYWAIT	msg_t04_cowgirl_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*						　女の子									*/
+/********************************************************************/
+ev_t04_babygirl1:
+	_EASY_OBJ_MSG	msg_t04_babygirl1_01
+	_END
+
+/********************************************************************/
+/*						　トレーナー姉さん							*/
+/********************************************************************/
+ev_t04_woman3:
+	_EASY_OBJ_MSG	msg_t04_woman3_01
+	_END
+
+/********************************************************************/
+/*						　スポーツマン								*/
+/********************************************************************/
+ev_t04_sportsman:
+	_EASY_OBJ_MSG	msg_t04_sportsman_01
+	_END
+
+/********************************************************************/
+/*							　探検家								*/
+/********************************************************************/
+ev_t04_explore:
+	_TALK_OBJ_START
+
+	//ポケモンヒストリーを取得済みかチェック
+	_POKETCH_CHECK	POKETCH_APPID_POKEMON_HISTORY,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t04_explore_03
+
+	//シンオウ図鑑上の数取得
+	_SHINOU_ZUKAN_SEE_NUM	SCWK_ANSWER
+
+	//50より少ないとき
+	_IFVAL_JUMP		SCWK_ANSWER,LT,50,ev_t04_explore_01
+
+	_TALK_KEYWAIT	msg_t04_explore_02
+	
+	_LDVAL			SCWK_TEMP0,POKETCH_APPID_POKEMON_HISTORY
+	_CHG_COMMON_SCR	SCRID_POKETCH_SOFT_GET
+	_LAST_KEYWAIT
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//50より少ないとき
+ev_t04_explore_01:
+	_TALKMSG		msg_t04_explore_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//ポケモンヒストリー追加後
+ev_t04_explore_03:
+	_TALKMSG		msg_t04_explore_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							タウンマップ							*/
+/********************************************************************/
+ev_t04_sign1:
+	_EASY_BOARD_MSG	msg_t04_sign1_01,BOARD_TYPE_TOWN,0
+	_END
+
+/********************************************************************/
+/*						　	POST	　　							*/
+/********************************************************************/
+ev_t04_sign2:
+	_EASY_BOARD_MSG	msg_t04_sign2_01,BOARD_TYPE_POST,0
+	_END
+
+/********************************************************************/
+/*						　	POST	　　							*/
+/********************************************************************/
+ev_t04_sign3:
+	_EASY_BOARD_MSG	msg_t04_sign3_01,BOARD_TYPE_POST,0
+	_END
+
+
+/********************************************************************/
+/*							ライバル								*/
+/********************************************************************/
+pos_t04_rival:
+	_EVENT_START
+
+	/*主人公　気づく(ライバル曲をゾーン切り替えてすぐに鳴らさないため)*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t04_player_00
+	_OBJ_ANIME_WAIT
+
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ライバル曲再生*/
+
+	//主人公の位置情報取得
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_SXY_POS_CHANGE	T04_RIVAL,SCWK_TEMP0,661
+	_FLAG_RESET		FV_T04_RIVAL
+	_OBJ_ADD		T04_RIVAL
+	_OBJ_PAUSE		T04_RIVAL
+
+	/*ライバル	近づいてくる*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t04_player_01
+	_OBJ_ANIME		T04_RIVAL,anm_t04_rival_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_t04_rival_01
+	_TALK_CLOSE
+
+	/*ライバル	左右を見る*/
+	_OBJ_ANIME		T04_RIVAL,anm_t04_rival_02
+	_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t04_rival_02
+
+	/*ライバル	驚く*/
+	_OBJ_ANIME		T04_RIVAL,anm_t04_rival_04
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_t04_rival_03
+	_TALK_CLOSE
+
+	/*ライバル	去っていく*/
+	_OBJ_ANIME		T04_RIVAL,anm_t04_rival_03
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		T04_RIVAL
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_STOP				/*ライバル曲停止*/
+
+	_LDVAL			WK_SCENE_T04,1
+
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//ライバル	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_rival_01
+	_ANIME_DATA	AC_WALK_D_4F,7
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	左右を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_rival_02
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	驚く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_rival_04
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_rival_03
+	_ANIME_DATA	AC_WALK_U_4F,7
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	気づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_player_00
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	上を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t04_player_01
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	ACMD_END,0
+
+

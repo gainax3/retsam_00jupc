@@ -1,0 +1,408 @@
+//====================================================================
+//								debug_scr
+//
+//	フラグ、ワーク操作のみで、特殊スクリプト呼び出しで実行する
+//	あくまでデバック用です！
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_factory_lobby.h"
+	.include	"../../../include/msgdata/msg_factory_room.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_debug_ug_mount_off
+_EVENT_DATA		ev_debug_d27r0101_off
+_EVENT_DATA		ev_debug_r224_syeimi
+_EVENT_DATA		ev_debug_l01_l02_l03_lake
+_EVENT_DATA		ev_debug_pc_ug
+_EVENT_DATA		ev_debug_factory_call
+_EVENT_DATA		ev_factory_counter_01
+_EVENT_DATA		ev_factory_counter_02
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_debug_scr_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*						地下の初回イベント無効						*/
+/********************************************************************/
+ev_debug_ug_mount_off:
+	_FLAG_SET		FV_UG_MOUNT
+	_LDVAL			WK_SCENE_UG,1
+	_END
+
+
+/********************************************************************/
+/*				湖の最初のポケモンゲットイベント無効				*/
+/********************************************************************/
+ev_debug_d27r0101_off:
+	//R201に博士、サポートを出現
+	_FLAG_RESET		FV_R201_DOCTOR
+	_FLAG_RESET		FV_R201_SUPPORT
+	_LDVAL			WK_SCENE_D27R0101,1		//ポケモン入手した
+	_LDVAL			WK_SCENE_L01,2
+
+	_FLAG_RESET		FV_L01_RIVAL
+	_LDVAL			WK_SCENE_R201,2
+
+	//自宅シーンをセット
+	_LDVAL			WK_SCENE_T01R0201,3
+
+	_END
+
+
+/********************************************************************/
+/*					シェイミイベントでマイ出現						*/
+/********************************************************************/
+ev_debug_r224_syeimi:
+
+	/*シェイミイベントでマイ出現*/
+	_LDVAL			SYS_WORK_SYEIMI,1
+
+	/*バトルサーチャーを取得*/
+	//_FLAG_SET		SYS_FLAG_BS_LV1
+
+#if 0
+	/*5人衆クリア*/
+	_FLAG_SET		FE_SEVEN1_CLEAR
+	_FLAG_SET		FE_SEVEN2_CLEAR
+	_FLAG_SET		FE_SEVEN3_CLEAR
+	_FLAG_SET		FE_SEVEN4_CLEAR
+	_FLAG_SET		FE_SEVEN5_CLEAR
+#endif
+
+	//別荘
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,0
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,1
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,2
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,3
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,4
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,5
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,6		//メリッサ
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,7
+
+	//図書館イベント確認
+	//_FLAG_RESET		FV_C02R0103_RIVAL
+	//_FLAG_RESET		FV_C02R0103_SUPPORT
+	//_FLAG_RESET		FV_C02R0103_DOCTOR
+	//_LDVAL			WK_SCENE_C02,3
+	//_LDVAL			WK_SCENE_C02R0103,1
+	_END
+
+
+/********************************************************************/
+/*						３つの湖イベント開始						*/
+/********************************************************************/
+ev_debug_l01_l02_l03_lake:
+
+	/*博士とサポートがL01に移動*/
+	_FLAG_RESET		FV_D27R0101_SUPPORT
+	_FLAG_RESET		FV_D27R0101_DOCTOR
+
+	_LDVAL			WK_SCENE_D27R0101,1
+	//_FLAG_SET		FV_D27R0101_KABAN
+	_FLAG_SET		FV_D27R0101_RIVAL
+
+	_FLAG_SET		FV_L02_GINGAM			/*ストッパー削除*/
+
+	_FLAG_RESET		FV_D29R0101_RIVAL
+
+	_END
+
+
+/********************************************************************/
+/*		ポケセン地下ストッパー削除、ともだち手帳イベント無効		*/
+/********************************************************************/
+ev_debug_pc_ug:
+
+	/*友達手帳ストッパー削除*/
+	_FLAG_SET		FV_STOPPER_FRIENDBOOK
+
+	/*GTCストッパー終了*/
+	_LDVAL			WK_SCENE_C01_GTC,1
+
+	/*友達手帳入手イベントを終了*/
+	_LDVAL			WK_SCENE_PC0103,1
+
+	_END
+
+
+/********************************************************************/
+/*						バトルファクトリー呼び出し					*/
+/********************************************************************/
+ev_debug_factory_call:
+	_END
+
+
+//====================================================================
+//
+//	SCWK_TEMP0	施設
+//	SCWK_TEMP1	シングル、ダブル、マルチ、(wifiマルチ)
+//
+//====================================================================
+#if 0
+ev_factory_counter_01:
+ev_factory_counter_02:
+	_END
+#else
+/********************************************************************/
+//							シングル受付
+//
+//	SCWK_TEMP0
+//	SCWK_TEMP1		シングル、ダブル、マルチ、wifiマルチ
+//	SCWK_TEMP2		レベル５０、オープン
+//
+/********************************************************************/
+ev_factory_counter_01:
+	_TALK_OBJ_START
+	_LDVAL			SCWK_TEMP1,FACTORY_TYPE_SINGLE
+	_JUMP			common_01_factory01
+	_END
+
+
+/********************************************************************/
+//							ダブル受付
+/********************************************************************/
+ev_factory_counter_02:
+	_TALK_OBJ_START
+	_LDVAL			SCWK_TEMP1,FACTORY_TYPE_DOUBLE
+	_JUMP			common_01_factory01
+	_END
+
+
+/********************************************************************/
+//							共通処理
+/********************************************************************/
+common_01_factory01:
+	/*「バトルファクトリーへ　ようこそ！」*/
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_SINGLE,ev_mode01_p01_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_DOUBLE,ev_mode02_p01_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_MULTI,ev_mode03_p01_park_factory01
+	_JUMP			park_factory01_start
+	_END
+
+park_factory01_start:
+	/*「バトルトレード　挑戦しますか？」*/
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_SINGLE,ev_mode01_p02_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_DOUBLE,ev_mode02_p02_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_MULTI,ev_mode03_p02_park_factory01
+
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER				/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_01,0	/*ちょうせんする*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_02,1	/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_03,2	/*やめる*/
+	_BMPMENU_START
+
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_lobby_choice_01
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_lobby_choice_02
+	_JUMP				ev_lobby_choice_03
+	_END
+
+
+/********************************************************************/
+//					メニュー「せつめいをきく」	
+/********************************************************************/
+ev_lobby_choice_02:
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_SINGLE,ev_mode01_p03_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_DOUBLE,ev_mode02_p03_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_MULTI,ev_mode03_p03_park_factory01
+	_JUMP			park_factory01_start
+	_END
+
+
+/********************************************************************/
+//					メニュー「やめる」	
+/********************************************************************/
+ev_lobby_choice_03:
+	_JUMP			park_factory01_end
+	_END
+
+//バトルドーム終了処理
+park_factory01_end:
+	_TALKMSG		msg_factory_lobby_10
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//					メニュー「ちょうせんする」	
+/********************************************************************/
+ev_lobby_choice_01:
+	/*レベル５０と　オープンレベル　どちらに挑戦する？*/
+	_TALKMSG			msg_factory_lobby_11
+
+	_BMPMENU_INIT		1,1,0,1,SCWK_ANSWER				/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_04,0	/*レベル５０*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_05,1	/*オープンレベル*/
+	_BMPMENU_MAKE_LIST	msg_factory_lobby_choice_06,2	/*やめる*/
+	_BMPMENU_START
+
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_lobby_choice_04
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,1,ev_lobby_choice_05
+	_JUMP				ev_lobby_choice_03
+	_END
+
+
+/********************************************************************/
+//					メニュー「レベル５０」	
+/********************************************************************/
+ev_lobby_choice_04:
+	_LDVAL			SCWK_TEMP2,FACTORY_LEVEL_50
+	_JUMP			ev_factory_lobby_10
+	_END
+
+
+/********************************************************************/
+//					メニュー「オープンレベル」	
+/********************************************************************/
+ev_lobby_choice_05:
+	_LDVAL			SCWK_TEMP2,FACTORY_LEVEL_OPEN
+	_JUMP			ev_factory_lobby_10
+	_END
+
+
+/********************************************************************/
+//					挑戦する前にセーブする？
+/********************************************************************/
+ev_factory_lobby_10:
+	_TALKMSG		msg_factory_lobby_12
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_lobby_choice_03
+	_JUMP			ev_factory_save
+	_END
+
+
+/********************************************************************/
+//							挑戦前セーブ
+/********************************************************************/
+ev_factory_save:
+
+	//ローカル変数は、0にしてセーブする
+	_LDVAL			LOCALWORK0,0
+
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_lobby_choice_03
+	_JUMP			park_factory01_battle_saikai
+	_END
+
+
+/********************************************************************/
+//							バトルルームへ
+/********************************************************************/
+park_factory01_battle_saikai:
+	/*「さあさあ　こちらに　どうぞ！」*/
+	_TALK_KEYWAIT	msg_factory_lobby_13
+	_TALK_CLOSE
+
+	//バトルモードで分岐
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_SINGLE,ev_mode01_p04_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_DOUBLE,ev_mode02_p04_park_factory01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,FACTORY_TYPE_MULTI,ev_mode03_p04_park_factory01
+
+	/*カウンターの中へ進むアニメ*/
+
+	//_MAP_CHANGE		PARK,PARK_FACTORY02,8,13
+	//_LDVAL			LOCALWORK0,0
+
+	/*ファクトリーの流れへ*/
+	//_JUMP			ev_debug_factory_call
+
+	_END
+
+
+/********************************************************************/
+//						話しかけOBJIDセット
+/********************************************************************/
+ev_mode01_p04_park_factory01:
+	//_LDVAL			SCWK_TARGET_OBJID,STDYM1_01_PARK_FACTORY01
+	_RET
+
+ev_mode02_p04_park_factory01:
+	//_LDVAL			SCWK_TARGET_OBJID,STDYM1_02_PARK_FACTORY01
+	_RET
+
+ev_mode03_p04_park_factory01:
+	//_LDVAL			SCWK_TARGET_OBJID,STDYM1_03_PARK_FACTORY01
+	_RET
+
+
+//====================================================================
+//
+//						メッセージ分岐
+//
+//====================================================================
+
+/********************************************************************/
+/*						「ようこそ！」
+/********************************************************************/
+//シングル
+ev_mode01_p01_park_factory01:
+	_TALK_KEYWAIT	msg_factory_lobby_01
+	_RET
+
+//ダブル
+ev_mode02_p01_park_factory01:
+	//_TALK_KEYWAIT	msg_factory_lobby_04
+	_RET
+
+//マルチ
+ev_mode03_p01_park_factory01:
+	_TALK_KEYWAIT	msg_factory_lobby_07
+	_RET
+
+
+/********************************************************************/
+/*						「挑戦しますか？」	
+/********************************************************************/
+ev_mode01_p02_park_factory01:
+	_TALKMSG		msg_factory_lobby_02
+	_RET
+
+ev_mode02_p02_park_factory01:
+	//_TALKMSG		msg_factory_lobby_05
+	_RET
+
+ev_mode03_p02_park_factory01:
+	_TALKMSG		msg_factory_lobby_08
+	_RET
+
+
+/********************************************************************/
+/*							説明
+/********************************************************************/
+//シングル
+ev_mode01_p03_park_factory01:
+	_TALKMSG		msg_factory_lobby_03
+	_RET
+
+//ダブル
+ev_mode02_p03_park_factory01:
+	//_TALKMSG		msg_factory_lobby_06
+	_RET
+
+//マルチ
+ev_mode03_p03_park_factory01:
+	_TALKMSG		msg_factory_lobby_09
+	_RET
+
+
+#endif
+
+

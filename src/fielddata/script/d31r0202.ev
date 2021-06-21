@@ -1,0 +1,267 @@
+//====================================================================
+//								d31r0202
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../eventdata/zone_d31r0202evc.h"
+	.include	"../../../src/field/b_tower_scr_def.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d31r0202_flag_change
+_EVENT_DATA		ev_tower_ev_to_ways
+_EVENT_DATA		ev_tower_ev_to_wayd
+_EVENT_DATA		ev_tower_ev_to_salon
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d31r0202_flag_change:
+	_IFVAL_CALL		WK_SCENE_D31R0202,NE,0,ev_d31r0202_poketch_hook_set
+
+	/*連れ歩いていく見た目を変更する*/
+	_BTOWER_TOOLS	BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,LOCALWORK10
+	_CALL			ev_d31r0202_flag_change_single_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_MULTI,ev_d31r0202_flag_change_multi_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_COMM_MULTI,ev_d31r0202_flag_change_multi_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_SINGLE,ev_d31r0202_flag_change_single_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_DOUBLE,ev_d31r0202_flag_change_single_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_WIFI,ev_d31r0202_flag_change_wifi_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_RETRY,ev_d31r0202_flag_change_wifi_char_set
+	_IFVAL_CALL		LOCALWORK10,EQ,BTWR_MODE_WIFI_MULTI,ev_d31r0202_flag_change_wifi_char_set
+	_END
+
+//ポケッチフック
+ev_d31r0202_poketch_hook_set:
+	_POKETCH_HOOK_SET
+	_RET
+
+/*真ん中のゲート*/
+ev_d31r0202_flag_change_single_char_set:
+	_LDVAL			OBJCHRWORK10,BFSM
+	_RET
+
+/*右のゲート*/
+ev_d31r0202_flag_change_wifi_char_set:
+	_LDVAL			OBJCHRWORK10,WIFISW
+	_RET
+
+/*左のゲート*/
+ev_d31r0202_flag_change_multi_char_set:
+	_LDVAL			OBJCHRWORK10,BFSW1
+	_RET
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+//シングルモード通路へ移動
+ev_tower_gate_common_move_ways:
+	//_MAP_CHANGE		ZONE_ID_D31R0203,0,SB_WAYS_PLAYER_SX,SB_WAYS_PLAYER_SY,DIR_DOWN
+
+	/*タワーへ*/
+	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//////////////////////////////////////////////////////////////////////
+	/*新規*/
+	//戻り座標が違うのでここで分岐させる
+	_BTOWER_TOOLS		BTWR_SUB_GET_PLAY_MODE,BTWR_NULL_PARAM,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_WIFI,ev_tower_wifi_gate_common_move_ways
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,BTWR_MODE_RETRY,ev_tower_wifi_gate_common_move_ways
+	//////////////////////////////////////////////////////////////////////
+
+	_FINISH_MAP_PROC
+	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_SINGLE_WAY
+
+	/*通信終了*/
+	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
+
+	/*フィールドプロセス復帰*/
+	_SET_MAP_PROC
+
+	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,15,6,DIR_UP
+	//_MAP_CHANGE		ZONE_ID_D31R0201,0,11,6,DIR_UP
+
+	//_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	//_WIPE_FADE_END_CHECK
+	_END
+
+/*
+//シングルバトル部屋に移動
+ev_tower_gate_common_move_rooms:
+	_MAP_CHANGE		ZONE_ID_D31R0205,0,SB_ROOMS_PLAYER_SX,SB_ROOMS_PLAYER_SY,DIR_UP
+	_EVENT_END
+	_END
+*/
+
+//マルチ通路へ移動
+ev_tower_gate_common_move_wayd:
+	//_MAP_CHANGE		ZONE_ID_D31R0204,0,SB_WAYD_PLAYER_SX,SB_WAYD_PLAYER_SY,DIR_DOWN
+
+	/*タワーへ*/
+	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_FINISH_MAP_PROC
+	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_MULTI_WAY
+
+	/*通信終了*/
+	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
+
+	/*フィールドプロセス復帰*/
+	_SET_MAP_PROC
+
+	////////////////////////////////////////
+	/*WIFIの戻り先を対応しないとだめそう！*/
+	////////////////////////////////////////
+
+	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,11,6,DIR_UP
+	//_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,15,6,DIR_UP
+	//_MAP_CHANGE		ZONE_ID_D31R0201,0,15,6,DIR_UP
+
+	//_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	//_WIPE_FADE_END_CHECK
+	_END
+
+/*	//未使用
+//マルチバトル部屋へ移動
+ev_tower_gate_common_move_roomd:
+	_MAP_CHANGE		ZONE_ID_D31R0206,0,SB_WAYD_PLAYER_SX,SB_WAYD_PLAYER_SY,DIR_DOWN
+	_EVENT_END
+	_END
+*/
+
+//サロン部屋へ移動
+ev_tower_gate_common_move_salon:
+	_MAP_CHANGE		ZONE_ID_D31R0207,0,SB_SALON_PLAYER_SX,SB_SALON_PLAYER_SY,DIR_DOWN
+	_EVENT_END
+	_END
+
+
+//====================================================================
+/********************************************************************/
+/*	バトルエレベータコモン											*/
+/********************************************************************/
+//====================================================================
+ev_tower_ev_common:
+	//入場
+	_CALL			ev_tower_ev_comanm_in
+	_ELEVATOR_ANM	LOCALWORK0,3
+	//出場
+	_CALL			ev_tower_ev_comanm_out
+	_RET
+
+//====================================================================
+/********************************************************************/
+/*	バトルエレベータ　シングル通路へ								*/
+/********************************************************************/
+//====================================================================
+ev_tower_ev_to_ways:
+	_EVENT_START
+	_LDVAL	LOCALWORK0,DIR_UP
+	_CALL	ev_tower_ev_common
+	_JUMP	ev_tower_gate_common_move_ways
+	_END
+
+ev_tower_ev_to_wayd:
+	_EVENT_START
+	_LDVAL	LOCALWORK0,DIR_UP
+	_CALL	ev_tower_ev_common
+	_JUMP	ev_tower_gate_common_move_wayd
+	_END
+
+ev_tower_ev_to_salon:
+	_EVENT_START
+	_LDVAL	LOCALWORK0,DIR_DOWN
+	_CALL	ev_tower_ev_common
+	_JUMP	ev_tower_gate_common_move_salon
+	_END
+
+//====================================================================
+/********************************************************************/
+/*	バトルタワー　エレベータアニメコモン							*/
+/********************************************************************/
+//====================================================================
+ev_tower_ev_comanm_in:
+	_OBJ_ANIME	FLDOBJ_ID_PLAYER,anm_d31r0202_player_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_tower_ev_comanm_out:
+	_OBJ_ANIME	D31R0202_PCWOMAN2,anm_d31r0202_pcwoman2_out
+	_OBJ_ANIME	FLDOBJ_ID_PLAYER,anm_d31r0202_player_out
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//受け付け嬢　In
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d31r0202_pcwoman2_in
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//自機　In
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d31r0202_player_in
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受け付け嬢　Out
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d31r0202_pcwoman2_out
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//自機　Out
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d31r0202_player_out
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*						wifiゲート									*/
+/********************************************************************/
+ev_tower_wifi_gate_common_move_ways:
+	_FINISH_MAP_PROC
+	_FRONTIER_SYSTEM_CALL	FSS_SCENEID_TOWER_SINGLE_WAY
+
+	/*通信終了*/
+	//_IFVAL_CALL		WK_SCENE_FACTORY_TYPE,EQ,FACTORY_TYPE_MULTI,frontier_system_go_comm_end
+
+	/*フィールドプロセス復帰*/
+	_SET_MAP_PROC
+
+	_MAP_CHANGE_NONE_FADE	ZONE_ID_D31R0201,0,19,6,DIR_UP
+	//_MAP_CHANGE		ZONE_ID_D31R0201,0,11,6,DIR_UP
+
+	//_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	//_WIPE_FADE_END_CHECK
+	_END
+
+

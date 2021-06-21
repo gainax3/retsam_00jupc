@@ -1,0 +1,139 @@
+//====================================================================
+//								c11r0401
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c11r0401.h"
+	//.include	"../eventdata/zone_c11r0401evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c11r0401_oldman2
+_EVENT_DATA		ev_c11r0401_oldwoman2
+_EVENT_DATA		ev_c11r0401_purin
+_EVENT_DATA		ev_c11r0401_item
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_c11r0401_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*							???									*/
+/********************************************************************/
+ev_c11r0401_oldman2:
+	_EASY_OBJ_MSG	msg_c11r0401_oldman2_01
+	_END
+
+/********************************************************************/
+/*							???									*/
+/********************************************************************/
+ev_c11r0401_oldwoman2:
+	_EASY_OBJ_MSG	msg_c11r0401_oldwoman2_01
+	_END
+
+/********************************************************************/
+/*							???									*/
+/********************************************************************/
+ev_c11r0401_purin:
+	_EASY_VOICE_MSG	msg_c11r0401_purin_01,MONSNO_ATYAMO,0
+	_END
+
+/********************************************************************/
+/*							道具説明									*/
+/********************************************************************/
+ev_c11r0401_item:
+	_TALK_OBJ_START
+
+	_TALK_KEYWAIT	msg_c11r0401_item_01
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+/*メニュー表示*/
+ev_c11r0401_item_menu:
+	_TALK_KEYWAIT	msg_c11r0401_item_02
+
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_ANSWER			//Bキャンセル有効
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_12,EV_WIN_TALK_MSG_NONE,0
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_13,EV_WIN_TALK_MSG_NONE,1
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_14,EV_WIN_TALK_MSG_NONE,2
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_15,EV_WIN_TALK_MSG_NONE,3
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_16,EV_WIN_TALK_MSG_NONE,4
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_17,EV_WIN_TALK_MSG_NONE,5
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_18,EV_WIN_TALK_MSG_NONE,6
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_19,EV_WIN_TALK_MSG_NONE,7
+	_BMPLIST_MAKE_LIST	msg_c11r0401_item_20,EV_WIN_TALK_MSG_NONE,8
+	_BMPLIST_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_c11r0401_item_12			/*ラム*/
+	_CASE_JUMP		1,ev_c11r0401_item_13			/*きあい*/
+	_CASE_JUMP		2,ev_c11r0401_item_14			/*たつじん*/
+	_CASE_JUMP		3,ev_c11r0401_item_15			/*いのち*/
+	_CASE_JUMP		4,ev_c11r0401_item_16			/*こだわり*/
+	_CASE_JUMP		5,ev_c11r0401_item_17			/*こだわり*/
+	_CASE_JUMP		6,ev_c11r0401_item_18			/*こだわり*/
+	_CASE_JUMP		7,ev_c11r0401_item_19			/*たべのこし*/
+	_JUMP			ev_c11r0401_item_20				/*終了へ*/
+	_END
+
+ev_c11r0401_item_12:
+	_TALK_KEYWAIT	msg_c11r0401_item_04
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_13:
+	_TALK_KEYWAIT	msg_c11r0401_item_05
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_14:
+	_TALK_KEYWAIT	msg_c11r0401_item_06
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_15:
+	_TALK_KEYWAIT	msg_c11r0401_item_07
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_16:
+	_TALK_KEYWAIT	msg_c11r0401_item_08
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_17:
+	_TALK_KEYWAIT	msg_c11r0401_item_09
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_18:
+	_TALK_KEYWAIT	msg_c11r0401_item_10
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+ev_c11r0401_item_19:
+	_TALK_KEYWAIT	msg_c11r0401_item_11
+	_JUMP			ev_c11r0401_item_menu
+	_END
+
+/*やめる*/
+ev_c11r0401_item_20:
+	_TALK_KEYWAIT	msg_c11r0401_item_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+

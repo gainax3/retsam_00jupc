@@ -1,0 +1,30 @@
+//====================================================================
+//							sp_d32r0301
+//
+//	＜特殊スクリプトファイルを分ける理由＞
+//	特殊スクリプトはゾーン切り替えした時にロードする必要がある
+//	常にもっておかないといけないので、容量削減のために分けている
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"d32r0301_def.h"
+	//.include	"factory_lobby_def.h"
+
+//--------------------------------------------------------------------
+//							特殊スクリプト
+//--------------------------------------------------------------------
+_FLAG_CHANGE_LABEL	SCRID_D32R0301_FLAG_CHANGE
+//_OBJ_CHANGE_LABEL	SCRID_D31R0201_OBJ_CHANGE
+_SCENE_CHANGE_LABEL	sp_d32r0301_tbl
+_SP_EVENT_DATA_END
+
+sp_d32r0301_tbl:
+	_SCENE_CHANGE_DATA	WK_SCENE_FACTORY_LOBBY,1,SCRID_FACTORY_LOBBY_7WIN
+	_SCENE_CHANGE_DATA	WK_SCENE_FACTORY_LOBBY,2,SCRID_FACTORY_LOBBY_CONTINUE
+	_SCENE_CHANGE_DATA	WK_SCENE_FACTORY_LOBBY,3,SCRID_FACTORY_LOBBY_GIVE
+	_SCENE_CHANGE_DATA	WK_SCENE_FACTORY_LOBBY,255,SCRID_FACTORY_LOBBY_CONTINUE_NG
+	_SCENE_CHANGE_END
+
+

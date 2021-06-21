@@ -1,0 +1,537 @@
+//====================================================================
+//						t01r0202.gmm
+//						主人公の家２Ｆ
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t01r0202.h"
+	.include	"../eventdata/zone_t01r0202evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t01r0202_game
+_EVENT_DATA		ev_t01r0202_pc
+_EVENT_DATA		ev_t01r0202_gamestart
+_EVENT_DATA		ev_t01r0202_sign
+_EVENT_DATA		ev_t01r0202_flag_change
+_EVENT_DATA		ev_t01r0202_tv
+_EVENT_DATA		pos_t01r0202_rival_01
+_EVENT_DATA		pos_t01r0202_rival_02
+_EVENT_DATA		pos_t01r0202_rival_03
+_EVENT_DATA		pos_t01r0202_rival_04
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_t01r0202_flag_change:
+	_IFVAL_JUMP		WK_SCENE_GAME_START,EQ,0,ev_t01r0202_flag_change_bgm
+	_END
+
+/*ＴＶ放送を小さくする*/
+ev_t01r0202_flag_change_bgm:
+	//_BGM_FADEOUT	20,0
+	//_SND_INITIAL_VOL_SET	SEQ_TV_HOUSOU,20
+	_SND_INITIAL_VOL_SET	SEQ_TV_HOUSOU,50
+	_END
+
+
+/********************************************************************/
+/*						　ゲーム開始								*/
+/********************************************************************/
+ev_t01r0202_gamestart:
+	_EVENT_START
+
+	/*ＴＶ放送を小さくする*/
+	//_BGM_FADEOUT	20,0
+
+	/*キー待ち*/
+	//_AB_KEYWAIT
+
+	_LDVAL			WK_SCENE_GAME_START,1
+
+	_TALK_KEYWAIT	msg_opening_20
+
+	/*ＴＶ放送終了を小さく再生*/
+	_ME_PLAY		SEQ_TV_END
+	_TALKMSG		msg_opening_21
+	_ME_WAIT
+
+	_TALK_CLOSE
+
+	/*ゾーン曲再生*/
+	_BGM_NOW_MAP_PLAY
+
+	_EVENT_END
+	_END
+
+
+/********************************************************************/
+/*						　ゲーム機									*/
+/********************************************************************/
+ev_t01r0202_game:
+	_EASY_MSG		msg_t01r0202_game_01
+	_END
+
+
+/********************************************************************/
+/*						　	PC										*/
+/********************************************************************/
+ev_t01r0202_pc:
+	_TALK_START
+
+	_PLAYER_NAME	0
+	_TALKMSG	msg_t01r0202_pc_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*			　	看板(室内は必ずINFOBOADにする！)					*/
+/********************************************************************/
+ev_t01r0202_sign:
+	_EASY_INFOBOARD_MSG	msg_t01r0102_sign_01,BOARD_TYPE_INFO,0
+	_END
+
+
+/********************************************************************/
+/*						　テレビ									*/
+/********************************************************************/
+ev_t01r0202_tv:
+	_EASY_MSG		msg_tv_01
+	_END
+
+
+/********************************************************************/
+/*							ライバル								*/
+//
+//	LOCALWORK0 使用
+/********************************************************************/
+pos_t01r0202_rival_01:
+	_LDVAL			LOCALWORK0,0
+	_JUMP			ev_t01r0202_rival
+	_END
+
+pos_t01r0202_rival_02:
+	_LDVAL			LOCALWORK0,1
+	_JUMP			ev_t01r0202_rival
+	_END
+
+pos_t01r0202_rival_03:
+	_LDVAL			LOCALWORK0,2
+	_JUMP			ev_t01r0202_rival
+	_END
+
+pos_t01r0202_rival_04:
+	_LDVAL			LOCALWORK0,3
+	_JUMP			ev_t01r0202_rival
+	_END
+
+ev_t01r0202_rival:
+	_EVENT_START
+
+	//_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ライバル曲再生*/
+
+	/*ライバル出現*/
+	_FLAG_RESET		FV_T01R0202_RIVAL
+	_OBJ_ADD		T01R0202_RIVAL
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_01
+	_OBJ_ANIME_WAIT
+
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ライバル曲再生*/
+
+	/*「いたいた」*/
+	_RIVAL_NAME		0
+	_TALK_KEYWAIT	msg_t01r0202_rival_01
+	_TALK_CLOSE
+
+	/*主人公に隣接*/
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_t010202_rival_0
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_t010202_rival_1
+	_IFVAL_CALL		LOCALWORK0,EQ,2,ev_t010202_rival_2
+	_IFVAL_CALL		LOCALWORK0,EQ,3,ev_t010202_rival_3
+
+	/*「おい」*/
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t01r0202_rival_02
+	_TALK_CLOSE
+
+	/*驚く*/
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_20
+	_OBJ_ANIME_WAIT
+
+	/*パソコン前まで移動*/
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_t010202_rival_30
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_t010202_rival_31
+	_IFVAL_CALL		LOCALWORK0,EQ,2,ev_t010202_rival_32
+	_IFVAL_CALL		LOCALWORK0,EQ,3,ev_t010202_rival_33
+
+	/*「新しいパソコン！？」*/
+	_TALK_KEYWAIT	msg_t01r0202_rival_03
+	_TALK_CLOSE
+
+	/*主人公の方を向く*/
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_t010202_rival_40
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_t010202_rival_41
+	_IFVAL_CALL		LOCALWORK0,EQ,2,ev_t010202_rival_42
+	_IFVAL_CALL		LOCALWORK0,EQ,3,ev_t010202_rival_43
+
+	/*「えーとなんだっけ？」*/
+	_RIVAL_NAME		0
+	_TALK_KEYWAIT	msg_t01r0202_rival_04
+	_TALK_CLOSE
+
+	/*主人公に隣接する*/
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_t010202_rival_50
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_t010202_rival_51
+	_IFVAL_CALL		LOCALWORK0,EQ,2,ev_t010202_rival_52
+	_IFVAL_CALL		LOCALWORK0,EQ,3,ev_t010202_rival_53
+
+	/*「そーそー」*/
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t01r0202_rival_05
+	_TALK_CLOSE
+
+	/*階段下りて退場*/
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_t010202_rival_60
+	_IFVAL_CALL		LOCALWORK0,EQ,1,ev_t010202_rival_61
+	_IFVAL_CALL		LOCALWORK0,EQ,2,ev_t010202_rival_62
+	_IFVAL_CALL		LOCALWORK0,EQ,3,ev_t010202_rival_63
+
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		T01R0202_RIVAL
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_STOP				/*ライバル曲停止*/
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	_FLAG_SET		FV_T01R0202_RIVAL
+	_LDVAL			WK_SCENE_T01R0202,1
+
+	_EVENT_END
+	_END
+
+/*主人公に隣接*/
+ev_t010202_rival_0:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_10
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_10
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_1:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_10_2
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_2:
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_10
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_12
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_3:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_10_2
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_13
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*パソコン前まで移動*/
+ev_t010202_rival_30:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_30
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_30
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_31:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_31
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_31
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_32:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_32
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_32
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_33:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_33
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_33
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*主人公の方を向く*/
+ev_t010202_rival_40:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_40
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_41:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_41
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_42:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_42
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_43:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_43
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*主人公に隣接する*/
+ev_t010202_rival_50:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_50
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_51:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_51
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_52:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_52
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_53:
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_53
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*階段下りて退場*/
+ev_t010202_rival_60:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_60
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_60
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_61:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_60
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_61
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_62:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_60
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_62
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t010202_rival_63:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t01r0202_hero_60
+	_OBJ_ANIME		T01R0202_RIVAL,anm_t01r0202_rival_63
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//ライバル	階段から姿を現す
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_01
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	主人公に隣接
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_10
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_11
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,2
+	_ANIME_DATA	AC_WALK_L_4F,3
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_12
+	_ANIME_DATA	AC_WALK_D_4F,2
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_13
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,3
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	驚く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_20
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	パソコン前まで移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_30
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_31
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_L_4F,3
+	_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_32
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_L_4F,5
+	_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_33
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	主人公の方を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_40
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_41
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_42
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_43
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	主人公に隣接2
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_50
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_51
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_52
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_53
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	AC_WALK_D_4F,2
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	階段下りて退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_rival_60
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,3
+	_ANIME_DATA	AC_WALK_U_4F,2
+	_ANIME_DATA	AC_WALK_R_4F,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_61
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,4
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,3
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_62
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,3
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_rival_63
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,3
+	_ANIME_DATA	AC_WALK_U_4F,2
+	_ANIME_DATA	AC_WALK_R_4F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ライバルの方を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_hero_10
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_hero_10_2
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ライバルを目で追いかける
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_hero_30
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_hero_31
+	_ANIME_DATA	AC_WAIT_8F,1
+	//_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	//_ANIME_DATA	AC_WAIT_4F,1
+	//_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_hero_32
+	_ANIME_DATA	AC_WAIT_8F,1
+	//_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	//_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t01r0202_hero_33
+	_ANIME_DATA	AC_WAIT_8F,1
+	//_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	//_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	//_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ライバルを見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t01r0202_hero_60
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+

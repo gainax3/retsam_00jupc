@@ -1,0 +1,253 @@
+//====================================================================
+//							d35r0104
+//
+//	床のPOS起動
+//	LOCALWORK1
+//	LOCALWORK2
+//	LOCALWORK3
+//	LOCALWORK4
+//	LOCALWORK5
+//	LOCALWORK6
+//	LOCALWORK7
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d35r0104.h"
+	.include	"../../../include/poketool/monsno.h"
+	.include	"../eventdata/zone_d35r0104evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d35r0104_flag_change
+_EVENT_DATA		ev_d35r0104_legend_01
+_EVENT_DATA		pos_d35r0104_floor_01
+_EVENT_DATA		pos_d35r0104_floor_02
+_EVENT_DATA		pos_d35r0104_floor_03
+_EVENT_DATA		pos_d35r0104_floor_04
+_EVENT_DATA		pos_d35r0104_floor_05
+_EVENT_DATA		pos_d35r0104_floor_06
+_EVENT_DATA		pos_d35r0104_floor_07
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d35r0104_flag_change:
+	/*歩数クリア(倒した、捕まえた状態でなければ)*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,LT,REZI_WORK_CAPTURE_NG,ev_d35r0104_legend_clear
+	_END
+
+ev_d35r0104_legend_clear:
+	_LDVAL			SYS_WORK_D35R0104_REZI,0
+	_END
+
+
+/********************************************************************/
+/*						レジアイスイベント開始						*/
+/********************************************************************/
+ev_d35r0104_legend_01:
+	_TALK_OBJ_START
+
+	/*捕獲成功*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,EQ,REZI_WORK_CAPTURE_OK,ev_d35r0104_legend_capture_ok
+
+	/*捕獲失敗*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,EQ,REZI_WORK_CAPTURE_NG,ev_d35r0104_legend_capture_ng
+
+	/*ゲームクリアしていなかったら*/
+	_IF_FLAGOFF_JUMP SYS_FLAG_GAME_CLEAR,ev_d35r0104_legend_non_clear
+
+	/*手持ちに配布レジアイスがいるかどうかチェック*/
+	_D35_HAIHU_REZI_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d35r0104_legend_none
+
+	/*戦闘へ*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,EQ,REZI_WORK_TALK_OK,ev_d35r0104_legend_btl
+
+	/*まだ全て踏んでいない*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,LT,REZI_WORK_POS_OK,ev_d35r0104_legend_none
+
+	////////////////////
+	/*この下にはこない*/
+	////////////////////
+
+	/*地震発生！*/
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_ZISHIN			1
+
+	_LDVAL			SYS_WORK_D35R0104_REZI,REZI_WORK_TALK_OK
+	_TALK_KEYWAIT	msg_d35r0104_statue_02
+	_JUMP			ev_d35r0104_legend_end
+	_END
+
+/*戦闘へ*/
+ev_d35r0104_legend_btl:
+	_VOICE_PLAY		MONSNO_REZIAISU,0
+	_TALK_KEYWAIT	msg_d35r0104_statue_03
+	_VOICE_WAIT
+	_TALK_CLOSE
+
+	//戦闘開始
+	_SP_WILD_BTL_SET	MONSNO_REZIAISU,30
+
+	_LOSE_CHECK		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d35r0104_legend_lose
+	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d35r0104_legend_capture_ng
+
+/*レジアイス捕まえた*/
+ev_d35r0104_legend_event_clear:
+	_LDVAL			SYS_WORK_D35R0104_REZI,REZI_WORK_CAPTURE_OK
+	_TALK_OBJ_END
+	_END
+
+ev_d35r0104_legend_capture_ok:
+	_TALKMSG		msg_d35r0104_statue_04
+	_JUMP			ev_d35r0104_legend_end
+	_END
+
+/*レジアイス逃した、倒した*/
+ev_d35r0104_legend_capture_ng:
+	_LDVAL			SYS_WORK_D35R0104_REZI,REZI_WORK_CAPTURE_NG
+	_TALKMSG		msg_d35r0104_statue_04
+	_JUMP			ev_d35r0104_legend_end
+	_END
+
+/*全滅*/
+ev_d35r0104_legend_lose:
+	_NORMAL_LOSE	
+	_TALK_OBJ_END
+	_END
+
+/*クリアしていない*/
+ev_d35r0104_legend_non_clear:
+	_TALK_KEYWAIT	msg_d35r0104_statue_05
+	_JUMP			ev_d35r0104_legend_end
+	_END
+
+/*手持ちに配布レジアイスがいない*/
+/*まだ全て踏んでいない*/
+ev_d35r0104_legend_none:
+	_TALK_KEYWAIT	msg_d35r0104_statue_01
+	_JUMP			ev_d35r0104_legend_end
+	_END
+
+ev_d35r0104_legend_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*								床									*/
+/********************************************************************/
+pos_d35r0104_floor_01:
+	_LDVAL			LOCALWORK1,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_02:
+	_LDVAL			LOCALWORK2,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_03:
+	_LDVAL			LOCALWORK3,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_04:
+	_LDVAL			LOCALWORK4,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_05:
+	_LDVAL			LOCALWORK5,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_06:
+	_LDVAL			LOCALWORK6,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+pos_d35r0104_floor_07:
+	_LDVAL			LOCALWORK7,1
+
+	/*全て床踏んでいる以上の時*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_none
+	_JUMP			ev_d35r0104_floor_01_common
+	_END
+
+/*共通の床セット*/
+ev_d35r0104_floor_01_common:
+	_EVENT_START
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_D35_FLOOR_SET	SYS_WORK_D35R0104_REZI,ZONE_ID_D35R0104,SCWK_TEMP0,SCWK_TEMP1
+
+	/*全て床を踏んでいる状態なら画面揺らす*/
+	_IFVAL_JUMP		SYS_WORK_D35R0104_REZI,GE,REZI_WORK_POS_OK,ev_d35r0104_floor_pos_ok
+
+	_EVENT_END
+	_END
+
+/*全て床踏んでいる以上の時*/
+ev_d35r0104_floor_none:
+	_END
+
+/*全て床を踏んでいる状態なら画面揺らす*/
+ev_d35r0104_floor_pos_ok:
+
+	/*ゲームクリアしていなかったら*/
+	_IF_FLAGOFF_JUMP SYS_FLAG_GAME_CLEAR,ev_d35r0104_floor_none
+
+	/*地震発生！*/
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_ZISHIN			1
+
+	_LDVAL			SYS_WORK_D35R0104_REZI,REZI_WORK_TALK_OK
+	_TALK_KEYWAIT	msg_d35r0104_statue_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+

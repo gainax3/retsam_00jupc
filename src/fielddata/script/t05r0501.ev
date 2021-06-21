@@ -1,0 +1,871 @@
+//====================================================================
+//								t05r0501
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t05r0501.h"
+	.include	"../eventdata/zone_t05r0501evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t05r0501_wall
+_EVENT_DATA		ev_t05r0501_akagi
+_EVENT_DATA		ev_t05r0501_oldwoman1
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*							デバック								*/
+/********************************************************************/
+//#define DEBUG_T05R0501_CHECK	(1)		/*定義有効でイベント簡略化*/
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_t05r0501_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*							壁画									*/
+/********************************************************************/
+#define POS_T05R0501_X0	(8)
+#define POS_T05R0501_X1	(9)
+#define POS_T05R0501_X2	(10)
+#define POS_T05R0501_X3	(11)
+#define POS_T05R0501_Z0	(4)
+//#define POS_T05R0501_Z1	(5)
+
+ev_t05r0501_wall:
+	_TALK_START
+
+	/*ハードマウンテンをクリア後*/
+	_IF_FLAGON_JUMP	FE_KAZANNOOKIISI_GET,ev_t05r0501_champ
+
+	_JUMP			ev_t05r0501_wall_10
+	_END
+
+ev_t05r0501_wall_10:
+	/*壁画を初めて見たとき*/
+	_IF_FLAGOFF_JUMP	FE_FRESCO_SEE,ev_t05r0501_wall_02
+
+	_PLAYER_NAME	0
+	_TALKMSG		msg_t05r0501_wall_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+/*壁画を初めて見たとき*/
+ev_t05r0501_wall_02:
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_t05r0501_wall_01
+	_TALK_CLOSE
+
+	_FLAG_SET		FE_FRESCO_SEE
+
+	_FLAG_RESET		FV_T05R0501_OLDWOMAN
+	_SXY_POS_CHANGE	T05R0501_OLDWOMAN,4,11
+	_SXY_DIR_CHANGE	T05R0501_OLDWOMAN,DIR_UP
+	_SXY_MV_CHANGE	T05R0501_OLDWOMAN,MV_UP
+	_OBJ_ADD		T05R0501_OLDWOMAN
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_pos_x1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_pos_x2
+
+	/*「その壁画・・・」*/
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_01
+	//_TALK_CLOSE
+
+	/*アカギの声がする*/
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_01
+	_TALK_CLOSE
+
+	/*下を向く*/
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_100
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_100
+	_OBJ_ANIME_WAIT
+
+	/*「誰だい？」*/
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_04
+	_TALK_CLOSE
+
+	/*★アカギ戦で負けると、洞窟内と、外に、シロナのおばあさんが二人いることになるので、先に削除*/
+	_FLAG_SET		FV_T05_OLDWOMAN
+
+	/*アカギ登場*/
+	_FLAG_RESET		FV_T05R0501_AKAGI
+	_SXY_POS_CHANGE	T05R0501_AKAGI,4,11
+	_SXY_DIR_CHANGE	T05R0501_AKAGI,DIR_UP
+	_SXY_MV_CHANGE	T05R0501_AKAGI,MV_UP
+	_OBJ_ADD		T05R0501_AKAGI
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_pos_x11
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_pos_x12
+
+	/*「私の名前はアカギ」*/
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_02
+
+	/*「どうだかねぇ」*/
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_05
+
+	_TALKMSG		msg_t05r0501_gingaboss_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_t05r0501_gingaboss
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t05r0501_gingaboss_anm		/*どかすアニメあり*/
+	_END
+
+/*近づいてきて、壁画を見たまま*/
+ev_t05r0501_pos_x1:
+	/*長老近づいてくる*/
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_01
+	_OBJ_ANIME_WAIT
+
+	/*長老のほうを向く*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x2:
+	/*長老近づいてくる*/
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_02
+	_OBJ_ANIME_WAIT
+
+	/*長老のほうを向く*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*どかすアニメ*/
+no_t05r0501_gingaboss_anm:
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_05_01
+	_TALK_CLOSE
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_pos_x51
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_pos_x52
+
+	_TALK_END
+	_END
+
+ev_t05r0501_pos_x51:
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_400
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_400
+	_OBJ_ANIME		T05R0501_AKAGI,anm_t05r0501_akagi_400
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x52:
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_401
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_401
+	_OBJ_ANIME		T05R0501_AKAGI,anm_t05r0501_akagi_401
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*「はい」*/
+yes_t05r0501_gingaboss:
+#ifndef DEBUG_T05R0501_CHECK
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_04
+	_TALK_CLOSE
+
+	/*戦闘*/
+	_TRAINER_BTL_SET	GINGALBOSS_03,0
+	_TRAINER_LOSE_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_t05r0501_gingaboss_battle_lose
+#endif //DEBUG_T05R0501_CHECK
+
+	_CALL			btl_after_t05r0501_gingaboss
+
+	_TALK_END
+	_END
+
+/*戦闘後*/
+btl_after_t05r0501_gingaboss:
+	_FLAG_RESET		FV_T05_CHAMP
+	_LDVAL			WK_SCENE_T05,1
+
+	/*「たいしたものだ」*/
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_06
+	_TALK_CLOSE
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	/*暗転*/
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+	_OBJ_DEL		T05R0501_AKAGI
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*主人公位置によってアニメかえる*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X0,ev_t05r0501_pos_x20
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_pos_x21
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_pos_x22
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X3,ev_t05r0501_pos_x23
+
+#ifndef DEBUG_T05R0501_CHECK
+	/*なみのりゲット*/
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_02
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_HIDENMASIN03
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+#endif //DEBUG_T05R0501_CHECK
+
+	/*★アカギ戦で負けると、洞窟内と、外に、シロナのおばあさんが二人いることになるので、先に削除*/
+	_FLAG_SET		FV_T05_OLDWOMAN
+	_FLAG_RESET		FV_T05R0101_OLDWOMAN
+	_FLAG_SET		SYS_FLAG_T05_GINGA_EVENT
+
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_03
+	_TALK_CLOSE
+
+	/*退場*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_pos_x31
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_pos_x32
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X3,ev_t05r0501_pos_x33
+	_OBJ_DEL		T05R0501_OLDWOMAN
+	_RET
+
+/*アカギ登場アニメ*/
+ev_t05r0501_pos_x11:
+	_OBJ_ANIME		T05R0501_AKAGI,anm_t05r0501_akagi_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x12:
+	_OBJ_ANIME		T05R0501_AKAGI,anm_t05r0501_akagi_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*長老アニメ主人公の方を向く*/
+ev_t05r0501_pos_x20:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_199
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x21:
+	/*Zチェック*/
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_T05R0501_Z0,ev_t05r0501_pos_z21_0
+	//_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_T05R0501_Z1,ev_t05r0501_pos_z21_1
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_200
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_z21_0:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_200_0
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_z21_1:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_200_1
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x22:
+	/*Zチェック*/
+	_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_T05R0501_Z0,ev_t05r0501_pos_z22_0
+	//_IFVAL_JUMP		SCWK_TEMP1,EQ,POS_T05R0501_Z1,ev_t05r0501_pos_z22_1
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_201
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_12
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_z22_0:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_201_0
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_12
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_z22_1:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_201_1
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x23:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_202
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_13
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*長老アニメ退場*/
+ev_t05r0501_pos_x31:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_300
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_21
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x32:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_300
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_22
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_pos_x33:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_300
+	_OBJ_ANIME		T05R0501_OLDWOMAN,anm_t05r0501_oldwoman_23
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//敗北処理
+//--------------------------------------------------------------------
+ev_t05r0501_gingaboss_battle_lose:
+	_TRAINER_LOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//アカギ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_akagi_01
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,5
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_akagi_02
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アカギ	主人公をどかす
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_akagi_400
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_akagi_401
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	長老のほうをむく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_01
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_02
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	アカギにどかされる
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_400
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_DIR_PAUSE_ON,1
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	AC_DIR_PAUSE_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_401
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_DIR_PAUSE_ON,1
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	AC_DIR_PAUSE_OFF,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_100
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	長老のほうをむく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_199
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_200
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_200_0
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_200_1
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_201
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_201_0
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_201_1
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_202
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	長老を見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_300
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//長老	ちかづく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_oldwoman_01
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,5
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_02
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//長老	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_oldwoman_100
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//長老	アカギを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_oldwoman_400
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_401
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//長老	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_oldwoman_11
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_12
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_13
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//長老	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_oldwoman_21
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_22
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_oldwoman_23
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							アカギ									*/
+/********************************************************************/
+ev_t05r0501_akagi:
+	_TALK_OBJ_START
+
+#ifndef DEBUG_T05R0501_CHECK
+	_TALKMSG		msg_t05r0501_gingaboss_07
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t05r0501_akagi
+
+	/*「はい」*/
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_04
+	_TALK_CLOSE
+
+	/*戦闘*/
+	_TRAINER_BTL_SET	GINGALBOSS_03,0
+	_TRAINER_LOSE_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_t05r0501_gingaboss_battle_lose
+#endif //DEBUG_T05R0501_CHECK
+
+	_CALL			btl_after_t05r0501_gingaboss
+
+	_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+no_t05r0501_akagi:
+	_TALK_KEYWAIT	msg_t05r0501_gingaboss_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*							長老									*/
+/********************************************************************/
+ev_t05r0501_oldwoman1:
+	_TALK_OBJ_START_TURN_NOT
+
+	_TALK_KEYWAIT	msg_t05r0501_oldwoman1_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			ハードマウンテンをクリア後、シロナ登場					*/
+/********************************************************************/
+ev_t05r0501_champ:
+
+	/*一度見ていたら、ゲームクリアするまで見れない*/
+	_IF_FLAGON_JUMP	FE_T05R0501_CHAMP,ev_t05r0501_wall_10
+	
+	_FLAG_SET		FE_T05R0501_CHAMP
+
+	/*シロナ登場*/
+	_FLAG_RESET		FV_T05R0501_CHAMP
+	_SXY_POS_CHANGE	T05R0501_CHAMP,4,11
+	_OBJ_ADD		T05R0501_CHAMP
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x2
+
+	_TALK_KEYWAIT	msg_t05r0501_champion_01
+
+	/*主人公を見る*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x5
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x6
+
+	_TALKMSG		msg_t05r0501_champion_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t05r0501_champ
+
+	_TALK_CLOSE
+
+	/*壁画を見る*/
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_07
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_502
+	_OBJ_ANIME_WAIT
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_TALKMSG		msg_t05r0501_champion_03
+
+	/*主人公を見る*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x5
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x6
+
+	/*シロナを見る*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x31
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x32
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t05r0501_champ
+
+	_TALKMSG		msg_t05r0501_champion_04
+	_TALK_CLOSE
+
+	/*一歩下に移動*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_510
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_10
+	_OBJ_ANIME_WAIT
+
+	_TALKMSG		msg_t05r0501_champion_05
+	_TALK_CLOSE
+
+	/*元の位置に戻り向きあう*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x15
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x16
+
+	_TALKMSG		msg_t05r0501_champion_06
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t05r0501_champ
+
+	_TALKMSG		msg_t05r0501_champion_07
+	_JUMP			ev_t05r0501_champ_end
+	_END
+
+/*登場*/
+ev_t05r0501_champ_pos_x1:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_01
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_500
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_champ_pos_x2:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_02
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_501
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*シロナを見る*/
+ev_t05r0501_champ_pos_x31:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_500
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_champ_pos_x32:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_501
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*主人公を見る*/
+ev_t05r0501_champ_pos_x5:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_05
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_champ_pos_x6:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_06
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*元の位置に戻り向き合う*/
+ev_t05r0501_champ_pos_x15:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_15
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_515
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_champ_pos_x16:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_16
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_516
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*「いいえ」*/
+no_t05r0501_champ:
+	_TALK_KEYWAIT	msg_t05r0501_champion_08
+	_JUMP			ev_t05r0501_champ_end
+	_END
+
+/*終了*/
+ev_t05r0501_champ_end:
+	_TALK_CLOSE
+
+	/*退場*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X1,ev_t05r0501_champ_pos_x10
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_T05R0501_X2,ev_t05r0501_champ_pos_x20
+	_OBJ_DEL		T05R0501_CHAMP
+
+	_TALK_END
+	_END
+
+ev_t05r0501_champ_pos_x10:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_20
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_520
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t05r0501_champ_pos_x20:
+	_OBJ_ANIME		T05R0501_CHAMP,anm_t05r0501_champ_21
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t05r0501_player_520
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//シロナ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_01
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,5
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_champ_02
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_05
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_champ_06
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	壁画を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_07
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	一歩下に移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_10
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	元の位置に戻り向きあう
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_15
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_champ_16
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_champ_20
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_champ_21
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	シロナを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_500
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_501
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	壁画を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_502
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_510
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	元の位置に戻るシロナを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_515
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_t05r0501_player_516
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	元の位置に戻るシロナを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_t05r0501_player_520
+	_ANIME_DATA	AC_WAIT_8F,2
+	//_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	ACMD_END,0
+
+

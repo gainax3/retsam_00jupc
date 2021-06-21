@@ -1,0 +1,389 @@
+//====================================================================
+//								d32r0101
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d32r0101.h"
+	.include	"../eventdata/zone_d32r0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d32r0101_first_entry
+_EVENT_DATA		ev_d32r0101_staff_a
+_EVENT_DATA		ev_d32r0101_staff_b
+_EVENT_DATA		ev_d32r0101_staff_c
+_EVENT_DATA		ev_d32r0101_staff_d
+_EVENT_DATA		ev_d32r0101_staff_e
+_EVENT_DATA		ev_d32r0101_staff_f
+_EVENT_DATA		ev_d32r0101_explore
+_EVENT_DATA		ev_d32r0101_oldman1
+_EVENT_DATA		ev_d32r0101_man1
+_EVENT_DATA		ev_d32r0101_woman2
+_EVENT_DATA		ev_d32r0101_flag_change
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d32r0101_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D32R0101	//到着
+	_END
+
+
+/********************************************************************/
+/*						初めて入った時(強制)						*/
+/********************************************************************/
+ev_d32r0101_first_entry:
+	_EVENT_START
+
+	//シーンチェンジ
+	_LDVAL				WK_SCENE_D32R0101,1
+
+	//ギネスホールタワー記録ストッパーを外す
+	_FLAG_SET			FV_C01R0206_STOP
+	_FLAG_SET			FV_C01R0207_STOP
+
+	//スタッフ振り向き
+	_CALL				ev_d32r0101_anm_staff_turn_d
+
+	//ようこそ
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_01
+	_TALK_CLOSE
+	
+	//自機移動
+	_CALL				ev_d32r0101_anm_player_move	
+
+	/*「バトルレコーダーをパワーアップ」*/
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_02
+
+	_PLAYER_NAME		0
+	//_ME_PLAY			SEQ_FANFA3
+	_ME_PLAY			SEQ_FANFA4
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_15
+	_ME_WAIT
+
+	//_LDVAL				SCWK_TEMP0,ITEM_POINTOKAADO
+	//_LDVAL				SCWK_TEMP1,1
+
+	//アイテムゲット SCWK_TEMP0にアイテムNo,SCWK_TEMP1に個数代入して呼び出す
+	//_CHG_COMMON_SCR		SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	/*メニュへ*/
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_03
+	_CALL				ev_d32r0101_staff_a_menu
+
+	_TALKMSG			msg_d32r0101_staff_a_09
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+
+/********************************************************************/
+/*					スタッフA(左真ん中:ルール説明)					*/
+/********************************************************************/
+ev_d32r0101_staff_a:
+	_TALK_OBJ_START
+
+	/*メニュへ*/
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_CALL				ev_d32r0101_staff_a_menu
+
+	_JUMP				ev_d32r0101_staff_a_05
+	_END
+
+//メニュースタート
+ev_d32r0101_staff_a_menu:
+	_BMPMENU_INIT_EX	15,5,0,1,SCWK_ANSWER		/*BキャンセルOK*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_10,0	/*バトルフロンティアとは*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_17,1	/*きほんのルールについて*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_11,2	/*バトルポイントとは*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_12,3	/*ＢＰひきかえコーナーとは*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_13,4	/*せいせきモニターとは*/
+	_BMPMENU_MAKE_LIST	msg_d32r0101_staff_a_14,5	/*おわる*/
+	_BMPMENU_START
+
+	_SWITCH				SCWK_ANSWER
+	_CASE_JUMP			0,ev_d32r0101_staff_a_01
+	_CASE_JUMP			1,ev_d32r0101_staff_a_07
+	_CASE_JUMP			2,ev_d32r0101_staff_a_02
+	_CASE_JUMP			3,ev_d32r0101_staff_a_03
+	_CASE_JUMP			4,ev_d32r0101_staff_a_04
+	_RET
+	
+/*「いってらっしゃいませ」*/
+ev_d32r0101_staff_a_05:
+	_TALKMSG			msg_d32r0101_staff_a_09
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*バトルフロンティア説明*/
+ev_d32r0101_staff_a_01:
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_05
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_JUMP				ev_d32r0101_staff_a_menu
+	_END
+
+/*バトルポイント説明*/
+ev_d32r0101_staff_a_02:
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_06
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_JUMP				ev_d32r0101_staff_a_menu
+	_END
+
+/*ＢＰひきかえ説明*/
+ev_d32r0101_staff_a_03:
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_07
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_JUMP				ev_d32r0101_staff_a_menu
+	_END
+
+/*せいせきモニター説明*/
+ev_d32r0101_staff_a_04:
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_08
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_JUMP				ev_d32r0101_staff_a_menu
+	_END
+
+/*基本のルール説明*/
+ev_d32r0101_staff_a_07:
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_16
+	_TALK_KEYWAIT		msg_d32r0101_staff_a_04
+	_JUMP				ev_d32r0101_staff_a_menu
+	_END
+
+
+/********************************************************************/
+/*					スタッフB(左:ポイントカード説明)				*/
+/********************************************************************/
+ev_d32r0101_staff_b:
+	_TALK_OBJ_START
+
+	_TALK_KEYWAIT	msg_d32r0101_staff_b_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d32r0101_staff_b_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d32r0101_staff_b_01
+	_END
+
+yes_d32r0101_staff_b_01:
+	_TALKMSG		msg_d32r0101_staff_b_02
+	_JUMP			no_d32r0101_staff_b_01
+	_END
+
+no_d32r0101_staff_b_01:
+	_TALKMSG		msg_d32r0101_staff_b_03
+	_JUMP			ev_d32r0101_staff_b_end
+	_END
+
+/*共通終了*/
+ev_d32r0101_staff_b_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			スタッフC(左:つれていけるポケモン説明)					*/
+/********************************************************************/
+ev_d32r0101_staff_c:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT		msg_d32r0101_staff_c_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d32r0101_staff_c_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d32r0101_staff_c_01
+	_END
+
+yes_d32r0101_staff_c_01:
+	_TALKMSG		msg_d32r0101_staff_c_02
+	_JUMP			no_d32r0101_staff_c_01
+	_END
+
+no_d32r0101_staff_c_01:
+	_TALKMSG		msg_d32r0101_staff_c_03
+	_JUMP			ev_d32r0101_staff_c_end
+	_END
+
+/*共通終了*/
+ev_d32r0101_staff_c_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			スタッフd()												*/
+/********************************************************************/
+ev_d32r0101_staff_d:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT		msg_d32r0101_staff_d_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d32r0101_staff_d_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d32r0101_staff_d_01
+	_END
+
+yes_d32r0101_staff_d_01:
+	_TALKMSG		msg_d32r0101_staff_d_02
+	_JUMP			no_d32r0101_staff_d_01
+	_END
+
+no_d32r0101_staff_d_01:
+	_TALKMSG		msg_d32r0101_staff_d_03
+	_JUMP			ev_d32r0101_staff_d_end
+	_END
+
+/*共通終了*/
+ev_d32r0101_staff_d_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			スタッフe()												*/
+/********************************************************************/
+ev_d32r0101_staff_e:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT		msg_d32r0101_staff_e_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d32r0101_staff_e_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d32r0101_staff_e_01
+	_END
+
+yes_d32r0101_staff_e_01:
+	_TALKMSG		msg_d32r0101_staff_e_02
+	_JUMP			no_d32r0101_staff_e_01
+	_END
+
+no_d32r0101_staff_e_01:
+	_TALKMSG		msg_d32r0101_staff_e_03
+	_JUMP			ev_d32r0101_staff_e_end
+	_END
+
+/*共通終了*/
+ev_d32r0101_staff_e_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			スタッフf()												*/
+/********************************************************************/
+ev_d32r0101_staff_f:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT		msg_d32r0101_staff_f_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_d32r0101_staff_f_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d32r0101_staff_f_01
+	_END
+
+yes_d32r0101_staff_f_01:
+	_TALKMSG		msg_d32r0101_staff_f_02
+	_JUMP			no_d32r0101_staff_f_01
+	_END
+
+no_d32r0101_staff_f_01:
+	_TALKMSG		msg_d32r0101_staff_f_03
+	_JUMP			ev_d32r0101_staff_f_end
+	_END
+
+/*共通終了*/
+ev_d32r0101_staff_f_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*			アニメ			　										*/
+/********************************************************************/
+ev_d32r0101_anm_staff_turn_d:
+	_OBJ_ANIME			D32R0101_BFSW2_01,anm_d32r0101_turn_d
+	_OBJ_ANIME			D32R0101_BFSW2_02,anm_d32r0101_turn_d
+	_OBJ_ANIME			D32R0101_BFSW2_03,anm_d32r0101_turn_d
+	_OBJ_ANIME			D32R0101_BFSW2_04,anm_d32r0101_turn_d
+	_OBJ_ANIME			D32R0101_BFSW2_05,anm_d32r0101_turn_d
+	_OBJ_ANIME			D32R0101_BFSW2_06,anm_d32r0101_turn_d
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_d32r0101_anm_player_move:
+	_OBJ_ANIME			D32R0101_BFSW2_01,anm_d32r0101_turn_r
+	_OBJ_ANIME			D32R0101_BFSW2_02,anm_d32r0101_turn_r
+	_OBJ_ANIME			D32R0101_BFSW2_03,anm_d32r0101_turn_r
+	_OBJ_ANIME			D32R0101_BFSW2_04,anm_d32r0101_turn_l
+	_OBJ_ANIME			D32R0101_BFSW2_05,anm_d32r0101_turn_l
+	_OBJ_ANIME			D32R0101_BFSW2_06,anm_d32r0101_turn_l
+	_OBJ_ANIME			FLDOBJ_ID_PLAYER,anm_d32r0101_player_move
+	_OBJ_ANIME_WAIT
+	_RET
+
+//ターンD
+_ANIME_LABEL	anm_d32r0101_turn_d
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	ACMD_END,0
+//ターンR
+_ANIME_LABEL	anm_d32r0101_turn_r
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	ACMD_END,0
+//ターンL
+_ANIME_LABEL	anm_d32r0101_turn_l
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	ACMD_END,0
+
+//主人公部屋の中央へ
+_ANIME_LABEL	anm_d32r0101_player_move
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							探検家									*/
+/********************************************************************/
+ev_d32r0101_explore:
+	_EASY_OBJ_MSG	msg_d32r0101_explore_01
+	_END
+
+/********************************************************************/
+/*							爺さん									*/
+/********************************************************************/
+ev_d32r0101_oldman1:
+	_EASY_OBJ_MSG	msg_d32r0101_oldman1_01
+	_END
+
+/********************************************************************/
+/*							兄さん									*/
+/********************************************************************/
+ev_d32r0101_man1:
+	_EASY_OBJ_MSG	msg_d32r0101_man1_01
+	_END
+
+/********************************************************************/
+/*							お姉さん									*/
+/********************************************************************/
+ev_d32r0101_woman2:
+	_EASY_OBJ_MSG	msg_d32r0101_woman2_01
+	_END
+
+
+

@@ -1,0 +1,236 @@
+//====================================================================
+//								c02r0102
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c02r0102.h"
+	.include	"../eventdata/zone_c02r0102evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c02r0102_boy1
+_EVENT_DATA		ev_c02r0102_books1
+_EVENT_DATA		ev_c02r0102_books2
+_EVENT_DATA		ev_c02r0102_poster
+_EVENT_DATA		ev_c02r0102_flag_change
+_EVENT_DATA		ev_c02r0102_myth
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL							*/
+/********************************************************************/
+ev_c02r0102_flag_change:
+
+	_FLAG_SET		FV_C02R0102_MYTH
+	_IFVAL_CALL		SYS_WORK_ARUSEUSU,EQ,2,ev_c02r0102_flag_change_myth
+	_END
+
+ev_c02r0102_flag_change_myth:
+	_FLAG_RESET		FV_C02R0102_MYTH
+	_RET
+
+
+/********************************************************************/
+/*							少年									*/
+/********************************************************************/
+ev_c02r0102_boy1:
+	_TALK_OBJ_START
+
+	/*地震発生後～次のイベントが起きるまで*/
+	_IF_FLAGON_JUMP	FE_L02_NEWS,ev_c02r0102_boy1_02
+
+	_TALKMSG	msg_c02r0102_boy1_01
+	_LAST_KEYWAIT
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*地震発生後～次のイベントが起きるまで*/
+ev_c02r0102_boy1_02:
+	_TALKMSG	msg_c02r0102_boy1_02
+	_LAST_KEYWAIT
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*								本									*/
+/********************************************************************/
+ev_c02r0102_books1:
+	_TALK_START
+
+	/*図書館アルセウス山男イベント終了後*/
+	_IFVAL_JUMP			SYS_WORK_ARUSEUSU,GE,3,ev_c02r0102_books1_02
+
+	_TALK_KEYWAIT		msg_c02r0102_books1_01
+	_JUMP				ev_c02r0102_books1_end
+	_END
+
+ev_c02r0102_books1_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+/*図書館アルセウス山男イベント終了後*/
+ev_c02r0102_books1_02:
+	_PLAYER_NAME		0
+	_TALK_KEYWAIT		msg_c02r0102_books_01
+	_JUMP				ev_c02r0102_books1_end
+	_END
+
+
+/********************************************************************/
+/*								本									*/
+/********************************************************************/
+ev_c02r0102_books2:
+	_EASY_MSG		msg_c02r0102_books2_01
+	_END
+
+
+/********************************************************************/
+/*							ポスター								*/
+/********************************************************************/
+ev_c02r0102_poster:
+	_EASY_MSG		msg_c02r0102_poster_01
+	_END
+
+
+/********************************************************************/
+/*						アルセウス山男								*/
+/********************************************************************/
+ev_c02r0102_myth:
+	_EVENT_START
+
+	/*近づいてくる*/
+	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_myth_05
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c02r0102_myth_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_01
+	_END
+
+/*１回目「いいえ」*/
+no_c02r0102_myth_01:
+	_TALK_KEYWAIT	msg_myth_06
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c02r0102_myth_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_01
+	_END
+
+/*１回目「はい」*/
+yes_c02r0102_myth_01:
+	_TALK_KEYWAIT	msg_myth_07
+	_TALK_CLOSE
+
+	/*キョロキョロ*/
+	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_10
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_myth_08
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c02r0102_myth_02
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_02
+	_END
+
+/*２回目「いいえ」*/
+no_c02r0102_myth_02:
+	_TALK_KEYWAIT	msg_myth_09
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c02r0102_myth_02
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c02r0102_myth_02
+	_END
+
+/*２回目「はい」*/
+yes_c02r0102_myth_02:
+	_TALK_KEYWAIT	msg_myth_10
+	_TALK_CLOSE
+
+	/*左を向いて*/
+	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_20
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_myth_11
+	_TALK_CLOSE
+
+	/*向き合う*/
+	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_30
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_myth_12
+	_TALK_CLOSE
+
+	/*退場*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c02r0102_player_40
+	_OBJ_ANIME		C02R0102_MYTH,anm_c02r0102_myth_40
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		C02R0102_MYTH
+
+	_LDVAL			SYS_WORK_ARUSEUSU,3
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//山男	近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_myth_01
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//山男	キョロキョロ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_myth_10
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//山男	左を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_myth_20
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//山男	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_myth_30
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//山男	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_myth_40
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	道をあける
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c02r0102_player_40
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+

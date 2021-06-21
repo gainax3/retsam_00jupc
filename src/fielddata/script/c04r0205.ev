@@ -1,0 +1,956 @@
+//====================================================================
+//								c04r0205
+//
+//	SCWK_TEMP0	話しかけた台座ナンバー(次のFORMNO)
+//	SCWK_PARAM0	選択した手持ち位置
+//	SCWK_PARAM1	話しかけた家電で覚えられる技
+//	SCWK_PARAM2	選択した技の位置、もしくは技数
+//	SCWK_PARAM3	手持ちのフォルムチェンジしたロトムの数
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c04r0205.h"
+	.include	"../eventdata/zone_c04r0205evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c04r0205_rotom_01
+_EVENT_DATA		ev_c04r0205_rotom_02
+_EVENT_DATA		ev_c04r0205_rotom_03
+_EVENT_DATA		ev_c04r0205_rotom_04
+_EVENT_DATA		ev_c04r0205_rotom_05
+_EVENT_DATA		ev_c04r0205_book
+_EVENT_DATA		ev_c04r0205_flag_change
+_EVENT_DATA		ev_c04r0205_obj_change
+_EVENT_DATA		ev_c04r0205_rotom_daiza
+_EVENT_DATA		ev_c04r0205_rotom_note
+_EVENT_DATA		ev_c04r0205_doctor
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						OBJ_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_c04r0205_obj_change:
+
+	/*台座OBJを見えないようにする*/
+	//_OBJ_INVISIBLE		C04R0206_ROTOMF_DAIZA
+	//_OBJ_INVISIBLE		C04R0206_ROTOMW_DAIZA
+	//_OBJ_INVISIBLE		C04R0206_ROTOMI_DAIZA
+	//_OBJ_INVISIBLE		C04R0206_ROTOMS_DAIZA
+	//_OBJ_INVISIBLE		C04R0206_ROTOMG_DAIZA
+	_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_c04r0205_flag_change:
+
+	/*始めに消しておく*/
+	_FLAG_SET		FV_ROTOMU_HOT
+	_FLAG_SET		FV_ROTOMU_WASH
+	_FLAG_SET		FV_ROTOMU_COLD
+	_FLAG_SET		FV_ROTOMU_FAN
+	_FLAG_SET		FV_ROTOMU_CUT
+
+	//配布イベント有効？
+	_IS_HAIHU_EVENT_ENABLE	HAIHUEVENT_ID_C04,LOCALWORK0
+	_IFVAL_JUMP				LOCALWORK0,EQ,0,ev_c04r0205_flag_change_end	/*無効*/
+
+	/*自分の手持ち、ボックス、育て屋からフォルムチェンジしたロトムがいるかチェック*/
+	/*hot,wash,cold,fan,cutの順*/
+	_ROTOMU_FORM_CHECK	LOCALWORK0,LOCALWORK1,LOCALWORK2,LOCALWORK3,LOCALWORK4
+
+	_IFVAL_CALL		LOCALWORK0,EQ,0,ev_rotomu_hot_flag_off
+	_IFVAL_CALL		LOCALWORK1,EQ,0,ev_rotomu_wash_flag_off
+	_IFVAL_CALL		LOCALWORK2,EQ,0,ev_rotomu_cold_flag_off
+	_IFVAL_CALL		LOCALWORK3,EQ,0,ev_rotomu_fan_flag_off
+	_IFVAL_CALL		LOCALWORK4,EQ,0,ev_rotomu_cut_flag_off
+	_END
+
+//配布イベント無効だったらOBJ消しておく
+ev_c04r0205_flag_change_end:
+	/*台座も話しかけられない位置へ*/
+	_SXY_BG_POS_CHANGE	0,4,1
+	_SXY_BG_POS_CHANGE	1,4,1
+	_SXY_BG_POS_CHANGE	2,4,1
+	_SXY_BG_POS_CHANGE	3,4,1
+	_SXY_BG_POS_CHANGE	4,4,1
+	_END
+
+/*自分の手持ち、ボックス、育て屋からフォルムチェンジしたロトムがいなかったら表示する*/
+ev_rotomu_hot_flag_off:
+	_FLAG_RESET		FV_ROTOMU_HOT
+	_RET
+
+ev_rotomu_wash_flag_off:
+	_FLAG_RESET		FV_ROTOMU_WASH
+	_RET
+
+ev_rotomu_cold_flag_off:
+	_FLAG_RESET		FV_ROTOMU_COLD
+	_RET
+
+ev_rotomu_fan_flag_off:
+	_FLAG_RESET		FV_ROTOMU_FAN
+	_RET
+
+ev_rotomu_cut_flag_off:
+	_FLAG_RESET		FV_ROTOMU_CUT
+	_RET
+
+
+/********************************************************************/
+/*							レンジ									*/
+/********************************************************************/
+ev_c04r0205_rotom_01:
+	_TALK_OBJ_START_TURN_NOT
+	_LDVAL			SCWK_TEMP0,FORMNO_ROTOMU_HOT
+	_JUMP			ev_c04r0205_rotom_common_01
+	_END
+
+
+/********************************************************************/
+/*							冷蔵庫									*/
+/********************************************************************/
+ev_c04r0205_rotom_02:
+	_TALK_OBJ_START_TURN_NOT
+	_LDVAL			SCWK_TEMP0,FORMNO_ROTOMU_COLD
+	_JUMP			ev_c04r0205_rotom_common_01
+	_END
+
+
+/********************************************************************/
+/*							洗濯機									*/
+/********************************************************************/
+ev_c04r0205_rotom_03:
+	_TALK_OBJ_START_TURN_NOT
+	_LDVAL			SCWK_TEMP0,FORMNO_ROTOMU_WASH
+	_JUMP			ev_c04r0205_rotom_common_01
+	_END
+
+
+/********************************************************************/
+/*							扇風機									*/
+/********************************************************************/
+ev_c04r0205_rotom_04:
+	_TALK_OBJ_START_TURN_NOT
+	_LDVAL			SCWK_TEMP0,FORMNO_ROTOMU_FAN
+	_JUMP			ev_c04r0205_rotom_common_01
+	_END
+
+
+/********************************************************************/
+/*							芝刈り機								*/
+/********************************************************************/
+ev_c04r0205_rotom_05:
+	_TALK_OBJ_START_TURN_NOT
+	_LDVAL			SCWK_TEMP0,FORMNO_ROTOMU_CUT
+	_JUMP			ev_c04r0205_rotom_common_01
+	_END
+
+
+/********************************************************************/
+/*						ロトムの流れ								*/
+/********************************************************************/
+ev_c04r0205_rotom_common_01:
+	/*ロトムがいない時*/
+	_TEMOTI_POKE_CHK	SCWK_ANSWER,MONSNO_PURAZUMA
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FALSE,ev_c04r0205_rotom_not
+
+	/*配布アイテムがない時*/
+	_ITEM_CHK			ITEM_HIMITUNOKAGI,1,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c04r0205_rotom_not
+
+	//配布イベント有効？
+	_IS_HAIHU_EVENT_ENABLE	HAIHUEVENT_ID_C04,SCWK_ANSWER
+	_IFVAL_JUMP				SCWK_ANSWER,EQ,0,ev_c04r0205_rotom_not	/*無効*/
+
+	/*ロトムはいりたがっているメッセージ*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case01
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case02
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case03
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case04
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case05
+
+	/*フォルムチェンジしたロトムがいるかチェック*/
+	_TEMOTI_ROTOMU_FORM_CHG_CHECK	SCWK_PARAM3,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_PARAM3,GE,1,ev_c04r0205_rotom_common_10	/*フォルムチェンジいる*/
+
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom		/*「いいえ」*/
+
+	_JUMP			yes_c04r0205_rotom
+	_END
+
+/*「はい」*/
+yes_c04r0205_rotom:
+
+	/*覚えられる技ナンバー取得*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case31
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case32
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case33
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case34
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case35
+
+	/*ロトムが複数いるか*/
+	_TEMOTI_POKE_CHK_NUM	SCWK_ANSWER,MONSNO_PURAZUMA
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_1	/*1匹*/
+	_JUMP			ev_c04r0205_rotom_26					/*2-6匹*/
+	_END
+
+
+/********************************************************************/
+/*				手持ちにフォルムチェンジしたロトムがいる			*/
+/********************************************************************/
+ev_c04r0205_rotom_common_10:
+	_BMPMENU_INIT_EX	22,11,0,1,SCWK_ANSWER			//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_c04r0205_rotom_13_1,0		/*はい*/
+	_BMPMENU_MAKE_LIST	msg_c04r0205_rotom_13_2,1		/*いいえ*/
+	_BMPMENU_MAKE_LIST	msg_c04r0205_rotom_13,2			/*もとにもどす*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,yes_c04r0205_rotom
+	_CASE_JUMP		2,ev_c04r0205_rotom_menu03
+
+	/*「いいえ」*/
+	_JUMP			no_c04r0205_rotom
+	_END
+
+
+/********************************************************************/
+/*							もとにもどす							*/
+/********************************************************************/
+ev_c04r0205_rotom_menu03:
+	_TEMOTI_ROTOMU_FORM_CHG_CHECK	SCWK_PARAM3,SCWK_ANSWER
+	_LDWK			SCWK_PARAM0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_PARAM3,GE,2,ev_c04r0205_rotom_menu03_2	/*フォルムチェンジ複数いる*/
+
+	_JUMP			ev_c04r0205_rotom_menu03_sub
+	_END
+
+/*通常フォルムに戻す*/
+ev_c04r0205_rotom_menu03_sub:
+	//_POKEMON_NAME_EXTRA     0,MONSNO_PURAZUMA,0,0
+	_NICK_NAME		0,SCWK_PARAM0
+	_TALK_KEYWAIT	msg_c04r0205_rotom_10
+
+	//技セット(手持ち位置、技位置(未使用)、技ナンバー(未使用))
+	_TEMOTI_ROTOMU_FORM_WAZA_CHG	SCWK_PARAM0,0,0,FORMNO_ROTOMU_NORMAL
+	
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_CLOSE
+
+	/*フォルムチェンジした動作モデルの復活*/
+	_TEMOTI_ROTOMU_FORM_GET	SCWK_PARAM0,SCWK_TEMP0
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case61
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case64
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case62
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case63
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case65
+
+	/*フォルムを切り替える*/
+	//_POKE_FORM_CHANGE	SCWK_PARAM0,FORMNO_ROTOMU_NORMAL
+
+	/*マップ遷移して終了*/
+	_JUMP			ev_c04r0205_rotom_map_change_end
+	_END
+
+/*マップ遷移して終了*/
+ev_c04r0205_rotom_map_change_end:
+	_PLAYER_POS_GET	SCWK_TEMP2,SCWK_TEMP3
+	_PLAYER_DIR_GET	SCWK_ANSWER
+	_MAP_CHANGE_NONE_FADE	ZONE_ID_C04R0205,0,SCWK_TEMP2,SCWK_TEMP3,SCWK_ANSWER
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+	_END
+
+ev_c04r0205_rotom_case61:
+	_FLAG_RESET		FV_ROTOMU_HOT
+	_OBJ_ADD		C04R0206_ROTOMF
+	_RET
+
+ev_c04r0205_rotom_case62:
+	_FLAG_RESET		FV_ROTOMU_COLD
+	_OBJ_ADD		C04R0206_ROTOMI
+	_RET
+
+ev_c04r0205_rotom_case63:
+	_FLAG_RESET		FV_ROTOMU_WASH
+	_OBJ_ADD		C04R0206_ROTOMW
+	_RET
+
+ev_c04r0205_rotom_case64:
+	_FLAG_RESET		FV_ROTOMU_FAN
+	_OBJ_ADD		C04R0206_ROTOMS
+	_RET
+
+ev_c04r0205_rotom_case65:
+	_FLAG_RESET		FV_ROTOMU_CUT
+	_OBJ_ADD		C04R0206_ROTOMG
+	_RET
+
+/*フォルムチェンジ複数いる*/
+ev_c04r0205_rotom_menu03_2:
+
+	/*「どのロトムにしますか？」*/
+	_TALK_KEYWAIT	msg_c04r0205_rotom_06
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_CLOSE
+
+	/*ポケモン選択画面*/
+	_POKELIST_SET_PROC
+
+	/*選択したポケモンの並び番号取得*/
+	_POKELIST_GET_RESULT	SCWK_PARAM0
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,no_c04r0205_rotom_modoru		/*キャンセルされた*/
+
+	/*手持ちー＞ポケモン番号変換　同時にタマゴチェックも行っています*/
+	_TEMOTI_MONSNO	SCWK_PARAM0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c04r0205_rotom_tamago	/*タマゴ*/
+
+	_IFVAL_JUMP		SCWK_ANSWER,NE,MONSNO_PURAZUMA,ev_c04r0205_rotom_no_rotom	/*ロトムじゃない*/
+
+	/*選択したロトムがノーマルフォルムだったら*/
+	_TEMOTI_ROTOMU_FORM_GET	SCWK_PARAM0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FORMNO_ROTOMU_NORMAL,ev_c04r0205_rotom_modoru_normal
+
+	_JUMP			ev_c04r0205_rotom_menu03_sub
+	_END
+
+/*すでにノーマルのロトムを元に戻そうとした時*/
+ev_c04r0205_rotom_modoru_normal:
+	_TALK_KEYWAIT	msg_c04r0205_rotom_13_3
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+/*キャンセルされた*/
+no_c04r0205_rotom_modoru:
+	_END
+
+
+/********************************************************************/
+/*								1匹									*/
+/********************************************************************/
+ev_c04r0205_rotom_1:
+	_TEMOTI_POKE_CHK_GET_POS	SCWK_PARAM0,MONSNO_PURAZUMA
+	_JUMP			ev_c04r0205_rotom_waza
+	_END
+
+
+/********************************************************************/
+/*								2-6匹								*/
+/********************************************************************/
+ev_c04r0205_rotom_26:
+	/*「どのロトムにしますか？」*/
+	_TALK_KEYWAIT	msg_c04r0205_rotom_06
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_CLOSE
+
+	/*ポケモン選択画面*/
+	_POKELIST_SET_PROC
+
+	/*選択したポケモンの並び番号取得*/
+	_POKELIST_GET_RESULT	SCWK_PARAM0
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0xff,no_c04r0205_rotom		/*キャンセルされた*/
+
+	/*手持ちー＞ポケモン番号変換　同時にタマゴチェックも行っています*/
+	_TEMOTI_MONSNO	SCWK_PARAM0,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c04r0205_rotom_tamago	/*タマゴ*/
+
+	_IFVAL_JUMP		SCWK_ANSWER,NE,MONSNO_PURAZUMA,ev_c04r0205_rotom_no_rotom	/*ロトムじゃない*/
+
+	_JUMP			ev_c04r0205_rotom_waza
+	_END
+
+/*タマゴ*/
+ev_c04r0205_rotom_tamago:
+	_TALK_KEYWAIT	msg_c04r0205_rotom_07
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+/*ロトムじゃない*/
+ev_c04r0205_rotom_no_rotom:
+	_TALK_KEYWAIT	msg_c04r0205_rotom_08
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+
+/********************************************************************/
+/*							技の数で分岐							*/
+/********************************************************************/
+ev_c04r0205_rotom_waza:
+
+	/*専用技をすでに覚えていたら、忘れる技を選択する流れにはいかない*/
+	_CHK_POKE_WAZA	SCWK_ANSWER,WAZANO_OOBAAHIITO,SCWK_PARAM0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_sub2
+
+	_CHK_POKE_WAZA	SCWK_ANSWER,WAZANO_HUBUKI,SCWK_PARAM0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_sub2
+
+	_CHK_POKE_WAZA	SCWK_ANSWER,WAZANO_HAIDOROPONPU,SCWK_PARAM0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_sub2
+
+	_CHK_POKE_WAZA	SCWK_ANSWER,WAZANO_EASURASSYU,SCWK_PARAM0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_sub2
+
+	_CHK_POKE_WAZA	SCWK_ANSWER,WAZANO_RIIHUSUTOOMU,SCWK_PARAM0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_sub2
+
+	/*技数を取得*/
+	_WAZA_COUNT		SCWK_ANSWER,SCWK_PARAM0
+	_LDWK			SCWK_PARAM2,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,4,ev_c04r0205_rotom_waza_4
+	_JUMP			ev_c04r0205_rotom_waza_sub
+	_END
+
+/*固有技を覚えているので、技の消す位置はプログラムでサーチするが、*/
+/*引数として渡しているワークを一応クリアしておく*/
+ev_c04r0205_rotom_waza_sub2:
+	_LDVAL			SCWK_PARAM2,0
+	_JUMP			ev_c04r0205_rotom_waza_sub
+	_END
+
+ev_c04r0205_rotom_waza_sub:
+	_NICK_NAME		0,SCWK_PARAM0
+	_TALK_KEYWAIT	msg_c04r0205_rotom_09
+	_JUMP			ev_c04r0205_rotom_waza_3
+	_END
+
+ev_c04r0205_rotom_waza_4:
+
+	/*「・・・ほかの技を忘れさせますか？」*/
+	_NICK_NAME		0,SCWK_PARAM0
+	_WAZA_NAME		1,SCWK_PARAM1
+	_TALK_KEYWAIT	msg_c04r0205_rotom_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_10		/*「いいえ」*/
+	_JUMP			ev_c04r0205_rotom_waza_4_sub
+	_END
+
+ev_c04r0205_rotom_waza_4_sub:
+	/*技選択画面へ*/
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_CLOSE
+
+	_WAZA_OSHIE_POKESTATUS_SET_PROC		SCWK_PARAM0,SCWK_PARAM1	/*技教え r212br0101でも使用*/
+	_WAZA_OSHIE_POKESTATUS_GET_RESULT	SCWK_PARAM2				/*技教え r212br0101でも使用*/
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_IFVAL_JUMP		SCWK_PARAM2,EQ,4,no_c04r0205_rotom_05		/*キャンセル*/
+
+	/*「技を忘れさせてよろしいですね？」*/
+	/*選択した位置の技名を取得*/
+	_TEMOTI_WAZANO	SCWK_ANSWER,SCWK_PARAM0,SCWK_PARAM2
+	_WAZA_NAME		1,SCWK_ANSWER
+	_TALK_KEYWAIT	msg_c04r0205_rotom_04
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_10		/*「いいえ」*/
+
+	/*「新しく技を覚えた」*/
+	_NICK_NAME		0,SCWK_PARAM0
+	_TEMOTI_WAZANO	SCWK_ANSWER,SCWK_PARAM0,SCWK_PARAM2
+	_WAZA_NAME		1,SCWK_ANSWER
+	_TALK_KEYWAIT	msg_c04r0205_rotom_05
+	_SE_PLAY		SEQ_SE_DP_KON
+	_SE_WAIT		SEQ_SE_DP_KON
+	_TIME_WAIT		WAZA_COMMON_WAIT,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_c04r0205_rotom_05_01
+	_TIME_WAIT		WAZA_COMMON_WAIT2,SCWK_ANSWER
+
+	_ME_PLAY		SEQ_FANFA1
+	_WAZA_NAME		1,SCWK_PARAM1
+	_TALK_KEYWAIT	msg_c04r0205_rotom_05_02
+	_ME_WAIT
+	_TIME_WAIT		WAZA_COMMON_WAIT3,SCWK_ANSWER
+
+	_JUMP			ev_c04r0205_rotom_waza_3
+	_END
+
+/*キャンセル*/
+no_c04r0205_rotom_05:
+	/*「それでは技を覚えさせるのをあきらめますか？」*/
+	_WAZA_NAME		1,SCWK_PARAM1
+	_TALK_KEYWAIT	msg_c04r0205_rotom_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c04r0205_rotom_waza_4_sub	/*「いいえ」*/
+	_JUMP			no_c04r0205_rotom_10
+	_END
+
+no_c04r0205_rotom_10:
+	/*「おぼえずに終わった！ポケはモーターの中から出てきた」*/
+	_NICK_NAME		0,SCWK_PARAM0
+	_WAZA_NAME		1,SCWK_PARAM1
+	_TALK_KEYWAIT	msg_c04r0205_rotom_03
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+
+/********************************************************************/
+/*						技セット、フォルム変更						*/
+/********************************************************************/
+ev_c04r0205_rotom_waza_3:
+
+	//技セット(手持ち位置、技位置、技ナンバー、話しかけたフォルムナンバー)
+	_TEMOTI_ROTOMU_FORM_WAZA_CHG	SCWK_PARAM0,SCWK_PARAM2,SCWK_PARAM1,SCWK_TEMP0
+
+	/*フォルムを切り替える*/
+	//_POKE_FORM_CHANGE	SCWK_PARAM0,SCWK_TEMP0
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_CLOSE
+
+	/*フォルムチェンジした動作モデルの削除*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case51
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case54
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case52
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case53
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case55
+
+	/*ナナカマド登場*/
+	_IF_FLAGOFF_JUMP	FE_ROTOMU_FORM_FIRST,ev_c04r0205_doctor_start
+
+	/*マップ遷移して終了*/
+	_JUMP			ev_c04r0205_rotom_map_change_end
+	_END
+
+ev_c04r0205_rotom_case51:
+	_OBJ_DEL		C04R0206_ROTOMF
+	_RET
+
+ev_c04r0205_rotom_case52:
+	_OBJ_DEL		C04R0206_ROTOMI
+	_RET
+
+ev_c04r0205_rotom_case53:
+	_OBJ_DEL		C04R0206_ROTOMW
+	_RET
+
+ev_c04r0205_rotom_case54:
+	_OBJ_DEL		C04R0206_ROTOMS
+	_RET
+
+ev_c04r0205_rotom_case55:
+	_OBJ_DEL		C04R0206_ROTOMG
+	_RET
+
+
+/********************************************************************/
+/*							覚えられる技							*/
+/********************************************************************/
+ev_c04r0205_rotom_case31:
+	_LDVAL			SCWK_PARAM1,WAZANO_OOBAAHIITO
+	_RET
+	
+ev_c04r0205_rotom_case32:
+	_LDVAL			SCWK_PARAM1,WAZANO_HUBUKI
+	_RET
+	
+ev_c04r0205_rotom_case33:
+	_LDVAL			SCWK_PARAM1,WAZANO_HAIDOROPONPU
+	_RET
+	
+ev_c04r0205_rotom_case34:
+	_LDVAL			SCWK_PARAM1,WAZANO_EASURASSYU
+	_RET
+	
+ev_c04r0205_rotom_case35:
+	_LDVAL			SCWK_PARAM1,WAZANO_RIIHUSUTOOMU
+	_RET
+
+
+/********************************************************************/
+/*						ロトム入りたいメッセージ					*/
+/********************************************************************/
+ev_c04r0205_rotom_case01:
+	_TALK_KEYWAIT	msg_c04r0205_range_02
+	_RET
+	
+ev_c04r0205_rotom_case02:
+	_TALK_KEYWAIT	msg_c04r0205_freezer_02
+	_RET
+	
+ev_c04r0205_rotom_case03:
+	_TALK_KEYWAIT	msg_c04r0205_washer_02
+	_RET
+	
+ev_c04r0205_rotom_case04:
+	_TALK_KEYWAIT	msg_c04r0205_fan_02
+	_RET
+	
+ev_c04r0205_rotom_case05:
+	_TALK_KEYWAIT	msg_c04r0205_lawnmower_02
+	_RET
+	
+
+/********************************************************************/
+/*						ロトムいないメッセージ						*/
+/********************************************************************/
+ev_c04r0205_rotom_not:
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case11
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case12
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case13
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case14
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case15
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+ev_c04r0205_rotom_case11:
+	_TALK_KEYWAIT	msg_c04r0205_range_01
+	_RET
+	
+ev_c04r0205_rotom_case12:
+	_TALK_KEYWAIT	msg_c04r0205_freezer_01
+	_RET
+	
+ev_c04r0205_rotom_case13:
+	_TALK_KEYWAIT	msg_c04r0205_washer_01
+	_RET
+	
+ev_c04r0205_rotom_case14:
+	_TALK_KEYWAIT	msg_c04r0205_fan_01
+	_RET
+	
+ev_c04r0205_rotom_case15:
+	_TALK_KEYWAIT	msg_c04r0205_lawnmower_01
+	_RET
+	
+
+/********************************************************************/
+/*							「いいえ」								*/
+/********************************************************************/
+no_c04r0205_rotom:
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_HOT,ev_c04r0205_rotom_case21
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_COLD,ev_c04r0205_rotom_case22
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_WASH,ev_c04r0205_rotom_case23
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_FAN,ev_c04r0205_rotom_case24
+	_IFVAL_CALL		SCWK_TEMP0,EQ,FORMNO_ROTOMU_CUT,ev_c04r0205_rotom_case25
+	_JUMP			ev_c04r0205_rotom_end
+	_END
+
+ev_c04r0205_rotom_case21:
+	_TALK_KEYWAIT	msg_c04r0205_range_03
+	_RET
+	
+ev_c04r0205_rotom_case22:
+	_TALK_KEYWAIT	msg_c04r0205_freezer_03
+	_RET
+	
+ev_c04r0205_rotom_case23:
+	_TALK_KEYWAIT	msg_c04r0205_washer_03
+	_RET
+	
+ev_c04r0205_rotom_case24:
+	_TALK_KEYWAIT	msg_c04r0205_fan_03
+	_RET
+	
+ev_c04r0205_rotom_case25:
+	_TALK_KEYWAIT	msg_c04r0205_lawnmower_03
+	_RET
+
+
+/********************************************************************/
+/*							共通終了								*/
+/********************************************************************/
+ev_c04r0205_rotom_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*								本									*/
+/********************************************************************/
+ev_c04r0205_book:
+	_EASY_MSG		msg_c04r0205_book_01
+	_END
+
+
+/********************************************************************/
+/*								台座								*/
+/********************************************************************/
+ev_c04r0205_rotom_daiza:
+	_TALK_OBJ_START_TURN_NOT	/*注意！！　BGだがOBJとして処理している*/
+
+	/*フォルムチェンジしたロトムがいるかチェック*/
+	_TEMOTI_ROTOMU_FORM_CHG_CHECK	SCWK_PARAM3,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_PARAM3,EQ,0,ev_c04r0205_rotom_daiza_form_num_0	/*フォルムチェンジいない*/
+
+	_TALK_KEYWAIT	msg_c04r0205_rotom_12
+
+	_BMPMENU_INIT_EX	22,15,0,1,SCWK_ANSWER			//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_c04r0205_rotom_13,0			/*もとにもどす*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_c04r0205_rotom_menu03
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*フォルムチェンジしたロトムがいない*/
+ev_c04r0205_rotom_daiza_form_num_0:
+	_TALK_KEYWAIT	msg_c04r0205_rotom_13_4
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							ナナカマド登場							*/
+/********************************************************************/
+ev_c04r0205_doctor_start:
+	_FLAG_SET		FE_ROTOMU_FORM_FIRST
+	_LDVAL			WK_SCENE_C04R0205,1
+
+	/*マップ遷移して終了*/
+	_JUMP			ev_c04r0205_rotom_map_change_end
+	_END
+
+ev_c04r0205_doctor:
+	_EVENT_START
+
+	_FLAG_RESET		FV_C04R0205_DOCTOR
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_ADD		C04R0206_DOCTOR
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	/*入場*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0205_player_01
+	_OBJ_ANIME		C04R0206_DOCTOR,anm_c04r0205_doctor_01
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_c04r0205_doctor_01
+	_TALK_CLOSE
+
+	//主人公の位置情報取得
+	_PLAYER_POS_GET	SCWK_TEMP2,SCWK_TEMP3
+	_IFVAL_CALL		SCWK_TEMP2,GE,10,pos_c04r0205_player_01_01
+	_IFVAL_CALL		SCWK_TEMP2,LE,4,pos_c04r0205_player_01_02
+
+	/*ロトムOBJを見ながら*/
+	_OBJ_ANIME		C04R0206_DOCTOR,anm_c04r0205_doctor_11
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_c04r0205_doctor_02
+	_TALK_CLOSE
+
+	/*主人公を見ながら*/
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0205_player_04
+	_OBJ_ANIME		C04R0206_DOCTOR,anm_c04r0205_doctor_21
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_c04r0205_doctor_03
+	_TALK_CLOSE
+
+	/*退場*/
+	_OBJ_ANIME		C04R0206_DOCTOR,anm_c04r0205_doctor_31
+	_OBJ_ANIME_WAIT
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		C04R0206_DOCTOR
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	_LDVAL			WK_SCENE_C04R0205,2
+	_EVENT_END
+	_END
+
+/*博士を見る*/
+pos_c04r0205_player_01_01:
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0205_player_02
+	_RET
+
+pos_c04r0205_player_01_02:
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0205_player_03
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	博士にきづく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_player_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	博士を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_player_02
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c04r0205_player_03
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	博士を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_player_04
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ナナカマド	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_doctor_01
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ナナカマド	ロトムを見ながら
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_doctor_11
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ナナカマド	主人公を見ながら
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_doctor_21
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ナナカマド	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0205_doctor_31
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							ロトムのノート							*/
+/********************************************************************/
+ev_c04r0205_rotom_note:
+	_TALK_OBJ_START
+
+	_TALK_KEYWAIT	msg_01_rotomnote_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_04
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_05
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_06
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_07
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_08
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_09
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_10
+#if 0
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_11
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_12
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_13
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_14
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c04r0205_rotom_note_end
+
+	_TALK_KEYWAIT	msg_01_rotomnote_15
+#endif
+	_JUMP			ev_c04r0205_rotom_note_end
+	_END
+
+no_c04r0205_rotom_note_end:
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+ev_c04r0205_rotom_note_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+

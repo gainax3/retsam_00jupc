@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="tomoya_takahashi" host="W00148" date="2007-12-19T22:19:48"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="100"/>
+		<group default=" 0:デフォルト" position="1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="100"/>
+		<erase position="3" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="4" width="100"/>
+			<font default="" position="5" width="100">
+			</font>
+			<size position="6" width="100"/>
+			<space position="7" width="100"/>
+			<width position="8" width="100"/>
+			<line position="9" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="28" top="301" right="733" bottom="921" maximized="no" rayout="Vertical2">
+		<comment-input left="733" top="771" right="1080" bottom="921" visible="yes"/>
+		<tag-palette left="733" top="375" right="1080" bottom="771" visible="yes"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="NUTSINFO_000">
+		<language name="日本語">まっかな　みは　たいへん　からくて
+ちょっと　しげきてきな　あじがする。
+とても　かわいい　はなが　さく。</language>
+	</row>
+
+	<row id="NUTSINFO_001">
+		<language name="日本語">カゴのみは　そとがわも　なかみも
+かたくて　しぶい　けれど
+ちゃんと　ぜんぶ　たべられる。</language>
+	</row>
+
+	<row id="NUTSINFO_002">
+		<language name="日本語">なかに　くうどうが　あるので
+たべられる　ぶぶんは　すくないが
+とても　あまくて　おいしい。</language>
+	</row>
+
+	<row id="NUTSINFO_003">
+		<language name="日本語">ほかのものより　はっぱが　ながく
+まるまっている　やつは
+ちょっと　にがみが　つよい。</language>
+	</row>
+
+	<row id="NUTSINFO_004">
+		<language name="日本語">まわりの　かわは　かたい　けれど
+なかみは　とっても　ジューシィ。
+キリリとした　さんみが　とくちょう。</language>
+	</row>
+
+	<row id="NUTSINFO_005">
+		<language name="日本語">クラボなどに　くらべると　すこし
+せいちょう　するのが　おそい。
+みが　ちいさいものほど　おいしい。</language>
+	</row>
+
+	<row id="NUTSINFO_006">
+		<language name="日本語">しぜんの　めぐみが　ひとつになって
+くちのなかで　いろいろな　あじが
+ひろがる　ふしぎな　おいしさ。</language>
+	</row>
+
+	<row id="NUTSINFO_007">
+		<language name="日本語">ふりそそぐ　たいようの　エネルギーを
+きゅうしゅう　すれば　するほど
+いろあざやかに　せいちょうする。</language>
+	</row>
+
+	<row id="NUTSINFO_008">
+		<language name="日本語">ポケモンの　からだにいい　せいぶんを
+ないぶに　じっくり　たくわえるので
+そだつまでに　じかんが　かかる。</language>
+	</row>
+
+	<row id="NUTSINFO_009">
+		<language name="日本語">もともとは　オレンのみと　おなじ
+しゅるいから　わかれて　できた。
+オレンより　おおきく　まろやか。</language>
+	</row>
+
+	<row id="NUTSINFO_010">
+		<language name="日本語">まるい　きのみを　かじった　ような
+かたちを　しているが　そのなかには
+からい　せいぶんが　つまっている。</language>
+	</row>
+
+	<row id="NUTSINFO_011">
+		<language name="日本語">はんしょくの　はんいを　ひろげるため
+ポケモンが　もちやすいように
+まわりの　イボイボが　できたという。</language>
+	</row>
+
+	<row id="NUTSINFO_012">
+		<language name="日本語">だんだんと　せいちょう　するにつれて
+きのみの　かたちが　まがっていく。
+まがりかたが　おおきいほど　あまい。</language>
+	</row>
+
+	<row id="NUTSINFO_013">
+		<language name="日本語">はなが　ちいさく　あまり　たいようの
+ひかりを　きゅうしゅう　しない。
+ヘタに　ちかいところが　にがい。</language>
+	</row>
+
+	<row id="NUTSINFO_014">
+		<language name="日本語">とても　おおきな　すっぱい　きのみ。
+かにくの　みずみずしさが
+すっぱさを　より　つよくしている。</language>
+	</row>
+
+	<row id="NUTSINFO_015">
+		<language name="日本語">きのみの　まわりの　あかいつぶは
+ちょっぴり　からくて
+まんなかの　ぶぶんは　しぶい。</language>
+	</row>
+
+	<row id="NUTSINFO_016">
+		<language name="日本語">やわらかい　かわに　つつまれた
+ちいさな　あおいつぶは　たべると
+くちのなかを　くろく　そめてしまう。</language>
+	</row>
+
+	<row id="NUTSINFO_017">
+		<language name="日本語">この　あまにがい　きのみは　せかいで
+７ばんめに　はっけん　されたので
+ナナと　よばれるように　なった。</language>
+	</row>
+
+	<row id="NUTSINFO_018">
+		<language name="日本語">いちょうの　しょうかに　よさそうな
+にがみと　さんみの　きいたあじ。
+しろく　うつくしい　はながさく。</language>
+	</row>
+
+	<row id="NUTSINFO_019">
+		<language name="日本語">そとがわの　すっぱい　かわをむき
+なかの　からい　みを　すりつぶすと
+くすりにも　なると　いわれている。</language>
+	</row>
+
+	<row id="NUTSINFO_020">
+		<language name="日本語">ぶあつい　かわを　むくと　なかから
+たくさんの　かにくが　こぼれでる。
+ちょっと　あまからい　おとなのあじ。</language>
+	</row>
+
+	<row id="NUTSINFO_021">
+		<language name="日本語">そのままでも　たべられる　けれど
+につめると　でてくる　エキスは
+りょうりの　かくしあじにも　なる。</language>
+	</row>
+
+	<row id="NUTSINFO_022">
+		<language name="日本語">ずっと　あめが　ふりつづける　ような
+しっけの　おおい　とちでも
+すくすくと　しっかり　そだつ。</language>
+	</row>
+
+	<row id="NUTSINFO_023">
+		<language name="日本語">ちょっと　めずらしい　きのみで
+こうきゅうかんが　あるために
+おくりものに　すると　よろこばれる。</language>
+	</row>
+
+	<row id="NUTSINFO_024">
+		<language name="日本語">とても　やわらかく　ガブリと
+かじると　あまさと　すっぱさが
+くち　いっぱいに　ひろがる。</language>
+	</row>
+
+	<row id="NUTSINFO_025">
+		<language name="日本語">おおきくて　からい　きのみで
+さむい　きせつなどに　たべると
+からだが　ポカポカと　あたたまる。</language>
+	</row>
+
+	<row id="NUTSINFO_026">
+		<language name="日本語">しぶみが　かなり　つよいので
+１つや　２つ　たべた　ぐらいでは
+ほんとうの　おいしさは　わからない。</language>
+	</row>
+
+	<row id="NUTSINFO_027">
+		<language name="日本語">うっとりする　あまさの　おくで
+かすかに　かんじる　おとなの　にがさ
+ポケモンも　だいまんぞくの　あじ。</language>
+	</row>
+
+	<row id="NUTSINFO_028">
+		<language name="日本語">にがいけど　かわごと　たべさせよう。
+ひょうめんに　はえている　けが
+いのなかを　きれいに　してくれる。</language>
+	</row>
+
+	<row id="NUTSINFO_029">
+		<language name="日本語">ぜんたいてきに　かなり　すっぱいが
+とくに　とんがった　さきの　ぶぶんに
+すっぱさが　しゅうちゅう　している。</language>
+	</row>
+
+	<row id="NUTSINFO_030">
+		<language name="日本語">ほのおタイプ　いがいの　ポケモンでも
+たべれば　ゴーッと　ほのおを
+はきたく　なるほど　からい。</language>
+	</row>
+
+	<row id="NUTSINFO_031">
+		<language name="日本語">とおい　うみから　ただよってきたが
+いまでは　シンオウ　ちほうでも
+さいばいが　できるように　なった。</language>
+	</row>
+
+	<row id="NUTSINFO_032">
+		<language name="日本語">そこぬけに　あまい　しぜんのめぐみ。
+とても　おおきく　５０センチを
+こえるものも　みつかっている。</language>
+	</row>
+
+	<row id="NUTSINFO_033">
+		<language name="日本語">とんでもなく　にがい　きのみで
+これを　ひとかじり　すれば
+しゃっくりも　いっしゅんで　とまる。</language>
+	</row>
+
+	<row id="NUTSINFO_034">
+		<language name="日本語">みるからに　おいしそうな
+いろと　つやを　しているが
+たべてみると　ものすごく　すっぱい。</language>
+	</row>
+
+	<row id="NUTSINFO_035">
+		<language name="日本語">むかしは　ねったいちほうで
+おおく　とれたという　きのみ。
+しゃくねつの　からさが　じまん。</language>
+	</row>
+
+	<row id="NUTSINFO_036">
+		<language name="日本語">みの　なかには　きほうと　よばれる
+くうきの　あなが　いくつも　あるので
+プカプカと　みずに　うかぶ。</language>
+	</row>
+
+	<row id="NUTSINFO_037">
+		<language name="日本語">じめんに　おちた　かみなりの
+エネルギーが　この　きのみを
+おおきく　ゆたかに　そだてる。</language>
+	</row>
+
+	<row id="NUTSINFO_038">
+		<language name="日本語">しょくぶつ　とくゆうの　あおくさい
+あじが　きらわれることも　あるが
+せんいしつが　おおく　からだにいい。</language>
+	</row>
+
+	<row id="NUTSINFO_039">
+		<language name="日本語">しぶさと　すっぱさが　ほどよく
+ちょうわした　さわやかな　あじ。
+ひやすと　いっそう　おいしくなる。</language>
+	</row>
+
+	<row id="NUTSINFO_040">
+		<language name="日本語">かにくの　なかの　せいぶんに
+ねつを　はっせいする　こうかがあり
+ひえた　こころも　ホットに　なれる。</language>
+	</row>
+
+	<row id="NUTSINFO_041">
+		<language name="日本語">そとがわは　あざやかな　みどりいろ。
+でも　なかを　わってみると
+しぶくて　くろい　みが　ぎっしり。</language>
+	</row>
+
+	<row id="NUTSINFO_042">
+		<language name="日本語">あまみ　たっぷりの　かにくのなかに
+かたくて　こうばしい　ふうみが
+かすかに　かんじられる。</language>
+	</row>
+
+	<row id="NUTSINFO_043">
+		<language name="日本語">とおくにあった　べつべつの　きのみが
+かぜで　はこばれ　みをむすび
+しんしゅの　きのみに　なったという。</language>
+	</row>
+
+	<row id="NUTSINFO_044">
+		<language name="日本語">にんげんが　ちかづくと　せんたんが
+まるく　ふくらむ　ところから
+ひとのこころを　よむと　いわれる。</language>
+	</row>
+
+	<row id="NUTSINFO_045">
+		<language name="日本語">せんたんから　のびた　いとのような
+かべんを　かぜで　ゆらして
+むしポケモンを　よびよせる。</language>
+	</row>
+
+	<row id="NUTSINFO_046">
+		<language name="日本語">しぶみが　つよいので　ピクルスの
+ざいりょうに　されることが　おおい。
+そのまま　かじっても　しげきてき。</language>
+	</row>
+
+	<row id="NUTSINFO_047">
+		<language name="日本語">むかしから　ふしぎな　ちからが
+あると　いわれており　かんそうさせて
+おまもりに　することも　ある。</language>
+	</row>
+
+	<row id="NUTSINFO_048">
+		<language name="日本語">たくさん　あつめて　につめると
+にがみが　きえていくので
+ジャムの　ざいりょうにも　よい。</language>
+	</row>
+
+	<row id="NUTSINFO_049">
+		<language name="日本語">ひょうめんに　はえた　トゲトゲで
+ポケモンの　はだに　くっつき
+とおくの　とちまで　はこばれる。</language>
+	</row>
+
+	<row id="NUTSINFO_050">
+		<language name="日本語">とてもかたく　しげきのつよい　あじ。
+そのため　むかしのひとは　くすりの
+ざいりょうとして　つかっていた。</language>
+	</row>
+
+	<row id="NUTSINFO_051">
+		<language name="日本語">なかみを　くりぬいて　かんそうさせ
+あなに　くちをつけて　ふくと
+なんともいえない　おとがする。</language>
+	</row>
+
+	<row id="NUTSINFO_052">
+		<language name="日本語">なぞのきのみ　チイラのみには
+うみの　ちからが　やどるという
+うわさが　ある。</language>
+	</row>
+
+	<row id="NUTSINFO_053">
+		<language name="日本語">なぞのきのみ　リュガのみには
+りくの　ちからが　やどるという
+うわさが　ある。</language>
+	</row>
+
+	<row id="NUTSINFO_054">
+		<language name="日本語">なぞのきのみ　カムラのみには
+そらの　ちからが　やどるという　
+うわさが　ある。</language>
+	</row>
+
+	<row id="NUTSINFO_055">
+		<language name="日本語">なぞのきのみ　ヤタピのみには
+すべての　いきものの　ちからが
+やどると　いわれている。</language>
+	</row>
+
+	<row id="NUTSINFO_056">
+		<language name="日本語">ふしぎな　ふしぎな　きのみ。
+なにが　おこるのか
+なにが　できるのか　わからない。</language>
+	</row>
+
+	<row id="NUTSINFO_057">
+		<language name="日本語">でんせつのみ　と　いわれている。
+この　みを　もつと
+とても　しあわせに　なるらしい。</language>
+	</row>
+
+	<row id="NUTSINFO_058">
+		<language name="日本語">あまりにも　ちからが　つよすぎるため
+せかいの　はてに　すてられた
+まぼろしの　きのみ。</language>
+	</row>
+
+	<row id="NUTSINFO_059">
+		<language name="日本語">しょうたい　ふめいの　きのみ。
+よぞらに　うかぶ　ほしの　ちからを
+もっている　らしい。</language>
+	</row>
+
+	<row id="NUTSINFO_060">
+		<language name="日本語">いっしょに　たべたものを　あまく
+かんじさせる　こうかが　ある。
+この　きのみじたいは　とてもしぶい。</language>
+	</row>
+
+	<row id="NUTSINFO_061">
+		<language name="日本語">ひょうめんは　かたい　かわに
+つつまれて　いるが　なかみは　あまく
+やわらかい　クリームのよう。</language>
+	</row>
+
+	<row id="NUTSINFO_062">
+		<language name="日本語">ちいさなつぶが　あつまった　きのみ。
+らんぼうに　あつかうと　みがはじけて
+リズミカルな　おとを　たてる。</language>
+	</row>
+
+	<row id="NUTSINFO_063">
+		<language name="日本語">みを　ほぐすと　ひとつひとつが
+コマのような　かたちを　しており
+むかしは　これで　あそんだ。</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

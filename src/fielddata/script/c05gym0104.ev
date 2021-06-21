@@ -1,0 +1,305 @@
+//====================================================================
+//						c05gym0104.gmm
+//					シティ０５・gym0104
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c05gym0104.h"	//pl kari
+	.include	"../eventdata/zone_c05gym0104evc.h"			//pl
+
+//ローカルワークの使用状況
+//ゴーストジム内にあるリフトに対して、
+//ローカルワーク0（LOCALWORK0）
+//を使用します
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA ev_c05gym0104_leader
+_EVENT_DATA ev_c05gym0104_leader_item_get
+_EVENT_DATA ev_c05gym0104_leader_item_get_fail
+_EVENT_DATA ev_c05gym0104_leader_badge_get
+_EVENT_DATA ev_c05gym0104_common_battle_lose
+_EVENT_DATA ev_c05gym0104_init_change
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						フラグチェンジ								*/
+//			マップ遷移タイミングで一度のみ呼ばれる
+/********************************************************************/
+
+
+/********************************************************************/
+/*						INIT_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_c05gym0104_init_change:
+	_IF_FLAGON_JUMP	FE_INIT_CHANGE_OBJ_DEL,ev_c05gym0104_init_change_obj_del
+	_END
+
+//OBJを消す
+ev_c05gym0104_init_change_obj_del:
+	_FLAG_SET		FV_C05GYM0104_POLE
+	_OBJ_DEL		C05GYM0104_POLE
+	_OBJ_DEL		C05GYM0104_POLE_2
+	_FLAG_RESET		FE_INIT_CHANGE_OBJ_DEL	//必ずリセット！
+	_END
+
+
+/********************************************************************/
+/*							ジムリーダー							*/
+/********************************************************************/
+ev_c05gym0104_leader:
+	_TALK_OBJ_START
+
+	_PLAYER_DIR_GET	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_UP,ev_c05gym0104_leader_dir_up
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_DOWN,ev_c05gym0104_leader_dir_down
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_LEFT,ev_c05gym0104_leader_dir_left
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,DIR_RIGHT,ev_c05gym0104_leader_dir_right
+	_END
+
+/*回転*/
+ev_c05gym0104_leader_dir_up:
+	_OBJ_ANIME		C05GYM0104_LEADER,anm_c05gym0104_leader_01
+	_OBJ_ANIME_WAIT
+	_JUMP			common_c05gym0104_leader
+
+ev_c05gym0104_leader_dir_down:
+	_OBJ_ANIME		C05GYM0104_LEADER,anm_c05gym0104_leader_02
+	_OBJ_ANIME_WAIT
+	_JUMP			common_c05gym0104_leader
+
+ev_c05gym0104_leader_dir_left:
+	_OBJ_ANIME		C05GYM0104_LEADER,anm_c05gym0104_leader_03
+	_OBJ_ANIME_WAIT
+	_JUMP			common_c05gym0104_leader
+
+ev_c05gym0104_leader_dir_right:
+	_OBJ_ANIME		C05GYM0104_LEADER,anm_c05gym0104_leader_04
+	_OBJ_ANIME_WAIT
+	_JUMP			common_c05gym0104_leader
+
+common_c05gym0104_leader:
+	//ヨスガバッチ取得済み
+	_SYS_FLAG_BADGE_GET	BADGE_ID_C05,SCWK_ANSWER
+	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_c05gym0104_leader_badge_get
+
+	/*冒険ノートデータ作成*/
+	_FNOTE_DATA_MAKE	FNOTE_ID_GYMBEFORE,ZONE_ID_C05GYM0104,0,0,0
+
+	//ようこそ！　ポケモンジムへ▼
+	_TALK_KEYWAIT	msg_c05gym0104_leader_01
+	_TALK_CLOSE
+
+	//戦闘呼び出し
+	_FLAG_SET			FE_INIT_CHANGE_OBJ_DEL
+	_TRAINER_BTL_SET	LEADER5_01,0
+	_FLAG_RESET			FE_INIT_CHANGE_OBJ_DEL
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c05gym0104_common_battle_lose
+
+	//この　バッジを　きみに　わたそう！
+	_TALK_KEYWAIT	msg_c05gym0104_leader_02
+
+	//(メッセージを分けないとMEを鳴らすタイミングがおかしいかも？)
+
+	//ジムバッジを　もらった！
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c05gym0104_leader_03
+	_ME_PLAY		SEQ_BADGE
+	_ME_WAIT
+
+	//バッジを貰った状態へ
+	_SYS_FLAG_BADGE_SET	BADGE_ID_C05
+	_ADD_SCORE		SCORE_ID_GYM_LEADER_WIN
+	_TRAINER_FLAG_SET	CAMPB_11
+	_TRAINER_FLAG_SET	ELITEM_08
+	_TRAINER_FLAG_SET	ELITEW_08
+	_TRAINER_FLAG_SET	MINI_10
+	_TRAINER_FLAG_SET	PICNICG_07
+	_TRAINER_FLAG_SET	SCHOOLB_02
+	_TRAINER_FLAG_SET	SCHOOLG_02
+	_TRAINER_FLAG_SET	TANPAN_15
+
+	/*冒険ノートデータ作成*/
+	_FNOTE_DATA_MAKE	FNOTE_ID_GYMAFTER,ZONE_ID_C05GYM0104,LEADER5_01,0,0
+
+	_LDVAL			WK_SCENE_C05R0601,1		/*ライバルイベント開始*/
+	_FLAG_SET		FV_C05_STOPPER			/*ストッパー解除*/
+	_FLAG_RESET		FV_C05R0601_RIVAL
+	//_OBJ_DEL		C05_STOPPER_03
+	//_OBJ_DEL		C05_STOPPER_04
+
+	_TALK_KEYWAIT	msg_c05gym0104_leader_04
+
+	_JUMP			ev_c05gym0104_leader_item_get
+
+//--------------------------------------------------------------------
+//技マシン入手
+//
+//	SCWK_TEMP0	アイテムナンバー
+//	SCWK_TEMP1	個数
+//--------------------------------------------------------------------
+ev_c05gym0104_leader_item_get:
+	_LDVAL			SCWK_TEMP0,ITEM_WAZAMASIN65
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム入手出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c05gym0104_leader_item_get_fail	//失敗
+
+	//アイテム入手成功
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_FLAG_SET		FE_C05_GYM_ITEM_GET
+
+	_ITEM_NAME		0,SCWK_TEMP0
+	_ITEM_WAZA_NAME		1,SCWK_TEMP0
+	_TALKMSG		msg_c05gym0104_leader_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+//入手失敗
+//--------------------------------------------------------------------
+ev_c05gym0104_leader_item_get_fail:
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+//バッジゲット済み
+//--------------------------------------------------------------------
+ev_c05gym0104_leader_badge_get:
+
+	//技マシン入手していなかったら
+	_IF_FLAGOFF_JUMP	FE_C05_GYM_ITEM_GET,ev_c05gym0104_leader_item_get
+
+	_TALKMSG		msg_c05gym0104_leader_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+//リーダー	回転
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05gym0104_leader_01
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05gym0104_leader_02
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05gym0104_leader_03
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05gym0104_leader_04
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	AC_DIR_U,4
+	_ANIME_DATA	AC_DIR_R,4
+	_ANIME_DATA	AC_DIR_D,4
+	_ANIME_DATA	AC_DIR_L,4
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							共通敗北処理							*/
+/********************************************************************/
+ev_c05gym0104_common_battle_lose:
+	_FLAG_RESET		FV_C05GYM0104_POLE		/*ポール復活させる*/
+	_TRAINER_LOSE
+	_TALK_OBJ_END
+	_END
+
+
+
+/*	//PL 未使用
+_EVENT_DATA ev_c05gym0104_flag_change
+_EVENT_DATA pos_c05gym0104_lift
+_EVENT_DATA	ev_c05gym0104_ans
+_EVENT_DATA ev_c05gym0104_question
+_EVENT_DATA_END						//終了
+*/
+
+/********************************************************************/
+// PL未使用
+/*						フラグチェンジ								*/
+/*						フラグチェンジ								*/
+//			マップ遷移タイミングで一度のみ呼ばれる
+/********************************************************************/
+/*
+ev_c05gym0104_flag_change:
+	_INIT_GHOST_GYM
+	_END
+*/
+
+/*
+pos_c05gym0104_lift:
+	_MOVE_GHOST_GYM_LIFT			//リフト移動
+	_END
+*/
+
+/*
+ev_c05gym0104_ans:
+	_EVENT_START
+	//_SE_PLAY	SEQ_SE_DP_PINPON
+	_SE_PLAY	SEQ_SE_DP_UG_020
+	_TALKMSG	msg_c05gym0104_sign1_02	//「正解です」看板
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+*/
+
+/*
+ev_c05gym0104_question:				//問題
+	_TALK_START
+	_TALKMSG		msg_c05gym0104_sign1_01
+
+	//音色を変えた方がいいかも？
+	//ジムのBGMに近い旋律があるかも？
+	//_SE_PLAY		SEQ_SE_DP_MAZYO2
+	_SE_PLAY		SEQ_SE_DP_MAZYO4
+
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+*/
+

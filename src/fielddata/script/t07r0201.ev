@@ -1,0 +1,3025 @@
+//====================================================================
+//								t07r0201
+//
+//	LOCALWORK15 POSとして使用
+//
+//	OBJCODE 名前		ゾーン		msg
+//	LEADER1	ヒョウタ	c03			1
+//	LEADER2	ナタネ		c04			2
+//	LEADER5 メリッサ	c05			3
+//	LEADER4	スモモ		c07			4
+//	LEADER3	マキシ		c06			5
+//	LEADER7	トウガン	c02			6
+//	LEADER6	スズナ		c09			7
+//	LEADER8	デンジ		c08			8
+//
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t07r0201.h"
+	.include	"../eventdata/zone_t07r0201evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t07r0201_flag_change
+_EVENT_DATA		ev_t07r0201_rival
+_EVENT_DATA		ev_t07r0201_support
+_EVENT_DATA		ev_t07r0201_doctor
+_EVENT_DATA		ev_t07r0201_mama
+_EVENT_DATA		ev_t07r0201_leader1
+_EVENT_DATA		ev_t07r0201_leader2
+_EVENT_DATA		ev_t07r0201_leader3
+_EVENT_DATA		ev_t07r0201_leader4
+_EVENT_DATA		ev_t07r0201_leader5
+_EVENT_DATA		ev_t07r0201_leader6
+_EVENT_DATA		ev_t07r0201_leader7
+_EVENT_DATA		ev_t07r0201_leader8
+_EVENT_DATA		ev_t07r0201_champ
+_EVENT_DATA		ev_t07r0201_bigfour3
+_EVENT_DATA		ev_t07r0201_le_le
+_EVENT_DATA		pos_t07r0201_leader3
+_EVENT_DATA		pos_t07r0201_leader5
+_EVENT_DATA		pos_t07r0201_leader7
+_EVENT_DATA		pos_t07r0201_champ
+_EVENT_DATA		ev_t07r0201_furniture_01
+_EVENT_DATA		ev_t07r0201_furniture_02
+_EVENT_DATA		ev_t07r0201_furniture_03
+_EVENT_DATA		ev_t07r0201_furniture_04
+_EVENT_DATA		ev_t07r0201_furniture_05
+_EVENT_DATA		ev_t07r0201_furniture_06
+_EVENT_DATA		ev_t07r0201_furniture_07
+_EVENT_DATA		ev_t07r0201_furniture_08
+_EVENT_DATA		ev_t07r0201_furniture_09
+_EVENT_DATA		ev_t07r0201_furniture_10
+_EVENT_DATA		ev_t07r0201_furniture_11
+_EVENT_DATA		ev_t07r0201_furniture_12
+_EVENT_DATA		ev_t07r0201_furniture_13
+_EVENT_DATA		ev_t07r0201_furniture_14
+_EVENT_DATA		ev_t07r0201_furniture_15
+_EVENT_DATA		ev_t07r0201_furniture_16
+_EVENT_DATA		ev_t07r0201_furniture_17
+_EVENT_DATA		ev_t07r0201_furniture_18
+_EVENT_DATA		ev_t07r0201_furniture_19
+_EVENT_DATA		ev_t07r0201_furniture_20
+_EVENT_DATA		ev_t07r0201_keeper_auto
+_EVENT_DATA		ev_t07r0201_keeper
+_EVENT_DATA		pos_t07r0201_keeper
+_EVENT_DATA		ev_t07r0201_ordernote
+_EVENT_DATA_END
+
+#define ORDERNOTE_KETA	(6)
+#define ORDERNOTE_DTYPE	(1)
+#define ORDERNOTE_WIDTH	(18)
+
+/*H_u16 L_u16でセットする*/
+#if 1
+#define GOLD_FURNITURE_01	(0)
+#define GOLD_FURNITURE_02	(120000)
+#define GOLD_FURNITURE_03	(90000)
+#define GOLD_FURNITURE_04	(187000)
+#define GOLD_FURNITURE_05	(58000)
+#define GOLD_FURNITURE_06	(220000)
+#define GOLD_FURNITURE_07	(160000)
+#define GOLD_FURNITURE_08	(150000)
+#define GOLD_FURNITURE_09	(127000)
+#define GOLD_FURNITURE_10	(120000)
+#define GOLD_FURNITURE_11	(168000)
+#define GOLD_FURNITURE_12	(25300)
+#define GOLD_FURNITURE_13	(150000)
+#define GOLD_FURNITURE_14	(150000)
+#define GOLD_FURNITURE_15	(146700)
+#define GOLD_FURNITURE_16	(208000)
+#define GOLD_FURNITURE_17	(52000)
+#define GOLD_FURNITURE_18	(140000)
+#define GOLD_FURNITURE_19	(108000)
+#define GOLD_FURNITURE_20	(120000)
+#else
+/*デバック用の安い値段*/
+#define GOLD_FURNITURE_01	(0)
+#define GOLD_FURNITURE_02	(300)
+#define GOLD_FURNITURE_03	(220)
+#define GOLD_FURNITURE_04	(210)
+#define GOLD_FURNITURE_05	(200)
+#define GOLD_FURNITURE_06	(190)
+#define GOLD_FURNITURE_07	(180)
+#define GOLD_FURNITURE_08	(170)
+#define GOLD_FURNITURE_09	(160)
+#define GOLD_FURNITURE_10	(150)
+#define GOLD_FURNITURE_11	(140)
+#define GOLD_FURNITURE_12	(130)
+#define GOLD_FURNITURE_13	(120)
+#define GOLD_FURNITURE_14	(110)
+#define GOLD_FURNITURE_15	(100)
+#define GOLD_FURNITURE_16	(800)
+#define GOLD_FURNITURE_17	(700)
+#define GOLD_FURNITURE_18	(600)
+#define GOLD_FURNITURE_19	(500)
+#define GOLD_FURNITURE_20	(400)
+#endif
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_t07r0201_flag_change:
+	_INIT_VILLA
+
+	//WKOBJCHRにサポートのキャラコードをセットする
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_male_flag_change_01	//サポート女
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_female_flag_change_01	//サポート男
+
+	/*POSでOBJが表示されていたら何もしない*/
+	_IF_FLAGON_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_flag_change_end
+	
+	/*電源投入時に来客するNPCが、いる、いないを決定*/
+	/*1日1回来客が変更される(ev_timeでupdateが呼ばれる)*/
+
+	/*全員消す(IN=室内)*/
+	_FLAG_SET		FV_VILLA_IN_RIVAL
+	_FLAG_SET		FV_VILLA_IN_SUPPORT
+	_FLAG_SET		FV_VILLA_IN_DOCTOR
+	_FLAG_SET		FV_VILLA_IN_MAMA
+	_FLAG_SET		FV_VILLA_IN_LEADER1
+	_FLAG_SET		FV_VILLA_IN_LEADER2
+	_FLAG_SET		FV_VILLA_IN_LEADER3
+	_FLAG_SET		FV_VILLA_IN_LEADER4
+	_FLAG_SET		FV_VILLA_IN_LEADER5
+	_FLAG_SET		FV_VILLA_IN_LEADER6
+	_FLAG_SET		FV_VILLA_IN_LEADER7
+	_FLAG_SET		FV_VILLA_IN_LEADER8
+	_FLAG_SET		FV_VILLA_IN_CHAMP
+	_FLAG_SET		FV_VILLA_IN_BIGFOUR3
+
+	/*イベントが発生しているかチェック*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,0xff,ev_t07r0201_event_not
+
+	/*POSイベント用にワークに格納*/
+	_LDWK			LOCALWORK15,SYS_WORK_EVENT_T07R0201
+
+	/*イベントに必要なOBJを表示する*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_RIVAL,	t07r0201_event01
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_SUPPORT,	t07r0201_event02
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,	t07r0201_event03
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_MAMA,		t07r0201_event04
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE1,		t07r0201_event05
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,		t07r0201_event06
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE3,		t07r0201_event07
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE4,		t07r0201_event08
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE5,		t07r0201_event09
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE6,		t07r0201_event10
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE7,		t07r0201_event11
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE8,		t07r0201_event12
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_CHAMP,	t07r0201_event13
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_BIG_LE,	t07r0201_event14
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE_LE,	t07r0201_event15
+
+	_END
+
+/*POSでOBJが表示されていたら何もしない*/
+ev_t07r0201_flag_change_end:
+	_END
+
+/*サポート女*/
+t07r0201_male_flag_change_01:
+	_LDVAL			OBJCHRWORK1,HEROINE
+	_RET
+
+/*サポート男*/
+t07r0201_female_flag_change_01:
+	_LDVAL			OBJCHRWORK1,HERO
+	_RET
+
+/*イベント発生せず*/
+ev_t07r0201_event_not:
+	_END
+
+/*イベントに登場する人を表示*/
+t07r0201_event01:
+	_FLAG_RESET		FV_VILLA_IN_RIVAL
+	_RET
+
+t07r0201_event02:
+	_FLAG_RESET		FV_VILLA_IN_SUPPORT
+	_RET
+
+t07r0201_event03:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,t07r0201_event03_obj_out	/*まだ外にいる*/
+	_FLAG_RESET		FV_VILLA_IN_DOCTOR
+	_RET
+
+t07r0201_event04:
+	_FLAG_RESET		FV_VILLA_IN_MAMA
+	_RET
+
+t07r0201_event05:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,t07r0201_event03_obj_out	/*まだ外にいる*/
+	_FLAG_RESET		FV_VILLA_IN_LEADER1
+	_RET
+
+t07r0201_event06:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,t07r0201_event03_obj_out	/*まだ外にいる*/
+	_FLAG_RESET		FV_VILLA_IN_LEADER2
+	_RET
+
+t07r0201_event07:
+	//_FLAG_RESET		FV_VILLA_IN_LEADER3
+	_RET
+
+t07r0201_event08:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,t07r0201_event03_obj_out	/*まだ外にいる*/
+	_FLAG_RESET		FV_VILLA_IN_LEADER4
+	_RET
+
+t07r0201_event09:
+	//_FLAG_RESET		FV_VILLA_IN_LEADER5
+	_RET
+
+t07r0201_event10:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,t07r0201_event03_obj_out	/*まだ外にいる*/
+	_FLAG_RESET		FV_VILLA_IN_LEADER6
+	_RET
+
+t07r0201_event11:
+	//_FLAG_RESET		FV_VILLA_IN_LEADER7
+	_RET
+
+t07r0201_event12:
+	_FLAG_RESET		FV_VILLA_IN_LEADER8
+	_RET
+
+t07r0201_event13:
+	//_FLAG_RESET		FV_VILLA_IN_CHAMP
+	_RET
+
+t07r0201_event14:
+	_FLAG_RESET		FV_VILLA_IN_BIGFOUR3
+	_FLAG_RESET		FV_VILLA_IN_LEADER8
+	_RET
+
+t07r0201_event15:
+	_SXY_POS_CHANGE	T07R0201_LEADER4,6,8		/*スモモ移動*/
+	_SXY_POS_CHANGE	T07R0201_LEADER7,7,8		/*スズナ移動*/
+	_FLAG_RESET		FV_VILLA_IN_LEADER4
+	_FLAG_RESET		FV_VILLA_IN_LEADER7
+	_RET
+
+/*まだ外にいるので表示させない*/
+t07r0201_event03_obj_out:
+	_RET
+
+
+/********************************************************************/
+/*							ライバル								*/
+/********************************************************************/
+ev_t07r0201_rival:
+	_TALK_OBJ_START
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_01_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_01_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_01_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_01_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_01_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_01_01:
+	_TALK_KEYWAIT	msg_t07r0201_rival_01
+	_RET
+
+ev_t07r0201_01_02:
+	_TALK_KEYWAIT	msg_t07r0201_rival_02
+	_RET
+
+ev_t07r0201_01_03:
+	_TALK_KEYWAIT	msg_t07r0201_rival_03
+	_RET
+
+ev_t07r0201_01_04:
+	_TALK_KEYWAIT	msg_t07r0201_rival_04
+	_RET
+
+ev_t07r0201_01_05:
+	_TALK_KEYWAIT	msg_t07r0201_rival_05
+	_RET
+
+
+/********************************************************************/
+/*							サポート								*/
+//
+//	LOCALWORK0	性別格納
+/********************************************************************/
+ev_t07r0201_support:
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	1
+
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_02_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_02_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_02_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_02_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_02_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_02_01:
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_02_01_male
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_02_01_female
+	_RET
+
+ev_t07r0201_02_02:
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_02_02_male
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_02_02_female
+	_RET
+
+ev_t07r0201_02_03:
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_02_03_male
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_02_03_female
+	_RET
+
+ev_t07r0201_02_04:
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_02_04_male
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_02_04_female
+	_RET
+
+ev_t07r0201_02_05:
+	_GET_MY_SEX		LOCALWORK0
+	_IFVAL_CALL		LOCALWORK0,EQ,0,t07r0201_02_05_male
+	_IFVAL_CALL		LOCALWORK0,EQ,1,t07r0201_02_05_female
+	_RET
+
+/*性別ごとのメッセージ*/
+t07r0201_02_01_male:
+	_TALK_KEYWAIT	msg_t07r0201_heroine_01
+	_RET
+
+t07r0201_02_01_female:
+	_TALK_KEYWAIT	msg_t07r0201_hero_01
+	_RET
+
+t07r0201_02_02_male:
+	_TALK_KEYWAIT	msg_t07r0201_heroine_02
+	_RET
+
+t07r0201_02_02_female:
+	_TALK_KEYWAIT	msg_t07r0201_hero_02
+	_RET
+
+t07r0201_02_03_male:
+	_TALK_KEYWAIT	msg_t07r0201_heroine_03
+	_RET
+
+t07r0201_02_03_female:
+	_TALK_KEYWAIT	msg_t07r0201_hero_03
+	_RET
+
+t07r0201_02_04_male:
+	_TALK_KEYWAIT	msg_t07r0201_heroine_04
+	_RET
+
+t07r0201_02_04_female:
+	_TALK_KEYWAIT	msg_t07r0201_hero_04
+	_RET
+
+t07r0201_02_05_male:
+	_TALK_KEYWAIT	msg_t07r0201_heroine_05
+	_RET
+
+t07r0201_02_05_female:
+	_TALK_KEYWAIT	msg_t07r0201_hero_05
+	_RET
+
+
+/********************************************************************/
+/*								博士								*/
+/********************************************************************/
+ev_t07r0201_doctor:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_03_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_03_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_03_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_03_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_03_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_03_01:
+	_TALK_KEYWAIT	msg_t07r0201_doctor_01
+	_RET
+
+ev_t07r0201_03_02:
+	_TALK_KEYWAIT	msg_t07r0201_doctor_02
+	_RET
+
+ev_t07r0201_03_03:
+	_TALK_KEYWAIT	msg_t07r0201_doctor_03
+	_RET
+
+ev_t07r0201_03_04:
+	_TALK_KEYWAIT	msg_t07r0201_doctor_04
+	_RET
+
+ev_t07r0201_03_05:
+	_TALK_KEYWAIT	msg_t07r0201_doctor_05
+	_RET
+
+
+/********************************************************************/
+/*							ママ									*/
+/********************************************************************/
+ev_t07r0201_mama:
+	_TALK_OBJ_START
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_04_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_04_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_04_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_04_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_04_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_04_01:
+	_TALK_KEYWAIT	msg_t07r0201_mama_01
+	_RET
+
+ev_t07r0201_04_02:
+	_TALK_KEYWAIT	msg_t07r0201_mama_02
+	_RET
+
+ev_t07r0201_04_03:
+	_TALK_KEYWAIT	msg_t07r0201_mama_03
+	_RET
+
+ev_t07r0201_04_04:
+	_TALK_KEYWAIT	msg_t07r0201_mama_04
+	_RET
+
+ev_t07r0201_04_05:
+	_TALK_KEYWAIT	msg_t07r0201_mama_05
+	_RET
+
+
+/********************************************************************/
+/*							ヒョウタ								*/
+/********************************************************************/
+ev_t07r0201_leader1:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_05_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_05_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_05_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_05_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_05_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_05_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader1_01
+	_RET
+
+ev_t07r0201_05_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader1_02
+	_RET
+
+ev_t07r0201_05_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader1_03
+	_RET
+
+ev_t07r0201_05_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader1_04
+	_RET
+
+ev_t07r0201_05_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader1_05
+	_RET
+
+
+/********************************************************************/
+/*								ナタネ								*/
+/********************************************************************/
+ev_t07r0201_leader2:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_06_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_06_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_06_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_06_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_06_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_06_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader2_01
+	_RET
+
+ev_t07r0201_06_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader2_02
+	_RET
+
+ev_t07r0201_06_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader2_03
+	_RET
+
+ev_t07r0201_06_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader2_04
+	_RET
+
+ev_t07r0201_06_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader2_05
+	_RET
+
+
+/********************************************************************/
+/*							メリッサ								*/
+/********************************************************************/
+ev_t07r0201_leader3:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_07_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_07_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_07_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_07_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_07_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_07_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader3_01
+	_RET
+
+ev_t07r0201_07_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader3_02
+	_RET
+
+ev_t07r0201_07_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader3_03
+	_RET
+
+ev_t07r0201_07_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader3_04
+	_RET
+
+ev_t07r0201_07_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader3_05
+	_RET
+
+
+/********************************************************************/
+/*								スモモ								*/
+/********************************************************************/
+ev_t07r0201_leader4:
+	/*スモモ＆スズナのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE_LE,ev_t07r0201_le_le
+
+	_TALK_OBJ_START
+	_PLAYER_NAME	1
+
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_08_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_08_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_08_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_08_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_08_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_08_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader4_01
+	_RET
+
+ev_t07r0201_08_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader4_02
+	_RET
+
+ev_t07r0201_08_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader4_03
+	_RET
+
+ev_t07r0201_08_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader4_04
+	_RET
+
+ev_t07r0201_08_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader4_05
+	_RET
+
+
+/********************************************************************/
+/*								マキシ								*/
+/********************************************************************/
+ev_t07r0201_leader5:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_09_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_09_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_09_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_09_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_09_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_09_01:
+	_RIVAL_NAME		0
+	_TALK_KEYWAIT	msg_t07r0201_leader5_01
+	_RET
+
+ev_t07r0201_09_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader5_02
+	_RET
+
+ev_t07r0201_09_03:
+	_RIVAL_NAME		0
+	_TALK_KEYWAIT	msg_t07r0201_leader5_03
+	_RET
+
+ev_t07r0201_09_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader5_04
+	_RET
+
+ev_t07r0201_09_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader5_05
+	_RET
+
+
+/********************************************************************/
+/*							トウガン								*/
+/********************************************************************/
+ev_t07r0201_leader6:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_10_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_10_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_10_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_10_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_10_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_10_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader6_01
+	_RET
+
+ev_t07r0201_10_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader6_02
+	_RET
+
+ev_t07r0201_10_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader6_03
+	_RET
+
+ev_t07r0201_10_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader6_04
+	_RET
+
+ev_t07r0201_10_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader6_05
+	_RET
+
+
+/********************************************************************/
+/*								スズナ								*/
+/********************************************************************/
+ev_t07r0201_leader7:
+	/*スモモ＆スズナのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE_LE,ev_t07r0201_le_le
+
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_11_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_11_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_11_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_11_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_11_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_11_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader7_01
+	_RET
+
+ev_t07r0201_11_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader7_02
+	_RET
+
+ev_t07r0201_11_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader7_03
+	_RET
+
+ev_t07r0201_11_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader7_04
+	_RET
+
+ev_t07r0201_11_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader7_05
+	_RET
+
+
+/********************************************************************/
+/*								デンジ								*/
+/********************************************************************/
+ev_t07r0201_leader8:
+	/*オーバー＆デンジのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_BIG_LE,ev_t07r0201_big_le
+
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_12_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_12_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_12_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_12_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_12_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_12_01:
+	_TALK_KEYWAIT	msg_t07r0201_leader8_01
+	_RET
+
+ev_t07r0201_12_02:
+	_TALK_KEYWAIT	msg_t07r0201_leader8_02
+	_RET
+
+ev_t07r0201_12_03:
+	_TALK_KEYWAIT	msg_t07r0201_leader8_03
+	_RET
+
+ev_t07r0201_12_04:
+	_TALK_KEYWAIT	msg_t07r0201_leader8_04
+	_RET
+
+ev_t07r0201_12_05:
+	_TALK_KEYWAIT	msg_t07r0201_leader8_05
+	_RET
+
+/*オーバー＆デンジのイベントの時*/
+ev_t07r0201_big_le:
+	_TALK_OBJ_START_TURN_NOT
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_14_01_le
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_14_02_le
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_14_03_le
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_14_04_le
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_14_05_le
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_14_01_le:
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_t07r0201_oden_01_01
+	_RET
+
+ev_t07r0201_14_02_le:
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_t07r0201_oden_02_01
+	_RET
+
+ev_t07r0201_14_03_le:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_03
+	_RET
+
+ev_t07r0201_14_04_le:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_04
+	_RET
+
+ev_t07r0201_14_05_le:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_05
+	_RET
+
+//--------------------------------------------------------------------
+//デンジとオーバー	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_leader8_01
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07r0201_bigfour3_01
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*								シロナ								*/
+/********************************************************************/
+ev_t07r0201_champ:
+	_TALK_OBJ_START
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_13_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_13_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_13_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_13_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_13_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_13_01:
+	_TALK_KEYWAIT	msg_t07r0201_champion_01
+	_RET
+
+ev_t07r0201_13_02:
+	_TALK_KEYWAIT	msg_t07r0201_champion_02
+	_RET
+
+ev_t07r0201_13_03:
+	_TALK_KEYWAIT	msg_t07r0201_champion_03
+	_RET
+
+ev_t07r0201_13_04:
+	_TALK_KEYWAIT	msg_t07r0201_champion_04
+	_RET
+
+ev_t07r0201_13_05:
+	_TALK_KEYWAIT	msg_t07r0201_champion_05
+	_RET
+
+
+/********************************************************************/
+/*							オーバ(＆デンジ)						*/
+/********************************************************************/
+ev_t07r0201_bigfour3:
+	_TALK_OBJ_START_TURN_NOT
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_14_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_14_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_14_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_14_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_14_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_14_01:
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_t07r0201_oden_01
+	_RET
+
+ev_t07r0201_14_02:
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_t07r0201_oden_02
+	_RET
+
+ev_t07r0201_14_03:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_03
+	_RET
+
+ev_t07r0201_14_04:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_04
+	_RET
+
+ev_t07r0201_14_05:
+	_OBJ_ANIME		T07R0201_LEADER8,anm_t07r0201_leader8_01
+	_OBJ_ANIME		T07R0201_BIGFOUR3,anm_t07r0201_bigfour3_01
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_t07r0201_oden_05
+	_RET
+
+
+/********************************************************************/
+/*							スモモ(＆スズナ)						*/
+/********************************************************************/
+ev_t07r0201_le_le:
+	_TALK_OBJ_START_TURN_NOT
+
+	_PLAYER_NAME	1
+
+	_OBJ_ANIME		T07R0201_LEADER7,anm_t07r0201_leader7_11
+	_OBJ_ANIME		T07R0201_LEADER4,anm_t07r0201_leader4_11
+	_OBJ_ANIME_WAIT
+
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,0,ev_t07r0201_15_01
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,1,ev_t07r0201_15_02
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,2,ev_t07r0201_15_03
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,3,ev_t07r0201_15_04
+	_IFVAL_CALL		SYS_WORK_T07R0201_TALK,EQ,4,ev_t07r0201_15_05
+	_JUMP			ev_t07r0201_end
+	_END
+
+ev_t07r0201_15_01:
+	_TALK_KEYWAIT	msg_t07r0201_sumosuzu_01
+	_RET
+
+ev_t07r0201_15_02:
+	_TALK_KEYWAIT	msg_t07r0201_sumosuzu_02
+	_RET
+
+ev_t07r0201_15_03:
+	_TALK_KEYWAIT	msg_t07r0201_sumosuzu_03
+	_RET
+
+ev_t07r0201_15_04:
+	_TALK_KEYWAIT	msg_t07r0201_sumosuzu_04
+	_RET
+
+ev_t07r0201_15_05:
+	/*ティーセットを購入していなかったら*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_19,ev_t07r0201_15_01
+	_TALK_KEYWAIT	msg_t07r0201_sumosuzu_05
+	_RET
+
+//--------------------------------------------------------------------
+//スモモとスズナ	向き合う
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_leader4_11
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07r0201_leader7_11
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							共通終了								*/
+/********************************************************************/
+ev_t07r0201_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							メリッサ(POS)							*/
+/********************************************************************/
+pos_t07r0201_leader3:
+	_EVENT_START
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_FLAG_RESET		FV_VILLA_IN_LEADER3
+	_SXY_POS_CHANGE	T07R0201_LEADER3,11,11
+	_SXY_MV_CHANGE	T07R0201_LEADER3,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_LEADER3,DIR_UP
+	_OBJ_ADD		T07R0201_LEADER3
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_100
+	_OBJ_ANIME		T07R0201_LEADER3,anm_t07r0201_leader3_01
+	_OBJ_ANIME_WAIT
+
+	_FLAG_SET		SYS_FLAG_T07R0201_POS_APPEAR
+	_LDVAL			LOCALWORK15,0
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_100
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,5
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//メリッサ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_leader3_01
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,5
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							マキシ(POS)								*/
+/********************************************************************/
+pos_t07r0201_leader5:
+	_EVENT_START
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_FLAG_RESET		FV_VILLA_IN_LEADER5
+	_SXY_POS_CHANGE	T07R0201_LEADER5,11,11
+	_SXY_MV_CHANGE	T07R0201_LEADER5,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_LEADER5,DIR_UP
+	_OBJ_ADD		T07R0201_LEADER5
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_101
+	_OBJ_ANIME		T07R0201_LEADER5,anm_t07r0201_leader5_01
+	_OBJ_ANIME_WAIT
+
+	_FLAG_SET		SYS_FLAG_T07R0201_POS_APPEAR
+	_LDVAL			LOCALWORK15,0
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//マキシ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_leader5_01
+	_ANIME_DATA	AC_WALK_R_8F,8
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_101
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,3
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							スズナ(POS)								*/
+/********************************************************************/
+pos_t07r0201_leader7:
+	_EVENT_START
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_FLAG_RESET		FV_VILLA_IN_LEADER7
+	_SXY_POS_CHANGE	T07R0201_LEADER7,11,11
+	_SXY_MV_CHANGE	T07R0201_LEADER7,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_LEADER7,DIR_UP
+	_OBJ_ADD		T07R0201_LEADER7
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_102
+	_OBJ_ANIME		T07R0201_LEADER7,anm_t07r0201_leader7_01
+	_OBJ_ANIME_WAIT
+
+	_FLAG_SET		SYS_FLAG_T07R0201_POS_APPEAR
+	_LDVAL			LOCALWORK15,0
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//スズナ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_leader7_01
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_102
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,4
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							シロナ(POS)								*/
+/********************************************************************/
+pos_t07r0201_champ:
+	_EVENT_START
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_FLAG_RESET		FV_VILLA_IN_CHAMP
+	_SXY_POS_CHANGE	T07R0201_CHAMP,11,11
+	_SXY_MV_CHANGE	T07R0201_CHAMP,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_CHAMP,DIR_UP
+	_OBJ_ADD		T07R0201_CHAMP
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_103
+	_OBJ_ANIME		T07R0201_CHAMP,anm_t07r0201_champ_01
+	_OBJ_ANIME_WAIT
+
+	_FLAG_SET		SYS_FLAG_T07R0201_POS_APPEAR
+	_LDVAL			LOCALWORK15,0
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//メリッサ	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_champ_01
+	_ANIME_DATA	AC_WALK_L_8F,8
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_103
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,5
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+
+/********************************************************************/
+/*							家具									*/
+/********************************************************************/
+ev_t07r0201_furniture_01:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_01
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_02:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_02
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_03:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_03
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_04:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_04
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_05:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_05
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_06:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_06
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_07:
+	_TALK_START
+
+	/*オーディオ再生*/
+	_BGM_PLAY		SEQ_PL_AUDIO
+
+	_TALK_KEYWAIT	msg_t07r0201_bg_07
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_08:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_08
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_09:
+	_TALK_START
+
+	/*オルゴールを購入済みか*/
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_12,ev_t07r0201_furniture_12_sub
+
+	_TALK_KEYWAIT	msg_t07r0201_bg_09
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_10:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_10
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_11:
+	_TALK_START
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_t07r0201_bg_11
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+/*オルゴール*/
+ev_t07r0201_furniture_12:
+	_TALK_START
+	_JUMP			ev_t07r0201_furniture_12_sub
+	_END
+
+ev_t07r0201_furniture_12_sub:
+	_TALK_KEYWAIT	msg_t07r0201_bg_12
+	//_JUMP			ev_t07r0201_furniture_end
+	_JUMP			ev_t07r0201_bgm_start
+	_END
+
+/*SCWK_TEMP0 = 元のBGMナンバー*/
+/*SCWK_TEMP3 = ループカウンタ*/
+ev_t07r0201_bgm_start:
+	/*現在の曲を退避*/
+	_SND_NOW_BGM_NO_GET		SCWK_TEMP0
+
+	_SND_DEMO01_DATA_LOAD
+
+	/*ループカウンタ用のワークをクリア*/
+	_LDVAL			SCWK_TEMP3,0
+	_TIME_WAIT		1,SCWK_ANSWER
+	_JUMP			ev_t07r0201_bgm_wait
+	_END
+
+ev_t07r0201_bgm_wait:
+	//_DEBUG_WATCH_WORK	SCWK_TEMP3
+	_ADD_WK			SCWK_TEMP3,1
+	_TIME_WAIT		1,SCWK_ANSWER
+	_DEBUG_WATCH_WORK	SCWK_TEMP3
+
+	/*あるタイミングでメッセージを流す*/
+	//_IFVAL_CALL		SCWK_TEMP3,EQ,1000,ev_t07r0201_bgm_msg1
+	//_IFVAL_CALL		SCWK_TEMP3,EQ,2000,ev_t07r0201_bgm_msg2
+
+	/*終了キーチェック*/
+	_CONT_AB_KEY	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t07r0201_bgm_end
+
+	_DEBUG_WATCH_WORK	SCWK_TEMP3
+	//_IFVAL_JUMP		SCWK_TEMP3,EQ,1180,ev_t07r0201_bgm_end
+	//_IFVAL_JUMP		SCWK_TEMP3,EQ,512,ev_t07r0201_bgm_end
+	_IFVAL_JUMP		SCWK_TEMP3,EQ,600,ev_t07r0201_bgm_end
+
+	_JUMP			ev_t07r0201_bgm_wait
+	_END
+
+ev_t07r0201_bgm_end:
+	_SND_FIELD_DATA_LOAD	SCWK_TEMP0		/*退避していた曲に戻す*/
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+ev_t07r0201_bgm_msg1:
+ev_t07r0201_bgm_msg2:
+	_TALK_KEYWAIT	msg_t07r0201_bg_20
+	_RET
+
+/*ポケモンぞう1*/
+ev_t07r0201_furniture_13:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_13
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_14:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_14
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_15:
+	_TALK_START
+
+	/*ピアノ再生*/
+	_BGM_PLAY		SEQ_PL_PIANO
+
+	_TALK_KEYWAIT	msg_t07r0201_bg_15
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_16:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_16
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_17:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_17
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_18:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_18
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_19:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_19
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_20:
+	_TALK_START
+	_TALK_KEYWAIT	msg_t07r0201_bg_20
+	_JUMP			ev_t07r0201_furniture_end
+	_END
+
+ev_t07r0201_furniture_end:
+#if 0
+	//デバック！
+	_JUMP			ev_t07r0201_bgm_start
+#else
+	_LAST_KEYWAIT
+#endif
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+
+
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+/********************************************************************/
+
+
+/********************************************************************/
+/*							管理人(強制)							*/
+/********************************************************************/
+ev_t07r0201_keeper_auto:
+	_EVENT_START
+
+	_LDVAL			WK_SCENE_T07R0201,1
+
+	_GOLD_WIN_WRITE	21,1
+
+	/*「おれからの　おれい　だよ！」*/
+	_TALK_KEYWAIT	msg_t07r0201_keeper_01
+
+	/*家具リスト表示*/
+#if 0
+	_CALL			ev_t07r0201_keeper_table
+#else
+	/*テーブルのみ表示*/
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_PARAM2						/*Bキャンセル有効*/
+	_BMPLIST_MAKE_LIST	msg_secondhouse_table,EV_WIN_TALK_MSG_NONE,0
+	_BMPLIST_START
+#endif
+
+	/*テーブル以外はダメ*/
+	_IFVAL_JUMP		SCWK_PARAM2,NE,0,ev_ordernote_table_not_auto
+
+	/*リストで選択した家具について、お金を減らす、家具購入フラグを立てる*/
+	_CALL			ev_t07r0201_keeper_table_2
+	_TALK_CLOSE
+
+	/*デリバリーきて、家具を表示(テーブルかで分岐あり)*/
+	_CALL			ev_t07r0201_keeper_table_3
+	_EVENT_END
+	_END
+
+
+/********************************************************************/
+/*				管理人(強制)(テーブル以外を選択した時)				*/
+/********************************************************************/
+ev_ordernote_table_not_auto:
+	_TALK_KEYWAIT	msg_t07r0201_keeper_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_GOLD_WIN_DEL
+	_EVENT_END
+	_END
+
+
+/********************************************************************/
+/*							管理人(会話)							*/
+/********************************************************************/
+ev_t07r0201_keeper:
+	_TALK_OBJ_START
+
+	_GOLD_WIN_WRITE	21,1
+
+	/*この注文書をみてオーダーしてください*/
+	_TALK_KEYWAIT	msg_t07r0201_keeper_02
+
+	/*家具リスト表示*/
+#if 0
+	_CALL			ev_t07r0201_keeper_table
+#else
+	/*テーブルのみ表示*/
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_PARAM2						/*Bキャンセル有効*/
+	_BMPLIST_MAKE_LIST	msg_secondhouse_table,EV_WIN_TALK_MSG_NONE,0
+	_BMPLIST_START
+#endif
+
+	/*テーブル以外はダメ*/
+	_IFVAL_JUMP		SCWK_PARAM2,NE,0,ev_ordernote_table_not
+
+	/*リストで選択した家具について、お金を減らす、家具購入フラグを立てる*/
+	_CALL			ev_t07r0201_keeper_table_2
+	_TALK_CLOSE
+
+	/*デリバリーきて、家具を表示(テーブルかで分岐あり)*/
+	_CALL			ev_t07r0201_keeper_table_3
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*					家具リスト表示(SCWK_PARAM2使用)					*/
+/********************************************************************/
+ev_t07r0201_keeper_table:
+	_BMPLIST_INIT_EX	1,1,0,1,SCWK_PARAM2						/*Bキャンセル有効*/
+	_CALL				order_list01
+	_CALL				order_list02
+	_CALL				order_list03
+	_CALL				order_list04
+	_CALL				order_list05
+	_CALL				order_list06
+	_CALL				order_list07
+	_CALL				order_list08
+	_CALL				order_list09
+	_CALL				order_list10
+	_CALL				order_list11
+	_CALL				order_list12
+	_CALL				order_list13
+	_CALL				order_list14
+	_CALL				order_list15
+	_CALL				order_list16
+	_CALL				order_list17
+	_CALL				order_list18
+	_CALL				order_list19
+	_CALL				order_list20
+	_BMPLIST_START_WIDTH	ORDERNOTE_WIDTH
+	_RET
+
+
+/********************************************************************/
+/*リストで選択した家具について、お金を減らす、家具購入フラグを立てる*/
+/********************************************************************/
+ev_t07r0201_keeper_table_2:
+	_SE_PLAY		SEQ_SE_DP_REGI
+	_IFVAL_CALL		SCWK_PARAM2,EQ,0,ev_ordernote_buy3_check1
+	_IFVAL_CALL		SCWK_PARAM2,EQ,1,ev_ordernote_buy3_check2
+	_IFVAL_CALL		SCWK_PARAM2,EQ,2,ev_ordernote_buy3_check3
+	_IFVAL_CALL		SCWK_PARAM2,EQ,3,ev_ordernote_buy3_check4
+	_IFVAL_CALL		SCWK_PARAM2,EQ,4,ev_ordernote_buy3_check5
+	_IFVAL_CALL		SCWK_PARAM2,EQ,5,ev_ordernote_buy3_check6
+	_IFVAL_CALL		SCWK_PARAM2,EQ,6,ev_ordernote_buy3_check7
+	_IFVAL_CALL		SCWK_PARAM2,EQ,7,ev_ordernote_buy3_check8
+	_IFVAL_CALL		SCWK_PARAM2,EQ,8,ev_ordernote_buy3_check9
+	_IFVAL_CALL		SCWK_PARAM2,EQ,9,ev_ordernote_buy3_check10
+	_IFVAL_CALL		SCWK_PARAM2,EQ,10,ev_ordernote_buy3_check11
+	_IFVAL_CALL		SCWK_PARAM2,EQ,11,ev_ordernote_buy3_check12
+	_IFVAL_CALL		SCWK_PARAM2,EQ,12,ev_ordernote_buy3_check13
+	_IFVAL_CALL		SCWK_PARAM2,EQ,13,ev_ordernote_buy3_check14
+	_IFVAL_CALL		SCWK_PARAM2,EQ,14,ev_ordernote_buy3_check15
+	_IFVAL_CALL		SCWK_PARAM2,EQ,15,ev_ordernote_buy3_check16
+	_IFVAL_CALL		SCWK_PARAM2,EQ,16,ev_ordernote_buy3_check17
+	_IFVAL_CALL		SCWK_PARAM2,EQ,17,ev_ordernote_buy3_check18
+	_IFVAL_CALL		SCWK_PARAM2,EQ,18,ev_ordernote_buy3_check19
+	_IFVAL_CALL		SCWK_PARAM2,EQ,19,ev_ordernote_buy3_check20
+	_GOLD_WRITE
+	_SE_WAIT		SEQ_SE_DP_REGI
+	//_TIME_WAIT		15,SCWK_ANSWER
+	_GOLD_WIN_DEL
+
+	/*トピック生成：別荘改築*/
+	_TV_ENTRY_WATCH_RECONSTRUCTION	SCWK_PARAM2
+	_RET
+
+
+/********************************************************************/
+/*		デリバリーきて、家具を表示(テーブルかで分岐あり)			*/
+/********************************************************************/
+ev_t07r0201_keeper_table_3:
+	_FLAG_RESET		FV_T07R0201_DELIVERY
+	_FLAG_RESET		FV_T07R0201_BOOK
+
+	/*マップ切り替えして家具を表示する*/
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,10,6,DIR_DOWN
+
+	_IFVAL_JUMP		SCWK_PARAM2,EQ,0,ev_t07r0201_keeper_buy_talk_0			/*テーブル*/
+	_IFVAL_JUMP		SCWK_PARAM2,NE,0,ev_t07r0201_keeper_buy_talk_0_not		/*テーブル以外*/
+	_END
+
+
+/********************************************************************/
+/*				特定の家具を購入した時は客がくる準備				*/
+//
+//	同じ人物がくるイベントの時は、その人物を一度消しておく
+/********************************************************************/
+ev_t07r0201_keeper_buy_sxy_0:			/*テーブル*/
+
+	/*今のイベントのOBJを消す*/
+	_CALL			ev_t07r0201_event_obj_del
+
+	/*ライバルのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_RIVAL,ev_t07r0201_rival_del
+
+	_SXY_POS_CHANGE	T07R0201_RIVAL,11,11
+	_SXY_MV_CHANGE	T07R0201_RIVAL,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_RIVAL,DIR_UP
+	_RET
+
+/*隣に配置準備*/
+ev_t07r0201_rival_del:
+	//_OBJ_DEL		T07R0201_RIVAL
+	_SXY_POS_CHANGE	T07R0201_RIVAL,10,8
+	_SXY_MV_CHANGE	T07R0201_RIVAL,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_RIVAL,DIR_UP
+	_FLAG_RESET		FV_VILLA_IN_RIVAL
+	_OBJ_ADD		T07R0201_RIVAL
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_sxy_2:			/*ちいさなテーブル*/
+	/*今のイベントのOBJを消す*/
+	_CALL			ev_t07r0201_event_obj_del
+
+	/*サポートのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_SUPPORT,ev_t07r0201_support_del
+
+	_SXY_POS_CHANGE	T07R0201_SUPPORT,11,11
+	_SXY_MV_CHANGE	T07R0201_SUPPORT,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_SUPPORT,DIR_UP
+	_RET
+
+ev_t07r0201_support_del:
+	//_OBJ_DEL		T07R0201_SUPPORT
+	_SXY_POS_CHANGE	T07R0201_SUPPORT,10,8
+	_SXY_MV_CHANGE	T07R0201_SUPPORT,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_SUPPORT,DIR_UP
+	_FLAG_RESET		FV_VILLA_IN_SUPPORT
+	_OBJ_ADD		T07R0201_SUPPORT
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_sxy_7:			/*ほんだな*/
+	/*今のイベントのOBJを消す*/
+	_CALL			ev_t07r0201_event_obj_del
+
+	/*ナナカマドのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,ev_t07r0201_doctor_del
+	_JUMP			ev_t07r0201_keeper_buy_sxy_7_sub
+	_END
+
+ev_t07r0201_keeper_buy_sxy_7_sub:
+	_SXY_POS_CHANGE	T07R0201_DOCTOR,11,11
+	_SXY_MV_CHANGE	T07R0201_DOCTOR,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_DOCTOR,DIR_UP
+	_RET
+
+ev_t07r0201_doctor_del:
+	/*まだ外にいる時*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_keeper_buy_sxy_7_sub
+
+	//_OBJ_DEL		T07R0201_DOCTOR
+	_SXY_POS_CHANGE	T07R0201_DOCTOR,10,8
+	_SXY_MV_CHANGE	T07R0201_DOCTOR,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_DOCTOR,DIR_UP
+	_FLAG_RESET		FV_VILLA_IN_DOCTOR
+	_OBJ_ADD		T07R0201_DOCTOR
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_sxy_9:			/*ハウスプラント*/
+	/*今のイベントのOBJを消す*/
+	_CALL			ev_t07r0201_event_obj_del
+
+	/*ナタネのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,ev_t07r0201_le2_del
+	_JUMP			ev_t07r0201_keeper_buy_sxy_9_sub
+	_END
+
+ev_t07r0201_keeper_buy_sxy_9_sub:
+	_SXY_POS_CHANGE	T07R0201_LEADER2,11,11
+	_SXY_MV_CHANGE	T07R0201_LEADER2,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_LEADER2,DIR_UP
+	_RET
+
+ev_t07r0201_le2_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_keeper_buy_sxy_9_sub
+
+	//_OBJ_DEL		T07R0201_LEADER2
+	_SXY_POS_CHANGE	T07R0201_LEADER2,10,8
+	_SXY_MV_CHANGE	T07R0201_LEADER2,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_LEADER2,DIR_UP
+	_FLAG_RESET		FV_VILLA_IN_LEADER2
+	_OBJ_ADD		T07R0201_LEADER2
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_sxy_14:			/*ピアノ*/
+	/*今のイベントのOBJを消す*/
+	_CALL			ev_t07r0201_event_obj_del
+
+	/*シロナのイベントの時*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_CHAMP,ev_t07r0201_champ_del
+
+	_SXY_POS_CHANGE	T07R0201_CHAMP,11,11
+	_SXY_MV_CHANGE	T07R0201_CHAMP,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_CHAMP,DIR_UP
+	_RET
+
+ev_t07r0201_champ_del:
+	//_OBJ_DEL		T07R0201_CHAMP
+	_SXY_POS_CHANGE	T07R0201_CHAMP,10,8
+	_SXY_MV_CHANGE	T07R0201_CHAMP,MV_UP
+	_SXY_DIR_CHANGE	T07R0201_CHAMP,DIR_UP
+	_FLAG_RESET		FV_VILLA_IN_CHAMP
+	_OBJ_ADD		T07R0201_CHAMP
+	_RET
+
+
+/********************************************************************/
+/*					特定の家具を購入した時は客がくる				*/
+/********************************************************************/
+ev_t07r0201_keeper_buy_npc_0:			/*テーブル*/
+
+	/*ライバルのイベントではない時は、入り口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,NE,T07R0201_EVENT_RIVAL,ev_t07r0201_rival_add
+
+	/*室内に入った状態にする*/
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	//_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_RIVAL
+	_LDVAL			SYS_WORK_EVENT_T07R0201,0xff	/*ここだけOBJが消えるのでイベント終了にする*/
+
+	/*主人公　下を向く*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_dir_down
+	_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t07r0201_srevent_01
+	_TALK_CLOSE
+
+	/*退場*/
+	_OBJ_ANIME		T07R0201_RIVAL,anm_t07r0201_go_out
+	_OBJ_ANIME_WAIT
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		T07R0201_RIVAL
+	_RET
+
+/*ライバルのイベントではない時は、入り口から登場アニメ*/
+ev_t07r0201_rival_add:
+	_FLAG_RESET		FV_VILLA_IN_RIVAL
+	_OBJ_ADD		T07R0201_RIVAL
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		T07R0201_RIVAL,anm_t07r0201_buy_npc_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_npc_2:			/*ちいさなテーブル*/
+
+	/*サポートのイベントではない時は、入り口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,NE,T07R0201_EVENT_SUPPORT,ev_t07r0201_support_add
+
+	/*室内に入った状態にする*/
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_SUPPORT
+
+	/*主人公　下を向く*/
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_dir_down
+	//_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+
+	_GET_MY_SEX		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,t07r0201_male_buy_npc_2	//サポート女
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07r0201_female_buy_npc_2	//サポート男
+	_END
+
+t07r0201_male_buy_npc_2:			//サポート女
+	_TALK_KEYWAIT	msg_t07r0201_srevent_02
+	_JUMP			t07r0201_common_buy_npc_2
+	_END
+
+t07r0201_female_buy_npc_2:			//サポート男
+	_TALK_KEYWAIT	msg_t07r0201_srevent_03
+	_JUMP			t07r0201_common_buy_npc_2
+	_END
+
+t07r0201_common_buy_npc_2:
+	_TALK_CLOSE
+	_RET
+
+/*サポートのイベントではない時は、入り口から登場アニメ*/
+ev_t07r0201_support_add:
+	_FLAG_RESET		FV_VILLA_IN_SUPPORT
+	_OBJ_ADD		T07R0201_SUPPORT
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		T07R0201_SUPPORT,anm_t07r0201_buy_npc_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_npc_7:			/*ほんだな*/
+
+	/*ナナカマドのイベントではない時は、入り口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,NE,T07R0201_EVENT_DOCTOR,ev_t07r0201_doctor_add
+
+	/*ナナカマドのイベントで、まだ外にいる時は、入口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,ev_t07r0201_doctor_add_check
+
+	/*室内に入った状態にする*/
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_FLAG_SET		FV_VILLA_OUT_DOCTOR
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_DOCTOR
+
+	/*主人公　下を向く*/
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_dir_down
+	//_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t07r0201_srevent_04
+	_TALK_CLOSE
+	_RET
+
+/*ナナカマドのイベントで、まだ外にいる時は、入口から登場アニメ*/
+ev_t07r0201_doctor_add_check:
+	/*まだ外にいる時は、入り口から登場アニメ*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_doctor_add
+	_RET
+
+/*ナナカマドのイベントではない時は、入り口から登場アニメ*/
+ev_t07r0201_doctor_add:
+	_FLAG_RESET		FV_VILLA_IN_DOCTOR
+	_OBJ_ADD		T07R0201_DOCTOR
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		T07R0201_DOCTOR,anm_t07r0201_buy_npc_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_npc_9:			/*ハウスプラント*/
+
+	/*ナタネのイベントではない時は、入り口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,NE,T07R0201_EVENT_LE2,ev_t07r0201_leader2_add
+
+	/*ナタネのイベントで、まだ外にいる時は、入口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,ev_t07r0201_leader2_add_check
+
+	/*室内に入った状態にする*/
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_FLAG_SET		FV_VILLA_OUT_LEADER4
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_LE2
+
+	/*主人公　下を向く*/
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_dir_down
+	//_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t07r0201_srevent_05
+	_TALK_CLOSE
+	_RET
+
+/*ナタネのイベントで、まだ外にいる時は、入口から登場アニメ*/
+ev_t07r0201_leader2_add_check:
+	/*まだ外にいる時は、入り口から登場アニメ*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_leader2_add
+	_RET
+
+/*ナタネのイベントではない時は、入り口から登場アニメ*/
+ev_t07r0201_leader2_add:
+	_FLAG_RESET		FV_VILLA_IN_LEADER2
+	_OBJ_ADD		T07R0201_LEADER2
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		T07R0201_LEADER2,anm_t07r0201_buy_npc_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ev_t07r0201_keeper_buy_npc_14:			/*ピアノ*/
+
+	/*シロナのイベントではない時は、入り口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,NE,T07R0201_EVENT_CHAMP,ev_t07r0201_champ_add
+
+	/*シロナのイベントで、まだPOS起動していない時は、入口から登場アニメ*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_CHAMP,ev_t07r0201_champ_add_check
+
+	/*室内に入った状態にする*/
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_CHAMP
+
+	/*POSは起きた状態にする*/
+	_LDVAL			LOCALWORK15,0
+	_FLAG_SET		SYS_FLAG_T07R0201_POS_APPEAR
+
+	/*主人公　下を向く*/
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_dir_down
+	//_OBJ_ANIME_WAIT
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t07r0201_srevent_06
+	_TALK_CLOSE
+	_RET
+
+/*シロナのイベントで、まだPOS起動していない時は、入口から登場アニメ*/
+ev_t07r0201_champ_add_check:
+	/*まだ登場していない時は、入り口から登場アニメ*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_champ_add
+	_RET
+
+/*シロナのイベントではない時は、入り口から登場アニメ*/
+ev_t07r0201_champ_add:
+	_FLAG_RESET		FV_VILLA_IN_CHAMP
+	_OBJ_ADD		T07R0201_CHAMP
+
+	_SE_PLAY		SEQ_SE_DP_DOOR_OPEN
+	_SE_WAIT		SEQ_SE_DP_DOOR_OPEN
+
+	_OBJ_ANIME		T07R0201_CHAMP,anm_t07r0201_buy_npc_in
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	下を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_dir_down
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//NPC	近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_buy_npc_in
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_go_out
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*						テーブルオーダーしなよ						*/
+/********************************************************************/
+ev_ordernote_table_not:
+	_TALK_KEYWAIT	msg_t07r0201_keeper_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_GOLD_WIN_DEL
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*						テーブル購入メッセージ						*/
+/********************************************************************/
+ev_t07r0201_keeper_buy_talk_0:
+
+	/*「おまちどうさまです！」*/
+	_TALK_KEYWAIT	msg_t07r0201_delivery_01
+	_TALK_CLOSE
+
+	/*暗転にしないと、配達員の時だけの流れで、客の位置を変えるタイミングがない！*/
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*配達員　退場*/
+	//_OBJ_ANIME		T07R0201_DELIVERY,anm_t07r0201_delivery_01
+	//_OBJ_ANIME_WAIT
+	//_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		T07R0201_DELIVERY
+	//_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*向き合う*/
+	_OBJ_ANIME		T07R0201_KEEPER,anm_t07r0201_keeper_110
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_left
+	_OBJ_ANIME_WAIT
+
+	/*「ようやく　たびに　でかけられるぜ！」*/
+	_TALK_KEYWAIT	msg_t07r0201_keeper_04
+	_TALK_CLOSE
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_OBJ_DEL		T07R0201_KEEPER
+
+	/*特定の家具を購入した時は客がくる準備*/
+	/*同じ人物がくるイベントの時は、その人物を一度消しておく*/
+	_CALL			ev_t07r0201_buy_sxy_common
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*特定の家具を購入した時は客がくる*/
+	_CALL			ev_t07r0201_buy_npc_common
+
+	_LDVAL			WK_SCENE_T07R0201,2
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	左を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_left
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//案内人	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_keeper_110
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//デリバリー	帰っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_delivery_01
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*					テーブル以外購入メッセージ						*/
+/********************************************************************/
+ev_t07r0201_keeper_buy_talk_0_not:
+	/*全て購入していたら*/
+	_CALL			ev_t07r0201_ordernote_furniture_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t07r0201_keeper_buy_talk_all
+
+	/*「おまちどうさまです！」*/
+	_TALK_KEYWAIT	msg_t07r0201_delivery_02
+	_JUMP			ev_t07r0201_delivery_buy_talk_common
+	_END
+
+ev_t07r0201_delivery_buy_talk_common:
+	_TALK_CLOSE
+
+	/*暗転にしないと、配達員の時だけの流れで、客の位置を変えるタイミングがない！*/
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*配達員　退場*/
+	//_OBJ_ANIME		T07R0201_DELIVERY,anm_t07r0201_delivery_01
+	//_OBJ_ANIME_WAIT
+	//_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		T07R0201_DELIVERY
+	//_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	/*特定の家具を購入した時は客がくる準備*/
+	/*同じ人物がくるイベントの時は、その人物を一度消しておく*/
+	_CALL			ev_t07r0201_buy_sxy_common
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*特定の家具を購入した時は客がくる*/
+	_CALL			ev_t07r0201_buy_npc_common
+	_RET
+
+/*全て購入したメッセージ*/
+ev_t07r0201_keeper_buy_talk_all:
+	_SCORE_ADD		SCORE_ID_VACATION_HOUSE_COMPLETE
+	_TALK_KEYWAIT	msg_t07r0201_delivery_03
+	_JUMP			ev_t07r0201_delivery_buy_talk_common
+	_END
+
+ev_t07r0201_buy_sxy_common:
+	/*特定の家具を購入した時は客がくる準備*/
+	/*同じ人物がくるイベントの時は、その人物を一度消しておく*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,0,ev_t07r0201_keeper_buy_sxy_0	/*テーブル*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,2,ev_t07r0201_keeper_buy_sxy_2	/*SmallTable*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,7,ev_t07r0201_keeper_buy_sxy_7	/*ほんだな*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,9,ev_t07r0201_keeper_buy_sxy_9	/*houseプラント*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,14,ev_t07r0201_keeper_buy_sxy_14	/*ピアノ*/
+	_RET
+
+ev_t07r0201_buy_npc_common:
+	/*特定の家具を購入した時は客がくる*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,0,ev_t07r0201_keeper_buy_npc_0	/*テーブル*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,2,ev_t07r0201_keeper_buy_npc_2	/*SmallTable*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,7,ev_t07r0201_keeper_buy_npc_7	/*ほんだな*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,9,ev_t07r0201_keeper_buy_npc_9	/*houseプラント*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,14,ev_t07r0201_keeper_buy_npc_14	/*ピアノ*/
+	_RET
+
+
+/********************************************************************/
+/*							管理人(POS)								*/
+/********************************************************************/
+pos_t07r0201_keeper:
+	_EVENT_START
+
+	/*下を向く*/
+	_OBJ_ANIME		T07R0201_KEEPER,anm_t07r0201_keeper_100
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_t07r0201_keeper_03
+	_TALK_CLOSE
+
+	/*押し戻される*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07r0201_player_01
+	_OBJ_ANIME_WAIT
+
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//案内人	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_keeper_100
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	押し戻される
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07r0201_player_01
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							注文書									*/
+/********************************************************************/
+ev_t07r0201_ordernote:
+	_TALK_START
+
+	_GOLD_WIN_WRITE	21,1
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_t07r0201_ordernote_01
+
+	/*全て購入していたら*/
+	_CALL			ev_t07r0201_ordernote_furniture_check
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_t07r0201_ordernote_all
+
+	_JUMP			ev_t07r0201_ordernote_not_all
+	_END
+
+
+/********************************************************************/
+/*						全て購入していたら							*/
+/********************************************************************/
+ev_t07r0201_ordernote_all:
+	_TALK_KEYWAIT	msg_t07r0201_ordernote_06
+	_JUMP			ev_t07r0201_ordernote_menu
+	_END
+
+
+/********************************************************************/
+/*						まだ購入出来る状態							*/
+/********************************************************************/
+ev_t07r0201_ordernote_not_all:
+	/*「どの家具を注文しますか？」*/
+	_TALK_KEYWAIT	msg_t07r0201_ordernote_02
+	_JUMP			ev_t07r0201_ordernote_menu
+	_END
+
+
+/********************************************************************/
+/*							家具を選ぶ								*/
+/********************************************************************/
+ev_t07r0201_ordernote_menu:
+	/*家具リスト表示*/
+	_CALL			ev_t07r0201_keeper_table
+
+	/*すでに購入している家具かチェック*/
+	_LDVAL			SCWK_PARAM3,1
+	_IFVAL_CALL		SCWK_PARAM2,EQ,0,ev_ordernote_buy_check1
+	_IFVAL_CALL		SCWK_PARAM2,EQ,1,ev_ordernote_buy_check2
+	_IFVAL_CALL		SCWK_PARAM2,EQ,2,ev_ordernote_buy_check3
+	_IFVAL_CALL		SCWK_PARAM2,EQ,3,ev_ordernote_buy_check4
+	_IFVAL_CALL		SCWK_PARAM2,EQ,4,ev_ordernote_buy_check5
+	_IFVAL_CALL		SCWK_PARAM2,EQ,5,ev_ordernote_buy_check6
+	_IFVAL_CALL		SCWK_PARAM2,EQ,6,ev_ordernote_buy_check7
+	_IFVAL_CALL		SCWK_PARAM2,EQ,7,ev_ordernote_buy_check8
+	_IFVAL_CALL		SCWK_PARAM2,EQ,8,ev_ordernote_buy_check9
+	_IFVAL_CALL		SCWK_PARAM2,EQ,9,ev_ordernote_buy_check10
+	_IFVAL_CALL		SCWK_PARAM2,EQ,10,ev_ordernote_buy_check11
+	_IFVAL_CALL		SCWK_PARAM2,EQ,11,ev_ordernote_buy_check12
+	_IFVAL_CALL		SCWK_PARAM2,EQ,12,ev_ordernote_buy_check13
+	_IFVAL_CALL		SCWK_PARAM2,EQ,13,ev_ordernote_buy_check14
+	_IFVAL_CALL		SCWK_PARAM2,EQ,14,ev_ordernote_buy_check15
+	_IFVAL_CALL		SCWK_PARAM2,EQ,15,ev_ordernote_buy_check16
+	_IFVAL_CALL		SCWK_PARAM2,EQ,16,ev_ordernote_buy_check17
+	_IFVAL_CALL		SCWK_PARAM2,EQ,17,ev_ordernote_buy_check18
+	_IFVAL_CALL		SCWK_PARAM2,EQ,18,ev_ordernote_buy_check19
+	_IFVAL_CALL		SCWK_PARAM2,EQ,19,ev_ordernote_buy_check20
+	_IFVAL_JUMP		SCWK_PARAM2,EQ,EV_WIN_B_CANCEL,no_t07r0201_ordernote_01	/*キャンセル*/
+
+	/*すでに購入した家具だったら*/
+	_IFVAL_JUMP		SCWK_PARAM3,EQ,0,ev_t07r0201_ordernote_05
+
+	/*「選んだ家具を注文しますか」*/
+	_TALKMSG		msg_t07r0201_ordernote_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_t07r0201_ordernote_01
+
+	/*お金が足りるかチェック*/
+	_IFVAL_CALL		SCWK_PARAM2,EQ,0,ev_ordernote_buy2_check1
+	_IFVAL_CALL		SCWK_PARAM2,EQ,1,ev_ordernote_buy2_check2
+	_IFVAL_CALL		SCWK_PARAM2,EQ,2,ev_ordernote_buy2_check3
+	_IFVAL_CALL		SCWK_PARAM2,EQ,3,ev_ordernote_buy2_check4
+	_IFVAL_CALL		SCWK_PARAM2,EQ,4,ev_ordernote_buy2_check5
+	_IFVAL_CALL		SCWK_PARAM2,EQ,5,ev_ordernote_buy2_check6
+	_IFVAL_CALL		SCWK_PARAM2,EQ,6,ev_ordernote_buy2_check7
+	_IFVAL_CALL		SCWK_PARAM2,EQ,7,ev_ordernote_buy2_check8
+	_IFVAL_CALL		SCWK_PARAM2,EQ,8,ev_ordernote_buy2_check9
+	_IFVAL_CALL		SCWK_PARAM2,EQ,9,ev_ordernote_buy2_check10
+	_IFVAL_CALL		SCWK_PARAM2,EQ,10,ev_ordernote_buy2_check11
+	_IFVAL_CALL		SCWK_PARAM2,EQ,11,ev_ordernote_buy2_check12
+	_IFVAL_CALL		SCWK_PARAM2,EQ,12,ev_ordernote_buy2_check13
+	_IFVAL_CALL		SCWK_PARAM2,EQ,13,ev_ordernote_buy2_check14
+	_IFVAL_CALL		SCWK_PARAM2,EQ,14,ev_ordernote_buy2_check15
+	_IFVAL_CALL		SCWK_PARAM2,EQ,15,ev_ordernote_buy2_check16
+	_IFVAL_CALL		SCWK_PARAM2,EQ,16,ev_ordernote_buy2_check17
+	_IFVAL_CALL		SCWK_PARAM2,EQ,17,ev_ordernote_buy2_check18
+	_IFVAL_CALL		SCWK_PARAM2,EQ,18,ev_ordernote_buy2_check19
+	_IFVAL_CALL		SCWK_PARAM2,EQ,19,ev_ordernote_buy2_check20
+
+	/*お金が足りない時*/
+	_IFVAL_JUMP		SCWK_PARAM3,EQ,FALSE,ev_t07r0201_ordernote_gold_not
+
+	/*リストで選択した家具について、お金を減らす、家具購入フラグを立てる*/
+	_CALL			ev_t07r0201_keeper_table_2
+	_TALK_CLOSE
+
+	/*デリバリーきて、家具を表示(テーブルかで分岐あり)*/
+	_CALL			ev_t07r0201_keeper_table_3
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*					すでに購入している家具を選択した				*/
+/********************************************************************/
+ev_t07r0201_ordernote_05:
+	_TALKMSG		msg_t07r0201_ordernote_04
+	_JUMP			ev_t07r0201_ordernote_end
+	_END
+
+/*お金が足りない*/
+ev_t07r0201_ordernote_gold_not:
+	_TALKMSG		msg_t07r0201_ordernote_05
+	_JUMP			ev_t07r0201_ordernote_end
+	_END
+
+/*「いいえ」*/
+no_t07r0201_ordernote_01:
+	_JUMP			ev_t07r0201_ordernote_end_sub
+	_END
+
+/*共通終了*/
+ev_t07r0201_ordernote_end:
+	_LAST_KEYWAIT
+	_JUMP			ev_t07r0201_ordernote_end_sub
+	_END
+
+/*共通終了*/
+ev_t07r0201_ordernote_end_sub:
+	_TALK_CLOSE
+	_GOLD_WIN_DEL
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*						全て購入したかチェック						*/
+/********************************************************************/
+ev_t07r0201_ordernote_furniture_check:
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_01,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_02,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_03,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_04,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_05,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_06,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_07,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_08,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_09,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_10,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_11,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_12,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_13,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_14,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_15,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_16,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_17,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_18,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_19,ev_t07r0201_ordernote_furniture_check_ret
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_20,ev_t07r0201_ordernote_furniture_check_ret
+
+	/*全て購入している*/
+	_LDVAL			SCWK_ANSWER,1
+	_RET
+
+ev_t07r0201_ordernote_furniture_check_ret:
+	_LDVAL			SCWK_ANSWER,0
+	_RET
+
+
+/********************************************************************/
+/*						リスト作成									*/
+/********************************************************************/
+/*テーブル*/
+order_list01:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_01,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_01,order_list01_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_01,order_list01_2
+	_RET
+
+/*おおきいソファ*/
+order_list02:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_02,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_02,order_list02_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_02,order_list02_2
+	//_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_02,order_list02_2		/*テスト*/
+	//_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_02,order_list02_1	/*テスト*/
+	_RET
+
+/*ちいさいソファ*/
+order_list03:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_03,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_03,order_list03_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_03,order_list03_2
+	_RET
+
+/*ベッド*/
+order_list04:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_04,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_04,order_list04_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_04,order_list04_2
+	_RET
+
+/*ナイトテーブル*/
+order_list05:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_05,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_05,order_list05_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_05,order_list05_2
+	_RET
+
+/*テレビジョン*/
+order_list06:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_06,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_06,order_list06_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_06,order_list06_2
+	_RET
+
+/*オーディオセット*/
+order_list07:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_07,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_07,order_list07_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_07,order_list07_2
+	_RET
+
+/*ほんだな*/
+order_list08:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_08,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_08,order_list08_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_08,order_list08_2
+	_RET
+
+/*ラック*/
+order_list09:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_09,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_09,order_list09_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_09,order_list09_2
+	_RET
+
+/*ハウスプラント*/
+order_list10:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_10,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_10,order_list10_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_10,order_list10_2
+	_RET
+
+/*パソコンデスク*/
+order_list11:
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_11,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_11,order_list11_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_11,order_list11_2
+	_RET
+
+/*オルゴール*/
+order_list12:
+	/*ラックを購入済みか*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_09,order_list_ret
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_12,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_12,order_list12_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_12,order_list12_2
+	_RET
+
+/*ポケモンぞう*/
+order_list13:
+	_VILLA_LIST_CHECK	13,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_13,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_13,order_list13_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_13,order_list13_2
+	_RET
+
+/*ポケモンぞう*/
+order_list14:
+	_VILLA_LIST_CHECK	14,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_14,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_14,order_list14_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_14,order_list14_2
+	_RET
+
+/*ピアノ*/
+order_list15:
+	_VILLA_LIST_CHECK	15,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_15,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_15,order_list15_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_15,order_list15_2
+	_RET
+
+/*おうせつセット*/
+order_list16:
+	_VILLA_LIST_CHECK	16,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_16,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_16,order_list16_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_16,order_list16_2
+	_RET
+
+/*かべどけい*/
+order_list17:
+	_VILLA_LIST_CHECK	17,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_17,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_17,order_list17_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_17,order_list17_2
+	_RET
+
+/*すばらしいめいが*/
+order_list18:
+	_VILLA_LIST_CHECK	18,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_18,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_18,order_list18_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_18,order_list18_2
+	_RET
+
+/*ティーセット*/
+order_list19:
+	/*おうせつセットを購入済みか*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_FURNITURE_16,order_list_ret
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_19,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_19,order_list19_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_19,order_list19_2
+	_RET
+
+/*シャンデリア*/
+order_list20:
+	_VILLA_LIST_CHECK	20,SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,order_list_ret
+
+	_NUMBER_NAME_EX32	0,GOLD_FURNITURE_20,ORDERNOTE_DTYPE,ORDERNOTE_KETA
+	_IF_FLAGOFF_CALL	SYS_FLAG_FURNITURE_20,order_list20_1
+	_IF_FLAGON_CALL		SYS_FLAG_FURNITURE_20,order_list20_2
+	_RET
+
+order_list_ret:
+	_RET
+
+
+/********************************************************************/
+/*						リスト作成									*/
+/********************************************************************/
+order_list01_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_01,EV_WIN_TALK_MSG_NONE,0
+	_RET
+
+order_list01_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_01_2,EV_WIN_TALK_MSG_NONE,0
+	_RET
+
+order_list02_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_02,EV_WIN_TALK_MSG_NONE,1
+	_RET
+
+order_list02_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_02_2,EV_WIN_TALK_MSG_NONE,1
+	_RET
+
+order_list03_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_03,EV_WIN_TALK_MSG_NONE,2
+	_RET
+
+order_list03_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_03_2,EV_WIN_TALK_MSG_NONE,2
+	_RET
+
+order_list04_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_04,EV_WIN_TALK_MSG_NONE,3
+	_RET
+
+order_list04_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_04_2,EV_WIN_TALK_MSG_NONE,3
+	_RET
+
+order_list05_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_05,EV_WIN_TALK_MSG_NONE,4
+	_RET
+
+order_list05_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_05_2,EV_WIN_TALK_MSG_NONE,4
+	_RET
+
+order_list06_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_06,EV_WIN_TALK_MSG_NONE,5
+	_RET
+
+order_list06_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_06_2,EV_WIN_TALK_MSG_NONE,5
+	_RET
+
+order_list07_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_07,EV_WIN_TALK_MSG_NONE,6
+	_RET
+
+order_list07_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_07_2,EV_WIN_TALK_MSG_NONE,6
+	_RET
+
+order_list08_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_08,EV_WIN_TALK_MSG_NONE,7
+	_RET
+
+order_list08_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_08_2,EV_WIN_TALK_MSG_NONE,7
+	_RET
+
+order_list09_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_09,EV_WIN_TALK_MSG_NONE,8
+	_RET
+
+order_list09_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_09_2,EV_WIN_TALK_MSG_NONE,8
+	_RET
+
+order_list10_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_10,EV_WIN_TALK_MSG_NONE,9
+	_RET
+
+order_list10_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_10_2,EV_WIN_TALK_MSG_NONE,9
+	_RET
+
+order_list11_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_11,EV_WIN_TALK_MSG_NONE,10
+	_RET
+
+order_list11_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_11_2,EV_WIN_TALK_MSG_NONE,10
+	_RET
+
+order_list12_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_12,EV_WIN_TALK_MSG_NONE,11
+	_RET
+
+order_list12_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_12_2,EV_WIN_TALK_MSG_NONE,11
+	_RET
+
+order_list13_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_13,EV_WIN_TALK_MSG_NONE,12
+	_RET
+
+order_list13_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_13_2,EV_WIN_TALK_MSG_NONE,12
+	_RET
+
+order_list14_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_14,EV_WIN_TALK_MSG_NONE,13
+	_RET
+
+order_list14_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_14_2,EV_WIN_TALK_MSG_NONE,13
+	_RET
+
+order_list15_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_15,EV_WIN_TALK_MSG_NONE,14
+	_RET
+
+order_list15_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_15_2,EV_WIN_TALK_MSG_NONE,14
+	_RET
+
+order_list16_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_16,EV_WIN_TALK_MSG_NONE,15
+	_RET
+
+order_list16_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_16_2,EV_WIN_TALK_MSG_NONE,15
+	_RET
+
+order_list17_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_17,EV_WIN_TALK_MSG_NONE,16
+	_RET
+
+order_list17_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_17_2,EV_WIN_TALK_MSG_NONE,16
+	_RET
+
+order_list18_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_18,EV_WIN_TALK_MSG_NONE,17
+	_RET
+
+order_list18_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_18_2,EV_WIN_TALK_MSG_NONE,17
+	_RET
+
+order_list19_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_19,EV_WIN_TALK_MSG_NONE,18
+	_RET
+
+order_list19_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_19_2,EV_WIN_TALK_MSG_NONE,18
+	_RET
+
+order_list20_1:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_20,EV_WIN_TALK_MSG_NONE,19
+	_RET
+
+order_list20_2:
+	_BMPLIST_MAKE_LIST	msg_secondhouse_20_2,EV_WIN_TALK_MSG_NONE,19
+	_RET
+
+
+/********************************************************************/
+/*				すでに購入している家具かチェック					*/
+/********************************************************************/
+ev_ordernote_buy_check1:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_01,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check2:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_02,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check3:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_03,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check4:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_04,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check5:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_05,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check6:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_06,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check7:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_07,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check8:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_08,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check9:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_09,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check10:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_10,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check11:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_11,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check12:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_12,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check13:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_13,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check14:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_14,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check15:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_15,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check16:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_16,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check17:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_17,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check18:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_18,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check19:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_19,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_check20:
+	_IF_FLAGON_JUMP	SYS_FLAG_FURNITURE_20,ev_ordernote_buy_on
+	_RET
+
+ev_ordernote_buy_on:
+	_LDVAL			SCWK_PARAM3,0
+	_RET
+
+
+/********************************************************************/
+/*						お金があるかチェック						*/
+/********************************************************************/
+ev_ordernote_buy2_check1:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_01
+	_RET
+
+ev_ordernote_buy2_check2:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_02
+	_RET
+
+ev_ordernote_buy2_check3:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_03
+	_RET
+
+ev_ordernote_buy2_check4:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_04
+	_RET
+
+ev_ordernote_buy2_check5:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_05
+	_RET
+
+ev_ordernote_buy2_check6:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_06
+	_RET
+
+ev_ordernote_buy2_check7:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_07
+	_RET
+
+ev_ordernote_buy2_check8:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_08
+	_RET
+
+ev_ordernote_buy2_check9:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_09
+	_RET
+
+ev_ordernote_buy2_check10:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_10
+	_RET
+
+ev_ordernote_buy2_check11:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_11
+	_RET
+
+ev_ordernote_buy2_check12:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_12
+	_RET
+
+ev_ordernote_buy2_check13:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_13
+	_RET
+
+ev_ordernote_buy2_check14:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_14
+	_RET
+
+ev_ordernote_buy2_check15:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_15
+	_RET
+
+ev_ordernote_buy2_check16:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_16
+	_RET
+
+ev_ordernote_buy2_check17:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_17
+	_RET
+
+ev_ordernote_buy2_check18:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_18
+	_RET
+
+ev_ordernote_buy2_check19:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_19
+	_RET
+
+ev_ordernote_buy2_check20:
+	_COMP_GOLD		SCWK_PARAM3,GOLD_FURNITURE_20
+	_RET
+
+
+/********************************************************************/
+/*					お金減らして、家具購入フラグセット				*/
+/********************************************************************/
+ev_ordernote_buy3_check1:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_01
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_01
+	_SUB_GOLD		GOLD_FURNITURE_01
+	_FLAG_SET		SYS_FLAG_FURNITURE_01
+	_RET
+
+ev_ordernote_buy3_check2:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_02
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_02
+	_SUB_GOLD		GOLD_FURNITURE_02
+	_FLAG_SET		SYS_FLAG_FURNITURE_02
+	_RET
+
+ev_ordernote_buy3_check3:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_03
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_03
+	_SUB_GOLD		GOLD_FURNITURE_03
+	_FLAG_SET		SYS_FLAG_FURNITURE_03
+	_RET
+
+ev_ordernote_buy3_check4:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_04
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_04
+	_SUB_GOLD		GOLD_FURNITURE_04
+	_FLAG_SET		SYS_FLAG_FURNITURE_04
+	_RET
+
+ev_ordernote_buy3_check5:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_05
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_05
+	_SUB_GOLD		GOLD_FURNITURE_05
+	_FLAG_SET		SYS_FLAG_FURNITURE_05
+	_RET
+
+ev_ordernote_buy3_check6:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_06
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_06
+	_SUB_GOLD		GOLD_FURNITURE_06
+	_FLAG_SET		SYS_FLAG_FURNITURE_06
+	_RET
+
+ev_ordernote_buy3_check7:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_07
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_07
+	_SUB_GOLD		GOLD_FURNITURE_07
+	_FLAG_SET		SYS_FLAG_FURNITURE_07
+	_RET
+
+ev_ordernote_buy3_check8:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_08
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_08
+	_SUB_GOLD		GOLD_FURNITURE_08
+	_FLAG_SET		SYS_FLAG_FURNITURE_08
+	_RET
+
+ev_ordernote_buy3_check9:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_09
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_09
+	_SUB_GOLD		GOLD_FURNITURE_09
+	_FLAG_SET		SYS_FLAG_FURNITURE_09
+	_RET
+
+ev_ordernote_buy3_check10:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_10
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_10
+	_SUB_GOLD		GOLD_FURNITURE_10
+	_FLAG_SET		SYS_FLAG_FURNITURE_10
+	_RET
+
+ev_ordernote_buy3_check11:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_11
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_11
+	_SUB_GOLD		GOLD_FURNITURE_11
+	_FLAG_SET		SYS_FLAG_FURNITURE_11
+	_RET
+
+ev_ordernote_buy3_check12:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_12
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_12
+	_SUB_GOLD		GOLD_FURNITURE_12
+	_FLAG_SET		SYS_FLAG_FURNITURE_12
+	_RET
+
+ev_ordernote_buy3_check13:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_13
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_13
+	_SUB_GOLD		GOLD_FURNITURE_13
+	_FLAG_SET		SYS_FLAG_FURNITURE_13
+	_RET
+
+ev_ordernote_buy3_check14:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_14
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_14
+	_SUB_GOLD		GOLD_FURNITURE_14
+	_FLAG_SET		SYS_FLAG_FURNITURE_14
+	_RET
+
+ev_ordernote_buy3_check15:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_15
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_15
+	_SUB_GOLD		GOLD_FURNITURE_15
+	_FLAG_SET		SYS_FLAG_FURNITURE_15
+	_RET
+
+ev_ordernote_buy3_check16:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_16
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_16
+	_SUB_GOLD		GOLD_FURNITURE_16
+	_FLAG_SET		SYS_FLAG_FURNITURE_16
+	_RET
+
+ev_ordernote_buy3_check17:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_17
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_17
+	_SUB_GOLD		GOLD_FURNITURE_17
+	_FLAG_SET		SYS_FLAG_FURNITURE_17
+	_RET
+
+ev_ordernote_buy3_check18:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_18
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_18
+	_SUB_GOLD		GOLD_FURNITURE_18
+	_FLAG_SET		SYS_FLAG_FURNITURE_18
+	_RET
+
+ev_ordernote_buy3_check19:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_19
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_19
+	_SUB_GOLD		GOLD_FURNITURE_19
+	_FLAG_SET		SYS_FLAG_FURNITURE_19
+	_RET
+
+ev_ordernote_buy3_check20:
+	//_RECORD_ADD_EX	RECID_SHOPPING_MONEY,GOLD_FURNITURE_20
+	_RECORD_ADD_U32	RECID_SHOPPING_MONEY,GOLD_FURNITURE_20
+	_SUB_GOLD		GOLD_FURNITURE_20
+	_FLAG_SET		SYS_FLAG_FURNITURE_20
+	_RET
+
+
+/********************************************************************/
+/*						今のイベントのOBJを消す						*/
+//
+//	二人組みのイベントが、二人で会話する流れなので、
+//	片方だけを移動することは出来ない。
+//	なので、暗転中にOBJ消して、専用イベントの流れにもっていく
+/********************************************************************/
+ev_t07r0201_event_obj_del:
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_RIVAL,	t07r0201_event01_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_SUPPORT,	t07r0201_event02_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,	t07r0201_event03_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_MAMA,		t07r0201_event04_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE1,		t07r0201_event05_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,		t07r0201_event06_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE3,		t07r0201_event07_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE4,		t07r0201_event08_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE5,		t07r0201_event09_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE6,		t07r0201_event10_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE7,		t07r0201_event11_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE8,		t07r0201_event12_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_CHAMP,	t07r0201_event13_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_BIG_LE,	t07r0201_event14_del
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE_LE,	t07r0201_event15_del
+	_RET
+
+t07r0201_event01_del:
+	/*ライバル専用は去っていくが、その時は判別ワークに0xffが入っているので、ここにはこないはず*/
+	_OBJ_DEL		T07R0201_RIVAL
+	_RET
+
+t07r0201_event02_del:
+	_OBJ_DEL		T07R0201_SUPPORT
+	_RET
+
+t07r0201_event03_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_del_flag
+
+	_OBJ_DEL		T07R0201_DOCTOR
+	_RET
+
+t07r0201_event04_del:
+	_OBJ_DEL		T07R0201_MAMA
+	_RET
+
+t07r0201_event05_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_del_flag
+
+	_OBJ_DEL		T07R0201_LEADER1
+	_RET
+
+t07r0201_event06_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_del_flag
+
+	_OBJ_DEL		T07R0201_LEADER2
+	_RET
+
+t07r0201_event07_del:
+	/*POS起動していなくて、まだ表示されていない時は何もしない*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_del_none
+
+	_OBJ_DEL		T07R0201_LEADER3
+	_RET
+
+t07r0201_event08_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_del_flag
+
+	_OBJ_DEL		T07R0201_LEADER4
+	_RET
+
+t07r0201_event09_del:
+	/*POS起動していなくて、まだ表示されていない時は何もしない*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_del_none
+
+	_OBJ_DEL		T07R0201_LEADER5
+	_RET
+
+t07r0201_event10_del:
+	/*まだ外にいる時は、バニッシュフラグを立てておく*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07r0201_del_flag
+
+	_OBJ_DEL		T07R0201_LEADER6
+	_RET
+
+t07r0201_event11_del:
+	/*POS起動していなくて、まだ表示されていない時は何もしない*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_del_none
+
+	_OBJ_DEL		T07R0201_LEADER7
+	_RET
+
+t07r0201_event12_del:
+	_OBJ_DEL		T07R0201_LEADER8
+	_RET
+
+t07r0201_event13_del:
+	/*POS起動していなくて、まだ表示されていない時は何もしない*/
+	_IF_FLAGOFF_JUMP	SYS_FLAG_T07R0201_POS_APPEAR,ev_t07r0201_del_none
+
+	_OBJ_DEL		T07R0201_CHAMP
+	_RET
+
+t07r0201_event14_del:
+	_OBJ_DEL		T07R0201_BIGFOUR3
+	_OBJ_DEL		T07R0201_LEADER8
+	_RET
+
+t07r0201_event15_del:
+	_OBJ_DEL		T07R0201_LEADER4
+	_OBJ_DEL		T07R0201_LEADER7
+	_RET
+
+/*POS起動していなくて、まだ表示されていない時は何もしない*/
+ev_t07r0201_del_none:
+	_RET
+
+/*まだ外にいる時は、バニッシュフラグを立てておく*/
+ev_t07r0201_del_flag:
+	_FLAG_SET		FV_VILLA_OUT_DOCTOR
+	_FLAG_SET		FV_VILLA_OUT_LEADER1
+	_FLAG_SET		FV_VILLA_OUT_LEADER2
+	_FLAG_SET		FV_VILLA_OUT_LEADER4
+	_FLAG_SET		FV_VILLA_OUT_LEADER6
+	_RET
+
+

@@ -1,0 +1,7 @@
+REM グラフィッカーが関連づけ設定をされているファイルもコンバートされる
+REM cellを使用しないBGはオプション指定をつける
+REM nceを指定すると、ncg,nclも合わせてコンバートされる
+REM nscを指定すると、ncgも合わせてコンバートされる
+REM
+g2dcvtr tv_chuke.nsc
+g2dcvtr tv_chuke.ncl

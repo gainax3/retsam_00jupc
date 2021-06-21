@@ -1,0 +1,3312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="nohara" host="W00087" date="2006-07-28T19:42:10"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1"/>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名" english="ポケット名" view="EP" width="144" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名</comment>
+				<comment language="english">バッグのポケット名</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="191"/>
+		<group default=" 0:デフォルト" position="1" width="23">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="100"/>
+		<erase position="3" width="26"/>
+		<language japanese="日本語" english="日本語">
+			<message position="4" width="231"/>
+			<font default=" 0:test1" position="5" width="100">
+				<list entry="0" file="L:\msgdata\font\test1.nftr"/>
+			</font>
+			<size position="6" width="100"/>
+			<space position="7" width="100"/>
+			<width position="8" width="100"/>
+			<line position="9" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="140" top="116" right="845" bottom="736" maximized="no" rayout="Vertical2">
+		<comment-input left="746" top="514" right="1093" bottom="663" visible="yes"/>
+		<tag-palette left="768" top="104" right="1115" bottom="502" visible="yes"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="556"/>
+		<band id="3" index="3" style="0000" width="139"/>
+		<band id="4" index="4" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+	<row id="msg_seq_pv001">
+		<language name="日本語">PV001</language>
+	</row>
+	<row id="msg_seq_pv">
+		<language name="日本語">PV</language>
+	</row>
+	<row id="msg_seq_pv_end">
+		<language name="日本語">PV-END</language>
+	</row>
+	<row id="msg_seq_dummy">
+		<language name="日本語">DUMMY</language>
+	</row>
+	<row id="msg_seq_silence_field">
+		<language name="日本語">SILENCE-FIELD</language>
+	</row>
+	<row id="msg_seq_silence_dungeon">
+		<language name="日本語">SILENCE-DUNGEON</language>
+	</row>
+	<row id="msg_seq_test_title">
+		<language name="日本語">TEST-TITLE</language>
+	</row>
+	<row id="msg_seq_town01_d">
+		<language name="日本語">TOWN01-D</language>
+	</row>
+	<row id="msg_seq_town02_d">
+		<language name="日本語">TOWN02-D</language>
+	</row>
+	<row id="msg_seq_town03_d">
+		<language name="日本語">TOWN03-D</language>
+	</row>
+	<row id="msg_seq_town04_d">
+		<language name="日本語">TOWN04-D</language>
+	</row>
+	<row id="msg_seq_town06_d">
+		<language name="日本語">TOWN06-D</language>
+	</row>
+	<row id="msg_seq_town07_d">
+		<language name="日本語">TOWN07-D</language>
+	</row>
+	<row id="msg_seq_city01_d">
+		<language name="日本語">CITY01-D</language>
+	</row>
+	<row id="msg_seq_city02_d">
+		<language name="日本語">CITY02-D</language>
+	</row>
+	<row id="msg_seq_city03_d">
+		<language name="日本語">CITY03-D</language>
+	</row>
+	<row id="msg_seq_city04_d">
+		<language name="日本語">CITY04-D</language>
+	</row>
+	<row id="msg_seq_city05_d">
+		<language name="日本語">CITY05-D</language>
+	</row>
+	<row id="msg_seq_city06_d">
+		<language name="日本語">CITY06-D</language>
+	</row>
+	<row id="msg_seq_city07_d">
+		<language name="日本語">CITY07-D</language>
+	</row>
+	<row id="msg_seq_city08_d">
+		<language name="日本語">CITY08-D</language>
+	</row>
+	<row id="msg_seq_city09_d">
+		<language name="日本語">CITY09-D</language>
+	</row>
+	<row id="msg_seq_city10_d">
+		<language name="日本語">CITY10-D</language>
+	</row>
+	<row id="msg_seq_city11_d">
+		<language name="日本語">CITY11-D</language>
+	</row>
+	<row id="msg_seq_road_a_d">
+		<language name="日本語">ROAD-A-D</language>
+	</row>
+	<row id="msg_seq_road_b_d">
+		<language name="日本語">ROAD-B-D</language>
+	</row>
+	<row id="msg_seq_road_c_d">
+		<language name="日本語">ROAD-C-D</language>
+	</row>
+	<row id="msg_seq_road_d_d">
+		<language name="日本語">ROAD-D-D</language>
+	</row>
+	<row id="msg_seq_road_e_d">
+		<language name="日本語">ROAD-E-D</language>
+	</row>
+	<row id="msg_seq_road_f_d">
+		<language name="日本語">ROAD-F-D</language>
+	</row>
+	<row id="msg_seq_road_snow_d">
+		<language name="日本語">ROAD-SNOW-D</language>
+	</row>
+	<row id="msg_seq_road_bza_d">
+		<language name="日本語">ROAD-BZA-D</language>
+	</row>
+	<row id="msg_seq_opening">
+		<language name="日本語">OPENING</language>
+	</row>
+	<row id="msg_seq_tv_housou">
+		<language name="日本語">TV-HOUSOU</language>
+	</row>
+	<row id="msg_seq_town05_d">
+		<language name="日本語">TOWN05-D</language>
+	</row>
+	<row id="msg_seq_road_bzb_d">
+		<language name="日本語">ROAD-BZB-D</language>
+	</row>
+	<row id="msg_seq_town01_n">
+		<language name="日本語">TOWN01-N</language>
+	</row>
+	<row id="msg_seq_town02_n">
+		<language name="日本語">TOWN02-N</language>
+	</row>
+	<row id="msg_seq_town03_n">
+		<language name="日本語">TOWN03-N</language>
+	</row>
+	<row id="msg_seq_town04_n">
+		<language name="日本語">TOWN04-N</language>
+	</row>
+	<row id="msg_seq_town06_n">
+		<language name="日本語">TOWN06-N</language>
+	</row>
+	<row id="msg_seq_town07_n">
+		<language name="日本語">TOWN07-N</language>
+	</row>
+	<row id="msg_seq_city01_n">
+		<language name="日本語">CITY01-N</language>
+	</row>
+	<row id="msg_seq_city02_n">
+		<language name="日本語">CITY02-N</language>
+	</row>
+	<row id="msg_seq_city03_n">
+		<language name="日本語">CITY03-N</language>
+	</row>
+	<row id="msg_seq_city04_n">
+		<language name="日本語">CITY04-N</language>
+	</row>
+	<row id="msg_seq_city05_n">
+		<language name="日本語">CITY05-N</language>
+	</row>
+	<row id="msg_seq_city06_n">
+		<language name="日本語">CITY06-N</language>
+	</row>
+	<row id="msg_seq_city07_n">
+		<language name="日本語">CITY07-N</language>
+	</row>
+	<row id="msg_seq_city08_n">
+		<language name="日本語">CITY08-N</language>
+	</row>
+	<row id="msg_seq_city09_n">
+		<language name="日本語">CITY09-N</language>
+	</row>
+	<row id="msg_seq_city10_n">
+		<language name="日本語">CITY10-N</language>
+	</row>
+	<row id="msg_seq_city11_n">
+		<language name="日本語">CITY11-N</language>
+	</row>
+	<row id="msg_seq_road_a_n">
+		<language name="日本語">ROAD-A-N</language>
+	</row>
+	<row id="msg_seq_road_b_n">
+		<language name="日本語">ROAD-B-N</language>
+	</row>
+	<row id="msg_seq_road_c_n">
+		<language name="日本語">ROAD-C-N</language>
+	</row>
+	<row id="msg_seq_road_d_n">
+		<language name="日本語">ROAD-D-N</language>
+	</row>
+	<row id="msg_seq_road_e_n">
+		<language name="日本語">ROAD-E-N</language>
+	</row>
+	<row id="msg_seq_road_f_n">
+		<language name="日本語">ROAD-F-N</language>
+	</row>
+	<row id="msg_seq_road_snow_n">
+		<language name="日本語">ROAD-SNOW-N</language>
+	</row>
+	<row id="msg_seq_road_bza_n">
+		<language name="日本語">ROAD-BZA-N</language>
+	</row>
+	<row id="msg_seq_town05_n">
+		<language name="日本語">TOWN05-N</language>
+	</row>
+	<row id="msg_seq_road_bzb_n">
+		<language name="日本語">ROAD-BZB-N</language>
+	</row>
+	<row id="msg_seq_tankou">
+		<language name="日本語">TANKOU</language>
+	</row>
+	<row id="msg_seq_hatanige">
+		<language name="日本語">HATANIGE</language>
+	</row>
+	<row id="msg_seq_d_01">
+		<language name="日本語">D-01</language>
+	</row>
+	<row id="msg_seq_d_02">
+		<language name="日本語">D-02</language>
+	</row>
+	<row id="msg_seq_d_03">
+		<language name="日本語">D-03</language>
+	</row>
+	<row id="msg_seq_d_ryayhy">
+		<language name="日本語">D-RYAYHY</language>
+	</row>
+	<row id="msg_seq_d_kouen">
+		<language name="日本語">D-KOUEN</language>
+	</row>
+	<row id="msg_seq_d_agito">
+		<language name="日本語">D-AGITO</language>
+	</row>
+	<row id="msg_seq_d_ginlobby">
+		<language name="日本語">D-GINLOBBY</language>
+	</row>
+	<row id="msg_seq_d_safari">
+		<language name="日本語">D-SAFARI</language>
+	</row>
+	<row id="msg_seq_d_lake">
+		<language name="日本語">D-LAKE</language>
+	</row>
+	<row id="msg_seq_d_mount1">
+		<language name="日本語">D-MOUNT1</language>
+	</row>
+	<row id="msg_seq_d_mount2">
+		<language name="日本語">D-MOUNT2</language>
+	</row>
+	<row id="msg_seq_d_06">
+		<language name="日本語">D-06</language>
+	</row>
+	<row id="msg_seq_d_05">
+		<language name="日本語">D-05</language>
+	</row>
+	<row id="msg_seq_d_04">
+		<language name="日本語">D-04</language>
+	</row>
+	<row id="msg_seq_d_league">
+		<language name="日本語">D-LEAGUE</language>
+	</row>
+	<row id="msg_seq_bld_dendo">
+		<language name="日本語">BLD-DENDO</language>
+	</row>
+	<row id="msg_seq_d_croad">
+		<language name="日本語">D-CROAD</language>
+	</row>
+	<row id="msg_seq_d_ice">
+		<language name="日本語">D-ICE</language>
+	</row>
+	<row id="msg_seq_d_secret">
+		<language name="日本語">D-SECRET</language>
+	</row>
+	<row id="msg_seq_d_unknown">
+		<language name="日本語">D-UNKNOWN</language>
+	</row>
+	<row id="msg_seq_pokepark">
+		<language name="日本語">POKEPARK</language>
+	</row>
+	<row id="msg_seq_d_hardmt">
+		<language name="日本語">D-HARDMT</language>
+	</row>
+	<row id="msg_seq_bld_legend">
+		<language name="日本語">BLD-LEGEND</language>
+	</row>
+	<row id="msg_seq_pc_01">
+		<language name="日本語">PC-01</language>
+	</row>
+	<row id="msg_seq_pc_02">
+		<language name="日本語">PC-02</language>
+	</row>
+	<row id="msg_seq_gym">
+		<language name="日本語">GYM</language>
+	</row>
+	<row id="msg_seq_kenkyujo">
+		<language name="日本語">KENKYUJO</language>
+	</row>
+	<row id="msg_seq_bld_con">
+		<language name="日本語">BLD-CON</language>
+	</row>
+	<row id="msg_seq_fs">
+		<language name="日本語">FS</language>
+	</row>
+	<row id="msg_seq_bld_game">
+		<language name="日本語">BLD-GAME</language>
+	</row>
+	<row id="msg_seq_bf_towwer">
+		<language name="日本語">BF-TOWWER</language>
+	</row>
+	<row id="msg_seq_bld_tv">
+		<language name="日本語">BLD-TV</language>
+	</row>
+	<row id="msg_seq_the_event04">
+		<language name="日本語">THE-EVENT04</language>
+	</row>
+	<row id="msg_seq_fue">
+		<language name="日本語">FUE</language>
+	</row>
+	<row id="msg_seq_aus">
+		<language name="日本語">AUS</language>
+	</row>
+	<row id="msg_seq_bld_bld_gtc">
+		<language name="日本語">BLD-BLD-GTC</language>
+	</row>
+	<row id="msg_seq_opening2">
+		<language name="日本語">OPENING2</language>
+	</row>
+	<row id="msg_seq_bf_fact">
+		<language name="日本語">BF-FACT</language>
+	</row>
+	<row id="msg_seq_eye_boy">
+		<language name="日本語">EYE-BOY</language>
+	</row>
+	<row id="msg_seq_eye_kid">
+		<language name="日本語">EYE-KID</language>
+	</row>
+	<row id="msg_seq_eye_fight">
+		<language name="日本語">EYE-FIGHT</language>
+	</row>
+	<row id="msg_seq_eye_ginga">
+		<language name="日本語">EYE-GINGA</language>
+	</row>
+	<row id="msg_seq_eye_lady">
+		<language name="日本語">EYE-LADY</language>
+	</row>
+	<row id="msg_seq_eye_mount">
+		<language name="日本語">EYE-MOUNT</language>
+	</row>
+	<row id="msg_seq_eye_rich">
+		<language name="日本語">EYE-RICH</language>
+	</row>
+	<row id="msg_seq_eye_enka">
+		<language name="日本語">EYE-ENKA</language>
+	</row>
+	<row id="msg_seq_eye_mys">
+		<language name="日本語">EYE-MYS</language>
+	</row>
+	<row id="msg_seq_eye_elite">
+		<language name="日本語">EYE-ELITE</language>
+	</row>
+	<row id="msg_seq_eye_girl">
+		<language name="日本語">EYE-GIRL</language>
+	</row>
+	<row id="msg_seq_eye_sport">
+		<language name="日本語">EYE-SPORT</language>
+	</row>
+	<row id="msg_seq_eye_fun">
+		<language name="日本語">EYE-FUN</language>
+	</row>
+	<row id="msg_seq_eye_tenno">
+		<language name="日本語">EYE-TENNO</language>
+	</row>
+	<row id="msg_seq_eye_champ">
+		<language name="日本語">EYE-CHAMP</language>
+	</row>
+	<row id="msg_seq_fight0101">
+		<language name="日本語">FIGHT0101</language>
+	</row>
+	<row id="msg_seq_ba_poke">
+		<language name="日本語">BA-POKE</language>
+	</row>
+	<row id="msg_seq_ba_gym">
+		<language name="日本語">BA-GYM</language>
+	</row>
+	<row id="msg_seq_ba_dpoke1">
+		<language name="日本語">BA-DPOKE1</language>
+	</row>
+	<row id="msg_seq_ba_train">
+		<language name="日本語">BA-TRAIN</language>
+	</row>
+	<row id="msg_seq_ba_akagi">
+		<language name="日本語">BA-AKAGI</language>
+	</row>
+	<row id="msg_seq_ba_dpoke2">
+		<language name="日本語">BA-DPOKE2</language>
+	</row>
+	<row id="msg_seq_ba_chanp">
+		<language name="日本語">BA-CHANP</language>
+	</row>
+	<row id="msg_seq_ba_ginga">
+		<language name="日本語">BA-GINGA</language>
+	</row>
+	<row id="msg_seq_ba_rival">
+		<language name="日本語">BA-RIVAL</language>
+	</row>
+	<row id="msg_seq_ba_secret1">
+		<language name="日本語">BA-SECRET1</language>
+	</row>
+	<row id="msg_seq_ba_secret2">
+		<language name="日本語">BA-SECRET2</language>
+	</row>
+	<row id="msg_seq_winpoke">
+		<language name="日本語">WINPOKE</language>
+	</row>
+	<row id="msg_seq_wintrain">
+		<language name="日本語">WINTRAIN</language>
+	</row>
+	<row id="msg_seq_wintgym">
+		<language name="日本語">WINTGYM</language>
+	</row>
+	<row id="msg_seq_winchamp">
+		<language name="日本語">WINCHAMP</language>
+	</row>
+	<row id="msg_seq_winginga">
+		<language name="日本語">WINGINGA</language>
+	</row>
+	<row id="msg_seq_winakagi">
+		<language name="日本語">WINAKAGI</language>
+	</row>
+	<row id="msg_seq_wintenno">
+		<language name="日本語">WINTENNO</language>
+	</row>
+	<row id="msg_seq_ba_ginga3">
+		<language name="日本語">BA-GINGA3</language>
+	</row>
+	<row id="msg_seq_con_test">
+		<language name="日本語">CON-TEST</language>
+	</row>
+	<row id="msg_seq_ba_tenno">
+		<language name="日本語">BA-TENNO</language>
+	</row>
+	<row id="msg_seq_ba_tower">
+		<language name="日本語">BA-TOWER</language>
+	</row>
+	<row id="msg_seq_tsureteke">
+		<language name="日本語">TSURETEKE</language>
+	</row>
+	<row id="msg_seq_the_riv">
+		<language name="日本語">THE-RIV</language>
+	</row>
+	<row id="msg_seq_the_event01">
+		<language name="日本語">THE-EVENT01</language>
+	</row>
+	<row id="msg_seq_shinka">
+		<language name="日本語">SHINKA</language>
+	</row>
+	<row id="msg_seq_the_boy">
+		<language name="日本語">THE-BOY</language>
+	</row>
+	<row id="msg_seq_the_girl">
+		<language name="日本語">THE-GIRL</language>
+	</row>
+	<row id="msg_seq_the_event02">
+		<language name="日本語">THE-EVENT02</language>
+	</row>
+	<row id="msg_seq_the_event03">
+		<language name="日本語">THE-EVENT03</language>
+	</row>
+	<row id="msg_seq_the_event05">
+		<language name="日本語">THE-EVENT05</language>
+	</row>
+	<row id="msg_seq_the_akagi">
+		<language name="日本語">THE-AKAGI</language>
+	</row>
+	<row id="msg_seq_ev_dendo1">
+		<language name="日本語">EV-DENDO1</language>
+	</row>
+	<row id="msg_seq_ev_legend">
+		<language name="日本語">EV-LEGEND</language>
+	</row>
+	<row id="msg_seq_kusagasa">
+		<language name="日本語">KUSAGASA</language>
+	</row>
+	<row id="msg_seq_naminori">
+		<language name="日本語">NAMINORI</language>
+	</row>
+	<row id="msg_seq_bicycle">
+		<language name="日本語">BICYCLE</language>
+	</row>
+	<row id="msg_seq_gonin">
+		<language name="日本語">GONIN</language>
+	</row>
+	<row id="msg_seq_tv_end">
+		<language name="日本語">TV-END</language>
+	</row>
+	<row id="msg_seq_fanfa1">
+		<language name="日本語">FANFA1</language>
+	</row>
+	<row id="msg_seq_fanfa5">
+		<language name="日本語">FANFA5</language>
+	</row>
+	<row id="msg_seq_fanfa3">
+		<language name="日本語">FANFA3</language>
+	</row>
+	<row id="msg_seq_fanfa4">
+		<language name="日本語">FANFA4</language>
+	</row>
+	<row id="msg_seq_fanfa6">
+		<language name="日本語">FANFA6</language>
+	</row>
+	<row id="msg_seq_fanfa2">
+		<language name="日本語">FANFA2</language>
+	</row>
+	<row id="msg_seq_badge">
+		<language name="日本語">BADGE</language>
+	</row>
+	<row id="msg_seq_pocketch">
+		<language name="日本語">POCKETCH</language>
+	</row>
+	<row id="msg_seq_waza">
+		<language name="日本語">WAZA</language>
+	</row>
+	<row id="msg_seq_acce">
+		<language name="日本語">ACCE</language>
+	</row>
+	<row id="msg_seq_wasure">
+		<language name="日本語">WASURE</language>
+	</row>
+	<row id="msg_seq_asa">
+		<language name="日本語">ASA</language>
+	</row>
+	<row id="msg_seq_kinomi">
+		<language name="日本語">KINOMI</language>
+	</row>
+	<row id="msg_seq_report">
+		<language name="日本語">REPORT</language>
+	</row>
+	<row id="msg_seq_co_dress">
+		<language name="日本語">CO-DRESS</language>
+	</row>
+	<row id="msg_seq_koukan">
+		<language name="日本語">KOUKAN</language>
+	</row>
+	<row id="msg_seq_bld_ev_dendo2">
+		<language name="日本語">BLD-EV-DENDO2</language>
+	</row>
+	<row id="msg_seq_title00">
+		<language name="日本語">TITLE00</language>
+	</row>
+	<row id="msg_seq_title01">
+		<language name="日本語">TITLE01</language>
+	</row>
+	<row id="msg_seq_present">
+		<language name="日本語">PRESENT</language>
+	</row>
+	<row id="msg_seq_wifilobby">
+		<language name="日本語">WIFILOBBY</language>
+	</row>
+	<row id="msg_seq_co_kawai">
+		<language name="日本語">CO-KAWAI</language>
+	</row>
+	<row id="msg_seq_co_kashi">
+		<language name="日本語">CO-KASHI</language>
+	</row>
+	<row id="msg_seq_co_utsuk">
+		<language name="日本語">CO-UTSUK</language>
+	</row>
+	<row id="msg_seq_co_takuma">
+		<language name="日本語">CO-TAKUMA</language>
+	</row>
+	<row id="msg_seq_co_kakko">
+		<language name="日本語">CO-KAKKO</language>
+	</row>
+	<row id="msg_seq_co_kekka">
+		<language name="日本語">CO-KEKKA</language>
+	</row>
+	<row id="msg_seq_co_fanfa">
+		<language name="日本語">CO-FANFA</language>
+	</row>
+	<row id="msg_seq_kinomi1">
+		<language name="日本語">KINOMI1</language>
+	</row>
+	<row id="msg_seq_slot_atari">
+		<language name="日本語">SLOT-ATARI</language>
+	</row>
+	<row id="msg_seq_slot_ooatari">
+		<language name="日本語">SLOT-OOATARI</language>
+	</row>
+	<row id="msg_seq_bld_ending">
+		<language name="日本語">BLD-ENDING</language>
+	</row>
+	<row id="msg_seq_kinomi2">
+		<language name="日本語">KINOMI2</language>
+	</row>
+	<row id="msg_seq_slot">
+		<language name="日本語">SLOT</language>
+	</row>
+	<row id="msg_seq_pl_bicycle">
+		<language name="日本語">PL-BICYCLE</language>
+	</row>
+	<row id="msg_seq_pl_d_giratina">
+		<language name="日本語">PL-D-GIRATINA</language>
+	</row>
+	<row id="msg_seq_pl_bf_roulette">
+		<language name="日本語">PL-BF-ROULETTE</language>
+	</row>
+	<row id="msg_seq_pl_bf_stage">
+		<language name="日本語">PL-BF-STAGE</language>
+	</row>
+	<row id="msg_seq_pl_bf_castle">
+		<language name="日本語">PL-BF-CASTLE</language>
+	</row>
+	<row id="msg_seq_pl_bf_castle02">
+		<language name="日本語">PL-BF-CASTLE02</language>
+	</row>
+	<row id="msg_seq_pl_bf_factory">
+		<language name="日本語">PL-BF-FACTORY</language>
+	</row>
+	<row id="msg_seq_pl_wifitower">
+		<language name="日本語">PL-WIFITOWER</language>
+	</row>
+	<row id="msg_seq_pl_piano">
+		<language name="日本語">PL-PIANO</language>
+	</row>
+	<row id="msg_seq_pl_audio">
+		<language name="日本語">PL-AUDIO</language>
+	</row>
+	<row id="msg_seq_pl_eyebrain">
+		<language name="日本語">PL-EYEBRAIN</language>
+	</row>
+	<row id="msg_seq_pl_handsome">
+		<language name="日本語">PL-HANDSOME</language>
+	</row>
+	<row id="msg_seq_pl_ba_gira">
+		<language name="日本語">PL-BA-GIRA</language>
+	</row>
+	<row id="msg_seq_pl_ba_brain">
+		<language name="日本語">PL-BA-BRAIN</language>
+	</row>
+	<row id="msg_seq_pl_winbrain">
+		<language name="日本語">PL-WINBRAIN</language>
+	</row>
+	<row id="msg_seq_pl_ba_regi">
+		<language name="日本語">PL-BA-REGI</language>
+	</row>
+	<row id="msg_seq_pl_mtkakko">
+		<language name="日本語">PL-MTKAKKO</language>
+	</row>
+	<row id="msg_seq_pl_mtkashi">
+		<language name="日本語">PL-MTKASHI</language>
+	</row>
+	<row id="msg_seq_pl_mtkawa">
+		<language name="日本語">PL-MTKAWA</language>
+	</row>
+	<row id="msg_seq_pl_mttakma">
+		<language name="日本語">PL-MTTAKMA</language>
+	</row>
+	<row id="msg_seq_pl_mtutsuk">
+		<language name="日本語">PL-MTUTSUK</language>
+	</row>
+	<row id="msg_seq_pl_guruguru">
+		<language name="日本語">PL-GURUGURU</language>
+	</row>
+	<row id="msg_seq_pl_wifigame">
+		<language name="日本語">PL-WIFIGAME</language>
+	</row>
+	<row id="msg_seq_pl_wifiunion">
+		<language name="日本語">PL-WIFIUNION</language>
+	</row>
+	<row id="msg_seq_pl_wifiparade">
+		<language name="日本語">PL-WIFIPARADE</language>
+	</row>
+	<row id="msg_seq_pl_ev_gira">
+		<language name="日本語">PL-EV-GIRA</language>
+	</row>
+	<row id="msg_seq_pl_ev_gira2">
+		<language name="日本語">PL-EV-GIRA2</language>
+	</row>
+	<row id="msg_seq_pl_pthaifu">
+		<language name="日本語">PL-PTHAIFU</language>
+	</row>
+	<row id="msg_seq_pl_dmy10">
+		<language name="日本語">PL-DMY10</language>
+	</row>
+	<row id="msg_seq_pl_town02">
+		<language name="日本語">PL-TOWN02</language>
+	</row>
+	<row id="msg_seq_pl_don2">
+		<language name="日本語">PL-DON2</language>
+	</row>
+	<row id="msg_seq_pl_fro">
+		<language name="日本語">PL-FRO</language>
+	</row>
+	<row id="msg_seq_pl_pointget3">
+		<language name="日本語">PL-POINTGET3</language>
+	</row>
+	<row id="msg_seq_pl_winmini2">
+		<language name="日本語">PL-WINMINI2</language>
+	</row>
+	<row id="msg_seq_aif_field">
+		<language name="日本語">AIF-FIELD</language>
+	</row>
+	<row id="msg_seq_aif_dungeon">
+		<language name="日本語">AIF-DUNGEON</language>
+	</row>
+	<row id="msg_seq_aif_battle">
+		<language name="日本語">AIF-BATTLE</language>
+	</row>
+	<row id="msg_seq_bgm_end">
+		<language name="日本語">BGM-END</language>
+	</row>
+	<row id="msg_seq_se_pl_w012">
+		<language name="日本語">PL-W012</language>
+	</row>
+	<row id="msg_seq_se_pl_w097">
+		<language name="日本語">PL-W097</language>
+	</row>
+	<row id="msg_seq_se_pl_w460b">
+		<language name="日本語">PL-W460B</language>
+	</row>
+	<row id="msg_seq_se_pl_yuki">
+		<language name="日本語">PL-YUKI</language>
+	</row>
+	<row id="msg_seq_se_pl_ug_006">
+		<language name="日本語">PL-UG-006</language>
+	</row>
+	<row id="msg_seq_se_pl_tokei21">
+		<language name="日本語">PL-TOKEI21</language>
+	</row>
+	<row id="msg_seq_se_pl_gym01">
+		<language name="日本語">PL-GYM01</language>
+	</row>
+	<row id="msg_seq_se_pl_gym02">
+		<language name="日本語">PL-GYM02</language>
+	</row>
+	<row id="msg_seq_se_pl_kezuri">
+		<language name="日本語">PL-KEZURI</language>
+	</row>
+	<row id="msg_seq_se_pl_syu03">
+		<language name="日本語">PL-SYU03</language>
+	</row>
+	<row id="msg_seq_se_pl_call">
+		<language name="日本語">PL-CALL</language>
+	</row>
+	<row id="msg_seq_se_pl_ug_020">
+		<language name="日本語">PL-UG-020</language>
+	</row>
+	<row id="msg_seq_se_pl_w100">
+		<language name="日本語">PL-W100</language>
+	</row>
+	<row id="msg_seq_se_pl_w467109">
+		<language name="日本語">PL-W467109</language>
+	</row>
+	<row id="msg_seq_se_pl_w363">
+		<language name="日本語">PL-W363</language>
+	</row>
+	<row id="msg_seq_se_pl_bag3">
+		<language name="日本語">PL-BAG3</language>
+	</row>
+	<row id="msg_seq_se_pl_con_034">
+		<language name="日本語">PL-CON-034</language>
+	</row>
+	<row id="msg_seq_se_pl_sutya2">
+		<language name="日本語">PL-SUTYA2</language>
+	</row>
+	<row id="msg_seq_se_pl_cpget">
+		<language name="日本語">PL-CPGET</language>
+	</row>
+	<row id="msg_seq_se_pl_fire01">
+		<language name="日本語">PL-fire01</language>
+	</row>
+	<row id="msg_seq_se_pl_button">
+		<language name="日本語">PL-BUTTON</language>
+	</row>
+	<row id="msg_seq_se_pl_brec03">
+		<language name="日本語">PL-BREC03</language>
+	</row>
+	<row id="msg_seq_se_pl_brec10">
+		<language name="日本語">PL-BREC10</language>
+	</row>
+	<row id="msg_seq_se_pl_brec11">
+		<language name="日本語">PL-BREC11</language>
+	</row>
+	<row id="msg_seq_se_pl_brec11_2">
+		<language name="日本語">PL-BREC11-2</language>
+	</row>
+	<row id="msg_seq_se_pl_brec12">
+		<language name="日本語">PL-BREC12</language>
+	</row>
+	<row id="msg_seq_se_pl_brec13">
+		<language name="日本語">PL-BREC13</language>
+	</row>
+	<row id="msg_seq_se_pl_brec20">
+		<language name="日本語">PL-BREC20</language>
+	</row>
+	<row id="msg_seq_se_pl_brec21">
+		<language name="日本語">PL-BREC21</language>
+	</row>
+	<row id="msg_seq_se_pl_brec57">
+		<language name="日本語">PL-BREC57</language>
+	</row>
+	<row id="msg_seq_se_pl_brec58">
+		<language name="日本語">PL-BREC58</language>
+	</row>
+	<row id="msg_seq_se_pl_brec80">
+		<language name="日本語">PL-BREC80</language>
+	</row>
+	<row id="msg_seq_se_pl_mngm_in">
+		<language name="日本語">PL-MNGM-IN</language>
+	</row>
+	<row id="msg_seq_se_pl_mngm_out">
+		<language name="日本語">PL-MNGM-OUT</language>
+	</row>
+	<row id="msg_seq_dummy01">
+		<language name="日本語">DUMMY01</language>
+	</row>
+	<row id="msg_seq_se_pl_fcall">
+		<language name="日本語">PL-FCALL</language>
+	</row>
+	<row id="msg_seq_se_pl_nomi02">
+		<language name="日本語">PL-NOMI02</language>
+	</row>
+	<row id="msg_seq_se_pl_point1">
+		<language name="日本語">PL-POINT1</language>
+	</row>
+	<row id="msg_seq_se_pl_point2">
+		<language name="日本語">PL-POINT2</language>
+	</row>
+	<row id="msg_seq_se_pl_point3">
+		<language name="日本語">PL-POINT3</language>
+	</row>
+	<row id="msg_seq_se_pl_pinpon">
+		<language name="日本語">PL-PINPON</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon05_2">
+		<language name="日本語">PL-BALLOON05-2</language>
+	</row>
+	<row id="msg_seq_se_pl_fw120">
+		<language name="日本語">PL-FW120</language>
+	</row>
+	<row id="msg_seq_se_pl_hand">
+		<language name="日本語">PL-HAND</language>
+	</row>
+	<row id="msg_seq_se_pl_kirakira">
+		<language name="日本語">PL-KIRAKIRA</language>
+	</row>
+	<row id="msg_seq_se_pl_140_2_2">
+		<language name="日本語">PL-140-2-2</language>
+	</row>
+	<row id="msg_seq_se_pl_lv_up">
+		<language name="日本語">PL-LV-UP</language>
+	</row>
+	<row id="msg_seq_se_pl_kin">
+		<language name="日本語">PL-KIN</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon01">
+		<language name="日本語">PL-BALLOON01</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon02">
+		<language name="日本語">PL-BALLOON02</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon03">
+		<language name="日本語">PL-BALLOON03</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon03_2">
+		<language name="日本語">PL-BALLOON03-2</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon04">
+		<language name="日本語">PL-BALLOON04</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon05">
+		<language name="日本語">PL-BALLOON05</language>
+	</row>
+	<row id="msg_seq_se_pl_balloon07">
+		<language name="日本語">PL-BALLOON07</language>
+	</row>
+	<row id="msg_seq_se_pl_alert3">
+		<language name="日本語">PL-ALERT3</language>
+	</row>
+	<row id="msg_seq_se_pl_alert4">
+		<language name="日本語">PL-ALERT4</language>
+	</row>
+	<row id="msg_seq_dummy02">
+		<language name="日本語">DUMMY02</language>
+	</row>
+	<row id="msg_seq_se_pl_fr02">
+		<language name="日本語">PL-FR02</language>
+	</row>
+	<row id="msg_seq_se_pl_fr03">
+		<language name="日本語">PL-FR03</language>
+	</row>
+	<row id="msg_seq_se_pl_fr04">
+		<language name="日本語">PL-FR04</language>
+	</row>
+	<row id="msg_seq_se_pl_fr05">
+		<language name="日本語">PL-FR05</language>
+	</row>
+	<row id="msg_seq_se_pl_fac01">
+		<language name="日本語">PL-FAC01</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba01_4">
+		<language name="日本語">PL-HIROBA01-4</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba01_5">
+		<language name="日本語">PL-HIROBA01-5</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba01_6">
+		<language name="日本語">PL-HIROBA01-6</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba02_4">
+		<language name="日本語">PL-HIROBA02-4</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba02_5">
+		<language name="日本語">PL-HIROBA02-5</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba02_6">
+		<language name="日本語">PL-HIROBA02-6</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba03">
+		<language name="日本語">PL-HIROBA03</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba03_2">
+		<language name="日本語">PL-HIROBA03-2</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba03_3">
+		<language name="日本語">PL-HIROBA03-3</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba05">
+		<language name="日本語">PL-HIROBA05</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba05_2">
+		<language name="日本語">PL-HIROBA05-2</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba05_3">
+		<language name="日本語">PL-HIROBA05-3</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba20">
+		<language name="日本語">PL-HIROBA20</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba30">
+		<language name="日本語">PL-HIROBA30</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba70">
+		<language name="日本語">PL-HIROBA70</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba70_2">
+		<language name="日本語">PL-HIROBA70-2</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba70_3">
+		<language name="日本語">PL-HIROBA70-3</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba80">
+		<language name="日本語">PL-HIROBA80</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba85">
+		<language name="日本語">PL-HIROBA85</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba90">
+		<language name="日本語">PL-HIROBA90</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba100">
+		<language name="日本語">PL-HIROBA100</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba100_2">
+		<language name="日本語">PL-HIROBA100-2</language>
+	</row>
+	<row id="msg_seq_se_pl_hiroba100_3">
+		<language name="日本語">PL-HIROBA100-3</language>
+	</row>
+	<row id="msg_seq_se_pl_140">
+		<language name="日本語">PL-140</language>
+	</row>
+	<row id="msg_seq_se_pl_140_2">
+		<language name="日本語">PL-140-2</language>
+	</row>
+	<row id="msg_seq_se_pl_140_3">
+		<language name="日本語">PL-140-3</language>
+	</row>
+	<row id="msg_seq_se_pl_w030">
+		<language name="日本語">PL-W030</language>
+	</row>
+	<row id="msg_seq_se_pl_w030_2">
+		<language name="日本語">PL-W030-2</language>
+	</row>
+	<row id="msg_seq_se_pl_w030_3">
+		<language name="日本語">PL-W030-3</language>
+	</row>
+	<row id="msg_seq_se_pl_w019">
+		<language name="日本語">PL-W019</language>
+	</row>
+	<row id="msg_seq_se_pl_w019_2">
+		<language name="日本語">PL-W019-2</language>
+	</row>
+	<row id="msg_seq_se_pl_w019_3">
+		<language name="日本語">PL-W019-3</language>
+	</row>
+	<row id="msg_seq_se_pl_eff02">
+		<language name="日本語">PL-EFF02</language>
+	</row>
+	<row id="msg_seq_se_pl_eff03">
+		<language name="日本語">PL-EFF03</language>
+	</row>
+	<row id="msg_seq_se_pl_eff03_3">
+		<language name="日本語">PL-EFF03-3</language>
+	</row>
+	<row id="msg_seq_se_pl_eff03_4">
+		<language name="日本語">PL-EFF03-4</language>
+	</row>
+	<row id="msg_seq_se_pl_eff04">
+		<language name="日本語">PL-EFF04</language>
+	</row>
+	<row id="msg_seq_se_pl_dansa5">
+		<language name="日本語">PL-DANSA5</language>
+	</row>
+	<row id="msg_seq_se_pl_sutya">
+		<language name="日本語">PL-SUTYA</language>
+	</row>
+	<row id="msg_seq_se_pl_float01">
+		<language name="日本語">PL-FLOAT01</language>
+	</row>
+	<row id="msg_seq_se_pl_float02">
+		<language name="日本語">PL-FLOAT02</language>
+	</row>
+	<row id="msg_seq_se_pl_float03">
+		<language name="日本語">PL-FLOAT03</language>
+	</row>
+	<row id="msg_seq_se_pl_float13">
+		<language name="日本語">PL-FLOAT13</language>
+	</row>
+	<row id="msg_seq_se_pl_float04">
+		<language name="日本語">PL-FLOAT04</language>
+	</row>
+	<row id="msg_seq_se_pl_float05">
+		<language name="日本語">PL-FLOAT05</language>
+	</row>
+	<row id="msg_seq_se_pl_float06">
+		<language name="日本語">PL-FLOAT06</language>
+	</row>
+	<row id="msg_seq_se_pl_float07">
+		<language name="日本語">PL-FLOAT07</language>
+	</row>
+	<row id="msg_seq_se_pl_float10">
+		<language name="日本語">PL-FLOAT10</language>
+	</row>
+	<row id="msg_seq_se_pl_float11">
+		<language name="日本語">PL-FLOAT11</language>
+	</row>
+	<row id="msg_seq_se_pl_float12">
+		<language name="日本語">PL-FLOAT12</language>
+	</row>
+	<row id="msg_seq_se_pl_fire">
+		<language name="日本語">PL-FIRE</language>
+	</row>
+	<row id="msg_seq_se_pl_water">
+		<language name="日本語">PL-WATER</language>
+	</row>
+	<row id="msg_seq_se_pl_electro">
+		<language name="日本語">PL-ELECTRO</language>
+	</row>
+	<row id="msg_seq_se_pl_whip">
+		<language name="日本語">PL-WHIP</language>
+	</row>
+	<row id="msg_seq_se_pl_kirakira4">
+		<language name="日本語">PL-KIRAKIRA4</language>
+	</row>
+	<row id="msg_seq_se_pl_timer01">
+		<language name="日本語">PL-TIMER01</language>
+	</row>
+	<row id="msg_seq_se_pl_timer02">
+		<language name="日本語">PL-TIMER02</language>
+	</row>
+	<row id="msg_seq_se_pl_timer03">
+		<language name="日本語">PL-TIMER03</language>
+	</row>
+	<row id="msg_seq_se_pl_timer04">
+		<language name="日本語">PL-TIMER04</language>
+	</row>
+	<row id="msg_seq_se_pl_pinpon2">
+		<language name="日本語">PL-PINPON2</language>
+	</row>
+	<row id="msg_seq_se_pl_tokei3">
+		<language name="日本語">PL-TOKEI3</language>
+	</row>
+	<row id="msg_seq_se_pl_ftimer03">
+		<language name="日本語">PL-FTIMER03</language>
+	</row>
+	<row id="msg_seq_se_pl_stamp">
+		<language name="日本語">PL-STAMP</language>
+	</row>
+	<row id="msg_seq_se_pl_w467">
+		<language name="日本語">PL-W467</language>
+	</row>
+	<row id="msg_seq_se_pl_w060">
+		<language name="日本語">PL-W060</language>
+	</row>
+	<row id="msg_seq_se_pl_w082c">
+		<language name="日本語">PL-W082C</language>
+	</row>
+	<row id="msg_seq_se_pl_w392">
+		<language name="日本語">PL-W392</language>
+	</row>
+	<row id="msg_seq_se_pl_kusari">
+		<language name="日本語">PL-KUSARI</language>
+	</row>
+	<row id="msg_seq_se_pl_fw089">
+		<language name="日本語">PL-FW089</language>
+	</row>
+	<row id="msg_seq_se_pl_fw089b">
+		<language name="日本語">PL-FW089B</language>
+	</row>
+	<row id="msg_seq_se_pl_fw089_2">
+		<language name="日本語">PL-FW089-2</language>
+	</row>
+	<row id="msg_seq_se_pl_syuwa3">
+		<language name="日本語">PL-SYUWA3</language>
+	</row>
+	<row id="msg_seq_se_pl_meki">
+		<language name="日本語">PL-MEKI</language>
+	</row>
+	<row id="msg_seq_se_pl_meki2">
+		<language name="日本語">PL-MEKI2</language>
+	</row>
+	<row id="msg_seq_se_pl_jump2">
+		<language name="日本語">PL-JUMP2</language>
+	</row>
+	<row id="msg_seq_se_pl_fw463">
+		<language name="日本語">PL-FW463</language>
+	</row>
+	<row id="msg_seq_se_pl_gira">
+		<language name="日本語">PL-GIRA</language>
+	</row>
+	<row id="msg_seq_se_pl_syuwa">
+		<language name="日本語">PL-SYUWA</language>
+	</row>
+	<row id="msg_seq_se_pl_syuwa2">
+		<language name="日本語">PL-SYUWA2</language>
+	</row>
+	<row id="msg_seq_se_pl_door_open5">
+		<language name="日本語">PL-DOOR-OPEN5</language>
+	</row>
+	<row id="msg_seq_se_pl_coin">
+		<language name="日本語">PL-COIN</language>
+	</row>
+	<row id="msg_seq_se_pl_eff05">
+		<language name="日本語">PL-EFF05</language>
+	</row>
+	<row id="msg_seq_se_pl_w436">
+		<language name="日本語">PL-W436</language>
+	</row>
+	<row id="msg_seq_se_pl_bowabowa">
+		<language name="日本語">PL-BOWABOWA</language>
+	</row>
+	<row id="msg_seq_se_pl_lo_on">
+		<language name="日本語">PL-LO-ON</language>
+	</row>
+	<row id="msg_seq_se_pl_alert">
+		<language name="日本語">PL-ALERT</language>
+	</row>
+	<row id="msg_seq_se_pl_warp">
+		<language name="日本語">PL-WARP</language>
+	</row>
+	<row id="msg_seq_se_dp_select">
+		<language name="日本語">DP-SELECT</language>
+	</row>
+	<row id="msg_seq_se_dp_decide">
+		<language name="日本語">DP-DECIDE</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy1">
+		<language name="日本語">DP-DUMMY1</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy2">
+		<language name="日本語">DP-DUMMY2</language>
+	</row>
+	<row id="msg_seq_se_dp_select78">
+		<language name="日本語">DP-SELECT78</language>
+	</row>
+	<row id="msg_seq_se_dp_select5">
+		<language name="日本語">DP-SELECT5</language>
+	</row>
+	<row id="msg_seq_se_dp_piroriro">
+		<language name="日本語">DP-PIRORIRO</language>
+	</row>
+	<row id="msg_seq_se_dp_piroriro2">
+		<language name="日本語">DP-PIRORIRO2</language>
+	</row>
+	<row id="msg_seq_se_dp_button9">
+		<language name="日本語">DP-BUTTON9</language>
+	</row>
+	<row id="msg_seq_se_dp_button3">
+		<language name="日本語">DP-BUTTON3</language>
+	</row>
+	<row id="msg_seq_se_dp_kon">
+		<language name="日本語">DP-KON</language>
+	</row>
+	<row id="msg_seq_se_dp_kon2">
+		<language name="日本語">DP-KON2</language>
+	</row>
+	<row id="msg_seq_se_dp_kon3">
+		<language name="日本語">DP-KON3</language>
+	</row>
+	<row id="msg_seq_se_dp_kon4">
+		<language name="日本語">DP-KON4</language>
+	</row>
+	<row id="msg_seq_se_dp_box01">
+		<language name="日本語">DP-BOX01</language>
+	</row>
+	<row id="msg_seq_se_dp_box02">
+		<language name="日本語">DP-BOX02</language>
+	</row>
+	<row id="msg_seq_se_dp_kaifuku">
+		<language name="日本語">DP-KAIFUKU</language>
+	</row>
+	<row id="msg_seq_se_dp_zukan02">
+		<language name="日本語">DP-ZUKAN02</language>
+	</row>
+	<row id="msg_seq_se_dp_open2">
+		<language name="日本語">DP-OPEN2</language>
+	</row>
+	<row id="msg_seq_se_dp_close2">
+		<language name="日本語">DP-CLOSE2</language>
+	</row>
+	<row id="msg_seq_se_dp_025">
+		<language name="日本語">DP-025</language>
+	</row>
+	<row id="msg_seq_se_dp_pinpon">
+		<language name="日本語">DP-PINPON</language>
+	</row>
+	<row id="msg_seq_se_dp_custom06">
+		<language name="日本語">DP-CUSTOM06</language>
+	</row>
+	<row id="msg_seq_se_dp_box03">
+		<language name="日本語">DP-BOX03</language>
+	</row>
+	<row id="msg_seq_se_dp_start">
+		<language name="日本語">DP-START</language>
+	</row>
+	<row id="msg_seq_se_dp_select_slot">
+		<language name="日本語">DP-SELECT-SLOT</language>
+	</row>
+	<row id="msg_seq_se_dp_card10">
+		<language name="日本語">DP-CARD10</language>
+	</row>
+	<row id="msg_seq_se_dp_kati">
+		<language name="日本語">DP-KATI</language>
+	</row>
+	<row id="msg_seq_se_dp_con_014">
+		<language name="日本語">DP-CON-014</language>
+	</row>
+	<row id="msg_seq_se_dp_w025">
+		<language name="日本語">DP-W025</language>
+	</row>
+	<row id="msg_seq_se_dp_w060c">
+		<language name="日本語">DP-W060C</language>
+	</row>
+	<row id="msg_seq_se_dp_w062">
+		<language name="日本語">DP-W062</language>
+	</row>
+	<row id="msg_seq_se_dp_w080">
+		<language name="日本語">DP-W080</language>
+	</row>
+	<row id="msg_seq_se_dp_win_open">
+		<language name="日本語">DP-WIN-OPEN</language>
+	</row>
+	<row id="msg_seq_se_dp_bowa">
+		<language name="日本語">DP-BOWA</language>
+	</row>
+	<row id="msg_seq_se_dp_z_search">
+		<language name="日本語">DP-Z-SEARCH</language>
+	</row>
+	<row id="msg_seq_se_dp_card2">
+		<language name="日本語">DP-CARD2</language>
+	</row>
+	<row id="msg_seq_se_dp_wall_hit">
+		<language name="日本語">DP-WALL-HIT</language>
+	</row>
+	<row id="msg_seq_se_dp_wall_hit2">
+		<language name="日本語">DP-WALL-HIT2</language>
+	</row>
+	<row id="msg_seq_se_dp_kaidan2">
+		<language name="日本語">DP-KAIDAN2</language>
+	</row>
+	<row id="msg_seq_se_dp_door">
+		<language name="日本語">DP-DOOR</language>
+	</row>
+	<row id="msg_seq_se_dp_door_open">
+		<language name="日本語">DP-DOOR-OPEN</language>
+	</row>
+	<row id="msg_seq_se_dp_door_close">
+		<language name="日本語">DP-DOOR-CLOSE</language>
+	</row>
+	<row id="msg_seq_se_dp_door_close2">
+		<language name="日本語">DP-DOOR-CLOSE2</language>
+	</row>
+	<row id="msg_seq_se_dp_door10">
+		<language name="日本語">DP-DOOR10</language>
+	</row>
+	<row id="msg_seq_se_dp_win_open2">
+		<language name="日本語">DP-WIN-OPEN2</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy3">
+		<language name="日本語">DP-DUMMY3</language>
+	</row>
+	<row id="msg_seq_se_dp_dansa">
+		<language name="日本語">DP-DANSA</language>
+	</row>
+	<row id="msg_seq_se_dp_pc_on">
+		<language name="日本語">DP-PC-ON</language>
+	</row>
+	<row id="msg_seq_se_dp_pc_login">
+		<language name="日本語">DP-PC-LOGIN</language>
+	</row>
+	<row id="msg_seq_se_dp_pc_logoff">
+		<language name="日本語">DP-PC-LOGOFF</language>
+	</row>
+	<row id="msg_seq_se_dp_dendou">
+		<language name="日本語">DP-DENDOU</language>
+	</row>
+	<row id="msg_seq_se_dp_doku2">
+		<language name="日本語">DP-DOKU2</language>
+	</row>
+	<row id="msg_seq_se_dp_elebeta">
+		<language name="日本語">DP-ELEBETA</language>
+	</row>
+	<row id="msg_seq_se_dp_elebeta2">
+		<language name="日本語">DP-ELEBETA2</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy4">
+		<language name="日本語">DP-DUMMY4</language>
+	</row>
+	<row id="msg_seq_se_dp_elebeta4">
+		<language name="日本語">DP-ELEBETA4</language>
+	</row>
+	<row id="msg_seq_se_dp_esuka">
+		<language name="日本語">DP-ESUKA</language>
+	</row>
+	<row id="msg_seq_se_dp_tv_noise">
+		<language name="日本語">DP-TV-NOISE</language>
+	</row>
+	<row id="msg_seq_se_dp_jihanki">
+		<language name="日本語">DP-JIHANKI</language>
+	</row>
+	<row id="msg_seq_se_dp_jitensya">
+		<language name="日本語">DP-JITENSYA</language>
+	</row>
+	<row id="msg_seq_se_dp_gear">
+		<language name="日本語">DP-GEAR</language>
+	</row>
+	<row id="msg_seq_se_dp_ki_gasyan">
+		<language name="日本語">DP-KI-GASYAN</language>
+	</row>
+	<row id="msg_seq_se_dp_save">
+		<language name="日本語">DP-SAVE</language>
+	</row>
+	<row id="msg_seq_se_dp_gear2">
+		<language name="日本語">DP-GEAR2</language>
+	</row>
+	<row id="msg_seq_se_dp_select8">
+		<language name="日本語">DP-SELECT8</language>
+	</row>
+	<row id="msg_seq_se_dp_doriru">
+		<language name="日本語">DP-DORIRU</language>
+	</row>
+	<row id="msg_seq_se_dp_yukiashi">
+		<language name="日本語">DP-YUKIASHI</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_005">
+		<language name="日本語">DP-UG-005</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_006">
+		<language name="日本語">DP-UG-006</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_007">
+		<language name="日本語">DP-UG-007</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_008">
+		<language name="日本語">DP-UG-008</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_020">
+		<language name="日本語">DP-UG-020</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_021">
+		<language name="日本語">DP-UG-021</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_022">
+		<language name="日本語">DP-UG-022</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_023">
+		<language name="日本語">DP-UG-023</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_024">
+		<language name="日本語">DP-UG-024</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_025">
+		<language name="日本語">DP-UG-025</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_026">
+		<language name="日本語">DP-UG-026</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_027">
+		<language name="日本語">DP-UG-027</language>
+	</row>
+	<row id="msg_seq_se_dp_densi15">
+		<language name="日本語">DP-DENSI15</language>
+	</row>
+	<row id="msg_seq_se_dp_densi16">
+		<language name="日本語">DP-DENSI16</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy5">
+		<language name="日本語">DP-DUMMY5</language>
+	</row>
+	<row id="msg_seq_se_dp_pyuu">
+		<language name="日本語">DP-PYUU</language>
+	</row>
+	<row id="msg_seq_se_dp_pyuu2">
+		<language name="日本語">DP-PYUU2</language>
+	</row>
+	<row id="msg_seq_se_dp_sutya">
+		<language name="日本語">DP-SUTYA</language>
+	</row>
+	<row id="msg_seq_se_dp_gyuru">
+		<language name="日本語">DP-GYURU</language>
+	</row>
+	<row id="msg_seq_se_dp_open7">
+		<language name="日本語">DP-OPEN7</language>
+	</row>
+	<row id="msg_seq_se_dp_close7">
+		<language name="日本語">DP-CLOSE7</language>
+	</row>
+	<row id="msg_seq_se_dp_zizizi">
+		<language name="日本語">DP-ZIZIZI</language>
+	</row>
+	<row id="msg_seq_se_dp_mazyo2">
+		<language name="日本語">DP-MAZYO2</language>
+	</row>
+	<row id="msg_seq_se_dp_mazyo4">
+		<language name="日本語">DP-MAZYO4</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_004">
+		<language name="日本語">DP-BAG-004</language>
+	</row>
+	<row id="msg_seq_se_dp_t_ame">
+		<language name="日本語">DP-T-AME</language>
+	</row>
+	<row id="msg_seq_se_dp_t_koame">
+		<language name="日本語">DP-T-KOAME</language>
+	</row>
+	<row id="msg_seq_se_dp_t_ooame">
+		<language name="日本語">DP-T-OOAME</language>
+	</row>
+	<row id="msg_seq_se_dp_t_kami">
+		<language name="日本語">DP-T-KAMI</language>
+	</row>
+	<row id="msg_seq_se_dp_t_kami2">
+		<language name="日本語">DP-T-KAMI2</language>
+	</row>
+	<row id="msg_seq_se_dp_hamaru">
+		<language name="日本語">DP-HAMARU</language>
+	</row>
+	<row id="msg_seq_se_dp_gagaga">
+		<language name="日本語">DP-GAGAGA</language>
+	</row>
+	<row id="msg_seq_se_dp_f017">
+		<language name="日本語">DP-F017</language>
+	</row>
+	<row id="msg_seq_se_dp_foot3_0">
+		<language name="日本語">DP-FOOT3-0</language>
+	</row>
+	<row id="msg_seq_se_dp_foot3_1">
+		<language name="日本語">DP-FOOT3-1</language>
+	</row>
+	<row id="msg_seq_se_dp_con_016">
+		<language name="日本語">DP-CON-016</language>
+	</row>
+	<row id="msg_seq_se_dp_regi">
+		<language name="日本語">DP-REGI</language>
+	</row>
+	<row id="msg_seq_se_dp_con_f007">
+		<language name="日本語">DP-CON-F007</language>
+	</row>
+	<row id="msg_seq_se_dp_con_015">
+		<language name="日本語">DP-CON-015</language>
+	</row>
+	<row id="msg_seq_se_dp_sutya2">
+		<language name="日本語">DP-SUTYA2</language>
+	</row>
+	<row id="msg_seq_se_dp_fw230">
+		<language name="日本語">DP-FW230</language>
+	</row>
+	<row id="msg_seq_se_dp_fw019">
+		<language name="日本語">DP-FW019</language>
+	</row>
+	<row id="msg_seq_se_dp_fw088">
+		<language name="日本語">DP-FW088</language>
+	</row>
+	<row id="msg_seq_se_dp_fw015">
+		<language name="日本語">DP-FW015</language>
+	</row>
+	<row id="msg_seq_se_dp_fbrade">
+		<language name="日本語">DP-FBRADE</language>
+	</row>
+	<row id="msg_seq_se_dp_fw463">
+		<language name="日本語">DP-FW463</language>
+	</row>
+	<row id="msg_seq_se_dp_tele">
+		<language name="日本語">DP-TELE</language>
+	</row>
+	<row id="msg_seq_se_dp_tele2">
+		<language name="日本語">DP-TELE2</language>
+	</row>
+	<row id="msg_seq_se_dp_fw104">
+		<language name="日本語">DP-FW104</language>
+	</row>
+	<row id="msg_seq_se_dp_zupo">
+		<language name="日本語">DP-ZUPO</language>
+	</row>
+	<row id="msg_seq_se_dp_zupo2">
+		<language name="日本語">DP-ZUPO2</language>
+	</row>
+	<row id="msg_seq_se_dp_kusa">
+		<language name="日本語">DP-KUSA</language>
+	</row>
+	<row id="msg_seq_se_dp_suna">
+		<language name="日本語">DP-SUNA</language>
+	</row>
+	<row id="msg_seq_se_dp_marsh_walk">
+		<language name="日本語">DP-MARSH-WALK</language>
+	</row>
+	<row id="msg_seq_se_dp_dansa4">
+		<language name="日本語">DP-DANSA4</language>
+	</row>
+	<row id="msg_seq_se_dp_dansa5">
+		<language name="日本語">DP-DANSA5</language>
+	</row>
+	<row id="msg_seq_se_dp_f209">
+		<language name="日本語">DP-F209</language>
+	</row>
+	<row id="msg_seq_se_dp_suberu">
+		<language name="日本語">DP-SUBERU</language>
+	</row>
+	<row id="msg_seq_se_dp_fw056">
+		<language name="日本語">DP-FW056</language>
+	</row>
+	<row id="msg_seq_se_dp_fw291">
+		<language name="日本語">DP-FW291</language>
+	</row>
+	<row id="msg_seq_se_dp_fw089">
+		<language name="日本語">DP-FW089</language>
+	</row>
+	<row id="msg_seq_se_dp_fw452">
+		<language name="日本語">DP-FW452</language>
+	</row>
+	<row id="msg_seq_se_dp_fw466">
+		<language name="日本語">DP-FW466</language>
+	</row>
+	<row id="msg_seq_se_dp_f007">
+		<language name="日本語">DP-F007</language>
+	</row>
+	<row id="msg_seq_se_dp_fawa">
+		<language name="日本語">DP-FAWA</language>
+	</row>
+	<row id="msg_seq_se_dp_fpasa2">
+		<language name="日本語">DP-FPASA2</language>
+	</row>
+	<row id="msg_seq_se_dp_fw367">
+		<language name="日本語">DP-FW367</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_003">
+		<language name="日本語">DP-POKETCH-003</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy6">
+		<language name="日本語">DP-DUMMY6</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy7">
+		<language name="日本語">DP-DUMMY7</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_006">
+		<language name="日本語">DP-POKETCH-006</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_007">
+		<language name="日本語">DP-POKETCH-007</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_009">
+		<language name="日本語">DP-POKETCH-009</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_010">
+		<language name="日本語">DP-POKETCH-010</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_011">
+		<language name="日本語">DP-POKETCH-011</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_012">
+		<language name="日本語">DP-POKETCH-012</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_013">
+		<language name="日本語">DP-POKETCH-013</language>
+	</row>
+	<row id="msg_seq_se_dp_poketch_014">
+		<language name="日本語">DP-POKETCH-014</language>
+	</row>
+	<row id="msg_seq_se_dp_beep">
+		<language name="日本語">DP-BEEP</language>
+	</row>
+	<row id="msg_seq_se_dp_densi01">
+		<language name="日本語">DP-DENSI01</language>
+	</row>
+	<row id="msg_seq_se_dp_densi02">
+		<language name="日本語">DP-DENSI02</language>
+	</row>
+	<row id="msg_seq_se_dp_densi04">
+		<language name="日本語">DP-DENSI04</language>
+	</row>
+	<row id="msg_seq_se_dp_densi05">
+		<language name="日本語">DP-DENSI05</language>
+	</row>
+	<row id="msg_seq_se_dp_densi07">
+		<language name="日本語">DP-DENSI07</language>
+	</row>
+	<row id="msg_seq_se_dp_densi08">
+		<language name="日本語">DP-DENSI08</language>
+	</row>
+	<row id="msg_seq_se_dp_densi09">
+		<language name="日本語">DP-DENSI09</language>
+	</row>
+	<row id="msg_seq_se_dp_densi10">
+		<language name="日本語">DP-DENSI10</language>
+	</row>
+	<row id="msg_seq_se_dp_densi11">
+		<language name="日本語">DP-DENSI11</language>
+	</row>
+	<row id="msg_seq_se_dp_densi12">
+		<language name="日本語">DP-DENSI12</language>
+	</row>
+	<row id="msg_seq_se_dp_kasya">
+		<language name="日本語">DP-KASYA</language>
+	</row>
+	<row id="msg_seq_se_dp_paso2">
+		<language name="日本語">DP-PASO2</language>
+	</row>
+	<row id="msg_seq_se_dp_tata">
+		<language name="日本語">DP-TATA</language>
+	</row>
+	<row id="msg_seq_se_dp_up">
+		<language name="日本語">DP-UP</language>
+	</row>
+	<row id="msg_seq_se_dp_paso">
+		<language name="日本語">DP-PASO</language>
+	</row>
+	<row id="msg_seq_se_dp_syaraan">
+		<language name="日本語">DP-SYARAAN</language>
+	</row>
+	<row id="msg_seq_se_dp_tarararan">
+		<language name="日本語">DP-TARARARAN</language>
+	</row>
+	<row id="msg_seq_se_dp_mazyo">
+		<language name="日本語">DP-MAZYO</language>
+	</row>
+	<row id="msg_seq_se_dp_mazyo3">
+		<language name="日本語">DP-MAZYO3</language>
+	</row>
+	<row id="msg_seq_se_dp_hyun">
+		<language name="日本語">DP-HYUN</language>
+	</row>
+	<row id="msg_seq_se_dp_hyun2">
+		<language name="日本語">DP-HYUN2</language>
+	</row>
+	<row id="msg_seq_se_dp_con_017">
+		<language name="日本語">DP-CON-017</language>
+	</row>
+	<row id="msg_seq_se_dp_button01">
+		<language name="日本語">DP-BUTTON01</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy8">
+		<language name="日本語">DP-DUMMY8</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy9">
+		<language name="日本語">DP-DUMMY9</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy10">
+		<language name="日本語">DP-DUMMY10</language>
+	</row>
+	<row id="msg_seq_se_dp_piko2">
+		<language name="日本語">DP-PIKO2</language>
+	</row>
+	<row id="msg_seq_se_dp_zukan01">
+		<language name="日本語">DP-ZUKAN01</language>
+	</row>
+	<row id="msg_seq_se_dp_densi06">
+		<language name="日本語">DP-DENSI06</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy11">
+		<language name="日本語">DP-DUMMY11</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy12">
+		<language name="日本語">DP-DUMMY12</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy13">
+		<language name="日本語">DP-DUMMY13</language>
+	</row>
+	<row id="msg_seq_se_dp_mekuru">
+		<language name="日本語">DP-MEKURU</language>
+	</row>
+	<row id="msg_seq_se_dp_mekuru2">
+		<language name="日本語">DP-MEKURU2</language>
+	</row>
+	<row id="msg_seq_se_dp_mekuru3">
+		<language name="日本語">DP-MEKURU3</language>
+	</row>
+	<row id="msg_seq_se_dp_migaku01">
+		<language name="日本語">DP-MIGAKU01</language>
+	</row>
+	<row id="msg_seq_se_dp_migaku02">
+		<language name="日本語">DP-MIGAKU02</language>
+	</row>
+	<row id="msg_seq_se_dp_badge_c">
+		<language name="日本語">DP-BADGE-C</language>
+	</row>
+	<row id="msg_seq_se_dp_card3">
+		<language name="日本語">DP-CARD3</language>
+	</row>
+	<row id="msg_seq_se_dp_card5">
+		<language name="日本語">DP-CARD5</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy14">
+		<language name="日本語">DP-DUMMY14</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy15">
+		<language name="日本語">DP-DUMMY15</language>
+	</row>
+	<row id="msg_seq_se_dp_card11">
+		<language name="日本語">DP-CARD11</language>
+	</row>
+	<row id="msg_seq_se_dp_kyu01">
+		<language name="日本語">DP-KYU01</language>
+	</row>
+	<row id="msg_seq_se_dp_namein_01">
+		<language name="日本語">DP-NAMEIN-01</language>
+	</row>
+	<row id="msg_seq_se_dp_syu01">
+		<language name="日本語">DP-SYU01</language>
+	</row>
+	<row id="msg_seq_se_dp_syu02">
+		<language name="日本語">DP-SYU02</language>
+	</row>
+	<row id="msg_seq_se_dp_syu03">
+		<language name="日本語">DP-SYU03</language>
+	</row>
+	<row id="msg_seq_se_dp_decide2">
+		<language name="日本語">DP-DECIDE2</language>
+	</row>
+	<row id="msg_seq_se_dp_pokelist_001">
+		<language name="日本語">DP-POKELIST-001</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_001">
+		<language name="日本語">DP-UG-001</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_002">
+		<language name="日本語">DP-UG-002</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_003">
+		<language name="日本語">DP-UG-003</language>
+	</row>
+	<row id="msg_seq_se_dp_ug_004">
+		<language name="日本語">DP-UG-004</language>
+	</row>
+	<row id="msg_seq_se_dp_kirakira3">
+		<language name="日本語">DP-KIRAKIRA3</language>
+	</row>
+	<row id="msg_seq_se_dp_kirakira">
+		<language name="日本語">DP-KIRAKIRA</language>
+	</row>
+	<row id="msg_seq_se_dp_kirakira4">
+		<language name="日本語">DP-KIRAKIRA4</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan01">
+		<language name="日本語">DP-KOUKAN01</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan03">
+		<language name="日本語">DP-KOUKAN03</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan04">
+		<language name="日本語">DP-KOUKAN04</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan05">
+		<language name="日本語">DP-KOUKAN05</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan06">
+		<language name="日本語">DP-KOUKAN06</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan07">
+		<language name="日本語">DP-KOUKAN07</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan08">
+		<language name="日本語">DP-KOUKAN08</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan09">
+		<language name="日本語">DP-KOUKAN09</language>
+	</row>
+	<row id="msg_seq_se_dp_koukan10">
+		<language name="日本語">DP-KOUKAN10</language>
+	</row>
+	<row id="msg_seq_se_dp_nm01">
+		<language name="日本語">DP-NM01</language>
+	</row>
+	<row id="msg_seq_se_dp_nm02">
+		<language name="日本語">DP-NM02</language>
+	</row>
+	<row id="msg_seq_se_dp_nm03">
+		<language name="日本語">DP-NM03</language>
+	</row>
+	<row id="msg_seq_se_dp_nm03_2">
+		<language name="日本語">DP-NM03-2</language>
+	</row>
+	<row id="msg_seq_se_dp_nm04">
+		<language name="日本語">DP-NM04</language>
+	</row>
+	<row id="msg_seq_se_dp_nm04_2">
+		<language name="日本語">DP-NM04-2</language>
+	</row>
+	<row id="msg_seq_se_dp_nm04_3">
+		<language name="日本語">DP-NM04-3</language>
+	</row>
+	<row id="msg_seq_se_dp_nm05">
+		<language name="日本語">DP-NM05</language>
+	</row>
+	<row id="msg_seq_se_dp_nm07">
+		<language name="日本語">DP-NM07</language>
+	</row>
+	<row id="msg_seq_se_dp_nm07_2">
+		<language name="日本語">DP-NM07-2</language>
+	</row>
+	<row id="msg_seq_se_dp_nm08">
+		<language name="日本語">DP-NM08</language>
+	</row>
+	<row id="msg_seq_se_dp_nm09">
+		<language name="日本語">DP-NM09</language>
+	</row>
+	<row id="msg_seq_se_dp_nm10">
+		<language name="日本語">DP-NM10</language>
+	</row>
+	<row id="msg_seq_se_dp_nm10_2">
+		<language name="日本語">DP-NM10-2</language>
+	</row>
+	<row id="msg_seq_se_dp_nm11">
+		<language name="日本語">DP-NM11</language>
+	</row>
+	<row id="msg_seq_se_dp_nm12">
+		<language name="日本語">DP-NM12</language>
+	</row>
+	<row id="msg_seq_se_dp_nm12_2">
+		<language name="日本語">DP-NM12-2</language>
+	</row>
+	<row id="msg_seq_se_dp_nm13">
+		<language name="日本語">DP-NM13</language>
+	</row>
+	<row id="msg_seq_se_dp_nm14">
+		<language name="日本語">DP-NM14</language>
+	</row>
+	<row id="msg_seq_se_dp_custom01">
+		<language name="日本語">DP-CUSTOM01</language>
+	</row>
+	<row id="msg_seq_se_dp_custom02">
+		<language name="日本語">DP-CUSTOM02</language>
+	</row>
+	<row id="msg_seq_se_dp_custom05">
+		<language name="日本語">DP-CUSTOM05</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_006">
+		<language name="日本語">DP-BAG-006</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_011">
+		<language name="日本語">DP-BAG-011</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_020">
+		<language name="日本語">DP-BAG-020</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_030">
+		<language name="日本語">DP-BAG-030</language>
+	</row>
+	<row id="msg_seq_se_dp_bag_031">
+		<language name="日本語">DP-BAG-031</language>
+	</row>
+	<row id="msg_seq_se_dp_gasa01">
+		<language name="日本語">DP-GASA01</language>
+	</row>
+	<row id="msg_seq_se_dp_gasa02">
+		<language name="日本語">DP-GASA02</language>
+	</row>
+	<row id="msg_seq_se_dp_gasa03">
+		<language name="日本語">DP-GASA03</language>
+	</row>
+	<row id="msg_seq_se_dp_card7">
+		<language name="日本語">DP-CARD7</language>
+	</row>
+	<row id="msg_seq_se_dp_slot01">
+		<language name="日本語">DP-SLOT01</language>
+	</row>
+	<row id="msg_seq_se_dp_slot02">
+		<language name="日本語">DP-SLOT02</language>
+	</row>
+	<row id="msg_seq_se_dp_climax01">
+		<language name="日本語">DP-CLIMAX01</language>
+	</row>
+	<row id="msg_seq_se_dp_climax03">
+		<language name="日本語">DP-CLIMAX03</language>
+	</row>
+	<row id="msg_seq_se_dp_climax06">
+		<language name="日本語">DP-CLIMAX06</language>
+	</row>
+	<row id="msg_seq_se_dp_climax09">
+		<language name="日本語">DP-CLIMAX09</language>
+	</row>
+	<row id="msg_seq_se_dp_climax10">
+		<language name="日本語">DP-CLIMAX10</language>
+	</row>
+	<row id="msg_seq_se_dp_climax12">
+		<language name="日本語">DP-CLIMAX12</language>
+	</row>
+	<row id="msg_seq_se_dp_climax15">
+		<language name="日本語">DP-CLIMAX15</language>
+	</row>
+	<row id="msg_seq_se_dp_train02">
+		<language name="日本語">DP-TRAIN02</language>
+	</row>
+	<row id="msg_seq_se_dp_train03">
+		<language name="日本語">DP-TRAIN03</language>
+	</row>
+	<row id="msg_seq_se_dp_train04">
+		<language name="日本語">DP-TRAIN04</language>
+	</row>
+	<row id="msg_seq_se_dp_ship01">
+		<language name="日本語">DP-SHIP01</language>
+	</row>
+	<row id="msg_seq_se_dp_ship02">
+		<language name="日本語">DP-SHIP02</language>
+	</row>
+	<row id="msg_seq_se_dp_ship03">
+		<language name="日本語">DP-SHIP03</language>
+	</row>
+	<row id="msg_seq_se_dp_con_001">
+		<language name="日本語">DP-CON-001</language>
+	</row>
+	<row id="msg_seq_se_dp_con_002">
+		<language name="日本語">DP-CON-002</language>
+	</row>
+	<row id="msg_seq_se_dp_con_003">
+		<language name="日本語">DP-CON-003</language>
+	</row>
+	<row id="msg_seq_se_dp_con_004">
+		<language name="日本語">DP-CON-004</language>
+	</row>
+	<row id="msg_seq_se_dp_con_005">
+		<language name="日本語">DP-CON-005</language>
+	</row>
+	<row id="msg_seq_se_dp_con_006">
+		<language name="日本語">DP-CON-006</language>
+	</row>
+	<row id="msg_seq_se_dp_con_007">
+		<language name="日本語">DP-CON-007</language>
+	</row>
+	<row id="msg_seq_se_dp_con_009">
+		<language name="日本語">DP-CON-009</language>
+	</row>
+	<row id="msg_seq_se_dp_con_010">
+		<language name="日本語">DP-CON-010</language>
+	</row>
+	<row id="msg_seq_se_dp_con_011">
+		<language name="日本語">DP-CON-011</language>
+	</row>
+	<row id="msg_seq_se_dp_con_012">
+		<language name="日本語">DP-CON-012</language>
+	</row>
+	<row id="msg_seq_se_dp_con_013">
+		<language name="日本語">DP-CON-013</language>
+	</row>
+	<row id="msg_seq_se_dp_con_018">
+		<language name="日本語">DP-CON-018</language>
+	</row>
+	<row id="msg_seq_se_dp_con_019">
+		<language name="日本語">DP-CON-019</language>
+	</row>
+	<row id="msg_seq_se_dp_con_020">
+		<language name="日本語">DP-CON-020</language>
+	</row>
+	<row id="msg_seq_se_dp_con_021">
+		<language name="日本語">DP-CON-021</language>
+	</row>
+	<row id="msg_seq_se_dp_con_022">
+		<language name="日本語">DP-CON-022</language>
+	</row>
+	<row id="msg_seq_se_dp_con_023">
+		<language name="日本語">DP-CON-023</language>
+	</row>
+	<row id="msg_seq_se_dp_con_024">
+		<language name="日本語">DP-CON-024</language>
+	</row>
+	<row id="msg_seq_se_dp_con_026">
+		<language name="日本語">DP-CON-026</language>
+	</row>
+	<row id="msg_seq_se_dp_con_027_2">
+		<language name="日本語">DP-CON-027-2</language>
+	</row>
+	<row id="msg_seq_se_dp_con_027_3">
+		<language name="日本語">DP-CON-027-3</language>
+	</row>
+	<row id="msg_seq_se_dp_con_028">
+		<language name="日本語">DP-CON-028</language>
+	</row>
+	<row id="msg_seq_se_dp_con_029">
+		<language name="日本語">DP-CON-029</language>
+	</row>
+	<row id="msg_seq_se_dp_con_030">
+		<language name="日本語">DP-CON-030</language>
+	</row>
+	<row id="msg_seq_se_dp_con_031">
+		<language name="日本語">DP-CON-031</language>
+	</row>
+	<row id="msg_seq_se_dp_con_032">
+		<language name="日本語">DP-CON-032</language>
+	</row>
+	<row id="msg_seq_se_dp_con_033">
+		<language name="日本語">DP-CON-033</language>
+	</row>
+	<row id="msg_seq_se_dp_con_034">
+		<language name="日本語">DP-CON-034</language>
+	</row>
+	<row id="msg_seq_se_dp_kouka_h">
+		<language name="日本語">DP-KOUKA-H</language>
+	</row>
+	<row id="msg_seq_se_dp_kouka_l">
+		<language name="日本語">DP-KOUKA-L</language>
+	</row>
+	<row id="msg_seq_se_dp_kouka_m">
+		<language name="日本語">DP-KOUKA-M</language>
+	</row>
+	<row id="msg_seq_se_dp_nigeru2">
+		<language name="日本語">DP-NIGERU2</language>
+	</row>
+	<row id="msg_seq_se_dp_nigeru">
+		<language name="日本語">DP-NIGERU</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy16">
+		<language name="日本語">DP-DUMMY16</language>
+	</row>
+	<row id="msg_seq_se_dp_dummy17">
+		<language name="日本語">DP-DUMMY17</language>
+	</row>
+	<row id="msg_seq_se_dp_poke_dead3">
+		<language name="日本語">DP-POKE-DEAD3</language>
+	</row>
+	<row id="msg_seq_se_dp_hinsi">
+		<language name="日本語">DP-HINSI</language>
+	</row>
+	<row id="msg_seq_se_dp_suikomu">
+		<language name="日本語">DP-SUIKOMU</language>
+	</row>
+	<row id="msg_seq_se_dp_bowa2">
+		<language name="日本語">DP-BOWA2</language>
+	</row>
+	<row id="msg_seq_se_dp_bowa3">
+		<language name="日本語">DP-BOWA3</language>
+	</row>
+	<row id="msg_seq_se_dp_bowa4">
+		<language name="日本語">DP-BOWA4</language>
+	</row>
+	<row id="msg_seq_se_dp_getting">
+		<language name="日本語">DP-GETTING</language>
+	</row>
+	<row id="msg_seq_se_dp_nageru">
+		<language name="日本語">DP-NAGERU</language>
+	</row>
+	<row id="msg_seq_se_dp_exp">
+		<language name="日本語">DP-EXP</language>
+	</row>
+	<row id="msg_seq_se_dp_expmax">
+		<language name="日本語">DP-EXPMAX</language>
+	</row>
+	<row id="msg_seq_se_dp_expmax2">
+		<language name="日本語">DP-EXPMAX2</language>
+	</row>
+	<row id="msg_seq_se_dp_slidein">
+		<language name="日本語">DP-SLIDEIN</language>
+	</row>
+	<row id="msg_seq_se_dp_bt_001">
+		<language name="日本語">DP-BT-001</language>
+	</row>
+	<row id="msg_seq_se_dp_reapoke">
+		<language name="日本語">DP-REAPOKE</language>
+	</row>
+	<row id="msg_seq_se_dp_tb_start">
+		<language name="日本語">DP-TB-START</language>
+	</row>
+	<row id="msg_seq_se_dp_tb_kon">
+		<language name="日本語">DP-TB-KON</language>
+	</row>
+	<row id="msg_seq_se_dp_tb_kara">
+		<language name="日本語">DP-TB-KARA</language>
+	</row>
+	<row id="msg_seq_se_dp_egg01">
+		<language name="日本語">DP-EGG01</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo01">
+		<language name="日本語">DP-VSDEMO01</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo02">
+		<language name="日本語">DP-VSDEMO02</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo03">
+		<language name="日本語">DP-VSDEMO03</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo04">
+		<language name="日本語">DP-VSDEMO04</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo05">
+		<language name="日本語">DP-VSDEMO05</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo06">
+		<language name="日本語">DP-VSDEMO06</language>
+	</row>
+	<row id="msg_seq_se_dp_vsdemo07">
+		<language name="日本語">DP-VSDEMO07</language>
+	</row>
+	<row id="msg_seq_se_dp_000">
+		<language name="日本語">DP-000</language>
+	</row>
+	<row id="msg_seq_se_dp_001">
+		<language name="日本語">DP-001</language>
+	</row>
+	<row id="msg_seq_se_dp_003">
+		<language name="日本語">DP-003</language>
+	</row>
+	<row id="msg_seq_se_dp_007">
+		<language name="日本語">DP-007</language>
+	</row>
+	<row id="msg_seq_se_dp_020">
+		<language name="日本語">DP-020</language>
+	</row>
+	<row id="msg_seq_se_dp_021">
+		<language name="日本語">DP-021</language>
+	</row>
+	<row id="msg_seq_se_dp_023">
+		<language name="日本語">DP-023</language>
+	</row>
+	<row id="msg_seq_se_dp_030">
+		<language name="日本語">DP-030</language>
+	</row>
+	<row id="msg_seq_se_dp_030c">
+		<language name="日本語">DP-030C</language>
+	</row>
+	<row id="msg_seq_se_dp_031">
+		<language name="日本語">DP-031</language>
+	</row>
+	<row id="msg_seq_se_dp_032">
+		<language name="日本語">DP-032</language>
+	</row>
+	<row id="msg_seq_se_dp_040">
+		<language name="日本語">DP-040</language>
+	</row>
+	<row id="msg_seq_se_dp_041">
+		<language name="日本語">DP-041</language>
+	</row>
+	<row id="msg_seq_se_dp_050">
+		<language name="日本語">DP-050</language>
+	</row>
+	<row id="msg_seq_se_dp_051">
+		<language name="日本語">DP-051</language>
+	</row>
+	<row id="msg_seq_se_dp_052">
+		<language name="日本語">DP-052</language>
+	</row>
+	<row id="msg_seq_se_dp_053">
+		<language name="日本語">DP-053</language>
+	</row>
+	<row id="msg_seq_se_dp_060">
+		<language name="日本語">DP-060</language>
+	</row>
+	<row id="msg_seq_se_dp_061">
+		<language name="日本語">DP-061</language>
+	</row>
+	<row id="msg_seq_se_dp_080">
+		<language name="日本語">DP-080</language>
+	</row>
+	<row id="msg_seq_se_dp_081">
+		<language name="日本語">DP-081</language>
+	</row>
+	<row id="msg_seq_se_dp_100">
+		<language name="日本語">DP-100</language>
+	</row>
+	<row id="msg_seq_se_dp_110">
+		<language name="日本語">DP-110</language>
+	</row>
+	<row id="msg_seq_se_dp_111">
+		<language name="日本語">DP-111</language>
+	</row>
+	<row id="msg_seq_se_dp_112">
+		<language name="日本語">DP-112</language>
+	</row>
+	<row id="msg_seq_se_dp_130">
+		<language name="日本語">DP-130</language>
+	</row>
+	<row id="msg_seq_se_dp_131">
+		<language name="日本語">DP-131</language>
+	</row>
+	<row id="msg_seq_se_dp_140">
+		<language name="日本語">DP-140</language>
+	</row>
+	<row id="msg_seq_se_dp_141">
+		<language name="日本語">DP-141</language>
+	</row>
+	<row id="msg_seq_se_dp_143">
+		<language name="日本語">DP-143</language>
+	</row>
+	<row id="msg_seq_se_dp_145">
+		<language name="日本語">DP-145</language>
+	</row>
+	<row id="msg_seq_se_dp_146">
+		<language name="日本語">DP-146</language>
+	</row>
+	<row id="msg_seq_se_dp_150">
+		<language name="日本語">DP-150</language>
+	</row>
+	<row id="msg_seq_se_dp_151">
+		<language name="日本語">DP-151</language>
+	</row>
+	<row id="msg_seq_se_dp_152">
+		<language name="日本語">DP-152</language>
+	</row>
+	<row id="msg_seq_se_dp_153">
+		<language name="日本語">DP-153</language>
+	</row>
+	<row id="msg_seq_se_dp_154">
+		<language name="日本語">DP-154</language>
+	</row>
+	<row id="msg_seq_se_dp_155">
+		<language name="日本語">DP-155</language>
+	</row>
+	<row id="msg_seq_se_dp_160">
+		<language name="日本語">DP-160</language>
+	</row>
+	<row id="msg_seq_se_dp_161">
+		<language name="日本語">DP-161</language>
+	</row>
+	<row id="msg_seq_se_dp_162">
+		<language name="日本語">DP-162</language>
+	</row>
+	<row id="msg_seq_se_dp_163">
+		<language name="日本語">DP-163</language>
+	</row>
+	<row id="msg_seq_se_dp_164">
+		<language name="日本語">DP-164</language>
+	</row>
+	<row id="msg_seq_se_dp_165">
+		<language name="日本語">DP-165</language>
+	</row>
+	<row id="msg_seq_se_dp_166">
+		<language name="日本語">DP-166</language>
+	</row>
+	<row id="msg_seq_se_dp_170">
+		<language name="日本語">DP-170</language>
+	</row>
+	<row id="msg_seq_se_dp_171">
+		<language name="日本語">DP-171</language>
+	</row>
+	<row id="msg_seq_se_dp_172">
+		<language name="日本語">DP-172</language>
+	</row>
+	<row id="msg_seq_se_dp_180">
+		<language name="日本語">DP-180</language>
+	</row>
+	<row id="msg_seq_se_dp_181">
+		<language name="日本語">DP-181</language>
+	</row>
+	<row id="msg_seq_se_dp_182">
+		<language name="日本語">DP-182</language>
+	</row>
+	<row id="msg_seq_se_dp_183">
+		<language name="日本語">DP-183</language>
+	</row>
+	<row id="msg_seq_se_dp_184">
+		<language name="日本語">DP-184</language>
+	</row>
+	<row id="msg_seq_se_dp_185">
+		<language name="日本語">DP-185</language>
+	</row>
+	<row id="msg_seq_se_dp_186">
+		<language name="日本語">DP-186</language>
+	</row>
+	<row id="msg_seq_se_dp_187">
+		<language name="日本語">DP-187</language>
+	</row>
+	<row id="msg_seq_se_dp_200">
+		<language name="日本語">DP-200</language>
+	</row>
+	<row id="msg_seq_se_dp_201">
+		<language name="日本語">DP-201</language>
+	</row>
+	<row id="msg_seq_se_dp_202">
+		<language name="日本語">DP-202</language>
+	</row>
+	<row id="msg_seq_se_dp_203">
+		<language name="日本語">DP-203</language>
+	</row>
+	<row id="msg_seq_se_dp_204">
+		<language name="日本語">DP-204</language>
+	</row>
+	<row id="msg_seq_se_dp_205">
+		<language name="日本語">DP-205</language>
+	</row>
+	<row id="msg_seq_se_dp_206">
+		<language name="日本語">DP-206</language>
+	</row>
+	<row id="msg_seq_se_dp_207">
+		<language name="日本語">DP-207</language>
+	</row>
+	<row id="msg_seq_se_dp_208">
+		<language name="日本語">DP-208</language>
+	</row>
+	<row id="msg_seq_se_dp_209">
+		<language name="日本語">DP-209</language>
+	</row>
+	<row id="msg_seq_se_dp_210">
+		<language name="日本語">DP-210</language>
+	</row>
+	<row id="msg_seq_se_dp_211">
+		<language name="日本語">DP-211</language>
+	</row>
+	<row id="msg_seq_se_dp_212">
+		<language name="日本語">DP-212</language>
+	</row>
+	<row id="msg_seq_se_dp_213">
+		<language name="日本語">DP-213</language>
+	</row>
+	<row id="msg_seq_se_dp_214">
+		<language name="日本語">DP-214</language>
+	</row>
+	<row id="msg_seq_se_dp_280">
+		<language name="日本語">DP-280</language>
+	</row>
+	<row id="msg_seq_se_dp_281">
+		<language name="日本語">DP-281</language>
+	</row>
+	<row id="msg_seq_se_dp_282">
+		<language name="日本語">DP-282</language>
+	</row>
+	<row id="msg_seq_se_dp_290">
+		<language name="日本語">DP-290</language>
+	</row>
+	<row id="msg_seq_se_dp_291">
+		<language name="日本語">DP-291</language>
+	</row>
+	<row id="msg_seq_se_dp_293">
+		<language name="日本語">DP-293</language>
+	</row>
+	<row id="msg_seq_se_dp_300">
+		<language name="日本語">DP-300</language>
+	</row>
+	<row id="msg_seq_se_dp_350">
+		<language name="日本語">DP-350</language>
+	</row>
+	<row id="msg_seq_se_dp_351">
+		<language name="日本語">DP-351</language>
+	</row>
+	<row id="msg_seq_se_dp_400">
+		<language name="日本語">DP-400</language>
+	</row>
+	<row id="msg_seq_se_dp_401">
+		<language name="日本語">DP-401</language>
+	</row>
+	<row id="msg_seq_se_dp_402">
+		<language name="日本語">DP-402</language>
+	</row>
+	<row id="msg_seq_se_dp_480">
+		<language name="日本語">DP-480</language>
+	</row>
+	<row id="msg_seq_se_dp_w003">
+		<language name="日本語">DP-W003</language>
+	</row>
+	<row id="msg_seq_se_dp_w004">
+		<language name="日本語">DP-W004</language>
+	</row>
+	<row id="msg_seq_se_dp_w006">
+		<language name="日本語">DP-W006</language>
+	</row>
+	<row id="msg_seq_se_dp_w007">
+		<language name="日本語">DP-W007</language>
+	</row>
+	<row id="msg_seq_se_dp_w010">
+		<language name="日本語">DP-W010</language>
+	</row>
+	<row id="msg_seq_se_dp_w011">
+		<language name="日本語">DP-W011</language>
+	</row>
+	<row id="msg_seq_se_dp_w013">
+		<language name="日本語">DP-W013</language>
+	</row>
+	<row id="msg_seq_se_dp_w013b">
+		<language name="日本語">DP-W013B</language>
+	</row>
+	<row id="msg_seq_se_dp_w014">
+		<language name="日本語">DP-W014</language>
+	</row>
+	<row id="msg_seq_se_dp_w015">
+		<language name="日本語">DP-W015</language>
+	</row>
+	<row id="msg_seq_se_dp_w016">
+		<language name="日本語">DP-W016</language>
+	</row>
+	<row id="msg_seq_se_dp_w016b">
+		<language name="日本語">DP-W016B</language>
+	</row>
+	<row id="msg_seq_se_dp_w017">
+		<language name="日本語">DP-W017</language>
+	</row>
+	<row id="msg_seq_se_dp_w019">
+		<language name="日本語">DP-W019</language>
+	</row>
+	<row id="msg_seq_se_dp_w020">
+		<language name="日本語">DP-W020</language>
+	</row>
+	<row id="msg_seq_se_dp_w020b">
+		<language name="日本語">DP-W020B</language>
+	</row>
+	<row id="msg_seq_se_dp_w025b">
+		<language name="日本語">DP-W025B</language>
+	</row>
+	<row id="msg_seq_se_dp_w025c">
+		<language name="日本語">DP-W025C</language>
+	</row>
+	<row id="msg_seq_se_dp_w026">
+		<language name="日本語">DP-W026</language>
+	</row>
+	<row id="msg_seq_se_dp_w028">
+		<language name="日本語">DP-W028</language>
+	</row>
+	<row id="msg_seq_se_dp_w028b">
+		<language name="日本語">DP-W028B</language>
+	</row>
+	<row id="msg_seq_se_dp_w029">
+		<language name="日本語">DP-W029</language>
+	</row>
+	<row id="msg_seq_se_dp_w030">
+		<language name="日本語">DP-W030</language>
+	</row>
+	<row id="msg_seq_se_dp_w036">
+		<language name="日本語">DP-W036</language>
+	</row>
+	<row id="msg_seq_se_dp_w039">
+		<language name="日本語">DP-W039</language>
+	</row>
+	<row id="msg_seq_se_dp_w040">
+		<language name="日本語">DP-W040</language>
+	</row>
+	<row id="msg_seq_se_dp_w043">
+		<language name="日本語">DP-W043</language>
+	</row>
+	<row id="msg_seq_se_dp_w043b">
+		<language name="日本語">DP-W043B</language>
+	</row>
+	<row id="msg_seq_se_dp_w043c">
+		<language name="日本語">DP-W043C</language>
+	</row>
+	<row id="msg_seq_se_dp_w043d">
+		<language name="日本語">DP-W043D</language>
+	</row>
+	<row id="msg_seq_se_dp_w044">
+		<language name="日本語">DP-W044</language>
+	</row>
+	<row id="msg_seq_se_dp_w047">
+		<language name="日本語">DP-W047</language>
+	</row>
+	<row id="msg_seq_se_dp_w048">
+		<language name="日本語">DP-W048</language>
+	</row>
+	<row id="msg_seq_se_dp_w052">
+		<language name="日本語">DP-W052</language>
+	</row>
+	<row id="msg_seq_se_dp_w053">
+		<language name="日本語">DP-W053</language>
+	</row>
+	<row id="msg_seq_se_dp_w053b">
+		<language name="日本語">DP-W053B</language>
+	</row>
+	<row id="msg_seq_se_dp_w054">
+		<language name="日本語">DP-W054</language>
+	</row>
+	<row id="msg_seq_se_dp_w055">
+		<language name="日本語">DP-W055</language>
+	</row>
+	<row id="msg_seq_se_dp_w056">
+		<language name="日本語">DP-W056</language>
+	</row>
+	<row id="msg_seq_se_dp_w056b">
+		<language name="日本語">DP-W056B</language>
+	</row>
+	<row id="msg_seq_se_dp_w057">
+		<language name="日本語">DP-W057</language>
+	</row>
+	<row id="msg_seq_se_dp_w057b">
+		<language name="日本語">DP-W057B</language>
+	</row>
+	<row id="msg_seq_se_dp_w059">
+		<language name="日本語">DP-W059</language>
+	</row>
+	<row id="msg_seq_se_dp_w059b">
+		<language name="日本語">DP-W059B</language>
+	</row>
+	<row id="msg_seq_se_dp_w060">
+		<language name="日本語">DP-W060</language>
+	</row>
+	<row id="msg_seq_se_dp_w062d">
+		<language name="日本語">DP-W062D</language>
+	</row>
+	<row id="msg_seq_se_dp_w060b">
+		<language name="日本語">DP-W060B</language>
+	</row>
+	<row id="msg_seq_se_dp_w063">
+		<language name="日本語">DP-W063</language>
+	</row>
+	<row id="msg_seq_se_dp_w063b">
+		<language name="日本語">DP-W063B</language>
+	</row>
+	<row id="msg_seq_se_dp_w063c">
+		<language name="日本語">DP-W063C</language>
+	</row>
+	<row id="msg_seq_se_dp_w070">
+		<language name="日本語">DP-W070</language>
+	</row>
+	<row id="msg_seq_se_dp_w071">
+		<language name="日本語">DP-W071</language>
+	</row>
+	<row id="msg_seq_se_dp_w071b">
+		<language name="日本語">DP-W071B</language>
+	</row>
+	<row id="msg_seq_se_dp_w076">
+		<language name="日本語">DP-W076</language>
+	</row>
+	<row id="msg_seq_se_dp_w076b">
+		<language name="日本語">DP-W076B</language>
+	</row>
+	<row id="msg_seq_se_dp_w077">
+		<language name="日本語">DP-W077</language>
+	</row>
+	<row id="msg_seq_se_dp_w077b">
+		<language name="日本語">DP-W077B</language>
+	</row>
+	<row id="msg_seq_se_dp_w080b">
+		<language name="日本語">DP-W080B</language>
+	</row>
+	<row id="msg_seq_se_dp_w080c">
+		<language name="日本語">DP-W080C</language>
+	</row>
+	<row id="msg_seq_se_dp_w081">
+		<language name="日本語">DP-W081</language>
+	</row>
+	<row id="msg_seq_se_dp_w081b">
+		<language name="日本語">DP-W081B</language>
+	</row>
+	<row id="msg_seq_se_dp_w082">
+		<language name="日本語">DP-W082</language>
+	</row>
+	<row id="msg_seq_se_dp_w082b">
+		<language name="日本語">DP-W082B</language>
+	</row>
+	<row id="msg_seq_se_dp_w082c">
+		<language name="日本語">DP-W082C</language>
+	</row>
+	<row id="msg_seq_se_dp_w085">
+		<language name="日本語">DP-W085</language>
+	</row>
+	<row id="msg_seq_se_dp_w085b">
+		<language name="日本語">DP-W085B</language>
+	</row>
+	<row id="msg_seq_se_dp_w085c">
+		<language name="日本語">DP-W085C</language>
+	</row>
+	<row id="msg_seq_se_dp_w086">
+		<language name="日本語">DP-W086</language>
+	</row>
+	<row id="msg_seq_se_dp_w088">
+		<language name="日本語">DP-W088</language>
+	</row>
+	<row id="msg_seq_se_dp_w089">
+		<language name="日本語">DP-W089</language>
+	</row>
+	<row id="msg_seq_se_dp_w089b">
+		<language name="日本語">DP-W089B</language>
+	</row>
+	<row id="msg_seq_se_dp_w090">
+		<language name="日本語">DP-W090</language>
+	</row>
+	<row id="msg_seq_se_dp_w091">
+		<language name="日本語">DP-W091</language>
+	</row>
+	<row id="msg_seq_se_dp_w092">
+		<language name="日本語">DP-W092</language>
+	</row>
+	<row id="msg_seq_se_dp_w092b">
+		<language name="日本語">DP-W092B</language>
+	</row>
+	<row id="msg_seq_se_dp_w092d">
+		<language name="日本語">DP-W092D</language>
+	</row>
+	<row id="msg_seq_se_dp_w100">
+		<language name="日本語">DP-W100</language>
+	</row>
+	<row id="msg_seq_se_dp_w100b">
+		<language name="日本語">DP-W100B</language>
+	</row>
+	<row id="msg_seq_se_dp_w103">
+		<language name="日本語">DP-W103</language>
+	</row>
+	<row id="msg_seq_se_dp_w104">
+		<language name="日本語">DP-W104</language>
+	</row>
+	<row id="msg_seq_se_dp_w107">
+		<language name="日本語">DP-W107</language>
+	</row>
+	<row id="msg_seq_se_dp_w109">
+		<language name="日本語">DP-W109</language>
+	</row>
+	<row id="msg_seq_se_dp_w109b">
+		<language name="日本語">DP-W109B</language>
+	</row>
+	<row id="msg_seq_se_dp_w112">
+		<language name="日本語">DP-W112</language>
+	</row>
+	<row id="msg_seq_se_dp_w112b">
+		<language name="日本語">DP-W112B</language>
+	</row>
+	<row id="msg_seq_se_dp_w114">
+		<language name="日本語">DP-W114</language>
+	</row>
+	<row id="msg_seq_se_dp_w115">
+		<language name="日本語">DP-W115</language>
+	</row>
+	<row id="msg_seq_se_dp_w118">
+		<language name="日本語">DP-W118</language>
+	</row>
+	<row id="msg_seq_se_dp_w118b">
+		<language name="日本語">DP-W118B</language>
+	</row>
+	<row id="msg_seq_se_dp_w120">
+		<language name="日本語">DP-W120</language>
+	</row>
+	<row id="msg_seq_se_dp_w122">
+		<language name="日本語">DP-W122</language>
+	</row>
+	<row id="msg_seq_se_dp_w127">
+		<language name="日本語">DP-W127</language>
+	</row>
+	<row id="msg_seq_se_dp_w129">
+		<language name="日本語">DP-W129</language>
+	</row>
+	<row id="msg_seq_se_dp_w145">
+		<language name="日本語">DP-W145</language>
+	</row>
+	<row id="msg_seq_se_dp_w145b">
+		<language name="日本語">DP-W145B</language>
+	</row>
+	<row id="msg_seq_se_dp_w145c">
+		<language name="日本語">DP-W145C</language>
+	</row>
+	<row id="msg_seq_se_dp_w145d">
+		<language name="日本語">DP-W145D</language>
+	</row>
+	<row id="msg_seq_se_dp_w146">
+		<language name="日本語">DP-W146</language>
+	</row>
+	<row id="msg_seq_se_dp_w151">
+		<language name="日本語">DP-W151</language>
+	</row>
+	<row id="msg_seq_se_dp_w152">
+		<language name="日本語">DP-W152</language>
+	</row>
+	<row id="msg_seq_se_dp_w153">
+		<language name="日本語">DP-W153</language>
+	</row>
+	<row id="msg_seq_se_dp_w155">
+		<language name="日本語">DP-W155</language>
+	</row>
+	<row id="msg_seq_se_dp_w161">
+		<language name="日本語">DP-W161</language>
+	</row>
+	<row id="msg_seq_se_dp_w161b">
+		<language name="日本語">DP-W161B</language>
+	</row>
+	<row id="msg_seq_se_dp_w166">
+		<language name="日本語">DP-W166</language>
+	</row>
+	<row id="msg_seq_se_dp_w171">
+		<language name="日本語">DP-W171</language>
+	</row>
+	<row id="msg_seq_se_dp_w172">
+		<language name="日本語">DP-W172</language>
+	</row>
+	<row id="msg_seq_se_dp_w172b">
+		<language name="日本語">DP-W172B</language>
+	</row>
+	<row id="msg_seq_se_dp_w173">
+		<language name="日本語">DP-W173</language>
+	</row>
+	<row id="msg_seq_se_dp_w173b">
+		<language name="日本語">DP-W173B</language>
+	</row>
+	<row id="msg_seq_se_dp_w173c">
+		<language name="日本語">DP-W173C</language>
+	</row>
+	<row id="msg_seq_se_dp_w179">
+		<language name="日本語">DP-W179</language>
+	</row>
+	<row id="msg_seq_se_dp_w185">
+		<language name="日本語">DP-W185</language>
+	</row>
+	<row id="msg_seq_se_dp_w187">
+		<language name="日本語">DP-W187</language>
+	</row>
+	<row id="msg_seq_se_dp_w195">
+		<language name="日本語">DP-W195</language>
+	</row>
+	<row id="msg_seq_se_dp_w196">
+		<language name="日本語">DP-W196</language>
+	</row>
+	<row id="msg_seq_se_dp_w197">
+		<language name="日本語">DP-W197</language>
+	</row>
+	<row id="msg_seq_se_dp_w199">
+		<language name="日本語">DP-W199</language>
+	</row>
+	<row id="msg_seq_se_dp_w201">
+		<language name="日本語">DP-W201</language>
+	</row>
+	<row id="msg_seq_se_dp_w202">
+		<language name="日本語">DP-W202</language>
+	</row>
+	<row id="msg_seq_se_dp_w202b">
+		<language name="日本語">DP-W202B</language>
+	</row>
+	<row id="msg_seq_se_dp_w204">
+		<language name="日本語">DP-W204</language>
+	</row>
+	<row id="msg_seq_se_dp_w207">
+		<language name="日本語">DP-W207</language>
+	</row>
+	<row id="msg_seq_se_dp_w207b">
+		<language name="日本語">DP-W207B</language>
+	</row>
+	<row id="msg_seq_se_dp_w207c">
+		<language name="日本語">DP-W207C</language>
+	</row>
+	<row id="msg_seq_se_dp_w207d">
+		<language name="日本語">DP-W207D</language>
+	</row>
+	<row id="msg_seq_se_dp_w208">
+		<language name="日本語">DP-W208</language>
+	</row>
+	<row id="msg_seq_se_dp_w209">
+		<language name="日本語">DP-W209</language>
+	</row>
+	<row id="msg_seq_se_dp_w213">
+		<language name="日本語">DP-W213</language>
+	</row>
+	<row id="msg_seq_se_dp_w215">
+		<language name="日本語">DP-W215</language>
+	</row>
+	<row id="msg_seq_se_dp_w221b">
+		<language name="日本語">DP-W221B</language>
+	</row>
+	<row id="msg_seq_se_dp_w227">
+		<language name="日本語">DP-W227</language>
+	</row>
+	<row id="msg_seq_se_dp_w227b">
+		<language name="日本語">DP-W227B</language>
+	</row>
+	<row id="msg_seq_se_dp_w230">
+		<language name="日本語">DP-W230</language>
+	</row>
+	<row id="msg_seq_se_dp_w231">
+		<language name="日本語">DP-W231</language>
+	</row>
+	<row id="msg_seq_se_dp_w233">
+		<language name="日本語">DP-W233</language>
+	</row>
+	<row id="msg_seq_se_dp_w233b">
+		<language name="日本語">DP-W233B</language>
+	</row>
+	<row id="msg_seq_se_dp_w234">
+		<language name="日本語">DP-W234</language>
+	</row>
+	<row id="msg_seq_se_dp_w236">
+		<language name="日本語">DP-W236</language>
+	</row>
+	<row id="msg_seq_se_dp_w239">
+		<language name="日本語">DP-W239</language>
+	</row>
+	<row id="msg_seq_se_dp_w240">
+		<language name="日本語">DP-W240</language>
+	</row>
+	<row id="msg_seq_se_dp_w250">
+		<language name="日本語">DP-W250</language>
+	</row>
+	<row id="msg_seq_se_dp_w253">
+		<language name="日本語">DP-W253</language>
+	</row>
+	<row id="msg_seq_se_dp_w255">
+		<language name="日本語">DP-W255</language>
+	</row>
+	<row id="msg_seq_se_dp_w255b">
+		<language name="日本語">DP-W255B</language>
+	</row>
+	<row id="msg_seq_se_dp_w255e">
+		<language name="日本語">DP-W255E</language>
+	</row>
+	<row id="msg_seq_se_dp_w255f">
+		<language name="日本語">DP-W255F</language>
+	</row>
+	<row id="msg_seq_se_dp_w257">
+		<language name="日本語">DP-W257</language>
+	</row>
+	<row id="msg_seq_se_dp_w258">
+		<language name="日本語">DP-W258</language>
+	</row>
+	<row id="msg_seq_se_dp_w260">
+		<language name="日本語">DP-W260</language>
+	</row>
+	<row id="msg_seq_se_dp_w278">
+		<language name="日本語">DP-W278</language>
+	</row>
+	<row id="msg_seq_se_dp_w280">
+		<language name="日本語">DP-W280</language>
+	</row>
+	<row id="msg_seq_se_dp_w280b">
+		<language name="日本語">DP-W280B</language>
+	</row>
+	<row id="msg_seq_se_dp_w281">
+		<language name="日本語">DP-W281</language>
+	</row>
+	<row id="msg_seq_se_dp_w287b">
+		<language name="日本語">DP-W287B</language>
+	</row>
+	<row id="msg_seq_se_dp_w287">
+		<language name="日本語">DP-W287</language>
+	</row>
+	<row id="msg_seq_se_dp_w291">
+		<language name="日本語">DP-W291</language>
+	</row>
+	<row id="msg_seq_se_dp_w298">
+		<language name="日本語">DP-W298</language>
+	</row>
+	<row id="msg_seq_se_dp_w320">
+		<language name="日本語">DP-W320</language>
+	</row>
+	<row id="msg_seq_se_dp_w322">
+		<language name="日本語">DP-W322</language>
+	</row>
+	<row id="msg_seq_se_dp_w327">
+		<language name="日本語">DP-W327</language>
+	</row>
+	<row id="msg_seq_se_dp_w356">
+		<language name="日本語">DP-W356</language>
+	</row>
+	<row id="msg_seq_se_dp_w360">
+		<language name="日本語">DP-W360</language>
+	</row>
+	<row id="msg_seq_se_dp_w360b">
+		<language name="日本語">DP-W360B</language>
+	</row>
+	<row id="msg_seq_se_dp_w360c">
+		<language name="日本語">DP-W360C</language>
+	</row>
+	<row id="msg_seq_se_dp_w361">
+		<language name="日本語">DP-W361</language>
+	</row>
+	<row id="msg_seq_se_dp_w362">
+		<language name="日本語">DP-W362</language>
+	</row>
+	<row id="msg_seq_se_dp_w363">
+		<language name="日本語">DP-W363</language>
+	</row>
+	<row id="msg_seq_se_dp_w367">
+		<language name="日本語">DP-W367</language>
+	</row>
+	<row id="msg_seq_se_dp_w368">
+		<language name="日本語">DP-W368</language>
+	</row>
+	<row id="msg_seq_se_dp_w373">
+		<language name="日本語">DP-W373</language>
+	</row>
+	<row id="msg_seq_se_dp_w374">
+		<language name="日本語">DP-W374</language>
+	</row>
+	<row id="msg_seq_se_dp_w375">
+		<language name="日本語">DP-W375</language>
+	</row>
+	<row id="msg_seq_se_dp_w376">
+		<language name="日本語">DP-W376</language>
+	</row>
+	<row id="msg_seq_se_dp_w376b">
+		<language name="日本語">DP-W376B</language>
+	</row>
+	<row id="msg_seq_se_dp_w377">
+		<language name="日本語">DP-W377</language>
+	</row>
+	<row id="msg_seq_se_dp_w379">
+		<language name="日本語">DP-W379</language>
+	</row>
+	<row id="msg_seq_se_dp_w380">
+		<language name="日本語">DP-W380</language>
+	</row>
+	<row id="msg_seq_se_dp_w381">
+		<language name="日本語">DP-W381</language>
+	</row>
+	<row id="msg_seq_se_dp_w383">
+		<language name="日本語">DP-W383</language>
+	</row>
+	<row id="msg_seq_se_dp_w387">
+		<language name="日本語">DP-W387</language>
+	</row>
+	<row id="msg_seq_se_dp_w392">
+		<language name="日本語">DP-W392</language>
+	</row>
+	<row id="msg_seq_se_dp_w399">
+		<language name="日本語">DP-W399</language>
+	</row>
+	<row id="msg_seq_se_dp_w405">
+		<language name="日本語">DP-W405</language>
+	</row>
+	<row id="msg_seq_se_dp_w408">
+		<language name="日本語">DP-W408</language>
+	</row>
+	<row id="msg_seq_se_dp_w411">
+		<language name="日本語">DP-W411</language>
+	</row>
+	<row id="msg_seq_se_dp_w412">
+		<language name="日本語">DP-W412</language>
+	</row>
+	<row id="msg_seq_se_dp_w413">
+		<language name="日本語">DP-W413</language>
+	</row>
+	<row id="msg_seq_se_dp_w419">
+		<language name="日本語">DP-W419</language>
+	</row>
+	<row id="msg_seq_se_dp_w426">
+		<language name="日本語">DP-W426</language>
+	</row>
+	<row id="msg_seq_se_dp_w428">
+		<language name="日本語">DP-W428</language>
+	</row>
+	<row id="msg_seq_se_dp_w434">
+		<language name="日本語">DP-W434</language>
+	</row>
+	<row id="msg_seq_se_dp_w436">
+		<language name="日本語">DP-W436</language>
+	</row>
+	<row id="msg_seq_se_dp_w443b">
+		<language name="日本語">DP-W443B</language>
+	</row>
+	<row id="msg_seq_se_dp_w452">
+		<language name="日本語">DP-W452</language>
+	</row>
+	<row id="msg_seq_se_dp_w456">
+		<language name="日本語">DP-W456</language>
+	</row>
+	<row id="msg_seq_se_dp_w459">
+		<language name="日本語">DP-W459</language>
+	</row>
+	<row id="msg_seq_se_dp_w460">
+		<language name="日本語">DP-W460</language>
+	</row>
+	<row id="msg_seq_se_dp_w461">
+		<language name="日本語">DP-W461</language>
+	</row>
+	<row id="msg_seq_se_dp_w462">
+		<language name="日本語">DP-W462</language>
+	</row>
+	<row id="msg_seq_se_dp_w463">
+		<language name="日本語">DP-W463</language>
+	</row>
+	<row id="msg_seq_se_dp_w464">
+		<language name="日本語">DP-W464</language>
+	</row>
+	<row id="msg_seq_se_dp_w465">
+		<language name="日本語">DP-W465</language>
+	</row>
+	<row id="msg_seq_se_dp_w466">
+		<language name="日本語">DP-W466</language>
+	</row>
+	<row id="msg_seq_se_dp_w467">
+		<language name="日本語">DP-W467</language>
+	</row>
+	<row id="msg_seq_se_dp_suiryu">
+		<language name="日本語">DP-SUIRYU</language>
+	</row>
+	<row id="msg_seq_se_dp_kirakira2">
+		<language name="日本語">DP-KIRAKIRA2</language>
+	</row>
+	<row id="msg_seq_se_dp_ban">
+		<language name="日本語">DP-BAN</language>
+	</row>
+	<row id="msg_seq_se_dp_basabasa">
+		<language name="日本語">DP-BASABASA</language>
+	</row>
+	<row id="msg_seq_se_dp_shushu">
+		<language name="日本語">DP-SHUSHU</language>
+	</row>
+	<row id="msg_seq_se_dp_kami">
+		<language name="日本語">DP-KAMI</language>
+	</row>
+	<row id="msg_seq_se_dp_kami2">
+		<language name="日本語">DP-KAMI2</language>
+	</row>
+	<row id="msg_seq_se_dp_basi">
+		<language name="日本語">DP-BASI</language>
+	</row>
+	<row id="msg_seq_se_dp_awa">
+		<language name="日本語">DP-AWA</language>
+	</row>
+	<row id="msg_seq_se_dp_nami">
+		<language name="日本語">DP-NAMI</language>
+	</row>
+	<row id="msg_seq_se_dp_huru">
+		<language name="日本語">DP-HURU</language>
+	</row>
+	<row id="msg_seq_se_dp_huru2">
+		<language name="日本語">DP-HURU2</language>
+	</row>
+	<row id="msg_seq_se_dp_kaze">
+		<language name="日本語">DP-KAZE</language>
+	</row>
+	<row id="msg_seq_se_dp_kaze2">
+		<language name="日本語">DP-KAZE2</language>
+	</row>
+	<row id="msg_seq_se_dp_muchi">
+		<language name="日本語">DP-MUCHI</language>
+	</row>
+	<row id="msg_seq_se_dp_brade">
+		<language name="日本語">DP-BRADE</language>
+	</row>
+	<row id="msg_seq_se_dp_bfbrade">
+		<language name="日本語">DP-BFBRADE</language>
+	</row>
+	<row id="msg_seq_se_dp_pasa">
+		<language name="日本語">DP-PASA</language>
+	</row>
+	<row id="msg_seq_se_dp_pasa2">
+		<language name="日本語">DP-PASA2</language>
+	</row>
+	<row id="msg_seq_se_dp_pasa3">
+		<language name="日本語">DP-PASA3</language>
+	</row>
+	<row id="msg_seq_se_dp_kiran">
+		<language name="日本語">DP-KIRAN</language>
+	</row>
+	<row id="msg_seq_se_dp_gashin">
+		<language name="日本語">DP-GASHIN</language>
+	</row>
+	<row id="msg_seq_se_dp_dodon">
+		<language name="日本語">DP-DODON</language>
+	</row>
+	<row id="msg_seq_se_end">
+		<language name="日本語">END</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

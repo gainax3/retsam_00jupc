@@ -1,0 +1,71 @@
+//==============================================================================
+/**
+ * @file		msg_castle_room.h
+ * @brief		メッセージID参照用ヘッダファイル
+ *
+ * このファイルはコンバータにより自動生成されています
+ */
+//==============================================================================
+#ifndef __MSG_CASTLE_ROOM_H__
+#define __MSG_CASTLE_ROOM_H__
+
+#define	msg_castle_room_1		(0)
+#define	msg_castle_room_1_01		(1)
+#define	msg_castle_room_wait		(2)
+#define	msg_castle_room_2		(3)
+#define	msg_castle_room_3		(4)
+#define	msg_castle_room_4		(5)
+#define	msg_castle_room_6		(6)
+#define	msg_castle_room_6_1		(7)
+#define	msg_castle_room_6_2		(8)
+#define	msg_castle_room_6_3		(9)
+#define	msg_castle_room_6_4		(10)
+#define	msg_castle_room_7		(11)
+#define	msg_castle_room_7_01		(12)
+#define	msg_castle_room_7_02		(13)
+#define	msg_castle_room_8		(14)
+#define	msg_castle_room_8_01		(15)
+#define	msg_castle_room_8_02		(16)
+#define	msg_castle_room_10		(17)
+#define	msg_castle_room_11		(18)
+#define	msg_castle_room_12		(19)
+#define	msg_castle_room_20		(20)
+#define	msg_castle_room_21		(21)
+#define	msg_castle_room_22		(22)
+#define	msg_castle_room_24		(23)
+#define	msg_castle_room_25		(24)
+#define	msg_castle_room_29_1		(25)
+#define	msg_castle_room_29_2		(26)
+#define	msg_castle_room_29_3		(27)
+#define	msg_castle_room_29_4		(28)
+#define	msg_castle_room_26		(29)
+#define	msg_castle_room_30		(30)
+#define	msg_castle_room_30_01		(31)
+#define	msg_castle_room_30_02		(32)
+#define	msg_castle_room_30_03		(33)
+#define	msg_castle_room_30_04		(34)
+#define	msg_castle_room_30_01_2		(35)
+#define	msg_castle_room_30_02_2		(36)
+#define	msg_castle_room_30_03_2		(37)
+#define	msg_castle_room_30_04_2		(38)
+#define	msg_castle_room_30_05		(39)
+#define	msg_castle_room_31		(40)
+#define	msg_castle_room_32		(41)
+#define	msg_castle_room_34		(42)
+#define	msg_castle_room_36		(43)
+#define	msg_castle_room_35		(44)
+#define	msg_castle_room_choice_01		(45)
+#define	msg_castle_room_choice_02		(46)
+#define	msg_castle_room_choice_03		(47)
+#define	msg_castle_room_choice_04		(48)
+#define	msg_castle_room_choice_10		(49)
+#define	msg_castle_room_choice_11		(50)
+#define	msg_castle_room_choice_13		(51)
+#define	msg_castle_room_choice_14		(52)
+#define	msg_castle_room_boss_01		(53)
+#define	msg_castle_room_boss_02		(54)
+#define	msg_castle_room_boss_03		(55)
+#define	msg_castle_room_boss_04		(56)
+#define	msg_castle_room_boss_05		(57)
+
+#endif

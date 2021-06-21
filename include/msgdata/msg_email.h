@@ -1,0 +1,72 @@
+//==============================================================================
+/**
+ * @file		msg_email.h
+ * @brief		メッセージID参照用ヘッダファイル
+ *
+ * このファイルはコンバータにより自動生成されています
+ */
+//==============================================================================
+#ifndef __MSG_EMAIL_H__
+#define __MSG_EMAIL_H__
+
+#define	msg_email_list_001		(0)
+#define	msg_email_list_002		(1)
+#define	msg_email_list_003		(2)
+#define	msg_email_list_004		(3)
+#define	msg_email_list_005		(4)
+#define	msg_email_090		(5)
+#define	msg_email_091		(6)
+#define	msg_email_100		(7)
+#define	msg_email_101		(8)
+#define	msg_email_101_01		(9)
+#define	msg_email_102		(10)
+#define	msg_email_103		(11)
+#define	msg_email_104		(12)
+#define	msg_email_105		(13)
+#define	msg_email_105_01		(14)
+#define	msg_email_105_02		(15)
+#define	msg_email_105_03		(16)
+#define	msg_email_105_04		(17)
+#define	msg_email_105_05		(18)
+#define	msg_email_105_06		(19)
+#define	msg_email_106		(20)
+#define	msg_email_107		(21)
+#define	msg_email_108		(22)
+#define	msg_email_109		(23)
+#define	msg_email_110		(24)
+#define	msg_email_111		(25)
+#define	msg_email_112		(26)
+#define	msg_email_113		(27)
+#define	msg_email_114		(28)
+#define	msg_email_115		(29)
+#define	msg_email_200		(30)
+#define	msg_email_201		(31)
+#define	msg_email_300		(32)
+#define	msg_email_301		(33)
+#define	msg_email_302		(34)
+#define	msg_email_900		(35)
+#define	msg_email_901		(36)
+#define	msg_email_902		(37)
+#define	msg_email_903		(38)
+#define	msg_email_904		(39)
+#define	msg_email_905		(40)
+#define	msg_email_906		(41)
+#define	msg_email_907		(42)
+#define	msg_email_908		(43)
+#define	msg_email_info_000		(44)
+#define	msg_email_info_001		(45)
+#define	msg_email_info_002		(46)
+#define	msg_email_info_003		(47)
+#define	msg_email_info_004		(48)
+#define	msg_email_info_005		(49)
+#define	msg_email_info_006		(50)
+#define	msg_email_info_007		(51)
+#define	msg_email_info_end		(52)
+#define	msg_email_info_spc		(53)
+#define	msg_email_error_001		(54)
+#define	msg_email_error_002		(55)
+#define	msg_email_error_005		(56)
+#define	msg_email_error_006		(57)
+#define	msg_email_error_006_01		(58)
+
+#endif

@@ -1,0 +1,647 @@
+//====================================================================
+//								pc_ug
+//
+//	LOCALWORK3使用中
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"connect_def.h"
+	.include	"../../../include/msgdata/msg_pc_ug.h"
+	//.include	"../eventdata/zone_pc_ugevc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_pc_ug_first
+_EVENT_DATA		ev_pc_ug_help
+_EVENT_DATA		ev_pc_ug_counter
+_EVENT_DATA		ev_pc_ug_frontier_work_reset
+_EVENT_DATA		ev_pc_ug_counter_02
+_EVENT_DATA		ev_pc_ug_hiroba_return
+_EVENT_DATA_END
+
+
+//--------------------------------------------------------------------
+//					    デバック定義
+//--------------------------------------------------------------------
+//#define	DEBUG_SAVE_OFF			//セーブなし
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_pc_ug_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*					初回イベント(ともだち手帳入手)					*/
+/********************************************************************/
+ev_pc_ug_first:
+	_EVENT_START
+
+	_TALK_KEYWAIT	msg_pcug_01_01
+	_TALK_CLOSE
+
+	/*受付に近づく*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_pcug_01_02
+
+	/*「ともだちてちょう」入手*/
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_TOMODATITETYOU
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_JUMP			ev_pc_ug_menu01
+	_END
+
+/*選択メニュー*/
+ev_pc_ug_menu01:
+	_TALKMSG		msg_pcug_01_03
+	_BMPMENU_INIT		11,13,0,1,SCWK_ANSWER				//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_ev_win_137,0
+	_BMPMENU_MAKE_LIST	msg_ev_win_138,1
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_menu_001
+	_CASE_JUMP		1,ev_pc_ug_menu_002
+	_JUMP			ev_pc_ug_menu_002
+	_END
+
+ev_pc_ug_menu_001:
+	_TALKMSG		msg_pcug_01_04
+	_BMPMENU_INIT		15,13,0,1,SCWK_ANSWER				//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_ev_win_139,0
+	_BMPMENU_MAKE_LIST	msg_ev_win_138,1
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_menu_001
+	_CASE_JUMP		1,ev_pc_ug_menu_002
+	_JUMP			ev_pc_ug_menu_002
+	_END
+
+/*「もうわかった」*/
+ev_pc_ug_menu_002:
+	_LDVAL			WK_SCENE_PC0103,1
+
+	_TALKMSG		msg_pcug_01_05
+	_LAST_KEYWAIT
+
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	受付に近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_pc_ug_player_01
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							受付									*/
+/********************************************************************/
+ev_pc_ug_help:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_pcug_01_06
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_pc_ug_01
+	_JUMP			no_pc_ug_01
+	_END
+
+/*「いいえ」*/
+no_pc_ug_01:
+	_TALKMSG		msg_pcug_01_05
+	_LAST_KEYWAIT
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「はい」*/
+yes_pc_ug_01:
+	_TALKMSG		msg_pcug_01_07
+	_BMPMENU_INIT		11,13,0,1,SCWK_ANSWER				//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_ev_win_137,0
+	_BMPMENU_MAKE_LIST	msg_ev_win_138,1
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_menu_011
+	_CASE_JUMP		1,no_pc_ug_01
+	_JUMP			no_pc_ug_01
+	_END
+
+/*TALK_OBJ_START用に別にしている*/
+ev_pc_ug_menu_011:
+	_TALKMSG		msg_pcug_01_04
+	_BMPMENU_INIT		15,13,0,1,SCWK_ANSWER				//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_ev_win_139,0
+	_BMPMENU_MAKE_LIST	msg_ev_win_138,1
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_menu_011						/*もう一度表示へ*/
+	_CASE_JUMP		1,no_pc_ug_01
+	_JUMP			no_pc_ug_01
+	_END
+
+
+/********************************************************************/
+/*							ごりよう受付							*/
+/********************************************************************/
+ev_pc_ug_counter:
+	_TALK_OBJ_START
+
+	/*手持ちにダメタマゴがいるかチェック*/
+	_DAME_TAMAGO_CHK_ALL	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,TRUE,ev_pc_ug_dame_tamago
+
+	_JUMP			ev_pc_ug_counter_menu
+	_END
+
+ev_pc_ug_counter_menu:
+	_TALKMSG		msg_pcug_02_01
+	_BMPMENU_INIT_EX	17,11,0,1,SCWK_ANSWER				//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_pcug_02_08,0					/*WIFIクラブへいく*/
+	_BMPMENU_MAKE_LIST	msg_pcug_02_09,1					/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_pcug_02_10,2					/*やめる*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_counter_menu_001
+	_CASE_JUMP		1,ev_pc_ug_counter_menu_002
+	_JUMP			no_pc_ug_02
+	_END
+
+/*せつめいをきく*/
+ev_pc_ug_counter_menu_002:
+	_TALK_KEYWAIT	msg_pcug_02_07
+	_JUMP			ev_pc_ug_counter_menu
+	_END
+
+/*WIFIクラブへ行く*/
+ev_pc_ug_counter_menu_001:
+	// ともだちリストがあるかどうか
+	_FRIEND_DATA_NUM  SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_pc_ug_check2  //ない
+	_JUMP			yes_pc_ug_03
+	_END
+
+yes_pc_ug_check2:
+	// 本ＩＤかどうか
+    _CHECK_MY_GSID  SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,pc_ug_id_get_end  //本ID
+	_JUMP			pc_ug_id_get  // 仮ID
+	_END
+
+pc_ug_id_get:
+	// まだ仮IDなので本IDを取るかどうか伺う
+	_TALKMSG		msg_pcug_02_05
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_pc_ug_03  //はい
+	_JUMP			no_pc_ug_02  // おわり
+	_END
+
+
+pc_ug_id_get_end:
+	//本IDなので友達登録を促しておわり
+	_TALKMSG		msg_pcug_02_06
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+//====================================================================
+//ごりようですか？
+//====================================================================
+/*「いいえ」*/
+no_pc_ug_02:
+	_TALKMSG		msg_pcug_02_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「はい」		一気に03に飛ぶ
+yes_pc_ug_02:
+	_TALKMSG		msg_pcug_02_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_pc_ug_03
+	_JUMP			no_pc_ug_02
+	_END */
+
+/*「はい」*/
+yes_pc_ug_03:
+
+	/*はっきんだまチェック*/
+	_UNION_POKE_FORM_RETURN	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0xff,ev_pc_ug_counter_gira_ng
+
+#ifndef	DEBUG_SAVE_OFF	/********************************************/
+	// 全ポケモン回復
+	_PC_KAIFUKU
+
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,save_after_ug_03				//成功
+	_JUMP			no_pc_ug_02										//終了へ
+	_END
+#endif	/************************************************************/
+
+/*「バックがいっぱい。はっきんだまを外せません」*/
+ev_pc_ug_counter_gira_ng:
+	_CHG_COMMON_SCR	SCRID_GIRA_ITEM_NG
+	_END
+
+save_after_ug_03:
+	_TALK_KEYWAIT	msg_pcug_02_04
+	_TALK_CLOSE
+
+	//マップ遷移しないのでフラグは立てない！
+	//_FLAG_SET		SYS_FLAG_COMM_COUNTER			//通信カウンター通過フラグ(システム)
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+
+	/*部屋に入るふり*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_20
+	_OBJ_ANIME_WAIT
+	_JUMP			common_pc_ug_pos
+	_END
+
+common_pc_ug_pos:
+	//カウンターが開く
+	_SET_UP_DOOR_ANIME	0,0,9,5,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_22
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_23
+	_OBJ_ANIME_WAIT
+
+	//通信部屋のドアが開く
+	_SET_UP_DOOR_ANIME	0,0,9,2,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_24
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_JUMP			ev_wifi_p2p_match_menu			//成功
+	_END
+
+connect_door_open:
+	_SEQ_OPEN_DOOR	77	//ドア開ける
+	_WAIT_3D_ANIME	77	//アニメ終了待ち
+	_RET
+
+connect_door_close:
+	_SEQ_CLOSE_DOOR	77	//ドア閉める
+	_WAIT_3D_ANIME	77	//アニメ終了待ち
+	_FREE_3D_ANIME	77	//ドアアニメ解放
+	_RET
+
+//====================================================================
+//ボード呼び出し
+//====================================================================
+ev_wifi_p2p_match_menu:
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_FINISH_MAP_PROC
+
+	_FRIEND_DATA_NUM  SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_wifi_p2p_match_menu_check  //ない
+
+	_WIFI_P2P_MATCH_EVENT_CALL   //P2P対戦
+
+	_JUMP ev_wifi_p2p_match_call_end
+
+ev_wifi_p2p_match_menu_check:
+	_WIFI_P2P_MATCH_EVENT_CALL   //P2P対戦 だけどID取得のみ
+//	_DPW_INIT_PROC	SCWK_ANSWER   //ID取得のみ
+
+ev_wifi_p2p_match_call_end:
+
+	_SET_MAP_PROC
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//通信部屋のドアが開く
+	_SET_UP_DOOR_ANIME	0,0,8,2,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_30
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_31
+	_OBJ_ANIME_WAIT
+
+	//カウンターが開く
+	_SET_UP_DOOR_ANIME	0,0,8,5,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_32
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_END
+
+//--------------------------------------------------------------------
+//主人公	部屋に入るふり
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_pc_ug_player_20
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_22
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_23
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_24
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_24_2
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	部屋から出るふり
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_pc_ug_player_30
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_31
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_player_32
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//受付	案内する
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_pc_ug_target_22
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_target_23
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_pc_ug_target_24
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+//
+/*					手持ちにダメタマゴがいる時						*/
+//
+/********************************************************************/
+ev_pc_ug_dame_tamago:
+	_CHG_COMMON_SCR	SCRID_CONNECT_DAME_TAMAGO_MSG
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*	PC地下で呼ばれる　WIFIでリセットした時のためにワークのクリア	*/
+/********************************************************************/
+ev_pc_ug_frontier_work_reset:
+
+	_DEBUG_WATCH_WORK	WK_SCENE_FACTORY_TYPE
+
+	//_LDVAL			WK_SCENE_TOWER_TYPE,0
+	_LDVAL				WK_SCENE_D31R0204,0				/*タワーマルチ通路部屋*/
+	_LDVAL				WK_SCENE_D31R0206,0				/*タワーマルチ対戦部屋*/
+	_LDVAL				WK_SCENE_FACTORY_TYPE,0
+	_LDVAL				WK_SCENE_FACTORY_LEVEL,0
+	_LDVAL				WK_SCENE_CASTLE_TYPE,0
+	_LDVAL				WK_SCENE_STAGE_TYPE,0
+	_LDVAL				WK_SCENE_ROULETTE_TYPE,0
+
+	_LDVAL				WK_SCENE_D31R0201,0
+	_LDVAL				WK_SCENE_FACTORY_LOBBY,0
+	_LDVAL				WK_SCENE_CASTLE_LOBBY,0
+	_LDVAL				WK_SCENE_STAGE_LOBBY,0
+	_LDVAL				WK_SCENE_ROULETTE_LOBBY,0
+
+	_DEBUG_WATCH_WORK	WK_SCENE_FACTORY_TYPE
+
+	//_CHG_LOCAL_SCR											//ローカルスクリプトに切り替え
+	_END
+
+
+/********************************************************************/
+/*						ごりよう受付(プラチナ)						*/
+/********************************************************************/
+ev_pc_ug_counter_02:
+	_TALK_OBJ_START
+
+	/*入室間隔チェック*/
+	_WFLBY_COUNTER_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_pc_ug_counter_02_time_ng
+
+	/*現在のゾーンIDと話しかけOBJIDを保存*/
+	_GET_NOW_ZONE_ID	SYS_WORK_PC_UG_ZONE_ID
+	_LDWK			SYS_WORK_PC_UG_OBJ_ID,SCWK_TARGET_OBJID
+
+	_TALK_KEYWAIT	msg_pcugwifi_01
+	_JUMP			ev_pc_ug_hiroba_menu
+	_END
+
+/*入室間隔チェック*/
+ev_pc_ug_counter_02_time_ng:
+	_TALK_KEYWAIT	msg_pcugwifiwin_04
+	_JUMP			ev_pc_ug_hiroba_end
+	_END
+
+/*メニュー*/
+ev_pc_ug_hiroba_menu:
+	_BMPMENU_INIT_EX	17,11,0,1,SCWK_ANSWER					//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_pcugwifiwin_01,0					/*WIFIひろばへいく*/
+	_BMPMENU_MAKE_LIST	msg_pcugwifiwin_02,1					/*せつめいをきく*/
+	_BMPMENU_MAKE_LIST	msg_pcugwifiwin_03,2					/*やめる*/
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_pc_ug_hiroba_menu_001
+	_CASE_JUMP		1,ev_pc_ug_hiroba_menu_002
+	_JUMP			ev_pc_ug_hiroba_menu_003
+	_END
+
+/*やめる*/
+ev_pc_ug_hiroba_menu_003:
+	_TALK_KEYWAIT	msg_pcugwifi_04
+	_JUMP			ev_pc_ug_hiroba_end
+	_END
+
+/*共通終了*/
+ev_pc_ug_hiroba_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*せつめい*/
+ev_pc_ug_hiroba_menu_002:
+	_TALK_KEYWAIT	msg_pcugwifi_05
+	_JUMP			ev_pc_ug_hiroba_menu
+	_END
+
+/*ひろばへいく*/
+ev_pc_ug_hiroba_menu_001:
+	//_TALK_KEYWAIT	msg_pcugwifi_02
+	//_YES_NO_WIN		SCWK_ANSWER
+	//_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_pc_ug_hiroba_menu_003
+
+#ifndef	DEBUG_SAVE_OFF	/********************************************/
+	// 全ポケモン回復
+	_PC_KAIFUKU
+
+	//セーブしますか？(LOCALWORK0に結果が代入される)
+	_CHG_COMMON_SCR	SCRID_REPORT_CALL
+	_LDWK			SCWK_ANSWER,LOCALWORK0
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_pc_ug_hiroba_menu_003		/*終了へ*/
+#endif	/************************************************************/
+
+	_TALK_KEYWAIT	msg_pcugwifi_03
+	_TALK_CLOSE
+
+	/*部屋に入るふり*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_20
+	_OBJ_ANIME_WAIT
+
+	//カウンターが開く
+	_SET_UP_DOOR_ANIME	0,0,5,5,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_pc_ug_target_22
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_22
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_pc_ug_target_23
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_23
+	_OBJ_ANIME_WAIT
+
+	//通信部屋のドアが開く
+	_SET_UP_DOOR_ANIME	0,0,5,2,77
+	_CALL			connect_door_open
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_24_2
+	_OBJ_ANIME		SCWK_TARGET_OBJID,anm_pc_ug_target_24
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+#if 1
+	/*広場への通路マップに移動*/
+	_LDVAL			LOCALWORK3,0							/*イベント起動に必要*/
+	_MAP_CHANGE		ZONE_ID_HIROBA,0,20,11,DIR_UP
+	_END
+#endif
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_FINISH_MAP_PROC
+
+	/*WIFI接続し初回ID取得*/
+	_DPW_INIT_PROC	SCWK_ANSWER
+	_LDWK			SCWK_TEMP0,SCWK_ANSWER						/*退避*/
+
+	/*WIFI広場開始*/
+	_WIFILOBBY_SET_PROC	SCWK_TEMP0
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//通信部屋のドアが開く
+	_SET_UP_DOOR_ANIME	0,0,5,2,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_30
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_31
+	_OBJ_ANIME_WAIT
+
+	//カウンターが開く
+	_SET_UP_DOOR_ANIME	0,0,5,5,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_32
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*						広場から戻ってくる処理						*/
+/********************************************************************/
+ev_pc_ug_hiroba_return:
+	_EVENT_START
+
+	//通信部屋のドアが開く
+	_SET_UP_DOOR_ANIME	0,0,5,2,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_30
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_31
+	_OBJ_ANIME_WAIT
+
+	//カウンターが開く
+	_SET_UP_DOOR_ANIME	0,0,5,5,77
+	_CALL			connect_door_open
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_pc_ug_player_32
+	_OBJ_ANIME_WAIT
+	_CALL			connect_door_close
+
+	_LDVAL			WK_SCENE_PC_UG_HIROBA,0
+	_EVENT_END
+	_END
+
+

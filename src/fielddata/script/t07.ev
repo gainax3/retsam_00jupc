@@ -1,0 +1,547 @@
+//====================================================================
+//					フィールド・タウン０７
+//						リゾートエリア
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_t07.h"
+	.include	"../eventdata/zone_t07evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_t07_woman2a
+_EVENT_DATA		ev_t07_woman2b
+_EVENT_DATA		ev_t07_woman3
+_EVENT_DATA		ev_t07_fighter
+_EVENT_DATA		ev_t07_sign1
+_EVENT_DATA		ev_t07_sign2
+_EVENT_DATA		ev_t07_swimmerm_1
+_EVENT_DATA		pos_t07_keeper
+_EVENT_DATA		ev_t07_doctor
+_EVENT_DATA		ev_t07_leader1
+_EVENT_DATA		ev_t07_leader2
+_EVENT_DATA		ev_t07_leader4
+_EVENT_DATA		ev_t07_leader6
+_EVENT_DATA		ev_t07_flag_change
+_EVENT_DATA		ev_t07_sign3
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_t07_flag_change:
+	/*全員消す(OUT=外)*/
+	_FLAG_SET		FV_VILLA_OUT_DOCTOR
+	_FLAG_SET		FV_VILLA_OUT_LEADER1
+	_FLAG_SET		FV_VILLA_OUT_LEADER2
+	_FLAG_SET		FV_VILLA_OUT_LEADER4
+	_FLAG_SET		FV_VILLA_OUT_LEADER6
+
+	/*イベントが発生しているかチェック*/
+	_IFVAL_JUMP		SYS_WORK_EVENT_T07R0201,EQ,0xff,ev_t07_event_not
+
+	/*家を購入していなかったら何もしない*/
+	_IFVAL_JUMP		WK_SCENE_T07,EQ,0,ev_t07_event_not
+
+	/*すでに家の中に移動してたら何もしない*/
+	_IF_FLAGON_JUMP	SYS_FLAG_T07_OBJ_IN,ev_t07_event_not
+
+	/*イベントに必要なOBJを表示する*/
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_DOCTOR,	t07_event03
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE1,		t07_event05
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE2,		t07_event06
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE4,		t07_event08
+	_IFVAL_CALL		SYS_WORK_EVENT_T07R0201,EQ,T07R0201_EVENT_LE6,		t07_event10
+
+	_END
+
+/*イベント発生せず*/
+ev_t07_event_not:
+	_END
+
+/*イベントに登場する人を表示*/
+t07_event03:
+	_FLAG_RESET		FV_VILLA_OUT_DOCTOR
+	_RET
+
+t07_event05:
+	_FLAG_RESET		FV_VILLA_OUT_LEADER1
+	_RET
+
+t07_event06:
+	_FLAG_RESET		FV_VILLA_OUT_LEADER2
+	_RET
+
+t07_event08:
+	_FLAG_RESET		FV_VILLA_OUT_LEADER4
+	_RET
+
+t07_event10:
+	_FLAG_RESET		FV_VILLA_OUT_LEADER6
+	_RET
+
+
+/********************************************************************/
+/*						お洒落姉さん								*/
+/********************************************************************/
+ev_t07_woman2a:
+	_EASY_OBJ_MSG	msg_t07_woman2a_01
+	_END
+
+/********************************************************************/
+/*						お洒落姉さん								*/
+/********************************************************************/
+ev_t07_woman2b:
+	_EASY_OBJ_MSG	msg_t07_woman2b_01
+	_END
+
+/********************************************************************/
+/*						トレーナー姉さん							*/
+/********************************************************************/
+ev_t07_woman3:
+	_TALK_OBJ_START
+
+	/*会員になっているかでメッセージ分岐*/
+	_IF_FLAGOFF_CALL	FE_T07R0101_MEMBER,ev_t07_woman3_off
+	_IF_FLAGON_CALL		FE_T07R0101_MEMBER,ev_t07_woman3_on
+
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+ev_t07_woman3_off:
+	_TALK_KEYWAIT	msg_t07_woman3_01
+	_RET
+
+ev_t07_woman3_on:
+	_TALK_KEYWAIT	msg_t07_woman3_02
+	_RET
+
+
+/********************************************************************/
+/*							格闘家									*/
+/********************************************************************/
+ev_t07_fighter:
+	_EASY_OBJ_MSG	msg_t07_fighter_01
+	_END
+
+/********************************************************************/
+/*							タウンマップ							*/
+/********************************************************************/
+ev_t07_sign1:
+	_EASY_BOARD_MSG	msg_t07_sign1_01,BOARD_TYPE_TOWN,0
+	_END
+
+/********************************************************************/
+/*							施設看板								*/
+/********************************************************************/
+ev_t07_sign2:
+	_EASY_BOARD_MSG	msg_t07_sign2_01,BOARD_TYPE_POST,0
+	_END
+
+/********************************************************************/
+/*							スイマー								*/
+/********************************************************************/
+ev_t07_swimmerm_1:
+	_EASY_OBJ_MSG	msg_t07_swimmerm_01
+	_END
+
+
+/********************************************************************/
+/*							別荘管理人(POS)							*/
+/********************************************************************/
+pos_t07_keeper:
+	_EVENT_START
+
+	/*近づく*/
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos11_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos12_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,474,ev_t07_pos13_anm
+
+	_TALKMSG		msg_t07_keeper_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_keeper_01
+
+	/*トピック生成：別荘購入*/
+	_TV_ENTRY_WATCH_VILLA
+
+	_TALK_KEYWAIT	msg_t07_keeper_02
+	_TALK_CLOSE
+
+	/*別荘の前まで誘導*/
+	//_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos1_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos2_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,474,ev_t07_pos3_anm
+
+	_TALK_KEYWAIT	msg_t07_keeper_04
+	_TALK_CLOSE
+
+	/*上を向く*/
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_100
+	_OBJ_ANIME_WAIT
+
+	//ドアアニメをセットアップ
+	_SET_UP_DOOR_ANIME	25,14,22,21,77
+
+	//ドア開ける
+	_SEQ_OPEN_DOOR	77
+
+	//アニメ終了待ち
+	_WAIT_3D_ANIME	77
+
+	/*管理人　家の中へ*/
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_10
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_10
+	_OBJ_ANIME_WAIT
+
+	//ドア閉める
+	_SEQ_CLOSE_DOOR	77
+
+	//アニメ終了待ち
+	_WAIT_3D_ANIME	77
+
+	//ドアアニメ解放
+	_FREE_3D_ANIME	77
+	_OBJ_DEL		T07_KEEPER
+
+	_LDVAL			WK_SCENE_T07,1
+
+	_LDVAL			SYS_WORK_EVENT_T07R0201,0xff
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,10,6,DIR_LEFT
+
+	//_EVENT_END
+	_END
+
+/*近づく*/
+ev_t07_pos11_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos12_anm:
+	//_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_12
+	//_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos13_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_13
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos1_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_01
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos2_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_02
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos3_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_03
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_03
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*「いいえ」*/
+t07_no_keeper_01:
+	_TALKMSG		msg_t07_keeper_03
+	_TALK_CLOSE
+
+	/*近づく*/
+	_PLAYER_POS_GET SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,472,ev_t07_pos21_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,473,ev_t07_pos22_anm
+	_IFVAL_CALL		SCWK_TEMP1,EQ,474,ev_t07_pos23_anm
+
+	_EVENT_END
+	_END
+
+/*元の位置へ*/
+ev_t07_pos21_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_21
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_20
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos22_anm:
+	//_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_22
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_20
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_t07_pos23_anm:
+	_OBJ_ANIME		T07_KEEPER,anm_t07_keeper_23
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_t07_player_20
+	_OBJ_ANIME_WAIT
+	_RET
+
+
+//--------------------------------------------------------------------
+//管理人　	近づく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_keeper_11
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_keeper_13
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//管理人　	元の位置へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_keeper_21
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_keeper_23
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//管理人　別荘前まで移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_keeper_01
+	_ANIME_DATA	AC_WALK_R_8F,6
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_keeper_02
+	_ANIME_DATA	AC_WALK_R_8F,6
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_keeper_03
+	_ANIME_DATA	AC_WALK_R_8F,6
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//管理人　上を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_keeper_100
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//管理人　家に入る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_keeper_10
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公　別荘前まで移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_player_01
+	_ANIME_DATA	AC_WALK_R_8F,7
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_player_02
+	_ANIME_DATA	AC_WALK_R_8F,7
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_t07_player_03
+	_ANIME_DATA	AC_WALK_R_8F,7
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	家に入る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_player_10
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	買えないので戻る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_t07_player_20
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							ナナカマド博士							*/
+/********************************************************************/
+ev_t07_doctor:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_t07_doctor_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_doctor_01
+
+	_TALKMSG		msg_t07_doctor_02
+	_TALK_CLOSE
+
+	_FLAG_SET		FV_VILLA_OUT_DOCTOR
+	//_LDVAL			WK_SCENE_T07_EVENT,1
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_DOCTOR
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,11,11,DIR_UP
+
+	//_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+t07_no_doctor_01:
+	_TALKMSG		msg_t07_doctor_03
+	_JUMP			ev_t07_common_obj_end
+	_END
+
+ev_t07_common_obj_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							ヒョウタ								*/
+/********************************************************************/
+ev_t07_leader1:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_t07_leader1_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_leader1_01
+
+	_TALKMSG		msg_t07_leader1_02
+	_TALK_CLOSE
+
+	_FLAG_SET		FV_VILLA_OUT_LEADER1
+	//_LDVAL			WK_SCENE_T07_EVENT,2
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_LE1
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,11,11,DIR_UP
+
+	//_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+t07_no_leader1_01:
+	_TALKMSG		msg_t07_leader1_03
+	_JUMP			ev_t07_common_obj_end
+	_END
+
+
+/********************************************************************/
+/*								ナタネ								*/
+/********************************************************************/
+ev_t07_leader2:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_t07_leader2_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_leader2_01
+
+	_TALKMSG		msg_t07_leader2_02
+	_TALK_CLOSE
+
+	_FLAG_SET		FV_VILLA_OUT_LEADER2
+	//_LDVAL			WK_SCENE_T07_EVENT,3
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_LE2
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,11,11,DIR_UP
+
+	//_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+t07_no_leader2_01:
+	_TALKMSG		msg_t07_leader2_03
+	_JUMP			ev_t07_common_obj_end
+	_END
+
+
+/********************************************************************/
+/*								スモモ								*/
+/********************************************************************/
+ev_t07_leader4:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_t07_leader4_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_leader4_01
+
+	_TALKMSG		msg_t07_leader4_02
+	_TALK_CLOSE
+
+	_FLAG_SET		FV_VILLA_OUT_LEADER4
+	//_LDVAL			WK_SCENE_T07_EVENT,4
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_LE4
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,11,11,DIR_UP
+
+	//_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+t07_no_leader4_01:
+	_TALKMSG		msg_t07_leader4_03
+	_JUMP			ev_t07_common_obj_end
+	_END
+
+
+/********************************************************************/
+/*								トウガン							*/
+/********************************************************************/
+ev_t07_leader6:
+	_TALK_OBJ_START
+
+	_TALKMSG		msg_t07_leader6_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,t07_no_leader6_01
+
+	_TALKMSG		msg_t07_leader6__02
+	_TALK_CLOSE
+
+	_FLAG_SET		FV_VILLA_OUT_LEADER6
+	//_LDVAL			WK_SCENE_T07_EVENT,5
+	_LDVAL			SYS_WORK_EVENT_T07R0201,T07R0201_EVENT_LE6
+	_FLAG_SET		SYS_FLAG_T07_OBJ_IN
+	_MAP_CHANGE		ZONE_ID_T07R0201,0,11,11,DIR_UP
+
+	//_TALK_OBJ_END
+	_END
+
+/*「いいえ」*/
+t07_no_leader6_01:
+	_TALKMSG		msg_t07_leader6__03
+	_JUMP			ev_t07_common_obj_end
+	_END
+
+/********************************************************************/
+/*							施設看板								*/
+/********************************************************************/
+ev_t07_sign3:
+	_EASY_BOARD_MSG	msg_t07_sign3_01,BOARD_TYPE_POST,0
+	_END
+
+

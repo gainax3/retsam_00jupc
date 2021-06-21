@@ -1,0 +1,126 @@
+//====================================================================
+//								d05r0109
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+//	.include	"../../../include/msgdata/msg_d05r0109.h"
+	//.include	"../eventdata/zone_d05r0109evc.h"
+	.include	"../eventdata/zone_d05r0109evd.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d05r0109_flag_change
+_EVENT_DATA		ev_d05r0109_init_change
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d05r0109_flag_change:
+	/*d05r0114,0115のどちらへ接続するか*/
+	_IF_FLAGON_JUMP		FE_YABURETA_SEKAI,ev_d05r0109_exit_yabureta_on
+	_IF_FLAGOFF_JUMP	FE_YABURETA_SEKAI,ev_d05r0109_exit_yabureta_off
+	_END
+
+
+/********************************************************************/
+/*						INIT_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d05r0109_init_change:
+
+	/*まずは入れない位置に全て移動*/
+	_CALL				ev_d05r0109_exit_first_set
+
+	/*d05r0114,0115のどちらへ接続するか*/
+	_IF_FLAGON_JUMP		FE_YABURETA_SEKAI,ev_d05r0109_exit_yabureta_on
+	_IF_FLAGOFF_JUMP	FE_YABURETA_SEKAI,ev_d05r0109_exit_yabureta_off
+	_END
+
+/*d05r0115へ*/
+ev_d05r0109_exit_yabureta_on:
+	_SXY_EXIT_POS_CHANGE	D05R0109_DOOR02,7,5					/*入れるようにする*/
+	_END
+
+ev_d05r0109_exit_yabureta_off:
+	/*やぶれた世界でギラティナ戦→L04でシロナイベント終了後だったら*/
+	_IFVAL_JUMP		WK_SCENE_D17R0101,GE,2,ev_d05r0109_exit_yabureta_after
+	_JUMP			ev_d05r0109_exit_normal
+	_END
+
+/*d05r0114へ(通常の出入り口)*/
+ev_d05r0109_exit_normal:
+	_SXY_EXIT_POS_CHANGE	D05R0109_DOOR01,7,5					/*入れるようにする*/
+	_END
+
+/*やぶれた世界でギラティナ戦→L04でシロナイベント終了後だったら*/
+ev_d05r0109_exit_yabureta_after:
+
+	/*このフラグが立っていなかったら、ギラティナ、パルキアと戦闘できない*/
+	_IF_FLAGOFF_JUMP	FE_T05R0101_OLDWOMAN1,ev_d05r0109_exit_normal
+
+	/*ディアルガをゲットしていたらパルキアチェックへ*/
+	_IF_FLAGON_JUMP	FE_D05R0118_D_GET,ev_d05r0109_next_poke_01
+
+	/*ディアルガ再戦不可だったら*/
+	_IFVAL_JUMP		WK_SCENE_D05R0118,GE,1,ev_d05r0109_next_poke_01
+
+	/*こんごうだま*/
+	_ITEM_CHK		ITEM_KONGOUDAMA,1,LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_d05r0109_exit_yabureta_after_d
+
+	/*(手持ち)こんごうだま*/
+	_TEMOTI_ITEM_CHK	ITEM_KONGOUDAMA,LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_d05r0109_exit_yabureta_after_d
+
+	_JUMP			ev_d05r0109_next_poke_01
+	_END
+
+//--------------------------------------------------------------------
+/*パルキアチェック*/
+//--------------------------------------------------------------------
+ev_d05r0109_next_poke_01:
+
+	/*パルキアをゲットしていたらノーマル接続へ*/
+	_IF_FLAGON_JUMP	FE_D05R0119_P_GET,ev_d05r0109_exit_normal
+
+	/*パルキア再戦不可だったら*/
+	_IFVAL_JUMP		WK_SCENE_D05R0119,GE,1,ev_d05r0109_exit_normal
+
+	/*しらたま*/
+	_ITEM_CHK		ITEM_SIRATAMA,1,LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_d05r0109_exit_yabureta_after_p
+
+	/*(手持ち)しらたま*/
+	_TEMOTI_ITEM_CHK	ITEM_SIRATAMA,LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK1,EQ,1,ev_d05r0109_exit_yabureta_after_p
+
+	_JUMP			ev_d05r0109_exit_normal
+	_END
+
+/*d05r0118へ(ディアルガがいるマップへ行く)*/
+ev_d05r0109_exit_yabureta_after_d:
+	_SXY_EXIT_POS_CHANGE	D05R0109_SPDOOR01,7,5					/*入れるようにする*/
+	_END
+
+/*d05r0119へ(パルキアがいるマップへ行く)*/
+ev_d05r0109_exit_yabureta_after_p:
+	_SXY_EXIT_POS_CHANGE	D05R0109_SPDOOR02,7,5					/*入れるようにする*/
+	_END
+
+/*入れないようにする*/
+ev_d05r0109_exit_first_set:
+	_SXY_EXIT_POS_CHANGE	D05R0109_DOOR01,1,5
+	_SXY_EXIT_POS_CHANGE	D05R0109_DOOR02,1,5
+	_SXY_EXIT_POS_CHANGE	D05R0109_SPDOOR01,1,5
+	_SXY_EXIT_POS_CHANGE	D05R0109_SPDOOR02,1,5
+	_RET
+
+

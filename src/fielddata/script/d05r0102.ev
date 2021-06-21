@@ -1,0 +1,238 @@
+//====================================================================
+//								d05r0102
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d05r0102.h"
+	.include	"../eventdata/zone_d05r0102evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d05r0102_wall
+_EVENT_DATA		pos_d05r0102_police
+_EVENT_DATA		ev_d05r0102_police
+_EVENT_DATA		ev_d05r0102_wall_02
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+//ev_d05r0102_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_d05r0102_wall:
+	_EASY_MSG	msg_d05r0102_wall_01
+	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_d05r0102_wall_02:
+	_EASY_OBJ_MSG	msg_d05r0102_wall_02
+	_END
+
+
+/********************************************************************/
+/*							国際警察(POS)							*/
+/********************************************************************/
+#define D05R0102_POLICE_Z1	(24)
+#define D05R0102_POLICE_Z2	(25)
+#define D05R0102_POLICE_Z3	(26)
+
+pos_d05r0102_police:
+	_EVENT_START
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+
+	_LDVAL			WK_SCENE_D05R0102,2
+
+	/*近づいてくる*/
+	_SXY_POS_CHANGE	D05R0102_POLICE,20,25
+	_SXY_MV_CHANGE	D05R0102_POLICE,MV_LEFT
+	_SXY_DIR_CHANGE	D05R0102_POLICE,DIR_LEFT
+	_FLAG_RESET		FV_D05R0102_POLICE
+	_OBJ_ADD		D05R0102_POLICE
+
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_01_0
+	_OBJ_ANIME_WAIT
+
+	_CHG_COMMON_SCR SCRID_HANDSOME_PLAY				/*ハンサム曲再生*/
+
+	_IFVAL_CALL		SCWK_TEMP1,EQ,D05R0102_POLICE_Z1,ev_d05r0102_police_z1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,D05R0102_POLICE_Z2,ev_d05r0102_police_z2
+	_IFVAL_CALL		SCWK_TEMP1,EQ,D05R0102_POLICE_Z3,ev_d05r0102_police_z3
+
+	_TALK_KEYWAIT	msg_d05r0102_detective_01
+
+	/*画面下を向く*/
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_10
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d05r0102_detective_02
+
+	/*主人公と向き合う*/
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_20
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d05r0102_detective_03
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_KUROIBIIDORO
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d05r0102_police_item_event_fail
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_CALL			ev_d05r0102_police_item_get
+	_CHG_COMMON_SCR SCRID_HANDSOME_STOP				/*ハンサム曲停止*/
+	_EVENT_END
+	_END
+
+ev_d05r0102_police_item_get:
+	/*アイテム入手した*/
+	_FLAG_SET		FE_D05R0102_ITEM_GET
+	_TALK_KEYWAIT	msg_d05r0102_detective_04
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_RET
+
+/*アイテム入手失敗*/
+ev_d05r0102_police_item_event_fail:
+	_CALL			ev_d05r0102_police_item_fail	/*アイテムもらえない時*/
+	_CHG_COMMON_SCR SCRID_HANDSOME_STOP				/*ハンサム曲停止*/
+	_EVENT_END
+	_END
+
+ev_d05r0102_police_item_fail:
+	/*アイテム入手失敗*/
+	_TALK_KEYWAIT	msg_d05r0102_detective_05
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_RET
+
+ev_d05r0102_police_z1:
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_01
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0102_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_d05r0102_police_z2:
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_02
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0102_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_d05r0102_police_z3:
+	_OBJ_ANIME		D05R0102_POLICE,anm_d05r0102_police_03
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d05r0102_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//国際警察	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d05r0102_police_01_0
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d05r0102_police_01
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d05r0102_police_02
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d05r0102_police_03
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	下を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d05r0102_police_10
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d05r0102_police_20
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	振り返る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d05r0102_player_01
+	_ANIME_DATA	AC_WAIT_8F,4
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							国際警察								*/
+/********************************************************************/
+ev_d05r0102_police:
+	_TALK_OBJ_START
+
+	/*アイテム入手していなかったら*/
+	_IF_FLAGOFF_JUMP	FE_D05R0102_ITEM_GET,ev_d05r0102_police_item_get_sub
+
+	_TALK_KEYWAIT	msg_d05r0102_detective_04
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*アイテム入手していなかったら*/
+ev_d05r0102_police_item_get_sub:
+
+	_TALK_KEYWAIT	msg_d05r0102_detective_06
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_KUROIBIIDORO
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d05r0102_police_item_event_fail_retry
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_CALL			ev_d05r0102_police_item_get
+	_TALK_OBJ_END
+	_END
+
+/*アイテム入手失敗*/
+ev_d05r0102_police_item_event_fail_retry:
+	_CALL			ev_d05r0102_police_item_fail	/*アイテムもらえない時*/
+	_TALK_OBJ_END
+	_END
+
+

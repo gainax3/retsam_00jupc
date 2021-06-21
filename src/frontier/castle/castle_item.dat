@@ -1,0 +1,133 @@
+//==============================================================================================
+/**
+ * @file	castle_item.c
+ * @brief	「バトルキャッスル 手持ちポケモン画面」道具レンタルデータ
+ * @author	Satoshi Nohara
+ * @date	07.07.13
+ */
+//==============================================================================================
+
+#include "../../../include/itemtool/itemsym.h"		//アイテムナンバー定義
+
+//----------------------------------------------------------------------------------------------
+//	道具
+//----------------------------------------------------------------------------------------------
+const u16 castle_item[] = {
+	ITEM_OUZYANOSIRUSI,			// おうじゃのしるし		//0
+	ITEM_SENSEINOTUME,			// せんせいのツメ
+	ITEM_PAWAHURUHAABU,			// パワフルハーブ
+	ITEM_KAIGARANOSUZU,			// かいがらのすず
+	ITEM_METORONOOMU,			// メトロノーム
+	ITEM_HIKARINONENDO,			// ひかりのねんど
+	ITEM_NEBARINOKAGIDUME,		// ねばりのかぎづめ
+	ITEM_OOKINANEKKO,			// おおきなねっこ
+	ITEM_DOKUDOKUDAMA,			// どくどくだま
+	ITEM_KAENDAMA,				// かえんだま
+	ITEM_DENKIDAMA,				// でんきだま			//10
+	ITEM_HUTOIHONE,				// ふといホネ
+	////////////////////////////////////////////////////////////////////////////////////////////
+	ITEM_SIROIHAABU,			// しろいハーブ			//12
+	ITEM_KIAINOHATIMAKI,		// きあいのハチマキ
+	ITEM_KIAINOTASUKI,			// きあいのタスキ
+	ITEM_TABENOKOSI,			// たべのこし
+	ITEM_HIKARINOKONA,			// ひかりのこな
+	ITEM_PINTORENZU,			// ピントレンズ
+	ITEM_KOUKAKURENZU,			// こうかくレンズ
+	ITEM_FOOKASURENZU,			// フォーカスレンズ
+	ITEM_KODAWARIHATIMAKI,		// こだわりハチマキ		//20
+	ITEM_KODAWARIMEGANE,		// こだわりメガネ
+	ITEM_KODAWARISUKAAHU,		// こだわりスカーフ
+	ITEM_TIKARANOHATIMAKI,		// ちからのハチマキ
+	ITEM_MONOSIRIMEGANE,		// ものしりメガネ
+	ITEM_TATUZINNOOBI,			// たつじんのおび
+	ITEM_INOTINOTAMA,			// いのちのたま			//26
+	////////////////////////////////////////////////////////////////////////////////////////////
+	//0xffff,
+};
+#define CASTLE_ITEM_MAX			( NELEMS(castle_item) )
+
+//----------------------------------------------------------------------------------------------
+//	道具使用CP
+//----------------------------------------------------------------------------------------------
+const u16 castle_item_cp[CASTLE_ITEM_MAX] = {
+	10, 15,  5, 15, 10, 
+	10, 10, 10, 10, 10, 
+	15, 15, 
+	///////////////////
+	5,  15, 10, 20, 20, 
+	20, 20, 20, 20, 20,
+	20, 20, 20, 20, 20,
+};
+
+//----------------------------------------------------------------------------------------------
+//木の実
+//----------------------------------------------------------------------------------------------
+const u16 castle_seed[] = {
+	ITEM_KURABONOMI,			// クラボのみ		//0
+	ITEM_KAGONOMI,				// カゴのみ
+	ITEM_MOMONNOMI,				// モモンのみ
+	ITEM_TIIGONOMI,				// チーゴのみ
+	ITEM_NANASINOMI,			// ナナシのみ
+	ITEM_KIINOMI,				// キーのみ			//5
+	ITEM_RAMUNOMI,				// ラムのみ
+	ITEM_OBONNOMI,				// オボンのみ
+	////////////////////////////////////////////////////////////////////////////////////////////
+	ITEM_TIIRANOMI,				// チイラのみ
+	ITEM_RYUGANOMI,				// リュガのみ
+	ITEM_KAMURANOMI,			// カムラのみ		//10
+	ITEM_YATAPINOMI,			// ヤタピのみ
+	ITEM_ZUANOMI,				// ズアのみ
+	ITEM_SANNOMI,				// サンのみ
+	ITEM_SUTAANOMI,				// スターのみ
+	ITEM_OKKANOMI,				// オッカのみ		//15
+	ITEM_ITOKENOMI,				// イトケのみ
+	ITEM_SOKUNONOMI,			// ソクノのみ
+	ITEM_RINDONOMI,				// リンドのみ
+	ITEM_YATHENOMI,				// ヤチェのみ
+	ITEM_YOPUNOMI,				// ヨプのみ			//20
+	ITEM_BIAANOMI,				// ビアーのみ
+	ITEM_SYUKANOMI,				// シュカのみ
+	ITEM_BAKOUNOMI,				// バコウのみ
+	ITEM_UTANNOMI,				// ウタンのみ
+	ITEM_TANGANOMI,				// タンガのみ		//25
+	ITEM_YOROGINOMI,			// ヨロギのみ
+	ITEM_KASIBUNOMI,			// カシブのみ
+	ITEM_HABANNOMI,				// ハバンのみ
+	ITEM_NAMONOMI,				// ナモのみ
+	ITEM_RIRIBANOMI,			// リリバのみ		//30
+	ITEM_HOZUNOMI,				// ホズのみ			//31
+	//0xffff,
+};
+#define CASTLE_SEED_MAX			( NELEMS(castle_seed) )
+
+//----------------------------------------------------------------------------------------------
+//	木の実使用CP
+//----------------------------------------------------------------------------------------------
+const u16 castle_seed_cp[CASTLE_SEED_MAX] = {
+	 2,  2,  2,  2,  2, 
+	 2,  5,  5,  5,  5,
+	 5,  5,  5,  5,  5,
+	 5,  5,  5,  5,  5,
+	 5,  5,  5,  5,  5,
+	 5,  5,  5,  5,  5,
+	 5,  5,
+};
+
+//----------------------------------------------------------------------------------------------
+//道具＋木の実
+//----------------------------------------------------------------------------------------------
+#define CASTLE_ITEM_ALL_MAX		( CASTLE_SEED_MAX + CASTLE_ITEM_MAX )
+
+
+//----------------------------------------------------------------------------------------------
+//ラングごとに表示する数
+//----------------------------------------------------------------------------------------------
+const u16 castle_item_rank[] = {
+	12, 12, CASTLE_ITEM_MAX, 
+};
+
+const u16 castle_seed_rank[] = {
+	8, 8, CASTLE_SEED_MAX, 
+};
+
+

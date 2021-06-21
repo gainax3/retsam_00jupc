@@ -1,0 +1,234 @@
+//==============================================================================================
+/**
+ * @file	factory.c
+ * @brief	「バトルファクトリー」データ
+ * @author	Satoshi Nohara
+ * @date	2007.10.10
+ */
+//==============================================================================================
+
+
+//==============================================================================================
+//
+//	ボールの配置データ
+//
+//==============================================================================================
+#define BALL_START_X			(24)			//ボールの一番左の開始位置
+#define BALL_START_Y			(112)			//ボールのY
+#define BALL_POS_X				(32+8)			//ボールの間隔
+#define T_BALL_START_X			(64)			//交換ボールの一番左の開始位置
+#define T_BALL_POS_X			(48+8)			//交換ボールの間隔
+#define T_MULTI_BALL_TEBANASU_X	(96)			//通信マルチ交換ボールの一番左の開始位置(てばなす)
+#define T_MULTI_BALL_UKETORU_X	(40)			//通信マルチ交換ボールの一番左の開始位置(うけとる)
+#define MENU_CSR_START_X		(212)			//メニューカーソルのX
+#define MENU_CSR_START_Y		(144)			//メニューカーソルのY
+
+//----------------------------------------------------------------------------------------------
+//レンタル
+//----------------------------------------------------------------------------------------------
+static const u16 bf_ball_pos[][2] = {
+	{ BALL_START_X, BALL_START_Y },
+	{ BALL_START_X + BALL_POS_X * 1, BALL_START_Y },
+	{ BALL_START_X + BALL_POS_X * 2, BALL_START_Y },
+	{ BALL_START_X + BALL_POS_X * 3, BALL_START_Y },
+	{ BALL_START_X + BALL_POS_X * 4, BALL_START_Y },
+	{ BALL_START_X + BALL_POS_X * 5, BALL_START_Y },
+};
+#define BF_BALL_POS_MAX		( NELEMS(bf_ball_pos) )
+
+//----------------------------------------------------------------------------------------------
+//交換
+//----------------------------------------------------------------------------------------------
+static const u16 bf_t_ball_pos[][2] = {
+	{ T_BALL_START_X, BALL_START_Y },
+	{ T_BALL_START_X + T_BALL_POS_X * 1, BALL_START_Y },
+	{ T_BALL_START_X + T_BALL_POS_X * 2, BALL_START_Y },
+};
+#define BF_T_BALL_POS_MAX		( NELEMS(bf_t_ball_pos) )
+//交換で選ぶことの出来るポケモン(ボール)の最大数
+
+//----------------------------------------------------------------------------------------------
+//"通信"交換(てばなす)
+//----------------------------------------------------------------------------------------------
+static const u16 bf_t_multi_ball_tebanasu_pos[][2] = {
+	{ T_MULTI_BALL_TEBANASU_X, BALL_START_Y },
+	{ T_MULTI_BALL_TEBANASU_X + T_BALL_POS_X * 1, BALL_START_Y },
+};
+#define BF_T_MULTI_BALL_TEBANASU_POS_MAX		( NELEMS(bf_t_multi_ball_tebanasu_pos) )
+
+//----------------------------------------------------------------------------------------------
+//"通信"交換(うけとる)
+//----------------------------------------------------------------------------------------------
+static const u16 bf_t_multi_ball_uketoru_pos[][2] = {
+	{ T_MULTI_BALL_UKETORU_X, BALL_START_Y },
+	{ T_MULTI_BALL_UKETORU_X + T_BALL_POS_X * 1, BALL_START_Y },
+	{ T_MULTI_BALL_UKETORU_X + T_BALL_POS_X * 2, BALL_START_Y },
+	{ T_MULTI_BALL_UKETORU_X + T_BALL_POS_X * 3, BALL_START_Y },
+};
+#define BF_T_MULTI_BALL_UKETORU_POS_MAX		( NELEMS(bf_t_multi_ball_uketoru_pos) )
+
+
+//==============================================================================================
+//
+//	カーソルの配置データ
+//
+//==============================================================================================
+#define BALL_CSR_START_X	(BALL_START_X)			//ボールカーソルの一番左の開始位置
+#define BALL_CSR_START_Y	(BALL_START_Y)			//ボールカーソルのY
+#define BALL_CSR_POS_X		(BALL_POS_X)			//ボールカーソルの間隔
+#define T_BALL_CSR_START_X	(T_BALL_START_X)		//交換ボールカーソルの一番左の開始位置
+#define T_MULTI_BALL_CSR_TEBANASU_X	(T_MULTI_BALL_TEBANASU_X)//交換ボールカーソルの一番左の開始位置
+#define T_MULTI_BALL_CSR_UKETORU_X	(T_MULTI_BALL_UKETORU_X) //交換ボールカーソルの一番左の開始位置
+#define T_BALL_CSR_POS_X	(T_BALL_POS_X)			//交換ボールカーソルの間隔
+#define T_MENU_CSR_START_X	(MENU_CSR_START_X)		//交換ボールメニューのX
+#define T_MENU_CSR_START_Y	(MENU_CSR_START_Y)		//交換ボールメニューのY
+
+//----------------------------------------------------------------------------------------------
+//横選択メニューのカーソル位置(モンスターボール)
+//----------------------------------------------------------------------------------------------
+//「レンタル」
+static const FACTORY_POS bf_h_ball_csr_pos[] = {
+	{ BALL_CSR_START_X, BALL_CSR_START_Y },
+	{ BALL_CSR_START_X + BALL_CSR_POS_X * 1, BALL_CSR_START_Y },
+	{ BALL_CSR_START_X + BALL_CSR_POS_X * 2, BALL_CSR_START_Y },
+	{ BALL_CSR_START_X + BALL_CSR_POS_X * 3, BALL_CSR_START_Y },
+	{ BALL_CSR_START_X + BALL_CSR_POS_X * 4, BALL_CSR_START_Y },
+	{ BALL_CSR_START_X + BALL_CSR_POS_X * 5, BALL_CSR_START_Y },
+};
+#define BF_ENTRY_POKE_MAX		( NELEMS(bf_h_ball_csr_pos) )
+//エントリーしている選ぶことの出来るポケモン(ボール)の最大数
+
+//----------------------------------------------------------------------------------------------
+//「交換」「てばなす」
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_hv_tyuusi_csr_pos[] = {
+	{ T_BALL_CSR_START_X, BALL_CSR_START_Y },
+	{ T_BALL_CSR_START_X + T_BALL_CSR_POS_X * 1, BALL_CSR_START_Y },
+	{ T_BALL_CSR_START_X + T_BALL_CSR_POS_X * 2, BALL_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y },
+	//{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y + 16 },
+};
+#define BF_HV_TYUUSI_MAX		( NELEMS(bf_hv_tyuusi_csr_pos) )
+#define BF_HV_TYUUSI_H_MAX		( BF_HV_TYUUSI_MAX - 1 )
+
+static const u8 bf_hv_tyuusi_anm_tbl[BF_HV_TYUUSI_MAX] = {
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_MENU_CSR,
+	//ANM_MENU_CSR,
+};
+
+//----------------------------------------------------------------------------------------------
+//"通信"「交換」「てばなす」
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_hv_tyuusi_multi_csr_pos[] = {
+	{ T_MULTI_BALL_CSR_TEBANASU_X, BALL_CSR_START_Y },
+	{ T_MULTI_BALL_CSR_TEBANASU_X + T_BALL_CSR_POS_X * 1, BALL_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y },
+	//{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y + 16 },
+};
+#define BF_HV_TYUUSI_MULTI_MAX		( NELEMS(bf_hv_tyuusi_multi_csr_pos) )
+#define BF_HV_TYUUSI_H_MULTI_MAX	( BF_HV_TYUUSI_MULTI_MAX - 1 )
+
+static const u8 bf_hv_tyuusi_multi_anm_tbl[BF_HV_TYUUSI_MULTI_MAX] = {
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_MENU_CSR,
+	//ANM_MENU_CSR,
+};
+
+//----------------------------------------------------------------------------------------------
+//「交換」「受け取る」
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_hv_modoru_csr_pos[] = {
+	{ T_BALL_CSR_START_X, BALL_CSR_START_Y },
+	{ T_BALL_CSR_START_X + T_BALL_CSR_POS_X * 1, BALL_CSR_START_Y },
+	{ T_BALL_CSR_START_X + T_BALL_CSR_POS_X * 2, BALL_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y + 16 },
+};
+#define BF_HV_MODORU_MAX		( NELEMS(bf_hv_modoru_csr_pos) )
+#define BF_HV_MODORU_H_MAX		( BF_HV_MODORU_MAX - 2 )
+
+static const u8 bf_hv_modoru_anm_tbl[BF_HV_MODORU_MAX] = {
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_MENU_CSR,
+	ANM_MENU_CSR,
+};
+
+//----------------------------------------------------------------------------------------------
+//"通信"「交換」「受け取る」
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_hv_modoru_multi_csr_pos[] = {
+	{ T_MULTI_BALL_CSR_UKETORU_X, BALL_CSR_START_Y },
+	{ T_MULTI_BALL_CSR_UKETORU_X + T_BALL_CSR_POS_X * 1, BALL_CSR_START_Y },
+	{ T_MULTI_BALL_CSR_UKETORU_X + T_BALL_CSR_POS_X * 2, BALL_CSR_START_Y },
+	{ T_MULTI_BALL_CSR_UKETORU_X + T_BALL_CSR_POS_X * 3, BALL_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y },
+	{ T_MENU_CSR_START_X , T_MENU_CSR_START_Y + 16 },
+};
+#define BF_HV_MODORU_MULTI_MAX		( NELEMS(bf_hv_modoru_multi_csr_pos) )
+#define BF_HV_MODORU_H_MULTI_MAX	( BF_HV_MODORU_MULTI_MAX - 2 )
+
+static const u8 bf_hv_modoru_multi_anm_tbl[BF_HV_MODORU_MULTI_MAX] = {
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_BALL_CSR,
+	ANM_MENU_CSR,
+	ANM_MENU_CSR,
+};
+
+//----------------------------------------------------------------------------------------------
+//縦選択メニューのカーソル位置(「つよさをみる、レンタルする、べつのにする」)
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_v_menu_csr_pos[] = {
+	{ MENU_CSR_START_X, MENU_CSR_START_Y },
+	{ MENU_CSR_START_X, MENU_CSR_START_Y + 16 },
+	{ MENU_CSR_START_X, MENU_CSR_START_Y + 32 },
+};
+#define POKE_SEL_MENU_MAX		( NELEMS(bf_v_menu_csr_pos) )
+
+//メニュー戻り値
+enum{
+	RET_PARAM_TUYOSA,
+	RET_PARAM_RENTAL,
+	RET_PARAM_BETUNO,
+	RET_PARAM_HAZUSU,			//注意！ 「レンタル」→「はずす」に変えて使用している
+	RET_PARAM_TEBANASU,			//注意！ 「レンタル」→「てばなす」に変えて使用している
+};
+
+//----------------------------------------------------------------------------------------------
+//縦選択メニューのカーソル位置(「はい、いいえ」)
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_v_yesno_csr_pos[] = {
+	{ MENU_CSR_START_X, MENU_CSR_START_Y },
+	{ MENU_CSR_START_X, MENU_CSR_START_Y + 16 },
+};
+#define YES_NO_MENU_MAX			( NELEMS(bf_v_yesno_csr_pos) )
+
+//メニュー戻り値
+enum{
+	RET_PARAM_YES = 0,
+	RET_PARAM_NO,
+};
+
+//----------------------------------------------------------------------------------------------
+//縦選択メニューのカーソル位置(「もどる、ちゅうし」)
+//----------------------------------------------------------------------------------------------
+static const FACTORY_POS bf_v_trade_final_csr_pos[] = {
+	{ 212, 144 },
+	{ 212, 160 },
+};
+#define TRADE_FINAL_MENU_MAX	( NELEMS(bf_v_trade_final_csr_pos) )
+
+//メニュー戻り値
+enum{
+	RET_PARAM_MODORU = 0,
+	RET_PARAM_TYUUSI,
+};
+
+

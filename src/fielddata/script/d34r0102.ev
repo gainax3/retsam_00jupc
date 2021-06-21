@@ -1,0 +1,145 @@
+//====================================================================
+//								d34r0102
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0102.h"
+//	.include	"../eventdata/zone_d34r0102evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0102_flag_change
+_EVENT_DATA		ev_d34r0102_sirona00
+_EVENT_DATA		ev_d34r0102_mes01
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0102_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+/********************************************************************/
+/*						シロナ00									*/
+/********************************************************************/
+ev_d34r0102_sirona00:
+	_EVENT_START
+	
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0102_player_00
+	_OBJ_ANIME		TW_OBJID_0102_SIRONA,anm_d34r0102_sirona_00
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d34r0102_champion_01
+	_TALK_CLOSE
+	
+	_OBJ_ANIME		TW_OBJID_0102_SIRONA,anm_d34r0102_sirona_01
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0102_player_01
+	_OBJ_ANIME_WAIT
+	
+	_TW_OBJ_DEL		TW_OBJID_0102_SIRONA
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_02_00
+	
+	_EVENT_END
+	_END
+
+/********************************************************************/
+/*						エムリット誘導								*/
+/********************************************************************/
+ev_d34r0102_mes01:
+	_EVENT_START
+	
+	_VOICE_PLAY		MONSNO_AI,0	
+	_TALK_KEYWAIT	msg_d34r0102_mesprit_01
+	_TALK_CLOSE
+	_VOICE_WAIT
+	
+	_TW_OBJ_ADD		TW_OBJID_0102_SPPOKE2
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0102_player_02
+	_OBJ_ANIME		TW_OBJID_0102_SPPOKE2,anm_d34r0102_em_00
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL		TW_OBJID_0102_SPPOKE2
+	
+	_EVENT_END
+	_END
+
+//-------------------------------------------------------------
+//	主人公アニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0102_player_00
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0102_player_01
+	_ANIME_DATA	AC_WAIT_16F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA ACMD_END,0
+
+_ANIME_LABEL	anm_d34r0102_player_02
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA AC_WAIT_1F,8
+	_ANIME_DATA AC_WAIT_32F,1
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	シロナアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0102_sirona_00
+	_ANIME_DATA	AC_WAIT_16F,3
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0102_sirona_01
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA AC_WALK_D_8F,2
+	_ANIME_DATA AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_16F,1
+	_ANIME_DATA	AC_JUMP_L_3G_24F,2
+	_ANIME_DATA	AC_JUMP_D_3G_24F,1
+	_ANIME_DATA	AC_JUMP_L_3G_24F,1
+	_ANIME_DATA AC_WAIT_16F,1
+	_ANIME_DATA ACMD_END,0
+
+//-------------------------------------------------------------
+//	エムリットアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0102_em_00
+	_ANIME_DATA AC_WAIT_16F,3
+	_ANIME_DATA AC_WALK_U_16F,1
+	_ANIME_DATA AC_WALK_U_8F,1
+	_ANIME_DATA AC_WALK_U_4F,1
+	_ANIME_DATA AC_WALK_U_2F,8
+	_ANIME_DATA ACMD_END,0
+
+/*
+_ANIME_LABEL	anm_d34r0102_em_00
+	_ANIME_DATA AC_WALK_L_2F,10
+	_ANIME_DATA AC_WALK_L_4F,2
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA AC_WALK_U_16F,1
+	_ANIME_DATA AC_WALK_U_8F,1
+	_ANIME_DATA AC_WALK_U_4F,1
+	_ANIME_DATA AC_WALK_U_2F,8
+	_ANIME_DATA ACMD_END,0
+*/

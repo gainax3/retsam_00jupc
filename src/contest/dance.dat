@@ -1,0 +1,143 @@
+//==============================================================================
+/**
+ * @file	dance.dat
+ * @brief	コンテスト：ダンス部門の外部データ
+ * @author	matsuda
+ * @date	2006.01.19(木)
+ */
+//==============================================================================
+
+static const DANCE_MUSIC_DATA DanceMusicData[] = {
+	{//ノーマル、スーパー用
+		SEQ_CO_KASHI,	///<曲ID
+		120,					///<曲のテンポ
+		2,						///<繰り返し回数
+		3,						///<タッチ(ダンス)出来る回数
+		4,						///<準備時間の小節数(四分音符の数)
+		4,						///<ローテーションの小節数(四分音符の数)
+		{2,2,3,3},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	{//ハイパー、マスター用
+		SEQ_CO_TAKUMA,	///<曲ID
+		120,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		4,						///<準備時間の小節数(四分音符の数)
+		4,						///<ローテーションの小節数(四分音符の数)
+		{2,2,3,3},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	//プラチナから新規追加曲データ
+	{
+		SEQ_PL_MTKAKKO,	///<曲ID
+		100,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		3,						///<準備時間の小節数(四分音符の数)
+		3,						///<ローテーションの小節数(四分音符の数)
+		{1,1,2,2},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	{
+		SEQ_PL_MTUTSUK,	///<曲ID
+		60,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		3,						///<準備時間の小節数(四分音符の数)
+		3,						///<ローテーションの小節数(四分音符の数)
+		{2,2,3,3},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	{
+		SEQ_PL_MTKAWA,	///<曲ID
+		150,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		4,						///<準備時間の小節数(四分音符の数)
+		4,						///<ローテーションの小節数(四分音符の数)
+		{1,1,2,2},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	{
+		SEQ_PL_MTKASHI,	///<曲ID
+		132,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		4,						///<準備時間の小節数(四分音符の数)
+		4,						///<ローテーションの小節数(四分音符の数)
+		{1,1,2,2},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+	{
+		SEQ_PL_MTTAKMA,	///<曲ID
+		140,					///<曲のテンポ
+		2,						///<繰り返し回数
+		4,						///<タッチ(ダンス)出来る回数
+		4,						///<準備時間の小節数(四分音符の数)
+		4,						///<ローテーションの小節数(四分音符の数)
+		{1,1,2,2},//{3, 4, 6, 7},			///<ダンスのずれ許容範囲(EXCELLENT_A,B,GOOD_A,B)
+	},
+};
+
+
+///ダンス音楽進行データ最大数
+#define DANCE_MUSIC_DATA_MAX	(NELEMS(DanceMusicData))
+
+///ミュージックデータNo		※DanceMusicDataと並びを同じにしておくこと！
+enum{
+	MUSDATA_NO_DP_CLEVER,
+	MUSDATA_NO_DP_STRONG,
+	MUSDATA_NO_STYLE,
+	MUSDATA_NO_BEAUTIFUL,
+	MUSDATA_NO_CUTE,
+	MUSDATA_NO_CLEVER,
+	MUSDATA_NO_STRONG,
+};
+
+///ランク、タイプごとのミュージックデータ番号
+static const struct {
+	u32  musdata_no;
+	u32  rhythm_no;
+}DanceDataNo[CONRANK_MAX][CONTYPE_MAX] = {
+	{//ノーマルランク
+		MUSDATA_NO_DP_CLEVER,	RHYTHM_NO_4,	//かっこよさ
+		MUSDATA_NO_DP_CLEVER,	RHYTHM_NO_4,	//美しさ
+		MUSDATA_NO_DP_CLEVER,	RHYTHM_NO_4,	//可愛さ
+		MUSDATA_NO_DP_CLEVER,	RHYTHM_NO_4,	//賢さ
+		MUSDATA_NO_DP_CLEVER,	RHYTHM_NO_4,	//たくましさ
+	},
+	{//スーパーランク
+		MUSDATA_NO_DP_STRONG,	RHYTHM_NO_4,	//かっこよさ
+		MUSDATA_NO_DP_STRONG,	RHYTHM_NO_4,	//美しさ
+		MUSDATA_NO_DP_STRONG,	RHYTHM_NO_4,	//可愛さ
+		MUSDATA_NO_DP_STRONG,	RHYTHM_NO_4,	//賢さ
+		MUSDATA_NO_DP_STRONG,	RHYTHM_NO_4,	//たくましさ
+	},
+	{//ハイパーランク
+		MUSDATA_NO_STYLE,		RHYTHM_NO_3,	//かっこよさ
+		MUSDATA_NO_BEAUTIFUL,	RHYTHM_NO_3,	//美しさ
+		MUSDATA_NO_CUTE,		RHYTHM_NO_4,	//可愛さ
+		MUSDATA_NO_CLEVER,		RHYTHM_NO_4,	//賢さ
+		MUSDATA_NO_STRONG,		RHYTHM_NO_4,	//たくましさ
+	},
+	{//マスターランク
+		MUSDATA_NO_STYLE,		RHYTHM_NO_3,	//かっこよさ
+		MUSDATA_NO_BEAUTIFUL,	RHYTHM_NO_3,	//美しさ
+		MUSDATA_NO_CUTE,		RHYTHM_NO_4,	//可愛さ
+		MUSDATA_NO_CLEVER,		RHYTHM_NO_4,	//賢さ
+		MUSDATA_NO_STRONG,		RHYTHM_NO_4,	//たくましさ
+	},
+};
+
+///DPが混じった通信対戦のミュージックデータ番号
+#define DANCE_DATA_NO_DP_SIO		(MUSDATA_NO_DP_STRONG)
+
+
+///リズム毎に変わる値
+static const RHYTHM_DATA RhythmData[] = {
+	{//RHYTHM_NO_4	4拍子
+		CON_DANCE_BG_NSCR_BIN,
+		TEMPO_BASE_ONPU_4,
+		32,
+	},
+	{//RHYTHM_NO_3	3拍子
+		CON_DANCE_BG_MUS3_NSCR_BIN,
+		TEMPO_BASE_ONPU_3,
+		30,
+	},
+};

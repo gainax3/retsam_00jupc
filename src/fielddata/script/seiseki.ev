@@ -1,0 +1,292 @@
+//====================================================================
+//								seiseki
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_bf_seiseki.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//
+/*	SCWK_PARAM0	施設ナンバー										*/
+/*	SCWK_PARAM1	バトルタイプ(シングル、ダブル、マルチ、やめる)		*/
+/*	SCWK_PARAM2	五十音のどれか										*/
+/*	SCWK_PARAM3	どのポケモンか										*/
+//
+/*	SCWK_TEMP0	lp_bak(五十音)										*/
+/*	SCWK_TEMP1	cp_bak												*/
+/*	SCWK_TEMP2	lp_bak(ポケモン名)									*/
+/*	SCWK_TEMP3	cp_bak												*/
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_seiseki_tower
+_EVENT_DATA		ev_seiseki_tower_multi
+_EVENT_DATA		ev_seiseki_factory
+_EVENT_DATA		ev_seiseki_stage
+_EVENT_DATA		ev_seiseki_castle
+_EVENT_DATA		ev_seiseki_roulette
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						フロンティア成績(タワー)					*/
+/********************************************************************/
+ev_seiseki_tower:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_TOWER
+	_JUMP		ev_seiseki_tower_menu
+	_END
+
+ev_seiseki_tower_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	_CALL		ev_seiseki_disp						/*成績表示*/
+	_JUMP		ev_seiseki_tower_menu
+	_END
+
+
+/********************************************************************/
+/*						フロンティア成績(タワーマルチ)				*/
+/********************************************************************/
+ev_seiseki_tower_multi:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_TOWER
+	_JUMP		ev_seiseki_tower_multi_menu
+	_END
+
+ev_seiseki_tower_multi_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	_CALL		ev_seiseki_disp						/*成績表示*/
+	_JUMP		ev_seiseki_tower_multi_menu
+	_END
+
+
+/********************************************************************/
+/*						フロンティア成績(ファクトリー)				*/
+/********************************************************************/
+ev_seiseki_factory:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_FACTORY_LV50
+	//_LDVAL		SCWK_PARAM0,FRONTIER_NO_FACTORY_LV100
+	_JUMP		ev_seiseki_factory_menu
+	_END
+
+ev_seiseki_factory_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	_CALL		ev_seiseki_disp						/*成績表示*/
+	_JUMP		ev_seiseki_factory_menu
+	_END
+
+
+/********************************************************************/
+/*						フロンティア成績(ステージ)					*/
+/********************************************************************/
+ev_seiseki_stage:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_STAGE
+	_JUMP		ev_seiseki_stage_menu
+	_END
+
+ev_seiseki_stage_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	/*連勝中かチェック*/
+	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_FLAG,SCWK_PARAM1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_stage_menu_new					/*新規挑戦*/
+
+	/*連勝中のポケモンナンバー取得*/
+	_BSTAGE_TOOLS	STAGE_TOOL_GET_CLEAR_MONSNO,SCWK_PARAM1,SCWK_ANSWER
+	_POKEMON_NAME_EXTRA	0,SCWK_ANSWER,0,0
+
+	/*「○○○○○が挑戦中」*/
+	_TALK_KEYWAIT	msg_bf_seiseki_04_01
+	_JUMP			ev_stage_menu_sub
+	_END
+
+/*新規挑戦*/
+ev_stage_menu_new:
+	/*「どのポケモンの成績をみるか？」*/
+	_TALK_KEYWAIT	msg_bf_seiseki_02_01
+	_JUMP			ev_stage_menu_sub
+	_END
+
+ev_stage_menu_sub:
+	_LDVAL		SCWK_PARAM2,0
+	_LDVAL		SCWK_TEMP0,0
+	_LDVAL		SCWK_TEMP1,0
+	_JUMP		ev_seiseki_stage_menu02
+	_END
+
+/*ポケモン五十音選択*/
+ev_seiseki_stage_menu02:
+	_CALL		ev_seiseki_03
+	_IFVAL_JUMP	SCWK_PARAM2,EQ,9,ev_seiseki_stage_menu
+	_IFVAL_JUMP	SCWK_PARAM2,EQ,EV_WIN_B_CANCEL,ev_seiseki_stage_menu
+
+	_LDVAL		SCWK_PARAM3,0
+	_LDVAL		SCWK_TEMP2,0
+	_LDVAL		SCWK_TEMP3,0
+	_JUMP		ev_seiseki_stage_menu03
+	_END
+
+/*成績が記録されているポケモンのウィンドウを作成*/
+ev_seiseki_stage_menu03:
+	_SEISEKI_BMPLIST_START	SCWK_PARAM1,SCWK_PARAM2,SCWK_PARAM3,SCWK_TEMP2,SCWK_TEMP3
+
+	/*キャンセルされた*/
+	_IFVAL_JUMP	SCWK_PARAM3,EQ,EV_WIN_B_CANCEL,ev_seiseki_stage_menu02
+
+	_CALL		ev_seiseki_disp				/*成績表示*/
+
+	/*「どのポケモンの成績をみるか？」*/
+	_TALK_KEYWAIT	msg_bf_seiseki_02_01
+	_JUMP		ev_seiseki_stage_menu03
+	_END
+
+
+/********************************************************************/
+/*						フロンティア成績(キャッスル)				*/
+/********************************************************************/
+ev_seiseki_castle:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_CASTLE
+	_JUMP		ev_seiseki_castle_menu
+	_END
+
+ev_seiseki_castle_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	_CALL		ev_seiseki_disp						/*成績表示*/
+	_JUMP		ev_seiseki_castle_menu
+	_END
+
+
+/********************************************************************/
+/*						フロンティア成績(ルーレット)				*/
+/********************************************************************/
+ev_seiseki_roulette:
+	_TALK_START
+	_LDVAL		SCWK_PARAM0,FRONTIER_NO_ROULETTE
+	_JUMP		ev_seiseki_roulette_menu
+	_END
+
+ev_seiseki_roulette_menu:
+	_CALL		ev_seiseki_01
+	_CALL		ev_seiseki_02
+
+	_SWITCH		SCWK_PARAM1
+	_CASE_JUMP	3,ev_seiseki_yameru					/*やめる*/
+	_CASE_CANCEL ev_seiseki_yameru
+
+	_CALL		ev_seiseki_disp						/*成績表示*/
+	_JUMP		ev_seiseki_roulette_menu
+	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+ev_seiseki_01:
+	_TALKMSG		msg_bf_seiseki_01_01
+	//_TALK_CLOSE
+	_RET
+
+
+/********************************************************************/
+/*						バトルタイプ選択							*/
+/********************************************************************/
+ev_seiseki_02:
+	_BMPMENU_INIT_EX	24,9,0,1,SCWK_PARAM1			//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_02,0			/*シングル*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_03,1			/*ダブル*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_04,2			/*マルチ*/
+	_BMPMENU_MAKE_LIST	msg_bf_seiseki_01_05,3			/*やめる*/
+	_BMPMENU_START
+	_RET
+
+
+/********************************************************************/
+/*							五十音選択								*/
+/********************************************************************/
+ev_seiseki_03:
+	_BMPLIST_INIT_EX	25,1,0,1,SCWK_PARAM2							/*Bキャンセル有効*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_02,EV_WIN_TALK_MSG_NONE,0
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_03,EV_WIN_TALK_MSG_NONE,1
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_04,EV_WIN_TALK_MSG_NONE,2
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_05,EV_WIN_TALK_MSG_NONE,3
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_06,EV_WIN_TALK_MSG_NONE,4
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_07,EV_WIN_TALK_MSG_NONE,5
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_08,EV_WIN_TALK_MSG_NONE,6
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_10,EV_WIN_TALK_MSG_NONE,7		/*ラ*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_02_09,EV_WIN_TALK_MSG_NONE,8		/*ヤワ*/
+	_BMPLIST_MAKE_LIST	msg_bf_seiseki_01_06,EV_WIN_TALK_MSG_NONE,9		/*もどる*/
+	//_BMPLIST_START
+	_BMPLIST_START_LP_CP	SCWK_TEMP0,SCWK_TEMP1						/*ここでカーソル位置を指定*/
+	_RET
+
+
+/********************************************************************/
+/*							やめる									*/
+/********************************************************************/
+ev_seiseki_yameru:
+	_TALK_CLOSE
+	_JUMP			ev_seiseki_yameru_sub
+	_END
+
+ev_seiseki_yameru_sub:
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*							成績画面表示							*/
+/********************************************************************/
+ev_seiseki_disp:
+	_BLACK_OUT			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+	_TALK_CLOSE
+	_CALL				ev_seiseki_disp_sub
+	_RET
+
+ev_seiseki_disp_sub:
+	//_FINISH_MAP_PROC
+	_FRONTIER_MONITOR	SCWK_PARAM1,SCWK_PARAM0,SCWK_PARAM3		/*type,fr_no,monsno*/
+	_SET_MAP_PROC
+
+	_BLACK_IN			SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+	_RET
+
+

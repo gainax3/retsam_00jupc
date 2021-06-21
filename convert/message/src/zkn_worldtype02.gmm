@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-07-07T22:16:43"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="256"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="214"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDTYPE_0">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">-----</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_1">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Samen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_2">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Samen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_3">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Samen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_4">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Echse</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_5">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flamme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_6">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flamme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_7">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Minikröte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_8">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kröte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_9">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Panzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_10">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_11">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kokon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_12">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Falter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_13">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Raupe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_14">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kokon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_15">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftbiene</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_16">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinvogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_17">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_18">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_19">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_20">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_21">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinvogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_22">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pickvogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_23">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlange</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_24">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kobra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_25">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_26">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_27">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_28">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_29">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftdorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_30">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftdorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_31">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bohrer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_32">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftdorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_33">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftdorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_34">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bohrer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_35">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_36">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_37">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fuchs</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_38">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fuchs</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_39">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ballon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_40">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ballon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_41">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fledermaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_42">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fledermaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_43">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Unkraut</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_44">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Unkraut</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_45">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blume</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_46">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pilz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_47">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pilz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_48">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Insekt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_49">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftmotte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_50">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maulwurf</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_51">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maulwurf</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_52">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Katze</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_53">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rassekatze</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_54">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_55">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_56">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schw./ Affe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_57">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schw./ Affe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_58">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hund</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_59">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Legendär</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_60">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kaulquappe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_61">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kaulquappe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_62">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kaulquappe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_63">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Psi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_64">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Psi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_65">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Psi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_66">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kraftprotz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_67">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kraftprotz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_68">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kraftprotz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_69">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blume</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_70">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fliegentot</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_71">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fliegentot</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_72">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Qualle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_73">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Qualle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_74">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gestein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_75">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gestein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_76">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Urgestein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_77">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Feuerpferd</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_78">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Feuerpferd</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_79">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schnarcher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_80">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Symbiose</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_81">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Magnet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_82">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Magnet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_83">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wildente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_84">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Duovogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_85">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Trivogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_86">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seehund</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_87">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seehund</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_88">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlamm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_89">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlamm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_90">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Muschel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_91">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Muschel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_92">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gas</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_93">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gas</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_94">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schatten</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_95">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Felsnatter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_96">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hypnose</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_97">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hypnose</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_98">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Krabbe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_99">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kneifer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_100">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_101">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_102">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ei</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_103">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Palmfrucht</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_104">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Einsam</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_105">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Knochenfan</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_106">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kicker</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_107">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Puncher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_108">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlecker</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_109">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftwolke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_110">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftwolke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_111">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stachler</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_112">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bohrer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_113">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ei</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_114">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ranke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_115">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Muttertier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_116">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_117">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_118">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Goldfisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_119">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Goldfisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_120">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sternform</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_121">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mysteriös</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_122">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sperre</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_123">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mantis</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_124">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Humanotyp</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_125">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Elektro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_126">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Brenner</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_127">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kneifkäfer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_128">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wildbulle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_129">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_130">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Grausam</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_131">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Transport</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_132">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Transform</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_133">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Evolution</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_134">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blubblase</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_135">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blitz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_136">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Feuer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_137">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Virtuell</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_138">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Spirale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_139">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Spirale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_140">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schaltier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_141">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schaltier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_142">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fossil</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_143">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tagträumer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_144">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eis</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_145">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Elektro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_146">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flamme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_147">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_148">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_149">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_150">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Genmutant</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_151">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Neue Art</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_152">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Laub</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_153">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Laub</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_154">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kräuter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_155">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Feuermaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_156">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vulkan</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_157">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vulkan</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_158">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Großmaul</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_159">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Großmaul</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_160">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Großmaul</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_161">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Späher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_162">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langleib</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_163">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eule</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_164">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eule</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_165">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fünf-Punkt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_166">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fünf-Punkt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_167">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fadenwurf</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_168">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langbein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_169">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fledermaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_170">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Angler</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_171">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Leuchte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_172">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Babymaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_173">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sternform</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_174">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ballon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_175">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zackenball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_176">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Freude</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_177">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinvogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_178">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mystik</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_179">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wolle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_180">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wolle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_181">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Leuchte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_182">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blume</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_183">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aquamaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_184">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aquahase</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_185">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Imitation</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_186">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Frosch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_187">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Löwenzahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_188">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Löwenzahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_189">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Löwenzahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_190">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langschweif</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_191">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Samen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_192">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sonne</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_193">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Libelle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_194">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_195">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_196">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sonne</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_197">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mondschein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_198">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Finsternis</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_199">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Monarch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_200">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kreischer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_201">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Symbol</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_202">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Geduld</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_203">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langhals</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_204">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Beutelwurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_205">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Beutelwurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_206">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlange</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_207">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flugskorpi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_208">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stahlboa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_209">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_210">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_211">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ballon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_212">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kneifer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_213">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schimmel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_214">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Einzelhorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_215">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stichklaue</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_216">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinbär</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_217">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schläfer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_218">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lava</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_219">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lava</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_220">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ferkel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_221">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schwein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_222">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Koralle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_223">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hochdruck</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_224">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hochdruck</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_225">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lieferant</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_226">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flugrochen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_227">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flugstahl</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_228">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hades</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_229">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hades</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_230">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_231">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langrüssel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_232">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Panzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_233">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Virtuell</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_234">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vielender</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_235">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Maler</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_236">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Racker</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_237">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kopfstand</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_238">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kuss</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_239">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Elektro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_240">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Glutherd</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_241">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Milchkuh</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_242">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Freude</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_243">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Donner</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_244">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vulkan</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_245">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Polarlicht</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_246">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Felshaut</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_247">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hartschale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_248">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Panzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_249">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Taucher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_250">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Regenbogen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_251">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zeitreise</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_252">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Waldgecko</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_253">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Waldgecko</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_254">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dschungel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_255">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Küken</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_256">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinhahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_257">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Großbrand</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_258">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lehmhüpfer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_259">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lehmhüpfer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_260">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lehmhüpfer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_261">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Biss</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_262">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Biss</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_263">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleindachs</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_264">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sprinter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_265">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_266">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kokon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_267">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Falter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_268">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kokon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_269">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftmotte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_270">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wasserlinse</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_271">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Frohmut</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_272">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sorglos</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_273">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eichelnuss</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_274">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hinterlist</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_275">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Verschlagen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_276">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schwälblein</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_277">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schwalbe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_278">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seemöwe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_279">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wasservogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_280">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gefühl</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_281">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Emotion</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_282">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Umarmung</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_283">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wassergeher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_284">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auge</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_285">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pilz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_286">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pilz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_287">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Faulpelz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_288">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wildaffe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_289">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Müßig</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_290">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vorbereiter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_291">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ninja</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_292">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Häutung</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_293">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flüster</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_294">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lauthals</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_295">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Krach</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_296">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Courage</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_297">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Armwurf</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_298">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gepunktet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_299">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kompass</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_300">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kätzchen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_301">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eingebildet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_302">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Finsternis</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_303">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schwindler</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_304">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenpanzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_305">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenpanzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_306">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenpanzer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_307">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meditation</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_308">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meditation</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_309">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gewitter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_310">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Entladung</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_311">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Jubel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_312">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Jubel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_313">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Libelle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_314">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Libelle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_315">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dorn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_316">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Magen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_317">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftbeutel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_318">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gnadenlos</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_319">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Brutal</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_320">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kugelwal</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_321">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flutwal</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_322">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Taubheit</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_323">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ausbruch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_324">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kohle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_325">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sprungfeder</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_326">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Manipulator</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_327">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Punkt-Panda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_328">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ameisenlöwe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_329">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vibration</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_330">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mystik</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_331">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kaktus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_332">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vogelschock</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_333">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wollvogel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_334">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Summsel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_335">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Frettkatz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_336">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Reißzahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_337">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meteorit</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_338">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meteorit</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_339">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Barthaar</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_340">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Barthaar</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_341">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Grobian</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_342">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlingel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_343">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lehmpuppe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_344">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lehmpuppe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_345">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seeanemone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_346">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rankfüßer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_347">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Krebssenior</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_348">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schild</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_349">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_350">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zartheit</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_351">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wetter</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_352">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Farbenspiel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_353">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Puppe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_354">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Marionette</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_355">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Requiem</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_356">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wink</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_357">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Obst</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_358">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Windspiel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_359">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Desaster</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_360">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Strahlekind</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_361">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schneehut</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_362">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Antlitz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_363">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Applaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_364">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Spielball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_365">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisbrecher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_366">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Muschel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_367">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tiefsee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_368">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Südsee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_369">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bestand</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_370">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rendezvous</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_371">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Steinhaupt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_372">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Durchsteher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_373">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Drache</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_374">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenkugel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_375">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenklaue</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_376">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisenfuß</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_377">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Steingipfel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_378">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisberg</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_379">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eisen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_380">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Äon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_381">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Äon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_382">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seegründler</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_383">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kontinent</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_384">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Himmelhoch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_385">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wünscher</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_386">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DNS</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_387">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Winziglaub</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_388">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hain</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_389">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kontinent</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_390">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schimpanse</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_391">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Verspielt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_392">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flamme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_393">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pinguin</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_394">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pinguin</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_395">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kaiser</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_396">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Star</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_397">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Star</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_398">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Raubtier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_399">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dickmaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_400">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Biber</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_401">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zirper</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_402">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zirper</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_403">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flacker</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_404">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Funken</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_405">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Glühauge</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_406">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Knospe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_407">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blumenstrauß</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_408">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kopfstoß</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_409">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kopfstoß</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_410">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schutzschild</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_411">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schutzschild</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_412">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Beutelwurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_413">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Beutelwurm</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_414">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Motte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_415">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleinbiene</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_416">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bienenstock</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_417">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Elektrohörnchen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_418">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meereswiesel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_419">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Meereswiesel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_420">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kirsche</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_421">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Blüte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_422">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seeschnecke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_423">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seeschnecke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_424">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Langschweif</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_425">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ballon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_426">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Luftschiff</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_427">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hase</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_428">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hase</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_429">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Magisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_430">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Anführer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_431">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Fies</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_432">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tigerkatze</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_433">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Glöckchen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_434">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stinktier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_435">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stinktier</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_436">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bronze</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_437">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bronzeglocke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_438">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bonsai</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_439">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mime</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_440">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Spielhaus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_441">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Musiknote</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_442">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Verboten</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_443">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Landhai</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_444">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Höhle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_445">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rasanz</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_446">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nimmersatt</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_447">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wellenspiel</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_448">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aura</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_449">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flusspferd</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_450">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schwergewicht</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_451">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Skorpion</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_452">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ogerskorpion</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_453">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftmund</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_454">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Giftmund</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_455">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Käfertot</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_456">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flügelfisch</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_457">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Neon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_458">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Flugrochen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_459">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Frostbaum</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_460">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Frostbaum</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_461">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Stichklaue</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_462">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Magnetgebiet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_463">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlecker</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_464">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bohrer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_465">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ranke</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_466">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Donnerkeil</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_467">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Detonation</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_468">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Jubilierer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_469">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Agrion</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_470">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Unreif</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_471">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Neuschnee</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_472">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zahnskorpi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_473">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Doppelstoßzahn</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_474">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Virtuell</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_475">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Klinge</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_476">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kompass</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_477">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Greifer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_478">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schneegebiet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_479">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Plasma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_480">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wissen</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_481">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Emotion</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_482">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Willenskraft</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_483">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zeitweilig</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_484">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Räumlich</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_485">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lavadom</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_486">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kolossal</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_487">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rebell</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_488">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lunar</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_489">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seedrift</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_490">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seefahrer</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_491">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dunkelnacht</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_492">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dankbarkeit</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_493">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Alpha</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

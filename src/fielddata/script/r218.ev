@@ -1,0 +1,111 @@
+//====================================================================
+//						r218.gmm
+//					フィールド・ロード218
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r218.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_r218_sign1
+_EVENT_DATA		ev_r218_sign2
+_EVENT_DATA		ev_r218_man2
+_EVENT_DATA		ev_r218_fishing
+_EVENT_DATA		ev_r218_prasle
+_EVENT_DATA		ev_r218_prasle_2
+_EVENT_DATA		ev_r218_minun
+_EVENT_DATA_END						//終了
+
+/********************************************************************/
+/*							道路看板								*/
+/********************************************************************/
+ev_r218_sign1:
+	_EASY_BOARD_MSG	msg_r218_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+/********************************************************************/
+/*							道路看板								*/
+/********************************************************************/
+ev_r218_sign2:
+	_EASY_BOARD_MSG	msg_r218_sign2_01,BOARD_TYPE_ROAD,0
+	_END
+
+
+/********************************************************************/
+/*							ツッパリ								*/
+/********************************************************************/
+ev_r218_man2:
+	_TALK_OBJ_START_TURN_NOT
+	_TALKMSG		msg_r218_man2_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							釣り人									*/
+/********************************************************************/
+ev_r218_fishing:
+	_TALK_OBJ_START_TURN_NOT
+	_TALKMSG		msg_r218_fishing_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							プラスル								*/
+/********************************************************************/
+ev_r218_prasle:
+	_TALK_OBJ_START_TURN_NOT
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_VOICE_PLAY		MONSNO_PIPPI,0
+	_TALKMSG		msg_r218_prasle_01
+	_VOICE_WAIT
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+ev_r218_prasle_2:
+	_TALK_OBJ_START_TURN_NOT
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_VOICE_PLAY		MONSNO_PIPPI,0
+	_TALKMSG		msg_r218_prasle_02
+	_VOICE_WAIT
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							マイナン								*/
+/********************************************************************/
+ev_r218_minun:
+	_TALK_OBJ_START_TURN_NOT
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_VOICE_PLAY		MONSNO_PIKATYUU,0
+	_TALKMSG		msg_r218_minun_01
+	_VOICE_WAIT
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*
+ev_r218_minun_2:
+	_EASY_VOICE_MSG	msg_r218_minun_01,MONSNO_MAINAN,0
+	_END
+*/
+
+

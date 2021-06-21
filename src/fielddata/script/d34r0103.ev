@@ -1,0 +1,154 @@
+//====================================================================
+//								d34r0103
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0103.h"
+	//.include	"../eventdata/zone_d34r0103evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0103_flag_change
+_EVENT_DATA		ev_d34r0103_sirona00
+_EVENT_DATA		ev_d34r0103_sirona01
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0103_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+
+/********************************************************************/
+/*		シロナ会話													*/
+/********************************************************************/
+//初回　ストッパー状態
+ev_d34r0103_sirona00:
+	_TALK_OBJ_START_TURN_NOT
+	_IFVAL_JUMP		SYS_WORK_TW_EVSEQ,EQ,TWEVSEQ_03_01,ev_d34r0103_sirona01
+	
+	/*自機位置によって振り向き設定*/
+	_PLAYER_POS_ALL_GET SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP2
+	_IFVAL_JUMP	SCWK_TEMP1,EQ,232,ev_d34r0103_sirona00_ac0
+	
+	/*シロナ話しかけ 233*/
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0103_champion_01
+	_TALK_CLOSE
+	
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona01
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_d34r0103_sirona00_end
+	
+	/*シロナ話しかけ 232*/
+ev_d34r0103_sirona00_ac0:
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona02
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0103_champion_01
+	_TALK_CLOSE
+	
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona03
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d34r0103_jiki00
+	_OBJ_ANIME_WAIT
+	
+ev_d34r0103_sirona00_end:	
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_03_01
+	_EVENT_END
+	_END
+	
+//ストッパー解除後
+ev_d34r0103_sirona01:
+	/*自機位置によって振り向き設定*/
+	_PLAYER_POS_ALL_GET SCWK_TEMP0,SCWK_TEMP1,SCWK_TEMP2
+	_IFVAL_JUMP	SCWK_TEMP1,EQ,231,ev_d34r0103_sirona01_ac0
+	_IFVAL_JUMP	SCWK_TEMP1,EQ,232,ev_d34r0103_sirona01_ac1
+	
+	/*シロナ話しかけ 233*/
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona04
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_d34r0103_sirona01_msg
+	
+	/*シロナ話しかけ 231*/
+ev_d34r0103_sirona01_ac0:
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona05
+	_OBJ_ANIME_WAIT
+	_JUMP			ev_d34r0103_sirona01_msg
+	
+	/*シロナ話しかけ 232*/
+ev_d34r0103_sirona01_ac1:
+	_OBJ_ANIME 		TW_OBJID_0103_SIRONA,anm_d34r0103_sirona06
+	_OBJ_ANIME_WAIT
+	
+ev_d34r0103_sirona01_msg:
+	_TALK_KEYWAIT	msg_d34r0103_champion_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+
+//-------------------------------------------------------------
+//	シロナアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0103_sirona00
+	_ANIME_DATA AC_DIR_D,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona01
+	_ANIME_DATA AC_WALKGL_D_8F,1
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona02
+	_ANIME_DATA AC_DIR_R,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona03
+	_ANIME_DATA AC_WALKGL_D_8F,1
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona04
+	_ANIME_DATA AC_DIR_L,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona05
+	_ANIME_DATA AC_DIR_R,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0103_sirona06
+	_ANIME_DATA AC_DIR_D,1
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	自機アニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0103_jiki00
+	_ANIME_DATA	AC_WALKGL_L_8F,1
+	_ANIME_DATA AC_DIR_U,1
+	_ANIME_DATA ACMD_END,0
+

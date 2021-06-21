@@ -1,0 +1,195 @@
+//====================================================================
+//								d34r0108
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0108.h"
+	//.include	"../eventdata/zone_d34r0108evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0108_flag_change
+_EVENT_DATA		ev_d34r0108_sirona00
+_EVENT_DATA		ev_d34r0108_sirona01
+_EVENT_DATA		ev_d34r0108_sirona02
+_EVENT_DATA		ev_d34r0108_fallrock_em
+_EVENT_DATA		ev_d34r0108_fallrock_yuku
+_EVENT_DATA		ev_d34r0108_fallrock_agu
+_EVENT_DATA		ev_d34r0108_hole_msg
+
+_EVENT_DATA_END
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0108_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+
+/********************************************************************/
+/*			シロナ													*/
+/********************************************************************/
+ev_d34r0108_sirona00:
+	_IFVAL_JUMP SYS_WORK_TW_EVSEQ,EQ,TWEVSEQ_07_00,ev_d34r0108_sirona02
+	_IF_FLAGON_JUMP SYS_FLAG_TW_ROCK_FINISH,ev_d34r0108_sirona01
+	
+	_TALK_OBJ_START
+	_TALK_KEYWAIT	msg_d34r0108_champion_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+//小岩に移動
+ev_d34r0108_sirona01:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT	msg_d34r0108_champion_02
+	_TALK_CLOSE
+	
+	//飛び石出現フラグセット
+	_FLAG_SET		SYS_FLAG_TW_ROCKLIFT_ON
+	
+	//振り向きアニメ
+	_OBJ_ANIME		TW_OBJID_0108_SIRONA,anm_d34r0108_sirona00
+	_OBJ_ANIME_WAIT
+	
+	//移動アニメ
+	_OBJ_ANIME		TW_OBJID_0108_SIRONA,anm_d34r0108_sirona01
+	_OBJ_ANIME_WAIT
+	
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_07_00
+	_EVENT_END
+	_END
+	
+//女の勘
+ev_d34r0108_sirona02:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT	msg_d34r0108_champion_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*			エムリット	正解アニメ									*/
+/********************************************************************/
+ev_d34r0108_fallrock_em:
+	_EVENT_START
+	
+	_VOICE_PLAY		MONSNO_AI,0
+	_TALK_KEYWAIT	msg_d34r0108_mesprit_01
+	_TALK_CLOSE
+	_VOICE_WAIT
+	
+	_OBJ_ANIME		TW_OBJID_0108_EM,anm_d34r0108_poke_warp
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL		TW_OBJID_0108_EM
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*			ユクシー　正解アニメ									*/
+/********************************************************************/
+ev_d34r0108_fallrock_yuku:
+	_EVENT_START
+	
+	_VOICE_PLAY		MONSNO_REI,0
+	_TALK_KEYWAIT	msg_d34r0108_uxie_01
+	_TALK_CLOSE
+	_VOICE_WAIT
+	
+	_OBJ_ANIME		TW_OBJID_0108_YUKU,anm_d34r0108_poke_warp
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL		TW_OBJID_0108_YUKU
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*			アグノム	正解アニメ									*/
+/********************************************************************/
+ev_d34r0108_fallrock_agu:
+	_EVENT_START
+	
+	_VOICE_PLAY		MONSNO_HAI,0
+	_TALK_KEYWAIT	msg_d34r0108_azelf_01
+	_TALK_CLOSE
+	_VOICE_WAIT
+	
+	_OBJ_ANIME		TW_OBJID_0108_AGU,anm_d34r0108_poke_warp
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL		TW_OBJID_0108_AGU
+	
+	_EVENT_END
+	_END
+	
+	
+/********************************************************************/
+/*			岩落とし場所　メッセージ　								*/
+/********************************************************************/
+ev_d34r0108_hole_msg:
+	_TALK_START
+	
+	_TALK_KEYWAIT	msg_d34r0108_hole_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+//-------------------------------------------------------------
+//	シロナアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0108_sirona00
+	_ANIME_DATA AC_WAIT_32F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA AC_WAIT_32F,1
+	_ANIME_DATA ACMD_END,0
+
+/*
+_ANIME_LABEL	anm_d34r0108_sirona00
+	_ANIME_DATA AC_WAIT_8F,1
+	_ANIME_DATA AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA AC_WAIT_32F,1
+	_ANIME_DATA ACMD_END,0
+*/
+
+_ANIME_LABEL	anm_d34r0108_sirona01
+	_ANIME_DATA AC_WALK_D_8F,1
+	_ANIME_DATA AC_JUMP_D_3G_24F,1
+	_ANIME_DATA AC_WALK_L_8F,1
+	_ANIME_DATA AC_STAY_WALK_R_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	ポケモンワープアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0108_poke_warp
+	_ANIME_DATA AC_WARP_UP,1
+	_ANIME_DATA ACMD_END,0

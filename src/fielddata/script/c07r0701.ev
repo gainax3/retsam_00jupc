@@ -1,0 +1,155 @@
+//====================================================================
+//								c07r0701
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c07r0701.h"
+	//.include	"../eventdata/zone_c07r0701evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c07r0701_middleman1
+_EVENT_DATA		ev_c07r0701_middlewoman1
+_EVENT_DATA_END
+
+/********************************************************************/
+/*							おじさん	　							*/
+/********************************************************************/
+ev_c07r0701_middleman1:
+	_TALK_OBJ_START
+
+	/*ポリゴンを貰っていたら*/
+	_IF_FLAGON_JUMP	FE_C07R0701_POKEMON_GET,ev_c07r0701_middleman1_08
+
+	/*すでに会話していたら*/
+	_IF_FLAGON_JUMP	FE_C07R0701_TALK,ev_c07r0701_middleman1_02
+
+	/*一度会話したフラグ立てておく*/
+	_FLAG_SET		FE_C07R0701_TALK
+	
+	_TALKMSG		msg_c07r0701_middleman1_01
+	_JUMP			ev_c07r0701_middleman1_yesno
+	_END
+
+/*すでに会話していたら*/
+ev_c07r0701_middleman1_02:
+	_TALKMSG		msg_c07r0701_middleman1_02
+	_JUMP			ev_c07r0701_middleman1_yesno
+	_END
+
+ev_c07r0701_middleman1_yesno:
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c07r0701_pokemon_add_check
+	_JUMP			ev_c07r0701_middleman1_07
+	_END
+
+//ポケモン追加チェック
+ev_c07r0701_pokemon_add_check:
+	//ポケモン数カウント
+	_GET_POKE_COUNT	SCWK_ANSWER
+
+	//6体いるなら受け取れない
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,6,ev_c07r0701_middleman1_06
+
+	_TALKMSG		msg_c07r0701_middleman1_03
+
+	//ポケモン番号ー＞文字バッファへ
+	_ME_PLAY		SEQ_FANFA4
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c07r0701_middleman1_04
+	_ME_WAIT
+
+	//ポケモンとして追加
+	_ADD_POKEMON	MONSNO_PORIGON,25,0,SCWK_ANSWER
+
+	_FLAG_SET		FE_C07R0701_POKEMON_GET
+
+	_TALKMSG		msg_c07r0701_middleman1_05
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,c07r0701_name_change_yes
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,c07r0701_name_change_no
+	_END
+
+//名前変更あり
+c07r0701_name_change_yes:
+	_TALK_CLOSE
+
+	_GET_POKE_COUNT	LOCALWORK0
+	_SUB_WK			LOCALWORK0,1		//"最大数ー１"変更されたPOS
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//名前入力
+	_NAMEIN_POKE	LOCALWORK0,SCWK_ANSWER
+
+	//何も入力していない、変更していない時"ではない時"
+	_IFVAL_CALL		SCWK_ANSWER,NE,1,ev_c07r0701_name_change_record_inc
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_OBJ_END
+	_END
+
+//何も入力していない、変更していない時"ではない時"
+ev_c07r0701_name_change_record_inc:
+	_RECORD_INC		RECID_NICKNAME
+	_RET
+
+//名前変更なし
+c07r0701_name_change_no:
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+//手持ちがいっぱい（6体）
+/********************************************************************/
+ev_c07r0701_middleman1_06:
+	_TALKMSG		msg_c07r0701_middleman1_06
+	_JUMP			ev_c07r0701_middleman1_end
+	_END
+
+
+/********************************************************************/
+//いいえ
+/********************************************************************/
+ev_c07r0701_middleman1_07:
+	_TALKMSG		msg_c07r0701_middleman1_07
+	_JUMP			ev_c07r0701_middleman1_end
+	_END
+
+
+/********************************************************************/
+//ポリゴン入手済み
+/********************************************************************/
+ev_c07r0701_middleman1_08:
+	_TALKMSG		msg_c07r0701_middleman1_08
+	_JUMP			ev_c07r0701_middleman1_end
+	_END
+
+ev_c07r0701_middleman1_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							おばさん	　							*/
+/********************************************************************/
+ev_c07r0701_middlewoman1:
+	_EASY_OBJ_MSG	msg_c07r0701_middlewoman1_01
+	_END
+
+/********************************************************************/
+/********************************************************************/

@@ -1,0 +1,84 @@
+//====================================================================
+//								d34r0104
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0104.h"
+//	.include	"../eventdata/zone_d34r0104evc.h"
+	.include	"../../field/field_tornworld_def.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0104_flag_change
+_EVENT_DATA		ev_d34r0104_akagi00
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0104_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+/********************************************************************/
+/*				アカギ												*/
+/********************************************************************/
+ev_d34r0104_akagi00:
+	_EVENT_START
+	_TW_OBJ_ADD		TW_OBJID_0104_AKAGI
+	
+	_OBJ_ANIME		TW_OBJID_0104_AKAGI,anm_d34r0104_akagi_00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT	msg_d34r0104_gingaboss_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_d34r0104_akagi01	//NO
+	
+	_TALK_KEYWAIT	msg_d34r0104_gingaboss_02
+	_JUMP			ev_d34r0104_akagi02
+	
+ev_d34r0104_akagi01:
+	_TALK_KEYWAIT	msg_d34r0104_gingaboss_03
+	
+ev_d34r0104_akagi02:
+	_TALK_KEYWAIT	msg_d34r0104_gingaboss_04
+	_TALK_KEYWAIT	msg_d34r0104_gingaboss_05
+	_TALK_CLOSE
+	
+	_OBJ_ANIME		TW_OBJID_0104_AKAGI,anm_d34r0104_akagi_01
+	_OBJ_ANIME_WAIT
+	
+	_TW_OBJ_DEL		TW_OBJID_0104_AKAGI
+	_LDVAL			SYS_WORK_TW_EVSEQ,TWEVSEQ_04_00
+	
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//		アカギアニメ
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d34r0104_akagi_00
+	_ANIME_DATA AC_WALK_U_8F,7
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL	anm_d34r0104_akagi_01
+	_ANIME_DATA AC_WALK_D_8F,7
+	_ANIME_DATA ACMD_END,0

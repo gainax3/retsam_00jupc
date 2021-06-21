@@ -1,0 +1,3871 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsuda" host="W00142" date="2008-06-18T13:06:25"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="242"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="292"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDTEXT_0">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">_NULL_</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_1">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Au matin de sa vie, la graine sur
+son dos lui fournit les éléments
+dont il a besoin pour grandir.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_2">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lorsque le bourgeon sur son dos
+éclot, il répand un doux parfum
+pour célébrer sa floraison.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_3">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le parfum de sa fleur se fait plus
+pénétrant les lendemains de pluie.
+Cela appâte les autres Pokémon.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_4">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La flamme de sa queue symbolise sa
+vitalité. Elle est intense quand il
+est en bonne santé.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_5">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La nuit, la queue ardente du
+REPTINCEL brille comme une étoile
+dans son repaire montagneux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_6">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte que la flamme du
+DRACAUFEU s&apos;intensifie après
+un combat difficile.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_7">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se réfugie dans sa carapace
+et réplique en éclaboussant
+l&apos;ennemi à la première occasion.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_8">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On prétend qu&apos;il vit 10 000 ans.
+Sa queue duveteuse est un
+symbole de longévité populaire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_9">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les trombes d&apos;eau projetées par
+les canons de sa carapace peuvent
+percer le métal le plus résistant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_10">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses antennes rouges libèrent une
+puanteur qui repousse l&apos;ennemi. Il
+grandit par mues régulières.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_11">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps frêle est protégé par sa
+carapace d&apos;acier. Il encaisse les
+coups durs en attendant d&apos;évoluer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_12">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il raffole du nectar des fleurs. Il
+est capable de repérer la plus
+petite quantité de pollen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_13">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il mange chaque jour son poids en
+feuilles. Il utilise l&apos;aiguillon sur sa
+tête pour repousser l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_14">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se cache sous les feuilles et les
+branches pour fuir les prédateurs
+en attendant d&apos;évoluer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_15">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il virevolte rapidement autour de
+l&apos;ennemi et frappe de son dard
+empoisonné avant de décamper.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_16">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon docile préfère éviter
+le combat. Toutefois, il se montre
+très féroce quand on l&apos;agresse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_17">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il survole son vaste territoire en
+quête d&apos;une proie avant de fondre
+sur elle toutes griffes en avant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_18">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En battant des ailes de toutes ses
+forces, ROUCARNAGE génère une
+rafale à en déraciner les arbres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_19">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">D&apos;une prudence extrême, sa nature
+robuste lui permet de s&apos;adapter
+à tous les terrains.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_20">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il grignote sans cesse pour apaiser
+la poussée de ses crocs. Il peut
+transpercer un mur de parpaings.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_21">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fait battre vigoureusement ses
+petites ailes pour voler et cherche
+à manger dans l&apos;herbe avec le bec.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_22">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a assez d&apos;énergie pour voler 
+toute la journée avec ses grandes 
+ailes. Il frappe de son bec acéré.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_23">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se faufile dans l&apos;herbe sans un
+bruit et frappe dans le dos quand
+sa proie s&apos;y attend le moins. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_24">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il utilise la marque sur son ventre
+pour intimider l&apos;ennemi. Il étouffe
+l&apos;ennemi pétrifié par la peur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_25">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit en forêt avec ses pairs.
+Il accumule l&apos;électricité dans
+les poches de ses joues.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_26">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il devient agressif lorsque son
+corps contient trop d&apos;électricité.
+Il la décharge par sa queue.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_27">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit sur des terres arides
+épargnées par la pluie. Il se roule
+en boule pour se protéger.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_28">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se met en boule pour percuter
+l&apos;ennemi. Ses épines aiguisées
+font beaucoup de dégâts.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_29">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bien qu&apos;il rechigne à se battre,
+une goutte du poison sécrété par
+ses piquants peut s&apos;avérer fatale.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_30">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon dresse ses piquants
+en cas de danger. Ils poussent
+moins vite que ceux de NIDORINO.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_31">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est recouvert d&apos;écailles
+solides. Il donnera sa vie pour
+secourir les petits de son terrier. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_32">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il jauge le terrain en laissant
+ses oreilles dépasser de l&apos;herbe.
+Il se défend avec sa corne toxique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_33">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">D&apos;un tempérament violent, il
+empale l&apos;ennemi sur sa corne qui
+distille un poison puissant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_34">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un coup de sa puissante queue
+peut briser un poteau téléphonique
+comme une allumette.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_35">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tout le monde craque pour cet
+adorable Pokémon. Il vit en groupe
+dans le calme des montagnes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_36">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il joue au bord des lacs déserts
+les soirs de pleine lune. Rares
+sont ceux qui l&apos;ont aperçu.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_37">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il envoie des boules de feu. Avec
+l&apos;âge, ses six queues en forment de
+nouvelles. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_38">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte que ses neuf queues
+détiennent un pouvoir mystique.
+Il peut vivre pendant mille ans.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_39">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lorsqu&apos;il roule ses grands yeux
+ronds, il entonne une berceuse
+qui endort son auditoire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_40">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa fourrure est d&apos;une douceur
+incomparable au toucher. Il 
+peut gonfler en aspirant de l&apos;air.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_41">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bien que dépourvu d&apos;yeux, il
+repère les obstacles grâce aux
+ultrasons émis par sa gueule.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_42">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il aime le sang des humains et des
+Pokémon. Il erre la nuit en quête
+d&apos;un cou où planter ses crocs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_43">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En journée, il plante ses pieds-
+racines dans le sol. La nuit, il se 
+promène en semant des graines.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_44">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">L&apos;odeur du nectar de sa bouche 
+est si répugnante qu&apos;elle agresse
+les narines à deux kilomètres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_45">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses pétales sont les plus grands
+du monde. Il marche en répandant
+un pollen extrêmement allergène.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_46">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Des champignons appelés
+“tochukaso” poussent sur son dos.
+Ils évoluent avec le PARAS hôte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_47">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un champignon parasite plus gros
+que PARASECT contrôle son corps.
+Il répand des spores empoisonnées.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_48">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses grands yeux sont en fait
+des amas d&apos;yeux minuscules. La
+nuit, il est attiré par la lumière.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_49">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il répand ses écailles poudreuses
+en battant des ailes. Elles sont
+toxiques au toucher.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_50">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui vit sous terre.
+Habitué aux souterrains, il fuit la
+lumière du jour.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_51">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses trois têtes creusent le sol à
+tour de rôle. Il peut atteindre des
+profondeurs de 100 kilomètres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_52">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son regard s&apos;anime à la vue
+d&apos;un objet brillant. C&apos;est un
+Pokémon nocturne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_53">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon très snob. La taille du
+joyau qui orne son front alimente
+bien des débats parmi ses fans.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_54">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand son mal de crâne empire,
+il développe d&apos;étranges pouvoirs
+dont il ne se souvient jamais.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_55">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un habitant des lacs. Il nage
+plus vite qu&apos;un champion
+humain de natation.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_56">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ils vivent en colonies sylvestres.
+Quand un FEROSINGE s&apos;énerve,
+toute la colonie suit son exemple.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_57">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il grogne quand on le toise,
+rugit quand on s&apos;enfuit et devient
+fou de rage quand on le frappe.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_58">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon très loyal. Il
+restera immobile jusqu&apos;à ce que
+son Dresseur lui donne un ordre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_59">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son port altier et son attitude 
+fière ont depuis longtemps conquis
+le cœur des hommes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_60">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa peau est si mince qu&apos;on
+voit ses organes internes. Il tient
+à peine sur ses nouveaux pieds.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_61">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La spirale qui orne son ventre
+ondule doucement. Celui qui la fixe
+est saisi d&apos;une étrange torpeur. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_62">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il possède de sacrés biscoteaux.
+Il peut parcourir sans relâche
+l&apos;Océan Pacifique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_63">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dort 18 heures par jour. Même
+éveillé, il ne prend pas la peine
+de se lever pour se téléporter.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_64">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Une ombre inquiétante obscurcit
+l&apos;écran télé quand il s&apos;approche.
+Le malheur frappe celui qui la voit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_65">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Grâce à sa mémoire exceptionnelle,
+il n&apos;a rien oublié depuis sa 
+naissance. Il a un Q.I. de 5 000.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_66">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il muscle son corps en soulevant
+régulièrement un GRAVALANCH. Il
+est rompu à tous les arts martiaux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_67">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La force herculéenne du MACHOPEUR
+est très dangereuse. Il utilise une
+ceinture pour contenir son énergie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_68">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses quatre bras frappent à une
+vitesse aveuglante. Il peut porter
+1 000 coups en deux secondes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_69">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il préfère les climats chauds et
+humides. Ses lianes peuvent
+capturer une proie en un clin d&apos;œil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_70">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon végétal. Il capture les
+proies étourdies en les endormant
+à l&apos;aide d&apos;une poudre toxique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_71">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa bouche sécrète un fluide à
+l&apos;odeur de miel, qui s&apos;avère être
+un acide extrêmement corrosif.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_72">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est principalement
+composé d&apos;eau. Ses yeux cristallins
+projettent d&apos;étranges rayons.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_73">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses 80 tentacules ligotent ses
+proies et les retiennent jusqu&apos;à
+ce que son poison fasse effet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_74">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nombre d&apos;entre eux vivent sur des
+chemins montagneux où ils restent
+enfouis à épier les alpinistes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_75">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRAVALANCH creuse son terrier
+à flanc de montagne en perçant
+des galeries horizontales.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_76">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il mue une fois par an. Son corps
+rocailleux est si dur qu&apos;il résiste
+même à la dynamite.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_77">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La crinière et la queue ardentes
+lui donnant sa superbe poussent 
+une heure après sa naissance.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_78">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son galop dépasse les 240 km/h. Il
+file comme une flèche, laissant
+flotter sa crinière ardente.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_79">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bien que lent, c&apos;est un pêcheur
+adroit qui utilise sa queue. Elle
+est insensible aux morsures.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_80">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce grand benêt connaît des éclairs
+de lucidité lorsque le KOKIYAS de sa
+queue se met à mordre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_81">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses extrémités génèrent les vagues
+électromagnétiques qui le font 
+voler. Il se nourrit d&apos;électricité.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_82">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est formé de trois MAGNETI liés
+par magnétisme. En groupe, ils
+déclenchent un orage magnétique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_83">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ne peut pas vivre sans son
+légume, c&apos;est pourquoi il le
+protégera au péril de sa vie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_84">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses deux cerveaux semblent
+communiquer leurs émotions
+grâce à un lien télépathique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_85">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand DODUO connaît cette étrange
+évolution, l&apos;une de ses têtes se 
+dédouble. Il atteint les 60 km/h.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_86">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un habitant des icebergs. 
+En mer, il utilise la corne sur 
+sa tête pour briser la banquise.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_87">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est couvert d&apos;un grand
+manteau blanc qui, dans la neige, le
+dissimule aux yeux des prédateurs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_88">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est né d&apos;un torrent de boue
+exposé aux rayons X de la lune.
+Il vit dans les ordures.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_89">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps exsude un fluide toxique
+qui tue instantanément les plantes
+et les arbres au contact.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_90">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il nage à reculons en ouvrant et en
+refermant ses deux coquilles. Il
+laisse traîner sa large langue.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_91">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se défend en fermant sa coquille
+et projette des piquants qui
+repoussent ses agresseurs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_92">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le corps de ce Pokémon est
+composé de gaz à 95%. Une
+bourrasque suffit à le disperser.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_93">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut traverser n&apos;importe quel
+obstacle. Il rôde dans les murs
+pour surveiller ses ennemis.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_94">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On dit que lorsqu&apos;ECTOPLASMA se 
+cache dans l&apos;ombre, la température
+alentour chute de 5 °C.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_95">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il provoque des secousses
+sismiques en creusant.
+Il peut atteindre les 80 km/h.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_96">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son grand nez lui permet de lire
+les rêves d&apos;autrui. Il adore les
+songes amusants.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_97">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La vue de son pendule oscillant
+endort en trois secondes, même
+quand on vient de se réveiller. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_98">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il creuse son terrier sur des 
+plages sablonneuses. Ses 
+pinces repoussent si on les brise.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_99">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa grande pince possède une
+puissance de 10 000 chevaux. Son
+poids la rend difficile à manier.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_100">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ressemble à une Poké Ball. Ce
+Pokémon dangereux peut exploser
+ou s&apos;électrifier au toucher.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_101">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se laisse porter par les vents
+lorsque son corps est gonflé
+d&apos;électricité à en éclater.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_102">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ces six œufs communiquent par
+télépathie. Ils peuvent se réunir
+rapidement si on les sépare.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_103">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On l&apos;appelle “jungle sur pattes”.
+Si une tête devient trop grosse,
+elle tombe et produit un NOEUNOEUF.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_104">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il pleure en pensant à sa mère
+disparue, et ses larmes résonnent
+dans son crâne creux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_105">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon sauvage possède des os
+depuis sa naissance. Il s&apos;en sert
+pour combattre avec dextérité.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_106">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses pattes élastiques s&apos;allongent,
+ce qui ne manque jamais de
+surprendre au premier combat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_107">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Même le béton cède sous ses 
+poings dévastateurs. Au combat, il
+s&apos;essouffle au bout de 3 minutes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_108">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il n&apos;utilise pas ses mains mais sa
+langue qui fait deux fois sa taille.
+Sa salive est une colle puissante.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_109">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il flotte en retenant des gaz plus
+légers que l&apos;air. Ceux-ci sont
+explosifs, en plus d&apos;être fétides.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_110">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il grandit en absorbant les gaz des
+détritus. Des triplés existent, bien
+qu&apos;ils soient fort rares.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_111">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa peau est très épaisse et sa 
+charge peut détruire un immeuble.
+Dommage qu&apos;il soit stupide.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_112">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son cerveau s&apos;est développé depuis
+qu&apos;il tient debout. Sa corne peut
+traverser la pierre la plus dure. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_113">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est censé apporter la joie. Ce
+Pokémon charitable offre ses
+œufs aux blessés.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_114">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il s&apos;abrite derrière des lianes
+bleues. Nul n&apos;a jamais vu le
+visage qu&apos;elles dissimulent.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_115">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il élève ses petits dans sa poche
+ventrale. Il attend d&apos;être en lieu
+sûr pour les laisser jouer dehors.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_116">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il niche à l&apos;ombre du corail. Quand
+il se sent menacé, il disparaît
+dans un nuage d&apos;encre opaque.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_117">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son épine dorsale le protège.
+Ses os et ses nageoires sont très
+prisés en médecine traditionnelle.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_118">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il nage élégamment en agitant sa
+nageoire caudale comme si c&apos;était
+une robe. Il a l&apos;allure d&apos;une reine.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_119">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il niche dans des rochers du 
+ruisseau qu&apos;il évide avec sa corne.
+Il donnerait sa vie pour ses œufs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_120">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Même amoché, son corps se régé-
+nère tant que le noyau rouge est
+intact. Le noyau s&apos;illumine à minuit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_121">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un noyau rouge trône en son
+centre. Il envoie des signaux radio
+mystérieux vers le ciel nocturne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_122">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un expert de la pantomime dont
+les gestes façonnent de solides
+murs invisibles.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_123">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses coups de faux sont 
+pratiquement imparables. Il se 
+déplace comme un ninja.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_124">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son cri ressemble à des paroles
+humaines. Mais nul n&apos;est jamais
+parvenu à les comprendre. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_125">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon dévore l&apos;électricité des
+centrales. Il est responsable de la
+majorité des coupures de courant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_126">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est né au milieu d&apos;un volcan.
+Son corps est couvert de flammes
+qui flambent comme un soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_127">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il serre les proies dans ses pinces
+pour les trancher en deux. S&apos;il n&apos;y
+arrive pas, il les jette au loin.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_128">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Après avoir choisi sa cible, il fonce
+dessus tête baissée. Il est réputé
+pour sa nature violente.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_129">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon est réputé pour être
+le plus faible au monde. Nul ne
+sait comment son espèce perdure.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_130">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lorsqu&apos;il apparaît, sa rage ne
+cesse qu&apos;après qu&apos;il a rasé les
+plaines et montagnes alentour.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_131">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il aime naviguer en portant des
+humains et des Pokémon sur son
+dos. Il comprend le langage humain.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_132">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a la capacité de modifier sa
+structure cellulaire pour prendre
+l&apos;apparence de ce qu&apos;il voit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_133">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon rare qui s&apos;adapte
+aux environnements hostiles 
+en variant ses formes évolutives.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_134">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a évolué pour s&apos;adapter au milieu
+aquatique. Il peut se fondre et 
+disparaître dans l&apos;élément liquide.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_135">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il contrôle une puissance de 10 000
+volts. Il peut hérisser sa fourrure
+comme s&apos;il s&apos;agissait de piquants.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_136">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps contient une glande
+enflammée. Sa température monte
+à 900 °C avant le combat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_137">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le premier Pokémon artificiel au
+monde. Il a le pouvoir d&apos;arpenter
+l&apos;espace électronique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_138">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon ramené à la vie par
+la science à partir d&apos;un fossile. Il
+peuplait autrefois les mers.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_139">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On pense que ce Pokémon a
+disparu parce que sa coquille en
+spirale était devenue trop grosse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_140">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On pense qu&apos;il peuplait les plages
+il y a 300 millions d&apos;années. Il est
+protégé par une coquille robuste.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_141">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On pense que ce Pokémon est
+venu sur la terre ferme pour
+suivre l&apos;évolution de ses proies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_142">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui arpentait le ciel
+au temps des dinosaures. Ses 
+crocs sont pareils à des scies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_143">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son estomac peut digérer n&apos;importe
+quel type de nourriture, même 
+quand elle est moisie ou pourrie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_144">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon Oiseau légendaire.
+Il peut provoquer des blizzards
+en gelant l&apos;humidité de l&apos;air.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_145">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon Oiseau légendaire dont
+on dit qu&apos;il vit dans les nuages 
+d&apos;orage. Il contrôle la foudre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_146">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">L&apos;un des Pokémon Oiseaux
+légendaires. On dit que sa venue
+annonce l&apos;arrivée du printemps.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_147">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On l&apos;appelle “Pokémon mirage”
+en raison de sa rareté. On a
+découvert sa mue.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_148">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La météo change brusquement quand
+il est entouré d&apos;une aura. On dit
+qu&apos;il peuple les mers et les lacs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_149">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte qu&apos;il vit quelque part
+en mer. Il guide les équipages
+naufragés jusqu&apos;à la terre ferme.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_150">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon conçu en réorganisant
+les gènes de MEW. On raconte qu&apos;il
+s&apos;agit du Pokémon le plus féroce.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_151">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nombre de scientifiques voient en
+lui l&apos;ancêtre des Pokémon car il
+maîtrise toutes leurs capacités.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_152">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il jauge la température et
+l&apos;humidité grâce à la feuille sur sa
+tête. Il raffole des bains de soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_153">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le collier de bourgeons à son cou
+répand un arôme épicé qui vous
+donne du tonus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_154">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son souffle a l&apos;incroyable capacité
+de ranimer les plantes et les 
+fleurs flétries.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_155">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon est un grand timide.
+Les flammes sur son dos 
+s&apos;intensifient lorsqu&apos;il prend peur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_156">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La chaleur de ses flammes intimide
+l&apos;ennemi. Elles s&apos;intensifient
+lorsqu&apos;il se prépare à combattre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_157">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attaque en projetant des
+flammes. Il se dissimule derrière
+les vagues de chaleur qu&apos;il produit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_158">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il broie tout ce qu&apos;il trouve avec
+ses mâchoires puissantes. Même
+son Dresseur doit s&apos;en méfier.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_159">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand il mord, il ne lâche pas prise
+avant que ses crocs se brisent.
+Ils repoussent par la suite.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_160">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon à l&apos;air pataud est
+capable d&apos;attaquer à la vitesse
+de l&apos;éclair pour mordre sa proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_161">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon très nerveux
+prend appui sur sa queue pour
+observer ses alentours.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_162">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La femelle s&apos;enroule autour des
+petits pour les bercer. Il accule
+l&apos;ennemi grâce à sa vitesse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_163">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se tient toujours sur un pied. Il
+ne prend jamais appui sur les
+deux, même en cas d&apos;attaque.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_164">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses yeux sont particuliers. La
+plus petite source de lumière leur
+permet de distinguer les objets.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_165">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est si timide qu&apos;il ne se déplace
+qu&apos;au milieu d&apos;un essaim. Il exprime
+ses émotions par l&apos;odeur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_166">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il tire sa force de la lumière des
+étoiles. Plus il y en a et plus ses
+motifs dorsaux sont grands.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_167">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il tisse une toile fine mais solide
+pour poser des pièges et se poste
+dans l&apos;attente d&apos;une proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_168">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attache un fil à sa proie avant
+de la libérer. Il s&apos;en servira pour
+la retrouver, elle et ses amis.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_169">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vole rapidement et sans faire
+de bruit grâce à ses quatre ailes.
+C&apos;est un Pokémon nocturne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_170">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il envoie des décharges électriques
+positives et négatives du bout des
+antennes pour paralyser sa proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_171">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La lumière de LANTURN surgit des
+profondeurs. On le surnomme
+“étoile des profondeurs”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_172">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les poches sur ses joues sont
+encore trop petites pour
+accumuler beaucoup d&apos;électricité.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_173">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa silhouette rappelle une étoile.
+On dit qu&apos;il descend sur terre
+en chevauchant une étoile filante.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_174">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est doux et élastique.
+Quand il commence à rebondir,
+on ne peut plus l&apos;arrêter.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_175">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On prétend que sa coquille est
+remplie de bonheur, qu&apos;il partage
+avec les êtres au cœur pur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_176">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On dit qu&apos;il apparaît aux êtres
+bons pour répandre un duvet
+brillant appelé “poudre de joie”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_177">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il mange des cactus en prenant
+soin d&apos;éviter les bourgeons et les
+épines. Il ne tient pas en place. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_178">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Cet étrange Pokémon peut voir
+l&apos;avenir et le passé. Il guette 
+sans cesse la course du soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_179">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa laine fournie enfle lorsqu&apos;il
+accumule de l&apos;électricité statique.
+Son contact peut choquer. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_180">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa queue s&apos;allume lorsque sa
+laine se charge d&apos;électricité.
+Il projette des poils électrifiés.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_181">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le bout de sa queue brille avec
+intensité. Jadis, on s&apos;en servait
+pour envoyer des signaux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_182">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">A la fin de la saison des pluies,
+il sort danser en plein air,
+attiré par la chaleur du soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_183">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il plonge sous l&apos;eau en utilisant sa
+queue comme un flotteur. Il aime
+les plantes du fond des rivières.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_184">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peuple les lacs et les mers. Sous
+l&apos;eau, ses motifs et ses couleurs
+brouillent la vue de l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_185">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On pourrait le prendre pour un
+arbre, mais il est plus proche d&apos;une
+pierre. L&apos;eau est son point faible.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_186">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il rassemble ses pairs pour les
+commander. Il utilise son cri 
+pour diriger PTITARD.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_187">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dérive avec le vent. Sa présence
+en nombre dans les champs et les
+montagnes annonce le printemps.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_188">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fleurit lorsque les températures
+remontent. Il flotte dans le ciel 
+pour absorber les rayons du soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_189">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Poussé par les vents saisonniers,
+il fait le tour du globe en semant
+des spores de coton.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_190">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il utilise sa queue pour cueillir les
+fruits inaccessibles. Elle est plus
+agile que ses mains.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_191">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il tombe du ciel sans crier gare en
+matinée. On en croise énormément 
+l&apos;année suivant un été froid.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_192">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les rayons du soleil lui donnent de
+l&apos;énergie. Il est connu pour migrer
+vers les régions ensoleillées.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_193">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il voit à 360 degrés sans avoir à
+tourner la tête. Il ne loupe jamais
+une proie, même dans son dos.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_194">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit en eau froide. Il dort à demi
+enfoui dans la boue au fond
+de l&apos;eau.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_195">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">C&apos;est un grand paresseux qui 
+attend au fond de la rivière qu&apos;une
+proie lui tombe dans le bec.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_196">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son pelage a l&apos;aspect et la texture
+du velours. L&apos;orbe à son front luit
+quand il utilise ses pouvoirs psy.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_197">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La lumière de la lune a modifié
+le code génétique d&apos;EVOLI. Il hante
+les ombres en quête d&apos;une proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_198">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On dit que rencontrer
+un CORNEBRE la nuit est
+signe de mauvais augure.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_199">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La morsure de KOKIYAS a fait
+de lui un génie dont l&apos;intelligence
+rivalise avec celle d&apos;un prix Nobel.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_200">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il adore se faufiler derrière les
+gens la nuit pour les effrayer
+avec son cri strident.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_201">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il rappelle une écriture ancienne.
+Reste à savoir qui du langage ou de
+ZARBI est apparu en premier.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_202">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il cherche désespérément à cacher
+sa queue noire. Certains pensent
+qu&apos;elle renferme un secret. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_203">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa queue contient un minuscule
+cerveau. Elle mord l&apos;ennemi qui
+essaie de le frapper dans le dos.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_204">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ressemble à une pomme de pin.
+Sa carapace le protège des Pokémon
+Oiseau qui le picorent par erreur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_205">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est prisonnier d&apos;une coquille 
+d&apos;acier. Ses yeux vigilants sont la
+seule partie visible de son corps.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_206">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son nid est un véritable labyrinthe
+qu&apos;il creuse à l&apos;aide de sa queue.
+Il sait à peine voler.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_207">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il chevauche les vents en tendant
+ses membres pour frapper depuis
+le ciel. Il vise toujours au visage.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_208">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Grâce à la température élevée et la
+haute pression souterraines, son
+corps est plus dur que le métal.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_209">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son visage horrible fait fuir les
+petits Pokémon. Par contre, les
+femmes le trouvent mignon.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_210">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En dépit des apparences, c&apos;est un
+grand timide. Quand il s&apos;énerve, il
+mord de ses énormes crocs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_211">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il envoie ses piquants empoisonnés
+à la ronde. Sa forme sphérique en
+fait un piètre nageur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_212">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est dur comme l&apos;acier.
+Il intimide ses ennemis en levant
+ses pinces pareilles à des yeux. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_213">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il stocke des Baies sous sa
+carapace. Elles fermentent et
+produisent des jus délicieux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_214">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il arpente la forêt en quête de
+sève, son mets favori. Il est assez
+fort pour projeter l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_215">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se nourrit d&apos;œufs volés dans 
+des nids. Ses griffes crochues
+percent les défenses de l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_216">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il baigne ses griffes dans le miel 
+pour les lécher. Chaque paire
+de pattes a un goût unique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_217">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il marque de ses griffes les
+arbres de son territoire qui
+portent des Baies ou des fruits.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_218">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est fait de magma.
+S&apos;il cesse de bouger, il refroidit
+et durcit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_219">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa température corporelle avoisine
+les 10 000 °C. Des flammes 
+fusent des fissures de sa coquille.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_220">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il adore les champignons qui
+poussent sous l&apos;herbe morte. Il
+trouve aussi des sources chaudes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_221">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ne voit rien à cause de sa
+fourrure touffue et se repère
+à l&apos;aide de son nez délicat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_222">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On en trouve beaucoup dans les
+mers claires du sud. On dirait qu&apos;il
+ne peut pas vivre en eau polluée.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_223">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il crache un puissant jet d&apos;eau
+pour abattre les proies volantes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_224">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il hante les fissures dans la roche
+et les trous au fond de la mer. Ses
+ventouses ne lâchent jamais prise.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_225">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dépose sa nourriture dans sa
+queue enroulée. Il l&apos;offre souvent
+aux gens égarés en montagne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_226">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lorsque la mer est calme, il arrive
+de croiser un banc de DEMANTA
+nageant comme s&apos;ils volaient.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_227">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est prisonnier d&apos;une
+armure dure comme l&apos;acier, mais il
+vole à plus de 300 km/h.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_228">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il exprime ses émotions en modulant
+son cri. Ce Pokémon rusé chasse
+en meute pour abattre ses proies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_229">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Jadis, les gens prenaient son
+étrange hurlement pour
+l&apos;appel de la Faucheuse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_230">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Chacun de ses déplacements
+provoque des tourbillons. Il vit
+dans les grottes sous-marines.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_231">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est fort malgré son aspect
+ramassé. Il n&apos;a aucun mal à porter
+un humain adulte sur son dos.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_232">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attaque en se roulant en boule
+pour percuter l&apos;ennemi. Il peut
+abattre une maison d&apos;un seul coup.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_233">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On lui a installé un logiciel de
+terraformation pour lui permettre
+de travailler dans l&apos;espace.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_234">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quiconque observe ses antennes
+ressent une sensation étrange,
+comme si leur centre l&apos;attirait.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_235">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il marque son territoire en maniant
+sa queue comme un pinceau. On
+dénombre plus de 5 000 marques.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_236">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est réputé pour sa combativité.
+Il se blesse toujours en défiant
+des ennemis plus grands.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_237">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il combat en tournoyant comme une
+toupie. La force centrifuge décuple
+sa puissance destructrice.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_238">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il goûte à tout du bout des lèvres.
+Elles gardent en mémoire ses
+goûts et ses dégoûts.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_239">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il génère de l&apos;électricité en
+battant des bras, mais il n&apos;a aucun
+moyen de stocker cette énergie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_240">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa température corporelle avoisine
+les 600 °C. Son souffle est
+jaune quand il est en bonne santé.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_241">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte que les enfants élevés
+au lait d&apos;ECREMEUH deviennent des
+adultes braves et robustes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_242">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon au cœur d&apos;or
+soigne les Pokémon malades.
+Il ressent la tristesse d&apos;autrui.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_243">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On prétend qu&apos;il est tombé avec la
+foudre. Il peut lancer des éclairs
+grâce aux nuages sur son dos.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_244">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte qu&apos;à chaque fois qu&apos;il
+rugit, un volcan entre en éruption
+quelque part.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_245">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il parcourt le vaste monde pour
+purifier les eaux polluées. Il
+accompagne le vent du nord.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_246">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui se nourrit de terre.
+Après avoir dévoré une montagne,
+il s&apos;endort pour grandir.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_247">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est dur comme la pierre
+souterraine. Il file comme une
+fusée en expulsant des gaz.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_248">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lorsqu&apos;il est en colère, il abat des
+montagnes et enterre des fleuves.
+On doit alors modifier les cartes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_249">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dort dans une faille des grands
+fonds. Ses battements d&apos;ailes
+génèrent une tempête de 40 jours.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_250">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses plumes possèdent sept 
+couleurs. On prétend que sa vue
+apporte la joie éternelle.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_251">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a le pouvoir de voyager dans le
+temps. Cependant, on dit qu&apos;il
+n&apos;apparaît qu&apos;en temps de paix.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_252">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses plantes de pieds sont
+couvertes d&apos;épines lui permettant
+de marcher au mur et au plafond.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_253">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit dans les jungles denses. 
+Il saute de branche en branche
+pour approcher de sa proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_254">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les feuilles sur ses bras peuvent
+trancher des troncs épais. C&apos;est
+le meilleur combattant des jungles.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_255">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses câlins réchauffent car il
+renferme une fournaise. Il envoie
+des boules de feu à 1 000 °C.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_256">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce maître du coup de pied peut
+donner 10 coups par seconde. Ses
+cris aigus intimident l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_257">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Des flammes fusent de ses
+poignets et ses coups brûlent
+l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_258">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il analyse le courant grâce à la
+nageoire sur sa tête. Il est assez
+fort pour soulever des rochers.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_259">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses jambes robustes lui donnent
+un bon appui, même dans la boue.
+Il dort enfoui dans la saleté.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_260">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut traîner un grand bateau en
+nageant. Il assomme l&apos;ennemi d&apos;un
+grand coup de ses bras épais.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_261">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon très obstiné qui
+poursuit sa proie jusqu&apos;à ce
+qu&apos;elle soit épuisée.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_262">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il traque ses proies en groupe.
+Il ne désobéira jamais aux
+ordres d&apos;un bon Dresseur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_263">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il marche en zigzaguant et n&apos;a
+pas son pareil pour trouver des
+objets dans l&apos;herbe ou sous terre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_264">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fonce sur sa proie à plus de 100
+km/h. Mais il ne peut pas dévier sa
+course et loupe souvent sa cible.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_265">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il adore manger des feuilles. Si un
+ETOURMI l&apos;attaque, il riposte avec
+les piquants de son postérieur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_266">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il s&apos;accroche en enroulant sa soie
+autour des branches. Il reste
+immobile en attendant d&apos;évoluer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_267">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est très agressif. Il pique sa 
+proie avec son long museau 
+étroit et absorbe sa vitalité.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_268">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est au chaud dans son cocon.
+Ses cellules produisent l&apos;énergie
+nécessaire à son évolution.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_269">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon nocturne est attiré
+par les lueurs de la ville et aime
+les feuilles des arbres urbains.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_270">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ressemble à une plante aquatique
+et fait la navette pour les
+Pokémon qui ne savent pas nager.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_271">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">C&apos;est un mauvais plaisantin. Quand
+il repère un pêcheur, il tire sur sa
+ligne pour le déranger. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_272">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses muscles se tonifient au son
+d&apos;une musique entraînante. Il ne
+peut pas s&apos;empêcher de danser.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_273">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ressemble à un gland pendu
+à une branche. Il adore effrayer
+les autres Pokémon.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_274">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le son de sa flûte d&apos;herbe
+déstabilise l&apos;auditeur. Il vit au 
+plus profond des forêts.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_275">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">D&apos;un coup de sa feuille éventail, il
+génère des bourrasques de 30 m/s
+capables de souffler une maison. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_276">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon téméraire n&apos;a pas peur
+d&apos;affronter des ennemis puissants.
+Il vole en quête de climats chauds.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_277">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vole en cercle en quête d&apos;une
+proie. Dès qu&apos;il l&apos;a repérée, il fond
+sur elle en un éclair.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_278">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il niche sur les falaises escarpées
+face à la mer. Il vole en altitude
+grâce aux courants ascendants.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_279">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il trempe son grand bec dans la
+mer pour charrier de l&apos;eau et
+de nombreuses proies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_280">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il perçoit les émotions humaines
+grâce aux cornes sur sa tête. On
+dit qu&apos;il apprécie la joie de vivre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_281">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est très à l&apos;écoute des émotions
+de son Dresseur. Il danse quand
+il est d&apos;humeur joyeuse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_282">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il donnera sa vie pour protéger
+un Dresseur dévoué. Il a la
+capacité de prédire l&apos;avenir.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_283">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il semble patiner sur l&apos;eau. Le
+parfum diffusé par le sommet de
+sa tête sert à attirer ses proies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_284">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Des motifs en forme d&apos;yeux ornent
+ses antennes. Ses 4 ailes l&apos;aident
+à voler dans toutes les directions.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_285">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le sommet de sa tête libère des
+spores empoisonnées. Il est
+dangereux de les inhaler.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_286">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses petits bras s&apos;étendent quand il
+donne un coup de poing. Son talent
+égale celui d&apos;un boxeur pro.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_287">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il passe le plus clair de son temps
+affalé. Rien qu&apos;à le voir, on a
+envie de bâiller.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_288">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son cœur bat dix fois plus vite que
+la normale, c&apos;est pourquoi il ne
+tient pas en place.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_289">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le Pokémon le plus fainéant du
+monde. Il s&apos;allonge pour économiser
+ses forces et contre-attaquer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_290">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il grandit sous terre et se repère
+grâce à ses antennes car ses
+yeux sont quasiment aveugles.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_291">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il bouge si vite que l&apos;œil a parfois
+du mal à le suivre. Ils se regrou-
+pent près de la sève des arbres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_292">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Une carapace d&apos;insecte laissée à
+l&apos;abandon. On dit qu&apos;il vole l&apos;âme
+de celui qui regarde à l&apos;intérieur. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_293">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En temps normal, son cri est pareil
+à un murmure. Effrayé, il atteint le
+volume d&apos;un avion à réaction.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_294">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">L&apos;onde de choc provoquée par son
+cri peut renverser un camion. Il
+trépigne pour augmenter sa force.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_295">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son hurlement s&apos;entend à 10 km
+à la ronde. Ses orifices
+émettent toutes sortes de bruits.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_296">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fortifie son corps en fonçant
+sur des arbres épais. Son nid est
+entouré d&apos;arbres abattus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_297">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il aime mesurer sa force à celle des
+plus grands Pokémon. Ses coups de
+paume peuvent projeter un camion.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_298">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui vit près de l&apos;eau.
+Au sol, il se déplace rapidement en
+rebondissant sur sa grosse queue.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_299">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son nez est un aimant, c&apos;est
+pourquoi ce Pokémon fait toujours
+face au nord.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_300">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il poursuit tout ce qui bouge. On
+le voit parfois courir en cercle,
+chassant sa propre queue.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_301">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les femmes Dresseurs raffolent
+de sa sublime fourrure. Il ne
+possède pas de nid.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_302">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">A force de manger des gemmes, 
+les yeux de ce Pokémon des grottes
+obscures sont devenus des joyaux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_303">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses cornes forment une grande
+mâchoire attachée à sa tête. Elle
+peut broyer des barres de fer. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_304">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit habituellement au cœur des
+montagnes. Affamé, il dévore
+parfois des rails et des voitures.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_305">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se nourrit du minerai de fer qu&apos;il
+fore. Il défend son territoire en
+chargeant avec son corps d&apos;acier.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_306">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il creuse des galeries à travers la
+pierre avec ses cornes d&apos;acier
+pour trouver le fer qu&apos;il apprécie. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_307">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ne mange qu&apos;une Baie par jour.
+La faim lui a forgé une volonté
+de fer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_308">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a développé son sixième sens
+grâce au yoga. Ses mouvements
+sont gracieux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_309">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il améliore ses réflexes en
+stimulant ses muscles grâce à 
+l&apos;électricité dans sa fourrure.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_310">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il libère l&apos;électricité par sa
+crinière. Il crée un nuage d&apos;orage
+pour appeler la foudre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_311">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il absorbe l&apos;énergie des poteaux
+électriques et encourage ses amis
+avec des pompons d&apos;étincelles. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_312">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il encourage ses amis. Son corps
+produit plus d&apos;étincelles quand il
+est en mauvaise posture.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_313">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il communique avec ses pairs en
+allumant son postérieur la nuit. Il
+adore le doux parfum de LUMIVOLE.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_314">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il utilise son doux parfum pour
+aider MUCIOLE à décrire des
+arabesques dans le ciel nocturne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_315">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les ROSELIA élevés avec une
+eau claire et potable font de
+ravissantes fleurs bariolées.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_316">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est principalement composé d&apos;un
+estomac dont les sucs digestifs
+dissolvent tout ce qu&apos;il avale.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_317">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il avale tout en une bouchée. Ses
+follicules sécrètent des fluides
+toxiques qui endorment l&apos;ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_318">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attaque en banc quand on
+menace son territoire. Ses dents
+aiguisées peuvent couler un navire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_319">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses crocs lacèrent des feuilles
+d&apos;acier. Il nage à 120 km/h. On
+l&apos;appelle “tyran des mers”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_320">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Par beau temps, il se pose sur les
+plages pour jouer et rebondir. Il
+expulse de l&apos;eau par son évent.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_321">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le plus grand des Pokémon. Il peut
+plonger à une profondeur de 
+3 000 m en retenant son souffle.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_322">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son dos bossu renferme une lave
+bouillonnante. Elle refroidit par 
+temps de pluie, ce qui le ralentit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_323">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il porte des volcans sur son dos.
+Quand le magma remonte, il
+frissonne et entre en éruption.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_324">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il tire son énergie du charbon qu&apos;il
+brûle dans sa carapace et crache
+de la suie noire en cas de danger.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_325">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il utilise sa queue comme un 
+ressort et bondit partout. Chaque
+nouveau choc fait battre son cœur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_326">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les perles noires amplifient ses 
+pouvoirs psy. Sa danse étrange lui
+permet de contrôler ses ennemis.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_327">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les motifs sur leur fourrure sont
+propres à chaque SPINDA. Son pas
+chancelant le rend difficile à viser.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_328">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il creuse un trou conique dans le
+sable du désert et se terre en
+attendant qu&apos;une proie trébuche.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_329">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses violents battements d&apos;ailes
+génèrent des vagues d&apos;ultrasons
+qui donnent mal au crâne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_330">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son puissant battement d&apos;ailes
+provoque des tempêtes de sable.
+On l&apos;appelle “esprit du désert”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_331">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En stockant l&apos;eau dans son corps,
+cet habitant du désert peut 
+survivre 30 jours sans boire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_332">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il sort la nuit pour chasser. Il
+traque les proies épuisées après
+une journée dans le désert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_333">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses ailes sont comme des balles
+de coton. Perché sur la tête de 
+quelqu&apos;un, on dirait un chapeau.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_334">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En vol, il ressemble à un nuage
+cotonneux. Il fredonne d&apos;une voix
+de soprano.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_335">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">C&apos;est le rival de SEVIPER depuis
+des générations. Ses griffes
+aiguisées sont son meilleur atout.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_336">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le rival historique de MANGRIFF.
+Il affûte la lame de sa queue 
+sur les rochers avant le combat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_337">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On suppose qu&apos;il est lié au cycle
+lunaire, car il ne sort que les
+soirs de pleine lune.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_338">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Le bruit court que cette nouvelle
+espèce vient du soleil. Il produit
+de la lumière en tournoyant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_339">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il enduit son corps d&apos;une 
+substance visqueuse pour glisser
+et se libérer quand on l&apos;agrippe.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_340">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est attaché à son territoire.
+Il repousse l&apos;ennemi en provoquant
+des secousses qui portent à 5 km.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_341">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa nature robuste lui permet de
+vivre sur n&apos;importe quel terrain. 
+Ses pinces ne lâchent jamais prise.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_342">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">C&apos;est un voyou qui utilise ses
+pinces pour chasser les autres
+Pokémon hors de sa mare.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_343">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se déplace en tournoyant sur
+son pied. Ce Pokémon rare fut
+découvert dans de vieilles ruines.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_344">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Une ancienne figurine d&apos;argile qui 
+s&apos;est animée suite à son exposition
+à un rayon de lumière étrange.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_345">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vivait au fond de la mer il y a
+100 millions d&apos;années. La science
+a permis de le ressusciter.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_346">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vit dans les hauts-fonds des mers
+chaudes. Il déterre sa proie du
+sable quand la marée se retire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_347">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un ancêtre Pokémon réanimé 
+à partir d&apos;un fossile. Il vivait en
+mer et chassait avec ses pinces.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_348">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a gagné la côte après son 
+évolution. Une armure robuste
+recouvre son corps.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_349">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est connu pour son teint maladif.
+Bien que nombreux, ces Pokémon
+se regroupent aux mêmes endroits.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_350">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte qu&apos;il surgit du fond des
+lacs pour calmer les esprits quand
+les gens se querellent.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_351">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son aspect change avec la météo.
+On a récemment découvert que ses
+molécules étaient pareilles à l&apos;eau.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_352">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il change de couleur à volonté,
+mais le motif en zigzag qui
+orne son ventre reste le même.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_353">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il aime le goût de la vengeance.
+Ils vivent en rangs sous les 
+gouttières des gens vindicatifs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_354">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Une poupée mue par la tristesse qui
+la ronge depuis qu&apos;on l&apos;a délaissée.
+Elle recherche son propriétaire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_355">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il poursuit assidûment sa proie, où
+qu&apos;elle aille. Il n&apos;abandonne sa
+traque qu&apos;au lever du soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_356">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est creux. On raconte
+que celui qui regarde à l&apos;intérieur
+finira aspiré par le néant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_357">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">A force de manger son fruit
+préféré, il a fini par pousser
+autour de son cou.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_358">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son langage comporte sept cris.
+Il les utilise pour faire vibrer
+l&apos;air et projeter son ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_359">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il pressent les catastrophes et
+n&apos;apparaît aux gens que pour les
+prévenir d&apos;un danger imminent.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_360">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se muscle en bousculant ses
+semblables lors de mêlées. Il
+raffole des fruits sucrés.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_361">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Selon un vieux dicton des régions
+enneigées: “STALGAMIN dans la 
+maison, richesse à l&apos;horizon”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_362">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il gèle l&apos;humidité de l&apos;air pour 
+former une armure de glace
+protectrice autour de son corps.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_363">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il gagne la côte en roulant sur les
+blocs de glace car sa morphologie
+n&apos;est pas adaptée à la nage.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_364">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fait souvent tourner des objets
+sur son museau pour connaître
+leur odeur et leur texture.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_365">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il brise la glace avec ses grosses
+défenses. Sa graisse le protège du 
+froid, mais aussi des attaques.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_366">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ne produit qu&apos;une perle durant
+son existence. On raconte qu&apos;elle
+amplifie les pouvoirs psychiques.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_367">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit loin sous la mer. Il appâte
+les proies crédules avec sa
+queue qui rappelle un petit poisson.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_368">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Au printemps, son corps rose se
+fait plus vif sans que l&apos;on sache
+pourquoi. Il vit au fond de la mer. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_369">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon rare aperçu lors d&apos;une
+exploration sous-marine. Il n&apos;a pas
+évolué depuis 100 millions d&apos;années.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_370">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un habitant des mers chaudes. On
+dit que le couple qui tombe sur ce
+Pokémon connaîtra l&apos;amour éternel.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_371">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il rêve de pouvoir voler un jour. 
+Pour l&apos;heure, il s&apos;entraîne en
+sautant du haut des falaises.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_372">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses cellules ont commencé à
+changer dans sa robuste coquille.
+Il la perd en évoluant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_373">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">A force de rêver de pouvoir voler,
+sa structure cellulaire a évolué
+et il s&apos;est vu pousser des ailes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_374">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dialogue avec les siens par 
+impulsions magnétiques. En bande,
+ils se déplacent à l&apos;unisson.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_375">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est formé de deux TERHAL
+soudés. Son corps de fer résiste à
+un choc avec un avion à réaction.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_376">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est né de la fusion de plusieurs
+METANG. Ses quatre cerveaux en
+font l&apos;égal d&apos;un superordinateur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_377">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tout son corps est fait de roche.
+S&apos;il s&apos;ébrèche au combat, il utilise
+des pierres pour le réparer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_378">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est fait de glace datant
+de l&apos;ère glaciaire. Il contrôle un
+air gelé de -200 °C.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_379">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps invulnérable fut forgé
+par la pression souterraine durant
+des dizaines de milliers d&apos;années.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_380">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est recouvert d&apos;un 
+duvet qui reflète la lumière
+et le rend invisible.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_381">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon très intelligent. Il
+peut voler plus vite qu&apos;un avion à
+réaction en repliant ses ailes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_382">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On dit qu&apos;il a fait monter les eaux
+en causant des pluies diluviennes.
+Il somnolait dans une fosse marine.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_383">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il dormait dans le magma souterrain
+depuis sa lutte féroce contre
+KYOGRE, il y a longtemps de cela.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_384">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit dans la couche d&apos;ozone, au
+dessus des nuages. Il est invisible
+depuis le sol.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_385">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On raconte qu&apos;une fois tous les
+mille ans, il a la capacité d&apos;exaucer
+tous les vœux durant une semaine.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_386">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vient d&apos;un virus extraterrestre
+arrivé avec une météorite et ayant
+subi une mutation génétique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_387">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La coquille sur son dos est faite
+de terre. Elle durcit lorsqu&apos;il 
+s&apos;abreuve. Il vit le long des lacs.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_388">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit en forêt près de l&apos;eau.
+En journée, il la quitte pour dorer
+sa carapace feuillue au soleil.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_389">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il arrive que de petits Pokémon
+se rassemblent sur son dos 
+immobile pour y faire leur nid.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_390">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il escalade prestement les falaises
+escarpées et vit sur les sommets.
+Sa flamme s&apos;éteint quand il dort.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_391">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pour intimider ses agresseurs, il
+gonfle les flammes de sa queue
+pour paraître plus grand.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_392">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il pratique un art martial spécial
+qui utilise tous ses membres.
+Sa flamme ne s&apos;éteint jamais.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_393">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il est fier et déteste accepter
+la nourriture qu&apos;on lui offre. Son
+pelage épais le protège du froid.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_394">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit seul, à l&apos;écart de ses pairs.
+Chaque individu est convaincu
+d&apos;être meilleur que les autres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_395">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les trois cornes de son bec sont le
+symbole de sa force. Celles du chef
+sont plus grosses que les autres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_396">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ils volent en nombre. Bien que
+minuscule, il bat des ailes avec
+une vigueur impressionnante.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_397">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il survole les forêts et les champs
+en quête de Pokémon Insecte.
+Ils forment de grandes volées.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_398">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon sauvage qui a le
+courage de défier des ennemis
+beaucoup plus grands que lui.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_399">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Rien ne peut perturber ses nerfs
+d&apos;acier. Il est plus agile et
+énergique qu&apos;il n&apos;y paraît.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_400">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il construit des barrages de boue
+et d&apos;écorce le long des fleuves. 
+C&apos;est un ouvrier de renom.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_401">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand il bascule sa tête d&apos;avant 
+en arrière, ses antennes se
+heurtent dans un son de xylophone.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_402">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il croise ses bras affûtés devant
+son torse pour crier. Il compose
+tout un tas de mélodies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_403">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa fourrure étincelle en cas de
+danger. Il profite du fait que 
+l&apos;ennemi est aveuglé pour s&apos;enfuir.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_404">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">L&apos;électricité libérée par ses
+griffes peut assommer l&apos;ennemi.
+Il vit en petits groupes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_405">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses yeux voient à travers tout. Il
+repère les proies cachées derrière
+un objet pour les capturer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_406">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">En hiver, son bourgeon se referme
+pour résister au froid. Il s&apos;ouvre
+au printemps et libère du pollen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_407">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attire ses proies avec son doux
+parfum et les achève grâce aux
+fouets d&apos;épines de ses bras.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_408">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vivait dans la jungle il y a 
+environ 100 millions d&apos;années. Son
+crâne est dur comme du fer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_409">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son violent coup de tête est
+assez puissant pour pulvériser
+les matériaux les plus résistants.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_410">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui vivait dans la jungle
+il y a 100 millions d&apos;années. Son
+visage est très dur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_411">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il résiste à toute attaque
+frontale. C&apos;est un Pokémon docile
+qui se nourrit d&apos;herbe et de Baies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_412">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Pour se protéger des vents glacés
+de l&apos;hiver, il s&apos;est tissé une cape
+de feuilles et de brindilles.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_413">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand CHENITI a évolué, sa
+cape a fusionné avec son corps.
+CHENISELLE ne s&apos;en sépare jamais.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_414">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il aime le nectar des fleurs et
+n&apos;hésite pas à voler celui
+que récupère APITRINI.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_415">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon qui en regroupe trois
+autres. Il est toujours occupé à
+apporter du nectar à APIREINE.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_416">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son abdomen est un rayon où
+vivent ses larves, élevées avec
+le nectar récolté par APITRINI.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_417">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il roule des boules de poils pleines
+d&apos;électricité statique et les range
+dans des souches avec des Baies.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_418">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa bouée est pareille à un
+collier gonflable. Quand il flotte,
+il garde la tête à l&apos;air libre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_419">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il flotte grâce à sa bouée très
+développée. Il vole au secours
+des gens sur le point de se noyer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_420">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La petite boule renferme les
+délicieux nutriments sucrés
+dont il a besoin pour évoluer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_421">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il fleurit lorsque le soleil est au
+beau fixe. Il cherche à prendre sa
+revanche sur une vie de bourgeon.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_422">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sa couleur et sa forme varient
+selon les régions. On en recense
+deux types à Sinnoh.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_423">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps pliable est dépourvu
+d&apos;os. Lorsqu&apos;on tranche un de ses
+membres, il repousse immédiatement.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_424">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se nourrit de noix qu&apos;il épluche
+avec ses deux queues habiles. Il
+utilise de moins en moins ses bras.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_425">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon né de l&apos;esprit des gens
+et des Pokémon. Il aime les saisons
+chaudes et humides.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_426">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il somnole la journée et s&apos;envole
+en grands groupes le soir venu. Nul
+ne sait où ils vont.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_427">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il frappe l&apos;ennemi en déroulant
+violemment ses oreilles. Cela
+peut faire pleurer un adulte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_428">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon extrêmement prudent.
+Il couvre son corps de ses oreilles
+pelucheuses en cas de danger.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_429">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son cri rappelle une incantation.
+Ceux qui l&apos;entendent souffrent
+de migraines et d&apos;hallucinations.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_430">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon nocturne évolue en
+grandes volées escortées par des
+CORNEBRE.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_431">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il griffe quand il est en colère et
+ronronne quand il est heureux. 
+Certains aiment ce côté lunatique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_432">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Cette brute arrogante n&apos;hésite pas
+à voler le nid d&apos;autres Pokémon
+pour s&apos;y installer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_433">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il émet des cris en agitant
+l&apos;orbe à l&apos;arrière de sa gorge. Il
+avance par bonds désordonnés.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_434">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il se protège en expulsant un 
+fluide nocif par son derrière. 
+La puanteur dure 24 heures.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_435">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attaque en projetant un
+liquide fétide du bout de sa queue.
+Il peut tirer à 50 mètres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_436">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il rappelle des objets trouvés
+dans des sépultures anciennes.
+Nul ne sait s&apos;ils sont liés.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_437">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La découverte d&apos;un de ces Pokémon
+sur un site de fouilles après 2 000 
+ans de sommeil a fait sensation.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_438">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On dirait qu&apos;il pleure constamment.
+En fait, il régule ses fluides
+corporels en éliminant le surplus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_439">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il imite ses ennemis. Une fois
+imités, ils ne peuvent plus
+quitter ce Pokémon des yeux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_440">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ce Pokémon aime ce qui est rond et
+blanc et transporte un caillou en
+forme d&apos;œuf pour imiter LEVEINARD.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_441">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On peut lui enseigner quelques
+mots. S&apos;il s&apos;agit d&apos;un groupe, ils
+retiendront les mêmes phrases.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_442">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon composé de 108
+esprits. Il provient d&apos;une fissure
+dans une clé de voûte étrange.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_443">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il niche dans les petits trous
+horizontaux des murs des grottes.
+Il bondit pour saisir sa proie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_444">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Selon une croyance ancienne, on
+peut utiliser ses écailles pour
+guérir les maladies incurables. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_445">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Quand il se recroqueville et étend
+ses ailes, on dirait un chasseur.
+Sa vitesse est supersonique.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_446">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il avale son poids en nourriture
+chaque jour. Il avale tout sans 
+prendre le temps de mâcher.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_447">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son aura s&apos;intensifie pour
+prévenir son entourage quand
+il a peur ou qu&apos;il est triste.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_448">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ressent les auras de tout. Il 
+comprend le langage humain.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_449">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit dans des endroits arides.
+Il exsude du sable granuleux
+au lieu de transpirer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_450">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il emmagasine du sable qu&apos;il
+expulse en tornades par les
+pores de sa peau pour attaquer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_451">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il saisit sa proie avec les pinces de
+sa queue, lui injecte un poison et
+la retient jusqu&apos;à ce qu&apos;il agisse.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_452">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut réduire une voiture en 
+pièces avec ses pinces. Le bout
+de ses pinces contient du poison.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_453">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses joues contiennent des glandes
+toxiques. Il attaque par surprise
+et utilise son toucher empoisonné.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_454">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les griffes de ses poings sécrètent
+une toxine si atroce qu&apos;une simple
+égratignure peut s&apos;avérer fatale.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_455">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il attire sa proie avec sa salive
+odorante avant de la croquer. Il
+lui faut une journée pour l&apos;avaler.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_456">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Après une longue exposition au
+soleil, les motifs de ses nageoires
+caudales luisent à la nuit tombée.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_457">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit au plus profond de l&apos;océan.
+Il attire sa proie en illuminant les
+motifs de ses 4 nageoires.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_458">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon amical qui analyse
+les mouvements subtils de l&apos;eau de
+mer grâce à ses deux antennes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_459">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit sur les monts enneigés.
+Ignorant des coutumes humaines,
+il lui arrive d&apos;être très indiscret.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_460">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">C&apos;est l&apos;abominable homme des
+neiges. Il ensevelit les montagnes
+sous ses blizzards.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_461">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ils vivent par groupe de 4 ou 5
+en région froide et chassent de
+façon très organisée.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_462">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a évolué suite à son exposition
+à un champ magnétique spécial. Ses
+3 unités génèrent du magnétisme.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_463">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il enroule tout dans sa langue
+extensible. Ceux qui l&apos;approchent
+finissent couverts de bave.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_464">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il bande ses muscles pour projeter
+des pierres ou des RACAILLOU
+depuis le creux de ses paumes. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_465">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il ligote sa proie en étirant ses
+bras en lianes. Il ne craint pas de
+perdre un bras face à un ennemi.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_466">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il place le bout de ses deux 
+queues sur son ennemi et libère
+une décharge de 20 000 volts.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_467">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il projette des boules de feu de
+2 000 °C à bout de bras. Il
+vit dans les cratères volcaniques.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_468">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il n&apos;apparaît jamais en temps
+de conflit. Récemment, il se
+fait plus rare.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_469">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Les ondes de choc qu&apos;il génère
+en battant des ailes infligent de
+graves blessures internes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_470">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il utilise la photosynthèse comme
+une plante. C&apos;est pourquoi il est 
+toujours entouré d&apos;air pur.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_471">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut geler sa fourrure pour se
+protéger en rendant ses poils
+aussi durs que des piquants.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_472">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il guette sa proie, pendu à une
+branche la tête en bas, et s&apos;en
+saisit à la première occasion. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_473">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses défenses spectaculaires sont
+glacées. Il a failli disparaître dans
+la canicule suivant l&apos;ère glaciaire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_474">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un logiciel supplémentaire fut 
+installé pour l&apos;améliorer. Mais
+depuis, il se comporte bizarrement.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_475">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il frappe avec les grandes lames à
+ses coudes. Son talent d&apos;escrimeur
+n&apos;a d&apos;égal que sa courtoisie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_476">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps libère une puissante
+force magnétique. Il dirige trois
+petites unités appelées Mini-nez.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_477">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">L&apos;antenne sur sa tête capte les
+ondes radio du monde des esprits
+lui ordonnant d&apos;y porter des gens.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_478">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MOMARTIK gèle ses ennemis grâce à
+son souffle à -50 °C. Ça ne se
+voit pas, mais son corps est creux.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_479">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Son corps est fait de plasma. Il
+cause de gros dégâts en infiltrant
+des appareils électroniques.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_480">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On l&apos;appelle “être du savoir”.
+On raconte que son regard a le
+pouvoir d&apos;effacer la mémoire.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_481">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On l&apos;appelle “être de l&apos;émotion”.
+Il enseigne aux hommes la beauté de
+la tristesse, la douleur et la joie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_482">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">On l&apos;appelle “être de la volonté”.
+Il dort au fond d&apos;un lac pour
+maintenir l&apos;équilibre du monde.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_483">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut contrôler le temps. Les
+mythes de Sinnoh en parlent
+comme d&apos;une divinité ancienne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_484">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il peut modeler l&apos;espace. Les
+mythes de Sinnoh en parlent
+comme d&apos;une divinité ancienne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_485">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il hante les grottes volcaniques.
+Il rampe au mur et au plafond grâce
+à ses pieds en forme de croix.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_486">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Une légende tenace veut que ce
+Pokémon ait traîné les continents
+en les attachant à des cordes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_487">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon censé vivre dans un
+monde à l&apos;opposé du nôtre. Il
+apparaît dans un cimetière ancien.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_488">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ses ailes libèrent un rideau de
+particules brillantes. Ce Pokémon
+symboliserait le croissant de lune.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_489">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Un Pokémon des mers chaudes. Il
+gonfle la bouée sur sa tête et
+dérive en quête de vivres.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_490">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Né dans les profondeurs froides de
+l&apos;océan, il parcourt un long chemin
+pour gagner son lieu de naissance.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_491">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il a la capacité de bercer les gens
+pour les faire rêver. Il se montre
+durant les nuits de nouvelle lune.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_492">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Il vit dans les champs de fleurs et
+se cache en s&apos;enroulant pour
+imiter une plante fleurie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_493">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">La mythologie le décrit comme
+le Pokémon qui a façonné
+l&apos;univers avec ses 1 000 bras.</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

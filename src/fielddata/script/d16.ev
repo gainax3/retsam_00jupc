@@ -1,0 +1,304 @@
+//====================================================================
+//							d16
+//						ハードマウンテン
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d16.h"
+	.include	"../eventdata/zone_d16evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d16_flag_change
+_EVENT_DATA		ev_d16_sign1
+_EVENT_DATA		pos_d16_ginga
+_EVENT_DATA		ev_d16_police
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d16_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D16//到着
+	_END
+
+
+/********************************************************************/
+/*							施設看板								*/
+/********************************************************************/
+ev_d16_sign1:
+	_EASY_BOARD_MSG	msg_d16_sign1_01,BOARD_TYPE_POST,0
+	_END
+
+
+/********************************************************************/
+/*							ギンガ団								*/
+/********************************************************************/
+pos_d16_ginga:
+	_EVENT_START
+
+	/*移動*/
+	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_48
+	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_48
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16_gingam1_01
+	_TALK_CLOSE
+
+	/*移動*/
+	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_50
+	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_50
+	_OBJ_ANIME_WAIT
+
+	/*話す動作*/
+	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16_gingam2_01
+	_TALK_CLOSE
+
+	/*話す動作*/
+	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_02
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16_gingam1_02
+	_TALK_CLOSE
+
+	/*ハードマウンテンに移動*/
+	_OBJ_ANIME		D16_GINGAM1,anm_d16_gingam1_10
+	_OBJ_ANIME		D16_GINGAM2,anm_d16_gingam2_10
+	_OBJ_ANIME_WAIT
+
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		D16_GINGAM1
+	_OBJ_DEL		D16_GINGAM2
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	_LDVAL			WK_SCENE_D16,1
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//したっぱ1	移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam1_48
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d16_gingam1_50
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ1	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam1_01
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ1	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam1_02
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ1	ハードマウンテンに移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam1_10
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ2	移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam2_48
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d16_gingam2_50
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,3
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ2	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam2_01
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ2	ハードマウンテンに移動
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_gingam2_10
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							国際警察(強制)							*/
+/********************************************************************/
+ev_d16_police:
+	_EVENT_START
+
+	_TALK_KEYWAIT	msg_d16_detective_01
+	_TALK_CLOSE
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d16_detective_02
+
+	/*5人衆登場(右向き)*/
+	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16_seven2_01
+	_TALK_CLOSE
+
+	/*5人衆ハードマウンテンに入る*/
+	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_02
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		D16_POLICE,anm_d16_police_01
+	_OBJ_ANIME_WAIT
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d16_detective_03
+	_TALK_CLOSE
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	/*5人衆再度登場*/
+	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_03
+	_OBJ_ANIME		D16_POLICE,anm_d16_police_03
+	_OBJ_ANIME_WAIT
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d16_seven2_02
+	_TALK_CLOSE
+
+	/*5人衆退場*/
+	_OBJ_ANIME		D16_SEVEN2,anm_d16_seven2_04
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16_player_04
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		D16_SEVEN2
+
+	/*ハンサムを見る*/
+	_OBJ_ANIME		D16_POLICE,anm_d16_police_05
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16_player_05
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d16_detective_04
+	_TALK_CLOSE
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_OBJ_DEL		D16_POLICE
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_LDVAL			WK_SCENE_D16,3
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//国際警察	5人衆見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_police_01
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	5人衆を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_police_03
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_police_05
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//5人衆	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_seven2_01
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//5人衆	ハードマウンテンに入る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_seven2_02
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//5人衆	再度登場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_seven2_03
+	_ANIME_DATA	AC_VANISH_OFF,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//5人衆	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_seven2_04
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	AC_WALK_D_2F,9
+	_ANIME_DATA	AC_WALK_R_2F,10
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,8
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	5人衆を見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_player_04
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	ハンサムを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d16_player_05
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+
+
+

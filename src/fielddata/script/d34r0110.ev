@@ -1,0 +1,293 @@
+//====================================================================
+//								d34r0110
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d34r0110.h"
+	//.include	"../eventdata/zone_d34r0110evc.h"
+	.include	"../../field/field_tornworld_def.h"
+	.include	"../../../include/battle/battle_common.h"
+	
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d34r0110_flag_change
+_EVENT_DATA		ev_d34r0110_init_change
+_EVENT_DATA		ev_d34r0110_hole_talk
+_EVENT_DATA		ev_d34r0110_08_warp
+_EVENT_DATA		ev_d34r0110_gira_talk00
+_EVENT_DATA		ev_d34r0110_sirona_talk00
+_EVENT_DATA		ev_d34r0110_gira_bark
+_EVENT_DATA		ev_d34r0110_gira_enter_finish_msg
+_EVENT_DATA_END
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d34r0110_flag_change:
+	_INIT_TORNWORLD
+	_END
+
+/********************************************************************/
+/*	INIT_CHANGE_LABEL												*/
+/********************************************************************/
+ev_d34r0110_init_change:
+	_IF_FLAGON_JUMP	FE_INIT_CHANGE_OBJ_DEL,ev_d34r0110_init_change_obj_del
+	_END
+	
+ev_d34r0110_init_change_obj_del:
+	_TW_CAMERA_DEFAULT_SET
+	_LDVAL		SYS_WORK_TW_EVSEQ,TWEVSEQ_08D_03
+	_OBJ_DEL	TW_OBJID_0110_GIRA
+	_END
+	
+/********************************************************************/
+/*	ギラ穴															*/
+/********************************************************************/
+ev_d34r0110_hole_talk:
+	_TALK_START
+	
+	_TALKMSG		msg_d34r0110_hole_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d34r0110_hole_talk_yes
+		
+	_TALK_CLOSE
+	_TALK_END
+	_END
+	
+ev_d34r0110_hole_talk_yes:
+	_PLAYER_NAME	0
+	_TALKMSG		msg_d34r0110_hole_02
+	_TALK_CLOSE
+
+	/*L04マップがオープンする*/
+	_HIDEMAP_STATE_CHG		HIDEMAP_ID_L04,1
+
+	/*おくりの湖にもどして、シロナイベントにつなげる*/
+	_LDVAL			WK_SCENE_D17R0101,1
+	_SE_PLAY		SEQ_SE_PL_SYUWA
+	_MAP_CHANGE		ZONE_ID_D17R0101,0,32,17,DIR_DOWN
+	_END
+	
+/********************************************************************/
+/*	八層手前に移動													*/
+/********************************************************************/
+ev_d34r0110_08_warp:
+	_MAP_CHANGE		ZONE_ID_D34R0109,0,89,57,DIR_DOWN
+	_END
+
+/********************************************************************/
+/*	ギラティナ話しかけ戦闘とその後									*/
+/********************************************************************/
+ev_d34r0110_gira_talk00:
+	_TALK_START
+
+	_VOICE_PLAY			MONSNO_KIMAIRAN,0	
+	_TALKMSG			msg_d34r0110_giartina_02
+	_VOICE_WAIT
+	_TALK_CLOSE
+	
+	_FLAG_SET			FE_INIT_CHANGE_OBJ_DEL
+	_GIRATHINA_SP_WILD_BTL_SET	MONSNO_KIMAIRAN,47
+	_FLAG_RESET			FE_INIT_CHANGE_OBJ_DEL
+	
+	_LOSE_CHECK			SCWK_ANSWER
+	_BATTLE_RESULT_GET	SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_LOSE,ev_d34r0110_gira_lose
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_DRAW,ev_d34r0110_gira_lose
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_ESCAPE,ev_d34r1010_gira_escape
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_ENEMY_ESCAPE,ev_d34r1010_gira_escape
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,FIGHT_POKE_GET,ev_d34r0110_gira_get
+	
+	//倒した
+	_TW_OBJ_ADD			TW_OBJID_0110_AKAGI
+	_TW_OBJ_ADD			TW_OBJID_0110_SIRONA
+	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT		msg_d34r0110_champion_01
+	_TALK_CLOSE
+	
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_01	//「たおしただと
+	_JUMP				ev_d34r0110_gira_talk01
+
+/* 逃げた */
+ev_d34r1010_gira_escape:
+	_TW_OBJ_ADD			TW_OBJID_0110_AKAGI
+	_TW_OBJ_ADD			TW_OBJID_0110_SIRONA
+	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT		msg_d34r0110_champion_01
+	_TALK_CLOSE
+	
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_06	//「たたかわないことで
+	_JUMP				ev_d34r0110_gira_talk01
+
+/*捕まえた*/
+ev_d34r0110_gira_get:
+
+	///////////////////////////////////////////////////////////
+	/*捕まえた時のフラグセット*/
+	_FLAG_SET		FE_D17R0104_LEGEND_CLEAR
+	_FLAG_SET		FV_D17R0104_LEGEND
+	/*次来たらご褒美アイテムがある*/
+	_FLAG_RESET		FV_D17R0104_ITEM
+	///////////////////////////////////////////////////////////
+
+	_TW_OBJ_ADD			TW_OBJID_0110_AKAGI
+	_TW_OBJ_ADD			TW_OBJID_0110_SIRONA
+	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT		msg_d34r0110_champion_01
+	_TALK_CLOSE
+	
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_02	//「つかまえただと
+	
+ev_d34r0110_gira_talk01:
+	_TALK_CLOSE
+	
+	_PLAYER_POS_GET			SCWK_TEMP0,SCWK_TEMP1
+	_VANISH_DUMMY_OBJ_ADD	SCWK_TEMP0,SCWK_TEMP1
+	
+	_OBJ_ANIME			SCR_OBJID_DUMMY,anm_d34r0110_dummy00
+	_OBJ_ANIME			TW_OBJID_0110_AKAGI,anm_d34r0110_akagi00
+	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona01
+	_OBJ_ANIME			FLDOBJ_ID_PLAYER,anm_d34r0110_jiki00
+	_OBJ_ANIME_WAIT
+	
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_03
+	_TALK_KEYWAIT		msg_d34r0110_champion_02
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_04
+	_TALK_KEYWAIT		msg_d34r0110_gingaboss_05
+	_TALK_CLOSE
+	
+	_OBJ_ANIME			TW_OBJID_0110_AKAGI,anm_d34r0110_akagi01
+	_OBJ_ANIME_WAIT
+	_TW_OBJ_DEL			TW_OBJID_0110_AKAGI
+	
+	_OBJ_ANIME			SCR_OBJID_DUMMY,anm_d34r0110_dummy01
+	_OBJ_ANIME_WAIT
+	_VANISH_DUMMY_OBJ_DEL
+	
+	_TALK_KEYWAIT		msg_d34r0110_champion_03
+	_OBJ_ANIME			TW_OBJID_0110_SIRONA,anm_d34r0110_sirona02
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT		msg_d34r0110_champion_04
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+
+//全滅
+ev_d34r0110_gira_lose:
+	_NORMAL_LOSE
+	_TALK_OBJ_END
+	_END
+
+/********************************************************************/
+/*		シロナ話しかけ												*/
+/********************************************************************/
+ev_d34r0110_sirona_talk00:
+	_TALK_OBJ_START
+	
+	_TALK_KEYWAIT		msg_d34r0110_champion_04
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*		ギラティナ吠える											*/
+/********************************************************************/
+ev_d34r0110_gira_bark:
+	_EVENT_START
+	
+	_VOICE_PLAY			MONSNO_KIMAIRAN,0	
+	_TALK_KEYWAIT		msg_d34r0110_giartina_01
+	_VOICE_WAIT
+	_NEXT_ANM_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+/********************************************************************/
+/*		ギラティナ登場メッセージ									*/
+/********************************************************************/
+ev_d34r0110_gira_enter_finish_msg:
+	_EVENT_START
+	
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d34r0110_giartina_03
+	_NEXT_ANM_LAST_KEYWAIT
+	_TALK_CLOSE
+	
+	_EVENT_END
+	_END
+	
+//-------------------------------------------------------------
+//	自機アニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0110_jiki00		//自機振り向き＆ギョエー
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA ACMD_END,0
+
+//-------------------------------------------------------------
+//	シロナアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0110_sirona00	//シロナ登場
+	_ANIME_DATA AC_JUMP_U_3G_24F,2
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0110_sirona01	//振り向き＆ギョエー
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA AC_MARK_GYOE,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0110_sirona02	//自機へ向く
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	アカギアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0110_akagi00 	//アカギ登場
+	_ANIME_DATA AC_JUMP_U_3G_24F,1
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0110_akagi01 	//アカギ退場
+	_ANIME_DATA AC_JUMP_D_3G_24F,1
+	_ANIME_DATA AC_WALK_D_8F,5
+	_ANIME_DATA ACMD_END,0
+	
+//-------------------------------------------------------------
+//	ダミーアニメ
+//-------------------------------------------------------------
+_ANIME_LABEL		anm_d34r0110_dummy00	//カメラ移動
+	_ANIME_DATA AC_WALK_D_8F,5
+	_ANIME_DATA ACMD_END,0
+	
+_ANIME_LABEL		anm_d34r0110_dummy01	//カメラ戻る
+	_ANIME_DATA AC_WALK_U_8F,5
+	_ANIME_DATA ACMD_END,0

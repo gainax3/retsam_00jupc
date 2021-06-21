@@ -1,0 +1,300 @@
+//====================================================================
+//								d16r0101
+//
+//	イベントフラグ	FH_01
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d16r0101.h"
+	.include	"../eventdata/zone_d16r0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d16r0101_flag_change
+_EVENT_DATA		ev_d16r0101_gkanbu
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d16r0101_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D16R0101	//到着
+
+	/*5人衆を消す*/
+	_FLAG_SET		FV_R227_SEVEN2
+	_END
+
+
+/********************************************************************/
+/*							幹部イベント(強制)						*/
+/********************************************************************/
+ev_d16r0101_gkanbu:
+	_EVENT_START
+
+	/*話す*/
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_00
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu1_01
+	_TALK_CLOSE
+
+	/*マーズ前に出る*/
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_01
+	_OBJ_ANIME_WAIT
+
+	/*戦闘呼び出し*/
+	_TRAINER_BTL_SET	GINGALEADER1_04,0
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d16r0101_gkanbu_lose
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu1_02
+	_TALK_CLOSE
+
+	/*マーズ元の位置へ*/
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_02
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_00
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu2_01
+	_TALK_CLOSE
+
+	/*ジュピター前に出る*/
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_01
+	_OBJ_ANIME_WAIT
+
+	/*戦闘呼び出し*/
+	_TRAINER_BTL_SET	GINGALEADER2_03,0
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d16r0101_gkanbu_lose
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu2_02
+	_TALK_CLOSE
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_04
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_04
+	_OBJ_ANIME_WAIT
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu1_03
+
+	/*話す*/
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_20
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu2_03
+	_TALK_CLOSE
+
+	/*話す*/
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_30
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu1_04
+	_TALK_CLOSE
+
+	/*主人公をどかして退場*/
+	_OBJ_ANIME		D16R0101_GKANBU1,anm_d16r0101_gkanbu1_03
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16r0101_player_01
+	_OBJ_ANIME_WAIT
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	/*そっぽを向いて*/
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_10
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu2_04
+	_TALK_CLOSE
+
+	/*主人公をどかして退場*/
+	_OBJ_ANIME		D16R0101_GKANBU2,anm_d16r0101_gkanbu2_02
+	_OBJ_ANIME_WAIT
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	/*プルート話す*/
+	_OBJ_ANIME		D16R0101_GKANBU4,anm_d16r0101_gkanbu4_00
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d16r0101_player_02
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu4_01
+
+	_TALK_KEYWAIT	msg_d16r0101_gkanbu4_02
+	_TALK_CLOSE
+
+	/*プルート画面奥に移動*/
+	_OBJ_ANIME		D16R0101_GKANBU4,anm_d16r0101_gkanbu4_01
+	_OBJ_ANIME		D16R0101_GINGAM1,anm_d16r0101_gingam1_01
+	_OBJ_ANIME		D16R0101_GINGAM2,anm_d16r0101_gingam2_01
+	_OBJ_ANIME_WAIT
+
+	_OBJ_DEL		D16R0101_GKANBU4
+	_OBJ_DEL		D16R0101_GKANBU1
+	_OBJ_DEL		D16R0101_GKANBU2
+	_OBJ_DEL		D16R0101_GINGAM1
+	_OBJ_DEL		D16R0101_GINGAM2
+
+	_LDVAL			WK_SCENE_D16R0101,1
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//敗北処理
+//--------------------------------------------------------------------
+ev_d16r0101_gkanbu_lose:
+	_TRAINER_LOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//マーズ	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_00
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//マーズ	前に出る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_01
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//マーズ	戻る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_02
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//マーズ	気づく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_04
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//マーズ	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_30
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//マーズ	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu1_03
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	どく
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_player_01
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	プルートを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_player_02
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	マーズを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_00
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	前に出る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_01
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	会話
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_20
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	そっぽを向く
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_10
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_02
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_VANISH_ON,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ジュピター	マーズを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu2_04
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//プルート	話す
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu4_00
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//プルート	奥に移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gkanbu4_01
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ1	奥に移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gingam1_01
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//したっぱ2	奥に移動
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d16r0101_gingam2_01
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,7
+	_ANIME_DATA	ACMD_END,0
+
+

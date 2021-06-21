@@ -1,0 +1,17 @@
+//051213
+//dmy
+.text
+
+.include	"scr_seq_def.h"
+.include	"c04r0201_def.h"
+
+_FLAG_CHANGE_LABEL	SCRID_C04R0201_FLAG_CHANGE
+_SCENE_CHANGE_LABEL	sp_c04r0201_tbl
+_SP_EVENT_DATA_END
+
+sp_c04r0201_tbl:
+	//ワーク、比較する値、スクリプトID
+	_SCENE_CHANGE_DATA	WK_SCENE_C04R0201,0,SCRID_C04R0201_POLICE_AUTO
+	_SCENE_CHANGE_END
+
+

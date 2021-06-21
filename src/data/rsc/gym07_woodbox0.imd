@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<imd version="1.6.0">
+
+<head>
+	<create user="lee_hyunjung" host="W00154" date="2007-07-18T17:19:48" source="gym07_woodbox.mb"/>
+	<title>Model Data for NINTENDO NITRO-System</title>
+	<generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
+</head>
+
+<body>
+
+<original_create user="lee_hyunjung" host="W00154" date="2007-07-18T17:19:48" source="gym07_woodbox.mb"/>
+<original_generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
+
+<model_info
+	pos_scale="2"
+	scaling_rule="standard"
+	vertex_style="direct"
+	magnify="1.000000"
+	tool_start_frame="2"
+	tex_matrix_mode="maya"
+	compress_node="merge" node_size="1 1"
+	compress_material="on" material_size="1 1"
+	output_texture="used"
+	force_full_weight="off"
+	use_primitive_strip="on"
+/>
+
+<box_test pos_scale="2" xyz="-2.000000 -0.078613 -3.828613" whd="4.000000 3.406738 6.656738"/>
+
+<tex_image_array size="1">
+	<tex_image index="0" name="gym07tire-2"
+		width="16" height="32" original_width="16" original_height="32"
+		format="palette16"
+		color0_mode="transparency"
+		palette_name="gym07tire2"
+		path="C:/ghome/room10/room10_m/tex/gym07tire-2.tga"
+	>
+		<bitmap size="128">
+			0000 0000 0000 0000 0000 0000 0000 0000
+			0000 0000 0000 0000 0000 0000 0000 0000
+			0000 3330 0033 0000 3000 4443 3344 0000
+			4300 4444 4444 0003 4430 3344 4443 0034
+			4430 1134 4431 0034 4443 2213 4312 0344
+			4442 1121 4121 0244 4442 3313 4313 0244
+			4431 1134 4431 0134 4321 4444 4444 0123
+			3221 4444 3444 3421 1221 4431 1134 2412
+			2210 1112 2211 2442 2110 2222 1222 1344
+			4410 1113 4411 1234 1232 4444 4444 1213
+			2132 4311 1344 0221 2342 1122 2111 0122
+			3431 2221 2222 5112 4321 1133 3111 5123
+			3222 4444 3444 5221 1210 4431 1134 5512
+			2250 1112 2211 0552 1500 2222 1222 0555
+			5000 1115 5511 0055 0000 5550 5555 0000
+			0000 0000 0000 0000 0000 0000 0000 0000
+		</bitmap>
+	</tex_image>
+</tex_image_array>
+
+<tex_palette_array size="1">
+	<tex_palette index="0" name="gym07tire2" color_size="8">
+		0000 20e6 24e5 2d27 3148 35d1 7fff 7fff
+	</tex_palette>
+</tex_palette_array>
+
+<material_array size="1">
+	<material index="0" name="lambert2"
+		light0="off" light1="off" light2="off" light3="off"
+		face="front"
+		alpha="31"
+		wire_mode="off"
+		polygon_mode="modulate"
+		polygon_id="0"
+		fog_flag="on"
+		depth_test_decal="off"
+		translucent_update_depth="off"
+		render_1_pixel="off"
+		far_clipping="off"
+		diffuse="25 25 25"
+		ambient="0 0 0"
+		specular="0 0 0"
+		emission="0 0 0"
+		shininess_table_flag="off"
+		tex_image_idx="0" tex_palette_idx="0"
+		tex_tiling="repeat repeat"
+		tex_scale="1.000000 1.000000"
+		tex_rotate="0.000000"
+		tex_translate="0.000000 0.000000"
+		tex_gen_mode="none"
+	/>
+</material_array>
+
+<matrix_array size="1">
+	<matrix index="0" mtx_weight="1" node_idx="0"/>
+</matrix_array>
+
+<polygon_array size="1">
+	<polygon index="0" name="polygon0"
+		vertex_size="4" polygon_size="1"
+		triangle_size="0" quad_size="1"
+		volume_min="-2.000000 -2.078369 -2.328369"
+		volume_max="2.000000 1.328369 4.328369"
+		volume_r="5.201416"
+		mtx_prim_size="1"
+		nrm_flag="off" clr_flag="on" tex_flag="on"
+	>
+		<mtx_prim index="0">
+			<mtx_list size="1">0</mtx_list>
+			<primitive_array size="1">
+				<primitive index="0" type="quads" vertex_size="4">
+					<mtx idx="0"/>
+					<tex st="0.312500 31.937500"/>
+					<clr rgb="31 31 31"/>
+					<pos_xyz xyz="-2.000000 -2.078369 4.328369"/>
+					<tex st="16.187500 31.937500"/>
+					<pos_xy xy="2.000000 -2.078369"/>
+					<tex st="16.187500 0.875000"/>
+					<pos_yz yz="1.328369 -2.328369"/>
+					<tex st="0.312500 0.875000"/>
+					<pos_xy xy="-2.000000 1.328369"/>
+				</primitive>
+			</primitive_array>
+		</mtx_prim>
+	</polygon>
+</polygon_array>
+
+<node_array size="1">
+	<node index="0" name="pCube1" kind="mesh"
+		parent="-1"
+		child="-1"
+		brother_next="-1"
+		brother_prev="-1"
+		draw_mtx="on"
+		billboard="off"
+		scale="1.000000 1.000000 1.000000"
+		rotate="0.000000 0.000000 0.000000"
+		translate="0.000000 8.000000 -6.000000"
+		visibility="on"
+		display_size="1"
+		vertex_size="4" polygon_size="1"
+		triangle_size="0" quad_size="1"
+		volume_min="-2.000000 -2.078369 -2.328369"
+		volume_max="2.000000 1.328369 4.328369"
+		volume_r="5.201416"
+	>
+		<display index="0" material="0" polygon="0" priority="0"/>
+	</node>
+</node_array>
+
+<output_info vertex_size="4" polygon_size="1"
+	triangle_size="0" quad_size="1"/>
+
+</body>
+
+</imd>

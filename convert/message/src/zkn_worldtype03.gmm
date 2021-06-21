@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-07-07T22:17:11"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="256"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="214"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDTYPE_0">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">-----</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_1">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Seme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_2">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Seme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_3">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Seme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_4">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lucertola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_5">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiamma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_6">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiamma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_7">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tartaghina</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_8">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tartaruga</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_9">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Crostaceo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_10">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_11">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bozzolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_12">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Farfalla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_13">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Millepiedi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_14">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bozzolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_15">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenape</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_16">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uccellino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_17">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uccello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_18">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uccello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_19">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_20">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_21">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uccellino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_22">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Becco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_23">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Serpente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_24">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cobra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_25">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_26">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_27">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_28">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_29">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_30">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_31">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trapano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_32">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_33">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_34">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trapano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_35">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fata</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_36">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fata</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_37">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Volpe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_38">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Volpe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_39">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_40">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_41">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pipistrello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_42">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pipistrello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_43">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Malerba</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_44">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Malerba</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_45">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_46">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fungo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_47">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fungo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_48">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Insetto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_49">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velentarma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_50">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Talpa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_51">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Talpa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_52">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Graffimiao</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_53">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Nobilgatto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_54">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Papero</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_55">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Papero</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_56">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Suinpanzé</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_57">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Suinpanzé</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_58">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cagnolino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_59">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Leggenda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_60">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Girino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_61">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Girino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_62">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Girino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_63">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Psico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_64">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Psico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_65">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Psico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_66">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Megaforza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_67">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Megaforza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_68">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Megaforza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_69">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_70">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Moschivoro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_71">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Moschivoro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_72">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Medusa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_73">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Medusa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_74">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Roccia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_75">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Roccia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_76">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Megatone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_77">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cavalfuoco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_78">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cavalfuoco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_79">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ronfone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_80">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Paguro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_81">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Calamita</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_82">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Calamita</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_83">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Selvanatra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_84">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Biuccello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_85">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Triuccello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_86">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Otaria</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_87">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Otaria</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_88">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Melma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_89">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Melma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_90">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bivalve</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_91">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bivalve</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_92">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gas</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_93">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gas</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_94">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ombra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_95">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Serpesasso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_96">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ipnosi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_97">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ipnosi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_98">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Granchio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_99">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Chela</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_100">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_101">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ball</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_102">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uovo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_103">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Nocecocco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_104">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Solitario</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_105">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Guardaossi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_106">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tiracalci</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_107">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tirapugni</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_108">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Linguaccia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_109">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenuvola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_110">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenuvola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_111">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Punzoni</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_112">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trapano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_113">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uovo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_114">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Liana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_115">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Genitore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_116">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_117">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_118">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pescerosso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_119">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pescerosso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_120">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Stella</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_121">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Misterioso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_122">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Barriera</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_123">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mantide</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_124">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Umanoide</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_125">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Elettrico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_126">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sputafuoco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_127">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cervolante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_128">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Torobrado</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_129">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_130">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Atroce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_131">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trasporto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_132">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mutante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_133">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Evoluzione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_134">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bollajet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_135">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Luminoso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_136">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiamma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_137">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Virtuale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_138">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spirale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_139">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spirale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_140">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Crostaceo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_141">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Crostaceo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_142">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fossile</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_143">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sonno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_144">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gelo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_145">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Elettrico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_146">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiamma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_147">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_148">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_149">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_150">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Genetico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_151">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Novaspecie</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_152">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Foglia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_153">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Foglia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_154">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Erbe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_155">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fuocotopo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_156">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vulcano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_157">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vulcano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_158">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mascellone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_159">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mascellone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_160">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mascellone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_161">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Esplorante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_162">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lungocorpo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_163">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gufo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_164">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gufo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_165">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pentastra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_166">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pentastra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_167">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tela</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_168">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lungazampa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_169">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pipistrello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_170">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pescatore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_171">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Luce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_172">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_173">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Stella</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_174">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_175">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallapunte</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_176">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Felicità</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_177">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Uccellino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_178">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Magico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_179">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_180">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_181">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Luce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_182">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_183">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Acquatopo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_184">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Acquniglio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_185">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Imitazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_186">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_187">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gramigna</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_188">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gramigna</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_189">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gramigna</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_190">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lungacoda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_191">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Seme</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_192">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sole</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_193">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Alachiara</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_194">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Acquapesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_195">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Acquapesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_196">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sole</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_197">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lucelunare</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_198">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Oscurità</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_199">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Reale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_200">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Strido</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_201">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Simbolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_202">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pazienza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_203">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lungocollo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_204">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Larva</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_205">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Larva</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_206">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Terraserpe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_207">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Aliscorpio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_208">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ferroserpe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_209">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fata</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_210">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fata</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_211">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_212">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Chela</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_213">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Muffa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_214">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Monocorno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_215">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lamartigli</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_216">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Orsetto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_217">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Letargo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_218">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lava</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_219">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lava</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_220">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Maiale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_221">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Suino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_222">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Corallo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_223">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Jet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_224">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Jet</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_225">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Consegna</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_226">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Aquilone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_227">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Armuccello</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_228">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Buio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_229">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Buio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_230">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_231">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Nasone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_232">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Armatura</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_233">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Virtuale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_234">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grancorno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_235">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pittore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_236">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baruffa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_237">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Verticale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_238">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bacio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_239">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Elettrico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_240">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Carbonvivo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_241">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bovino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_242">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Felicità</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_243">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tuono</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_244">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vulcano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_245">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Aurora</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_246">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Peldisasso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_247">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Guscioduro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_248">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Armatura</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_249">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Immersione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_250">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Arcobaleno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_251">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tempovia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_252">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Legnogeco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_253">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Legnogeco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_254">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Foresta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_255">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pulcino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_256">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rampollo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_257">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vampe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_258">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fango Pesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_259">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fango Pesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_260">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fango Pesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_261">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Morso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_262">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Morso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_263">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Procione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_264">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sfrecciante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_265">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_266">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bozzolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_267">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Farfalla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_268">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bozzolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_269">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velentarma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_270">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Alga</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_271">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Giocoso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_272">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spensierato</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_273">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ghianda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_274">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scaltro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_275">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Burbero</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_276">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rondinella</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_277">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rondine</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_278">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gabbiano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_279">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Alacquatico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_280">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sensazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_281">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Emozione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_282">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Abbraccio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_283">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sfiorapozze</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_284">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Occhi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_285">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fungo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_286">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fungo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_287">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ozioso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_288">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Indocile</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_289">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pigrizia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_290">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Novizio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_291">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ninja</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_292">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cambiapelle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_293">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sussurro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_294">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vocione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_295">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fragore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_296">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Coraggio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_297">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sberletese</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_298">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pois</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_299">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bussola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_300">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Micio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_301">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Finezza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_302">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Oscurità</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_303">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Inganno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_304">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Corazza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_305">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Corazza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_306">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Corazza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_307">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Meditazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_308">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Meditazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_309">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lampo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_310">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scossa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_311">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Incitamento</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_312">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Incitamento</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_313">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lucciola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_314">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lucciola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_315">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spina</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_316">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Stomaco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_317">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Velenosacco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_318">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Feroce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_319">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Brutale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_320">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Balenottero</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_321">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Megabalena</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_322">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Torpore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_323">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Eruzione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_324">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Carbone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_325">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Molla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_326">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Raggiro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_327">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Macchipanda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_328">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trappola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_329">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vibrazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_330">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Magico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_331">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cactus</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_332">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spavento</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_333">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Alidicotone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_334">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Canterino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_335">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Furogatto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_336">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Zannaserpe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_337">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Meteorite</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_338">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Meteorite</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_339">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baffetti</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_340">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baffetti</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_341">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Birbone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_342">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Canaglia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_343">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Argilla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_344">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Argilla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_345">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiordimare</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_346">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lepade</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_347">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Primaceo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_348">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Piastre</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_349">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pesce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_350">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tenerezza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_351">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Meteo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_352">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mutacolore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_353">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pupazzo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_354">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Marionetta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_355">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Requiem</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_356">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ipnosguardo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_357">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Frutto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_358">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Vencampana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_359">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Catastrofe</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_360">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Brillante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_361">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cappelneve</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_362">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tuttomuso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_363">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rotolante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_364">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rotapalla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_365">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spaccagelo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_366">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bivalve</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_367">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Abissi</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_368">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sudmarino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_369">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Longevità</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_370">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rendezvous</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_371">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rocciotesta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_372">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Resistenza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_373">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Drago</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_374">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ferrosfera</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_375">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ferrunghia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_376">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ferrarto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_377">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Picco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_378">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Iceberg</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_379">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ferro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_380">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Eone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_381">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Eone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_382">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Oceano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_383">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Continente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_384">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Stratosfera</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_385">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Desiderio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_386">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon DNA</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_387">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fogliolina</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_388">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Boschetto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_389">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Continente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_390">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scimpanzé</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_391">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Briccone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_392">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Fiamma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_393">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pinguino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_394">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pinguino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_395">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Imperatore</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_396">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Storno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_397">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Storno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_398">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rapace</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_399">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Topaffuto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_400">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Castoro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_401">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grillo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_402">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grillo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_403">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Baleno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_404">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Favilla</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_405">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Occhiluce</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_406">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Germoglio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_407">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Floreale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_408">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cranioso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_409">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cranioso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_410">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Schermo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_411">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Schermo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_412">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Larva</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_413">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Larva</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_414">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Falena</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_415">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Apetta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_416">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Alveare</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_417">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Elescoiatto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_418">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Maridonnola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_419">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Maridonnola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_420">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ciliegia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_421">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bocciolo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_422">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lumacomare</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_423">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lumacomare</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_424">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lungacoda</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_425">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pallone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_426">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Dirigibile</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_427">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Coniglio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_428">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Coniglio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_429">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Stregone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_430">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grancapo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_431">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Felide</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_432">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gattotigre</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_433">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sonaglio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_434">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Moffetta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_435">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Moffetta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_436">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bronzo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_437">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Squibronzo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_438">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bonsai</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_439">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mimo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_440">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ovettino</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_441">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Musicale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_442">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Proibito</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_443">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Squaloterra</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_444">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grotta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_445">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Mach</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_446">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ghiottone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_447">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Emanazione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_448">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Aura</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_449">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ippo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_450">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Grandepeso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_451">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scorpione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_452">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scorpiaccio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_453">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Inveieleno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_454">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Inveieleno</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_455">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Insettivoro</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_456">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pescealato</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_457">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Neon</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_458">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Aquilone</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_459">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Albergelo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_460">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Albergelo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_461">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lamartigli</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_462">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Magnetico</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_463">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Linguaccia</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_464">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Trapano</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_465">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Liana</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_466">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Saetta</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_467">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Esplosivo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_468">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Festa</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_469">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Libellorco</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_470">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Rigoglioso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_471">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Nevefresca</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_472">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Scorpidente</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_473">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Duezanne</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_474">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Virtuale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_475">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Lama</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_476">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Bussola</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_477">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Pinza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_478">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Suolnevoso</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_479">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Plasma</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_480">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Sapienza</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_481">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Emozione</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_482">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Volontà</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_483">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Tempo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_484">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Spazio</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_485">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Cratere</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_486">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Colossale</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_487">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Ribelle</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_488">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Falcato</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_489">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Oceanbondo</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_490">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Oceandante</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_491">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Neropesto</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_492">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Gratitudine</language>
+	</row>
+
+	<row id="ZKNWORLDTYPE_493">
+		<comment>イタリア</comment>
+		<language name="日本語" font=" 1:font_system" width="128">Pokémon Primevo</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

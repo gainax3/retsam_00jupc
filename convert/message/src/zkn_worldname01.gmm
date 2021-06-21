@@ -1,0 +1,2887 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-07-08T12:19:50"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="256"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="214"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDNAME_0">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">-----</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_1">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BULBIZARRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_2">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HERBIZARRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_3">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FLORIZARRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_4">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SALAMECHE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_5">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REPTINCEL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_6">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRACAUFEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_7">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARAPUCE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_8">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARABAFFE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_9">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TORTANK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_10">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHENIPAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_11">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHRYSACIER</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_12">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PAPILUSION</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_13">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ASPICOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_14">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COCONFORT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_15">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DARDARGNAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_16">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROUCOOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_17">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROUCOUPS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_18">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROUCARNAGE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_19">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RATTATA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_20">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RATTATAC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_21">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PIAFABEC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_22">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAPASDEPIC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_23">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ABO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_24">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARBOK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_25">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PIKACHU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_26">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAICHU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_27">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SABELETTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_28">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SABLAIREAU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_29">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDORAN♀</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_30">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDORINA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_31">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDOQUEEN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_32">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDORAN♂</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_33">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDORINO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_34">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIDOKING</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_35">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MELOFEE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_36">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MELODELFE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_37">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GOUPIX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_38">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FEUNARD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_39">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RONDOUDOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_40">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRODOUDOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_41">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOSFERAPTI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_42">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOSFERALTO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_43">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MYSTHERBE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_44">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ORTIDE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_45">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAFFLESIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_46">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PARAS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_47">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PARASECT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_48">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MIMITOSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_49">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AEROMITE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_50">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TAUPIQUEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_51">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TRIOPIKEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_52">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MIAOUSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_53">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PERSIAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_54">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PSYKOKWAK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_55">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AKWAKWAK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_56">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FEROSINGE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_57">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COLOSSINGE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_58">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CANINOS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_59">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARCANIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_60">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PTITARD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_61">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TETARTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_62">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TARTARD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_63">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ABRA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_64">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KADABRA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_65">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ALAKAZAM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_66">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MACHOC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_67">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MACHOPEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_68">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MACKOGNEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_69">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHETIFLOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_70">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BOUSTIFLOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_71">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">EMPIFLOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_72">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TENTACOOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_73">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TENTACRUEL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_74">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RACAILLOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_75">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRAVALANCH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_76">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GROLEM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_77">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PONYTA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_78">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALOPA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_79">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAMOLOSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_80">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FLAGADOSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_81">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGNETI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_82">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGNETON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_83">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CANARTICHO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_84">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DODUO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_85">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DODRIO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_86">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OTARIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_87">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LAMANTINE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_88">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TADMORV</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_89">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GROTADMORV</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_90">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KOKIYAS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_91">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CRUSTABRI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_92">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FANTOMINUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_93">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SPECTRUM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_94">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ECTOPLASMA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_95">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ONIX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_96">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SOPORIFIK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_97">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HYPNOMADE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_98">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KRABBY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_99">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KRABBOSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_100">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VOLTORBE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_101">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELECTRODE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_102">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOEUNOEUF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_103">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOADKOKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_104">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OSSELAIT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_105">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OSSATUEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_106">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KICKLEE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_107">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TYGNON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_108">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">EXCELANGUE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_109">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SMOGO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_110">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SMOGOGO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_111">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RHINOCORNE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_112">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RHINOFEROS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_113">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LEVEINARD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_114">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SAQUEDENEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_115">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KANGOUREX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_116">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HYPOTREMPE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_117">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HYPOCEAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_118">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POISSIRENE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_119">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POISSOROY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_120">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">STARI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_121">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">STAROSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_122">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">M. MIME</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_123">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">INSECATEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_124">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LIPPOUTOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_125">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELEKTEK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_126">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGMAR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_127">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SCARABRUTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_128">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TAUROS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_129">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGICARPE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_130">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LEVIATOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_131">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LOKHLASS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_132">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">METAMORPH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_133">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">EVOLI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_134">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AQUALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_135">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VOLTALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_136">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PYROLI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_137">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PORYGON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_138">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AMONITA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_139">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AMONISTAR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_140">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KABUTO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_141">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KABUTOPS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_142">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PTERA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_143">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RONFLEX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_144">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARTIKODIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_145">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELECTHOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_146">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SULFURA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_147">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MINIDRACO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_148">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRACO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_149">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRACOLOSSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_150">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MEWTWO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_151">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MEW</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_152">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GERMIGNON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_153">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MACRONIUM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_154">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MEGANIUM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_155">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HERICENDRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_156">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FEURISSON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_157">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TYPHLOSION</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_158">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KAIMINUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_159">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CROCRODIL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_160">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ALIGATUEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_161">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FOUINETTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_162">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FOUINAR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_163">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HOOTHOOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_164">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOARFANG</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_165">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COXY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_166">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COXYCLAQUE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_167">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MIMIGAL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_168">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MIGALOS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_169">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOSTENFER</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_170">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LOUPIO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_171">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LANTURN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_172">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PICHU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_173">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MELO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_174">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TOUDOUDOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_175">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TOGEPI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_176">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TOGETIC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_177">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NATU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_178">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">XATU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_179">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">WATTOUAT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_180">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LAINERGIE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_181">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PHARAMP</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_182">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">JOLIFLOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_183">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MARILL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_184">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AZUMARILL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_185">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SIMULARBRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_186">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TARPAUD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_187">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRANIVOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_188">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FLORAVOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_189">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COTOVOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_190">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CAPUMAIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_191">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TOURNEGRIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_192">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HELIATRONC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_193">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">YANMA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_194">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AXOLOTO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_195">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MARAISTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_196">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MENTALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_197">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOCTALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_198">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CORNEBRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_199">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROIGADA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_200">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FEUFOREVE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_201">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ZARBI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_202">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">QULBUTOKE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_203">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GIRAFARIG</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_204">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POMDEPIK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_205">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FORETRESS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_206">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">INSOLOURDO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_207">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SCORPLANE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_208">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">STEELIX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_209">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SNUBBULL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_210">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRANBULL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_211">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">QWILFISH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_212">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CIZAYOX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_213">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARATROC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_214">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SCARHINO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_215">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FARFURET</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_216">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TEDDIURSA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_217">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">URSARING</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_218">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LIMAGMA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_219">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VOLCAROPOD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_220">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MARCACRIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_221">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COCHIGNON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_222">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CORAYON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_223">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REMORAID</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_224">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OCTILLERY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_225">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CADOIZO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_226">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DEMANTA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_227">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AIRMURE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_228">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MALOSSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_229">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DEMOLOSSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_230">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HYPOROI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_231">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PHANPY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_232">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DONPHAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_233">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PORYGON2</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_234">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CERFROUSSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_235">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">QUEULORIOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_236">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DEBUGANT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_237">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KAPOERA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_238">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LIPPOUTI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_239">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELEKID</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_240">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGBY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_241">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ECREMEUH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_242">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LEUPHORIE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_243">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAIKOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_244">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ENTEI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_245">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SUICUNE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_246">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">EMBRYLEX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_247">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">YMPHECT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_248">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TYRANOCIF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_249">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUGIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_250">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HO-OH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_251">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CELEBI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_252">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARCKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_253">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MASSKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_254">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">JUNGKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_255">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POUSSIFEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_256">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALIFEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_257">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BRASEGALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_258">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GOBOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_259">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">FLOBIO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_260">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LAGGRON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_261">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MEDHYENA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_262">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRAHYENA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_263">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ZIGZATON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_264">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LINEON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_265">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHENIPOTTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_266">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARMULYS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_267">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHARMILLON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_268">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BLINDALYS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_269">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PAPINOX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_270">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NENUPIOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_271">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LOMBRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_272">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUDICOLO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_273">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRAINIPIOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_274">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PIFEUIL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_275">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TENGALICE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_276">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NIRONDELLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_277">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HELEDELLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_278">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GOELISE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_279">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BEKIPAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_280">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TARSAL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_281">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KIRLIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_282">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GARDEVOIR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_283">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARAKDO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_284">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MASKADRA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_285">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BALIGNON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_286">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHAPIGNON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_287">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PARECOOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_288">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VIGOROTH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_289">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MONAFLEMIT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_290">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NINGALE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_291">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NINJASK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_292">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MUNJA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_293">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHUCHMUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_294">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAMBOUM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_295">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BROUHABAM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_296">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAKUHITA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_297">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HARIYAMA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_298">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AZURILL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_299">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TARINOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_300">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SKITTY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_301">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DELCATTY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_302">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TENEFIX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_303">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MYSDIBULE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_304">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALEKID</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_305">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALEGON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_306">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALEKING</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_307">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MEDITIKKA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_308">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHARMINA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_309">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DYNAVOLT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_310">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELECSPRINT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_311">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POSIPI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_312">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NEGAPI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_313">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MUCIOLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_314">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUMIVOLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_315">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROSELIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_316">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GLOUPTI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_317">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">AVALTOUT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_318">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARVANHA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_319">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SHARPEDO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_320">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">WAILMER</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_321">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">WAILORD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_322">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHAMALLOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_323">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CAMERUPT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_324">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHARTOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_325">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SPOINK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_326">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRORET</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_327">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SPINDA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_328">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KRAKNOIX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_329">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VIBRANINF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_330">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LIBEGON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_331">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CACNEA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_332">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CACTURNE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_333">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TYLTON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_334">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ALTARIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_335">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MANGRIFF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_336">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SEVIPER</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_337">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SELEROC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_338">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SOLAROC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_339">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BARLOCHE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_340">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BARBICHA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_341">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ECRAPINCE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_342">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COLHOMARD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_343">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BALBUTO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_344">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KAORINE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_345">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LILIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_346">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VACILYS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_347">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ANORITH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_348">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARMALDO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_349">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BARPAU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_350">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MILOBELLUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_351">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MORPHEO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_352">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KECLEON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_353">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">POLICHOMBR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_354">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BRANETTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_355">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SKELENOX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_356">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TERACLOPE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_357">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TROPIUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_358">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">EOKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_359">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ABSOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_360">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OKEOKE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_361">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">STALGAMIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_362">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ONIGLALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_363">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OBALIE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_364">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PHOGLEUR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_365">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KAIMORSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_366">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COQUIPERL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_367">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SERPANG</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_368">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROSABYSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_369">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RELICANTH</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_370">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LOVDISC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_371">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRABY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_372">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRACKHAUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_373">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRATTAK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_374">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TERHAL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_375">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">METANG</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_376">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">METALOSSE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_377">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REGIROCK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_378">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REGICE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_379">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REGISTEEL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_380">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LATIAS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_381">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LATIOS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_382">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KYOGRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_383">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GROUDON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_384">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAYQUAZA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_385">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">JIRACHI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_386">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DEOXYS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_387">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TORTIPOUSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_388">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BOSKARA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_389">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TORTERRA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_390">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">OUISTICRAM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_391">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHIMPENFEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_392">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SIMIABRAZ</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_393">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TIPLOUF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_394">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PRINPLOUF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_395">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PINGOLEON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_396">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ETOURMI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_397">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ETOURVOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_398">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ETOURAPTOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_399">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KEUNOTOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_400">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CASTORNO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_401">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CRIKZIK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_402">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MELOKRIK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_403">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LIXY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_404">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUXIO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_405">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUXRAY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_406">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROZBOUTON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_407">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROSERADE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_408">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KRANIDOS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_409">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHARKOS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_410">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DINOCLIER</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_411">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BASTIODON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_412">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHENITI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_413">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHENISELLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_414">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PAPILORD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_415">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">APITRINI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_416">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">APIREINE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_417">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PACHIRISU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_418">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MUSTEBOUEE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_419">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MUSTEFLOTT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_420">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CERIBOU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_421">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CERIFLOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_422">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SANCOKI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_423">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TRITOSOR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_424">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CAPIDEXTRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_425">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BAUDRIVE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_426">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRODRIVE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_427">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LAPOREILLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_428">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LOCKPIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_429">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGIREVE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_430">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CORBOSS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_431">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHAGLAM</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_432">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CHAFFREUX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_433">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">KORILLON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_434">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MOUFOUETTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_435">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MOUFFLAIR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_436">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARCHEOMIRE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_437">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARCHEODONG</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_438">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MANZAI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_439">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MIME JR.</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_440">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PTIRAVI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_441">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PIJAKO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_442">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SPIRITOMB</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_443">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GRIKNOT</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_444">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARMACHE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_445">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CARCHACROK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_446">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GOINFREX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_447">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RIOLU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_448">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUCARIO</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_449">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HIPPOPOTAS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_450">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HIPPODOCUS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_451">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RAPION</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_452">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DRASCORE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_453">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CRADOPAUD</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_454">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COATOX</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_455">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">VORTENTE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_456">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ECAYON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_457">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LUMINEON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_458">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BABIMANTA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_459">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BLIZZI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_460">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BLIZZAROI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_461">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DIMORET</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_462">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGNEZONE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_463">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">COUDLANGUE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_464">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">RHINASTOC</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_465">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">BOULDENEU</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_466">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ELEKABLE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_467">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAGANON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_468">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TOGEKISS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_469">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">YANMEGA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_470">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PHYLLALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_471">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GIVRALI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_472">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SCORVOL</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_473">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MAMMOCHON</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_474">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PORYGON-Z</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_475">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GALLAME</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_476">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">TARINORME</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_477">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">NOCTUNOIR</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_478">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MOMARTIK</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_479">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MOTISMA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_480">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CREHELF</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_481">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CREFOLLET</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_482">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CREFADET</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_483">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DIALGA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_484">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PALKIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_485">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">HEATRAN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_486">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">REGIGIGAS</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_487">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GIRATINA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_488">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">CRESSELIA</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_489">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PHIONE</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_490">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MANAPHY</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_491">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">DARKRAI</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_492">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">SHAYMIN</language>
+	</row>
+
+	<row id="ZKNWORLDNAME_493">
+		<comment>フランス</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ARCEUS</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

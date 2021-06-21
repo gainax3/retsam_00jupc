@@ -1,0 +1,108 @@
+//====================================================================
+//						r206.gmm
+//					フィールド・ロード206
+//
+//	FH_03	OBJ_CHANGE_LABELを一度のみ動作させるフラグ
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r206.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_r206_flag_change
+_EVENT_DATA		ev_r206_obj_change
+_EVENT_DATA		ev_r206_boy2a
+_EVENT_DATA		ev_r206_sign1
+_EVENT_DATA		ev_r206_sign2
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_r206_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_R206	//到着
+	_END
+
+
+/********************************************************************/
+/*						OBJ_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_r206_obj_change:
+	/*すでにチェックを通過していたら、再度プレイヤーをサイクリングロードモードにする*/
+	_IF_FLAGON_CALL	SYS_FLAG_CYCLINGROAD,ev_r206_obj_change_cyclingmode
+
+	/*ゲートを通過していたら*/
+	_GET_BEFORE_ZONE_ID	LOCALWORK0
+	_IFVAL_JUMP		LOCALWORK0,EQ,ZONE_ID_C04R0401,ev_r206_flag_change_hero_bicycle
+	_IFVAL_JUMP		LOCALWORK0,EQ,ZONE_ID_R206R0101,ev_r206_flag_change_hero_bicycle
+	_END
+
+/*主人公を自転車状態にする*/
+ev_r206_flag_change_hero_bicycle:
+
+	/*マップ遷移して一度のみ*/
+	_IF_FLAGON_JUMP	FH_03,ev_r206_flag_change_end
+
+	/*サイクリングゲートの入口出口のどちらから出たかをチェック*/
+	_PLAYER_POS_GET	LOCALWORK0,LOCALWORK1
+	_IFVAL_JUMP		LOCALWORK0,LT,SCR_CYCLING_X_L,ev_r206_flag_change_end
+	_IFVAL_JUMP		LOCALWORK0,GT,SCR_CYCLING_X_R,ev_r206_flag_change_end
+	_IFVAL_JUMP		LOCALWORK1,EQ,SCR_CYCLING_Z_U,ev_r206_flag_change_hero_bicycle_pos
+	_IFVAL_JUMP		LOCALWORK1,EQ,SCR_CYCLING_Z_D,ev_r206_flag_change_hero_bicycle_pos
+	_END
+
+ev_r206_flag_change_hero_bicycle_pos:
+	_FLAG_SET		FH_03
+
+	/*
+	↓のフラグを立てることによって、
+	スクリプト内では、サイクリングロードチェックを通過したと判別出来る
+	セーブして、再開した時にこのフラグが立っていたら、
+	再度プレイヤーをサイクリングロード状態にしている
+	*/
+	_FLAG_SET		SYS_FLAG_CYCLINGROAD
+
+	_BICYCLE_REQ_NON_BGM		/*BGMマップ有効フラグを立てる*/
+	_CYCLING_ROAD_SET	1		/*ゾーンを切り替えると自機は消えるのでフラグ(ビット)は落ちる*/
+	_END
+
+ev_r206_flag_change_end:
+	_END
+
+ev_r206_obj_change_cyclingmode:
+	_CYCLING_ROAD_SET	1		/*ゾーンを切り替えると自機は消えるのでフラグ(ビット)は落ちる*/
+	_RET
+
+
+/********************************************************************/
+/*							少年									*/
+/********************************************************************/
+ev_r206_boy2a:
+	_EASY_OBJ_MSG	msg_r206_boy2a_01
+	_END
+
+/********************************************************************/
+/*							道看板									*/
+/********************************************************************/
+ev_r206_sign1:
+	_EASY_BOARD_MSG	msg_r206_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+/********************************************************************/
+/*							道看板									*/
+/********************************************************************/
+ev_r206_sign2:
+	_EASY_BOARD_MSG	msg_r206_sign2_01,BOARD_TYPE_ROAD,0
+	_END
+
+
+/********************************************************************/
+/********************************************************************/

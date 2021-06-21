@@ -1,0 +1,120 @@
+//====================================================================
+//								c09pc0101
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c09pc0101.h"
+	.include	"../eventdata/zone_c09pc0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c09pc0101_pcwoman1
+_EVENT_DATA		ev_c09pc0101_girl1
+_EVENT_DATA		ev_c09pc0101_girl2
+_EVENT_DATA		ev_c09pc0101_koduck
+_EVENT_DATA		ev_c09pc0101_leader
+_EVENT_DATA_END
+
+/********************************************************************/
+/*						ポケセン回復受付　							*/
+/********************************************************************/
+ev_c09pc0101_pcwoman1:
+	_LDVAL			SCWK_TEMP3,C09PC0101_PCWOMAN1
+	_CHG_COMMON_SCR	SCRID_HEAL_P01
+	_END
+
+/********************************************************************/
+/*							少女		　							*/
+/********************************************************************/
+ev_c09pc0101_girl1:
+	_EASY_OBJ_MSG	msg_c09pc0101_girl1_01
+	_END
+
+/********************************************************************/
+/*							活発少女	　							*/
+/********************************************************************/
+ev_c09pc0101_girl2:
+	_EASY_OBJ_MSG	msg_c09pc0101_girl2_01
+	_END
+
+/********************************************************************/
+/*							コダック	　							*/
+/********************************************************************/
+ev_c09pc0101_koduck:
+	_EASY_VOICE_MSG	msg_c09pc0101_koduck_01,MONSNO_KODAKKU,0
+	_END
+
+
+/********************************************************************/
+/*							スモモ									*/
+/********************************************************************/
+ev_c09pc0101_leader:
+	_TALK_OBJ_START
+
+	/*キッサキジムバッジを取得していたら*/
+	_SYS_FLAG_BADGE_GET		BADGE_ID_C09,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c09pc0101_leader_02
+
+	/*向きによってアニメをかえる*/
+	_PLAYER_DIR_GET	SCWK_PARAM0
+	_IFVAL_CALL		SCWK_PARAM0,EQ,DIR_UP,ev_c09pc0101_dir_up
+	_IFVAL_CALL		SCWK_PARAM0,EQ,DIR_DOWN,ev_c09pc0101_dir_down
+	_IFVAL_CALL		SCWK_PARAM0,EQ,DIR_LEFT,ev_c09pc0101_dir_left
+	_IFVAL_CALL		SCWK_PARAM0,EQ,DIR_RIGHT,ev_c09pc0101_dir_right
+
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c09pc0101_leader_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*ブルブル*/
+ev_c09pc0101_dir_up:
+ev_c09pc0101_dir_down:
+	_OBJ_ANIME		C09PC0101_LEADER,anm_c09pc0101_leader_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_c09pc0101_dir_left:
+	_OBJ_ANIME		C09PC0101_LEADER,anm_c09pc0101_leader_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_c09pc0101_dir_right:
+	_OBJ_ANIME		C09PC0101_LEADER,anm_c09pc0101_leader_03
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*キッサキジムバッジを取得していたら*/
+ev_c09pc0101_leader_02:
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c09pc0101_leader_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+//ブルブル	寒い
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c09pc0101_leader_01
+	_ANIME_DATA	AC_STAY_WALK_D_2F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c09pc0101_leader_02
+	_ANIME_DATA	AC_STAY_WALK_R_2F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c09pc0101_leader_03
+	_ANIME_DATA	AC_STAY_WALK_L_2F,2
+	_ANIME_DATA	ACMD_END,0
+
+

@@ -1,0 +1,105 @@
+//====================================================================
+//								r213r0301
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r213r0301.h"
+	.include	"../eventdata/zone_r213r0301evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_r213r0301_flag_change
+_EVENT_DATA		ev_r213r0301_policeman
+_EVENT_DATA		ev_r213r0301_woman3
+_EVENT_DATA		ev_r213r0301_police
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_r213r0301_flag_change:
+	_END
+
+/********************************************************************/
+/*							警備員									*/
+/********************************************************************/
+ev_r213r0301_policeman:
+	_TALK_OBJ_START
+
+	_TALK_KEYWAIT	msg_r213r0301_policeman_01
+	_TALK_CLOSE
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_ME_PLAY		SEQ_ASA
+	_ME_WAIT
+
+	_PC_KAIFUKU
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALKMSG		msg_r213r0301_policeman_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*								???									*/
+/********************************************************************/
+ev_r213r0301_woman3:
+	_EASY_OBJ_MSG	msg_r213r0301_woman3_01
+	_END
+
+
+/********************************************************************/
+/*							国際警察								*/
+/********************************************************************/
+ev_r213r0301_police:
+	_TALK_OBJ_START_TURN_NOT
+
+	/*すでに会話している時*/
+	_IF_FLAGON_JUMP	FE_R213R0301_POLICE,ev_r213r0301_police_02
+
+	_FLAG_SET		FE_R213R0301_POLICE
+
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_r213r0301_detective_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*すでに会話している時*/
+ev_r213r0301_police_02:
+	/*右を向く*/
+	_OBJ_ANIME		R213R0301_POLICE,anm_r213r0301_police_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_r213r0301_detective_02
+
+	_TURN_HERO_SITE
+	_TALK_KEYWAIT	msg_r213r0301_detective_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//--------------------------------------------------------------------
+//国際警察	右を向く
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r213r0301_police_01
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	ACMD_END,0
+
+

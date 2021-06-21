@@ -1,0 +1,375 @@
+//====================================================================
+//								c07r0301
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c07r0301.h"
+	.include	"../eventdata/zone_c07r0301evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c07r0301_bar
+_EVENT_DATA		ev_c07r0301_police_auto
+_EVENT_DATA		ev_c07r0301_police
+_EVENT_DATA		ev_c07r0301_flag_change
+_EVENT_DATA		pos_c07r0301_police
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_c07r0301_flag_change:
+	_IFVAL_CALL		WK_SCENE_C07R0301,LT,2,ev_c07r0301_flag_change_sub
+	_END
+
+ev_c07r0301_flag_change_sub:
+	_SXY_POS_CHANGE	C07R0301_POLICE,8,10
+	_SXY_MV_CHANGE	C07R0301_POLICE,MV_UP
+	_SXY_DIR_CHANGE	C07R0301_POLICE,DIR_UP
+	_RET
+
+
+/********************************************************************/
+/*								扉									*/
+/********************************************************************/
+ev_c07r0301_bar:
+	_TALK_OBJ_START
+
+	/*「そうこのカギ」をもっている？*/
+	_ITEM_CHK	ITEM_SOUKONOKAGI,1,SCWK_ANSWER
+	_IFVAL_JUMP	SCWK_ANSWER,EQ,TRUE,ev_c07r0301_bar_02
+	
+	_TALKMSG		msg_c07r0301_bar_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「そうこのカギ」をもっている？*/
+ev_c07r0301_bar_02:
+	_TALKMSG		msg_c07r0301_bar_02
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c07r0301_bar
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c07r0301_bar
+	_END
+
+/*「はい」*/
+yes_c07r0301_bar:
+	_FLAG_SET		FE_C07R0301_OPEN
+
+	_SUB_ITEM		ITEM_SOUKONOKAGI,1,SCWK_ANSWER
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c07r0301_bar_03
+	_LAST_KEYWAIT
+
+	//扉開くふり
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_SE_PLAY		SE_AZITO_DOOR_OPEN
+	_OBJ_ANIME		C07R0301_BAR_01,anm_c07r0301_bar_01
+	_OBJ_ANIME		C07R0301_BAR_02,anm_c07r0301_bar_02
+	_OBJ_ANIME_WAIT
+
+	_OBJ_DEL		C07R0301_BAR_01
+	_OBJ_DEL		C07R0301_BAR_02
+
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*「いいえ」終了*/
+no_c07r0301_bar:
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+	
+//--------------------------------------------------------------------
+//扉	開くふり
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_bar_01
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_c07r0301_bar_02
+	_ANIME_DATA	AC_WALK_R_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*							国際警察								*/
+/********************************************************************/
+ev_c07r0301_police_auto:
+	_EVENT_START
+
+	/*移動*/
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_c07r0301_detective_01
+	_TALK_CLOSE
+
+	/*移動*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_02
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_02
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_c07r0301_detective_02
+	_TALK_CLOSE
+
+	/*移動*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_03
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_03
+	_OBJ_ANIME_WAIT
+
+	_LDVAL			WK_SCENE_C06,1
+	_LDVAL			WK_SCENE_C07R0301,2
+
+	_TALK_KEYWAIT	msg_c07r0301_detective_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//国際警察	移動1
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_01
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	移動2
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_02
+	_ANIME_DATA	AC_WALK_D_8F,2
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,5
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	移動3
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_03
+	_ANIME_DATA	AC_WALK_L_8F,5
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	国際警察を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_player_02
+	_ANIME_DATA	AC_WAIT_8F,9
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	国際警察を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_player_03
+	_ANIME_DATA	AC_WAIT_8F,4
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*						国際警察(話しかけ)							*/
+/********************************************************************/
+ev_c07r0301_police:
+	_EASY_OBJ_MSG	msg_c07r0301_detective_04
+	_END
+
+
+/********************************************************************/
+/*							国際警察(アジト)						*/
+/********************************************************************/
+#define C07R0301_POLICE_X1	(8)
+#define C07R0301_POLICE_X2	(9)
+
+pos_c07r0301_police:
+	_EVENT_START
+
+	/*登場*/
+	_SXY_POS_CHANGE	C07R0301_POLICE,8,11
+	_SXY_MV_CHANGE	C07R0301_POLICE,MV_UP
+	_SXY_DIR_CHANGE	C07R0301_POLICE,DIR_UP
+	_FLAG_RESET		FV_C07R0301_POLICE
+	_OBJ_ADD		C07R0301_POLICE
+
+	/*近づいてくる*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_01
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_02
+
+	_TALK_KEYWAIT	msg_c07r0301_detective_05
+	_TALK_CLOSE
+
+	/*扉を見ながら*/
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_110
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_c07r0301_detective_06
+	_TALK_CLOSE
+
+	///////////////////////////////////////////////////////////////////
+	/*ドア開ける*/
+	_FLAG_SET		FE_C07R0301_OPEN
+	//_SUB_ITEM		ITEM_SOUKONOKAGI,1,SCWK_ANSWER
+	//_PLAYER_NAME	0
+	//_TALKMSG		msg_c07r0301_bar_03
+	//_LAST_KEYWAIT
+
+	//扉開くふり
+	_SE_WAIT		SEQ_SE_DP_SELECT
+	_SE_PLAY		SE_AZITO_DOOR_OPEN
+	_OBJ_ANIME		C07R0301_BAR_01,anm_c07r0301_bar_01
+	_OBJ_ANIME		C07R0301_BAR_02,anm_c07r0301_bar_02
+	_OBJ_ANIME_WAIT
+
+	_OBJ_DEL		C07R0301_BAR_01
+	_OBJ_DEL		C07R0301_BAR_02
+	///////////////////////////////////////////////////////////////////
+
+	/*主人公を見る*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_11
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_12
+
+	_TALK_KEYWAIT	msg_c07r0301_detective_07
+	_TALK_CLOSE
+
+	/*アジトに消えていく*/
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X1,ev_c07r0301_police_azito_21
+	_IFVAL_CALL		SCWK_TEMP0,EQ,C07R0301_POLICE_X2,ev_c07r0301_police_azito_22
+
+	_OBJ_DEL		C07R0301_POLICE
+	_FLAG_SET		FV_C07_POLICE			/*外の国際警察削除*/
+	_LDVAL			WK_SCENE_C07R0301,4
+
+	_EVENT_END
+	_END
+
+/*近づいてくる*/
+ev_c07r0301_police_azito_01:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_100
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_100
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_c07r0301_police_azito_02:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_101
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_101
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*主人公と向き合う*/
+ev_c07r0301_police_azito_11:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_116
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_c07r0301_police_azito_12:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_115
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*退場*/
+ev_c07r0301_police_azito_21:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_120
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_120
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_c07r0301_police_azito_22:
+	_OBJ_ANIME		C07R0301_POLICE,anm_c07r0301_police_121
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c07r0301_player_120
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	登場1
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_player_100
+	_ANIME_DATA	AC_WAIT_8F,4
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_c07r0301_player_101
+	_ANIME_DATA	AC_WAIT_8F,3
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	アジト国際警察見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_player_120
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アジト国際警察	登場1
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_100
+	_ANIME_DATA	AC_WALK_U_8F,2
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_c07r0301_police_101
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アジト国際警察	ドアを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_110
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アジト国際警察	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_115
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_c07r0301_police_116
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アジト国際警察	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_c07r0301_police_120
+	_ANIME_DATA	AC_WALK_U_8F,5
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_R_4F,6
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_c07r0301_police_121
+	_ANIME_DATA	AC_WALK_U_8F,5
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_R_4F,7
+	_ANIME_DATA	ACMD_END,0
+
+

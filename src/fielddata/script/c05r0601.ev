@@ -1,0 +1,253 @@
+//====================================================================
+//								c05r0601
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c05r0601.h"
+	.include	"../eventdata/zone_c05r0601evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c05r0601_girl2
+_EVENT_DATA		pos_c05r0601_rival
+_EVENT_DATA_END
+
+/********************************************************************/
+/*							活発少女	　							*/
+/********************************************************************/
+ev_c05r0601_girl2:
+	_EASY_OBJ_MSG	msg_c05r0601_girl2_01
+	_END
+
+
+/********************************************************************/
+/*				ライバル(R208のゲートから来た時)					*/
+/********************************************************************/
+#define POS_C05R0601_Z1	(5)
+#define POS_C05R0601_Z2	(6)
+#define POS_C05R0601_Z3	(7)
+#define POS_C05R0601_Z4	(8)
+#define POS_C05R0601_Z5	(9)
+
+pos_c05r0601_rival:
+	_EVENT_START
+
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_200
+	_OBJ_ANIME_WAIT
+
+	_CHG_COMMON_SCR SCRID_THE_RIVAL_PLAY				/*ライバル曲再生*/
+
+	/*近づく*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z1,pos_c05r0601_1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z2,pos_c05r0601_2
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z3,pos_c05r0601_3
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z4,pos_c05r0601_4
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z5,pos_c05r0601_5
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_c05r0601_rival_01
+	_TALK_CLOSE
+
+	//戦闘呼び出し
+	_FIRST_POKE_NO_GET	SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_NAETORU,ev_c05r0601_rival_22
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,MONSNO_HIKOZARU,ev_c05r0601_rival_23
+	_JUMP				ev_c05r0601_rival_21
+	_END
+
+//戦闘呼び出し
+ev_c05r0601_rival_21:
+	_TRAINER_BTL_SET	RIVAL_04,0
+	_JUMP			ev_c05r0601_rival_btl_coomon_100
+	_END
+
+ev_c05r0601_rival_22:
+	_TRAINER_BTL_SET	RIVAL_05,0
+	_JUMP			ev_c05r0601_rival_btl_coomon_100
+	_END
+
+ev_c05r0601_rival_23:
+	_TRAINER_BTL_SET	RIVAL_06,0
+	_JUMP			ev_c05r0601_rival_btl_coomon_100
+	_END
+
+ev_c05r0601_rival_btl_coomon_100:
+	_TRAINER_LOSE_CHECK	SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_c05r0601_rival_battle_lose
+
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_TALK_KEYWAIT	msg_c05r0601_rival_02
+	_TALK_CLOSE
+
+	/*去っていく*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z1,pos_c05r0601_11
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z2,pos_c05r0601_12
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z3,pos_c05r0601_13
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z4,pos_c05r0601_14
+	_IFVAL_CALL		SCWK_TEMP1,EQ,POS_C05R0601_Z5,pos_c05r0601_15
+
+	_SE_PLAY		SEQ_SE_DP_KAIDAN2
+	_OBJ_DEL		C05R0601_RIVAL
+	_SE_WAIT		SEQ_SE_DP_KAIDAN2
+
+	_LDVAL			WK_SCENE_C05R0601,2
+
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//敗北処理
+//--------------------------------------------------------------------
+ev_c05r0601_rival_battle_lose:
+	_TRAINER_LOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//近づいてくる
+//--------------------------------------------------------------------
+pos_c05r0601_1:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_100
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_2:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_101
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_3:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_102
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_4:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_103
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_5:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_104
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//去っていく
+//--------------------------------------------------------------------
+pos_c05r0601_11:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_110
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_12:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_111
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_13:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_112
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_14:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_113
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_c05r0601_15:
+	_OBJ_ANIME		C05R0601_RIVAL,anm_c05r0601_rival_114
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//ライバル	！
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05r0601_rival_0
+	_ANIME_DATA	AC_WALK_L_4F,4
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05r0601_rival_100
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	AC_WALK_U_4F,2
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_101
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_102
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_103
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_104
+	_ANIME_DATA	AC_WALK_L_4F,2
+	_ANIME_DATA	AC_WALK_D_4F,2
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05r0601_rival_110
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	AC_WALK_D_4F,2
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_111
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	AC_WALK_D_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_112
+	_ANIME_DATA	AC_WALK_R_4F,4
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_113
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	AC_WALK_U_4F,1
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_c05r0601_rival_114
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	AC_WALK_U_4F,2
+	_ANIME_DATA	AC_WALK_R_4F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ライバル	！
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05r0601_rival_200
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	//_ANIME_DATA	AC_STAY_WALK_L_4F,8		/*じたばた*/
+	_ANIME_DATA	ACMD_END,0
+
+

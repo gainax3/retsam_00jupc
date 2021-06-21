@@ -1,0 +1,33 @@
+#! make -f
+#----------------------------------------------------------------------------
+# Project:  プラチナ用：バトルタワーデータ
+# File:     Makefile
+#
+# Copyright 2005 GameFreak.inc  All rights reserved.
+#
+#----------------------------------------------------------------------------
+
+BTDMAKEDIR = ./../../../../pl_conv/btdcnv/
+SUBDIRS		=
+
+TRDATA:=$(wildcard btd_tr_*.s)
+
+include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
+include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
+
+#Makeで生成される*.bin/*.narcはmake cleanの削除対象にする
+LDIRT_CLEAN	= $(TRDATA) pl_btdtr.narc
+
+#----------------------------------------------------------------------------
+
+include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
+
+do-build: $(TRDATA:.s=.bin)
+%.bin: %.s btd_data.h
+	$(MWAS) $< -o $*.o
+	$(MWLD) -dis -o $*.elf $*.o
+	$(BTDMAKEDIR)elf2bin $*.elf
+
+do-build: pl_btdtr.narc
+pl_btdtr.narc: $(TRDATA:.s=.bin)
+	nnsarc -c -l -n -i pl_btdtr.narc btd_tr_*.bin

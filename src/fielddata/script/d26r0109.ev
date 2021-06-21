@@ -1,0 +1,293 @@
+//====================================================================
+//								d26r0109
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d26r0109.h"
+	.include	"../eventdata/zone_d26r0109evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		pos_d26r0109_police
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+//ev_d26r0109_flag_change:
+//	_END
+
+
+/********************************************************************/
+/*																	*/
+/********************************************************************/
+#define D26R0109_POLICE_Z1	(12)
+#define D26R0109_POLICE_Z2	(13)
+
+pos_d26r0109_police:
+	_EVENT_START
+
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+
+	/*国際警察気づく*/
+	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d26r0109_detective_01
+	_TALK_CLOSE
+
+	/*指定位置につく*/
+	_IFVAL_CALL		SCWK_TEMP1,EQ,D26R0109_POLICE_Z1,ev_d26r0109_police_z01
+	_IFVAL_CALL		SCWK_TEMP1,EQ,D26R0109_POLICE_Z2,ev_d26r0109_police_z02
+
+	//カメラ移動
+	//博士を中心に移動する
+	_VANISH_DUMMY_OBJ_ADD	SCWK_TEMP0,SCWK_TEMP1
+
+	//_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC*3
+	//_WIPE_FADE_END_CHECK
+
+	//ダミーOBJを動かす
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d26r0109_dummy_01
+	_OBJ_ANIME_WAIT
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	/*アカギ登場*/
+	_FLAG_RESET		FV_D26R0109_BOSS
+	_OBJ_ADD		D26R0109_BOSS
+	_OBJ_ANIME		D26R0109_BOSS,anm_d26r0109_boss_01
+	_OBJ_ANIME_WAIT
+
+	_SE_PLAY		SEQ_SE_DP_DENDOU
+	_TIME_WAIT		30,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d26r0109_gingaboss_01
+	_TALK_CLOSE
+
+	_SE_PLAY		SEQ_SE_DP_DENDOU
+	_TIME_WAIT		30,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d26r0109_gingaboss_02
+	_TALK_CLOSE
+
+	_TIME_WAIT		30,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d26r0109_gingaboss_03
+	_TALK_CLOSE
+	_SE_PLAY		SEQ_SE_DP_DENDOU
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d26r0109_ginga_01
+	_TALK_KEYWAIT	msg_d26r0109_ginga_02
+	_TALK_CLOSE
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	/*アカギ退場*/
+	_OBJ_ANIME		D26R0109_BOSS,anm_d26r0109_boss_02
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		D26R0109_BOSS
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC*3
+	_WIPE_FADE_END_CHECK
+
+	/*カメラ戻す*/
+	_OBJ_ANIME		SCR_OBJID_DUMMY,anm_d26r0109_dummy_11
+	_OBJ_ANIME_WAIT
+
+	//カメラ移動
+	//ダミーOBJ削除
+	_VANISH_DUMMY_OBJ_DEL
+
+	/*ギンガ団削除*/
+	_OBJ_DEL		D26R0109_GSET1_02
+	_OBJ_DEL		D26R0109_GINGAM_05
+	_OBJ_DEL		D26R0109_GSET1_01
+	_OBJ_DEL		D26R0109_GSET1_03
+	_OBJ_DEL		D26R0109_GSET2_02
+	_OBJ_DEL		D26R0109_GSET1_04
+	_OBJ_DEL		D26R0109_GSET2_03
+	_OBJ_DEL		D26R0109_GSET2_04
+	_OBJ_DEL		D26R0109_GSET2_01
+	_OBJ_DEL		D26R0109_GSET1_05
+	_OBJ_DEL		D26R0109_GSET1_06
+	_OBJ_DEL		D26R0109_GSET1_07
+	_OBJ_DEL		D26R0109_GSET1_08
+	_OBJ_DEL		D26R0109_GSET2_05
+	_OBJ_DEL		D26R0109_GSET2_06
+	_OBJ_DEL		D26R0109_GSET2_07
+	_OBJ_DEL		D26R0109_GSET2_08
+	_OBJ_DEL		D26R0109_GINGAM_01
+	_OBJ_DEL		D26R0109_GINGAM_03
+	_OBJ_DEL		D26R0109_GINGAM_04
+	_OBJ_DEL		D26R0109_GINGAM_02
+	_OBJ_DEL		D26R0109_GINGAW_07
+	_OBJ_DEL		D26R0109_GINGAW_02
+	_OBJ_DEL		D26R0109_GINGAW_05
+	_OBJ_DEL		D26R0109_GINGAW_03
+	_OBJ_DEL		D26R0109_GSET1_0
+	_OBJ_DEL		D26R0109_GSET1_09
+	_OBJ_DEL		D26R0109_GINGAW_04
+	_OBJ_DEL		D26R0109_GINGAW_06
+	_OBJ_DEL		D26R0109_GINGAM_06
+	_OBJ_DEL		D26R0109_GINGAM_07
+	_OBJ_DEL		D26R0109_GINGAM_08
+	_OBJ_DEL		D26R0109_GINGAM_09
+	_OBJ_DEL		D26R0109_GINGAW_01
+
+	/*顔を見合す*/
+	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_31
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_31
+	_OBJ_ANIME_WAIT
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TIME_WAIT		15,SCWK_ANSWER
+
+	_TALK_KEYWAIT	msg_d26r0109_detective_02
+	_TALK_CLOSE
+
+	/*左に移動*/
+	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_41
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_41
+	_OBJ_ANIME_WAIT
+	_OBJ_DEL		D26R0109_POLICE
+
+	_LDVAL			WK_SCENE_D26R0109,1
+	_EVENT_END
+	_END
+
+ev_d26r0109_police_z01:
+	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_02
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+ev_d26r0109_police_z02:
+	_OBJ_ANIME		D26R0109_POLICE,anm_d26r0109_police_02
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d26r0109_player_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//アカギ	中心へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_boss_01
+	_ANIME_DATA	AC_WALK_D_8F,3
+	_ANIME_DATA	AC_WALK_L_8F,4
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//アカギ	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_boss_02
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,4
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//カメラ	壇上へ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_dummy_01
+	_ANIME_DATA	AC_WALK_L_8F,6
+	_ANIME_DATA	AC_WALK_U_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//カメラ	元に戻す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_dummy_11
+	_ANIME_DATA	AC_WALK_D_8F,6
+	_ANIME_DATA	AC_WALK_R_8F,6
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	指定位置につく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_player_01
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_d26r0109_player_02
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	顔を見合す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_player_31
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_player_41
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	気づく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_police_01
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	指定位置につく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_police_02
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	顔を見合す
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_police_31
+	_ANIME_DATA	AC_STAY_WALK_D_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d26r0109_police_41
+	_ANIME_DATA	AC_WALK_L_4F,1
+	_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_4F,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_L_4F,9
+	_ANIME_DATA	ACMD_END,0
+
+

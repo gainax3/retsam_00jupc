@@ -1,0 +1,4098 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsumiya" host="W00179" date="2008-05-28T17:04:55"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="177"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="235"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:\msgdata\font\font_talk.nftr"/>
+				<list entry="1" file="Q:\msgdata\font\font_system.nftr"/>
+				<list entry="2" file="Q:\msgdata\font\font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="15" top="101" right="709" bottom="671" maximized="no" rayout="Vertical2">
+		<comment-input left="730" top="479" right="1077" bottom="631" visible="yes"/>
+		<tag-palette left="720" top="65" right="1067" bottom="463" visible="yes"/>
+		<band id="0" index="0" style="0000" width="519"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="686"/>
+		<band id="3" index="3" style="0000" width="686"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKN_COMMENT_00_000" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment> </comment>
+		<language name="日本語"> </language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_001" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フシギダネ</comment>
+		<language name="日本語">うまれてから　しばらくの　あいだは
+せなかの　タネから　えいようを
+もらって　おおきく　そだつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_002" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フシギソウ</comment>
+		<language name="日本語">せなかの　つぼみが　ふくらみだすと
+あまい　においが　ただよいはじめる。
+たいりんの　はなが　さく　まえぶれ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_003" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フシギバナ</comment>
+		<language name="日本語">あめの　ふった　よくじつは　せなかの
+はなの　かおりが　つよまる。かおりに
+さそわれ　ポケモンが　あつまる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_004" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヒトカゲ</comment>
+		<language name="日本語">ヒトカゲの　しっぽの　ほのおは
+いのちの　ともしび。げんきな　ときは
+ほのおも　ちからづよく　もえあがる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_005" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>リザード</comment>
+		<language name="日本語">リザードが　くらす　いわやまを
+よなかに　みあげると　しっぽの
+ほのおが　ほしのように　みえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_006" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>リザードン</comment>
+		<language name="日本語">くるしい　たたかいを　けいけんした
+リザードンほど　ほのおの　おんどが
+たかくなると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_007" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ゼニガメ</comment>
+		<language name="日本語">こうらに　とじこもり　みを　まもる。
+あいての　すきを　みのがさず
+みずを　ふきだして　はんげきする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_008" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カメール</comment>
+		<language name="日本語">いちまんねんの　じゅみょうを　もつと
+いわれている。ふさふさの　しっぽは
+ながいきの　シンボルとして　にんき。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_009" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カメックス</comment>
+		<language name="日本語">こうらの　ロケットほうから　ふきだす
+すいりゅうは　ぶあつい　てっぱんも
+いっぱつで　つらぬく　はかいりょく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_010" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キャタピー</comment>
+		<language name="日本語">あかい　しょっかくから　においを
+だして　てきを　おいはらう。
+だっぴを　くりかえし　おおきくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_011" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>トランセル</comment>
+		<language name="日本語">こうてつのように　かたい　カラで
+やわらかい　なかみを　まもっている。
+しんかするまで　じっと　たえている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_012" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バタフリー</comment>
+		<language name="日本語">はなの　ミツが　だいこうぶつ。
+わずかな　かふんで　はなばたけの
+ばしょを　さがしだすことが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_013" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ビードル</comment>
+		<language name="日本語">まいにち　じぶんと　おなじ　おもさの
+はっぱを　たべる。あたまの　ハリで
+おそってきた　てきを　げきたい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_014" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コクーン</comment>
+		<language name="日本語">てんてきに　みつからないように
+はっぱの　うらや　えだの　すきまに
+かくれて　しんかの　ときを　まつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_015" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スピアー</comment>
+		<language name="日本語">こうそくで　とびまわり　どくバリで
+こうげきしたあと　すぐに　とびさる
+せんぽうが　とくいわざだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_016" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ポッポ</comment>
+		<language name="日本語">たたかいを　このまない　おとなしい
+せいかくだが　へたに　てを　だすと
+きょうれつに　はんげきされるぞ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_017" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ピジョン</comment>
+		<language name="日本語">ひろい　なわばりを　とびまわりながら
+えものを　さがす。はったつした
+あしの　ツメで　えものを　しとめる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_018" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ピジョット</comment>
+		<language name="日本語">ピジョットが　ちからいっぱい
+はばたくと　たいぼくも　しなるほどの
+きょうふうを　まきおこす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_019" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コラッタ</comment>
+		<language name="日本語">どんな　ばしょにも　すみついて
+いきていける　せいめいりょく。
+けいかいしんが　とても　つよい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_020" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラッタ</comment>
+		<language name="日本語">のびつづける　まえばを　けずるため
+かたい　ものを　かじる　しゅうせい。
+ブロックべいも　かじって　こわす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_021" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オニスズメ</comment>
+		<language name="日本語">ちいさな　つばさを　いそがしく
+はばたかせて　とぶ。くさむらにいる
+えものを　くちばしで　さがしだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_022" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オニドリル</comment>
+		<language name="日本語">おおきな　つばさで　１にちじゅう
+とびまわる　たいりょくの　もちぬし。
+するどい　くちばしで　たたかう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_023" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アーボ</comment>
+		<language name="日本語">おとを　まったく　たてずに　くさちの
+なかを　すすむ。ゆだんしている
+えものに　はいごから　おそいかかる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_024" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アーボック</comment>
+		<language name="日本語">おなかの　もようで　てきを　いかく。
+もように　おびえて　うごけなくなった
+すきに　からだで　しめつける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_025" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピカチュウ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">よわった　なかまの　ピカチュウに
+でんきをながし　ショックをあたえて
+げんきを　わけることも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_026" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ライチュウ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽが　アースの　やくめをはたして
+でんきを　じめんに　にがすので
+じぶんじしんは　しびれたりしない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_027" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サンド</comment>
+		<language name="日本語">あめが　ほとんど　ふらない
+かんそうした　とちに　せいそく。
+からだを　まるめて　みを　まもる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_028" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サンドパン</comment>
+		<language name="日本語">からだを　まるめて　せなかから
+たいあたり。するどい　トゲトゲが
+おおきな　ダメージを　あたえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_029" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドラン♀</comment>
+		<language name="日本語">たたかいを　このまない　せいかく。
+どくバリから　ぶんぴつされる　どくは
+ひとしずくでも　いのちとりだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_030" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドリーナ</comment>
+		<language name="日本語">きけんを　かんじると　ぜんしんの
+トゲを　さかだてる。ニドリーノに
+くらべて　トゲの　そだちが　おそい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_031" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドクイン</comment>
+		<language name="日本語">よろいのように　かたい　ウロコが
+ぜんしんを　つつむ。すあなの
+こどもを　いのちがけで　まもる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_032" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドラン♂</comment>
+		<language name="日本語">くさむらの　うえに　みみだけ　だして
+まわりの　けはいを　さぐる。
+もうどくの　ツノで　みを　まもる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_033" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドリーノ</comment>
+		<language name="日本語">きしょうが　あらい　ポケモン。
+あいてに　つきさした　しょうげきで
+ツノから　もうどくが　にじみでる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_034" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニドキング</comment>
+		<language name="日本語">しっぽの　いちげきは　でんちゅうを
+まるで　マッチぼうのように
+まっぷたつに　へしおってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_035" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピッピ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">まんげつのよる　ピッピが　あつまって
+ダンスを　おどるようすを　みると
+しあわせに　なれると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_036" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピクシー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">１キロさきで　おちた　はりのおとを
+ききわける　みみと　ようじんぶかさで
+めったに　ひとまえに　あらわれない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_037" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ロコン</comment>
+		<language name="日本語">ほのおの　たまを　あやつる。
+せいちょうすると　６ほんの　しっぽは
+さきが　わかれて　さらに　ふえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_038" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キュウコン</comment>
+		<language name="日本語">９ほんの　しっぽには　しんぴてきな
+ちからが　やどっていると　つたわる。
+１０００ねん　いきつづけるらしい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_039" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>プリン</comment>
+		<language name="日本語">つぶらな　ひとみが　ゆれるとき
+だれもが　ねむくなってしまう
+こもりうたを　うたいはじめる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_040" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>プクリン</comment>
+		<language name="日本語">キメこまやかな　たいもうは
+ごくじょうの　はだざわり。
+いきを　すいこんで　ふくらむ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_041" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ズバット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">くちからだす　ちょうおんぱの
+はんしゃで　まわりの　ようすや
+じぶんの　いばしょを　しらべている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_042" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴルバット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">どんなに　かたい　ひふでも　つらぬく
+するどいキバには　ちいさな　あなが
+あって　そこから　ちを　すいまくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_043" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ナゾノクサ</comment>
+		<language name="日本語">ひるまは　ねっこの　あしを　じめんに
+うめて　うごかないことが　おおい。
+よる　あるきまわって　タネを　まく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_044" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>クサイハナ</comment>
+		<language name="日本語">くちから　たれている　ミツは
+２キロ　はなれていても　はなが
+まがるほど　もうれつに　くさい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_045" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラフレシア</comment>
+		<language name="日本語">はなびらの　おおきさは　せかいいち。
+ひどい　アレルギーを　ひきおこす
+どくかふんを　ばらまいて　あるく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_046" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パラス</comment>
+		<language name="日本語">とうちゅうかそうと　よばれる
+キノコを　せなかに　はやしている。
+パラスと　ともに　おおきく　そだつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_047" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パラセクト</comment>
+		<language name="日本語">からだよりも　おおきな　キノコが
+パラセクトを　あやつっている。
+どくの　ほうしを　ばらまく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_048" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コンパン</comment>
+		<language name="日本語">ちいさな　めが　たくさん　あつまって
+おおきな　めに　なっている。
+よるになると　あかりに　あつまる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_049" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>モルフォン</comment>
+		<language name="日本語">はばたいて　りんぷんを　まきちらす。
+りんぷんが　からだに　つくと　どくの
+せいぶんが　ひふに　しみこんでくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_050" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ディグダ</comment>
+		<language name="日本語">ちちゅうで　くらしている　ポケモン。
+くらい　ちかに　いるため
+あかるい　たいようが　にがて。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_051" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ダグトリオ</comment>
+		<language name="日本語">３つの　あたまが　たがいちがいに
+うごいて　どんなに　かたい　ちそうも
+ちか１００キロまで　ほりすすむ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_052" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニャース</comment>
+		<language name="日本語">よなかに　こうどうする　しゅうせい。
+きらきら　ひかるものを　みつけると
+まけないくらい　ひとみが　かがやく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_053" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ペルシアン</comment>
+		<language name="日本語">きぐらいが　たかい　ポケモン。
+マニアの　あいだでは　ひたいの
+ほうせきの　サイズが　わだいになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_054" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コダック
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ふしぎな　のうりょくを　もてあまし
+いつも　ずつうに　なやまされている。
+たまに　ふしぎなちからを　つかう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_055" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴルダック
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">てのひらの　はったつした　みずかきを
+つかって　ダイナミックに　そして
+ゆうがに　およぐ　すがたをみかける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_056" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マンキー</comment>
+		<language name="日本語">きのうえで　せいかつしている。
+むれの　１ぴきが　おこりはじめると
+ぜんいんが　いみもなく　あばれだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_057" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オコリザル</comment>
+		<language name="日本語">しせんが　あっただけで　おこり
+にげだしたら　また　おこり
+たたきのめしても　まだ　おこる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_058" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ガーディ</comment>
+		<language name="日本語">ちゅうじつな　せいかくの　ポケモン。
+トレーナーの　めいれいが　あるまでは
+いっぽも　うごかない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_059" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ウインディ</comment>
+		<language name="日本語">いふうどうどうとした　すがたは
+ふるくから　ひとびとの　こころを
+とりこにしてきた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_060" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニョロモ</comment>
+		<language name="日本語">ないぞうが　すけて　みえるほど
+ひふが　うすい。はえたばかりの
+あしは　あるくことが　にがて。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_061" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニョロゾ</comment>
+		<language name="日本語">おなかの　うずまきは　びみょうに
+うねっているので　みつめていると
+だんだん　ねむくなってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_062" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニョロボン</comment>
+		<language name="日本語">きょうじんな　きんにくを　もつ。
+たいへいようを　やすむことなく
+およぎつづけることが　できるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_063" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ケーシィ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ちょうのうりょくを　つかったあとは
+のうみそが　つかれてしまうので
+１にちに　１８じかんも　ねむるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_064" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユンゲラー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ぎんのスプーンを　みつめて
+せいしんを　とういつ　していると
+はっさんする　アルファは　がふえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_065" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>フーディン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">りょうてに　もつ　スプーンは
+フーディンの　ちょうのうりょくで
+うみだしたモノと　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_066" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ワンリキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">こがらな　からだだけど　ちからもち。
+イシツブテなら　なんびきも　まとめて
+かるがると　もちあげ　なげとばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_067" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴーリキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだを　きたえるために　よろこんで
+おもい　にもつを　はこぶので
+ひとのかわりに　ちからしごとをする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_068" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>カイリキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">４ほんの　ちからづよい　うでは
+めにも　とまらぬ　はやさで
+パンチや　チョップを　たたきこむ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_069" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マダツボミ</comment>
+		<language name="日本語">こうおん　たしつの　とちを　このむ。
+ツルを　のばして　えものを　とらえる
+ときの　うごきは　とても　すばやい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_070" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ウツドン</comment>
+		<language name="日本語">しょくぶつに　そっくりな　ポケモン。
+ゆだんして　ちかよってきた　えものに
+どくのこなを　あびせて　つかまえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_071" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ウツボット</comment>
+		<language name="日本語">ミツのような　かおりの　えきたいを
+くちに　ためているが　それは
+なんでも　とかす　ようかいえきだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_072" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>メノクラゲ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだの　ほとんどが　みずなので
+なみに　ながされ　すなはまに
+うちあげられると　ひからびてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_073" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドククラゲ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">８０ぽんの　しょくしゅを　のばして
+どくの　ほういもうを　つくりだす。
+つかまると　にげるのは　むずかしい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_074" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>イシツブテ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">じっとしていると　いしころ　にしか
+みえないので　つい　ふみつけると
+げんこつを　ふりまわして　おこる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_075" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴローン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">やまみちを　ころがって　いどう。
+いきおいが　ついてくると　どんな
+ポケモンでも　とめるのは　たいへん。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_076" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴローニャ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">がんせきの　ような　かたい　からだは
+ダイナマイトでも　きずつかない。
+１ねんに　１どだけ　だっぴする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_077" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポニータ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">うまれたばかりでは　たつのがやっと。
+だが　はしるほどに　あしこしは
+きたえられて　そくどが　ましていく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_078" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ギャロップ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ぜんりょくで　かけぬけるとき
+もえる　たてがみが　きらめいて
+よりいっそう　うつくしく　みえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_079" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤドン</comment>
+		<language name="日本語">うごきは　のろいが　しっぽを　つかう
+つりが　とくい。どんかんなので
+しっぽを　かまれても　いたくない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_080" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤドラン</comment>
+		<language name="日本語">ぼんやりしている　ヤドランだが
+シェルダーが　つよく　しっぽを
+かむとき　なにかが　ひらめくらしい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_081" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コイル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">さゆうにある　ユニットを
+こうそくで　かいてん　させるほどに
+だせる　じりょくが　つよくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_082" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>レアコイル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">たいようの　こくてんが　ふえると
+なぜか　レアコイルが　おおくなり
+テレビが　きれいに　うつらなくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_083" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カモネギ</comment>
+		<language name="日本語">クキが　なくなると　いきていけない。
+だから　クキを　ねらう　あいてとは
+いのちがけで　たたかうのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_084" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドードー</comment>
+		<language name="日本語">２つの　あたまの　のうみそは
+テレパシーのような　ちからで
+きもちを　つうじあわせているらしい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_085" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドードリオ</comment>
+		<language name="日本語">しんかのときに　ドードーの　あたまの
+どちらかが　ぶんれつした　ちんしゅ。
+じそく　６０キロいじょうで　はしる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_086" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パウワウ</comment>
+		<language name="日本語">ひょうざんで　くらす　ポケモン。
+あたまの　とがった　でっぱりで
+こおりを　わって　うみを　およぐ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_087" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジュゴン</comment>
+		<language name="日本語">ぜんしんが　まっしろな　たいもうに
+おおわれているため　ゆきの　なかでは
+てんてきに　みつからないのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_088" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ベトベター</comment>
+		<language name="日本語">どぶがわの　ヘドロが　つきからの
+エックスせんを　あびて　うまれた。
+きたない　ばしょに　あらわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_089" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ベトベトン</comment>
+		<language name="日本語">からだから　もうどくの　たいえきが
+しみでている。その　えきに　ふれた
+くさきは　あっというまに　かれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_090" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>シェルダー</comment>
+		<language name="日本語">２まいの　カラを　あけしめすることで
+うしろむきに　およぐ。どんなときでも
+おおきな　ベロは　だしっぱなし。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_091" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パルシェン</comment>
+		<language name="日本語">カラを　しっかりと　とじて　みを
+まもりながら　トゲを　とばして
+てきを　げきたいする　せんぽう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_092" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴース
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ガスから　うまれた　せいめいたい。
+どくをふくんだ　ガスの　からだに
+つつまれると　だれでも　きぜつする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_093" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴースト
+・シンオウ図鑑プラチナ版
+・シオンの町の人の話っぽく</comment>
+		<language name="日本語">くらやみにまぎれ　ガスのてを　のばし
+ひとのかたを　たたくのが　すき。
+さわられると　ふるえが　とまらない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_094" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゲンガー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">くらやみに　うかぶ　えがおの
+しょうたいは　ひとに　のろいを
+かけて　よろこぶ　ゲンガーだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_095" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>イワーク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おおきな　いわをも　くらいながら
+じめんのなかを　ほりすすむ。
+そのスピードは　じそく８０キロ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_096" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スリープ</comment>
+		<language name="日本語">つきでた　はなを　ひくひくさせると
+みている　ユメが　わかるという。
+だいこうぶつは　たのしい　ユメだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_097" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スリーパー</comment>
+		<language name="日本語">ふりこを　めのまえで　ゆらされると
+たったいま　めざめたばかりの　ひとも
+３びょうごには　ねむってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_098" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>クラブ</comment>
+		<language name="日本語">すなはまに　あなを　ほって　くらす。
+ハサミは　たたかいで　とれても
+また　はえてきて　もとどおり。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_099" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キングラー</comment>
+		<language name="日本語">おおきいほうの　ハサミの　パワーは
+１まんばりき。しかし　おもすぎるため
+ねらいを　つけることが　にがてだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_100" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ビリリダマ</comment>
+		<language name="日本語">モンスターボールに　そっくり。
+まちがって　さわると　かんでんしたり
+ときには　ばくはつするので　きけん。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_101" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マルマイン</comment>
+		<language name="日本語">でんきエネルギーを　ためすぎて
+ぱんぱんに　ふくらんだ　マルマインが
+かぜに　ながされてくることが　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_102" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>タマタマ</comment>
+		<language name="日本語">テレパシーで　かいわをしているため
+タマタマを　ひきはなそうとしても
+すぐに　あつまって　６ぴきになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_103" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ナッシー</comment>
+		<language name="日本語">あるく　ねったいうりんと　よばれる。
+おおきくなった　あたまの　ひとつが
+じめんに　おちると　タマタマになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_104" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カラカラ</comment>
+		<language name="日本語">しにわかれた　ははおやを　おもいだし
+ないてしまうとき　あたまに　かぶった
+ホネが　からからと　おとを　たてる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_105" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ガラガラ</comment>
+		<language name="日本語">うまれたときから　いつも　もっている
+ホネを　じざいに　つかいこなす。
+せいかくは　きょうぼうだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_106" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サワムラー</comment>
+		<language name="日本語">あしが　２ばいの　ながさに　のびる。
+はじめて　たたかう　あいては
+その　まあいの　ひろさに　おどろく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_107" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>エビワラー</comment>
+		<language name="日本語">うでを　ねじりながら　くりだす
+パンチは　コンクリートも　ふんさい。
+３ぷん　たたかうと　ひとやすみする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_108" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ベロリンガ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">２メートルもある　したを　のばすと
+しっぽが　ふるえるので　このふたつは
+つながっている　かのうせいが　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_109" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドガース</comment>
+		<language name="日本語">くうきよりも　かるい　ガスを
+からだに　ためて　うかんでいる。
+ガスは　くさいうえに　ばくはつする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_110" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マタドガス</comment>
+		<language name="日本語">ゴミから　はっせいする　ガスを
+たべて　おおきくなる。ごくまれに
+３つごの　マタドガスが　みつかる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_111" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>サイホーン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">なんでも　たいあたりで　こわせる
+ちからもちだが　あたまが　わるいので
+ひとのしごとを　てつだうのは　むり。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_112" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>サイドン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">うしろあしだけで　たつようになり
+まえあしが　じゆうになって　ちのうが
+はったつしたが　ものわすればかりだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_113" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ラッキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きずついた　ポケモンや　ひとがいると
+えいようまんてんの　タマゴをうみ
+わけあたえる　やさしい　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_114" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>モンジャラ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ぜんしんを　おおう　あおいツルには
+さらに　こまかな　けがはえていて
+さわると　とても　くすぐったい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_115" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ガルーラ</comment>
+		<language name="日本語">おなかの　ふくろで　こそだてをする。
+あんぜんな　ときだけ　こどもを
+ふくろから　だして　あそばせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_116" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>タッツー</comment>
+		<language name="日本語">サンゴの　かげに　すみかを　つくる。
+きけんを　かんじると　くちから
+まっくろい　スミを　はいて　にげる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_117" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>シードラ</comment>
+		<language name="日本語">トゲが　てきから　みを　まもる。
+ひれや　ホネが　かんぽうやくの
+ざいりょうとして　ちょうほうされる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_118" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トサキント
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きれいな　ひれを　たなびかせ
+およぐ　すがたは　とても　かれいだが
+ツノの　ひとつきは　きょうりょく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_119" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アズマオウ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あきになると　プロポーズのため
+からだに　あぶらが　のってきて
+とても　きれいないろに　へんかする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_120" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヒトデマン</comment>
+		<language name="日本語">あかい　コアが　あるかぎり　からだが
+ちぎれても　すぐに　さいせいする。
+まよなか　コアが　てんめつする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_121" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スターミー</comment>
+		<language name="日本語">からだの　ちゅうしんにある　あかい
+コアから　よぞらに　むかって
+なぞの　でんぱを　はっしんしている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_122" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>バリヤード
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ゆびさきを　こまかく　ふるわせて
+くうきちゅうの　ぶんしの　うごきを
+とめて　みえないかべを　つくるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_123" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ストライク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">りょうての　するどい　カマは
+かたいものを　きればきるほど
+さらに　きれあじを　ましていく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_124" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ルージュラ</comment>
+		<language name="日本語">なきごえは　まるで　にんげんの
+ことばのように　きこえるが
+いみは　まったく　りかいできない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_125" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エレブー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">すこしでも　いりょくを　たかめるため
+パンチのまえに　うでを　まわすが
+そのすきに　にげられたりも　する。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_126" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブーバー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ブーバーが　しんこきゅう　すると
+からだのまわりに　かげろうができ
+すがたは　ぼやけて　みえにくくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_127" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カイロス</comment>
+		<language name="日本語">２ほんの　ツノで　えものを　はさんで
+ちぎれるまで　はなさない。ちぎれない
+ときは　かなたまで　なげとばすのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_128" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ケンタロス</comment>
+		<language name="日本語">えものに　ねらいを　さだめると
+いっちょくせんに　とっしんする。
+あらっぽい　せいかくで　ゆうめい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_129" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コイキング
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ながねん　いきた　コイキングは
+はねるだけで　やまをも　こえるが
+わざのいりょくは　よわいまま。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_130" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ギャラドス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いちど　あばれだした　ギャラドスは
+あらしが　ふきすさんでいようとも
+どんなものでも　やきつくしてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_131" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラプラス</comment>
+		<language name="日本語">ひとや　ポケモンを　せなかに　のせて
+うみを　わたることが　だいすき。
+ひとの　ことばを　りかいできる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_132" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>メタモン</comment>
+		<language name="日本語">ぜんしんの　さいぼうを　くみかえて
+みたものの　かたち　そっくりに
+へんしんする　のうりょくを　もつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_133" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>イーブイ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いでんしが　ふきそくなため
+さまざまな　りゆうに　よって　すぐに
+すがたかたちが　かわってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_134" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>シャワーズ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだの　さいぼうの　つくりが
+みずの　ぶんしに　にているので
+みずに　とけることも　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_135" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>サンダース
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">かんじょうが　たかぶると
+でんきを　おびて　まっすぐになった
+たいもうを　なんぼんも　とばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_136" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブースター
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">すいこんだ　いきは　たいないの
+ほのおぶくろで　１７００どに　まで
+ねっせられて　ほのおと　なる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_137" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポリゴン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">さいこうの　かがくりょくで
+うみだされた　じんこうの　ポケモン。
+でんしくうかんを　いどうできる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_138" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オムナイト</comment>
+		<language name="日本語">げんだいの　すぐれた　かがくりょくで
+かせきから　ふっかつした　ポケモン。
+こだいの　うみを　およいでいた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_139" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オムスター</comment>
+		<language name="日本語">らせんじょうの　カラが　おおきく
+なりすぎたことが　げんいんで
+ぜつめつしたと　かんがえられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_140" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カブト</comment>
+		<language name="日本語">３おくねんまえの　すなはまで
+くらしていたと　かんがえられている。
+かたい　カラが　みを　まもる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_141" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カブトプス</comment>
+		<language name="日本語">えものが　りくじょうせいかつを
+はじめたため　カブトプスも　りくに
+あがったと　かんがえられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_142" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>プテラ</comment>
+		<language name="日本語">きょうりゅうじだいの　おおぞらを
+とびまわっていた　ポケモン。
+のこぎりのような　キバを　もつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_143" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>カビゴン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">まんぷくになると　ゆびすら
+うごかすのが　めんどうに　なるので
+おなかに　のっても　だいじょうぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_144" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フリーザー</comment>
+		<language name="日本語">でんせつの　とりポケモン。
+くうきちゅうの　すいぶんを　こおらせ
+ふぶきを　つくりだすことが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_145" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サンダー</comment>
+		<language name="日本語">かみなりぐもの　なかに　いると
+いわれる　でんせつの　ポケモン。
+カミナリを　じざいに　あやつる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_146" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ファイヤー</comment>
+		<language name="日本語">でんせつの　とりポケモンの　１ぴき。
+ファイヤーが　すがたを　みせると
+はるが　おとずれると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_147" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ミニリュウ</comment>
+		<language name="日本語">もくげきしゃが　すくないために
+まぼろしのポケモンと　よばれていた。
+だっぴした　かわが　みつかっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_148" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハクリュー</comment>
+		<language name="日本語">ぜんしんが　オーラに　つつまれるとき
+まわりの　てんきが　いっぺんする。
+うみや　みずうみに　すむという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_149" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カイリュー</comment>
+		<language name="日本語">ひろい　うみの　どこかに　すみかが
+あると　いわれている。なんぱした
+ふねを　りくまで　みちびいてくれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_150" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ミュウツー</comment>
+		<language name="日本語">ミュウの　いでんしを　くみかえて
+うみだされた。ポケモンで　いちばん
+きょうぼうな　こころを　もつという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_151" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ミュウ</comment>
+		<language name="日本語">あらゆる　わざを　つかうため
+ポケモンの　せんぞと　かんがえる
+がくしゃが　たくさん　いる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_152" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>チコリータ</comment>
+		<language name="日本語">あたまの　はっぱで　まわりの
+おんどや　しつどを　さぐる。
+ひざしを　あびることが　だいすき。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_153" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ベイリーフ</comment>
+		<language name="日本語">くびまわりの　つぼみから　におう
+スパイシーな　かおりは
+かいだ　ひとを　げんきに　させる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_154" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>メガニウム</comment>
+		<language name="日本語">メガニウムが　はきだす　いきには
+かれた　くさばなを　よみがえらせる
+ふしぎな　ちからが　ひめられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_155" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヒノアラシ</comment>
+		<language name="日本語">おくびょうな　せいかく。
+おどろくと　せなかの　ほのおが
+いちだんと　つよく　もえあがる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_156" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マグマラシ</comment>
+		<language name="日本語">ほのおの　ねつで　あいてを　いかく。
+たたかう　たいせいになると
+ほのおの　いきおいが　ます。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_157" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バクフーン</comment>
+		<language name="日本語">ほのおの　ばくふうで　こうげき。
+しゃくねつの　ほのおで　かげろうを
+つくりだし　すがたを　かくす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_158" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ワニノコ</comment>
+		<language name="日本語">はったつした　あごを　もち
+なんにでも　かみつく　しゅうせい。
+トレーナーも　ちゅういが　ひつよう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_159" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アリゲイツ</comment>
+		<language name="日本語">いちど　かみつくと　キバが
+ぬけるまで　ぜったいに　はなさない。
+ぬけた　キバは　すぐに　はえてくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_160" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オーダイル</comment>
+		<language name="日本語">ふだんは　ゆっくりとした　うごきだが
+えものに　かみつくときは
+めにも　とまらない　スピードだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_161" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オタチ</comment>
+		<language name="日本語">とても　しんけいしつな　せいかく。
+とおくまで　みわたせるように
+しっぽを　つかって　せのびをする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_162" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オオタチ</comment>
+		<language name="日本語">ははおやは　ほそながい　からだで
+こどもを　つつみこみ　ねむらせる。
+はやい　うごきで　てきを　おいこむ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_163" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ホーホー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">せいかくに　ときを　つげることから
+せかいの　ことわりを　わきまえた
+ちえのかみさま　とする　くにもある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_164" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヨルノズク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">とくしゅな　つくりの　りょうめは
+わずかな　ひかりさえ　あれば
+くらやみでも　ひるのように　みえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_165" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レディバ</comment>
+		<language name="日本語">むれを　つくらないと　ふあんで
+うごけなくなるほど　おくびょう。
+においで　きもちを　つたえあう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_166" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レディアン</comment>
+		<language name="日本語">ほしあかりを　エネルギーにする。
+よぞらの　ほしの　かずが　ふえると
+せなかの　もようが　おおきくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_167" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>イトマル</comment>
+		<language name="日本語">ほそくて　じょうぶな　いとを
+はりめぐらして　わなを　しかける。
+えものが　かかるまで　じっと　まつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_168" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アリアドス</comment>
+		<language name="日本語">えものの　からだに　いとを　つけて
+わざと　にがす。いとを　たどれば
+なかまごと　つかまえられるからだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_169" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>クロバット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">りょうあしも　はねに　なったことで
+とぶのが　うまくなったかわりに
+あるいたりするのは　へたになった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_170" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>チョンチー</comment>
+		<language name="日本語">プラスと　マイナスの　でんきを
+しょくしゅの　さきから　ながす。
+てきを　かんでんさせてしまうのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_171" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ランターン</comment>
+		<language name="日本語">しんかいを　およぐ　ランターンの
+あかりは　すいめんまで　とどく。
+しんかいのほし　と　よばれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_172" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピチュー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ほほの　でんきぶくろは　ちいさく
+ちょっとでも　でんきが　あふれると
+じぶんじしんが　しびれてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_173" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピィ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ながれぼしの　おおい　よるに
+ピィを　みかけることが　おおいので
+ほしにのってくる　といわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_174" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ププリン</comment>
+		<language name="日本語">やわらかく　だんりょくせいのある
+からだは　いちど　はずむと
+ぜんぜん　とまれなくなってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_175" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トゲピー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">みんなの　かんじた　やさしさや
+うれしさを　しあわせに　かえている。
+カラのなかは　しあわせ　ばかりだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_176" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トゲチック
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しあわせを　わけあたえるため
+こころやさしい　ひとを　さがしもとめ
+せかいじゅうを　とびまわっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_177" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ネイティ</comment>
+		<language name="日本語">サボテンの　つぼみや　トゲを
+きように　よけながら　ついばむ。
+とびはねるようにして　いどうする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_178" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ネイティオ</comment>
+		<language name="日本語">かこと　みらいを　みとおせる。
+まいにち　たいようの　うごきを
+みつづけている　ふしぎな　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_179" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>メリープ</comment>
+		<language name="日本語">ふわふわの　たいもうは　せいでんきが
+たまると　２ばいに　ふくらむ。
+さわると　かんでんしてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_180" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>モココ</comment>
+		<language name="日本語">たいもうに　ためた　でんきが
+まんたんになると　しっぽが　ひかる。
+ふれると　しびれる　けを　とばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_181" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>デンリュウ</comment>
+		<language name="日本語">しっぽの　さきが　ひかりかがやく。
+むかしの　ひとたちは　その　あかりを
+つかって　あいずを　おくりあった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_182" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キレイハナ</comment>
+		<language name="日本語">おおあめの　きせつが　おわると
+あたたかい　ひざしに　さそわれた
+キレイハナが　おどりはじめる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_183" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マリル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽのさきに　つまった　あぶらは
+みずに　うくので　どんな　ながれの
+はげしい　かわでも　おぼれない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_184" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マリルリ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いちにちじゅう　みずの　なかで
+すごせるのは　くうきを　たっぷり
+すいこんで　ためておけるからだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_185" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ウソッキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">こうげき　されないように　ひたすら
+きのまねをしているが　みずはにがてで
+あめになると　どこかに　にげだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_186" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ニョロトノ</comment>
+		<language name="日本語">ニョロトノを　リーダーに　グループが
+つくられる。ニョロトノの　なきごえが
+ニョロモたちを　したがわせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_187" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハネッコ</comment>
+		<language name="日本語">かぜに　ながされて　ただよう。
+のやまに　ハネッコが　あつまりだすと
+はるが　おとずれると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_188" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ポポッコ</comment>
+		<language name="日本語">きおんが　たかくなると　はなひらく。
+そらに　うかんで　ひざしを
+いっぱい　あびようとする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_189" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ワタッコ</comment>
+		<language name="日本語">きせつふうに　ながされて
+せかいを　いっしゅうしてしまう。
+とちゅうで　わたほうしを　ばらまく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_190" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エイパム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">てよりも　じゆうじざいに　うごく
+しっぽを　たくみに　あやつりながら
+たかい　きのうえで　くらしている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_191" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヒマナッツ</comment>
+		<language name="日本語">あるあさ　とつぜん　ふってくる。
+なつが　さむかった　つぎの　としは
+かずが　ばくはつてきに　ふえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_192" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キマワリ</comment>
+		<language name="日本語">あたたかい　ひざしが　エネルギー。
+たいようを　おいかけて　いどうする
+しゅうせいで　しられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_193" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヤンヤンマ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ハネを　こうそくで　はためかせて
+くうちゅうで　ていし　しながら
+じぶんの　なわばりを　みはっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_194" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ウパー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ちじょうを　あるくときは　ひふが
+かんそう　しないように　どくの
+ねんまくで　からだを　おおっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_195" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヌオー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ふなぞこや　かわのいわに　あたまを
+ぶつけまくっても　きにせず　きままに
+およいでいる　のんきな　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_196" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エーフィ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ぜんしんの　たいもうは　びんかん。
+わずかな　くうきの　ゆれも　かんじて
+これからの　てんきを　あててしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_197" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブラッキー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">つきの　はどうを　からだに　あびると
+わっかもようが　ほのかに　かがやき
+ふしぎな　ちからに　めざめるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_198" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヤミカラス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ヤミカラスを　みかけて　ふよういに
+あとを　つけていくと　まよわされ
+やまみちに　おいてけぼりに　される。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_199" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤドキング</comment>
+		<language name="日本語">シェルダーに　かまれたことによって
+ノーベルしょうを　じゅしょうした
+かがくしゃなみの　ちのうを　えた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_200" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ムウマ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">まよなか　ひとを　おどろかせては
+こわがるこころを　あつめて　じぶんの
+エネルギーに　している　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_201" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アンノーン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">１ぴきで　いても　なにも　おきないが
+２ひき　いじょうで　ならぶと
+なにかの　ちからが　めばえるという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_202" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ソーナンス</comment>
+		<language name="日本語">くろい　しっぽを　ひっしになって
+かくすのは　しっぽに　ひみつがある
+しょうこだと　かんぐられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_203" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>キリンリキ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽの　あたまにも　ちいさな
+のうがあり　うしろを　むいたままでも
+ほんのうで　たたかうことが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_204" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>クヌギダマ</comment>
+		<language name="日本語">きのみに　そっくり。まちがわれて
+とりポケモンに　つつかれてしまうが
+かたい　カラで　まもられている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_205" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フォレトス</comment>
+		<language name="日本語">こうてつの　カラで　まもられている。
+すきまから　めだまが　のぞいているが
+なかみの　しょうたいは　なぞのまま。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_206" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ノコッチ</comment>
+		<language name="日本語">しっぽで　じめんを　ほって
+めいろのような　すあなを　つくる。
+はねで　すこしだけ　とべる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_207" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>グライガー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">そらを　すべるように　とんできて
+かおに　はりつき　おどろかせてから
+どくバリで　こうげき　してくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_208" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ハガネール
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">つちと　いっしょに　のみこんだ
+はがねが　たまっていって　からだが
+へんかしたとも　かんがえられる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_209" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ブルー</comment>
+		<language name="日本語">ちいさな　ポケモンが　にげだすほどの
+こわいかおが　ぎゃくに　かわいいと
+じょせいに　にんきの　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_210" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>グランブル</comment>
+		<language name="日本語">かおに　にあわず　おくびょう。
+しかし　ひとたび　おこりはじめると
+おおきな　キバで　はんげきする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_211" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハリーセン</comment>
+		<language name="日本語">ぜんしんの　どくバリを
+しほうはっぽうに　うちだす。
+まるい　からだは　およぎが　にがて。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_212" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ハッサム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">めだまもようの　ついた　はさみを
+ふりあげて　いかくする　だけでなく
+そのまま　ふりおろすので　きけんだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_213" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ツボツボ</comment>
+		<language name="日本語">こうらの　なかに　きのみを　ためる。
+そのうち　きのみは　はっこうして
+おいしい　ジュースに　なるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_214" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヘラクロス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あまいミツが　だいすきで
+ひとりじめ　するため　じまんのツノを
+つかって　あいてを　ぶんなげる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_215" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ニューラ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ずるがしこく　いっぴきが　おやを
+おびきよせ　もういっぴきが　タマゴを
+とるという　チームプレーも　みせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_216" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヒメグマ</comment>
+		<language name="日本語">あまい　ミツを　てのひらに
+しみこませて　いつも　なめている。
+ヒメグマによって　あじが　ちがう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_217" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>リングマ</comment>
+		<language name="日本語">なわばりにある　おいしい　きのみや
+くだものの　なる　き　には
+ツメで　きずあとを　つける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_218" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マグマッグ</comment>
+		<language name="日本語">ようがんで　できた　からだを　もつ。
+たえず　うごいていないと　からだが
+ひえて　かたまってしまうのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_219" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マグカルゴ</comment>
+		<language name="日本語">たいおんは　やく１まんど。
+マグマが　かたまって　できた　カラの
+すきまから　ほのおを　ふきだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_220" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ウリムー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">においに　びんかんで　こおりのしたに
+うもれた　キノコや　きのみの　ほかに
+おんせんさえも　さぐりあててしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_221" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>イノムー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ながい　たいもうに　おおわれていて
+さむさに　つよく　こおりの　キバは
+ゆきがふると　さらに　ふとくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_222" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サニーゴ</comment>
+		<language name="日本語">みなみの　きれいな　うみには
+たくさんの　サニーゴが　いる。
+よごれた　うみでは　いきられない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_223" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>テッポウオ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">くちから　いきおいよく　ふきだす
+みずは　ふかい　うみのなか　からでも
+ねらった　えものに　かならずあたる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_224" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>オクタン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いわあなに　もぐりこむのが　すき。
+そのまま　くちだけだして　えものに
+スミを　ふきかけることも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_225" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>デリバード</comment>
+		<language name="日本語">しっぽで　えさを　つつんで　はこぶ。
+やまで　そうなんした　ひとに
+えさを　わけあたえる　しゅうせい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_226" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マンタイン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ゆうぜんと　うみを　およぐうちに
+たべのこしを　ねらった　テッポウオが
+ヒレに　くっつくが　きにしていない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_227" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>エアームド</comment>
+		<language name="日本語">てつのような　かたい　よろいに
+おおわれている。じそく３００キロの
+スピードで　おおぞらを　とびまわる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_228" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>デルビル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">さまざまな　なきごえを　つかいわけ
+なかまと　コミュニケーションしながら
+かりを　おこなう　かしこさをもつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_229" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヘルガー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おこったときに　くちから　ふきだす
+ほのおには　どくそも　まじっていて
+やけどになると　いつまでも　うずく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_230" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キングドラ</comment>
+		<language name="日本語">かいていどうくつに　すんでいる。
+キングドラが　みうごきすると
+きょだいな　うずしおが　うまれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_231" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ゴマゾウ</comment>
+		<language name="日本語">からだは　ちいさいが　ちからもち。
+おとなの　ひとを　かるがると
+せなかに　のせて　あるいてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_232" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドンファン</comment>
+		<language name="日本語">からだを　まるめて　かいてんしながら
+とっしんする　こうげき。いちげきで
+みんかを　ばらばらに　ふきとばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_233" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポリゴン２
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">わくせい　かいはつが　できるように
+バージョンアップ　されたのだが
+まだまだ　むずかしかった　ようだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_234" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オドシシ</comment>
+		<language name="日本語">ツノを　みつめていると　わっかの
+ちゅうしんに　すいこまれそうな
+ふしぎな　きぶんに　なってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_235" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドーブル</comment>
+		<language name="日本語">しっぽを　ふでのように　つかって
+なわばりに　マークを　えがく。
+その　しゅるいは　５０００いじょう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_236" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バルキー</comment>
+		<language name="日本語">けんかっぱやいことで　ゆうめい。
+じぶんよりも　おおきな　あいてに
+いどみかかるので　きずが　たえない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_237" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カポエラー</comment>
+		<language name="日本語">コマのように　かいてんしながら
+たたかう。えんしんりょくの　パワーで
+はかいりょくは　１０ばいだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_238" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ムチュール</comment>
+		<language name="日本語">なんでも　くちびるで　ふれてみて
+たしかめる。すきな　ものも　きらいな
+ものも　くちびるが　おぼえている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_239" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エレキッド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ツノの　あいだには　よわいけれど
+でんきが　ながれているので　うっかり
+てを　いれると　しびれてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_240" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブビィ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">マグマのような　けつえきが
+たいないに　ながれているため
+たいおんは　６００どにも　なる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_241" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ミルタンク</comment>
+		<language name="日本語">ミルタンクの　ミルクを　のんで
+そだった　こどもは　けんこうで
+たくましい　おとなに　なるという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_242" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ハピナス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ハピナスの　うむ　タマゴには
+しあわせが　つまっていて　ひとくち
+たべると　だれでも　えがおになれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_243" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ライコウ</comment>
+		<language name="日本語">カミナリと　ともに　おちてきたと
+いわれている。せなかの　あまぐもから
+カミナリを　うちだすことが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_244" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>エンテイ</comment>
+		<language name="日本語">エンテイが　ほえると
+せかいの　どこかの　かざんが
+ふんかすると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_245" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スイクン</comment>
+		<language name="日本語">せかいじゅうを　かけめぐり
+よごれた　みずを　きよめている。
+きたかぜと　ともに　はしりさる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_246" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヨーギラス</comment>
+		<language name="日本語">つちを　たべる　ポケモン。
+おおきな　やまを　たいらげると
+せいちょうのため　ねむりはじめる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_247" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サナギラス</comment>
+		<language name="日本語">がんばんのような　かたい　からだ。
+あっしゅくした　ガスを　ふんしゃして
+まるで　ロケットのように　とびだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_248" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バンギラス</comment>
+		<language name="日本語">バンギラスが　あばれると
+やまが　くずれ　かわが　うまるため
+ちずを　かきかえる　ことになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_249" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ルギア</comment>
+		<language name="日本語">ふかい　かいこうの　そこで　ねむる。
+ルギアが　はばたくと　４０にち
+あらしが　つづくと　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_250" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ホウオウ</comment>
+		<language name="日本語">なないろの　つばさを　もつ。
+ホウオウを　みた　ものは　えいえんの
+しあわせが　やくそくされるという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_251" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>セレビィ</comment>
+		<language name="日本語">じかんを　こえる　ちからを　つかう。
+へいわな　じだいにだけ
+すがたを　みせると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_252" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キモリ</comment>
+		<language name="日本語">あしの　うらには　ちいさな　トゲが
+たくさん　ついているので　カベや
+てんじょうを　あるくことが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_253" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジュプトル</comment>
+		<language name="日本語">みつりんに　せいそくする。
+えだから　えだへ　とびうつりながら
+いどうして　えものに　せっきんする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_254" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジュカイン</comment>
+		<language name="日本語">うでに　はえた　はっぱは　たいぼくも
+すっぱり　きりたおす　きれあじ。
+みつりんの　たたかいでは　むてき。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_255" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アチャモ</comment>
+		<language name="日本語">たいないで　ほのおが　もえているので
+だきしめると　とても　あたたかい。
+１０００どの　ひのたまを　とばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_256" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ワカシャモ</comment>
+		<language name="日本語">１びょうかんに　キックを　１０ぱつ
+くりだす　あしわざの　もちぬし。
+するどい　なきごえで　いかくする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_257" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バシャーモ</comment>
+		<language name="日本語">てくびから　ふきだした　ほのおで
+こぶしを　つつみこんだ　パンチは
+あいてを　くろこげに　してしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_258" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ミズゴロウ</comment>
+		<language name="日本語">あたまの　ひれで　みずの　ながれを
+かんじて　まわりの　ようすを　しる。
+いわを　もちあげる　ちからもち。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_259" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヌマクロー</comment>
+		<language name="日本語">ぬかるんだ　あしばでも　しっかり
+あるける　じょうぶな　あしこし。
+どろに　からだを　うめて　ねむる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_260" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラグラージ</comment>
+		<language name="日本語">おおがたせんを　ひっぱって　およぐ
+パワーの　もちぬし。ふとい　うでの
+ひとふりで　あいてを　たたきのめす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_261" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ポチエナ</comment>
+		<language name="日本語">しつこい　せいかくの　ポケモン。
+めをつけた　えものが　ヘトヘトに
+つかれるまで　おいかけまわす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_262" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>グラエナ</comment>
+		<language name="日本語">むれで　えものを　おいつめる。
+すぐれた　トレーナーの　めいれいには
+ぜったいに　さからわない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_263" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジグザグマ</comment>
+		<language name="日本語">ジグザグに　あるいて　くさかげや
+じめんに　うまっている　たからものを
+みつけるのが　とくいな　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_264" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マッスグマ</comment>
+		<language name="日本語">じそく１００キロで　えものに
+おそいかかるが　まっすぐにしか
+はしれないので　しっぱいも　おおい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_265" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ケムッソ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">とりポケモンに　よく　ねらわれるが
+おしりの　トゲから　どくをだし
+ひっしになって　ていこうする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_266" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>カラサリス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いとを　きのえだに　まきつけている。
+いとについた　あまみずを　のみながら
+しんかの　ときを　まっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_267" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アゲハント
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">みために　よらず　こうげきてきで
+かふんあつめの　じゃまを　すると
+ほそながい　くちを　つきさしてくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_268" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マユルド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">マユに　こもっている　あいだに
+うけた　こうげきは　しんかしても
+わすれずに　かならず　しかえしする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_269" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドクケイル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">はばたくたびに　どくのこなが　まう。
+よるの　あいだに　がいろじゅの
+はっぱを　くいちらかすことも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_270" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハスボー</comment>
+		<language name="日本語">みずくさに　そっくりな　ポケモン。
+およげない　ポケモンを　はっぱに
+のせて　むこうぎしまで　はこぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_271" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハスブレロ</comment>
+		<language name="日本語">つりびとを　みつけると
+すいちゅうから　つりいとを　ひっぱり
+ジャマして　よろこぶ　いたずらもの。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_272" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ルンパッパ</comment>
+		<language name="日本語">ようきな　おんがくを　きくと
+からだじゅうに　ちからが　みなぎり
+おどらずには　いられなくなるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_273" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>タネボー</comment>
+		<language name="日本語">えだに　ぶらさがっていると
+きのみに　そっくり。ついばもうとした
+ポケモンを　おどろかせて　よろこぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_274" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コノハナ</comment>
+		<language name="日本語">コノハナが　かなでる　くさぶえの
+ねいろは　ひとを　ふあんにさせる。
+もりの　おくに　すんでいる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_275" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ダーテング</comment>
+		<language name="日本語">はっぱの　うちわを　あおぐと
+ふうそく３０メートルの　とっぷうが
+まきおこり　みんかを　ふきとばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_276" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>スバメ</comment>
+		<language name="日本語">つよい　あいてにも　ゆうかんに
+たちむかう　こんじょうの　もちぬし。
+あたたかい　とちを　めざして　とぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_277" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>オオスバメ</comment>
+		<language name="日本語">じょうくうを　せんかいしながら
+えものを　さがし　まっさかさまに
+きゅうこうかして　つかまえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_278" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>キャモメ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">じょうしょう　きりゅうに　のって
+グライダーのように　おおぞらを　まい
+くちばしに　はさんだ　エサをはこぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_279" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ペリッパー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">くちのなかに　ちいさなポケモンや
+タマゴをいれて　あんぜんな　ばしょに
+とどけてくれる　そらの　はこびや。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_280" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ラルトス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あかいツノで　ひとや　ポケモンの
+あたたかな　きもちを　キャッチすると
+ぜんしんが　ほのかに　あつくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_281" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>キルリア
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">トレーナーが　よろこぶと
+キルリアに　エネルギーが　みちあふれ
+たのしそうに　くるくると　おどる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_282" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>サーナイト
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">トレーナーを　まもるためなら
+サイコパワーを　つかいきり　ちいさな
+ブラックホールを　つくりだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_283" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アメタマ</comment>
+		<language name="日本語">すいめんを　すべるように　あるく。
+あたまの　さきから　あまい　においを
+だして　えものを　さそう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_284" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アメモース</comment>
+		<language name="日本語">めだまもようの　しょっかくを　もつ。
+４まいの　はねで　うかびあがり
+ぜんごさゆうに　うごくことができる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_285" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キノココ</comment>
+		<language name="日本語">あたまの　てっぺんから　どくほうしを
+ふきだす。ほうしを　すいこむと
+からだの　ふしぶしが　いたくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_286" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キノガッサ</comment>
+		<language name="日本語">みじかい　うでは　パンチを　だすとき
+ぐーんと　のびる。プロボクサー
+かおまけの　テクニックを　もつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_287" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ナマケロ</comment>
+		<language name="日本語">１にちのうち　ほとんどの　じかんを
+ねころがって　すごす。その　ようすを
+みていると　ねむけに　おそわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_288" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤルキモノ</comment>
+		<language name="日本語">しんぞうが　１０ばいの　テンポで
+こどう　しているため
+ひとときも　じっとしていられない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_289" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ケッキング</comment>
+		<language name="日本語">せかいいち　ぐうたらな　ポケモン。
+ねころがっているだけに　みえるが
+はんげきの　パワーを　ためている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_290" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ツチニン</comment>
+		<language name="日本語">じめんの　したで　せいちょうする。
+ほとんど　みえない　めの　かわりに
+しょっかくで　ようすを　さぐる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_291" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>テッカニン</comment>
+		<language name="日本語">あまりに　こうそくで　うごくため
+すがたが　みえなくなる　ことがある。
+じゅえきに　あつまってくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_292" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヌケニン</comment>
+		<language name="日本語">ぬけがらが　たましいを　やどした。
+せなかの　すきまから　のぞきこむと
+たましいを　すわれてしまうらしい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_293" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ゴニョニョ</comment>
+		<language name="日本語">ふだんは　ささやくような　なきごえ。
+ふあんになると　ジェットきと　おなじ
+おんりょうで　なきつづける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_294" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドゴーム</comment>
+		<language name="日本語">おおごえの　しょうげきはで
+トラックを　ひっくりかえしてしまう。
+あしを　ふみならして　パワーアップ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_295" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バクオング</comment>
+		<language name="日本語">バクオングの　とおぼえは　１０キロ
+さきまで　とどく。からだじゅうの
+あなから　さまざまな　おとを　だす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_296" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マクノシタ</comment>
+		<language name="日本語">ふとい　きのみきに　ぶつかって
+からだを　きたえる。すみかの　そばは
+へしおられた　きが　たくさんある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_297" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハリテヤマ</comment>
+		<language name="日本語">からだの　おおきな　ポケモンたちと
+ちからくらべをすることが　だいすき。
+はりてで　トラックを　ふっとばす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_298" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ルリリ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ゴムボールのように　よく　はずむ
+しっぽを　ふりまわし　じぶんよりも
+おおきな　あいてに　たちむかう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_299" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ノズパス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ピンチになると　じりょくを　つよめ
+まわりにある　てつの　かたまりを
+ひきよせて　みをまもることも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_300" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>エネコ</comment>
+		<language name="日本語">うごくものを　つい　おってしまう。
+じぶんの　しっぽを　おいかけて
+おなじ　ばしょを　グルグル　まわる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_301" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>エネコロロ</comment>
+		<language name="日本語">うつくしい　けなみを　もち
+じょせいトレーナーに　だいにんき。
+きまった　すみかを　もたない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_302" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤミラミ</comment>
+		<language name="日本語">どうくつの　くらやみに　ひそむ。
+ほうせきを　たべているうちに
+めが　ほうせきに　なってしまった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_303" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>クチート</comment>
+		<language name="日本語">ツノが　へんけいして　できた
+おおあごが　あたまに　ついている。
+てっこつを　かみきってしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_304" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ココドラ</comment>
+		<language name="日本語">ふだんは　やまおくで　くらしているが
+おなかが　すくと　ふもとに　あらわれ
+せんろや　くるまを　たべてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_305" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コドラ</comment>
+		<language name="日本語">てっこうせきを　ほりだして　たべる。
+はがねの　からだを　ぶつけあって
+なわばりあらそいをする　しゅうせい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_306" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ボスゴドラ</comment>
+		<language name="日本語">はがねの　ツノで　かたい　がんばんを
+つきくずしながら　しょくりょうの
+てつを　さがして　トンネルを　ほる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_307" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アサナン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いつもは　やまおくで　しゅぎょう。
+めいそうをして　せいしんりょくを
+たかめると　からだが　うかびあがる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_308" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チャーレム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">なにも　たべずに　ただひたすらに
+せいしんを　とぎすませると
+あいてのオーラが　みえるようになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_309" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラクライ</comment>
+		<language name="日本語">たいもうに　ためた　でんきを　つかい
+きんにくを　しげきすることで
+しゅんぱつりょくを　たかめる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_310" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ライボルト</comment>
+		<language name="日本語">たてがみから　ほうでんしている。
+ずじょうに　かみなりぐもを　つくり
+いなずまを　おとして　こうげきする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_311" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>プラスル</comment>
+		<language name="日本語">ひばなの　ボンボンを　つくって
+なかまを　おうえんする。
+でんちゅうから　でんきを　すいとる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_312" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マイナン</comment>
+		<language name="日本語">なかまを　おうえんする　しゅうせい。
+まけそうになると　からだから　だす
+ひばなの　かずが　どんどん　ふえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_313" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バルビート</comment>
+		<language name="日本語">よるになると　おしりを　ひからせ
+なかまと　かいわする。イルミーゼの
+だす　あまい　かおりが　だいすき。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_314" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>イルミーゼ</comment>
+		<language name="日本語">あまい　かおりで　バルビートを
+ゆうどうして　よぞらに
+ひかりの　サインを　えがく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_315" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ロゼリア
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">げんきな　ロゼリアほど　はなから
+いい　かおりを　かもしだし　かいだ
+ひとを　とても　リラックスさせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_316" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ゴクリン</comment>
+		<language name="日本語">からだの　ほとんどが　いぶくろ。
+きょうりょくな　いえきで　のみこんだ
+ものを　たちまち　しょうかする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_317" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>マルノーム</comment>
+		<language name="日本語">なんでも　まるのみしてしまう。
+けあなから　もうどくの　たいえきを
+ぶんぴつして　てきに　あびせかける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_318" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>キバニア</comment>
+		<language name="日本語">なわばりに　はいってきた　あいてを
+しゅうだんで　こうげき。するどい
+キバは　ボートの　そこも　かみきる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_319" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サメハダー</comment>
+		<language name="日本語">てっぱんも　かみちぎる　キバを　もち
+およぐ　そくどは　じそく１２０キロ。　
+べつめいは　うみのギャング。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_320" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ホエルコ</comment>
+		<language name="日本語">はれた　ひは　すなはまに　あがり
+ボールのように　はずんで　あそぶ。
+はなから　みずを　ふきあげる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_321" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ホエルオー</comment>
+		<language name="日本語">いちばん　おおきい　ポケモン。
+いきつぎせずに　３０００メートルの
+ふかさまで　もぐることが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_322" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ドンメル</comment>
+		<language name="日本語">しゃくねつの　マグマを　せなかの
+コブに　ためている。あめに　あたると
+マグマが　ひえて　うごきが　にぶる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_323" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バクーダ</comment>
+		<language name="日本語">せなかに　かざんを　もつ　ポケモン。
+たいないの　マグマが　ふえると
+ふるえた　あとに　だいばくはつする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_324" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コータス</comment>
+		<language name="日本語">こうらの　なかで　せきたんを　もやし
+エネルギーに　している。ピンチの
+ときは　くろい　ススを　ふきだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_325" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>バネブー</comment>
+		<language name="日本語">しっぽを　バネのかわりに　いつも
+とびはねている。はねる　しんどうで
+しんぞうを　こどう　させているのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_326" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ブーピッグ</comment>
+		<language name="日本語">くろしんじゅで　サイコパワーを
+ぞうふくさせる。ふしぎな　ステップで
+あいての　こころを　あやつる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_327" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パッチール</comment>
+		<language name="日本語">おなじ　ブチもようの　パッチールは
+いない。フラフラした　あしどりで
+あいての　ねらいを　はずす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_328" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ナックラー</comment>
+		<language name="日本語">さばくに　つくった　すりばちがたの
+あなの　そこで　えものが　はまって
+おちてくるのを　まちつづける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_329" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ビブラーバ</comment>
+		<language name="日本語">はねを　はげしく　しんどうさせて
+ちょうおんぱを　だす。にんげんも
+ずつうを　おこすほど　きょうりょく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_330" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>フライゴン</comment>
+		<language name="日本語">きょうれつな　ハネの　はばたきで
+すなあらしを　おこす。
+さばくのせいれい　と　よばれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_331" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サボネア</comment>
+		<language name="日本語">さばくに　せいそく。たいないに
+すいぶんを　ためることで　みずを
+のまずに　３０にちかん　いきられる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_332" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ノクタス</comment>
+		<language name="日本語">よるになると　かつどうを　はじめる。
+さばくの　あつさに　つかれはてた
+えものを　みつけだし　とらえるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_333" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チルット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">じぶんも　まわりも　きれいでないと
+おちつかない　せいかくの　ポケモン。
+よごれをみつけると　はねでふきとる。　</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_334" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チルタリス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">こころが　かよいあった　ひとがいると
+やわらかく　うつくしい　はねで
+そっと　つつみこみ　ハミングする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_335" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ザングース</comment>
+		<language name="日本語">なんせだいにも　わたって
+ハブネークと　たたかってきた。
+するどい　ツメが　さいだいの　ぶき。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_336" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハブネーク</comment>
+		<language name="日本語">せんぞだいだい　ザングースと
+たたかってきた。しっぽの　やいばを
+いわで　とぎ　たたかいに　そなえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_337" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ルナトーン</comment>
+		<language name="日本語">まんげつの　よるになると　かっぱつに
+かつどうするため　つきの　みちかけと
+かんけいしていると　いわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_338" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ソルロック</comment>
+		<language name="日本語">たいようの　ぶんしんと　うわさされる
+しんしゅの　ポケモン。からだを
+かいてんさせて　ひかりを　はなつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_339" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドジョッチ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ぬるぬるの　からだは　つかみにくい。
+ある　ちほうでは　どろが　かたまって
+ドジョッチが　うまれたと　いわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_340" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ナマズン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">なわばりいしきが　とても　つよく
+がいてきが　ちかづくと　はげしく
+じめんを　ゆらして　おそいかかる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_341" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヘイガニ</comment>
+		<language name="日本語">どんな　かんきょうにも　てきおうする
+つよい　せいめいりょくの　もちぬし。
+はさんだ　えものは　はなさない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_342" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>シザリガー</comment>
+		<language name="日本語">いけに　すむ　ほかの　ポケモンを
+ハサミで　つまみあげ　いけの　そとへ
+ほうりだしてしまう　あばれんぼう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_343" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ヤジロン</comment>
+		<language name="日本語">いっぽんあしで　かいてんしながら
+いどうする。こだいの　いせきから
+みつかった　めずらしい　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_344" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ネンドール</comment>
+		<language name="日本語">こだいの　どろにんぎょうが
+かいこうせんを　あびたことで
+いのちが　やどり　ポケモンとなった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_345" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>リリーラ</comment>
+		<language name="日本語">およそ　１おくねんまえの　かいていで
+くらしていた　こだいの　ポケモン。
+かがくの　ちからで　ふっかつした。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_346" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ユレイドル</comment>
+		<language name="日本語">あたたかい　うみの　あさせに　いる。
+しおが　ひくと　すなはまに　もぐった
+えものを　ほりだして　たべる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_347" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アノプス</comment>
+		<language name="日本語">かせきから　ふっかつした　ポケモンの
+せんぞの　いっしゅ。うみで　くらし
+ツメで　えものを　つかまえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_348" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>アーマルド</comment>
+		<language name="日本語">しんかして　ちじょうで　くらすように
+なった。ぜんしんが　がんじょうな
+よろいに　おおわれている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_349" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヒンバス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">みすぼらしく　みにくい　ポケモンだが
+しぶとい　せいめいりょくを　もち
+わずかな　みずだけでも　いきのびる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_350" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミロカロス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">にじいろと　いわれる　きれいな
+ウロコは　みるほうこうを　かえると
+さまざまな　いろに　へんかする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_351" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ポワルン</comment>
+		<language name="日本語">てんきによって　すがたが　かわる。
+みずの　ぶんしと　そっくりなことが
+さいきんになって　はっけんされた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_352" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カクレオン</comment>
+		<language name="日本語">からだの　いろを　じゆうに　かえる
+のうりょくを　もつ。おなかにある
+ギザギザもよう　だけは　かわらない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_353" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カゲボウズ</comment>
+		<language name="日本語">うらみの　かんじょうが　だいすき。
+うらみを　もつ　ひとが　すむ　いえの
+のきしたに　ずらりと　ぶらさがる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_354" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジュペッタ</comment>
+		<language name="日本語">すてられた　ぬいぐるみに　おんねんが
+やどり　ポケモンになった。じぶんを
+すてた　こどもを　さがしている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_355" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヨマワル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">こどもの　なきごえが　だいすきで
+ぶあつい　カベも　とおりぬけて
+わるいこを　おどろかせ　なかせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_356" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>サマヨール
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">さまよっている　ひとだまを　みつけ
+からっぽの　たいないに　すいこむ。
+すいこまれて　どうなるかは　なぞ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_357" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トロピウス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いつも　おなじ　くだものばかり
+たべていたら　のどもとに　とても
+おいしい　くだものが　はえてきた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_358" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チリーン
+・シンオウ図鑑プラチナ版
+・宗教的な意味合いで
+　鈴の音で魔物を追いはらうのではない</comment>
+		<language name="日本語">なきごえは　からだの　くうどうで
+ひびきあって　きれいな　ねいろになり
+てきをおどろかせ　おいはらっていた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_359" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アブソル
+・シンオウ図鑑プラチナ版
+・角の形＝勾玉</comment>
+		<language name="日本語">ツノが　わざわいを　かんちすると
+うわさされ　ねらわれたため
+やまおくに　すがたを　けした。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_360" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ソーナノ</comment>
+		<language name="日本語">なかまたちと　おしくらまんじゅうを
+やることで　がまんづよく　そだつ。
+あまい　くだものが　だいこうぶつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_361" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユキワラシ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おおきな　はっぱの　したに
+すうひきの　ユキワラシが　あつまり
+なかよく　くらしていると　いう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_362" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>オニゴーリ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">くうきちゅうの　すいぶんを
+いっしゅんで　こおらせることで
+えものが　にげられないように　する。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_363" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>タマザラシ</comment>
+		<language name="日本語">りゅうひょうの　うえを　コロコロと
+ころがって　かいがんに　たどりつく。
+およぐには　ふべんな　たいけい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_364" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>トドグラー</comment>
+		<language name="日本語">なんでも　はなの　うえで　まわす
+クセを　もつ。まわしながら　においや
+かんしょくを　おぼえるのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_365" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>トドゼルガ</comment>
+		<language name="日本語">おおきな　こおりを　キバで　くだく。
+あつい　しぼうは　さむさだけでなく
+てきの　こうげきも　はねかえす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_366" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>パールル</comment>
+		<language name="日本語">いっしょうに　１こだけ　つくる
+しんじゅは　サイコパワーを
+ぞうふくする　さようが　あるという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_367" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ハンテール</comment>
+		<language name="日本語">しんかいに　せいそくする　ポケモン。
+こざかなの　かたちをした　しっぽで
+えものを　おびきよせ　つかまえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_368" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>サクラビス</comment>
+		<language name="日本語">うみの　そこで　くらしているが
+はるになると　からだの　ピンクいろが
+なぜか　あざやかに　いろづく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_369" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジーランス</comment>
+		<language name="日本語">しんかいちょうさで　はっけんされた
+めずらしい　ポケモン。１おくねんの
+あいだ　すがたが　かわっていない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_370" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラブカス</comment>
+		<language name="日本語">あたたかい　うみに　せいそくする。
+ラブカスを　みつけた　カップルは
+えいえんの　あいが　つづくという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_371" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>タツベイ</comment>
+		<language name="日本語">おおぞらを　とぶことを　ゆめみて
+まいにち　とぶ　れんしゅうのために
+がけから　とびおりている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_372" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>コモルー</comment>
+		<language name="日本語">かたい　カラの　なかでは　さいぼうが
+へんかを　はじめている。しんかする
+しゅんかんに　カラが　はがれおちる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_373" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ボーマンダ</comment>
+		<language name="日本語">そらを　とぶことを　ねがいつづけた
+けっか　からだの　さいぼうが
+へんかして　つばさが　はえてきた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_374" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ダンバル</comment>
+		<language name="日本語">じりょくの　はちょうで　なかまと
+かいわする。むれになった　ダンバルは
+いっしみだれぬ　うごきを　する。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_375" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>メタング</comment>
+		<language name="日本語">２ひきの　ダンバルが　がったいした。
+はがねの　ボディは　ジェットきと
+しょうとつしても　きずつかない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_376" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>メタグロス</comment>
+		<language name="日本語">メタングが　がったいして　うまれた。
+４つの　のうを　もつ　メタグロスは
+スーパーコンピュータなみの　ちのう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_377" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レジロック</comment>
+		<language name="日本語">ぜんしんが　いわで　できている。
+たたかいで　からだが　かけても
+いわを　くっつけて　なおしてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_378" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レジアイス</comment>
+		<language name="日本語">ひょうがきに　できた　こおりで
+からだが　つくられている。マイナス
+２００どの　れいきを　あやつる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_379" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レジスチル</comment>
+		<language name="日本語">なんまんねんも　ちかの　あつりょくで
+きたえられた　きんぞくの　ボディは
+きずひとつ　つかない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_380" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラティアス</comment>
+		<language name="日本語">ひかりを　くっせつさせる　うもうで
+ぜんしんを　つつみこみ　すがたを
+みえなくする　のうりょくを　もつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_381" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ラティオス</comment>
+		<language name="日本語">たかい　ちのうを　もつ　ポケモン。
+うでを　おりたたんで　とべば
+ジェットきを　おいこす　スピードだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_382" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>カイオーガ</comment>
+		<language name="日本語">おおあめを　ふらせる　のうりょくで
+うみを　ひろげたと　いわれている。
+かいこうの　そこで　ねむっていた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_383" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>グラードン</comment>
+		<language name="日本語">おおむかし　カイオーガとの　しとうの
+すえに　ちかマグマの　なかで
+ねむっていた　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_384" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>レックウザ</comment>
+		<language name="日本語">くもより　はるかうえの　オゾンそうに
+せいそくしているため　ちじょうから
+すがたを　みることは　できない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_385" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>ジラーチ</comment>
+		<language name="日本語">１０００ねんかんで　７にちだけ
+めを　さまし　どんな　ねがいごとでも
+かなえる　ちからを　つかうという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_386" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000,">
+		<comment>デオキシス</comment>
+		<language name="日本語">いんせきに　ふちゃくしていた
+うちゅうウイルスの　ＤＮＡが
+へんいして　うまれた　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_387" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ナエトル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">つちで　できた　せなかの　こうらを
+さわって　ほどよく　しめっていたなら
+その　ナエトルは　とても　げんきだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_388" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ハヤシガメ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きれいな　みずが　わきでる　ばしょを
+しっていて　なかまの　ポケモンを
+せなかに　のせて　そこまで　はこぶ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_389" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドダイトス
+・シンオウ図鑑プラチナ版
+・ビオトープの要素</comment>
+		<language name="日本語">ドダイトスの　せなかで　うまれて
+ドダイトスの　せなかで　いっしょうを
+まっとうする　ポケモンも　いる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_390" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヒコザル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">とても　みがるな　ポケモン。
+まわりが　もえないように　おしりの
+ほのおを　けしてから　ねむる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_391" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>モウカザル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽの　ほのおの　いきおいを
+うまく　コントロールして　じぶんの
+とくいな　まあいで　たたかうのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_392" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴウカザル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">てあしに　ほのおを　まとった
+どくとくの　かくとうわざを　つかい
+どんな　あいてにも　たちむかう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_393" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポッチャマ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あるくのは　にがてで　こけたりするが
+ポッチャマの　プライドは　たかく
+きにせず　どうどうと　むねを　はる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_394" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポッタイシ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">どの　ポッタイシも　じぶんが
+いちばん　えらいと　かんがえるため
+むれを　つくることは　ふかのうだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_395" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エンペルト
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">プライドを　きずつける　ものは
+りゅうひょうをも　せつだんする
+つばさで　まっぷたつに　する。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_396" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ムックル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">むれを　つくることで　１ぴきでの
+よわさを　カバーしあっているが
+むれが　おおきくなると　もめだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_397" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ムクバード
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">じぶんの　よわさを　わきまえており
+いつも　むれで　くらしている。
+いっぴきになると　やかましく　なく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_398" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ムクホーク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">じぶんの　からだが　きずつこうとも
+こうげきを　やめなくなった。
+とさかの　かたちを　きにしている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_399" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ビッパ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ビッパと　コラッタの　まえば
+どちらが　のびるのが　はやいのか
+くらべたところ　ひきわけ　だった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_400" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ビーダル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ビーダルが　ダムを　つくった
+かわは　はんらん　することがないので
+ちかくの　ひとから　かんしゃされる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_401" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コロボーシ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あしが　みじかく　こけそうになるたび
+かたい　しょっかくが　こすれあって
+もっきんのような　おとが　ひびく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_402" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コロトック
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">へんげんじざいの　なきごえを
+きそいあわせる　なきくらべ　という
+あそびを　たのしむ　むらがある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_403" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>コリンク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだを　うごかすたびに　きんにくが
+のびちぢみして　でんきが　うまれる。
+ピンチになると　からだが　かがやく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_404" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ルクシオ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">するどい　ツメの　さきには　つよい
+でんきが　ながれており　ほんのすこし
+かするだけで　あいてをきぜつさせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_405" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>レントラー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">かべのむこうも　みえる　ちからで
+にげた　えものを　おいつめるほかにも
+まいごの　こどもを　さがしたりする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_406" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>スボミー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おんどの　へんかに　びんかんで
+あたたかい　ひざしを　かんじるとき
+つぼみは　かならず　ひらくという。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_407" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ロズレイド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">りょうての　どくの　せいぶんは
+それぞれ　ちがう　しゅるいだが
+どっちを　さされても　しにかける。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_408" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ズガイドス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">およそ　１おくねんまえの　ポケモン。
+ジャングルで　うまれそだち　じゃまな
+じゅもくは　ずつきで　へしおった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_409" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ラムパルド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あたまを　はげしく　ぶつけあっても
+ずがいこつは　あつさ　３０センチも
+あるので　きぜつ　したりしない。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_410" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>タテトプス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ばつぐんの　ぼうぎょりょくを　もつ。
+そのため　とくに　あらそうこともなく
+くさや　きのみを　たべて　すごす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_411" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トリデプス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">よこいちれつに　ならぶと　どんな
+ポケモンでも　とっぱ　できない。
+そうやって　こどもを　まもっていた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_412" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミノムッチ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだをつつむ　ざいりょうが　ない
+ばしょで　うまれても　ミノムッチは
+いつのまにか　ミノを　まとっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_413" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミノマダム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しんかするとき　まわりにある
+ざいりょうを　からだに　とりこむため
+おおくの　バリエーションが　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_414" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ガーメイル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">はなのミツが　だいすきだが
+じぶんでは　あつめず　ミツハニーから
+よこどり　ばかりを　かんがえている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_415" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミツハニー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">うまれたときから　３びき　いっしょ。
+ビークインに　よろこんでもらうため
+いつも　はなのミツを　あつめている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_416" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ビークイン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">さまざまな　フェロモンを　だして
+どうたいに　いる　こどもたちを
+じざいにあやつり　てきとたたかう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_417" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>パチリス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">たまった　でんきを　わけあたえようと
+ほほぶくろを　こすりあわせる
+パチリスを　みかけることも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_418" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブイゼル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽを　スクリューのように　まわし
+すいちゅうを　およぐだけでなく
+まとわりつく　かいそうも　きれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_419" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>フローゼル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">りょうしまちに　おおく　みられ
+おぼれた　ひとを　たすけたり
+とった　えものを　はこんでいる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_420" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チェリンボ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ちいさな　たまには　えいようが
+つまっているだけでなく　おいしいので
+ムックルに　ついばまれたりする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_421" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>チェリム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">つよい　ひざしを　かんじとると
+とざしていた　はなびらを　ひろげ
+ぜんしんで　にっこうを　あびる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_422" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>カラナクシ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">やわらかい　からだを　つよくおすと
+むらさきいろの　なぞの　えきたいが
+にじみでるので　ようちゅうい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_423" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トリトドン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">むかしは　じょうぶな　カラで
+せなか　ぜんたいを　おおっていた。
+さいぼうに　その　なごりが　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_424" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エテボース
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">２ほんに　わかれた　しっぽは
+いろんなことが　きように　できるので
+ほとんど　てを　つかわなくなった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_425" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>フワンテ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あてもなく　うかぶ　ようすから
+まよえる　たましいの　みちしるべ　と
+つたえる　むかしばなしも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_426" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>フワライド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ゆうぐれ　むれになって　おおぞらを
+かぜに　ながされていくが　きづくと
+いつのまにか　きえてしまっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_427" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミミロル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いつも　まるめている　みみを
+いきおいよく　のばすと　おおきな
+いわも　かんたんに　こわせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_428" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミミロップ
+・シンオウ図鑑プラチナ版
+・進化前と進化後で矛盾させた</comment>
+		<language name="日本語">みみは　とても　デリケートらしく
+やさしく　ていねいに　さわらないと
+しなやかな　あしで　けられてしまう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_429" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ムウマージ
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">じゅもんのような　なきごえだが
+まれに　あいてを　しあわせにする
+こうかも　ひめていると　いう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_430" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドンカラス
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">ドンカラスが　ひくいこえで　なくと
+すぐさま　ヤミカラスが　あつまるため
+よるをまねくもの　とも　いわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_431" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ニャルマー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">トレーナーが　エサを　くれないと
+はなのあなに　ツメをひっかける
+ひどい　いちめんを　ひめている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_432" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブニャット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">どうたいを　しっぽで　しばりつけて
+じぶんを　おおきく　みせている。
+めがあうと　いつまでも　にらみあう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_433" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>リーシャン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">とびはねると　くちのなかにある
+たまが　あちこちに　はんしゃして
+すずのような　ねいろと　なる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_434" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>スカンプー
+・DPポケモンだがプラチナのROM内で入手不可
+・あえて「汁」</comment>
+		<language name="日本語">おしりからとばす　くさい　しるの
+においは　はんけい２キロに　ひろがり
+まわりの　ポケモンは　いなくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_435" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>スカタンク
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">しっぽの　さきから　ひどい　においの
+えきたいを　とばして　こうげきするが
+うえから　ねらわれると　とまどう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_436" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドーミラー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おおむかしの　ドーミラーは
+かがみのように　はんしゃしていたと
+かんがえる　けんきゅうかも　いる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_437" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドータクン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">べつせかいへの　あなを　あけて
+そこから　あめを　ふらしていた。
+そのため　ほうさくのかみ　とされる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_438" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ウソハチ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">かんそうした　くうきを　このむ。
+すいぶんを　ちょうせつ　するときに
+だす　みずが　なみだに　みえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_439" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マネネ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">めにみえる　あいての　かおや
+うごきの　モノマネを　することで
+どんな　きもちか　わかろうとする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_440" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ピンプク
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ちいさないしを　かかえるのが　すき。
+あいての　あしもとを　あるきまわって
+ついつい　ころばすことも　ある。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_441" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ペラップ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ベロは　にんげんのものに　そっくり。
+そのため　にんげんの　はなすことばを
+じょうずに　まねることが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_442" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ミカルゲ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いつも　わるさばかり　していたら
+ふしぎな　じゅつで　ほんたいを
+かなめいしに　しばりつけられた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_443" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>フカマル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おおぐちを　つかった　こうげきは
+いりょく　じゅうぶんだが　まだ
+うまくたたかえず　じぶんもきずつく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_444" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ガバイト
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ひかりかがやく　ものが　だいすきで
+どうくつの　なかで　みつけた
+たからを　じぶんのすに　ためこむ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_445" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ガブリアス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">こうそくで　かけぬけると　つばさは
+くうきの　やいばを　うみだし
+まわりのきは　せつだん　されている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_446" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ゴンベ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ひっしに　エサを　たべているうちに
+からだの　けのしたに　かくしていた
+エサのことを　わすれてしまうのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_447" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>リオル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">よろこびや　いかりと　いった
+かんじょうを　なみのかたち　として
+みわける　ふしぎなちからを　もつ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_448" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ルカリオ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きたえられた　ルカリオは　はどうを
+つかい　１キロさきに　だれがいるのか
+どんなきもちか　さえも　わかる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_449" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヒポポタス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">はなの　あなを　ぴたりと　とじてから
+すなのなかを　あるくように　すすむ。
+１０ぴきていどの　むれで　くらす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_450" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>カバルドン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いがいと　おこりっぽい　ポケモンで
+くちを　おおきく　あけることで
+まわりに　つよさを　アピールする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_451" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>スコルピ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっぽのはさみが　とじると　どうじに
+はりのさきから　どくが　にじみだす。
+１ねん　なにもたべずに　たえられる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_452" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドラピオン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">もうどくを　つかわなくても　じまんの
+ちからで　あいてを　バラバラにする
+がんじょうな　からだの　もちぬし。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_453" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>グレッグル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">せいせいどうどうと　たたかうことは
+すくないが　それも　いきのびるため。
+マスコットとして　にんきが　たかい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_454" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドクロッグ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">のどもとに　どくぶくろを　もつ。
+のどを　ならすと　たまった　どくは
+ねりこまれ　きょうりょくになる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_455" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マスキッパ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しっちたいに　はえる　きにまきつき
+あまいかおりの　だえきで　えものを
+おびきよせては　ひとくちで　たべる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_456" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ケイコウオ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">からだの　よこがわにある　ラインは
+たいようのひかりを　ためておける。
+よるになると　あざやかに　かがやく。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_457" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ネオラント
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ながい　ひれを　あしのように
+つかって　かいていを　はっている。
+ランターンと　えものを　とりあう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_458" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>タマンタ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">テッポウオと　たわむれながら
+すいめんを　はねている　ようすを
+みるための　ツアーが　おこなわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_459" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユキカブリ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">にんげんに　きょうみが　あるのか
+ゆきやまで　あしあとを　みつけると
+そのまわりに　あつまってくる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_460" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユキノオー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ゆきのはなが　さくころ　どこからか
+すがたを　あらわし　はながちると
+また　どこかに　すがたを　かくす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_461" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マニューラ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しんかして　さらに　ずるがしこくなり
+ツメで　いしに　サインをつけて
+コミュニケーションを　はかっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_462" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ジバコイル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ジバコイルを　かがくりょくで
+しんか　させようと　こころみる
+しゅうだんが　いたが　しっぱいした。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_463" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ベロベルト
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ながいしたは　いつも　だえきまみれ。
+だえきには　ものをとかす　せいぶんが
+ふくまれており　さわると　しびれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_464" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ドサイドン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きんにくを　ちからを　こめて
+しゅんかんてきに　ふくらませることで
+てにした　いしを　ふんしゅつできる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_465" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>モジャンボ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">しょくぶつで　できた　うでは
+ほうっておくと　からみついてくる。
+きってもきっても　すぐに　はえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_466" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エレキブル
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あいての　こうげきを　きにせず
+ちかづいては　しっぽを　おしつけて
+こうあつの　でんりゅうを　ながす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_467" text-color="#ff0000,,,#ff0000,,,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ブーバーン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">せっし２０００どの　ひのたまを
+うちだすとき　ブーバーンの　からだは
+ねつのため　ほのかに　しろくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_468" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>トゲキッス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">おたがいの　そんざいを　みとめあい
+むだに　あらそわない　ひとのために
+さまざまな　めぐみを　わけあたえる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_469" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>メガヤンマ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あごの　ちからは　けたはずれ。
+こうそくで　とんで　すれちがいざまに
+あいてを　かみちぎるのが　とくい。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_470" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>リーフィア
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">きほんてきに　あらそわない。
+さいぼうが　しょくぶつに　ちかくなり
+たいないで　こうごうせいが　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_471" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>グレイシア
+・シンオウ図鑑プラチナ版
+・オニゴーリと酷似</comment>
+		<language name="日本語">たいおんを　コントロールすることで
+しゅういの　くうきを　こおらせて
+ダイヤモンドダストを　ふらせる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_472" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>グライオン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">わずかな　かぜのながれに　うまく
+のると　いちども　はばたくことなく
+このほしを　いっしゅう　できる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_473" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>マンムー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">１まんねん　まえの　じめんから
+こおりづけの　マンムーが　みつかり
+しかも　めざめたので　さわがれた。　</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_474" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ポリゴンＺ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">いじげんでも　かつやく　できるよう
+プログラムを　しゅうせい　したが
+ねらいどおりには　いかなかった。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_475" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エルレイド
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">だれかを　まもろうと　したとき
+ひじをのばし　かたなのように
+へんか　させて　はげしく　たたかう。　　</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_476" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ダイノーズ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">チビノーズと　よばれる　ちいさな
+３つの　ユニットを　じりょくで
+じゆうじざいに　あやつっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_477" text-color="#ff0000,,,#ff0000,,,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヨノワール
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">だんりょくのある　からだの　なかに
+いきばのない　たましいを　とりこんで
+あのよに　つれていくと　いわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_478" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユキメノコ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">マイナス５０どの　いきを　ふきかけ
+こおらせた　えものを　ひみつの
+ばしょに　かざっていると　いわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_479" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ロトム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">でんきのような　からだは　いちぶの
+きかいに　はいりこむことが　できる。
+そして　そのからだで　いたずらする。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_480" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ユクシー
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ユクシーが　とびまわったことで
+ひとびとに　ものごとを　かいけつする
+ちえと　いうものが　うまれた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_481" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>エムリット
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">エムリットが　とびまわったことで
+ひとびとに　いきるときの　よろこび
+かなしみと　いうものが　うまれた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_482" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>アグノム
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">アグノムが　とびまわったことで
+ひとびとに　なにかを　するための
+けついと　いうものが　うまれた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_483" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ディアルガ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">ディアルガの　しんぞうが　うごくと
+じかんは　ながれていくと　されている
+シンオウの　でんせつ　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_484" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>パルキア
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">パルキアが　こきゅうを　するたびに
+くうかんは　あんていすると　される
+シンオウの　でんせつの　ポケモン。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_485" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ヒードラン
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">がんじょうな　はがねの　からだだが
+じぶんが　はっする　こうねつの　ため
+ところどころ　とけてしまっている。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_486" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>レジギガス
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">とくしゅな　ひょうざんや　がんせき
+マグマから　じぶんの　すがたに　にた
+ポケモンを　つくったと　いわれる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_487" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>ギラティナ
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">あばれもの　ゆえ　おいだされたが
+やぶれたせかいと　いわれる　ばしょで
+しずかに　もとのせかいを　みていた。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_488" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ffff,,,#80ffff,,#80ffff,,,,,,">
+		<comment>クレセリア
+・シンオウ図鑑プラチナ版</comment>
+		<language name="日本語">みかづきに　ちかい　よるほど
+しっぽから　のびる　オーロラは
+ながく　うつくしくなる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_489" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ff80,,,#80ff80,,#80ff80,,,,,,">
+		<comment>フィオネ
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">あたたかい　うみを　ただよっている。
+どんな　とおくに　ながされても
+うまれた　ばしょに　かならずもどる。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_490" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ff80,,,#80ff80,,#80ff80,,,,,,">
+		<comment>マナフィ
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">うまれたときから　そなわっている
+ふしぎな　ちからを　つかうと　どんな
+ポケモンとも　こころが　かよいあう。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_491" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ff80,,,#80ff80,,#80ff80,,,,,,">
+		<comment>ダークライ
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">じぶんを　まもるために　まわりの
+ひとや　ポケモンに　あくむをみせるが
+ダークライに　わるぎは　ないのだ。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_492" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ff80,,,#80ff80,,#80ff80,,,,,,">
+		<comment>シェイミ
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">ひとに　やさしく　だきしめられ　
+ありがとうの　きもちを　かんじると
+ぜんしんの　はなが　ひらきだす。</language>
+	</row>
+
+	<row id="ZKN_COMMENT_00_493" text-color="#000000,,,#000000,,#000000,#000000,#000000,,#000000,#000000," back-color="#80ff80,,,#80ff80,,#80ff80,,,,,,">
+		<comment>アルセウス
+・DPポケモンだがプラチナのROM内で入手不可</comment>
+		<language name="日本語">なにも　ない　ばしょに　あった
+タマゴのなかから　すがたを　あらわし
+せかいを　うみだしたと　されている。</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

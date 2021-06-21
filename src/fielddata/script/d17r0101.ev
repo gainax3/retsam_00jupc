@@ -1,0 +1,151 @@
+//====================================================================
+//								d17r0101
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d17r0101.h"
+	.include	"../eventdata/zone_d17r0101evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d17r0101_champ_auto
+_EVENT_DATA		ev_d17r0101_champ
+_EVENT_DATA		ev_d17r0101_flag_change
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d17r0101_flag_change:
+	/*ギラティナを捕獲していたら*/
+	_IF_FLAGON_CALL	FE_D17R0104_LEGEND_CLEAR,ev_d17r0101_flag_change_item
+	_END
+
+ev_d17r0101_flag_change_item:
+	/*d17r0104のごほうびアイテムを復活させる*/
+	_FLAG_RESET	FV_D17R0104_ITEM
+	_RET
+
+
+/********************************************************************/
+/*				シロナ(やぶれた世界から戻ってきて強制)				*/
+/********************************************************************/
+ev_d17r0101_champ_auto:
+	_EVENT_START
+
+	_GIRATHINA_FORM_UPDATE	0
+
+	//エスケープロケーションを復帰させる
+	//_SET_ESCAPE_LOCATION	ZONE_ID_D17R0101,32,17
+	_SET_ESCAPE_LOCATION	ZONE_ID_D17,762,714
+
+	_TALK_KEYWAIT	msg_d17r0101_chanpion_01
+	_TALK_CLOSE
+
+	/*左右をきょろきょろ*/
+	_OBJ_ANIME		D17R0101_CHAMP,anm_d17r0101_champ_01
+	_OBJ_ANIME_WAIT
+
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d17r0101_player_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d17r0101_chanpion_02
+	_TALK_CLOSE
+
+	/*主人公と向きあう*/
+	_OBJ_ANIME		D17R0101_CHAMP,anm_d17r0101_champ_02
+	//_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_d17r0101_player_01
+	_OBJ_ANIME_WAIT
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_d17r0101_chanpion_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_LDVAL			WK_SCENE_D17R0101,2
+	_LDVAL			WK_SCENE_T02R0101,2
+
+	_FLAG_SET		FV_D05R0115_GINGA		/*テンガン山でオロオロするギンガ団を削除*/
+	_FLAG_RESET		FE_YABURETA_SEKAI		/*やぶれた世界状態フラグをクリア*/
+
+	//ストッパーのしたっぱを消す
+	_FLAG_SET		FV_D05R0110_GINGAM
+	_FLAG_SET		FV_D05R0112_GINGAW		/*GINGAMはd27r0102イベント後で消える*/
+
+	_FLAG_SET		FV_D05R0102_POLICE		/*テンガン山の国際警察を消す*/
+
+	/*d05r0114から引越し*/
+
+	/*BGM切り替えフラグオン*/
+	_FLAG_SET		SYS_FLAG_BGM_D26
+
+	/*アジトにサターン出現*/
+	_FLAG_RESET		FV_D26R0101_GKANBU
+
+	//やりのはしらイベントクリア！
+	_FLAG_SET		FE_D05R0114_CLEAR
+	_FLAG_SET		FV_D05R0112_GINGAW		/*ギンガ団消す*/
+
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公	シロナを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d17r0101_player_01
+	_ANIME_DATA	AC_STAY_WALK_L_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	キョロキョロ
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d17r0101_champ_01
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_4F,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_STAY_WALK_U_4F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//シロナ	主人公を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_d17r0101_champ_02
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*				シロナ(やぶれた世界から戻ってきて会話)				*/
+/********************************************************************/
+ev_d17r0101_champ:
+	_TALK_OBJ_START
+
+	/*ナナカマドと会話していたら*/
+	_IFVAL_JUMP		WK_SCENE_D17R0101,GE,3,ev_d17r0101_champ_02
+
+	_TALK_KEYWAIT	msg_d17r0101_chanpion_04
+	_JUMP			ev_d17r0101_champ_end
+	_END
+
+/*ナナカマドと会話していたら*/
+ev_d17r0101_champ_02:
+	_TALK_KEYWAIT	msg_d17r0101_chanpion_05
+	_JUMP			ev_d17r0101_champ_end
+	_END
+
+ev_d17r0101_champ_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+

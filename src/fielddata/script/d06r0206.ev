@@ -1,0 +1,106 @@
+//====================================================================
+//								d06r0206
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d06r0206.h"
+	//.include	"../eventdata/zone_d06r0206evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d06r0206_man3
+_EVENT_DATA		ev_d06r0206_sign1
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+
+/********************************************************************/
+/*		トレーナー兄さん(赤、青、黄、緑のかけら)					*/
+/********************************************************************/
+ev_d06r0206_man3:
+	_TALK_OBJ_START
+
+	//1日フラグチェック
+	_IF_FLAGON_JUMP	TMFLG_D06R0206_ITEM_GET,ev_d06r0206_man3_02
+
+	_TALK_KEYWAIT	msg_d06r0206_man3_01
+
+	//アイテム名、個数をセット
+	_GET_RND		SCWK_TEMP0,4			/*4択でランダム*/
+	_SWITCH			SCWK_TEMP0
+	_CASE_JUMP		0,ev_d06r0206_aka
+	_CASE_JUMP		1,ev_d06r0206_ao
+	_CASE_JUMP		2,ev_d06r0206_kiiro
+	_JUMP			ev_d06r0206_midori
+	_END
+
+ev_d06r0206_aka:
+	_LDVAL			SCWK_TEMP0,ITEM_AKAIKAKERA
+	_JUMP			ev_d06r0206_man3_sub
+	_END
+
+ev_d06r0206_ao:
+	_LDVAL			SCWK_TEMP0,ITEM_AOIKAKERA
+	_JUMP			ev_d06r0206_man3_sub
+	_END
+
+ev_d06r0206_kiiro:
+	_LDVAL			SCWK_TEMP0,ITEM_KIIROIKAKERA
+	_JUMP			ev_d06r0206_man3_sub
+	_END
+
+ev_d06r0206_midori:
+	_LDVAL			SCWK_TEMP0,ITEM_MIDORINOKAKERA
+	_JUMP			ev_d06r0206_man3_sub
+	_END
+
+ev_d06r0206_man3_sub:
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d06r0206_man3_item_event_fail
+
+	//1日フラグセット
+	_FLAG_SET		TMFLG_D06R0206_ITEM_GET
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*アイテム入手した後メッセージ*/
+ev_d06r0206_man3_02:
+	_TALKMSG	msg_d06r0206_man3_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+ev_d06r0206_man3_item_event_fail:
+	//アイテム取得失敗イベント(共通メッセージを出す、専用を使用するときはいらない)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_FAIL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*		看板														*/
+/********************************************************************/
+ev_d06r0206_sign1:
+	_EASY_BOARD_MSG	msg_d06r0206_sign1_01,BOARD_TYPE_POST,0
+	_END
+
+

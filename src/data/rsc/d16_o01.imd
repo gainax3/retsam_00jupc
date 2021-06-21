@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+
+<imd version="1.6.0">
+
+<head>
+	<create user="yoshida" host="W00151" date="2008-03-01T21:30:08" source="d16_o01.mb"/>
+	<title>Model Data for NINTENDO NITRO-System</title>
+	<generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
+</head>
+
+<body>
+
+<original_create user="yoshida" host="W00151" date="2008-03-01T21:30:08" source="d16_o01.mb"/>
+<original_generator name="Maya 6.5 NNS_Export" version="1.6.0.20060417"/>
+
+<model_info
+	pos_scale="4"
+	scaling_rule="standard"
+	vertex_style="direct"
+	magnify="1.000000"
+	tool_start_frame="1"
+	tex_matrix_mode="maya"
+	compress_node="merge" node_size="1 1"
+	compress_material="on" material_size="1 1"
+	output_texture="used"
+	force_full_weight="off"
+	use_primitive_strip="on"
+/>
+
+<box_test pos_scale="5" xyz="-1.750000 0.000000 -2.000000" whd="3.500000 0.000000 4.000000"/>
+
+<tex_image_array size="1">
+	<tex_image index="0" name="magma"
+		width="16" height="16" original_width="16" original_height="16"
+		format="palette16"
+		color0_mode="transparency"
+		palette_name="magma"
+		path="C:/ghome/field_all/field_all_btex/magma.tga"
+	>
+		<bitmap size="64">
+			8888 8888 8888 8888 8228 5558 5558 8866
+			3225 5555 5555 5566 3355 5555 3355 3355
+			5555 5555 2235 2233 5533 5555 2223 2232
+			3322 3533 2123 3322 2322 2322 2223 8321
+			2333 3321 2238 8832 2388 8322 3388 8883
+			3888 2833 8882 8888 6768 2888 8842 8888
+			7778 8886 8844 8228 7768 6687 8888 3228
+			7688 7686 8886 3388 8888 6888 8886 8888
+		</bitmap>
+	</tex_image>
+</tex_image_array>
+
+<tex_palette_array size="1">
+	<tex_palette index="0" name="magma" color_size="16">
+		7fff 039f 063c 055c 055c 04ba 08b7 0cb2
+		04bc 7fff 7fff 7fff 7fff 7fff 7fff 7fff
+	</tex_palette>
+</tex_palette_array>
+
+<material_array size="1">
+	<material index="0" name="magma_lm2"
+		light0="off" light1="off" light2="off" light3="on"
+		face="front"
+		alpha="31"
+		wire_mode="off"
+		polygon_mode="modulate"
+		polygon_id="0"
+		fog_flag="on"
+		depth_test_decal="off"
+		translucent_update_depth="off"
+		render_1_pixel="off"
+		far_clipping="off"
+		diffuse="25 25 25"
+		ambient="31 31 31"
+		specular="0 0 0"
+		emission="0 0 0"
+		shininess_table_flag="off"
+		tex_image_idx="0" tex_palette_idx="0"
+		tex_tiling="repeat repeat"
+		tex_scale="1.000000 1.000000"
+		tex_rotate="0.000000"
+		tex_translate="0.000000 0.000000"
+		tex_gen_mode="none"
+	/>
+</material_array>
+
+<matrix_array size="1">
+	<matrix index="0" mtx_weight="1" node_idx="0"/>
+</matrix_array>
+
+<polygon_array size="1">
+	<polygon index="0" name="polygon0"
+		vertex_size="4" polygon_size="1"
+		triangle_size="0" quad_size="1"
+		volume_min="-3.500000 0.000000 -4.000000"
+		volume_max="3.500000 0.000000 4.000000"
+		volume_r="5.315186"
+		mtx_prim_size="1"
+		nrm_flag="on" clr_flag="on" tex_flag="on"
+	>
+		<mtx_prim index="0">
+			<mtx_list size="1">0</mtx_list>
+			<primitive_array size="1">
+				<primitive index="0" type="quads" vertex_size="4">
+					<mtx idx="0"/>
+					<tex st="0.000000 16.000000"/>
+					<clr rgb="31 31 31"/>
+					<nrm xyz="0.000000 0.998047 0.000000"/>
+					<pos_s xyz="-3.500000 0.000000 4.000000"/>
+					<tex st="80.000000 16.000000"/>
+					<pos_xy xy="3.500000 0.000000"/>
+					<tex st="80.000000 -80.000000"/>
+					<pos_xz xz="3.500000 -4.000000"/>
+					<tex st="0.000000 -80.000000"/>
+					<pos_xy xy="-3.500000 0.000000"/>
+				</primitive>
+			</primitive_array>
+		</mtx_prim>
+	</polygon>
+</polygon_array>
+
+<node_array size="1">
+	<node index="0" name="polySurface594" kind="mesh"
+		parent="-1"
+		child="-1"
+		brother_next="-1"
+		brother_prev="-1"
+		draw_mtx="on"
+		billboard="off"
+		scale="1.000000 1.000000 1.000000"
+		rotate="0.000000 0.000000 0.000000"
+		translate="0.000000 0.000000 0.000000"
+		visibility="on"
+		display_size="1"
+		vertex_size="4" polygon_size="1"
+		triangle_size="0" quad_size="1"
+		volume_min="-3.500000 0.000000 -4.000000"
+		volume_max="3.500000 0.000000 4.000000"
+		volume_r="5.315186"
+	>
+		<display index="0" material="0" polygon="0" priority="0"/>
+	</node>
+</node_array>
+
+<output_info vertex_size="4" polygon_size="1"
+	triangle_size="0" quad_size="1"/>
+
+</body>
+
+</imd>

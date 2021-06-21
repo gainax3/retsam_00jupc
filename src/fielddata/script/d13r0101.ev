@@ -1,0 +1,414 @@
+//====================================================================
+//						d13r0101.gmm
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d13r0101.h"
+	.include	"../eventdata/zone_d13r0101evc.h"
+	.include	"../../../include/pl_bugfix.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d13r0101_flag_change
+_EVENT_DATA		pos_d13r0101_ginga
+_EVENT_DATA		ev_d13r0101_gingam_a
+_EVENT_DATA		ev_d13r0101_gingam_b
+_EVENT_DATA		ev_d13r0101_middleman1
+_EVENT_DATA		ev_d13r0101_sign1
+_EVENT_DATA		ev_d13r0101_item
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/********************************************************************/
+ev_d13r0101_flag_change:
+	_ARRIVE_FLAG_SET		FLAG_ARRIVE_D13R0101	//到着
+	_END
+
+
+/********************************************************************/
+/*						ギンガ団(POS)								*/
+/********************************************************************/
+#define POS_D13R0101_GINGA_X1	(12)
+#define POS_D13R0101_GINGA_X2	(13)
+
+pos_d13r0101_ginga:
+	_EVENT_START
+
+	_CALL			d13r0101_gingam_a_common_01
+
+	//B戦闘呼び出し
+	_TRAINER_BTL_SET	GINGAM_01,0
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d13r0101_common_battle_lose
+
+	_CALL			d13r0101_gingam_a_common_02
+
+	//A戦闘呼び出し
+	_TRAINER_BTL_SET	GINGAM_02,0
+	_TRAINER_LOSE_CHECK SCWK_ANSWER
+	_IFVAL_JUMP			SCWK_ANSWER,EQ,0,ev_d13r0101_common_battle_lose
+
+	_CALL			d13r0101_gingam_a_common_03
+
+	_FLAG_SET		SYS_FLAG_BGM_D13
+
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//共通敗北処理
+//--------------------------------------------------------------------
+ev_d13r0101_common_battle_lose:
+	_TRAINER_LOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//Aギンガ団	主人公の方を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_gingam_a_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//Aギンガ団	Bを見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_gingam_a_11
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//Aギンガ団	主人公の方を見る
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_gingam_a_21
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//Aギンガ団	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_gingam_a_31
+	_ANIME_DATA	AC_WALK_U_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//Bギンガ団	退場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_gingam_b_31
+	_ANIME_DATA	AC_WALK_U_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//おじさん	登場
+//--------------------------------------------------------------------
+_ANIME_LABEL	anm_d13r0101_middleman1_11
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_WAIT_8F,3
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL	anm_d13r0101_middleman1_11_2
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	AC_WAIT_8F,3
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+//====================================================================
+//共通処理
+//====================================================================
+d13r0101_gingam_a_common_01:
+	_TALK_KEYWAIT	msg_d13r0101_gingam_a_01
+
+	_TALK_KEYWAIT	msg_d13r0101_gingam_b_01
+
+	//A主人公の方を向く
+	_OBJ_ANIME		D13R0101_GINGAM_A,anm_d13r0101_gingam_a_01
+	_OBJ_ANIME		D13R0101_GINGAM_B,anm_d13r0101_gingam_a_01	/*注意　使いまわし*/
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d13r0101_gingam_a_02
+
+	_TALK_KEYWAIT	msg_d13r0101_gingam_b_02
+	_TALK_CLOSE
+	_RET
+
+//====================================================================
+//共通処理
+//====================================================================
+d13r0101_gingam_a_common_02:
+	//AがBを見る
+	_OBJ_ANIME		D13R0101_GINGAM_A,anm_d13r0101_gingam_a_11
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d13r0101_gingam_a_03
+	_TALK_CLOSE
+
+	//A主人公の方を向く
+	_OBJ_ANIME		D13R0101_GINGAM_A,anm_d13r0101_gingam_a_21
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_d13r0101_gingam_a_04
+	_TALK_CLOSE
+	_RET
+
+//====================================================================
+//共通処理
+//====================================================================
+d13r0101_gingam_a_common_03:
+	_TALK_KEYWAIT	msg_d13r0101_gingam_a_05
+	_TALK_CLOSE
+
+	//ギンガ団退場
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//_OBJ_ANIME		D13R0101_GINGAM_A,anm_d13r0101_gingam_a_31
+	//_OBJ_ANIME		D13R0101_GINGAM_B,anm_d13r0101_gingam_b_31
+	//_OBJ_ANIME_WAIT
+
+	_OBJ_DEL		D13R0101_GINGAM_A
+	_OBJ_DEL		D13R0101_GINGAM_B
+	_LDVAL			WK_SCENE_D13R0101,1
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	//「発電所の鍵」出現
+	_FLAG_RESET		FV_D13R0101_ITEM
+	_OBJ_ADD		D13R0101_ITEM
+
+	//主人公の位置情報取得
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_D13R0101_GINGA_X1,pos_d13r0101_ginga_01_01
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_D13R0101_GINGA_X2,pos_d13r0101_ginga_01_02
+	_OBJ_DEL		D13R0101_ITEM
+
+	_TALK_KEYWAIT	msg_d13r0101_middleman1_01
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_HATUDENSYOKII
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_FLAG_SET		FE_D13R0101_ITEM
+
+	_TALK_KEYWAIT	msg_d13r0101_middleman1_08
+
+	//あまいみつ入手(普通の道具なので入手失敗がありえる)
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_AMAIMITU
+	_LDVAL			SCWK_TEMP1,10
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d13r0101_middleman1_item_event_fail
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+
+	_TALK_KEYWAIT	msg_d13r0101_middleman1_02
+	_JUMP			ev_d13r0101_middleman1_item_event_common
+	
+ev_d13r0101_middleman1_item_event_fail:	//取得失敗
+	_TALK_KEYWAIT	msg_d13r0101_middleman1_05
+
+ev_d13r0101_middleman1_item_event_common:
+	//アイテムの取得成功、失敗に関わらずこのイベントは終了の為フラグセット
+	_FLAG_SET		FE_D13R0101_AMAIMITU_GET
+
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	_RET
+
+/*甘い蜜おじさん、近づきアニメを分ける*/
+pos_d13r0101_ginga_01_01:
+	_OBJ_ANIME		D13R0101_MIDDLEMAN1,anm_d13r0101_middleman1_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_d13r0101_ginga_01_02:
+	_OBJ_ANIME		D13R0101_MIDDLEMAN1,anm_d13r0101_middleman1_11_2
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//共通敗北処理
+//--------------------------------------------------------------------
+ev_d13r0101_common_battle_lose_02:
+	_TRAINER_LOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*						ギンガ団(会話)								*/
+/********************************************************************/
+ev_d13r0101_gingam_a:
+ev_d13r0101_gingam_b:
+	_END
+
+
+/********************************************************************/
+/*							おじさん								*/
+/********************************************************************/
+#define PRICE_AMAIMITU			100				/*あまいみつ１コの値段*/
+#define PRICE_AMAIMITU_10		1000			/*あまいみつ１０コの値段*/
+
+ev_d13r0101_middleman1:
+	_TALK_OBJ_START
+
+	//あまいみつをもらっていなかったら
+	//_IF_FLAGOFF_JUMP	FE_D13R0101_AMAIMITU_GET,ev_d13r0101_middleman1_item_get
+
+	_TALKMSG		msg_d13r0101_middleman1_03
+
+	//あまいみつ購入ウィンドウ
+	_GOLD_WIN_WRITE		20,2
+	
+	/*あまいみつ選択メニュー*/
+	_JUMP			ev_d13r0101_amaimitu
+	_END
+
+/*あまいみつ選択メニュー*/
+ev_d13r0101_amaimitu:
+	_BMPMENU_INIT_EX	23,11,0,1,SCWK_ANSWER			//Bキャンセル有効
+	_BMPMENU_MAKE_LIST	msg_d13r0101_middleman1_11,0	//１コ
+	_BMPMENU_MAKE_LIST	msg_d13r0101_middleman1_09,1	//１０コ
+	_BMPMENU_MAKE_LIST	msg_d13r0101_middleman1_10,2	//いらない
+	_BMPMENU_START
+
+	_SWITCH				SCWK_ANSWER
+	_CASE_JUMP			0,ev_d13r0101_1ko				//１コ
+	_CASE_JUMP			1,ev_d13r0101_10ko				//１０コ
+	_CASE_JUMP			2,ev_d13r0101_iranai			//いらない
+	_JUMP				ev_d13r0101_iranai
+	_END
+
+/*１コ*/
+ev_d13r0101_1ko:
+	//所持金チェック
+	_COMP_GOLD		SCWK_ANSWER,PRICE_AMAIMITU
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_d13r0101_middleman1_no_money
+	
+	_LDVAL			SCWK_TEMP1,1						/*個数*/
+	_LDVAL			SCWK_TEMP2,PRICE_AMAIMITU			/*金額*/
+	_JUMP			ev_d13r0101_amaimitu_common
+	_END
+
+/*１０コ*/
+ev_d13r0101_10ko:
+	//所持金チェック
+	_COMP_GOLD		SCWK_ANSWER,PRICE_AMAIMITU_10
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,FALSE,ev_d13r0101_middleman1_no_money
+	
+	_LDVAL			SCWK_TEMP1,10						/*個数*/
+	_LDVAL			SCWK_TEMP2,PRICE_AMAIMITU_10		/*金額*/
+	_JUMP			ev_d13r0101_amaimitu_common
+	_END
+
+/*共通処理*/
+ev_d13r0101_amaimitu_common:
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_AMAIMITU
+	//_LDVAL		SCWK_TEMP1,1	/*事前にセットしているので注意して下さい！*/
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	SCWK_TEMP0,SCWK_TEMP1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d13r0101_middleman1_item_full
+
+	//お金ひく
+	_SUB_MY_GOLD	SCWK_TEMP2
+
+	_GOLD_WRITE
+	_SE_PLAY		SEQ_SE_DP_REGI
+	_SE_WAIT		SEQ_SE_DP_REGI
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+#if PL_S0793_080711_FIX
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT			/*▼なし*/
+#else
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+#endif
+
+	_GOLD_WIN_DEL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//あまいみつ購入選択で、「いらない」
+ev_d13r0101_iranai:
+	_TALKMSG		msg_d13r0101_middleman1_07
+	_LAST_KEYWAIT
+	_GOLD_WIN_DEL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//あまいみつ購入選択で、道具がいっぱい
+ev_d13r0101_middleman1_item_full:
+	_TALKMSG		msg_d13r0101_middleman1_05
+	_LAST_KEYWAIT
+	_GOLD_WIN_DEL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+//あまいみつ購入選択で、お金が足りない
+ev_d13r0101_middleman1_no_money:
+	_TALKMSG		msg_d13r0101_middleman1_06
+	_LAST_KEYWAIT
+	_GOLD_WIN_DEL
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*								看板								*/
+/********************************************************************/
+ev_d13r0101_sign1:
+	_EASY_BOARD_MSG	msg_d13r0101_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+
+/********************************************************************/
+/*							発電所のカギ							*/
+//
+//	FLD_ITEMのフラグをかりて作成した方がいいかも？
+//	読み込むmsgが違うからだめか。。。
+/********************************************************************/
+ev_d13r0101_item:
+	_TALK_OBJ_START
+
+	//アイテム名、個数をセット
+	_LDVAL			SCWK_TEMP0,ITEM_HATUDENSYOKII
+	_LDVAL			SCWK_TEMP1,1
+
+	//アイテム取得成功イベント(SCWK_TEMP0=アイテムナンバー、SCWK_TEMP1=個数を代入しておく)
+	_CHG_COMMON_SCR	SCRID_ITEM_EVENT_KEYWAIT	/*▼あり*/
+	_TALK_CLOSE
+
+	_FLAG_SET		FE_D13R0101_ITEM
+	_OBJ_DEL		D13R0101_ITEM
+
+	_TALK_OBJ_END
+	_END
+
+

@@ -1,0 +1,252 @@
+//====================================================================
+//								scratch
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_scratch_counter.h"
+	//.include	"../eventdata/zone_scratchevc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_scratch
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+//ev_scratch_flag_change:
+//	_END
+
+#define SCRATCH_USE_BP	(1)		/*スクラッチに必要なBPの値*/
+//#define SCRATCH_USE_BP	(0)		/*スクラッチに必要なBPの値*/
+
+/********************************************************************/
+/*							スクラッチ								*/
+//
+//	SCWK_PARAM0		当たりの枚数
+/********************************************************************/
+ev_scratch:
+	_TALK_OBJ_START
+
+	//バトルポイントウィンドウ描画
+	_BTL_POINT_WIN_WRITE	21,1
+
+	/*すでに会話していたら*/
+	_IF_FLAGON_JUMP	FE_SCRATCH_TALK,ev_scratch_talk
+
+	_FLAG_SET		FE_SCRATCH_TALK
+
+	_NUMBER_NAME	0,SCRATCH_USE_BP
+	_TALK_KEYWAIT	msg_scratch_counter_15
+	_JUMP			ev_scratch_menu
+	_END
+
+/*すでに会話していたら*/
+ev_scratch_talk:
+
+	/*「いらっしゃいませ！」*/
+	_NUMBER_NAME	0,SCRATCH_USE_BP
+	_TALK_KEYWAIT	msg_scratch_counter_01
+	_JUMP			ev_scratch_menu
+	_END
+
+ev_scratch_menu:
+	/*「こうにゅうしますか？」*/
+	_TALK_KEYWAIT	msg_scratch_counter_01_01
+
+	_BMPMENU_INIT_EX	20,11,0,1,SCWK_ANSWER			/*Bキャンセル有効*/
+	_BMPMENU_MAKE_LIST	msg_scratch_counter_02,0
+	_BMPMENU_MAKE_LIST	msg_scratch_counter_03,1
+	_BMPMENU_MAKE_LIST	msg_scratch_counter_04,2
+	_BMPMENU_START
+
+	_SWITCH			SCWK_ANSWER
+	_CASE_JUMP		0,ev_scratch_case0					/*買う*/
+	_CASE_JUMP		1,ev_scratch_case1					/*説明*/
+	_JUMP			scratch_no_01						/*終了へ*/
+	_END
+
+/*買う*/
+ev_scratch_case0:
+	//_NUMBER_NAME	0,SCRATCH_USE_BP
+	_NUMBER_NAME	2,SCRATCH_USE_BP
+	_TALK_KEYWAIT	msg_scratch_counter_07
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,scratch_no_01
+
+	/*BPが足りない時*/
+	_COMP_BTL_POINT	SCRATCH_USE_BP,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_bp_ng	/*BP足りない*/
+
+	/*木の実がいっぱいの時*/
+	/*これは全ての木の実が999？の時を確認する？？*/
+
+	/*BP減らす*/
+	_BTL_POINT_SUB	SCRATCH_USE_BP
+
+	/*BPウィンドウ更新*/
+	_BTL_POINT_WRITE
+
+	_TALK_KEYWAIT	msg_scratch_counter_10
+
+	_BLACK_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*バトルポイントウィンドウ削除*/
+	_BTL_POINT_WIN_DEL
+
+	_TALK_CLOSE
+
+	//_FINISH_MAP_PROC
+	_SCRATCH
+
+	/*当たりアイテムを取得*/
+	_SCRATCH_ITEM_GET	0,LOCALWORK0,LOCALWORK1
+	_SCRATCH_ITEM_GET	1,LOCALWORK2,LOCALWORK3
+	_SCRATCH_ITEM_GET	2,LOCALWORK4,LOCALWORK5
+
+	_SCRATCH_FREE
+	_SET_MAP_PROC
+
+	_BLACK_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	/*当たりがあったかで分岐*/
+	_LDVAL			SCWK_PARAM0,0
+	_CALL			ev_scratch_atari_check
+	_IFVAL_JUMP		SCWK_PARAM0,EQ,0,ev_scratch_atari_not	/*当たりなし*/
+
+	/*「おめでとうございます！○枚当たりました！」*/
+	_NUMBER_NAME	0,SCWK_PARAM0
+	_TALK_KEYWAIT	msg_scratch_counter_11
+
+	/*アイテム取得*/
+	_IFVAL_CALL		LOCALWORK1,NE,0,ev_scratch_item_get1
+	_IFVAL_CALL		LOCALWORK3,NE,0,ev_scratch_item_get2
+	_IFVAL_CALL		LOCALWORK5,NE,0,ev_scratch_item_get3
+
+	/*「それではまたお越しください！」*/
+	_TALK_KEYWAIT	msg_scratch_counter_05
+	_JUMP			ev_scratch_end
+	_END
+
+/*BP足りない*/
+ev_scratch_bp_ng:
+	_TALK_KEYWAIT	msg_scratch_counter_14
+	_JUMP			ev_scratch_end_bp_win_del
+	_END
+
+/*「いいえ」*/
+scratch_no_01:
+	_TALK_KEYWAIT	msg_scratch_counter_05
+	_JUMP			ev_scratch_end_bp_win_del
+	_END
+	
+/*説明*/
+ev_scratch_case1:
+	_TALK_KEYWAIT	msg_scratch_counter_06
+	_JUMP			ev_scratch_menu
+	_END
+
+/*共通終了(win_del)*/
+ev_scratch_end_bp_win_del:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+
+	/*バトルポイントウィンドウ削除*/
+	_BTL_POINT_WIN_DEL
+
+	_TALK_OBJ_END
+	_END
+
+/*共通終了*/
+ev_scratch_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*当たりがあったかで分岐*/
+ev_scratch_atari_check:
+	_IFVAL_CALL		LOCALWORK1,NE,0,ev_scratch_atari
+	_IFVAL_CALL		LOCALWORK3,NE,0,ev_scratch_atari
+	_IFVAL_CALL		LOCALWORK5,NE,0,ev_scratch_atari
+	_RET
+
+ev_scratch_atari:
+	_ADD_WK			SCWK_PARAM0,1
+	_RET
+
+/*当たりがなかった*/
+ev_scratch_atari_not:
+	_TALK_KEYWAIT	msg_scratch_counter_05
+	_JUMP			ev_scratch_end
+	_END
+
+/*「○を○こ　受け取った！」*/
+ev_scratch_item_get1:
+	_ITEM_NAME		0,LOCALWORK0
+	_NUMBER_NAME	1,LOCALWORK1
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	LOCALWORK0,LOCALWORK1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
+
+	_ME_PLAY		SEQ_FANFA4
+	_TALK_KEYWAIT	msg_scratch_counter_13
+	_ADD_ITEM		LOCALWORK0,LOCALWORK1,SCWK_ANSWER
+	_ME_WAIT
+	_RET
+
+ev_scratch_item_get2:
+	_ITEM_NAME		0,LOCALWORK2
+	_NUMBER_NAME	1,LOCALWORK3
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	LOCALWORK2,LOCALWORK3,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
+
+	_ME_PLAY		SEQ_FANFA4
+	_TALK_KEYWAIT	msg_scratch_counter_13
+	_ADD_ITEM		LOCALWORK2,LOCALWORK3,SCWK_ANSWER
+	_ME_WAIT
+	_RET
+
+ev_scratch_item_get3:
+	_ITEM_NAME		0,LOCALWORK4
+	_NUMBER_NAME	1,LOCALWORK5
+
+	//アイテム取得出来るかチェック
+	_ADD_ITEM_CHK	LOCALWORK4,LOCALWORK5,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_scratch_item_fail
+
+	_ME_PLAY		SEQ_FANFA4
+	_TALK_KEYWAIT	msg_scratch_counter_13
+	_ADD_ITEM		LOCALWORK4,LOCALWORK5,SCWK_ANSWER
+	_ME_WAIT
+	_RET
+
+/*アイテムいっぱいメッセージ*/
+ev_scratch_item_fail:
+	_TALK_KEYWAIT	msg_scratch_counter_12
+	_RET
+
+

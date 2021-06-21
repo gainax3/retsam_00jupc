@@ -1,0 +1,3869 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="matsuda" host="W00142" date="2008-06-18T13:08:25"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="242"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="315"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="214"/>
+			<font default=" 0:font_talk" position="3" width="100">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="100"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="100"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="32" top="102" right="737" bottom="730" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="yes"/>
+		<tag-palette left="677" top="180" right="1024" bottom="578" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="ZKNWORLDTEXT_0">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">_NULL_</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_1">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nach der Geburt nimmt es für eine
+Weile Nährstoffe über den Samen
+auf seinem Rücken auf.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_2">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald die Knospe auf seinem Rücken
+ein süßes Aroma abgibt, steht die
+Blüte kurz bevor.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_3">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nach einem Regentag riecht die
+Blume auf seinem Rücken intensiver.
+Das Aroma zieht andere Pokémon an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_4">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Lodert die Flamme auf seiner
+Schweifspitze hell, ist GLUMANDA
+gesund.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_5">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GLUTEXO leben in den Bergen. Die
+Flammen auf ihren Schweifspitzen
+leuchten in der Nacht wie Sterne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_6">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, GLURAKs Feuer lodert
+stärker, wenn es harte Kämpfe
+überstanden hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_7">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es zieht sich in seinen Panzer
+zurück und greift dann mit
+Wasserstrahlen seine Gegner an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_8">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es werde 10 000 Jahre
+alt. Sein buschiger Schweif ist ein
+Symbol für langes Leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_9">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Der Wasserstrahl, der aus den
+Wasserdüsen schießt, kann
+sogar Stahlwände durchdringen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_10">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine roten Antennen sondern einen
+Gestank ab, der Feinde verjagt. Es
+wächst, indem es sich häutet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_11">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Der stahlharte Panzer schützt
+seinen zarten Körper. Es wartet
+geduldig auf seine Entwicklung.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_12">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt Blütenhonig. Es findet
+selbst Blumen, die sehr wenig
+Pollen haben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_13">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es frisst täglich sein Gewicht in
+Blättern. Die Nadel auf seinem Kopf
+dient der Verteidigung.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_14">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Während es auf seine Entwicklung
+wartet, versteckt es sich unter
+Blättern und zwischen Ästen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_15">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein bester Angriff: Schnell auf den
+Gegner zufliegen, mit Giftstacheln
+zustechen und davonfliegen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_16">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Reizt man dieses an sich gutmütige
+Pokémon, wehrt es sich wütend.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_17">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf der Suche nach Nahrung, die es
+mit scharfen Krallen schlägt, fliegt
+es durch riesiges Territorium.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_18">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Schlägt TAUBOSS mit ganzer Kraft
+seine Flügel, beugen sich selbst
+große Bäume durch den Windstoß.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_19">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es strotzt vor Lebenskraft und
+kann in jeder Umgebung leben. Es
+ist extrem vorsichtig. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_20">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wetzt seine ständig wachsenden
+Zähne an harten Dingen. Es kann
+Wände aus Beton zernagen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_21">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Flug schlägt es eifrig mit den
+Flügeln. Mit seinem Schnabel sucht
+es im Gras nach Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_22">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat genügend Ausdauer, den
+ganzen Tag zu fliegen. Sein
+scharfer Schnabel dient als Waffe.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_23">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bewegt sich ohne einen Laut
+durch das Gras und greift seine
+ahnungslose Beute von hinten an. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_24">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das Muster auf seinem Bauch
+schüchtert Gegner ein. Sind sie vor
+Angst erstarrt, umklammert es sie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_25">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt zusammen mit anderen
+in Wäldern. In seinen Backen-
+taschen speichert es Elektrizität.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_26">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bei zu viel Elektrizität im Körper
+wird es aggressiv. Es entlädt sich
+über seinen Schweif.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_27">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in trockenen Regionen mit
+wenig Regen. Es rollt sich ein, um
+sich vor Gegnern zu schützen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_28">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es rollt sich zusammen und rollt
+dann auf Gegner zu, die durch
+seine Stacheln Schaden nehmen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_29">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es mag keine Kämpfe. Ein einziger
+Tropfen des Gifts aus seinen
+Widerhaken hat eine fatale Wirkung.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_30">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bei Gefahr fährt es die Wider-
+haken am Körper aus. Diese wachsen
+langsamer als die von NIDORINO.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_31">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein ganzer Körper ist mit harten
+Schuppen bedeckt. Es beschützt
+sein Junges mit seinem Leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_32">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es untersucht die Umgebung, indem
+es die Ohren spitzt und lauscht.
+Sein giftiges Horn schützt es.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_33">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist aggressiv und greift seine
+Gegner mit dem Horn an, welches
+bei Berührung Gift absondert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_34">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Schlag mit seinem gewaltigen
+Schweif kann einen Telegrafen-
+masten knicken wie ein Streichholz.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_35">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist bekannt für sein liebens-
+wertes Wesen. Man sagt, es lebt
+in der Stille der Berge.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_36">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man bekommt es selten zu sehen.
+Bei Vollmond soll es an den Ufern
+einsam gelegener Seen spielen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_37">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es beherrscht Feuerbälle. Während
+es wächst, teilen sich seine sechs
+Schweife, um weitere zu bilden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_38">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine neun Schweife sollen
+mystische Kräfte besitzen. Es kann
+tausend Jahre leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_39">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald es mit seinen großen, runden
+Augen rollt, fängt es an, ein Lied
+zu singen und jeder schläft ein.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_40">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein feines Fell fühlt sich herrlich
+an. Es kann sich größer machen,
+indem es Luft einatmet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_41">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Obwohl es keine Augen hat, kann es
+Hindernisse mithilfe von
+Ultraschallwellen wahrnehmen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_42">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt das Blut von Menschen und
+Pokémon. Nachts fliegt es umher auf
+der Suche nach Halsvenen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_43">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tagsüber verankert es sich mit
+seinen Wurzelfüßen im Boden. Nachts
+wandert es und verteilt Samen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_44">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Der Honig, den es abgibt, riecht so
+entsetzlich, dass sich sogar Nasen
+in 2 km Entfernung rümpfen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_45">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt die größten Blätter der
+Welt. Es verteilt beim Gehen Pollen,
+die schreckliche Allergien auslösen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_46">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf seinem Rücken wachsen Pilze,
+die Tochukaso. Sie nehmen an Größe
+zu, wenn PARAS wächst.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_47">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">PARASEK wird von einem Pilz, der
+größer als das Pokémon ist,
+kontrolliert. Er gibt Giftsporen ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_48">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine großen Augen bestehen aus
+vielen kleinen Augen. Nachts wird
+es von Licht angezogen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_49">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schlägt mit den Flügeln, um
+staubartige Schuppen abzusondern.
+Diese geben bei Kontakt Gift ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_50">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses Pokémon lebt unterirdisch.
+Da es an Dunkelheit gewöhnt ist,
+schreckt helles Licht es ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_51">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die drei Köpfe bewegen sich abwech-
+selnd, um sich durch harte Erde in
+Tiefen von bis zu 100 km zu graben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_52">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein nachtaktives Pokémon. Sieht es
+etwas Schimmerndes, fangen
+seine Augen an zu glänzen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_53">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein sehr stolzes Pokémon. Für Fans
+ist die Größe des Juwels auf seiner
+Stirn Anlass für Diskussionen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_54">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Werden seine konstant vorhandenen
+Kopfschmerzen stärker, entwickelt
+es seltsame Kräfte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_55">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses Pokémon lebt in Seen. Es
+schwimmt schneller als der
+schnellste menschliche Schwimmer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_56">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt mit anderen in Baumkronen.
+Wird eines von ihnen wütend, werden
+alle anderen auch wütend.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_57">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Siehst du ihm in die Augen, wird es
+wütend. Rennst du weg, wird es
+noch wütender. Ärgerst du es...</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_58">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein loyales Pokémon. Es wird erst
+dann aktiv, wenn sein Trainer ihm
+Anweisungen gegeben hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_59">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seiner stolzen und königlichen
+Erscheinung gewinnt es die
+Herzen der Menschen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_60">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Haut ist so dünn, dass man die
+inneren Organe sehen kann. Es hat
+Schwierigkeiten beim Laufen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_61">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das Spiralmuster auf seinem Bauch
+dreht sich langsam. Starrt man
+darauf, wird einem schwindelig.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_62">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat extrem starke Muskeln und
+kann durch den Ozean schwimmen,
+ohne sich ausruhen zu müssen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_63">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">18 Stunden am Tag schläft es. Und
+wenn es wach ist, teleportiert es
+sich, während es sitzen bleibt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_64">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn sich auf deinem Fernsehbild-
+schirm ein Schatten zeigt, ist es in
+der Nähe. Und das bringt Unglück.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_65">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt ein fantastisches Ge-
+dächtnis und erinnert sich an alles
+seit seiner Geburt. IQ: Über 5 000.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_66">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hebt GEOROK hoch, um seinen
+Körper zu trainieren. Außerdem übt
+es sich in jeder Art v. Kampfsport.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_67">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">MASCHOCKs unbegrenzte Kraft ist
+gefährlich, daher trägt es einen
+Gürtel, der die Kraft unterdrückt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_68">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seinen vier Armen schlägt es
+blitzschnell zu. Es kann in zwei
+Sekunden 1 000-mal zuschlagen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_69">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bevorzugt heiße und feuchte
+Umgebungen. Seine Beute fängt es
+blitzschnell mit seinen Ranken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_70">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Pokémon, das wie eine Pflanze
+aussieht. Es fängt Beute, indem es
+giftigen Puder darüber verteilt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_71">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Maul sammelt sich eine
+Flüssigkeit, die nach Honig riecht,
+in Wahrheit aber ätzend ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_72">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht aus Wasser.
+Aus seinen kristallartigen Augen
+verschießt es eigenartige Strahlen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_73">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt 80 Tentakel, um Beute zu
+fangen und festzuhalten. Diese
+wird durch Gift geschwächt.  </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_74">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Viele von ihnen leben auf
+Bergpfaden, halb vergraben
+und Bergsteiger beobachtend.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_75">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">GEOROK leben an steilen
+Felsvorsprüngen. Sie graben
+dazu viele Löcher aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_76">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Einmal im Jahr wechselt es seine
+Haut. Seinem Körper kann
+selbst Dynamit nichts anhaben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_77">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bereits eine Stunde nach seiner
+Geburt wachsen seine feurige
+Mähne und sein feuriger Schweif. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_78">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Mähne lodert auf, wenn es
+mit 240 km/h pfeilschnell
+galoppiert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_79">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist langsam, hat aber ein Talent,
+mit seinem Schweif zu fischen. Beißt
+etwas an, tut es ihm nicht weh.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_80">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein begriffsstutziges Pokémon.
+Beißt das MUSCHAS am Schweif zu,
+scheint es Intelligenz zu gewinnen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_81">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Vorrichtungen an seinem Körper
+generieren elektromagnetische
+Wellen, die es schweben lassen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_82">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eigentlich sind es drei MAGNETILO,
+die durch Magnetismus verbunden
+sind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_83">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ohne seinen Stock kann es nicht
+leben. Daher beschützt es den
+Stock mit seinem Leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_84">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Gehirne der beiden Köpfe
+kommunizieren ihre Gefühle
+über Telepathie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_85">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Entwickelt sich DODU, teilt sich
+einer der Köpfe in zwei. Es kann
+sich mit 60 km/h fortbewegen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_86">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses Pokémon lebt auf Eisbergen.
+Es schwimmt im Eiswasser und bricht
+das Eis mithilfe seines Horns.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_87">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist mit einem weißen Fell
+bedeckt, das es im Schnee fast
+unsichtbar für Gegner macht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_88">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wurde geboren, als Schlamm von
+den Strahlen des Mondes getroffen
+wurde. Es erscheint, wo Unrat ist. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_89">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper sondert eine giftige
+Substanz ab, die bei Kontakt
+Pflanzen und Bäume vernichtet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_90">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schwimmt rückwärts, indem es
+seine Schale öffnet und schließt.
+Es zeigt immer seine breite Zunge.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_91">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Kampf schließt es seine Schale,
+um sich zu schützen. Es schießt mit
+Stacheln auf seine Gegner.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_92">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Der Körper des Pokémon besteht zu
+95 % aus Gasen, die fortgeweht
+werden, wenn starker Wind geht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_93">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann sich durch jedes Hindernis
+bewegen. Es versteckt sich in
+Wänden, um Gegner zu beobachten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_94">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es versteckt sich im Schatten. Man
+sagt, wenn sich ein GENGAR ver-
+steckt, kühlt es sich um 5 Grad ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_95">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn es sich unter dem Boden mit
+bis zu 80 km/h bewegt, verursacht
+es Erschütterungen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_96">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seiner großen Nase kann es die
+Träume anderer erkennen.
+Es liebt lustige Träume.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_97">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Blick auf das Pendel versetzt
+einen in 3 Sekunden in Schlaf,
+selbst wenn man gar nicht müde ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_98">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in Höhlen am Strand. Seine
+Scheren wachsen nach, wenn es sie
+im Kampf verliert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_99">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die großen Scheren haben eine
+Stärke von 10 000 PS. Aber sie sind
+schwer und kaum zu handhaben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_100">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sieht aus wie ein Pokéball. Es ist
+gefährlich, da es bei Berührung
+explodieren kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_101">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lässt sich vom Wind treiben,
+wenn es so voller Elektrizität ist,
+dass es fast explodiert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_102">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die sechs Eier kommunizieren
+telepathisch. Werden sie getrennt,
+finden sie sich schnell wieder.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_103">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man nennt es den “Laufenden
+Dschungel”. Wird ein Kopf zu groß,
+fällt er ab und wird zu einem OWEI.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_104">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Denkt es an seine verstorbene
+Mutter, weint es, wobei der Schädel
+auf seinem Kopf hohl klingt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_105">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Von Geburt an trägt dieses wilde
+Pokémon Knochen. Es setzt sie
+talentiert als Waffen ein.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_106">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Beine können die doppelte
+Länge annehmen. Gegner, die das
+nicht wissen, erschrecken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_107">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Schläge, die es austeilt, können
+Beton pulverisieren. Es muss sich
+im Kampf alle 3 Minuten ausruhen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_108">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Statt Händen verwendet es seine
+Zunge, die zweimal so groß wie
+sein Körper und klebrig ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_109">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Gase, die leichter als Luft sind,
+lassen es schweben. Diese Gase
+stinken und sind explosiv.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_110">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wächst, indem es Gase aufnimmt,
+die aus dem Müll aufsteigen. Selten
+kann man Drillinge von ihnen finden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_111">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist von einer dicken
+Haut umgeben und es kann wackelige
+Gebäude zum Einsturz bringen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_112">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Gehirn entwickelt sich, wenn es
+sich auf die Hinterbeine stellt. Mit
+dem Horn bohrt es durch Gestein.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_113">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es bringe Glück. Es ist
+sehr mitfühlend und teilt seine Eier
+mit Verletzten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_114">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist von blauen Ranken umgeben.
+Niemand hat jemals das Gesicht
+dieses Pokémon gesehen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_115">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Nachwuchs wächst in seinem
+Beutel heran. Nur wenn es sicher
+ist, darf das Junge aus dem Beutel.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_116">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Schatten von Korallen legt es
+sein Nest an. Bei Gefahr versprüht
+es Tinte und flieht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_117">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Stacheln schützen es. Seine
+Flossen und Knochen werden bei der
+Herstellung von Medizin verwendet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_118">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schwimmt elegant und bewegt
+seine Hinterflosse wie ein Kleid.
+Es sieht aus wie eine Königin.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_119">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es baut Nester, indem es Steine im
+Fluss mit seinem Horn aushöhlt. Es
+verteidigt seine Eier mit dem Leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_120">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wird sein Körper verletzt, kann
+es sich regenerieren, sofern
+der rote Kern intakt ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_121">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In der Körpermitte befindet sich
+ein roter Kern, der mysteriöse
+Radiowellen in die Nacht sendet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_122">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Experte der Pantomime. Es kann
+unsichtbare, aber solide Wände
+allein durch Gesten erzeugen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_123">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist fast unmöglich, seinen
+Sensen auszuweichen, da es mit der
+Schnelligkeit eines Ninja zuschlägt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_124">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Ruf klingt wie menschliche
+Sprache. Trotzdem ist nicht zu
+verstehen, was es sagt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_125">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Hälfte aller Stromausfälle wird
+durch dieses PKMN ausgelöst, das
+in E-Werken Elektrizität frisst.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_126">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wurde bei einem Vulkanausbruch
+geboren. Sein Körper ist von
+hellen Flammen umgeben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_127">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hält seine Beute mit seiner
+Zange fest und teilt sie dann. Was
+es nicht teilen kann, wirft es fort.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_128">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald es einen Gegner ins Visier
+genommen hat, rennt es mit dem
+Kopf voran auf ihn zu.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_129">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es sei das schwächste
+PKMN der Welt. Niemand weiß, wie
+es bisher überleben konnte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_130">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald es erscheint, nimmt seine
+Wut nicht eher ab, bis es die Felder
+und Berge ringsum zerstört hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_131">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt es, das Meer mit PKMN und
+Menschen auf dem Rücken zu über-
+queren. Es versteht die Menschen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_132">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann seine Zellstruktur so
+verändern, dass es sich in alles
+verwandeln kann, was es sieht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_133">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein seltenes PKMN, das sich seiner
+Umgebung anpasst, indem es sich in
+unterschiedlicher Form entwickelt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_134">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat sich so entwickelt, dass es
+im Wasser leben kann. Im Wasser
+selbst wird es unsichtbar.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_135">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kontrolliert 10 000 Volt. Es
+kann sein Fell so aufstellen, dass
+es wie scharfe Nadeln wirkt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_136">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Körper befindet sich eine
+Flamme. Seine Körpertemperatur
+liegt vor dem Kampf bei 900 Grad.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_137">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das erste künstlich erzeugte PKMN
+der Welt. Es kann durch
+elektronischen Raum reisen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_138">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN wurde von der modernen
+Wissenschaft aus einem Fossil ge-
+schaffen. Es lebte im urzeitl. Meer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_139">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man geht davon aus, dass das PKMN
+ausgestorben ist, weil seine spiral-
+förmige Schale zu groß wurde.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_140">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man geht davon aus, dass dieses
+PKMN vor 300 Millionen Jahren die
+Strände bevölkerte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_141">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man geht davon aus, dass dieses
+PKMN an Land kam, weil seine Beute
+ebenfalls irgendwann an Land lebte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_142">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN flog zu Zeiten der
+Dinosaurier am Himmel. Seine
+Zähne sind wie Sägeblätter.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_143">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Magen kann jede Art von
+Nahrung verdauen, selbst wenn sie
+verschimmelt und verdorben ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_144">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Legendäres Vogel-Pokémon.
+Es kann Blizzards verursachen,
+indem es Feuchtigkeit gefriert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_145">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Legendäres Vogel-Pokémon,
+das in Gewitterwolken leben soll.
+Es kontrolliert Blitze. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_146">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eines der Legendären Vogel-
+Pokémon. Es wird als Bote des
+Frühlings angesehen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_147">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man nennt es “Illusion-Pokémon”,
+denn nur wenige haben es gesehen.
+Nur seine Haut wurde oft gefunden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_148">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Erscheint um seinen Körper eine
+Aura, gibt es einen Wetterwechsel.
+Es soll in Seen und Meeren leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_149">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es lebe in den Meeren.
+Es bringt Schiffbrüchige sicher
+an Land.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_150">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Gene von MEW wurden neu
+angeordnet, wodurch dieses PKMN
+entstand. Es hat ein wildes Herz.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_151">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es beherrscht alle möglichen
+Attacken, daher sieht man in ihm
+den Vorfahren aller Pokémon.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_152">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit dem Blatt auf seinem Kopf
+bestimmt es die Temperatur und
+Feuchtigkeit. Es liebt Sonnenbäder.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_153">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Knospen an seinem Hals
+geben ein würziges Aroma ab,
+das andere aufheitert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_154">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seinem Atem kann es tote
+Pflanzen und Blumen zu neuem
+Leben erwecken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_155">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Erschrickt sich dieses scheue PKMN,
+lodern die Flammen auf seinem
+Rücken kräftiger.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_156">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bedroht seine Gegner mit der
+Hitze seiner Flammen. Ist es
+kampfbereit, lodern sie stärker.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_157">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es greift seine Gegner mit Feuer
+an. Dabei entsteht ein Hitze-
+flimmern, in dem es sich versteckt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_158">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat die Angewohnheit, nach allem
+zu schnappen, was es sieht. Selbst
+seine Trainer müssen aufpassen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_159">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hat es einmal zugebissen, lässt es
+erst los, wenn es seine Zähne
+verliert, die schnell nachwachsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_160">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eigentlich bewegt es sich langsam,
+doch seine Beute greift es
+blitzschnell an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_161">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein sehr nervöses PKMN. Es steht
+auf seinem Schweif und betrachtet
+seine Umgebung ganz genau.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_162">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es rollt sich um seine Jungen, wenn
+diese schlafen sollen. Gegnern
+begegnet es mit Schnelligkeit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_163">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es steht ständig auf einem Fuß.
+Selbst wenn es angreift, stellt es
+sich nicht auf beide Beine.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_164">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Augen sind etwas Besonderes.
+Sie können selbst bei schwächstem
+Licht alles erkennen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_165">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist so scheu, dass es sich
+nur dann bewegt, wenn es sich
+in einem Schwarm befindet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_166">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es zieht Energie aus dem Licht der
+Sterne. Je mehr Sterne zu sehen
+sind, desto größer ist sein Muster.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_167">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es baut eine Falle, indem es ein
+Netz mit dünner, starker Seide
+spinnt. Es wartet still auf Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_168">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es befestigt Seide an der Beute und
+lässt sie frei. Es folgt dem Seiden-
+faden zur Beute u. ihren Freunden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_169">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine vier Flügel erlauben es dem
+PKMN, schneller und leiser zu
+fliegen. Es ist nachtaktiv.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_170">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Über seine Antennen entlädt es
+Elektrizität, mit der es seinen
+Gegnern einen Schlag versetzt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_171">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">LANTURNs Licht kann aus großen
+Tiefen heraufscheinen. Man nennt
+es auch “Tiefseestern”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_172">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Backentaschen sind noch
+recht klein. Daher kann es nicht
+allzu viel Elektrizität speichern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_173">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Silhouette sieht aus wie ein
+Stern. Man sagt, es würde auf
+Sternschnuppen reisen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_174">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat einen weichen, elastischen
+Körper. Hat es einmal angefangen
+zu hüpfen, ist es nicht zu stoppen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_175">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Schale ist mit Glücksgefühlen
+gefüllt, die es mit gutherzigen
+Lebewesen teilt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_176">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es erscheint vor denen,
+die gutherzig sind, und verteilt
+glänzenden “Glücksstaub”.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_177">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es pickt seine Nahrung aus
+Kakteen, wobei es Knospen und
+Dornen verschont.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_178">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN kann die Vergangenheit
+und die Zukunft sehen. Es
+beobachtet ständig die Sonne.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_179">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein weiches Fell wird doppelt so
+dick, wenn sich Elektrizität
+aufbaut. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_180">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hat es sich mit Elektrizität aufge-
+laden, leuchtet sein Schweif und es
+feuert Haare ab, die sich entladen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_181">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Schweifspitze leuchtet hell.
+In alten Zeiten hat man mit seiner
+Hilfe Lichtsignale gegeben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_182">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald die Regenzeit vorbei ist,
+wird es von der warmen Sonne nach
+draußen gezogen, wo es tanzt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_183">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seinen Schweif verwendet es als
+eine Art Rettungsring, wenn es
+taucht. Es liebt Wasserpflanzen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_184">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in Flüssen und Seen. Im
+Wasser verwirrt es seine Gegner
+durch seine Farbe und Muster.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_185">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auch wenn es wie ein Baum aussieht,
+ist es eher wie ein Stein o. Fels.
+Es ist schwach gegenüber Wasser.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_186">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es versammelt andere PKMN um sich
+herum und führt sie an.
+POLIWAG gehorchen seinem Ruf. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_187">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es reitet auf dem Wind. Man sagt,
+wenn sich HOPPSPROSS ver-
+sammeln, kommt der Frühling bald.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_188">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sobald es wärmer wird, blüht es
+auf. Es schwebt am Himmel und nimmt
+so viel Sonnenlicht auf wie möglich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_189">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lässt sich von den Winden um den
+Globus tragen und verteilt auf
+seinem Flug Baumwollsamen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_190">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit dem Schweif pflückt es hochhän-
+gende Früchte. Mit ihm ist es
+geschickter als mit den Händen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_191">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Morgens fällt es plötzlich aus dem
+Himmel. War der Sommer kalt,
+explodiert seine Population.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_192">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Warmes Sonnenlicht gibt ihm
+Energie. Daher wandert es stets
+dem Sonnenlicht hinterher.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_193">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seinen Augen hat es einen Blick-
+winkel von 360 Grad. Es sieht sogar
+Beute, die sich hinter ihm befindet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_194">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt im kalten Wasser. Es
+vergräbt sich halb im schlammigen
+Boden, wenn es schlafen will.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_195">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein träges PKMN, das auf dem Grund
+des Flusses liegt und wartet, dass
+ihm Beute ins Maul schwimmt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_196">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Fell ist wie Samt. Setzt es
+Psycho-Kräfte ein, leuchtet die
+Kugel in seiner Stirn.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_197">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mondlicht hat die genetische
+Struktur von EVOLI verändert.
+Im Dunkeln wartet es auf Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_198">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sieht man dieses PKMN bei Nacht,
+sollen merkwürdige Dinge passieren.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_199">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wird es von MUSCHAS gebissen, wird
+es so intelligent, dass es sich mit
+Nobelpreisträgern messen kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_200">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt es, sich nachts an andere
+heranzuschleichen und sie mit einem
+schrillen Schrei zu erschrecken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_201">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Form sieht aus wie antike
+Schrift. Was war zuerst da? Die
+Sprache oder ICOGNITO?</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_202">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Verzweifelt versucht es, seinen
+schwarzen Schweif zu verstecken.
+Er soll ein Geheimnis enthalten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_203">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Schweif besitzt ebenfalls ein
+Gehirn. Er beißt jeden Gegner, der
+sich von hinten heranschleicht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_204">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es sieht aus wie ein Tannenzapfen.
+Seine Schale schützt es vor Vogel-
+Pokémon, die an ihm picken wollen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_205">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN ist von einer Stahlhülle
+umgeben. Seine stechenden Augen
+sind alles, was man von ihm sieht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_206">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es gräbt sich mit seinem Schweif in
+die Erde und baut ein labyrinth-
+artiges Nest. Es kann kaum fliegen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_207">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es segelt durch die Lüfte und
+breitet seine Gliedmaßen aus, um
+aus der Luft anzugreifen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_208">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hoher Druck und hohe Temperaturen
+haben seinen Körper härter als
+Stahl werden lassen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_209">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleine PKMN fliehen beim Anblick
+seines Gesichts. Frauen aber finden
+es niedlich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_210">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist trotz seines Äußeren
+schüchtern. Wird es wütend,
+schnappt es mit seinen Fängen zu.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_211">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es verschießt die giftigen Stacheln
+seines Körpers in alle Richtungen.
+Es ist kein guter Schwimmer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_212">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist stahlhart. Es
+bedroht seine Gegner, indem es die
+Augen auf seinen Scheren zeigt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_213">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seiner Schale bewahrt es Beeren
+auf. Diese fermentieren zu einem
+leckeren Saft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_214">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf der Suche nach Baumsaft durch-
+streift es die Wälder. Es ist stark
+genug, um Gegner wegzuschleudern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_215">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ernährt sich von Eiern, die es
+aus Nestern stiehlt. Beute greift
+es mit seinen scharfen Krallen an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_216">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lässt Honig in seine Pranken
+eindringen, so dass es immer
+welchen dabeihat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_217">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es durchstreift sein Revier und
+markiert Bäume, die Früchte
+oder Beeren tragen, mit Kratzern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_218">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht aus Magma.
+Bleibt es nicht ständig in Bewegung,
+kühlt es aus und verhärtet sich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_219">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Körpertemperatur beträgt
+etwa 10 000 Grad. Aus seiner Schale
+treten immer wieder Flammen aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_220">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt Pilze, die unter totem Gras
+wachsen. Auf der Suche nach
+Nahrung findet es heiße Quellen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_221">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein dichtes Fell verdeckt seine
+Augen. Es untersucht seine
+Umgebung mit seiner Nase.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_222">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Viele von ihnen leben in den
+sauberen Seen im Süden. In ver-
+schmutzten können sie nicht leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_223">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es spritzt Wasser mit Hochdruck
+aus seinem Maul und schießt damit
+auf fliegende Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_224">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in Gesteinsritzen und
+Löchern auf dem Meeresboden. Mit
+Saugnäpfen hält es Beute fest.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_225">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im eingerollten Schweif transpor-
+tiert es Futter, das es mit denen
+teilt, die sich verlaufen haben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_226">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn das Meer ruhig ist, kann man
+vielleicht einen Schwarm MANTAX
+sehen, die schnell vorbeischwimmen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_227">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wird komplett von einer eisen-
+harten Rüstung geschützt. Wenn es
+fliegt, erreicht es bis zu 300 km/h.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_228">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Durch unterschiedliche Schreie
+drückt es seine Gefühle aus. Diese
+PKMN jagen im Verbund nach Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_229">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In alten Zeiten glaubte man, das
+Heulen dieses PKMN sei der Ruf
+des Todes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_230">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in Höhlen auf dem Meeres-
+grund. Jedes Mal, wenn es sich
+bewegt, entsteht ein Strudel. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_231">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Trotz seiner geringen Größe ist es
+stark. Es kann einen Erwachsenen
+mühelos auf dem Rücken tragen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_232">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn es angreift, rollt es sich
+zusammen und auf den Gegner zu. Es
+kann Häuser zum Einsturz bringen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_233">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Interstellare Software wurde
+installiert, so dass dieses PKMN
+sich auch im All bewegen kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_234">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Starrt man auf sein Geweih, bekommt
+man das seltsame Gefühl, in dessen
+Mitte gezogen zu werden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_235">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Revier markiert es mit seinem
+pinselartigen Schweif. Es kennt
+mehr als 5 000 Markierungen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_236">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist bekannt für seine Kampfbe-
+gierde. Es erholt sich ständig von
+Verletzungen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_237">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kämpft, während es sich wie ein
+Kreisel dreht. Die Zentrifugalkraft
+erhöht die Kampfkraft um 10.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_238">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN berührt alles mit den
+Lippen. Diese merken sich, was es
+mag und nicht mag.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_239">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bewegt seine Arme und generiert
+damit Elektrizität. Diese kann es
+aber nicht speichern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_240">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Körpertemperatur liegt bei
+etwa 600 Grad. Ist es gesund,
+atmet es gelbe Flammen aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_241">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, dass Kinder, die MILTANKs
+Milch trinken, zu gesunden
+Erwachsenen heranwachsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_242">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses gutherzige PKMN pflegt
+kranke PKMN gesund. Es spürt die
+Traurigkeit anderer Lebewesen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_243">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN ist der personifizierte
+Blitz. Es kann aus den Wolken über
+seinem Rücken Blitze schleudern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_244">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, wenn es brüllt, bricht
+irgendwo in der Welt ein Vulkan aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_245">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wandert beständig in der Welt
+herum, um verunreinigtes Wasser zu
+reinigen. Es zieht mit dem Nordwind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_246">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN frisst das Erdreich.
+Hat es einen Berg verspeist,
+schläft es ein, um zu wachsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_247">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist hart wie Fels. Es
+lässt mit Hochdruck Gas ab, um wie
+eine Rakete nach oben zu schießen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_248">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Bei einem Tobsuchtsanfall zerstört
+es ganze Gebirge und legt Flüsse
+trocken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_249">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schläft in einem Tiefseegraben.
+Schwingt es seine Flügel, entsteht
+ein Sturm, der 40 Tage dauert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_250">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Federn besitzen 7 Farben.
+Man sagt, dass demjenigen, der es
+sieht, ewiges Glück beschieden ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_251">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann durch die Zeit reisen,
+aber es erscheint nur zu
+friedlichen Zeiten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_252">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Fußsohlen sind mit kleinen
+Stacheln bedeckt, so dass es an
+Wänden und Decken Halt findet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_253">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt im dichten Dschungel.
+Es springt von Ast zu Ast, wenn es
+sich einer Beute nähert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_254">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Blätter an seinen Armen können
+dicke Bäume fällen. Im Dschungel-
+kampf gibt es kein stärkeres PKMN.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_255">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Inneren lodert ein Feuer.
+Es schleudert 1 000 Grad heiße
+Feuerbälle.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_256">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann 10 Tritte pro Sekunde aus-
+teilen. Es gibt schrille Schreie von
+sich, um Gegner einzuschüchtern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_257">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aus seinen Handgelenken kommt
+Feuer, das seine Knöchel umhüllt.
+Schläge verbrennen den Gegner.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_258">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Flosse auf seinem Kopf prüft
+die Strömung des Wassers. Dieses
+PKMN kann Felsen heben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_259">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine kräftigen Beine geben ihm
+sicheren Halt. Es gräbt sich in
+Dreck ein, wenn es schlafen will.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_260">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann im Schwimmen ein großes
+Schiff ziehen. Seine Gegner schlägt
+es mit Schlägen seiner Arme zurück.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_261">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein beharrliches PKMN, das seine
+Beute jagt, bis diese erschöpft
+ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_262">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es jagt seine Beute im Rudel. Den
+Befehlen eines erfahrenen Trainers
+wird es stets folgen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_263">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es läuft im Zickzack. Es hat das
+Talent, Items im Gras, aber auch im
+Boden, zu finden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_264">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es stürzt sich mit 100 km/h auf
+Beute. Aber es kann nur geradeaus
+laufen und die Jagd misslingt oft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_265">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es isst am liebsten Blätter. Wird es
+von einem STARALILI angegriffen,
+verteidigt es sich mit Stacheln.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_266">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bindet sich mit Seidenfäden an
+Ästen fest und wartet so starr auf
+seine Entwicklung.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_267">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt ein aggressives Wesen.
+Es sticht seinen Rüssel in seine
+Beute und saugt sie aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_268">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Kokon ist es heiß. Seine
+Körperzellen produzieren die Hitze,
+damit es sich entwickeln kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_269">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nachtaktives PKMN, das vom Licht
+der Stadt angezogen wird und dort
+die Blätter der Bäume frisst.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_270">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es sieht aus wie eine Wasser-
+pflanze. Es dient den PKMN, die
+nicht schwimmen können, als Fähre.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_271">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat ein spitzbübisches Wesen.
+Sieht es einen Angler, zieht es an
+der Angelschnur, um ihn zu ärgern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_272">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Hört es fröhliche Musik, füllen sich
+seine Muskeln mit Energie. Es muss
+dann einfach tanzen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_273">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es sieht aus wie eine Eichel, die am
+Baum hängt. Es liebt es, andere
+PKMN zu erschrecken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_274">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Der Ton seiner Grasflöte
+beunruhigt die, die ihn hören.
+Es lebt tief in den Wäldern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_275">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine großen Fächer erzeugen Böen,
+die eine Geschwindigkeit von
+30 m/sek erreichen können.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_276">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist sehr mutig und stellt sich
+auch starken Gegnern. Es sucht
+ständig nach warmen Regionen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_277">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es fliegt auf der Suche nach Beute
+ständig umher. Findet es Beute,
+stürzt es sich im Sturzflug auf sie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_278">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es baut sein Nest auf steilen
+Klippen. Es nutzt die Aufwinde, um
+in größerer Höhe fliegen zu können.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_279">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es taucht seinen großen Schnabel
+ins Wasser und fängt so eine Menge
+Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_280">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit dem Horn kann es menschliche
+Gefühle wahrnehmen. Es erscheint
+fröhlichen Menschen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_281">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es nimmt die Gefühle seines Trainers
+deutlich wahr. Wenn es glücklich
+ist, tanzt es.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_282">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wird seinen Trainer mit dem Leben
+beschützen, wenn es ihm vertraut.
+Es kann in die Zukunft blicken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_283">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Scheinbar reitet es auf dem Wasser.
+Es lockt seine Beute mit einem
+süßen Duft an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_284">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Antenne besitzt ein Augen-
+muster. Seine vier Flügel erlauben
+es, in alle Richtungen zu fliegen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_285">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es setzt an seinem Kopf Giftsporen
+frei. Werden diese eingeatmet,
+verursachen sie Schmerzen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_286">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine kurzen Arme dehnen sich aus,
+wenn es zuschlägt. Seine Technik
+ähnelt der von Profi-Boxern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_287">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es verbringt fast den ganzen Tag
+mit Faulenzen und Schlafen. Selbst
+sein Anblick macht bereits müde.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_288">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Herz schlägt schneller als das
+anderer Lebewesen. Daher kann es
+nicht für einen Moment still sitzen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_289">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das faulste PKMN der Welt. Wenn es
+faulenzt, sammelt es in Wahrheit
+Energie, um zuzuschlagen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_290">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wächst unterirdisch heran und
+nimmt seine Umgebung mit Antennen
+wahr, da es nahezu blind ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_291">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bewegt sich so schnell, dass es
+manchmal unsichtbar zu sein
+scheint. Es liebt Baumsaft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_292">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein weggeworfener Käferpanzer, der
+zum Leben erwachte. Schaut man
+hinein, stiehlt es einem die Seele.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_293">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Normalerweise klingen seine Rufe
+wie Gemurmel. Hat es aber Angst,
+ist es so laut wie ein Flugzeug.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_294">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Schockwellen, die durch sein
+Rufen entstehen, können einen
+LKW umkippen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_295">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Heulen hört man in 10 km
+Entfernung. Es gibt alle Arten von
+Geräuschen von sich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_296">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es stärkt seinen Körper, indem es
+gegen Bäume rennt. In seiner Nähe
+finden sich viele umgekippte Bäume.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_297">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt das Kräftemessen mit
+großen PKMN. Mit seinem Armwurf
+kann es LKW durch die Luft werfen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_298">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN lebt am Wasser. An
+Land bewegt es sich schnell, indem
+es auf seinem großen Schweif hüpft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_299">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Nase ist ein Magnet. Daher
+sieht das PKMN immer nach Norden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_300">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es muss Dinge, die sich bewegen,
+einfach jagen. Es rennt oft im Kreis
+und jagt seinen eigenen Schweif.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_301">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN ist bei weiblichen
+Trainern aufgrund seines Fells
+beliebt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_302">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es versteckt sich im Dunkeln von
+Höhlen. Seine Augen sind
+Edelsteine.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_303">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf seinem Kopf befindet sich ein
+riesiger Kiefer, der aus Hörnern
+besteht. Er kann Eisen zermalmen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_304">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Normalerweise lebt es in dunklen
+Bergen. Ist es hungrig, frisst es
+auch Eisenbahnschienen und Autos.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_305">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ernährt sich von Eisenerz. Um
+sein Revier zu sichern, setzt es
+seinen harten Körper ein.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_306">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf der Suche nach Eisen, seiner
+Nahrung, gräbt es mit seinen Stahl-
+hörnern sogar Tunnel durch Felsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_307">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es isst gerade mal eine Beere am
+Tag. Durch Hunger wird sein Geist
+ruhiger und schärfer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_308">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit Yoga-Training hat es seinen
+6. Sinn geschärft. Seine
+Bewegungen sind sehr elegant.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_309">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Elektrizität, die es im Fell
+speichert, nutzt es, um seine
+Muskeln zu stimulieren.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_310">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aus seiner Mähne entlädt es Elekt-
+rizität. Es generiert eine Gewitter-
+wolke, aus der es Blitze entlädt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_311">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es feuert Freunde mit Pompons an,
+die aus Funken bestehen. Es holt
+sich Energie aus Telegrafenmasten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_312">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es feuert Freunde an. Sind diese im
+Begriff zu verlieren, gibt sein
+Körper immer mehr Funken ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_313">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kommuniziert mit anderen, indem
+es sein Hinterteil zum Leuchten
+bringt. Es liebt ILLUMISEs Duft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_314">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein süßer Duft leitet VOLBEAT an,
+Zeichen aus Licht an den
+Nachthimmel zu malen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_315">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ROSELIA, die mit klarem Wasser
+aufgezogen wurden, bekommen
+Blüten in leuchtenden Farben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_316">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht fast nur aus
+Magen. Seine starken Verdauungs-
+säfte zersetzen alles sehr schnell.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_317">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es verschluckt alles in einem
+Stück und sondert giftige Stoffe
+ab, mit denen es Gegner besprüht. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_318">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sie begegnen jedem Gegner, der in
+ihr Revier eindringt, im Schwarm.
+Ihre Zähne durchdringen alles.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_319">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Zähne durchdringen sogar
+Eisen. Es schwimmt mit 120 km/h und
+wird “Tyrann des Meeres” genannt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_320">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">An sonnigen Tagen trifft man diese
+Pokémon an Stränden, wo sie wie
+Bälle herumhüpfen. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_321">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das größte PKMN. Es kann mit nur
+einem Atemzug in Tiefen bis
+3 000 Meter tauchen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_322">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Rücken speichert es sehr
+heißes Magma. Regnet es, kühlt das
+Magma ab und es wird langsamer.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_323">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf seinem Rücken befinden sich
+Vulkane. Magma bildet sich in seinem
+Körper, die irgendwann ausbricht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_324">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Panzer verbrennt es
+Kohle und gewinnt daraus Energie.
+Bei Gefahr sondert es Ruß ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_325">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hüpft beständig umher, wobei es
+seinen Schweif als Feder verwendet.
+Nur so bleibt sein Herz aktiv.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_326">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit schwarzen Perlen verstärkt es
+seine Psycho-Kräfte. Mit einem
+Tanz kontrolliert es seine Gegner.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_327">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das Muster eines PANDIR ist wie
+ein Fingerabdruck. Sein Taumeln
+senkt die gegn. Zielsicherheit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_328">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es baut im Wüstensand eine
+Fallgrube, setzt sich in ihr auf den
+Boden und wartet auf Beute.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_329">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schlägt wild mit den Flügeln.
+So entstehen Ultraschallwellen,
+die Kopfschmerzen verursachen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_330">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit mächtigem Flügelschlag verur-
+sacht es einen Sandsturm. Es wird
+“Geist der Wüste” genannt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_331">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieser Wüstenbewohner speichert
+Wasser in seinem Körper. So kann er
+30 Tage ohne Wasser überleben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_332">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein nachtaktives PKMN, das Beute
+sucht, die durch die Tageshitze der
+Wüste bereits erschöpft ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_333">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Flügel sehen aus wie Baum-
+wolle. Legt es sie jemandem auf den
+Kopf, sehen sie wie ein Wollhut aus.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_334">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Flug sieht es aus wie eine
+watteweiche Wolke. Es singt mit
+einer Sopranstimme.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_335">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seit Generationen ist es mit
+VIPITIS verfeindet. Seine scharfen
+Klauen sind seine stärksten Waffen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_336">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seit Generationen ist es mit SENGO
+verfeindet. Es wetzt seinen
+scharfen Schweif an Felsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_337">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Da es in Vollmondnächten aktiv wird,
+sagt man ihm nach, mit den Mond-
+phasen in Verbindung zu stehen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_338">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eine neue PKMN-Spezies, von der
+man annimmt, sie käme von der
+Sonne. Sie strahlt Licht ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_339">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bedeckt seinen Körper mit einer
+schleimigen Substanz und kann
+sich so aus Umklammerungen winden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_340">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es verteidigt sein Revier, indem es
+Erschütterungen auslöst, die noch
+in 5 km Entfernung zu spüren sind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_341">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein robustes PKMN, das sich jeder
+Umgebung anpassen kann. Seine
+Zangen geben keine Beute frei.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_342">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieser Grobian ergreift andere PKMN
+mit seinen Scheren und wirft sie
+aus seinem Teich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_343">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bewegt sich, indem es sich auf
+seinem Fuß dreht. Ein seltenes
+PKMN, das in alten Ruinen lebte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_344">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Eine antike Lehmstatue, die durch
+ein mysteriöses Licht zum Leben
+erwacht ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_345">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vor 100 Millionen Jahren lebte
+dieses PKMN auf dem Meeresgrund.
+Die Wissenschaft belebte es neu.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_346">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in seichten Stellen warmer
+Meere. Bei Ebbe sucht es im Sand
+nach Beute. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_347">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein Vorfahre der PKMN, der aus
+einem Fossil neu belebt wurde. Es
+lebte im Meer und jagte mit Klauen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_348">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Nach seiner Entwicklung ging es an
+Land. Sein Körper ist von einer
+robusten Rüstung umgeben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_349">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine lumpige Gestalt ist berühmt.
+Es lebt mit anderen in Gruppen an
+bestimmten Orten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_350">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn sich jemand streitet, steigt
+es aus den Tiefen des Sees empor,
+um die Streitenden zu beruhigen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_351">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Gestalt ändert sich mit dem
+Wetter. Vor kurzem entdeckte man,
+dass seine Moleküle wie Wasser sind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_352">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann nach Belieben seine Farbe
+ändern. Nur das gezackte Muster
+auf seinem Bauch bleibt gleich.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_353">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt Rachegefühle. Diese PKMN
+hängen sich an Dachrinnen von Häu-
+sern, in denen Rachsüchtige leben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_354">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN war eine Puppe, die
+weggeworfen wurde. Es sucht nun
+das Kind, das dies getan hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_355">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Verbissen verfolgt es seine Beute
+überallhin. Doch sobald die Sonne
+aufgeht, ist die Jagd vorbei.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_356">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist hohl. Man sagt,
+dass diejenigen, die in den Körper
+blicken, hineingezogen werden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_357">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Da es ausschließlich seine Lieb-
+lingsfrucht frisst, begann diese,
+um seinen Hals herumzuwachsen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_358">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Um die Gegner fortzuwehen, setzt
+es die Luft mit Schreien in
+Bewegung.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_359">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es spürt drohende Katastrophen
+und erscheint nur dann, wenn es
+andere vor der Gefahr warnen will.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_360">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wird stärker, indem es andere
+ständig anrempelt. Es liebt
+Süßigkeiten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_361">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Land des Schnees sagt eine
+Legende, dass in ein Haus Wohl-
+stand einzieht, wenn es darin lebt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_362">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Um sich zu schützen, umgibt es
+seinen Körper mit einer Rüstung
+aus Eis.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_363">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es rollt über Eisschollen, um Land
+zu erreichen, da sein Körper zum
+Schwimmen nicht geeignet ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_364">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es balanciert Dinge auf seiner
+Nase. Dabei lernt es etwas über die
+Beschaffenheit und den Geruch.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_365">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seinen Stoßzähnen bricht es
+durch Eis. Eine Speckschicht
+schützt es vor Kälte und Angriffen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_366">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinem Leben erschafft es eine
+einzige Perle. Diese soll Psycho-
+Kräfte verstärken.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_367">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt tief im Meer. Sein Schweif
+ist wie ein kleiner Fisch geformt.
+Mit ihm lockt es Beute an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_368">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt auf dem Grund des Meeres.
+Im Frühling wirkt die Farbe seines
+Körpers viel kräftiger.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_369">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tiefseeforscher fanden dieses
+seltene PKMN, das sich in 100 Mio.
+Jahren nicht verändert hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_370">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in warmen Meeren. Man sagt,
+dass Verliebte, die es sehen, mit
+ewiger Liebe gesegnet sind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_371">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es träumt davon, eines Tages
+fliegen zu können und springt daher
+jeden Tag von hohen Klippen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_372">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Zellen seines Panzers fingen an,
+sich zu verändern. Er fällt ab,
+sobald sich das PKMN entwickelt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_373">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Zellstruktur änderte sich, es
+wuchsen ihm Flügel, da es immer
+davon träumte, fliegen zu können.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_374">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kommuniziert mit anderen durch
+magnetische Impulse. Im Schwarm
+bilden sie eine perfekte Einheit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_375">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das PKMN besteht aus zwei TANHEL.
+Es bekommt selbst dann keinen
+Kratzer, wenn ein Jet es streift.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_376">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mehrere METANG bilden dieses PKMN.
+Mit seinen 4 Gehirnen besitzt es die
+Intelligenz eines Supercomputers.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_377">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht aus Stein.
+Bricht im Kampf etwas heraus, wird
+es durch Stein wieder ersetzt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_378">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht aus Eis aus der
+Eiszeit. Es kontrolliert gefrorene
+Luft, die minus 200 Grad kalt ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_379">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Laufe der Jahrtausende, die es
+unterirdisch lebte, wurde sein
+Körper durch Druck u. Wärme hart.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_380">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper ist mit Daunen bedeckt,
+die das Licht so brechen, dass das
+PKMN unsichtbar wird.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_381">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein hochintelligentes PKMN. Wenn es
+im Flug seine Flügel nach hinten
+legt, ist es schneller als ein Jet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_382">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es habe die Meere ver-
+größert, indem es es regnen ließ.
+Es schlief in einem Meeresgraben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_383">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat seit dem Kampf gegen
+KYOGRE in Magma unter dem
+Erdboden geschlafen. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_384">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in der Ozonschicht hoch
+über den Wolken und kann vom
+Boden aus nicht gesehen werden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_385">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Man sagt, es kann alle tausend
+Jahre für eine Woche jeden Wunsch
+erfüllen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_386">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein außerirdischer Virus kam mit
+einem Meteor auf die Erde. Seine
+DNA mutierte. So entstand DEOXYS.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_387">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besteht aus Erdreich. Trinkt es
+Wasser, verhärtet sich der Panzer
+auf seinem Rücken. Es lebt an Seen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_388">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in der Nähe von Wasser in
+Wäldern. Tagsüber verlässt es
+diese, um ein Sonnenbad zu nehmen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_389">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Kleine PKMN fangen manchmal an,
+auf dem bewegungslosen Rücken
+Nester zu bauen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_390">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es klettert behände steile Felsen
+hinauf, um auf Bergen zu leben. Sein
+Feuer ist aus, wenn es schläft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_391">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Um Angreifer abzuschrecken,
+verstärkt es das Feuer auf seinem
+Schweif, wodurch es größer wirkt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_392">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kämpft auf besondere Art, indem
+es alle Gliedmaßen einsetzt. Sein
+Feuer erlischt nie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_393">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ist sehr stolz und nimmt daher
+kein Futter von anderen an. Seine
+dicken Daunen schützen vor Kälte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_394">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt allein, entfernt von
+anderen. Jedes von ihnen denkt, es
+sei das bedeutendste unter ihnen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_395">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die 3 Hörner, die aus dem Schnabel
+wachsen, stehen für Kraft. Ein
+Anführer hat die größten Hörner.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_396">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ihr Schwarm ist stets groß. Obwohl
+es kleine PKMN sind, schwingen sie
+ihre Flügel mit enormer Kraft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_397">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Auf der Suche nach Käfer-PKMN
+fliegt es über Wiesen und Wälder. Es
+bleibt in einem großen Schwarm.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_398">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat ein wildes Wesen. Mutig
+fordert es immer wieder Gegner
+heraus, die viel größer sind.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_399">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat Nerven wie Drahtseile,
+nichts kann es erschüttern. Es ist
+agiler und aktiver, als es scheint.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_400">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es baut sein Nest, indem es in
+Flüssen Dämme aus Schlamm und
+Ästen baut. Ein fleißiger Arbeiter.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_401">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schüttelt seinen Kopf, so dass
+die beiden Antennen sich berühren
+und wie ein Xylophon klingen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_402">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn es ruft, verschränkt es seine
+messerartigen Arme vor der Brust.
+Es komponiert aus dem Stegreif.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_403">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In Gefahr blendet es seinen Gegner
+mit seinem Fell und flieht, während
+der Gegner einen Moment blind ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_404">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Krallen geben Elektrizität ab,
+die stark genug ist, jemanden
+bewusstlos zu machen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_405">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit seinen Augen kann es durch
+alles hindurch sehen. So findet es
+auch Beute, die sich versteckt hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_406">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Im Winter schließt es die Knospe.
+Im Frühjahr öffnet es die Knospe
+und gibt Pollen ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_407">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Mit einem süßen Duft lockt es Beute
+an, die es dann mit den dornigen
+Ranken in seinen Armen schlägt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_408">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vor über 100 Millionen Jahren lebte
+es in den Dschungeln. Sein Schädel
+ist hart wie Eisen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_409">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein kräftiger Kopfstoß hat genug
+Kraft, um selbst die stabilsten
+Dinge zu zerschmettern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_410">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Vor über 100 Millionen Jahren lebte
+es in den Dschungeln. Seine
+Gesichtshaut ist extrem hart.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_411">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Jeder Frontalangriff wird abge-
+schmettert. Dieses friedliche PKMN
+ernährt sich von Gras und Beeren.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_412">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Um sich vor dem eisigen Winterwind
+zu schützen, legt es sich unter
+einen Umhang aus Ästen und Laub.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_413">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Als sich BURMY entwickelte,
+wurde sein Umhang Teil des Körpers.
+Es legt den Umhang niemals ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_414">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt Honig und stiehlt den
+Honig, der von WADRIBIE
+gesammelt wurde.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_415">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein PKMN, geformt aus 3 einzelnen
+PKMN. Fleißig bringt es Blütenhonig
+zu HONWEISEL.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_416">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ihr Bauch ist die Wabe für die
+Larven. Sie füttert ihre Larven mit
+dem Honig, den WADRIBIE sammelt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_417">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es bildet ein Fellknäuel, der vor
+statischer Energie knistert. Es
+speichert die Energie in Bäumen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_418">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat eine Art Rettungsring um
+den Hals. Wenn es schwimmt, gerät
+sein Kopf niemals unter Wasser.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_419">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es treibt mithilfe einer Art
+Rettungsring auf dem Wasser und
+hilft dem, der zu ertrinken droht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_420">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Das kleine Bällchen enthält alles,
+was es für die Entwicklung
+braucht. Es ist süß und lecker.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_421">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In Zeiten mit viel Sonnenschein
+blüht es auf. Es holt nach, was ihm
+als Knospe verwehrt blieb.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_422">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Aussehen ist von Region zu
+Region unterschiedlich. In Sinnoh
+finden sich zwei Arten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_423">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat einen biegsamen Körper ohne
+einen Knochen. Wird ein Körperteil
+abgetrennt, wächst er nach.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_424">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wenn es hungrig ist, knackt es
+Nüsse mit seinen beiden Schweifen.
+Nur selten verwendet es die Arme.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_425">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein PKMN, entstanden aus den
+Gefühlen von Menschen und PKMN.
+Es mag feuchte Jahreszeiten.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_426">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Tagsüber treibt es faul vor sich
+hin, nachts fliegt es mit anderen
+umher. Niemand weiß wohin.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_427">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es entrollt seine Ohren sehr
+schnell, um seine Gegner
+schmerzhaft zu schlagen. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_428">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein sehr vorsichtiges PKMN. Nimmt
+es Gefahr wahr, schützt es seinen
+Körper mit seinen weichen Ohren.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_429">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Rufe klingen wie Beschwö-
+rungen. Die, die sie hören, kriegen
+Kopfschmerzen und Halluzinationen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_430">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein nachtaktives PKMN, das sich in
+Schwärmen mit KRAMURX durch die
+Nacht bewegt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_431">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es schlägt mit Krallen zu oder
+schnurrt, je nachdem, ob es gerade
+wütend oder zutraulich ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_432">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN ist ein Grobian, der
+sich in die Nester anderer PKMN ein-
+nistet und sie sich damit aneignet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_433">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ruft, indem es eine Kugel in
+seiner Kehle bewegt. Es bewegt sich
+mit eiligen Hopsern fort.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_434">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Um sich zu schützen, versprüht es
+eine Substanz aus seinem
+Hinterleib, die 24 Stunden stinkt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_435">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Über seine Schweifspitze versprüht
+es eine übelriechende Substanz. Die
+Reichweite liegt bei über 50 Metern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_436">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper sieht aus, als seien
+Teile davon in alten Gräbern
+gefunden worden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_437">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Dieses PKMN fand man bei Grabungen
+auf einer Baustelle, an deren Ort
+es 2 000 Jahre geschlafen hatte.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_438">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es sieht aus, als würde es immer
+weinen. Dabei reguliert es nur
+seinen Wasserhaushalt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_439">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es ahmt seinen Gegner nach. Der
+kann den Blick danach nicht von
+ihm abwenden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_440">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es liebt runde, weiße Dinge. Es
+trägt einen eiförmigen Stein bei
+sich, und imitiert damit CHANEIRA.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_441">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann die menschliche Sprache
+lernen. Versammeln sie sich,
+bringen sie sich alle dasselbe bei.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_442">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein PKMN, das aus 108 Geistern
+besteht. Es ist an einen Spalt in
+einem mysteriösen Stein gebunden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_443">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es nistet in kleinen Löchern in
+Höhlenwänden. Es springt Beute, die
+sich zu nah heranwagt, an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_444">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es gibt einen uralten Glauben, dass
+Medizin, die aus seinen Schuppen
+gewonnen wird, alles heilen kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_445">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Spannt es seinen Körper und seine
+Flügel, sieht es aus wie ein Jet.
+Es fliegt mit Schallgeschwindigkeit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_446">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Einmal am Tag verschlingt es eine
+Nahrungsmenge, die seinem Gewicht
+entspricht. Und das ohne zu kauen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_447">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Aura, die dieses PKMN umgibt,
+verstärkt sich, wenn es zeigen will,
+dass es ängstlich oder traurig ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_448">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt die Fähigkeit, die Aura
+aller Dinge zu spüren. Es versteht
+die menschliche Sprache.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_449">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in ausgetrockneten
+Gebieten. Statt zu schwitzen,
+sondert sein Körper Sand ab. </language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_450">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es wirbelt im Körper gespeicherten
+Sand durch Öffnungen und generiert
+so einen Sandwirbelsturm.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_451">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es greift seine Beute mit den
+Krallen an seinem Schweif und ver-
+giftet sie. Dann wartet es ab...</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_452">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinen Armen steckt so viel
+Kraft, dass es mit seinen giftigen
+Krallen Autos zerquetschen kann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_453">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">In seinen Backen sammelt sich Gift.
+Es versucht, Beute zu überraschen
+und mit Giftfingern zu schnappen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_454">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Gelenke an seinen Klauen geben
+ein so starkes Gift ab, dass selbst
+ein kleiner Kratzer fatal ist.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_455">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein süßlich riechender Speichel
+zieht Beute an, die es frisst. Es
+braucht einen Tag, sie zu fressen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_456">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Wurden die Flossen lange dem
+Sonnenlicht ausgesetzt, leuchten
+sie in der Dunkelheit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_457">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt tief auf dem Meeresboden.
+Das blinkende Muster auf seinen
+vier Rückenflossen zieht Beute an.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_458">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein freundliches PKMN, das mit
+seinen zwei Antennen die
+Strömungen des Meeres erkennt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_459">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt im Schnee der Berge. Es
+hatte bisher kaum Kontakt zu Men-
+schen und ist daher sehr neugierig.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_460">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es löst in den Bergen, wo ewiger
+Schnee liegt, Blizzards aus. Es ist
+ein scheußlicher Schneemann.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_461">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in kalten Gebieten in
+Gruppen von 4 oder 5 PKMN, die bei
+der Jagd großes Geschick zeigen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_462">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es entwickelte sich, als es einem
+besonderen Magnetfeld ausgesetzt
+wurde.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_463">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es umklammert Dinge mit seiner
+dehnbaren Zunge. Kommt man ihm zu
+nahe, wird man eingespeichelt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_464">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es legt Steine in die Löcher seiner
+Hände und wirft sie mit Muskelkraft.
+Sogar GEOROK werden verwendet.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_465">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es umwickelt Beute, indem es seine
+Arme, die aus Ranken bestehen,
+verlängert.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_466">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es berührt den Gegner mit seinen
+beiden Schweifspitzen und entlädt
+dann über 20 000 Volt.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_467">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Aus den Enden seiner Arme schießen
+Feuerbälle mit 2 000 Grad.
+Es lebt in Vulkankratern.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_468">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es zeigt sich niemals dort, wo
+es Streitigkeiten gibt. In letzter
+Zeit wurde es nur selten gesehen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_469">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Durch die Bewegung seiner Flügel
+entstehen Schockwellen, die dem
+Gegn. innere Verletzungen zufügen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_470">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Genau wie ein Pflanze führt es die
+Photosynthese aus. Deshalb ist es
+ständig von reiner Luft umgeben.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_471">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Will es sich schützen, kann es sein
+Fell gefrieren, so dass jedes Haar
+wie eine Nadel absteht.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_472">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hängt kopfüber von einem Ast
+und beobachtet seine Beute. Bei
+Gelegenheit stürzt es sich auf sie.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_473">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die beeindruckenden Stoßzähne
+dieser PKMN sind aus Eis. Nach der
+Eiszeit nahm ihre Population ab.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_474">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Zusätzliche Software wurde instal-
+liert, um das PKMN zu verbessern.
+Seitdem benimmt es sich seltsam.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_475">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kämpft, indem es die Schwerter
+an seinen Ellbogen verlängert. Es
+ist ein Meister des Kampfes.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_476">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es gibt starken Magnetismus ab. Es
+steuert drei kleine Einheiten, die
+sich Mininasen nennen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_477">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Antenne auf seinem Kopf
+empfängt Radiowellen aus einer
+anderen Dimension.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_478">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein eisiger Atem mit minus 50 Grad
+friert Gegner ein. Was aussieht wie
+sein Körper, ist tatsächlich hohl.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_479">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Sein Körper besteht aus Plasma. Mit
+ihm kann es in elektrische Geräte
+eindringen und für Chaos sorgen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_480">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">“Das wissende Wesen”.
+Es soll die Erinnerungen derer
+löschen, die ihm in die Augen sehen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_481">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">“Das fühlende Wesen”.
+Es lehrt die Menschen die Ideale
+von Trauer, Schmerz und Freude.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_482">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">“Das starke Wesen”.
+Es schläft auf dem Grund eines Sees
+und hält so die Welt in Balance.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_483">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es besitzt die Macht, die Zeit zu
+kontrollieren. In den Mythen von
+Sinnoh erscheint es als Gottheit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_484">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es hat die Macht, den Raum zu
+krümmen. In den Mythen von
+Sinnoh erscheint es als Gottheit.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_485">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in vulkanischen Höhlen.
+Mit seinen kreuzförmigen Klauen
+kann es sogar an der Decke laufen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_486">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es gibt eine Legende, wonach
+dieses PKMN die Kontinente mit
+einem Seil gezogen hat.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_487">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Ein PKMN, von dem man sagt, es lebt
+in der Spiegelwelt unserer Welt.
+Es erscheint auf alten Friedhöfen.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_488">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Seine Flügel geben schimmernde
+Partikel ab, wie einen Schleier. Man
+sagt, es steht für die Mondsichel.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_489">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt in warmen Meeren. Geht
+es auf Nahrungssuche, füllt es den
+Beutel auf seinem Kopf mit Luft.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_490">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Geboren auf dem Meeresboden,
+legt es große Entfernungen zurück,
+um dorthin zurückzukehren.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_491">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es kann andere in Schlaf ver-
+setzen und ihnen Träume geben.
+Es ist nur bei Neumond aktiv.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_492">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Es lebt auf Blumenwiesen und rollt
+sich ein, um wie eine Blume auszu-
+sehen u. nicht entdeckt zu werden.</language>
+	</row>
+
+	<row id="ZKNWORLDTEXT_493">
+		<comment>ドイツ</comment>
+		<language name="日本語" font=" 1:font_system" width="216">Die Mythologie nennt dieses PKMN
+als Former des Universums, wobei es
+seine tausend Arme eingesetzt hat.</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>

@@ -1,0 +1,133 @@
+//====================================================================
+//								d05r0119
+//====================================================================
+
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_d05r0119.h"
+	//.include	"../eventdata/zone_d05r0119evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_d05r0119_poke
+_EVENT_DATA		ev_d05r0119_flag_change
+_EVENT_DATA_END
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL 							*/
+/*
+ * 注意！(06.02.09現在)
+ * EV_SCRIPT_WORKを確保していないので、
+ * SCWK_ANSWERなどのワークは使用することが出来ない！
+ * LOCALWORK0などを使用するようにする！
+ *
+ * 共通スクリプトについては現状使用不可！
+ * 対応予定だが、ゾーンをまたいだ時に処理落ちするかも？
+ * あまりつかわないかも？
+ */
+/********************************************************************/
+ev_d05r0119_flag_change:
+	/*てんかいのふえのPOSを使えるようにするかどうかの設定(d05r0114,18,19)*/
+	_CALL			sub_d05r0119_flag_change_tenkainofue
+	_END
+
+
+//--------------------------------------------------------------------
+/*てんかいのふえのPOSを使えるようにするかどうかの設定(d05r0114,18,19)*/
+//--------------------------------------------------------------------
+sub_d05r0119_flag_change_tenkainofue:
+	/*てんかいのふえが使える条件*/
+	/*ゲームクリア？*/
+	_SYS_FLAG_GAME_CLEAR_GET	LOCALWORK0
+	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0119_flag_change_tenkainofue_end
+
+	/* 全国図鑑入手後？*/
+	_ZENKOKU_ZUKAN_FLAG			FLAG_MODE_GET, LOCALWORK0
+	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0119_flag_change_tenkainofue_end
+
+	/* てんかいのふえをもっている？*/
+	_ITEM_CHK					ITEM_TENKAINOHUE,1, LOCALWORK0
+	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0119_flag_change_tenkainofue_end
+
+	/* 配布用マジックナンバー正常？*/
+	_IS_HAIHU_EVENT_ENABLE		HAIHUEVENT_ID_D05, LOCALWORK0
+	_IFVAL_JUMP					LOCALWORK0,EQ,0, sub_d05r0119_flag_change_tenkainofue_end
+
+	/* アウス（アルセウス）を捕まえていない？*/
+	_IF_FLAGON_JUMP				FE_D05R0116_LEGEND_CLEAR, sub_d05r0119_flag_change_tenkainofue_end
+
+	_LDVAL						WK_SCENE_D05R0116, 1
+	_JUMP						sub_d05r0119_flag_change_tenkainofue_end
+	_END
+
+sub_d05r0119_flag_change_tenkainofue_end:
+	_RET
+
+
+/********************************************************************/
+/*							パルキア								*/
+/********************************************************************/
+ev_d05r0119_poke:
+	_TALK_START
+
+	/*ゲームクリアするまで再戦不可*/
+	_IFVAL_JUMP		WK_SCENE_D05R0119,GE,1,ev_d05r0119_poke_end
+
+	/*捕獲していたら再戦不可*/
+	_IF_FLAGON_JUMP	FE_D05R0119_P_GET,ev_d05r0119_poke_end
+
+	_TALK_KEYWAIT	msg_d05r0119_palkia_01
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_d05r0119_poke_01
+
+	_VOICE_PLAY		MONSNO_EA, 0
+	_TALK_KEYWAIT	msg_d05r0119_palkia_02
+	_VOICE_WAIT
+	_TALK_CLOSE
+
+	_SP_WILD_BTL_SET	MONSNO_EA,70
+	_LOSE_CHECK		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_d05r0119_ea_lose
+
+	/*ゲームクリアするまで再戦不可*/
+	_LDVAL			WK_SCENE_D05R0119,1
+
+	/*ゲットしない限り再戦可能*/
+	_HAIFU_POKE_RETRY_CHECK	SCWK_ANSWER
+	_IFVAL_CALL		SCWK_ANSWER,EQ,0,ev_d05r0119_ea_get
+
+	_TALK_END
+	_END
+
+/*全滅した*/
+ev_d05r0119_ea_lose:
+	_NORMAL_LOSE
+	_TALK_END
+	_END
+
+/*ゲットした*/
+ev_d05r0119_ea_get:
+	_FLAG_SET		FE_D05R0119_P_GET
+	_RET
+
+/*ゲームクリアするまで再戦不可*/
+ev_d05r0119_poke_end:
+	_TALK_KEYWAIT	msg_d05r0119_break2_01
+	_LAST_KEYWAIT
+	_JUMP			no_d05r0119_poke_01
+	_END
+
+/*「いいえ」*/
+no_d05r0119_poke_01:
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+

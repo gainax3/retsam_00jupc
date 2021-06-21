@@ -1,0 +1,185 @@
+//====================================================================
+//						c05gym0101.gmm
+//					シティ０５・gym0101
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c05gym0101.h"
+	.include	"../eventdata/zone_c05gym0101evc.h"
+
+//ローカルワークの使用状況
+//※flag_changeのタイミングでローカルワーク1（LOCALWORK1）を使用します
+//※ゴーストジム内にあるリフトに対して、ローカルワーク0（LOCALWORK0）を使用します
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA	ev_c05gym0101_advice
+_EVENT_DATA	ev_c05gym0101_statue
+_EVENT_DATA	ev_c05gym0101_guide
+_EVENT_DATA_END						//終了
+
+//_EVENT_DATA ev_c05gym0101_flag_change
+
+//_EVENT_DATA pos_c05gym0101_lift		//PL 未使用
+//_EVENT_DATA ev_c05gym0101_question	//PL 未使用
+
+/********************************************************************/
+/*						フラグチェンジ								*/
+//			マップ遷移タイミングで一度のみ呼ばれる
+/********************************************************************/
+/*
+ev_c05gym0101_flag_change:
+	_LDVAL	LOCALWORK0,0		//ワーク初期化
+	_INIT_GHOST_GYM
+	_END
+*/
+
+/********************************************************************/
+/*							posイベント								*/
+/********************************************************************/
+/*	//DP
+pos_c05gym0101_lift:
+	_MOVE_GHOST_GYM_LIFT			//リフト移動
+	_END
+*/
+
+/********************************************************************/
+/*							問題表示								*/
+/********************************************************************/
+/*	//DP
+ev_c05gym0101_question:				//問題
+	_TALK_START
+	_TALKMSG		msg_c05gym0101_sign1_01
+	//音色を変えた方がいいかも？
+	//ジムのBGMに近い旋律があるかも？
+	//_SE_PLAY		SEQ_SE_DP_MAZYO2
+	_SE_PLAY		SEQ_SE_DP_MAZYO4
+
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+*/
+
+/********************************************************************/
+/*							アドバイス								*/
+/********************************************************************/
+ev_c05gym0101_advice:
+	_TALK_OBJ_START
+
+	//バッチ取得済み
+	_SYS_FLAG_BADGE_GET	BADGE_ID_C05,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,ev_c05gym0101_advice_02
+
+	//クリア前
+	_TALKMSG		msg_c05gym0101_sunglasses_03
+	_YES_NO_WIN		SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,yes_c05gym0101_advice_01
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,1,no_c05gym0101_advice_01
+	_END
+
+/*「はい」*/
+yes_c05gym0101_advice_01:
+	_TALKMSG		msg_c05gym0101_sunglasses_04
+	_JUMP			ev_c05gym0101_advice_end
+	_END
+
+/*「いいえ」*/
+no_c05gym0101_advice_01:
+	_TALKMSG		msg_c05gym0101_sunglasses_05
+	_JUMP			ev_c05gym0101_advice_end
+	_END
+
+/*共通終了*/
+ev_c05gym0101_advice_end:
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*クリア後*/
+ev_c05gym0101_advice_02:
+	_PLAYER_NAME	0
+	_TALKMSG		msg_c05gym0101_sunglasses_02
+	_JUMP			ev_c05gym0101_advice_end
+	_END
+
+
+/********************************************************************/
+/*							看板									*/
+/********************************************************************/
+ev_c05gym0101_statue:
+	_TALK_START
+
+	//バッチ取得済み
+	_SYS_FLAG_BADGE_GET	BADGE_ID_C05,SCWK_ANSWER
+	_IFVAL_JUMP	SCWK_ANSWER,EQ,1,ev_c05gym0101_statue_02
+
+	//看板　クリア前
+	_RIVAL_NAME		0
+	_RIVAL_NAME		1
+	_TALKMSG	msg_c05gym0101_statue_01
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+//看板　クリア後
+ev_c05gym0101_statue_02:
+	_RIVAL_NAME		0
+	_PLAYER_NAME	1
+	_RIVAL_NAME		2
+	_TALKMSG	msg_c05gym0101_statue_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_END
+	_END
+
+
+/********************************************************************/
+/*						ダンペイ初回説明							*/
+/********************************************************************/
+ev_c05gym0101_guide:
+	_EVENT_START
+
+	/*近づいてくる*/
+	_OBJ_ANIME		C05GYM0101_ADVICE,anm_c05gym0101_advice_01
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_c05gym0101_sunglasses_01
+	_TALK_CLOSE
+
+	/*元の位置に戻る*/
+	_OBJ_ANIME		C05GYM0101_ADVICE,anm_c05gym0101_advice_10
+	_OBJ_ANIME_WAIT
+
+	_LDVAL			WK_SCENE_C05GYM0101,1
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//ダンペイ	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05gym0101_advice_01
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,1
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//ダンペイ	元の位置に戻る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c05gym0101_advice_10
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+

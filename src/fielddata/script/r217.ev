@@ -1,0 +1,171 @@
+//====================================================================
+//						r217.gmm
+//					フィールド・ロード217
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_r217.h"
+	.include	"../eventdata/zone_r217evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_r217_stone
+_EVENT_DATA		ev_r217_sign1
+_EVENT_DATA		ev_r217_girl4
+_EVENT_DATA		pos_r217_leader
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*							凍結した岩								*/
+/********************************************************************/
+ev_r217_stone:
+	_EASY_MSG		msg_r217_stone_01
+	_END
+
+/********************************************************************/
+/*							道路標識								*/
+/********************************************************************/
+ev_r217_sign1:
+	_EASY_BOARD_MSG	msg_r217_sign1_01,BOARD_TYPE_ROAD,0
+	_END
+
+/********************************************************************/
+/*							厚着少女								*/
+/********************************************************************/
+ev_r217_girl4:
+	_EASY_OBJ_MSG	msg_r217_girl4_01
+	_END
+
+/********************************************************************/
+/*							スモモ									*/
+/********************************************************************/
+#define POS_R217_LEADER_X1	(302)
+#define POS_R217_LEADER_X2	(303)
+
+pos_r217_leader:
+	_EVENT_START
+
+	/*画面下から登場*/
+	_FLAG_RESET		FV_R217_LEADER
+	_OBJ_ADD		R217_LEADER
+
+	/*スモモ近づいてくる*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R217_LEADER_X1,pos_r217_leader_x01
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R217_LEADER_X2,pos_r217_leader_x02
+
+	_PLAYER_NAME	0
+	_TALK_KEYWAIT	msg_r217_leader_01
+	_TALK_CLOSE
+
+	/*主人公気づく*/
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r217_player_01
+	_OBJ_ANIME_WAIT
+
+	/*さらに近づいてくる*/
+	_OBJ_ANIME		R217_LEADER,anm_r217_leader_10
+	_OBJ_ANIME_WAIT
+
+	_TALK_KEYWAIT	msg_r217_leader_02
+	_TALK_CLOSE
+
+	/*去っていく*/
+	_PLAYER_POS_GET	SCWK_TEMP0,SCWK_TEMP1
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R217_LEADER_X1,pos_r217_leader_x11
+	_IFVAL_CALL		SCWK_TEMP0,EQ,POS_R217_LEADER_X2,pos_r217_leader_x12
+	_OBJ_DEL		R217_LEADER
+
+	_LDVAL			WK_SCENE_R217,1
+	_FLAG_SET		FV_C07GYM0101_LEADER		/*トバリジムからいなくなる*/
+	_EVENT_END
+	_END
+
+/*近づいてくる*/
+pos_r217_leader_x01:
+	_OBJ_ANIME		R217_LEADER,anm_r217_leader_01
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_r217_leader_x02:
+	_OBJ_ANIME		R217_LEADER,anm_r217_leader_02
+	_OBJ_ANIME_WAIT
+	_RET
+
+/*去っていく*/
+pos_r217_leader_x11:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r217_player_11
+	_OBJ_ANIME		R217_LEADER,anm_r217_leader_11
+	_OBJ_ANIME_WAIT
+	_RET
+
+pos_r217_leader_x12:
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_r217_player_11
+	_OBJ_ANIME		R217_LEADER,anm_r217_leader_12
+	_OBJ_ANIME_WAIT
+	_RET
+
+//--------------------------------------------------------------------
+//主人公	気づく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r217_player_01
+	_ANIME_DATA	AC_STAY_WALK_D_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//主人公	見送る
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r217_player_11
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_STAY_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//スモモ	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r217_leader_01
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	AC_WALK_L_8F,3
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_r217_leader_02
+	_ANIME_DATA	AC_WALK_U_8F,4
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//スモモ	さらに近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r217_leader_10
+	_ANIME_DATA	AC_WALK_U_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//スモモ	去っていく
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_r217_leader_11
+	_ANIME_DATA	AC_WALK_R_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_WALK_R_8F,2
+	_ANIME_DATA	AC_WALK_U_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+_ANIME_LABEL anm_r217_leader_12
+	_ANIME_DATA	AC_WALK_L_8F,1
+	_ANIME_DATA	AC_WALK_U_8F,3
+	_ANIME_DATA	AC_WALK_R_8F,3
+	_ANIME_DATA	AC_WALK_U_8F,9
+	_ANIME_DATA	ACMD_END,0
+
+

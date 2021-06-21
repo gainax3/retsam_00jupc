@@ -1,0 +1,197 @@
+//====================================================================
+//						c04r0201.gmm
+//					シティ０４・r0201
+//====================================================================
+	.text
+
+	.include	"scr_seq_def.h"
+	.include	"../../../include/msgdata/msg_c04r0201.h"
+	.include	"../eventdata/zone_c04r0201evc.h"
+
+//--------------------------------------------------------------------
+//					     スクリプト本体
+//--------------------------------------------------------------------
+
+//--------------------------------------------------------------------
+//					     スクリプトテーブル
+//--------------------------------------------------------------------
+_EVENT_DATA		ev_c04r0201_gingam_a
+_EVENT_DATA		ev_c04r0201_gingam_b
+_EVENT_DATA		ev_c04r0201_board01
+_EVENT_DATA		ev_c04r0201_police
+_EVENT_DATA		ev_c04r0201_police_auto
+_EVENT_DATA		ev_c04r0201_door
+_EVENT_DATA		ev_c04r0201_flag_change
+_EVENT_DATA_END						//終了
+
+
+/********************************************************************/
+/*						FLAG_CHANGE_LABEL							*/
+/********************************************************************/
+ev_c04r0201_flag_change:
+	_END
+
+
+/********************************************************************/
+/*							ギンガ団								*/
+/********************************************************************/
+ev_c04r0201_gingam_a:
+	_EASY_OBJ_MSG	msg_c04r0201_gingam_a_01
+	_END
+
+
+/********************************************************************/
+/*							ギンガ団								*/
+/********************************************************************/
+ev_c04r0201_gingam_b:
+	_EASY_OBJ_MSG	msg_c04r0201_gingam_b_01
+	_END
+
+/********************************************************************/
+/*							張り紙									*/
+/********************************************************************/
+ev_c04r0201_board01:
+	_EASY_MSG	msg_c04r0201_board01
+	_END
+
+
+/********************************************************************/
+/*							国際警察								*/
+/********************************************************************/
+ev_c04r0201_police:
+	_TALK_OBJ_START
+	_TALKMSG		msg_c04r0201_detective_03
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+
+/********************************************************************/
+/*							国際警察(強制)							*/
+/********************************************************************/
+ev_c04r0201_police_auto:
+	_EVENT_START
+
+	/*近づいてくる*/
+	_OBJ_ANIME		C04R0201_POLICE_GINGA,anm_c04r0201_detective_10
+	_OBJ_ANIME		FLDOBJ_ID_PLAYER,anm_c04r0201_player_100
+	_OBJ_ANIME_WAIT
+
+	_TALKMSG		msg_c04r0201_detective_01
+	_TALK_CLOSE
+
+	/*変身*/
+	_OBJ_ANIME		C04R0201_POLICE_GINGA,anm_c04r0201_detective_11
+	_OBJ_ANIME_WAIT
+
+	_FLAG_RESET		FV_C04R0201_POLICE
+	_SXY_POS_CHANGE	C04R0201_POLICE,12,15
+	_SXY_MV_CHANGE	C04R0201_POLICE,MV_LEFT
+	_SXY_DIR_CHANGE	C04R0201_POLICE,DIR_LEFT
+	_OBJ_ADD		C04R0201_POLICE
+	_OBJ_DEL		C04R0201_POLICE_GINGA
+
+	_FLAG_SET		FE_C04R0201_POLICE
+	_LDVAL			WK_SCENE_C04R0201,1
+
+	_TIME_WAIT		30,SCWK_ANSWER
+
+	_TALKMSG		msg_c04r0201_detective_02
+
+	/*変身*/
+	_OBJ_ANIME		C04R0201_POLICE,anm_c04r0201_detective_11
+	_OBJ_ANIME_WAIT
+
+	_FLAG_RESET		FV_C04R0201_POLICE_GINGA
+	_SXY_POS_CHANGE	C04R0201_POLICE_GINGA,12,15
+	_SXY_MV_CHANGE	C04R0201_POLICE_GINGA,MV_LEFT
+	_SXY_DIR_CHANGE	C04R0201_POLICE_GINGA,DIR_LEFT
+	_OBJ_ADD		C04R0201_POLICE_GINGA
+	_OBJ_DEL		C04R0201_POLICE
+
+	//_LAST_KEYWAIT
+	_TALK_CLOSE
+	_EVENT_END
+	_END
+
+//--------------------------------------------------------------------
+//主人公
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0201_player_100
+	_ANIME_DATA	AC_WAIT_8F,9
+	_ANIME_DATA	AC_STAY_WALK_R_8F,1
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	近づいてくる
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0201_detective_10
+	_ANIME_DATA	AC_STAY_WALK_L_4F,1
+	_ANIME_DATA	AC_MARK_GYOE,1
+	_ANIME_DATA	AC_WAIT_8F,2
+	_ANIME_DATA	AC_WALK_L_8F,2
+	_ANIME_DATA	ACMD_END,0
+
+//--------------------------------------------------------------------
+//国際警察	変身
+//--------------------------------------------------------------------
+_ANIME_LABEL anm_c04r0201_detective_11
+	_ANIME_DATA	AC_DIR_D,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	AC_DIR_R,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_DIR_U,1
+	_ANIME_DATA	AC_WAIT_4F,1
+	_ANIME_DATA	AC_DIR_L,1
+	_ANIME_DATA	AC_WAIT_2F,1
+	_ANIME_DATA	ACMD_END,0
+
+
+/********************************************************************/
+/*						ロトムへのドア								*/
+/********************************************************************/
+ev_c04r0201_door:
+#if 1
+	/*ひみつのカギ持ってなかったら、何も反応なし*/
+	_ITEM_CHK		ITEM_HIMITUNOKAGI,1,SCWK_ANSWER
+	_IFVAL_JUMP		SCWK_ANSWER,EQ,0,ev_c04r0201_door_end
+
+	//配布イベント有効？
+	_IS_HAIHU_EVENT_ENABLE	HAIHUEVENT_ID_C04,SCWK_ANSWER
+	_IFVAL_JUMP				SCWK_ANSWER,EQ,0,ev_c04r0201_door_end	/*無効*/
+
+	/*幹部を倒していない時は無効*/
+	_IF_FLAGOFF_JUMP	FE_C04R0204_WIN,ev_c04r0201_door_end
+#endif
+
+	////////////////////////////
+	/*このタイミングでOBJの話しかけSEが鳴るようにする*/
+	_TALK_OBJ_START
+
+	_PLAYER_NAME	0
+	_ITEM_NAME		1,ITEM_HIMITUNOKAGI
+	_TALK_KEYWAIT	msg_c04r0201_door_01
+	_TALK_CLOSE
+
+	_SE_PLAY		SEQ_SE_DP_W062
+	_WHITE_OUT		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_OBJ_DEL		C04R0201_ROTOMWALL
+	_SE_WAIT		SEQ_SE_DP_W062
+
+	_WHITE_IN		SCR_WIPE_DIV,SCR_WIPE_SYNC
+	_WIPE_FADE_END_CHECK
+
+	_TALK_KEYWAIT	msg_c04r0201_door_02
+	_LAST_KEYWAIT
+	_TALK_CLOSE
+	_TALK_OBJ_END
+	_END
+
+/*何も反応なし*/
+ev_c04r0201_door_end:
+	_END
+
+

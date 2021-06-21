@@ -1,0 +1,1897 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="" ?>
+
+<gmml version="4.5">
+
+<head>
+	<create user="gotou" host="W00147" date="2008-07-07T15:41:34"/>
+	<generator name="MessageEditor" version="4.9.2.5"/>
+</head>
+
+<body language="japanese">
+	<color>
+		<list entry="0" r="00" g="00" b="00" a="FF"/>
+		<list entry="1" r="FF" g="00" b="00" a="FF"/>
+		<list entry="2" r="00" g="00" b="FF" a="FF"/>
+		<list entry="3" r="00" g="8C" b="00" a="FF"/>
+		<list entry="4" r="FF" g="00" b="FF" a="FF"/>
+	</color>
+
+	<tag-table>
+		<group entry="0" japanese="タググループ" english="タググループ">
+		</group>
+
+		<group entry="1" japanese="ポケモンＤＰ（単語）" english="PokemonDP" color="#c0c0c0">
+			<tag entry="00" japanese="ポケモン名" english="ポケモン名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの名前</comment>
+				<comment language="english">ポケモンの名前</comment>
+			</tag>
+			<tag entry="01" japanese="ニックネーム" english="ニックネーム" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンのニックネーム</comment>
+				<comment language="english">ポケモンのニックネーム</comment>
+			</tag>
+			<tag entry="02" japanese="ポケモン分類" english="ポケモン分類" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「DNAポケモン」など。</comment>
+				<comment language="english">「DNAポケモン」など。</comment>
+			</tag>
+			<tag entry="03" japanese="トレーナー名" english="トレーナー名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="04" japanese="マップ名" english="マップ名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="とくせい名" english="とくせい名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="06" japanese="わざ名" english="わざ名" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="せいかく" english="せいかく" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="どうぐ名" english="どうぐ名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="09" japanese="ポロック名" english="ポロック名" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="10" japanese="グッズ名" english="グッズ名" view="EP" length="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="11" japanese="ボックス名" english="ボックス名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="12" japanese="attackmsg" english="attackmsg" view="EP" length="0" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘専用</comment>
+				<comment language="english">戦闘専用</comment>
+			</tag>
+			<tag entry="13" japanese="ステータス名" english="ステータス名" view="EP" width="74" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+				<comment language="english">たいりょく、こうげきりょく、ぼうぎょりょく、とくこう、とくぼう、すばやさ、かいひりつ、めいちゅう</comment>
+			</tag>
+			<tag entry="14" japanese="トレーナー種別名" english="トレーナー種別名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">「たんぱんこぞう」「エリートトレーナー」など</comment>
+				<comment language="english">「たんぱんこぞう」「エリートトレーナー」など</comment>
+			</tag>
+			<tag entry="15" japanese="ポケモンのタイプ" english="ポケモンのタイプ" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ほのお、みず、でんき、はがねなど</comment>
+				<comment language="english">ほのお、みず、でんき、はがねなど</comment>
+			</tag>
+			<tag entry="16" japanese="木の実の味（戦闘用）" english="木の実の味（戦闘用）" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+				<comment language="english">戦闘時にポケモンが木の実を使ったときの味表示</comment>
+			</tag>
+			<tag entry="17" japanese="特殊状態名" english="特殊状態名" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンの特殊状態です。</comment>
+				<comment language="english">ポケモンの特殊状態です。</comment>
+			</tag>
+			<tag entry="18" japanese="バッグのポケット名" english="バッグのポケット名" view="EP" width="132" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+				<comment language="english">バッグのポケットの名前。「ポケット」の部分も含む。</comment>
+			</tag>
+			<tag entry="19" japanese="欠番（どうぐ説明）" english="欠番（どうぐ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">どうぐの説明テキスト
+</comment>
+				<comment language="english">どうぐの説明テキスト
+</comment>
+			</tag>
+			<tag entry="20" japanese="欠番（わざ説明）" english="欠番（わざ説明）" view="EP" width="120" line="5">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">わざの説明テキスト
+１０文字×５行</comment>
+				<comment language="english">わざの説明テキスト
+１０文字×５行</comment>
+			</tag>
+			<tag entry="21" japanese="欠番（とくせい説明）" english="欠番（とくせい説明）" view="EP" width="144" line="2">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">とくせい説明
+12文字×2行</comment>
+				<comment language="english">とくせい説明
+12文字×2行</comment>
+			</tag>
+			<tag entry="22" japanese="欠番（ずかんテキスト）" english="欠番（ずかんテキスト）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモン図鑑のテキスト
+18文字×3行</comment>
+				<comment language="english">ポケモン図鑑のテキスト
+18文字×3行</comment>
+			</tag>
+			<tag entry="23" japanese="欠番（きのみ説明）" english="欠番（きのみ説明）" view="EP" width="216" line="3">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">きのみの説明テキスト</comment>
+				<comment language="english">きのみの説明テキスト</comment>
+			</tag>
+			<tag entry="24" japanese="ポケッチソフト名" english="ポケッチソフト名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケッチに入れるソフトの名前</comment>
+				<comment language="english">ポケッチに入れるソフトの名前</comment>
+			</tag>
+			<tag entry="25" japanese="地下のどうぐの名前" english="地下のどうぐの名前" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下で使うどうぐの名前</comment>
+				<comment language="english">地下で使うどうぐの名前</comment>
+			</tag>
+			<tag entry="26" japanese="カップ名" english="カップ名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">対戦のレギュレーション名</comment>
+				<comment language="english">対戦のレギュレーション名</comment>
+			</tag>
+			<tag entry="27" japanese="ポケット名（アイコンつき）" english="ポケット名（アイコンつき）" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">バッグのポケット名（アイコンつき）</comment>
+				<comment language="english">バッグのポケット名（アイコンつき）</comment>
+			</tag>
+			<tag entry="28" japanese="簡易会話単語" english="簡易会話単語" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="29" japanese="秘密会話質問項目" english="秘密会話質問項目" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話に出てくる質問内容</comment>
+				<comment language="english">地下での会話に出てくる質問内容</comment>
+			</tag>
+			<tag entry="30" japanese="秘密会話質問の答え" english="秘密会話質問の答え" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">地下での会話の質問への回答</comment>
+				<comment language="english">地下での会話の質問への回答</comment>
+			</tag>
+			<tag entry="31" japanese="アクセサリー名" english="アクセサリー名" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ポケモンにつけるアクセサリー</comment>
+				<comment language="english">ポケモンにつけるアクセサリー</comment>
+			</tag>
+			<tag entry="32" japanese="ジム名" english="ジム名" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="33" japanese="時間帯" english="時間帯" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">ぼうけんノートなどで使う</comment>
+				<comment language="english">ぼうけんノートなどで使う</comment>
+			</tag>
+			<tag entry="34" japanese="コンテスト名称" english="コンテスト名称" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+				<comment language="english">コンテストのジャンル
+「○○○○○コンテスト」</comment>
+			</tag>
+			<tag entry="35" japanese="コンテストランク" english="コンテストランク" view="EP" width="84" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">○○○○ランク
+「ランク」も含む</comment>
+				<comment language="english">○○○○ランク
+「ランク」も含む</comment>
+			</tag>
+			<tag entry="36" japanese="国名" english="国名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる国名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる国名</comment>
+			</tag>
+			<tag entry="37" japanese="地域名" english="地域名" view="EP" width="216" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">プレイヤーが入力する、自分が住んでいる地域名</comment>
+				<comment language="english">プレイヤーが入力する、自分が住んでいる地域名</comment>
+			</tag>
+			<tag entry="38" japanese="風船の名前" english="風船の名前" view="EP" width="108" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">すれ違い通信でつかう風船の名前</comment>
+				<comment language="english">すれ違い通信でつかう風船の名前</comment>
+			</tag>
+			<tag entry="39" japanese="リボンの名前" english="リボンの名前" view="EP" width="168" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">リボンの名前</comment>
+				<comment language="english">リボンの名前</comment>
+			</tag>
+			<tag entry="40" japanese="イメージクリップ背景" english="イメージクリップ背景" view="EP" width="96" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="41" japanese="GTC:ポケモン分類項目" english="GTC:ポケモン分類項目" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+				<comment language="english">世界通信交換でのポケモン分類
+日本語版では「あかさたな」</comment>
+			</tag>
+			<tag entry="42" japanese="GTC:ポケモン性別指定項目" english="GTC:ポケモン性別指定項目" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+性別指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+性別指定</comment>
+			</tag>
+			<tag entry="43" japanese="GTC:レベル指定項目" english="GTC:レベル指定項目" view="EP" width="112" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">世界通信交換でのポケモンの
+レベル指定</comment>
+				<comment language="english">世界通信交換でのポケモンの
+レベル指定</comment>
+			</tag>
+			<tag entry="50" japanese="数字１桁" english="数字１桁" view="EP" width="8" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="51" japanese="数字２桁" english="数字２桁" view="EP" width="16" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="52" japanese="数字３桁" english="数字３桁" view="EP" width="24" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="53" japanese="数字４桁" english="数字４桁" view="EP" width="32" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="54" japanese="数字５桁" english="数字５桁" view="EP" width="40" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="55" japanese="数字６桁" english="数字６桁" view="EP" width="48" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="56" japanese="数字７桁" english="数字７桁" view="EP" width="56" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="57" japanese="数字８桁" english="数字８桁" view="EP" width="64" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="58" japanese="数字９桁" english="数字９桁" view="EP" width="72" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="59" japanese="数字10桁" english="数字10桁" view="EP" width="80" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="101" japanese="縦倍角" english="縦倍角" view="EP" length="0" line="1">
+				<parameter number="0" japanese="倍率" english="倍率" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="2" japanese="ポケモンＤＰ（プログラム）" english="ポケモンＤＰ（プログラム）">
+			<tag entry="00" japanese="操作画面ガイドアイコン" english="操作画面ガイドアイコン" view="EP" width="24" line="2">
+				<parameter number="0" japanese="モード" english="モード" type="int8"/>
+			</tag>
+			<tag entry="01" japanese="文字表示ウェイト" english="文字表示ウェイト" view="EP" length="0" line="1">
+				<parameter number="0" japanese="フレーム数" english="フレーム数" type="int16"/>
+				<comment language="japanese">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+				<comment language="english">次の文字を表示する前にウエイトを入れる（タスク表示専用）</comment>
+			</tag>
+			<tag entry="02" japanese="コールバック引数" english="コールバック引数" view="EP" length="0" line="1">
+				<parameter number="0" japanese="引数" english="引数" type="int16"/>
+				<comment language="japanese">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+				<comment language="english">デフォルトでは０が渡されますが、このタグを使って任意の数値を渡せます。</comment>
+			</tag>
+			<tag entry="03" japanese="文字表示位置X" english="文字表示位置X" view="EP" length="0" line="1">
+				<parameter number="0" japanese="X位置" english="X位置" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+			<tag entry="04" japanese="文字表示位置Y" english="文字表示位置Y" view="EP" length="0" line="1">
+				<parameter number="0" japanese="表示位置Y" english="表示位置Y" type="int16"/>
+				<comment language="japanese">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+				<comment language="english">文字表示位置を、ウィンドウ内オフセット（ドット単位）で指定する。</comment>
+			</tag>
+		</group>
+
+		<group entry="3" japanese="ポケモンPL（単語）" english="ポケモンPL（単語）">
+			<tag entry="00" japanese="広場ミニゲーム" english="広場ミニゲーム" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のミニゲーム名</comment>
+				<comment language="english">WiFi広場のミニゲーム名</comment>
+			</tag>
+			<tag entry="01" japanese="広場イベント名" english="広場イベント名" view="EP" width="60" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場イベント名</comment>
+				<comment language="english">WiFi広場イベント名</comment>
+			</tag>
+			<tag entry="02" japanese="広場アイテム名" english="広場アイテム名" view="EP" width="120" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">WiFi広場のアイテム名</comment>
+				<comment language="english">WiFi広場のアイテム名</comment>
+			</tag>
+			<tag entry="03" japanese="日本の挨拶" english="日本の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">日本の挨拶</comment>
+				<comment language="english">日本の挨拶</comment>
+			</tag>
+			<tag entry="04" japanese="英語の挨拶" english="英語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="05" japanese="フランス語の挨拶" english="フランス語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+				<comment language="japanese">フランス語の挨拶</comment>
+				<comment language="english">フランス語の挨拶</comment>
+			</tag>
+			<tag entry="06" japanese="ドイツ語の挨拶" english="ドイツ語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="07" japanese="イタリア語の挨拶" english="イタリア語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+			<tag entry="08" japanese="スペイン語の挨拶" english="スペイン語の挨拶" view="EP" width="143" line="1">
+				<parameter number="0" japanese="番号" english="番号" type="int8"/>
+			</tag>
+		</group>
+
+		<group entry="254" japanese="文字列展開" english="Word">
+		</group>
+
+		<set japanese="操作（上→下）" english="操作（上→下）" value="2:00:操作画面ガイドアイコン:0"/>
+		<set japanese="注視（上→下）" english="注視（上→下）" value="2:00:操作画面ガイドアイコン:1"/>
+		<set japanese="操作（下→上）" english="操作（下→上）" value="2:00:操作画面ガイドアイコン:2"/>
+		<set japanese="注視（下→上）" english="注視（下→上）" value="2:00:操作画面ガイドアイコン:3"/>
+		<set japanese="500%" english="500%" value="FF:01:サイズ:500"/>
+		<set japanese="400%" english="400%" value="FF:01:サイズ:400"/>
+		<set japanese="300%" english="300%" value="FF:01:サイズ:300"/>
+		<set japanese="200%" english="200%" value="FF:01:サイズ:200"/>
+		<set japanese="150%" english="150%" value="FF:01:サイズ:150"/>
+		<set japanese="100%" english="100%" value="FF:01:サイズ:100"/>
+		<set japanese="75%" english="75%" value="FF:01:サイズ:75"/>
+		<set japanese="50%" english="50%" value="FF:01:サイズ:50"/>
+		<set japanese="標準色" english="Black" value="FF:00:色:0"/>
+		<set japanese="色１" english="Red" value="FF:00:色:1"/>
+		<set japanese="色２" english="Green" value="FF:00:色:2"/>
+		<set japanese="色３" english="Blue" value="FF:00:色:3"/>
+		<set japanese="色４" english="色４" value="FF:00:色:4"/>
+	</tag-table>
+
+	<columns>
+		<id position="0" width="106"/>
+		<group default=" 0:デフォルト" position="-1" width="100">
+			<list entry="0" japanese="デフォルト" english="Default" colorID="0"/>
+		</group>
+		<number position="-1" width="100"/>
+		<comment position="2" width="197"/>
+		<erase position="-1" width="100"/>
+		<language japanese="日本語" english="日本語">
+			<message position="1" width="354"/>
+			<font default=" 0:font_talk" position="3" width="89">
+				<list entry="0" file="Q:/msgdata/font/font_talk.nftr"/>
+				<list entry="1" file="Q:/msgdata/font/font_system.nftr"/>
+				<list entry="2" file="Q:/msgdata/font/font_button.nftr"/>
+			</font>
+			<size position="4" width="86"/>
+			<space position="-1" width="100"/>
+			<width position="5" width="88"/>
+			<line position="6" width="100"/>
+		</language>
+	</columns>
+
+	<dialog left="2" top="120" right="707" bottom="748" maximized="no" rayout="Vertical2">
+		<comment-input left="677" top="578" right="1024" bottom="730" visible="no"/>
+		<tag-palette left="478" top="72" right="1024" bottom="611" visible="no"/>
+		<band id="0" index="0" style="0000" width="530"/>
+		<band id="1" index="1" style="0000" width="165"/>
+		<band id="2" index="2" style="0000" width="697"/>
+		<band id="3" index="3" style="0000" width="697"/>
+		<edit entry="0" language="日本語" mode="Edit" spell-check="-1"/>
+		<edit entry="1" language="日本語" mode="Preview" spell-check="-1"/>
+		<edit entry="2" language="日本語" mode="Source" spell-check="-1"/>
+		<edit entry="3" language="日本語" mode="Source" spell-check="-1"/>
+	</dialog>
+
+	<output default="デフォルト">
+		<target japanese="デフォルト" english="default" endian="big" encoding="Shift_JIS" letter-list-encoding="Shift_JIS" header-file-encoding="Shift_JIS" language="日本語">
+			<struct name="JMSMesgEntry" id="" message="mesgOffset">
+			</struct>
+			<entry sort="id" id-block="no" flowlabel-block="no"/>
+			<header divide="no" id-prefix="JMS_" query-prefix="JMS_QUERY_" flownode-prefix="JMS_FLOWNODE_" id="" struct="" query=""/>
+		</target>
+	</output>
+
+
+	<lock>
+		<operation add_message="no" header_setting="no" tag_setting="no" output_setting="no" display="no" sort="no" flowchart_window="no"/>
+	</lock>
+
+
+	<row id="msg_01">
+		<comment>300ドレス 400ボックス 500ランキング 600ビデオランキング</comment>
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオ</language>
+	</row>
+
+	<row id="msg_02">
+		<language name="日本語" font=" 1:font_system" width="216">フロンティアのきろく</language>
+	</row>
+
+	<row id="msg_04">
+		<language name="日本語" font=" 1:font_system" width="216">やめる</language>
+	</row>
+
+	<row id="msg_05">
+		<language name="日本語" font=" 1:font_system" width="216">もどる</language>
+	</row>
+
+	<row id="msg_06">
+		<language name="日本語" font=" 1:font_system" width="216">じぶんのきろく</language>
+	</row>
+
+	<row id="msg_07">
+		<language name="日本語" font=" 1:font_system" width="216">だれかのきろく</language>
+	</row>
+
+	<row id="msg_08">
+		<language name="日本語" font=" 1:font_system" width="216">きろくをけす</language>
+	</row>
+
+	<row id="msg_09">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]　のきろく</language>
+	</row>
+
+	<row id="msg_10">
+		<comment>データが無い場合</comment>
+		<language name="日本語" font=" 1:font_system" width="216">あき</language>
+	</row>
+
+	<row id="msg_11">
+		<language name="日本語" font=" 1:font_system" width="216">[1:35:数字４桁:0]</language>
+	</row>
+
+	<row id="msg_11_2">
+		<language name="日本語" font=" 1:font_system" width="216">せんめ</language>
+	</row>
+
+	<row id="msg_12">
+		<language name="日本語" font=" 1:font_system" width="216">ビデオナンバー：[1:33:数字２桁:0]ー[1:36:数字５桁:1]ー[1:36:数字５桁:2]</language>
+	</row>
+
+	<row id="msg_12_2">
+		<language name="日本語" font=" 1:font_system" width="216">ビデオナンバー：[1:33:数字２桁:0]ー[1:36:数字５桁:1]ー[1:36:数字５桁:2] ★</language>
+	</row>
+
+	<row id="msg_13">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]　の　プロフィール</language>
+	</row>
+
+	<row id="msg_14">
+		<language name="日本語" font=" 1:font_system" width="216">ねんれい</language>
+	</row>
+
+	<row id="msg_15">
+		<language name="日本語" font=" 1:font_system" width="216">[1:33:数字２桁:0]がつうまれ</language>
+	</row>
+
+	<row id="msg_16">
+		<language name="日本語" font=" 1:font_system" width="216">すんでいるばしょ</language>
+	</row>
+
+	<row id="msg_17">
+		<language name="日本語" font=" 1:font_system" width="216">じこしょうかい</language>
+	</row>
+
+	<row id="msg_18">
+		<comment>したがめん</comment>
+		<language name="日本語" font=" 1:font_system" width="216">データ</language>
+	</row>
+
+	<row id="msg_19">
+		<comment>したがめん</comment>
+		<language name="日本語" font=" 1:font_system" width="216">プロフィール</language>
+	</row>
+
+	<row id="msg_20">
+		<comment>ただの空欄</comment>
+		<language name="日本語" font=" 1:font_system" width="216"> </language>
+	</row>
+
+	<row id="msg_21">
+		<language name="日本語" font=" 1:font_system" width="216">みせってい</language>
+	</row>
+
+	<row id="msg_22">
+		<language name="日本語" font=" 1:font_system" width="216">[1:24:国名:0]</language>
+	</row>
+
+	<row id="msg_23">
+		<language name="日本語" font=" 1:font_system" width="216">[1:25:地域名:0]</language>
+	</row>
+
+	<row id="msg_24">
+		<language name="日本語" font=" 1:font_system" width="216">[1:1C:簡易会話単語:0]　[1:1C:簡易会話単語:1]</language>
+	</row>
+
+	<row id="msg_42">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+オープンマルチ</language>
+	</row>
+
+	<row id="msg_420">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">ボックス
+をみる</language>
+	</row>
+
+	<row id="msg_422">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">さいしん２０</language>
+	</row>
+
+	<row id="msg_423">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　だいすきボックス</language>
+	</row>
+
+	<row id="msg_424">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　かっこいいボックス</language>
+	</row>
+
+	<row id="msg_425">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　かわいいボックス</language>
+	</row>
+
+	<row id="msg_426">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　おすすめボックス</language>
+	</row>
+
+	<row id="msg_427">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　おもしろいボックス</language>
+	</row>
+
+	<row id="msg_428">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">[1:03:トレーナー名:0]　の　こだわりボックス</language>
+	</row>
+
+	<row id="msg_429">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">つぎの
+ポケモン</language>
+	</row>
+
+	<row id="msg_43">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルステージ
+マルチ</language>
+	</row>
+
+	<row id="msg_44">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルキャッスル
+マルチ</language>
+	</row>
+
+	<row id="msg_45">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルルーレット
+マルチ</language>
+	</row>
+
+	<row id="msg_46">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">つうしんたいせん
+マルチ</language>
+	</row>
+
+	<row id="msg_100">
+		<language name="日本語" font=" 1:font_system" width="216">じぶんのきろくをけす</language>
+	</row>
+
+	<row id="msg_101">
+		<language name="日本語" font=" 1:font_system" width="216">だれかのきろくをけす</language>
+	</row>
+
+	<row id="msg_102">
+		<language name="日本語" font=" 1:font_system" width="216">あき</language>
+	</row>
+
+	<row id="msg_103">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]　のきろくをけす</language>
+	</row>
+
+	<row id="msg_200">
+		<language name="日本語" font=" 1:font_system" width="216">データをみる</language>
+	</row>
+
+	<row id="msg_201">
+		<language name="日本語" font=" 1:font_system" width="216">データをおくる</language>
+	</row>
+
+	<row id="msg_202">
+		<language name="日本語" font=" 1:font_system" width="216">さいしん３０こ</language>
+	</row>
+
+	<row id="msg_203">
+		<language name="日本語" font=" 1:font_system" width="216">くわしくさがす</language>
+	</row>
+
+	<row id="msg_204">
+		<language name="日本語" font=" 1:font_system" width="216">ビデオナンバーでさがす</language>
+	</row>
+
+	<row id="msg_205">
+		<language name="日本語" font=" 1:font_system" width="216">しせつでさがす</language>
+	</row>
+
+	<row id="msg_206">
+		<language name="日本語" font=" 1:font_system" width="216">ポケモンでさがす</language>
+	</row>
+
+	<row id="msg_207">
+		<language name="日本語" font=" 1:font_system" width="216">おなじちいきでさがす</language>
+	</row>
+
+	<row id="msg_300">
+		<comment>写真送受信画面用</comment>
+		<language name="日本語" font=" 1:font_system" width="216">しゃしんをおくる</language>
+	</row>
+
+	<row id="msg_301">
+		<language name="日本語" font=" 1:font_system" width="216">しゃしんをみる</language>
+	</row>
+
+	<row id="msg_302">
+		<language name="日本語" font=" 1:font_system" width="216">おくる</language>
+	</row>
+
+	<row id="msg_303">
+		<language name="日本語" font=" 1:font_system" width="216">みたいポケモンを　えらんでください</language>
+	</row>
+
+	<row id="msg_304">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]　の　しゃしん
+[1:1C:簡易会話単語:1]</language>
+	</row>
+
+	<row id="msg_305">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]
+[1:1C:簡易会話単語:1]</language>
+	</row>
+
+	<row id="msg_308">
+		<language name="日本語" font=" 1:font_system" width="216">しゃしん</language>
+	</row>
+
+	<row id="msg_400">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスをおくる</language>
+	</row>
+
+	<row id="msg_401">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスをみる</language>
+	</row>
+
+	<row id="msg_402">
+		<language name="日本語" font=" 1:font_system" width="216">だいすき</language>
+	</row>
+
+	<row id="msg_403">
+		<language name="日本語" font=" 1:font_system" width="216">かっこいい</language>
+	</row>
+
+	<row id="msg_404">
+		<language name="日本語" font=" 1:font_system" width="216">かわいい</language>
+	</row>
+
+	<row id="msg_405">
+		<language name="日本語" font=" 1:font_system" width="216">おすすめ</language>
+	</row>
+
+	<row id="msg_406">
+		<language name="日本語" font=" 1:font_system" width="216">おもしろい</language>
+	</row>
+
+	<row id="msg_407">
+		<language name="日本語" font=" 1:font_system" width="216">こだわり</language>
+	</row>
+
+	<row id="msg_408">
+		<language name="日本語" font=" 1:font_system" width="216">ボックス</language>
+	</row>
+
+	<row id="msg_409">
+		<language name="日本語" font=" 1:font_system" width="216">くわしくみる</language>
+	</row>
+
+	<row id="msg_900">
+		<comment>900番は汎用？</comment>
+		<language name="日本語" font=" 1:font_system" width="216">ア</language>
+	</row>
+
+	<row id="msg_901">
+		<language name="日本語" font=" 1:font_system" width="216">カ</language>
+	</row>
+
+	<row id="msg_902">
+		<language name="日本語" font=" 1:font_system" width="216">サ</language>
+	</row>
+
+	<row id="msg_903">
+		<language name="日本語" font=" 1:font_system" width="216">タ</language>
+	</row>
+
+	<row id="msg_904">
+		<language name="日本語" font=" 1:font_system" width="216">ナ</language>
+	</row>
+
+	<row id="msg_905">
+		<language name="日本語" font=" 1:font_system" width="216">ハ</language>
+	</row>
+
+	<row id="msg_906">
+		<language name="日本語" font=" 1:font_system" width="216">マ</language>
+	</row>
+
+	<row id="msg_907">
+		<language name="日本語" font=" 1:font_system" width="216">ヤ</language>
+	</row>
+
+	<row id="msg_908">
+		<language name="日本語" font=" 1:font_system" width="216">ラ</language>
+	</row>
+
+	<row id="msg_909">
+		<language name="日本語" font=" 1:font_system" width="216">ワ</language>
+	</row>
+
+	<row id="msg_500">
+		<language name="日本語" font=" 1:font_system" width="216">こんしゅうのランキング</language>
+	</row>
+
+	<row id="msg_501">
+		<language name="日本語" font=" 1:font_system" width="216">せんしゅうのランキング</language>
+	</row>
+
+	<row id="msg_502">
+		<language name="日本語" font=" 1:font_system" width="216">ランキングきりかえ</language>
+	</row>
+
+	<row id="msg_503">
+		<language name="日本語" font=" 1:font_system" width="216">チームきりかえ</language>
+	</row>
+
+	<row id="msg_504">
+		<language name="日本語" font=" 1:font_system" width="216">チーム：トレーナータイプ</language>
+	</row>
+
+	<row id="msg_505">
+		<language name="日本語" font=" 1:font_system" width="216">チーム：うまれたつき</language>
+	</row>
+
+	<row id="msg_506">
+		<language name="日本語" font=" 1:font_system" width="216">チーム：すきなポケモン</language>
+	</row>
+
+	<row id="msg_507">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:1]：[1:0E:トレーナー種別名:0]</language>
+	</row>
+
+	<row id="msg_508">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:1]：[1:33:数字２桁:0]がつうまれ</language>
+	</row>
+
+	<row id="msg_509">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:1]：[1:00:ポケモン名:0]</language>
+	</row>
+
+	<row id="msg_510">
+		<language name="日本語" font=" 1:font_system" width="216">[1:33:数字２桁:0]：[1:0E:トレーナー種別名:1]</language>
+	</row>
+
+	<row id="msg_511">
+		<language name="日本語" font=" 1:font_system" width="216">[1:33:数字２桁:0]：[1:33:数字２桁:1]がつ</language>
+	</row>
+
+	<row id="msg_512">
+		<language name="日本語" font=" 1:font_system" width="216">[1:33:数字２桁:0]：[1:00:ポケモン名:1]</language>
+	</row>
+
+	<row id="msg_513">
+		<language name="日本語" font=" 1:font_system" width="216">せんしゅうの　けっか！</language>
+	</row>
+
+	<row id="msg_600">
+		<language name="日本語" font=" 1:font_system" width="216">コロシアム</language>
+	</row>
+
+	<row id="msg_601">
+		<language name="日本語" font=" 1:font_system" width="216">バトルフロンティア</language>
+	</row>
+
+	<row id="msg_602">
+		<language name="日本語" font=" 1:font_system" width="216">ほぞん</language>
+	</row>
+
+	<row id="msg_603">
+		<language name="日本語" font=" 1:font_system" width="130">バトルビデオを
+みる</language>
+	</row>
+
+	<row id="msg_604">
+		<language name="日本語" font=" 1:font_system" width="130">バトルビデオ</language>
+	</row>
+
+	<row id="msg_605">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオ　にんきランキング
+コロシアム</language>
+	</row>
+
+	<row id="msg_606">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオ　にんきランキング
+バトルフロンティア</language>
+	</row>
+
+	<row id="msg_607">
+		<comment>数字　：　なまえ　のとき使う</comment>
+		<language name="日本語" font=" 1:font_system" width="216">：</language>
+	</row>
+
+	<row id="msg_608">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]の きろくを
+どこに　ほぞんしますか？</language>
+	</row>
+
+	<row id="msg_609">
+		<language name="日本語" font=" 1:font_system" width="216">うわがきほぞん</language>
+	</row>
+
+	<row id="msg_610">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]の　バトルビデオを
+けしても　よろしいですか？</language>
+	</row>
+
+	<row id="msg_700">
+		<comment>検索画面用</comment>
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオをみる</language>
+	</row>
+
+	<row id="msg_701">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオをおくる</language>
+	</row>
+
+	<row id="msg_702">
+		<language name="日本語" font=" 1:font_system" width="216">さいしん３０けん</language>
+	</row>
+
+	<row id="msg_703">
+		<language name="日本語" font=" 1:font_system" width="216">くわしくさがす</language>
+	</row>
+
+	<row id="msg_704">
+		<language name="日本語" font=" 1:font_system" width="216">ビデオナンバーでさがす</language>
+	</row>
+
+	<row id="msg_705">
+		<language name="日本語" font=" 1:font_system" width="216">しせつでさがす</language>
+	</row>
+
+	<row id="msg_706">
+		<language name="日本語" font=" 1:font_system" width="216">ポケモンでさがす</language>
+	</row>
+
+	<row id="msg_707">
+		<language name="日本語" font=" 1:font_system" width="216">おなじちいきでさがす</language>
+	</row>
+
+	<row id="msg_708">
+		<language name="日本語" font=" 1:font_system" width="216">ＯＫ！</language>
+	</row>
+
+	<row id="msg_709">
+		<language name="日本語" font=" 1:font_system" width="216">ビデオナンバーを　にゅうりょくしてください</language>
+	</row>
+
+	<row id="msg_710">
+		<language name="日本語" font=" 1:font_system" width="216">しせつを　きめてください</language>
+	</row>
+
+	<row id="msg_711">
+		<language name="日本語" font=" 1:font_system" width="216">ポケモンを　きめてください</language>
+	</row>
+
+	<row id="msg_712">
+		<language name="日本語" font=" 1:font_system" width="216">じょうけんを　いれてください</language>
+	</row>
+
+	<row id="msg_713">
+		<language name="日本語" font=" 1:font_system" width="216">じょうけんが　はいっていません！</language>
+	</row>
+
+	<row id="msg_714">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　さがしています……</language>
+	</row>
+
+	<row id="msg_715">
+		<language name="日本語" font=" 1:font_system" width="216">あてはまる　バトルビデオが　ありません……</language>
+	</row>
+
+	<row id="msg_716">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　おくっています……</language>
+	</row>
+
+	<row id="msg_717">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　おくりました！</language>
+	</row>
+
+	<row id="msg_718">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールをみる</language>
+	</row>
+
+	<row id="msg_719">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールをしまう</language>
+	</row>
+
+	<row id="msg_720">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオ　さいしん３０けん</language>
+	</row>
+
+	<row id="msg_721">
+		<language name="日本語" font=" 1:font_system" width="216">じょうけんを　いれてください</language>
+	</row>
+
+	<row id="msg_722">
+		<language name="日本語" font=" 1:font_system" width="216">なし</language>
+	</row>
+
+	<row id="msg_723">
+		<language name="日本語" font=" 1:font_system" width="216">けんさくした　バトルビデオ
+いちらん</language>
+	</row>
+
+	<row id="msg_724">
+		<language name="日本語" font=" 1:font_system" width="216">おなじ　バトルビデオは
+２かい　おくれません</language>
+	</row>
+
+	<row id="msg_725">
+		<language name="日本語" font=" 1:font_system" width="216">ちいきを　とうろくしていません</language>
+	</row>
+
+	<row id="msg_726">
+		<language name="日本語" font=" 1:font_system" width="216">おくる　バトルビデオが　ありません</language>
+	</row>
+
+	<row id="msg_1000">
+		<language name="日本語" font=" 1:font_system" width="216">はい</language>
+	</row>
+
+	<row id="msg_1001">
+		<language name="日本語" font=" 1:font_system" width="216">いいえ</language>
+	</row>
+
+	<row id="msg_rule_000">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_000_01">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　スタンダードカップ</language>
+	</row>
+
+	<row id="msg_rule_000_02">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　ファンシーカップ</language>
+	</row>
+
+	<row id="msg_rule_000_03">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　リトルカップ</language>
+	</row>
+
+	<row id="msg_rule_000_04">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　ライトカップ</language>
+	</row>
+
+	<row id="msg_rule_000_05">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　ダブルカップ</language>
+	</row>
+
+	<row id="msg_rule_000_06">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+シングル　そのたのカップ</language>
+	</row>
+
+	<row id="msg_rule_001">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_001_01">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　スタンダードカップ</language>
+	</row>
+
+	<row id="msg_rule_001_02">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　ファンシーカップ</language>
+	</row>
+
+	<row id="msg_rule_001_03">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　リトルカップ</language>
+	</row>
+
+	<row id="msg_rule_001_04">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　ライトカップ</language>
+	</row>
+
+	<row id="msg_rule_001_05">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　ダブルカップ</language>
+	</row>
+
+	<row id="msg_rule_001_06">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+ダブル　そのたのカップ</language>
+	</row>
+
+	<row id="msg_rule_002">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">コロシアム
+マルチ</language>
+	</row>
+
+	<row id="msg_rule_003">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルタワー
+シングル</language>
+	</row>
+
+	<row id="msg_rule_004">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルタワー
+ダブル</language>
+	</row>
+
+	<row id="msg_rule_005">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルタワー
+マルチ</language>
+	</row>
+
+	<row id="msg_rule_006">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+レベル５０　シングル</language>
+	</row>
+
+	<row id="msg_rule_007">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+レベル５０　ダブル</language>
+	</row>
+
+	<row id="msg_rule_008">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+レベル５０　マルチ</language>
+	</row>
+
+	<row id="msg_rule_009">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+オープンレベル　シングル</language>
+	</row>
+
+	<row id="msg_rule_010">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルファクトリー
+オープンレベル　ダブル</language>
+	</row>
+
+	<row id="msg_rule_011">
+		<language name="日本語" font=" 1:font_system" width="216">バトルファクトリー
+オープンレベル　マルチ</language>
+	</row>
+
+	<row id="msg_rule_012">
+		<language name="日本語" font=" 1:font_system" width="216">バトルステージ
+シングル</language>
+	</row>
+
+	<row id="msg_rule_013">
+		<language name="日本語" font=" 1:font_system" width="216">バトルステージ
+ダブル</language>
+	</row>
+
+	<row id="msg_rule_014">
+		<language name="日本語" font=" 1:font_system" width="216">バトルステージ
+マルチ</language>
+	</row>
+
+	<row id="msg_rule_015">
+		<language name="日本語" font=" 1:font_system" width="216">バトルキャッスル
+シングル</language>
+	</row>
+
+	<row id="msg_rule_016">
+		<language name="日本語" font=" 1:font_system" width="216">バトルキャッスル
+ダブル</language>
+	</row>
+
+	<row id="msg_rule_017">
+		<language name="日本語" font=" 1:font_system" width="216">バトルキャッスル
+マルチ</language>
+	</row>
+
+	<row id="msg_rule_018">
+		<language name="日本語" font=" 1:font_system" width="216">バトルルーレット
+シングル</language>
+	</row>
+
+	<row id="msg_rule_019">
+		<language name="日本語" font=" 1:font_system" width="216">バトルルーレット
+ダブル</language>
+	</row>
+
+	<row id="msg_rule_020">
+		<language name="日本語" font=" 1:font_system" width="216">バトルルーレット
+マルチ</language>
+	</row>
+
+	<row id="msg_rule_021">
+		<language name="日本語" font=" 1:font_system" width="216">コロシアム
+シングル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_022">
+		<language name="日本語" font=" 1:font_system" width="216">コロシアム
+シングル　カップせん</language>
+	</row>
+
+	<row id="msg_rule_023">
+		<language name="日本語" font=" 1:font_system" width="216">コロシアム
+ダブル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_024">
+		<language name="日本語" font=" 1:font_system" width="216">コロシアム
+ダブル　カップせん</language>
+	</row>
+
+	<row id="msg_rule_no_000">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　１：コロシアム
+　　　シングル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_no_000_01">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　２：コロシアム
+　　　シングル　カップせん</language>
+	</row>
+
+	<row id="msg_rule_no_001">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　３：コロシアム
+　　　ダブル　せいげんなし</language>
+	</row>
+
+	<row id="msg_rule_no_001_01">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　４：コロシアム
+　　　ダブル　カップせん</language>
+	</row>
+
+	<row id="msg_rule_no_002">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　５：コロシアム
+　　　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_003">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　６：バトルタワー
+　　　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_004">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　７：バトルタワー
+　　　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_005">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　８：バトルタワー
+　　　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_006">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">　９：バトルファクトリー
+　　　レベル５０　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_007">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">１０：バトルファクトリー
+　　　レベル５０　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_008">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">１１：バトルファクトリー
+　　　レベル５０　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_009">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">１２：バトルファクトリー
+　　　オープンレベル　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_010">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">１３：バトルファクトリー
+　　　オープンレベル　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_011">
+		<language name="日本語" font=" 1:font_system" width="216">１４：バトルファクトリー
+　　　オープンレベル　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_012">
+		<language name="日本語" font=" 1:font_system" width="216">１５：バトルステージ
+　　　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_013">
+		<language name="日本語" font=" 1:font_system" width="216">１６：バトルステージ
+　　　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_014">
+		<language name="日本語" font=" 1:font_system" width="216">１７：バトルステージ
+　　　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_015">
+		<language name="日本語" font=" 1:font_system" width="216">１８：バトルキャッスル
+　　　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_016">
+		<language name="日本語" font=" 1:font_system" width="216">１９：バトルキャッスル
+　　　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_017">
+		<language name="日本語" font=" 1:font_system" width="216">２０：バトルキャッスル
+　　　マルチ</language>
+	</row>
+
+	<row id="msg_rule_no_018">
+		<language name="日本語" font=" 1:font_system" width="216">２１：バトルルーレット
+　　　シングル</language>
+	</row>
+
+	<row id="msg_rule_no_019">
+		<language name="日本語" font=" 1:font_system" width="216">２２：バトルルーレット
+　　　ダブル</language>
+	</row>
+
+	<row id="msg_rule_no_020">
+		<language name="日本語" font=" 1:font_system" width="216">２３：バトルルーレット
+　　　マルチ</language>
+	</row>
+
+	<row id="msg_10000">
+		<language name="日本語" font=" 1:font_system" width="216">ＴＯＵＣＨ　ＨＥＲＥ！</language>
+	</row>
+
+	<row id="msg_10001">
+		<language name="日本語" font=" 1:font_system" width="216">ＷｉーＦｉコネクション　から
+せつだんしても　よろしいですか？</language>
+	</row>
+
+	<row id="msg_err_000">
+		<comment>ドレス送信時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_001">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_002">
+		<language name="日本語" font=" 1:font_system" width="216">すでに　とうろくされています</language>
+	</row>
+
+	<row id="msg_err_003">
+		<language name="日本語" font=" 1:font_system" width="216">ドレスアップショットの　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_004">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールの　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_005">
+		<language name="日本語" font=" 1:font_system" width="216">エラーがはっせいしました</language>
+	</row>
+
+	<row id="msg_err_006">
+		<comment>ドレス取得時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_007">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_008">
+		<language name="日本語" font=" 1:font_system" width="216">えらんだ　ポケモンに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_009">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_010">
+		<comment>ボックスショット送信時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_011">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_012">
+		<language name="日本語" font=" 1:font_system" width="216">すでに　とうろくされています</language>
+	</row>
+
+	<row id="msg_err_013">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスショットの　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_014">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールの　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_015">
+		<language name="日本語" font=" 1:font_system" width="216">あなたの　チームに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_016">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_017">
+		<comment>ボックスショット受信時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_018">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_019">
+		<language name="日本語" font=" 1:font_system" width="216">あなたの　チームに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_020">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_021">
+		<comment>ランキングタイプ取得時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_022">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_023">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_024">
+		<comment>ランキング受信</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_025">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーが　はっせいしました
+さいどじかんを　おいて　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_026">
+		<language name="日本語" font=" 1:font_system" width="216">ランキングの　うけとりに
+しっぱいしました</language>
+	</row>
+
+	<row id="msg_err_027">
+		<language name="日本語" font=" 1:font_system" width="216">あなたの　ランキングの　せいせきに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_028">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_029">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_030">
+		<comment>バトルビデオ送信時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_031">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_032">
+		<language name="日本語" font=" 1:font_system" width="216">すでに　とうろくされています</language>
+	</row>
+
+	<row id="msg_err_033">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオの　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_034">
+		<language name="日本語" font=" 1:font_system" width="216">プロフィールに
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_035">
+		<language name="日本語" font=" 1:font_system" width="216">エラーがはっせいしました</language>
+	</row>
+
+	<row id="msg_err_036_0">
+		<language name="日本語" font=" 1:font_system" width="216">あなたの　ポケモンに
+もんだいがあり　おくれませんでした</language>
+	</row>
+
+	<row id="msg_err_036_1">
+		<language name="日本語" font=" 1:font_system" width="216">つうしんあいての　ポケモンに
+もんだいがあり　おくれませんでした</language>
+	</row>
+
+	<row id="msg_err_036">
+		<comment>バトルビデオ検索取得時</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_037">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_038">
+		<language name="日本語" font=" 1:font_system" width="216">けんさく　ないように
+もんだいが　あるようです</language>
+	</row>
+
+	<row id="msg_err_039">
+		<language name="日本語" font=" 1:font_system" width="216">エラーがはっせいしました</language>
+	</row>
+
+	<row id="msg_err_040">
+		<comment>バトルビデオ取得</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_041">
+		<language name="日本語" font=" 1:font_system" width="216">ユーザーにんしょうエラーです
+すこし　まってから　せつぞくしてください</language>
+	</row>
+
+	<row id="msg_err_042">
+		<language name="日本語" font=" 1:font_system" width="216">あてはまる　バトルビデオが　ありません……</language>
+	</row>
+
+	<row id="msg_err_043">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました</language>
+	</row>
+
+	<row id="msg_err_044">
+		<comment>お気に入り登録</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_045">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_046">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_err_047">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_lib_err_000">
+		<comment>ライブラリのエラー</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_lib_err_001">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０１</language>
+	</row>
+
+	<row id="msg_lib_err_002">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０２</language>
+	</row>
+
+	<row id="msg_lib_err_003">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０３</language>
+	</row>
+
+	<row id="msg_lib_err_004">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０４</language>
+	</row>
+
+	<row id="msg_lib_err_005">
+		<language name="日本語" font=" 1:font_system" width="216">せつぞくに　しっぱいしました
+エラー１０６０５</language>
+	</row>
+
+	<row id="msg_lib_err_006">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０６</language>
+	</row>
+
+	<row id="msg_lib_err_007">
+		<language name="日本語" font=" 1:font_system" width="216">せつぞくに　しっぱいしました
+エラー１０６０７</language>
+	</row>
+
+	<row id="msg_lib_err_008">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０８</language>
+	</row>
+
+	<row id="msg_lib_err_009">
+		<language name="日本語" font=" 1:font_system" width="216">エラーが　はっせいしました
+エラー１０６０９</language>
+	</row>
+
+	<row id="msg_lib_err_010">
+		<language name="日本語" font=" 1:font_system" width="216">おうとうが　ありません
+エラー１０６１０</language>
+	</row>
+
+	<row id="msg_lib_err_011">
+		<language name="日本語" font=" 1:font_system" width="216">おうとうが　ありません
+エラー１０６１１</language>
+	</row>
+
+	<row id="msg_lib_err_012">
+		<language name="日本語" font=" 1:font_system" width="216">おうとうが　ありません
+エラー１０６１２</language>
+	</row>
+
+	<row id="msg_lib_err_013">
+		<language name="日本語" font=" 1:font_system" width="216">つうしんが　ちゅうだんされました
+エラー１０６１３</language>
+	</row>
+
+	<row id="msg_lib_err_014">
+		<language name="日本語" font=" 1:font_system" width="216">せつぞくに　しっぱいしました
+エラー１０６１４</language>
+	</row>
+
+	<row id="msg_st_err_000">
+		<comment>ライブラリの状態エラー</comment>
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_001">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_002">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_003">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_004">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_005">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_006">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_007">
+		<language name="日本語" font=" 1:font_system" width="216">サーバーとの　せつぞくが　ちゅうだん　しました</language>
+	</row>
+
+	<row id="msg_st_err_008">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_st_err_009">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_000">
+		<language name="日本語" font=" 1:font_system" width="216">きろくがありません</language>
+	</row>
+
+	<row id="msg_info_001">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスを　えらんでください</language>
+	</row>
+
+	<row id="msg_info_002">
+		<language name="日本語" font=" 1:font_system" width="216">からの　ボックスは　おくれません！</language>
+	</row>
+
+	<row id="msg_info_003">
+		<language name="日本語" font=" 1:font_system" width="216">どの　コーナーに　おくりますか？</language>
+	</row>
+
+	<row id="msg_info_004">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスは　いちどに
+ひとつ　しか　おくれません</language>
+	</row>
+
+	<row id="msg_info_005">
+		<language name="日本語" font=" 1:font_system" width="216">おなじ　ボックスは　おくれません</language>
+	</row>
+
+	<row id="msg_info_006">
+		<language name="日本語" font=" 1:font_system" width="216">どの　コーナーを　みますか？</language>
+	</row>
+
+	<row id="msg_info_007">
+		<language name="日本語" font=" 1:font_system" width="216">きろくをけせませんでした…</language>
+	</row>
+
+	<row id="msg_info_008">
+		<language name="日本語" font=" 1:font_system" width="216">おなじバトルビデオは　ほぞんできません</language>
+	</row>
+
+	<row id="msg_info_009">
+		<language name="日本語" font=" 1:font_system" width="216">ほぞんしています……</language>
+	</row>
+
+	<row id="msg_info_010">
+		<language name="日本語" font=" 1:font_system" width="216">ランキングを　うけとっています……</language>
+	</row>
+
+	<row id="msg_info_011">
+		<language name="日本語" font=" 1:font_system" width="216">ほぞんじょうほうを　おくっています……</language>
+	</row>
+
+	<row id="msg_info_012">
+		<language name="日本語" font=" 1:font_system" width="216">ほぞんが　おわりました！</language>
+	</row>
+
+	<row id="msg_info_013">
+		<language name="日本語" font=" 1:font_system" width="216">[1:03:トレーナー名:0]の　バトルビデオを
+けしても　よろしいですか？</language>
+	</row>
+
+	<row id="msg_info_014">
+		<language name="日本語" font=" 1:font_system" width="216">ほんとうに　けしても　いいですか？</language>
+	</row>
+
+	<row id="msg_info_015">
+		<language name="日本語" font=" 1:font_system" width="216">きろくを　けしています……
+レポートを　かいています……</language>
+	</row>
+
+	<row id="msg_info_016">
+		<language name="日本語" font=" 1:font_system" width="216">きろくを　けしました！</language>
+	</row>
+
+	<row id="msg_info_017">
+		<language name="日本語" font=" 1:font_system" width="216">ドレスアップショットを　おくっています……</language>
+	</row>
+
+	<row id="msg_info_018">
+		<language name="日本語" font=" 1:font_system" width="216">ドレスアップショットを　うけとっています……</language>
+	</row>
+
+	<row id="msg_info_019">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスショットを　おくっています……</language>
+	</row>
+
+	<row id="msg_info_020">
+		<language name="日本語" font=" 1:font_system" width="216">ボックスショットを　うけとっています……</language>
+	</row>
+
+	<row id="msg_info_021">
+		<language name="日本語" font=" 1:font_system" width="216">おくる　しゃしんが　ありません
+テレビコトブキの　２かいで　つくろう</language>
+	</row>
+
+	<row id="msg_info_022">
+		<language name="日本語" font=" 1:font_system" width="216">おなじ　しゃしんは
+２かい　おくれません</language>
+	</row>
+
+	<row id="msg_info_023">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　うけとっています……</language>
+	</row>
+
+	<row id="msg_info_024">
+		<language name="日本語" font=" 1:font_system" width="216">あてはまる　しゃしんが　ありません……</language>
+	</row>
+
+	<row id="msg_info_025">
+		<language name="日本語" font=" 1:font_system" width="216">あてはまる　ボックスショットが
+ありません……</language>
+	</row>
+
+	<row id="msg_info_026">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　おくりました
+ビデオナンバー：[1:33:数字２桁:0]ー[1:36:数字５桁:1]ー[1:36:数字５桁:2]
+</language>
+	</row>
+
+	<row id="msg_info_027">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　みる　まえに
+レポートを　かきます</language>
+	</row>
+
+	<row id="msg_info_028">
+		<language name="日本語" font=" 1:font_system" width="216">きろくを　けしています……
+レポートを　たくさん　かいています……</language>
+	</row>
+
+	<row id="msg_info_029">
+		<language name="日本語" font=" 1:font_system" width="216">レポートを　たくさん　かいています……</language>
+	</row>
+
+	<row id="msg_info_030">
+		<language name="日本語" font=" 1:font_system" width="216">レポートを　かいています……</language>
+	</row>
+
+	<row id="msg_info_031">
+		<language name="日本語" font=" 1:font_system" width="216">ランキングが　ありません……</language>
+	</row>
+
+	<row id="msg_info_032">
+		<language name="日本語" font=" 1:font_system" width="216">バトルビデオを　おくりますか？</language>
+	</row>
+
+	<row id="msg_info_033">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_034">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_035">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_036">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_037">
+		<language name="日本語" font=" 1:font_system" width="216"></language>
+	</row>
+
+	<row id="msg_info_038">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_039">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_info_040">
+		<language name="日本語" font=" 1:font_system" width="216">　</language>
+	</row>
+
+	<row id="msg_box_index_000">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">だいすきボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_box_index_001">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">かっこいいボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_box_index_002">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">かわいいボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_box_index_003">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">おすすめボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_box_index_004">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">おもしろいボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_box_index_005">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">こだわりボックス　さいしん２０けん</language>
+	</row>
+
+	<row id="msg_trtype_000">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">じゅくがえり　おとこ</language>
+	</row>
+
+	<row id="msg_trtype_001">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">むしとりしょうねん</language>
+	</row>
+
+	<row id="msg_trtype_002">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">エリートトレーナー　おとこ</language>
+	</row>
+
+	<row id="msg_trtype_003">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">スキンヘッズ</language>
+	</row>
+
+	<row id="msg_trtype_004">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">いせきマニア</language>
+	</row>
+
+	<row id="msg_trtype_005">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">からておう</language>
+	</row>
+
+	<row id="msg_trtype_006">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">おぼっちゃま</language>
+	</row>
+
+	<row id="msg_trtype_007">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">サイキッカー　おとこ</language>
+	</row>
+
+	<row id="msg_trtype_008">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">ミニスカート</language>
+	</row>
+
+	<row id="msg_trtype_009">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">バトルガール</language>
+	</row>
+
+	<row id="msg_trtype_010">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">おとなのおねえさん</language>
+	</row>
+
+	<row id="msg_trtype_011">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">エリートトレーナー　おんな</language>
+	</row>
+
+	<row id="msg_trtype_012">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">アイドル</language>
+	</row>
+
+	<row id="msg_trtype_013">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">マダム</language>
+	</row>
+
+	<row id="msg_trtype_014">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">カウガール</language>
+	</row>
+
+	<row id="msg_trtype_015">
+		<language name="日本語" font=" 1:font_system" width="216" line="2">おじょうさま</language>
+	</row>
+
+	<row id="msg_error_trainer_name">
+		<comment>録画再生データで不明文字コードが入っているトレーナー名の場合に、
+代わりに表示する名前</comment>
+		<language name="日本語" font=" 1:font_system" width="216">プラチナ</language>
+	</row>
+
+	<flowchart-group-list>
+		<flowchart-group japanese="root" english="root" group-id="0" parent-id="-1"/>
+	</flowchart-group-list>
+</body>
+
+</gmml>
