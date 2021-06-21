@@ -65,14 +65,6 @@ SUBMAKES.LIBS		+= libraries/Makefile			\
 			   $(NWIFI_ADDINSDIR)/Makefile.libs
 
 #----------------------------------------------------------------------------
-# STAGE: SETUP
-#
-ifndef	NITROWIFI_WITHOUT_DEMOS
-SUBMAKES.DEMOS		+= demos/Makefile			\
-			   $(NWIFI_ADDINSDIR)/Makefile.demos
-endif
-
-#----------------------------------------------------------------------------
 # STAGE: CLEANUP
 #
 SUBMAKES.CLEANUP	+= $(NWIFI_ADDINSDIR)/Makefile.cleanup
@@ -82,7 +74,6 @@ SUBMAKES.CLEANUP	+= $(NWIFI_ADDINSDIR)/Makefile.cleanup
 SUBMAKES		= $(SUBMAKES.SETUP)			\
 			  $(SUBMAKES.TOOLS)			\
 			  $(SUBMAKES.LIBS)			\
-			  $(SUBMAKES.DEMOS)			\
 			  $(SUBMAKES.CLEANUP)
 
 #----------------------------------------------------------------------------

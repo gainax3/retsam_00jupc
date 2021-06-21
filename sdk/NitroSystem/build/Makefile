@@ -18,15 +18,6 @@ include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 
 #----------------------------------------------------------------------------
-ifndef	NITRO_WITHOUT_DEMOS
-SUBDIRS.DEMOS =	demos
-
-ifdef	NITROSYSTEM_PRIVATE
-SUBDIRS.TESTS =	tests 
-endif
-
-endif
-
 ifdef	NITROSYSTEM_PRIVATE
 SUBDIRS.TOOLS = tools
 endif
@@ -34,7 +25,6 @@ endif
 SUBDIRS = \
 		libraries \
 		$(SUBDIRS.TOOLS) \
-		$(SUBDIRS.DEMOS) \
 		$(SUBDIRS.TESTS)
 
 

@@ -130,32 +130,6 @@ SUBMAKES.ADDINS.LIBS	= ../add-ins/Makefile.libs
 SUBMAKES.ADDINS.DEMOS_	= ../add-ins/Makefile.demos
 endif
 
-ifndef	NITRO_WITHOUT_DEMOS
-#
-# build demo if not NITRO_WITHOUT_DEMOS
-#
-SUBMAKES.DEMOS		= demos/Makefile
-SUBMAKES.ADDINS.DEMOS	= $(SUBMAKES.ADDINS.DEMOS_)
-ifdef	NITRO_PRIVATE
-SUBMAKES.TESTS		= tests/Makefile
-endif
-
-else
-#
-# build demo-libs only if NITRO_WITHOUT_DEMOS
-#
-SUBMAKES.DEMOS		= demos/gx/UnitTours/DEMOLib/Makefile \
-			  demos/wm/wmDEMOLib/Makefile
-
-ifdef	NITRO_FINALROM
-ifdef	NITRO_PRIVATE
-# for WMTestTool
-#SUBMAKES.TESTS		= tests/wm/WMTest/Makefile
-endif
-endif
-
-endif
-
 
 SUBMAKES 		= buildsetup/Makefile		\
 			  $(SUBMAKES.ADDINS.TOOLS)	\
@@ -163,7 +137,6 @@ SUBMAKES 		= buildsetup/Makefile		\
 			  $(SUBMAKES.ADDINS.LIBS)	\
 			  libraries/Makefile		\
 			  $(SUBMAKES.COMPONENTES)	\
-			  $(SUBMAKES.DEMOS)		\
 			  $(SUBMAKES.ADDINS.DEMOS)	\
 			  $(SUBMAKES.TESTS)
 
