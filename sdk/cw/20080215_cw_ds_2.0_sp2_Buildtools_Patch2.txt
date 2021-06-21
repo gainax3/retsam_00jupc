@@ -1,0 +1,93 @@
+Build tools patch2 for CodeWarrior for NINTENDO DS 2.0 SP2 (2008/2/15)
+
+                                    Februaly, 15th 2008 Freescale game tool team
+
+
+This patch is provided to solve some compiler problems and linker problems and
+debugger problems including "Internal Compiler Error occurs in the specific
+combination of While() and If() (and etc...) when optimization level
+is 1 or higher.", and "Debugger can not run a Thumb code built project
+which has overlay."
+Please consult the list at the bottom of this page for more information.
+
+And, this patch has the same files as the other changed files which are in the
+former patches - "Build tools patch1 (2007/10/31)".
+
+This patch has the license file (term of validity, until March 31, 2009).
+
+This patch is intended to be applied to CodeWarrior for NINTENDO DS 2.0 SP2.
+
+When you use this patch, you must install the latest IS-NITRO-DEBUGGER
+(version 1.78 or later) in your PC.
+
+
+Install Notes
+-----------------------
+Attention:
+This patch replaces the files and directory listed at "Files to be updated" below.
+Please backup them if you need.
+
+How to install:
+1. Terminate all instances of CodeWarrior
+2. Unzip cw_ds-2_0-sp2-patch2-20080215.zip
+3. Overwrite existent folders and files by unzipped folders.
+
+
+
+Files to be updated
+-----------------------
+      ARM_Tools\Command_Line_Tools\mwccarm.exe
+      bin\Plugins\COM\LoadSaveFill_ARM.dll
+      bin\Plugins\compiler\MW C-C++ ARM.dll
+      bin\Plugins\Debugger\ARMPlugin.dll
+      bin\Plugins\Debugger\DisassemblerARM.dll
+      bin\Plugins\Debugger\Dwarf2Symbolics.dll
+      bin\Plugins\Debugger\protocols\ARMNitroEmuProtocol.dll
+      bin\Plugins\Debugger\protocols\ARMNitroTegProtocol.dll
+      bin\Plugins\support\Nitro\IS\ISNDD.dll
+      Release_Notes\ARM\Compiler_ Release_ Notes\ARM_Compiler_Notes.txt
+      license.dat
+
+
++++++ CAUTION of saving backup +++++++++
+Copy the old DLLs on the outside of the CodeWarrior installed directory.
+OR,
+Change the file name extension when you make backup of the old DLLs into 
+the CodeWarrior installed directory.
+    for example)  aaaa.dll  -->  aaaa.dll.bk
+
+If you change only file name except for the extension OR you change only 
+directory name, CodeWarrior IDE finds the old DLLs and enables both of new 
+DLLs and old DLLs. The behavior of IDE isn't assured in such condition.
+++++++++++++++++++++++++++++++++++++++++
+
+
+* ISSUES FIXED IN THIS PATCH
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX26488  Internal Compiler Error occurs in the specific
+             combination of While() and If() (and etc...) when optimization level
+             is 1 or higher.
+- MTWX26781  There should be a peephole pattern that eliminates
+             an extra mla instruction if the multiplication operand is
+             obviously zero.
+- MTWX27066  Compiler generates wrong code for the statement 
+             "for(x=0;(x+=0x1000)!=0;){...}" when the optimization level
+              is 3 or higher. 
+- MTWX27252  Internal compiler Error in file 'ConstantPools.c' line: 625.
+- MTWX27574  Compiler generates wrong code for "switch(){}"
+             sentence when a "if(){}" sentence is used just before it and
+             optimization level is 2 or higher.
+- FB5076     Debugger can not run a Thumb code built project which has overlay.
+- FB5493     Request for improving the Debugger so that the BP on overlay works
+             when the Compstatic is used.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch1 (2007/10/31) 
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- no number  Writing and reading to 32M Flash and 64M Flash DS Sub Cards is supported.

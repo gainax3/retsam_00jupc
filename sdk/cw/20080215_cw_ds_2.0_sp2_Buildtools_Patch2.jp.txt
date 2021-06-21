@@ -1,0 +1,92 @@
+CodeWarrior for NINTENDO DS 2.0 SP2 用 ビルドツールパッチ2(2008/2/15)
+                                                    2008年2月15日
+                                                    フリースケール ゲームチーム
+
+
+本パッチは、『最適化1以上の場合に、While文とif文などを合わせた特定条件で
+Internal Compiler Errorが発生する(MTWX26488)』や『オーバーレイを使用した
+プロジェクトをThumbコードでビルドした場合デバッガが正常に実行できない。(FB5076)』
+などのコンパイラ・デバッガの問題を修正をするものです。
+
+また、本パッチは、前回の『ビルドツールパッチ１(2007/10/31)』での修正ファイルも
+含まれております。
+
+本パッチにはライセンスファイル（有効期限 2009年3月31日 迄）も含まれております。
+
+本パッチは CodeWarrior for NINTENDO DS 2.0 SP2 に対して適用してください。
+
+本パッチは最新のIS-NITRO-DEBUGGER（バージョン 1.78 以降）がインストールされて
+いる環境で使用して下さい。
+
+
+インストール
+-------------
+インストール前の注意：
+本パッチによって、「置き換わるファイル」に記されている11個のファイルが
+置き換えられます。必要に応じて、インストールの前にそれらのファイルの
+バックアップをとって下さい。
+
+インストール方法
+   1. 起動中のCodeWarriorを全て終了します。
+   2. 以下の「置き換わるファイル」のバックアップをとります。
+   3. cw_ds-2_0-sp2-patch2-20080215.zipファイルを展開します。
+   4. 展開して現れたディレクトリ、ファイル群を、CodeWarrior 2.0 SP1がインストール
+      されているディレクトリに対して、上書きコピーして下さい。
+
+
+置き換わるファイル
+   本パッチにより、インストールディレクトリ以下の、次の11ファイル
+   が新しいものへ置き換わります。
+      ARM_Tools\Command_Line_Tools\mwccarm.exe
+      bin\Plugins\COM\LoadSaveFill_ARM.dll
+      bin\Plugins\compiler\MW C-C++ ARM.dll
+      bin\Plugins\Debugger\ARMPlugin.dll
+      bin\Plugins\Debugger\DisassemblerARM.dll
+      bin\Plugins\Debugger\Dwarf2Symbolics.dll
+      bin\Plugins\Debugger\protocols\ARMNitroEmuProtocol.dll
+      bin\Plugins\Debugger\protocols\ARMNitroTegProtocol.dll
+      bin\Plugins\support\Nitro\IS\ISNDD.dll
+      Release_Notes\ARM\Compiler_ Release_ Notes\ARM_Compiler_Notes.txt
+      license.dat
+
+
++++++ バックアップ時の注意事項 +++++++++
+DLLのバックアップを行なう場合は、CodeWarriorがインストールされているディレクトリ
+以外の場所に古いDLLをコピーして下さい。
+もしくは、CodeWarriorがインストールされているディレクトリの中に古いDLLのバック
+アップを置く場合は、ファイルの拡張子も変えるようにしてして下さい。
+    例)  aaaa.dll  -->  _old_aaaa.dll.bk
+
+もしファイル名称だけ変えて拡張子を変えていなかったり、ディレクトリ全体を
+ディレクトリ名を変えてその場にコピーしただけなどの場合は、CodeWarrior IDE は
+古いDLLを検出し、新しいDLLと古いDLLの両方を認識してしまいます。
+このような状態ではIDEの動作は保証出来ません。
+++++++++++++++++++++++++++++++++++++++++
+
+
+* 本パッチでの修正、変更
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX26488  最適化1以上の場合に、While文とif文などを合わせた特定条件で
+             Internal Compiler Errorが発生する。
+- MTWX26781  乗算でのオペランドが明らかに0ならば、余分なmla命令が存在している
+- MTWX27066  最適化3以上の場合に、"for(x=0;(x+=0x1000)!=0;){...}"のようなパターンの
+             for文のにおいてコンパイラは間違ったコードを生成する。
+- MTWX27252  以下のInternal Compiler Error が発生する。
+             "Internal compiler Error in file 'ConstantPools.c' line: 625."
+- MTWX27574  最適化2以上の場合に、if文がswitch文の直前に使われた時
+             コンパイラは間違ったコードを生成する
+- FB5076     オーバーレイを使用したプロジェクトをThumbコードでビルドした場合
+             デバッガが正常に実行できない。
+- FB5493     Compstaticが使用された時、オーバーレイ内に設置されたブレークポイントが機能しない。
+
+
+* 前回のパッチ『ビルドツールパッチ１(2007/10/31)』での修正、変更
+----------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- no number  DSサブカード 32Mフラッシュ/64Mフラッシュの読み書きをサポート。
+

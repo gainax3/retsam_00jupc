@@ -1,14 +1,34 @@
 ===========================================================================
-Metrowerks ARM Compiler Release Notes
+Freescale ARM Compiler Release Notes
 ===========================================================================
 
-Date   : October 1, 2007
+Date   : January 24, 2007
 Author : John Russo, Steve Barnett, Michihiro Tsuchiya  
-Version: 3.0 build 136
+Version: 3.0 build 137
 
 ===========================================================================
 Changes in This Version
 ===========================================================================
+3.0 Build 137 (01-24-2007)
+
+- fixed MTWX26781, There should be a peephole pattern that eliminates
+an extra mla instruction if the multiplication operand is obviously zero.
+
+- fixed MTWX27066, Compiler generates wrong code for the statement
+"for(x=0;(x+=0x1000)!=0;){...}" when the optimization level is 3 or
+higher. 
+
+- fixed MTWX27574, Compiler generates wrong code for "switch(){}"
+sentence when a "if(){}" sentence is used just before it and
+optimization level is 2 or higher.
+
+- fixed MTWX26488, Internal Compiler Error occurs in the specific
+combination of While() and If() (and etc...) when optimization level
+is 1 or higher.
+
+- fixed MTWX27252, Internal compiler Error in file 'ConstantPools.c'
+  line: 625.
+
 3.0 Build 136 (10-01-2007)
 
 - fixed MTWX26355, compiler crashes in array delete
@@ -33,8 +53,7 @@ description is wrong.
 
 - fixed MTWX25853, The debug info for a IF(){} in Thumb code is wrong.
 
-
-- Feature DS-R18,DS-R19
+- Feature DS-R18,DS-R19, described below
 
 Introduction
 ------------
@@ -80,6 +99,36 @@ prototype or definition.
 Example:
 
 __declspec(far_call) extern void function1(void);
+
+int main()
+{
+	function1();	// generate BLX Rm (or BX rm)
+}
+
+or
+
+__declspec(far_call) void function1(void)
+{
+}
+
+int main()
+{
+	function1();	// generate BLX Rm (or BX rm)
+}
+
+The compiler does not generate the BLX Rm instruction in the following
+case. Because, the __declspec(far_call) attribute is overwrited by the
+function definition.
+
+__declspec(far_call) extern void function1(void);
+void function1(void)
+{
+}
+
+void main()
+{
+	function1();	// generate BL
+}
 
 
 Using the far_abs Addressing Mode
