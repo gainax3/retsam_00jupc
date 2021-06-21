@@ -1,0 +1,749 @@
+===========================================================================
+Metrowerks ARM Compiler Release Notes
+===========================================================================
+
+Date   : October 1, 2007
+Author : John Russo, Steve Barnett, Michihiro Tsuchiya  
+Version: 3.0 build 136
+
+===========================================================================
+Changes in This Version
+===========================================================================
+3.0 Build 136 (10-01-2007)
+
+- fixed MTWX26355, compiler crashes in array delete
+
+- fixed MTWX26302, The compiler generates wrong code for the
+substitution a value to a bitfielded variable when the optimization
+level is 2 or higher.
+
+3.0 Build 135 (09-11-2007)
+
+- fixed MTWX24892, The debug info which is for a virtual inherited
+class is not enough.
+
+- fixed MTWX25711, The compiler generates an incorrect assembly when
+using "push {r0-r7,lr}" or "push {r0-r7}".
+
+- fixed MTWX25591, The debug info for a IF() which has substituting
+the value from called function to a variable in the condition
+description is wrong.
+
+- fixed MTWX25714, The compiler removes necessary "cmp" instruction.
+
+- fixed MTWX25853, The debug info for a IF(){} in Thumb code is wrong.
+
+
+- Feature DS-R18,DS-R19
+
+Introduction
+------------
+
+Currently, the ARM compiler generates a BL <symbolname> instruction whenever a 
+function call is encountered in the source being compiled. The BL instruction 
+in both ARM and Thumb modes has a fixed offset that determines the maximum 
+range of the branch target jump. 
+
+At link time, the linker determines the operating state of the caller function 
+(ARM or Thumb), the operating state of the callee, and the range of the jump. 
+If the interworking switch of the linker is on, the linker either replaces the 
+compiler generated BL instruction with a BLX instruction (to switch operating 
+states) or replaces the target of the BL instruction with a branch to a small 
+piece of code called a veneer. The veneer will switch operating states if necessary 
+and branch to the original target.  Veneers are generated if a state switch is 
+required or if the branch is out of the range of the BL instruction. The exact 
+contents of the veneer depend on the ARM architecture type and capabilities (v4t or v5t). 
+
+The features requested will force the compiler to generate a fixed sequence of 
+instructions that allow a branch range of 32-bits using the BLX Rm for ARM v5t 
+or BX Rm for ARM v4t. In this specification, such functions that require register 
+direct branching instructions are referred to as "far" functions.
+
+Defining Far Functions
+----------------------
+
+There are two means to define far functions. The first means is simpler and uses 
+the __declspec(far_call) syntax. The second means determines if the function is
+attached to a section whose addressing mode is "far_abs" to annotate the function
+as "far".
+
+Interworking must be enabled for the new features to be in effect.
+
+
+Using __declspec(far_call)
+--------------------------
+
+First, __declspec(far_call) is provided as a means of directly annotating a function
+to be called by a register direct call. Simply prepend the __declspec to the function
+prototype or definition.
+
+Example:
+
+__declspec(far_call) extern void function1(void);
+
+
+Using the far_abs Addressing Mode
+---------------------------------
+
+As a second means, far functions may be identified by the addressing mode of the section 
+which they reside.
+
+The user must define a section that has a "far_abs" addressing mode. 
+
+Refer to the targeting manual for #pragma define_section syntax details, but minimally a far
+section would look like:
+
+Example:
+#pragma define_section FARSECT ".farsect" far_abs RX
+
+"far_abs" is a new address mode introduced in this build.
+
+Next, the user must designate which functions reside in the far section. This is done
+by a __declspec or #pragma.
+
+__declspec(<sectname>) <function prototype>
+
+or
+
+__declspec(section "<sectname>") <function prototype>
+
+Example:
+
+__declspec(section "FARSECT") int farfunc(int);
+
+
+Alternatively, #pragma section <sectname> begin/end syntax can be used if the function
+is defined in the same file as the #pragma define_section.
+
+Example:
+#pragma section FARSECT begin
+int farfunc(int i)
+{
+	return i++;
+}
+#pragma section FARSECT end
+
+int main()
+{
+	int j=0;
+	j = farfunc(j);
+}
+
+If the far function is defined in another module (an extern function), the #pragma define_section
+and __declspec or #pragma section must also be specified in the module containing the function
+definitions and must be identical to the #pragma define_section, __declspec, or
+#pragma section that references the far function.
+
+Example:
+
+main.c
+======
+
+#pragma define_section FARSECT ".farsect" far_abs RX
+__declspec(section "FARSECT") extern void farfunc(int);
+
+int main()
+{
+	farfunc(3);
+}
+
+file1.c
+=======
+
+#pragma define_section FARSECT ".farsect" far_abs RX
+__declspec(section "FARSECT") extern void farfunc(int);
+
+void farfunc(int j)
+{
+	return;
+}
+
+Of course, the linker control file must place the ELF section ".farsect" appropriately.
+A 'far_abs' section does not imply any restrictions on placement in the memory map.
+
+Caveats
+-------
+
+1. For ARM v4t architectures (e.g. ARM7TDMI), it is not possible to return to the 
+Thumb operating state from a far function call.
+
+Example (Thumb mode)
+ldr r1,[pc+16]	;load address of far function
+mov lr,pc
+bx r1       
+... more thumb instructions ...
+
+A return from the far function will return in ARM mode because
+v4t mov lr,pc does not preserve the operating state of the machine.
+
+This is not an issue in v5t, since blx preserves the operating state
+of the machine.
+
+A warning is issued for any far function calls for v4t machines:
+
+ Warning : Return from far function call in v4t machine will not restore Thumb
+           state
+
+2. Designating a function as a far function will not prevent automatic inlining if the
+reference and definition of the function are in the same file and automatic inlining
+is enabled. Automatic inlining can be suppressed with __attribute__((noinline)), however.
+
+Example:
+
+__declspec(section "FARSECT")  void farfunc(int) __attribute__((noinline));
+
+3.0 Build 134 (07-23-2007)
+
+- fixed MTWX25606, Static data member in template class is not dead-stripped
+properly.
+
+3.0 Build 133 (06-18-2007)
+
+- fixed MTWX24890, Compiler generates wrong code for a calculation which a sign
+extension is necessary for when optimization level is 0.
+
+3.0 Build 132 (05-31-2007)
+
+- fixed MTWX23730, C99-style designated initializers do not compile.
+
+- fixed MTWX23851, The unnecessary compile warnings occur when the "Use generic
+symbol names for static symbols" option is enabled.
+
+- fixed MTWX24584, Compiler generates unnecessary "mvn" instruction when optimization
+level is 1 or higher.
+
+3.0 Build 131 (04-03-2007)
+
+- fixed MTWX23750, Compiler generates wrong code for multiplication with casting 0xA000 
+(or biger number) to u16 when optimization level is 1 or higher.
+
+- fixed MTWX23579, Compiler mistakes a subtraction in a value of "dcd" instruction in an 
+inline assembler.
+
+- fixed MTWX23429, Compiler optimization generating bad code
+
+- fixed MTWX23215, Compiler generates wrong code for a inlined function which has logical 
+operation and bit-shift and casting to u16 when inline is enabled and optimization level 
+is 1 (not 0, 2, 3, 4).
+
+3.0 Build 130 (03-02-2007)
+
+- fixed MTWX23097, Compiler generates wrong code for a function which has 4 or more arguments 
+when Thumb mode and optimization level is 1 or higher.
+
+3.0 Build 128 (02-02-2007)
+
+- Rework of MTWX22929, conditional inline assembly code is now preserved at
+all optimization levels. Note below for MTWX22929 is no longer valid.
+
+3.0 Build 127 (01-18-2007)
+
+- fixed MTWX22929, Compiler generates wrong code for auto-inlined function which 
+has inlined assembler codes when auto-inline is enabled and optimization level 
+is 1 or higher.
+
+NOTE: Conditionally executed inline assembly, for example, 'addgt r0,r0,r1' 
+instructions will be decomposed into an equivalent test and branch instruction
+sequences. At optimization level 0 or 1, this transformation will be evident
+to the programmer. At optimization level 2 and above, the transformation will
+not be evident as the test and branch instruction sequence is converted back to
+the conditionally executed instructions.
+
+- fixed MTWX22882, An internal compiler error occurs when IPA is "Off" and Inline Depth 
+is "Smart" (or large number) and Optimize For is "Smaller".
+
+- fixed MTWX22653 , Compiler generates wrong code for nested "IF()"s which have logical operation 
+on the conditional sentence, when optimization level is 1 or higher.
+
+- fixed MTWX21273, member function specified with inline in template is not 
+inlined without not-inlined warning
+
+- fixed MTWX22881, Compiler generates wrong code for auto-inlined function code
+when Inline Depth is not "Don't Inline" and optimization level is 2 or higher.
+
+- fixed MTWX22693, Compiler generates wrong code for substitution which continued 
+for members of structure by using pointer, when optimization level is 2 or higher.
+
+- fixed MTWX22423, Compiler generates wrong code for casting an unsigned bitfield 
+member to s8 type when optimization level is 1 or higher.
+
+- fixed MTWX22422, Compiler generates wrong code for setting a value of a member of structure 
+to a member of other structure by using pointer when optimization level is 1 or higher.
+
+- fixed MTWX21189, user defined section causes compiler crash
+
+- fixed MTWX22452, internal compiler error (report to <cw_bug@freescale.com>) while
+executing in file 'CCallGraph.c' line: 364 (compiling '' in 'foo.cpp')
+
+- fixed MTWX22434, Error  : (10424) internal compiler error 
+(report to <cw_bug@freescale.com>)
+while executing in file 'CTemplateClass.c' line: 2153
+(compiling '' in 'main.cpp')
+main.cpp line 18  d std::ostream& operator<< <P, T, A>(std::ostream&, const Self&);
+
+- fixed MTWX22436, (fixed in b126) Internal Compiler Error occurs when some "while(1){}" and 
+"if(){break;}" are used and optimization level is 1 or higher.
+
+3.0 Build 126 (10-13-2006)
+
+- fixed MTWX21259, Compiler generates wrong code for using an array which is 
+into a structure with another large array when the "Optimize for" is Speed 
+and optimization level is 3 or higher.
+
+- fixed MTWX21325, Compiler generates wrong code for casting to 16 bits wide 
+type about result of a macro when optimization level is 2 or higher.
+
+- fixed MTWX21327, Compiler generates wrong code for bit shift for a result 
+of logical operation when optimization level is 1 or higher.
+
+- fixed MTWX21661,An unused inherited class which has some member functions 
+is not dead-stripped properly
+
+- fixed MTWX21255, Compiler generates wrong code for casting to unsigned 16 bits wide type 
+when Thumb mode and optimization level is 1 or higher.
+
+- fixed MTWX21334, The spelling of the pragma "opt_usedef_mem_limit" in compile
+error message is wrong.
+
+- fixed MTWX21451 , When run in debug mode, the software prints out that the "Character is 
+ACTIVE". In release mode it says "Character is INACTIVE". Should be "ACTIVE" though.
+
+- fixed MTWX21138, The compiler has a problem with the base class when it is used in partial 
+specialization.
+
+- fixed MTWX21098 , code sample worked properly on NITRO/DS 1.2 but not on 2.0. Should print "stack 1" however it prints "stack 0"
+
+- fixed MTWX20767, internal compiler error in file 'CInline.c' at line 500.
+
+3.0 Build 125 (10-12-2006)
+
+- internal build
+
+3.0 Build 124 (10-09-2006)
+
+- internal build
+
+3.0 Build 123 (08-08-2006)
+
+- fixed MTWX21182, Compiler generates wrong code for substitution to a bitfield member 
+with over bitmask when optimization level is 1 or higher.
+
+- fixed MTWX21185, Compiler generates wrong code for a logic calculation - (A&B) - 
+after If(A&B){} when optimization level is 2 or higher.
+
+- fixed MTWX21184, An internal compiler error occurs when externed function use 
+enum and optimization level is 1 or higher.
+
+- fixed MTWX21258, Compiler generates wrong code for referring to nested structure 
+when optimization level is 2 or higher.
+
+- fixed MTWX21249, Compiler generates wrong code for casting to 16 bits wide type 
+about result of the pointer reference when Thumb mode and optimization level is 2 
+or higher.
+
+- fixed MTWX21248,The user's library which is built with DS1.2 does not work correctly 
+in DS2.0 application if floating-point operation is used in the user's library.
+
+3.0 Build 122 (06-29-2006)
+
+- internal build
+
+3.0 Build 121 (06-27-2006)
+
+- fixed MTWX21079, Compiler generates wrong code for a member function of class 
+when optimization level is 1 or higher.
+
+3.0 Build 120 (06-23-2006)
+
+- fixed MTWX21049, Compiler crashes when members which is 32bits width of structure 
+are used in different order by declaration inside for(){} which is not developed, 
+and optimization level is 2 or higher.
+
+- fixed MTWX21059, Compiler crashes at opt level 2 or higher
+
+- fixed MTWX21066, Compiler generates wrong code when a structure has a larger 
+than 1021 bytes arrangement as a member  and the code is Thumb mode.
+
+- fixed MTWX21071, An extra branch instruction is added in the block of inline 
+assembler when label is used in inline assembler.
+
+3.0 Build 119 (06-08-2006)
+
+- fixed MTWX20963, Compiler generates wrong code for if(){} when there 
+is increment/decrement in the expression of if() and optimization level 
+is 2 or higher.
+
+- fixed MTWX20962, Compiler generates wrong code when there is increment/
+decrement in the left side of the equation in "if(){}" statement and 
+optimization level is 2 or higher.
+
+- fixed MTWX20961, Compiler generates wrong code when there is increment/decrement 
+of pointer in the left side of the equation and optimization level is 3 or higher. 
+
+3.0 Build 118 (05-31-2006)
+
+- internal build
+
+3.0 Build 117 (05-31-2006)
+
+- fixed MTWX20893, Compiler generates a wrong code for a specific "switch{}" when 
+the target is Release or Rom (probably, when Optimization is enabled).
+
+- fixed MTWX20277, Illegal compile error appears if an inline assembler function 
+is located above the actual error function.
+
+3.0 Build 116 (05-19-2006)
+
+- fixed MTWX20840, Compiler crashes when the "Use Instance Manager" is used.
+(Note, Instance manager is not supported for DS1.2 or DS2.0)
+
+- fixed MTWX20841, The compile error "...redeclared..." occurs when a "typedef" 
+is used in a template.
+
+- fixed MTWX20839, The "Out of memory" error occurs and compilation isn't 
+completed when the Optimization Level is 2 or higher.
+ 
+-fixed MTWX20837, Compiler generates wrong code for a comparative expression 
+when Thumb mode and the Optimization Level is 1 or higher.
+
+
+3.0 Build 115 (04-26-2006)
+
+- fixed MTWX20759, Compiler crashes when the Debug Target of Nitro-DWC library is 
+built after "make clobber" was done.
+
+- fixed MTWX20715, internal compiler error using incomplete types
+
+3.0 Build 114 (03-30-2006)
+
+- Corrected handling of __asm { bl fff } where fff is an local integer variable
+
+- fixed MTWX20632, The following asm instruction (teq r0,r1,lsr #32) generates an out 
+of range error when it should not.
+
+- fixed MTWX20640, Compiler (ARM3.0b113) crashes when MI_CpuXXX16/32 function 
+(Nitro-SDK function) is used and debug info is not generated. 
+
+Note: Since MI_CpuXXX16/32 is instantiated from a precompiled header file with
+debug options that differ from the file that includes the precompiled header,
+no debug information is generated for the functions in the including file or
+the precompiled header functions. All functions in a single translation unit
+(file) should have equivalent debug settings to generate consistent debug 
+information as debug information is emitted for the entire file, not 
+individual functions. Although it is possible to having different debug settings
+on different functions (via precompiled headers as described above or by 
+#pragma sym on|off|reset), the exactness of the debugging information is
+controlled by the order of compilation, over which the user has no control.
+
+- Corrected the Release Notes for #pragma force_func_export of build 110 below.
+
+
+3.0 Build 113 (03-27-2006)
+
+- Compiler now accepts __declspec(noinline) and __declspec(noinlining) in
+function declarations.
+
+- The pragma state in -ipa file mode is saved and restored for each function
+giving equivalent scope to all pragmas regardless of ipa mode. 
+
+3.0 Build 112 (03-22-2006)
+
+- fixed MTWX20569, The address which is a place of a jump from a "break;" 
+at a "switch(){}" is wrong
+
+- fixed MTWX20581, Wrong debugInfo is generated for array variables
+
+- fixed MTWX20579, Compiler doesn't generate a debug information of structure 
+and typedef when the optimization level is 1 or higher.
+
+
+3.0 Build 111 (03-09-2006)
+
+- fixed issue where Debug builds of certain Nitro SDK applications could not
+be debugged. The message "Program entry point is not found" would appear in 
+a dialog box. 
+
+3.0 Build 110 (03-03-2006)
+
+- fixed MTWX20414, The behavior of the Nitro-SDK Demo "demos/mb/cloneboot" 
+  is not perfect
+  
+- fixed MTWX20415, An exception error occurs in ARM9 with the Nitro-SDK Demo 
+  "demos/fs/overlay-staticinit"
+  
+- fixed MTWX20416, A debug info isn't generated properly with the Nitro-SDK Demo 
+  "demos/fs/overlay-staticinit"
+  
+- fixed MTWX20463, The result (quotient and remainder) of division is not right 
+  when the FP_*_sz library is used.
+  
+- Added new pragma, force_func_export.
+
+	#pragma force_func_export on|off|reset
+	
+  This pragma will force a function to be viewed as referenced by the compiler's code
+  dead-stripper in -ipa file mode. This is useful for files that contain only C static
+  declared functions. Normally, the compiler would simply dead-strip these functions
+  since they have internal linkage and no references. Pragma force_func_export will
+  mark the functions as referenced, preventing dead-stripping in the compiler in -ipa
+  file mode. The scope of #pragma force_func_export remains in effect for each function
+  parsed after the pragma until it is reset or set again. Example:
+  
+  #pragma force_func_export on
+  func1() {}
+  #pragma force_func_export off
+  func2() {}
+  
+  force_func_export is enabled for func1() and disabled for func2() regardless of
+  ipa mode settings.
+  
+  
+  The behavior of the ARM 3.0 compiler in -ipa file mode differs  from
+  the ARM 2.x compiler in deferred code generation mode. The behavior in -ipa file mode 
+  is to dead-strip internal linkage object than are not referenced. Care must be exercised to
+  address cases where unreferenced objects may have internal linkage. Whereas previous
+  compilers may have exported these objects to the linker, the ARM3.0 compiler will
+  dead-strip the objects. In particular, this happens in the NITRO SDK in 
+  build/demos/fs/overlay-staticinit/src/top_menu.c and include/nitro/sinit.h.
+  
+  There are several options to make sure that unreferenced objects are exported to the
+  linker. For functions, use pragma force_func_export described above. The __declspec
+  (force_export) or __attribute__((force_export)) may be applied to individual objects
+  to export them to the linker. This __declspec( or __attribute__) may be used on data or
+  functions.
+
+Examples:
+
+// Somedata will not be dead-stripped in -ipa file mode
+
+__declspec(force_export) static int Somedata[] = { 1,2 }; 
+
+or 
+
+static int Somedata[] __attribute__((force_export)) = { 1,2 }; 
+
+
+  
+- Changed handling of locally unreferenced global data definitions.
+
+  For the most part, the ARM3.0 compiler tries to place all data in pooled ELF sections.
+  That is, the data is placed in common physical sections. Since the relative locations
+  of data is known in pooled sections, access to data is more efficient. The drawback
+  of this is that the linker is unable to dead-strip unreferenced data since the linker
+  can only strip the entire section.
+  
+  To overcome this deficiency, the compiler now recognizes whether global data definitions
+  are locally referenced. That is, whether the global data is referenced within the
+  file where it is declared. If the data is not locally referenced, it is placed in its
+  own individual ELF section. This allows the linker to make the final decision on 
+  dead-stripping. This feature is only active in -ipa file mode.
+  
+ 
+
+3.0 Build 109 (02-21-2006)
+
+- fixed MTWX20373, wireless communication demos in CW for DS2.0 don't work 
+
+3.0 Build 108 (01-31-2006)
+
+- fixed MTWX18802, Debug info support for typedefs of base types 
+
+- small refinement to lexical block support 
+
+
+3.0 Build 107 (01-25-2006)
+
+- Resolved ICE building NITRO C++ libraries, CTemplateTools.c:3833
+
+- Resolved small lexical block info problem with local template class variables
+
+3.0 Build 106 (01-24-2006)
+
+- implemented MTWX17667, MTWX17669 - fixed point divide routine size was
+reduced by re-rolling a loop. Overall mathlib size has been reduced due to
+improved dead-stripping of unused math functions. User may now link in 
+"_sz.a" type libraries to get improvement in code size of divide routines
+for 32-bit signed and unsigned divide routine. But the smaller routines
+are slower than the unrolled loop. The non-"_sz.a" libraries are smaller
+also due to dead-stripping, but have the same performance as the previous
+libraries.
+
+- fixed MTWX19404, CW built-in assembler 'and' opcode bug. 
+
+- implemented MTWX18350, the compiler now emits lexical block info in 
+the DWARF2 .debug section.
+ 
+
+
+
+3.0 Build 105 (01-18-2006)
+
+MTWX14401 Feature has been reimplemented. The previous implementation of this
+feature resulted in an unacceptable reduction in performance because all data
+was un-pooled if "Pool Strings" were disabled. 
+
+The new implementation un-pools only the string data objects if "Pool Strings"
+is disabled. The bulk of the data objects remain pooled. This leads to slight
+performance reduction that can be regained if "Pool Strings" is enabled. By
+default, "Pool Strings" is disabled. So, ultimately, most of the data in
+a translation unit is pooled into a single ELF .data section. Each individual
+string resides in a unique ELF .data section when "Pool Strings" is off. 
+
+
+A benefit of this feature is that strings can be globally aligned in the 
+linker control file with an align directive.  
+ 
+Example:
+
+  .align all 8
+   .data(*)
+
+A caveat of this feature is that some unreferenced strings that possibly were
+not dead-stripped previously by the linker can now be dead-stripped because they
+live in unique ELF .data sections.
+
+
+3.0 Build 104 (01-12-2006)
+
+-fixed MTWX19913 
+
+-fixed MTWX19914
+
+MTWX14401 Feature
+Want to disable "permit dead-stripping of functions" and 
+disable "Pool Strings" at the same time.
+
+The "Pool Strings" options in the C/C++ Language panel now controls the pooling
+of constants. That is, when "Permit dead-stripping of functions" is disabled
+and "Pool Strings" is disabled, each data object will occupy a unique ELF section.
+Formerly, "Permit dead-stripping of functions", when disabled, would group all data
+objects into a single ELF section, regardless of "Pool Strings" settings.
+
+
+3.0 Build 103 (12-09-2005):
+Notable changes from ARM 2.1 compiler:
+
+o User specified read-only data sections may be specified with #pragma define_section.
+example:
+#pragma define_section mysection, ".mydata", ".mybss", ".myrodata", abs32, RWX
+
+Use this pragma to place const qualified data in a user-specified section.
+Otherwise, const data is placed in .rodata sections. 
+
+o The compiler's inline assembler now accepts a .align directive
+The usage is:
+	.align <arg>
+
+where <arg> is a literal constant (expressions are not allowed).
+<arg> must be a power of 2 constant greater than 0. The maximum
+align argument is 8192. 
+
+.align aligns the next occurring instruction or directive to the
+argument value. Multiple .align directives are allowed in an 
+inline assembly block. 
+
+Normally the function where the .align directive resides will be
+aligned to the maximum of all the .align directives in the function.
+This is true if dead-stripping of functions is enabled.
+
+If dead-stripping is disabled in the compiler (target settings
+panel "Permit dead-stripping of functions" is unchecked), individual
+functions may not be necessarily aligned to the maximum of all .align
+directives in the function. By disabling dead-stripping, the compiler
+essentially combines functions in order to pool constants and gain
+more efficient access of constant addresses of global and static 
+variables. All the combined functions will reside in the same object
+code section and the object code section is aligned to the maximum of the
+.align directives. Do not rely on function alignment if dead-stripping
+is disabled. The .align directives will be accurate, however.
+  
+
+o The compiler's inline assembler now accepts label operands in ldr and
+lda instructions.
+
+Example:
+        asm {
+                ldr r0,=L1
+                lda r1,L2
+L1:
+L2:
+        }
+
+where L1 and L2 are legal inline assembly labels. Labels must be defined
+in the function in which they are referenced.
+
+o Inline assembly labels may now have an optional trailing colon.
+
+Example:
+	asm {
+	label1
+	b @label1
+}
+
+and 
+	asm {
+label1:
+	b @label1
+}
+
+are identical. Label may begin anywhere in the line. The
+lines containing a label may or may not contain additional opcodes.
+
+
+o The command line flags to select warning levels have changed:
+
+'-w most' enables the following warnings:
+
+	"illegal #pragmas",
+	"empty declarations",
+	"possible unwanted effects",
+	"unused arguments",
+	"unused variables",
+	"extra commas",
+	"pedantic error checking",
+	"hidden virtual functions",
+	"passing large arguments to unprototyped functions",
+	"use of expressions as statements without side effects",
+	"lossy conversions from pointers to integers",
+	"token not formed by ## operator",
+	"return without a value in non-void-returning function",
+	"inconsistent use of 'class' and 'struct'",
+	"incorrect capitalization used in #include \"...\"",
+	"incorrect capitalization used in #include <...>",
+
+'-w all' enables the above warnings and the following:
+
+	"implicit arithmetic conversions; implies '-warn impl_float2int,impl_signedunsigned'",
+	"implicit integral to floating conversions",
+	"implicit floating to integral conversions",
+	"implicit signed/unsigned conversions",
+
+'-w full' enables all of the above and the following:
+
+	"use of undefined macros in #if/#elif conditionals",
+	"'inline' functions not inlined",
+	"padding added between struct members",
+	"result of non-void-returning function not used",
+	"any conversions from pointers to integers",
+
+o The path to the runtime library is now Runtime/Runtime_ARM/Runtime_NITRO/lib.
+
+- fixed MTWX19757, Inline assembler generates wrong code for "stmfd" when there are more than 15 registers as a reglist.
+
+- fixed MTWX19648, Stand-alone Assembler (build 20) generates wrong instructions for "ldreq" and "ldrne".
+
+
+
+
+3.0 Build 102 (09-06-2005):
+- ARM2.1 changes from build 73 to 80 incorporated.
+- Numerous internal bug fixes.
+
+
+3.0 Build 101 (05-19-2005):
+- fixed MTWX18602, compiler remove load/store instruction for variable
+specified as volatile. 
+
+
+3.0 Build 100 (05-12-2005):
+- Initial public preview, ARM 3.0.

@@ -1,0 +1,324 @@
+=============================
+CodeWarrior IDE Release Notes
+=============================
+
+This file contains information about the IDE common to all platforms.
+For host-specific notes, please see the IDE release note for your platform.
+
+Please look at the Known Problems section at the bottom of this document for
+known issues.
+
+
+-------------------------------------------------------------------------
+
+Version: CodeWarrior IDE 5.7
+Date:    2/22/2005
+
+======================================
+New features in the 5.7 IDE (from 5.6)
+======================================
+
+- External Build Support (Windows and UNIX only)
+- Numerous bug fixes
+- New Command Window 3.1 version
+- Improved Cache Window
+
+
+================================================
+  External Build Support (Windows and UNIX only)
+================================================
+
+This feature is only available in CodeWarrior products that support it.
+This feature allows the IDE to invoke makefiles directly and map the
+debugger used to the executable created by the makefile.  To create a
+an external build project, invoke the wizard from the menu:
+
+	File->New...->External Build Wizard
+	
+================================================
+  Numerous bug fixes
+================================================
+
+Numerous bug fixes have been made to the IDE.  These include stability
+issues and language parser issues.
+
+================================================
+  New Command Window 3.1 version
+================================================
+
+The following improvements were made in Command Window 3.1.
+See Help\IDE_5.7_Automation_Guide.chm for more details.
+
+	o Improved multi-core debugging support
+	o Improved command synchronization 
+	o Improved memory, register, and variable access 
+	o Ability to view register details information 
+	o New commands attach and connect 
+	o New namespace capability 
+	o Scrollbar
+
+================================================
+  New Cache Window
+================================================
+
+If the processor and protocol you are using supports cache 
+visibility the Cache Window will let you see and manipulate the 
+contents of the cache. Improvement in IDE 5.7 include:
+
+	o Sorting the columns in the line selection pane on the left now 
+	  lets you see them grouped by address etc.
+	o The Find command will now let you search the contents of the cache.
+	o You can select the cells in the cache and copy their contents to the clipboard.
+	o The File->Save command will now save the contents of the cache to a text file.
+	o Numerous visual glitches have been fixed and the appearance improved.
+
+
+
+-------------------------------------------------------------------------
+
+Version: CodeWarrior IDE 5.6
+Date:    3/25/2004
+
+======================================
+New features in the 5.6 IDE (from 5.x)
+======================================
+
+- Code Formatting
+- Code Completion for #pragmas
+- Code Completion for C++ templates 
+- Go to next/previous function
+- Word wrap when printing
+- Support for source-relative #includes
+- Find inside/outside of comments
+- Improved language parser speed and feedback
+- New Breakpoint window
+- New Trace window
+
+
+======
+Editor
+======
+
+The editor can now format your code as you type. Code around brackets
+can be indented as you like, and braces, brackets, and parenthesis can
+be automatically closed for you. The formatting can be configured in the
+new  "Code Formatting" global preference panel.
+
+Code Completion is now supported for #pragmas. The keybindings are the
+same as they had been previously. (i.e. control-. on the Mac, Alt-. on PC)
+You can invoke Code Completion after:
+
+#pragma |
+
+and a list of available pragmas will appear.
+
+Code Completion is now also supported for C++ template classes. Again, the 
+keybindings are the same as they had been previously. (i.e. control-. on the
+Mac, Alt-. on PC) You can invoke Code Completion after:
+
+MyTemplateClass.
+
+and a list of available completions will appear.
+
+Two new editor commands have been added: Go to next function, and Go to previous
+function. By default, the commands do not appear in the menus. However, their menu
+appearance and keybindings can be changed under Commands and Keybindings | 
+Editor Commands. The default bindings are:
+				
+				Next Function			Previous Function
+Windows: 		Cmd-Shift-Down			Cmd-Shift-Up
+Mac/UNIX:		Ctrl-Opt-Down			Ctrl-Opt-Up
+
+When printing, long lines can now be wrapped through the "Wrap Text Lines"
+option in the print dialog.
+
+The column display in the text editor now displays the number of bytes rather than the
+number of characters when displaying text in a multi-byte language.
+
+When using the find definition command when there is no selection, the editor will place
+the identifier adjacent to the text caret as the default text for the dialog that appears.
+
+============
+Build System
+============
+
+The IDE can now be told to look for files relative to the current source file
+first, before searching through the access paths. If the compiler provides support,
+this option can be turned on in the <Target> Settings | Access Paths | Source relative includes.
+
+With this option turned on, if you are compiling MyFile.cpp and including MyFile.h, the IDE will
+first look for MyFile.h in the same folder as MyFile.cpp. If MyFile.h is not in the same folder
+as MyFile.cpp, the access paths will be searched as usual.
+
+It is recommended that this option be turned on for sources usually compiled with GCC and
+other command-line compilers.
+
+
+==============
+Project Window
+==============
+
+New commands have been added to navigate between the tabs in the project window using the
+keyboard. The default bindings are:
+
+                   Next Tab               Previous Tab
+Mac                Ctrl+Right             Ctrl+Left
+Windows            Alt+Right              Alt+Left
+
+====
+Find
+====
+
+The Find dialogs now have the option to limit matches within code or comments. Use the new
+Scope choices to limit the text that is searched.
+
+The old "Down/Up" radio buttons in the Find and Replace dialogs have been replaced with the
+"Search Up" option.
+
+After performing a successful replace all operation, the IDE will display a dialog showing
+how many instances were replaced.
+
+===============
+Language Parser
+===============
+
+The language parser speed has been improved. Parser feedback is now displayed in the project
+window of the project being parsed.
+
+===============
+Function Popup
+===============
+
+The function popup in the editor now uses the Language Parser if the Browser Symbols 
+Generation is set to  "Language Parser" in the "Build Extras" Target Settings Panel.
+
+The function popup will then work for header files, resolve preprocessor macros,
+and display more complete information, including defines, function and class method 
+declarations.
+
+By default, the function popup will process C preprocessor directives and only show
+the code that is available given the current macro definition.  Keeping shift pressed 
+while clicking on the function popup will ignore conditional directives.
+
+======
+New Breakpoint Window
+======
+
+There is a new breakpoint window for displaying and managing Breakpoints,
+Eventpoints, and Watchpoints. The new window will let you:
+
+- Group Breakpoints
+- Rename Breakpoints
+- Save and reload sets of breakpoints
+- Enable/Disable a set of breakpoints
+- Select and delete multiple breakpoints
+
+Breakpoints are no longer saved with projects but are kept in one global list.
+This list is saved in the Breakpoints.xml file.
+
+New breakpoint conditions - you can now use the following special
+keywords when setting breakpoint conditions:
+
+mwThreadID - the current thread ID
+mwHitCount - the number of times the debugger has stopped at the breakpoint
+mwCallingFunction - the name of the function calling the one you are stopped in.
+
+For exmaple, setting a breakpoint condition to "mwCallingFunction == "foo"" will tell the
+debugger to only stop when the first function up the call stack is "foo".
+
+======
+New Trace Window
+======
+
+There is a new trace window for displaying program and data trace. This can be used to
+determine where your program has been just before something went wrong.
+
+If there is a source of trace data available the "View Trace" menu item in the
+"Debug" menu will be enabled.
+
+
+-------------------------------------------------------------------------
+
+==============
+Known Problems
+==============
+
+IDE
+```
+Project names, target names, and project file names have length limitations
+at 58, 59, and 63 characters, respectively.  There are project interoperability
+constraints that prevent longer names.
+
+File Mappings
+`````````````
+Previous IDEs, up through 4.1.x, had a bug in the byte-swapping code of
+the FileMappings panel. If a 4.2.x or later project file is opened with a
+previous IDE and the project needs to be converted, the older IDE may
+crash. The workaround is to open the project on the same host platform
+on which the project was originally created.
+
+Project Files and Data Folders
+``````````````````````````````
+Changing the path to a project file that is opened in the IDE, and/or
+renaming or moving the project's data folder will leave the IDE in an
+unstable state. This problem usually shows itself on Win95, Win98,
+RedHat 6.2, and any other OS that does not keep track of open file
+handles. The workaround is to close the project files in the IDE before
+renaming/moving the files/folders in the OS.
+
+Access Paths
+````````````
+-If you add a path implicitly by dragging a file to the project window
+ and the access paths panel is showing, the access paths panel does not
+ show the newly added path until you close the panel and re-open it.
+
+
+-You might get a message informing you about two access paths that 
+ share the same internal ID, such as :
+
+ The following access paths share the same internal id in target 
+ "MyCPPAppRelease" of project "MyCPPApp.mcp": (One way to repair this error is 
+ to export the project to XML and re-import.)
+ User access path "{Project}../Include/XML" and system access path "{Project}../Sources"
+
+ You can fix that message by exporting the panel to XML and then reimporting it.
+ Export to xml by opening up the project Prefernece Settings, click on the "Access Paths" 
+ entry on the left side of the winodw, and then click on the "Export Panel" button.  
+ Once you save the xml file, click on the "Import Panel" button and select the file
+ that you just saved.  Make sure to save the panel when closing the project preferences.
+
+Access Paths
+````````````
+Invoking multiple regular expression finds through the Find in Files dialog will
+most likely lead to the IDE crashing since the regular expression engine is currently
+not thread safe.
+
+Breakpoint Window
+````````````
+If you load a new set of breakpoints while debugging, they may not all be set until
+your next debug session.
+
+The breakpoint window and object inspector do not work in concert. For now,
+in order to change breakpoint properties, rely on the breakpoint window.
+
+You can't currently drag a variable into the Watchpoints group to create a
+watchpoint. You'll need to select the variable and use the Set Watchpoint
+command.
+
+Dragging anything into the condition field of a watchpoint will crash the IDE.
+You'll need to click on the field and enter the condition.
+
+If you delete a user created group while it is expanded it will crash. Click to
+collapse the group before deleting it.
+
+The "Hit" column in the "Instances" view doesn't not show the correct number of
+times the breakpoint has been hit.
+
+Breakpoints are sometimes shown in the instances view when not debugging.
+
+Metrowerks Pragmas
+``````````````````
+The IDE does not track the use of __ide_target #pragmas supported
+by the Metrowerks compilers. If you use __ide_target in your code
+and change a target name, you should force a rebuild. The easiest way
+is to choose "Remove Objects..." from the Project menu.

@@ -1,0 +1,97 @@
+========================================================================
+Variable Formatter Release Notes
+========================================================================
+
+Version:  1.1
+
+Date:     July 27, 2003
+Author:   Ken Ryall
+
+========================================================================
+About Variable Formatter
+========================================================================
+    
+Variable Formatter is an IDE plugin that customizes the display of
+Variables based on format data it reads from a format file.
+
+For specific types of variables the Variable Formatter will replace
+the text shown next to the variable name to the results of an
+expression.
+
+========================================================================
+Example
+========================================================================
+
+If you have a struct:
+
+struct Rect {
+  short               top;
+  short               left;
+  short               bottom;
+  short               right;
+};
+
+normally a variable of that type would look like this in the debugger:
+
+myRect	0x000DCEA8
+
+If the Variable Formatter is given a format that looks like this:
+
+<variableformat>
+<typename>Rect</typename>
+<expression>
+"{T: " + ^var.top + 
+" L: " + ^var.left + 
+" B: " + ^var.bottom + 
+" R: " + ^var.right +
+ "}{H: " + (^var.bottom - ^var.top) + 
+ " W: " + (^var.right - ^var.left) + "}"
+ </expression>
+</variableformat>
+
+Then the variable will be displayed with the result of the expression:
+
+myRect	{T: 30 L: 30 B: 120 R: 120}{H: 90 W: 90}
+
+========================================================================
+Variable Format Data
+========================================================================
+
+When the IDE starts the Variable Formatter plugin looks in the plugin's
+Support folder for a "VariableFormats" folder. It scans this folder for
+XML files and reads the variable formats for each one.
+
+========================================================================
+Variable Format Tags
+========================================================================
+
+variableformat - Identifies the start of a variable format record.
+
+osName - Restricts the use of the format to the indicated
+operating system. OS names are "osMac" and "osWin32"
+
+runtimename - Restricts the use of the format to the indicated
+runtime model. Runtime names are "runtimePPCCFM", "runtimePPCMacho" and "runtimeWin32"
+
+cpuname - Restricts the use of the format to the indicated
+CPU model. CPU names are "cpuPowerPCBig", "cpuJava" and "cpux86"
+
+typename - Identifies the name of the Type this record will format.
+
+condition - Specifies a condition that must be met for the format to
+be used. This can be used to test for one element of data before
+attempting to format another element.
+
+typenamematch - Specified how to match type names to variable types.
+Possible values are: "ExactMatch", "BeginsWith", "EndsWith", and "Contains".
+
+expression - Specifies an expression string. The expression will be
+evaluated and the result displayed next to the variable. Before
+evaluation all instances of "^var" in the format string will be replaced
+with the name of the variable.
+
+expressionformat - Specifies the data format to use when formatting an
+expression. The format names match the menu item names in the "Data"
+menu: "Pascal String", "C String", "Character", "Unicode" etc.
+
+

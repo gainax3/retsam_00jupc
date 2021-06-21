@@ -1,0 +1,884 @@
+===========================================================================
+Metrowerks ARM Linker Release Notes
+===========================================================================
+
+Date   : Jun 11, 2007
+Author : John Russo, Michihiro Tsuchiya
+Version: 2.0 Build 87
+
+===========================================================================
+Changes in This Version
+===========================================================================
+2.0 Build 87 (06-11-2007) :
+
+- fixed MTWX24802, Command line linker crashes when using -force_active option.
+
+2.0 Build 86 (05-28-2007) :
+
+- fixed MTWX23853, The all symbols in the partial link object are indicated
+as "bad symbol" by readelf at Cygwin.
+
+- fixed MTWX23854, Linker crashes when a partial link object is used in
+a project.
+
+2.0 Build 85 (12-13-2006) :
+
+- fixed MTWX22481, Linker cannot remove duplicated static class member 
+ewith using overlay.
+
+- Internal changes to version handling to synchronize with mainline linker.
+
+- Modified internal storage handling of SEARCH_SYMBOL rules, no change to
+functionality.
+
+2.0 Build 0084 (06-30-2006) :
+
+- fixed MTWX21096, Linker puts the symbols of common object and common library 
+into wrong overlay module when a library file is used by all overlay modules by 
+using the F-38 function.
+
+2.0 Build 0083 (05-16-2006) :
+
+- fixed MTWX20801, A module (library) which is in a overlay isn't linked properly.
+
+- fixed <no number>, CW DS 1.2, linker crash report from NCL
+
+2.0 Build 0082 (03-22-2006) :
+
+- fixed MTWX20578, Linker does not generate debug information for global variables
+
+- fixed MTWX20568, Linker does not generate debug information for static variables
+
+2.0 Build 0081 (03-06-2006) :
+
+- modifications to feature MWGD44 (F-39)
+
+SEARCH_SYMBOL rules are bound to a file name and section name and the 
+search rules accumulate for each unique file:section combination in the LCF.
+
+Example:
+
+	SECTIONS {
+		main: {
+			SEARCH_SYMBOL ov1;
+				file1.o(.text)  # use ov1 section to resolve references to duplicate
+								# symbols in file1.o .text section
+		} > main
+		
+		main.bss {
+			SEARCH_SYMBOL grpB;
+				file1.o(.bss)	# Use overlay group 'grpB' search rule for file1.o .bss section
+		} > main.bss
+	}
+	
+In the example above, the combinations, 'file1.o:.text' and 'file1.o:.bss' have different
+SEARCH_SYMBOL rules. This differs from build 80, where once the rule was set for a file,
+it would not change for the file.  
+		
+Example:
+
+	SECTIONS {
+		ov1: {
+			SEARCH_SYMBOL ov3;
+			file1.o(.text);
+		} > ov1
+		
+		main: {
+			SEACH_SYMBOL Default_module;
+			*(.text)
+		} > main
+		
+In this case, the symbol search rule is now "ov3,Default_module". The file wildcard
+specifier adds the "Default_module" lookup rule to each link file in the project.
+
+
+When a reference is made to a duplicate symbol, the linker checks the file and section
+in which the reference occurs and selects the appropriate rule based on the file,section
+name combination. 
+
+		
+
+2.0 Build 0080 (02-25-2006) :
+
+- implemented feature MWGD44 (F-39):
+
+
+The linker now allows duplicate symbols to be defined in different
+overlay groups. References to multiply defined symbols can be
+resolved with the SEARCH_SYMBOL directive in the linker control
+file (LCF).
+
+Prior to build 80 of the linker, duplicate symbol definitions were
+only allowed in different overlays of the same overlay group. For
+example, this was not acceptable:
+
+og1
+  ovl11
+    define funcA
+  ovl12
+    define funcA
+
+og2
+  ovl21
+    define funcA  ===> redefinition error.
+
+call funcA ==>    how to resolve funcA? Not possible prior to build 80.
+
+Build 80 now allows the case above to continue without a redefinition error. 
+However, the call to funcA is still ambiguous.
+
+Neither an external call (call from non-explicit overlay function) nor
+a call from another overlay could successfully
+be linked because the linker cannot know the desired symbol to be linked.
+
+To inform the linker of which symbol should be used to resolve the ambiguous
+symbol definition,  a new directive is introduced into the LCF, SEARCH_SYMBOL.
+
+  SEARCH_SYMBOL {search name} [, {search name} ] ;
+
+SEARCH_SYMBOL provides a list of overlay group names and/or overlay names
+that the linker uses to resolve ambiguous symbol references. The list is
+searched in the order specified. 
+
+SEARCH_SYMBOL is specified in the section where the reference to the ambiguous
+symbol is expected to occur. The linker searches all the symbols that match
+the reference and then checks the overlay group and the overlay where the
+symbol was defined. For example:
+
+og1
+  ovl11
+    define funcA
+  ovl12
+    define funcA
+
+og2
+  ovl21
+    call funcA
+    
+The linker control file would specify: 
+
+SECTIONS {
+
+.ovl11: {
+    <files and sections for ovl11>
+     ...
+} > ovl11
+
+.ovl12 omitted...
+
+.ovl21: {
+   SEARCH_SYMBOL ovl11;
+   <files and sections for ovl21>
+   ...
+} > ovl21
+
+}
+
+to indicate that the reference to funcA in ovl21 should use the definition
+in ovl11. Without this specification, the linker has no idea which funcA
+definition to use.
+
+A symbol may be multiply defined outside an overlay context and within
+and overlay context. Any references to such multiply defined symbols 
+must be resolved with SEARCH_SYMBOL. For example:
+
+define funcA
+
+og1
+  ovl11
+    define funcA
+  ovl12
+    define funcA
+
+call funcA
+
+The external call to funcA is ambiguous, the linker cannot decide which funcA to call.
+To call the external definition, specify the search symbol as:
+
+SECTIONS {
+.main: {
+    SEARCH_SYMBOL MAIN;
+} > main
+}
+
+Similarly, any static (non-overlay) module may be specified by SEARCH_SYMBOL.
+For example:
+
+
+SECTIONS {
+.mymodule: {
+    SEARCH_SYMBOL mymodule;
+	define funcA
+	reference to funcA
+} > mymodule
+}
+
+In this case, funcA may be multiply defined in overlay modules. The reference to funcA
+in 'mymodule' is resolved by the definition in 'mymodule' according to SEARCH_SYMBOL.
+'mymodule' is not actually an overlay nor an overlay group name. So the linker,
+seeing that 'mymodule' does not match any known overlay group names or overlay
+names, sets the search space to "MAIN", that is, the implicit root overlay name. 
+So "SEARCH_SYMBOL mymodule;" is equivalent to "SEARCH_SYMBOL MAIN;" .
+
+NOTE: THE OPERATION BELOW HAS CHANGED IN BUILD 81:
+
+The SEARCH_SYMBOL specification is bound to a file name within the section specifier.
+Once a file has been associated with a SEARCH_SYMBOL specification within a 
+section definition, it cannot be changed:
+
+SECTIONS {
+  .mymodule: {
+     SEARCH_SYMBOL ovl1;
+          file1.o(.text)
+     SEARCH_SYMBOL ovl2
+          file1.o(.data) # ===> NO! ovl1 SEARCH_SYMBOL specification is bound to file1.o
+                                for the remainder of the section
+
+SECTIONS {
+  .mymodule: {
+     SEARCH_SYMBOL ovl1;
+          file1.o(.text)
+   } > mymodule
+
+  .mymodule_data: {
+     SEARCH_SYMBOL ovl2;
+          file1.o(.data) # ===> NO! SEARCH_SYMBOL specification for file1.o is reset to
+                                ovl2, symbol resolution using ovl1 will not work.
+   } > mymoduledata
+
+
+However, a different SEARCH_SYMBOL specification may be specified for each file
+within a section.
+
+SECTIONS {
+  .mymodule: {
+     SEARCH_SYMBOL ovl1;
+          file1.o(.text)
+     SEARCH_SYMBOL ovl2;
+          file2.o(.text) # ===> OK!  file1.o uses ovl1 search rule, file2 uses ovl2 search rule 
+
+
+The situation is slightly different for a file re-used in multiple overlays (this
+feature implemented in build 79 of the linker). Each instance of a re-used file
+in the overlays may have its own SEARCH_SYMBOL specification.
+
+SECTIONS {
+
+  ovlC:ovlC {
+      file1.o(.text)
+      SEARCH_SYMBOL ovlA;
+      filecommon.o(.text)
+  } > ovlC
+
+  ovlD:ovlD {
+      file2.o(.text)
+      SEACH_SYMBOL ovlB; 
+      filecommon.o(.text)
+  }
+	
+In this case, ovlA is searched in order to resolve references occurring in ovlC filecommon.o.
+OvlB is searched to resolved references occuring in OvlD filecommon.o.
+The reason for this is that each instance of a shared overlay file is treated as 
+a unique file by the linker and thus may have it's own SEARCH_SYMBOL specification.
+
+END CHANGES FOR BUILD 81
+
+Note that a call within an overlay is always resolved by the definition
+of the symbol within the overlay, even if there are multiple symbol definitions.
+For example:
+
+og1
+  ovl11
+    define funcA
+    call funcA
+  ovl12
+    define funcA
+
+og2
+  ovl21
+    defined funcA
+
+The call to funcA in ovl11 is resolved by the definition of funcA in ovl11.
+
+
+
+2.0 Build 0079 (02-16-2006) :
+
+- implemented feature MWGD53 (F-38):
+
+Linker now allows duplicate filenames in different overlays.
+
+The linker now allows the following example to link properly:
+
+.sec1:ovl1 {
+	file1.o (.text)
+	file3.o (.text)
+} > seg1
+
+.sec2:ovl2 {
+	file2.o (.text)
+	file3.o (.text)
+} > seg2
+
+In this case, file3.o is a component of the overlays "ovl1" and "ovl2". 
+
+Note the new linker control file syntax that allows the overlay name to be 
+specified explicitly following the section specifier. The overlay name is optional. 
+It is only required when a file or files is shared among overlays. The overlay name
+must match the name of the overlay specified on the command line with the -overlay
+(-ol) flag. 
+
+The above syntax is equivalent to
+
+.sec1: {
+	GROUP(ovl1) (.text)
+} > seg1
+
+.sec2: {
+	GROUP(ovl2) (.text)
+} > seg2 
+
+Note that in the usage of GROUP(<name>), <name> refers to an overlay specified with
+-overlay, _not_ the overlay group name specified with -overlaygroup.
+
+Library names may be used in place of object file names:
+
+Example:
+
+.sec1:ovl1 {
+	file1.o (.text)
+	lib1.a (.text)
+} > seg1
+
+.sec2:ovl2 {
+	file2.o (.text)
+	lib1.a (.text)
+} > seg2
+
+Normally, a warning is issued for duplicate file names on the command line. No
+warning is issued for duplicate files that exist as part of an overlay group.
+
+Files may not be shared in overlays in different overlay groups. 
+
+This feature applies only to the command line linker, as the IDE does not have the
+ability to duplicate a file in overlay groups.
+
+
+2.0 Build 0078 (01-31-2006) :
+
+- implemented feature MWGD52, show warning for different structs in different files.
+
+This feature will detect when class/structs/union with the same struct/class/union names are 
+defined differently in separate files.
+
+Debugging must be enabled in the compilation of the files to be checked, that is,
+DWARF2 debugging information (.debug_info sections, etc.) must be present in the
+files being checked.
+
+When the linker comes across 2 DWARF2 class/struct/union type symbols with the same name, 
+it first checks whether one of these are a place-holder type (that is, a forward
+declaration having a struct size of 0). The place-holder type 
+will be replaced by the other class/struct/union type. If both are place-holder type, 
+then the newer one will be ignored. 
+
+If both symbols are not place-holder type, the linker will then check for the size 
+of the struct of each symbol, and generate a warning if they are different. The linker 
+will also ignore the newer one. Note this affects only the DWARF2 symbols.
+
+The following warning is emitted if the the class/struct/union sizes are different:
+
+Warning : The name <name> has been used for different structs/classes/
+          unions.
+
+The linker will check if two struct tags have identical names
+2.0 Build 0077 (10-17-2005) :
+- fixed MTWX19574, by updating how the linker handle symbols with MULTIDEF
+  binding. The linker now allows the same symbol with MULTIDEF binding to
+  exist in each unique overlay, if the symbol is not already present in the
+  main application.
+
+
+2.0 Build 0076 (10-05-2005) :
+- fixed MTWX19434, the linker now emits error when a section name is used
+  more than once in the LCF.
+- fixed MTWX19445, the linker now emits warning when an initialized object
+  is assigned a new location via the LCF.
+
+
+2.0 Build 0075 (08-13-2005) :
+- fixed MTWX18240, where debugger doesn't show class member in some case
+  when using class prototype. The linker has been updated to distinguish
+  place-holder DWARF2 class type entries from real class type
+  entries.
+
+
+2.0 Build 0074 (08-10-2005) :
+- fixed a bug where DWARF2 base types referenced by DWARF2 typedef entries
+  get dead-stripped.
+
+
+2.0 Build 0073 (08-09-2005) :
+- updated linker to keep DWARF2 typedef entries from being dead-stripped.
+
+
+2.0 Build 0072 (05-12-2005) :
+- fixed MTWX18248, application error when disassembler specific object file
+- fixed MTWX18284, wrong veneer is generated in NITRO SDK demos.
+
+
+2.0 Build 0071 (03-28-2005) :
+- fixed warning about missing Nitro_Debug_Setting panel in the command line
+  NITRO linker.
+
+
+2.0 Build 0070 (03-10-2005) :
+- fixed MTWX17742, application error on disassemble specific object file.
+- updated disassembler to improve handling of C++ functions when displaying
+  source code interleaved with object code.
+- updated generation of DWARF2 overlay table to use program header index
+  instead of section header index.
+
+
+2.0 Build 0069 (03-10-2005) :
+- fixed MTWX14095, command line linker uses library search paths in reverse
+  order.
+  Also added an option "-reverselibsearchpath" for users who actaully wants
+  to use library search paths in revers order.
+- fixed MTWX15093, when using command line linker with "-overlaygroup" and
+  not specifying files with "-overlay", error message is not meaningful.
+  Command line linker now emits error about missing overlay.
+
+
+2.0 Build 0068 (09-17-2004) :
+- updated linker so it can generated transitive closure listing even when
+  emitting long branch veneers.
+
+
+2.0 Build 0067 (08-23-2004) :
+- updated range checking of ARM BL and BLX branching instructions.
+- fixed a bug in veneer generation where long branch veneer can induce a
+  change of state in some cases.
+
+
+2.0 Build 0066 (08-17-2004) :
+- updated generation of Thumb state switching veneer to use BX instead of
+  B instruction.
+- fixed MTWX15086, internal linker error at ELF_ARM.c, line 332.
+
+
+2.0 Build 0065 (08-13-2004) :
+- fixed a linker bug related to "Ambiguous reference to symbol" error on
+  DWARF2 type symbols.
+- added support for generating long branch veneer instead of BLX
+  instruction when targeting v5T or newer architecture.
+
+
+2.0 Build 0064 (08-09-2004) :
+- fixed MTWX14672, ALIGN(255) results in unhandled exception crasher.
+- fixed MTWX14516, cannot use filenames with '+' in LCF. The linker now
+  accepts filenames within "", eg. "My C++ Lib.a". This allows the usage
+  of '+' and ' '(space) in filenames.
+- fixed MTWX14749, cannot use filenames starting with number in LCF.
+- added support for generating veneer when a function being called and
+  the destination is beyond the range of the branching instruction.
+
+
+2.0 Build 0063 (07-23-2004) :
+- fixed MTWX14194, incorrect target address of thumb BLX instruction.
+- fixed MTWX14200, illegal veneer generated for BLX instruction in
+  assembly source.
+- fixed MTWX14201, linker crasher caused by some LCF file.
+- fixed MTWX14224, unable to disable dead-stripping of functions.
+- fixed MTWX14662, Windows error when using lcf command OBJECT with inlined
+  function.
+
+
+2.0 Build 0062 (06-15-2004) :
+- fixed another bug where generation of veneers can lead to
+  internal linker error.
+
+
+2.0 Build 0061 (06-08-2004) :
+- fixed a bug where generation of unique veneers in overlays lead to
+  misalignment errors.
+
+
+2.0 Build 0060 (06-07-2004) :
+- updated linker projects to Pro9.
+
+
+2.0 Build 0059 (05-31-2004) :
+- updated DWARF2 dead-stripping mechanism so that DW_TAG_subprogram entries
+  with invalid DW_AT_low_pc and DW_AT_high_pc values are removed from
+  final executable.
+- fixed MTWX13577, Linker could not allocate sufficient memory.
+- fixed MTWX13619, incorrect alignment of Thumb veneer in certain situation
+
+
+2.0 Build 0058 (04-20-2004) :
+- fixed MTWX12856, no support for .ctor when building static initializer
+  table in NITRO linker.
+- fixed MTWX12728, incorrect "-show comments" option in cmdline linker.
+- fixed MTWX12105, Internal linker error: file ELF_ARM.c line 3000. Linker
+  can now generate veneers for different local symbols with the same name.
+- fixed MTWX12110, incorrect debug info with DW_AT_type set to address 0.
+- fixed MTWX12423, incorrect disassembly of thumb instruction
+  LDR  <Rd>, [PC, #<immed_8> * 4]
+
+
+2.0 Build 0057 (03-24-2004) :
+- updated disassembler to correctly display the exception actions :
+  DESTROYBASEVTTOBJECT, DESTROYBASEVTTPOINTER, and DESTROYVLA.
+- fixed MTWX12073, problem handling ALIGN(0x8000) directive in LCF.
+
+
+2.0 Build 0056 (02-18-2004) :
+- relocation entries in executable file now has correct addend values.
+- updated disassembler to disregard STT_SECTION type symbols when building
+  label tables.
+- updated disassembler to show labels defined in data sections and to show
+  alignment and size of those sections
+- fixed MTWX11504 by adding support for COMMON symbols to the linker.
+
+
+2.0 Build 0055 (02-02-2004) :
+- updated linker to generate correct offset in "blx" ARM instruction.
+
+
+2.0 Build 0054 (01-27-2004) :
+- fixed disassembler bug related the handling of negative offsets in "blx"
+  ARM instruction.
+
+
+2.0 Build 0053 (01-23-2004) :
+- updated LCF commands ALIGN and ALIGNALL to handle 0 or negative values.
+
+
+2.0 Build 0052 (01-21-2004) :
+- fixed bug where LCF command ALIGNALL(0) can cause linker to crasher.
+
+
+2.0 Build 0051 (12-18-2003) :
+- fixed WB1-51027, S-record file generated with extra padding bytes.
+
+
+2.0 Build 0050 (12-16-2003) :
+- changed S-record file extension to ".S19".
+
+
+2.0 Build 0049 (12-08-2003) :
+- added overlay option to command line linker.
+
+
+2.0 Build 0048 (12-03-2003) :
+- added overlay support, including generation of DWARF2 overlay information
+
+
+2.0 Build 0047 (11-17-2003) :
+- fixed a dead-stripping bug that affects DWARF2 specific relocations.
+- fixed another DWARF2 dead-stripping bug that is related to duplicate
+  DWARF2 type information.
+- fixed spelling error in DWARF2 disassembly.
+- linker now generates the '$m' symbol, which value is the total number of
+  mapping and tagging symbols in the symbol table.
+- fixed WB1-50740 by supporting BLX (without generating veneer) for v5t
+  architecture.
+
+
+2.0 Build 0046 (09-25-2003) :
+- added ".bin" to default file mapping list and mapped it as resource file.
+
+
+2.0 Build 0045 (09-12-2003) :
+- updated to work with latest version of ARM processor panel.
+- fixed WB1-50253, WB1-50254 and WB1-50255.
+
+
+2.0 Build 0044 (09-02-2003) :
+- improved interleaving source / assembly support in disassembler for
+  functions from include/header files.
+- fixed bug in disassembling of .debug_loc sections.
+ 
+
+2.0 Build 0043 (08-15-2003) :
+- fixed crasher that happens when disassembling library containing
+  DWARF2 sections.
+- improved interleaving source / assembly support in disassembler for
+  ELF executable files.
+
+
+2.0 Build 0042 (08-11-2003) :
+- updated linker to correctly update DW_AT_low_pc and DW_AT_high_pc of a
+  DW_TAG_compile_unit when dead-stripping is enabled.
+- added support for default LCF generation.
+
+
+2.0 Build 0041 (08-08-2003) :
+- updated linker to generate trailing NULL entry in .debug_abbrev.
+
+
+1.0 Build 0040 (06-26-2003) :
+- fixed partial linking crasher related to symbols from empty sections.
+
+
+1.0 Build 0039 (06-18-2003) :
+- updated lcf OBJECT command to accept wild-card token '*' in the place of
+  a project file name. eg. OBJECT (foo, *).
+- updated to use latest ARM Project and FrontEnd panels.
+- updated ARM veneer generation to be PIC/PID compatible.
+
+
+1.0 Build 0038 (05-01-2003) :
+- fixed DWARF2 disassembler bug which lead to the error message :
+  "Source file XXX has fewer lines than debugging information indicates"
+- updated DWARF2 disassembler to correctly display DW_FORM_addr attributes
+  in .debug_info without depending on relocations.
+- fixed DWARF2 dead-stripping problem.
+
+
+1.0 Build 0037 (04-23-2003) :
+- updated disassembler to display correct offset in comment field when
+  handling the following instructions :
+  1) load/store from literal pool
+  2) branch and link
+- updated disassembler to handle exception table index section named
+  ".expcetix".
+
+
+1.0 Build 0036 (04-03-2003) :
+- fixed problem where linker command file is not recognized by the linker
+  after selecting factory settings in the File Mappings panel.
+- fixed command line linker crasher.
+- removed DWARF2 symbols from output file.
+
+
+1.0 Build 0035 (03-19-2003) :
+- fixed disassembler bug so that "add Rx, Ry, R0" doesn't show up as
+  "mov Rx, Ry".
+- updated interleaving source / assembly support in disassembler to improve
+  handling of C++ object files.
+ 
+
+1.0 Build 0034 (03-11-2003) :
+- fixed bug in disassembler which shows redundant path delimiter when
+  displaying file names in .debug_line sections.
+
+
+1.0 Build 0033 (02-28-2003) :
+- added support for generation of Intel Hex records.
+
+
+1.0a Build 0032 (12-05-2002) :
+- changed linker names in the "Target Settings" panel, "Linker" pull down
+  menu from "Palm OS ARMlet Linker" and "ARM Linker" to
+  "Palm OS ARMlet" and "Embedded ARM".
+- fixed incorrect branch offset in Thumb-to-ARM veneers that does not start
+  on 4-byte aligned address.
+
+
+1.0a Build 0031 (10-07-2002) :
+- removed references to ARM 1.2 panels.
+
+
+1.0a Build 0030 (10-02-2002) :
+- fixed a couple of minor disassembler bugs.
+
+
+1.0a Build 0029 (09-03-2002) :
+- updated disassembler to handle .debug_line section with entries that does
+  not start on 4-byte aligned address.
+
+
+1.0a Build 0028 (08-21-2002) :
+- updated linker to insert NOP padding in Thumb-to-ARM veneer only when the
+  starting address of the veneer is on 4-byte boundary.
+
+
+1.0a build 0027 (08-14-2002) :
+- updated linker to set the LSB of address when calling Thumb function via
+  a function pointer.
+
+
+1.0a build 0026 (08-12-2002) :
+- updated linker to set the LSB of Thumb static initializer function
+  address only when interworking is enabled.
+
+
+1.0a build 0025 (08-08-2002) :
+- updated linker to set the LSB of static initializer function address if
+  it is compiled in Thumb mode.
+- improved robustness of DWARF2 dead-stripping mechanism.
+ 
+
+1.0a Build 0024 (08-05-2002) :
+- fixed Thumb-to-ARM veneer generation bug.
+
+
+1.0a Build 0023 (08-01-2002) :
+- fixed a veneer generation bug which overwrote some code.
+- updated disassembler to show correct displacement with object name when
+  disassembling DCD instrunction.
+
+
+1.0a Build 0022 (07-30-2002) :
+- updated veneer generation when interworking is enabled.
+- fixed disassembler bug where it generated bogus mnemonic when opcode
+  contains invalid register list.
+
+
+1.0a Build 0021 (07-26-2002) :
+- fixed out-of-memory bug when interworking is enabled.
+- fixed bug where linker complained about missing entry point even when
+  one has been specified.
+
+
+1.0a Build 0020 (07-24-2002) :
+- fixed disassembler bug where interleaving source / assembly code get
+  messed up by out-of-order line entries.
+- added warning message for OBJECT lcf command when symbol cannot be found.
+- updated handling of R_ARM_THM_PC22, R_ARM_THM_XPC22 and R_ARM_THM_PC8
+  relocations.
+
+
+1.0a Build 0018 (06-17-2002) :
+- updated disassembler to latest version from MicroAPL.
+
+
+1.0a Build 0018 (06-06-2002) :
+- updated linker to correctly relocate DWARF2 symbols.
+- improved disassembler support for interleaving source/disassembly using
+  DWARF2 info.
+
+
+1.0a Build 0017 (06-05-2002) :
+- added support for ARM interworking. Linker now generates veneer for
+  calls between ARM/Thumb functions.
+
+
+1.0a Build 0016 (05-09-2002) :
+- added dead-stripping support for Dwarf2 sections generated by Metrowerks
+  ARM compiler. Portions of .debug_info, .debug_line and .debug_loc that
+  belong to unused global objects, functions, or types are now
+  dead-stripped from final excutable.
+- improved support for interleaved source/disassembly by filtering out
+  debug info without valid address range.
+- updated disassembler to correctly handle opcode DW_LNS_advance_line in
+  .debug_line sections.
+- fixed bug in resizing .debug_info section.
+  
+
+1.0a Build 0015 (04/19/2002) :
+- updated disassembler to display content of .exception sections.
+- updated disassembler to display "DCD" instruction instead of "DCW" in
+  some cases.
+  
+
+1.0a Build 0014 (04/15/2002) :
+- updated linker to correctly handle relocations from sections of type
+  SHT_REL.
+- updated disassembler to correctly disassemble ARM instructions in big
+  endian mode.
+
+
+1.0a Build 0013 (04/12/2002) :
+- fixed crasher bug when "Mapping Symbol First" linker option is selected.
+- updated disassembler to skip interleaving source/disassembly when
+  disassembling a file without a .debug_abbrev section.
+
+
+1.0a Build 0012 (04/09/2002) :
+- updated linker to ignore ARM mapping and tagging symbols when performing
+  closure.
+- updated disassembler so that ARM mapping and tagging symbols are not
+  displayed when disassembling ARM code sections.
+- updated disassembler so that instructions of the form :
+  "LDR Rx, [PC, #Imm]"
+  have target address in the comment field.
+
+
+1.0a Build 0011 (04/04/2002) :
+- updated disassembler so that branch instructions have correct target
+  address in the comment field.
+- updated disassembler so that "ADD Rx, Ry, #0" becomes "MOV Rx, Ry".
+- added support for "BKPT", "BLZ" and "CLZ" instructions in disassembler.
+- added support for interleaved source/disassembly using DWARF2 info.
+
+
+1.0a Build 0010 (03/29/2002) :
+- fixed disassembler bug so that labels are placed at the correct locations
+  in code modules.
+- updated disassembler to correctly disassemble 'bx' instruction.
+- updated disassembler to correctly disassemble Thumb instructions.
+- added check for relocations in empty NOBITS sections.
+  
+
+1.0a Build 0009 (03/26/2002) :
+- added DWARF2 partial linking support.
+- fixed problem merging .rel and .rela sections.
+- improved handling of bogus entries when disassembling .debug_pubnames
+  section.
+
+
+1.0a Build 0008 (03/21/2002) :
+- added DWARF2 linking support. No dead-stripping support yet.
+- improved handling of relocation type R_ARM_NONE.
+
+
+1.0a Build 0007 (03/05/2002) :
+- fixed a crasher bug when disassembling DWARF2 .debug_line section
+  with the DW_LNE_define_file operand.
+  
+
+1.0a Build 0006 (03/04/2002) :
+- fixed an off-by-one bug when disassembling DWARF2 .debug_line sections.
+- updated disassembler so it does not read pass the end-of-section when
+  disassembling DWARF2 sections.
+
+
+1.0a Build 0005 (02/28/2002) :
+- updated disassembler to handle .debug_abbrev section containing entries
+  with out-of-sequence abbreviation code.
+- fixed disassembler bug related to attributes with string form in
+  .debug_info section.
+- updated disassembler to handle .debug_aranges, .debug_info, and
+  .debug_line section with multiple headers.
+
+
+1.0a Build 0004 (02/21/2002) :
+- fixed problems in disassembling DWARF2 sections .debug_line and
+  .debug_pubnames.
+
+
+1.0a Build 0003 (02/19/2002) :
+- updated disassembler to handle .debug_info section even when it comes
+  before .debug_abbrev section.
+- fixed disassembler bug related to displaying .debug_aranges section.
+- fixed disassembler bug related to parsing .debug_line section.
+
+
+1.0a Build 0002 (02/12/2002) :
+- added DWARF 2 disassembler support.
+
+
+1.0a Build 0001 (01/14/2002) :
+- first alpha release of the ARM linker and associated panels :
+  MW ARM linker (1.0a build 0001)
+  MW ARM Linker Panel (1.0 build 0001)
+  MW ARM Project Panel (1.0 build 0001)
+  ELF Disassembler Panel (1.0 build 0001)
+
+===========================================================================
+Contacting Metrowerks
+===========================================================================
+
+Use the forms found in the Release Notes folder on the CD to submit tech
+questions, bug reports or suggestions and send to : support@metrowerks.com
+
+See the CodeWarrior_on_the_Nets document in the Release Notes folder for
+more contact information, including a list of Internet newsgroups,
+online services, and factory update sites.
+
+===========================================================================
+Stephen Chong
+Metrowerks Corporation
+===========================================================================

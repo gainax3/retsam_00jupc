@@ -1,0 +1,343 @@
+===============================================================================
+Freescale CodeWarrior® Development Studio for NINTENDO DS® 2.0 Service Pack 2
+===============================================================================
+
+October 23, 2007
+
+===============================================================================
+         Very Important Notes. Please Read Before Using The Tools!
+===============================================================================
+
+This is a collection of important information concerning last-minute changes 
+and other topics that deserve special attention. Please read these notes 
+carefully, they supersede the manuals and other documentation.
+
+*** THE LICENSE FOR THIS PRODUCT WILL EXPIRE MARCH 31, 2008 ***
+
+  ++( Caution! )+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Adjusting your PC's system clock backwards to try and prolong the length
+of the timeout period of the CodeWarrior license key will result in the
+software being locked out permanently, preventing you from using any 
+CodeWarrior product on the machine. A system reinstall is required to correct
+this situation, so please be careful when adjusting your system clock.
+  +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+===============================================================================
+IS-NITRO-DEBUGGER software
+===============================================================================
+
+All stationery and examples in this version use the libisdmainparm.a library
+for debug output. You MUST install the IS-NITRO-DEBUGGER before installing
+CodeWarrior.
+
+IMPORTANT!
+
+To use the IS-NITRO-EMULATOR hardware from the CodeWarrior debugger, You MUST
+install the IS-NITRO-DEBUGGER software. We recommend you install the latest
+IS-NITRO-DEBUGGER software available on the Nintendo site or product CD to
+prevent unexpected problems caused by a DLL conflict.
+
+If you choose during CodeWarrior installation to install even though the 
+IS-NITRO-EMULATOR is not installed, you must perform these steps to complete 
+the CodeWarrior installation:
+
+1) Install the IS-NITRO-EMULATOR. This will create the required environment 
+   variable IS_NITRO_DIR.
+
+2) Run this batch file in the CodeWarrior installation directory:
+   
+   {CW}\bin\setNitroSrcTree.bat
+   
+   This will ensure that your source trees are created correctly.
+
+
+===============================================================================
+Installing CodeWarrior for NINTENDO DS
+===============================================================================
+
+* HOW TO INSTALL
+----------------
+Run CW_NINTENDO_DS_R2.0_SP2.exe to install this version. This product does not 
+allow merge installation. It cannot be installed either over old versions or 
+other CodeWarrior products. It must be installed in a separate folder.
+
+* ENVIRONMENT VARIABLES
+-----------------------
+The installer has been modified to attempt to detect an installation of the 
+Nitro SDK. It will look for the SDK at these locations in this order:
+    - environment variable NITROSDK_ROOT
+    - environment variable IRISSDK_ROOT
+    - root of the C: drive, using the default folder names
+
+In all cases, the installer will confirm the path found, or ask for a path, 
+before continuing the installation. The installer will then create the 
+environment variable CW_NITROSDK_ROOT to point to the selected path.
+
+* SOURCE TREE CREATION
+----------------------
+The installer will ask the user to restart after completion. This allows it
+to create source trees in CodeWarrior. The created source tree is 
+{NITROSDK_ROOT} and it will point to the environment variable CW_NITROSDK_ROOT 
+described above.
+
+NOTE: If the path used during installation does not point to a valid Nitro SDK 
+file structure, the CodeWarrior projects will not build correctly. To correct 
+this, make sure that the environment variable CW_NITROSDK_ROOT is set to a 
+valid path.
+
+* FAILURE HANDLING
+------------------
+If you get an error upon restarting your machine, the source tree creation has 
+likely failed. The installation requires that the IDE be launched, and a 
+failure is sometimes due to an unexpected IDE startup state. 
+
+If a failure occurs, you can easily add the source tree by navigating to the 
+{CW}\bin folder and running the setNitroSrcTree.bat batch file.
+
+* NITRO SDK INTEROPERABILITY
+----------------------------
+If you install a new revision of the Nitro SDK, please remember to update
+the CodeWarrior environment variable, CW_NITROSDK_ROOT, to point to the new
+location.
+
+
+===============================================================================
+Summary of Changes Since Last Release
+===============================================================================
+
+* ISSUES FIXED IN THIS RELEASE  - Service Pack 2
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX26355  compiler crashes in array delete
+- MTWX26302  The compiler generates wrong code for the substitution a value to
+             a bitfielded variable when the optimization level is 2 or higher.
+- MTWX24892  The debug info which is for a virtual inherited class is not
+             enough.
+- MTWX25711  The compiler generates an incorrect assembly when using "push
+             {r0-r7,lr}" or "push {r0-r7}".
+- MTWX25591  The debug info for a IF() which has substituting the value from
+             called function to a variable in the condition description is
+             wrong.
+- MTWX25714  The compiler removes necessary "cmp" instruction.
+- MTWX25853  The debug info for a IF(){} in Thumb code is wrong.
+- MTWX25840, The ARM/Thumb mode is wrong after ARM9 processer jumps from
+             "throw" to "catch(){}".*
+- FB5270     The indent of "Use generic symbol names for static symbols"
+             option in the "Nintendo CodeGen" panel is bad.
+- FB4889     debugger crash when stepping incorrectly
+- FB4894     Debugger may not stop by a "bkpt" instruction with a calling
+             OS_Printf() and "nop" instruction.
+- FB5064     Debugger may mistake handling about a called symbol in an overlay
+             module.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch7 (2007/8/7) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX25606  Static data member in template class is not dead-stripped properly.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch6 (2007/7/13) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX23730  C99-style designated initializers do not compile.
+- MTWX23851  The unnecessary compile warnings occur when the "Use generic symbol
+             names for static symbols" option is enabled.
+- MTWX23853  The all symbols in the partial link object are indicated as "bad
+             symbol" by readelf at Cygwin.
+- MTWX23854  Linker crashes when a partial link object is used in a project.
+- MTWX24584  Compiler generates unnecessary "mvn" instruction when optimization
+             level is 1 or higher.
+- MTWX24802  Command line linker crashes when using -force_active option.
+- MTWX24890  Compiler generates wrong code for a calculation which a sign
+             extension is necessary for when optimization level is 0.
+- MWGD231    The build options in the Examples projects were updated to be more
+             fit for current stationery
+- no number  The wrong access path in the Examples projects was fixed.
+- no number  New Stationery which is for SDK 4.1 was added.
+- no number  Writing and reading to 16M Flash DS Sub Card was supported.
+- FB4230     Break point which is set on a overlay module when Debugger is
+             stopping or running does not work.
+- FB4364     Debugger crashes when break point is set on overlay and the overlay
+             module code is compressed.
+- FB4383     Debugger stops without a break point after useing the step-out.
+- FB4487     A wrong .lsf file is created when the "Generate LCF file and halt
+             build" option is selected at the "NITRO LCF Prelinker" panel in the
+             target settings window.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch4 (2007/4/13) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX15382  Stack crawl appears incorrect after stepping over, not into,
+             FS_LoadOverlay().
+- MTWX20767  The Internal Compiler Error occurs when a function which has a inline
+             assembler code which uses the C function argument is inlined.
+              (Actually, this fixing was in RELEASE 2.0)
+- MTWX21098  Compiler generates wrong code for using a class member variable
+             which is in the stack area.
+              (Actually, this fixing was in Build tools patch3 for CodeWarrior
+               for NINTENDO DS 2.0 (2006/7/5))
+- MTWX21138  A compiler error may occur when a partial specialization of template
+             is used in a nested class which is defined in other class.
+              (Actually, this fixing was in Build tools patch4 for CodeWarrior
+               for NINTENDO DS 2.0 (2006/8/11))
+- MTWX21451  Compiler may generate wrong code for a switch statement when code
+             optimization is enabled.
+              (Actually, this fixing was in Build tools patch2 for CodeWarrior
+               for NINTENDO DS 2.0 SP1 (2006/11/22))
+- MTWX22422  Compiler generates wrong code for setting a value of a member of
+             structure to a member of other structure by using pointer when
+             optimization level is 1 or higher.
+              (Actually, this fixing was in Build tools patch3 for CodeWarrior
+               for NINTENDO DS 2.0 SP1 (2007/1/30))
+- MTWX22653  Compiler generates wrong code for nested "IF()"s which have logical
+             operation on the conditional sentence, when optimization level is 1
+             or higher.
+              (Actually, this fixing was in Build tools patch3 for CodeWarrior
+               for NINTENDO DS 2.0 SP1 (2007/1/30))
+- MTWX22929  (rework) conditional inline assembly code is now preserved at all
+             optimization levels. Note below for MTWX22929 is no longer valid.
+- MTWX23097  Compiler generates wrong code for a function which has 4 or more
+             arguments when Thumb mode and optimization level is 1 or higher.
+- MTWX23215  Compiler generates wrong code for a inlined function which has
+             logical operation and bit-shift and casting to u16 when inline is
+             enabled and optimization level is 1 (not 0, 2, 3, 4).
+- MTWX23429  Compiler optimization generating bad code
+- MTWX23579  Compiler mistakes a subtraction in a value of "dcd" instruction in
+             an inline assembler.
+- MTWX23750  Compiler generates wrong code for multiplication with casting 0xA000
+             (or biger number) to u16 when optimization level is 1 or higher.
+- MWGD303    (rework) The break point which set in overlay module does not work
+             correctly when ELF drop is used.
+- FB3548     The indicated disassembled code is wrong in the position of the
+             break point in overlay module.
+- FB3806     Debugger can't indicate disassembled code with correct mode
+             (ARM/Thumb) when overlay was used.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch3 (2007/1/30) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX21189  user defined section causes compiler crash
+- MTWX21273  member function specified with inline in template is not inlined
+             without not-inlined warning
+- MTWX22423  Compiler generates wrong code for casting an unsigned bitfield
+             member to s8 type when optimization level is 1 or higher.
+- MTWX22434  Error  : (10424) internal compiler error (report to 
+             <cw_bug@freescale.com>) while executing in file 'CTemplateClass.c'
+             line: 2153 (compiling '' in 'main.cpp') main.cpp line 18
+              d std::ostream& operator<< <P, T, A>(std::ostream&, const Self&);
+- MTWX22436  Internal Compiler Error occurs when some "while(1){}" and 
+             "if(){break;}" are used and optimization level is 1 or higher.
+- MTWX22452  internal compiler error (report to <cw_bug@freescale.com>) while
+             executing in file 'CCallGraph.c' line: 364 (compiling '' in 'foo.cpp')
+- MTWX22481  Linker cannot remove duplicated static class member with using overlay.
+- MTWX22693  Compiler generates wrong code for substitution which continued for
+             members of structure by using pointer, when optimization level is
+             2 or higher.
+- MTWX22881  Compiler generates wrong code for auto-inlined function code when
+             Inline Depth is not "Don't Inline" and optimization level is 2 or
+             higher.
+- MTWX22882  An internal compiler error occurs when IPA is "Off" and Inline Depth
+             is "Smart" (or large number) and Optimize For is "Smaller".
+- MTWX22929  Compiler generates wrong code for auto-inlined function which has
+             inlined assembler codes when auto-inline is enabled and optimization
+             level is 1 or higher.
+- MWGD186    [DS2.0]Unprintable characters are used in Freescale_EULA.txt
+- FB3551     Debugger breaks the code which is in the memory of target when a
+             break point is removed in a overlay module which is not loaded yet.
+- FB3568     If a break point is set on a overlay module in middle overlay group
+             in a project which has some overlay groups, Debugger stops on a wrong
+             position.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch2 (2006/11/22) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX15087  Debugger can't continue stepping when you do step over on the
+             function which has a Log-Point.
+- MTWX18905  Cache Viewer window repaint problem.
+             (Actually, this fixing was in RELEASE 2.0 SP1)
+- MTWX21255  Compiler generates wrong code for casting to unsigned 16 bits wide
+             type when Thumb mode and optimization level is 1 or higher.
+- MTWX21259  Compiler generates wrong code for using an array which is into a
+             structure with another large array when the "Optimize for" is
+             Speed and optimization level is 3 or higher.
+- MTWX21325  Compiler generates wrong code for casting to 16 bits wide type
+             about result of a macro when optimization level is 2 or higher.
+- MTWX21327  Compiler generates wrong code for bit shift for a result of
+             logical operation when optimization level is 1 or higher.
+- MTWX21334  The spelling of the pragma "opt_usedef_mem_limit" in compile error
+             message is wrong.
+- MTWX21661  An unused inherited class which has some member functions is not
+             dead-stripped properly
+- MWGD192    Debugger can't trace properly the code which is to return from a
+             function of the different mode (ARM/Thumb).
+- MWGD227    IDE uses the memory space infinity, then the OS is crushed, when
+             IDE is terminated after the code which a special overlay was used
+             for was debugged.
+- MWGD233    Thread specific breakpoint makes Debugger frozen
+             (Actually, this fixing was in RELEASE 2.0 SP1)
+- MWGD292    Debugger doesn't sense that an exception error occurred in the
+             IS-NITRO-EMULATOR. (Case 2)
+- MWGD300    The Watch Point doesn't work in the specific condition.
+- MWGD303    The break point which set in overlay module does not work correctly.
+- MWGD304    Debugger (IDE?) crashes when the "Load/Save Memory" is used.
+- MWGD305    Debugger panics when a break point is set on a overlay module in a
+             project which has more than one overlay group.
+             (internal issue)
+- no number  Writing and reading to 4M Flash (Sanyo) and 8M Flash (STmicro) DS
+             Sub Card's is supported.
+
+
+* ISSUES FIXED IN THE FORMER PATCH  - Build tools patch (2006/8/29) -
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MWGD288    To support the new IS-NITRO-EMULATOR which conforms to the RoHS
+             Directive.
+
+
+===============================================================================
+Known Issues / Restrictions
+===============================================================================
+
+- FB5493     The BP on overlay does not work when the Compstatic is used.
+
+- MWGD204    Debugger can not show correct values for local scope variable by
+             using new debug information generated by 3.0 compiler.
+             (Workaround: Use tooltip feature in the debugger to show correct
+             values.)
+
+- Make sure the path to the Ensata emulator is valid in this file:
+	{CW}\bin\\plugins\support\Nitro\IS\est_cw_debugger.ini
+  Otherwise, when you try to debug, you will get an error message stating that 
+  you should update the file. If you close the IDE after seeing this alert,
+  IDE may crash.
+
+- .bin files in a directory with Japanese characters are not loading
+  correctly.
+
+- Remote Connections in some cases may not show up. If this occurs, edit the
+  file and remove the "global" remote connection.
+
+- If you use the Profiling feature to display profiling data for your project,
+  you may notice that a Trace menu item becomes available on the Data
+  menu. The Trace window can be displayed by selecting it, but it will not
+  display meaningful data since the Trace feature is unimplemented at this
+  time.

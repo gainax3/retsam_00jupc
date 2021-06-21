@@ -1,0 +1,29 @@
+/* MSL
+ * Copyright © 1995-2006 Freescale Corporation.  All rights reserved.
+ *
+ *  $Date: 2006/02/08 20:32:10 $ 
+ *  $Revision: 1.2.8.2 $ 
+ */
+
+#pragma check_header_flags on  
+
+#if __option(little_endian)
+	#ifndef __thumb
+		#pragma precompile_target "MSLHeaders_ARM_LE.mch"
+	#else
+		#pragma precompile_target "MSLHeaders_Thumb_LE.mch"
+	#endif
+#else
+	#ifndef __thumb
+		#pragma precompile_target "MSLHeaders_ARM_BE.mch"
+	#else
+		#pragma precompile_target "MSLHeaders_Thumb_BE.mch"
+	#endif
+#endif
+
+
+#include "MSLHeaders++.cp"
+
+/* Change record:
+ * 030609 JWW Use ARM_MSL.pch++ instead of obsoleted generic MSL.pch++
+ */

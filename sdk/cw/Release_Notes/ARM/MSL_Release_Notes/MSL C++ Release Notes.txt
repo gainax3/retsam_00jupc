@@ -1,0 +1,933 @@
+===============================================================================
+Metrowerks CodeWarrior Metrowerks Standard C++ Library Release Notes
+===============================================================================
+Version: 9.500
+Date:    Dec 2, 2003
+Author:  Cecilia Rodriquez, Michael Marcotty, Ron Liechty, Howard Hinnant,
+         Josef W. Wankerl
+===============================================================================
+Current version is:                              (__MSL_CPP__ == 0x9500).
+These release notes document changes since Pro 8 (__MSL_CPP__ == 0x9000).
+===============================================================================
+
+===============================================================================
+New Features Since Core 9.0
+===============================================================================
+
+*   bind ( http://std.dkuug.dk/jtc1/sc22/wg21/docs/papers/2003/n1455.htm ) is a
+    new library voted into the first Library Technical Report. As such, it is
+    placed in namespace std::tr1. It is not standard, but is considered
+    "interesting" by the C++ committee. It may become standardized in the
+    future. This is a generalization of the existing std::bind1st and
+    std::bind2nd functions.  It appears in a new header:  <bind>.
+
+*   mem_fn ( http://std.dkuug.dk/jtc1/sc22/wg21/docs/papers/2003/n1432.htm ) is
+    a library that has been voted into the first Library Technical Report. As
+    such, it is placed in namespace std::tr1. It is not standard, but is
+    considered "interesting" by the C++ committee. It may become standardized
+    in the future. mem_fn is a generalization of the standard functions
+    std::mem_fun and std::mem_fun_ref.  It appears in the header <functional>.
+
+*   vector modified to detect and take advantage of "version 2" allocator
+    interface.  This is an experimental Metrowerks extension of the standard
+    allocator interface which allows clients to expand a block in place, and
+    to report the actual size of an allocated block.  An example "version 2"
+    allocator (Metrowerks::malloc_alloc) is provided in <memory>.  When
+    std::vector<T, Metrowerks::malloc_alloc<T> > is used on top of MSL C, the
+    vector will work in cooperation with the underlying malloc heap to use
+    memory in the most efficient way possible.  The vector will take advantage
+    of excess memory returned from malloc (if any).  And the vector will
+    expand a block of memory in place when the underlying malloc system allows
+    it.
+
+*   New addition to the Metrowerks::threads library:  rw_mutex.  This is a
+    read/write mutex with nested types read_lock and write_lock.  These locks
+    will lock the rw_mutex in read mode and write mode respectively.  Accessible
+    via <msl_thread> in namespace Metrowerks.
+
+*   New templated lock:
+    template <class TryLock1, class TryLock2> class lock_both;
+    in namespace Metrowerks, header <msl_thread>.  This lock will lock two
+    other try locks in an atomic fashion, without risking deadlock.  It can be
+    used with the new rw_mutex::read_lock and rw_mutex::write_lock.
+
+*   Optimized std::ostringstream to be *much* faster after it internally
+    reallocates its buffer.  This is currently slightly non-standard behavior,
+    but we're working on that aspect with the standards committee.  Unless you
+    derive from std::basic_stringbuf, and monitor the protected buffer
+    pointers, the only difference you will notice is higher performance.
+
+*   A new to_string overload has been added to bitset:
+    string to_string() const;
+    This is a convenience function for calling:
+    std::string s1 = b.template to_string<char, std::char_traits<char>,
+                                          std::allocator<char> >();
+	std::string s2 = b.to_string();  // now ok
+	For completeness, the following overloads are also available (but are not
+	new):
+    std::string s3 = b.template to_string<char>();
+    std::string s4 = b.template to_string<char, std::char_traits<char> >();
+
+*   has_facet and use_facet will now work with const qualified facets.
+
+*   Modest valarray speed optimizations.
+
+===============================================================================
+Bugs fixed Since Core 9.0
+===============================================================================
+
+*   The template function:
+    swap(__bit_reference<Container> x, __bit_reference<Container> y);
+    has been restricted to container types.
+
+*   Removed extraneous uses of typename in cdeque, deque, functional, list, and
+    vector.
+
+*   Added cast to protect against a signed internT in __ucs_2<internT>::do_in.
+
+*   Added missing const member function specialization to signature in
+    <functional> to aid std::tr1::result_of.
+
+*   Metrowerks::msl_bufferedbuf::flush_put now does not demand that source
+    characters are consumed by the codecvt's put() function.  This allows
+    greater flexibility with state-based code conversions.
+
+*   FILE* based streams now have a sync() override that specifically fflushes
+    the underlying FILE*.
+
+*   Fixed return type of std::tr1::shared_ptr::operator*() to handle
+    shared_ptr<void>.
+
+*   Protected std::tr1::shared_ptr stream inserter under _MSL_NO_IO.
+
+===============================================================================
+New Features Since Core 8.0
+===============================================================================
+
+*   New string with "short string" optimization.  No longer reference counted.
+    The flag _MSL_NO_REFCOUNT_STRING will have no effect (it is harmless).  This
+    rewrite has higher performance and lower code size compared to previous
+    releases.  It is also now insensitive to the setting of _MSL_MULTITHREAD.
+
+*   New file I/O.  Increased performance and flexibility.  Although the default
+    file I/O is based on FILE* (as in previous releases), you can now configure
+    fstream to be based on POSIX I/O.  This configuration can support very
+    large files.  Wide file names are also now supported.  See below for more
+    details.
+
+*   vector rewritten for even more optimization opportunities.  The vector code
+    will now recognize whether or not your user defined structs/classes have
+    trivial special members.  If they do, vector takes advantage of this fact
+    to both reduce code size, and increase performance.
+    
+    Tip:  Thus it is now adventageous to let the compiler implement your
+    special members when possible:
+    
+    struct A {~A() {}};  // A's destructor is not trivial, vector<A> not optimized
+
+    struct B {};         // B's destructor is trivial, vector<B> is optimized
+
+*   Metrowerks::bitvector.  This is a new class that has the functionality of
+    std::vector<bool>.  The class has been completely rewritten and optimized
+    to move around a word of bits at a time.  Several of the std::algorithms
+    can now be used with bitvector iterators and still be optimized.  Namely,
+    copy, copybackward, fill_n, fill, equal are all optimized to work with
+    bitvector's iterators.  vector<bool> is now implemented in terms of
+    Metrowerks::bitvector.  As in past releases you can turn off the
+    vector<bool> specialization _MSL_NO_VECTOR_BOOL.  In this release, even if
+    you turn off the vector<bool> specialization, Metrowerks::bitvector is
+    still available in the extension header <bitvector>.
+
+*   The Metrowerks traits classes:  has_trivial_copy_ctor, has_trivial_assignment,
+    and has_trivial_dtor now work with user defined types.
+
+*   uncaught_exception is now implemented on Macintosh and Windows platforms.
+
+*   Metrowerks::hash<T> now has specializations for all scalar types.
+    hash<const char*> now behaves just as any other hash<T*> type.  It does
+    not assume that the pointer points to a null terminated character array.
+
+*   You can now make a runtime check to compare your application settings to
+    the settings that the C++ lib was compiled with.  Some settings must be
+    consistent between application and C++ lib (such as exception support).
+
+    #include <msl_utility>
+
+    int main()
+    {
+        check(Metrowerks::msl_settings());
+    }
+
+    If an inconsistency is found, an assert will fire which describes the
+    inconsistency.
+
+*   map/set rewritten to do the "void* optimization" which reduces code bloat.
+
+*   bitset::count better optimized.
+
+*   <limits> reorganized to minimize header size included by most of the other
+    standard headers.
+
+*   The locale("") now keys off of the environment variable MSL_DEFAULT_LOCALE
+    instead of LANG.
+
+*   New Metrowerks::threads library.  Closely follows the interface of
+    boost::threads ( http://www.boost.org/libs/thread/doc/index.html ).
+    Implemented for four platforms:
+    
+    _MSL_SINGLE_THREAD       A do-nothing standin
+    _MSL_USE_PTHREADS        Poxsix-Threads
+    _MSL_USE_MPTASKS         Apple Carbon MP-tasks
+    _MSL_USE_WINTHREADS      Windows threads
+    
+    All objects are in namespace Metrowerks.  Include <msl_thread> to get
+    everything.
+
+	Will configure itself automatically based on _MSL_THREADSAFE, but you can
+	define any of these flags to override the default behavior.  You must
+	recompile the C++ library when turning _MSL_SINGLE_THREAD on or off.
+
+*   Experimental features from the first C++ library Technical Report.  These
+    are classes that are considered likely for standardization in the next C++
+    standard, but are not yet required by the standard.  These classes will
+    appear in namespace std::tr1 (that is configurable).  These include:
+    
+    template <class Sig> class result_of
+    template <class T> class reference_wrapper
+    template <class T> reference_wrapper<T> ref(T& t)
+    template <class T> reference_wrapper<const T> cref(const T& t)
+    template <class Sig> class function
+    template<class T> class shared_ptr
+    template<class T> class weak_ptr
+    template<class T> class enable_shared_from_this
+    template <class T0, class T1, ... class T9> class tuple
+    
+    See below for a more detailed description of each of these.
+
+*   Experimental std::distance function which only binds to input iterator
+    types.
+
+===============================================================================
+Known bugs/issues
+===============================================================================
+
+*   When compiled against the Mac OS 10.1.5 SDK, MSL C++ will automatically
+    revert from using posix threads, to single thread mode.  This is because
+    the new threading model in MSL C++ (Metrowerks::threads) is dependent upon
+    10.2 pthreads features.
+
+===============================================================================
+Bugs fixed Since Core 8.0
+===============================================================================
+
+*   std::__copy renamed to std::__msl_copy in <algorithm> to prevent conflict
+    with __copy from runtime library.
+
+*   std::copy overloads made for __wrap_iterator<C> in order to optimize copies
+    for vector::iterator and string::iterator.
+
+*   std::fill_n overloads made for __wrap_iterator<C> in order to optimize
+    fills for vector::iterator and string::iterator.
+
+*   Local typedef D renamed to difference_type in several places in <algorithm>
+    to avoid macro conflicts.
+
+*   std::__random_bits in <algorithm> rewritten so that negative bit shifts are
+    not instantiated (to avoid warnings on some platforms).
+
+*   Fixed <cdeque> bug which allowed null pointer to be sent to the container's
+    allocator.
+
+*   Installed _MSL_DEBUG_ERROR allowing for customization of error handling
+    reported by the _MSL_DEBUG facility.
+
+*   <fstream>:  suppressed variable unused warning in
+    basic_filebuf<charT, traits>::read3 under the _MSL_NO_LOCALE configuration.
+
+*   Generalized hash container == and != operations to work correctly when the
+    number of hash buckets vary between the two operands.
+
+*   Added error detecton for null pointer in std::allocator::deallocate under
+    _MSL_DEBUG.
+
+*   Added typename to several places in the version of auto_ptr under
+    _MSL_ARRAY_AUTO_PTR.
+
+*   Added restrict_to facility to <msl_utility> so that the <string> in the 
+    Pro 8 thrill seekers folder can be used.
+
+*   Added remove_all_bounds to <msl_utility> and updated
+    has_trivial_xxx to use that test instead of remove_bounds.
+
+*   Fixed bug in alloc_ptr which allowed null pointer to be sent to the
+    allocator's deallocate function.
+
+*   <numfacet>:  suppressed variable unused warning in __parseDigits,
+    __get_integral, __putoct, __puthex and __putdec under the _MSL_NO_LOCALE
+    configuration.
+
+*   Added cast to bool in <timefacet> timepunct::time_zone.
+
+*   Implemented lwg issue 198 concerning reverse_iterator.
+
+*   Corrected <limits> to pass boost test concerning signaling_NaN.
+
+*   Changed the following default formats to be consistent with C99 defect
+    report 203:
+        date & time format from "%A %B %d %T %Y" to "%a %b %e %T %Y"
+        __am_pm from "am"/"pm" to "AM"/"PM"
+        date format from "%A %B %d %Y" to "%m/%d/%y"
+
+*   Implemented lwg issues 123 and 253 concerning valarray.
+
+===============================================================================
+New File I/O Features
+===============================================================================
+
+If the flag _MSL_WIDE_FILENAME is defined, then the file stream classes support
+wide character filenames (null terminated arrays of const wchart_t*).  Each
+stream class has an overloaded constructor, and an overloaded open member
+taking the const wchar_t.  If the underlying system supports wide filenames,
+MSL C++ will pass the wchar_t straight through without any locale encoding.
+Thus the interpretation of the wide filename is done by the OS, not by the C++
+library.  If the underlying system does not support wide filenames, the open
+will fail at runtime. 
+
+By default _MSL_WIDE_FILENAME is not defined as these signatures are not
+standard.  Turning on this flag does not require a recompile of MSL C++. 
+
+When MSL C is being used as the underlying C library, its
+_MSL_WFILEIO_AVAILABLE flag must be defined or the open will fail at runtime at
+the C++ level.  Flipping _MSL_WFILEIO_AVAILABLE does require a C lib recompile. 
+
+When MSL C is not being used as the underlying C library, and when the file
+stream is implemented in terms of FILE* (see _MSL_CFILE_STREAM), the system is
+said to not support wide filenames and the open will fail at runtime.  For
+example, wide filenames are not supported when using the BSD C library on
+Apple's Mach-O platform. 
+
+When using Posix as the underlying implementation (see _MSL_POSIX_STREAM), wide
+filenames are supported if the Posix library comes from the MSL Extras Library
+(in which case the MSL _MSL_WFILEIO_AVAILABLE flag must be on).  Wide filenames
+are also supported if using the BSD Posix on Apple's Mach-O platform. 
+
+#define _MSL_WIDE_FILENAME
+
+#include <fstream>
+#include <iostream>
+#include <cmath>
+
+int main()
+{
+	wchar_t filename[] = L" test.dat";
+	filename[0] = 0x30DD;
+	{
+		std::ofstream out(filename);
+		if (!out.is_open())
+		{
+			std::cerr << "Failed to open output file\n";
+			return 1;
+		}
+		out << "Hi " << 5 << '\n';
+	}
+	std::string s;
+	int i;
+	{
+		std::ifstream in(filename);
+		if (!in.is_open())
+		{
+			std::cerr << "Failed to open input file\n";
+			return 1;
+		}
+		in >> s >> i;
+		if (in.fail())
+		{
+			std::cerr << "Failed to read from input file\n";
+			return 1;
+		}
+	}
+	std::cout << s << ' ' <<  i << '\n';
+} 
+
+basic_filebuf
+*************
+
+The following details fall under the "implementation defined" or "extension"
+category in basic_filebuf. 
+
+basic_filebuf(FILE* file)
+-------------------------
+
+Metrowerks has offered this basic_filebuf constructor as an extension for
+years. Beginning with MSL Core 9 this constructor will be deprecated. It will
+still be offered in Core 9, but may be absent in future releases. However, the
+functionality of constructing a basic_streambuf-derived class with a FILE* will
+be maintained via an extension class: Metrowerks::c_filebuf. 
+
+The reason for this shift is that there are advantages to implementing
+std::basic_filebuf in terms of Posix I/O instead of in terms of C I/O (FILE*).
+And if basic_filebuf is implemented via Posix functions, one can not very well
+construct it with a FILE*. 
+
+For code that looks like:
+
+#include <fstream>
+#include <ostream>
+#include <cstdio>
+Ê
+int main()
+{
+   std::FILE* fp = ...
+   std::filebuf fb(fp);
+   std::ostream out(&fb);
+   // ...
+} 
+
+Change it to:
+
+#include <msl_c_filebuf>
+#include <ostream>
+#include <cstdio>
+Ê
+int main()
+{
+   std::FILE* fp = ...
+   Metrowerks::c_filebuf<char> fb(fp);
+   std::ostream out(&fb);
+   // ...
+} 
+
+Metrowerks::c_filebuf, except for its name, has an identical interface to
+std::basic_filebuf, and will maintain a constructor that accepts a FILE*. 
+
+int sync()
+----------
+
+If a put area exists, the standard says that this call flushes the put buffer
+to the file. If a get area exists, the effect is implementation defined.  The
+MSL C++ library will take any unread char_type characters in the get buffer,
+convert them back to chars via the current locale's codecvt facet, and back the
+underlying file up by that many bytes. If the encoding is state dependent, this
+operation will fail (which sets badbit). The default encoding are not state
+dependent, and will not fail for this reason. 
+
+In simple terms, a sync() on a basic_filebuf will dump any unread characters so
+that if you were to read the same file from another (say FILE*) you would get
+the same characters that were previously buffered in the original
+basic_filebuf. 
+
+basic_streambuf<charT,traits>* setbuf(char_type* s, streamsize n)
+-----------------------------------------------------------------
+
+It has been said that setbuf is nearly "semantics free"! This is a cute way of
+saying that the standard leaves almost the entire definition of setbuf up to
+the implementation. The only thing the standard requires is that setbuf(0, 0)
+sets a basic_filebuf to behave as unbuffered if the call comes before any I/O
+is performed on the stream.  It returns 0 on failure and a non-0 pointer on
+success. 
+
+The MSL C++ basic_filebuf behaves as follows:
+
+If s is null, and n is 0, then as the standard requires, the basic_filebuf
+becomes unbuffered. 
+
+If s is null and n is not 0, then n specifies the size of a new buffer that the
+basic_filebuf will manage.  This call can be done even after reading and
+writing have been performed.  Any existing buffers (get or put) will be emptied
+(sync()'d) before changing the buffer.  If n is below an unpublished minimum,
+the buffer size will be silently set to this minimum.  There is no interface
+for determining the current buffer size.
+
+If s is not null, then the basic_filebuf will use the buffer at s, and assume
+its size to be n.  Clients must maintain ownership of this buffer. The
+basic_filebuf will not assume ownership of it (will not delete it upon
+destruction).  If the size n is less than the current codecvt's
+max_length() * 2 / sizeof(char_type) the setbuf call will fail by returning 0.
+If the call fails, the current buffer remains in effect. The default codecvt's
+max_length() is sizeof(char_type). 
+
+FILE* or Posix I/O?
+-------------------
+
+There are two implementations of basic_filebuf:  It can be implemented in terms
+of FILE* and the associated C functions, or it can be implemented in terms of
+the Posix I/O functions open, close, read, write and lseek. Clients can request
+a particular implementation with one of the following switches:
+
+	_MSL_CFILE_STREAM
+	_MSL_POSIX_STREAM
+
+The current default is _MSL_CFILE_STREAM. When implemented in terms of FILE*,
+the current basic_filebuf has the non-standard constructor taking a FILE*. This
+constructor disappears if implemented in terms of Posix I/O. If implemented in
+terms of Posix I/O, and if the underlying Posix I/O supports long long offsets
+(64 bits on common implementations) then basic_filebuf supports long long
+offsets (files with sizes measured by sizes representable with a long long).
+The FILE* implementation is limited to file sizes representable by a long by
+the C standard. 
+
+No matter what the setting of _MSL_CFILE_STREAM or _MSL_POSIX_STREAM, the FILE*
+implementation and the Posix I/O implementation are available under the
+following headers and class names: 
+
+	<msl_c_filebuf> 
+		namespace Metrowerks
+		{
+		template <class charT, class traits = std::char_traits<charT> >
+		class c_filebuf;
+		} 
+
+	<msl_posixbuf> 
+		namespace Metrowerks
+		{
+		template <class charT, class traits = std::char_traits<charT> >
+		class posixbuf;
+		}
+
+Thus you can implement in terms of FILE* or Posix I/O independent of the
+current implementation of std::basic_filebuf if necessary. 
+
+On streamoff
+------------
+
+streamoff is a typedef defined in <iosfwd> that basically controls the maximum
+file size that the C++ lib can handle. MSL C++ will typedef this to either a
+long or a long long depending upon several factors. You can influence MSL C++'s
+decision making process. 
+
+If you don't care what type streamoff is, just ignore the situation. If long
+long support is enabled, streamoff will be a long long, else it will be a long. 
+
+If you really want streamoff to be a long, then:
+
+	#define _MSL_LL_FILE_SUPPORT 0
+
+If you must have streamoff as a long long then you can:
+
+	#define _MSL_LL_FILE_SUPPORT 1
+
+Note that even if streamoff is a long long, if std::basic_filebuf is
+implemented in terms of FILE* (_MSL_CFILE_STREAM) then std::basic_filebuf will
+still be limited to file sizes representable by a long. 
+
+And if _MSL_POSIX_STREAM, and if streamoff is a long long, MSL C++ will only
+handle file sizes representable by a long long if the underlying Posix library
+can represent such file sizes. 
+
+Metrowerks::bufferedbuf
+-----------------------
+
+The header <msl_bufferedbuf> implements the class Metrowerks::bufferedbuf. This
+is the class that provides the bulk of the implementation for both the FILE*
+and Posix implementations of std::basic_filebuf. It is an abstract base class
+that manages the buffer, and the codecvt facet for handling wide/narrow
+character conversions.  Concrete stream buffer classes can very easily be
+created by deriving from bufferedbuf, and providing just a few device specific
+functions. 
+
+namespace Metrowerks
+{
+Ê
+template <class charT, class traits = std::char_traits<charT> >
+class bufferedbuf
+	: public std::basic_streambuf<charT, traits>
+{
+	typedef std::basic_streambuf<charT, traits> base;
+public:
+	typedef charT                     char_type;
+	typedef typename traits::int_type int_type;
+	typedef typename traits::pos_type pos_type;
+	typedef typename traits::off_type off_type;
+	typedef traits                    traits_type;
+	Ê
+	virtual ~bufferedbuf();
+	Ê
+	bool is_open() const {return open_;}
+Ê
+protected:
+Ê
+	explicit bufferedbuf(std::size_t buffer_size_bytes);
+	Ê
+	void open(bool init_put);
+	bufferedbuf* close();
+	Ê
+	virtual std::streamsize showmanyc();
+	virtual int_type underflow();
+	virtual int_type pbackfail(int_type c = traits::eof());
+	virtual int_type overflow (int_type c = traits::eof());
+	Ê
+	virtual std::basic_streambuf<charT,traits_type>* setbuf(char_type* s, std::streamsize n);
+	virtual pos_type seekoff(off_type off, std::ios_base::seekdir way,
+	                                       std::ios_base::openmode which = std::ios_base::in |
+	                                                                       std::ios_base::out);
+	virtual pos_type seekpos(pos_type sp,  std::ios_base::openmode which = std::ios_base::in |
+	                                                                       std::ios_base::out);
+	virtual int      sync();
+	virtual void     imbue(const std::locale& loc);
+Ê
+private:
+Ê
+	bufferedbuf(const bufferedbuf&);             // not defined
+	bufferedbuf& operator=(const bufferedbuf&);  // not defined
+	Ê
+	virtual std::ptrdiff_t write_chars(const char* buf, std::ptrdiff_t n) = 0;
+	virtual std::ptrdiff_t read_chars(char* buf, std::ptrdiff_t n) = 0;
+	virtual off_type seek_device(off_type off, int whence) = 0;
+};
+
+}
+
+To provide a custom stream buffer class, publicly derive from bufferedbuf. Your
+derived class must hold a handle to your file type (e.g. a FILE* or a file
+descriptor). 
+
+The derived class's (normally public) constructor must construct bufferedbuf
+with the desired size (in bytes) of the underlying buffer.  The bufferedbuf
+class will create and manage a buffer with the desired size.  If 0 is passed in
+for the size, the bufferedbuf will behave in an unbuffered manner.  That is,
+clients will see no buffer, and each write will immediately flush to the
+device.  If the derived class constructor also opens the device, then that fact
+should be communicated to bufferedbuf by calling its open() function. The
+derived class can pass true to open if it expects the first action on the
+device to be a write, otherwise false.  Guessing wrong on this parameter will
+not cause an error, but simply be a minor degradation of performance on the
+first read or write. 
+
+The derived class's public destructor must take care of closing the device.
+This is normally done by a close function in the derived class that will in
+turn call bufferedbuf's close function.
+
+The derived class usually provides a public open function which connects the
+stream to a device (in a device dependent fashion such as calling fopen()).  If
+the connection succeeds, the derived open function should call
+bufferedbuf::open() with true if it expects the first operation to be a write,
+and false otherwise.  Return this on success and 0 on failure.
+
+The derived class usually provides a public close function which disconnects
+the stream from the device in a device dependent fashion (such as calling
+fclose()).  The derived class should call bufferedbuf::close() before
+disconnecting the device.  This function may fail.  It will signal success by
+returning this, and failure by returning 0.  The derived class then disconnects
+from the file and returns success or failure.
+
+The derived class must override the private virtual:
+
+	std::ptrdiff_t write_chars(const char* buf, std::ptrdiff_t n);
+
+This function writes the n char referred to by buf to the device.  It returns
+the number of char actually written.  This function may return an amount less
+than n, but will be called again to write the rest of the buffer in that case.
+If this function returns a non-positive number, bufferedbuf will give up and
+flag an error.
+
+The derived class must override the private virtual:
+
+	std::ptrdiff_t read_chars(char* buf, std::ptrdiff_t n);
+
+This function reads up to n char from the device, placing them into the buffer
+pointed to by buf.  The function returns the actual number of char read and
+placed into the buffer.  If a non-positive amount is returned, this will be
+interpreted as end of file.
+
+The derived class must override the private virtual:
+
+	off_type seek_device(off_type off, int whence);
+
+off_type is typically either a long or a long long depending upon the setting
+of _MSL_LL_FILE_SUPPORT.  The whence parameter will have one of the following
+values:
+
+	SEEK_SET
+	SEEK_CUR
+	SEEK_END
+
+The new position, measured in characters from the beginning of the file, is
+obtained by adding off to the position specified by whence.  The specified
+position is the beginning of the file if whence is SEEK_SET, the current value
+of the file position indicator if SEEK_CUR, or end-of-file if SEEK_END.  The
+resultant file position measured from the beginning of the file is returned. If
+the seek was unsuccessful, this function should return a negative value to
+indicate failure.
+
+This is all a derived class must do to implement a full featured stream buffer
+type class such as std::basic_filebuf, Metrowerks::c_filebuf or
+Metrowerks::posixbuf.
+
+===============================================================================
+Technical Report Items
+===============================================================================
+
+The C++ standards committee is currently considering what will go into the next
+C++ standard.  Several proposals have been voted into a Technical Report.  This
+is a statement by the committee that these proposals are "interesting", but
+nothing more.  They are not standard.  They may change in the future, or even
+completely disappear.
+
+Some of them are implemented in this version of the library.  They exist in
+namespace std::tr1.  You can force them to be in namespace std instead with
+
+#define _MSL_TR1_NAMESPACE 0
+
+before any standard headers (or in <mslconfig>).
+
+We are actively seeking feedback on these proposals.  What do you like?  What
+do you not like?  What doesn't work?  What does?  Your feedback will be
+valuable input to the standards committee.
+
+template <class Sig> class result_of
+------------------------------------
+
+This class can be found in <functional>.  It closely follows the proposal at:
+
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2003/n1437.html
+
+The purpose of this class is to define a nested typedef named type, that is the
+return type of the function type in result_of's template parameter.  For
+example:
+
+#include <functional>
+#include <iostream>
+#include <typeinfo>
+
+typedef double (*FP)(int, short);
+
+int main()
+{
+	std::cout << typeid(std::tr1::result_of<FP>::type).name() << '\n';
+}
+
+Prints out:
+
+double
+
+result_of also works with function objects such as std::less:
+
+	std::cout << typeid(result_of<less<int>(int, int)>::type).name() << '\n';
+
+outputs:
+
+bool
+
+Note the function call syntax appended to less<int>.  This can be used to
+specify which operator() within function objects that have multiple signatures.
+result_of is typically used in template programming (as opposed to just
+printing out the return type!).
+
+template <class T> class reference_wrapper
+template <class T> reference_wrapper<T> ref(T& t)
+template <class T> reference_wrapper<const T> cref(const T& t)
+--------------------------------------------------------------
+
+This template class and functions are in <functional>.  They closely follow the
+proposal at:
+
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2003/n1436.html
+
+reference_wrapper is a templated wrapper class that behaves as an assignable
+reference.  That is, you can pass reference_wrapper's around, and even put
+them into containers.  reference_wrapper also serves as a marker for some
+packages that explicitly look for it, and behave differently when they find it.
+For example if you send a reference_wrapper to the function make_tuple, a T&
+will be put in the tuple instead of a T or a reference_wrapper<T>.  (see the
+description of tuple for more details).  reference_wrapper can also at as a
+function object it is instantiated with a function pointer or function object.
+
+template <class Sig> class function
+-----------------------------------
+
+This is a highly generic and powerful "call back" mechanism that subsumes
+function pointers, member function pointers, and arbitrary function objects
+while maintaining similar syntax and semantics to function pointers.
+
+It is found in <functional> and closely follows the proposal at:
+
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2002/n1402.html
+
+Example uses include:
+
+#include <vector>
+#include <utility>
+#include <functional>
+#include <iostream>
+#include <cassert>
+
+int add(int x, int y) { return x+y; }
+bool adjacent(int x, int y) { return x == y-1 || x == y+1; }
+
+struct compare_and_record
+{
+	std::vector<std::pair<int, int> > values;
+
+	bool operator()(int x, int y)
+	{
+		values.push_back(std::make_pair(x, y));
+		return x == y;
+	}
+};
+
+int main()
+{
+	std::tr1::function <int (int, int)> f;
+
+	f = &add; 
+	std::cout << f(2, 3) << '\n'; // 5
+
+	f = std::minus<int>();
+	std::cout << f(2, 3) << '\n'; // -1
+	assert(f); // okay, f refers to a minus<int> object
+
+	std::tr1::function <bool (int, int)> g;
+	assert(!g); // okay, g doesn't refer to any object
+
+	g = &adjacent;
+	assert(g(2, 3)); // okay, adjacent(2, 3) returns true
+
+	g = std::equal_to<long>(); // argument conversions ok
+	assert(g(3, 3)); //okay, equal_to<long>()(3, 3) returns true
+
+	compare_and_record car;
+	g = std::tr1::ref(car);
+
+	assert(g(3, 3)); // okay, and adds (3, 3) to car.values
+
+	g = f; // okay, int return value of f is convertible to bool 
+}
+
+template<class T> class shared_ptr
+template<class T> class weak_ptr
+template<class T> class enable_shared_from_this
+-----------------------------------------------
+
+This package is found in <memory> and closely follows the proposal at:
+
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2003/n1431.htm
+
+shared_ptr is the army tank of reference counted pointers.  Its overhead is a
+little higher than you might be used to, but there are so many handy features
+(a lot of them safety features) that this pointer is hard to resist.  See the
+proposal for a list of features (which include safety across DLL boundaries).
+
+shared_ptr works closely with weak_ptr, where weak_ptr takes the place of a raw
+pointer to break cyclic references.  Again see the proposal for many more
+details and motivation.
+
+This package follows closely from boost::shared_ptr, and has all of the latest
+improvements from that implementation.
+
+See http://www.boost.org/libs/smart_ptr/enable_shared_from_this.html for an
+example use of enable_shared_from_this.
+
+template <class T0, class T1, ... class T9> class tuple
+-------------------------------------------------------
+
+This proposal lives in two headers:  <tuple> and <tupleio>.  It closely follows
+these two proposals:
+
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2002/n1382.pdf
+http://anubis.dkuug.dk/jtc1/sc22/wg21/docs/papers/2002/n1403.pdf
+
+The header <tuple> exposes a std::pair-like class which generalizes the pair
+concept up to 10 members.  For example:
+
+#include <tuple>
+#include <string>
+
+int main()
+{
+	int i = 0;
+	std::tr1::tuple<int, int&, std::string> t(1, i, "hi");
+	// t holds (1, 0, "hi")
+	i = 2;
+	// t holds (1, 2, "hi")
+}
+
+Read the proposal to get the full scope and abilities of this package.  It is
+quite large and useful.  There are a few differences between this
+implementation, and n1403.pdf:
+
+<tupleio> has been preserved.  You must include this header to get the I/O
+abilities.  This allows <tuple> to remain much smaller.
+
+tuples of different sizes can be compared (==, <, etc.) with the obvious]
+semantics.
+
+tuple_like types can be compared with each other.  For example:
+
+#include <tuple>
+#include <string>
+#include <utility>
+
+int main()
+{
+	std::pair<int, double> p(1, 2.0);
+	std::tr1::tuple<long, short, std::string> t(1, 2, "hi");
+	bool b = p < t;
+}
+
+b gets the value true.
+
+The tuples implemented here are interoperable with your own tuple_like types
+(should you create any).
+
+The tuple I/O manipulators:
+
+tuple_open
+tuple_close
+tuple_delimiter
+
+take both charT arguments and const charT* arguments.  Thus you can specify
+multi-character braces or delimeters.  This can come in handy when dealing with
+tuples of std::string:
+
+#include <tupleio>
+#include <string>
+#include <iostream>
+#include <sstream>
+
+int main()
+{
+	std::tr1::tuple<std::string, std::string> t("Hi", "5");
+	std::stringstream s;
+	s << std::tr1::tuple_open("( ")
+	  << std::tr1::tuple_delimiter(" , ")
+	  << std::tr1::tuple_close(" )");
+	s << t << '\n';
+	s >> t;
+	std::cout << std::tr1::tuple_open("( ")
+	          << std::tr1::tuple_delimiter(" , ")
+	          << std::tr1::tuple_close(" )");
+	if (!s.fail())
+		std::cout << t << '\n';
+	else
+		std::cout << "failed\n";
+}
+
+( Hi , 5 )
+
+And finally, if the TR is put into namespace std (instead of std::tr1)
+<tupleio> extends I/O ability to other tuple_like types such as std::pair.
+
+#define _MSL_TR1_NAMESPACE 0
+
+#include <tupleio>
+#include <string>
+#include <iostream>
+#include <map>
+
+int main()
+{
+	typedef std::map<std::string, int> Map;
+	Map m;
+	m["one"]   = 1;
+	m["two"]   = 2;
+	m["three"] = 3;
+	std::ostream_iterator<Map::value_type> out(std::cout, "\n");
+	std::copy(m.begin(), m.end(), out);
+}
+
+(one 1)
+(three 3)
+(two 2)
+
+===============================================================================
+Metrowerks Corporation

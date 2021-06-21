@@ -1,0 +1,162 @@
+
+26 Sept, 2003
+Version 1.3
+
+mwCVS
+=====
+mwCVS is a free plugin for the CodeWarrior IDE.  It allows you 
+to use common CVS commands without leaving the CodeWarrior IDE.  
+CVS is an open source version control system specifically geared for 
+source code and project management.  
+mwCVS was designed to mirror the GNU CVS functionality as closely as possible. 
+
+=============================
+Changes
+=============================
+ 
+Bugs related to the modified state of files, as well as UI issues fixed.  
+
+=============================
+System Requirements
+=============================
+ - CodeWarrior IDE version 5.2 or higher
+ - cvs.exe and cwspawn.exe installed in the IDE's (Helper Apps) folder 
+ - mwcvs.dll installed in the IDE's plugins/version control folder
+ - pMWCVS.dll installed in the IDE's plugins/Preference Panel folder
+
+
+========================
+Installation information:
+========================
+To use the mwCVS plugin for the Windows  CodeWarrior IDE, 4 components are
+necessary: mwcvs.dll, pMWCVS.dll, cvs.exe, and cwspawn.exe.  Relative
+to IDE.exe, mwcvs.dll is installed in .\plugins\Version Control,
+pMWCVS.dll is installed in .\plugins\Preference Panel, cvs.exe is 
+installed in ..\(Helper Apps), and RunHelper.exe is installed in the 
+same directory as IDE.exe.
+
+
+==================
+Setup Information:
+==================
+To setup mwCVS, choose Version Control Settings from the Edit menu.  Click
+The "Use Version Control" check box and select mwCVS from the Method drop 
+down menu.  Set global options as desired in the mwCVS preference panel.
+
+NOTE: When no project is open, the settings are the global settings, and
+checking the "use global settings as default" check box will cause all
+projects without overriding project-level settings to use the global settings.
+When a project is open, the settings are project-level only.
+NOTE: Project level settings do not have the "use global..." checkbox.
+Setting project-level settings will override the global settings.
+
+=============================
+How mwCVS Works
+=============================
+mwCVS uses the cvs.exe command line tool installed in the IDE's help apps folder
+to execute commands.  The output of each cvs command is shown in a CodeWarrior 
+IDE editor window.
+
+
+===========
+GNU CVS.EXE
+===========
+The application cvs.exe is distributed under the terms of the GNU
+Public License, see www.gnu.org.  Source files for the patches to this
+application can be obtained by sending mail to support@metrowerks.com or from 
+the mwCVS web site (see below).
+
+
+=============================
+CVS Environmental Variables
+=============================
+CVSREAD: mwCVS explicitly tells cvs whether to make new files read-only each time a 
+command is executed using the -w and -r command line flags.  The CVSREAD variable 
+is therefore overridden by mwCVS.  You can set mwCVS' preference panel to make 
+files read-only be default.
+
+CVSROOT: mwCVS overrides the CVSROOT environmental variable when a Checkout command 
+is executed with the checkout directory setting in the Checkout dialog box or when 
+a Login command is executed.
+
+CVSEDITOR, EDITOR: mwCVS does not support the CVSEDITOR or EDITOR environmental 
+variables.
+
+Other CVS enironmental variables work as described in the GNU CVS documentation.
+
+
+=============
+Known issues:
+=============
+
+	=============================
+	No CVS.EXE
+	=============================
+	If CVS.EXE can't be found, no error message is displayed.  CVS.EXE
+	should be installed in the (Helper Apps) folder in the same directory
+	that holds the folder bin.  If this folder is not found an error message
+	will be displayed, but the command will still attempt to execute in hopes
+	your OS can locate CVS.EXE.
+
+  	=============================
+	CVS Remove Command
+	=============================
+	mwCVS Remove Dialog gives the option of committing removals immediately and
+	the option to delete the file on disk as part of the CVS remove operation 
+	(which are enabled by default).  With GNU CVS the default is not to remove 
+	the local file with the remove command and to require a separate cvs commit
+	after a successfull cvs add.  The file must be deleted from disk before
+	a successful cvs remove command but after the file is removed, the IDE 
+	won't be able to find the file in order to commit it.
+	
+	=============================
+	Log text edit field in Add Dialog
+	=============================
+	A known problem exists with current versions of cvs server in that while 
+	the log message of the Add dialog (equivalent to cvs add -m "Log Message")
+	is transmitted to the cvs repostiory, the add log message can not be 
+	retrieved from client-side CVS using the cvs log or cvs status commands.  
+	The add dialog log edit field abstracts cvs's client side interface.  If 
+	and when the cvs server issue is cleared up (and cvs repisotories and/or 
+	software are possibly upgraded) then the cvs log text edit field in the Add
+	Dialog window should work as expected.
+
+=============================
+Frequently Asked Questions
+=============================
+Q. I am new to CVS.  How can I learn more about CVS and the mwCVS plugin?
+A. There are many resources on the web that document CVS.  mwCVS is designed to 
+conform the GNU CVS feature set.  See the Internet Resources below.
+
+Q. I do not have a CVS repository.  How can I get my sources in a CVS repository?
+A. There are several different ways to set up a CVS repository.  After you have 
+set up a repository you probably will want to use the CVS import command from the 
+command line to put your files in CVS for the first time.  Refer to the GNU CVS 
+documentation for a full discussion on these issues.  After you have imported your
+sources, you can issue a checkout command from the mwCVS menu.  You can then use
+the other mwCVS commands on those sources.
+
+
+=========================
+Internet Resources
+=========================
+At the time this docuement was written, the following web sites contained 
+information related to CVS and mwCVS.
+
+  http://www.metrowerks.com
+    mwCVS updates and downloads
+
+  http://www.cvshome.org
+    FAQs, documentation and mailing lists about CVS
+
+  http://www.wincvs.org
+    CVS GUI tools
+    
+
+=========================
+Contacting Metrowerks
+=========================
+We want to hear from you.
+  http://www.metrowerks.com/MW/about/contact.htm
+
+

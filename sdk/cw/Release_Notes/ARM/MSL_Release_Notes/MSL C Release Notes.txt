@@ -1,0 +1,190 @@
+===============================================================================
+Metrowerks CodeWarrior Metrowerks Standard C Library Release Notes
+===============================================================================
+
+Version: 9.5
+Date:    October 17, 2003
+Author:  Cecilia Rodriquez, Michael Marcotty, Ron Liechty, Howard Hinnant,
+         Josef W. Wankerl, Ed Swartz
+===============================================================================
+Current version is:                              (__MSL__ == 0x00009005).
+These release notes document changes since Pro 9 (__MSL__ == 0x00009001).
+===============================================================================
+
+===============================================================================
+New Features Since Pro 9
+===============================================================================
+
+*   Added cross platform implementations for C99 round, roundf, roundl, lround, 
+	lroundf, lroundl, llround, llroundf, llroundl, isgreater, lrint, lrintf, 
+	lrintl, nearbyint, nearbyintf, nearbyintl, remquo, remquol, remquof, scalbn, 
+	scalbnf,scalbnl, isgreaterequal, isless, islessequal, islessgreater,
+	isunordered,trunc,truncf, and truncl.
+	
+*	Added cross platform implementations for the POSIX compatible reentrant 
+	functions: strtok_r, asctime_r, ctime_r, localtime_r, gmtime_r, rand_r, 
+	and strerror_r.
+	
+*   Added MacOS and Win32 implementation of readdir_r
+
+*	A new flag _MSL_PTHREADS has been provided to enable thread-safety using a 
+	POSIX threads interface.
+	
+===============================================================================
+New Features Since Pro 8
+===============================================================================
+
+*   Added user defined locales.
+
+*   Decorated the C library function prototypes with __attribute__((nothrow))
+    to improve effeciency with C++.
+
+*   Internally changed the way per-thread local data items are accessed.  It's
+    now much easier to read.
+
+*   Internal data for character type maps are now marked as const.
+
+*   Turned on the background language parser to generate browser data for all
+    MSL projects to get improved code completion and browsing.
+
+*   The C99 'restrict' keyword has been added to appropriate interfaces to
+    increase compatibility with the C99 standard.
+
+*   Added implementation for the C99 _Exit, mbsinit, atoll, cbrt, fma, ilogb, 
+	modf and strtof functions.
+	
+*   Added _ultow and _ltow functions to Windows Extras 
+
+*   Reworked internal file I/O calls.  The inner file access APIs used to take
+    a parameter that pointed to an "idle proc".  This was only used in the Mac
+    implementation.  In order to be friendly to the needs of other platforms,
+    the meaning for the final parameter to the file I/O calls is no longer an
+    idle proc, but is instead a generic reference constant which can mean
+    anything to a particular platform.  On the Mac, it's treated as a pointer
+    to an idle proc (so everything works as it always has).  On other platforms
+    it can be used as a means to specify special platform flags without hacking
+    up the innards of MSL.
+
+*   Files are able to be opened by providing filenames and pathnames in wide
+    wchar_t format.  New non-standard calls (_wfopen, _wfreopen, _wremove,
+    _wrename, _wtmpnam, _wopen, _wcreat) mimic the standard calls (fopen, 
+    freopen, etc.) with the exception of taking wchar_t pathnames instead of
+    char pathnames.
+
+*   A new flag _MSL_C_LOCALE_ONLY provides for disabling the locale mechanism
+    in the library.  The MSL C library should be recompiled after changing the
+    value of the flag.  When off, the locale mechanism works as described by
+    the ANSI C standard.  When on, there are no locales, and anything which is
+    dependent upon locales functions as if the "C" locale is in place.  This
+    saves a lot of code size and increases execution speed slightly.
+
+*   A new flag _MSL_STRERROR_KNOWS_ERROR_NAMES controls what happens when the
+    strerror() call is made.  When the flag is on, strerror() will return
+    robust error messages.  When the flag is off, strerror() will always return
+    with an "unknown" error (which provides for a huge savings in code/data
+    size in the executable).
+
+*   When using the Mach-O MSL C library, more SIGxxx macro names are available,
+    and also the System.framework version of signal and raise are used instead
+    of the internal MSL implementation.
+
+*   Enhanced UTF-8 routines to deal with encodings of up to 6 bytes long.
+
+*   Added new library for Mach-O as a replacement for SIOUX.  Instead of
+    providing a Metrowerks-specific runtime environment for executables, the
+    standard Terminal application is launched instead.  Just add the
+    MSL_Terminal_Hook.lib library in place of console_OS_X.c and set the output
+    filetype for the executable to 'APPL'.  (This only works on Mac OS X.)
+
+*   The console_OS_X.c file was added to the MSL_All_Mach-O.mcp project.  This
+    means programs linking against the All library automatically get console
+    I/O without having to add an extra file to the project.  The console
+    routines are marked as weak, however, so other console types may be used
+    (e.g. console.stubs.c, MSL_SIOUX_Mach-O.lib, or MSL_Terminal_Hook.lib) and
+    the console_OS_X.c routines in the All library will be overridden.
+
+*   The functions fgetc, getc, fgets, gets, ungetc, fputc, putc, putchar, fputs, 
+    and puts were modified so that operations on stdin, stdout, stderr, and 
+    general files do not interfere with each other in multithreaded operation.
+    This means that, for example, a thread that performs a getc and is waiting
+    for the input does not hold up operations on stdout, or general files.
+
+*   Internal MSL macro for __NO_WIDE_CHAR changed to _MSL_WIDE_CHAR.  Internal
+    MSL macro for __MSL_LONGLONG_SUPPORT__ changed to _MSL_LONGLONG.  New
+    behavior tests the macros with #if instead of #ifdef.  Support for the old
+    style macro names is still in place, but it will be removed for MSL 10.
+
+*   Started adding internal macros, _MSL_C99, that separate those parts of the
+    C library that were added to the first version of the ANSI Standard for the
+    C programming language (ANSI/ISO 9899-1990) by the second version
+    (ISO/IEC 9899-1999(E)).  If _MSL_C99 is defined in a prefix file to have the
+    value 0 before building the MSL C library, only those parts of the library
+    that were defined in ANSI/ISO 9899-1990 are compiled, yielding a smaller
+    library.  If _MSL_C99 is defined to have a non-zero value before building
+    the library the full MSL C library is compiled in accord with
+    ISO/IEC 9899-1999(E).
+
+*   Added code to printf.c and scanf.c for conversion specifications that were
+    added for C99.
+
+*   Cleaned up <extras.h> header to result in less name pollution.
+
+    Note: some projects may no longer build, if they rely on
+    declarations normally declared in <unistd.h>.  This header is no
+    longer automatically included, as it was in the previous release
+    (this was due to name pollution and not a feature!)  In these cases,
+    include <unistd.h> or <io.h> (on Win32) directly where needed.
+
+===============================================================================
+Bugs Fixed in this Version
+===============================================================================
+
+*   Corrected Mach-O localtime() implementation to get the actual local time
+    instead of GMT time (WB1-38897, WB1-41238).
+
+*   Cleaned up MSL headers to allow a greater number of BSD/POSIX headers to
+    be included in the mix.  Adding the '(MSL POSIX fix)' folder from the
+    MacOS X Support folder to the access paths to get the extra magic
+    (IR0204-0584-1, WB1-37493).
+
+*   Added prototypes for Mach-O POSIX functions in standard ANSI C headers
+    where appropriate (IR0204-0372).
+
+*   Improved the check for Windows-specific UNICODE define.  Both the standard
+    and UNICODE versions of assert() are available in the library at all times
+    (WB1-40992).
+
+*   Corrected undefined comparision macros under Mach-O (WB1-41239).
+
+*   Removed U suffix from CHAR_MIN, UCHAR_MAX and USHRT_MAX in
+    <climits>/<limits.h>.
+
+*   Fixed bug where Macintosh filenames larger than 255 characters would
+    overrun the filename buffer and cause a crash (WB1-44131).
+
+*   Correction to mbstring.c to prevent sign extension when assigning char to wchar.
+
+*   Correction to printf.c to to print the value zero under %a and %A with a zero 
+    exponent.
+
+*   On Mach-O, shut down stdio before shutting down the console causing buffers
+    to flush (WB1-48043).
+
+[Post Pro9]
+
+*	Fix <sys/timeb.h> header so that both "struct _timeb" and "struct timeb"
+	are defined.
+
+===============================================================================
+Known Issues
+===============================================================================
+
+*   Any use of the relation() function with Mach-O requires the
+    Carbon.frameowrk in addition to System.framework.  The relation()
+    routine is used by such standard C functions as islessequal(), isgreater(),
+    isunordered(), etc.
+
+
+===============================================================================
+
+Metrowerks Corporation

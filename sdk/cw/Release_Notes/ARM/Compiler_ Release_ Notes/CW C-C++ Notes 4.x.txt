@@ -1,0 +1,1238 @@
+===============================================================================
+CodeWarrior C/C++ Compiler Release Notes
+===============================================================================
+Version: 4.0.2 ( __MWERKS__ == 0x4010 )
+Date:    22 January 2006
+Authors: Andreas Hommel, Ed Swartz
+===============================================================================
+
+(This details changes made since the 3.2.x series of tools that were
+released in the CodeWarrior Dev Studio for Mac v9.  Also
+check the Back End and IR Optimizer release notes for additional
+details.)
+
+===============================================================================
+New Features in this Version
+===============================================================================
+
+*	Interprocedural Analysis Support
+
+	Interprocedural Analysis (IPA) allows the compiler to generate better
+	and/or smaller code by inspecting more than just one function or data
+	object at the same time. This technology is currently mostly used by the
+	inliner and a new optimization that tries to reduce the size of C++
+	exception handling code and data. It also allows cross file string merging
+	(reuse strings) and pooling. The optimizer and code generators will start
+	using this in future releases for more optimizations.
+
+	The compiler supports three different interprocedural analysis modes, one
+    of which, "program mode", is not supported in this release:
+
+	Function Mode (aka "off") (default):
+	====================================
+
+	Functions are optimized and code is generated when the function has been
+	parsed. This mode allows no interprocedural analysis, so it is equivalent
+	to the compilation mode before 4.0 with "deferred inlining" disabled.
+	This mode is enabled by selecting "off" in the IPA popup menu in the 
+	"C/C++ Language" preference panel or by specifying "-ipa function" 
+	or "-ipa off" on the command line.
+
+	File Mode:
+	==========
+
+	A translation unit is completely parsed before any code or data is
+	generated. This allows optimizations and inlining on a per-file basis,
+	it replaces the pre-4.0 "deferred inlining/codegen" mode. This mode is
+	enabled by selecting "file"	in the IPA popup menu in the "C/C++ Language"
+	preference panel or by specifying "-ipa file" on the command line.
+
+	This mode will require more memory and it can be slightly slower than
+	"Function" mode.
+
+	The compiler will also do an early dead code/data analysis in this mode,
+	so objects with internal linkage that are not referenced will be
+	dead-stripped in the compiler rather than in the linker.
+
+*	#pragma ipa (file | on | function | off)
+
+	This #pragma can be use to control the IPA mode in a source file. It should
+	only be used at the beginning of a translation unit before any code or data
+	objects have been defined. "file"/"on" and "function"/"off" are equivalent.
+
+*	Inliner changes
+
+	The inliner has been changed to be IPA aware; it will use a new
+	true "bottom-up" inlining method when the "File IPA" mode is selected. 
+    The "Inline Depth" and "bottom-up" inlining options have
+	no effect on the IPA inliner."Auto-inlining" can be used
+	to get automatic cross-file inlining. The "Function IPA" mode still uses 
+	the old inlining methods (and their controls).
+
+*	Support for inline defined friend function templates
+
+
+		template<typename T>
+		struct X {
+			template<typename U> friend U tf(X &x)
+			{	//	now accepted
+				return x.foo();
+			}
+
+		private:
+			T foo();
+		};
+
+*	Improved template instantiation error messages
+
+	Errors that are detected during template instantiation now issue
+	additional info messages that specify the point of instantiation
+	(or reference):
+
+		template<typename T> int f() {
+			return T(0);
+		}
+		template<typename T> int g() {
+			return f<T>();
+		}
+		int main() {
+			return g<void>();
+		}
+			=>
+		Error   : illegal implicit conversion from 'void' to
+		'int'
+		 (point of instantiation: 'main()')
+		  (instantiating: 'g<void>()')
+		   (instantiating: 'f<void>()')
+		Test.cpp line 2    return T(0);  
+		    (corresponding point of instantiation for 'f<void>()')
+		Test.cpp line 5    return f<T>();  
+		    (corresponding point of instantiation for 'g<void>()')
+		Test.cpp line 8    return g<void>();  
+
+	The additional note messages can be enabled/disabled with:
+
+		#pragma emit_templ_stack (on | off | reset) (default: on)
+
+*	Updated POD detection to conform to C++03 Standard
+
+	Classes/structs/unions that contain pointer-to-member members
+	are now considered to be POD types.
+	
+		#pragma old_pods on | off | reset (default: off)
+
+	Can be used to get the old behavior.
+
+*	Updated the Itanium C++ ABI class layout to conform to the new specs
+
+	The compiler will no longer reuse the tail padding of a base class
+	that is a POD type.
+ 
+		#pragma old_tail_padding on | off | reset (default: off)
+
+	Can be used to enable the old behavior.
+
+*	Support for out-of-line defined partial class template specializations
+
+*	Improved support for __attribute__((aligned(x))) / __attribute__((packed))
+
+	The compiler can now check the alignment in implicit pointer conversions:
+
+		int normal, *normalp;
+		__attribute__((packed)) int packed, *packedp;
+
+		int main()
+		{
+			normalp = &normal;	// OK
+			packedp = &packed;	// OK
+			packedp = &normal;	// OK
+			packedp = normalp;	// OK
+
+			normalp = &packed;	// error
+		/*
+		Error   : illegal implicit conversion from '__packed int *' to
+		'int *'
+		Test.cpp line 11    normalp = &packed; // error  
+		*/
+
+			normalp = packedp;	// error
+		/*
+		Error   : illegal implicit conversion from '__packed int *' to
+		'int *'
+		Test.cpp line 18    normalp = packedp; // error  
+		*/
+			normalp = (int *)packedp;	// OK with cast
+		}
+
+	Please note that we allow implicit conversions from pointer to
+	"normal int" to pointer to "packed int" but not vice versa. This feature
+	is not available in all CW C/C++ compilers.
+
+*	Support for Java-style "override"/ "final" error checking
+
+	"final" and "override" __declspec()/__attribute__() specifiers
+	can now be used for improved function override checking.
+
+		struct A {
+			virtual __declspec(final) void vf1();
+			virtual void vf2();
+		};
+		struct B : A {
+			void vf1();							// ERROR
+		};
+		struct C : A {
+			__declspec(override) void vf2();	// OK
+			__declspec(final) void vf3();		// OK
+		};
+		struct D : A {
+			__declspec(override) void vf();		// ERROR
+		};
+		struct E {
+			__declspec(override) void vf();		// ERROR
+		};
+	=>
+		Error   : the 'final' function 'A::vf1()' is overridden by 'B::vf1()'
+		Test.cpp line 7   };  
+
+		Error   : the 'override' function 'D::vf()' does not override any inherited functions
+		Test.cpp line 14   };  
+
+		Error   : the 'override' function 'E::vf()' does not override any inherited functions
+		Test.cpp line 17   };  
+
+*	#pragma min_enum_size 1|2|4 (default: 1)
+
+	This pragma can be used to specify the minimum size for an enumeration types:
+
+		#pragma min_enum_size 1
+		enum E1 { e1 = 1 };			// sizeof(enum E1) == 1
+		#pragma min_enum_size 2
+		enum E2 { e2 = 1 };			// sizeof(enum E2) == 2
+		#pragma min_enum_size 4
+		enum E4 { e4 = 1 };			// sizeof(enum E4) == 4
+
+	Note: "enumsalwaysint on" overrides this pragma.
+
+	The setting can also be specifed on the command line:
+
+	-min_enum_size keyword	#	specify the minimum size for enumeration types (implies -enum min)
+		1					#		minimum size is 1; default
+		2					#		minimum size is 2
+		4					#		minimum size is 4
+
+*	experimental support for __decltype__ (a reference type preserving typeof)
+
+*	experimental support for __static_assert ( <const-expr> , <string-lit> ) ;
+
+		template<typename T> void f()
+		{
+			__static_assert(
+				sizeof(T) >= sizeof(int),
+				"sizeof(T) is not >= sizeof(int)"
+			);
+			//	...
+		}
+
+		int main()
+		{
+			f<int>();	//	OK
+			f<char>();	//	error
+		}
+	=>
+
+		Error   : static assert check 'sizeof(T) is not >= sizeof(int)' failed
+			(point of instantiation: 'main()')
+				(instantiating: 'f<char>()')
+		Test.cp line 3   izeof(T) is not >= sizeof(int)"); 
+
+	__static_assert() can be used in global, local, or in class scope.
+
+*	implemented the proposed solution for the C++ language defect
+	"427. static_cast ambiguity: conversion versus cast to derived"
+
+*	Improved error checking and messages for function template argument
+	mismatches.
+
+*	"#pragma gcc_extensions on" changes
+
+	-	CW now accepts more illegal pointer conversions (C only)
+	-	CW now accepts forward declarations of "empty" static arrays (C only)
+	-	CW now accepts void expressions in return statements of void 
+
+		#pragma gcc_extensions on
+
+		static int arr[];	//	illegal, but accepted with gcc_extensions "on"
+		static int arr[10];
+
+		char * cp;
+		int * ip;
+		unsigned int * uip;
+		long l;
+
+		void foo() {}
+
+		void gcctest()
+		{
+			ip = uip;		//	illegal, but accepted with gcc_extensions "on"
+			cp = ip;		//	illegal, but only a warning with gcc_extensions "on"
+			l = cp;			//	illegal, but only a warning with gcc_extensions "on"
+			cp = l;			//	illegal, but only a warning with gcc_extensions "on"
+
+			return foo();	//	illegal, but GCC allows this
+		}
+
+	-	These attributes are now accepted (but currently ignored):
+
+	      	__attribute__((unused))
+    	  	__attribute__((deprecated))
+      		__attribute__((unavailable?))
+
+*	Improved initialization of global ptmfs or global ptmf arrays
+
+*	Improved error messages for some "undefined identifier" errors:
+
+		struct X {};
+
+		X::X() {}
+		X::X() {}
+		void X::operator >> (int) {}
+
+			=>
+
+		Error   : undefined identifier 'X::X'
+		Test.cpp line 3   X::X() {}  
+
+		Error   : undefined identifier 'X::X'
+		Test.cpp line 4   X::X() {}  
+
+		Error   : undefined identifier 'X::operator >>(int)'
+		Test.cpp line 5   void X::operator >> (int) {}  
+
+
+			instead of:
+
+		Error   : undefined identifier '?0'
+		Test.cpp line 3   X::X() {}  
+
+		Error   : undefined identifier '?0'
+		Test.cpp line 4   X::X() {}  
+
+		Error   : undefined identifier '?5'
+		Test.cpp line 5   void X::operator >> (int) {}  
+
+*	New Attributes:
+
+	__attribute__((weak))
+	__attribute__((dllimport))
+	__attribute__((dllexport))
+	__attribute__((noinline))
+
+	are now accepted by the compiler, however, they may not be fully
+	supported on all targets.
+
+*	__attribute__((noinlining)) / __declspec(noinlining)
+
+	This function declaration specifier will prevent any inlining
+	in the body of a function. It does not prevent the inlining
+	of the function itself.
+
+		inline void f() {}
+		inline void g() __attribute__((noinline)) {}
+
+		void foo()
+		{
+			f();	//	will be inlined
+			g();	//	will not be inlined
+		}
+
+		void bar() __attribute__((noinlining))
+		{
+			f();	//	will not be inlined
+			g();	//	will not be inlined
+		}
+
+		void foobar() __attribute__((noinline, noinlining))
+		{
+			//	this function will not be inlined and nothing
+			//	in this function will be inlined
+		}
+
+	Functions that are defined in a "#pragma dont_inline on"
+	section of the source text will have an implicit "noinlining"
+	specifier, so a function call in these functions will never be
+	inlined, even if they are instantiated/generated at a point
+	where #pragma dont_inline is off.
+
+*	Added support for the __noop() intrinsic function
+
+	This function has no effect, it accepts and ignores any argument
+	lists including all side effects. The result type of this function
+	is 'void'. This can be used to implement debug functions that
+	take a variable argument list:
+
+		#include <stdio.h>
+
+		#if DEBUG
+			#define DEBUGPRINTF	printf
+		#else
+			#define DEBUGPRINTF	__noop
+		#endif
+
+		int main()
+		{
+			DEBUGPRINTF("entering main()\n");
+
+			//... do something
+
+			DEBUGPRINTF("leaving main()\n");
+		}
+
+*	Template friend functions are now only instantiated when they are
+	actually referenced:
+
+		template<typename T> struct X {
+			friend void f(X)
+			{
+				T t = 0;
+			}
+		};
+		X<void> xv;		//	now OK, f() is not instantiated by this
+
+	See also C++ Core Issue #329.
+
+*	The "template friend" and "static template data member" parsers
+	now conform to the C++ name lookup rules when the "ISO C++
+	Template Parser" option is selected:
+
+		template<typename T> struct X {
+			static int m;
+		};
+		template<typename T> int X<T>::m = g();	//	error "g()" is not visible
+		extern int g();
+		int main()
+		{
+			return X<int>().m;
+		}
+	=>
+		Error   : undefined identifier 'g'
+		Test.cpp line 4   template<typename T> int X<T>::m = g();  
+
+*	The compiler is now more forgiving with missing "typename" prefixes in
+	dependent function-style casts:
+
+		template<typename T> struct X {
+			typedef T tt;
+		};
+		template<typename T> struct Y {
+			int f()
+			{
+				return X<T>::tt();	//	missing "typename" prefix
+			}
+		};
+		int main()
+		{
+			return Y<int>().f();
+		}
+	=>
+		Warning : 'typename' is missing in template argument dependent qualified type
+		 (point of instantiation: 'main()')
+		  (instantiating: 'Y<int>::f()')
+		Test.cpp line 7     return X<T>::tt();  
+
+	This used to be an error in previous compilers:
+
+		Error   : illegal use of type-name
+		 (point of instantiation: 'main()')
+		  (instantiating: 'Y<int>::f()')
+		Test.cpp line 7     return X<T>::tt();  
+
+*	The compiler now optionally emits a warning when an object address
+	is used in a conditional expression:
+
+		#pragma warn_possunwant on
+		int check();
+		int count;
+		int main()
+		{
+			if(check)	//	possible error, should be "check()"
+				++count;	
+		}
+
+	=>
+
+		Warning : possible unwanted use of object address
+		Test.c line 6    if(check) // possible error, should be check()  
+
+*	#pragma allow_macro_redefs (on | off | reset) (default: off)
+
+	The preprocessor will accept macro redefinitions without error or
+	warning messages when this option is on.
+
+		#pragma allow_macro_redefs on
+		#define M 0
+		#define M 1
+		#if M != 1
+		#error "M != 1"
+		#endif
+	=>
+		(OK, no error or warning messages)
+
+	This option is also available as a command line option:
+
+	-allow_macro_redefs               
+		#   allow macro redefinitions without an error or warning
+
+*	Direct-to-SOM support has been removed in this release
+
+*	Experimental support for the C++0x "Right Angle Brackets" feature:
+
+		#pragma experimental on
+
+		template<int i> class X { };
+		template<class T> class Y { };
+		Y<X<1>> yx1;	// OK, same as "Y<X<1> > yx1;"
+
+*	Added support for several built-in type traits functions:
+
+	primary-expression:
+		...
+		__builtin_is_pod ( type-id )
+		__builtin_is_pod unary-expression
+		__builtin_is_polymorphic ( type-id )
+		__builtin_is_polymorphic unary-expression
+		__builtin_is_abstract ( type-id )
+		__builtin_is_abstract unary-expression
+		__builtin_has_nothrow_default_constructor ( type-id )
+		__builtin_has_nothrow_default_constructor unary-expression
+		__builtin_has_nothrow_copy ( type-id )
+		__builtin_has_nothrow_copy unary-expression
+		__builtin_has_nothrow_assign ( type-id )
+		__builtin_has_nothrow_assign unary-expression
+		__builtin_has_nothrow_destructor ( type-id )
+		__builtin_has_nothrow_destructor unary-expression
+		__builtin_has_virtual_destructor ( type-id )
+		__builtin_has_virtual_destructor unary-expression
+		...
+
+	The __builtin_*s are identifiers and no keywords. Most of these
+	functions are used to implement the C++0x library type trait classes
+	and follow the same semantics (work in progress).
+
+*	Added #pragma warn_missing_enum_case on | off | reset (default: off)
+
+	This option can be used to detect potentially missing cases in switch()
+	statements that have an enumeration type selector and no default label:
+
+		enum X { A,B,C,D };
+
+		#pragma warn_missing_enum_case on 
+
+		int foo(X x)
+		{
+			switch(x)
+			{
+			case A: return 1;
+			case D: return 2;
+			}
+			return 0;
+		}
+	=>
+		Warning : the enumerator 'B' does not have a matching case label
+		Test.cp line 12    return 0; 
+		Warning : the enumerator 'C' does not have a matching case label
+		Test.cp line 12    return 0; 
+
+*	The compiler now emits a warning if a previously defined macro
+	has a different defintion in a precompiler header file. The defintion
+	of the macro in the precompiler header replaces the previous defintition.
+
+	--- my.pch++ --
+	#pragma precompile_target "my.mch++"
+
+	#define ERROR 123
+	#define OK 456
+	---------------
+
+	--- test.cpp ---
+	#define ERROR 1234
+	#define OK 456
+
+	#include "my.mch++"			// warning for ERROR redef, no warning for OK
+
+	#if ERROR!=123
+	#error "ERROR is not 123"	// ERROR is 123, so this is skipped
+	#endif
+	----------------
+
+		=>
+
+	Warning : macro 'ERROR' redefined
+	test.cpp line 4   #include "my.mch++" 
+
+	The warning is not emitted in the GCC or VC++ compatibility modes or if
+	#pragma allow_macro_redefs is on.
+	
+*	Added #pragma warn_possiblyuninitializedvar on | off | reset (default: off)
+
+	This option, when on, will force the compiler to test for a definition (assignment)
+	of a variable on _all_ data flow paths to the use of that variable before emitting
+	an uninitialized variable warning. The behavior, when off, is to test for a definition 
+	of a variable on _any_ data flow path to the use of a variable before emitting a warning.
+	
+	static int test()
+	{
+	    int a;
+	    while (1) {
+	        a = sub(a);
+	        if(a)
+	            break;
+	    }
+		return a;
+	} 
+	
+	Normally, no warning is generated for this case because a path from the definition of "a" (a = sub(a))
+	to the use of "a" (sub(a)) exists within the loop . With #pragma warn_possiblyuninitializedvar 
+	on, the compiler forces a check of _all_ paths, including the entry into the loop. Since
+	the path into the entry of the loop contains a use of "a" without an initialization of 
+	"a", a warning is generated for the use of an uninitialized variable.	
+
+===============================================================================
+Bugs Fixed in this Version
+===============================================================================
+
+*	fixed a bug with out-of-line template member definitions in precompiled
+	header files (MTWX20151)
+
+*	fixed a bug where the use of inline assembly code could change the type
+	of a function argument (MTWX20020)
+
+*	fixed a crash/ICE with inline defined friend functions from PCH files
+	(MTWX19707)
+
+*	fixed a PCH generation crasher with dependent qualified templates
+	and an empty argument list (MTWX19431)
+
+*	fixed a bug when instantiating local classes in template functions 
+
+*	the compiler now reports illegal "C" <-> "C++" function type linkage
+	conversions when the "ANSI strict" mode is selected and the GCC and
+	VC++ compatibility modes are off (MTWX538):
+
+		#pragma ANSI_strict on
+		#pragma gcc_extensions off
+		#pragma cpp_extensions off
+
+		extern "C" void f();
+		void (*fp)() = f;
+	=>
+		Error   : illegal implicit conversion from 'extern "C" void ()' to
+		'void (*)()'
+		Test.cp line 4   void (*fp)() = f; 
+
+*	throwing/catching local class types is now supported (MTWX174)
+
+*	the compiler now generates a warning if an aggregate class with a const
+	or reference member is not explicitly initialized (MTWX8150):
+
+		struct X { const int a; const int&b; };
+		X x1;	//	error
+
+			=>
+
+		Error   : the const or reference class member 'a' is not initialized
+		Test.cp line 2   X x1; // error 
+
+		Error   : the const or reference class member 'b' is not initialized
+		Test.cp line 2   X x1; // error 
+
+*	fixed a spurious "expression has no side effect" warning with certain
+	new-expressions (MTWX18974)
+
+*	fixed a bug/inefficiency that could result in trashed memory when copying
+	empty base classes (MTWX19002)
+
+*	fixed a bug with undetected private/protected typedef access in
+	qualified names (MTWX9)
+
+*	fixed an undetected error double member template declaration bug (MTWX37)
+
+*	the compiler will now generate a warning for explict function
+	pointer <-> non-function pointer conversions when "ANSI strict" is
+	selected (MTWX2731)
+
+*	fixed a type matching/lookup bug with nested template members that are
+	defined in global scope (MTWX10133)
+
+*	fixed a bug that could prevent the expansion of predefined macros
+	in sources with a lot of errors (MTWX18763)
+
+*	fixed a bug with premature destruction of initialized class arrays
+	in templates.
+
+*	fixed a bug with C struct arguments, qualification conversions and
+	inlining that could result in an ICE (MTWX18332).
+
+*	illegal uses of "typename" now generate a warning (MTWX13479):
+
+	template<typename T> struct Test {
+		T f();
+	};
+	template<typename T> typename T f() { return 0; };
+	                     ^^^^^^^^
+		=>
+
+	Warning : 'typename' is not required/legal in this context
+
+*	fixed a potential crash when parsing #pragma overload (MTWX18062)
+
+*	fixed a crasher in template array type deduction (MTWX18231)
+
+*	fixed an exception handling bug where virtual bases	of
+	ambiguous base classes cannot be caught in a handler (MTWX18028)
+
+*	disabled tail padding in Win32 C++ ABI class layout 
+
+	The compiler will no longer use the tail padding of a base class.
+ 
+		#pragma old_tail_padding on | off | reset (default: off)
+
+	Can be used to enable the old behavior.
+
+*	fixed a spurious error bug when returning aligned/packed types (MTWX17760)
+
+*	"operator *(void *)" is no longer an overload matching candidate
+
+*	fixes several bugs where the compiler was not enforcing the correct
+	usage of "template<>" in explicit specializations (MTWX7371, MTWX11660).
+	The compiler will now generate warnings for missing or redundant
+	"template<>" prefixes:
+	
+		template<typename T> struct A {
+		    void f();
+		};
+		void A<int>::f() {}				//	needs "template<>"
+
+		template<> struct A<char> {
+		    void g();
+		};
+		template<> void A<char>::g() {}	//	no "template<>" allowed
+	=>
+		Warning : explicit template specialization without 'template<>' prefix
+		Test.cpp line 4     void A<int>::f() {}  
+
+		Warning : illegal use of 'template<>' prefix
+		Test.cpp line 9     template<> void A<char>::g() {}
+
+*	the result of a conditional-operator expression where the second and third
+	operands are structs/unions (C only!) is no longer an lvalue (MTWX4659)
+
+*	fixes a bug with the type of a conditional-operator expression
+	when the first operand is a constant-expression (MTWX4646)
+
+*	fixes a bug in the template template parameter parser when the
+	non-type parameter of a template template parameter's parameter list
+	was depending on a outer template parameter (MTWX1037)
+
+*	fixes an undetected error bug that allowed overloading of a global
+	object that was already added with a using declaration (MTWX196):
+
+		namespace A{
+		  void f(){}       
+		}
+		using A::f;
+		void f() {}		// illegal
+	=>
+		Error   : function declaration conflicts with using
+				  declaration for 'A::f()'
+		Test.cpp line 5   void f() {}
+
+*	fixes an undetected error bug in template argument deduction when
+	the deduced arguments do not match dependent non-type parameters
+	(MTWX920)
+
+*	the compiler now generates a warning for parenthesized possible
+	unwanted assignments (MTWX585). The recommended way to silence
+	this warning is to use explicit compare operators
+
+		#pragma gcc_extensions off
+		#pragma warn_possunwant on
+		int f(int a, int b)
+		{
+			if((a=b)) return 1;		//	warning
+			if((a=b)!=0) return 1;	//	no warning
+			return 0;
+		}
+	=>
+		Warning : possible unwanted assignment
+		Test.cpp line 4    if((a=b)) return 1;  // warning  
+
+	Note that you will not get this warning in the GCC compatibiliy mode.
+
+*	the compiler now generates a warning if a user tries to call main() in
+	strict ANSI mode (MTWX190):
+
+		#pragma ANSI_strict on
+		int main() { return main(); }
+	=>
+		Warning : illegal 'main()' function call
+		Test.c line 2   int main() { return main(); }  
+
+*	fixed a bug where a class redefinition could result in a follow-up ICE
+	(MTWX16993)
+
+*	fixed a name mangling bug in the Itanium C++ ABI where type substitutions
+	with ids that are >=10 are encoded as SK_, SL_, SM_, ... instead of SA_,
+	SB_, SC_, ... . This may require that C++ libaries with complex
+	function names are recompiled.
+
+*	the compiler now detects mismatches in exception specification lists
+	(MTWX38)
+
+*	fixed several problems with out-of-line member template definition
+	parsing
+
+*	fixed a bug with GCC "statements in expressions" extension
+	(MTWX16050)
+
+*	fixed a recursive stack overflow crashing bug in 4.0 and 3.2.x
+	source base (MTWX16067)
+
+*	fixed a bug where some member function templates were still being handled
+	by the old template implementation even if the "ISO C++ Template Parser"
+	option was selected. As a result the compiler was not detecting certain
+	errors in these templates (MTWX7093).
+	
+	This fix can require changes in existing code that compiled with previous
+	versions of the CW compilers. Please see the "ISO C++ Template Parser
+	Release	Note from the 3.0 Compiler" section below for further details on
+	the differences betweeen the two implementations.
+
+*	fixed an undetected error in ctor initializers for dependent base classes
+	(MTWX12216)
+
+*	fixed a crash with unterminated #if directives (MTWX15319)
+
+*	fixed a name lookup bug in templates when parsing qualified names
+	after a '.' or '->' operator (MTWX5222)
+
+*	fixed an lvalue error with ?: expressions (MTWX15552)
+
+*	fixed an label/typedef name parsing conflict (MTWX76)
+
+*	fixed bug where certain illegal templates could hang the compiler (MTWX458)
+
+*	fixed bug where an illegal array initialization could crash
+	the compiler (see also "struct/classes with incomplete array members
+	cannot be used as struct members or array elements" error message
+	below) (MTWX14546)
+
+*	fixed a nested template parsing bug with typedefs (MTWX10136)
+
+*	fixed a dependent name lookup ICE
+
+*	fixed a bug with partial aggregate class initialization lists (MTWX10925)
+
+*	fixed a bug with inline defined covariant member functions (MTWX15478)
+
+*	fixed a bug with explicit specialization declarations
+	of class template member functions (MTWX11199)
+
+*	fixed a scope saving bug with friend functions
+
+*	fixed a bug with dependent type names and base classes (MTWX14438)
+
+*	fixed a bug with undetected illegal union template members (MTWX12393)
+
+*	fixed a bug with out-of-line definitions of certain nested
+	templates (MTWX9222)
+
+*	fixed a template instantiation bug that could result in illegal
+	function result types
+
+*	fixed a bug with cv-qualification subsets in converison ranking (13.3.3.2p3)
+
+	void f(const int *);
+	void f(const volatile int *);
+
+	void test()
+	{
+		int i;
+		f(&i);	//	now accepted, calls "f(const int *)" because
+				//	"const" is a proper subset of "const volatile"
+	}
+
+*	fixed a bug with the "current object" in C99 designated
+	initializers (MTWX13962)
+
+*	fixed an ICE with template template argument deductions
+	and partial specializations
+
+*	fixed a namespace name lookup bug
+
+*	fixed a bug with nested classes in template memebr functions
+
+*	fixed a bug with illegal use of incomplete classes that could hang the
+	compiler (MTWX11695 and MTWX14183)
+
+*	fixed MTWX13835 (spurious "unused expression" warning in AltiVec inits)
+
+*	fixed MTWX13915 (duplicate base constructor generation)
+
+*	fixed an undetected member template redeclarion bug (MTWX13681)
+
+*	fixed a member function pointer name mangling bug (MTWX13682)
+
+*	fixed several bugs with illegal incomplete/abstract type usage detection 
+
+*	fixed a template parameter name bug with nested templates (MTWX12690)
+
+*	fixed several bugs in private/protected member access checking
+
+*	fixed an ICE with illegal templaste (MTWX12331)
+
+*	fixed a inefficiency with const integral variables in op= expressions
+	(MTWX2243)
+
+*	fixed an ICE with illegal elaborate class template specifiers (MTWX9327)
+
+*	fixed a parser bug where a namespace/class name was hidden by a local
+	variable name (WB1-49945)
+
+*	fixed a parser bug with template template parameters in
+	simple-type-specifer postfix expressions.
+
+*	the compiler will issue a warning for non-lvalue class reference casts:
+
+		struct X { X(); };
+		X	x = (X&)X();	//	warning: "X()" is not an lvalue
+
+	this warning will become an error in future versions of the compiler. 
+
+*	fixed another class aggregate initialization bug.
+
+*	fixed a "lost qualifiers" bug when parsing complex function results
+	(MTWX17812)
+
+*	fixed an initialization bug that affected class template code generation 
+	(MTWX17787).
+
+===============================================================================
+Known Bugs and Incompatibilities in this Version
+===============================================================================
+
+*	
+
+===============================================================================
+ISO C++ Template Parser Release Note from the 3.0 Compiler
+===============================================================================
+
+The CW 3.0 C++ compiler front-end supports a new template parser that
+conforms to the ISO C++ name resolution (14.6). The main features of this
+new parser are better ISO C++ conformance and better error checking. Most
+errors in template definitions can now be detected when a template is
+defined and not just when it is instantiated.
+
+This parser is stricter than the old parser and a lot of existing template
+code that compiles with previous CW releases or other C++ compilers will
+not compile with this parser. The old 2.4.x parser is still available to
+compile existing code. This document describes the changes and it has some
+examples that demonstrate how to port existing template code.
+
+The new parser is enabled by the preference panel option “ISO C++ template
+parser”. The current default for this option is “off”. Some parts of this
+new parser have already been used by the 2.4.x class template parser, so
+the changes in the 3.0 mostly affect bodies of (member-) function
+templates.
+
+The correct use of the “typename” keyword is required in many contexts.
+A qualified name that refers to a type and that depends on a template
+parameter must be prefixed by a “typename” keyword (14.6).
+
+	template<typename T> void f()
+	{
+		T::name *ptr;			// error: multiply T::name by ptr
+		typename T::name *ptr;	// OK
+	}
+
+Similarly, the correct use of a “template” keyword prefix is now required
+in . or -> postfix expressions or in qualified ids that depend on a
+template parameter.
+
+	template<typename T> void f(T *ptr)
+	{
+		ptr->func<int>();			// error: < means less than
+		ptr->template func<int>();	// OK
+	}
+
+Non-dependent names in templates shall be in scope and are bound at the
+point where the template is defined. Name binding is not affected by
+definitions that are visible at the point of instantiation.
+
+	void f(char);
+	template<typename T> void foo()
+	{
+		f(1);		// uses f(char), f(int) is not in scope
+		g();		// error g() is not defined
+	}
+	void g();
+	void f(int);
+
+Names in template argument dependent base classes are not found (14.6.2).
+
+	template<typename T> struct Base
+	{
+		void f()
+	}
+	template<typename T> struct Derive : Base<T>
+	{
+		void g()
+		{
+			f();			// error Base<T>::f() is not visible
+			Base<T>::f();	// OK
+		}
+	}
+
+The identifier in an function call expression of the form
+“identifier ( expression-list )”, where at least one of the expressions
+is type-dependent (see 14.6.2.2), is looked up in the context of the
+template definition (unqualified lookup) and instantiation (associated
+namespace lookup) see 14.6.4.2.
+
+	void f(char);
+	template<typename T> void foo()
+	{
+		f(1);			// uses f(char), f(int) is not in scope
+		f(T());		// type-dependent argument
+	}
+	void f(int);
+	struct A {};
+	void f(A);
+
+	int main()
+	{
+		foo<int>();	// calls f(char) twice
+		foo<A>();	// calls f(char) and then f(A)
+	}
+
+Only external names are considered during these dependent lookups.
+
+	static void f(int);
+	template<typename T> void foo()
+	{
+		f(T());		// type-dependent argument
+	}
+
+	int main()
+	{
+		foo<int>();	// error in foo<int>: f(int) has internal linkage
+	}
+
+Template parameter dependent expressions in inline assembly code 
+are currently not supported.
+
+	template<typename T> void foo()
+	{
+		asm ( move #sizeof(T), D0 );	// not yet supported
+	}
+
+Three new #pragmas can be used to control the new parser.
+
+	#pragma parse_func_templ 	on | off | reset
+
+This is the master switch that enables or disables the new parser.
+
+	#pragma parse_mfunc_templ	on | off | reset
+
+This pragma enables or disables the new parser for member function bodies.
+
+	#pragma warn_no_typename	on | off | reset
+
+This #pragma tells the front-end to emit a warning for missing typenames,
+i.e. for cases where a typename prefix is required by the C++ standard,
+but where the FE can figure out that a type is required by the context.
+
+The initial setting of these options depends on the "ISO C++ template
+parser" preference panel option.
+
+===============================================================================
+New error messages
+===============================================================================
+
+"virtual function override type mismatch between '%o' and '%o'\n'%t'\n'%t'"
+(was: "'%o' differs from virtual base function '%o' in return type only")
+
+	struct X {
+		virtual void f();
+	};
+
+	struct Y : X {
+		virtual int f();
+	};
+
+		=>
+
+	Error   : virtual function override type mismatch between 'Y::f()' and 'X::f()'
+	'int ()'
+	'void ()'
+	Test.cp line 7   };  
+
+
+"direct struct members shall not have base classes"
+
+	#pragma cpp_extensions on
+	struct X {
+		int x;
+	};
+	struct Y : X {
+		int y;
+	};
+	struct Z {
+		int z;
+		Y;			//	error: Y has a base class
+	};
+
+"anonymous unions/structs shall not have private/protected members"
+
+	struct X {
+		union {
+		private:
+			int x;	//	error: private data member
+		};
+	};
+	
+"anonymous unions/structs shall not have member functions"
+
+	struct X {
+		union {
+			int x;
+			int f() { return x; }	//	error: member function
+		};
+	};
+
+"expected formal macro argument after '#'"
+
+	The preprocessor now detects illegal tokens following '#' in 
+	function-like macros, as required by the C99 and ISO C++ standards.  
+	Only named parameters may appear in this position.
+	
+	#define x3(y) ... #z ...		// error: 'z' not a parameter
+	#define x4(y) ... #2 ...		// error: '2' not a parameter
+	#define x5(y) ... #				// error: no token after '#'
+
+"structs/classes with flexibile array members cannot be used as struct members or array elements"
+
+	typedef struct X {
+		int i;
+		int arr[];
+	} X;
+
+	X x[10];		//	<<< error
+
+	struct Y {
+		X x;		//	<<< error
+	};
+
+"flexible array member in otherwise empty struct"
+
+	struct IllFlex1 {
+		int arr[];	//	<<< error
+	};
+
+"intrinsic functions cannot be defined"
+
+	int __abs(int val) { return val<0 ? -val : val; }	//	intrinsic PPC function
+
+		=>
+
+	Error   : intrinsic functions cannot be defined
+	Test.c line 1   int __abs(int val) { return val<0 ? -val : val; } 
+
+
+"exception specification list mismatch '%e' and '%e'"
+
+	void f() throw(int);
+	void f() throw(short);	// error: does not match previous declaration
+
+"the exception specification of the function '%o' is more restrictive than the specification of the override '%o'"
+
+	struct B {
+	    virtual void f() throw (int, double);
+	};
+
+	struct D: B {
+	    void f();	// error: B::f has "throw (int, double)"
+	};
+
+"the target exception specification '%e' is more restrictive than the source specification '%e'"
+
+	void (*pf1)();
+	void (*pf2)() throw(int);
+
+	void f()
+	{
+		pf1 = pf2;	//  OK:  pf1  is less restrictive
+		pf2 = pf1;	//  error:  pf2  is more restrictive
+	}
+
+"possible unwanted use of object address"
+
+	see new features
+
+"illegal 'main()' function call"
+
+	see bug fix for MTWX190
+
+"function declaration conflicts with using declaration for '%o'"
+
+	see bug fix for MTWX196
+
+"explicit template specialization without 'template<>' prefix"
+
+	see bug fix for MTWX7371
+
+"illegal use of 'template<>' prefix"
+
+	see bug fix for MTWX11660
+
+"the 'final' function '%o' is overridden by '%o'"
+"the 'override' function '%o' does not override any inherited functions"
+	see "Support for Java-style "override"/ "final" error checking"
+
+"local variables/parameters ('%o') shall not be used in a default argument"
+
+	void f(int x, int y = x);	//	error
+
+"the type '::std::type_info' that is required for 'typeid' expressions is not defined (usually defined in the <typeinfo> header file)"
+
+	int main()
+	{
+		typeid(int);	//	error
+	}
+
+"'typename' is not required/legal in this context"
+
+	see MTWX13479 above
+
+"calling class method using an instance"
+"calling instance method using class method"
+
+	the compiler will generate these warnings when an instance method
+	is called using a class or vice versa.
+
+"the const or reference class member '%u' is not initialized"
+
+	see MTWX8150 above
+
+"the enumerator '%u' does not have a matching case label"
+
+	see #pragma warn_missing_enum_case above
+
+===============================================================================
+Features Previously Added
+===============================================================================
+
+===============================================================================
+Bugs Previously Fixed
+===============================================================================
+
+===============================================================================

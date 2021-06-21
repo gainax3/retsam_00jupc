@@ -1,0 +1,141 @@
+===========================================================================
+Metrowerks ARM Assembler Release Notes
+===========================================================================
+
+Date   : May 25, 2006 
+Author : John Russo
+Version: 1.0 Build 0023
+
+===========================================================================
+Changes in This Version
+===========================================================================
+1.0 Build 0001 (02-04-2003) :
+- first build of the MicroAPL ARM assembler.
+- the assembler requires the following panels :
+  ARM Assembler Panel
+  ARM CodeGen Panel
+
+1.0 Build 0002 (02-26-2003) :
+- fixed RELA addend issue with both ARM/Thumb bl instructions
+
+1.0 Build 0003 (03-24-2003) :
+- Generates mapping and tagging symbols
+- fixed RELA addend issue with bl <reloc> + offset
+- fixed mov reg,reg, lsl #const parsing
+- fixed issue with space characters inside register list of stm instructions
+- fixed adr r0,<reloc>
+- fixed issue with '@' was treated as comment even "GNU compatibile syntax"
+  is not activated
+
+1.0 Build 0004 (05-08-2003) :
+- ARM ADS compatible syntax
+
+1.0 Build 0005 (05-12-2003) :
+- improved error management for ==
+
+1.0 Build 0006 (05-13-2003) :
+- fixed an issue with option argument setting
+
+1.0 Build 0007 (07-27-2003) :
+- New baseline, and updated processor settings
+
+1.0 Build 0008 (08-13-2003) :
+- Some internal source reorg
+
+1.0 Build 0009 (09-08-2003) :
+- Fixed !=,== in ADS mode
+- Fixed ADS EXPORT directive
+- Sanity check the processor panel size from compiler, updated to new processor panel
+
+(10-09-2003)
+- Byte order independent 64bit float handling
+
+1.0 Build 0013 (12-17-2003) :
+- Fixed command line driver error about missing panel
+
+1.0 Build 0014 (03-22-2004) :
+- Internal hotfix for bad ldr offset to in-code literals
+- Internal hotfix adding -debug to command line tools
+
+1.0 Build 0015 (03-23-2004) :
+- Split section directive to allow deadstripping of data/function,
+".option no_section_resume on | off | reset" controls this feature
+(default off), use a section directive before every function and
+data to allow them to be placed in individual sections:
+	.text
+	.global main
+main:				; an entry point
+	bl	keep
+	.text			; start a new entry of .text section
+	.global keep
+keep:				; keep by linker since it was refefred
+	bx	lr
+	.text			; start a new entry of .text sectoin
+	.global throwaway
+throwaway:			; not referred by anyone, linker throw this away
+	bx	lr
+	
+1.0 Build 0016 (03-25-2004):
+- replace -debug by -g and address an issue from command line framework
+that undo our debugging option
+
+1.0 Build 0019 (03-28-2005):
+
+- Fixed MTWX17414, debugger cannot show assembler source with elf made by CW
+Assembler modified so that .dwarf.<funcname>  and .dwarf_line.<funcname> symbols 
+are emitted to support assembler source debugging.
+
+- Fixed MTWX17682, Request for support GAS compatible local label in mwasmarm.exe
+The assembler now accept multi-digit local labels, e.g. 1000:, whereas previously,
+only single digit local labels (0: - 9:) were accepted.
+
+- Fixed MTWX17709, str r2,value syntax is not supported in arm standalone assembler
+You may now store a register value to an address specified with a label.
+
+1.0 Build 20 (12-07-2005)
+
+- Fixed MTWX19648, Stand-alone Assembler generates wrong instructions for "ldreq" and "ldrne".
+
+1.0 Build 21 (05-18-2006)
+
+- DCD can now handle simple expressions
+For example,
+
+__ARM_ETInfo
+
+eit_base   dcd |.ARM.exidx$$Base|  - __ARM_ETInfo;
+
+will now assemble without errors if __ARM_ETInfo is not a global. The
+assembler creates a pc relative location with the symobl .ARM.exidx$$Base
+and the addend using __ARM_ETInfo.
+
+1.0 Build 22 (05-23-2006)
+
+- fixed MTWX19334, Getting different dissassembly from Debugger vs. 
+Dissassembly command (from right clicking on file in IDE). The listing
+file displays the instruction consistently, regardless of the endian
+settings.
+
+1.0 Build 23 (05-25-2006)
+
+- backed out changes of build 22, listing file format is the same as
+build 21 now. Disassembly listing and assembly listing will be different
+by design.
+
+
+
+===========================================================================
+Contacting Metrowerks
+===========================================================================
+
+Use the forms found in the Release Notes folder on the CD to submit tech
+questions, bug reports or suggestions and send to : support@metrowerks.com
+
+See the CodeWarrior_on_the_Nets document in the Release Notes folder for
+more contact information, including a list of Internet newsgroups,
+online services, and factory update sites.
+
+===========================================================================
+Stephen Chong
+Metrowerks Corporation
+===========================================================================

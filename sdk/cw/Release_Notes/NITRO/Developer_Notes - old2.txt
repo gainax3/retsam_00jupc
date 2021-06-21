@@ -1,0 +1,1377 @@
+===============================================================================
+Metrowerks CodeWarrior® Development Studio for NINTENDO DS® 2.0
+===============================================================================
+
+March 31, 2006
+
+===============================================================================
+         Very Important Notes. Please Read Before Using The Tools!
+===============================================================================
+
+This is a collection of important information concerning last-minute changes 
+and other topics that deserve special attention. Please read these notes 
+carefully, they supersede the manuals and other documentation.
+
+*** THE LICENSE FOR THIS PRODUCT WILL EXPIRE SEPTEMBER 30, 2006 ***
+
+=====================================
+Summary of Changes Since Last Release
+=====================================
+
+The following summarizes changes in the tools for recent releases.
+
+======================
+Changes in Release 2.0
+======================
+
+* STATIONERY CHANGES
+--------------------
+Removed old stationery for old releases.
+They are now saved in Examples\NITRO\Old_Stationery\CWforDS1.2 just for
+reference.
+
+
+* EXAMPLE CHANGES
+-----------------
+Corrected path issues in example projects and converted them for the new IDE.
+
+* BUILD TOOL CHANGES
+--------------------
+
+n/a         [Feature] Compiler now accepts __declspec(noinline) and 
+            __declspec(noinlining) in function declarations.
+n/a         [Feature] The pragma state in -ipa file mode is saved and restored 
+            for each function, giving equivalent scope to all pragmas regardless 
+            of ipa mode. 
+MTWX14401 - [Feature] Reimplemented this feature to improve performance
+            when the "Pool Strings" setting is disabled (default.) See
+            the ARM_Compiler_Notes.txt for more information.    
+MTWX17667 - [Feature] Mathlib Size Optimization - Overall mathlib size has been 
+            reduced due to improved dead-stripping of unused math functions. User 
+            may now link in "_sz.a" type libraries to get improvement in code size 
+            of divide routines for 32-bit signed and unsigned divide routine. See
+            the ARM_Compiler_Notes.txt for more information.
+MWGD52    - [Feature] Linker shows warnings when different structs of the same name
+             are used in different source.
+MWGD44    - [FEATURE] Added functionality to SEARCH_SYMBOL rules in the LCF. Now,
+            multiple rules can be assigned to an individual file. The previous 
+            behavior was that only a single rule could be applied to a file. Please
+            see ARM_Linker_Notes.txt for an explanation and examples.
+n/a       - The previous compilers in CW for DS 1.x emit plural ELF sections for 
+            each variable separately. Now the compiler in DS2.0 emits 1 ELF section 
+            for all variables in a compile unit. This change affects locations 
+            (boundary) of variables with "ALIGNALL(n)" in LCF file. ALIGNALL(n) 
+            specifies location of ELF sections. But with previous compiler, each 
+            variable was put in each separate section, so it worked as an indication 
+            for variables as a result. With new compiler, variables may not be 
+            located to specified location except a variable at the top of the ELF 
+            section. The inner section locations for each variables are determined 
+            by its data type. If you want to specify the boundary for a variable, 
+            please use __attribute__ ((aligned(n))) in the source file.
+n/a       - Changes were made to facilitate dead-stripping of locally unreferenced
+            global data definitions by moving them to their own elf section. This 
+            is available only in ipa -file mode. See the ARM_Compiler_Notes.txt 
+            for more information.
+n/a       - Added #pragma force_func_export on|off|reset. This pragma is useful to
+            prevent undesireable dead-stripping of statically declared C functions
+            by marking them as referenced. See the ARM_Compiler_Notes.txt for more 
+            information.
+n/a       - The Build Tools Reference document has been updated. 
+
+* Debugger Changes
+------------------
+MWGD229   - Corrected problem in which Run from some called functions results in 
+            stopping just after the called function.
+
+=============================
+Changes in Release 2.0 Beta 3
+=============================
+
+The Beta 2 release contains these changes since the last release:
+
+* STATIONERY CHANGES
+--------------------
+
+All stationery files were modified to have the InterProcedural Analysis (IPA)
+setting set to "file" by default.
+
+* BUILD TOOL CHANGES
+--------------------
+
+Note on use of IPA|file: In some cases, transitioning from the v1.2 compiler
+to the v2.0 compiler will result in larger .data and .rodata sections. Using
+the compiler optimization "-ipa file" when using the commmand line compiler, 
+or selecting the "File" option for the IPA setting in the C/C++ Language
+Preference Panel will turn this optimization on.
+
+Updates:
+MWGD213 - [FEATURE] Stationery files modified to set the Interprocedural Analysis
+          optimization to the "file" setting by default
+
+
+* DEBUGGER CHANGES
+------------------
+
+Updates:
+F-38 - [FEATURE] Linker now allows duplicate filenames in different overlays.
+
+The linker now allows the following example to link properly:
+
+.sec1:ovl1 {
+	file1.o (.text)
+	file3.o (.text)
+} > seg1
+
+.sec2:ovl2 {
+	file2.o (.text)
+	file3.o (.text)
+} > seg2
+
+In this case, file3.o is a component of the overlays "ovl1" and "ovl2". 
+
+Note the new linker control file syntax that allows the overlay name to be 
+specified explicitly following the section specifier. The overlay name is optional. 
+It is only required when a file or files is shared among overlays. The overlay name
+must match the name of the overlay specified on the command line with the -overlay
+(-ol) flag. 
+
+The above syntax is equivalent to
+
+.sec1: {
+	GROUP(ovl1) (.text)
+} > seg1
+
+.sec2: {
+	GROUP(ovl2) (.text)
+} > seg2 
+
+Note that in the usage of GROUP(<name>), <name> refers to an overlay specified with
+-overlay, _not_ the overlay group name specified with -overlaygroup.
+
+Library names may be used in place of object file names:
+
+Example:
+
+.sec1:ovl1 {
+	file1.o (.text)
+	lib1.a (.text)
+} > seg1
+
+.sec2:ovl2 {
+	file2.o (.text)
+	lib1.a (.text)
+} > seg2
+
+Normally, a warning is issued for duplicate file names on the command line. No
+warning is issued for duplicate files that exist as part of an overlay group.
+
+Files may not be shared in overlays in different overlay groups. 
+
+This feature applies only to the command line linker, as the IDE does not have the
+ability to duplicate a file in overlay groups.
+
+Known Issues:
+MWGD204,MTWX18350 - [BUG] The debugger does not show correct values for local scope variables
+          in some cases. Workaround: You may use the debugger's tooltip feature to
+          examine the contents of the variable.
+
+
+=============================
+Changes in Release 2.0 Beta 2
+=============================
+
+Release 2.0 of the tools includes a new and improved ARM compiler that 
+features a new front-end supporting recent changes in the C++ standard and
+other back-end improvements. A summary of changes is listed below and in
+the section about Release 2.0 Beta 1.
+
+If you are installing onto a system that previously had Release 1.2 or 
+earlier installed, be aware that the Release 2.0 installer will overwrite 
+NITROSDK_ROOT and other environment variables previously created.
+
+Overwrites or merge installs with other versions of CodeWarrior or earlier
+versions of the NITRO tools are not supported.
+
+* REMOVAL OF *STRB.A LIBRARIES
+------------------------------
+As stated in the last release, with this release we are removing the 
+*strb.a libraries.  
+
+* BUILD TOOL CHANGES
+-----------------------------
+Libraries: 
+
+*   Reduced size of mathlib libraries for divide routines.
+
+Assembler:
+*   Fixed CW built-in assembler 'and' opcode bug.
+
+Compiler:
+*   Compiler now emits lexical block into in the DWARF2 .debug section
+    so the debugger can show correct scope for certain variables.
+*   Corrected performance issue when "Pool Strings" was disabled.
+*	Support for Java-style "override"/ "final" error checking
+
+	"final" and "override" __declspec()/__attribute__() specifiers
+	can now be used for improved function override checking.
+
+		struct A {
+			virtual __declspec(final) void vf1();
+			virtual void vf2();
+		};
+		struct B : A {
+			void vf1();							// ERROR
+		};
+		struct C : A {
+			__declspec(override) void vf2();	// OK
+			__declspec(final) void vf3();		// OK
+		};
+		struct D : A {
+			__declspec(override) void vf();		// ERROR
+		};
+		struct E {
+			__declspec(override) void vf();		// ERROR
+		};
+	=>
+		Error   : the 'final' function 'A::vf1()' is overridden by 'B::vf1()'
+		Test.cpp line 7   };  
+
+		Error   : the 'override' function 'D::vf()' does not override any inherited functions
+		Test.cpp line 14   };  
+
+		Error   : the 'override' function 'E::vf()' does not override any inherited functions
+		Test.cpp line 17   };  
+
+*	Added #pragma warn_possiblyuninitializedvar on | off | reset (default: off)
+
+	This option, when on, will force the compiler to test for a definition (assignment)
+	of a variable on _all_ data flow paths to the use of that variable before emitting
+	an uninitialized variable warning. The behavior, when off, is to test for a definition 
+	of a variable on _any_ data flow path to the use of a variable before emitting a warning.
+	
+	static int test()
+	{
+	    int a;
+	    while (1) {
+	        a = sub(a);
+	        if(a)
+	            break;
+	    }
+		return a;
+	} 
+	
+	Normally, no warning is generated for this case because a path from the definition of "a" (a = sub(a))
+	to the use of "a" (sub(a)) exists within the loop . With #pragma warn_possiblyuninitializedvar 
+	on, the compiler forces a check of _all_ paths, including the entry into the loop. Since
+	the path into the entry of the loop contains a use of "a" without an initialization of 
+	"a", a warning is generated for the use of an uninitialized variable.	
+
+Details of the above build tool changes, and of additional compiler
+changes for the 2.0 releases are available in the Release notes files:
+
+..\Release_Notes\ARM\Compiler_ Release_ Notes\ARM_Compiler_Notes.txt
+..\Release_Notes\ARM\Compiler_ Release_ Notes\CW C-C++ Notes 4.x.txt
+
+
+=============================
+Changes in Release 2.0 Beta 1
+=============================
+
+* REMOVAL OF *STRB.A LIBRARIES
+------------------------------
+Please be aware that although the *strb.a libraries are included in this 
+release, they will be removed in the next update (beta). 
+
+* SUPPORT FOR USER-SPECIFIED DATA SECTIONS
+------------------------------------------
+User specified read-only data sections may be specified with 
+#pragma define_section.
+
+For example:
+#pragma define_section mysection, ".mydata", ".mybss", ".myrodata", abs32, RWX
+
+Use this pragma to place const qualified data in a user-specified section.
+Otherwise, const data is placed in .rodata sections. 
+
+* INLINE ASSEMBLY .ALIGN DIRECTIVE
+----------------------------------
+The compiler's inline assembler now accepts a .align directive
+The usage is:
+	.align <arg>
+
+where <arg> is a literal constant (expressions are not allowed).
+<arg> must be a power of 2 constant greater than 0. The maximum
+align argument is 8192. 
+
+.align aligns the next occurring instruction or directive to the
+argument value. Multiple .align directives are allowed in an 
+inline assembly block. 
+
+Normally the function where the .align directive resides will be
+aligned to the maximum of all the .align directives in the function.
+This is true if dead-stripping of functions is enabled.
+
+If dead-stripping is disabled in the compiler (target settings
+panel "Permit dead-stripping of functions" is unchecked), individual
+functions may not be necessarily aligned to the maximum of all .align
+directives in the function. By disabling dead-stripping, the compiler
+essentially combines functions in order to pool constants and gain
+more efficient access of constant addresses of global and static 
+variables. All the combined functions will reside in the same object
+code section and the object code section is aligned to the maximum of the
+.align directives. Do not rely on function alignment if dead-stripping
+is disabled. The .align directives will be accurate, however.
+
+* INLINE ASSEMBLER NOW SUPPORTS LABEL OPERANDS IN LDR AND LDA INSTRUCTIONS
+--------------------------------------------------------------------------
+The compiler's inline assembler now accepts label operands in ldr and
+lda instructions.
+
+Example:
+        asm {
+                ldr r0,=L1
+                lda r1,L2
+L1:
+L2:
+        }
+
+where L1 and L2 are legal inline assembly labels. Labels must be defined
+in the function in which they are referenced.
+
+* TRAILING COLONS NOW SUPPORTED IN INLINE ASSEMBLY
+--------------------------------------------------
+Inline assembly labels may now have an optional trailing colon.
+
+Example:
+	asm {
+	label1
+	b @label1
+}
+
+and 
+	asm {
+label1:
+	b @label1
+}
+
+are identical. Label may begin anywhere in the line. The
+lines containing a label may or may not contain additional opcodes.
+
+* CHANGES IN COMMAND-LINE FLAGS TO SELECT WARNING LEVELS
+--------------------------------------------------------
+The command line flags to select warning levels have changed:
+
+'-w most' enables the following warnings:
+
+	"illegal #pragmas",
+	"empty declarations",
+	"possible unwanted effects",
+	"unused arguments",
+	"unused variables",
+	"extra commas",
+	"pedantic error checking",
+	"hidden virtual functions",
+	"passing large arguments to unprototyped functions",
+	"use of expressions as statements without side effects",
+	"lossy conversions from pointers to integers",
+	"token not formed by ## operator",
+	"return without a value in non-void-returning function",
+	"inconsistent use of 'class' and 'struct'",
+	"incorrect capitalization used in #include \"...\"",
+	"incorrect capitalization used in #include <...>",
+
+'-w all' enables the above warnings and the following:
+
+	"implicit arithmetic conversions; implies '-warn impl_float2int,impl_signedunsigned'",
+	"implicit integral to floating conversions",
+	"implicit floating to integral conversions",
+	"implicit signed/unsigned conversions",
+
+'-w full' enables all of the above and the following:
+
+	"use of undefined macros in #if/#elif conditionals",
+	"'inline' functions not inlined",
+	"padding added between struct members",
+	"result of non-void-returning function not used",
+	"any conversions from pointers to integers",
+
+* CHANGES IN RUNTIME LIBRARY PATHS
+----------------------------------
+Due to changes in the runtime, the path to the runtime library is now
+
+Runtime/Runtime_ARM/Runtime_NITRO/lib.
+
+This will impact rebuilding of the libraries and demos in the NitroSDK.
+The following changes must be made in order to build the NitroSDK and 
+NitroSystem:
+
+1. CW_LIBDIRS must point to the new location of the runtime libraries:
+
+In build/buildtools/commondefs.cctype.CW
+
+    $(CW_ARMDIR)/Runtime/Lib    \
+
+should be modified to,
+
+    $(CW_ARMDIR)/Runtime/Runtime_ARM/Runtime_NITRO/Lib \
+
+2. CW_INCDIRS has to point to the new location of the MSL header:
+
+In build/buildtools/commondefs.cctype.CW
+
+    $(CW_ARMDIR)/msl/MSL_Extras/MSL_ARM/Include \
+
+* DISABLING OF "PERMIT DEAD-STRIPPING OF FUNCTIONS" AND "POOL STRINGS"
+----------------------------------------------------------------------
+The "Pool Strings" options in the C/C++ Language panel now controls the 
+pooling of constants. That is, when "Permit dead-stripping of functions" is 
+disabled and "Pool Strings" is disabled, each data object will occupy a unique 
+ELF section. Formerly, "Permit dead-stripping of functions", when disabled, 
+would group all data objects into a single ELF section, regardless of "Pool 
+Strings" settings.
+
+
+* KNOWN ISSUES
+--------------
+- There is currently a known error when running the UFO-demo sample built with
+the new compiler:
+
+'mi_dma.c:280 Panic: source address must be in 4-byte alignment"
+
+- There is a case thet the compiler shows the message 
+    "Error   : Optimizer computes it would need more than 172M of memory 
+    to compute register def-use chains.  Key Optimizations Failed
+    Limit currently set to 150M
+    Increase limit using '#pragma opt_defuse_mem_limit 172
+    XXXX.c line NNNN"
+  This is message is correct.  The problem is that if you write 
+      "#pragma opt_defuse_mem_limit 172"
+  in your C source file, the compiler emits 
+       Warning : illegal #pragma
+  for the pragma opt_defuse_mem_limit.
+
+- MWGD194   A Link Error occurs if the malloc() or the free() is used.
+- MTWX15440 garbage character in Inline Depth dropdown in C/C++ Language 
+            Panel in Japanese OS.
+
+These errors are currently being investigated and will be addressed in an update.
+
+
+=====================================
+Changes in Release 1.2 Service Pack 3
+=====================================
+
+* COMPILER FIXES
+----------------
+This release includes an updated compiler to fix a number of reported issues. 
+Please consult the list at the bottom of this page for more information.
+
+* LINKER FIXES
+--------------
+This release includes an updated linker to fix a number of reported issues. 
+Please consult the list at the bottom of this page for more information.
+
+
+Other changes and issues in this release:
+
+
+* STATIONERY FOR NITROSDK 3.0
+-----------------------------
+This release includes stationery for the upcoming NitroSDK 3.0. NitroSDK 
+3.0 will be released by Nintendo sometime between now and the end of 2005. 
+Please continue using the NitroSDK 2.1 stationery if you are using 
+NitroSDK 2.2.
+
+In the stationery for NitroSDK 3.0:
+  - Precompiled headers are used.
+    More information is available in the ReadMe.txt which is in each 
+    project created from the SDK3.0 stationery.
+  - In the "Nitro TS Debug" build target, the "Smaller Code Size" option 
+    is selected for the "Optimize For" switch in the Global Optimizations 
+    panel. Previously, "Faster Execution Speed" was used. This new choice 
+    is equivalent to the option switch used in command-line makefile with 
+    NITRO_DEBUG=true
+
+
+* MWGD71, MWGD142 NEW FEATURES IN BACKUP DEVICE WINDOW
+------------------------------------------------------
+Some new features have been added to the Backup device window 
+(Nitro->"Backup Memory..." command):
+  - Write certain value to whole of backup device
+  - Write random values to parts of backup device
+  - Supporting 4M FLASH and 256K FRAM as a type of backup device
+To use these features, please install IS-NITRO-DEBUGGER ver 1.61 or later
+beforehand.
+
+
+* MWGD60 COMPILER DOES NOT EMIT "redefined" ERROR FOR DUPLICATED #DEFINE
+------------------------------------------------------------------------
+The fix for MWGD60 (compiler does not emit "redefined" error for duplicated
+#define in precompiled header and command-line) has the following impact.
+
+The compiler now emits a error and the compiler stops if a previously
+defined macro has a different definition in a precompiled header file.
+
+     --- my.pch++ --
+     #pragma precompile_target "my.mch++"
+
+     #define NG_VALUE 123
+     #define OK_VALUE 456
+     ---------------
+
+     --- test.cpp ---
+     #define NG_VALUE 1234
+     #define OK_VALUE 456
+
+     #include "my.mch++"  // error and stop for NG_VALUE redef,
+                          // no error for OK_VALUE
+
+     ----------------
+
+         =>
+
+     Error : macro 'NG_VALUE' redefined
+     test.cpp line 4   #include "my.mch++"
+
+
+* MWGD68 COMPILER GENERATES WRONG INSTRUCTIONS FOR LARGE THUMB SWITCH-CASE
+--------------------------------------------------------------------------
+The compiler will now emit the following error if the total size of a switch
+statement exceeds ~32K bytes:
+
+"Thumb mode switch range is 32K bytes, use '#pragma big_switch on' option for 
+large switches in Thumb mode"
+
+16-bit switch tables are used by default in Thumb mode to conserve space. If 
+it is necessary to have a switch statement that exceeds 32K bytes in Thumb 
+mode, use '#pragma big_switch on|off|reset' around the required switch 
+statement. This will yield larger code size because 32-bit switch tables are 
+used. #pragma big_switch has no effect in ARM mode. 
+
+#pragma big_switch on 
+	switch (value)
+	{
+	... very large switch cases ...
+	}
+#pragma big_switch reset
+
+
+* MTWX19574 IMPROVEMENT IN MULTIPLE OVERLAY GROUPS SUPPORT
+----------------------------------------------------------
+In the case of a function used in a static mosule and modules in multiple
+overlay groups at the same time and an instance of the function in the 
+static module has been removed due to inlining of the function, instances of 
+the function can now exist in each overlay module. If the instance of 
+function in the static module was not inlined and remained, the instances of 
+the function in each overlay modules are removed and the instance in the 
+static module is called from overlay modules.
+
+
+* THUMB FUNCTIONS ARE 4-BYTE ALIGNED
+------------------------------------
+All Thumb functions are now 4-byte aligned, whereas previously, Thumb
+functions may have been aligned on 2-bytes. Required to ensure properly
+aligned access to constant pools in Thumb mode. A padding word may be added 
+at the end of some Thumb functions to ensure the next function is 4-byte 
+aligned.
+
+
+* FUNCTION REFERENCE MANUAL FOR NITROSDK 2.2
+--------------------------------------------
+The new NitroSDK FUNCTION REFERENCE MANUAL is available from within the 
+CodeWarrior IDE.
+
+
+
+=====================================
+Changes in Release 1.2 Service Pack 2
+=====================================
+
+* UPDATED LICENSE
+-----------------
+The license file has been updated. It will now expire on March 31, 2006.
+
+* COMPILER FIXES
+----------------
+This release includes an updated compiler to fix a number of reported issues. 
+Please consult the list at the bottom of this page for more information.
+
+* DEBUGGER FIXES
+----------------
+This release includes an updated IDE and debugger plugins to fix a number of
+reported issues. Please consult the list at the bottom of this page for more
+information. 
+
+=====================================
+Changes in Release 1.2 Service Pack 1
+=====================================
+
+* COMPILER FIXES
+----------------
+This release includes an updated compiler to fix a number of reported issues. 
+Please consult the list at the bottom of this page for more information. 
+
+
+Other changes and issues in this release:
+
+* CODE OPTIMIZATION PERFORMED BY INLINE ASSEMBLER
+-------------------------------------------------
+Optimization of inline assembly blocks is disabled by default. If you choose 
+to enable optimization by using the .nonvolatile directive, you should check 
+the optimized inline assembly code to ensure it is correct and doing exactly 
+what was intended.
+
+The CodeWarrior compiler generates correct code in most cases. However, since 
+it is possible to use assembly instructions in ways they were not originally 
+intended for, there is no guarantee that the optimizations will always 
+perform correctly.
+
+* INLINE ASSEMBLY CODE GENERATED WITH .VOLATILE WHEN OPTIMIZATION 1 OR MORE
+---------------------------------------------------------------------------
+There is a known issue with the compiler in this release. When compiling 
+inline assembly blocks with optimization level 1 or greater, function 
+epilogue code is inserted into the inline assembly range even if the 
+.volatile directive is specified. This is due to the compiler not disabling 
+certain optimizations. The program behaviour itself remains correct.
+
+Metrowerks is investigating modifying the compiler to not insert epilogue 
+code if .volatile is specified.
+
+======================
+Changes in Release 1.2
+======================
+
+* NITRO SDK 2.1 SUPPORT
+-----------------------
+This release has been updated to support Nitro SDK 2.1, and includes new 
+Nitro SDK 2.1 stationeries and examples. For the stationeries and examples,
+the following changes have been made for Nitro SDK 2.1:
+
+- RomSpeedType added in the ROM specification file (ROM-TS.rsf)
+- DTCM address changed to 0x027e0000 in the LCF Prelinker panel
+- Floating point library used in stationery changed to FP_fastI_v5t_LE.a
+
+Please consult the Nitro SDK 2.1 release notes for more details. Note that 
+you will need to manually update your IDE project file if it was originally 
+created using an older version of CodeWarrior.
+
+* ONE TIME PROM SUPPORT (MTWX18201)
+-----------------------------------
+The Nitro SDK 2.1 adds support for a new ROM device called One Time PROM. 
+This release will support One Time PROM. One Time PROM examples can be found 
+at:
+
+{CW}\bin\Examples\NITRO\SDK2.1\ARM9-TS\SDK-demos\card 
+
+Note that you must have Nitro SDK 2.1 first installed before you can utilize 
+this new feature. For more information, please consult the Nitro SDK 
+documentation.
+
+* GENERATE GENERIC SYMBOL NAMES FOR STATIC SYMBOLS (MTWX17942)
+--------------------------------------------------------------
+The compiler now supports generating generic symbol names to replace static 
+symbol names. This feature is useful for hiding static symbols in binaries 
+such as libraries where it is possible to expose internal structures or other 
+details by examining the static symbols when the binary is disassembled. 
+
+When enabled, the ARM compiler will replace static symbol names with generic 
+ones, for example "my_local" becomes "@1234". This feature can only work 
+when debugging is disabled. The following changes have been made to support 
+this feature:
+
+- The Nitro CodeGen panel has been updated to add a new checkbox "Use generic 
+  symbol name for static symbols". 
+
+- The command-line compiler includes a new flag "-generic_symbol_names on|off"
+  that will enable/disable the feature. 
+
+- A pragma "#pragma generic_symbol_names on|off" also enables or disables 
+  this feature.
+
+* VIEW ROM IMAGE HEADER (MTWX17648)
+-----------------------------------
+CodeWarrior now allows you to view the header for the ROM image in flash 
+memory. This will allow you to view certain details such as the maker-code, 
+title and ROM size fields from within CodeWarrior.
+
+* EMULATION OF PULLING CARD/CARTRIDGE OUT/IN OF SLOT (MTWX17573)
+----------------------------------------------------------------
+The debugger now supports emulation of instances where the card or cartridge
+could be pulled out of the slot. This option can be triggered from the Nitro 
+menu inside CodeWarrior. 
+
+* CARD/CARTRIDGE AUTOMATIC POWER ON (MTWX17616)
+-----------------------------------------------
+The debugger now powers the card/cartridge slots on automatically when it 
+starts running.
+
+
+Other changes and issues in this release:
+
+* CHANGE IN "FLASH..." AND "BACKUP MEMORY..." MENU ITEMS
+--------------------------------------------------------
+Changes have been made in the behavior of the "Flash..." and "Backup 
+Memory..." menu items in the Nitro menu to address feedback. Specifically,
+"Flash..." and "Backup Memory...' are now ENABLED when the debugger is NOT 
+active and DISABLED when the debugger is active. With this change, the
+debugger no longer needs to reset the target after using either feature,
+and users can now write to the ROM target binary when the debugger is 
+inactive.
+
+* INLINE ASSEMBLY NO LONGER OPTIMIZED BY DEFAULT (MTWX18053, MTWX18534)
+-----------------------------------------------------------------------
+The compiler no longer optimizes inline assembly code by default. You can 
+further control the optimization of inline assembly in your code by using 
+the following new directives in your code:
+   .volatile - indicates assembly code should not be optimized
+   .nonvolatile - indicates assembly code can be optimized
+
+Note that this feature is only available for statement-level assembly 
+blocks and not function-level assembly blocks, for example:
+
+int func(void) {
+   asm {
+      .volatile     
+      mov  r0,#1
+      bl  label1  
+      mov  r0,#2   // remains
+      b  label2    // remains
+    label1:
+      mov r0,#3   
+      mov r0,#4   
+    label2:
+      mov r0,#5
+ 
+      .nonvolatile  
+    label_A:
+      mov  r0,#1
+      bl  label3  
+      mov  r0,#2    // will be removed
+      b  label4     // will be removed
+    label3:
+      mov r0,#3   
+      mov r0,#4   
+    label4:
+      mov r0,#5
+   }
+}
+
+IMPORTANT: The compiler will still perform certain optimizations, such
+as removing unreachable blocks, even if the optimization level is set to
+zero. This is the default behavior, and with the .nonvolatile flag. To be 
+sure that no optimizations are performed, you will need to use the 
+.volatile flag in your code.
+
+Note that there is an existing known issue where the compiler still 
+optimizes .volatile code at higher optimization levels. This issue will
+be fixed in the next compiler release.
+
+* #PRAGMA OPTIONS ALIGN BEHAVIOR (MTWX17415)
+--------------------------------------------
+"#pragma options align" is not supported by the ARM compiler but the 
+compiler incorrectly does not display any warning when it is used. The
+compiler has been modified such that "#pragma options align=native" is
+still accepted for backwards compatibility, but has no effect. Other 
+aligned options are flagged as warnings if the 'Illegal Pragmas' warning
+is enabled.
+
+* THUMB DEBUGGING PROBLEMS FIXED (MTWX18017, MTWX18277, MTWX18581)
+------------------------------------------------------------------
+A number of Thumb debugging problems reported are fixed in this release.
+
+* WRONG VENEER GENERATED IN CERTAIN CASES (MTWX18284)
+-----------------------------------------------------
+An issue was reported where generation of a long-branch veneer would also 
+incorrectly generate a state-switching veneer under certain circumstances. 
+This issue has been fixed in this release.
+
+======================
+Changes in Release 1.1
+======================
+
+* ASSEMBLER SUPPORT FOR MULTI-DIGIT LOCAL LABELS
+------------------------------------------------
+The assembler now accepts multi-digit local labels, e.g. 1000:. Previously, 
+only single digit local labels (0: - 9:) were accepted.
+
+* BREAKPOINTS IN UNLOADED OVERLAYS
+----------------------------------
+Breakpoints can now be set in unloaded overlays. Previously, an overlay had 
+to be loaded first before breakpoints could be set. Note that only simple 
+breakpoints are supported - eventpoints, log points, etc. are not supported 
+at this time.
+
+* NEW NITRO LCF GENERATOR/PRELINKER
+-----------------------------------
+You can now specify another LCF template file to be used for the SDK's 
+makelcf tool, through the LCF Prelinker panel. You can also configure the
+the ITCM/DTCM address through this panel. Please consult the Targeting 
+manual for more details on the prelinker.
+
+* NEW NITRO MAKEROM POSTLINKER
+------------------------------
+A new Nitro Makerom Postlinker is now included as the default postlinker 
+for projects, replacing the Batchrunner Postlinker used previously. The 
+Makerom Postlinker is configurable from the project settings, and supports 
+the Nitro SDK's compstatic.exe and makerom.exe tools. Backward compatibility
+is maintained, though, so you will not need to change your project settings.
+Please consult the Targeting manual for more details on the postlinker.
+
+* AUTOMATIC CREATION OF NITROSDK_ROOT ENVIRONMENT VARIABLE
+----------------------------------------------------------
+During installation, the installer will now automatically create the 
+NITROSDK_ROOT environment variable based on your installer settings for the
+location of the Nitro SDK. Previously, you would have had to create the 
+environment variable manually, after installation. 
+
+
+Other changes and issues in this release:
+
+* COMMAND-LINE LINKER LIBRARY SEARCH PATH
+-----------------------------------------
+Changes were made to the way the command-line linker handles search paths to
+fix MTWX14095. 
+
+Previously, the command-line linker would use library search paths in reverse
+order e.g.
+
+mwldarm -Lpath1 -Lpath2 -Lpath3
+
+path3 would be used first, followed by path2, then path1.
+
+Starting in this release, the command-line linker by default now uses library 
+search paths in forward order e.g. for the case above, path1 would be used 
+first, followed by path2, then path3.
+
+Note that these changes can alter the behavior of your application if there
+are two or more libraries that have symbols with the same name in the search
+paths. 
+
+An option "-reverselibsearchpath" to reverse the search order was added to 
+maintain backward compatibility with the previous behavior. 
+
+* ASSEMBLER SOURCE DEBUGGING
+----------------------------
+MTWX17414 fixes a problem with symbolics generation such that assembler
+source debugging was not possible. However, to ensure that the source
+is displayed in the debugger while debugging, you must use the .function
+directive to identify NitroMain. For example:
+
+.function "NitroMain", NitroMain, NitroMain_end-NitroMain
+NitroMain:
+	and r1, r2, #1
+	orr r1, r2, #1
+	tst r1, r2
+	mov r0, r2
+lp:
+	b lp
+NitroMain_end: 
+
+* #PRAGMA PACK WARNING IN RELEASE 1.0.2 HOTFIX 2 AND BELOW
+----------------------------------------------------------
+The following issue MTWX15156 "No warning is given for illegal pragmas" was 
+fixed in Release 1.0.2 Hotfix 2. However, the fix resulted in warnings about
+the use of "#pragma pack" (which is not supported by the Nitro compiler) in 
+the Nitro SDK when rebuilding. 
+
+As of Nitro SDK 2.0 RC5, Nintendo modified the SDK to remove the use of the
+pragma, so the previous recommendation to add "#pragma warn_illpragma off" or
+-pragma "warn_illpragma off" in your code is no longer needed.
+
+* STATIONERY AND EXAMPLE PROJECTS CHANGES
+-----------------------------------------
+Changes have been made to the default stationery and examples to reflect the
+new Nitro LCF Generator/Prelinker:
+- the batch files for the BatchRunner Postlinker have been removed
+- the Nitro LCF Prelinker is now set as the prelinker
+- the Nitro MakeRom Postlinker is now set as the postlinker
+
+* OTHER MINOR KNOWN ISSUES
+--------------------------
+- The assembler incorrectly generates .comment with the version number being 
+build 68 (previous version) instead of build 70
+- The linker/disassembler incorrectly generates disassembly of mov r,r as 
+cpy r,r. This does not affect the code generation.
+
+===============================================================================
+Watchpoint Support for hardware
+===============================================================================
+
+Watchpoint support for hardware is now functional for the blue box TS. However, 
+this feature is not supported on single board TS or TEG.
+
+An option was added to the NITRO Debugger preference panel to allow the type of 
+watchpoint to be set via a drop down list. The valid types are:
+      Read Only
+      Write Only
+      Read and Write
+      Select On The Fly -- When this is selected, a dialog will pop up every 
+      time user sets a watchpoint asking user to select what type of watchpoint 
+      to set. 
+
+================================================================================
+Debugger Trace Feature and Profiling
+================================================================================
+
+If you use the Profiling feature to display profiling data for your project, you
+may notice that a Trace menu item becomes available on the Data menu. The Trace
+window can be displayed by selecting it, but it will not display meaningful data 
+since the Trace feature is unimplemented at this time.
+
+================================================================================
+Debugger Issues
+================================================================================
+
+- The hardware debugger is currently unable to step over a hard coded breakpoint 
+  in code, e.g. asm(bkpt 0). In this situation, the debugger will display a 
+  message "Failed to stop process". To work around this, set a breakpoint using 
+  the debugger's GUI.
+
+- Make sure the path to the Ensata emulator is valid in this file:
+	{CW}\bin\\plugins\support\Nitro\IS\est_cw_debugger.ini
+  Otherwise, when you try to debug, you will get an error message stating that 
+  you should update the file. If you close the IDE after seeing this alert, IDE 
+  may crash.
+
+- .bin files in a directory with Japanese characters are not loading correctly.
+
+- Remote Connections in some cases may not show up. If this occurs, edit the
+  file and remove the "global" remote connection.
+
+- After detaching and reattaching to a process, "Restart" command will crash.
+
+- The IDE menu command "Debug->Connect" does not work. 
+
+================================================================================
+Using malloc() with the Nitro SDK runtime
+================================================================================
+
+If you use the Nitro SDK runtime library, crt0.o, and want to use the malloc() 
+function from the MSL C library, you should first call the __init_hardware() 
+function, defined in the file:
+
+{CW}\ARM_EABI_Support\Runtime\(Sources)\ARM_Specific_Sources\__NITRO_eabi_init.c
+
+from the Metrowerks runtime library. It performs the necessary hardware 
+initialization required for malloc() to work.
+
+================================================================================
+IS-NITRO-DEBUGGER software
+================================================================================
+
+All stationery and examples in this version use the libisdmainparm.a library for
+debug output. You MUST install the IS-NITRO-DEBUGGER before installing
+CodeWarrior.
+
+IMPORTANT!
+
+To use the IS-NITRO-EMULATOR hardware from the CodeWarrior debugger, You MUST 
+install the IS-NITRO-DEBUGGER software (v083_04071610 or later). We recommend 
+you install the latest IS-NITRO-DEBUGGER software available on the Nintendo 
+site or product CD to prevent unexpected problems caused by a DLL conflict.
+
+If you choose during CodeWarrior installation to install even though the 
+IS-NITRO-EMULATOR is not installed, you must perform these steps to complete 
+the CodeWarrior installation:
+
+1) Install the IS-NITRO-EMULATOR. This will create the required environment 
+   variable IS_NITRO_DIR.
+
+2) Run this batch file in the CodeWarrior installation directory:
+   
+   {CW}\bin\setNitroSrcTree.bat
+   
+   This will ensure that your source trees are created correctly.
+
+================================================================================
+Installing CodeWarrior for NINTENDO DS
+================================================================================
+
+* HOW TO INSTALL
+----------------
+Run CW_NINTENDO_DS_R2.0.exe to install this version. This product does not 
+allow merge installation. It cannot be installed either over old versions or 
+other CodeWarrior products. It must be installed in a separate folder.
+
+* ENVIRONMENT VARIABLES
+-----------------------
+The installer has been modified to attempt to detect an installation of the 
+Nitro SDK. It will look for the SDK at these locations in this order:
+    - environment variable NITROSDK_ROOT
+    - environment variable IRISSDK_ROOT
+    - root of the C: drive, using the default folder names
+
+In all cases, the installer will confirm the path found, or ask for a path, 
+before continuing the installation. The installer will then create the 
+environment variable CW_NITROSDK_ROOT to point to the selected path.
+
+* SOURCE TREE CREATION
+----------------------
+The installer will ask the user to restart after completion. This allows it
+to create source trees in CodeWarrior. The created source tree is 
+{NITROSDK_ROOT} and it will point to the environment variable CW_NITROSDK_ROOT 
+described above.
+
+NOTE: If the path used during installation does not point to a valid Nitro SDK 
+file structure, the CodeWarrior projects will not build correctly. To correct 
+this, make sure that the environment variable CW_NITROSDK_ROOT is set to a 
+valid path.
+
+* FAILURE HANDLING
+------------------
+If you get an error upon restarting your machine, the source tree creation has 
+likely failed. The installation requires that the IDE be launched, and a 
+failure is sometimes due to an unexpected IDE startup state. 
+
+If a failure occurs, you can easily add the soure tree by navigating to the 
+{CW}\bin folder and running the setNitroSrcTree.bat batch file.
+
+* NITRO SDK INTEROPERABILITY
+----------------------------
+If you install a new revision of the the Nitro SDK, please remember to update
+the CodeWarrior environment variable, CW_NITROSDK_ROOT, to point to the new
+location.
+
+================================================================================
+Fixed Issues
+================================================================================
+
+* ISSUES FIXED IN RELEASE 2.0
+-----------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- N/A        Corrected the Release Notes for #pragma force_func_export of build 
+             110 below.
+- N/A        Corrected handling of __asm { bl fff } where fff is an local integer 
+             variable
+- MTWX20632  The following asm instruction (teq r0,r1,lsr #32) generates an out 
+             of range error when it should not.
+- MTWX20640  Compiler (ARM3.0b113) crashes when MI_CpuXXX16/32 function 
+             (Nitro-SDK function) is used and debug info is not generated. See
+             ARM_Compiler_Notes.txt for more information about this issue.
+- N/A        Compiler now accepts __declspec(noinline) and __declspec(noinlining) in
+             function declarations.
+- N/A        The pragma state in -ipa file mode is saved and restored for each 
+             function giving equivalent scope to all pragmas regardless of ipa mode. 
+- MTWX20569  The address which is a place of a jump from a "break;" 
+             at a "switch(){}" is wrong
+- MTWX20581  Wrong debugInfo is generated for array variables
+- MTWX20579  Compiler doesn't generate a debug information of structure 
+             and typedef when the optimization level is 1 or higher.
+- MWGD44     (F-39) Added functionality to SEARCH_SYMBOL rules in the LCF. Now,
+             multiple rules can be assigned to an individual file. The previous 
+             behavior was that only a single rule could be applied to a file. Please
+             see ARM_Linker_Notes.txt for an explanation and examples.
+- MTWX18802  (D-6) Debug info support for typedefs of base types desired     
+- MWGD52     (F-42) Linker shows warnings when different structs of the same name
+             are used in different source.
+- N/A        (F-38) Linker allows files in plural overlays
+- MWGD213    Stationery files modified to set the Interprocedural Analysis
+             optimization to the "file" setting by default
+- MWGD211    Debugger number of steps increased when returning from a
+             function.
+- N/A        Support for override and final keyword in C++
+- MTWX12261  (F-15) Request for define_section pragma to allow read-only data in 
+             custom section 
+- MTWX12791  (F-10) Request for support of label opperand in LDR inline assembly 
+             instruction
+- MTWX14401  (F-28) Want to disable "permit dead-stripping of functions" and disable
+             "Pool Strings" at the same time.
+- MTWX14357  (D-28) Support not initialized before being used" warning via #pragma
+- MTWX17116  (D-18) In the debugger, you can't view a class that is a local variable 
+             and returned by value in a function.
+- MTWX17067  (F-32) The current Mathlib execution speed is not a problem but the 
+             size of it is too large. Nintendo would like a compact-size version of 
+             the library.
+- MTWX17098  (F-6) Performance enhancement for optimized code (literal pool 
+             optimization)
+- MTWX17182  (D-3) Cannot set breakpoints at lines within functions which is in 
+             namespace
+- MTWX17667  (F-34) Reduce code size for fixed point decimal divide routines
+- MTWX17669  (F-33) "About metrowerks' fixed point divide operation routine, we found
+             a same assembly language steps both in unsigned divide operation and in 
+             signed divide operation. They can be extracted into common routines and 
+             can be shared. We want to reduce code size so we want to review this idea
+             of using common routine for signed and unsigned operation for fixed point."
+- MTWX17716  (D-11) standard header causes warning "result of function call is not used"
+- MTWX17844  (F-10) Nintendo desire inline assembler to support LDA with label and LDR 
+             with label
+- MTWX18238  (O-11) There is a case that the compiler does not utilize const member 
+             function qualifier for optimization 
+- MTWX18573  (O-32) with std::bitset<1>, constructor argument is ignored and default bitset constructor is called.
+- MTWX18350  (F-87) Debugger can not show correct values for local scope variable
+- MTWX18602  Compiler removes load/store instruction for variable specified as 
+             volatile
+- MTWX18935  (D-44) Including math.h causes warnings when compiling a cpp file with -w 
+             all
+- MTWX19404  (O-3) CW built-in assembler 'and' opcode bug
+- MTWX19757  Inline assembler generates wrong code for "stmfd" when there are 
+             more than 15 registers as a reglist
+- MTWX19648  Standalone Assembler generates wrong instructions for ldreq and 
+             ldrne
+- MTWX19913  Compiler crashes if a huge amount of inlined code is used
+- MTWX20040  C/C++ Language panel does not have user interface to control
+             Inter-Procedural Analysis (IPA) option
+- MWGD184    The existent break points die after Debugger is restarted
+- n/a        (F-12) Support feature to set 4 byte alignment for dcd mnemonic of inline 
+             assembler in Thumb.
+- n/a        (F-13) Don't stop supporting to use size zero array as a member of a 
+             structure in ARM 3.0
+- n/a        (F-14) Support for override and final keyword for C++
+- n/a        (F-36) About deadstrip option with pool string option
+- n/a        (O-38) "We've encountered a problem with inline functions that are being 
+            generated out-of-line and referenced in both the main static section and 
+            an overlay. This occurs in debug builds, but also in cases where the function 
+            is presumably too large for inlining (such as some functions from std::string).
+            It seems that when a function appears in multiple object files, but linked 
+            into both the static section and into an overlay, the linker chooses to 
+            place it in one location arbitrarily. Is there any way to solve this problem?"
+
+
+
+* ISSUES FIXED IN RELEASE 1.2 SERVICE PACK 3
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX18157  Debugger stops at a instruction which does not access a 
+             watchpoint
+- MTWX18240  Debugger does not show class member in some cases when using 
+             class prototype - the linker has been updated to distinguish 
+             placeholder DWARF2 class type entries from real class type 
+             entries
+- MTWX18496  Debugger can't step over ADDLS instruction but runs
+- MTWX19431  Compiler is crashed when a Precompiled Header source which used 
+             the "Boost C++ Libraries Version 1.33.0 
+- MTWX19434  the linker now emits error when a section name is used more than
+             once in the LCF.
+- MTWX19445  the linker now emits warning when an initialized object is
+             assigned a new location via the LCF.
+- MTWX19484  Compiler fails when a structure is initialized in the way that
+             "gcc_extensions" is necessary
+- MTWX19490  Switch statement causes application crash when Thumb
+- MTWX19492  Compiler generates wrong instructions for "default" switch-case
+             statement with a specific condition
+- MTWX19507  __memcpy() prototype is made same as memcpy()
+- MTWX19508  "mwccarm.exe -help" does not explain the default value of -opt
+             (speed/space)
+- MTWX19545  "#pragma big_switch on" causes wrong jump target address when 
+             Thumb mode and Global Optimization level is set to 1 or higher
+- MTWX19572  Internal Compiler Error at OPtimization level 1 or above (IRO 
+             MTWX19573  related)
+- MTWX19573  duplicate of MTWX19572.
+- MTWX19574  by updating how the linker handle symbols with MULTIDEF binding.
+             The linker now allows the same symbol with MULTIDEF binding to
+             exist in each unique overlay, if the symbol is not already 
+             present in the main application.
+- MTWX19666  Explanation of option -readonlystrings in mwccarm help message 
+             is broken
+- MTWX19671  "Make string constants read-only" option is broken
+- MTWX19672  Optimized return from function for v5t architectures by using 
+             ldmfd sp,{r,pc} or pop {r,pc}.Both instructions can switch 
+             operating modes (similar to bx) in the v5 architectures, so 
+             there's no reason to emit bx.
+- MWGD48     Address of constant is not properly loaded in Thumb mode. Note 
+             that Thumb functions are now 4-byte aligned. This may result in 
+             larger code sections due to alignment padding
+- MWGD60     Compiler does not emit "redefined" error for duplicated #define 
+             in precompiled header and command line (see 'Changes In Release
+             1.2 Service Pack 3', above)
+- MWGD67     Inline assembler generates wrong code that branches off to the 
+             Address:0x00000000 when Global Optimization level is set to 2 or 
+             higher
+- MWGD68     Reworked fix for MWGD68 - compiler generates wrong instructions 
+             for large switch-case statement for Thumb (see 'Changes in 
+             Release 1.2 Service Pack 3', above)
+- N/A        Fixed a bug where DWARF2 base types referenced by DWARF2 typedef
+             entries get dead-stripped
+- MWGD71     New features of backup device window. Write certain value to 
+             whole of backup device, and Write random values to parts of 
+             backup device
+- MWGD72     When using the TCL command window in the IDE, it is not possible
+             to get a printout of any errors that occurred doing a make 
+             command
+- MWGD92     Right after debugger is started, ARM7 sometimes becomes a state
+             of break illegally if 'Generate Thumb Instructions' enabled
+- MWGD102    Watchpoint stops the debugger at a line which does not change 
+             the watchpoint memory area
+- MWGD114    Release 1.2 Service Pack 2 debugger crasher
+- MWGD115    Step-over with expression or variable window causes the debugger 
+             to crash
+- MWGD116    Step-over with expression window causes the debugger to crash
+- MWGD121    Support for NitroSDK 3.0 new thread structure
+- MWGD122    keep supporting NitroSDK 2.x style thread in addition to SDK3.0
+             style thread.
+- MWGD142    Support new backup devices, "4M FLASH" and "256K FRAM"
+- MWGD151    Installer applies unexpected change to Remote Debugging Panel
+
+* ISSUES FIXED IN RELEASE 1.2 SERVICE PACK 2
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX12005  Inline assembler ldconst mnemonic is not supported in Thumb mode
+- MTWX17484  Incorrect Thumb code generation
+- MTWX18724  Inline assembly block is optimized even if Global Optimization
+             level is 0
+- MTWX18771  Prelinker/Postlinker doesn't work if the linker is not selected
+- MTWX18864  Inline assembler generates wrong infinite loop code sequence
+- MTWX18865  IDE language parser fails to analyze macro using parameter 
+             prefixed 'e'
+- MTWX18885  Unhandled exception for an overlay project
+- MTWX18887  Debugger shows incorrect overlay source file 
+- MTWX18906  [Japanese IDE only] Word for toolbar item "Disable Cache" and 
+             "Invalidate Cache" on Cache Viewer are the same
+- MTWX18939  Statement-level inline assembly block with .volatile is affected
+             by optimization level
+- MTWX18973  Statement level inline assembly block with .volatile is affected 
+             by optimization level (other sample) 
+- MTWX18974  Statement "a = b;" causes warning "expression has no side effect" 
+             when a is std::list<int>
+- MWGD16     Extra MUL instruction is generated
+- MWGD17     CW DS 1.2 Debugger Variable Window Displaying Wrong Types (appears 
+             to be caused by the 2.0 b73 compiler)
+- MWGD19     ICE when using __memcpy
+- MWGD20     Bad code gen in debug mode
+- MWGD25     "Kill All" operation causes IDE crash with ARMNitroTegProtocol.dll
+- MWGD68     Compiler generates wrong instructions for large switch-case 
+             statement for Thumb
+- MWGD70     Nintendo desires debugger to support the new Backup Device - DS
+	     sub-card 512K EEPROM - at "Backup Memory".
+- N/A        Updated linker to keep DWARF2 typedef entries from being 
+             deadstripped
+
+* ISSUES FIXED IN RELEASE 1.2 SERVICE PACK 1
+--------------------------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX18688  Help text for "-generic_symbol_names on | off" is not available in
+             the command-line compiler
+- MTWX18717  Inline assembler crash at optimization level 1
+- MTWX18721  .volatile directive does not prevent optimization of inline 
+             assembly block at optimization level 2 or greater
+- MTWX18748  Bad code is being generated at optimization level 1 or greater
+- MTWX18580  Incorrect parameter passing for Thumb mode
+- MTWX18494  Compiling code on high optimizations causes infinite compile
+- MTWX18796  Compiler crasher
+
+* ISSUES FIXED IN RELEASE 1.2
+-----------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX13962  Some C99-designated initializers do not compile
+- MTWX16452  Unhandled exception occurs after unexpected appearance of ARM7 
+             debug window
+- MTWX17051  There are no documents on adding files for FS function with IDE 
+             project
+- MTWX17415  ARM compiler does not show warning for options align pragma with
+             keyword
+- MTWX17539  Compiler does not enable all warnings with -w all option
+- MTWX17540  Compiling C++ source with stdlib.h causes warnings
+- MTWX17551  Restart command does not work with Ensata
+- MTWX17561  Restart command causes build error
+- MTWX17562  Restart command locks output binary file
+- MTWX17573  Feature request to emulate pulling card/cartridge out
+- MTWX17616  Feature request to power on card/cartridge slot automatically when
+             start running
+- MTWX17648  Feature request to allow viewing of ROM image header
+- MTWX17659  The compiler is generating code that saves a value on the top of 
+             the stack, but without first decrementing SP
+- MTWX17812  Function cannot return const array address
+- MTWX17942  Feature request to remove static symbols from library file
+- MTWX18015  Editing "makerom tool defines" edit box on NitroMakeRomPostlinker
+             panel generates garbage characters
+- MTWX18017  CW debugger cannot debug Thumb binary image with IS-NITRO-EMULATOR
+- MTWX18053  Feature request to disable optimization for inline assembly code
+- MTWX18139  Makerom postlinker cannot detect exit code 1 from makerom.exe
+- MTWX18172  .comment in ELF has old compiler version
+- MTWX18174  Include explanation in manual about optimization for statement-level 
+             inline assembly
+- MTWX18187  typedef-type expression cannot be used when debugging object 
+             generated by CodeWarrior
+- MTWX18198  Unhandled exception 0xc0000005 caught at IDE_MSL_DLL90_x86.dll
+- MTWX18199  Detect a maker of 2M flash automatically when accessing backup card
+- MTWX18201  Feature request to support one-time PROM
+- MTWX18233  Shorten time to wait for the debugger to become ready
+- MTWX18242  Manual should recommend using "Nitro" as the Target Processor
+- MTWX18248  Disassembling causes application error
+- MTWX18262  Request for example shows how to add files to ROM using SDK FS_ 
+             functions
+- MTWX18264  Debugger emits unhandled exception at Dwarf2Symbolics.DLL
+- MTWX18277  Debugging Thumb code is totally broken
+- MTWX18284  Wrong veneer is generated in SDK demos
+- MTWX18346  IDE crashes if break on debugging overlay application
+- MTWX18513  IDE crash when closing debugger-related child windows
+- MTWX18532  Document new support for multi-digit GNU-style numeric local labels
+- MTWX18534  A line in statement-level assembly block is not compiled by inline
+             assembler
+- MTWX18581  Thumb program cannot proceed to next instruction from top of 
+             NitroMain
+- MTWX18689  Request to describe current working directory of Makerom postlinker, 
+             especially for users who were using Batch runner postlinker
+- MTWX18690  Developer Notes should have description for the change in condition
+             for the "Flash..." and "Backup Memory..." commands to be enabled
+- MTWX18700  Targeting manual should have description of optimization control 
+             feature on statement-level inline assembly blocks
+- MTWX18740  Description desired on how disassembler determines instruction mode 
+             (ARM/Thumb)
+- MTWX18790  Warning message for "External card powered on" is incorrect
+
+* ISSUES FIXED IN RELEASE 1.1
+-----------------------------
+
+  Number     Problem Addressed
+  =========  =================
+- MTWX13811  Reset parameter for #pragma optimization_level not described
+- MTWX14050  Unnecessary bit clear instruction is generated in writing to a 
+             member of bitfield
+- MTWX14095  Command-line linker uses library search path in reverse
+- MTWX15093  When using -overlaygroup and not specifying files with -overlay, 
+             the error message is not meaningful: Unexpected error in 
+             CWAddProjectEntry[2]
+- MTWX15440  Garbage character in Inline Depth drop-down list in C/C++ 
+             Language Panel in Japanese version
+- MTWX16203  Memory leak in run and debug actions
+- MTWX16282  DS installer is not creating the NITROSDK_ROOT env var
+- MTWX16489  On the Japanese IDE, the Current Menu command string "FAIRUNAIWO 
+             KENSAKU" causes confusion about the actual feature
+- MTWX16730  On the Japanese IDE, the Japanese wording for "Symbol Completion" 
+             is mis-translated
+- MTWX16746  Customers cannot understand specification of watchpoint
+- MTWX16759  Crash Dwarf2Symbolics.DLL::0x5610b4f3
+- MTWX16983  Support for breakpoints in unloaded overlays
+- MTWX17033  When compare/copy string has character that has character code >
+             0x80, both strcmp() and strcpy() do not use improved code in MSL
+- MTWX17064  Write data to flash memory
+- MTWX17082  Load/Save backup memory
+- MTWX17085  Profiler window fails to open when using ARMPlugin.dll 
+             2.0.0.5003
+- MTWX17184  Debugger crashes when loading binary file generated from project
+             that is located at a directory with Japanese characters in name
+- MTWX17414  Debugger cannot show assembler source with ELF made by CW
+- MTWX17463  IDE crash when closing expression window while debugging
+- MTWX17508  Autoload support
+- MTWX17540  Compiling C++ source with stdlib.h causes warnings
+- MTWX17571  Compiler generates wrong store code for pointer access with 
+             THUMB mode opt4s
+- MTWX17642  Add option switches to disable/enable turning card/cartridge 
+             power on
+- MTWX17644  Support Compressed format from IDE project
+- MTWX17646  Wish not to be shown ARM7 source location dialog
+- MTWX17647  Wish to control Find Source dialog
+- MTWX17649  How to use SDK-specific options with CW
+- MTWX17650  Set watchpoint wihout using breakpoint window
+- MTWX17682  Request for support GAS compatible local label in mwasmarm.exe
+- MTWX17686  Want to specify other LCF template file with LCF generator
+- MTWX17687  Request for LCF prelinker edit field for ITCM/DTCM address
+- MTWX17709  str r2, value syntax is not supported in ARM standalone assembler
+- MTWX17742  Application error on disassembling specific object file
+- MTWX17755  Profiler example code in user guide is incorrect
+- MTWX17758  Compiler crash when opt level is greater than or equal to 1
+- MTWX17829  Standalone assembler does not generate instructions between 
+             two labels
+- MTWX17979  Editing "MakeRom Tool Defines" edit box in NitroMakeromPostlinker
+             panel generates additional unexpected newlines

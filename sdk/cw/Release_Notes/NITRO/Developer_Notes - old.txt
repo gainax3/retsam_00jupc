@@ -1,0 +1,122 @@
+===============================================================================
+Old Developer Notes:
+Metrowerks CodeWarrior® Development Studio for NINTENDO DS® v0.1 to v0.9
+===============================================================================
+
+===============================================================================
+IS-NITRO-EMULATOR hardware
+===============================================================================
+
+The hardware debugging features of this version are intended to be used with
+IS-NITRO-EMULATOR hardware of the following configurations:
+
+- IS-NITRO-EMULATOR bare board version + TEG board
+- IS-NITRO-EMULATOR bare board version + TS board
+- IS-NITRO-EMULATOR (Product version)
+
+===============================================================================
+MSL C++ Library Renaming (from v0.6.1)
+===============================================================================
+
+MSL C++ Libraries have been renamed in this release, "C++" will be changed to 
+"CPP" so that it can be used in LCF.
+
+For example,
+
+MSL_C++_NITRO_Ai_LE.a        becomes    MSL_CPP_NITRO_Ai_LE.a
+MSL_C++_NITRO_Ai_LE_strb.a    becomes    MSL_CPP_NITRO_Ai_LE_strb.a
+
+For this release, both libraries are present. In subsequent releases, only the 
+"_CPP_" style names will be included.
+
+===============================================================================
+MSL C/C++ Library Renaming (from 0.5 Release)
+================================================================================
+
+We have renamed the MSL and Runtime libraries to NITRO specific names. The MSL and Runtime library
+name changes follow this pattern:
+
+    - all instances of _ARM_ to say _NITRO_A_ (straight ARM builds)
+    - all instances of _Thumb_ to _NITRO_T_ (Thumb builds)
+    - all instances of _ARM_i_ to _NITRO_Ai_ (interworking builds) 
+
+For example, 
+
+MSL_C_ARM_LE_PIC_PID.a          becomes     MSL_C_NITRO_A_LE_PIC_PID.a
+MSL_C_ARM_i_LE.a                becomes     MSL_C_NITRO_Ai_LE.a
+MSL_C_Thumb_LE_PIC_PID_strb.a   becomes     MSL_C_NITRO_T_LE_PIC_PID_strb.a
+MSL_C++_ARM_i_LE_strb.a         becomes     MSL_C++_NITRO_Ai_LE_strb.a
+
+Note in the above nomenclature, 
+    _A_     indicates ARM targeted libraries
+    _Ai_    indicates ARM interworking libraries
+    _T_    indicates Thumb targeted libraries
+
+You will need to re-add all of the MSL and runtime libraries in your current product according to the above
+naming conventions. If you have complex projects, one way to do this easily is 
+    1) export the project to XML, using the Export Project... option from the File menu
+    2) use a text editor to search for and replace strings in the library file names according to 
+        the above nomenclature description.
+    3) Using the Import Project... option from the File menu, create a new project by importing
+        the modified XML file.
+
+NOTES:
+
+    - if you use makefiles to build your projects using Metrowerks libraries, you will also need to rename
+      the files there.
+    - you may also need to rename the libraries mentioned in any LCF files you're using.
+
+================================================================================
+ARM9 project (from v0.4)
+================================================================================
+
+In CW for NITRO v0.4 or later, the compiler can generate the warning or error messages for ARM9 byte access 
+code generation.
+
+If you enable the setting "Generate warnings or errors" in "Nintendo Codegen" preference panel, the compiler 
+will generate errors or warnings even for ARM9 code. Please make this option disabled in the normal case.
+
+Also disable this option in the project if it was created in the 0.4.1 or older version, since this option 
+is set as enabled in that project and may generate errors in 0.4 or later version of tool. 
+
+================================================================================
+Makefile which is created in v0.3 or older version.
+================================================================================
+
+The compile switch "-avoid_strb" was changed to "-avoid_byte" in 0.4 version of compiler. You will see a compiler 
+error if you use "-avoid_strb" in 0.4 or later version.
+
+If you use the makefile which was used in 0.3 or older version, you need to change the option name from 
+"-avoid_strb" to "avoid_byte" in makefile, for example:
+
+  "-avoid_strb all,noerr" -> "avoid_byte all,noerr"
+
+You can check the detail specification of "avoid_byte" compile option in the file "STRB_Option_Usage.txt".
+
+================================================================================
+NITRO SDK Interoperability Issues
+================================================================================
+
+NirtoPostLinker.bat 
+----------------------------
+If you use NITRO SDK 1.0 RC1 (2004/3/30), this batch file in the elftobin utility 
+folder at {NITRO SDK Folder}\tools\elftobin contains the old environment variable 
+pointing to the CodeWarrior installation. The variable CWFOLDER_IRIS should be 
+changed CWFOLDER_NITRO.
+
+Change to NITRO Makefile
+---------------------------------------
+If you use NITRO SDK 1.0 RC1 (2004/3/30), in order to work properly, you need to 
+change the compiler option in 
+
+"NitroSDK\build\buildtools\commondefs.cctype.CW"
+
+from avoid_strb all,noerr  to -avoid_byte strb
+
+================================================================================
+Notice for uninstalling Version 0.2
+================================================================================
+
+Sometimes version 0.2 of uninstaller does not launch due to the lack of Ctor.dll.
+In this case, please run installer of version 0.2 to copy files before it will 
+uninstalled.

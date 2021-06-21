@@ -1,0 +1,1559 @@
+===============================================================================
+Metrowerks CodeWarrior C/C++ Compiler Release Notes
+===============================================================================
+Version: 3.2 ( __MWERKS__ == 0x3200 )
+Date:    22 August 2003
+Authors: Andreas Hommel, Ed Swartz
+===============================================================================
+
+(This details changes made since the 3.0.x series of tools that were
+released in the CW Professional 8.3 Patch.  Checkpoints labeled
+"[3.1]" indicate changes made in the interim 3.1 compiler.  Also
+check the Back End and IR Optimizer release notes for additional
+details.)
+
+===============================================================================
+New Features in this Version
+===============================================================================
+
+*	C/C++ Preprocessor Panel added
+
+This panel provides an editable text field that can be used to #define
+macros, set #pragmas, or #include prefix files.  (The "Prefix file" field
+was removed from the C/C++ Language Panel and is converted into an #include
+in this panel upon project conversion.)
+
+The option "Use prefix text in precompiled header" controls whether a
+*.pch or *.pch++ file will incorporate the prefix text into itself.
+This option defaults to "off" to correspond with the 3.0.x behavior of
+ignoring the "Prefix file" when building precompiled headers.  If any
+#pragmas are imported from old C/C++ Language Panel settings, this
+option is set to "on".  The prefix file is included inside a test for
+precompilation to match 3.0.x behavior:
+	 
+	 #if !__option(precompile)
+	 #include "PCHHeader.mch"	/* was: Prefix file */
+	 #endif
+
+The option "Source encoding" allows you to tell the compiler what the
+default encoding of source files is.  The 3.2 frontend supports multibyte
+and Unicode source text (see more below).  To replicate the obsolete
+option "Multi-Byte Aware", set this option to "System" or "Autodetect".
+
+Additionally, options that affect the "preprocess" request appear in
+this panel.  
+
+"Emit file changes" controls whether any notification of file changes
+(or #line changes) appear in the output.  "Show full paths" controls
+whether such file changes show the full path or the base filename of
+the file.  "Use #line" controls whether the file changes appear in
+comments (as before) or in #line directives.
+
+"Emit #pragmas" controls whether #pragmas encountered in the source
+text appear in the preprocessor output.  (This option is essential for
+producing reproducible test cases for bug reports.)  
+
+"Keep comments" controls whether comments are emitted into the output.
+
+"Keep whitespace" controls whether whitespace is stripped out (as
+in 3.0.x) or is copied into the output.  This is most useful for keeping
+the starting column aligned with the original source, though we attempt
+to preserve space within the line as well (this doesn't hold when macros
+are expanded, though ;).
+
+An extra option, not yet available through the panel, is "#pragma
+macro_prepdump".  When enabled, comments containing macro #defines and
+#undefs are emitted when they are parsed.  This can help you unravel
+confusing problems arising from macros aliasing identifiers.
+
+*	C/C++ Language Panel changes
+
+The options "Multi-Byte Aware", "Map newlines to CR", "Relaxed pointer
+type rules", and "Objective-C" were removed.  All of these are
+converted into their corresponding #pragmas or options in the C/C++
+Preprocessor Panel upon project conversion.
+
+The option "Use instance manager" was added.  This option reduces compile
+time by telling the compiler to generate any instance of a template 
+(or non-inlined inline) function only once.  Object code size (and
+associated debug information size) is reduced.  This does not affect
+the output file size, though, since the compiler is effectively
+doing the same task as the linker in this mode.
+
+The option "Enable GCC extensions" was added.  This allows the compiler
+to accept some GCC syntax and conventions.  This option is the same as
+the previously-supported "#pragma gcc_extensions on|off|reset".  With this
+release, compatibility has been enhanced:
+
+	- statements in expressions are allowed  (improved)
+
+		    ({int a; a=myfunc(); a; })
+
+	- GCC style inline assembly (SOME TARGETS) (improved)
+
+	    int count_leading_zero(int value)
+		{
+			asm ( "cntlzw %0, %1" : "=r" (bits) : "r" (value) ); 
+			return bits;
+		}
+
+	- GCC-style macro varargs supported (new)
+
+			#define DEBUG(fmt,args...) printf(fmt, ## args)
+			DEBUG("test");
+			DEBUG("saw %d copies\n", n_copies);
+
+	- the abbreviated "?:" operator is allowed (new)
+
+		    x = y ?: z;	  // -->  x = y ? y : z;
+
+    - allow incomplete structs in array declarations (new)
+
+			struct Incomplete arr[10];
+
+	- allow Class::Member in a class declaration (new)
+
+			class MyClass {
+				  ...
+				  int MyClass::getval(); 
+				  ...
+			  };
+
+	- allow empty structs (new)
+	 
+			struct empty { } x;
+
+	- allow empty struct initialization (new)
+
+			struct empty { } x = {};
+
+	- struct initializer typecast support (new)
+
+			typedef struct { int x, y, z; float q; } mystruct;
+			void foo(mystruct s);
+
+			foo( (mystruct) { 1,2,3,6e3 } );
+
+	- limited support for "void *" and function pointer arithmetic (new)
+
+			void *p;
+			p = &data + 10;		// point 10 bytes into "p"
+
+			void foo();
+			p = foo + 10;		// point 10 bytes into "foo"
+
+	  At this time, the increment and decrement operators "++"
+	  don't work with void/function pointers.
+
+	- sizeof(function) and sizeof(void) is 1 (new)
+
+	- function pointers may be compared to "void *" (new)
+
+	- allow null statement (no trailing semicolon) in "switch" (new)
+
+	    switch(x) 
+		{
+		label:
+	    }
+
+	- macro redefinitions with different values allowed 
+
+			#define MAC 3
+			#define MAC (3)
+
+	- "<?", ">?" MIN/MAX operators supported (SOME TARGETS)
+
+	- arrays may be assigned
+
+			int a[10], b[10];
+			a = b;
+
+	- allow trailing comma in enumerations without warning
+
+			enum { A, B, C, };
+
+	- allow empty array as final member of struct
+	
+			typedef struct {
+				   int type;
+				   char data[];
+			} Node;
+
+	- designated initializer support
+
+			struct { int x, y, z; float q; } x = { q: 3.0, y:1, z:-4, x:-6 };
+
+	- C99-style designated initializers supported 
+
+			int arr[10] = { [5] = 5, [1] = -2 };
+
+	- "typeof" keyword supported (note: CW always supports __typeof__)
+
+	- __signed__, __unsigned__ keywords supported
+
+*	C/C++ Warning Panel changes
+
+Several new warnings have been added.  Many of these were available
+as #pragmas in older compilers.
+
+    Added subptions of "Implicit Arithmetic Conversions": Float To
+    Integer, Signed / Unsigned, Integer To Float.
+
+    Pointer/Integral Conversions: warn when a pointer is converted
+	to an integer of a smaller size.  
+
+	Missing 'return' Statements: warn when a non-void function
+	exits without a "return <value>;" statement.
+
+	Expression Has No Side Effect: warn when the top-level operator
+	of an expression statement is superfluous.  I.e. "0;" or
+	"*ptr++" have no side effect (the latter can be reduced to
+	"ptr++", which does have a side effect).
+
+	Include File Capitalization: warn when a header is #included
+	with a different capitalization than the file on disk.  This
+	is usually a portability concern.  
+
+	Check System Includes: extend the behavior to check #includes
+	of system access paths (#include <xyz>).  This may be annoying
+	on systems which have "cute" capitalization of files.
+
+	Pad Bytes Added: warn when a structure or POD class has
+	padding inserted between data members.  This is useful for
+	verifying portability and possibly for optimization.
+
+	Undefined Macro In #if: warn when a program tests an undefined
+	macro (this is legal behavior, but may be useful for detecting
+	configuration problems).  E.g.:
+
+	   #if UNDEFMACRO  ...
+
+	   To quell this warning, use:
+
+	   #if defined(UNDEFMACRO) && UNDEFMACRO...
+
+	Several warning options are marked "*" to indicate they are
+	likely to generate a lot of messages, even in code shipped
+	by Metrowerks.  These warnings do not indicate buggy code!
+
+*	Support for explicit instantiation of non-template members
+
+		template <class T> struct X {
+			static T i;
+		};
+		template <class T> T X<T>::i = 1;
+		template char X<char>::i;			//	now supported
+
+*   Support for displaying message numbers and suppressing warnings by
+message number.  Use this #pragma:
+
+	#pragma showmessagenumber on|off|reset (default: off)
+
+When enabled, messages are prefixed with their number.  This number can be
+used for the following feature:
+
+   Error : (10123) ';' expected
+   semitest.c line 1      int x 30;
+                                ^
+*	Support for suppressing specific warnings.
+
+	#pragma warning on|off|reset ( <num> [ , ... ] )
+
+	'num' is the one reported in the message when "#pragma
+	showmessagenumber on" is enabled.
+
+	i.e.:
+
+	#pragma warning off (10184, 10183)
+
+	Error messages cannot be suppressed.  When "warnings are errors"
+	is enabled, however, any applicable warnings are suppressed before
+	becoming errors.
+
+	Note that some warnings are not generated unless their own
+	#pragmas are enabled.  "#pragma warning on (10186)" (illegal
+	pragma) has no effect unless the C/C++ Warnings Panel option, the
+	appropriate command line option, or "#pragma warn_illpragma on" is
+	active.
+
+	This competitor syntax is allowed but ignored (the message numbers
+	don't match)
+
+	#pragma warning( default: {<num>} | enable: {<num>} | disable: {<num>} [, ...] )
+
+*	Support for limiting the number of error messages per source file:
+
+	#pragma maxerrorcount(<num>|off)
+
+	(off = unbounded)
+
+	Only <num> errors will be reported per source file, after which
+	an additional error message "too many errors emitted" will be reported
+	to indicate that further errors were suppressed.
+
+*	Support for C99 variable length arrays
+
+		#pragma c99 on
+		void f(int n)
+		{
+			int arr[n];
+			...
+		}
+
+	Please note that VLAs are only supported in local or function prototype
+	scope (as required by the C99 standard):
+
+		#pragma c99 on
+		int n;
+		int arr[n];
+	//	Error: variable length array types can only be used in local or function prototype scope
+
+	VLAs also work in the C++ compiler when C99 is enabled, however,
+	you cannot use VLAs in a function template's prototype scope or in
+	local template typedefs:
+	
+		#pragma c99 on
+		template<typename T> int f(int n,int A[n][n]);
+		{
+		}
+	//	Error   : variable length arrays cannot be used in function template prototypes or local template typedefs
+
+*	GCC compatibility improvements:
+
+	-	allow function pointer arithmetic when #pragma gcc_extensions is on.
+
+*	Added support for Objective-C @protocol forward declarations (WB1-41218/WB1-44587)
+
+*	Added support for new "address of template-id" rules (see also C++ core issue 115):
+
+		template<typename T> void foo(T) {}
+		template<typename T> void bar(T) {}
+		...
+			foo(&bar<int>);	//	now accepted
+
+*	Deferred parsing of default arguments in member functions is now enabled by default
+	(#pragma defer_defarg_parsing on). Note that some default expressions with template
+	argument list will now have to be parenthesized:
+
+		template<typename T,typename U> struct X { T t; U u; };
+		struct Y {
+			void f(X<int,int> = X<int,int>());		//	error, not accepted  with defer_defarg_parsing on
+		};
+
+	Fix:
+
+		template<typename T,typename U> struct X { T t; U u; };
+		struct Y {
+			void f(X<int,int> = (X<int,int>()) );	//	OK if default argument is parenthesized
+		};
+
+	See also core issue 325.
+
+*	Improved error messages for function calls involving overloaded functions
+	or member pointers. For example
+
+		void sink(int);
+		struct X { void mf(); };
+		void f();
+		void f(int);
+		int main()
+		{
+			sink(&X::mf);
+			sink(&f);
+		}
+
+	now generates
+
+		Error   : function call 'sink(void (X::*)())' does not match
+		'sink(int)'
+		test.cpp line 7    sink(&X::mf); 
+
+		Error   : function call 'sink(&{ f(), f(int) })' does not match
+		'sink(int)'
+		test.cpp line 8    sink(&f); 
+
+	instead of
+
+		Error   : function call 'sink(void)' does not match
+		'sink(int)'
+		Test2.cp line 9   sink(&X::mf);
+
+		Error   : function call 'sink(void)' does not match
+		'sink(int)'
+		Test2.cp line 10   sink(&f);
+
+*	#pragma warn_padding now also works for C++ classes that do not
+	have base classes or virtual member functions
+
+*	The compiler now supports references to references in template argument
+	substitutions:
+
+	    template <class T> struct X {
+	        void f(const T&) {}
+	    };
+	    X<int&> x;    // X<int&>::f has the parameter type const int&
+	
+	See also C++ core issue/defect "106. Creating references to references
+	during template deduction/instantiation".
+
+	The compiler now also detects more illegal substitutions, e.g.,
+	substitutions that result references to void or pointers to references:
+
+		template<typename T> struct X {
+			void f(T*);
+			void f(T&);
+		};
+		X<int&> xir;
+		X<void> xv;
+
+	=>
+
+		Error   : illegal reference type 'int &*'
+		 (instantiating: 'X<int &>')
+		Test.cp line 2    void f(T*); 
+
+		Error   : illegal reference type 'void &'
+		 (instantiating: 'X<void>')
+		Test.cp line 3    void f(T&); 
+
+[3.1]
+
+*	Support for the vendor independent generic C++ ABI
+	(aka Itanium, IA-64 or GCC 3.x C++ ABI
+	see http://www.codesourcery.com/cxx-abi/ )
+
+	This ABI is only used by some compiler targets (e.g. MacOS X mach-O)
+	
+	The following parts of this ABI are currently supported:
+
+	-	name mangling (was already supported in 3.0.x)
+	-	class and vtable layout
+	-	constructor/destructor ABI
+	-	virtual and non-virtual member function calls
+	-	array construction/destruction ABI
+	-	one-time construction ABI
+	-	RTTI
+	-	pointer to members
+	
+	The following parts of this ABI are currently not implemented (i.e.
+	these features work, but the implementation does not conform with the
+	ABI specifications).
+
+	-	exception handling (not really part of this standard)
+
+*	The pseudo MacOS base classes "SingleObject", "SingleInheritance", and
+	"__comobject" are no longer supported/needed in compilers that use
+	the new C++ ABI. 
+
+*	Improved "empty" base class allocation
+
+*	Support for predefined macro "__env_var( identifier )"
+
+	Example:
+	
+		char* username = __env_var(username);
+			// get "username" environment variable (host specific value!)
+
+
+*	Support for the return value optimization from ISO C++ 12.8p15
+
+		#pragma opt_classresults on | off | reset (default: on)
+
+	The compiler will omit the copy constructor call for class return types
+	if all return statements in a function return the same local class object.
+
+	Example:
+
+		#pragma opt_classresults on
+
+		struct X {
+			X();
+			X(const X&);
+			//	...
+		};
+
+		X f()
+		{
+			X x;		//	directly constructed in function result buffer
+			//	...
+			return x;	//	no copy-ctor call
+		}
+
+*	Experimental support for && references that bind to temporaries.
+
+*	"#pragma oldargmatch on" is no longer supported
+
+*	The non-standard "short double" type is no longer supported for most targets
+
+*	Support for __attribute__((never_inline)) / __attribute__((__never_inline__))
+
+	This attribute will disable (auto-)inlining of a particular function.
+
+	Example:
+
+		inline int f() __attribute__((never_inline)) { return 10; }
+
+		int main()
+		{
+			return f();	// f() will not be inlined
+		}
+
+	In Win32 targets, __declspec(noinline) is a compatible synonym.
+
+*	Added support for C99 hexadecimal floating-point constants. 
+	These are precise representations of constants specified in a 
+	hexadecimal notation to ensure an accurate constant is generated 
+	across compilers and on different hosts.
+
+	A warning is generated when the mantissa is more precise than the host
+	floating point format, when pedantic warnings are enabled.  An error
+	is generated if the exponent is too wide for the host float format.
+
+	Syntax:
+
+	hex-fp-constant: '0' 'x' hex-string [ '.' hex-string ] hex-exp [ size ]
+	hex-string:		 hex-digit { hex-digit }
+	hex-exp:		  'p' decimal-string
+	size:			 'f'|'F'|'l'|'L'
+	decimal-string:	 decimal-digit { decimal-digit }
+	decimal-digit:	 <any decimal digit>
+	hex-digit:		 <any hexadecimal digit>
+
+	I.e.: 0x2f.3A2p3, 0xEp1f, 0x1.8p0L
+
+	The standard library supports printing floats in this format using
+	the "%a" and "%A" specifiers.
+
+*	Support for multibyte and Unicode source text
+
+	Source and header files may be encoded in any text encoding the
+	operating system recognizes.  (Unicode text decoding support is
+	implemented using native OS services in Win32 and MacOS, and
+	iconv() on Un*x systems.)
+
+	-- As per ISO C++98 and C99, universal characters may be used in
+	any string or character literal, identifiers (macros, variables,
+	functions, methods, etc.), and comments.  These characters are derived
+	either from multibyte sequences in the source text, by virtue of the
+	source file being encoded in UCS-2 or UCS-4, or by use of the \uXXXX
+	or \UXXXXXXXX escape sequences.
+
+	-- Wide string literals in the form L"xxx" and wide characters in the
+	form L'xxx' are interpreted in the context of the source text encoding.
+
+		const wchar_t *str = L"Meine Katze ißt Mäuse nachts.";
+
+	The actual bytes emitted into the object file depend upon the
+	width of the string (or character) used in the program.  Narrow
+	(normal) strings use the original bytes from the source text,
+	while wide (wchar_t) strings use the UCS-2 or UCS-4 encoding of
+	the source text.
+
+	NOTE: the compiler only promotes multibyte text to Unicode;
+	it does not go in the opposite direction.  If you want UTF-8
+	encoded text in your object file, use UTF-8 encoded source text
+	with narrow string literals (or use a runtime solution like
+	wcstombs() under the C-UTF-8 locale).
+	
+	The width of a string is determined at the time a C/C++ token is
+	generated, so a wide literal constructed through a macro (#define
+	LSTR(s) L##s / LSTR("ißt")) will use the UCS-2/4 encoding.
+
+	For backwards compatibility, if you want to prevent the compiler
+	from interpreting characters as multibyte sequences, be sure the
+	C/C++ Preprocessor "Source encoding" setting is "ASCII" or use
+	#pragma text_encoding("ASCII") / ...("unknown") around the string.
+
+	Alternately, if you want the compiler to generate Unicode
+	characters in narrow literals too -- of questionable value, since
+	any characters interpreted therein will be chopped to 8 bits --
+	"#pragma multibyteaware_preserve_literals off" may be used.
+
+	-- Universal character names (i.e. Unicode code points) may be
+	specified with \uXXXX or \UXXXXXXXX escape sequences:
+
+		wchar_t florette = L'\u273f';
+		int \u30AD\u30B3\u30DE\u30A6 = soy_sauce();
+
+	-- Either "\uXXXX" or "\UXXXXXXXX" may be used regardless of the
+	actual size of wchar_t (use of the escape does not impose a
+	character width on the literal), but 4-byte characters will be
+	truncated if the size of wchar_t is 2 bytes.  
+
+	There is no implicit conversion of UCS-4 into UTF-16 -- instead,
+	specify the surrogate pair with two \uXXXX characters.
+
+	-- Preprocessed text is always emitted in ASCII.  Wide characters are
+	emitted in the \uXXXX or \UXXXXXXXX format.
+
+		extern string *Wörter[]; 
+
+		-->
+
+		extern string *W\u00F6rter[];
+
+	-- Identifiers using characters not representable in ASCII are
+	emitted in object code with the \uXXXX or \UXXXXXXXX escape
+	sequences, unless an object format does not support the '\\'
+	character, in which case the encoding may be modified on a
+	target-specific basis.
+
+	-- The compiler uses the "Source encoding" option to control how
+	it detects the source file encoding.  (This does not control the
+	storage of strings in the object file; see above.)
+
+	o If set to "ASCII", no detection is done, and high-ASCII
+	characters not interpreted, and wide character strings are merely
+	zero- extensions of the individual bytes in the string.  
+
+	o If set to "Autodetect", the compiler attempts to tell whether
+	byte-encoded source is encoded in UTF-8, Shift-JIS, EUC-JP, or
+	ISO-2022-JP formats or whichever encoding the operating system
+	considers the default.  This option will degrade compile speeds
+	slightly due to the extra scanning.  
+
+	o If set to "System", the compiler uses the system locale without
+	scanning the source.
+
+	o Other encodings (UTF-8, Shift-JIS, EUC-JP, ISO-2022-JP) are
+	self-explanatory.  Note: currently, the compiler ignores the
+	mapping in some Japanese character sets of 0x5c (ASCII '\') to Yen
+	(\u00A5) because the C++98 and C99 standards say that the ASCII
+	character set must be mapped one-to-one with any multibyte
+	encoding.  0x5C is always interpreted as '\' (except inside
+	multibyte character sequences).
+
+	NOTE: at this time, the ISO-2022-JP and EUC-JP encodings only
+	recognize characters defined by JIS X 0208-1990 (i.e., the escapes
+	ESC $ @, ESC $ B for ISO-2022-JP and two-byte sequences in
+	EUC-JP).  The additional characters in JIS X 0212-1990 are not yet
+	recognized.  
+
+	NOTE #2: Shift-JIS, ISO-2022-JP, and EUC-JP interpret single-byte
+	characters as ASCII (not as JIS Roman, which has undesirable C/C++
+	mappings of 0x5c to Yen instead of '\', etc.).
+
+	o No matter what the "Source encoding" setting, the compiler will
+	always detect UTF-16{BE,LE} or UCS-4{BE,LE} source through a
+	statistical character scan for NULs.  Note that currently, only
+	the command-line tools, not the IDE, can properly handle Unicode
+	sources.
+
+	Alternately, individual source files may include a #pragma telling
+	the compiler what the source text encoding is.  The format is:
+
+	#pragma text_encoding("name" | unknown | reset [, global])
+
+	"name" is an IANA or MIME encoding name or an OS-specific string.
+	The compiler recognizes these names and maps them to its internal
+	decoders:
+
+	system US-ASCII ASCII ANSI_X3.4-1968 ANSI_X3.4-1968 ANSI_X3.4
+	UTF-8 UTF8 ISO-2022-JP CSISO2022JP ISO2022JP CSSHIFTJIS SHIFT-JIS
+	SHIFT_JIS SJIS EUC-JP EUCJP UCS-2 UCS-2BE UCS-2LE UCS2 UCS2BE
+	UCS2LE UTF-16 UTF-16BE UTF-16LE UTF16 UTF16BE UTF16LE UCS-4
+	UCS-4BE UCS-4LE UCS4 UCS4BE UCS4LE 10646-1:1993 ISO-10646-1 ISO-10646
+	unicode
+
+	(Note that UCS-2 is always interpreted as UTF-16; i.e. surrogate
+	character pairs are used to select characters through plane 16.)
+
+	This #pragma may be used several times in one file (probably
+	unlikely usage).  The compiler expects the pragma to be encoded in the
+	"current" text encoding, through the end of line.  
+
+	By default, #pragma text_encoding is only effective through the
+	end of file.  To affect the default text encoding assumed for the
+	current and all subsequent files, supply the "global" modifier.
+
+	-- Note: error messages will appear with \u or \U escapes, not
+	with the original multibyte source text.  
+
+	If the source line displayed in the Errors and Warnings Window
+	appears to be a meaningless combination of \u escapes, it is
+	probable the compiler is reading a binary file, or that it has
+	incorrectly interpreted 8-bit text as 16-bit (or 16 as 32, etc.).
+	An explicit #pragma text_encoding("...", global) in the C/C++
+	Preprocessor "Prefix text" panel can alleviate the problem.
+
+	If you get errors about illegal tokens or illegal characters and
+	"\uFFFD", "\uFFFF", "\U0000FFFD", or "\U0000FFFF" is the indicated
+	character, it is likely the compiler could not decode
+	multibyte-encoded text correctly or the text is damaged.  If the
+	selected Source Encoding is correct and you believe the compiler
+	is in error, please report it.  If the selected encoding is
+	System, try an explicit #pragma text_encoding("...").
+
+*	The preprocessor will track macros used to guard #include files to
+	reduce parsing time.  I.e., if a file's contents are surrounded with:
+
+	#ifndef FOO_H
+	#define FOO_H
+			... contents ...
+	#endif
+
+	the compiler will not attempt to load the file twice, saving a
+	negligible amount of time used to skip the contents of the file.
+
+*	#pragma no_conststringconv on | off | reset (default: off)
+
+	Turning this #pragma on will disable the deprecated implicit const string
+	literal conversion (see ISO C++ 4.2p2).
+
+		#pragma no_conststringconv on
+		char *cp = "Hello World";
+
+	=>
+
+		Error   : illegal implicit conversion from 'const char[12]' to
+		'char *'
+		Test.cp line 3   char *cp = "Hello World";
+
+*	Added warning for use of undefined macros used in #if / #elif conditionals.
+	The language allows tests like "#if MACRO" when "MACRO" is undefined by
+	assuming the value 0.  This optional warning is provided to detect such
+	usages.
+
+	#pragma warn_undefmacro on|off|reset
+	
+	"undefined macro '%u' used in #if / #elif conditional"
+	
+	The command-line option is "-w undef".
+
+	This warning is only emitted when the macro must be evaluated.  A
+	short-circuited "&&" or "||" test or unevaluated "?:" branch will
+	not produce a warning:
+
+	#if defined(MACRO) && MACRO==4	   // no warning
+
+* A number of small C99 improvements, e.g. the compiler now supports
+* the C99 rules for unsuffixed decimal constants.
+
+	C99 mode (and ULONG_MAX == 4294967295) you will get:
+
+		sizeof(4294967295) == sizeof(long long)
+		sizeof(4294967295u) == sizeof(unsigned long)
+
+	non-C99 mode you will get:
+
+		sizeof(4294967295) == sizeof(unsigned long)
+		sizeof(4294967295u) == sizeof(unsigned long)
+
+*	Avoid __clear() runtime call in certain local array/struct initializations
+
+*	A number of small error reporting improvements in the backtracking C++
+	parser (WB1-41674)
+
+*	The C++ compiler now allows forward declarations of arrays of incomplete type.
+
+		extern struct Incomplete arr[10];
+
+		struct Incomplete {
+			int a,b,c;
+		};
+
+		struct Incomplete arr[10];
+
+*	GCC compatibility improvements
+
+	-	void* arithmetic is now accepted when #pragma gcc_extension is on
+
+	-	the built-in function "int __builtin_constant_p (<expr>)" is now
+		supported
+
+	-	allow forward declarations of arrays of incomplete type in C
+		when #pragma gcc_extension is on
+
+	-	the pre-C99 designated initilaizer syntax (deprecated) is now supported, e.g.:
+
+			#pragma gcc_extension on
+			struct S { int a,b,c; } s = { c:3, b:2, a:1 };
+
+	-	"Conditionals with Omitted Operands" is now supported when
+		#pragma gcc_extension is on.
+
+	-	"long __builtin_expect (long exp , long c)" is now accepted.
+
+
+*	#pragma warn_hiddenlocals on | off | reset (default: off)
+
+	The compiler will report a warning if a local variabe hides another local
+	variable when this option is on:
+
+		#pragma warn_hiddenlocals on
+		void foo(int a)
+		{
+			{
+				int a;
+			}
+		}
+			=>
+
+		Warning : object 'a' hidden by local declaration
+		Test.cp line 5       int a;
+
+*	#pragma warn_missingreturn on | off | reset (default: "Extended Error checking")
+
+	The missing return statement warning now has it's own #pragam:
+
+		#pragma warn_missingreturn on
+		int foo()
+		{
+		}
+			=>
+
+		Warning : return value expected
+		Test.c line 4   }
+
+*	#pragma warn_illtokenpasting on|off|reset
+
+	Control whether a warning is generated with illegal token pasting
+	(i.e. #define PTR(x) x##* / PTR(foo)), see explanation below.
+
+*	Two new #pragmas for controlling diagnostic output when #line directives
+	are encountered.
+
+	#pragma msg_show_lineref on|off|reset
+
+	-- if enabled (default), show error in source pointed to by #line
+
+	#pragma msg_show_realref on|off|reset
+
+	-- if enabled (default), show error in actual source when #line ref exists
+
+	The default behavior emits two messages for each message
+	generated in code using #line.
+
+*	#pragma warn_any_ptr_int_conv on|off|reset (default: off)
+
+	The compiler will generate a warning when an integral type is
+	explicitly converted to a pointer type or vice versa.  This can be
+	used to identifiy potential 64-bit pointer portability issues. See 
+	also "#pragma warn_ptr_int_conv on|off|reset".
+
+		#pragma warn_ptr_int_conv on
+
+		short i,*ip;
+
+		void foo()
+		{
+			i = (short)ip;
+		}
+
+		#pragma warn_any_ptr_int_conv on
+
+		void bar()
+		{
+			i = (int)ip;
+			ip = (short *)i;
+		}
+
+    =>
+
+		Warning : integral type is not large enough to hold pointer
+		Test.cp line 7    i = (short)ip; 
+
+		Warning : pointer to integral conversion
+		Test.cp line 14    i = (int)ip; 
+
+		Warning : integral to pointer conversion
+		Test.cp line 15    ip = (short *)i; 
+
+[3.0.4]
+
+*	Support for thread-safe static local initialization:
+
+	#pragma thread_safe_init on|off|reset		(default: off)
+
+	This feature is integral to the generic C++ ABI, but is also
+	implemented in the Win32 and Netware compilers.  This #pragma
+	enables extra code to ensure that multiple threads cannot enter a
+	static local initialization at the same time:
+
+	#pragma thread_safe_init on
+	void thread_heavy_func()
+	{
+		// multiple routines cannot enter at the same time
+		static std::string localstring = thread_unsafe_func();
+	}
+
+	Also, when an exception is thrown from a static local initializer,
+	the initializer is retried by the next client that enters the
+	scope of the local.
+
+===============================================================================
+Bugs Fixed in this Version
+===============================================================================
+
+*	Detect linkage specification "Objective-C" (as well as "Objective C").
+
+*	Fix error remembering size of initialized open array of objects
+	(ClassType x[] = { ... } )
+	
+*	No longer check token syntax in #error/#warning (#error I'm confused)
+
+*	Fixed a bug where base class access checking could take very long
+
+*	Fixed crasher using PCHs when "Source relative includes" enabled
+	(IR0308-0042)
+
+*	Fixed #include-with-macro parsing bugs with Boost
+
+*	Fixed a bug with the "##" operator in the presence of empty arguments
+	under C99 mode
+
+*	Fixed bugs dealing with multibyte characters in paths and filenames
+	on OS X (WB1-39839)
+
+*	Fixed crasher dealing with very long file names in OS X (WB1-47880)
+
+*	Fixed bug mistaking a C-style comment in a string for the real thing
+	when enclosed in a skipped #if...#endif block (IR0307-0019)
+
+*	Fixed an inefficiency where the compiler could use a lot of memory
+	with certain template instantiation patterns (WB1-46995)
+
+*	Fixed a parsing bug with keywords in Objective C @selector() expressions
+	(WB1-47397)
+
+*	Fixed a bug with Objective C methods that return a C++ reference type
+	(WB1-47108)
+
+*	Fixed a bug with overloading a conversion function templates (WB1-47096)
+
+*	Fixed non-type template default argument deduction bug (WB1-47074)
+
+*	Fixed an ICE with certain elided copy constructor calls (WB1-47078)
+
+*	Fixed an error followup-ICE (WB1-43071)
+
+*	Fixed a bug with failed deductions in partial function ordering (WB1-46524)
+
+*	Fixed a bug that allowed overloading of the main() function
+
+*	Fixes an overload resolution bug with using declaration for operator
+	member functions (WB1-44626)
+
+*	Fixes an ICE with illegal reference initializations (WB1-45074)
+
+*	Fixes a bug with nested empty initilaizer lists in function scope (WB1-44996)
+
+*	Fixes a C++ parsing bug with Objective C protocol specifiers (WB1-44590)
+
+*	Fixes a bug with browser data generation for template member functions.
+
+*	Fixes a bug that allowed local types to be used as template arguments
+	(WB1-42880).
+
+*	Fixes an ICE with illegal template arguments (WB1-42699).
+
+*	Fixes a bug in the type-id parser
+
+*	Fixes a bug with data member pointer in nested template classes
+
+*	Fixes a bug with qualifiers in certain reference type instantiations.
+
+*	Fixes a bug where pointer generation was performed before overloaded
+	operator checking.
+
+[3.1]
+
+*	Fixes a bug with annonymous unions in aggregate initializations (WB1-42780)
+
+*	Fixes a bug with an illegal class template instantiation caused by certain
+	explicit conversions (WB1-38761)
+
+*	Fixes an "illegal access" bug with conversion function and using declarations
+
+*	Fixes an "illegal access" bug with friend declarations in nested template classes
+
+*	Fixes a bug that would allow illegal pointer-to-member conversions in static_cast
+
+*	Cascading "declaration syntax errors" are significantly reduced.
+
+*	Fixes a bug with template argument dependent qualified typename lookup (WB1-42075)
+
+*	Initializing arrays of aggregate classes that contain non-aggregate members
+    is now supported
+
+*	Fixes a generic C++ ABI qualified type mangling substitution bug (WB1-41570)
+
+*	Fixes a bug with incomplete base/derived pointers in template argument
+	deduction (WB1-41527)
+
+*	Fixes a potential crash with dependent pointer-to-member expressions (IR0211-0116)
+
+*	Fixes a bug with __typeof__ and pointer-to-member-function expressions (WB1-41966)
+
+*	Fixes a class copy bug in aggregate initializations (WB1-41892)
+
+*	Fixes bug with with access checking in ctor, dtor, an op= default functions
+
+*	Fixes a bug with alignment qualifiers and template argument matching (WB1-32887)
+
+*	Fixes an ICE with member redeclarations (WB1-39339)
+
+*	Fixes template parmeter name visibility bug in class specializations
+	(WB1-37311)
+
+*	Fixes a bug with the new template parser and the lifetime of temporary
+	class objects that are bound to a reference
+
+*	Fixes a new template parser bug with local class constructor functions
+	(WB1-35945)
+
+*	A minor fix for the # operator in non-function macros (WB1-36194)
+
+*	Fixes a bug where legal static casts from "pointer to member of D" to a
+	"pointer to member of B" were not accepted
+
+*	Fix for potential ICE with illegal template arguments (IR0204-0993,
+	WB1-36254)
+
+*	Multiple typeid objects are now merged by the linker
+
+*	Fix for an ICE with the __copy runtime function and "using namespace std;"
+	(WB1-35752)
+
+*	Fixes an illegal conversion bug with pointer -> intergral conversions in
+	initializations
+
+*	Allow __func__/__FUNCTION__/__PRETTY_FUNCTION__ to appear in constructor
+	member initializers
+
+*	Fixed the ANSI C rules for new type decls in function prototypes:
+
+		int f(struct X);	//	not global struct X !
+		struct X { ... };
+		int f(struct X)		//	error does not match prototype
+		{
+			...
+		}
+
+	The compiler will print a warning for prototypes with new types.
+
+===============================================================================
+Known Bugs and Incompatibilities in this Version
+===============================================================================
+
+* There are some incompatibilities in the use of the GCC declarator
+  __attribute__((aligned(x))), i.e.:
+
+  char x[16] __attribute__((aligned(16)));
+
+  This feature has been supported for several releases, but where
+  typedefs are concerned, there is a known incompatibility with GCC.
+
+  In Codewarrior, when using typedefs and __attribute__((aligned)),
+  the __attribute__ should be placed _after_ the tag name:
+
+  // MW
+  typedef struct { ... } mystruct __attribute__((aligned(256)));
+
+  Otherwise the struct alignment can be overridden if a "Windows-
+  compatible" struct alignment setting is used (i.e. in the Win32-targeting
+  tools, or via "#pragma pack(xxx)" or "#pragma pack(push,xxx)").  
+
+  Unfortunately, this behavior differs from GCC, which expects the
+  __attribute__ _before_ the tag name.
+
+  // GCC
+  typedef struct { ... } __attribute__((aligned(256))) mystruct;
+
+===============================================================================
+New error messages
+===============================================================================
+
+"allocation/deallocation functions shall be global scope or class members"
+
+	#include <stddef.h>
+	namespace foo {
+		void *operator new(size_t);	//	error, see ISO C++ 3.7.3.1p1
+	}
+
+"types that are declared in parameter lists go out of scope at the end of the
+function declaration/definition, this is probably not what you want"
+
+	Unlike pre-3.2 compilers, the compiler now detects this illegal
+	situation.  An undefined struct/class/union type must be forward
+	declared before being used in a function parameter list.
+
+	A function's parameter list serves as a unique scope, so a
+	reference to an undefined type is absorbed into the parameter list
+	and is not added to the outer scope.
+
+    Another example of the error should have:
+
+	int f(struct X); // undefined struct X
+
+	typedef struct X {..} X ; // new struct X
+
+	int f(struct X); // new type X, not the same as the former, 
+					 // thus a redeclaration error
+
+	or
+
+	int f(struct X);  // not global struct X!
+	int f(struct X);  // different forward declaration, 
+					  // thus a redeclaration error
+
+"the (elided) copy constructor '%o' is not callable because the reference
+parameter cannot be bound to an rvalue"
+
+	struct A {
+	     A();
+	     A(A&);
+	};
+
+	void f(const A&);
+
+	int main()
+	{
+	     f( A() );	//	error
+	}
+
+"system does not support the text encoding '%u' (%i), treating as ASCII"
+
+	The source text encoding is not supported by the system libraries.
+	The compiler may have guessed this encoding from a multibyte
+	source file (when "Multi-Byte Aware" is enabled), or the user may
+	have specified it with '#pragma text_encoding("<encoding>")'.  In
+	either case, the compiler is unable to interpret non-ASCII
+	characters in the source and will pass the text through literally.
+
+"(corresponding #line reference)"
+
+	A message with this text will appear after another error or
+	warning when the source file being compiled uses #line directives
+	(to modify the source information for the debugger or through code
+	generated by an external tool like lex or yacc).  With this
+	message, you will be able to easily navigate to an error caused by
+	the original source or the generated source.
+
+	Two #pragmas can control whether error messages show the "real"
+	source or the "substituted" source file:
+
+	#pragma msg_show_lineref on|off|reset
+
+	-- if enabled, show error in source pointed to by #line
+
+	#pragma msg_show_realref on|off|reset
+
+	-- if enabled, show error in actual source when #line ref exists
+
+"(location of previous definition)"
+
+	When a macro is redefined, this message tells where the original
+	definition was found.
+
+"argument expected while expanding macro '%u' (got %i, wanted %u%i)"
+
+	Expanded error reporting when a macro invocation uses too few
+	parameters.  "got %i" means %i arguments were read.  "wanted %i"
+	means the macro expects %i parameters only.  The "wanted" text may
+	read, e.g., "wanted >2" when the last argument of the macro uses
+	varargs (...).
+
+"unexpected argument while expanding macro '%u' (wanted %i)"
+
+	Expanded error reporting when a macro invocation specifies too many
+	parameters.  "wanted %i" means the macro only accepts %i parameters.
+
+	Watch out for embedded C99 struct/array initializations like
+	"{3,4}" -- this string counts as two macro arguments.  Only
+	parentheses can shield commas inside parameter lists.  Use
+	"({3,4})" instead.
+
+"invalid token pasting of '%u' and '%u'"
+
+	According to the language standard, the '##' token pasting
+	operator can only generate other tokens.  This warning indicates
+	when a paste was found that did not result in a token.  The code
+	will still compile as it did previously, but it may be a useful
+	hint if the compiler emits an error later on.
+
+	I.e. "3 ## 4" is the token "34", or "< ## < ## =" is the token
+	"<<=", but "- ## 4 ## 0" is not a token.  ("-40" is two tokens,
+	"-" and "40").
+
+	Strictly speaking, two strings cannot be token pasted into another
+	string, since the compiler elides adjacent strings in a later
+	phase anyway, but Codewarrior supports this usage without a
+	warning.
+
+	This warning can be controlled with 
+	"#pragma warn_illtokenpasting on|off|reset"
+
+"illegal token for integral constant expression"
+
+	Expanded error reporting when parsing expressions inside #if or #elif
+	expressions.  Only integer constants and operations may be used in
+	this context.
+
+"illegal number"
+
+	Expanded error reporting for character sequences that look like numbers
+	but are not valid integer or float constants.
+
+"invalid integer constant"
+
+	Expanded error reporting for character sequences that look like integers
+	but are not valid integer constants.  (I.e. "0xhi")
+
+"invalid floating-point constant"
+
+	Expanded error reporting for character sequences that look like floats
+	but are not valid floating-point constants.  (I.e. "304.33eDog")
+
+"character is out of range"
+
+	Error emitted when a wide character is stored or narrowed by a
+	translation.
+
+"character cannot be represented in a 'long long'"
+
+	Error when a multi-byte character constant (a language extension
+	allowing, i.e., 'TEXT' for MacOS) is too long to store in an integral type.
+
+"ASCII shift state expected"
+
+	When decoding multibyte text that uses a shift state to allow
+	ASCII text to be interpreted either as ASCII or as an extended
+	character set (i.e. ISO-2022), this message indicates that the
+	source text is not in the expected format and is probably mangled.
+
+"multi-byte character constant"
+
+	The compiler detected the language extension of packing multiple
+	characters into a single narrow character constant (i.e. 'TEXT'
+	for MacOS).  This warning is not enabled currently.
+
+"illegal multi-line string constant"
+
+	The compiler detected the deprecated and illegal behavior of
+	allowing a string constant to span multiple lines (interpreting
+	line breaks as '\n').  
+
+	This is illegal:
+
+	"first line
+	second line"
+
+	Use the format:
+
+	"first line\n\
+	second line"
+
+	or
+
+	"first line\n"
+	"second line"
+
+	instead.
+
+"loss of precision in floating-point constant"
+
+	Warning emitted when the hexadecimal floating point constant specifies
+	more digits than the compiler can represent internally.
+
+"illegal universal character 0x%x"
+
+	The C99 and C++ standards do not allow the use of \uXXXX or
+	\UXXXXXXXX sequences for universal characters that fit in the
+	ASCII character set (thus destroying any semblance of
+	orthogonality).  This message is only emitted as a warning, and
+	only when ANSI strict mode is enabled.
+
+"illegal UTF-8 sequence, treating as raw bytes"
+
+	Source text the compiler had previously identified at UTF-8 contains
+	illegal character sequences.  As a failsafe, the bytes are passed
+	literally to the compiler.
+
+"could not create or write file '%u' for instrumentation ('%u')"
+"could not read file '%u' for instrumentation ('%u')"
+"cannot locate instrumenter '%u'"
+"cannot execute instrumenter '%u' ('%u')\n(command line: '%u')"
+"error invoking instrumenter '%u' (exit code %i)\n(command line: '%u')"
+
+	Various error conditions when invoking CodeTEST under control of
+	"#pragma instrument".
+
+"undefined macro '%u' used in #if or #elif conditional"
+
+	see #pragma warn_undefmacro above
+
+"combining character detected at beginning of identifier"
+
+	Warning emitted when a Unicode combining character is detected in
+	an unlikely position at the start of an identifier.
+
+"extended universal character used in identifier"
+
+	The C++ 98 and C99 standards define a set of Unicode characters
+	allowed in identifiers.  These apply to a quite old version of
+	Unicode, so Codewarrior allows an extended set of identifier
+	characters adapted from Unicode 3.2.  This warning points out uses
+	of such characters.  We expect the language standards to include
+	these characters in the future.
+
+"cannot locate prefix file '%u'"
+
+	Enhancement to error message "the file '%u' cannot be opened"
+	indicating that the prefix file specified in the C/C++ Language
+	Panel cannot be loaded.
+
+"illegal option '%u'"
+
+	Generated when the "illegal #pragmas" warning is enabled and
+	__option(xxx) is tested for a nonexistent option "xxx".  As before,
+	the value returned by the __option() is 0.
+
+"cannot query option '%u'"
+
+	Generated when the "illegal #pragmas" warning is enabled and
+	__option(xxx) is tested for an option whose value cannot be
+	tested, e.g.  for any "#pragma xxx" that is a command.  As before,
+	the value returned by the __option() is 0.
+
+"object '%o' hidden by local declaration"
+
+	see #pragma warn_hiddenlocals above
+
+"complex types are not implemented"
+
+	The C99 complex data types are not supported at this point
+
+"variable length arrays cannot be used in function template prototypes or local template typedefs"
+"variable length array types can only be used in local or function prototype scope"
+
+	see "Support for C99 variable length arrays" above
+
+"the local type '%t' cannot be used in template arguments"
+
+	template <typename T> void f(T);
+	int main()
+	{
+		struct X { int x; } x = { 0 };
+		f(x);	//<<< error
+	}
+
+"'<' expected (you may have accidentally used a <: token)"
+
+	In C++, the character sequence "<:" is a digraph for "[".
+	Insert a space after the opening "<" of a template argument
+	list if you see this error.
+
+	Example:
+
+		typedef int INT;
+		template <typename T> class X;
+		X<::INT> *xp;	// error, is token sequence "X [ : INT > * xp ;"
+	=>
+		Error   : '<' expected (you may have accidentally used a <: token)
+		Test.cp line 3   X<::INT> *xp; 
+
+	Workaround ():
+
+		typedef int INT;
+		template <typename T> class X;
+		X< ::INT> *xp;	// OK, whitespace separates < and :: tokens
+
+
+"template argument list expected"
+
+	Example:
+
+		template <typename T> class X;
+		X *xp;		// <<<
+	=>
+		Error   : template argument list expected
+		Test.cp line 2   X *xp;
+
+	Workaround:
+
+		template <typename T> class X;
+		X<int> *xp;	// OK, has a matching template argument list
+
+
+"illegal bitfield type '%t'"
+
+	Example:
+
+		struct X {
+			int* bf : 1;	//	'int*' bitfields are not allowed
+		};
+
+	=>
+
+		Error   : illegal bitfield type 'int *'
+		Test.cp line 2    int* bf : 1; 
+
+	Workaround:
+
+		struct X {
+			int bf : 1;
+		};
+
+
+"illegal bitfield size '%i'"
+
+	Bitfield size is smaller than 0 or greater than the maximum
+	size supported by the backend.
+
+	Example:
+
+		struct X {
+			int bf : 0;	//	0 length named bitfield are illegal
+		};
+
+	=>
+
+		Error   : illegal bitfield size '0'
+		Test.cp line 2    int bf : 0; 
+
+	Workaround:
+
+		struct X {
+			int bf : 1;
+		};
+
+
+"deleting a void pointer is undefined"
+
+	Using "delete (void*)x;" or similar is undefined behavior.
+	Since is not possible to allocate "void *" storage with "new",
+	deleting "void *" is probably losing some information, meaning
+	the appropriate destructors may not be called; or, "delete"
+	is incorrectly paired with "malloc".
+
+	Example:
+
+		void f(void *p)
+		{
+			delete p;	//	undefined
+		}
+	=>
+		Warning : deleting a void pointer is undefined
+		Test2.cp line 3    delete p; 
+
+
+	Workaround:
+
+		void f(char *p)
+		{
+			delete p;	//	only use pointers to object types
+		}
+
+"invalid message number"
+
+	In #pragma warning on|off|reset (...), the message number is
+	not recognized by the frontend or backend.  Use "#pragma
+	showmessagenumber on" and reproduce the desired warning to
+	see what the message number is.
+
+"could not generate intrinsic '%u' due to incompatible arguments or compiler options"
+
+	When the __has_intrinsic(<name>) built-in macro returns true
+	but the compiler cannot generate intrinsic code, this message
+	is reported.
+
+"illegal macro name; '%u' is a C++ keyword"
+
+	In C++, operators like "and", "not", etc. are keywords and cannot
+	be defined as macros.  This is a warning unless ANSI strict is
+	enabled, in which case it is an error.
+
+"illegal macro name '%u'"
+
+	The keyword "defined" may not be a macro name.
+
+"cannot enable instance manager here"
+
+	The template instance manager must be enabled before any
+	declarations in the source, similar to the restrictions for
+	using precompiled headers.
+
+"some instances are missing; please rebuild"
+
+	When using the instance manager, the compiler keeps track of
+	which source files define which instances.  If sources change
+	so that instances are not available, and it is not possible to
+	tell the IDE to rebuild files, this message will appear.
+	Usually this happens only when files are changing on disk or
+	in the editor during the compile.  Just re-make the project.
+	Note that this behavior should never occur when building clean
+	projects, and the message should never be reported after the
+	next make.
+
+"illegal or unsupported __declspec"
+
+	The __declspec is recognized but not supported.
+
+"illegal use of __declspec(%u)"
+
+	The __declspec is not used in the correct context (i.e.
+	it is applied to a function instead of a typedef, etc.).
+
+"illegal use of function qualifier(s)"
+
+	The code specified __declspecs or __attribute__s that only
+	apply to functions.
+
+"illegal use of data qualifier(s)"
+
+	The code specified __declspecs or __attribute__s that only
+	apply to data objects.
+
+"pointer to integral conversion"
+"integral to pointer conversion"
+
+	See "#pragma warn_any_ptr_int_conv on|off|reset" above
+
+"the size of this type is too big"
+
+	The compiler will no longer allow array defintions with a size
+	that is grater than 2GB.
+
+		char arr1[0x7fffffff];			//	OK
+		char arr2[0x80000000];			//	too big
+		char arr3[(unsigned long)-1];	//	too big
+
+	=>
+		Error   : the size of this type is too big
+		Test.c line 2   char arr2[0x80000000];   // too big 
+
+		Error   : the size of this type is too big
+		Test.c line 3   char arr3[(unsigned long)-1]; // too big 
+
+"a pointer/array type was expected for this operation instead of '%t'"
+
+	Generated for operands that require a pointer or array type operand.
+
+		int main()
+		{
+			int a;
+
+			*a;
+			a->b;
+		}
+
+	=>
+
+		Error   : a pointer/array type was expected for this operation instead of 'int'
+		Test.cp line 5     *a; 
+
+		Error   : a pointer/array type was expected for this operation instead of 'int'
+		Test.cp line 6     a->b; 
+
+
+===============================================================================
+Features Previously Added
+===============================================================================
+
+===============================================================================
+Bugs Previously Fixed
+===============================================================================
+
+===============================================================================
+Metrowerks Corporation

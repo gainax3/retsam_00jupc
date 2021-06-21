@@ -1,0 +1,83 @@
+===================================
+CodeWarrior IDE Release Notes - Win
+===================================
+
+Please look at the Known Problems section at the bottom of this document for
+known issues.
+
+
+-------------------------------------------------------------------------
+
+Version: CodeWarrior IDE 5.7
+Date:    2/22/2005
+
+======================================
+New features in the 5.7 IDE (from 5.5)
+======================================
+
+- No new Windows specific features
+
+
+-------------------------------------------------------------------------
+
+Version: CodeWarrior IDE 5.5
+Date:    1/21/2004
+
+======================================
+New features in the 5.5 IDE (from 5.x)
+======================================
+
+- New editor bindings
+- Ability to show and hide the Code and Data columns in the project window
+
+======
+Editor
+======
+The find behavior has been changed to automatically select the word under the cursor 
+as the find string without having to use control-E. This more closely matches other
+Windows editors.
+
+The control-tab and arrow keybindings have been changed to be more Windows-standard.
+
+=================================
+Hiding the Code and Data Columns
+=================================
+
+A new setting in the IDE Extras global preference panel will let you hide and show
+the Code and Data columns in the project window. This is a global setting that
+affects all project windows.
+
+================
+External Editors
+================
+
+To use an external editor on Windows:
+
+1) In the 'IDE Extras' panel, turn on 'Use Third Party Editor'
+2) There are two command lines to fill out. The first is required and should contain the
+proper command name and parameters to launch the editor and open a file. The second should
+be the command needed to launch the editor with a file and go to a specific line. Two
+replacement variables are provided by the IDE: '%file' will expand to the full path to the
+file, and '%line' will expand to the line number the IDE wants to display in the file.
+
+For example, to use emacs, the first command line would be 'emacs %file' and the second
+would be 'emacs +%line %file'.
+
+The name and order of the parameters are different for every editor, so the manual for your
+editor should be consulted.
+
+==============
+Known Problems
+==============
+
+The argument list on WinNT when dealing with new custom commands must not
+include arguments that are longer than one word.
+For example:
+	command( One "Two Three" )
+will have three arguments which are "One", "Two" and "Three".
+
+
+When running on Windows XP, Service Pack 1 is required for multi-processor machines
+and highly recommended for all other systems. Running on MP machines without SP1
+may lead to crashes.
+

@@ -1,0 +1,49 @@
+Profiler Library Notes for CodeWarrior(R) Development Studio, ARM ISA Edition for Board Bring Up v2
+
+* General Usage
+====================================================
+
+Include the profiler library in you project and enable profiling
+with the setting in the compiler panel and/or using:
+
+#pragma profile on/off/reset
+
+(For the command line compiler you can use the "-profile" option and/or #pragma 
+profile on/off/reset for profiling). 
+
+Include Profiler.h and initialize the profiler with a call to
+ProfilerInit. ProfilerSetStatus will turn profiling on and off.
+ProfilerDump("filename") will dump the profile data to a file.
+ProfilerTerm will close the profiler. For example:
+
+#include "profiler.h"
+
+void main()
+{
+  ProfilerInit(collectDetailed, bestTimeBase, 5, 10);
+  ProfilerClear();
+  ProfilerSetStatus(1);
+  function_to_be_profiled();
+  ProfilerSetStatus(0);
+  ProfilerDump("profiledump");
+  ProfilerTerm();
+}
+
+The profiler library need two external functions for measuring the actual
+execution time:
+  - getTime: returns the execution time in some arbitrary units (cycles, seconds)
+  - getTimerResolution: returns the number of the units measured by getTime
+    in one second
+    
+Using these functions you can easily adapt the profiling library to a wide range
+of environments (different simulators and boards). An example of such functions 
+that use semihosting is given in Profiler/Support/timer.c. The implementation
+is well suited for simulators, but if the code runs on an ARM board it should be
+modified to take advantage of the hardware timers.
+
+====================================================================
+
+Metrowerks, the Metrowerks logo, CodeWarrior are registered 
+trademarks of Metrowerks Inc. CodeWarrior Geekware, and PowerParts
+are trademarks of Metrowerks Inc. All other brands and product names 
+may be trademarks or registered trademarks of their respective holders.
