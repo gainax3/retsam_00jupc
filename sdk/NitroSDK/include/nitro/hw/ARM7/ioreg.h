@@ -20,13 +20,13 @@ extern "C" {
 #endif
 
 #include <nitro/hw/ARM7/ioreg_PAD.h>
-#include <nitro/hw/ARM7/ioreg_SPI.h>
-#include <nitro/hw/ARM7/ioreg_OS.h>
 #include <nitro/hw/ARM7/ioreg_SND.h>
-#include <nitro/hw/ARM7/ioreg_MI.h>
-#include <nitro/hw/ARM7/ioreg_GX.h>
+#include <nitro/hw/ARM7/ioreg_OS.h>
 #include <nitro/hw/ARM7/ioreg_EXI.h>
+#include <nitro/hw/ARM7/ioreg_SPI.h>
+#include <nitro/hw/ARM7/ioreg_MI.h>
 #include <nitro/hw/ARM7/ioreg_PXI.h>
+#include <nitro/hw/ARM7/ioreg_GX.h>
 
 #ifdef __cplusplus
 } /* extern "C" */

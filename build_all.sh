@@ -10,7 +10,12 @@ if [ ! -x tools/ruby/ruby -a ! -x tools/ruby/ruby.exe ]; then
 fi
 
 . ./env
-export MAKEFLAGS="-j$(nproc)"
+export NITRO_FINALROM=yes
+export PM_VERSION
+export PM_DEBUG
+export PM_LANG
+
+#export MAKEFLAGS="-j$(nproc)"
 
 (cd sdk/NitroSDK; make)
 (cd sdk/NitroSystem; make)

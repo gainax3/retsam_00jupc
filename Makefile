@@ -467,7 +467,6 @@ $(LCFILE_SPEC):	commondefs.GF modulerules.GF make_prog_files make_g3_files overl
 	-$(RM) $(BINDIR)/$(LCFILE_SPEC:.lsf=.*)
 	-rm $(LCFDEF_FILE)
 	make $(LCFDEF_FILE)
-	make do-build
 
 main.lsf: overlay_files
 overlay_files: overlaytool.rb
@@ -511,6 +510,10 @@ source:
 	-$(RM) $(GDIRT_CLEAN)
 	-$(RM) $(DEPENDDIR)/*.d
 	$(MAKE)
+
+tidy:
+	-$(RM) $(GDIRT_CLEAN)
+	-$(RM) $(DEPENDDIR)/*.d
 
 #----------------------------------------------------------------------------
 #	このMakefile管轄下のモデリングデータリコンパイル
@@ -649,30 +652,30 @@ del_land_list:
 #----------------------------------------------------------------------------
 #	PBR用保持ファイルとのバイナリ比較	2007.01.24(水) matsuda
 #----------------------------------------------------------------------------
-PBRDIR = pbr\\
+PBRDIR = pbr/
 
 pbrdiff:
-	@ cmp $(PBRDIR)b_plist_gra.narc src\\battle\\graphic\\b_plist_gra.narc
-	@ cmp $(PBRDIR)bag_gra.narc src\\graphic\\bag_gra.narc
-	@ cmp $(PBRDIR)batt_bg.narc src\\battle\\graphic\\batt_bg.narc
-	@ cmp $(PBRDIR)batt_obj.narc src\\battle\\graphic\\batt_obj.narc
-	@ cmp $(PBRDIR)font.narc src\\graphic\\font.narc
-	@ cmp $(PBRDIR)growtbl.narc src\\poketool\\personal\\growtbl.narc
-	@ cmp $(PBRDIR)item_data.narc src\\itemtool\\itemdata\\item_data.narc
-	@ cmp $(PBRDIR)msg.narc src\\msgdata\\msg.narc
-	@ cmp $(PBRDIR)otherpoke.narc src\\poketool\\pokegra\\otherpoke.narc
-	@ cmp $(PBRDIR)personal.narc src\\poketool\\personal\\personal.narc
-	@ cmp $(PBRDIR)plist_gra.narc src\\graphic\\plist_gra.narc
-	@ cmp $(PBRDIR)poke_anm.narc src\\pokeanime\\poke_anm.narc
-	@ cmp $(PBRDIR)poke_icon.narc src\\poketool\\icongra\\poke_icon.narc
-	@ cmp $(PBRDIR)pokeanm.narc src\\poketool\\pokeanm\\pokeanm.narc
-	@ cmp $(PBRDIR)pokegra.narc src\\poketool\\pokegra\\pokegra.narc
-	@ cmp $(PBRDIR)pokezukan.narc src\\poketool\\pokezukan.narc
-	@ cmp $(PBRDIR)pst_gra.narc src\\graphic\\pst_gra.narc
-	@ cmp $(PBRDIR)sound_data.sdat src\\data\\sound\\sound_data.sdat
-	@ cmp $(PBRDIR)waza_tbl.narc src\\poketool\\waza\\waza_tbl.narc
-	@ cmp $(PBRDIR)wifi.ncgr src\\data\\wifi.ncgr
-	@ cmp $(PBRDIR)winframe.narc src\\graphic\\winframe.narc
-	@ cmp $(PBRDIR)wm.ncgr src\\data\\wm.ncgr
-	@ cmp $(PBRDIR)wm.nclr src\\data\\wm.nclr
+	@ cmp $(PBRDIR)b_plist_gra.narc src/battle/graphic/b_plist_gra.narc
+	@ cmp $(PBRDIR)bag_gra.narc src/graphic/bag_gra.narc
+	@ cmp $(PBRDIR)batt_bg.narc src/battle/graphic/batt_bg.narc
+	@ cmp $(PBRDIR)batt_obj.narc src/battle/graphic/batt_obj.narc
+	@ cmp $(PBRDIR)font.narc src/graphic/font.narc
+	@ cmp $(PBRDIR)growtbl.narc src/poketool/personal/growtbl.narc
+	@ cmp $(PBRDIR)item_data.narc src/itemtool/itemdata/item_data.narc
+	@ cmp $(PBRDIR)msg.narc src/msgdata/msg.narc
+	@ cmp $(PBRDIR)otherpoke.narc src/poketool/pokegra/otherpoke.narc
+	@ cmp $(PBRDIR)personal.narc src/poketool/personal/personal.narc
+	@ cmp $(PBRDIR)plist_gra.narc src/graphic/plist_gra.narc
+	@ cmp $(PBRDIR)poke_anm.narc src/pokeanime/poke_anm.narc
+	@ cmp $(PBRDIR)poke_icon.narc src/poketool/icongra/poke_icon.narc
+	@ cmp $(PBRDIR)pokeanm.narc src/poketool/pokeanm/pokeanm.narc
+	@ cmp $(PBRDIR)pokegra.narc src/poketool/pokegra/pokegra.narc
+	@ cmp $(PBRDIR)pokezukan.narc src/poketool/pokezukan.narc
+	@ cmp $(PBRDIR)pst_gra.narc src/graphic/pst_gra.narc
+	@ cmp $(PBRDIR)sound_data.sdat src/data/sound/sound_data.sdat
+	@ cmp $(PBRDIR)waza_tbl.narc src/poketool/waza/waza_tbl.narc
+	@ cmp $(PBRDIR)wifi.ncgr src/data/wifi.ncgr
+	@ cmp $(PBRDIR)winframe.narc src/graphic/winframe.narc
+	@ cmp $(PBRDIR)wm.ncgr src/data/wm.ncgr
+	@ cmp $(PBRDIR)wm.nclr src/data/wm.nclr
 

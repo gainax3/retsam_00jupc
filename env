@@ -7,7 +7,13 @@ export NITRODWC_ROOT="$PWD/sdk/NitroDWC"
 export NITROVCT_ROOT="$PWD/sdk/libVCT"
 export NITROLIBVCT_ROOT="$PWD/sdk/libVCT"
 export CWFOLDER_NITRO="$PWD/sdk/cw"
-export LM_LICENSE_FILE="$CWFOLDER_NITRO/license.dat"
+
+if [ "$OS" != 'Windows_NT' ] && $(grep -q Microsoft /proc/version); then
+	export LM_LICENSE_FILE="$(wslpath -m "$CWFOLDER_NITRO/license.dat")"
+else
+	export LM_LICENSE_FILE="$CWFOLDER_NITRO/license.dat"
+fi
+
 export IS_NITRO_DIR="$PWD/sdk/isdbg"
 
 export WINEDLLOVERRIDES="winemenubuilder.exe=d;mscoree,mshtml="

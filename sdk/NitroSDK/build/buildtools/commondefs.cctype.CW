@@ -417,22 +417,9 @@ SDK_VERINFO_CW_CC	:= $(NITRO_BUILDTOOLSDIR)/verinfo.cw.cc
 SDK_VERINFO_CW_LD	:= $(NITRO_BUILDTOOLSDIR)/verinfo.cw.ld
 
 ifeq	($(MAKECMDGOALS),do-build)
-
--include $(SDK_VERINFO_CW_CC) $(SDK_VERINFO_CW_LD)
-#--------CW2.0beta2 以降のバージョンへの対応
-ifndef	SDK_CW_BUILD_VERSION_CC
-#--------SDK_CW_BUILD_VERSION_CCが定義されていない場合makeでverinfoを作成
-MAKE_VERINFO	:= $(shell make make-verinfo)
--include $(SDK_VERINFO_CW_CC) $(SDK_VERINFO_CW_LD)
-endif
-
-ifeq		($(shell expr "$(SDK_CW_BUILD_VERSION_CC)" ">=" 3.0),1)
+SDK_VERINFO_CW_CC := 3.0
 CW_MAJOR_VER	?= 2
-endif
-# "__declspec(force_export)" support
-ifeq		($(shell expr "$(SDK_CW_BUILD_VERSION_CC)" ">=" 3.0),1)
 SDK_CW_FORCE_EXPORT_SUPPORT	:= yes
-endif
 endif
 CW_MAJOR_VER	?= 1
 
