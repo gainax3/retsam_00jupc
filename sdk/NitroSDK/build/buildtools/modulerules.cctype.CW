@@ -263,8 +263,8 @@ endif
 vpath	%.a		$(ALIBVPATH)
 vpath	%.o		$(ALIBVPATH)
 
-INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(AINCLUDE_DIRS)))
-LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(ALIBRARY_DIRS)))
+INCLUDE_DIRS		= $(subst \ -I,\ ,$(addprefix -I,$(call PATH_UNIX2DOS,$(AINCLUDE_DIRS))))
+LIBRARY_DIRS		= $(subst \ -L,\ ,$(addprefix -L,$(call PATH_UNIX2DOS,$(ALIBRARY_DIRS))))
 LIBRARIES		= $(subst \ -l,\ ,$(addprefix -l,$(ALIBRARIES)))
 
 INCLUDES		= -gccinc -I. $(INCLUDE_DIRS)
@@ -285,7 +285,7 @@ endif
 DEPEND_RULE	= $(QUOTE)/ARM_EABI_Support/d;s/\\x0D//g;s/\\\\\\([^ ]\\)/\\/\\1/g;$(QUOTE)
 
 define MOVE_SRC_DEPEND
-	$(SED) -e $(DEPEND_RULE) $(*F).d > $(DEPENDDIR)/$(*F).d && $(RM) $(*F).d
+	$(SED) -e $(DEPEND_RULE) -e $(PATH_DEPEND_RULE) $(*F).d > $(DEPENDDIR)/$(*F).d && $(RM) $(*F).d
 endef
 
 
@@ -302,7 +302,7 @@ PCHDR_C_NAME	= $(subst $(SPACE),,$(subst -DSDK_,.,$(subst =,-,$(PCHDR_C_DEFS))))
 PCHDR_C_BASE	= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC))$(PCHDR_C_NAME).C
 PCHDR_C_MCH	= $(PCHDR_C_BASE).mch
 PCHDR_C_DEPEND	= $(PCHDR_C_BASE).depend
-PCHDR_CCFLAGS	= -include $(PCHDR_C_MCH)
+PCHDR_CCFLAGS	= -include $(call PATH_UNIX2DOS,$(PCHDR_C_MCH))
 CCFLAGS_NOLDEF	= $(PCHDR_C_DEFS) $(PCHDR_C_NODEF) 
 
 PCHDR_CXX_DEFS	= $(sort $(filter -DSDK_%,$(CXXFLAGS)))
@@ -311,7 +311,7 @@ PCHDR_CXX_NAME	= $(subst $(SPACE),,$(subst -DSDK_,.,$(subst =,-,$(PCHDR_CXX_DEFS
 PCHDR_CXX_BASE	= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC))$(PCHDR_CXX_NAME).CXX
 PCHDR_CXX_MCH	= $(PCHDR_CXX_BASE).mch
 PCHDR_CXX_DEPEND= $(PCHDR_CXX_BASE).depend
-PCHDR_CXXFLAGS	= -include $(PCHDR_CXX_MCH)
+PCHDR_CXXFLAGS	= -include $(call PATH_UNIX2DOS,$(PCHDR_CXX_MCH))
 CXXFLAGS_NOLDEF	= $(PCHDR_CXX_DEFS) $(PCHDR_CXX_NODEF) 
 
 GDIRT_CLOBBER	+= $(PCHDR_CACHE)/$(notdir $(PCHDR_SRC)).*
@@ -322,9 +322,9 @@ ifeq	($(MAKECMDGOALS),do-build)
 define BUILD_PCHDR
 	@$(CP) $(PCHDR_SRC) $(1).h
 	($(CD) $(dir $(1).mch) && \
-	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -precompile $(notdir $(1).mch) $(1).h)
+	 $(CC) $(subst -include ,-DSDK_PCHDR_DUMMY_,$(2)) $(INCLUDES) -MD -precompile $(notdir $(1).mch) $(notdir $(1).h))
 	@($(ECHO) $(1).mch: $(PCHDR_SRC) \\       >  $(1).depend && \
-	  $(SED) -e '1d' -e $(DEPEND_RULE) $(1).d >> $(1).depend && $(RM) $(1).d $(1).h)
+	  $(SED) -e '1d' -e $(DEPEND_RULE) -e $(PATH_DEPEND_RULE) $(1).d >> $(1).depend && $(RM) $(1).d $(1).h)
 endef
 
 # precomipled header for C

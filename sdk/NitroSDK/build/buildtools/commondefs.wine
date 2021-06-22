@@ -1,5 +1,15 @@
-ifneq ($(OS),Windows_NT)
+PATH_UNIX2DOS = $1
+PATH_DEPEND_RULE := ''
 WINE := wine
-else
+
+ifeq ($(OS),Windows_NT)
+WINE :=
+endif
+
+WSLENV ?= x
+ifneq ($(WSLENV),x)
+PATH_UNIX2DOS = $(foreach d,$1,$(shell echo '$d' | sed -e 's@^/mnt/\([a-z]\)/@\U\1:/@'))
+PATH_DEPEND_RULE := 's@^\t\([A-Z]\):/@\t/mnt/\L\1/@'
+export WSLENV := MWCIncludes:MWLibraries:MWLibraryFiles:$(WSLENV)
 WINE :=
 endif

@@ -717,8 +717,8 @@ ARFLAGS_ARCH	?=
 #  standard includes/libraries for CodeWarrior
 #
 
-export	MWCIncludes    := $(subst \;, ,$(subst $(SPACE),;,$(CW_INCDIRS)))
-export	MWLibraries    := $(subst \;, ,$(subst $(SPACE),;,$(CW_LIBDIRS)))
+export	MWCIncludes    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(CW_INCDIRS))))
+export	MWLibraries    := $(subst \;, ,$(subst $(SPACE),;,$(call PATH_UNIX2DOS,$(CW_LIBDIRS))))
 export	MWLibraryFiles := $(subst \;, ,$(subst $(SPACE),;,$(CW_LIBS)))
 
 #----------------------------------------------------------------------------

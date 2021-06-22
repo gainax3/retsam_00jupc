@@ -378,17 +378,17 @@ TARGET_ROM	= $(strip $(findstring .srl,$(TARGET_BIN)) \
 ifneq	($(strip $(OBJS) $(LLIBRARIES)),)	# any object?
 ifeq	($(CODEGEN_PROC),ARM9)
 SDEPENDS_BIN	=	$(BINDIR)/%.nef $(MAKEROM_ARM7)
-MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $@)'	\
-			-DMAKEROM_ARM7='$(basename $(MAKEROM_ARM7))'
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(call PATH_UNIX2DOS,$(basename $@))'	\
+			-DMAKEROM_ARM7='$(call PATH_UNIX2DOS,$(basename $(MAKEROM_ARM7)))'
 else	# !ARM9
 SDEPENDS_BIN	=	$(BINDIR)/%.nef $(MAKEROM_ARM9)
-MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $(MAKEROM_ARM9))' \
-			-DMAKEROM_ARM7='$(basename $@)'
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(call PATH_UNIX2DOS,$(basename $(MAKEROM_ARM9)))' \
+			-DMAKEROM_ARM7='$(call PATH_UNIX2DOS,$(basename $@))'
 endif	# -ARM9
 else	# !OBJS !LLIBRARIES
 SDEPENDS_BIN	=	$(MAKEROM_ARM9) $(MAKEROM_ARM7)
-MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(basename $(MAKEROM_ARM9))' \
-			-DMAKEROM_ARM7='$(basename $(MAKEROM_ARM7))'
+MAKEROM_DEFS	+=	-DMAKEROM_ARM9='$(call PATH_UNIX2DOS,$(basename $(MAKEROM_ARM9)))' \
+			-DMAKEROM_ARM7='$(call PATH_UNIX2DOS,$(basename $(MAKEROM_ARM7)))'
 endif	# -OBJS -LLIBRARIES
 
 ifndef	USE_MY_RULE_BIN

@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ "$OS" != 'Windows_NT' ]; then
+if [ "$OS" != 'Windows_NT' -a "${WSLENV-x}" = 'x' ]; then
     exec wine "$0".exe "$@"
 else
     exec "$0".exe "$@"
