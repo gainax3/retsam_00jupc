@@ -15,6 +15,6 @@ WSLENV ?= x
 ifneq ($(WSLENV),x)
 PATH_UNIX2DOS = $(foreach d,$1,$(shell echo '$d' | sed -e 's@^/mnt/\([a-z]\)/@\U\1:/@'))
 PATH_DEPEND_RULE := 's@^\t\([A-Z]\):/@\t/mnt/\L\1/@'
-export WSLENV := MWCIncludes:MWLibraries:MWLibraryFiles:$(WSLENV)
+export WSLENV := MWCIncludes:MWLibraries:MWLibraryFiles:LM_LICENSE_FILE:$(WSLENV)
 WINE :=
 endif

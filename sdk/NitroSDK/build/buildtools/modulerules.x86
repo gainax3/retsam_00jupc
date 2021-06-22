@@ -66,7 +66,7 @@
 #----------------------------------------------------------------------------
 #	Implicit RULES
 #----------------------------------------------------------------------------
-WARNING		= -Wall
+WARNING		= -Wall -Wno-unused-but-set-variable -Wno-format
 
 LEX		= flex
 YACC		= bison -y

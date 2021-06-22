@@ -65,6 +65,7 @@ To build everything (necessary the first time around!):
 ```
 ./build_all.sh
 ```
+You might have to run this multiple times as the build system is prone to breaking.
 
 After this, you can build any changes to only the game itself by running:
 ```

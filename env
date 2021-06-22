@@ -21,5 +21,6 @@ if [ "$OS" = 'Windows_NT' ]; then
     export NITRODWC_ROOT="$(cygpath -w "$NITRODWC_ROOT")"
     export NITROLIBVCT_ROOT="$(cygpath -w "$NITROLIBVCT_ROOT")"
     export CWFOLDER_NITRO="$(cygpath -w "$CWFOLDER_NITRO")"
+    export LM_LICENSE_FILE="$(cygpath -w "$LM_LICENSE_FILE")"
     export IS_NITRO_DIR="$(cygpath -w "$IS_NITRO_DIR")"
 fi
