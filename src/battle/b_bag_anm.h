@@ -66,7 +66,7 @@ enum {
 // ボタンアニメモード
 enum {
 //	BBAG_BTNANM_MODE_CHG = 0,	// 押したら次へ
-	BBAG_BTNANM_MODE_END = 0,	// 再押し可能
+	BBAG_BTNANM_MODE_END = 0,	// 再押し可能 
 };
 
 

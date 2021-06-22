@@ -1271,7 +1271,7 @@ static int CheckKey(TR_CARD_WORK *wk)
 #endif
 	if (sys.tp_trg){
 ///		OS_Printf("xy=%d,%d\n",sys.tp_x,sys.tp_y);
-		wk->brushOK = TRUE;	//バッジ磨き可能
+		wk->brushOK = TRUE;	//バッジ磨き可能 
 	}
 	
 ///	wk->touch = GF_TP_RectHitTrg( TpHit[wk->TrCardData->BrushValid].CoverTpRect[wk->IsOpen] );
@@ -1289,7 +1289,7 @@ static int CheckKey(TR_CARD_WORK *wk)
 			key_req = TRC_KEY_REQ_TP_BRUSH;
 		}
 	}else{	//タッチパネル触っていない
-		wk->brushOK = FALSE;	//バッジ磨き不可能
+		wk->brushOK = FALSE;	//バッジ磨き不可能 
 	}
 
 	//タッチパネルキーが起動していなければボタン判定

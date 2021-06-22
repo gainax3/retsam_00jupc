@@ -2079,7 +2079,7 @@ u32 ConScr_AcceNoGet(CONTEST_SYSTEM *consys)
 		#ifdef OSP_CONTEST_ON
 			OS_TPrintf("アクセサリー：これ以上Add出来ないので取得しない\n");
 		#endif
-			return 0xffff;	//追加不可能
+			return 0xffff;	//追加不可能 
 		}
 	}
 

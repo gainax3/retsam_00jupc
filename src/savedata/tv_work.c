@@ -597,11 +597,11 @@ BOOL TVWORK_EnableMakeTopic(TV_WORK * tvwk, TVTOPICTYPE topic_type, int topic_id
 		for (i = 0; i < MY_TOPIC_COMMON_MAX & array[i] != 0; i++) {
 			mtopic = TVWORK_GetMyTopicByIndex(tvwk, topic_type, array[i]);
 			if (mtopic->topic.see_count >= BROADCAST_MAX) {
-				//視聴データがあるが上書き可能
+				//視聴データがあるが上書き可能 
 				return TRUE;
 			}
 		}
-		//視聴データがあり、上書き不可能
+		//視聴データがあり、上書き不可能 
 		return FALSE;
 	}
 

@@ -1330,7 +1330,7 @@ static BOOL CheckCollectGoods(	const int inGridX, const int inGridZ,
 	for (i=0;i<GOODS_HIT_LIST_MAX;i++){
 		if (inList[i].Valid == TRUE){
 			if ( CheckPointHit(&(inList[i].Data.Rect), inGridX, inGridZ) ){
-				//ヒットしたので撤去可能
+				//ヒットしたので撤去可能 
 				(*outIndex) = i;
 				return TRUE;
 			}
@@ -1667,7 +1667,7 @@ static void TpUpdateGoodsPos(FIELDSYS_WORK * fsys, GOODS_HIT_DAT *ioData, UG_BAS
 	rect.GridRX = rect.GridLX+(w-1);
 	rect.GridRZ = rect.GridLZ+(d-1);
 
-	//基地内ならば、移動可能
+	//基地内ならば、移動可能 
 	if ( !CheckHitWall(&rect) ){
 		ioData->Rect = rect;
 /**
@@ -1711,7 +1711,7 @@ static void TpUpdatePanelPos(FIELDSYS_WORK * fsys, UG_BASE_TP *outBaseTp, UG_BAS
 	rect.GridRX = rect.GridLX;
 	rect.GridRZ = rect.GridLZ;
 
-	//基地内ならば、移動可能
+	//基地内ならば、移動可能 
 	if ( !CheckHitWall(&rect) ){
 		vec.x = grid_x*(FX32_ONE*16)+(FX32_ONE*8);
 		vec.z = grid_z*(FX32_ONE*16)+(FX32_ONE*8);

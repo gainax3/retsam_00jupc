@@ -2604,7 +2604,7 @@ static u8 BattleInModeMenuMake( PLIST_WORK * wk, u8 * prm )
 		prm[1] = MENU_CANCEL;
 		return 2;
 
-	case 1:		// 参加可能
+	case 1:		// 参加可能 
 		prm[0] = MENU_BATTLE_IN;
 		prm[1] = MENU_STATUS;
 		prm[2] = MENU_CANCEL;
@@ -2639,7 +2639,7 @@ static u8 BattleStageInModeMenuMake( PLIST_WORK * wk, u8 * prm )
 		prm[1] = MENU_CANCEL;
 		return 2;
 
-	case 1:		// 参加可能
+	case 1:		// 参加可能 
 		prm[0] = MENU_BATTLE_IN;
 		prm[1] = MENU_STATUS;
 		prm[2] = MENU_CANCEL;
@@ -2673,7 +2673,7 @@ static u8 BattleCastleInModeMenuMake( PLIST_WORK * wk, u8 * prm )
 		prm[1] = MENU_CANCEL;
 		return 2;
 
-	case 1:		// 参加可能
+	case 1:		// 参加可能 
 		prm[0] = MENU_BATTLE_IN;
 		prm[1] = MENU_STATUS;
 		prm[2] = MENU_CANCEL;

@@ -45,8 +45,8 @@ enum {
 	ITEM_PRM_EVENT,					// 重要
 	ITEM_PRM_CNV,					// 便利ボタン
 	ITEM_PRM_POCKET,				// 保存先（ポケット番号）
-	ITEM_PRM_FIELD,					// field機能
-	ITEM_PRM_BATTLE,				// battle機能
+	ITEM_PRM_FIELD,					// field機能 
+	ITEM_PRM_BATTLE,				// battle機能 
 	ITEM_PRM_TUIBAMU_EFF,			// ついばむ効果
 	ITEM_PRM_NAGETUKERU_EFF,		// なげつける効果
 	ITEM_PRM_NAGETUKERU_ATC,		// なげつける威力

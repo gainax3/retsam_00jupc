@@ -26,7 +26,7 @@
 //----
 #ifdef PLAYER_DEBUG
 //----
-//定義する事でデバッグ移動可能
+//定義する事でデバッグ移動可能 
 #define PLAYER_DEBUG_MOVE
 //定義で怪力フラグのイベントチェックを行う
 //#define DEBUG_JIKI_KAIRIKI_FLAG_CHECK_ON

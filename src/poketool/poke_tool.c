@@ -6284,7 +6284,7 @@ BOOL GrashideaFeasibleCheck(POKEMON_PARAM *pp)
 	
 	if(monsno == MONSNO_EURISU && form_no == 0 && hp > 0 && event_get_flag == 1
 			&& ((condition & CONDITION_KOORI) == 0)	//氷状態になっていない
-			&& (time.hour >= 4 && time.hour < 20)){	//AM4:00 ～ PM19:59までがフォルムチェンジ可能
+			&& (time.hour >= 4 && time.hour < 20)){	//AM4:00 ～ PM19:59までがフォルムチェンジ可能 
 		return TRUE;
 	}
 	return FALSE;

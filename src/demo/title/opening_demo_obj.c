@@ -115,7 +115,7 @@ static const u8 ResEntryNumTbl[RESOURCE_NUM] = {
 	ACT_ID_MAX,			//セルアニメリソース
 };
 
-//アクターＩＤとアクターワークの対応表
+//アクターＩＤとアクターワークの対応表 
 static int ActIDTbl[CLACT_WORK_MAX] = {
 	ACT_ID_HERO,			//主人公男
 	ACT_ID_HERO_SUB,		//主人公男(サブ画面)

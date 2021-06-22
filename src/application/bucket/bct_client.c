@@ -250,7 +250,7 @@ static const NNSG3dResName sc_AnmNodeName[ BCT_MARUNOMU_ANM_NUM ][ BCT_MARUNOMU_
 		"pSphere7",
 	},
 };
-// アニメとモデルの対応表
+// アニメとモデルの対応表 
 static const u8 sc_BCT_MARUNOMU_ANM_MDL[ BCT_MARUNOMU_ANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 	BCT_MARUNOMU_MDL_NORMAL,
@@ -260,7 +260,7 @@ static const u8 sc_BCT_MARUNOMU_ANM_MDL[ BCT_MARUNOMU_ANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 };
 
-// カラーアニメとモデルの対応表
+// カラーアニメとモデルの対応表 
 static const u8 sc_BCT_MARUNOMU_COLANM_MDL[ BCT_MARUNOMU_ANM_COLANM_NUM ] = {
 	BCT_MARUNOMU_MDL_NORMAL,
 //	BCT_MARUNOMU_MDL_FEVER,
@@ -1227,7 +1227,7 @@ typedef struct {
     // 開始アニメ
     BCT_COUNTDOWN_DRAW start;
 
-    // 結果発表
+    // 結果発表 
     BCT_CLIENT_RESULT result;
 
     // マルノーム

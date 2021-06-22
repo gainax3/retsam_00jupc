@@ -1478,7 +1478,7 @@ static BOOL WFLBY_EV_DEF_ALL_IntrGadGet_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMW
 			// 会話応答停止
 			WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, FALSE );
 
-			// NPC状態表示不可能
+			// NPC状態表示不可能 
 //			WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, FALSE );				
 		}
 		
@@ -4767,7 +4767,7 @@ static BOOL WFLBY_EV_DEF_NpcWait_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// NPCの動作停止
 				WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_npc, WFLBY_3DOBJCONT_MOVENONE );
 
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				
 				// ローカル状態をBUSYにする
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
@@ -4788,7 +4788,7 @@ static BOOL WFLBY_EV_DEF_NpcWait_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 
 				// ローカル状態をBUSYにする
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				
 
 				// 表示
@@ -4819,7 +4819,7 @@ static BOOL WFLBY_EV_DEF_NpcWait_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 
 		// ローカル状態をBUSYを戻す
 		WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, FALSE );
-		// NPC状態表示可能
+		// NPC状態表示可能 
 		WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, FALSE );				
 		break;
 	}
@@ -4865,7 +4865,7 @@ static BOOL WFLBY_EV_DEF_NpcMain_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 			WFLBY_EVENTWK_DeleteWk( p_wk );
 
 			WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_npc, WFLBY_3DOBJCONT_MOVENONE );	// 動作停止
-			// NPC状態表示不可能
+			// NPC状態表示不可能 
 			WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				
 
 			// ローカル状態をBUSYにする
@@ -4891,7 +4891,7 @@ static BOOL WFLBY_EV_DEF_NpcMain_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// NPCの動作停止
 				WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_npc, WFLBY_3DOBJCONT_MOVENONE );
 
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				
 				// ローカル状態をBUSYにする
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
@@ -4925,7 +4925,7 @@ static BOOL WFLBY_EV_DEF_NpcMain_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// NPCの動作停止
 				WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_npc, WFLBY_3DOBJCONT_MOVENONE );
 
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				
 				// ローカル状態をBUSYにする
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
@@ -4943,7 +4943,7 @@ static BOOL WFLBY_EV_DEF_NpcMain_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// 人物動作停止
 				WFLBY_3DOBJCONT_SetWkMove( p_objcont, p_npc, WFLBY_3DOBJCONT_MOVENONE );
 
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 //				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );				タッチトイはOK
 				// ローカル状態をBUSYにする
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
@@ -5279,7 +5279,7 @@ static BOOL WFLBY_EV_DEF_NpcJump_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// 会話ビジー状態を解除
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, FALSE );
 
-				// NPC状態表示可能
+				// NPC状態表示可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, FALSE );
 			}
 		}
@@ -5356,7 +5356,7 @@ static BOOL WFLBY_EV_DEF_NpcJump_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 				// 会話ビジー状態を設定
 				WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, TRUE );
 
-				// NPC状態表示不可能
+				// NPC状態表示不可能 
 				WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, TRUE );
 			}
 		}
@@ -5405,7 +5405,7 @@ static BOOL WFLBY_EV_DEF_NpcJump_Before( WFLBY_EVENTWK* p_wk, WFLBY_ROOMWK* p_rm
 		// ローカル状態をBUSYを元に戻す
 		WFLBY_ROOM_SetNpcTalkBusy( p_rmwk, plno, FALSE );
 
-		// NPC状態表示可能
+		// NPC状態表示可能 
 		WFLBY_ROOM_SetNpcInfoDrawBusy( p_rmwk, plno, FALSE );
 
 		// 非常駐イベント終了

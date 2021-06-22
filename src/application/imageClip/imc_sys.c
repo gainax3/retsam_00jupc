@@ -978,7 +978,7 @@ PROC_RESULT IMC_ProcContestMain( PROC* proc, int* seq )
 
 
 	case IMC_SYS_CON_SEQ_CON_TEXT_THEME_ON:
-		// THEME”­•\
+		// THEME”­•\ 
 		imc_w->msg_idx = setContestTextBmpWin( imc_w, msg_con_theme_01 + imc_w->theme );
 		(*seq)++;
 		break;

@@ -502,7 +502,7 @@ PROC_RESULT BucketProc_Main( PROC* p_proc, int* p_seq )
 		break;
 		
 	case BCT_MAINSEQ_RESULT:
-		// Œ‹‰Ê”­•\
+		// Œ‹‰Ê”­•\ 
 		result = BCT_CLIENT_EndMain( p_wk->p_client, BCT_CLIENT_ENDEVENT_RESULTON );	
 		if( result == FALSE ){
 			(*p_seq)++;

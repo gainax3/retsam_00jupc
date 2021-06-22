@@ -873,7 +873,7 @@ int CommMPGetFastConnectIndex(void)
         if(_pCommMP->bconUnCatchTime[i] != 0){
             if(_isMachBackupMacAddress(&_pCommMP->sBssDesc[i].bssid[0])){  // ŒÃ‚¢MAC‚É‡’v
                 num = CommMPGetParentConnectionNum(i);
-                if(( num > 1) && (num < COMM_MACHINE_MAX)){      // –{e‚ÉŠY“–‚µ‚½ ‚Ü‚¾Q‰Á‰Â”\
+                if(( num > 1) && (num < COMM_MACHINE_MAX)){      // –{e‚ÉŠY“–‚µ‚½ ‚Ü‚¾Q‰Á‰Â”\ 
                     return i;
                 }
             }

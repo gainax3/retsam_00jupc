@@ -1975,7 +1975,7 @@ static BOOL WcrMoveObj_MoveFuncPlayerKeyWait( WIFI_MATCHROOM* p_mcr, MCR_MOVEOBJ
 	}
 
 
-	// キャラクタを入れ替えるデバック機能
+	// キャラクタを入れ替えるデバック機能 
 #ifdef MCR_DEBUG_2CCHAR_CHECK
 	if( sys.trg & PAD_BUTTON_START ){
 		static const u16 sc_DEBUG_VIEW_TBL[] = {

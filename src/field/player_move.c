@@ -391,7 +391,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	fldobj = Player_FieldOBJGet( jiki );
 	
 	if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){
-		return( TRUE );								//コマンドセット可能
+		return( TRUE );								//コマンドセット可能 
 	}
 	
 	if( dir == DIR_NOT ){
@@ -400,7 +400,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	
 	code = FieldOBJ_AcmdCodeGet( fldobj );
 	
-	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){ //壁ヒットはキャンセル可能
+	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){ //壁ヒットはキャンセル可能 
 		u32 ret;
 		
 		if( Player_MoveBitCheck_TWorldSp(jiki) == TRUE ){
@@ -460,7 +460,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	fldobj = Player_FieldOBJGet( jiki );
 	
 	if( FieldOBJ_AcmdSetCheck(fldobj) == TRUE ){
-		return( TRUE );											//コマンドセット可能
+		return( TRUE );											//コマンドセット可能 
 	}
 	
 	if( dir == DIR_NOT ){
@@ -469,7 +469,7 @@ static int Jiki_MoveStartCheck( PLAYER_STATE_PTR jiki, int dir )
 	
 	code = FieldOBJ_AcmdCodeGet( fldobj );
 	
-	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){				//壁ヒットはキャンセル可能
+	if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){				//壁ヒットはキャンセル可能 
 #if 0
 		if( FieldOBJ_MoveHitCheckDir(fldobj,dir) != FLDOBJ_MOVE_HIT_BIT_NON ){
 			return( FALSE );
@@ -3489,7 +3489,7 @@ int Player_MoveCancellCheck( PLAYER_STATE_PTR jiki )
 	{
 		int code = FieldOBJ_AcmdCodeGet( fldobj );
 		
-		if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){			//壁ヒットはキャンセル可能
+		if( Jiki_WallHitAcmdCodeCheck(code) == TRUE ){			//壁ヒットはキャンセル可能 
 			return( TRUE );
 		}
 	}

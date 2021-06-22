@@ -1873,7 +1873,7 @@ static void D_Nohara_31_Main( TCB_PTR tcb, void * work )
 	LOAD_RESULT_NULL = 0,		///<データなし
 	LOAD_RESULT_OK,				///<データ正常読み込み
 	LOAD_RESULT_NG,				///<データ異常
-	LOAD_RESULT_BREAK,			///<破壊、復旧不能
+	LOAD_RESULT_BREAK,			///<破壊、復旧不能 
 #endif
 		wk->seq++;
 		break;

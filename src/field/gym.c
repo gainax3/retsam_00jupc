@@ -4013,7 +4013,7 @@ typedef enum
 //--------------------------------------------------------------
 typedef enum
 {
-	SBAGHIT_NON = 0,	// 0 通行可能
+	SBAGHIT_NON = 0,	// 0 通行可能 
 	SBAGHIT_HIT,		// 1 通行不可
 	SBAGHIT_NOTV,		// 2 縦方向不可
 	SBAGHIT_NOTH,		// 3 横方向不可

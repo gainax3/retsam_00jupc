@@ -379,7 +379,7 @@ BOOL CharSet( const CHAR_MANAGER_HEADER* pCharData )
 	tbl = getCharData();
 	if( tbl == NULL ){
 		GF_ASSERT(0&&("データ登録テーブルMAXです。もう登録できません。"));
-		return FALSE;		// 登録不可能
+		return FALSE;		// 登録不可能 
 	}
 
 
@@ -461,7 +461,7 @@ BOOL CharSetCharModeAdjust( const CHAR_MANAGER_HEADER* pCharData )
 	tbl = getCharData();
 	if( tbl == NULL ){
 		GF_ASSERT(0&&("データ登録テーブルMAXです。もう登録できません。"));
-		return FALSE;		// 登録不可能
+		return FALSE;		// 登録不可能 
 	}
 
 
@@ -1698,7 +1698,7 @@ static CHAR_DATA_TBL* getCharData( void )
 		}
 	}
 
-	return NULL;		// 登録不可能
+	return NULL;		// 登録不可能 
 }
 
 //----------------------------------------------------------------------------

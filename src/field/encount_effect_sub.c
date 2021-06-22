@@ -2020,7 +2020,7 @@ void EncountEffect_Trainer_WaterLevelLow(TCB_PTR tcb, void* work)
 		return ;
 	}
 
-	// ラスターフリップ機能
+	// ラスターフリップ機能 
 	if( task_w->laster_flg == TRUE ){
 		EF_Laster_BuffXFlip( &task_w->laster, ENCOUNT_TR_WATER_LOW_LASTER_FLIP_DOT );
 	}
@@ -2276,7 +2276,7 @@ void EncountEffect_Trainer_WaterLevelHigh(TCB_PTR tcb, void* work)
 		return ;
 	}
 
-	// ラスターフリップ機能
+	// ラスターフリップ機能 
 	if( task_w->laster_flg == TRUE ){
 		EF_Laster_BuffXFlip( &task_w->laster, ENCOUNT_TR_WATER_HIGH_LASTER_FLIP_DOT );
 	}

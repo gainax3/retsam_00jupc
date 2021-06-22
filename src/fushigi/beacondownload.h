@@ -64,7 +64,7 @@ extern BOOL bsdown_end( void );
 
 // 最後に受信したパケットのインデックス
 extern int bsdown_c_lastreceive(void);
-// 現在まで受け取ったパケットの表
+// 現在まで受け取ったパケットの表 
 extern u8 *bsdown_c_downloadpacket(void);
 
 // 受信済みのＣＲＣが正しいかチェック。

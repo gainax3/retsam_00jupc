@@ -317,9 +317,9 @@ s32 ItemBufParamGet( ITEMDATA * item, u16 param )
 		return (s32)item->cnv_btn;
 	case ITEM_PRM_POCKET:				// 保存先（ポケット番号）
 		return (s32)item->fld_pocket;
-	case ITEM_PRM_FIELD:				// field機能
+	case ITEM_PRM_FIELD:				// field機能 
 		return (s32)item->field_func;
-	case ITEM_PRM_BATTLE:				// battle機能
+	case ITEM_PRM_BATTLE:				// battle機能 
 		return (s32)item->battle_func;
 	case ITEM_PRM_TUIBAMU_EFF:			// ついばむ効果
 		return (s32)item->tuibamu_eff;

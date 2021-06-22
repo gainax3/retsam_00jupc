@@ -1634,7 +1634,7 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 		return( FALSE );
 	}
 	
-	if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能
+	if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能 
 		ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 		FieldOBJ_StatusBitON_Move( fldobj );
 		FieldOBJ_CmdSet( fldobj, ac );
@@ -1656,7 +1656,7 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 			return( FALSE );
 		}
 		
-		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能
+		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能 
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 			FieldOBJ_StatusBitON_Move( fldobj );
 			FieldOBJ_CmdSet( fldobj, ac );
@@ -1677,7 +1677,7 @@ static int AlongWall_WallMove( FIELD_OBJ_PTR fldobj, MV_ALONGW_WORK *work, int a
 			return( FALSE );
 		}
 		
-		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能
+		if( ret == FLDOBJ_MOVE_HIT_BIT_NON ){		//移動可能 
 			ac = FieldOBJ_AcmdCodeDirChange( dir_move, ac );
 			FieldOBJ_StatusBitON_Move( fldobj );
 			FieldOBJ_CmdSet( fldobj, ac );

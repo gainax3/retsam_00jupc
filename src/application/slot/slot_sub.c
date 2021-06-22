@@ -1158,7 +1158,7 @@ static int eoaMBallMove_Shake_Init( MBALLWORK *work )
 	work->frame = 0;
 	work->no = 0;
 	work->angle = 0;
-	work->end_flag = TRUE;	//何時でも終了可能
+	work->end_flag = TRUE;	//何時でも終了可能 
 	
 	CLACT_SetMatrix( work->actwork.act, &mtx );
 	CLACT_SetScale( work->actwork.act, &scale );
@@ -1228,7 +1228,7 @@ static int eoaMBallMove_Stop_Init( MBALLWORK *work )
 	
 	work->mtx = mtx;
 	work->offs = offs;
-	work->end_flag = TRUE;	//何時でも終了可能
+	work->end_flag = TRUE;	//何時でも終了可能 
 	
 	CLACT_SetMatrix( work->actwork.act, &mtx );
 	CLACT_SetScale( work->actwork.act, &scale );

@@ -270,7 +270,7 @@ typedef struct{
 	u32 request_bit;				///<命令を出しているビット
 	u8 transmit_buf[TRANSMIT_BUF_SIZE];	///<送信用バッファ
 	u8 receive_buf[RECEIVE_BUF_SIZE];	///<受信用バッファ
-	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能
+	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能 
 	u8 receive_flag;				///<TRUE：データ受信した
 #endif
 	CONTEST_ORDER_WORK cow;			///<送受信ワーク

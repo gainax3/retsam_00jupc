@@ -1527,7 +1527,7 @@ static BOOL NEWS_TOPIC_GetSTRMiniGame( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG* c
 			break;
 		
 		default:
-			return FALSE;	// 文字列作成不可能
+			return FALSE;	// 文字列作成不可能 
 		}
 		p_tmpstr = MSGMAN_AllocString( p_msgman, msgidx );
 	}else{
@@ -1703,7 +1703,7 @@ static BOOL NEWS_TOPIC_GetSTRMgResultIn( NEWS_TOPIC* p_obj, const WFLBY_VIPFLAG*
 		wflby_topic_22,
 	};
 
-	// 人数がおかしかったらトピック作成不可能
+	// 人数がおかしかったらトピック作成不可能 
 	if( NEWS_TOPIC_MGRESULT_CheckPlayerNum( p_obj->work[NEWS_TOPIC_WK_MGRESULT_NO], 
 				p_obj->work[NEWS_TOPIC_WK_MGRESULT_PLAYNUM] ) == FALSE ){
 		return FALSE;

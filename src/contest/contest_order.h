@@ -40,7 +40,7 @@ typedef struct{
 	u32 request_bit;				///<命令を出しているビット
 	u8 transmit_buf[CO_TRANSMIT_BUF_SIZE];	///<送信用バッファ
 	u8 receive_buf[CC_NETID_MAX][CO_RECEIVE_BUF_SIZE];	///<受信用バッファ
-	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能
+	u8 transmit_flag;				///<TRUE：送信待ち。　FALSE:新たなデータセット可能 
 	u8 receive_flag[CC_NETID_MAX];				///<TRUE：データ受信した
 	u8 answer_count;				///<返事を受け取った数をカウント
 }CONTEST_ORDER_WORK;

@@ -1175,7 +1175,7 @@ int bsdown_c_lastreceive(void)
 	return s_work.index;	
 }
 
-// 現在まで受け取ったパケットの表
+// 現在まで受け取ったパケットの表 
 u8 *bsdown_c_downloadpacket(void)
 {
 	return &(s_work.flags[0]);	

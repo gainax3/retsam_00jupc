@@ -2375,7 +2375,7 @@ static void NMixGameDemo_MainWin_ResultSeen0( NMIX_DEMO_MAIN_WIN* p_work )
 	// •¶Žš—ñ•`‰æ
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN], 15 );
 
-	// Œ‹‰Ê”­•\
+	// Œ‹‰Ê”­•\ 
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->result, 
 			NMIX_MAINWIN_RESULT_TITLE_X, NMIX_MAINWIN_RESULT_TITLE_Y,

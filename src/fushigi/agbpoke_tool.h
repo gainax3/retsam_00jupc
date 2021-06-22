@@ -98,7 +98,7 @@ enum{
 };
 
 #if 0
-#define	POKE2VS2_OK		0				//2体2戦闘可能
+#define	POKE2VS2_OK		0				//2体2戦闘可能 
 #define	POKE2VS2_ONE	1				//1体しかポケモンがいない
 #define	POKE2VS2_NOTWO	2				//戦えるポケモンが2体いない
 

@@ -25,7 +25,7 @@ typedef struct _REGULATION_DATA REGULATION_DATA;
 
 
 #define REGULATION_NAME_SIZE   (11)      // ルール名の長さ 11文字22バイト +EOM2byte
-#define REGULATION_MAX_NUM   (1)   // １本保存可能
+#define REGULATION_MAX_NUM   (1)   // １本保存可能 
 
 typedef enum  {
   REGULATION_NAME,          //ルール名

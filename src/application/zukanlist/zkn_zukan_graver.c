@@ -1775,7 +1775,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeNormal( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int x, y;
 	int buff_idx;
 
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	sex = ZKN_UTIL_PokemonGraphicSet_FS_Idx(
@@ -1818,7 +1818,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomutti( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int area_type;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomutti_Idx(
@@ -1861,7 +1861,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeMinomesu( ZKN_ZUKANGRAVER_DRAW* p_dra
 	int area_type;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Minomesu_Idx(
@@ -1904,7 +1904,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiiusi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int area_type;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siiusi_Idx(
@@ -1947,7 +1947,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSiidorugo( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int area_type;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	area_type = ZKN_UTIL_PokemonGraphicSet_Siidorugo_Idx(
@@ -1988,7 +1988,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeAnnoon( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int form;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Anoon_Idx(	
@@ -2031,7 +2031,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeDeokisisu( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int form;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Deokisisu_Idx(	
@@ -2065,7 +2065,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeSheimi( ZKN_ZUKANGRAVER_DRAW* p_draw,
 	int form;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Sheimi_Idx(	
@@ -2099,7 +2099,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeGiratyina( ZKN_ZUKANGRAVER_DRAW* p_dr
 	int form;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Giratyina_Idx(	
@@ -2128,7 +2128,7 @@ static void ZknZukanGraverPokeGraDrawOnTypeRotom( ZKN_ZUKANGRAVER_DRAW* p_draw, 
 	int form;
 	int buff_idx;
 	
-	// 表
+	// 表 
 	ZknZukanGraverPokeGraMatGet( s_idx, &x, &y );
 	buff_idx = ZknZukanGraverGetBuffIdx_PokeGraIdx( p_draw->now_draw_buff, s_idx );
 	form = ZKN_UTIL_PokemonGraphicSet_Rotom_Idx(	

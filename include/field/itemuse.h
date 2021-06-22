@@ -55,7 +55,7 @@ enum {
 
 // アイテム使用チェックの戻り値
 enum {
-	ITEMCHECK_TRUE = 0,				// 使用可能
+	ITEMCHECK_TRUE = 0,				// 使用可能 
 
 	ITEMCHECK_ERR_CYCLE_OFF,		// 自転車を降りれない
 	ITEMCHECK_ERR_COMPANION,		// 使用不可・連れ歩き

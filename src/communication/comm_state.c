@@ -322,7 +322,7 @@ static void _commStateInitialize(SAVEDATA* pSaveData,int serviceNo)
     _pCommState->bFirstParent = TRUE;  // 親の初めての起動の場合TRUE
     _pCommState->pSaveData = pSaveData;
     _pCommState->pMyStatus = SaveData_GetMyStatus(pSaveData);
-    _pCommState->limitNum = COMM_MODE_UNION_NUM_MIN + 1;   // 一人は最低でも接続可能
+    _pCommState->limitNum = COMM_MODE_UNION_NUM_MIN + 1;   // 一人は最低でも接続可能 
     _pCommState->negotiation = _NEGOTIATION_CHECK;
     _pCommState->bUnionPause = FALSE;
     _pCommState->serviceNo = serviceNo;
@@ -2452,7 +2452,7 @@ void CommRecvNegotiation(int netID, int size, void* pData, void* pWork)
     u8* pMsg = pData;
     BOOL bMatch = TRUE;
 
-    if(CommGetCurrentID() != COMM_PARENT_ID){  // 親機のみ判断可能
+    if(CommGetCurrentID() != COMM_PARENT_ID){  // 親機のみ判断可能 
         return;
     }
     bMatch = TRUE;

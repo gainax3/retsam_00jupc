@@ -1355,7 +1355,7 @@ PROC_RESULT WLDTIMER_Init(PROC* p_proc, int* p_seq)
 	WLDTIMER_WK* p_wk;
 	WLDTIMER_PARAM* p_param;
 
-	// 全地域表示でバック機能
+	// 全地域表示でバック機能 
 #ifdef WLDTIMER_DEBUG_ALLPLACEOPEN
 	if( sys.cont & PAD_BUTTON_R ){
 		s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = TRUE;

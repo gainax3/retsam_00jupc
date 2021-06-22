@@ -96,13 +96,13 @@ typedef struct{
 	u8 fur;								//毛艶
 	
 	u16 rank:3;							///<参加可能ランク
-	u16 part_style:1;					///<格好よさコンテスト参加可能
-	u16 part_beautiful:1;				///<美しさコンテスト参加可能
-	u16 part_cute:1;					///<可愛さコンテスト参加可能
-	u16 part_clever:1;					///<賢さコンテスト参加可能
-	u16 part_strong:1;					///<逞しさコンテスト参加可能
-	u16 part_tutorial:1;				///<チュートリアル参加可能
-	u16 part_practice:1;				///<練習参加可能
+	u16 part_style:1;					///<格好よさコンテスト参加可能 
+	u16 part_beautiful:1;				///<美しさコンテスト参加可能 
+	u16 part_cute:1;					///<可愛さコンテスト参加可能 
+	u16 part_clever:1;					///<賢さコンテスト参加可能 
+	u16 part_strong:1;					///<逞しさコンテスト参加可能 
+	u16 part_tutorial:1;				///<チュートリアル参加可能 
+	u16 part_practice:1;				///<練習参加可能 
 	u16 appear:2;						///<登場タイミング
 	u16 sex:2;							///<性別
 	u16 character:2;					///<性格

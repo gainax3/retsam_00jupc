@@ -329,7 +329,7 @@ typedef struct{
 	u8 local_frame;
 	u8 local_wait;
 	u8 booster_type;		///<ブースタータイプ
-	u8 hit_ok;				///<TRUE:空気との当たり判定発生可能
+	u8 hit_ok;				///<TRUE:空気との当たり判定発生可能 
 	s32 local_work;
 	s16 local_x;
 	s16 local_y;

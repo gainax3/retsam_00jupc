@@ -365,7 +365,7 @@ BOOL PlttSet( const PLTT_MANAGER_HEADER* pPlttData )
 	// テーブル数が足りたかチェック
 	if( tbl == NULL ){
 		GF_ASSERT(0&&("テーブルが一杯で登録できません"))
-		return FALSE;		// 登録不可能
+		return FALSE;		// 登録不可能 
 	}
 	
 	// パレットデータ読み込み
@@ -444,7 +444,7 @@ BOOL PlttSetCleanArea( const PLTT_MANAGER_HEADER* pPlttData )
 	// テーブル数が足りたかチェック
 	if( tbl == NULL ){
 		GF_ASSERT(0&&("テーブルが一杯で登録できません"))
-		return FALSE;		// 登録不可能
+		return FALSE;		// 登録不可能 
 	}
 	
 	// パレットデータ読み込み

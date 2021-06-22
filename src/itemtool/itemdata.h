@@ -8,8 +8,8 @@ struct _ITEM_DATA {
 	u8	imp:2;					// 重要
 	u8	cnv_btn:2;				// 便利ボタン
 	u8	pocket:4;				// 保存先（ポケット番号）
-	u8	field_func;				// field機能
-	u8	battle_func;			// battle機能
+	u8	field_func;				// field機能 
+	u8	battle_func;			// battle機能 
 	u8	work_type;				// ワークタイプ
 
 	u8	work[20];				// 汎用ワーク
@@ -29,8 +29,8 @@ struct _ITEM_DATA {
 	u16	fld_pocket:4;		// フィールド保存先（ポケット番号）
 	u16	btl_pocket:5;		// 戦闘保存先（ポケット番号）
 
-	u8	field_func;			// field機能
-	u8	battle_func;		// battle機能
+	u8	field_func;			// field機能 
+	u8	battle_func;		// battle機能 
 	u8	work_type;			// ワークタイプ
 
 	u8	dmy;				// ダミー

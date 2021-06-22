@@ -2908,7 +2908,7 @@ static void Roulette_EvPanelChoice( ROULETTE_WORK* wk )
 					break;
 				};
 			}else{
-				flag = 1;		//何戦目かのチェックがないので出現可能
+				flag = 1;		//何戦目かのチェックがないので出現可能 
 			}
 
 			if( flag == 1 ){

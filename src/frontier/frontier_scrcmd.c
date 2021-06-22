@@ -2204,7 +2204,7 @@ static BOOL FSSC_BattleRecInit( FSS_TASK * core )
 	LOAD_RESULT_NULL = 0,		///<データなし
 	LOAD_RESULT_OK,				///<データ正常読み込み
 	LOAD_RESULT_NG,				///<データ異常
-	LOAD_RESULT_BREAK,			///<破壊、復旧不能
+	LOAD_RESULT_BREAK,			///<破壊、復旧不能 
 #endif
 
 	return 0;
@@ -2459,7 +2459,7 @@ static BOOL FSSC_BattleRecLoad( FSS_TASK * core )
 	LOAD_RESULT_NULL = 0,		///<データなし
 	LOAD_RESULT_OK,				///<データ正常読み込み
 	LOAD_RESULT_NG,				///<データ異常
-	LOAD_RESULT_BREAK,			///<破壊、復旧不能
+	LOAD_RESULT_BREAK,			///<破壊、復旧不能 
 #endif
 
 #if 1	//デバック(戦闘切り替え)

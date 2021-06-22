@@ -1897,7 +1897,7 @@ static void EV_PokeSelect_Deback_Anm( EV_POKESELECT_PROC_WORK* p_psl )
 {
 	CAMERA_ANGLE angle;
 	
-	// デバック機能
+	// デバック機能 
 	if( sys.trg & PAD_BUTTON_B ){
 		Move_seq_set( p_psl, 0 );
 		Anm_ev_3d_obj_set( &p_psl->ev_3d_obj[POKESELECT_AUTOANM], 0 );

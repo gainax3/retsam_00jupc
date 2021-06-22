@@ -1243,7 +1243,7 @@ static void LR_ButtonFunc( UNION_BOARD_WORK *ubw )
 	// 表示はcont 実際の動作はrepeat
 	
 	if(sys.cont & PAD_BUTTON_L){
-		// 上矢印（下にウインドウを１つスクロール）と同じ機能
+		// 上矢印（下にウインドウを１つスクロール）と同じ機能 
 		UnionBoardScrollBttnAnmPush( ubw, 0 );
 		if( sys.repeat & PAD_BUTTON_L ){
 			if(ubw->Scroll.now!=0){
@@ -1252,7 +1252,7 @@ static void LR_ButtonFunc( UNION_BOARD_WORK *ubw )
 			}
 		}
 	}else if(sys.cont & PAD_BUTTON_R){
-		// 下矢印（下にウインドウを１つスクロール）と同じ機能
+		// 下矢印（下にウインドウを１つスクロール）と同じ機能 
 		UnionBoardScrollBttnAnmPush( ubw, 1 );
 		if( sys.repeat & PAD_BUTTON_R ){
 			if(ubw->Scroll.now<ubw->Scroll.max-3){

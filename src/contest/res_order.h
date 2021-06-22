@@ -27,7 +27,7 @@ enum{
 	RORDER_NO_CONRES_EXIT,		///<ダンス部門終了
 	RORDER_NO_TALK,				///<会話メッセージ表示
 	RORDER_NO_RESULT_CHANGE,	///<披露画面から結果発表画面に切り替える
-	RORDER_NO_RANKING_ANNOUNCE,	///<順位発表
+	RORDER_NO_RANKING_ANNOUNCE,	///<順位発表 
 	RORDER_NO_VICTORY_APPEAR,	///<優勝したポケモンの登場演出
 	RORDER_NO_METER_UPDATE,		///<メーターを伸ばす
 	RORDER_NO_RESULT_FADEOUT,	///<結果発表画面をフェードアウトする
@@ -91,7 +91,7 @@ typedef struct{
 	u8 seq;
 }ROLOCAL_RESULT_CHANGE;
 
-///順位発表
+///順位発表 
 typedef struct{
 	CONRES_PROC_WORK *rpw;
 	CORDER_HEAD req_head;

@@ -52,7 +52,7 @@ enum {
 
 // 使用チェックの戻り値
 enum {
-	FIELDSKILL_USE_TRUE = 0,	// 使用可能
+	FIELDSKILL_USE_TRUE = 0,	// 使用可能 
 	FIELDSKILL_USE_FALSE,		// 使用不可（ここでは使えません）
 	FIELDSKILL_NO_BADGE,		// 使用不可・バッジなし
 	FIELDSKILL_COMPANION,		// 使用不可・連れ歩き

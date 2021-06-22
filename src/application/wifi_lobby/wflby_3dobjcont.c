@@ -663,7 +663,7 @@ WFLBY_3DPERSON* WFLBY_3DOBJCONT_AddNpc( WFLBY_3DOBJCONT* p_sys, u32 plid, u32 tr
 			
 			if( result == FALSE ){
 				OS_TPrintf( "npc 登録不可能\n" );
-				return NULL;	// 現在登録不可能
+				return NULL;	// 現在登録不可能 
 			}else{
 				// その位置に主人公がいないかチェック
 				p_player = WFLBY_3DOBJCONT_GetPlayer( p_sys );
