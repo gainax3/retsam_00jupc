@@ -91,6 +91,7 @@
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #include	<stdio.h>
+#include	<string.h>
 #include	<strings.h>
 #include	<stdarg.h>             // va_start(),va_end()
 #ifndef _WIN32
