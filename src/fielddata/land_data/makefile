@@ -60,7 +60,7 @@ LINCLUDES	+= $(dir $<)
 #	ツールへのパス指定
 #----------------------------------------------------------------------------
 G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
-CSVCVTR	= $(DP_ROOT)/convert/exceltool/ExcelSeetConv.exe
+CSVCVTR	= true #$(DP_ROOT)/convert/exceltool/ExcelSeetConv.exe
 MK_GROUNDTOOL = mkmapdmy.rb
 
 #%.nsbmt: $(@:.nsbmt=.imd) $(subst $(DATASRC)/,$(NSBMTFILESDIR),$@)
