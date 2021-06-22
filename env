@@ -1,0 +1,25 @@
+export PATH="$PWD/tools/make:$PWD/tools/ruby:$PWD/tools/nnsarc:$PATH"
+
+export NITROSDK_ROOT="$PWD/sdk/NitroSDK"
+export NITROSYSTEM_ROOT="$PWD/sdk/NitroSystem"
+export NITROWIFI_ROOT="$PWD/sdk/NitroWiFi"
+export NITRODWC_ROOT="$PWD/sdk/NitroDWC"
+export NITROVCT_ROOT="$PWD/sdk/libVCT"
+export NITROLIBVCT_ROOT="$PWD/sdk/libVCT"
+export CWFOLDER_NITRO="$PWD/sdk/cw"
+export LM_LICENSE_FILE="$CWFOLDER_NITRO/license.dat"
+export IS_NITRO_DIR="$PWD/sdk/isdbg"
+
+export WINEDLLOVERRIDES=winemenubuilder.exe=d
+export WINEARCH=win32
+export WINEPREFIX="$PWD/.wineprefix"
+
+if [ "$OS" = 'Windows_NT' ]; then
+    export NITROSDK_ROOT="$(cygpath -w "$NITROSDK_ROOT")"
+    export NITROSYSTEM_ROOT="$(cygpath -w "$NITROSYSTEM_ROOT")"
+    export NITROWIFI_ROOT="$(cygpath -w "$NITROWIFI_ROOT")"
+    export NITRODWC_ROOT="$(cygpath -w "$NITRODWC_ROOT")"
+    export NITROLIBVCT_ROOT="$(cygpath -w "$NITROLIBVCT_ROOT")"
+    export CWFOLDER_NITRO="$(cygpath -w "$CWFOLDER_NITRO")"
+    export IS_NITRO_DIR="$(cygpath -w "$IS_NITRO_DIR")"
+fi

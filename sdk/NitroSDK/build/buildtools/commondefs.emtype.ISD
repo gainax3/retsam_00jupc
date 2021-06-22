@@ -99,7 +99,11 @@ ISD_EMULATOR		:= $(ISD_ROOT)/X86/bin/ISNITROEMULATOR.exe
 ISD_NITRO_DEBUGGER	:= $(ISD_ROOT)/X86/bin/ISND.exe
 ISD_NITLOAD		:= $(ISD_ROOT)/Samples/download/X86/Release/nitload.exe
 ISD_NITLOAD_GCC		:= $(NITRO_TOOLSDIR)/bin/_nitload.exe
+ifneq ($(OS),Windows_NT)
+ISD_ROOT_NOSPACE	:= $(ISD_ROOT)
+else
 ISD_ROOT_NOSPACE	:= $(subst \,/,$(shell cygpath -d $(ISD_ROOT)))
+endif
 
 #----------------------------------------------------------------------------
 

@@ -1,0 +1,5 @@
+ifneq ($(OS),Windows_NT)
+WINE := wine
+else
+WINE :=
+endif

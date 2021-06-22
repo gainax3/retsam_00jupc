@@ -898,6 +898,7 @@ LIBSYSCALL_		 = $(if $(LIBSYSCALL),$(LIBSYSCALL),$(NITRO_LIBSYSCALLDIR)/libsysca
 
 ### Compiler & Linker settings
 
+-include $(NITRO_BUILDTOOLSDIR)/commondefs.wine
 -include $(NITRO_BUILDTOOLSDIR)/commondefs.cctype.$(NITRO_CCTYPE)
 
 ifneq	($(NITRO_MAKEROM),)
