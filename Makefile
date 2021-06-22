@@ -469,6 +469,7 @@ $(LCFILE_SPEC):	commondefs.GF modulerules.GF make_prog_files make_g3_files overl
 	make $(LCFDEF_FILE)
 	make do-build
 
+main.lsf: overlay_files
 overlay_files: overlaytool.rb
 	ruby overlaytool.rb
 
