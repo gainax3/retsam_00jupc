@@ -6,6 +6,8 @@
 #	tamada GAME FREAK inc.
 #----------------------------------------------------------------------------
 
+include $(NITROSDK_ROOT)/build/buildtools/commondefs.wine
+
 TARGET 	=	mmodel.narc
 HEADER	=	$(TARGET:.narc=.naix)
 
@@ -19,13 +21,13 @@ include	mmodel_list
 include	fldeff_list
 
 #G3Dコンバータへのパス
-G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
+G3DCVTR	= $(WINE) $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 
 #G2Dコンバータへのパス
 G2DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g2dcvtr.exe
 
 #itpコンバータへのパス
-ITPCVTR = itp_conv.exe
+ITPCVTR = $(WINE) ./itp_conv.exe
 
 #--------------------------------------------------
 #	ファイルリスト置き換え

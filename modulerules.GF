@@ -1,4 +1,4 @@
-G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
+G3DCVTR	= $(WINE) $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 
 %.nsbmd: $(subst $(DATABIN),$(DATASRC)/,$(@:.nsbmd=.imd))
 	$(G3DCVTR) $(subst $(DATABIN),$(DATASRC)/,$(@:.nsbmd=.imd)) -o $@ 

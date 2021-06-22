@@ -10,7 +10,7 @@ export CWFOLDER_NITRO="$PWD/sdk/cw"
 export LM_LICENSE_FILE="$CWFOLDER_NITRO/license.dat"
 export IS_NITRO_DIR="$PWD/sdk/isdbg"
 
-export WINEDLLOVERRIDES=winemenubuilder.exe=d
+export WINEDLLOVERRIDES="winemenubuilder.exe=d;mscoree,mshtml="
 export WINEARCH=win32
 export WINEPREFIX="$PWD/.wineprefix"
 

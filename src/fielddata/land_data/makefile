@@ -37,6 +37,7 @@ DATAMAPFLST		= mkmapdmy.txt
 
 #共通変数定義
 include $(DP_ROOT)/commondefs.GF
+include $(NITROSDK_ROOT)/build/buildtools/commondefs.wine
 include	$(NITROSYSTEM_ROOT)/build/buildtools/modulerules
 
 include land_model_list
@@ -59,7 +60,7 @@ LINCLUDES	+= $(dir $<)
 #----------------------------------------------------------------------------
 #	ツールへのパス指定
 #----------------------------------------------------------------------------
-G3DCVTR	= $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
+G3DCVTR	= $(WINE) $(NITROSYSTEM_ROOT)/tools/win/bin/g3dcvtr.exe
 CSVCVTR	= true #$(DP_ROOT)/convert/exceltool/ExcelSeetConv.exe
 MK_GROUNDTOOL = mkmapdmy.rb
 

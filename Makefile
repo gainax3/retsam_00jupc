@@ -268,6 +268,8 @@ include sub_make_files
 #----------------------------------------------------------------------------
 include	make_prog_files
 include overlay_files
+SRCS := $(subst \,/,$(SRCS))
+SRCS_OVERLAY := $(subst \,/,$(SRCS_OVERLAY))
 
 #----------------------------------------------------------------------------
 #	ロムに含まれるファイルの指定

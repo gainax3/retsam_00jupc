@@ -898,7 +898,6 @@ LIBSYSCALL_		 = $(if $(LIBSYSCALL),$(LIBSYSCALL),$(NITRO_LIBSYSCALLDIR)/libsysca
 
 ### Compiler & Linker settings
 
--include $(NITRO_BUILDTOOLSDIR)/commondefs.wine
 -include $(NITRO_BUILDTOOLSDIR)/commondefs.cctype.$(NITRO_CCTYPE)
 
 ifneq	($(NITRO_MAKEROM),)
@@ -906,7 +905,7 @@ LCFILE_TEMPLATE		?= $(DEFAULT_LCFILE_TEMPLATE)
 LCFILE_SPEC		?= $(DEFAULT_LCFILE_SPEC)
 LCFILE_AUTOGEN		?= $(BINDIR)/$(notdir $(LCFILE_SPEC:.lsf=.autogen.lcf))
 LCFILE			?= $(LCFILE_AUTOGEN)
-DEFAULT_LDRES_TEMPLATE	:= $(NITRO_SPECDIR)/$(basename $(notdir $(LD))).response.template
+DEFAULT_LDRES_TEMPLATE	:= $(NITRO_SPECDIR)/mwldarm.response.template
 LDRES_TEMPLATE		?= $(DEFAULT_LDRES_TEMPLATE)
 LDRES_AUTOGEN		?= $(BINDIR)/$(notdir $(LCFILE_SPEC:.lsf=.autogen.response))
 LDRES_FILE		?= $(LDRES_AUTOGEN)
@@ -1091,7 +1090,7 @@ MAKEBANNER		 := $(NITRO_TOOLSDIR)/bin/makebanner.exe
 ADDBANNER		 := $(NITRO_TOOLSDIR)/bin/addbanner.exe
 NTEXCONV		 := $(NITRO_TOOLSDIR)/bin/ntexconv.exe
 COMPSTATIC		 := $(NITRO_TOOLSDIR)/bin/compstatic.exe
-MAKEROM			 := $(NITRO_TOOLSDIR)/bin/makerom.exe
+MAKEROM			 := $(WINE) $(NITRO_TOOLSDIR)/bin/makerom.exe
 EMUCHILD		 := $(NITRO_TOOLSDIR)/bin/emuchild.exe
 ATTACHSIGN		 := $(NITRO_TOOLSDIR)/bin/attachsign.exe
 BIN2OBJ			 := $(NITRO_TOOLSDIR)/bin/bin2obj.exe
