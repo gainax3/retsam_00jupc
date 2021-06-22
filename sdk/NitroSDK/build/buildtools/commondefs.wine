@@ -1,11 +1,16 @@
+# Windows/Cygwin
 PATH_UNIX2DOS = $1
 PATH_DEPEND_RULE := ''
-WINE := wine
-
-ifeq ($(OS),Windows_NT)
 WINE :=
+
+# Linux
+ifneq ($(OS),Windows_NT)
+PATH_UNIX2DOS = $(patsubst /%,Z:/%,$1)
+PATH_DEPEND_RULE := 's@^\tZ:/@\t/@'
+WINE := wine
 endif
 
+# WSL
 WSLENV ?= x
 ifneq ($(WSLENV),x)
 PATH_UNIX2DOS = $(foreach d,$1,$(shell echo '$d' | sed -e 's@^/mnt/\([a-z]\)/@\U\1:/@'))
