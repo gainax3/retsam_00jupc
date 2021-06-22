@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 if [ ! -x tools/make/make -a ! -x tools/make/make.exe ]; then
     (cd tools/make; ./build.sh)
