@@ -18,7 +18,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs.cctype.CW
 include	$(NITROSYSTEM_ROOT)/build/buildtools/commondefs
 
 #MakeÇ≈ê∂ê¨Ç≥ÇÍÇÈ*.bin/*.narcÇÕmake cleanÇÃçÌèúëŒè€Ç…Ç∑ÇÈ
-LDIRT_CLEAN	= $(SCRSRCS:.ev=.bin) scr_seq.narc
+LDIRT_CLEAN	= $(SCRSRCS:.ev=.bin) scr_seq.narc elf2bin.exe
 
 IPATH	=	-I../eventdata
 #----------------------------------------------------------------------------
@@ -29,13 +29,16 @@ do-build: $(SCRSRCS:.ev=.bin)
 
 common_scr.bin:	../../../include/msgdata/msg_common_scr.h
 
-%.bin: %.ev $(DEPENDHEADERS)
+%.bin: %.ev elf2bin.exe $(DEPENDHEADERS)
 	@echo $<
 	@cp $< temp_$*.s
 	@$(MWAS) $(IPATH) temp_$*.s -o $*.o
 	@$(MWLD) -dis -o $*.elf $*.o
-	@elf2bin $*.elf
+	@./elf2bin.exe $*.elf
 	@rm $*.o $*.elf temp_$*.s
+
+elf2bin.exe: ../../battle/skill/elf2bin.c
+	$(CC_X86) -o $@ $<
 
 do-build: scr_seq.narc
 scr_seq.narc: $(SCRSRCS:.ev=.bin)
