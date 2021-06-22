@@ -111,7 +111,7 @@ include	$(NITROSDK_ROOT)/build/buildtools/commondefs
 
 #----------------------------------------------------------------------------
 
-SUBDIRS 	=
+SUBDIRS 	= bin2obj
 
 ifdef	NITRO_PRIVATE
 SUBDIRS 	+= makelcf		\

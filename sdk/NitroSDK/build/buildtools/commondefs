@@ -1075,9 +1075,9 @@ REMAKE		:= $(MAKE) -f $(MAKEFILE)
 
 LEX		:= flex
 YACC		:= bison -y
-CC_X86		:= gcc -mno-cygwin
-CXX_X86		:= g++ -mno-cygwin
-LD_X86		:= gcc -mno-cygwin
+CC_X86		:= gcc -m32
+CXX_X86		:= g++ -m32
+LD_X86		:= gcc -m32
 AR_X86		:= ar ruc
 
 
