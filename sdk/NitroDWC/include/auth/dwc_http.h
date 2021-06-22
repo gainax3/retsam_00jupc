@@ -92,7 +92,7 @@
 #define DWC_HTTP_H_
 
 #include <nitroWiFi.h>
-#include <nitrowifi/version.h>
+#include <nitroWiFi/version.h>
 
 #include "util_alloc.h"
 #include "util_base64.h"
