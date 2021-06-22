@@ -14,7 +14,7 @@
 #include <string.h>
 #include <nnsys.h>
 #include "gf_gx.h"
-#include "include/gflib/calc2D.h"
+#include "include/gflib/calc2d.h"
 #include "include/gflib/calctool.h"
 #include "include/gflib/display.h"
 #include "include/gflib/vram_transfer_manager.h"

@@ -6,7 +6,7 @@
 
 #define	__CALC3D_H_GLOBAL
 #include "calctool.h"
-#include "calc3D.h"
+#include "calc3d.h"
 
 //ボックスとボックスの衝突検出(ねじれの位置にある辺同士の衝突)に使う構造体
 //面衝突判定において、1頂点衝突したときの点を記憶しておく

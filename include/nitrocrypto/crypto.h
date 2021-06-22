@@ -33,9 +33,9 @@
 extern "C" {
 #endif
 
-#include <nitroCrypto/crypto/util.h>
-#include <nitroCrypto/crypto/sign.h>
-#include <nitroCrypto/crypto/rc4.h>
+#include <nitrocrypto/crypto/util.h>
+#include <nitrocrypto/crypto/sign.h>
+#include <nitrocrypto/crypto/rc4.h>
 
 #ifdef __cplusplus
 }
