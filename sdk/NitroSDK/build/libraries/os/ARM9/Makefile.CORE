@@ -123,4 +123,9 @@ $(OBJDIR)/%.o: $(DATA_DIR)/%.bin
 
 #			$(CW_BINDIR)/BinToElf.exe $< -aligndata 4 -endian little -output $@
 
+# .c
+$(OBJDIR)/os_reset.o: ../../../common/src/os_reset.c
+	$(CW_BINDIR)/2.0/sp1p2/mwccarm.exe $(CCFLAGS) $(INCLUDES) -include $(call PATH_UNIX2DOS,$(PCHDR_SRC)) -c $< -MD -o $@
+	@$(MOVE_SRC_DEPEND)
+
 #===== End of Makefile =====

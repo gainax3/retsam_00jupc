@@ -164,8 +164,16 @@ asm void MIi_CpuClear16( register u16 data, register void* destp, register u32 s
 
 @00:
         cmp     r3, r2                  // n < size ?
-        strlth  r0, [r1, r3]            // *((vu16 *)(destp + n)) = data
-        addlt   r3, r3, #2              // n += 2
+        blt @strlth1
+        b @strlth2
+@strlth1:
+        strh  r0, [r1, r3]            // *((vu16 *)(destp + n)) = data
+@strlth2:
+        blt @addlt1
+        b @addlt2
+@addlt1:
+        add   r3, r3, #2              // n += 2
+@addlt2:
         blt     @00
 
         bx      lr
@@ -191,16 +199,28 @@ asm void MIi_CpuCopy16( register const void *srcp, register void *destp, registe
         cmp     r12, r2                 // n < size ?
 
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-        ldrlth  r3, [r0, r12]           // *((vu16 *)(destp + n)) = *((vu16 *)(srcp + n))
+        blt @ldrlth1
+        b @ldrlth2
+@ldrlth1:
+        ldrh  r3, [r0, r12]           // *((vu16 *)(destp + n)) = *((vu16 *)(srcp + n))
+@ldrlth2:
 #else
         dcd     0xb19030bc
 #endif
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-        strlth  r3, [r1, r12]
+        blt @strlth1
+        b @strlth2
+@strlth1:
+        strh  r3, [r1, r12]
+@strlth2:
 #else
         dcd     0xb18130bc
 #endif
-        addlt   r12, r12, #2            // n += 2
+        blt @addlt1
+        b @addlt2
+@addlt1:
+        add   r12, r12, #2            // n += 2
+@addlt2:
         blt     @10
 
         bx      lr
@@ -225,12 +245,24 @@ asm void MIi_CpuSend16( register const void *srcp, register volatile void* destp
 @11:
         cmp     r12, r2                 // n < size ?
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-        ldrlth  r3, [r0, r12]           // *((vu16 *)(destp + n)) = *((vu16 *)(srcp + n))
+        blt @ldrlth1
+        b @ldrlth2
+@ldrlth1:
+        ldrh  r3, [r0, r12]           // *((vu16 *)(destp + n)) = *((vu16 *)(srcp + n))
+@ldrlth2:
 #else
         dcd     0xb19030bc
 #endif
-        strlth  r3, [r1, #0]
-        addlt   r12, r12, #2            // n += 2
+        blt @strlth1
+        b @strlth2
+@strlth1:
+        strh  r3, [r1, #0]
+@strlth2:
+        blt @addlt1
+        b @addlt2
+@addlt1:
+        add   r12, r12, #2            // n += 2
+@addlt2:
         blt     @11
 
         bx      lr
@@ -255,7 +287,11 @@ asm void MIi_CpuClear32( register u32 data, register void *destp, register u32 s
 
 @20:
         cmp     r1, r12                 // while (destp < destEndp)
-        stmltia r1!, {r0}               // *((vu32 *)(destp++)) = data
+        blt @stmltia1
+        b @stmltia2
+@stmltia1:
+        stmia r1!, {r0}               // *((vu32 *)(destp++)) = data
+@stmltia2:
         blt     @20
         bx      lr
 }
@@ -278,8 +314,16 @@ asm void MIi_CpuCopy32( register const void *srcp, register void *destp, registe
 
 @30:
         cmp     r1, r12                 // while (destp < destEndp)
-        ldmltia r0!, {r2}               // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
-        stmltia r1!, {r2}
+        blt @ldmltia1
+        b @ldmltia2
+@ldmltia1:
+        ldmia r0!, {r2}               // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
+@ldmltia2:
+        blt @stmltia1
+        b @stmltia2
+@stmltia1:
+        stmia r1!, {r2}
+@stmltia2:
         blt     @30
 
         bx      lr
@@ -303,8 +347,16 @@ asm void MIi_CpuSend32( register const void *srcp, volatile void *destp, u32 siz
 
 @31:
         cmp     r0, r12                 // while (srcp < srcEndp)
-        ldmltia r0!, {r2}               // *((vu32 *)(destp)) = *((vu32 *)(srcp)++)
-        strlt   r2, [r1]
+        blt @ldmltia1
+        b @ldmltia2
+@ldmltia1:
+        ldmia r0!, {r2}               // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
+@ldmltia2:
+        blt @strlt1
+        b @strlt2
+@strlt1:
+        str   r2, [r1]
+@strlt2:
         blt     @31
 
         bx      lr
@@ -340,11 +392,19 @@ asm void MIi_CpuClearFast( register u32 data, register void *destp, register u32
 
 @40:
         cmp     r1, r12                 // while (destp < destBlockEndp)
-        stmltia r1!, {r0, r2-r8}        // *((vu32 *)(destp++)) = data
+        blt @stmltia1
+        b @stmltia2
+@stmltia1:
+        stmia r1!, {r0, r2-r8}        // *((vu32 *)(destp++)) = data
+@stmltia2:
         blt     @40
 @41:
         cmp     r1, r9                  // while (destp < destEndp)
-        stmltia r1!, {r0}               // *((vu32 *)(destp++)) = data
+        blt @stmltia3
+        b @stmltia4
+@stmltia3:
+        stmia r1!, {r0}                 // *((vu32 *)(destp++)) = data
+@stmltia4:
         blt     @41
 
         ldmfd   sp!, {r4-r9}
@@ -373,13 +433,29 @@ asm void MIi_CpuCopyFast( register const void *srcp, register void *destp, regis
 
 @50:
         cmp     r1, r12                 // while (destp < destBlockEndp)
-        ldmltia r0!, {r2-r9}            // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
-        stmltia r1!, {r2-r9}
+        blt @ldmltia1
+        b @ldmltia2
+@ldmltia1:
+        ldmia r0!, {r2-r9}            // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
+@ldmltia2:
+        blt @stmltia1
+        b @stmltia2
+@stmltia1:
+        stmia r1!, {r2-r9}
+@stmltia2:
         blt     @50
 @51:
         cmp     r1, r10                 // while (destp < destEndp)
-        ldmltia r0!, {r2}               // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
-        stmltia r1!, {r2}
+        blt @ldmltia3
+        b @ldmltia4
+@ldmltia3:
+        ldmia r0!, {r2}               // *((vu32 *)(destp)++) = *((vu32 *)(srcp)++)
+@ldmltia4:
+        blt @stmltia3
+        b @stmltia4
+@stmltia3:
+        stmia r1!, {r2}
+@stmltia4:
         blt     @51
 
         ldmfd   sp!, {r4-r10}
@@ -570,7 +646,11 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 {
     cmp     r2, #0
-    bxeq    lr
+    beq @bxeq1
+    b @bxeq2
+@bxeq1:
+    bx    lr
+@bxeq2:
 
     // dstp を 16bit アライン.
     tst     r0, #1
@@ -589,7 +669,11 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 #endif
     add     r0, r0, #1
     subs    r2, r2, #1
-    bxeq    lr
+    beq @bxeq3
+    b @bxeq4
+@bxeq3:
+    bx    lr
+@bxeq4:
 @_1:
 
     // 32bit アライン.
@@ -604,7 +688,11 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
     STRH_AD1( HALFW_CONDAL, 1, 0, 2 ) // *** for CW BUG
 #endif
     subs    r2, r2, #2
-    bxeq    lr
+    beq @bxeq5
+    b @bxeq6
+@bxeq5:
+    bx    lr
+@bxeq6:
 @_8:
     // 32bit 転送.
     orr     r1, r1, r1, lsl #16
@@ -621,7 +709,11 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
     //  最後の 16bit 転送.
     tst     r2, #2
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-    strneh  r1, [r0], #2
+    bne @strneh1
+    b @strneh2
+@strneh1:
+    strh  r1, [r0], #2
+@strneh2:
 #else
     STRH_AD1( HALFW_CONDNE, 1, 0, 2 ) // *** for CW BUG
 #endif
@@ -629,7 +721,11 @@ asm void MI_CpuFill8( register void *dstp, register u8 data, register u32 size )
 @_6:
     //  最後の 8bit 転送.
     tst     r2, #1
-    bxeq    lr
+    beq @bxeq7
+    b @bxeq8
+@bxeq7:
+    bx    lr
+@bxeq8:
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
     ldrh    r3, [r0]
 #else
@@ -677,7 +773,11 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
 asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u32 size )
 {
     cmp     r2, #0
-    bxeq    lr
+    beq @bxeq1
+    b @bxeq2
+@bxeq1:
+    bx    lr
+@bxeq2:
 
     // dstp を 16bit アライン.
     tst     r1, #1
@@ -690,13 +790,25 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     and     r12, r12, #0x00FF
     tst     r0, #1
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-    ldrneh  r3, [r0, #-1]
+    bne @ldrneh1
+    b @ldrneh2
+@ldrneh1:
+    ldrh  r3, [r0, #-1]
+@ldrneh2:
 #else
     LDRH_AD4( HALFW_CONDNE, 3, 0, 1 ) // *** for CW BUG
 #endif
-    movne   r3, r3, lsr #8
+    bne @movne1
+    b @movne2
+@movne1:
+    mov   r3, r3, lsr #8
+@movne2:
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-    ldreqh  r3, [r0]
+    beq @ldreqh1
+    b @ldreqh2
+@ldreqh1:
+    ldrh  r3, [r0]
+@ldreqh2:
 #else
     LDRH_AD2( HALFW_CONDEQ, 3, 0, 0 ) // *** for CW BUG
 #endif
@@ -709,7 +821,11 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     add     r0, r0, #1
     add     r1, r1, #1
     subs    r2, r2, #1
-    bxeq    lr
+    beq @bxeq3
+    b @bxeq4
+@bxeq3:
+    bx    lr
+@bxeq4:
 @_1:
 
     // アドレス端数の 16/32bit 同期をチェック.
@@ -754,7 +870,11 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     //      *dst = (u16)((*dst & 0xFF00) | tmp);
     //  return;
     tst     r2, #1
-    bxeq    lr
+    beq @bxeq5
+    b @bxeq6
+@bxeq5:
+    bx    lr
+@bxeq6:
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
     ldrh    r12, [r1]
 #else
@@ -809,7 +929,11 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
         STRH_AD1( HALFW_CONDAL, 3, 1, 2 ) // *** for CW BUG
 #endif
     subs    r2, r2, #2
-    bxeq    lr
+    beq @bxeq7
+    b @bxeq8
+@bxeq7:
+    bx    lr
+@bxeq8:
 @_8:
     // 32bit 転送.
     bics    r3, r2, #3
@@ -826,8 +950,16 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
     //  最後の 16bit 転送.
     tst     r2, #2
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-    ldrneh  r3, [r0], #2
-    strneh  r3, [r1], #2
+    bne @ldrneh3
+    b @ldrneh4
+@ldrneh3:
+    ldrh  r3, [r0], #2
+@ldrneh4:
+    bne @strneh1
+    b @strneh2
+@strneh1:
+    strh  r3, [r1], #2
+@strneh2:
 #else
     LDRH_AD1( HALFW_CONDNE, 3, 0, 2 ) // *** for CW BUG
     STRH_AD1( HALFW_CONDNE, 3, 1, 2 ) // *** for CW BUG
@@ -836,7 +968,11 @@ asm void MI_CpuCopy8( register const void *srcp, register void *dstp, register u
 @_6:
     //  最後の 8bit 転送.
     tst     r2, #1
-    bxeq    lr
+    beq @bxeq9
+    b @bxeq10
+@bxeq9:
+    bx    lr
+@bxeq10:
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
     ldrh    r2, [r1]
     ldrh    r0, [r0]

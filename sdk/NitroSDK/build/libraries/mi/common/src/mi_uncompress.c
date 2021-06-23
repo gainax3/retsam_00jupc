@@ -180,13 +180,18 @@ asm void MI_UnpackBits( register const void *srcp, register void *destp, registe
 
 asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
 {
+
                 stmfd   sp!, {r4-r7, lr}
                 
                 ldr     r5, [r0], #4            // r2:  destCount = *(u32 *)srcp >> 8
                 mov     r2, r5, lsr #8          // r0:  srcp += 4
                 mov     r7, #0
                 tst     r5, #0x0F               // r7:  isExFormat = (*header & 0x0F)? 1 : 0
-                movne   r7, #1
+                bne @movne1
+                b @movne2
+@movne1:
+                mov   r7, #1
+@movne2:
 
 @21:            cmp     r2, #0                  //  while (destCount > 0) {
                 ble     @26
@@ -207,11 +212,19 @@ asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
                                                 //          } else {
 @23:            ldrb    r5, [r0, #0]            // r3:          length = (*srcp >> 4);
                 cmp     r7, #0                  //              if ( ! isExFormat ) { length += 3; }
-                moveq   r6, #3
+                beq @moveq3
+                b @moveq4
+@moveq3:
+                mov   r6, #3
+@moveq4:
                 beq     @23_2
                                                 //              else {
                 tst     r5, #0xE0               //                  if ( length > 1 ) {
-                movne   r6, #1                  //                      length += 1;
+                bne @movne5
+                b @movne6
+@movne5:
+                mov   r6, #1                  //                      length += 1;
+@movne6:
                 bne     @23_2                   //                  } else {
                 
                 add     r0, r0, #1              //                      isWide = (length == 1)? 1 : 0;
@@ -244,7 +257,11 @@ asm void MI_UncompressLZ8( register const void *srcp, register void *destp )
                 bgt     @24
                                                 //          }
 @25:            cmp     r2, #0                  //          if (destCount <= 0)   break;
-                movgt   r14, r14, lsl #1        //          flags <<= 1
+                bgt @movgt7
+                b @movgt8
+@movgt7:
+                mov   r14, r14, lsl #1        //          flags <<= 1
+@movgt8:
                 bgt     @22                     //      }
                 b       @21                     //  }
 
@@ -293,7 +310,11 @@ asm void MI_UncompressLZ16( register const void *srcp, register void *destp )
                 mov     r2,  #0                 // r2:  shift = 0
                 mov     r11, #0
                 tst     r8,  #0x0F              // r11: isExFormat = (*header & 0x0F)? 1 : 0;
-                movne   r11, #1
+                bne @movne1
+                b @movne2
+@movne1:
+                mov   r11, #1
+@movne2:
                 
 @31:            cmp     r10, #0                 //  while (destCount > 0) {
                 ble     @36
@@ -312,20 +333,36 @@ asm void MI_UncompressLZ16( register const void *srcp, register void *destp )
 
                 eors    r2, r2, #8              //              if (!(shift ^= 8)) {
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-                streqh  r3, [r1], #2            //              *destp++ = destTmp;
+                beq @streqh3
+                b @streqh4
+@streqh3:
+                strh  r3, [r1], #2            //              *destp++ = destTmp;
+@streqh4:
 #else
                 dcd     0x00c130b2
 #endif
-                moveq   r3, #0                  //              destTmp = 0;
+                beq @moveq5
+                b @moveq6
+@moveq5:
+                mov   r3, #0                  //              destTmp = 0;
+@moveq6:
                 b       @35                     //          } else {
 
 @33:            ldrb    r9, [r0, #0]            // r5:          length = (*srcp >> 4) + 3;
                 cmp     r11, #0                 //              if ( ! isExFormat ) { length += 3; }
-                moveq   r8,  #3
+                beq @moveq7
+                b @moveq8
+@moveq7:
+                mov   r8,  #3
+@moveq8:
                 beq     @33_2
                                                 //              else {
                 tst     r9, #0xE0               //                  if ( length > 1 ) {
-                movne   r8, #1                  //                      length += 1
+                bne @movne9
+                b @movne10
+@movne9:
+                mov   r8, #1                  //                      length += 1
+@movne10:
                 bne     @33_2                   //                  } else {
                 
                 add     r0, r0, #1              //                      isWide = (length == 1)? 1 : 0;
@@ -370,17 +407,29 @@ asm void MI_UncompressLZ16( register const void *srcp, register void *destp )
                 orr     r3, r3, r8, lsl r2
                 eors    r2, r2, #8              //                  if (!(shift ^= 8)) {
 #ifndef CW_BUG_FOR_LDRH_AND_STRH
-                streqh  r3, [r1], #2            //                      *destp++ = destTmp;
+                beq @streqh11
+                b @streqh12
+@streqh11:
+                strh  r3, [r1], #2            //                      *destp++ = destTmp;
+@streqh12:
 #else
                 dcd     0x00c130b2
 #endif
-                moveq   r3, #0                  //                      destTmp = 0;
+                beq @moveq13
+                b @moveq14
+@moveq13:
+                mov   r3, #0                  //                      destTmp = 0;
+@moveq14:
                                                 //                  }
                 subs    r5, r5, #1              //              } while (--length > 0);
                 bgt     @34                     //          }
 
 @35:            cmp     r10, #0                 //          if (destCount <= 0)   break;
-                movgt   r6, r6, lsl #1          //          flags <<= 1
+                bgt @movgt15
+                b @movgt16
+@movgt15:
+                mov   r6, r6, lsl #1          //          flags <<= 1
+@movgt16:
                 bgt     @32                     //      }
                 b       @31                     //  }
 
@@ -487,13 +536,29 @@ asm void MI_UncompressHuffman( register const void *srcp, register void *destp )
                 ldr     r11,[sp, #0]
                 cmp     r14,r11
 
-                streq   r3, [r1], #4            //                  *destp++ = destTmp;
-                subeq   r12,r12,  #4            //                  destCount -= 4;
-                moveq   r14,#0                  //                  destTmpCount = 0;
+                beq @streq1
+                b @streq2
+@streq1:
+                str   r3, [r1], #4            //                  *destp++ = destTmp;
+@streq2:
+                beq @subeq3
+                b @subeq4
+@subeq3:
+                sub   r12,r12,  #4            //                  destCount -= 4;
+@subeq4:
+                beq @moveq5
+                b @moveq6
+@moveq5:
+                mov   r14,#0                  //                  destTmpCount = 0;
+@moveq6:
                                                 //              }
                                                 //          }
 @13:            cmp     r12,#0                  //          if (destCount <= 0)   break;
-                movgt   r5, r5, lsl #1          //          srcTmp <<= 1;
+                bgt @movgt7
+                b @movgt8
+@movgt7:
+                mov   r5, r5, lsl #1          //          srcTmp <<= 1;
+@movgt8:
                 bgt     @12                     //      }
                 b       @11                     //  }
 

@@ -434,7 +434,13 @@ CW_AVOID_STRB		:= -avoid_byte strb -warn_byte none
 
 #----------------------------------------------------------------------------
 
-MWCC			:= $(WINE) $(CW_BINDIR)/mwccarm.exe
+ifeq ($(BUILDING_SDK),1)
+CW_VERSION ?= 2.0/sp2
+else
+CW_VERSION ?= 2.0/sp2p2
+endif
+
+MWCC			:= $(WINE) $(CW_BINDIR)/$(CW_VERSION)/mwccarm.exe
 MWAS			:= $(WINE) $(CW_BINDIR)/mwasmarm.exe
 MWLD			:= $(WINE) $(CW_BINDIR)/mwldarm.exe
 MWAR			:= $(MWLD)

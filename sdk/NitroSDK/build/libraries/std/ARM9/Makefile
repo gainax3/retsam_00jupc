@@ -37,7 +37,7 @@ NITRO_CODEGEN_ALL 	?= True
 SRCDIR			= ../common/src
 INCDIR			= ../common/include
 
-SRCS			= std_string.c std_sprintf.c std_unicode.c
+SRCS			= std_string.c std_sprintf.c std_unicode.c STD_TVSNPrintf.s
 
 TARGET_LIB		= libstd$(NITRO_LIBSUFFIX).a
 

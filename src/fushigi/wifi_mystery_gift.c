@@ -23,6 +23,7 @@
 // コンパイル定義
 
 #define NETCONFIG_USE_HEAP		1
+#define USE_AUTHSERVER_RELEASE
 
 // ↓そのままROMに入れると危険なので、後で暗号化を考えようね…
 #define WIFI_ND_LOGIN_NAME		"CPUJ"	//"ADAJ"			// ログイン名

@@ -167,15 +167,27 @@ asm void OS_InitContext(
     sub   newsp, newsp,     #HW_SVC_STACK_SIZE
 #endif
     tst   newsp, #4
-    subne newsp, newsp, #4 // for 8byte-alignment
+    bne @subne1
+    b @subne2
+@subne1:
+    sub newsp, newsp, #4 // for 8byte-alignment
+@subne2:
     str   newsp, [ context, #OS_CONTEXT_SP ]
         
     // ---- ステータス作成
     ands  r1, newpc, #1
-    movne r1, #HW_PSR_SYS_MODE|HW_PSR_THUMB_STATE
-    moveq r1, #HW_PSR_SYS_MODE|HW_PSR_ARM_STATE
+    bne @movne1
+    b @movne2
+@movne1:
+    mov r1, #HW_PSR_SYS_MODE|HW_PSR_THUMB_STATE
+@movne2:
+    beq @moveq1
+    b @moveq2
+@moveq1:
+    mov r1, #HW_PSR_SYS_MODE|HW_PSR_ARM_STATE
+@moveq2:
     str   r1, [ context, #OS_CONTEXT_CPSR ]
-    
+
     // ---- 他のレジスタをクリア
     mov   r1, #0
     str   r1, [ context, #OS_CONTEXT_R0 ]

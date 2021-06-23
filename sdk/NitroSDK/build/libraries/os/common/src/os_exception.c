@@ -412,8 +412,16 @@ asm void OSi_ExceptionHandler( void )
     ldr       r12, =OSi_DebuggerHandler // r12‚Ì‚Ý”j‰ó‰Â
     ldr       r12, [r12]
     cmp       r12, #0
-    movne     lr, pc
-    bxne      r12
+    bne @movne1
+    b @movne2
+@movne1:
+    mov     lr, pc
+@movne2:
+    bne @bxne1
+    b @bxne2
+@bxne1:
+    bx      r12
+@bxne2:
 
     //---- setting stack pointer <------------------------- consider later
 #ifdef SDK_ARM9

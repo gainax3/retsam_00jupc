@@ -251,7 +251,11 @@ SDK_WEAK_SYMBOL asm void _start( void )
         sub             r0, r0, #HW_SVC_STACK_SIZE
         sub             sp, r0, #4 // 4byte for stack check code
         tst             sp, #4
-        subeq           sp, sp, #4 // for 8byte-alignment
+        beq @do_sub
+        b @skip_sub
+@do_sub:
+        sub           sp, sp, #4 // for 8byte-alignment
+@skip_sub:
 
         // System mode
         ldr             r1, =SDK_IRQ_STACKSIZE
@@ -292,7 +296,11 @@ SDK_WEAK_SYMBOL asm void _start( void )
         mov                r3, r1          // for next step(flush bss)  
         mov                r0, #0
 @1:     cmp                r1, r2
-        strcc              r0, [r1], #4
+        bcc @do_str
+        b @skip_str
+@do_str:
+        str              r0, [r1], #4
+@skip_str:
         bcc                @1
 
         //---- flush static bss region
@@ -328,7 +336,11 @@ SDK_WEAK_SYMBOL asm void _start( void )
         ldr             lr, =HW_RESET_VECTOR
 
         tst             sp, #4
-        subne           sp, sp, #4 // for 8byte-alignment
+        bne @subne1
+        b @subne2
+@subne1:
+        sub           sp, sp, #4 // for 8byte-alignment
+@subne2:
         bx              r1
 }
 
@@ -350,7 +362,11 @@ static asm void  INITi_CpuClear32( register u32 data, register void *destp, regi
         add     r12, r1, r2             // r12: destEndp = destp + size
 @20:
         cmp     r1, r12                 // while (destp < destEndp)
-        stmltia r1!, {r0}               // *((vu32 *)(destp++)) = data
+        blt @stmltia1
+        b @stmltia2
+@stmltia1:
+        stmia r1!, {r0}               // *((vu32 *)(destp++)) = data
+@stmltia2:
         blt     @20
         bx      lr
 }
@@ -514,8 +530,16 @@ static asm void do_autoload( void )
         mov     dest,     dest_begin            // dest working pointer
 @1:
         cmp     dest, dest_end
-        ldrmi   tmp, [src],  #4                 // [dest++] <- [src++]
-        strmi   tmp, [dest], #4
+        bmi @ldrmi1
+        b @ldrmi2
+@ldrmi1:
+        ldr     tmp, [src],  #4                 // [dest++] <- [src++]
+@ldrmi2:
+        bmi @strmi1
+        b @strmi2
+@strmi1:
+        str   tmp, [dest], #4
+@strmi2:
         bmi     @1
 
         //---- fill bss with 0
@@ -524,7 +548,11 @@ static asm void do_autoload( void )
         mov     tmp, #0
 @3:
         cmp     dest, dest_end
-        strcc   tmp, [dest], #4
+        bcc @strcc1
+        b @strcc2
+@strcc1:
+        str   tmp, [dest], #4
+@strcc2:
         bcc     @3
 
         //---- cache work (DC_FlushRange & IC_InvalidateRange)

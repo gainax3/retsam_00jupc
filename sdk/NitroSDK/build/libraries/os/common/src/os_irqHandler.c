@@ -254,9 +254,17 @@ asm void OS_IrqHandler( void )
         // if IME==0 then return (without changing IF)
         cmp     r1, #0
 #ifdef  SDK_NO_THREAD
-        bxeq    lr
+        beq @bxeq1
+        b @bxeq2
+@bxeq1:
+        bx    lr
+@bxeq2:
 #else
-        ldmeqfd sp!, { pc }
+        beq @ldmeqfd3
+        b @ldmeqfd4
+@ldmeqfd3:
+        ldmfd sp!, { pc }
+@ldmeqfd4:
 #endif
 
         // get IE&IF
@@ -265,9 +273,17 @@ asm void OS_IrqHandler( void )
 
         // if IE&IF==0 then return (without changing IF)
 #ifdef  SDK_NO_THREAD
-        bxeq    lr
+        beq @bxeq5
+        b @bxeq6
+@bxeq5:
+        bx    lr
+@bxeq6:
 #else
-        ldmeqfd sp!, { pc }
+        beq @ldmeqfd7
+        b @ldmeqfd8
+@ldmeqfd7:
+        ldmfd sp!, { pc }
+@ldmeqfd8:
 #endif
 
 
@@ -295,7 +311,11 @@ asm void OS_IrqHandler( void )
         mov     r3, #1
         mov     r0, #0
 @1:     ands    r2, r1, r3, LSL r0              // count zero of high bit
-        addeq   r0, r0, #1
+        beq @addeq9
+        b @addeq10
+@addeq9:
+        add   r0, r0, #1
+@addeq10:
         beq     @1
 
         // clear IF
@@ -362,7 +382,11 @@ asm void OS_IrqHandler_ThreadSwitch(void)
         beq     @thread_switch
         ldr     r0,  [r12, #OS_THREAD_OFFSET_ID]
         tst     r3,  r1, LSL r0                      // OSi_IrqThreadQueue & (1<<thread->id)
-        strne   r2,  [r12, #OS_THREAD_OFFSET_STATE]
+        bne @strne1
+        b @strne2
+@strne1:
+        str   r2,  [r12, #OS_THREAD_OFFSET_STATE]
+@strne2:
         ldr     r12, [r12, #OS_THREAD_OFFSET_NEXT]
         b       @1
 
@@ -424,7 +448,11 @@ asm void OS_IrqHandler_ThreadSwitch(void)
         ldr     r12, =OSi_ThreadInfo
         ldrh    r1, [ r12, #OS_THREADINFO_OFFSET_ISNEEDRESCHEDULING ]
         cmp     r1, #0
-        ldreq   pc, [ sp ], #4          // return if OSi_IsNeedResceduling == 0
+        beq @ldreq3
+        b @ldreq4
+@ldreq3:
+        ldr   pc, [ sp ], #4          // return if OSi_IsNeedResceduling == 0
+@ldreq4:
         
         mov     r1, #0
         strh    r1, [ r12, #OS_THREADINFO_OFFSET_ISNEEDRESCHEDULING ]
@@ -437,9 +465,21 @@ asm void OS_IrqHandler_ThreadSwitch(void)
         ldr     r1, [r2]                            // r1 = *r2 = TopOfList
 @11:
         cmp     r1, #0
-        ldrneh  r0, [ r1, #OS_THREAD_OFFSET_STATE ] // r0 = t->state
-        cmpne   r0, #OS_THREAD_STATE_READY          
-        ldrne   r1, [ r1, #OS_THREAD_OFFSET_NEXT ]
+        bne @ldrneh5
+        b @ldrneh6
+@ldrneh5:
+        ldrh  r0, [ r1, #OS_THREAD_OFFSET_STATE ] // r0 = t->state
+@ldrneh6:
+        bne @cmpne7
+        b @cmpne8
+@cmpne7:
+        cmp   r0, #OS_THREAD_STATE_READY          
+@cmpne8:
+        bne @ldrne9
+        b @ldrne10
+@ldrne9:
+        ldr   r1, [ r1, #OS_THREAD_OFFSET_NEXT ]
+@ldrne10:
         bne     @11
 
         cmp     r1, #0

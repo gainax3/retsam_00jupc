@@ -540,7 +540,11 @@ static asm void  OSi_CpuClear32( register u32 data, register void *destp, regist
     add     r12, r1, r2             // r12: destEndp = destp + size
 @1:
     cmp     r1, r12                 // while (destp < destEndp)
-    stmltia r1!, {r0}               // *((vu32 *)(destp++)) = data
+    blt @stmltia1
+    b @stmltia2
+@stmltia1:
+    stmia r1!, {r0}               // *((vu32 *)(destp++)) = data
+@stmltia2:
     blt     @1
     bx      lr
 }

@@ -1499,7 +1499,11 @@ WcmCountBits( u32 arg )
 @loop:
     clz     r2, r1
     rsbs    r2, r2, #31
-    bxcc    lr
+    bcc @bxcc1
+    b @bxcc2
+@bxcc1:
+    bx    lr
+@bxcc2:
     bic     r1, r1, r3, LSL r2
     add     r0, r0, #1
     b       @loop
@@ -1549,7 +1553,7 @@ static void WcmWmReset(void)
             /* リセットに失敗した場合は復旧不可能 */
             WCMi_Printf(wcmReportText_WmSyncError, "WM_Reset", wmResult);
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);
-            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1552); // __LINE__
         }
     }
 }
@@ -1632,7 +1636,7 @@ static void WcmWmcbCommon(void* arg)
             {
             case WM_ERRCODE_SUCCESS:
                 WcmSetPhase(WCM_PHASE_WAIT);        // 非同期シーケンス正常終了
-                WcmNotify(WCM_RESULT_SUCCESS, 0, 0, __LINE__);
+                WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1635); // __LINE__
                 break;
 
             case WM_ERRCODE_WM_DISABLE:
@@ -1641,14 +1645,14 @@ static void WcmWmcbCommon(void* arg)
             /* Don't break here */
             default:
                 WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-                WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+                WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1644); // __LINE__
             }
 
             return; // 次のステップはないのでここで終了
 
         case WM_APIID_POWER_ON:
             WcmSetPhase(WCM_PHASE_IDLE);    // 非同期シーケンス正常終了
-            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1651); // __LINE__
             return; // 次のステップはないのでここで終了
 
         case WM_APIID_POWER_OFF:
@@ -1708,7 +1712,7 @@ static void WcmWmcbCommon(void* arg)
             }
 #endif
             WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-            WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, __LINE__);
+            WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1711); // __LINE__
             break;
 
         case WM_ERRCODE_ILLEGAL_STATE:
@@ -1717,7 +1721,7 @@ static void WcmWmcbCommon(void* arg)
         /* Don't break here */
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-            WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1720); // __LINE__
         }
         break;
 
@@ -1755,7 +1759,7 @@ static void WcmWmcbCommon(void* arg)
         }
 #endif
         WcmSetPhase(WCM_PHASE_IRREGULAR);       // ARM7 でなんらかの理由でエラー
-        WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FAILURE, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1758); // __LINE__
         break;
 
     case WM_ERRCODE_ILLEGAL_STATE:
@@ -1765,7 +1769,7 @@ static void WcmWmcbCommon(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, (wcmw->notifyId == WCM_NOTIFY_CONNECT ? &(wcmw->bssDesc) : 0), 0, 1768); // __LINE__
     }
 }
 
@@ -1793,7 +1797,7 @@ static void WcmWmcbScanEx(void* arg)
             WcmSetPhase(WCM_PHASE_SEARCH);
 
             /* この通知内にて自動探索停止を要求される場合も想定される */
-            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1796); // __LINE__
         }
 
         // 次のステップとして行うべき処理を決定
@@ -1815,7 +1819,7 @@ static void WcmWmcbScanEx(void* arg)
                      * IW とI/O を合わせる為に下記のようなパラメータ構成にしてあるが、
                      * cb と i をパラメータに持ったほうが妥当と思われる。
                      */
-                    WcmNotifyEx(WCM_NOTIFY_FOUND_AP, WCM_RESULT_SUCCESS, cb->bssDesc[i], (void*)cb, __LINE__);
+                    WcmNotifyEx(WCM_NOTIFY_FOUND_AP, WCM_RESULT_SUCCESS, cb->bssDesc[i], (void*)cb, 1818); // __LINE__
                 }
             }
 
@@ -1829,7 +1833,7 @@ static void WcmWmcbScanEx(void* arg)
                     if ((wcmw->scanCount % channels) == 0)
                     {
                         // 各チャンネルのスキャンが一巡したことを通知
-                        WcmNotifyEx(WCM_NOTIFY_SEARCH_AROUND, WCM_RESULT_SUCCESS, (void*)(wcmw->scanCount), 0, __LINE__);
+                        WcmNotifyEx(WCM_NOTIFY_SEARCH_AROUND, WCM_RESULT_SUCCESS, (void*)(wcmw->scanCount), 0, 1832); // __LINE__
                     }
                 }
             }
@@ -1872,7 +1876,7 @@ static void WcmWmcbScanEx(void* arg)
             }
 #endif
             WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-            WcmNotify(WCM_RESULT_FAILURE, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_FAILURE, 0, 0, 1875); // __LINE__
             break;
 
         case WM_ERRCODE_ILLEGAL_STATE:
@@ -1881,7 +1885,7 @@ static void WcmWmcbScanEx(void* arg)
         /* Don't break here */
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1884); // __LINE__
         }
         break;
 
@@ -1898,7 +1902,7 @@ static void WcmWmcbScanEx(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1901); // __LINE__
     }
 }
 
@@ -1920,7 +1924,7 @@ static void WcmWmcbEndScan(void* arg)
     {
     case WM_ERRCODE_SUCCESS:
         WcmSetPhase(WCM_PHASE_IDLE);        // 非同期シーケンス正常終了
-        WcmNotify(WCM_RESULT_SUCCESS, 0, 0, __LINE__);
+        WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 1923); // __LINE__
         break;
 
     case WM_ERRCODE_FAILED:
@@ -1936,7 +1940,7 @@ static void WcmWmcbEndScan(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 1939); // __LINE__
     }
 }
 
@@ -2026,7 +2030,7 @@ static void WcmWmcbConnect(void* arg)
                     case WM_ERRCODE_FIFO_ERROR:
                         WCMi_Printf(wcmReportText_WmSyncError, "WM_StartDCF", wmResult);
                         WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-                        WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, __LINE__);
+                        WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, 2029); // __LINE__
                         break;
 
                     case WM_ERRCODE_ILLEGAL_STATE:
@@ -2035,7 +2039,7 @@ static void WcmWmcbConnect(void* arg)
                     /* Don't break here */
                     default:
                         WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-                        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+                        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2038); // __LINE__
                     }
                 }
                 else
@@ -2049,7 +2053,7 @@ static void WcmWmcbConnect(void* arg)
 
         default:    // 想定外のステートコード
             WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), 2052); // __LINE__
         }
         break;
 
@@ -2072,7 +2076,7 @@ static void WcmWmcbConnect(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2075); // __LINE__
     }
 }
 
@@ -2106,7 +2110,7 @@ static void WcmWmcbDisconnect(void* arg)
             wcmw->authId = 0;
 
             WcmSetPhase(WCM_PHASE_IDLE);    // 非同期シーケンス正常終了
-            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2109); // __LINE__
         }
         break;
 
@@ -2124,7 +2128,7 @@ static void WcmWmcbDisconnect(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2127); // __LINE__
     }
 }
 
@@ -2159,7 +2163,7 @@ static void WcmWmcbStartDCF(void* arg)
             else
             {
                 WcmSetPhase(WCM_PHASE_DCF);         // 非同期シーケンス正常終了
-                WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, __LINE__);
+                WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2162); // __LINE__
             }
             break;
 
@@ -2174,7 +2178,7 @@ static void WcmWmcbStartDCF(void* arg)
 
         default:    // 想定外のステートコード
             WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)(cb->state), 2177); // __LINE__
         }
         break;
 
@@ -2185,7 +2189,7 @@ static void WcmWmcbStartDCF(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2188); // __LINE__
     }
 }
 
@@ -2225,7 +2229,7 @@ static void WcmWmcbEndDCF(void* arg)
             case WM_ERRCODE_FIFO_ERROR:
                 WCMi_Printf(wcmReportText_WmSyncError, "WM_Disconnect", wmResult);
                 WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-                WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, __LINE__);
+                WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), 0, 2228); // __LINE__
                 break;
 
             case WM_ERRCODE_ILLEGAL_STATE:          // クリティカルなタイミングで通信が切れた場合
@@ -2237,7 +2241,7 @@ static void WcmWmcbEndDCF(void* arg)
 
             default:
                 WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-                WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+                WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2240); // __LINE__
             }
         }
         break;
@@ -2256,7 +2260,7 @@ static void WcmWmcbEndDCF(void* arg)
     /* Don't break here */
     default:
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), 0, 2259); // __LINE__
     }
 }
 
@@ -2290,13 +2294,13 @@ static void WcmWmcbReset(void* arg)
         case WCM_PHASE_SEARCH:          // AP 自動探索中
             // スキャン処理に失敗してリセットすることになった旨を通知
             WcmSetPhase(WCM_PHASE_IDLE);
-            WcmNotify(WCM_RESULT_FAILURE, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_FAILURE, 0, 0, 2293); // __LINE__
             break;
 
         case WCM_PHASE_SEARCH_TO_IDLE:  // AP 自動探索停止中
             // 要求した AP 自動探索停止処理が完了したことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
-            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, 0, 0, 2299); // __LINE__
             break;
 
         case WCM_PHASE_IDLE_TO_DCF:     // 接続中
@@ -2329,7 +2333,7 @@ static void WcmWmcbReset(void* arg)
 
                         case WM_ERRCODE_FIFO_ERROR:
                             WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-                            WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), (void*)wlStatus, __LINE__);
+                            WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), (void*)wlStatus, 2332); // __LINE__
                             break;
 
                         case WM_ERRCODE_ILLEGAL_STATE:
@@ -2338,7 +2342,7 @@ static void WcmWmcbReset(void* arg)
                         /* Don't break here */
                         default:
                             WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-                            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)wlStatus, __LINE__);
+                            WcmNotify(WCM_RESULT_FATAL_ERROR, &(wcmw->bssDesc), (void*)wlStatus, 2341); // __LINE__
                         }
 
                         return;
@@ -2346,7 +2350,7 @@ static void WcmWmcbReset(void* arg)
                 }
 #endif
                 WcmSetPhase(WCM_PHASE_IDLE);
-                WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), (void*)wlStatus, __LINE__);
+                WcmNotify(WCM_RESULT_FAILURE, &(wcmw->bssDesc), (void*)wlStatus, 2349); // __LINE__
             }
             break;
 
@@ -2354,14 +2358,14 @@ static void WcmWmcbReset(void* arg)
         case WCM_PHASE_IRREGULAR:
             // AP から切断されたことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
-            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), (void*)1, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), (void*)1, 2357); // __LINE__
 
             break;
 
         case WCM_PHASE_DCF_TO_IDLE: // 切断中
             // 要求した切断処理が完了したことを通知
             WcmSetPhase(WCM_PHASE_IDLE);
-            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, __LINE__);
+            WcmNotify(WCM_RESULT_SUCCESS, &(wcmw->bssDesc), 0, 2364); // __LINE__
             break;
 
         case WCM_PHASE_TERMINATING: // 強制終了中
@@ -2375,7 +2379,7 @@ static void WcmWmcbReset(void* arg)
             case WM_ERRCODE_FIFO_ERROR:
                 WCMi_Printf(wcmReportText_WmSyncError, "WM_Reset", wmResult);
                 WcmSetPhase(WCM_PHASE_IRREGULAR);   // ARM7 への要求発行に失敗( シーケンス途上でリトライ不能 )
-                WcmNotify(WCM_RESULT_FAILURE, 0, 0, __LINE__);
+                WcmNotify(WCM_RESULT_FAILURE, 0, 0, 2378); // __LINE__
                 break;
 
             case WM_ERRCODE_ILLEGAL_STATE:
@@ -2384,20 +2388,20 @@ static void WcmWmcbReset(void* arg)
             /* Don't break here */
             default:
                 WcmSetPhase(WCM_PHASE_FATAL_ERROR); // 想定範囲外のエラー
-                WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+                WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 2387); // __LINE__
             }
             break;
 
         default:
             WcmSetPhase(WCM_PHASE_FATAL_ERROR);     // 想定範囲外のエラー
-            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, (void*)(wcmw->phase), __LINE__);
+            WcmNotify(WCM_RESULT_FATAL_ERROR, 0, (void*)(wcmw->phase), 2393); // __LINE__
         }
         break;
 
     default:
         /* リセットに失敗した場合は復旧不可能 */
         WcmSetPhase(WCM_PHASE_FATAL_ERROR);         // 想定範囲外のエラー
-        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, __LINE__);
+        WcmNotify(WCM_RESULT_FATAL_ERROR, 0, 0, 2400); // __LINE__
     }
 }
 

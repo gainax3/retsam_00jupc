@@ -853,7 +853,11 @@ _lp1:
     cmp    r2, #32
 
     //---- 空きIDがあるとき
-    movne  r0, #OSi_ANYP_LOCK_ID_START
+    bne @movne1
+    b @movne2
+@movne1:
+    mov  r0, #OSi_ANYP_LOCK_ID_START
+@movne2:
     bne    _1
 
     //---- 後ろ323ビットに立っているフラグ(空きID)があるか
@@ -879,7 +883,11 @@ _lp2:
 
     //---- 空きIDがない
     ldr    r0, =OS_LOCK_ID_ERROR
-    bxeq   lr
+    beq @bxeq1
+    b @bxeq2
+@bxeq1:
+    bx   lr
+@bxeq2:
 
     //---- 空きIDがあるとき
     mov    r0, #OSi_ANYP_LOCK_ID_START+32
@@ -912,10 +920,21 @@ asm void OS_ReleaseLockID( register u16 lockID )
     ldr    r3, =OSi_ANYP_LOCK_ID_FLAG
 
     cmp    r0, #OSi_ANYP_LOCK_ID_START+32
-    addpl  r3, r3, #4
-
-    subpl  r0, r0, #OSi_ANYP_LOCK_ID_START+32
-    submi  r0, r0, #OSi_ANYP_LOCK_ID_START
+    bpl @addpl1
+    b @addpl2
+@addpl1:
+    add  r3, r3, #4
+@addpl2:
+    bpl @subpl1
+    b @subpl2
+@subpl1:
+    sub  r0, r0, #OSi_ANYP_LOCK_ID_START+32
+@subpl2:
+    bmi @submi1
+    b @submi2
+@submi1:
+    sub  r0, r0, #OSi_ANYP_LOCK_ID_START
+@submi2:
 
     mov r1, #0x80000000
     mov r1, r1, lsr r0
