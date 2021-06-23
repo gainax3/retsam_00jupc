@@ -37,7 +37,7 @@ NITRO_CODEGEN_ALL 	?= True
 SRCDIR			= ../common/src
 INCDIR			= ../common/include
 
-SRCS			= std_string.c std_sprintf.c std_unicode.c STD_TVSNPrintf.s
+SRCS			= std_string.c std_sprintf.c std_unicode.c
 
 TARGET_LIB		= libstd$(NITRO_LIBSUFFIX).a
 
@@ -55,5 +55,8 @@ do-build:		$(TARGETS)
 
 include	$(NITROSDK_ROOT)/build/buildtools/modulerules
 
+$(OBJDIR)/std_sprintf.o: ../common/src/std_sprintf.c
+	$(CW_BINDIR)/2.0/sp1p2/mwccarm.exe $(CCFLAGS) $(INCLUDES) -include $(call PATH_UNIX2DOS,$(PCHDR_SRC)) -c $< -MD -o $@
+	@$(MOVE_SRC_DEPEND)
 
 #===== End of Makefile =====
