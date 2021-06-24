@@ -6,6 +6,8 @@
 # Copyright 2005 GameFreak.inc  All rights reserved.
 #
 #----------------------------------------------------------------------------
+$(shell mkdir -p bin/ land_nsbmt/ tmp/)
+
 DP_ROOT	=	../../..
 
 SUBDIRS		=
