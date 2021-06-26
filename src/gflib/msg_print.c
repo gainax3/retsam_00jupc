@@ -252,6 +252,11 @@ u8 GF_STR_PrintSimple( GF_BGL_BMPWIN* win, u32 fontID, const STRBUF* msg, u32 xo
 	mph.s_col		= font_header[fontID].s_col;		//影色　ナンバー
 	mph.dot_tbl		= 0;			//拡大用ドットテーブル
 	mph.dot_wy		= 0;			//拡大時のY座標の描画補正値
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
+	// あらかじめ登録しておいた色に後で変更する仕組みを実装
+	mph.color_stack = COLORSTACK_NOENTRY;
+	// ----------------------------------------------------------------------------
 
 	return GF_STR_Print( &mph, wait, call_back );
 }

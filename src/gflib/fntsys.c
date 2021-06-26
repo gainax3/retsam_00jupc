@@ -39,7 +39,8 @@ BOOL STRCODE_CheckWordSetTagType( const STRCODE* str )
 {
 	u32 tag = STRCODE_GetTagType( str );
 	if( ((tag & NC_WORDSET_MASK) == NC_WORDSET) ||
-		((tag & NC_WORDSET_MASK) == NC_WORDSET_PL) ){
+		((tag & NC_WORDSET_MASK) == NC_WORDSET_UNK_0x600) ||
+        ((tag & NC_WORDSET_MASK) == NC_WORDSET_UNK_0x500)){
 		return TRUE;
 	}
 	return FALSE;

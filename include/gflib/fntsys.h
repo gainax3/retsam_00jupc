@@ -244,6 +244,8 @@ extern u8	ASCIIcode2DSuni(u8 c_id, u8 *ascii_str, u16 *ds_str);
 #define NC_WORDSET_MASK		0xff00
 #define NC_WORDSET			0x0100
 #define NC_WORDSET_PL		0x0300		// プラチナ用タグ
+#define NC_WORDSET_UNK_0x600 0x600
+#define NC_WORDSET_UNK_0x500 0x500
 
 #define NC_NOTE_ICON			(0x0200)	// 注目アイコン
 #define NC_FORCE_WAIT			(0x0201)	// 次の文字を表示する前の強制ウェイトフレーム

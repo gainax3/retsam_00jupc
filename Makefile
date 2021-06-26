@@ -236,7 +236,7 @@ PL_ETC_PARTICLEDIR	= src/particledata/pl_etc/
 #----------------------------------------------------------------------------
 #	コンバート対象になるMayaデータの指定
 #----------------------------------------------------------------------------
-#include	make_g3_files
+include	make_g3_files
 
 G3D_NSBMD = $(G3D_IMD:.imd=.nsbmd)
 G3D_NSBMT = $(G3D_IMT:.imd=.nsbmt)
@@ -372,11 +372,10 @@ MAKEROM_ROMFILES = $(subst src/,,$(FILE_TREE))
 #----------------------------------------------------------------------------
 #	make cleanで消去するファイルを追加
 #----------------------------------------------------------------------------
-#LDIRT_CLEAN	= $(G3D_TARGETS) $(MSGDATA_FILEPATH) \
-#			  $(wildcard $(DATABIN)*.nsbmt) $(wildcard $(DATABIN)*.nsbmd) \
-#			  $(wildcard $(DATABIN)*.nsbta) $(wildcard $(DATABIN)*.nsbtp) \
-#			  $(wildcard $(DATABIN)*.nsbtx) $(wildcard $(DATABIN)*.nsbma)
-LDIRT_CLEAN :=
+LDIRT_CLEAN	= $(G3D_TARGETS) $(MSGDATA_FILEPATH) \
+			  $(wildcard $(DATABIN)*.nsbmt) $(wildcard $(DATABIN)*.nsbmd) \
+			  $(wildcard $(DATABIN)*.nsbta) $(wildcard $(DATABIN)*.nsbtp) \
+			  $(wildcard $(DATABIN)*.nsbtx) $(wildcard $(DATABIN)*.nsbma)
 
 #----------------------------------------------------------------------------
 #	ツールへのパス指定
@@ -409,7 +408,7 @@ include	$(NITROVCT_ROOT)/build/buildtools/modulerules
 #
 ################################################################################
 
-do-build: precompile pbrdiff $(LCFILE_SPEC) $(TARGETS) 
+do-build: precompile binData msgData pbrdiff $(LCFILE_SPEC) $(TARGETS) 
 
 binData: $(G3D_TARGETS)
 

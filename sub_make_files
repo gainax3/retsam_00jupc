@@ -250,5 +250,4 @@ endif
 #順にサブディレクトリの処理が動かないと困るので、このように最後に
 #合成している。スクリプトの処理を全員のところで動かさなくてすむまでの
 #暫定処理
-#SUBDIRS	=	$(SUBDIRS_BEFORE) src/fielddata/script $(SUBDIRS_AFTER) $(PARTICLEDATADIR) src/fielddata/land_data
-SUBDIRS	=	
+SUBDIRS	=	$(SUBDIRS_BEFORE) src/data/mmodel src/fielddata/script $(SUBDIRS_AFTER) $(PARTICLEDATADIR) src/fielddata/land_data

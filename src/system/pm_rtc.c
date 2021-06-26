@@ -383,18 +383,18 @@ int GF_RTC_GetDaysOffset(const RTCDate * date)
 	OS_TPrintf("%04d %2d/%d\n",date->year, date->month, date->day);
 	OS_TPrintf("offset %3d", days);
 #endif
-	{
-		int check;
-		RTCDate top;
-		top = *date;
-		top.month = 1;
-		top.day = 1;
-		check = RTC_ConvertDateToDay(date) - RTC_ConvertDateToDay(&top);
-		if (check + 1 != days) {
-			OS_Printf("%d(Nitro) != %d(InHouse)\n", check + 1, days);
-		}
-		//GF_ASSERT(check + 1 == days);
-	}
+	// {
+	// 	int check;
+	// 	RTCDate top;
+	// 	top = *date;
+	// 	top.month = 1;
+	// 	top.day = 1;
+	// 	check = RTC_ConvertDateToDay(date) - RTC_ConvertDateToDay(&top);
+	// 	if (check + 1 != days) {
+	// 		OS_Printf("%d(Nitro) != %d(InHouse)\n", check + 1, days);
+	// 	}
+	// 	//GF_ASSERT(check + 1 == days);
+	// }
 	return days;
 }
 

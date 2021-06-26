@@ -750,7 +750,7 @@ void WORDSET_RegisterPlaceName( WORDSET* wordset, u32 bufID, u32 strID )
 		if(strID == 0 || strID >= MSGMAN_GetMessageCount(man)){
 			MSGMAN_Delete( man );
 			man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, 
-				/*NARC_msg_place_name_haihu_dat*/ 434, wordset->heapID);
+				NARC_msg_place_name_haihu_dat, wordset->heapID);
 			strID = MAPNAME_ANOTHERGAME;
 		}
 		MSGMAN_GetString( man, strID, wordset->tmpBuf );
@@ -1421,7 +1421,7 @@ void WORDSET_RegisterAccessoryName( WORDSET* wordset, u32 bufID, u32 acID )
 
 void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 acID )
 {
-	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, /*NARC_msg_imageclip_acce_ind_dat*/ 387, wordset->heapID);
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_imageclip_acce_ind_dat, wordset->heapID);
 	if( man )
 	{
 		MSGMAN_GetString( man, acID, wordset->tmpBuf );
@@ -1716,7 +1716,7 @@ void WORDSET_Capitalize( WORDSET* wordset, u32 bufID )
 
 void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID )
 {
-	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_unk_361, wordset->heapID);
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, wordset->heapID);
 
     GF_ASSERT(unkID <= 5);
         
