@@ -2,9 +2,9 @@
 	Archive file index definition.
 	File: msg.naix
 
-	This file was created by NINTENDO NITRO-System Archiver.
+	This file was created by NINTENDO TWL-System Archiver.
 
-	Update:2008-06-23T14:38:56
+	Update:[REDACTED]
  *****************************************************************************/
 
 #ifndef NARC_PL_MSG_NAIX_
@@ -24,6 +24,7 @@ enum {
 	NARC_msg_battle_rec_dat,
 	NARC_msg_battle_room_dat,
 	NARC_msg_bc_seal_name_dat,
+  NARC_msg_bc_seal_name_plu_dat,
 	NARC_msg_bconfind_dat,
 	NARC_msg_bf_info_dat,
 	NARC_msg_bf_seiseki_dat,
@@ -397,11 +398,14 @@ enum {
 	NARC_msg_icontest_dat,
 	NARC_msg_imageclip_dat,
 	NARC_msg_imageclip_acce_dat,
+  NARC_msg_imageclip_acce_ind_dat,
 	NARC_msg_imageclip_bg_dat,
 	NARC_msg_intro_dat,
 	NARC_msg_itemeqp_dat,
 	NARC_msg_iteminfo_dat,
 	NARC_msg_itemname_dat,
+  NARC_msg_itemname_ind_dat,
+  NARC_msg_itemname_plu_dat,
 	NARC_msg_itempocket_dat,
 	NARC_msg_itempocket_icon_dat,
 	NARC_msg_kinomi_dat,
@@ -420,6 +424,8 @@ enum {
 	NARC_msg_minigame_bb_dat,
 	NARC_msg_minigame_tool_dat,
 	NARC_msg_monsname_dat,
+  NARC_msg_monsname_ind_dat,
+  NARC_msg_month_dat,
 	NARC_msg_msg_tv_01_dat,
 	NARC_msg_msg_tv_02_dat,
 	NARC_msg_msg_tv_03_dat,
@@ -616,6 +622,7 @@ enum {
 	NARC_msg_time_dat,
 	NARC_msg_title_dat,
 	NARC_msg_tokusei_dat,
+  NARC_msg_tokusei_cap_dat,
 	NARC_msg_tokuseiinfo_dat,
 	NARC_msg_tower_trainer_dat,
 	NARC_msg_tower_trainerpl_dat,
@@ -624,14 +631,18 @@ enum {
 	NARC_msg_trmsg_dat,
 	NARC_msg_trname_dat,
 	NARC_msg_trtype_dat,
+  NARC_msg_trtype_ind_dat,
 	NARC_msg_tv_interview_dat,
 	NARC_msg_tv_program_dat,
 	NARC_msg_tvcm_dat,
 	NARC_msg_typename_dat,
 	NARC_msg_ug_dat,
 	NARC_msg_undergroundgoods_dat,
+  NARC_msg_undergroundgoods_ind_dat,
 	NARC_msg_undergrounditem_dat,
+  NARC_msg_undergrounditem_ind_dat,
 	NARC_msg_undergroundtrap_dat,
+  NARC_msg_undergroundtrap_ind_dat,
 	NARC_msg_undersecretanswer_dat,
 	NARC_msg_undersecretquestion_dat,
 	NARC_msg_underworld_dat,
@@ -648,6 +659,7 @@ enum {
 	NARC_msg_waza_oboe_dat,
 	NARC_msg_wazainfo_dat,
 	NARC_msg_wazaname_dat,
+  NARC_msg_wazaname_cap_dat,
 	NARC_msg_wflby_event_dat,
 	NARC_msg_wflby_footprint_dat,
 	NARC_msg_wflby_game_dat,
@@ -704,6 +716,7 @@ enum {
 	NARC_msg_zkn_comment_04_dat,
 	NARC_msg_zkn_comment_05_dat,
 	NARC_msg_zkn_comment_06_dat,
+  NARC_msg_zkn_comment_jp_dat,
 	NARC_msg_zkn_comment_platinum_dat,
 	NARC_msg_zkn_gram_dat,
 	NARC_msg_zkn_gram_gira_dat,
@@ -715,11 +728,13 @@ enum {
 	NARC_msg_zkn_worldname02_dat,
 	NARC_msg_zkn_worldname03_dat,
 	NARC_msg_zkn_worldname04_dat,
+  NARC_msg_zkn_worldnamejp_dat,
 	NARC_msg_zkn_worldtype_dat,
 	NARC_msg_zkn_worldtype01_dat,
 	NARC_msg_zkn_worldtype02_dat,
 	NARC_msg_zkn_worldtype03_dat,
-	NARC_msg_zkn_worldtype04_dat = 708
+	NARC_msg_zkn_worldtype04_dat,
+	NARC_msg_zkn_worldtypejp_dat = 723
 };
 
 /* NARC_PL_MSG_NAIX_ */
