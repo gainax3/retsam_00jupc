@@ -408,3 +408,79 @@ void TalkFontPaletteLoad( u32 type, u32 offs, u32 heap )
 {
 	ArcUtil_PalSet( ARC_FONT, NARC_font_talk_ncrl, (PALTYPE)type, offs, 0x20, heap );
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 複数行にわたる文字列の、最長行のビットマップ幅を返す関数
+
+u32 FontProc_GetMaxLineWidth( FONT_TYPE font, const STRCODE* str, u32 margin )
+{
+	GF_ASSERT(WorkPtr->fontMan[font] != NULL);
+	return FontDataMan_GetMaxLineWidth( WorkPtr->fontMan[font], str, margin );
+}
+
+u32 FontProc_GetPrintMaxLineWidth( FONT_TYPE font, const STRBUF* str, u32 margin )
+{
+	GF_ASSERT(WorkPtr->fontMan[font] != NULL);
+	return FontDataMan_GetMaxLineWidth( WorkPtr->fontMan[font], STRBUF_GetStringCodePointer(str), margin );
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/14
+// 1行の文字列をセンタリングした位置を返す関数
+
+u32 FontProc_GetCenteredPositionX( FONT_TYPE font, const STRCODE* str, u32 margin, u32 width )
+{
+	u32 str_width = FontProc_GetStrWidth( font, str, margin );
+	return (str_width < width) ? (width - str_width) / 2 : 0;
+}
+
+u32 FontProc_GetPrintCenteredPositionX( FONT_TYPE font, const STRBUF* str, u32 margin, u32 width )
+{
+	u32 str_width = FontProc_GetPrintStrWidth( font, str, margin );
+	return (str_width < width) ? (width - str_width) / 2 : 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// 文字列の行数をカウントして返す関数
+
+u32 FontProc_GetLineNum(const STRCODE* str)
+{
+	u32 linenum = 1;
+
+	while(*str != EOM_) {
+		if (*str == _CTRL_TAG) {
+			str = STRCODE_SkipTag(str);
+			continue;
+		} else if (*str == CR_) {
+			++linenum;
+			++str;
+			continue;
+		}
+		++str;
+	}
+
+	return linenum;
+}
+
+u32 FontProc_GetPrintLineNum(const STRBUF* str)
+{
+	return FontProc_GetLineNum( STRBUF_GetStringCodePointer(str) );
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+// スクリプトウィンドウを開く際に、各項目の長さを取得するための関数
+
+u32 FontProc_GetEvWinItemWidth( FONT_TYPE font, const STRBUF* str )
+{
+	GF_ASSERT(WorkPtr->fontMan[font] != NULL);
+	return FontDataMan_GetEvWinItemWidth( WorkPtr->fontMan[font], STRBUF_GetStringCodePointer(str) );
+}

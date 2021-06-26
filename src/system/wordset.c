@@ -22,6 +22,11 @@
 #include "msgdata\msg_sodateya.h"
 #include "msgdata\msg_common_scr.h"
 #include "msgdata\msg_supportname.h"
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/29
+// 月の名前（の短縮形）を列挙したgmmを追加
+#include "msgdata\msg_month.h"
+// ----------------------------------------------------------------------------
 
 #include "battle\battle_common.h"
 
@@ -79,7 +84,19 @@ struct _WORDSET{
 static void RegisterWord( WORDSET* wordset, u32 bufID, const STRBUF* str, const WORDSET_PARAM* param );
 static void InitParam(WORDSET_PARAM* param);
 static void RegistWord(u32 idx, const STRBUF* str, const WORDSET_PARAM* param);
-
+void WORDSET_RegisterPokeMonsNameIndefinate( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp );
+void WORDSET_RegisterPokeMonsNameIndefinateByNo( WORDSET* wordset, u32 bufID, u32 monsno);
+void WORDSET_RegisterItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 typeID );
+void WORDSET_RegisterItemNamePlural( WORDSET* wordset, u32 bufID, u32 typeID );
+void WORDSET_RegisterTrTypeNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
+void WORDSET_RegisterUGItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
+void WORDSET_RegisterUGTrapNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
+void WORDSET_RegisterUGGoodsNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID );
+void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID );
+void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 acID );
+void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month );
+void WORDSET_Capitalize( WORDSET* wordset, u32 bufID );
+void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID );
 //======================================================================================================
 // システム初期化・終了
 //======================================================================================================
@@ -371,6 +388,32 @@ void WORDSET_RegisterPokeMonsName( WORDSET* wordset, u32 bufID, POKEMON_PASO_PAR
 	MSGMAN_Delete(man);
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+// 不定冠詞付きのポケモン名を引っ張ってくる関数を追加
+
+void WORDSET_RegisterPokeMonsNameIndefinate( WORDSET* wordset, u32 bufID, POKEMON_PASO_PARAM* ppp )
+{
+	u32 monsno;
+
+	monsno = PokePasoParaGet( ppp, ID_PARA_monsno, NULL );
+	WORDSET_RegisterPokeMonsNameIndefinateByNo( wordset, bufID, monsno );
+}
+
+void WORDSET_RegisterPokeMonsNameIndefinateByNo( WORDSET* wordset, u32 bufID, u32 monsno )
+{
+	MSGDATA_MANAGER* man;
+
+	man = MSGMAN_Create( MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_monsname_ind_dat, wordset->heapID );
+
+	MSGMAN_GetString( man, monsno, wordset->tmpBuf );
+	RegisterWord( wordset, bufID, wordset->tmpBuf, NULL);
+
+	MSGMAN_Delete(man);
+}
+
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * 指定バッファにポケモンのニックネームを登録
@@ -531,7 +574,43 @@ void WORDSET_RegisterItemName( WORDSET* wordset, u32 bufID, u32 itemID )
 	}
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/13
+// 冠詞付き・複数形のアイテム名を引っ張ってくるスクリプト命令を追加
+
+void WORDSET_RegisterItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 itemID )
+{
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/22
+	// 冠詞付きアイテム名の dat ファイルが用意できたのでそこから引くように
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_itemname_ind_dat, wordset->heapID);
+	// ----------------------------------------------------------------------------
+	if( man )
+	{
+		MSGMAN_GetString( man, itemID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+
+void WORDSET_RegisterItemNamePlural( WORDSET* wordset, u32 bufID, u32 itemID )
+{
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/22
+	// 複数形アイテム名の dat ファイルが用意できたのでそこから引くように
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_itemname_plu_dat, wordset->heapID);
+	// ----------------------------------------------------------------------------
+	if( man )
+	{
+		MSGMAN_GetString( man, itemID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
+
 /**
  * 指定バッファにアイテムを入れるポケット名を登録
  *
@@ -570,7 +649,6 @@ void WORDSET_RegisterItemPocketWithIcon( WORDSET* wordset, u32 bufID, u32 pocket
 		MSGMAN_Delete(man);
 	}
 }
-
 
 //------------------------------------------------------------------
 /**
@@ -672,7 +750,7 @@ void WORDSET_RegisterPlaceName( WORDSET* wordset, u32 bufID, u32 strID )
 		if(strID == 0 || strID >= MSGMAN_GetMessageCount(man)){
 			MSGMAN_Delete( man );
 			man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, 
-				NARC_msg_place_name_haihu_dat, wordset->heapID);
+				/*NARC_msg_place_name_haihu_dat*/ 434, wordset->heapID);
 			strID = MAPNAME_ANOTHERGAME;
 		}
 		MSGMAN_GetString( man, strID, wordset->tmpBuf );
@@ -724,6 +802,22 @@ void WORDSET_RegisterTrTypeName( WORDSET* wordset, u32 bufID, u32 strID )
 		MSGMAN_Delete(man);
 	}
 }
+
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// 不定冠詞付きのトレーナータイプ名を引っ張ってくるスクリプト命令を追加
+void WORDSET_RegisterTrTypeNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_trtype_ind_dat, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, strID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+// ----------------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /**
@@ -831,6 +925,21 @@ void WORDSET_RegisterUGItemName( WORDSET* wordset, u32 bufID, u32 strID )
 	}
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/27
+// 不定冠詞付きの地下アイテム名を引っ張ってくる関数を追加
+void WORDSET_RegisterUGItemNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergrounditem_ind_dat, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, strID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * 指定バッファに地下罠名を登録
@@ -851,6 +960,21 @@ void WORDSET_RegisterUGTrapName( WORDSET* wordset, u32 bufID, u32 strID )
 		MSGMAN_Delete(man);
 	}
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/27
+// 不定冠詞付きの地下罠名を引っ張ってくる関数を追加
+void WORDSET_RegisterUGTrapNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergroundtrap_ind_dat, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, strID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+// ----------------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /**
@@ -977,6 +1101,21 @@ void WORDSET_RegisterUGGoodsName( WORDSET* wordset, u32 bufID, u32 strID )
 		MSGMAN_Delete(man);
 	}
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/27
+// 不定冠詞付きの地下グッズ名を引っ張ってくる関数を追加
+void WORDSET_RegisterUGGoodsNameIndefinate( WORDSET* wordset, u32 bufID, u32 strID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_undergroundgoods_ind_dat, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, strID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+// ----------------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /**
@@ -1157,6 +1296,24 @@ void WORDSET_RegisterSealName( WORDSET* wordset, u32 bufID, u32 strID )
 		MSGMAN_Delete(man);
 	}
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// 複数形のシール名を引っ張ってくる関数を追加
+
+void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_bc_seal_name_plu_dat, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, strID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * 指定バッファにポケモン捕獲場所名を登録
@@ -1258,6 +1415,23 @@ void WORDSET_RegisterAccessoryName( WORDSET* wordset, u32 bufID, u32 acID )
 	}
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+// 不定冠詞付きのアクセサリー名を引っ張ってくる関数を追加
+
+void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 acID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, /*NARC_msg_imageclip_acce_ind_dat*/ 387, wordset->heapID);
+	if( man )
+	{
+		MSGMAN_GetString( man, acID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * 指定バッファにイメージクリップ背景の名前を登録
@@ -1301,6 +1475,8 @@ void WORDSET_RegisterGroupName(WORDSET * ws, SAVEDATA * sv, int gid, int bufID, 
 	WORDSET_RegisterWord(ws, bufID, strbuf, sex, TRUE, region_code);
 	STRBUF_Delete(strbuf);
 }
+
+// ----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**
@@ -1503,6 +1679,60 @@ void WORDSET_RegisterFurniture( WORDSET * wordset, u32 bufID, u32 furnitureID )
 	MSGMAN_Delete(man);
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/29
+// 月の名前（の短縮形）を引いてくる関数を追加
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// month に 1 ? 12 以外がきたときには _NULL_ をセットするように変更
+
+void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_month_dat, wordset->heapID);
+
+	if( man )
+	{
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+		// month に 1 ? 12 以外がきたときには「１がつ」をセットするように変更
+		if (month < 1 || month > 12) month = 1;
+		// ----------------------------------------------------------------------------
+
+		MSGMAN_GetString( man, month - 1 + msg_month_01, wordset->tmpBuf );		// 常駐することを考慮し、テーブルは持たない
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/24
+// 指定バッファの先頭文字をキャピタライズする関数を追加
+
+void WORDSET_Capitalize( WORDSET* wordset, u32 bufID )
+{
+	STRBUF_Capitalize(wordset->word[bufID].str, 0);
+}
+
+// ----------------------------------------------------------------------------
+
+void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID )
+{
+	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_unk_361, wordset->heapID);
+
+    GF_ASSERT(unkID <= 5);
+        
+	if( man )
+	{
+        if (unkID == 0) {
+            unkID = 121;
+        } else {
+            unkID += 115;
+        }
+
+		MSGMAN_GetString( man, unkID, wordset->tmpBuf );
+		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
+		MSGMAN_Delete(man);
+	}
+}
 
 //======================================================================================================
 // 文字列展開

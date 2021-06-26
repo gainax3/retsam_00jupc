@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 if [ ! -x tools/make/make -a ! -x tools/make/make.exe ]; then
@@ -15,12 +15,14 @@ export PM_VERSION
 export PM_DEBUG
 export PM_LANG
 
-#export MAKEFLAGS="-j$(nproc)"
+if [ "$1" == "-j" ]; then
+	export MAKEFLAGS="-j$(nproc)"
+fi
 
 export BUILDING_SDK=1
-(cd sdk/NitroSDK; make)
-(cd sdk/NitroSystem; make)
-(cd sdk/NitroWiFi; make)
-(cd sdk/NitroDWC; make)
+#(cd sdk/NitroSDK; make)
+#(cd sdk/NitroSystem; make)
+#(cd sdk/NitroWiFi; make)
+#(cd sdk/NitroDWC; make)
 export BUILDING_SDK=0
 make

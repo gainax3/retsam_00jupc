@@ -63,6 +63,18 @@ static	const u8 scr_speed_value[] = {
 	SCR_SPEED_FAST,
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/06
+// あらかじめ登録しておいた色に後で変更する仕組みを実装
+// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+// 色の登録の仕組みを変更
+#define COLORSTACK_COLORNUM			(7)
+#define COLORSTACK_COLOROFFSET		(100)
+#define COLORSTACK_COLORMAX			(COLORSTACK_COLOROFFSET + COLORSTACK_COLORNUM)
+#define COLORSTACK_SWAP				(255)
+#define COLORSTACK_ISVALID(c)		(c >= COLORSTACK_COLOROFFSET && c < COLORSTACK_COLORMAX)
+// ----------------------------------------------------------------------------
+
 //---------------------------------------------------------------------------------------------
 /*
  *	文字データ取得
@@ -125,8 +137,13 @@ PRINT_RESULT PokeFontPrint( MSG_DATA_HEADER * mdh_p )
 		fcode = *(u16*)(mdh_p->mph.msg);
 		mdh_p->mph.msg++; 
 
-		switch(fcode){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/07
+		// 圧縮された文字列をそのまま表示しようとしていたらストップ
+		GF_ASSERT_MSG(fcode != COMPRESSED_MARK, "圧縮文字列をそのまま表示しようとしました。\n");
+		// ----------------------------------------------------------------------------
 
+		switch(fcode){
 		/* 終了コード */
 		case EOM_:	
 			return PRINT_RESULT_END;
@@ -155,7 +172,21 @@ PRINT_RESULT PokeFontPrint( MSG_DATA_HEADER * mdh_p )
 			case NC_FONT_COL_:				// フォント制御コード
 				{
 					u16	 param = STRCODE_GetTagParam( mdh_p->mph.msg, 0 );
-
+					// ----------------------------------------------------------------------------
+					// localize_spec_mark(LANG_ALL) imatake 2006/12/06
+					// あらかじめ登録しておいた色に後で変更する仕組みを実装
+					// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+					// 色の登録の仕組みを変更
+					if (param == COLORSTACK_SWAP) {
+						u8 color_stack = mdh_p->mph.color_stack;
+						mdh_p->mph.color_stack = (mdh_p->mph.f_col - 1) / 2 + COLORSTACK_COLOROFFSET;
+						if (!COLORSTACK_ISVALID(color_stack)) break;	// 正しい値が保存されていなければ現状維持
+						param = color_stack - COLORSTACK_COLOROFFSET;
+					} else if (param >= COLORSTACK_COLOROFFSET) {
+						mdh_p->mph.color_stack = param;
+						break;
+					}
+					// ----------------------------------------------------------------------------
 					mdh_p->mph.f_col = 1 + (param*2);
 					mdh_p->mph.s_col = 1 + (param*2) + 1;
 					FntDataColorSet(mdh_p->mph.f_col, mdh_p->mph.b_col, mdh_p->mph.s_col);

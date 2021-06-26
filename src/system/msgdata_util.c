@@ -60,7 +60,6 @@ STRBUF* MSGDAT_UTIL_AllocExpandString( WORDSET* wordSet, MSGDATA_MANAGER* msgMan
 	return retbuf;
 }
 
-
 //------------------------------------------------------------------
 /**
  * ワザ名文字列を、新規に作成した文字列バッファにコピーして返す
@@ -88,6 +87,7 @@ STRBUF* MSGDAT_UTIL_GetWazaName( u32 wazaID, u32 heapID )
 	return NULL;
 }
 
+//#define NARC_msg_monsname_dat_NEW 412
 
 //------------------------------------------------------------------
 /**

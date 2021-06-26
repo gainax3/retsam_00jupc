@@ -552,3 +552,59 @@ static u8 GetWidthFixedFont( const GF_FONTDATA_MAN* wk, u32 bcode )
 	}
 #endif
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 複数行にわたる文字列の、最長行のビットマップ幅を返す関数
+
+u32 FontDataMan_GetMaxLineWidth(const GF_FONTDATA_MAN* wk, const STRCODE* str, u32 margin)
+{
+	u32 maxlen = 0, linelen = 0;
+
+	while(*str != EOM_) {
+		if (*str == _CTRL_TAG) {
+			str = STRCODE_SkipTag(str);
+			continue;
+		} else if (*str == CR_) {
+			linelen -= margin;
+			if (maxlen < linelen) maxlen = linelen;
+			linelen = 0;
+			str++;
+			continue;
+		}
+		linelen += (wk->WidthGetFunc( wk, (*str)-1 ) + margin);
+		str++;
+	}
+
+	linelen -= margin;
+	if (maxlen < linelen) maxlen = linelen;
+
+	return maxlen;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+// スクリプトウィンドウを開く際に、各項目の長さを取得するための関数
+
+#define EV_WIN_CURSOR_WIDTH		(12)
+
+u32 FontDataMan_GetEvWinItemWidth( const GF_FONTDATA_MAN* wk, const STRCODE* str )
+{
+	u32 len = 0;
+
+	while(*str != EOM_) {
+		if (*str == _CTRL_TAG ) {
+			if (STRCODE_GetTagType(str) == NC_WRITEPOS_CHANGE_X) {
+				len = STRCODE_GetTagParam(str, 0) - EV_WIN_CURSOR_WIDTH;
+			}
+			str = STRCODE_SkipTag(str);
+			continue;
+		}
+		len += wk->WidthGetFunc( wk, (*str)-1 );
+		str++;
+	}
+
+	return len;
+}

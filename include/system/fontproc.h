@@ -207,6 +207,33 @@ extern u32 FontProc_GetPrintStrWidth( FONT_TYPE font, const STRBUF* str, u32 mar
 //--------------------------------------------------------------------------------------------
 extern u8 FontCursorSizeGet( u8 fnt_index, u8 param );
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 複数行にわたる文字列の、最長行のビットマップ幅を返す関数
+u32 FontProc_GetMaxLineWidth( FONT_TYPE font, const STRCODE* str, u32 margin );
+u32 FontProc_GetPrintMaxLineWidth( FONT_TYPE font, const STRBUF* str, u32 margin );
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/14
+// 1行の文字列をセンタリングした位置を返す関数
+u32 FontProc_GetCenteredPositionX( FONT_TYPE font, const STRCODE* str, u32 margin, u32 width );
+u32 FontProc_GetPrintCenteredPositionX( FONT_TYPE font, const STRBUF* str, u32 margin, u32 width );
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// 文字列の行数をカウントして返す関数
+u32 FontProc_GetLineNum(const STRCODE* str);
+u32 FontProc_GetPrintLineNum(const STRBUF* str);
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+// スクリプトウィンドウを開く際に、各項目の長さを取得するための関数
+u32 FontProc_GetEvWinItemWidth( FONT_TYPE font, const STRBUF* str );
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * 文字列に不明な文字コードが入っていないか調べる

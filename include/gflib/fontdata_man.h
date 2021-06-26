@@ -97,4 +97,16 @@ extern u32 FontDataMan_GetStrWidth( const GF_FONTDATA_MAN* wk, const STRCODE* st
 //--------------------------------------------------------------
 extern BOOL FontDataMan_ErrorStrCheck(const GF_FONTDATA_MAN* wk, const STRCODE* str);
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 複数行にわたる文字列の、最長行のビットマップ幅を返す関数
+u32 FontDataMan_GetMaxLineWidth(const GF_FONTDATA_MAN* wk, const STRCODE* str, u32 margin);
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+// スクリプトウィンドウを開く際に、各項目の長さを取得するための関数
+u32 FontDataMan_GetEvWinItemWidth( const GF_FONTDATA_MAN* wk, const STRCODE* str );
+// ----------------------------------------------------------------------------
+
 #endif
