@@ -1584,16 +1584,16 @@ static void transVramCharCore( CHAR_DATA_TBL* data, int vram_type)
 		
 	}
 
-	if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
-		if(GX_GetOBJVRamModeChar() != before_mapping){
-			OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
-		}
-	}
-	else{
-		if(GXS_GetOBJVRamModeChar() != before_mapping){
-			OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
-		}
-	}
+	//if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
+	//	if(GX_GetOBJVRamModeChar() != before_mapping){
+	//		OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
+	//	}
+	//}
+	//else{
+	//	if(GXS_GetOBJVRamModeChar() != before_mapping){
+	//		OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
+	//	}
+	//}
 }
 
 //----------------------------------------------------------------------------
@@ -1661,16 +1661,16 @@ static void transVramCharVramModeCore( CHAR_DATA_TBL* data, int vram_type)
 			vram_type,				// VramType
 			&data->ImageProxy );	// イメージプロクシ
 
-	if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
-		if(GX_GetOBJVRamModeChar() != before_mapping){
-			OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
-		}
-	}
-	else{
-		if(GXS_GetOBJVRamModeChar() != before_mapping){
-			OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
-		}
-	}
+	//if(vram_type == NNS_G2D_VRAM_TYPE_2DMAIN){
+	//	if(GX_GetOBJVRamModeChar() != before_mapping){
+	//		OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
+	//	}
+	//}
+	//else{
+	//	if(GXS_GetOBJVRamModeChar() != before_mapping){
+	//		OS_Printf("キャラ転送によりOBJマッピングモードが変更されました\n");
+	//	}
+	//}
 }
 
 //----------------------------------------------------------------------------

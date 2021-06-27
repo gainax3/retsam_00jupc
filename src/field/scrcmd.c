@@ -756,6 +756,23 @@ static BOOL EvCmdReportInfoWinOpen( VM_MACHINE * core );
 static BOOL EvCmdReportInfoWinClose( VM_MACHINE * core );
 
 static BOOL EvCmdFieldScopeModeSet( VM_MACHINE * core );
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+static BOOL EvCmdBmpMenuListAlignRight( VM_MACHINE *core );
+static BOOL EvCmdBmpMenuListAlignBottom( VM_MACHINE *core );
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/09
+// 体験版のみで使われるスクリプト命令を追加
+#ifdef PG5_TRIAL
+static BOOL EvCmdShinka(VM_MACHINE * core);
+static BOOL EvCmdSoftReset(VM_MACHINE * core);
+#endif
+// ----------------------------------------------------------------------------
+
 static BOOL EvCmdFrontierSystemCall( VM_MACHINE * core );
 
 static BOOL EvCmdGuru2SetProc( VM_MACHINE * core );
@@ -1710,6 +1727,53 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdReportInfoWinClose,
 
 	EvCmdFieldScopeModeSet,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/13
+	// 冠詞付き・複数形のアイテム名を引っ張ってくるスクリプト命令を追加
+//	EvCmdItemNameIndefinate,
+//	EvCmdItemNamePlural,
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+	// 不定冠詞付きの地下グッズ名を引っ張ってくるスクリプト命令を追加
+//	EvCmdGoodsNameIndefinate,
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+	// 不定冠詞付きの地下ワナ・タマ名を引っ張ってくるスクリプト命令を追加
+//	EvCmdTrapNameIndefinate,
+//	EvCmdTamaNameIndefinate,
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+	// 不定冠詞付きのポケモン名・アクセサリー名を引っ張ってくるスクリプト命令を追加
+//	EvCmdPokemonNameExtraIndefinate,
+//	EvCmdSupportPokemonNameIndefinate,
+//	EvCmdAcceNameIndefinate,
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+	// 不定冠詞付きのトレーナータイプ名を引っ張ってくるスクリプト命令を追加
+	EvCmdTrTypeNameIndefinate,
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+	// 複数形のシール名を引っ張ってくるスクリプト命令を追加
+	EvCmdSealNamePlural,
+	// ----------------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/24
+	// 変数に代入された文字列をキャピタライズするスクリプト命令を追加
+	EvCmdCapitalizeName,
+	// ----------------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端にするための命令を追加
+	EvCmdBmpMenuListAlignRight,
+	EvCmdBmpMenuListAlignBottom,
+	// ----------------------------------------------------------------------------
 	EvCmdFrontierSystemCall,
 	EvCmdFactorySetContinueNG,
 
@@ -4278,6 +4342,31 @@ static BOOL EvCmdBmpMenuHVStart( VM_MACHINE * core )
 	return 1;
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+
+static BOOL EvCmdBmpMenuListAlignRight( VM_MACHINE *core )
+{
+	FIELDSYS_WORK* fsys	= core->fsys;
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORK取得
+	u8 alignFlag 		= VMGetU8(core);
+
+	CmdEvBmpMenuList_AlignRight( *ev_win, (BOOL)alignFlag );
+	return TRUE;
+}
+
+static BOOL EvCmdBmpMenuListAlignBottom( VM_MACHINE *core )
+{
+	FIELDSYS_WORK* fsys	= core->fsys;
+	EV_WIN_WORK** ev_win= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_EVWIN );	//EV_WIN_WORK取得
+	u8 alignFlag 		= VMGetU8(core);
+
+	CmdEvBmpMenuList_AlignBottom( *ev_win, (BOOL)alignFlag );
+	return TRUE;
+}
+
+// ----------------------------------------------------------------------------
 
 //============================================================================================
 //
@@ -13769,7 +13858,8 @@ static BOOL EvCmdGirathinaFormUpdate( VM_MACHINE * core )
 		poke_max = PokeParty_GetPokeCount(party);
 		for(i = 0; i < poke_max; i++){
 			pp = PokeParty_GetMemberPointer(party, i);
-			if(PokeParaGet(pp, ID_PARA_tamago_flag, NULL) == 0){
+			if(PokeParaGet(pp, ID_PARA_tamago_flag, NULL) == 0
+                && PokeParaGet(pp, ID_PARA_monsno, NULL) == MONSNO_YONOWAARU){
 				ZukanWork_SetPokeGet(
 					SaveData_GetZukanWork(fsys->savedata), pp);
 			}

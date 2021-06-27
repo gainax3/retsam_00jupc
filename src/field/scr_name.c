@@ -860,4 +860,58 @@ BOOL EvCmdTrainerName(VM_MACHINE * core )
 	return 0;
 }
 
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// 不定冠詞付きのトレーナータイプ名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdTrTypeNameIndefinate(VM_MACHINE * core )
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 type				= VMGetWorkValue(core);
+
+	//OS_Printf( "type = %d\n", type );
+	WORDSET_RegisterTrTypeNameIndefinate( *wordset, idx, type );
+
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// 複数形のシール名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdSealNamePlural(VM_MACHINE * core )
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 sealno				= VMGetWorkValue(core);
+
+	//sealno -= 1;			//1origin->0rigin //plat_us_match
+	WORDSET_RegisterSealNamePlural( *wordset, idx , sealno);
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/24
+// 変数に代入された文字列をキャピタライズするスクリプト命令を追加
+
+BOOL EvCmdCapitalizeName(VM_MACHINE * core)
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+
+	WORDSET_Capitalize( *wordset, idx );
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
 

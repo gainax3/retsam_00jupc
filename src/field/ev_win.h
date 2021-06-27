@@ -369,6 +369,12 @@ extern EV_WIN_WORK * WazaOshieBoardWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* w
 //--------------------------------------------------------------
 extern void WazaOshieBoardDel( EV_WIN_WORK* wk );
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+extern void CmdEvBmpMenuList_AlignRight( EV_WIN_WORK* wk, BOOL flag );
+extern void CmdEvBmpMenuList_AlignBottom( EV_WIN_WORK* wk, BOOL flag );
+// ----------------------------------------------------------------------------
 
 #endif	__ASM_NO_DEF_
 

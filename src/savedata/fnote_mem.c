@@ -711,6 +711,7 @@ static void FNOTE_ActionSitennouDataSave( u32 * dat, FNOTE_WK_ACTION * wk )
 			dat[i] = 0;
 			for( i=i; i<FNOTE_ACTION_MAX-1; i++ ){
 				dat[i] = dat[i+1];
+                dat[i+1] = 0;
 			}
 			break;
 		}
@@ -748,6 +749,7 @@ static void FNOTE_ActionGymLeaderDataSave( u32 * dat, FNOTE_WK_ACTION * wk )
 			dat[i] = 0;
 			for( i=i; i<FNOTE_ACTION_MAX-1; i++ ){
 				dat[i] = dat[i+1];
+                dat[i+1] = 0;
 			}
 			break;
 		}

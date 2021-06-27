@@ -191,8 +191,15 @@ struct _EV_WIN_WORK{
 	u8  cursor_pos;								//カーソル位置
 	u8  cancel:1;								//キャンセル
 	u8  msgman_del_flag:1;						//メッセージマネージャー削除フラグ
-	u8  dmy:6;									//
 
+	u8  dmy:6;									//
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+	u8  align_right:1;							// 真ならx座標は右端指定
+	u8  align_bottom:1;							// 真ならy座標は下端指定
+	// ----------------------------------------------------------------------------
+	
 	u8  x;										//ウィンドウ位置X
 	u8  y;										//ウィンドウ位置Y
 	u8  dmyy;									//メニューナンバー
@@ -1796,6 +1803,21 @@ void EvWin_BtlPointWrite( FIELDSYS_WORK * fsys, GF_BGL_BMPWIN * win )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+
+void CmdEvBmpMenuList_AlignRight( EV_WIN_WORK* wk, BOOL flag )
+{
+	wk->align_right = flag;
+}
+
+void CmdEvBmpMenuList_AlignBottom( EV_WIN_WORK* wk, BOOL flag )
+{
+	wk->align_bottom = flag;
+}
+
+// ----------------------------------------------------------------------------
 
 //==============================================================================================
 //

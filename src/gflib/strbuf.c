@@ -660,24 +660,16 @@ void STRBUF_AddChar( STRBUF* dst, STRCODE code )
 	GF_ASSERT_MSG(0, "STRBUF overflow: busize=%d", dst->size);
 }
 
-// ----------------------------------------------------------------------------
-// localize_spec_mark(LANG_ALL) imatake 2006/11/24
-// 先頭の文字をキャピタライズする関数を追加
-
-void STRBUF_Capitalize( STRBUF *strbuf, u32 a1 )
+/*BOOL STRBUF_2023EF8( STRBUF *strbuf )
 {
-	STRBUF_CHECK_STATE( strbuf );
+    STRBUF_CHECK_STATE( strbuf );
 
-	if (strbuf->strlen > 0) {
-		STRCODE head = strbuf->buffer[0];
-		// とりあえずアクセント記号付きのアルファベットは考慮しない
-		if (head >= h_a__ && head <= h_z__) {
-			strbuf->buffer[0] -= h_a__ - h_A__;
-		}
-	}
-}
+    if (strbuf->strlen == 0) {
+        return 0;
+    }
 
-// ----------------------------------------------------------------------------
+    strbuf->buffer[0]
+}*/
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/07
@@ -724,6 +716,25 @@ void STRBUF_AddCompStr(STRBUF *dst, STRBUF *src)
 		dst->strlen += length;
 	} else {
 		STRBUF_AddStr(dst, src);
+	}
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/24
+// 先頭の文字をキャピタライズする関数を追加
+
+void STRBUF_Capitalize( STRBUF *strbuf, u32 letterIndex )
+{
+	STRBUF_CHECK_STATE( strbuf );
+
+	if (strbuf->strlen > letterIndex) {
+		STRCODE head = strbuf->buffer[letterIndex];
+		// とりあえずアクセント記号付きのアルファベットは考慮しない
+		if (head >= h_a__ && head <= h_z__) {
+			strbuf->buffer[letterIndex] -= h_a__ - h_A__;
+		}
 	}
 }
 
