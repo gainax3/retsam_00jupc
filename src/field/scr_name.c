@@ -860,6 +860,120 @@ BOOL EvCmdTrainerName(VM_MACHINE * core )
 	return 0;
 }
 
+//--------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/13
+// 冠詞付き・複数形のアイテム名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdItemNameIndefinate(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 itemno				= VMGetWorkValue(core);
+
+	WORDSET_RegisterItemNameIndefinate( *wordset, idx, itemno );
+	return 0;
+}
+
+BOOL EvCmdItemNamePlural(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 itemno				= VMGetWorkValue(core);
+
+	WORDSET_RegisterItemNamePlural( *wordset, idx, itemno );
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下グッズ名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdGoodsNameIndefinate(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 itemno				= VMGetWorkValue(core);
+
+	WORDSET_RegisterUGGoodsNameIndefinate( *wordset, idx, itemno );
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+// 不定冠詞付きの地下グッズ名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdTrapNameIndefinate(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 trapno				= VMGetWorkValue(core);
+
+	WORDSET_RegisterUGTrapNameIndefinate( *wordset, idx , trapno);
+	return 0;
+}
+
+BOOL EvCmdTamaNameIndefinate(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 tamano				= VMGetWorkValue(core);
+
+	WORDSET_RegisterUGItemNameIndefinate( *wordset, idx , tamano);
+	return 0;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+// 不定冠詞付きのポケモン名・アクセサリー名を引っ張ってくるスクリプト命令を追加
+
+BOOL EvCmdPokemonNameExtraIndefinate(VM_MACHINE * core )
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 mons				= VMGetWorkValue(core);
+	u16 sex					= VMGetU16(core);
+	u8 flag					= VMGetU8(core);
+
+	WORDSET_RegisterPokeMonsNameIndefinateByNo( *wordset, idx, mons );
+	return 0;
+}
+
+BOOL EvCmdSupportPokemonNameIndefinate(VM_MACHINE * core )
+{
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( core->fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 mons				= SysWork_SupportPokeNoGet(SaveData_GetEventWork(core->fsys->savedata));
+
+	WORDSET_RegisterPokeMonsNameIndefinateByNo( *wordset, idx, mons );
+	return 0;
+}
+
+BOOL EvCmdAcceNameIndefinate(VM_MACHINE * core ) 
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+	u16 acceno				= VMGetWorkValue(core);
+
+	WORDSET_RegisterAccessoryNameIndefinate( *wordset, idx, acceno );
+	return 0;
+}
+
 // ----------------------------------------------------------------------------
 
 // ----------------------------------------------------------------------------
@@ -892,7 +1006,7 @@ BOOL EvCmdSealNamePlural(VM_MACHINE * core )
 	u8 idx					= VMGetU8(core);
 	u16 sealno				= VMGetWorkValue(core);
 
-	//sealno -= 1;			//1origin->0rigin //plat_us_match
+	sealno -= 1;			//1origin->0rigin
 	WORDSET_RegisterSealNamePlural( *wordset, idx , sealno);
 	return 0;
 }
@@ -915,3 +1029,13 @@ BOOL EvCmdCapitalizeName(VM_MACHINE * core)
 
 // ----------------------------------------------------------------------------
 
+BOOL EvCmd_2048080(VM_MACHINE * core)
+{
+	FIELDSYS_WORK * fsys	= core->fsys;
+	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
+	u8 idx					= VMGetU8(core);
+    u8 unkID                = VMGetU8(core);
+
+    WORDSET_Register_200C338( *wordset, idx, unkID );
+    return 0;
+}

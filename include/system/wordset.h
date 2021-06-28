@@ -203,4 +203,5 @@ extern void WORDSET_RegisterWiFiLobbyAisatsuSpain( WORDSET* wordset, u32 bufID, 
 
 extern void WORDSET_RegisterFurniture( WORDSET * wordset, u32 bufID, u32 furnitureID );
 
+extern void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID ); // plat_us_match
 #endif

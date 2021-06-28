@@ -67,6 +67,11 @@
 #include "../frontier/frontier_def.h"
 #include "application/p_status/ribbon.h"
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+// ‰pŒê”Å‚Ì‚Ýƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ðƒCƒ“ƒ`Œn‚É•ÏŠ·
+#include "localize.h"
+// ----------------------------------------------------------------------------
 
 //============================================================================================
 //============================================================================================
@@ -1432,6 +1437,7 @@ static int TVTOPIC_Make_Watch_Shopping(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD
 	WORDSET_RegisterNumber(ws, 1, wsw->item_num, 3,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 	WORDSET_RegisterOwnerName(ws, 2, bcd);
+    WORDSET_RegisterItemNamePlural(ws, 3, wsw->item_no);
 	return msg_tv_02_07_01;
 }
 
@@ -2166,10 +2172,24 @@ static int TVTOPIC_Make_Record_Ookisa(FIELDSYS_WORK * fsys, WORDSET * ws, TVBCD 
 	WORDSET_RegisterOwnerName(ws, 0, bcd);
 	WORDSET_RegisterMonsName(ws, 1, row->monsno,
 			row->mons_sex, row->mons_region, row->mons_rom);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+	// ‰pŒê”Å‚Ì‚Ýƒ|ƒPƒ‚ƒ“‚Ì‘å‚«‚³‚ðƒCƒ“ƒ`Œn‚É•ÏŠ·
+#if (PM_LANG == LANG_ENGLISH)
+	{
+		u32 size_inch = PG5_CM_TO_INCH(row->size);
+		WORDSET_RegisterNumber(ws, 2, size_inch / 10, 3,
+				NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+		WORDSET_RegisterNumber(ws, 3, size_inch % 10, 1,
+				NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+	}
+#else
 	WORDSET_RegisterNumber(ws, 2, row->size / 10, 3,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 	WORDSET_RegisterNumber(ws, 3, row->size % 10, 1,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+#endif
+	// ----------------------------------------------------------------------------
 
 	return msg_tv_03_03_01;
 }

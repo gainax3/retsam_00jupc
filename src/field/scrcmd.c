@@ -1730,26 +1730,26 @@ const VM_CMD ScriptCmdTbl[] = {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/13
 	// 冠詞付き・複数形のアイテム名を引っ張ってくるスクリプト命令を追加
-//	EvCmdItemNameIndefinate,
-//	EvCmdItemNamePlural,
+	EvCmdItemNameIndefinate,
+	EvCmdItemNamePlural,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
 	// 不定冠詞付きの地下グッズ名を引っ張ってくるスクリプト命令を追加
-//	EvCmdGoodsNameIndefinate,
+	EvCmdGoodsNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/11/29
 	// 不定冠詞付きの地下ワナ・タマ名を引っ張ってくるスクリプト命令を追加
-//	EvCmdTrapNameIndefinate,
-//	EvCmdTamaNameIndefinate,
+	EvCmdTrapNameIndefinate,
+	EvCmdTamaNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
 	// 不定冠詞付きのポケモン名・アクセサリー名を引っ張ってくるスクリプト命令を追加
-//	EvCmdPokemonNameExtraIndefinate,
-//	EvCmdSupportPokemonNameIndefinate,
-//	EvCmdAcceNameIndefinate,
+	EvCmdPokemonNameExtraIndefinate,
+	EvCmdSupportPokemonNameIndefinate,
+	EvCmdAcceNameIndefinate,
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
@@ -1767,6 +1767,8 @@ const VM_CMD ScriptCmdTbl[] = {
 	// 変数に代入された文字列をキャピタライズするスクリプト命令を追加
 	EvCmdCapitalizeName,
 	// ----------------------------------------------------------------------------
+
+    EvCmd_2048080, // plat_us_match (maybe)
 
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14

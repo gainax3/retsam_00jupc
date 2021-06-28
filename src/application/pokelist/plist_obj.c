@@ -171,16 +171,27 @@ void PokeListIconChange( PLIST_WORK *wk, u8 pos )
 	POKEMON_PARAM * pp;
 	ARCHANDLE* p_handle;
 	int after_monsno, after_form;
-	
+    u32 sp10;
+    void * arcData;
+    NNSG2dCharacterData * charData;
+    BOOL res;
+
 	pp = PokeParty_GetMemberPointer( wk->dat->pp, pos );
 	after_monsno = PokeParaGet(pp, ID_PARA_monsno, NULL);
 	after_form = PokeParaGet(pp, ID_PARA_form_no, NULL);
 	
 	p_handle = ArchiveDataHandleOpen( ARC_POKEICON, HEAPID_POKELIST );
 
-	CATS_ChangeResourceCharArcH(
-		wk->csp, wk->crp,
-		p_handle, PokeIconCgxArcIndexGetByPP(pp), 0, PLA_CHAR_ID_ICON1+pos );
+    // MatchComment: this function changed quite a bit
+    sp10 = NNS_G2dGetImageLocation(CLACT_ImageProxyGet(wk->panel[pos].icon_cwp), NNS_G2D_VRAM_TYPE_2DMAIN);
+    arcData = ArcUtil_HDL_Load(p_handle, PokeIconCgxArcIndexGetByPP(pp), FALSE, HEAPID_POKELIST, ALLOC_BOTTOM);
+    res = NNS_G2dGetUnpackedCharacterData(arcData, &charData);
+    if (res) {
+        DC_InvalidateRange(charData->pRawData, charData->szByte);
+        GXS_LoadOBJ(charData->pRawData, sp10, charData->szByte);
+    }
+    sys_FreeMemoryEz(arcData);
+
 	CATS_ObjectPaletteSet(wk->panel[pos].icon_cwp, 
 		PokeIconPalNumGet(after_monsno, after_form, 0) + 3);
 

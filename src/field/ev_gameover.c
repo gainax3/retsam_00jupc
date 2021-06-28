@@ -277,8 +277,16 @@ static void scr_msg_print( GAME_OVER_WORK* wk, u16 msg_id, u8 x, u8 y )
 	GF_BGL_BmpWinDataFill( &wk->bmpwin, FBMP_COL_NULL );			//塗りつぶし
 
 	MSGMAN_GetString( wk->msgman, msg_id, tmp_buf );
-
 	WORDSET_ExpandStr( wk->wordset, tmp_buf2, tmp_buf );
+
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/06
+	// ゲームオーバーメッセージを自動で中央揃え（渡されていた x の内容は破棄）
+	{
+		u32 width = FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, tmp_buf2, 0);
+		x = (u8)(wk->bmpwin.sizx * 8 - width) / 2 - 4;		// ウィンドウが右寄り
+	}
+	// ----------------------------------------------------------------------------
 	GF_STR_PrintColor( &wk->bmpwin, FONT_SYSTEM, tmp_buf2, x, y, MSG_NO_PUT, 
 					GF_PRINTCOLOR_MAKE(FBMP_COL_WHITE,FBMP_COL_BLK_SDW,FBMP_COL_NULL), NULL );
 

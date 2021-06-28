@@ -1883,7 +1883,11 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 {
 	POKEMON_PARAM * pp;
 	STRBUF * str;
-	STRBUF * plus;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+	// mes_pokelist_08_07 に変数タグを追加
+	// ----------------------------------------------------------------------------
+	//STRBUF * plus; //MatchComment: change induced by localize spec mark
 	u32	i;
 	u16	now[6];
 
@@ -1904,31 +1908,54 @@ void PokeList_LvWinPut( PLIST_WORK * wk )
 
 	GF_BGL_BmpWinDataFill( &wk->add_win[ADD_WIN_MENU], 15 );
 
-	plus = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_07 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+	// mes_pokelist_08_07 に変数タグを追加
+	// ----------------------------------------------------------------------------
+	//plus = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_07 ); //MatchComment: change induced by localize spec mark
 	for( i=0; i<6; i++ ){
 		// 項目
 		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_01+i );
 		GF_STR_PrintSimple(
 			&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM, str, 0, 16*i, MSG_NO_PUT, NULL );
-		STRBUF_Delete( str );
+		STRBUF_Delete( str ); 
 		
+        // ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+		// mes_pokelist_08_07 に変数タグを追加
+		// ----------------------------------------------------------------------------
 		// 「＋」
-		GF_STR_PrintSimple(
-			&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM, plus, LVUP_PLUS_PX, 16*i, MSG_NO_PUT, NULL );
+		//GF_STR_PrintSimple(
+		//	&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM, plus, LVUP_PLUS_PX, 16*i, MSG_NO_PUT, NULL ); //MatchComment: change induced by localize spec mark
 
 		// パラメータ
-		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_08 );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+		// mes_pokelist_08_07 に変数タグを追加
+		str = MSGMAN_AllocString( wk->msg_man, mes_pokelist_08_07 );
+        // ----------------------------------------------------------------------------
 		WORDSET_RegisterNumber(
 			wk->wset, 0, now[i]-wk->tmp[i], 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 		WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
 		STRBUF_Delete( str );
-		GF_STR_PrintSimple(
-			&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM,
-			wk->msg_buf, LVUP_UP_PX, 16*i, MSG_NO_PUT, NULL );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+		// パラメタ増分の表示を自動で右寄せ
+		{
+			u32 xofs = ADD_WIN_LVUP_SX * 8 - 8 - FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0);
+			GF_STR_PrintSimple(
+				&wk->add_win[ADD_WIN_MENU], FONT_SYSTEM,
+				wk->msg_buf, xofs, 16*i, MSG_NO_PUT, NULL );
+		}
+		// ----------------------------------------------------------------------------
 
 		wk->tmp[i] = now[i];
 	}
-	STRBUF_Delete( plus );
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+	// mes_pokelist_08_07 に変数タグを追加
+	// ----------------------------------------------------------------------------
+	//STRBUF_Delete( plus ); //MatchComment: change induced by localize spec mark
 
 	GF_BGL_BmpWinOnVReq( &wk->add_win[ADD_WIN_MENU] );
 }
