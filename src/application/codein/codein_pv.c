@@ -100,56 +100,143 @@ void CI_pv_FocusSet( CODEIN_WORK* wk, int next_focus )
 void CI_pv_ParamInit( CODEIN_WORK* wk )
 {
 	int i;
-	
+
 	///< Touch パネルモード
 	wk->sys.touch = TRUE;
-	
-	///< block table の作成
-	{
-		wk->b_tbl[ 0 ][ 0 ] = 0;
-		wk->b_tbl[ 0 ][ 1 ] = wk->param.block[ 0 ];
-		wk->b_tbl[ 1 ][ 0 ] = wk->param.block[ 0 ];
-		wk->b_tbl[ 1 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
-		wk->b_tbl[ 2 ][ 0 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
-		wk->b_tbl[ 2 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ] + wk->param.block[ 2 ];
-	}		
+	//r5 = 0;
+    //r7 = 0x374;
+    //r5 = 0;
+    //r1 = 0xab;
+    //r3 = 0;
+    //r6 = wk;
+    //r7 = 0x2aa;
+    //r0 = 0x3bc;
+    //r1 = 0x2ac;
+    
+    {
+        u16 r5 = 0;
+        for ( i = 0; i < CODE_BLOCK_MAX + 1; i++) {
+            wk->b_tbl[ i ][ 0 ] = r5;
+            r5 += wk->param.block[ i ];
+            wk->b_tbl[ i ][ 1 ] = r5;
+        }
+    }
+    
+    //wk->b_tbl[
+	/////< block table の作成
+	//{
+	//	wk->b_tbl[ 0 ][ 0 ] = 0;
+	//	wk->b_tbl[ 0 ][ 1 ] = wk->param.block[ 0 ];
+	//	wk->b_tbl[ 1 ][ 0 ] = wk->param.block[ 0 ];
+	//	wk->b_tbl[ 1 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
+	//	wk->b_tbl[ 2 ][ 0 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ];
+	//	wk->b_tbl[ 2 ][ 1 ] = wk->param.block[ 0 ] + wk->param.block[ 1 ] + wk->param.block[ 2 ];
+	//}		
 	///< focusの設定
-	CI_pv_FocusSet( wk, 1 );
+	CI_pv_FocusSet( wk, wk->param.unk24 + 1 );
 
-	///< block 総数からcodeの最大数を求める
-	for ( i = 0; i < CODE_BLOCK_MAX; i++ ){
-		
-		wk->code_max += wk->param.block[ i ];
-	}
-	
+    ///< block 総数からcodeの最大数を求める
+    for ( i = 0; i < CODE_BLOCK_MAX; i++ ){
+        if (wk->param.block[i] == 0) {
+            break;
+        }
+
+        wk->code_max += wk->param.block[ i ];
+        wk->unk3ec++;
+    }
+
+    {
+        // wtf? somehow this is like somewhat close to matching too
+        u32 intermediate;
+
+        wk->unk3ec--;
+        //r7 = 0x2a2
+        //r1 = 0x2d0
+        //r2 = wk->code_max
+        //r0 = wk->unk3ec
+        //r1 = 0x2a0;
+        //r0 = wk->code_max + wk->unk3ec;
+        //r2 = ((wk->code_max + wk->unk3ec) << 3); // get bit 28
+        //r0 = r2 >> 0x1f;
+        ////r0 = r2 >> 0x1f;
+        //r0 = r2 + r0;
+        //r2 = r0 >> 1;
+        //r0 = 0x70 - r2;
+        // then store
+
+        //r0 = r2 >> 0x1f;
+        //r0 = r2 >> 0x1f;
+        //r0 = ;
+        //r2 = (r2 + (r2 >> 0x1f)) >> 1;
+        intermediate = ((wk->code_max + wk->unk3ec) << 3);
+        wk->x_tbl[ 0 ] = 0x70 - ((intermediate + (intermediate >> 0x1f)) >> 1);
+
+        //r0 = (r0 >> 28) & 1;
+        //r0 = r2 + ((r0 >> 28) & 1);
+        //r2 = r0 >> 1; // asrs
+        //r0 = 0x70 - r2;
+        //wk->x_tbl[ 0 ] = 112 - ((r2 + (((wk->code_max + wk->unk3ec) >> 28) & 1)) >> 1);
+
+        for (i = 0; i < CODE_BLOCK_MAX; i++) {
+            intermediate = (wk->unk3ec << 3) + ((wk->code_max - wk->param.block[i]) << 3) + (wk->param.block[i] << 5);
+            wk->x_tbl[ i + 1 ] = 112 - ((intermediate + (intermediate >> 0x1f)) >> 1);
+        }
+
+        // START OF FOR LOOP
+        //r6 = 0
+        //r3 = wk
+        //r5 = wk
+        //r2 = wk->param.block[i]
+        //r0 = wk->unk3ec;
+        //r6 += 1;
+        //r1 = wk->unk3ec << 3
+        //r0 = wk->code_max;
+        //r3 += 4
+        //r0 = wk->code_max - wk->param.block[i];
+        //r0 = (wk->code_max - wk->param.block[i]) << 3;
+        //r2 = wk->param.block[i] << 5;
+        //r0 = ((wk->code_max - wk->param.block[i]) << 3) + (wk->param.block[i] << 5);
+
+
+        //r0 = r1 >> 0x1f;
+        //r0 = r1 + (r1 >> 0x1f);
+        //r1 = (r1 + (r1 >> 0x1f)) >> 1; // asrs
+        //r0 = 0x70 - ((r1 + (r1 >> 0x1f)) >> 1); // asrs        
+    }
+
+    wk->x_tbl[ 1 ] += 12;
+
 	///< table 作成
-	{
-		int sw = 0;
-		const x_tbl[][ CODE_BLOCK_MAX ] = {
-			{ POS_4_4_4_p1, POS_4_4_4_p2, POS_4_4_4_p3 },
-			{ POS_2_5_5_p1, POS_2_5_5_p2, POS_2_5_5_p3 },
-		};
-		if ( wk->param.block[ 0 ] != 4 ){
-			sw = 1;
-		}
-		for ( i = 0; i < CODE_BLOCK_MAX; i++ ){
-			
-			wk->x_tbl[ i ] = x_tbl[ sw ][ i ];
-		}
-		wk->x_tbl[ i ] = x_tbl[ sw ][ i - 1 ];
-	}
+	//{
+	//	int sw = 0;
+	//	const x_tbl[][ CODE_BLOCK_MAX ] = {
+	//		{ POS_4_4_4_p1, POS_4_4_4_p2, POS_4_4_4_p3 },
+	//		{ POS_2_5_5_p1, POS_2_5_5_p2, POS_2_5_5_p3 },
+	//	};
+	//	if ( wk->param.block[ 0 ] != 4 ){
+	//		sw = 1;
+	//	}
+	//	for ( i = 0; i < CODE_BLOCK_MAX; i++ ){
+	//		
+	//		wk->x_tbl[ i ] = x_tbl[ sw ][ i ];
+	//	}
+	//	wk->x_tbl[ i ] = x_tbl[ sw ][ i - 1 ];
+	//}
 	
 	///< code列内でのbarの位置
 	{
-		int pos = 0;			
-		for ( i = 0; i < BAR_OAM_MAX; i++ ){
-			
-			pos += wk->param.block[ i ];
-			wk->bar[ i ].state = pos - 1;
-			OS_Printf( "bar pos = %2d\n", wk->bar[ i ].state );
-		}
+		int pos = 0;
+        //if (wk->unk3ec > 0) {
+            for ( i = 0; i < wk->unk3ec; i++ ){
+                pos += wk->param.block[ i ];
+                wk->bar[ i ].state = pos - 1;
+                OS_Printf( "bar pos = %2d\n", wk->bar[ i ].state );
+            }
+        //}
 	}
 	
+    
+    
 	///< グループの設定
 	{
 		int j;
@@ -166,6 +253,17 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 			bno++;			
 		} while ( i < wk->code_max );
 	}
+
+    {
+        for (i = 0; i < wk->param.unk24; i++) {
+            //r2 = 0x3bc;
+            //r3 = 0x3dc;
+            //r6 = wk->param.block[ i ]
+            //r7 = wk->unk3f0;
+            //r6 = r7 + r6;
+            wk->unk3f0 += wk->param.block[ i ];
+        }
+    }
 }
 
 

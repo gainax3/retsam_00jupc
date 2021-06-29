@@ -4764,7 +4764,7 @@ static WFNOTE_STRET WFNOTE_CODEIN_Main( WFNOTE_CODEIN* p_wk, WFNOTE_WK* p_sys, W
 		p_wk->p_namein = WFNOTE_CODEIN_NameInParamMake( p_wk, p_data, heapID );
 		CodeIn_BlockDataMake_4_4_4( block );
 		p_wk->p_codein = CodeInput_ParamCreate( heapID, FRIENDCODE_MAXLEN, 
-				block, SaveData_GetConfig(p_data->p_save) ); 
+				block, SaveData_GetConfig(p_data->p_save), 0xBEAD1337, 0xFADEC0CC ); 
 
 		WFNOTE_DrawExit( p_sys );	// ‰æ–Êƒ[ƒN‘S”jŠü
         p_wk->p_subproc = PROC_Create( &NameInProcData, p_wk->p_namein, heapID );

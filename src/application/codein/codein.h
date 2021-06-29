@@ -16,7 +16,7 @@
 #include "savedata/config.h"
 #include "gflib/button_man.h"
 
-#define CODE_BLOCK_MAX		( 8 )		///< 入力ブロック最大数
+#define CODE_BLOCK_MAX		( 4 )		///< 入力ブロック最大数
 
 // -----------------------------------------
 //
@@ -26,19 +26,24 @@
 typedef struct {
 	
 //	int			heap_id;					///< 使用するHEAPID
-	int			word_len;					///< 入力文字数	
-	int			block[ CODE_BLOCK_MAX + 1 ];///< 入力ブロック　xx-xxxx-xxx とか
+	int			word_len;					///< 入力文字数	// 0x3b8
+	int			block[ CODE_BLOCK_MAX + 1 ];///< 入力ブロック　xx-xxxx-xxx とか // 0x3bc
 	
-	int			end_state;					///< 終了時の状態
-	STRBUF*		strbuf;						///< 空欄ならバッファそうでなければデフォルト値
+	int			end_state;					///< 終了時の状態 // 0x3d0
+	STRBUF*		strbuf;						///< 空欄ならバッファそうでなければデフォルト値 // 0x3d4
 	
-	CONFIG*		cfg;						///< window_type取得用
-	
+	CONFIG*		cfg;						///< window_type取得用 // 0x3d8
+
+	int unk24; // 0x3dc
+    u32 unk28; // 0x3e0
+    u32 unk2c; // 0x3e4
+    u32 unk30; // 0x3e8
+    // 0x3ec
 } CODEIN_PARAM;
 
 extern const PROC_DATA CodeInput_ProcData;
 
-extern CODEIN_PARAM*	CodeInput_ParamCreate( int heap_id, int word_len, int block[], CONFIG* cfg );
+extern CODEIN_PARAM*	CodeInput_ParamCreate( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 );
 extern void				CodeInput_ParamDelete( CODEIN_PARAM* codein_param );
 
 

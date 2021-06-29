@@ -17,7 +17,7 @@
 #include "system\font_arc.h"
 
 #define HEAP_SIZE_CODEIN	( 0x40000 )				///< HEAPサイズ
-#define CODE_OAM_MAX		( 12 )					///< 文字コード数
+#define CODE_OAM_MAX		( 16 )					///< 文字コード数
 #define BAR_OAM_MAX			( CODE_BLOCK_MAX - 1 )	///< ブロック
 #define CUR_OAM_MAX			( 3 )
 #define BTN_OAM_MAX			( 2 )
@@ -75,7 +75,7 @@ enum {
 	eHRT_BACK,
 	eHRT_END,
 	
-	eHRT_MAX,
+	eHRT_MAX = 0x1c, // current enums put this as 0x18
 };
 
 ///< アニメコード
@@ -179,10 +179,10 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	int		param;				///< どんな処理をするか	
-	int		target;				///< 対象は何か
-	int		work;				///< 適当に使うワーク
-	
+	int		param;				///< どんな処理をするか	// 0x3bc
+	int		target;				///< 対象は何か // 0x3c0
+	int		work;				///< 適当に使うワーク // 0x3c4
+	// 0x3c8
 } CODEIN_STATE;
 
 
@@ -193,13 +193,13 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< アーカイブハンドル // 0x0
+	ARCHANDLE*			p_handle;			///< アーカイブハンドル // 0x2ec
 	
-	CATS_SYS_PTR		csp;				///< OAMシステム 0x4
-	CATS_RES_PTR		crp;				///< リソース一括管理 0x8
+	CATS_SYS_PTR		csp;				///< OAMシステム 0x4 // 0x2e8
+	CATS_RES_PTR		crp;				///< リソース一括管理 0x8 // 0x2ec
 
-	GF_BGL_INI*			bgl;				///< BGL 0xc
-	PALETTE_FADE_PTR	pfd;				///< パレットフェード 0x10
+	GF_BGL_INI*			bgl;				///< BGL 0xc // 0x2d0
+	PALETTE_FADE_PTR	pfd;				///< パレットフェード 0x10 // 0x2d4
 	
 	BUTTON_MAN*			btn;				///< ボタン	 0x14
 	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< 当たり判定(managerに登録する) 0x18 eHRT_MAX = 5
@@ -222,33 +222,36 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	CODE_OAM		code[ CODE_OAM_MAX ]; // 0x0
-	CODE_OAM		bar[ BAR_OAM_MAX ]; // 0x150
-	CODE_OAM		cur[ CUR_OAM_MAX ]; // 0x214
-	CODE_OAM		btn[ BTN_OAM_MAX ]; // 0x24c
-	
-	s16				x_tbl[ CODE_BLOCK_MAX + 1 ];
-	u16				b_tbl[ CODE_BLOCK_MAX + 1 ][ 2 ];
-	
-	int				seq;
-	int				wait;
-	int				gene_seq;
-	int				gene_cnt;
-	
-	int				code_max;		///< コード入力数
+	CODE_OAM		code[ CODE_OAM_MAX ]; // 0x0 size 16 * 0x1c = 0x1c0
+	CODE_OAM		bar[ BAR_OAM_MAX ]; // 0x1c0 size 3 * 0x1c = 0x54
+	CODE_OAM		cur[ CUR_OAM_MAX ]; // 0x214 size 3 * 0x1c = 0x54
+	CODE_OAM		btn[ BTN_OAM_MAX ]; // 0x268 size 2 * 0x1c = 0x38
+	//u32             pad[28]; // 0x230
 
-	int				focus_now;		///< 入力対象
-	int				focus_old;		///< 入力対象
-	int				ls;				///< 拡大ブロック開始位置
-	int				le;				///< 拡大ブロック終了位置
-	int				ss;				///< 縮小ブロック開始位置
-	int				se;				///< 縮小ブロック開始位置
+	s16				x_tbl[ CODE_BLOCK_MAX + 1 ]; // 0x2a0 size 5 * 2 = 0xa
+	u16				b_tbl[ CODE_BLOCK_MAX + 1 ][ 2 ]; // 0x2aa size 5 * 2 * 2 = 0x14
+
+    // 0x2be -> 0x2c0
+
+	int				seq; // 0x2c0
+	int				wait; // 0x2c4
+	int				gene_seq; // 0x2c8
+	int				gene_cnt; // 0x2cc
 	
-	CODEIN_SYS		sys;			///< システム
+	int				code_max;		///< コード入力数 // 0x2d0
+
+	int				focus_now;		///< 入力対象 // 0x2d4
+	int				focus_old;		///< 入力対象 // 0x2d8
+	int				ls;				///< 拡大ブロック開始位置 // 0x2dc
+	int				le;				///< 拡大ブロック終了位置 // 0x2e0
+	int				ss;				///< 縮小ブロック開始位置 // 0x2e4
+	int				se;				///< 縮小ブロック開始位置 // 0x2e8
+	
+	CODEIN_SYS		sys;			///< システム // 0x2ec
 	CODEIN_STATE	state;			///< 状態
-
-	CODEIN_PARAM	param;			///< 外側からもらうパラメータ
-	
+	CODEIN_PARAM	param;			///< 外側からもらうパラメータ // 0x3c8
+    u32 unk3ec;
+    u32 unk3f0;
 } CODEIN_WORK;
 
 ///< codein_pv.c

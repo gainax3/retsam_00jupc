@@ -161,16 +161,17 @@ typedef struct _GF_BGL_INI	GF_BGL_INI;
 
 ///ビットマップウィンドウ設定構造体
 typedef struct {
-	GF_BGL_INI * ini;
-	u8		frmnum;
-	u8		posx;
-	u8		posy;
-	u8		sizx;
-	u8		sizy;
-	u8		palnum;
-	u16		chrofs : 15;
+	GF_BGL_INI * ini; // 0x0
+	u8		frmnum; // 0x4
+	u8		posx; // 0x5
+	u8		posy; // 0x6
+	u8		sizx; // 0x7
+	u8		sizy; // 0x8
+	u8		palnum; // 0x9
+	u16		chrofs : 15; // 0xa
 	u16		bitmode : 1;	
-	void * chrbuf;
+	void * chrbuf; // 0xc
+    // size: 0x10
 }GF_BGL_BMPWIN;
 
 

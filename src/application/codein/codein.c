@@ -35,6 +35,8 @@
 #include "system/bmp_menu.h"
 #include "system/snd_tool.h"
 #include "gflib/strbuf_family.h"
+#include "communication/wm_icon.h"
+#include <dwc.h>
 
 #include "codein_pv.h"
 #include "codein_snd.h"
@@ -122,6 +124,11 @@ static PROC_RESULT CI_Proc_Init( PROC * proc, int * seq )
 		CI_pv_ButtonManagerInit( wk );
 	}
 	
+    if (wk->param.unk30 != 0) {
+        WirelessIconEasy();
+        WirelessIconEasy_HoldLCD(TRUE, HEAPID_CODEIN);
+    }
+
 	G2_SetBlendAlpha( GX_BLEND_PLANEMASK_NONE,
 					  GX_BLEND_PLANEMASK_BG1 | GX_BLEND_PLANEMASK_BG2, 15, 7 );
 					 
@@ -155,7 +162,12 @@ static PROC_RESULT CI_Proc_Main( PROC * proc, int * seq )
 	wk = PROC_GetWork( proc );
 	
 	bUpdate = CI_pv_MainUpdate( wk );
-	
+
+    if (wk->param.unk30 != 0) {
+        WirelessIconEasy_SetLevel( WM_LINK_LEVEL_3 - DWC_GetLinkLevel() );
+    }
+
+
 	return bUpdate ? PROC_RES_FINISH : PROC_RES_CONTINUE;
 }
 
@@ -174,11 +186,15 @@ static PROC_RESULT CI_Proc_Main( PROC * proc, int * seq )
 static PROC_RESULT CI_Proc_Exit( PROC * proc, int * seq )
 {
 	CODEIN_WORK* wk;
-	
+
 	wk = PROC_GetWork( proc );
-	
+
+    if (wk->param.unk30 != 0) {
+        WirelessIconEasyEnd();
+    }
+
 	CI_pv_disp_CodeRes_Delete( wk );
-	
+
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG0,  VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1,  VISIBLE_OFF );
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG2,  VISIBLE_OFF );
@@ -238,7 +254,8 @@ static PROC_RESULT CI_Proc_Exit( PROC * proc, int * seq )
  *
  */
 //--------------------------------------------------------------
-CODEIN_PARAM* CodeInput_ParamCreate( int heap_id, int word_len, int block[], CONFIG* cfg )
+// also needs: u32 a4, u32 a5
+CODEIN_PARAM* CodeInput_ParamCreate( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 )
 {
 	int i;
 	CODEIN_PARAM* wk = NULL;
@@ -254,8 +271,28 @@ CODEIN_PARAM* CodeInput_ParamCreate( int heap_id, int word_len, int block[], CON
 		OS_Printf( "block %d = %d\n", i, wk->block[ i ] );
 	}
 	wk->block[ i ] = block[ i - 1 ];
+    wk->unk2c = a4;
+    wk->unk30 = a5;
 
 	return wk;	
+}
+
+void sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 );
+
+void sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 )
+{
+    CODEIN_PARAM * wk = CodeInput_ParamCreate(heap_id, word_len, block, cfg, a4, a5);
+    wk->unk24 = 0;
+    wk->unk28 = 0;
+}
+
+void sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 );
+
+void sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 )
+{
+    CODEIN_PARAM * wk = CodeInput_ParamCreate(heap_id, word_len, block, cfg, a4, a5);
+    wk->unk24 = a6;
+    wk->unk28 = a7;
 }
 
 //--------------------------------------------------------------
@@ -400,6 +437,7 @@ static void CI_VramBankSet( GF_BGL_INI* bgl )
 	GF_Disp_DispSelect();
 	
 	GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
+	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
 }
 
 //--------------------------------------------------------------
