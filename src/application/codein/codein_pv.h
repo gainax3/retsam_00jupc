@@ -151,7 +151,7 @@ typedef struct {
 	u8	wait;	
 	u8	scale;
 	
-} CODE_MOVE_WORK;
+} CODE_MOVE_WORK; // size = 0x8
 
 
 // -----------------------------------------
@@ -161,14 +161,14 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	int				state;		///< codeなら数字・それ以外なら自分の位置
-	int				group;		///< グループ
-	BOOL			size;		///< TRUE = laege
+	int				state;		///< codeなら数字・それ以外なら自分の位置 0x0
+	int				group;		///< グループ 0x4
+	BOOL			size;		///< TRUE = laege 0x8
 	
-	CATS_ACT_PTR	cap;		///< OAM	
-	RECT_HIT_TBL*	hit;		///< 当たり判定(アドレスだけもらって可変させる)
-	CODE_MOVE_WORK	move_wk;	///< 移動制御
-	
+	CATS_ACT_PTR	cap;		///< OAM	0xc
+	RECT_HIT_TBL*	hit;		///< 当たり判定(アドレスだけもらって可変させる) 0x10
+	CODE_MOVE_WORK	move_wk;	///< 移動制御 0x14
+	// size = 0x1c
 } CODE_OAM;
 
 
@@ -193,25 +193,25 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	ARCHANDLE*			p_handle;			///< アーカイブハンドル
+	ARCHANDLE*			p_handle;			///< アーカイブハンドル // 0x0
 	
-	CATS_SYS_PTR		csp;				///< OAMシステム
-	CATS_RES_PTR		crp;				///< リソース一括管理
+	CATS_SYS_PTR		csp;				///< OAMシステム 0x4
+	CATS_RES_PTR		crp;				///< リソース一括管理 0x8
 
-	GF_BGL_INI*			bgl;				///< BGL
-	PALETTE_FADE_PTR	pfd;				///< パレットフェード
+	GF_BGL_INI*			bgl;				///< BGL 0xc
+	PALETTE_FADE_PTR	pfd;				///< パレットフェード 0x10
 	
-	BUTTON_MAN*			btn;				///< ボタン	
-	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< 当たり判定(managerに登録する)
+	BUTTON_MAN*			btn;				///< ボタン	 0x14
+	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< 当たり判定(managerに登録する) 0x18 eHRT_MAX = 5
 	
-	BOOL				touch;				///< モード
+	BOOL				touch;				///< モード 0x2c
 
-	FONTOAM_SYS_PTR			fontoam_sys;
-	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ];
-	CHAR_MANAGER_ALLOCDATA	font_vram[ BTN_OAM_MAX ];
+	FONTOAM_SYS_PTR			fontoam_sys; // 0x30
+	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ]; // 0x34 BTN_OAM_MAX = 2
+	CHAR_MANAGER_ALLOCDATA	font_vram[ BTN_OAM_MAX ]; // 0x3c
 	
-	GF_BGL_BMPWIN		win;
-	
+	GF_BGL_BMPWIN		win; // 0x44
+	// size: 0x54
 } CODEIN_SYS;
 
 
@@ -222,10 +222,10 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	CODE_OAM		code[ CODE_OAM_MAX ];
-	CODE_OAM		bar[ BAR_OAM_MAX ];
-	CODE_OAM		cur[ CUR_OAM_MAX ];
-	CODE_OAM		btn[ BTN_OAM_MAX ];
+	CODE_OAM		code[ CODE_OAM_MAX ]; // 0x0
+	CODE_OAM		bar[ BAR_OAM_MAX ]; // 0x150
+	CODE_OAM		cur[ CUR_OAM_MAX ]; // 0x214
+	CODE_OAM		btn[ BTN_OAM_MAX ]; // 0x24c
 	
 	s16				x_tbl[ CODE_BLOCK_MAX + 1 ];
 	u16				b_tbl[ CODE_BLOCK_MAX + 1 ][ 2 ];

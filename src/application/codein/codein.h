@@ -16,7 +16,7 @@
 #include "savedata/config.h"
 #include "gflib/button_man.h"
 
-#define CODE_BLOCK_MAX		( 3 )		///< 入力ブロック最大数
+#define CODE_BLOCK_MAX		( 8 )		///< 入力ブロック最大数
 
 // -----------------------------------------
 //

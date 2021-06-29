@@ -2,13 +2,21 @@
 #define MAIN_FRAME_POSX		( 22 )
 #define MAIN_FRAME_POSY		( 56 )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 文字種ボタンを3種類に変更
+
+#define FONT_BUTTON_NUM		(3)
+
 #define MAIN_BUTTON1_POSX	( 34  -MAIN_FRAME_POSX -8)
-#define MAIN_BUTTON2_POSX	( 58  -MAIN_FRAME_POSX -8)
-#define MAIN_BUTTON3_POSX	( 82  -MAIN_FRAME_POSX -8)
+#define MAIN_BUTTON2_POSX	( 66  -MAIN_FRAME_POSX -8)
+#define MAIN_BUTTON3_POSX	( 98  -MAIN_FRAME_POSX -8)
 #define MAIN_BUTTON4_POSX	( 106 -MAIN_FRAME_POSX -8)
 #define MAIN_BUTTON5_POSX	( 131 -MAIN_FRAME_POSX -8)
 #define MAIN_BUTTON6_POSX	( 166 -MAIN_FRAME_POSX -8)
 #define MAIN_BUTTON7_POSX	( 202 -MAIN_FRAME_POSX -4)
+
+// ----------------------------------------------------------------------------
 
 #define MAIN_BUTTON_POSY	( 68 )
 
@@ -21,11 +29,16 @@
 // カーソルアニメ定義
 #define NAMEIN_CURSOR_ANM_START	( 39 )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 文字種ボタンを3種類に変更
+// メモ: 3番目の値は、非選択時のボタングラフィックのセル番号
+
 static const main_button_info[][4]={
-	{MAIN_BUTTON1_POSX,MAIN_BUTTON_POSY, 3,  1,},// かな
-	{MAIN_BUTTON2_POSX,MAIN_BUTTON_POSY, 8,  1,},// カナ
-	{MAIN_BUTTON3_POSX,MAIN_BUTTON_POSY,13,  1,},// 英数字
-	{MAIN_BUTTON4_POSX,MAIN_BUTTON_POSY,18,  1,},// 記号
+	{MAIN_BUTTON1_POSX,MAIN_BUTTON_POSY, 3,  1,},// ABC
+	{MAIN_BUTTON2_POSX,MAIN_BUTTON_POSY, 8,  1,},// abc
+	{MAIN_BUTTON3_POSX,MAIN_BUTTON_POSY,13,  1,},// !?♪
+	{0,                200,             18,  1,},// 記号
 	{MAIN_BUTTON5_POSX,MAIN_BUTTON_POSY,20,  1,},// あ→ぁ
 	{MAIN_BUTTON6_POSX,MAIN_BUTTON_POSY,23,  1,},// もどる
 	{MAIN_BUTTON7_POSX,MAIN_BUTTON_POSY,25,  1,},// おわる
@@ -33,6 +46,8 @@ static const main_button_info[][4]={
 	{MAIN_CURSOR_POSX,MAIN_CURSOR_POSY, NAMEIN_CURSOR_ANM_START,  0,},// カーソル
 
 };
+
+// ---------------------------------------------------------------------------
 
 // 下画面用ボタン位置定義
 #define SUB_BUTTON_POSX			(   3 )
@@ -100,18 +115,22 @@ static const sub_button_info[][3]={
 #define NAMEIN_OWARI			( NAMEIN_BUTTON+7 )
 
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 文字種ボタンを3種類に変更
+
 // 文字パネル最上段列のボタン配置テーブル
 // ひらがな・カタカナ・ABCの時
 static const u16 str_func_b1[]={ 
 	NAMEIN_HIRA,
+	NAMEIN_HIRA, 
 
-	NAMEIN_KANA, 
 	NAMEIN_KANA,
+	NAMEIN_KANA, 
 
+	NAMEIN_ALPHA,
 	NAMEIN_ALPHA, 
-	NAMEIN_KIGOU,
-	NAMEIN_KIGOU, 
-	
+//	NAMEIN_KIGOU,
 
 	SKIP_,
 	SKIP_,
@@ -123,6 +142,8 @@ static const u16 str_func_b1[]={
 	NAMEIN_OWARI,
 	NAMEIN_OWARI
 };
+
+// ----------------------------------------------------------------------------
 
 // フレンドコードの時
 static const u16 str_func_b3[]={ 
@@ -140,9 +161,13 @@ static const u16 *str_func_b[]={
 };
 
 #define FUNC_BUTTON_POS_Y	( 88 - 20 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 文字種ボタンを3種類に変更
 static const u16 func_button_pos_tbl[]={
-	33-8,57-8,81-8,105-8,130-8,166-8,202-4,0,
+	33-8,65-8,97-8,105-8,130-8,166-8,202-4,0,
 };
+// ----------------------------------------------------------------------------
 
 
 static const u8 func_button_appear[]={
@@ -155,6 +180,13 @@ static const u8 func_button_appear[]={
 	NAMEIN_CURSOR_ANM_START+2,	// おわる
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 文字入力パネルを半角文字用に切り換え
+
+#if (PM_LANG == LANG_JAPAN)
+
+// 日本語版用キーボード
 
 // ひらがな列
 static const u16 str_namein_b01[] = { a_, ka_, sa_, ta_, na_, ha_, ma_, ya_,  ra_, wa_,  aa_, yya_, DAKU_,EOM_,};
@@ -170,13 +202,41 @@ static const u16 str_namein_b13[] = { U_, KU_, SU_, TU_, NU_, HU_, MU_, YO_,  RU
 static const u16 str_namein_b14[] = { E_, KE_, SE_, TE_, NE_, HE_, ME_, spc_, RE_, spc_, EE_, TTU_,spc_,     EOM_}; 
 static const u16 str_namein_b15[] = { O_, KO_, SO_, TO_, NO_, HO_, MO_, spc_, RO_, spc_, OO_, spc_,kten_,    EOM_,};
 
-
 // アルファベット列
 static const u16 str_namein_b21[] = {A__,B__,C__,D__,E__,F__,G__,H__,I__,J__,K__,L__,M__,   EOM_};
 static const u16 str_namein_b22[] = {N__,O__,P__,Q__,R__,S__,T__,U__,V__,W__,X__,Y__,Z__,   EOM_};
 static const u16 str_namein_b23[] = {a__,b__,c__,d__,e__,f__,g__,h__,i__,j__,k__,l__,m__,   EOM_};
 static const u16 str_namein_b24[] = {n__,o__,p__,q__,r__,s__,t__,u__,v__,w__,x__,y__,z__,   EOM_};
 static const u16 str_namein_b25[] = {n0_,n1_,n2_,n3_,n4_,n5_,n6_,n7_,n8_,n9_,period_,comma_,spc_,EOM_};
+
+#elif (PM_LANG == LANG_ENGLISH)
+
+// 英語版用キーボード
+
+// 半角大文字列
+static const u16 str_namein_b01[] = {h_A__, h_B__, h_C__, h_D__, h_E__, h_F__, h_G__, h_H__, h_I__, h_J__, h_spc_, h_comma_, h_period_, EOM_};
+static const u16 str_namein_b02[] = {h_K__, h_L__, h_M__, h_N__, h_O__, h_P__, h_Q__, h_R__, h_S__, h_T__, h_spc_, us_h_quote1_, h_bou_, EOM_};
+static const u16 str_namein_b03[] = {h_U__, h_V__, h_W__, h_X__, h_Y__, h_Z__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, EOM_};
+static const u16 str_namein_b04[] = {h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_};
+static const u16 str_namein_b05[] = {h_n0_, h_n1_, h_n2_, h_n3_, h_n4_, h_n5_, h_n6_, h_n7_, h_n8_, h_n9_, h_spc_, h_spc_, h_spc_, EOM_};
+
+// 半角小文字列
+static const u16 str_namein_b11[] = {h_a__, h_b__, h_c__, h_d__, h_e__, h_f__, h_g__, h_h__, h_i__, h_j__, h_spc_, h_comma_, h_period_, EOM_};
+static const u16 str_namein_b12[] = {h_k__, h_l__, h_m__, h_n__, h_o__, h_p__, h_q__, h_r__, h_s__, h_t__, h_spc_, us_h_quote1_, h_bou_, EOM_};
+static const u16 str_namein_b13[] = {h_u__, h_v__, h_w__, h_x__, h_y__, h_z__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, EOM_}; 
+static const u16 str_namein_b14[] = {h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_}; 
+static const u16 str_namein_b15[] = {h_n0_, h_n1_, h_n2_, h_n3_, h_n4_, h_n5_, h_n6_, h_n7_, h_n8_, h_n9_, h_spc_, h_spc_, h_spc_, EOM_};
+
+// 記号列
+static const u16 str_namein_b21[] = {h_comma_, h_period_, h_colon_, h_semicolon_, h_gyoe_, h_hate_, h_spc_, h_spc_, h_spc_, h_osu_, h_mesu_, h_spc_, h_spc_, EOM_};
+static const u16 str_namein_b22[] = {us_quote2_, us_quote2d_, us_quote1_, us_h_quote1_, h_MaruKako__, h_MaruKakot__, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, h_spc_, EOM_};
+static const u16 str_namein_b23[] = {h_tenten_, h_nakag_, h_tilda_, h_atmark_, h_sharp_, h_percent_, h_plus_, h_bou_, h_asterisk_, h_sura_, h_equal_, h_spc_, h_spc_, EOM_};
+static const u16 str_namein_b24[] = {h_double_circle_, h_circle_, h_square_, h_triangle_, h_lozenge__, h_spade_, h_heart_, h_diamond_, h_club_, h_star_, h_note_, h_spc_, h_spc_, EOM_};
+static const u16 str_namein_b25[] = {h_sun_, h_cloud_, h_rain_, h_snow_, h_org_face_normal_, h_org_face_smile_, h_org_face_cry_, h_org_face_angry_, h_org_sleep_, h_org_upper_, h_org_downer_, h_spc_, h_spc_, EOM_};
+
+#endif
+
+// ----------------------------------------------------------------------------
 
 // 記号列
 static const u16 str_namein_b31[] = 
@@ -194,9 +254,14 @@ static const u16 str_namein_b35[] =
 
 
 // 数字のみ列
-static const u16 str_namein_b41[] = {n0_,n1_,n2_, n3_,n4_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
-static const u16 str_namein_b42[] = {n5_,n6_,n7_, n8_,n9_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// 数字を半角に差し替え
+static const u16 str_namein_b41[] = {h_n0_,h_n1_,h_n2_, h_n3_,h_n4_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
+static const u16 str_namein_b42[] = {h_n5_,h_n6_,h_n7_, h_n8_,h_n9_,spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
 static const u16 str_namein_b43[] = {spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_, spc_, spc_,spc_,spc_,spc_,spc_,EOM_};
+// ----------------------------------------------------------------------------
+
 
 const u16 *str_nametbl[][5]={
 	{

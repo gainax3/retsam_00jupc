@@ -45,7 +45,11 @@
 // 有効にするとLCDを上下逆にしてタッチパネルで入力できるようになる
 #define NAMEIN_MAINUSE_TOUCHPANEL
 
-#define POKEICON_VRAM_OFFSET (22*32+31)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+// レイアウト変更に伴い、ポケモンアイコンの転送位置を修正
+#define POKEICON_VRAM_OFFSET (21*32+31)
+// ----------------------------------------------------------------------------
 #define POKEICON_PAL_OFFSET	 ( 6 )
 
 // CLACTで定義しているセルが大きすぎてサブ画面に影響がでてしまうので離してみる
@@ -121,7 +125,11 @@ typedef struct {
 
 // 入力済み文字の下線OBJ
 #define NAMELINE_POS_X			( 10*8   )
-#define NAMELINE_POS_Y			(  4*8+5 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/10
+// g や y の下側が隠れないように、下線OBJを2ピクセル下に
+#define NAMELINE_POS_Y			(  4*8+7 )
+// ----------------------------------------------------------------------------
 
 // パソコン・自機・ポケモンアイコンOBJ位置
 #define NAMEIN_MYICON_X			( 24 )
@@ -678,9 +686,13 @@ static int NameInputMainMode( NAMEIN_WORK *wk, int seq )
 					// パネル切り替え
 					wk->seq = NAMEIN_MODE_REQ;
 					wk->mode++;
-					if(wk->mode>NAMEIN_MODE_KIGOU){
+					// ----------------------------------------------------------------------------
+					// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+					// 文字種ボタンを3種類に変更
+					if(wk->mode>=FONT_BUTTON_NUM){
 						wk->mode=NAMEIN_MODE_HIRA;
 					}
+					// ----------------------------------------------------------------------------
 					wk->funcbutton[wk->mode]++;
 					MakeWordMap(wk->wordmap, wk->mode);		// 文字入力マップ差し替え
 					Snd_SePlay( NAMEIN_SE_CHANGEPANEL );// 入力後カーソルを表示する
@@ -790,6 +802,17 @@ static void InputCancelFunc( NAMEIN_WORK *wk, NAMEIN_PARAM *param )
  * @retval  int		全てスペースだったら1,違ったら0
  */
 //------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/10
+// 海外版で入力される空白は半角
+#if PM_LANG == LANG_JAPAN
+#define DEFAULT_SPC		spc_
+#else
+#define DEFAULT_SPC		h_spc_
+#endif
+// ----------------------------------------------------------------------------
+
 static int SpaceCheck( STRCODE *str )
 {
 	int flag=1;
@@ -798,9 +821,13 @@ static int SpaceCheck( STRCODE *str )
 		if(str[i]==EOM_){
 			break;
 		}
-		if(str[i]!=spc_){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/10
+		// 海外版で入力される空白は半角
+		if(str[i]!=DEFAULT_SPC){
 			flag = 0;
 		}
+		// ----------------------------------------------------------------------------
 	}
 	
 	return flag;
@@ -1307,15 +1334,16 @@ static void InitWork(NAMEIN_WORK *wk, PROC * proc)
 
 		// 文字入力ボタンの初期設定
 		switch(wk->inputmode){
-		case NAMEIN_POKEMON:
-			wk->funcbutton[NAMEIN_MODE_KANA]    = 1;
-			break;
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+		// 初期文字種は基本的に大文字に
 		case NAMEIN_FRIENDCODE:
-			wk->funcbutton[NAMEIN_MODE_KIGOU] = 1;
+            wk->funcbutton[NAMEIN_MODE_KIGOU]   = 1;
 			break;
 		default:
 			wk->funcbutton[NAMEIN_MODE_HIRA]    = 1;
 			break;
+		// ----------------------------------------------------------------------------
 		}
 	}
 	
@@ -2023,13 +2051,10 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 
 	//最初に見えている面なので文字パネル描画と転送も行う
 	// 文字パネル初期化・登録
-	if(wk->inputmode==NAMEIN_POKEMON){
-		ArcUtil_HDL_ScrnSet( p_handle, NARC_namein_name_screen1_lz_NSCR+1, wk->bgl, GF_BGL_FRAME1_M, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
-		wk->mode = NAMEIN_MODE_KANA;
-		MakeWordMap(wk->wordmap,1);			// カタカナ文字マップ展開
-		WordPanelSetUp( &wk->NameInWin[BMP_WORDPANEL_BG1],0x0707, 1, 
-						GF_PRINTCOLOR_MAKE(0xe,0xf,0/*wordpanel_bg_col[1]*/),wk->BgCharaDat->pRawData);
-	}else if(wk->inputmode==NAMEIN_FRIENDCODE){
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+	// 初期文字種は基本的に大文字に
+	if(wk->inputmode==NAMEIN_FRIENDCODE){
 		ArcUtil_HDL_ScrnSet( p_handle, NARC_namein_name_screen1_lz_NSCR+3, wk->bgl, GF_BGL_FRAME1_M, 0, WORDPANEL_TRANS_SIZE, 1, HEAPID_NAMEIN);
 		wk->mode = NAMEIN_MODE_NUMCODE;
 		MakeWordMap(wk->wordmap,4);			// 数字のみ文字マップ展開
@@ -2041,6 +2066,7 @@ static void BmpMessageSet(NAMEIN_WORK *wk, PROC* proc, ARCHANDLE* p_handle)
 		WordPanelSetUp( &wk->NameInWin[BMP_WORDPANEL_BG1],0x0404, 0, 
 						GF_PRINTCOLOR_MAKE(0xe,0xf,0/*wordpanel_bg_col[0]*/),wk->BgCharaDat->pRawData);
 	}
+	// ----------------------------------------------------------------------------
 
 
 
@@ -3203,12 +3229,16 @@ enum {
 
 
 static const NM_TP_DATA TouchPanelDataTable[] = {
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+	// 文字種ボタンを3種類に変更
 	{ MAIN_BUTTON1_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 0,0},
-	{ MAIN_BUTTON2_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 1,0},	
-	{ MAIN_BUTTON3_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 3,0},
-	{ MAIN_BUTTON4_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 4,0},	
+	{ MAIN_BUTTON2_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 2,0},	
+	{ MAIN_BUTTON3_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S1, 4,0},
+	{ 0,                   192,               CTYPE_S1, 4,0},	
 	{ MAIN_BUTTON6_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S2, 8,0},
 	{ MAIN_BUTTON7_POSX+21,MAIN_BUTTON_POSY-8,CTYPE_S2,11,0},
+	// ----------------------------------------------------------------------------
 
 	{PANEL_X+  0, PANEL_Y+ 0,CTYPE_WD, 0,1},{PANEL_X+ 16, PANEL_Y+ 0,CTYPE_WD, 1,1},{PANEL_X+ 32, PANEL_Y+ 0,CTYPE_WD, 2,1},
 	{PANEL_X+ 48, PANEL_Y+ 0,CTYPE_WD, 3,1},{PANEL_X+ 64, PANEL_Y+ 0,CTYPE_WD, 4,1},
@@ -3276,7 +3306,11 @@ static BOOL TouchPanelCheck( NAMEIN_WORK *wk )
 			switch( TouchPanelDataTable[i].type ){
 
 			case CTYPE_S1:
-				size_x = 24-1;
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+				// 文字種ボタンを3種類に変更
+				size_x = 32-1;
+				// ----------------------------------------------------------------------------
 				size_y = 22;
 				break;
 			case CTYPE_S2:
@@ -3318,7 +3352,11 @@ static testclact_set( void )
 	switch( TouchPanelDataTable[testclact_no].type ){
 
 	case CTYPE_S1:
-		size_x = 24-1;
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+		// 文字種ボタンを3種類に変更
+		size_x = 32-1;
+		// ----------------------------------------------------------------------------
 		size_y = 22;
 		break;
 	case CTYPE_S2:
