@@ -148,6 +148,7 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
     {
         // wtf? somehow this is like somewhat close to matching too
         u32 intermediate;
+        int intermediate2;
 
         wk->unk3ec--;
         //r7 = 0x2a2
@@ -169,7 +170,8 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
         //r0 = ;
         //r2 = (r2 + (r2 >> 0x1f)) >> 1;
         intermediate = ((wk->code_max + wk->unk3ec) << 3);
-        wk->x_tbl[ 0 ] = 0x70 - ((intermediate + (intermediate >> 0x1f)) >> 1);
+        intermediate2 = (intermediate + (intermediate >> 0x1f));
+        wk->x_tbl[ 0 ] = 112 - (intermediate2 >> 1);
 
         //r0 = (r0 >> 28) & 1;
         //r0 = r2 + ((r0 >> 28) & 1);
@@ -179,7 +181,8 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
 
         for (i = 0; i < CODE_BLOCK_MAX; i++) {
             intermediate = (wk->unk3ec << 3) + ((wk->code_max - wk->param.block[i]) << 3) + (wk->param.block[i] << 5);
-            wk->x_tbl[ i + 1 ] = 112 - ((intermediate + (intermediate >> 0x1f)) >> 1);
+            intermediate2 = (intermediate + (intermediate >> 0x1f));
+            wk->x_tbl[ i + 1 ] = 112 - (intermediate2 >> 1);
         }
 
         // START OF FOR LOOP
