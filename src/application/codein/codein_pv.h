@@ -179,10 +179,10 @@ typedef struct {
 // -----------------------------------------
 typedef struct {
 	
-	int		param;				///< どんな処理をするか	// 0x3bc
-	int		target;				///< 対象は何か // 0x3c0
-	int		work;				///< 適当に使うワーク // 0x3c4
-	// 0x3c8
+	int		param;				///< どんな処理をするか	// 0x3ac
+	int		target;				///< 対象は何か // 0x3b0
+	int		work;				///< 適当に使うワーク // 0x3b4
+	// 0x3b8
 } CODEIN_STATE;
 
 
@@ -195,23 +195,23 @@ typedef struct {
 	
 	ARCHANDLE*			p_handle;			///< アーカイブハンドル // 0x2ec
 	
-	CATS_SYS_PTR		csp;				///< OAMシステム 0x4 // 0x2e8
-	CATS_RES_PTR		crp;				///< リソース一括管理 0x8 // 0x2ec
+	CATS_SYS_PTR		csp;				///< OAMシステム 0x4 // 0x2f0
+	CATS_RES_PTR		crp;				///< リソース一括管理 0x8 // 0x2f4
 
-	GF_BGL_INI*			bgl;				///< BGL 0xc // 0x2d0
-	PALETTE_FADE_PTR	pfd;				///< パレットフェード 0x10 // 0x2d4
+	GF_BGL_INI*			bgl;				///< BGL 0xc // 0x2f8
+	PALETTE_FADE_PTR	pfd;				///< パレットフェード 0x10 // 0x2fc
 	
-	BUTTON_MAN*			btn;				///< ボタン	 0x14
-	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< 当たり判定(managerに登録する) 0x18 eHRT_MAX = 5
+	BUTTON_MAN*			btn;				///< ボタン // 0x300
+	RECT_HIT_TBL		rht[ eHRT_MAX ];	///< 当たり判定(managerに登録する) 0x18 eHRT_MAX = 5 // 0x304
 	
-	BOOL				touch;				///< モード 0x2c
+	BOOL				touch;				///< モード 0x374
 
-	FONTOAM_SYS_PTR			fontoam_sys; // 0x30
-	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ]; // 0x34 BTN_OAM_MAX = 2
-	CHAR_MANAGER_ALLOCDATA	font_vram[ BTN_OAM_MAX ]; // 0x3c
+	FONTOAM_SYS_PTR			fontoam_sys; // 0x378
+	FONTOAM_OBJ_PTR			font_obj[ BTN_OAM_MAX ]; // 0x37c
+	CHAR_MANAGER_ALLOCDATA	font_vram[ BTN_OAM_MAX ]; // 0x384
 	
-	GF_BGL_BMPWIN		win; // 0x44
-	// size: 0x54
+	GF_BGL_BMPWIN		win; // 0x39c
+	// end at 0x3ac
 } CODEIN_SYS;
 
 
@@ -250,7 +250,7 @@ typedef struct {
 	CODEIN_SYS		sys;			///< システム // 0x2ec
 	CODEIN_STATE	state;			///< 状態
 	CODEIN_PARAM	param;			///< 外側からもらうパラメータ // 0x3c8
-    u32 unk3ec;
+    int unk3ec;
     u32 unk3f0;
 } CODEIN_WORK;
 
@@ -308,7 +308,7 @@ extern void CI_pv_FontOam_Add( CODEIN_WORK* wk );
 extern void CI_pv_FontOam_Enable( CODEIN_WORK* wk, BOOL flag );
 extern void CI_pv_FontOam_Create( CODEIN_WORK* wk, int no, int x, int y, int pal_offset );
 
-extern void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs );
+extern void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int a8 );
 extern void CI_pv_BMP_MsgSet( GF_BGL_BMPWIN * win, int mes_id );
 
 extern void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk );

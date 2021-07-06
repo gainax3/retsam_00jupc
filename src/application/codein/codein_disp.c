@@ -168,9 +168,12 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
 	for ( i = 0; i < wk->code_max; i++ ){
 		CATS_ActorPointerDelete_S( wk->code[ i ].cap );
 	}
-	
-	for ( i = 0; i < 2; i++ ){
+    
+    for ( i = 0; i < wk->unk3ec; i++) {
 		CATS_ActorPointerDelete_S( wk->bar[ i ].cap );
+    }
+
+	for ( i = 0; i < 2; i++ ){
 		CATS_ActorPointerDelete_S( wk->btn[ i ].cap );
 	}
 	
@@ -195,11 +198,14 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
  *
  */
 //--------------------------------------------------------------
+extern void _s32_div_f(void);
+#ifdef NONMATCHING
 void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 {
 	int i;
 	int i_c = 0;
 	int i_b = 0;
+    int r4;
 	
 	TCATS_OBJECT_ADD_PARAM_S coap;
 	CATS_SYS_PTR csp;
@@ -225,9 +231,20 @@ void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 	coap.id[3]		= eID_CODE_OAM;
 	coap.id[4]		= CLACT_U_HEADER_DATA_NONE;
 	coap.id[5]		= CLACT_U_HEADER_DATA_NONE;	
-	
-	for ( i = 0; i < wk->code_max + BAR_OAM_MAX; i++ ){
-		
+
+    //{
+        //int r4;
+    for ( r4 = wk->param.unk28, i = wk->unk3f0 - 1; i >= 0; i-- ) {
+        wk->code[i].state = (r4 % 10) + 1;
+        r4 /= 10;
+    }
+    //}
+
+	for ( i = 0; i < wk->code_max + wk->unk3ec; i++ ){
+		if (wk->unk3ec == 0) {
+            return;
+        }
+
 		if ( i == ( wk->bar[ i_b ].state + i_b + 1 ) ){
 			
 			wk->bar[ i_b ].cap = CATS_ObjectAdd_S( csp, crp, &coap );
@@ -248,6 +265,169 @@ void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 		}
 	}
 }
+#else
+asm void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
+{
+    push {r4, r5, r6, r7, lr}
+	sub sp, #0x44
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	mov r0, #0x2f
+	lsl r0, r0, #4
+	ldr r1, [sp]
+	add r2, r0, #4
+	ldr r1, [r1, r0]
+	str r1, [sp, #8]
+	ldr r1, [sp]
+	ldr r1, [r1, r2]
+	add r2, sp, #0x10
+	str r1, [sp, #4]
+	ldr r1, [sp, #0xc]
+	strh r1, [r2]
+	strh r1, [r2, #2]
+	strh r1, [r2, #4]
+	strh r1, [r2, #6]
+	mov r1, #0xa
+	str r1, [sp, #0x18]
+	ldr r1, [sp, #0xc]
+	mov r2, #1
+	str r1, [sp, #0x3c]
+	str r1, [sp, #0x40]
+	str r1, [sp, #0x1c]
+	add r1, r0, #0
+	add r1, #0xf8
+	str r1, [sp, #0x24]
+	str r1, [sp, #0x28]
+	str r1, [sp, #0x2c]
+	str r1, [sp, #0x30]
+	sub r1, r2, #2
+	str r1, [sp, #0x34]
+	str r1, [sp, #0x38]
+	ldr r1, [sp]
+	str r2, [sp, #0x20]
+	add r0, #0xf0
+	ldr r4, [r1, r0]
+	mov r1, #0x3f
+	ldr r0, [sp]
+	lsl r1, r1, #4
+	ldr r0, [r0, r1]
+	sub r6, r0, #1
+	bmi _0208A7DC
+	mov r0, #0x1c
+	add r1, r6, #0
+	mul r1, r0
+	ldr r0, [sp]
+	mov r7, #0xa
+	add r5, r0, r1
+_0208A7C0:
+	add r0, r4, #0
+	add r1, r7, #0
+	bl _s32_div_f
+	add r0, r1, #1
+	str r0, [r5]
+	add r0, r4, #0
+	mov r1, #0xa
+	bl _s32_div_f
+	add r4, r0, #0
+	sub r5, #0x1c
+	sub r6, r6, #1
+	bpl _0208A7C0
+_0208A7DC:
+	mov r1, #0xfb
+	ldr r0, [sp]
+	lsl r1, r1, #2
+	ldr r0, [r0, r1]
+	mov r2, #0x2d
+	ldr r1, [sp]
+	lsl r2, r2, #4
+	ldr r1, [r1, r2]
+	mov r6, #0
+	add r1, r1, r0
+	cmp r1, #0
+	ble _0208A89C
+	ldr r4, [sp]
+	mov r7, #0x4c
+	add r5, r4, #0
+_0208A7FA:
+	cmp r0, #0
+	beq _0208A84C
+	mov r0, #7
+	lsl r0, r0, #6
+	ldr r1, [r4, r0]
+	ldr r0, [sp, #0xc]
+	add r0, r0, r1
+	add r0, r0, #1
+	cmp r6, r0
+	bne _0208A84C
+	ldr r0, [sp, #8]
+	ldr r1, [sp, #4]
+	add r2, sp, #0x10
+	bl CATS_ObjectAdd_S
+	mov r1, #0x73
+	lsl r1, r1, #2
+	str r0, [r4, r1]
+	add r0, r1, #0
+	lsl r1, r7, #0x10
+	ldr r0, [r4, r0]
+	asr r1, r1, #0x10
+	mov r2, #0x18
+	bl CATS_ObjectPosSetCap
+	mov r0, #0x73
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x16
+	bl CATS_ObjectAnimeSeqSetCap
+	mov r0, #0x73
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl CATS_ObjectUpdateCap
+	ldr r0, [sp, #0xc]
+	add r4, #0x1c
+	add r0, r0, #1
+	str r0, [sp, #0xc]
+	b _0208A882
+_0208A84C:
+	ldr r0, [sp, #8]
+	ldr r1, [sp, #4]
+	add r2, sp, #0x10
+	bl CATS_ObjectAdd_S
+	lsl r1, r7, #0x10
+	str r0, [r5, #0xc]
+	asr r1, r1, #0x10
+	mov r2, #0x18
+	bl CATS_ObjectPosSetCap
+	ldr r0, [r5]
+	ldr r1, [r5, #8]
+	bl CI_pv_disp_CodeAnimeGet
+	add r1, r0, #0
+	ldr r0, [r5, #0xc]
+	bl CATS_ObjectAnimeSeqSetCap
+	ldr r0, [r5, #0xc]
+	mov r1, #2
+	bl CATS_ObjectAffineSetCap
+	ldr r0, [r5, #0xc]
+	bl CATS_ObjectUpdateCap
+	add r5, #0x1c
+_0208A882:
+	ldr r1, [sp]
+	mov r0, #0xfb
+	lsl r0, r0, #2
+	ldr r0, [r1, r0]
+	add r2, r1, #0
+	mov r1, #0x2d
+	lsl r1, r1, #4
+	ldr r1, [r2, r1]
+	add r6, r6, #1
+	add r1, r1, r0
+	add r7, #8
+	cmp r6, r1
+	blt _0208A7FA
+_0208A89C:
+	add sp, #0x44
+	pop {r4, r5, r6, r7, pc}
+}
+#endif
 
 //--------------------------------------------------------------
 /**
@@ -290,7 +470,7 @@ void CI_pv_disp_CurOAM_Create( CODEIN_WORK* wk )
 	wk->cur[ 1 ].cap = CATS_ObjectAdd_S( csp, crp, &coap );
 	wk->cur[ 2 ].cap = CATS_ObjectAdd_S( csp, crp, &coap );
 	
-	CI_pv_disp_CurBar_PosSet( wk, 0 );
+	CI_pv_disp_CurBar_PosSet( wk, wk->unk3f0 );
 	CATS_ObjectAnimeSeqSetCap( wk->cur[ 0 ].cap, 0 );
 	CATS_ObjectUpdateCap( wk->cur[ 0 ].cap );
 	
@@ -458,6 +638,10 @@ void CI_pv_disp_CurBar_PosSet( CODEIN_WORK* wk, int id )
 	s16 x, y;
 	CATS_ACT_PTR cap;
 	
+    if (id < wk->unk3f0) {
+        return;
+    }
+
 	cap = wk->code[ id ].cap;
 	
 	wk->cur[ 0 ].state = id;
@@ -758,7 +942,7 @@ void CI_pv_disp_MovePosSet( CODEIN_WORK* wk, int mode )
 			wk->code[ i ].move_wk.scale	= 0;
 		}
 		
-		if ( i == wk->bar[ bp ].state && bp != BAR_OAM_MAX ){
+		if ( i == wk->bar[ bp ].state && bp != wk->unk3ec ){
 			
 			CATS_ObjectPosGetCap( wk->bar[ bp ].cap, &x, &y );
 			
@@ -988,7 +1172,7 @@ void CI_pv_FontOam_Create(CODEIN_WORK* wk, int no, int x, int y, int pal_offset)
 		///< FONT_BUTTON ‚Í 2dot‚Å‚©‚¢
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(wk->sys.bgl, &bmpwin, 10, 2, 0, 0);
-		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, 0, 0,
+		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, FontProc_GetPrintCenteredPositionX(FONT_BUTTON, str, 0, 80), 0,
 						  MSG_NO_PUT, PRINT_COL_BLACK, NULL);
 	}
 
@@ -1042,7 +1226,7 @@ void CI_pv_FontOam_Create(CODEIN_WORK* wk, int no, int x, int y, int pal_offset)
  *
  */
 //--------------------------------------------------------------
-void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs )
+void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int a8 )
 {
 	GF_BGL_BmpWinInit( win );
 	GF_BGL_BmpWinAdd( bgl, win, frm, x, y, sx, sy, ePAL_FONT, ofs );
