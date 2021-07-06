@@ -1222,12 +1222,13 @@ int bsdown_c_checkcrc(void)
 
 		OS_TPrintf("CRYPTO_RC4InitèIóπ\n");
 		
-		CRYPTO_RC4Encrypt(
+        // TODO__fix_me
+		/*CRYPTO_RC4Encrypt(
 			&(s_work.rc4context),
 			s_work.target,
 			s_work.size,
 			s_work.target
-		);
+		);*/
 
 		OS_TPrintf("CRYPTO_RC4EncryptèIóπ\n");
 		

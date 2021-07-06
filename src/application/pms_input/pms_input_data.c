@@ -225,9 +225,20 @@ static u32 CountupGroupNankai( PMS_INPUT_DATA* pmsi,  const PMS_WORD* src_tbl, u
 	const PMSW_SAVEDATA* sv = PMSI_PARAM_GetPMSW_SaveData(pmsi->input_param);
 	u32 i, cnt;
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/30
+	// ‚È‚ñ‚©‚¢‚±‚Æ‚Î‚Ì•\¦‡‚Ægmm‚Ì•À‚Ñ‡‚ğ•ÏŠ·
+	PMS_WORD nankai_top;
+	nankai_top = PMSW_GetWordNumberByGmmID( NARC_msg_pms_word11_dat, 0 );
+	// ----------------------------------------------------------------------------
+
 	for(i=0, cnt=0; i<tbl_elems; i++)
 	{
-		if( PMSW_GetNankaiFlag(sv, i) )
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/30
+		// ‚È‚ñ‚©‚¢‚±‚Æ‚Î‚Ì•\¦‡‚Ægmm‚Ì•À‚Ñ‡‚ğ•ÏŠ·
+		if( PMSW_GetNankaiFlag(sv, src_tbl[i]-nankai_top) )
+		// ----------------------------------------------------------------------------
 		{
 			SetWordEnableFlag( pmsi, src_tbl[i] );
 			*dst_tbl++ = src_tbl[i];

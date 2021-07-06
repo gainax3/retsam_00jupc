@@ -1052,7 +1052,7 @@ void MysteryLib_CreateCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   // MACアドレスをキーとして暗号化
   rc4context = sys_AllocMemory(heapid, sizeof(CRYPTORC4Context));
   CRYPTO_RC4Init(rc4context, key, 8 );
-  CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data);
+  //CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data); TODO__fix_me
   sys_FreeMemoryEz(rc4context);
 #if 0//def DEBUG_ONLY_FOR_mituhara
   {
@@ -1133,7 +1133,7 @@ void MysteryLib_DecodeCryptoData(GIFT_COMM_PACK *gift_data, GIFT_DATA *data, int
   // MACアドレスをキーとして複合化
   rc4context = sys_AllocMemory(heapid, sizeof(CRYPTORC4Context));
   CRYPTO_RC4Init(rc4context, key, 8 );
-  CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data);
+  //CRYPTO_RC4Encrypt(rc4context, &gift_data->data, sizeof(GIFT_DATA), data); TODO__fix_me
   sys_FreeMemoryEz(rc4context);
 
 #if 0//def DEBUG_ONLY_FOR_mituhara

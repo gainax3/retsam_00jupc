@@ -95,7 +95,7 @@ LLIBRARIES		= ./libjn_spl.a libwvr$(CODEGEN).a
 
 # ”C“V“°Cryptƒ‰ƒCƒuƒ‰ƒŠ‚ð’Ç‰Á by mituhara 2006.07.05
 LLIBRARY_DIRS	+= ./src/library/crypto/$(NITRO_BUILDTYPE)
-LLIBRARIES	+= ./libcrypto.a
+#LLIBRARIES	+= ./libcrypto.a
 
 # -----------------------------------------------------------------------------
 # localize_spec_mark(LANG_ALL) imatake 2008/07/29

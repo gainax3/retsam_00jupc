@@ -97,7 +97,7 @@ NITRODWC_LIB_DEPENDS += $(addprefix $(NITRODWC_LIBDIR)/,$(NITRODWC_LIBS)) \
 LLIBRARY_DIRS		+= $(NITRODWC_LIBDIR) $(NITRODWC_GSLIBDIR)
 LLIBRARIES			+= $(NITRODWC_LIBS) $(NITRODWC_GSLIBS)
 
-LLIBRARY_DIRS += $(subst $(SPACE),\ ,$(subst \,/,$(NITROCRYPTO_ROOT)))/lib/$(NITRO_LIBTYPE)
+#LLIBRARY_DIRS += $(subst $(SPACE),\ ,$(subst \,/,$(NITROCRYPTO_ROOT)))/lib/$(NITRO_LIBTYPE)
 LLIBRARIES += libcrypto$(NITRO_LIBSUFFIX).a
 
 #----------------------------------------------------------------------------
