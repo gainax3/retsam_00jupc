@@ -957,7 +957,11 @@ static void PST_DefaultStrPut( PST_WORK * wk )
 	// 「つぎのレベルまで」
 	DefStr( wk, WIN_P1_NEXTLV, mes_status_02_13, PSTCOL_N_WHITE, STR_MODE_LEFT );
 	// 「あと」
-	DefStr( wk, WIN_P1_ATO, mes_status_02_14, PSTCOL_N_BLACK, STR_MODE_LEFT );
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// 「あと」は海外版では不要
+	// ----------------------------------------------------------------------------
+    //DefStr( wk, WIN_P1_ATO, mes_status_02_14, PSTCOL_N_BLACK, STR_MODE_LEFT ); //MatchComment: change induced by localize spec mark
 
 	// 「HP」
 	DefStr( wk, WIN_P3_HP, mes_status_04_02, PSTCOL_N_WHITE, STR_MODE_LEFT );
@@ -1093,47 +1097,83 @@ static void PST_Page1BmpPut( PST_WORK * wk )
 	}
 
 	if( wk->pp.rare == 0 ){
-		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_BLACK, STR_MODE_LEFT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+		// ずかん番号を中央寄せ
+		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_BLACK, STR_MODE_CENTER );
+		// ----------------------------------------------------------------------------
 	}else{
-		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_RED, STR_MODE_LEFT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+		// ずかん番号を中央寄せ
+		StrPut( wk, &wk->add_win[ADD_WIN_P1_LIBNUM], PSTCOL_N_RED, STR_MODE_CENTER );
+		// ----------------------------------------------------------------------------
 	}
 
 	// 名前
-	GF_STR_PrintColor(
-		&wk->add_win[ADD_WIN_P1_NAME], FONT_SYSTEM,
-		wk->pp.monsname, 0, 0, MSG_NO_PUT, PSTCOL_N_BLACK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// ポケモン名を中央寄せ
+	{
+		u32 width = FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->pp.monsname, 0);
+		u32 xofs = (wk->add_win[ADD_WIN_P1_NAME].sizx * 8 - width) / 2;
+		GF_STR_PrintColor(
+			&wk->add_win[ADD_WIN_P1_NAME], FONT_SYSTEM,
+			wk->pp.monsname, xofs, 0, MSG_NO_PUT, PSTCOL_N_BLACK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	// 親名
-	if( wk->pp.oya_sex == 0 ){
-		GF_STR_PrintColor(
-			&wk->add_win[ADD_WIN_P1_OYANAME], FONT_SYSTEM,
-			wk->pp.oya, 0, 0, MSG_NO_PUT, PSTCOL_N_BLUE, NULL );
-	}else{
-		GF_STR_PrintColor(
-			&wk->add_win[ADD_WIN_P1_OYANAME], FONT_SYSTEM,
-			wk->pp.oya, 0, 0, MSG_NO_PUT, PSTCOL_N_RED, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// 親名を中央寄せ
+	{
+		u32 width = FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->pp.oya, 0);
+		u32 xofs = (wk->add_win[ADD_WIN_P1_OYANAME].sizx * 8 - width) / 2;
+		if( wk->pp.oya_sex == 0 ){
+			GF_STR_PrintColor(
+				&wk->add_win[ADD_WIN_P1_OYANAME], FONT_SYSTEM,
+				wk->pp.oya, xofs, 0, MSG_NO_PUT, PSTCOL_N_BLUE, NULL );
+		}else{
+			GF_STR_PrintColor(
+				&wk->add_win[ADD_WIN_P1_OYANAME], FONT_SYSTEM,
+				wk->pp.oya, xofs, 0, MSG_NO_PUT, PSTCOL_N_RED, NULL );
+		}
 	}
+	// ----------------------------------------------------------------------------
 
 	// IDNo.
 	NumPrmSet( wk, mes_status_02_10, ( wk->pp.id & 0xffff ), 5, NUM_MODE_ZERO );
-	StrPut( wk, &wk->add_win[ADD_WIN_P1_IDNO], PSTCOL_N_BLACK, STR_MODE_LEFT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// ID No. も中央寄せ
+	StrPut( wk, &wk->add_win[ADD_WIN_P1_IDNO], PSTCOL_N_BLACK, STR_MODE_CENTER );
+	// ----------------------------------------------------------------------------
 
 	// 現在の経験値
-	NumPrmSet( wk, mes_status_02_12, wk->pp.now_exp, 7, NUM_MODE_LEFT );
-	StrPut( wk, &wk->add_win[ADD_WIN_P1_NOWEXP], PSTCOL_N_BLACK, STR_MODE_LEFT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// げんざいのけいけんちを最大幅に合わせて中央寄せ
+	NumPrmSet( wk, mes_status_02_12, wk->pp.now_exp, 7, NUM_MODE_SPACE );
+	StrPut( wk, &wk->add_win[ADD_WIN_P1_NOWEXP], PSTCOL_N_BLACK, STR_MODE_CENTER );
+	// ----------------------------------------------------------------------------
 
 	// 次のレベルまで@
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+	// つぎのレベルまでの経験値を最大幅に合わせて中央寄せ
 /* ルビサファの育て屋でLv100以上の経験値になるため、マイナス表示になってしまう不具合対処 */
 #if T1653_060815_FIX	// 対処後
 	if( wk->pp.lv < 100 ){
-		NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_LEFT );
+		NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_SPACE );
 	}else{
-		NumPrmSet( wk, mes_status_02_15, 0, 7, NUM_MODE_LEFT );
+		NumPrmSet( wk, mes_status_02_15, 0, 7, NUM_MODE_SPACE );
 	}
 #else					// 対処前
-	NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_LEFT );
+	NumPrmSet( wk, mes_status_02_15, wk->pp.next_lv_exp-wk->pp.now_exp, 7, NUM_MODE_SPACE );
 #endif	// T1653_060815_FIX
-	StrPut( wk, &wk->add_win[ADD_WIN_P1_NEXTEXP], PSTCOL_N_BLACK, STR_MODE_LEFT );
+	StrPut( wk, &wk->add_win[ADD_WIN_P1_NEXTEXP], PSTCOL_N_BLACK, STR_MODE_CENTER );
+	// ----------------------------------------------------------------------------
 
 	GF_BGL_BmpWinOnVReq( &wk->add_win[ADD_WIN_P1_LIBNUM] );
 	GF_BGL_BmpWinOnVReq( &wk->add_win[ADD_WIN_P1_NAME] );
@@ -1644,18 +1684,34 @@ void PokeStatus_WazaInfoPut( PST_WORK * wk, u32 waza )
 	if( prm <= 1 ){
 		MSGMAN_GetString( wk->msg_man, mes_status_06_28, wk->msg_buf );
 	}else{
-		NumPrmSet( wk, mes_status_06_23, prm, 3, NUM_MODE_LEFT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// いりょくの値を右揃えした上で中央寄せに
+		NumPrmSet( wk, mes_status_06_23, prm, 3, NUM_MODE_SPACE );
+		// ----------------------------------------------------------------------------
 	}
-	StrPut( wk, &wk->add_win[ADD_WIN_P5_ATC], PSTCOL_N_BLACK, STR_MODE_RIGHT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// いりょくの値を右揃えした上で中央寄せに
+	StrPut( wk, &wk->add_win[ADD_WIN_P5_ATC], PSTCOL_N_BLACK, STR_MODE_CENTER );
+	// ----------------------------------------------------------------------------
 
 	// 命中
 	prm = WT_WazaDataParaGet(waza,ID_WTD_hitprobability);
 	if( prm == 0 ){
 		MSGMAN_GetString( wk->msg_man, mes_status_06_28, wk->msg_buf );
 	}else{
-		NumPrmSet( wk, mes_status_06_24, prm, 3, NUM_MODE_LEFT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// めいちゅうの値を右揃えした上で中央寄せに
+		NumPrmSet( wk, mes_status_06_24, prm, 3, NUM_MODE_SPACE );
+		// ----------------------------------------------------------------------------
 	}
-	StrPut( wk, &wk->add_win[ADD_WIN_P5_HIT], PSTCOL_N_BLACK, STR_MODE_RIGHT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// めいちゅうの値を右揃えした上で中央寄せに
+	StrPut( wk, &wk->add_win[ADD_WIN_P5_HIT], PSTCOL_N_BLACK, STR_MODE_CENTER );
+	// ----------------------------------------------------------------------------
 
 	// 説明
 	man = MSGMAN_Create(

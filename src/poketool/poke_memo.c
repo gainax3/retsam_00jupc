@@ -438,24 +438,26 @@ static void character1_msgGet( TRMEMO_DATA* dat )
 		( dat->word_set, buf, PARAM_GET( dat->pp, ID_PARA_trMemo2place ) );				\
 }
 // 年月日のワード設定
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// 月の表示を単語表記に変更
 #define WSET_TIMEDATA1( yearbuf, monthbuf, daybuf ){									\
 	WORDSET_RegisterNumber(	dat->word_set, yearbuf,										\
 							PARAM_GET( dat->pp, ID_PARA_trMemo1year ),					\
 							2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );			\
-	WORDSET_RegisterNumber(	dat->word_set, monthbuf,									\
-							PARAM_GET( dat->pp, ID_PARA_trMemo1month ),					\
-							2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\
+	WORDSET_RegisterMonthName( 	dat->word_set, monthbuf,								\
+								PARAM_GET( dat->pp, ID_PARA_trMemo1month ));			\
 	WORDSET_RegisterNumber(	dat->word_set, daybuf,										\
 							PARAM_GET( dat->pp, ID_PARA_trMemo1day ),					\
 							2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\
 }
+// ----------------------------------------------------------------------------
 #define WSET_TIMEDATA2( yearbuf, monthbuf, daybuf ){									\
 	WORDSET_RegisterNumber(	dat->word_set, yearbuf,										\
 							PARAM_GET( dat->pp, ID_PARA_trMemo2year ),					\
 							2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );			\
-	WORDSET_RegisterNumber(	dat->word_set, monthbuf,									\
-							PARAM_GET( dat->pp, ID_PARA_trMemo2month ),					\
-							2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\
+	WORDSET_RegisterMonthName( 	dat->word_set, monthbuf,								\
+								PARAM_GET( dat->pp, ID_PARA_trMemo2month ));			\
 	WORDSET_RegisterNumber(	dat->word_set, daybuf,										\
 							PARAM_GET( dat->pp, ID_PARA_trMemo2day ),					\
 							2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );			\

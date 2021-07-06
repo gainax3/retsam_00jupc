@@ -95,12 +95,22 @@ enum {
 	PST_CHR_ID_POKERUS,			// ポケルス用状態異常アイコン
 };
 
-#define	PT_ICON_P1_PX	( 199 )		// ポケモン情報ページのポケモンタイプアイコン表示X座標
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+// ぞくせいアイコンを中央寄せ
+#define	PT_ICON_P1_PX	( 216 )		// ポケモン情報ページのポケモンタイプアイコン表示X座標
+#define	PT_ICON_P1_PX1	( 199 )		// ポケモン情報ページのポケモンタイプアイコン表示X座標
+#define	PT_ICON_P1_PX2	( 233 )		// ポケモン情報ページのポケモンタイプアイコン表示X座標
+// ----------------------------------------------------------------------------
 #define	PT_ICON_P1_PY	( 80 )		// ポケモン情報ページのポケモンタイプアイコン表示Y座標
 #define	PT_ICON_P4_PX	( 63 )		// 戦う技ページのポケモンタイプアイコン表示X座標
 #define	PT_ICON_P4_PY	( 52 )		// 戦う技ページのポケモンタイプアイコン表示Y座標
 #define	WT_ICON_P4_PX	( 151 )		// 戦う技ページの技タイプアイコン表示X座標
-#define	WT_ICON_P4_PY	( 43 )		// 戦う技ページの技タイプアイコン表示Y座標
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+// ぞくせいアイコンの縦位置を調整
+#define	WT_ICON_P4_PY	( 42 )		// 戦う技ページの技タイプアイコン表示Y座標
+// ----------------------------------------------------------------------------
 #define	KT_ICON_P4_PX	( 92+16 )	// 戦う技ページの分類アイコン表示X座標
 #define	KT_ICON_P4_PY	( 72 )		// 戦う技ページの分類アイコン表示Y座標
 #define	POKE_ICON_PX		( 24 )	// 戦う技ページのポケモンアイコン表示X座標
@@ -851,12 +861,18 @@ void PokeStatus_PageTypeIconDrow( PST_WORK * wk )
 	switch( wk->page ){
 	case PST_PAGE_INFO:
 		CATS_ObjectEnable( wk->awp[PST_OBJ_TYPE_POKE1], 1 );
-		CATS_ObjectPosSet( wk->awp[PST_OBJ_TYPE_POKE1], PT_ICON_P1_PX, PT_ICON_P1_PY );
-		if( wk->pp.type1 != wk->pp.type2 ){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/05
+		// ぞくせいアイコンを中央寄せ
+		if( wk->pp.type1 == wk->pp.type2 ){
+			CATS_ObjectPosSet( wk->awp[PST_OBJ_TYPE_POKE1], PT_ICON_P1_PX, PT_ICON_P1_PY );
+		} else {
+			CATS_ObjectPosSet( wk->awp[PST_OBJ_TYPE_POKE1], PT_ICON_P1_PX1, PT_ICON_P1_PY );
 			CATS_ObjectEnable( wk->awp[PST_OBJ_TYPE_POKE2], 1 );
 			CATS_ObjectPosSet(
-				wk->awp[PST_OBJ_TYPE_POKE2], PT_ICON_P1_PX+34, PT_ICON_P1_PY );
+				wk->awp[PST_OBJ_TYPE_POKE2], PT_ICON_P1_PX2, PT_ICON_P1_PY );
 		}
+		// ----------------------------------------------------------------------------
 		break;
 
 	case PST_PAGE_B_SKILL:

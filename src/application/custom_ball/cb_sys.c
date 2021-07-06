@@ -126,7 +126,7 @@ static PROC_RESULT CB_ProcInit(PROC* proc, int* seq)
 		int add = 0;
 		int num;
 		
-		num = (CB_Tool_SealCllectionGet(cbmw->cb_pw->save_data) / CB_DEF_PAGE_ITEMS);
+		num = (CB_Tool_SealCllectionGet(cbmw->cb_pw->save_data));
 		
 		if ( num % CB_DEF_PAGE_ITEMS ){
 			 add = 1;
