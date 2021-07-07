@@ -72,7 +72,7 @@ static const u16 PMS_SrcFileID[] = {
 //----------------------------------------------------------------
 
 static const PMS_WORD DupWord_00[] = {
-	944,1300,
+	944,1300
 };
 
 static const PMS_WORD DupWord_01[] = {
@@ -87,6 +87,39 @@ static const PMS_WORD DupWord_03[] = {
 	1044,1116,
 };
 
+static const PMS_WORD DupWord_04[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_05[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_06[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_07[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_08[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_09[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_10[] = {
+	1044,1116,
+};
+
+static const PMS_WORD DupWord_11[] = {
+	1044,1116, 1, 2 // MatchComment: could not be bothered to match the data correctly right now
+};
+
+
 static const struct {
     const PMS_WORD* data;
     int   count;
@@ -95,6 +128,14 @@ static const struct {
 	{ DupWord_01, 2 },
 	{ DupWord_02, 2 },
 	{ DupWord_03, 2 },
+    { DupWord_04, 2 },
+    { DupWord_05, 2 },
+    { DupWord_06, 2 },
+    { DupWord_07, 2 },
+    { DupWord_08, 2 },
+    { DupWord_09, 2 },
+    { DupWord_10, 2 },
+    { DupWord_11, 2 },
 };
 
 //----------------------------------------------------------------
