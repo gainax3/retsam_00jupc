@@ -93,6 +93,12 @@ enum {
 	RINFO_MSG_CGX = FLD_YESNO_WIN_CGX - (RINFO_WIN_SX * RINFO_WIN_SY),
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
+#define RINFO_WIN_WIDTH		(13)
+// ----------------------------------------------------------------------------
+
 //単語埋め込みタグID。report.gmmときちんと対応するように維持しなければならない
 enum {
 	RINFO_WORD_PLACENAME = 0,
@@ -117,7 +123,17 @@ static const int MsgID[] = {
 	ZUKAN_NUM,
 	PLAY_TIME,
 };
-
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
+static const int ValueID[] = {
+//	PLACE_NAME,
+	HERO_NAME_VALUE,
+	BADGE_NUM_VALUE,
+	ZUKAN_NUM_VALUE,
+	PLAY_TIME_VALUE,
+};
+// ----------------------------------------------------------------------------
 //==============================================================================
 //	プロトタイプ宣言
 //==============================================================================
@@ -261,18 +277,28 @@ static void printinfo(const REPORT_INFO * riw)
 
 	my = FontHeaderGet(FONT_SYSTEM, FONT_HEADER_SIZE_Y)
 				+ FontHeaderGet(FONT_SYSTEM, FONT_HEADER_SPACE_Y);
-	x = 0;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+	// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
 	y = 0;
-	for (i = 0; i < NELEMS(MsgID); i++) {
+	msg = MSGDAT_UTIL_AllocExpandString(riw->word, riw->msgman, MsgID[0], riw->heapID);
+	GF_STR_PrintSimple(riw->win, FONT_SYSTEM, msg, 0, y, MSG_NO_PUT, NULL);
+	STRBUF_Delete(msg);
+	for (i = 1; i < NELEMS(MsgID); i++) {
 		if (MsgID[i] == ZUKAN_NUM && riw->iprm.zukan_count == 0) {
 			//ずかん表示しない
 			continue;
 		}
-		msg = MSGDAT_UTIL_AllocExpandString(riw->word, riw->msgman, MsgID[i], riw->heapID);
+		y += my;
+		msg = MSGMAN_AllocString(riw->msgman, MsgID[i]);
+		GF_STR_PrintSimple(riw->win, FONT_SYSTEM, msg, 0, y, MSG_NO_PUT, NULL);
+		STRBUF_Delete(msg);
+		msg = MSGDAT_UTIL_AllocExpandString(riw->word, riw->msgman, ValueID[i-1], riw->heapID);
+		x = RINFO_WIN_WIDTH * 8 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg, FontHeaderGet(FONT_SYSTEM, FONT_HEADER_SPACE_X));
 		GF_STR_PrintSimple(riw->win, FONT_SYSTEM, msg, x, y, MSG_NO_PUT, NULL);
 		STRBUF_Delete(msg);
-		y += my;
 	}
+	// ----------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------------------
@@ -339,7 +365,11 @@ REPORT_INFO * ReportInfo_Create(FIELDSYS_WORK * fsys, int heapID, u8 frame_no)
 
 	makeinfo(&riw->iprm, riw->fsys);
 	makewords(riw->word, &riw->iprm);
-	riw->width = CountWidth(riw);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+	// ウィンドウの幅を固定に変更し、パラメタを右寄せ表示に
+	riw->width = RINFO_WIN_WIDTH;
+	// ----------------------------------------------------------------------------
 	//GF_ASSERT(riw->width <= RINFO_WIN_SX);
 	riw->height = CountHeight(&riw->iprm);
 	//GF_ASSERT(riw->height <= RINFO_WIN_SY);

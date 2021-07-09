@@ -157,6 +157,38 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color );
 //
 //============================================================================================
 
+void ov05_21F77A8(void);
+
+asm void ov05_21F77A8(void)
+{
+    push {r4, r5, r6, lr}
+	add r5, r0, #0
+	bl VMGetU16
+	add r1, r0, #0
+	add r0, r5, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	bl GetEventWorkValue
+	add r6, r0, #0
+	add r0, r5, #0
+	bl VMGetU16
+	add r1, r0, #0
+	add r0, r5, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	bl GetEventWorkAdrs
+	add r5, #0x80
+	add r4, r0, #0
+	ldr r0, [r5, #0]
+	ldr r0, [r0, #0xc]
+	bl SaveData_GetZukanWork
+	add r1, r6, #0
+	bl ZukanWork_GetPokeSeeFlag
+	strh r0, [r4]
+	mov r0, #0
+	pop {r4, r5, r6, pc}
+}
+
 //--------------------------------------------------------------------------------------------
 /**
  * 覚えられる技があるか
@@ -297,18 +329,26 @@ BOOL EvCmdWazaOshieItemCheck( VM_MACHINE * core )
 	*ret_wk = 1;
 
 	//アイテムの個数チェック
-	if( MyItem_CheckItem(my_item,ITEM_AKAIKAKERA,aka,HEAPID_EVENT) == FALSE ){
-		*ret_wk = 0;
-	}
-	if( MyItem_CheckItem(my_item,ITEM_AOIKAKERA,ao,HEAPID_EVENT) == FALSE ){
-		*ret_wk = 0;
-	}
-	if( MyItem_CheckItem(my_item,ITEM_KIIROIKAKERA,ki,HEAPID_EVENT) == FALSE ){
-		*ret_wk = 0;
-	}
-	if( MyItem_CheckItem(my_item,ITEM_MIDORINOKAKERA,midori,HEAPID_EVENT) == FALSE ){
-		*ret_wk = 0;
-	}
+    if (aka) {
+        if( MyItem_CheckItem(my_item,ITEM_AKAIKAKERA,aka,HEAPID_EVENT) == FALSE ){
+            *ret_wk = 0;
+        }
+    }
+    if (ao) {
+        if( MyItem_CheckItem(my_item,ITEM_AOIKAKERA,ao,HEAPID_EVENT) == FALSE ){
+            *ret_wk = 0;
+        }
+    }
+	if (ki) {
+        if( MyItem_CheckItem(my_item,ITEM_KIIROIKAKERA,ki,HEAPID_EVENT) == FALSE ){
+            *ret_wk = 0;
+        }
+    }
+    if (midori) {
+        if( MyItem_CheckItem(my_item,ITEM_MIDORINOKAKERA,midori,HEAPID_EVENT) == FALSE ){
+            *ret_wk = 0;
+        }
+    }
 
 	return 0;
 }

@@ -39,6 +39,12 @@
 
 #include "tv_topic.h"	//TVTOPIC_Entry_Record_Ookisa
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+// 英語版のみポケモンの大きさをインチ系に変換
+#include "localize.h"
+// ----------------------------------------------------------------------------
+
 //============================================================================================
 //
 //	extern宣言
@@ -182,6 +188,27 @@ u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
 	record_value = SysWork_OokisaRecordGet(SaveData_GetEventWork(fsys->savedata));
 	record_size = get_mons_size(monsno, record_value);
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+	// 英語版のみポケモンの大きさをインチ系に変換して比較
+#if (PM_LANG == LANG_ENGLISH)
+	{
+		u32 now_size_inch    = PG5_CM_TO_INCH(now_size);
+		u32 record_size_inch = PG5_CM_TO_INCH(record_size);
+
+		if (now_size_inch == record_size_inch) {
+			return 1;		//同じ
+		}else{
+			if (now_size_inch > record_size_inch) {
+				//テレビトピック生成
+				TVTOPIC_Entry_Record_Ookisa(fsys, now_size, pp);
+				return 2;		//記録更新した！
+			}else{
+				return 0;		//更新できず
+			}
+		}
+	}
+#else
 	if (now_size == record_size) {
 		return 1;		//同じ
 	}else{
@@ -193,6 +220,8 @@ u8 OokisaRecordChk( FIELDSYS_WORK* fsys,u16 num)
 			return 0;		//更新できず
 		}
 	}
+#endif
+	// ----------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------------------------------------------
@@ -234,6 +263,17 @@ static void OokisaValue2Buffer(FIELDSYS_WORK* fsys,u8 buf_no1,u8 buf_no2,u16 mon
 	WORDSET** wordset	= GetEvScriptWorkMemberAdrs(fsys, ID_EVSCR_WORDSET );
 
 	size = get_mons_size(monsno, value);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+	// 英語版のみポケモンの大きさをインチ系に変換
+#if (PM_LANG == LANG_ENGLISH)
+	{
+		u32 size_cm = size;
+		size = PG5_CM_TO_INCH(size);
+		OS_TPrintf("%d.%d\" = %d.%dcm\n", size/10, size%10, size_cm/10, size_cm%10);
+	}
+#endif
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber(*wordset,buf_no1,size/10,3, NUMBER_DISPTYPE_LEFT,NUMBER_CODETYPE_DEFAULT);
 	WORDSET_RegisterNumber(*wordset,buf_no2,size%10,1, NUMBER_DISPTYPE_LEFT,NUMBER_CODETYPE_DEFAULT);
 

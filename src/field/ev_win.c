@@ -278,6 +278,12 @@ static void EvWin_Init( FIELDSYS_WORK* fsys, EV_WIN_WORK* wk, u8 x, u8 y, u8 cur
 	wk->cp_work		= NULL;
 	wk->cancel		= cancel;
 	wk->cursor_pos	= cursor;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端に対応
+	wk->align_right  = FALSE;
+	wk->align_bottom = FALSE;
+	// ----------------------------------------------------------------------------
 	wk->x			= x;
 	wk->y			= y;
 	wk->list_no		= 0;
@@ -388,6 +394,13 @@ void CmdEvBmpMenu_Start( EV_WIN_WORK* wk )
 		len = (len / 8)+1;
 	}
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端に対応
+	if (wk->align_right)  wk->x -= len;
+	if (wk->align_bottom) wk->y -= wk->list_no * 2;
+	// ----------------------------------------------------------------------------
+
 	GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
 									len, wk->list_no*2, FLD_SYSFONT_PAL, EVWIN_FREE_CGX );
 
@@ -472,8 +485,11 @@ static u32 BmpMenu_length_get( EV_WIN_WORK* wk )
 			break;
 		}
 
-		//ret = FontProc_GetPrintStrWidth( EV_WIN_FONT, wk->msg_buf[i], 0 );
-		ret = FontProc_GetPrintStrWidth( EV_WIN_FONT, (STRBUF*)wk->Data[i].str, 0 );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+		// 文字表示位置変更タグを考慮して幅を取得するように変更
+		ret = FontProc_GetEvWinItemWidth( EV_WIN_FONT, (STRBUF*)wk->Data[i].str );
+		// ----------------------------------------------------------------------------
 
 		if( tmp_ret < ret ){
 			tmp_ret = ret;
@@ -680,6 +696,19 @@ void CmdEvBmpList_StartWidth( EV_WIN_WORK* wk, u16 width )
 //リスト共通処理
 static void CmdEvBmpList_StartCommon( EV_WIN_WORK* wk, u32 len )
 {
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端に対応
+	if (wk->align_right)  wk->x -= len;
+	if (wk->align_bottom) {
+		if (wk->list_no > EV_LIST_LINE) {
+			wk->y -= EV_LIST_LINE * 2;
+		} else {
+			wk->y -= wk->list_no * 2;
+		}
+	}
+	// ----------------------------------------------------------------------------
+
 	//表示最大項目数チェック
 	if( wk->list_no > EV_LIST_LINE ){
 		GF_BGL_BmpWinAdd( wk->fsys->bgl, &wk->bmpwin, FLD_MBGFRM_FONT, wk->x, wk->y, 
@@ -847,9 +876,11 @@ static u32 BmpList_length_get( EV_WIN_WORK* wk )
 			break;
 		}
 
-		//ret = FontProc_GetPrintStrWidth( EV_WIN_FONT, wk->msg_buf[i], 0 );
-		ret = FontProc_GetPrintStrWidth( EV_WIN_FONT, (STRBUF*)wk->list_Data[i].str, 0 );
-		//OS_Printf( "str width = %d\n", ret );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+		// 文字表示位置変更タグを考慮して幅を取得するように変更
+		ret = FontProc_GetEvWinItemWidth( EV_WIN_FONT, (STRBUF*)wk->list_Data[i].str );
+		// ----------------------------------------------------------------------------
 		
 		if( tmp_ret < ret ){
 			tmp_ret = ret;
@@ -1209,9 +1240,7 @@ void ElevatorFloorWrite(FIELDSYS_WORK* fsys, u8 x, u8 y, u16* work, WORDSET* wor
 	GF_BGL_BmpWinFill( &wk->bmpwin, FBMP_COL_WHITE, 0, 0, (len*8), (FLOOR_WIN_SIZE_Y*8) );
 
 	ev_win_msg_print( wk, msg_ev_win_016, FLOOR_TITLE_X, FLOOR_TITLE_Y );	//「げんざいの　フロア」
-
-	msg = ElevatorMsgGet( fsys->location->zone_id, floor, &msg_x );
-	ev_win_msg_print( wk, msg, msg_x, FLOOR_TITLE_Y2 );						//「○かい」
+    ev_win_msg_print( wk, msg_ev_win_017, FLOOR_TITLE_X2, FLOOR_TITLE_Y2 );	//「○かい」 // MatchComment: plat JP reverted this change to DP JP/US?
 
 	wk->MenuH.win = &wk->bmpwin;
 	GF_BGL_BmpWinOn( &wk->bmpwin );

@@ -2158,6 +2158,76 @@ BOOL EvCmdFldOBJForceDraw_C04EventAfterOnly( VM_MACHINE * core )
 	return 0;
 }
 
+void ov05_21F7704(void);
+void ov05_21F7754(void);
+
+asm void ov05_21F7704(void)
+{
+	push {r4, lr}
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	mov r1, #0xf
+	ldr r0, [r0, #0x38]
+	bl FieldOBJSys_OBJIDSearch
+	add r4, r0, #0
+	beq _021F774E
+	bl FieldOBJ_NowPosGX_Get
+	cmp r0, #0x28
+	bgt _021F7730
+	cmp r0, #0x26
+	blt _021F772A
+	beq _021F773A
+	cmp r0, #0x28
+	beq _021F773E
+	b _021F7746
+_021F772A:
+	cmp r0, #0x1c
+	beq _021F7736
+	b _021F7746
+_021F7730:
+	cmp r0, #0x30
+	beq _021F7742
+	b _021F7746
+_021F7736:
+	mov r1, #6
+	b _021F7748
+_021F773A:
+	mov r1, #5
+	b _021F7748
+_021F773E:
+	mov r1, #3
+	b _021F7748
+_021F7742:
+	mov r1, #2
+	b _021F7748
+_021F7746:
+	mov r1, #4
+_021F7748:
+	add r0, r4, #0
+	bl evcmd_FldOBJForceDrawC04OnlyCore
+_021F774E:
+	mov r0, #0
+	pop {r4, pc}
+}
+
+asm void ov05_21F7754(void)
+{
+    push {r3, lr}
+	add r0, #0x80
+	ldr r0, [r0]
+	mov r1, #0xf
+	ldr r0, [r0, #0x38]
+	bl FieldOBJSys_OBJIDSearch
+	cmp r0, #0
+	beq _021F776E
+	mov r1, #2
+	lsl r1, r1, #0xc
+	bl FieldOBJ_StatusBit_OFF
+_021F776E:
+	mov r0, #0
+	pop {r3, pc}
+}
+
 //--------------------------------------------------------------
 /**
  * @brief   ’n‹…‹V“o˜^
