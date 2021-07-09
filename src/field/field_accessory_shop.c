@@ -197,6 +197,13 @@ enum{
 #define ACCE_SHOP_SND_LIST_CANCEL	( SEQ_SE_DP_SELECT )	// CANCEL
 
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+// メッセージ用バッファのサイズを拡大
+#define ACCE_SHOP_BUFFER_SIZE	(200)
+// ----------------------------------------------------------------------------
+
+
 //-----------------------------------------------------------------------------
 /**
  *					構造体宣言
@@ -693,7 +700,11 @@ static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop )
 			ACCE_SHOP_TALKFONT_PLTT * 32, 
 			p_acce_shop->heapID );
 
-/* フラワーショップのウィンドウがウィンドウタイプで変わってしまうバグの対処 */
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// アクセサリーショップのウィンドウの色が変わってしまう不具合を修正
+
+	/* フラワーショップのウィンドウがウィンドウタイプで変わってしまうバグの対処 */
 #if AFTERMASTER_070122_ACCESSORYSHOP_WND_FIX
 	MenuWinGraphicSet( p_acce_shop->p_bgl, FLD_MBGFRM_FONT,
 			ACCE_SHOP_SYSTEM_CHAROFS,
@@ -707,6 +718,9 @@ static void AcceShop_BGL_Init( FIELD_ACCE_SHOP* p_acce_shop )
 			p_acce_shop->win_type, 
 			p_acce_shop->heapID );
 #endif
+
+// ----------------------------------------------------------------------------
+
 	SystemFontPaletteLoad( PALTYPE_MAIN_BG, 
 			ACCE_SHOP_SYSTEMFONT_PLTT * 32, 
 			p_acce_shop->heapID );
@@ -879,12 +893,29 @@ static void AcceShop_MainMsgChangeStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_MAN
 	p_wordset = WORDSET_Create( heapID );
 
 	// 展開先文字列作成
-	p_drawstr = STRBUF_Create( WORDSET_DEFAULT_BUFLEN, heapID );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+	// メッセージ用バッファのサイズを拡大
+	p_drawstr = STRBUF_Create( ACCE_SHOP_BUFFER_SIZE, heapID );
+	// ----------------------------------------------------------------------------
 	p_str = MSGMAN_AllocString( p_msgman, mes_accessory_01_04 );
 	
-	WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+	// きのみ名を複数形に（現在の仕様では、単数のきのみがくることはない）
+    // MatchComment: if statement added, before was only call to Plural func
+    if (cp_data[ data_idx ].need_num == 1) {
+        WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+    } else {
+        WORDSET_RegisterItemNamePlural( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+    }
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+	// 数字の左側のスペースを除去
 	WORDSET_RegisterNumber( p_wordset, 1, cp_data[ data_idx ].need_num,
-			3, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
+			3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterAccessoryName( p_wordset, 2, cp_data[ data_idx ].acce_no );
 	WORDSET_ExpandStr( p_wordset, p_drawstr, p_str );
 
@@ -918,12 +949,28 @@ static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_
 	p_wordset = WORDSET_Create( heapID );
 
 	// 展開先文字列作成
-	p_drawstr = STRBUF_Create( 200, heapID );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+	// メッセージ用バッファのサイズを定数マクロに置換
+	p_drawstr = STRBUF_Create( ACCE_SHOP_BUFFER_SIZE, heapID );
+	// ----------------------------------------------------------------------------
 	p_str = MSGMAN_AllocString( p_msgman, mes_accessory_01_09 );
 	
-	WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+	// きのみ名を複数形に（現在の仕様では、単数のきのみがくることはない）
+    if (cp_data[ data_idx ].need_num == 1) {
+        WORDSET_RegisterItemNamePlural( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+    } else {
+        WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+    }
+	// ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+	// 数字の左側のスペースを除去
 	WORDSET_RegisterNumber( p_wordset, 1, cp_data[ data_idx ].need_num,
-			3, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
+			3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterAccessoryName( p_wordset, 2, cp_data[ data_idx ].acce_no );
 	WORDSET_ExpandStr( p_wordset, p_drawstr, p_str );
 

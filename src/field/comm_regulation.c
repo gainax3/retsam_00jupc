@@ -48,6 +48,12 @@
 
 #include "comm_regulation.h"
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+// 英語版のみ表示する値をインチ・ポンド系に変換
+#include "localize.h"
+// ----------------------------------------------------------------------------
+
 #define _EVWIN_MSG_BUF_SIZE		(90 * 2)			//メッセージバッファサイズ
 #define _CGX_COUNTER_TOP_NUM (1)
 
@@ -445,27 +451,49 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
                                    NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
             break;
           case REGULATION_LEVEL:         //ポケモンのレベル
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+            // 数字左側のパディングを除去
             WORDSET_RegisterNumber(pWordSet, 0,
                                    ans, 3,
-                                   NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                                   NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+            // ----------------------------------------------------------------------------
             break;
           case REGULATION_TOTAL_LEVEL:   //ポケモンのレベル合計
             if(ans == 0){
                 msg = msg_dbc_rule27;
             }
             else{
+                // ----------------------------------------------------------------------------
+                // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+                // 数字左側のパディングを除去
                 WORDSET_RegisterNumber(pWordSet, 0,
                                        ans, 3,
-                                       NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                                       NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+                // ----------------------------------------------------------------------------
             }
             break;
           case REGULATION_HEIGHT:        //身長   0.2 - 9.9m
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+            // 数字左側のパディングを除去、英語版のみ表示する値をインチ系に変換
+#if PM_LANG == LANG_ENGLISH
+            ans = ans >= 0 ? PG5_CM_TO_INCH(ans * 10) : -PG5_CM_TO_INCH(-ans * 10);		// ans は 10cm 単位
+            WORDSET_RegisterNumber(pWordSet, 0,
+                                   abs(ans/12), 2,
+                                   NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+            WORDSET_RegisterNumber(pWordSet, 1,
+                                   abs(ans%12), 2,
+                                   NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+#else
             WORDSET_RegisterNumber(pWordSet, 0,
                                    abs(ans/10), 2,
-                                   NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                                   NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
             WORDSET_RegisterNumber(pWordSet, 1,
-                                   abs(ans%10), 2,
-                                   NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                                   abs(ans%10), 1,
+                                   NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+#endif
+            // ----------------------------------------------------------------------------
             if(ans == 0){
                 msg = msg_dbc_rule27;
             }
@@ -474,9 +502,20 @@ static void _createViewWindow(_EV_REGULATION_LIST_WORK* wk)
             }
             break;
           case REGULATION_WEIGHT:       //体重    1-99  kg
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+            // 数字左側のパディングを除去、英語版のみ表示する値をポンド系に変換
+#if PM_LANG == LANG_ENGLISH
+            ans = ans >= 0 ? PG5_KG_TO_POUND(ans) : -PG5_KG_TO_POUND(-ans);
+            WORDSET_RegisterNumber(pWordSet, 0,
+                                   abs(ans), 3,
+                                   NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+#else
             WORDSET_RegisterNumber(pWordSet, 0,
                                    abs(ans), 2,
-                                   NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                                   NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+#endif
+            // ----------------------------------------------------------------------------
             if(ans == 0){
                 msg = msg_dbc_rule27;
             }
@@ -552,7 +591,7 @@ static BOOL _pokeCheck(_EV_REGULATION_LIST_WORK* wk)
         ans = Regulation_GetParam(wk->pFSys->regulation,REGULATION_TOTAL_LEVEL);
         WORDSET_RegisterNumber(wk->WordSet, 1,
                                ans, 3,
-                               NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                               NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT); // MatchComment: NUMBER_DISPTYPE_SPACE -> NUMBER_DISPTYPE_LEFT
         _messageOn(wk, msg_connect_rulebook_16);
         break;
     }

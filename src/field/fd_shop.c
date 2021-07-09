@@ -1340,6 +1340,11 @@ static u8 ShopBuySelectSeq( SHOP_WORK * wk )
 			ShopBuyCursorPalChg( wk, 1 );
 
 			GF_BGL_BmpWinDataFill( &wk->win[WIN_IDX_TALK], 15 );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+			// メッセージウィンドウ表示中はアイテム説明を消去（バッグと同様の処理に）
+			GF_BGL_BmpWinOff( &wk->win[WIN_IDX_INFO] );
+			// ----------------------------------------------------------------------------
 			BmpTalkWinWrite(
 				&wk->win[WIN_IDX_TALK], WINDOW_TRANS_ON, SHOP_TALK_WIN_CGX, TALK_WIN_PAL );
 
@@ -1366,9 +1371,13 @@ static u8 ShopBuySelectSeq( SHOP_WORK * wk )
 			}
 
 			if( wk->shop_type == SHOP_TYPE_GOODS ){
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// グッズショップでSEが鳴らない不具合を修正
 #if AFTERMASTER_070122_GOODSSHOP_SE
 				Snd_SePlay( FD_SHOP_SE_DECIDE );
 #endif
+// ----------------------------------------------------------------------------
 				return ShopBuyCmpCheck( wk );
 			}
 
@@ -1540,6 +1549,12 @@ static u8 ShopBuyNumSelSeq( SHOP_WORK * wk )
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_U], wk->scr_draw[0] );
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_D], wk->scr_draw[1] );
 		ShopBuyCursorPalChg( wk, 0 );
+
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+		// メッセージウィンドウ表示中に消去したアイテム説明を表示
+		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
+		// ----------------------------------------------------------------------------
 
 		Snd_SePlay( FD_SHOP_SE_CANCEL );
 		return SHOP_SEQ_BUY_SELECT;
@@ -1723,22 +1738,47 @@ static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
 		{
 			STRBUF * str;
 
-			ShopBuyItemNameWordSet( wk, wk->sel_item, 0 );
+
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+			// どうぐ購入時のどうぐ名を購入数で出し分け
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// シール名も購入数で出し分け
+            // MatchComment: some changes to account for new SHOP_TYPE_BP
+
 			if( wk->shop_type == SHOP_TYPE_ITEM ){
 				str = MSGMAN_AllocString( wk->mman, mes_shop_02_04 );
+				if (wk->sel_num == 1) {
+					WORDSET_RegisterItemName( wk->wset, 0, wk->sel_item );
+				} else {
+					WORDSET_RegisterItemNamePlural( wk->wset, 0, wk->sel_item );
+				}
 				WORDSET_RegisterItemPocketWithIcon(
 					wk->wset, 1, ItemParamGet( wk->sel_item, ITEM_PRM_POCKET, HEAPID_WORLD ) );
-			}
-			else if( wk->shop_type == SHOP_TYPE_BP ){
+            }else if( wk->shop_type == SHOP_TYPE_BP ){
+				if (wk->sel_num == 1) {
+					WORDSET_RegisterItemName( wk->wset, 0, wk->sel_item );
+				} else {
+					WORDSET_RegisterItemNamePlural( wk->wset, 0, wk->sel_item );
+				}
 				str = MSGMAN_AllocString( wk->mman, mes_shop_02_04 );
 				WORDSET_RegisterItemPocketWithIcon(
 					wk->wset, 1, ItemParamGet( wk->sel_item, ITEM_PRM_POCKET, HEAPID_WORLD ) );
-			}
-			else if( wk->shop_type == SHOP_TYPE_GOODS ){
-				str = MSGMAN_AllocString( wk->mman, mes_shop_03_01 );
 			}else{
-				str = MSGMAN_AllocString( wk->mman, mes_shop_03_03 );
+				if( wk->shop_type == SHOP_TYPE_GOODS ){
+					ShopBuyItemNameWordSet( wk, wk->sel_item, 0 );
+					str = MSGMAN_AllocString( wk->mman, mes_shop_03_01 );
+				}else{
+					if (wk->sel_num == 1) {
+						WORDSET_RegisterSealName( wk->wset, 0, Seal_NameGet((u8)wk->sel_item) );
+					} else {
+						WORDSET_RegisterSealNamePlural( wk->wset, 0, Seal_NameGet((u8)wk->sel_item) );
+					}
+					str = MSGMAN_AllocString( wk->mman, mes_shop_03_03 );
+				}
 			}
+
+			// ----------------------------------------------------------------------------
 			WORDSET_ExpandStr( wk->wset, wk->msgb, str );
 			STRBUF_Delete( str );
 		}
@@ -1753,6 +1793,11 @@ static u8 ShopBuyYesNoSeq( SHOP_WORK * wk )
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_U], wk->scr_draw[0] );
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_D], wk->scr_draw[1] );
 		ShopBuyCursorPalChg( wk, 0 );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+		// メッセージウィンドウ表示中に消去したアイテム説明を表示
+		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
+		// ----------------------------------------------------------------------------
 		return SHOP_SEQ_BUY_SELECT;
 	}
 	return SHOP_SEQ_BUY_YESNO;
@@ -1854,6 +1899,12 @@ static u8 ShopBuyCmpWaitSeq( SHOP_WORK * wk )
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_D], wk->scr_draw[1] );
 		ShopBuyCursorPalChg( wk, 0 );
 
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+		// メッセージウィンドウ表示中に消去したアイテム説明を表示
+		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
+		// ----------------------------------------------------------------------------
+
 		return SHOP_SEQ_BUY_SELECT;
 	}
 	return SHOP_SEQ_BUYCMP_WAIT;
@@ -1880,6 +1931,12 @@ static u8 ShopBuyOmakeWait( SHOP_WORK * wk )
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_U], wk->scr_draw[0] );
 		CLACT_SetDrawFlag( wk->cwp[SHOP_CLA_ARROW_D], wk->scr_draw[1] );
 		ShopBuyCursorPalChg( wk, 0 );
+
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+		// メッセージウィンドウ表示中に消去したアイテム説明を表示
+		GF_BGL_BmpWinOnVReq( &wk->win[WIN_IDX_INFO] );
+		// ----------------------------------------------------------------------------
 
 		return SHOP_SEQ_BUY_SELECT;
 	}

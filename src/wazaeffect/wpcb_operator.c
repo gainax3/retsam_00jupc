@@ -946,9 +946,10 @@ static void ECB_Operator_Priority(EMIT_PTR emit, ECB_OPERATOR_DATA* odp)
 		break;
 	}
 
-	if (Particle_CameraTypeGet(odp->ptc) != GF_CAMERA_PERSPECTIV){
-		OS_Printf("operator pri 正射影で優先度操作が行なわれました -- 反映されません。\n");
-	}
+    // MatchComment: dummied out
+	//if (Particle_CameraTypeGet(odp->ptc) != GF_CAMERA_PERSPECTIV){
+	//	OS_Printf("operator pri 正射影で優先度操作が行なわれました -- 反映されません。\n");
+	//}
 
 	SPL_SetEmitterPositionZ(emit, z);
 }
