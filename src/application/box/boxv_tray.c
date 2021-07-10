@@ -1246,7 +1246,7 @@ void BoxAppView_TrayIconUpdateItem( TRAY_VIEW_WORK* wk, u32 pos, u32 itemNumber 
 	{
 		BoxAppView_IconItemNumberSet( wk->iconSys, &(wk->icon[wk->imgPos][pos]), itemNumber );
 		BoxAppView_IconLimitModeSet(wk->iconSys, &(wk->icon[wk->imgPos][pos]), BoxAppVPara_GetLimitModeBitFlag(wk->vpara));
-		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, &(wk->icon[wk->imgPos][pos]));
+		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, &(wk->icon[wk->imgPos][pos]), TRUE);
 	}
 }
 
@@ -1263,7 +1263,7 @@ void BoxAppView_TrayIconUpdateGraphic( TRAY_VIEW_WORK* wk, u32 pos )
 {
 	if( wk->icon[wk->imgPos][pos].act != NULL )
 	{
-		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, &(wk->icon[wk->imgPos][pos]));
+		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, &(wk->icon[wk->imgPos][pos]), TRUE);
 	}
 }
 

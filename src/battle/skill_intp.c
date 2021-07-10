@@ -5960,6 +5960,11 @@ static	const	u16	GSC_Table[]={
 	0xffff/8,
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// 入れ替え「おいうち」発動時に、ターン最後の「まもる」「みきり」が
+// 成功してしまう不具合を修正
+
 #if AFTER_MASTER_070122_BT2_FIX
 //============================================================================================
 /**
@@ -6095,6 +6100,8 @@ static	BOOL	WS_GUARD_SUCCESS_CHECK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	return FALSE;
 }
 #endif //AFTER_MASTER_070122_BT2_FIX
+
+// ----------------------------------------------------------------------------
 
 //============================================================================================
 /**
@@ -6923,11 +6930,14 @@ static	BOOL	WS_KOUSOKUSPIN(BATTLE_WORK *bw,SERVER_PARAM *sp)
 	if(sp->scw[dir].dokubisi_count){
 		sp->side_condition[dir]&=SIDE_CONDITION_DOKUBISHI_OFF;
 		sp->scw[dir].dokubisi_count=0;
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if AFTER_MASTER_061024_FIX
 		sp->waza_work=WAZANO_DOKUBISI;
 #else AFTER_MASTER_061024_FIX
 		sp->waza_work=WAZANO_DOROBAKUDAN;
 #endif AFTER_MASTER_061024_FIX
+// ----------------------------------------------------------------------------
 		SkillSequenceGosub(sp,ARC_SUB_SEQ,SUB_SEQ_KOUSOKUSPIN_ESCAPE);
 		return FALSE;
 	}
@@ -6965,6 +6975,8 @@ static	BOOL	WS_WEATHER_KAIFUKU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 #endif
 
 	//天候変化がないか、天候無効にする特性のポケモンがいる時は、MAXの半分
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if B1374_060817_FIX
 	if(((sp->field_condition&FIELD_CONDITION_TENKI)==0)||
 	    (ST_ServerTokuseiCheck(bw,sp,STC_HAVE_ALL_HP,0,TOKUSYU_NOOTENKI))||
@@ -6978,6 +6990,7 @@ static	BOOL	WS_WEATHER_KAIFUKU(BATTLE_WORK *bw,SERVER_PARAM *sp)
 		sp->hp_calc_work=sp->psp[sp->attack_client].hpmax/2;
 	}
 #endif //B1374_060817_FIX
+// ----------------------------------------------------------------------------
 	//晴れの時は、MAXの2/3
 	else if(sp->field_condition&FIELD_CONDITION_HARE_ALL){
 		sp->hp_calc_work=ST_ServerDamageDiv(sp->psp[sp->attack_client].hpmax*20,30);
@@ -8091,11 +8104,15 @@ static	BOOL	WS_OIUCHI_CHECK(BATTLE_WORK *bw,SERVER_PARAM *sp)
 			if((eqp==SOUBI_ONAZIWAZAONLY)||
 			   (eqp==SOUBI_ONAZIWAZAONLYSUBAYASAUP)||
 			   (eqp==SOUBI_ONAZIAWZAONLYTOKUSYUUP)){
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/10
+// 最初のターンに入れ替え「おいうち」するとこだわらない不具合の修正を反映
 #if AFTER_MASTER_070202_BT2_FIX
 				sp->psp[sp->attack_client].wkw.kodawari_wazano=waza_no;
 #else AFTER_MASTER_070202_BT2_FIX
 				sp->psp[sp->attack_client].wkw.kodawari_wazano=sp->waza_no_temp;
 #endif AFTER_MASTER_070202_BT2_FIX
+// ----------------------------------------------------------------------------
 			}
 		}
 	}
@@ -11475,10 +11492,14 @@ static	void	*WS_SrcPointerGet(BATTLE_WORK *bw,SERVER_PARAM *sp,int para)
 		return &sp->otf[sp->client_work].dameoshi_damage;
 	case BUF_PARA_DAMEOSHI_DAMAGE_DEFENCE:
 		return &sp->otf[sp->defence_client].dameoshi_damage;
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/10
+// 入れ替え「おいうち」発生時に「かいがらのすず」の効果が出ない不具合の修正
 #if AFTER_MASTER_070202_BT2_FIX
 	case BUF_PARA_OSTF_KAIGARA_DAMAGE:
 		return &sp->ostf[sp->attack_client].kaigara_damage;
 #endif //AFTER_MASTER_070202_BT2_FIX
+// ----------------------------------------------------------------------------
 	case BUF_PARA_CLIENT_WORKING_COUNT:
 		return &sp->client_working_count;
 	}
@@ -11794,7 +11815,11 @@ static	void	TCB_GetExp(TCB_PTR tcb,void *work)
 				mp.msg_tag=TAG_NUMS;
 				mp.msg_para[0]=PokeParaGet(pp,status_id[i],NULL)-ppp->para[i];
 				mp.msg_keta=2;
-				StatusMSG_Print(tsiw->bw,win,msg_m,&mp,80,16*i,0,0,0);
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+				// パラメタ増分の表示を、新パラメタと同じ位置に右寄せ
+				StatusMSG_Print(tsiw->bw,win,msg_m,&mp,80,16*i,BATTLE_MSG_WIDTH_OFS,28,0);
+				// ----------------------------------------------------------------------------
 			}
 			tsiw->seq_no=SEQ_GE_STATUS_PRINT_KEY_WAIT;
 		}

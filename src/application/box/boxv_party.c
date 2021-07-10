@@ -612,7 +612,7 @@ void BoxAppView_PartyIconUpdateItem( PARTY_VIEW_WORK* wk, u32 pos, u32 itemNumbe
 	{
 		BoxAppView_IconItemNumberSet( wk->iconsys, &wk->icon[pos], itemNumber );
 		BoxAppView_IconLimitModeSet( wk->iconsys, &wk->icon[pos], BoxAppVPara_GetLimitModeBitFlag(wk->vpara) );
-		BoxAppView_PokeIconRewrite_VramTrans(wk->iconsys, &wk->icon[pos]);
+		BoxAppView_PokeIconRewrite_VramTrans(wk->iconsys, &wk->icon[pos], FALSE);
 	}
 
 }

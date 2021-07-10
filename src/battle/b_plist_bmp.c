@@ -1204,6 +1204,8 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 	// 次のレベル値
 	str = MSGMAN_AllocString( wk->mman, mes_b_plist_03_101 );
 	exp = STRBUF_Create( (6+1)*2, wk->dat->heap );	// (6桁+EOM_)x2(ローカライズ用に一応)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 /* ルビサファの育て屋でLv100以上の経験値になるため、マイナス表示になってしまう不具合対処 */
 #if T1653_060815_FIX	// 対処後
 	if( pd->lv < 100 ){
@@ -1219,6 +1221,7 @@ static void BPL_P3_LvPut( BPLIST_WORK * wk, u32 pos )
 		wk->wset, 0, pd->next_lv_exp - pd->now_exp, 
 		6, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
 #endif	// T1653_060815_FIX
+// ----------------------------------------------------------------------------
 	WORDSET_ExpandStr( wk->wset, exp, str );
 	px = GF_BGL_BmpWinGet_SizeX( &wk->add_win[WIN_P3_NEXTNUM+swap] ) * 8
 			- FontProc_GetPrintStrWidth( FONT_SYSTEM, exp, 0 );
@@ -1792,6 +1795,11 @@ static void BPL_WazaBunruiStrPut( BPLIST_WORK * wk, u32 idx )
  *	ページ４・６で使用
  */
 //--------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/29
+// 分類の表示を中央寄せに
+#define WIN_BRNAME_SX_PRAC		(7)		// WIN_P4_BRNAME_SX, WIN_P6_BRNAME_SX のレイアウト上の実質的な幅
+// ----------------------------------------------------------------------------
 static void BPL_WazaKindPut( BPLIST_WORK * wk, u32 idx, u32 kind )
 {
 	GF_BGL_BMPWIN * win;
@@ -1809,7 +1817,14 @@ static void BPL_WazaKindPut( BPLIST_WORK * wk, u32 idx, u32 kind )
 	case 2:		// 特殊
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_302 );
 	}
-	GF_STR_PrintColor( win, FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_BLACK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/29
+	// 分類の表示を中央寄せに
+	{
+		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, WIN_BRNAME_SX_PRAC * 8);
+		GF_STR_PrintColor( win, FONT_SYSTEM, str, xofs, 0, MSG_NO_PUT, PCOL_N_BLACK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 	STRBUF_Delete( str );
 
 	GF_BGL_BmpWinOnVReq( win );
@@ -2675,8 +2690,15 @@ static void BPL_Page8BmpWrite( BPLIST_WORK * wk )
 		STRBUF * str;
 
 		str = MSGMAN_AllocString( wk->mman, mes_b_plist_04_400 );
-		GF_STR_PrintColor(
-			&wk->add_win[WIN_P8_APP], FONT_SYSTEM, str, 0, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/30
+		// 「アピールポイント」を中央寄せに
+		{
+			u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, WIN_P8_APP_SX * 8);
+			GF_STR_PrintColor(
+				&wk->add_win[WIN_P8_APP], FONT_SYSTEM, str, xofs, 0, MSG_NO_PUT, PCOL_N_WHITE, NULL );
+		}
+		// ----------------------------------------------------------------------------
 		STRBUF_Delete( str );
 		GF_BGL_BmpWinOnVReq( &wk->add_win[WIN_P8_APP] );
 	}

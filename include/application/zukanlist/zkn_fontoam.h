@@ -102,7 +102,12 @@ GLOBAL void ZKN_FONTOAM_DeleteAll( ZKN_FONTOAM_SYS_PTR fontoam_sys );
 
 GLOBAL GF_BGL_BMPWIN* ZKN_FONTOAM_GetBmp( ZKN_FONTOAM_SYS_PTR fontoam_sys, int bmp_x, int bmp_y );
 GLOBAL void ZKN_FONTOAM_DeleteBmp( GF_BGL_BMPWIN* win );
-GLOBAL void ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid, int bmp_x, int bmp_y );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+// ZKN_FONTOAM_PrintBmpStr(), ZKN_FONTOAM_PrintBmpStrBuf() の返値を
+// void から描画した文字列の長さ（ピクセル単位）を返すように変更
+GLOBAL u32 ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid, int bmp_x, int bmp_y );
+// ----------------------------------------------------------------------------
 GLOBAL void ZKN_FONTOAM_PrintBmpStrCenter( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid );
 GLOBAL void ZKN_FONTOAM_PrintBmpStrBuf( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, STRBUF* str, int bmp_x, int bmp_y );
 

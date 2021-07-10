@@ -283,6 +283,22 @@ enum{
 	ZKN_SORTSEARCHSUB_BUTTON_NAME_NUM,
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+// ソートを五十音からアルファベット順に
+
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC	ZKN_SORTSEARCHSUB_BUTTON_NAME_A
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF	ZKN_SORTSEARCHSUB_BUTTON_NAME_HA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_GHI	ZKN_SORTSEARCHSUB_BUTTON_NAME_KA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_JKL	ZKN_SORTSEARCHSUB_BUTTON_NAME_MA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_MNO	ZKN_SORTSEARCHSUB_BUTTON_NAME_SA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_PQR	ZKN_SORTSEARCHSUB_BUTTON_NAME_RA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_STU	ZKN_SORTSEARCHSUB_BUTTON_NAME_TA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_VWX	ZKN_SORTSEARCHSUB_BUTTON_NAME_YAWA
+#define ZKN_SORTSEARCHSUB_BUTTON_NAME_YZ	ZKN_SORTSEARCHSUB_BUTTON_NAME_NA
+
+// ----------------------------------------------------------------------------
+
 // FONTOAM
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NAME_SIZE_CY	( 2 )
@@ -299,20 +315,25 @@ enum{
 //-------------------------------------
 //	サブボタン数
 //=====================================
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// タイプの並び順を五十音順から従来の順へ
 enum{
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NONE,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_TYPE2,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NUM,
 };
+// ----------------------------------------------------------------------------
+
 
 // FONTOAM
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CX	( 10 )
@@ -332,19 +353,23 @@ enum{
 //-------------------------------------
 //	サブボタン数
 //=====================================
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// タイプの並び順を五十音順から従来の順へ
 enum{
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE,
-	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON,
+	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_TYPE1,
 	ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NUM,
 };
+// ----------------------------------------------------------------------------
 // FONTOAM
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CX	( 10 )
 #define ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CY	( 2 )
@@ -2060,59 +2085,63 @@ static void ZknSortSearchSubButtonMoveName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_
 	BMN_Main( p_work->p_button_man_sub );
 
 	switch( ZKN_SortSearchAplNameTypeGet( p_glb->p_main_apl ) ){
-	case ZKN_POKELIST_SEARCH_NAME_A:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_A ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_A ] = BMN_EVENT_RELEASE;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ソートを五十音からアルファベット順に
+	case ZKN_POKELIST_SEARCH_NAME_ABC:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_KA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_KA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_KA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_DEF:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_SA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_SA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_SA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_GHI:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_GHI ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_GHI ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_TA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_TA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_TA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_JKL:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_JKL ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_JKL ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_NA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_NA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_NA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_MNO:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_MNO ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_MNO ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_HA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_HA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_HA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_PQR:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_PQR ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_PQR ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_MA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_MA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_MA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_STU:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_STU ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_STU ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_RA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_RA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_RA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_VWX:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_VWX ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_VWX ] = BMN_EVENT_RELEASE;
 		}
 		break;
 		
-	case ZKN_POKELIST_SEARCH_NAME_YAWA:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_YAWA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_YAWA ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_NAME_YZ:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_YZ ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_NAME_YZ ] = BMN_EVENT_RELEASE;
 		}
 		break;
+	// ----------------------------------------------------------------------------
 
 	default:
 		break;
@@ -2206,10 +2235,28 @@ static void ZknSortSearchSubButtonMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 }
 static void ZknSortSearchSubButtonSelectSetType1( ZKN_SORTSEARCHSUB_WORK* p_work, int type )
 {
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// タイプの並び順を五十音順から従来の順へ
 	switch( type ){
+	case ZKN_POKELIST_SEARCH_TYPE_NORMAL:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL ] = BMN_EVENT_RELEASE;
+		}
+		break;
 	case ZKN_POKELIST_SEARCH_TYPE_BATTLE:	
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE ] = BMN_EVENT_RELEASE;
+		}
+		break;
+	case ZKN_POKELIST_SEARCH_TYPE_HIKOU:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR ] = BMN_EVENT_RELEASE;
+		}
+		break;
+	case ZKN_POKELIST_SEARCH_TYPE_POISON:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU ] = BMN_EVENT_RELEASE;
 		}
 		break;
 	case ZKN_POKELIST_SEARCH_TYPE_JIMEN:	
@@ -2222,39 +2269,25 @@ static void ZknSortSearchSubButtonSelectSetType1( ZKN_SORTSEARCHSUB_WORK* p_work
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA ] = BMN_EVENT_RELEASE;
 		}
 		break;
+	case ZKN_POKELIST_SEARCH_TYPE_MUSHI:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI ] = BMN_EVENT_RELEASE;
+		}
+		break;
 	case ZKN_POKELIST_SEARCH_TYPE_GHOST:	
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST ] = BMN_EVENT_RELEASE;
 		}
 		break;
-	case ZKN_POKELIST_SEARCH_TYPE_KUSA:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_ELECTRIC:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC ] = BMN_EVENT_RELEASE;
-			}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_SP:		
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_KOORI:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_AKU:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU ] = BMN_EVENT_RELEASE;
+	case ZKN_POKELIST_SEARCH_TYPE_METAL:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE ] = BMN_EVENT_RELEASE;
 		}
 		break;
 	default:
 		break;
 	}
+	// ----------------------------------------------------------------------------
 }
 static void ZknSortSearchSubButtonCallBackType1( u32 button_no, u32 event, void* p_work )
 {
@@ -2386,32 +2419,10 @@ static void ZknSortSearchSubButtonCallBackType2( u32 button_no, u32 event, void*
 }
 static void ZknSortSearchSubButtonSelectSetType2( ZKN_SORTSEARCHSUB_WORK* p_work, int type )
 {
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// タイプの並び順を五十音順から従来の順へ
 	switch( type ){
-	case ZKN_POKELIST_SEARCH_TYPE_NORMAL:
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_HIKOU:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_POISON:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_MUSHI:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI ] = BMN_EVENT_RELEASE;
-		}
-		break;
-	case ZKN_POKELIST_SEARCH_TYPE_METAL:	
-		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE ] != BMN_EVENT_HOLD ){
-			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE ] = BMN_EVENT_RELEASE;
-		}
-		break;
 	case ZKN_POKELIST_SEARCH_TYPE_FIRE:	
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE ] = BMN_EVENT_RELEASE;
@@ -2422,14 +2433,40 @@ static void ZknSortSearchSubButtonSelectSetType2( ZKN_SORTSEARCHSUB_WORK* p_work
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER ] = BMN_EVENT_RELEASE;
 		}
 		break;
+	case ZKN_POKELIST_SEARCH_TYPE_KUSA:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA ] = BMN_EVENT_RELEASE;
+		}
+		break;
+	case ZKN_POKELIST_SEARCH_TYPE_ELECTRIC:
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC ] = BMN_EVENT_RELEASE;
+			}
+		break;
+	case ZKN_POKELIST_SEARCH_TYPE_SP:		
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP ] = BMN_EVENT_RELEASE;
+		}
+		break;
+	case ZKN_POKELIST_SEARCH_TYPE_KOORI:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI ] = BMN_EVENT_RELEASE;
+		}
+		break;
 	case ZKN_POKELIST_SEARCH_TYPE_DRAGON:	
 		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON ] != BMN_EVENT_HOLD ){
 			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON ] = BMN_EVENT_RELEASE;
 		}
 		break;
+	case ZKN_POKELIST_SEARCH_TYPE_AKU:	
+		if( p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU ] != BMN_EVENT_HOLD ){
+			p_work->button_event_sub[ ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU ] = BMN_EVENT_RELEASE;
+		}
+		break;
 	default:
 		break;
 	}
+	// ----------------------------------------------------------------------------
 }
 
 //----------------------------------------------------------------------------
@@ -3125,41 +3162,44 @@ static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 
 		if( p_work->cursor_no_touch == FALSE ){
 
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+			// タイプの並び順を五十音順から従来の順へ
 			switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU;
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_01:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_03:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_04:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_05:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_06:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_03:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_04:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_05:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_06:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_07:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC;
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_08:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA;
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_09:
@@ -3174,6 +3214,7 @@ static void ZknSortSearchSubCursorMoveType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 			default:
 				break;
 			}
+			// ----------------------------------------------------------------------------
 		}
 
 	}else{
@@ -3310,37 +3351,40 @@ static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 	if( sys.cont & PAD_BUTTON_A ){
 		if( p_work->cursor_no_touch == FALSE ){
 
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+			// タイプの並び順を五十音順から従来の順へ
 			switch( ZKN_CURSOR_GetContID( p_work->p_cursor ) ){
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_00:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_01:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_03:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_04:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL;
-				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
-				break;
-			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_05:
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_01:
 				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_02:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_03:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_04:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
+			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_05:
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI;
+				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
+				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_06:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE;
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_07:
-				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI;
+				p_work->do_flag_select = ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU;
 				p_work->button_event_sub[ p_work->do_flag_select ] = BMN_EVENT_HOLD;
 				break;
 			case ZKN_SORTSEARCHSUB_SURSOR_ID_OTHER_09:		// ８はダミー
@@ -3355,6 +3399,7 @@ static void ZknSortSearchSubCursorMoveType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN
 			default:
 				break;
 			}
+			// ----------------------------------------------------------------------------
 		}
 
 	}else{
@@ -4663,6 +4708,11 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 {
 	GF_BGL_BMPWIN* win;	// 文字列書き込み先
 	int pltt_ofs;	// パレットアドレス
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	u32 width;
+	// ----------------------------------------------------------------------------
 
 
 	// パレット転送先アドレス取得
@@ -4675,11 +4725,14 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
-	ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SORTSEARCH_03, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_03, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ];
-	p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+	p_fontoam_init->x			 = -width / 2;
+	// ----------------------------------------------------------------------------
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NARABI ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
@@ -4693,11 +4746,14 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
-	ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SORTSEARCH_00, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_00, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_NAME ];
-	p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+	p_fontoam_init->x			 = -width / 2;
+	// ----------------------------------------------------------------------------
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NAME ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_NAME ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
@@ -4711,11 +4767,14 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
-	ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SORTSEARCH_01, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_01, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ];
-	p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+	p_fontoam_init->x			 = -width / 2;
+	// ----------------------------------------------------------------------------
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_TYPE ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
@@ -4729,11 +4788,14 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
-	ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SORTSEARCH_02, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_02, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_FORM ];
-	p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+	p_fontoam_init->x			 = -width / 2;
+	// ----------------------------------------------------------------------------
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_FORM ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_FORM ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_PLTOFS );
@@ -4747,11 +4809,14 @@ static void ZknSortSearchSubAddFontCommon( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_F
 	win = ZKN_FONTOAM_GetBmp( fontoam_sys, 
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CX,
 			ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_SIZE_CY );
-	ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SORTSEARCH_04, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, ZNK_SORTSEARCH_04, 0, 0 );
 	p_fontoam_init->p_bmp		 = win;
 	p_fontoam_init->parent = p_draw->clact[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ];
-	p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+	p_fontoam_init->x			 = -width / 2;
+	// ----------------------------------------------------------------------------
 	p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
 	p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ] = ZKN_FONTOAM_Make( p_fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SORTSEARCHSUB_BUTTON_ACTION ]->p_fontoam, pltt_ofs + ZKN_SORTSEARCHSUB_BUTTONFONT_KETTEI_PLTOFS );
@@ -4807,7 +4872,11 @@ static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 	int pltt_ofs;	// パレットアドレス
 	int i;
 	int msg_idx;
-	int x;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	u32 width;
+	// ----------------------------------------------------------------------------
 
 	// パレット転送先アドレス取得
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -4819,41 +4888,38 @@ static void ZknSortSearchSubAddFontSort( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_NARABI_SIZE_CY );
 		
 		
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// ボタンの文字を自動で中央寄せするように
 		switch( i ){
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_NUMBER:
 			msg_idx = ZNK_SORTSEARCH_SORT_00;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
 			break;
 			
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_AIUEO:
 			msg_idx = ZNK_SORTSEARCH_SORT_01;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_6_X;
 			break;
 			
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_HEAVY:
 			msg_idx = ZNK_SORTSEARCH_SORT_02;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
 			break;
 			
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_LIGHT:
 			msg_idx = ZNK_SORTSEARCH_SORT_03;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
 			break;
 			
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_TALL:
 			msg_idx = ZNK_SORTSEARCH_SORT_04;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
 			break;
 			
 		case ZKN_SORTSEARCHSUB_BUTTON_NARABI_SHORT:
 			msg_idx = ZNK_SORTSEARCH_SORT_05;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
 			break;
 		}
 		
-		ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-				NARC_msg_zkn_dat, msg_idx, 0, 0 );
-		p_fontoam_init->x			 = x;
+		width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, msg_idx, 0, 0 );
+		p_fontoam_init->x			 = -width / 2;
+		// ----------------------------------------------------------------------------
 		p_fontoam_init->p_bmp		 = win;
 		p_fontoam_init->parent = p_draw->clact_sub[ i ];
 		p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
@@ -4876,6 +4942,11 @@ static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 	int pltt_ofs;	// パレットアドレス
 	int i, j;
 	int msg_idx;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	u32 width;
+	// ----------------------------------------------------------------------------
 
 	// パレット転送先アドレス取得
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -4888,49 +4959,49 @@ static void ZknSortSearchSubAddFontName( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FON
 		
 		
 		switch( i ){
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_A:
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// ソートを五十音からアルファベット順に、「?????」をテキストに置き換え
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC:
 			msg_idx = ZNK_SORTSEARCH_NAME_01;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_HA:
-			msg_idx = ZNK_SORTSEARCH_NAME_06;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_KA:
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF:
 			msg_idx = ZNK_SORTSEARCH_NAME_02;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_MA:
-			msg_idx = ZNK_SORTSEARCH_NAME_07;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_SA:
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_GHI:
 			msg_idx = ZNK_SORTSEARCH_NAME_03;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_RA:
-			msg_idx = ZNK_SORTSEARCH_NAME_09;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_TA:
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_JKL:
 			msg_idx = ZNK_SORTSEARCH_NAME_04;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_YAWA:
-			msg_idx = ZNK_SORTSEARCH_NAME_08;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_NA:
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_MNO:
 			msg_idx = ZNK_SORTSEARCH_NAME_05;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_NAME_NONE:
-			msg_idx = ZNK_SORTSEARCH_NAME_00;
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_PQR:
+			msg_idx = ZNK_SORTSEARCH_NAME_06;
 			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_STU:
+			msg_idx = ZNK_SORTSEARCH_NAME_07;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_VWX:
+			msg_idx = ZNK_SORTSEARCH_NAME_08;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_YZ:
+			msg_idx = ZNK_SORTSEARCH_NAME_09;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_NAME_NONE:
+			msg_idx = ZNK_SORTSEARCH_NAME_NONE;
+			break;
+		// ----------------------------------------------------------------------------
 		}
 		
-		if( msg_idx == ZNK_SORTSEARCH_NAME_00 ){
-			for( j=0; j<5; j++ ){
-				ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-						NARC_msg_zkn_dat, msg_idx, j * 12, 0 );
-			}
-		}else{
-			ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-					NARC_msg_zkn_dat, msg_idx, 0, 0 );
-		}
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// ボタンの文字を自動で中央寄せするように
+		width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, msg_idx, 0, 0 );
 
-		p_fontoam_init->x			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_5_X;
+		p_fontoam_init->x = -width / 2;
+		// ----------------------------------------------------------------------------
 		p_fontoam_init->p_bmp		 = win;
 		p_fontoam_init->parent		 = p_draw->clact_sub[ i ];
 		p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
@@ -4953,7 +5024,11 @@ static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 	int pltt_ofs;	// パレットアドレス
 	int i, j;
 	int msg_idx;
-	int x;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	u32 width;
+	// ----------------------------------------------------------------------------
 
 	// パレット転送先アドレス取得
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -4965,59 +5040,49 @@ static void ZknSortSearchSubAddFontType1( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE1_SIZE_CY );
 		
 		
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// ボタンの文字を自動で中央寄せするように
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+		// タイプの並び順を五十音順から従来の順へ
 		switch( i ){
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU:
-			msg_idx = ZNK_SORTSEARCH_TYPE_15;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI:
-			msg_idx = ZNK_SORTSEARCH_TYPE_05;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA:
-			msg_idx = ZNK_SORTSEARCH_TYPE_12;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST:
-			msg_idx = ZNK_SORTSEARCH_TYPE_13;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP:
-			msg_idx = ZNK_SORTSEARCH_TYPE_10;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN:
-			msg_idx = ZNK_SORTSEARCH_TYPE_08;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL:
+			msg_idx = ZNK_SORTSEARCH_TYPE_00;
 			break;
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE:
 			msg_idx = ZNK_SORTSEARCH_TYPE_06;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC:
-			msg_idx = ZNK_SORTSEARCH_TYPE_03;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR:
+			msg_idx = ZNK_SORTSEARCH_TYPE_09;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA:
-			msg_idx = ZNK_SORTSEARCH_TYPE_04;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU:
+			msg_idx = ZNK_SORTSEARCH_TYPE_07;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN:
+			msg_idx = ZNK_SORTSEARCH_TYPE_08;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA:
+			msg_idx = ZNK_SORTSEARCH_TYPE_12;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI:
+			msg_idx = ZNK_SORTSEARCH_TYPE_11;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST:
+			msg_idx = ZNK_SORTSEARCH_TYPE_13;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE:
+			msg_idx = ZNK_SORTSEARCH_TYPE_16;
 			break;
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NONE:
-			msg_idx = ZNK_SORTSEARCH_NAME_00;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
+			msg_idx = ZNK_SORTSEARCH_TYPE_NONE;
 			break;
 		}
+		// ----------------------------------------------------------------------------
 		
-		if( msg_idx == ZNK_SORTSEARCH_NAME_00 ){
-			for( j=0; j<4; j++ ){
-				ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-						NARC_msg_zkn_dat, msg_idx, j * 12, 0 );
-			}
-		}else{
-			ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-					NARC_msg_zkn_dat, msg_idx, 0, 0 );
-		}
-		p_fontoam_init->x			 = x;
+		width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, msg_idx, 0, 0 );
+		p_fontoam_init->x = -width / 2;
+		// ----------------------------------------------------------------------------
 		p_fontoam_init->p_bmp		 = win;
 		p_fontoam_init->parent = p_draw->clact_sub[ i ];
 		p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
@@ -5040,7 +5105,11 @@ static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 	int pltt_ofs;	// パレットアドレス
 	int i, j;
 	int msg_idx;
-	int x;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ボタンの文字を自動で中央寄せするように
+	u32 width;
+	// ----------------------------------------------------------------------------
 
 	// パレット転送先アドレス取得
 	pltt_ofs = GetPlttProxyOffset( p_fontoam_init->pltt, NNS_G2D_VRAM_TYPE_2DSUB );
@@ -5052,55 +5121,46 @@ static void ZknSortSearchSubAddFontType2( ZKN_SORTSEARCHSUB_DRAW* p_draw, ZKN_FO
 				ZKN_SORTSEARCHSUB_BUTTONFONT_BMP_TYPE2_SIZE_CY );
 		
 		
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// ボタンの文字を自動で中央寄せするように
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+		// タイプの並び順を五十音順から従来の順へ
 		switch( i ){
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU:
-			msg_idx = ZNK_SORTSEARCH_TYPE_07;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR:
-			msg_idx = ZNK_SORTSEARCH_TYPE_09;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON:
-			msg_idx = ZNK_SORTSEARCH_TYPE_14;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
-			break;
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE:
 			msg_idx = ZNK_SORTSEARCH_TYPE_01;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
-			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL:
-			msg_idx = ZNK_SORTSEARCH_TYPE_00;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
 			break;
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER:
 			msg_idx = ZNK_SORTSEARCH_TYPE_02;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE:
-			msg_idx = ZNK_SORTSEARCH_TYPE_16;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_3_X;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA:
+			msg_idx = ZNK_SORTSEARCH_TYPE_04;
 			break;
-		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI:
-			msg_idx = ZNK_SORTSEARCH_TYPE_11;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_2_X;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC:
+			msg_idx = ZNK_SORTSEARCH_TYPE_03;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP:
+			msg_idx = ZNK_SORTSEARCH_TYPE_10;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI:
+			msg_idx = ZNK_SORTSEARCH_TYPE_05;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON:
+			msg_idx = ZNK_SORTSEARCH_TYPE_14;
+			break;
+		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU:
+			msg_idx = ZNK_SORTSEARCH_TYPE_15;
 			break;
 		case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE:
-			msg_idx = ZNK_SORTSEARCH_NAME_00;
-			x = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_4_X;
+			msg_idx = ZNK_SORTSEARCH_TYPE_NONE;
 			break;
 		}
+		// ----------------------------------------------------------------------------
 		
-		if( msg_idx == ZNK_SORTSEARCH_NAME_00 ){
-			for( j=0; j<4; j++ ){
-				ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-						NARC_msg_zkn_dat, msg_idx, j * 12, 0 );
-			}
-		}else{
-			ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win,
-					NARC_msg_zkn_dat, msg_idx, 0, 0 );
-		}
-		p_fontoam_init->x			 = x;
+		width = ZKN_FONTOAM_PrintBmpStr( fontoam_sys, win, NARC_msg_zkn_dat, msg_idx, 0, 0 );
+		p_fontoam_init->x = -width / 2;
+		// ----------------------------------------------------------------------------
 		p_fontoam_init->p_bmp		 = win;
 		p_fontoam_init->parent = p_draw->clact_sub[ i ];
 		p_fontoam_init->y			 = ZKN_SORTSEARCHSUB_BUTTONFONT_OFS_Y;
@@ -5295,38 +5355,42 @@ static void ZknSortSearchSubDoName( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEAR
 	int set_num = 100;
 	
 	switch( p_work->do_flag_select ){
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_A:
-		set_num = ZKN_POKELIST_SEARCH_NAME_A;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ソートを五十音からアルファベット順に
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_ABC:
+		set_num = ZKN_POKELIST_SEARCH_NAME_ABC;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_HA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_HA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_DEF:
+		set_num = ZKN_POKELIST_SEARCH_NAME_DEF;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_KA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_KA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_GHI:
+		set_num = ZKN_POKELIST_SEARCH_NAME_GHI;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_MA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_MA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_JKL:
+		set_num = ZKN_POKELIST_SEARCH_NAME_JKL;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_SA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_SA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_MNO:
+		set_num = ZKN_POKELIST_SEARCH_NAME_MNO;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_RA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_RA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_PQR:
+		set_num = ZKN_POKELIST_SEARCH_NAME_PQR;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_TA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_TA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_STU:
+		set_num = ZKN_POKELIST_SEARCH_NAME_STU;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_YAWA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_YAWA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_VWX:
+		set_num = ZKN_POKELIST_SEARCH_NAME_VWX;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_NAME_NA:
-		set_num = ZKN_POKELIST_SEARCH_NAME_NA;
+	case ZKN_SORTSEARCHSUB_BUTTON_NAME_YZ:
+		set_num = ZKN_POKELIST_SEARCH_NAME_YZ;
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_NAME_NONE:
 		set_num = ZKN_POKELIST_SEARCH_NAME_NONE;
 		break;
 	default:
 		break;
+	// ----------------------------------------------------------------------------
 	}
 
 	if( set_num != 100 ){
@@ -5349,33 +5413,36 @@ static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 {
 	int set_num = 100;
 	
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// タイプの並び順を五十音順から従来の順へ
 	switch( p_work->do_flag_select ){
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_AKU:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_AKU;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KOORI:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_KOORI;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_IWA;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_GHOST;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_SP:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_SP;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_JIMEN;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NORMAL:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_NORMAL;
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_BATTLE:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_BATTLE;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_ELEC:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_ELECTRIC;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HIKOR:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_HIKOU;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_KUSA:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_KUSA;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_DOKU:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_POISON;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_JIMEN:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_JIMEN;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_IWA:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_IWA;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_MUSHI:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_MUSHI;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_GHOST:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_GHOST;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_HAGANE:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_METAL;
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE1_NONE:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_NONE;
@@ -5388,6 +5455,7 @@ static void ZknSortSearchSubDoType1( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 	default:
 		break;
 	}
+	// ----------------------------------------------------------------------------
 
 	if( set_num != 100 ){
 		ZknSortSearchSubDoTypeSetCommon( p_work, p_glb, set_num );
@@ -5404,30 +5472,33 @@ static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 {
 	int set_num = 100;
 	
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// タイプの並び順を五十音順から従来の順へ
 	switch( p_work->do_flag_select ){
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DOKU:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_POISON;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HIKOR:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_HIKOU;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_DRAGON;
-		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_FIRE:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_FIRE;
-		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NORMAL:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_NORMAL;
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_WATER:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_WATER;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_HAGANE:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_METAL;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KUSA:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_KUSA;
 		break;
-	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_MUSHI:
-		set_num = ZKN_POKELIST_SEARCH_TYPE_MUSHI;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_ELEC:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_ELECTRIC;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_SP:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_SP;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_KOORI:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_KOORI;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_DRAGON:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_DRAGON;
+		break;
+	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_AKU:
+		set_num = ZKN_POKELIST_SEARCH_TYPE_AKU;
 		break;
 	case ZKN_SORTSEARCHSUB_BUTTON_TYPE2_NONE:
 		set_num = ZKN_POKELIST_SEARCH_TYPE_NONE;
@@ -5440,6 +5511,7 @@ static void ZknSortSearchSubDoType2( ZKN_SORTSEARCHSUB_WORK* p_work, ZKN_SORTSEA
 	default:
 		break;
 	}
+	// ----------------------------------------------------------------------------
 
 	if( set_num != 100 ){
 		ZknSortSearchSubDoTypeSetCommon( p_work,p_glb, set_num );

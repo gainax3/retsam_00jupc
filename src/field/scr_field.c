@@ -2161,6 +2161,7 @@ BOOL EvCmdFldOBJForceDraw_C04EventAfterOnly( VM_MACHINE * core )
 void ov05_21F7704(void);
 void ov05_21F7754(void);
 
+// NONMATCHING
 asm void ov05_21F7704(void)
 {
 	push {r4, lr}
@@ -2210,6 +2211,7 @@ _021F774E:
 	pop {r4, pc}
 }
 
+// NONMATCHING
 asm void ov05_21F7754(void)
 {
     push {r3, lr}

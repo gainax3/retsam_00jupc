@@ -296,6 +296,11 @@ void ZKN_FONTOAM_DeleteBmp( GF_BGL_BMPWIN* win )
 	GF_BGL_BmpWinFree( win, 1 );
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+// ZKN_FONTOAM_PrintBmpStr() の返値を、描画した文字列の長さ（ピクセル単位）を
+// 返すように変更
+
 //----------------------------------------------------------------------------
 /**
  *
@@ -308,15 +313,16 @@ void ZKN_FONTOAM_DeleteBmp( GF_BGL_BMPWIN* win )
  *	@param	bmp_x		表示座標	（キャラクタ単位）
  *	@param	bmp_y		表示座標	（キャラクタ単位）
  *
- *	@return	none
+ *	@return	描画した文字列の長さ（ピクセル単位）
  *
  *
  */
 //-----------------------------------------------------------------------------
-void ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid, int bmp_x, int bmp_y )
+u32 ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* win, u32 dataid, u32 msgid, int bmp_x, int bmp_y )
 {
 	MSGDATA_MANAGER* p_msg_data;
 	STRBUF* p_str;
+	u32 width;
 
 	p_msg_data = MSGMAN_Create( MSGMAN_TYPE_NORMAL, ARC_MSG, dataid, fontoam_sys->heap );
 	GF_ASSERT( p_msg_data );
@@ -325,9 +331,15 @@ void ZKN_FONTOAM_PrintBmpStr( ZKN_FONTOAM_SYS_PTR fontoam_sys, GF_BGL_BMPWIN* wi
 	// 文字列書き込み
 	GF_STR_PrintColor( win, FONT_BUTTON, p_str, bmp_x, bmp_y, MSG_NO_PUT, ZKN_FOTNOAM_COLOR, NULL );
 
+	width = FontProc_GetPrintStrWidth( FONT_BUTTON, p_str, 0 );
+
 	STRBUF_Delete( p_str );
 	MSGMAN_Delete( p_msg_data );
+
+	return width;
 }
+
+// ----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
 /**

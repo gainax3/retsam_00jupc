@@ -70,62 +70,50 @@
 //
 //	zukan_data.xlsには下の数字の順にﾃﾞｰﾀを格納しておく
 //=====================================
-static const u8 ZKN_WORLD_TEXT_GmmIdx[ ZKN_WORLD_TEXT_NUM ] = {
-/* 日本 */
-#if( PM_LANG == LANG_JAPAN )
-	ZKN_WORLD_TEXT_NUM,	// 自国
-	0,		// アメリカ
-	1,		// フランス
-	2,		// ドイツ		
-	3,		// イタリア	
-	4		// スペイン
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 外国語ずかんのテキストを自国分も持った形式に変更
+
+enum {
+	TEXTCODE_JAPAN,
+	TEXTCODE_ENGLISH,
+	TEXTCODE_FRANCE,
+	TEXTCODE_GERMANY,
+	TEXTCODE_ITALY,
+	TEXTCODE_SPAIN
+};
+
+#if (PM_LANG == LANG_JAPAN)
+#define TEXTCODE_OWN	TEXTCODE_JAPAN
+#elif (PM_LANG == LANG_ENGLISH)
+#define TEXTCODE_OWN	TEXTCODE_ENGLISH
+#elif (PM_LANG == LANG_FRANCE)
+#define TEXTCODE_OWN	TEXTCODE_FRANCE
+#elif (PM_LANG == LANG_GERMANY)
+#define TEXTCODE_OWN	TEXTCODE_GERMANY
+#elif (PM_LANG == LANG_ITALY)
+#define TEXTCODE_OWN	TEXTCODE_ITALY
+#elif (PM_LANG == LANG_SPAIN)
+#define TEXTCODE_OWN	TEXTCODE_SPAIN
 #endif
-/* アメリカ */
-#if( PM_LANG == LANG_ENGLISH )
-	0,
-	ZKN_WORLD_TEXT_NUM,
-	1,
-	2,
-	3,
-	4
-#endif
-/* フランス */
-#if( PM_LANG == LANG_FRANCE )
-	0,
-	1,
-	ZKN_WORLD_TEXT_NUM,
-	2,
-	3,
-	4
-#endif
-/* イタリア */
-#if( PM_LANG == LANG_ITALY )
-	0,
-	1,
-	2,
-	ZKN_WORLD_TEXT_NUM,
-	3,
-	4
-#endif
-/* ドイツ */
-#if( PM_LANG == LANG_GERMANY )
-	0,
-	1,
-	2,
-	3,
-	ZKN_WORLD_TEXT_NUM,
-	4
-#endif
-/* スペイン */
-#if( PM_LANG == LANG_SPAIN )
-	0,
-	1,
-	2,
-	3,
-	4,
-	ZKN_WORLD_TEXT_NUM
+
+static const u8 ZKN_WORLD_TEXT_LangBtnOrder[ZKN_WORLD_TEXT_NUM] = {
+#if (PM_LANG == LANG_JAPAN)
+	TEXTCODE_JAPAN, TEXTCODE_ENGLISH, TEXTCODE_FRANCE, TEXTCODE_GERMANY, TEXTCODE_ITALY, TEXTCODE_SPAIN
+#elif (PM_LANG == LANG_ENGLISH)
+	TEXTCODE_ENGLISH, TEXTCODE_FRANCE, TEXTCODE_GERMANY, TEXTCODE_ITALY, TEXTCODE_SPAIN, TEXTCODE_JAPAN
+#elif (PM_LANG == LANG_FRANCE)
+	TEXTCODE_FRANCE, TEXTCODE_ENGLISH, TEXTCODE_GERMANY, TEXTCODE_ITALY, TEXTCODE_SPAIN, TEXTCODE_JAPAN
+#elif (PM_LANG == LANG_GERMANY)
+	TEXTCODE_GERMANY, TEXTCODE_ENGLISH, TEXTCODE_FRANCE, TEXTCODE_ITALY, TEXTCODE_SPAIN, TEXTCODE_JAPAN
+#elif (PM_LANG == LANG_ITALY)
+	TEXTCODE_ITALY, TEXTCODE_ENGLISH, TEXTCODE_FRANCE, TEXTCODE_GERMANY, TEXTCODE_SPAIN, TEXTCODE_JAPAN
+#elif (PM_LANG == LANG_SPAIN)
+	TEXTCODE_SPAIN, TEXTCODE_ENGLISH, TEXTCODE_FRANCE, TEXTCODE_GERMANY, TEXTCODE_ITALY, TEXTCODE_JAPAN
 #endif
 };
+
+// ----------------------------------------------------------------------------
 
 
 //-----------------------------------------------------------------------------
@@ -186,21 +174,13 @@ int ZKN_WT_LANG_Code_WORLD_TEXT_GMM_Idx( int country )
 //-----------------------------------------------------------------------------
 int ZKN_WT_WORLD_TEXT_GMM_Idx_LANG_Code( int country )
 {
-	int i;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんのテキストを自国分も持った形式に変更
 
-	// countryのナンバーのGmmIdxテーブルインデックスを求める
-	// (これが外国語用国コード)
-	for( i=0; i<ZKN_WORLD_TEXT_NUM; i++ ){
-		if( ZKN_WORLD_TEXT_GmmIdx[i] == country ){
-			break;
-		}
-	}
-	if( i== ZKN_WORLD_TEXT_NUM ){
-		return PM_LANG;
-	}
+	return ZKN_WT_GetZKN_WORLD_TEXT_Code_LANG_Code( ZKN_WORLD_TEXT_LangBtnOrder[country+1] );
 
-	// この外国用国コードのゲーム内国コードを取得
-	return ZKN_WT_GetZKN_WORLD_TEXT_Code_LANG_Code( i );
+	// ----------------------------------------------------------------------------
 }
 
 
@@ -215,6 +195,7 @@ int ZKN_WT_WORLD_TEXT_GMM_Idx_LANG_Code( int country )
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 {
 	int country_poke_num;
@@ -232,7 +213,11 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 	if( country_gmm_idx == ZKN_WORLD_TEXT_NUM ){
 		// 自国
 		// GMMの中のデータidx＝monsno
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/19
+		// ポケモン名はすべて全大文字に
 		return MSGDAT_UTIL_GetMonsName( monsno, heap );
+		// ----------------------------------------------------------------------------
 	}else{
 		// 外国
 		// GMMの中のデータインデックスを求める
@@ -243,6 +228,58 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
+#else
+
+static const u32 sOv21_21E9CCC[] = {
+    0x2cd,
+    0x2c8,
+    0x2c9,
+    0x2ca,
+    0x2cb,
+    0x2cc
+};
+
+asm STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #0x28
+	add r4, r2, #0
+	add r2, sp, #4
+	str r2, [sp]
+	add r2, sp, #0xc
+	add r3, sp, #8
+	add r5, r0, #0
+	bl ZknWt_GetCountryPokeData
+	ldr r2, [sp, #4]
+	cmp r2, #6
+	bne _021D5642
+	add r0, r5, #0
+	add r1, r4, #0
+	bl MSGDAT_UTIL_GetMonsName
+	add sp, #0x28
+	pop {r4, r5, r6, pc}
+_021D5642:
+	ldr r6, =sOv21_21E9CCC // _021D5668
+	add r5, sp, #0x10
+	add r3, r5, #0
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	lsl r0, r2, #2
+	ldr r1, [sp, #0xc]
+	ldr r0, [r3, r0]
+	add r2, r4, #0
+	str r1, [sp, #4]
+	bl ZknWt_GetSTRData
+	add sp, #0x28
+	pop {r4, r5, r6, pc}
+	nop
+// _021D5668: .4byte 0x021E9CCC
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -255,6 +292,7 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 {
 	int country_poke_num;
@@ -284,6 +322,55 @@ STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
+#else
+static const u32 sOv21_21E9CE4[] = {
+    0x2d3,
+    0x2ce,
+    0x2cf,
+    0x2d0,
+    0x2d1,
+    0x2d2
+};
+
+asm STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #0x28
+	add r4, r2, #0
+	add r2, sp, #4
+	str r2, [sp]
+	add r2, sp, #0xc
+	add r3, sp, #8
+	add r5, r0, #0
+	bl ZknWt_GetCountryPokeData
+	ldr r2, [sp, #4]
+	cmp r2, #6
+	bne _021D568C
+	str r5, [sp, #4]
+	ldr r0, =0x000002C7 // _021D56B4
+	b _021D56A6
+_021D568C:
+	ldr r6, =sOv21_21E9CE4 // _021D56B8
+	add r5, sp, #0x10
+	add r3, r5, #0
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	ldmia r6!, {r0, r1}
+	stmia r5!, {r0, r1}
+	lsl r0, r2, #2
+	ldr r1, [sp, #0xc]
+	ldr r0, [r3, r0]
+	str r1, [sp, #4]
+_021D56A6:
+	ldr r1, [sp, #4]
+	add r2, r4, #0
+	bl ZknWt_GetSTRData
+	add sp, #0x28
+	pop {r4, r5, r6, pc}
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -297,6 +384,7 @@ STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
 {
 	int country_poke_num;
@@ -332,7 +420,70 @@ STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
+#else
+static const u32 sOv21_21E9CFC[] = {
+    0x2c1,
+    0x2bc,
+    0x2bd,
+    0x2be,
+    0x2bf,
+    0x2c0
+};
 
+asm STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #0x28
+	add r4, r2, #0
+	add r2, sp, #4
+	add r6, r3, #0
+	str r2, [sp]
+	add r2, sp, #0xc
+	add r3, sp, #8
+	add r5, r0, #0
+	bl ZknWt_GetCountryPokeData
+	ldr r0, [sp, #4]
+	cmp r0, #6
+	bne _021D56E8
+	cmp r4, #1
+	blt _021D56E0
+	bl GF_AssertFailedWarningCall
+_021D56E0:
+	add r0, r5, r4
+	str r0, [sp, #4]
+	ldr r0, =0x000002C2 // _021D571C
+	b _021D570E
+_021D56E8:
+	ldr r3, =sOv21_21E9CFC // _021D5720
+	add r2, sp, #0x10
+	ldmia r3!, {r0, r1}
+	stmia r2!, {r0, r1}
+	ldmia r3!, {r0, r1}
+	stmia r2!, {r0, r1}
+	ldmia r3!, {r0, r1}
+	stmia r2!, {r0, r1}
+	cmp r4, #1
+	blt _021D5700
+	bl GF_AssertFailedWarningCall
+_021D5700:
+	ldr r0, [sp, #4]
+	lsl r1, r0, #2
+	add r0, sp, #0x10
+	ldr r0, [r0, r1]
+	ldr r1, [sp, #0xc]
+	add r1, r1, r4
+	str r1, [sp, #4]
+_021D570E:
+	ldr r1, [sp, #4]
+	add r2, r6, #0
+	bl ZknWt_GetSTRData
+	add sp, #0x28
+	pop {r4, r5, r6, pc}
+	nop
+// _021D571C: .4byte 0x000002C2
+// _021D5720: .4byte sOv21_21E9CFC
+}
+#endif
 
 //-----------------------------------------------------------------------------
 /**
@@ -434,6 +585,10 @@ static inline int ZknWt_GetGmmIdx( int zkn_text_code )
 {
 	GF_ASSERT( zkn_text_code < ZKN_WORLD_TEXT_NUM );
 	
-	return ZKN_WORLD_TEXT_GmmIdx[ zkn_text_code ];
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんのテキストを自国分も持った形式に変更
+	return zkn_text_code == TEXTCODE_OWN ? ZKN_WORLD_TEXT_NUM : zkn_text_code;
+	// ---------------------------------------------------------------------------
 }
 

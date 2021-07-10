@@ -89,18 +89,26 @@ enum{
 // FONT BG
 #define ZKN_SORTSEARCH_PLTT				( 7 )
 #define ZKN_SORTSEARCH_STR_NUM			( 64 )
-#define ZKN_SORTSEARCH_FONT_BG_X		( 104 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// 検索条件の表示を中央寄せ
+#define ZKN_SORTSEARCH_FONT_BG_X		( 88 )
 #define ZKN_SORTSEARCH_FONT_BG_SORT_Y	( 52 )
 #define ZKN_SORTSEARCH_FONT_BG_NAME_Y	( 77 )
 #define ZKN_SORTSEARCH_FONT_BG_TYPE1_Y	( 102 )
 #define ZKN_SORTSEARCH_FONT_BG_TYPE2_Y	( 120 )
 #define ZKN_SORTSEARCH_FONT_BG_AREA_X	( 80 )
 #define ZKN_SORTSEARCH_FONT_BG_AREA_Y	( 16 )
+// ----------------------------------------------------------------------------
 
-#define ZKN_SORTSEARCH_FONT_BG_SELECT_X	( 32 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+// 説明の表示を中央寄せ
+#define ZKN_SORTSEARCH_FONT_BG_SELECT_X	( 24 )
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_Y	( 8 )
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X	( 208 )
 #define ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y	( 32 )
+// ----------------------------------------------------------------------------
 
 #define ZKN_SORTSEARCH_FONT_BG_NAME_BOU_NUM	( 5 ) 
 #define ZKN_SORTSEARCH_FONT_BG_TYPE_BOU_NUM	( 4 ) 
@@ -1581,9 +1589,16 @@ static void ZknSortSearchFontSelectType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 	// 文字列を書き込む
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
-	GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-			ZKN_SORTSEARCH_FONT_BG_SELECT_X, ZKN_SORTSEARCH_FONT_BG_SELECT_Y,
-			0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 説明の表示を中央寄せ
+	{
+		u32 xofs = ZKN_SORTSEARCH_FONT_BG_SELECT_X + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
+		u32 yofs = ZKN_SORTSEARCH_FONT_BG_SELECT_Y + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y - STRBUF_GetLines(str) * 16) / 2; // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
+		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
+				xofs, yofs, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 }
@@ -1611,9 +1626,16 @@ static void ZknSortSearchFontNotHitPokemon( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, i
 
 	// 文字列を書き込む
 	str = ZKN_UTIL_ZknGmmGet( ZNK_SORTSEARCH_TEXT_06, heap );
-	GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-			ZKN_SORTSEARCH_FONT_BG_SELECT_X, ZKN_SORTSEARCH_FONT_BG_SELECT_Y,
-			0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 説明の表示を中央寄せ
+	{
+		u32 xofs = ZKN_SORTSEARCH_FONT_BG_SELECT_X + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
+		u32 yofs = ZKN_SORTSEARCH_FONT_BG_SELECT_Y + (ZKN_SORTSEARCH_FONT_BG_SELECT_AREA_Y - STRBUF_GetLines(str) * 16) / 2; // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
+		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
+				xofs, yofs, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 }
@@ -1774,9 +1796,16 @@ static void ZKnSortSearchFontSortType( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int ty
 
 	// 文字列を書き込む
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
-	GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-			ZKN_SORTSEARCH_FONT_BG_X, ZKN_SORTSEARCH_FONT_BG_SORT_Y,
-			0, ZKN_BG_FONT_COLOR2_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 検索条件の表示を中央寄せ
+	{
+		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
+		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
+				xofs, ZKN_SORTSEARCH_FONT_BG_SORT_Y,
+				0, ZKN_BG_FONT_COLOR2_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 }
@@ -1806,36 +1835,40 @@ static void ZKnSortSearchFontSearchName( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 	// 文字列
 	switch( type ){
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// ソートを五十音からアルファベット順に
 	case ZKN_POKELIST_SEARCH_NAME_NONE:
-		msg_idx = ZNK_SORTSEARCH_NAME_00;
+		msg_idx = ZNK_SORTSEARCH_NAME_NONE;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_A:
+	case ZKN_POKELIST_SEARCH_NAME_ABC:
 		msg_idx = ZNK_SORTSEARCH_NAME_01;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_KA:
+	case ZKN_POKELIST_SEARCH_NAME_DEF:
 		msg_idx = ZNK_SORTSEARCH_NAME_02;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_SA:
+	case ZKN_POKELIST_SEARCH_NAME_GHI:
 		msg_idx = ZNK_SORTSEARCH_NAME_03;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_TA:
+	case ZKN_POKELIST_SEARCH_NAME_JKL:
 		msg_idx = ZNK_SORTSEARCH_NAME_04;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_NA:
+	case ZKN_POKELIST_SEARCH_NAME_MNO:
 		msg_idx = ZNK_SORTSEARCH_NAME_05;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_HA:
+	case ZKN_POKELIST_SEARCH_NAME_PQR:
 		msg_idx = ZNK_SORTSEARCH_NAME_06;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_MA:
+	case ZKN_POKELIST_SEARCH_NAME_STU:
 		msg_idx = ZNK_SORTSEARCH_NAME_07;
 		break;
-	case ZKN_POKELIST_SEARCH_NAME_RA:
-		msg_idx = ZNK_SORTSEARCH_NAME_09;
-		break;
-	case ZKN_POKELIST_SEARCH_NAME_YAWA:
+	case ZKN_POKELIST_SEARCH_NAME_VWX:
 		msg_idx = ZNK_SORTSEARCH_NAME_08;
 		break;
+	case ZKN_POKELIST_SEARCH_NAME_YZ:
+		msg_idx = ZNK_SORTSEARCH_NAME_09;
+		break;
+	// ----------------------------------------------------------------------------
 	}
 
 
@@ -1843,18 +1876,16 @@ static void ZKnSortSearchFontSearchName( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 
 
-	if( type == 0 ){
-		for( i=0; i<ZKN_SORTSEARCH_FONT_BG_NAME_BOU_NUM; i++ ){
-			GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-					ZKN_SORTSEARCH_FONT_BG_X + (ZKN_SORTSEARCH_FONT_BG_BOU_SIZE_X * i),
-					ZKN_SORTSEARCH_FONT_BG_NAME_Y,
-					0, ZKN_BG_FONT_COLOR2_MSK, NULL );
-		}
-	}else{
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 検索条件の表示を中央寄せ
+	{
+		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-				ZKN_SORTSEARCH_FONT_BG_X, ZKN_SORTSEARCH_FONT_BG_NAME_Y,
+				xofs, ZKN_SORTSEARCH_FONT_BG_NAME_Y,
 				0, ZKN_BG_FONT_COLOR2_MSK, NULL );
 	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 }
@@ -1945,18 +1976,16 @@ static void ZKnSortSearchFontSearchType_Core( ZKN_SORTSEARCH_DRAWGLB* p_drawglb,
 	str = ZKN_UTIL_ZknGmmGet( msg_idx, heap );
 
 
-	if( type == 0 ){
-		for( i=0; i<ZKN_SORTSEARCH_FONT_BG_TYPE_BOU_NUM; i++ ){
-			GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-					ZKN_SORTSEARCH_FONT_BG_X + (ZKN_SORTSEARCH_FONT_BG_BOU_SIZE_X * i),
-					y,
-					0, ZKN_BG_FONT_COLOR2_MSK, NULL );
-		}
-	}else{
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 検索条件の表示を中央寄せ
+	{
+		u32 xofs = ZKN_SORTSEARCH_FONT_BG_X + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, str, 0, ZKN_SORTSEARCH_FONT_BG_AREA_X );
 		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-				ZKN_SORTSEARCH_FONT_BG_X, y,
+				xofs, y,
 				0, ZKN_BG_FONT_COLOR2_MSK, NULL );
 	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 }
@@ -2129,11 +2158,17 @@ static void ZknSortSearchSortEffSys( ZKN_SORTSEARCH_DRAW* p_draw, ZKN_SORTSEARCH
 		CLACT_SetDrawFlag( p_draw->sort_act, FALSE );
 		// フォントBG破棄
 		GF_BGL_BmpWinDataFill( &p_drawglb->p_drawglb->bmp_mfont, 0 );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+		// 「けんさくちゅう」の文字が一瞬再表示されることがある不具合を修正
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+		// include/bugfix.h のスイッチで切り換えられるように変更
 #if AFTERMASTER_070112_ZUKAN_SORTMSG_BUG_FIX
 		// 反映
 		// 2007/01/09　OAMが消えるタイミングとあわせるため修正
 		GF_BGL_BmpWinOnVReq( &p_drawglb->p_drawglb->bmp_mfont );
 #endif
+		// ----------------------------------------------------------------------------
 	}
 
 	// OAMを回転させる
@@ -2165,7 +2200,7 @@ static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 	// 文字列を書き込む
 	str = ZKN_UTIL_ZknGmmGet( ZNK_SORTSEARCH_MSG_00, heap );
 	GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-			ZKN_SORTSEARCH_EFECT_FONT_X, ZKN_SORTSEARCH_EFECT_FONT_Y,
+			(256 - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2, ZKN_SORTSEARCH_EFECT_FONT_Y, // MatchComment: fixed x changed to call to FontProc_GetPrintMaxLineWidth
 			0, ZKN_BG_FONT_COLOR_MSK, NULL );
 
 	STRBUF_Delete(str);

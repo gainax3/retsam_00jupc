@@ -21,6 +21,11 @@
 #define	str_yes		(9)
 #define	str_no		(10)
 #define	str_group_mode		(11)
-#define	str_initial_mode		(12)
+#define	str_group_mode2		(12)
+// MatchComment --------------------
+// localization change from DP US (auto-generated)
+#define	str_initial_mode		(13)
+#define	str_initial_mode2		(14)
+// MatchCommentEnd =----------------
 
 #endif

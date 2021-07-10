@@ -412,7 +412,7 @@ extern const BOXAPP_WORK* BoxAppView_GetMainWork( BOXAPP_VIEW_WORK* vwk );
 //==============================================================================
 //	ポケモンアイコン再描画
 //==============================================================================
-extern void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *icon);
+extern void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *icon, BOOL a2); // MatchComment: BoxAppView_PokeIconRewrite_VramTrans now takes 3rd argument
 
 /*============================================================================*/
 /*  アイテムアイコン関連                                                      */

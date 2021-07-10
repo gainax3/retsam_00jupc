@@ -14,12 +14,21 @@
 #define DEBUG_WIFIHISTORY
 
 ///戦闘のサーバーバージョン
-#define BATTLE_SERVER_VERSION		(0x140)		//
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/28
+// バトルサーバのバージョンをアップ
+#define BATTLE_SERVER_VERSION		(0x150)		//
 												//履歴
 												//0x100　国内版
 												//0x110　北米版
 												//0x120　欧州版
 												//0x130　韓国版
+// MatchComment: localization change was actually in fight.c in DP US,
+// but BATTLE_SERVER_VERSION was created in plat US
+// also, assume that the plat US BATTLE_SERVER_VERSION is 0x150
+// ----------------------------------------------------------------------------
+
+
 
 #define	BATTLE_TOWER_TRAINER_ID	(10000)				///<バトルタワーのトレーナーID
 

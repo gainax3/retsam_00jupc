@@ -3054,6 +3054,11 @@ static void	FightMsgPrintModeSet(BATTLE_WORK *bw)
 	   (bw->battle_status_flag&BATTLE_STATUS_FLAG_REC_BATTLE)){
 		//ï∂éöÉLÅ[ëóÇËÇAUTOÇ…
 		MsgPrintAutoFlagSet(MSG_AUTO_ON);
+        // MatchComment --------------
+        // new localization change
+		MsgPrintSkipFlagSet(MSG_SKIP_ON);
+		MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
+        // MatchComment end ----------
 	}
 	else{
 		MsgPrintAutoFlagSet(MSG_AUTO_SKIP_ON);

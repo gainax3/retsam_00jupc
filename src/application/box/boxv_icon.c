@@ -386,7 +386,7 @@ void BoxAppView_IconItemNumberSet( BOX_ICON_SYS* wk, BOX_ICON_WORK* icon, u32 it
  * @param   icon		
  */
 //--------------------------------------------------------------
-void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *icon)
+void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *icon, BOOL a2)
 {
 	int i;
 	u32 dest_vram;
@@ -403,7 +403,7 @@ void BoxAppView_PokeIconRewrite_VramTrans(BOX_ICON_SYS* iconSys, BOX_ICON_WORK *
 		//ハッキンダマを所持していないのにオリジンフォルム
 		icon->imgArcIdx = PokeIconCgxArcIndexGetByMonsNumber(MONSNO_KIMAIRAN, 0, FORMNO_GIRATINA_NORMAL);
 	}
-	else if(icon->imgArcIdx == PokeIconCgxArcIndexGetByMonsNumber(MONSNO_EURISU, 0, FORMNO_SHEIMI_FLOWER)){
+	else if(a2 == TRUE && icon->imgArcIdx == PokeIconCgxArcIndexGetByMonsNumber(MONSNO_EURISU, 0, FORMNO_SHEIMI_FLOWER)){
 		icon->imgArcIdx = PokeIconCgxArcIndexGetByMonsNumber(MONSNO_EURISU, 0, FORMNO_SHEIMI_NORMAL);
 	}
 	else{

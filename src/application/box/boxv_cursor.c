@@ -1242,7 +1242,7 @@ void BoxAppView_CursorCatchIconUpdateItem( CURSOR_VIEW_WORK* wk, u32 itemNumber 
 	{
 		BoxAppView_IconItemNumberSet( wk->iconSys, wk->catch_icon, itemNumber );
 		BoxAppView_IconLimitModeSet( wk->iconSys, wk->catch_icon, BoxAppVPara_GetLimitModeBitFlag(wk->vpara) );
-		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, wk->catch_icon);
+		BoxAppView_PokeIconRewrite_VramTrans(wk->iconSys, wk->catch_icon, FALSE);
 	}
 }
 

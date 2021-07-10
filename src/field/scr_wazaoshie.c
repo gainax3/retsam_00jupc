@@ -159,6 +159,7 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color );
 
 void ov05_21F77A8(void);
 
+// NONMATCHING
 asm void ov05_21F77A8(void)
 {
     push {r4, r5, r6, lr}

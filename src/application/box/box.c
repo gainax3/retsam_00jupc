@@ -2171,6 +2171,7 @@ static void SubSeq_Menu_Marking( BOXAPP_WORK* wk, u32* seq )
  *
  */
 //------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void SubSeq_AreaSelect( BOXAPP_WORK* wk, u32* seq )
 {
 	enum {
@@ -2307,6 +2308,311 @@ static void SubSeq_AreaSelect( BOXAPP_WORK* wk, u32* seq )
 
 	}
 }
+#else
+asm static void SubSeq_AreaSelect( BOXAPP_WORK* wk, u32* seq )
+{
+	push {r3, r4, r5, lr}
+	add r5, r1, #0
+	ldr r1, [r5, #0]
+	add r4, r0, #0
+	cmp r1, #5
+	bls _021D2B62
+	b _021D2DB6
+_021D2B62:
+	add r1, r1, r1
+	add r1, pc
+	ldrh r1, [r1, #6]
+	lsl r1, r1, #0x10
+	asr r1, r1, #0x10
+	add pc, r1
+_021D2B6E: // jump table
+	dcd 0x003a000a
+	dcd 0x021e00dc
+	dcd 0x01ea0232
+	// 0xa // .2byte _021D2B7A - _021D2B6E - 2 // case 0
+	// 0x3a // .2byte _021D2BAA - _021D2B6E - 2 // case 1
+	// 0xdc // .2byte _021D2C4C - _021D2B6E - 2 // case 2
+	// 0x21e // .2byte _021D2D8E - _021D2B6E - 2 // case 3
+	// 0x232 // .2byte _021D2DA2 - _021D2B6E - 2 // case 4
+	// 0x1ea // .2byte _021D2D5A - _021D2B6E - 2 // case 5
+_021D2B7A:
+	ldr r1, =sys // _021D2DB8
+	ldr r2, [r1, #0x44]
+	mov r1, #1
+	tst r1, r2
+	beq _021D2BA2
+	add r1, r4, #0
+	bl VParaSet_StartAreaSelect
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x2c
+	bl BoxAppView_SetCommand
+	ldr r0, =0x000005DC // _021D2DBC
+	bl Snd_SePlay
+	mov r0, #1
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2BA2:
+	ldr r1, =SubSeq_OP_Tukamu // _021D2DC0
+	bl SubSeqSet
+	pop {r3, r4, r5, pc}
+_021D2BAA:
+	ldr r1, =sys // _021D2DB8
+	ldr r2, [r1, #0x44]
+	mov r1, #1
+	tst r1, r2
+	beq _021D2C0E
+	add r0, r2, #0
+	add r1, r4, #0
+	bl CheckCursorMoveKeyInput_AreaSelect
+	cmp r0, #1
+	beq _021D2BDC
+	cmp r0, #2
+	bne _021D2CAE
+	ldr r1, =sys // _021D2DB8
+	mov r0, #0xf0
+	ldr r2, [r1, #0x44]
+	ldr r1, [r1, #0x48]
+	and r2, r0
+	and r0, r1
+	cmp r2, r0
+	bne _021D2CAE
+	ldr r0, =0x000005F3 // _021D2DC4
+	bl Snd_SePlay
+	pop {r3, r4, r5, pc}
+_021D2BDC:
+	add r0, r4, #0
+	add r1, r4, #0
+	bl VParaSet_UpdateAreaSelect
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x2e
+	bl BoxAppView_SetCommand
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #5
+	bl BoxAppView_SetCommand
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #6
+	bl BoxAppView_SetCommand
+	mov r0, #3
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2C0E:
+	bl BoxAppVPara_CheckAreaSelectSinglePoke
+	cmp r0, #0
+	beq _021D2C2C
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x2d
+	bl BoxAppView_SetCommand
+	ldr r1, =SubSeq_OP_Tukamu // _021D2DC0
+	add r0, r4, #0
+	bl SubSeqSet
+	pop {r3, r4, r5, pc}
+_021D2C2C:
+	add r0, r4, #0
+	add r1, r4, #0
+	bl VParaSet_AreaSelectPokeCatch
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x2f
+	bl BoxAppView_SetCommand
+	ldr r0, =0x000005EB // _021D2DC8
+	bl Snd_SePlay
+	mov r0, #2
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2C4C:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl BoxAppView_WaitCommandAll
+	cmp r0, #0
+	beq _021D2CAE
+	ldr r0, =sys // _021D2DB8
+	add r1, r4, #0
+	ldr r0, [r0, #0x44]
+	bl CheckCursorMoveKeyInput_AreaSelect
+	cmp r0, #4
+	bhi _021D2CAE
+	add r0, r0, r0
+	add r0, pc
+	ldrh r0, [r0, #6]
+	lsl r0, r0, #0x10
+	asr r0, r0, #0x10
+	add pc, r0
+_021D2C74: // jump table
+	lsl r2, r3, #2
+	dcd 0x00080020
+	dcd 0x00700046
+	// 0x9a // .2byte _021D2D10 - _021D2C74 - 2 // case 0
+	// 0x20 // .2byte _021D2C96 - _021D2C74 - 2 // case 1
+	// 0x8 // .2byte _021D2C7E - _021D2C74 - 2 // case 2
+	// 0x46 // .2byte _021D2CBC - _021D2C74 - 2 // case 3
+	// 0x70 // .2byte _021D2CE6 - _021D2C74 - 2 // case 4
+_021D2C7E:
+	ldr r1, =sys // _021D2DB8
+	mov r0, #0xf0
+	ldr r2, [r1, #0x44]
+	ldr r1, [r1, #0x48]
+	and r2, r0
+	and r0, r1
+	cmp r2, r0
+	bne _021D2CAE
+	ldr r0, =0x000005F3 // _021D2DC4
+	bl Snd_SePlay
+	pop {r3, r4, r5, pc}
+_021D2C96:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #5
+	bl BoxAppView_SetCommand
+	add r0, r4, #0
+	bl BoxAppVPara_GetCursorCatchPokeFlag
+	mov r1, #6
+	tst r0, r1
+	beq _021D2CB0
+_021D2CAE:
+	b _021D2DB6
+_021D2CB0:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl BoxAppView_SetCommand
+	pop {r3, r4, r5, pc}
+_021D2CBC:
+	add r0, r4, #0
+	bl VParaSet_CurrentTrayDec
+	add r0, r4, #0
+	bl BoxAppVPara_GetTrayBoxNumber
+	add r1, r0, #0
+	mov r0, #0x12
+	lsl r0, r0, #4
+	ldr r0, [r4, r0]
+	bl BOXDAT_SetCureentTrayNumber
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #4
+	bl BoxAppView_SetCommand
+	mov r0, #5
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2CE6:
+	add r0, r4, #0
+	bl VParaSet_CurrentTrayInc
+	add r0, r4, #0
+	bl BoxAppVPara_GetTrayBoxNumber
+	add r1, r0, #0
+	mov r0, #0x12
+	lsl r0, r0, #4
+	ldr r0, [r4, r0]
+	bl BOXDAT_SetCureentTrayNumber
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #4
+	bl BoxAppView_SetCommand
+	mov r0, #5
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2D10:
+	ldr r0, =sys // _021D2DB8
+	ldr r1, [r0, #0x48]
+	mov r0, #1
+	tst r0, r1
+	beq _021D2D4C
+	add r0, r4, #0
+	bl Check_AreaSelectPokePut
+	cmp r0, #0
+	beq _021D2D44
+	add r0, r4, #0
+	add r1, r4, #0
+	bl VParaSet_AreaSelectPokePut
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0xa
+	bl BoxAppView_SetCommand
+	ldr r0, =0x000005EA // _021D2DCC
+	bl Snd_SePlay
+	mov r0, #4
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2D44:
+	ldr r0, =0x000005F3 // _021D2DC4
+	bl Snd_SePlay
+	pop {r3, r4, r5, pc}
+_021D2D4C:
+	mov r0, #2
+	tst r0, r1
+	beq _021D2DB6
+	ldr r0, =0x000005F3 // _021D2DC4
+	bl Snd_SePlay
+	pop {r3, r4, r5, pc}
+_021D2D5A:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #4
+	bl BoxAppView_WaitCommandAll
+	cmp r0, #0
+	beq _021D2DB6
+	add r0, r4, #0
+	bl BoxAppVPara_GetCursorCatchPokeFlag
+	mov r1, #6
+	tst r0, r1
+	bne _021D2D88
+	add r0, r4, #0
+	bl NitroMain // FUN_021D52F4
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #6
+	bl BoxAppView_SetCommand
+_021D2D88:
+	mov r0, #2
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2D8E:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl BoxAppView_WaitCommandAll
+	cmp r0, #0
+	beq _021D2DB6
+	mov r0, #1
+	str r0, [r5, #0]
+	pop {r3, r4, r5, pc}
+_021D2DA2:
+	mov r0, #0x45
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl BoxAppView_WaitCommandAll
+	cmp r0, #0
+	beq _021D2DB6
+	add r0, r4, #0
+	bl SubSeqEnd
+_021D2DB6:
+	pop {r3, r4, r5, pc}
+	// .align 2, 0
+// _021D2DB8: .4byte sys
+// _021D2DBC: .4byte 0x000005DC
+// _021D2DC0: .4byte 0x021D2E1D
+// _021D2DC4: .4byte 0x000005F3
+// _021D2DC8: .4byte 0x000005EB
+// _021D2DCC: .4byte 0x000005EA
+}
+#endif
 //------------------------------------------------------------------
 /**
  * 範囲選択中のポケモンを現在位置に置けるかチェック
@@ -5603,7 +5909,7 @@ static void VParaSet_AreaSelectPokePut( BOXAPP_WORK* wk, BOXAPP_VPARAM* vpara )
 	catchPoke->areaPokeCount = 0;
 
 //	vpara->cursor.poke_point_flag = PokePasoParaGet( cursor->point_poke, ID_PARA_poke_exist, NULL );
-	vpara->cursor.poke_point_flag = (vpara->cursor.poke_catch_flag==CURSOR_CATCH_AREA_POINT);
+	//vpara->cursor.poke_point_flag = (vpara->cursor.poke_catch_flag==CURSOR_CATCH_AREA_POINT); // MatchComment: new change in plat US
 	vpara->cursor.poke_catch_flag = CURSOR_CATCH_NONE;
 
 }
@@ -5954,6 +6260,9 @@ static void VParaSet_StatusPokeMark( BOXAPP_VPARAM* vpara )
 	// markはu8に入れる
 	PokePasoParaPut( stpoke->poke_data, ID_PARA_mark, &(mark) );
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(JP_VER10) imatake 2006/12/01
+	// マーキングだけ変更したときにたくさんセーブされない不具合の修正
 	//----- 2006/10/24 改訂版のための修正 ----------------
 	if( (BoxAppVPara_GetCursorArea( vpara ) == CURSOR_AREA_TRAY)
 	&&	(BoxAppVPara_GetCursorCatchPokeFlag(vpara) == CURSOR_CATCH_NONE)
@@ -5961,6 +6270,7 @@ static void VParaSet_StatusPokeMark( BOXAPP_VPARAM* vpara )
 		SaveData_RequestTotalSave();
 	}
 	//----------------------------------------------------
+	// ----------------------------------------------------------------------------
 
 
 }
@@ -6008,7 +6318,11 @@ static void VParaSet_StatusPokeItemNumber( BOXAPP_VPARAM* vpara, u16 itemno, BOX
 			stpoke->type2 = PokePasoParaGet( stpoke->poke_data, ID_PARA_type2, NULL );
 		}
 		else if(monsno == MONSNO_KIMAIRAN){
-			PokePasoParaGirathinaFormChange( stpoke->poke_data );
+			int speabino;
+
+            PokePasoParaGirathinaFormChange( stpoke->poke_data );
+            speabino = PokePasoParaGet( stpoke->poke_data, ID_PARA_speabino, NULL );
+            MSGMAN_GetString( wk->msgman_speabi, speabino, stpoke->ability );
 		}
 	}
 }

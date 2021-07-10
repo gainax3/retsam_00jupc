@@ -122,7 +122,11 @@ enum {
 	LV_WRITE_Y = 16,
 
 	INFO_WRITE_X = 0,
-	INFO_WRITE_Y = 2,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+	// ‚¹‚¢‚©‚­–¼‚â‚Ç‚¤‚®–¼‚Ì g ‚â y ‚Ì‰º’[‚ªŽŸ‚Ì€–Ú‚ÉŽc‚Á‚Ä‚µ‚Ü‚¤‚Ì‚ðC³
+	INFO_WRITE_Y = 0,
+	// ----------------------------------------------------------------------------
 
 	POKEIMAGE_WRITE_X = 44,
 	POKEIMAGE_WRITE_Y = 84,
@@ -558,6 +562,7 @@ static void InfoWinControlTask(TCB_PTR tcb, void* wk_adrs )
 {
 	INFOWIN_TASK_WORK* taskwk = (INFOWIN_TASK_WORK*)wk_adrs;
 	STATUS_VIEW_WORK* wk = taskwk->wk;
+    const BOXAPP_STATUS_POKE* poke;
 
 	switch(taskwk->seq){
 	case TSEQ_IDLE:
@@ -572,7 +577,8 @@ static void InfoWinControlTask(TCB_PTR tcb, void* wk_adrs )
 		taskwk->seq = TSEQ_WAIT;
 		break;
 	case TSEQ_WAIT:
-		if(++(taskwk->timer) > STATUS_SCROLL_WAIT )
+        poke = BoxAppVpara_GetStatusPokeData(wk->vpara);
+		if(!poke->tamago_flag && ++(taskwk->timer) > STATUS_SCROLL_WAIT )
 		{
 			InfoWinCharSetup( taskwk );
 			taskwk->timer = 0;
