@@ -41,6 +41,19 @@ typedef void (*PTRCommMsgCallback)(int num);
 #define	COMM_MSG_WIN_PAL		( COMM_MESFONT_PAL )
 #define	COMM_MSG_WIN_CGX		( (COMM_TALK_WIN_CGX_NUM - 73) - ( COMM_MSG_WIN_SX * COMM_MSG_WIN_SY ) )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+// WORDSET の代入先インデックスの定義を ug_message.c から移動
+// # アンダーバーで始まる定数をヘッダに置くのはちょっと気分が悪いけど……
+#define _TALK_TARGET_INDEX_WORK (0)  ///< 会話データ　話相手のIDの位置
+#define _TALK_MY_INDEX_WORK     (1)  ///< 会話データ　話しているIDの位置
+#define _UGITEM_INDEX_WORK      (2)   ///< アイテム
+#define _UGTRAP_INDEX_WORK      (3)   ///< trap
+#define _SECRET_QUESTION_WORK   (5)  ///< 秘密の質問
+#define _SECRET_ANSWER_WORK   (5)  ///< 秘密の答え
+#define _UNDER_GOODS_WORK   (2)    /// グッズ
+// ----------------------------------------------------------------------------
+
 
 
 //--------------------------------------------------------------
@@ -66,11 +79,26 @@ extern STRBUF* CommMsgGetExpandStrBuf(COMM_MESSAGE* pComm, int msgNo);
 extern void CommMsgRegisterMyName(COMM_MESSAGE* pComm, MYSTATUS* pMy);
 extern void CommMsgRegisterTargetName(COMM_MESSAGE* pComm, MYSTATUS* pTarget);
 extern void CommMsgRegisterUGItemName(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下アイテム名を代入する関数を追加
+extern void CommMsgRegisterUGItemNameIndefinate(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
 extern void CommMsgRegisterUGTrapName(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下ワナ名を代入する関数を追加
+extern void CommMsgRegisterUGTrapNameIndefinate(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
 extern void CommMsgRegisterSecretQuestionName(COMM_MESSAGE* pComm,int type);
 extern void CommMsgRegisterSecretAnswerNameIndex(COMM_MESSAGE* pComm,int index,int type);
 extern void CommMsgRegisterSecretAnswerName(COMM_MESSAGE* pComm,int type);
 extern void CommMsgRegisterUGGoodsName(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下グッズ名を代入する関数を追加
+extern void CommMsgRegisterUGGoodsNameIndefinate(COMM_MESSAGE* pComm,int type);
+// ----------------------------------------------------------------------------
 extern void CommMsgRegisterNumber1Index(COMM_MESSAGE* pComm,int index,int num);
 extern void CommMsgRegisterNumber2(COMM_MESSAGE* pComm,int num);
 extern void CommMsgRegisterNumber2Index(COMM_MESSAGE* pComm,int index,int num);
@@ -79,6 +107,18 @@ extern void CommMsgRegisterNumber6(COMM_MESSAGE* pComm,int num);
 extern void CommMsgRegisterUGItemNameIndex(COMM_MESSAGE* pComm,int index,int type);
 extern void CommMsgRegisterUGTrapNameIndex(COMM_MESSAGE* pComm,int index,int type);
 extern void CommMsgRegisterUGGoodsNameIndex(COMM_MESSAGE* pComm,int index,int type);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下アイテム・ワナ・グッズ名を代入する関数を追加
+extern void CommMsgRegisterUGItemNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
+extern void CommMsgRegisterUGTrapNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
+extern void CommMsgRegisterUGGoodsNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type);
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+// 指定インデックスに登録された単語をキャピタライズ
+extern void CommMsgCapitalizeIndex(COMM_MESSAGE* pComm,int index);
+// ----------------------------------------------------------------------------
 extern void CommMsgPrintStop(COMM_MESSAGE* pComm);
 
 extern const BMPLIST_HEADER* CommMsgGetNormalBmpListHeader(void);

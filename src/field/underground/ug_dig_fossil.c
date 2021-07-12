@@ -126,9 +126,13 @@ typedef struct{
     NNSG2dPaletteData* palData[_PARTS_TREASURE_NUM_MAX];
     int digTimer[_PARTS_TREASURE_NUM_MAX];
     int digCarat;
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// かせきほり時に暗転したままになる不具合の対処
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
     int msgtimer;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
+// ----------------------------------------------------------------------------
     u8 bSuccess;
 } FossilEventTask;
 
@@ -2089,9 +2093,13 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
             _pCommFossilWork->winIndex =
                 CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_64,FALSE,NULL);
             Snd_SePlay(UG_SE_FOSSIL_CLEAR);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// かせきほり時に暗転したままになる不具合の対処
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
             pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
+// ----------------------------------------------------------------------------
             pFET->seq = _SEQ_KEY_WAIT;
         }
         break;
@@ -2100,12 +2108,16 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         // AキーorTouch待ち
 //        if(Snd_MePlayCheckBgmPlay() == 0){
         if( GF_MSG_PrintEndCheck( _pCommFossilWork->winIndex ) == 0 ){
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// かせきほり時に暗転したままになる不具合の対処
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
             pFET->msgtimer--;
             if( sys.tp_trg || (sys.trg & PAD_BUTTON_DECIDE) || (pFET->msgtimer==0)) {
 #else
             if( sys.tp_trg || (sys.trg & PAD_BUTTON_DECIDE) ) {
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
+// ----------------------------------------------------------------------------
                 CommMsgTalkWindowEnd(CommUnderGetMsgUnderWorld());
                 pFET->seq = _SEQ_RESULT_MSG;
             }
@@ -2135,9 +2147,13 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
             if( sys.tp_trg || (sys.trg & PAD_BUTTON_DECIDE) ) {
 #endif
                 if(_fossilGetMessageBagIn(pFET)){
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// かせきほり時に暗転したままになる不具合の対処
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
                     pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
+// ----------------------------------------------------------------------------
                     pFET->seq = _SEQ_KEY_WAIT;
                 }
                 else{
@@ -2250,9 +2266,13 @@ static void GMEVENT_DigFossil(TCB_PTR tcb, void *work)
         _pCommFossilWork->winIndex =
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                    msg_underworld_63,FALSE,NULL);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/24
+// かせきほり時に暗転したままになる不具合の対処
 #if AFTER_MASTER_070122_FOSSILMSG_FIX
         pFET->msgtimer = _MSGWAIT_TIME;
 #endif// AFTER_MASTER_070122_FOSSILMSG_FIX
+// ----------------------------------------------------------------------------
         pFET->seq = _SEQ_KEY_WAIT; //_SEQ_KEY_WAIT_FAILED;
         break;
       case _SEQ_KEY_WAIT_FAILED:
@@ -3417,15 +3437,20 @@ static BOOL _fossilGetMessage(FossilEventTask* pFET)
     for(i = 0; i < pFET->_PARTS_TREASURE_NUM; i++){
         if(_pCommFossilWork->aDeposit[i].bGetItem == TRUE){
             pFET->digCarat = _calcDigStoneCarat(_pCommFossilWork->aDeposit[i].partsType);
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ALL) imatake 2006/11/28
+            // 代入する地下アイテム名を不定冠詞付きに変更
+            CommMsgRegisterUGItemNameIndefinate(CommUnderGetMsgUnderWorld(),
+                                                _pCommFossilWork->aDeposit[i].partsType);
             if(CommDigIsStone(_pCommFossilWork->aDeposit[i].partsType)){
                 msgno = msg_underworld_69;
                 CommMsgRegisterNumber2Index(CommUnderGetMsgUnderWorld(), 1, pFET->digCarat);
             }
             else{
                 msgno = msg_underworld_18;
+                CommMsgCapitalizeIndex(CommUnderGetMsgUnderWorld(), _UGITEM_INDEX_WORK);
             }
-            CommMsgRegisterUGItemName(CommUnderGetMsgUnderWorld(),
-                                      _pCommFossilWork->aDeposit[i].partsType);
+            // ----------------------------------------------------------------------------
             _pCommFossilWork->winIndex =
                 CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(),
                                        msgno,FALSE,NULL);
@@ -3982,6 +4007,8 @@ void UgFossilPcRadarEnd(void)
 
 void UgFossilRecvPcRadar(int netID, int size, void* pData, void* pWork)
 {
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1517_060825_FIX
     _pCommFossilWork->radarIndex[netID] = 1;
 #else // T1517_060825_FIX
@@ -3989,6 +4016,7 @@ void UgFossilRecvPcRadar(int netID, int size, void* pData, void* pWork)
         _pCommFossilWork->radarIndex[netID] = 1;
     }
 #endif //T1517_060825_FIX
+// ----------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------------
@@ -4164,6 +4192,11 @@ BOOL UgDigFossilGetActionMessage(STRBUF* pStrBuf)
     return FALSE;
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/10
+// かせきを掘っていない親に、かせきを掘り出した旨のメッセージが出ることが
+// あった不具合の修正を反映
+
 #if AFTER_MASTER_070202_FOSSILLOG_FIX
 
 //==============================================================================
@@ -4181,6 +4214,8 @@ void UgDigFossilDeleteLog(void)
 }
 
 #endif
+
+// ----------------------------------------------------------------------------
 
 //==============================================================================
 /**

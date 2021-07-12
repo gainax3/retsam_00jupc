@@ -64,13 +64,12 @@ typedef struct _COMM_MESSAGE{
 #define _TALK_WINDOW_PRI (100)
 
 
-#define _TALK_TARGET_INDEX_WORK (0)  ///< 会話データ　話相手のIDの位置
-#define _TALK_MY_INDEX_WORK     (1)  ///< 会話データ　話しているIDの位置
-#define _UGITEM_INDEX_WORK      (2)   ///< アイテム
-#define _UGTRAP_INDEX_WORK      (3)   ///< trap
-#define _SECRET_QUESTION_WORK   (5)  ///< 秘密の質問
-#define _SECRET_ANSWER_WORK   (5)  ///< 秘密の答え
-#define _UNDER_GOODS_WORK   (2)    /// グッズ
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+// WORDSET の代入先インデックスの定義を ug_message.h に移動
+// MatchComment: see src/field/underground/ug_message.h for the removed defines
+// first removed define is _TALK_TARGET_INDEX_WORK
+// ----------------------------------------------------------------------------
 
 static void _talkWindowEnd(COMM_MESSAGE* pComm, BOOL bClear);
 
@@ -470,11 +469,31 @@ void CommMsgRegisterUGItemName(COMM_MESSAGE* pComm,int type)
     pComm->bExpand = TRUE;
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下アイテム名を代入する関数を追加
+void CommMsgRegisterUGItemNameIndefinate(COMM_MESSAGE* pComm,int type)
+{
+    WORDSET_RegisterUGItemNameIndefinate(pComm->pWordSet, _UGITEM_INDEX_WORK, type );
+    pComm->bExpand = TRUE;
+}
+// ----------------------------------------------------------------------------
+
 void CommMsgRegisterUGTrapName(COMM_MESSAGE* pComm,int type)
 {
     WORDSET_RegisterUGTrapName(pComm->pWordSet, _UGTRAP_INDEX_WORK, type );
     pComm->bExpand = TRUE;
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下ワナ名を代入する関数を追加
+void CommMsgRegisterUGTrapNameIndefinate(COMM_MESSAGE* pComm,int type)
+{
+    WORDSET_RegisterUGTrapNameIndefinate(pComm->pWordSet, _UGTRAP_INDEX_WORK, type );
+    pComm->bExpand = TRUE;
+}
+// ----------------------------------------------------------------------------
 
 void CommMsgRegisterSecretQuestionName(COMM_MESSAGE* pComm,int type)
 {
@@ -499,6 +518,16 @@ void CommMsgRegisterUGGoodsName(COMM_MESSAGE* pComm,int type)
     WORDSET_RegisterUGGoodsName(pComm->pWordSet, _UNDER_GOODS_WORK, type );
     pComm->bExpand = TRUE;
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下グッズ名を代入する関数を追加
+void CommMsgRegisterUGGoodsNameIndefinate(COMM_MESSAGE* pComm,int type)
+{
+    WORDSET_RegisterUGGoodsNameIndefinate(pComm->pWordSet, _UNDER_GOODS_WORK, type );
+    pComm->bExpand = TRUE;
+}
+// ----------------------------------------------------------------------------
 
 void CommMsgRegisterNumber1Index(COMM_MESSAGE* pComm,int index,int num)
 {
@@ -552,6 +581,41 @@ void CommMsgRegisterUGGoodsNameIndex(COMM_MESSAGE* pComm,int index,int type)
     WORDSET_RegisterUGGoodsName(pComm->pWordSet, index, type );
     pComm->bExpand = TRUE;
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+// 不定冠詞付きの地下アイテム・ワナ・グッズ名を代入する関数を追加
+
+void CommMsgRegisterUGItemNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type)
+{
+    WORDSET_RegisterUGItemNameIndefinate(pComm->pWordSet, index, type );
+    pComm->bExpand = TRUE;
+}
+
+void CommMsgRegisterUGTrapNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type)
+{
+    WORDSET_RegisterUGTrapNameIndefinate(pComm->pWordSet, index, type );
+    pComm->bExpand = TRUE;
+}
+
+void CommMsgRegisterUGGoodsNameIndexIndefinate(COMM_MESSAGE* pComm,int index,int type)
+{
+    WORDSET_RegisterUGGoodsNameIndefinate(pComm->pWordSet, index, type );
+    pComm->bExpand = TRUE;
+}
+
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/29
+// 指定インデックスに登録された単語をキャピタライズ
+
+void CommMsgCapitalizeIndex(COMM_MESSAGE* pComm,int index)
+{
+    WORDSET_Capitalize(pComm->pWordSet, index );
+}
+
+// ----------------------------------------------------------------------------
 
 
 void CommMsgPrintStop(COMM_MESSAGE* pComm)

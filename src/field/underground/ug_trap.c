@@ -1891,6 +1891,12 @@ void CommTrapInfoRecvTrapDefuse(int netID, int size, void* pData, void* pWork)
             }
             Snd_SePlay(UG_SE_FIND);
             CommMsgRegisterMyName(CommUnderGetMsgUnderWorld(),CommInfoGetMyStatus(pHitTrap->victimNetID));
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ALL) imatake 2006/11/29
+            // 冠詞なしワナ名も使うので、不定冠詞付きワナ名を _UGITEM_INDEX_WORK に代入
+            CommMsgRegisterUGTrapNameIndexIndefinate(CommUnderGetMsgUnderWorld(),_UGITEM_INDEX_WORK,pHitTrap->trap.trapType);
+            CommMsgCapitalizeIndex(CommUnderGetMsgUnderWorld(),_UGITEM_INDEX_WORK);
+            // ----------------------------------------------------------------------------
             CommMsgRegisterUGTrapName(CommUnderGetMsgUnderWorld(),pHitTrap->trap.trapType);
             CommMsgTalkWindowStart(CommUnderGetMsgUnderWorld(), msg_underworld_19, TRUE, _msgEndCallBack);
             CommMsgTalkWindowMeWait(CommUnderGetMsgUnderWorld());  //MEの終了待ちON
@@ -3292,6 +3298,8 @@ void CommTrapRecvEnd(int netID, int size, void* pData, void* pWork)
     u8 id = netID;
     TrapEndResult_t ret;
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1617_060825_FIX
     if(CommPlayerIsTrapBind(netID)){
         CommPlayerResetCondition(netID);
@@ -3313,6 +3321,7 @@ void CommTrapRecvEnd(int netID, int size, void* pData, void* pWork)
     CommSendFixSizeData_ServerSide(CF_TRAP_END_RESULT,&ret);
     _pCTW->nowTrapTypeServer[netID] = _TRAP_TYEP_INVALID;
 #endif //T1617_060825_FIX
+// ----------------------------------------------------------------------------
 }
 
 // こちらは強制的に解除  CF_TRAP_END_FORCE
@@ -3649,6 +3658,8 @@ void UgTrapRecvNatureRadarEnd(void)
 
 void UgTrapRecvNatureRadar(int netID, int size, void* pData, void* pWork)
 {
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1517_060825_FIX
     _pCTW->radarTrapIndex[netID] = 1;
 #else //T1517_060825_FIX
@@ -3656,6 +3667,7 @@ void UgTrapRecvNatureRadar(int netID, int size, void* pData, void* pWork)
         _pCTW->radarTrapIndex[netID] = 1;
     }
 #endif //T1517_060825_FIX
+// ----------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------------

@@ -19,9 +19,12 @@
 #include "../eventdata.h"
 
 #include "communication/communication.h"
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
 #include "../../communication/wh.h"
 #endif //T1665_060816_FIX
+// ----------------------------------------------------------------------------
 #include "system/gamedata.h"
 #include "system/bmp_menu.h"
 #include "system/window.h"      //TalkWinGraphicSet
@@ -63,9 +66,12 @@ enum _radarDispType_e {
 };
 
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
 static void _ugMgrPlayerEndCallBack(int id);
 #endif
+// ----------------------------------------------------------------------------
 
 
 #define _TOUCH_INTERVAL_DOWN_TIME (30)  // タッチパネルを押せる間隔
@@ -188,10 +194,13 @@ static void _initialize(COMM_UNDER* pWork,FIELDSYS_WORK* pFSys)
 
     _pCommUnder->pPrintTCB = TCB_Add(_undergroundMsgTask,NULL, 0);  // 炭鉱レーダーより早く
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
     HWSetDisconnectCallBack(_ugMgrPlayerEndCallBack);
 #endif
-    
+
+// ----------------------------------------------------------------------------
     //  FLD_MESFONT_PAL
 //        GX_LoadBGPltt(&pal,_NUKI_FONT_PALNO*0x20 + 2*14, 2);
 
@@ -221,9 +230,12 @@ static void _finalize(void)
         }
     }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
     HWSetDisconnectCallBack(NULL);
 #endif
+// ----------------------------------------------------------------------------
     TCB_Delete(_pCommUnder->pPrintTCB);
     CommMsgFinalize(_pCommUnder->pCommMsgUW);
     CommMsgFinalize(_pCommUnder->pCommMsgFlag);
@@ -422,10 +434,13 @@ static BOOL _underGetEnterMessage(STRBUF* pStrBuf)
                 STRBUF_Copy(pStrBuf,_pCommUnder->logReturnBuff[i]);
                 STRBUF_Delete( _pCommUnder->logReturnBuff[i] );
                 _pCommUnder->logReturnBuff[i]=NULL;
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
 #else  //T1665_060816_FIX
                 _pCommUnder->initEnd[i] = FALSE;
 #endif //T1665_060816_FIX
+// ----------------------------------------------------------------------------
             }
             _pCommUnder->logReturn[i] = FALSE;
             return TRUE;
@@ -1832,6 +1847,8 @@ int CommUgGetChildStateNormalNum(void)
     return num;
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 #if T1665_060816_FIX
 //--------------------------------------------------------------
 /**
@@ -1848,3 +1865,4 @@ static void _ugMgrPlayerEndCallBack(int id)
 
 }
 #endif //T1665_060816_FIX
+// ----------------------------------------------------------------------------

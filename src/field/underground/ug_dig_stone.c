@@ -529,7 +529,11 @@ void CommDigStoneRecvPickUp(int netID, int size, void* pData, void* pWork)
                     ca = pStone->carat+ pStone->addCarat;
                 }
                 CommMsgRegisterNumber2Index(CommUnderGetMsgUnderWorld(), 1, ca);
-                CommMsgRegisterUGItemNameIndex(CommUnderGetMsgUnderWorld(), 2, pStone->type);
+                // ----------------------------------------------------------------------------
+                // localize_spec_mark(LANG_ALL) imatake 2006/11/28
+                // 代入する地下アイテム名を不定冠詞付きに変更
+                CommMsgRegisterUGItemNameIndexIndefinate(CommUnderGetMsgUnderWorld(), 2, pStone->type);
+                // ----------------------------------------------------------------------------
                 ca = pStone->addCarat;
                 if((ca + pStone->carat) > UG_STONE_CARAT_MAX){
                     ca = UG_STONE_CARAT_MAX - pStone->carat;
@@ -825,7 +829,12 @@ BOOL UgDigStoneGetActionMessage(STRBUF* pStrBuf)
         if(_pCommWork->logMsgGetStone[i] != STONE_TYPE_NONE){
             pWordSetMain = WORDSET_Create(HEAPID_FIELD);
             tmp_buf1 = STRBUF_Create( _EVWIN_MSG_BUF_SIZE, HEAPID_FIELD );
-            WORDSET_RegisterUGItemName(pWordSetMain, 2, _pCommWork->logMsgGetStone[i]);
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ALL) imatake 2006/11/28
+            // 代入する地下アイテム名を不定冠詞付きに変更
+            WORDSET_RegisterUGItemNameIndefinate(pWordSetMain, 2, _pCommWork->logMsgGetStone[i]);
+            WORDSET_Capitalize(pWordSetMain, 2);
+            // ----------------------------------------------------------------------------
             MSGMAN_GetString( CommMsgGetMsgManager(CommUnderGetMsgUnderWorld()), UGBallGet, tmp_buf1 );
             WORDSET_ExpandStr( pWordSetMain, pStrBuf, tmp_buf1 );
             _pCommWork->logMsgGetStone[i] = STONE_TYPE_NONE;
