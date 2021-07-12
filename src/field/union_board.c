@@ -918,7 +918,8 @@ static void UnionChat_Print( UNION_BOARD_WORK *ubw, int no, UNION_CHAT *mes)
 	GF_BGL_BmpWinOnVReq( &ubw->UnionBmp[no].bMessage );
 
 	if(mes->friend){
-		GF_STR_PrintColor( &ubw->UnionBmp[no].bFriend, FONT_TALK, mes->friend, 0, 2, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0),NULL );
+        // MatchComment: change 4th arg from 2 to 1
+		GF_STR_PrintColor( &ubw->UnionBmp[no].bFriend, FONT_TALK, mes->friend, 0, 1, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0),NULL );
 	}
 	GF_BGL_BmpWinOnVReq( &ubw->UnionBmp[no].bFriend );
 }
@@ -1119,6 +1120,10 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 			
 			if(ubw->UnionChatRingBuf->num >= (button-1)){	// 受け取っている会話よりもボタンが大きいときは無視する
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/10
+// ユニオンルームで30・31個目のログをタッチしても効かない不具合の修正を反映
+
 /* ユニオンルームで３０人目のビーコンと３１人目のビーコンを受け取ったときに
    下画面のボタンが聞かなくなるバグを修正 */
 #if AFTER_MASTER_070206_UNION_BOARD_FIX
@@ -1130,6 +1135,7 @@ static int TouchTrgFunc( UNION_BOARD_WORK *ubw )
 
 #endif
 
+// ----------------------------------------------------------------------------
 
 				// ビーコンのIDが一致して、かつ既に地面に立っているならばエフェクトON
 			

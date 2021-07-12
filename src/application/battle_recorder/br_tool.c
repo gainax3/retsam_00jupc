@@ -547,6 +547,7 @@ static void HeroIcon_Visible( GPP_WORK* gwk, int flag );
 static void HeroIcon_Del( GPP_WORK* gwk, BR_WORK* wk );
 static void HeroIcon_Add( GPP_WORK* gwk, BR_WORK* wk );
 
+#ifdef NONEQUIVALENT
 static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 {
 	int i;
@@ -742,7 +743,469 @@ static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
 		WORDSET_Delete( wset );
 	}
 }
+#else
 
+const s16 win_p[][4] = {
+    {  4, 4, 24, 2 },	///< 見出し
+    { 15, 8,  6, 2 },	///< ねんれい
+    { 16, 8, 12, 2 },	///< ｘｘさい
+    {  4,11, 11, 2 },	///< すんでいる～
+    {  4,13, 24, 2 },	///< 国・地域
+    {  4,15, 24, 2 },	///< 地域
+    {  4,17, 11, 2 },	///< 自己紹介
+    {  4,19, 24, 4 },	///< 簡易文
+    { 0xFF,0,0,0 },
+    {  4,21, 24, 2 },	///< データナンバー			
+};
+const int mes_id[] = {
+    msg_20, msg_20, msg_20,	msg_20,
+    msg_20,	msg_20,	msg_20, msg_20,
+    msg_20,	msg_20,	msg_20, msg_20,
+};
+
+asm static void BR_prof_WinAdd_Top( GPP_WORK* gwk, BR_WORK* wk )
+{
+    push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0xd8
+	ldr r3, =win_p // _02232004
+	add r7, r1, #0
+	str r0, [sp, #0x14]
+	add r2, sp, #0x88
+	mov r1, #0x28
+_02231C86:
+	ldrh r0, [r3]
+	add r3, r3, #2
+	strh r0, [r2]
+	add r2, r2, #2
+	sub r1, r1, #1
+	bne _02231C86
+	ldr r4, =mes_id // _02232008
+	add r3, sp, #0x58
+	mov r2, #6
+_02231C98:
+	ldmia r4!, {r0, r1}
+	stmia r3!, {r0, r1}
+	sub r2, r2, #1
+	bne _02231C98
+	mov r0, #1
+	str r0, [sp, #0x24]
+	mov r0, #0
+	ldr r4, [sp, #0x14]
+	str r0, [sp, #0x28]
+	add r0, sp, #0x58
+	add r4, #0xc
+	str r0, [sp, #0x1c]
+	add r5, sp, #0x88
+_02231CB2:
+	ldr r1, [sp, #0x1c]
+	ldr r0, [r7, #0x48]
+	ldr r1, [r1, #0]
+	bl MSGMAN_AllocString
+	add r6, r0, #0
+	add r0, r4, #0
+	bl GF_BGL_BmpWinInit
+	mov r0, #2
+	ldrsh r0, [r5, r0]
+	mov r3, #0
+	add r1, r4, #0
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	str r0, [sp]
+	mov r0, #4
+	ldrsh r0, [r5, r0]
+	mov r2, #2
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	str r0, [sp, #4]
+	mov r0, #6
+	ldrsh r0, [r5, r0]
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	str r0, [sp, #8]
+	mov r0, #0xe
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x24]
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp, #0x10]
+	ldrsh r3, [r5, r3]
+	ldr r0, [r7, #0x24]
+	lsl r3, r3, #0x18
+	lsr r3, r3, #0x18
+	bl GF_BGL_BmpWinAdd
+	add r0, r4, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r4, #0
+	add r1, r6, #0
+	bl BR_print_x_Get
+	add r3, r0, #0
+	mov r0, #0
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	mov r1, #0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r0, r4, #0
+	add r2, r6, #0
+	bl GF_STR_PrintColor
+	add r0, r4, #0
+	bl GF_BGL_BmpWinOnVReq
+	mov r0, #4
+	ldrsh r1, [r5, r0]
+	mov r0, #6
+	ldrsh r0, [r5, r0]
+	add r2, r1, #0
+	mul r2, r0
+	ldr r0, [sp, #0x24]
+	add r0, r0, r2
+	str r0, [sp, #0x24]
+	add r0, r6, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x1c]
+	add r4, #0x10
+	add r0, r0, #4
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x28]
+	add r5, #8
+	add r0, r0, #1
+	str r0, [sp, #0x28]
+	cmp r0, #8
+	blt _02231CB2
+	ldr r0, [sp, #0x14]
+	ldr r0, [r0, #0]
+	str r0, [sp, #0x20]
+	mov r0, #0x66
+	bl BR_WORDSET_Create
+	add r4, r0, #0
+	ldr r5, [sp, #0x14]
+	ldr r0, [sp, #0x20]
+	mov r1, #0x66
+	add r5, #0xc
+	bl GDS_Profile_CreateNameString
+	str r0, [sp, #0x2c]
+	ldr r1, [sp, #0x2c]
+	add r0, r7, #0
+	bl BR_ErrorStrChange
+	ldr r0, [r7, #0x48]
+	mov r1, #0xd
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x30]
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r6, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	mov r0, #2
+	mov r1, #0
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x2c]
+	add r0, r4, #0
+	add r3, r1, #0
+	bl WORDSET_RegisterWord
+	ldr r2, [sp, #0x30]
+	add r0, r4, #0
+	add r1, r6, #0
+	bl WORDSET_ExpandStr
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r1, r6, #0
+	bl BR_print_x_Get
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	ldr r0, [sp, #0x2c]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x30]
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add r0, r4, #0
+	bl WORDSET_ClearAllBuffer
+	ldr r0, [sp, #0x20]
+	bl GDS_Profile_GetMonthBirthday
+	str r0, [sp, #0x34]
+	ldr r5, [sp, #0x14]
+	ldr r0, [r7, #0x48]
+	mov r1, #0xf
+	add r5, #0x2c
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x38]
+	ldr r0, [sp, #0x20]
+	mov r1, #0x66
+	bl GDS_Profile_CreateNameString
+	str r0, [sp, #0x3c]
+	ldr r1, [sp, #0x3c]
+	add r0, r7, #0
+	bl BR_ErrorStrChange
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r6, r0, #0
+	ldr r2, [sp, #0x34]
+	add r0, r4, #0
+	mov r1, #0
+	bl WORDSET_RegisterMonthName
+	ldr r2, [sp, #0x38]
+	add r0, r4, #0
+	add r1, r6, #0
+	bl WORDSET_ExpandStr
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r1, r6, #0
+	bl BR_print_x_Get
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	ldr r0, [sp, #0x38]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x3c]
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add r0, r4, #0
+	bl WORDSET_ClearAllBuffer
+	ldr r5, [sp, #0x14]
+	ldr r0, [r7, #0x48]
+	add r5, #0x3c
+	mov r1, #0x10
+	bl MSGMAN_AllocString
+	add r6, r0, #0
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r1, r6, #0
+	bl BR_print_x_Get
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r6, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x20]
+	bl GDS_Profile_GetNation
+	add r6, r0, #0
+	ldr r0, [sp, #0x20]
+	bl GDS_Profile_GetArea
+	ldr r5, [sp, #0x14]
+	str r0, [sp, #0x40]
+	add r5, #0x4c
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	cmp r6, #0
+	bne _02231F18
+	ldr r0, [r7, #0x48]
+	mov r1, #0x15
+	bl MSGMAN_AllocString
+	mov r1, #0
+	add r6, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	add r3, r1, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r6, #0
+	bl STRBUF_Delete
+	b _02231FD2
+_02231F18:
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	str r0, [sp, #0x44]
+	ldr r0, [r7, #0x48]
+	mov r1, #0x16
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x48]
+	add r0, r4, #0
+	mov r1, #0
+	add r2, r6, #0
+	bl WORDSET_RegisterCountryName
+	ldr r1, [sp, #0x44]
+	ldr r2, [sp, #0x48]
+	add r0, r4, #0
+	bl WORDSET_ExpandStr
+	mov r1, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	ldr r2, [sp, #0x44]
+	str r0, [sp, #8]
+	add r0, r5, #0
+	add r3, r1, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	ldr r0, [sp, #0x44]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x48]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x40]
+	cmp r0, #0
+	beq _02231FD2
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	str r0, [sp, #0x18]
+	add r0, #0x5c
+	str r0, [sp, #0x18]
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r5, r0, #0
+	ldr r0, [r7, #0x48]
+	mov r1, #0x17
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x4c]
+	ldr r3, [sp, #0x40]
+	add r0, r4, #0
+	mov r1, #0
+	add r2, r6, #0
+	bl WORDSET_RegisterLocalPlaceName
+	ldr r2, [sp, #0x4c]
+	add r0, r4, #0
+	add r1, r5, #0
+	bl WORDSET_ExpandStr
+	mov r1, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	add r2, r5, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x18]
+	mov r3, #4
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x18]
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r5, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x4c]
+	bl STRBUF_Delete
+_02231FD2:
+	add r0, r4, #0
+	bl WORDSET_ClearAllBuffer
+	ldr r5, [sp, #0x14]
+	ldr r0, [r7, #0x48]
+	add r5, #0x6c
+	mov r1, #0x11
+	bl MSGMAN_AllocString
+	add r6, r0, #0
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r1, r6, #0
+	bl BR_print_x_Get
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223200C
+	b _02232010
+	// .align 2, 0
+// _02232004: .4byte win_p
+// _02232008: .4byte mes_id
+// _0223200C: .4byte 0x000F0D00
+_02232010:
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, #0
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r6, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x14]
+	add r1, sp, #0x50
+	add r0, #0x7c
+	str r0, [sp, #0x14]
+	ldr r0, [sp, #0x20]
+	mov r2, #0x66
+	bl GDS_Profile_GetSelfIntroduction
+	add r5, r0, #0
+	bne _02232046
+	add r0, sp, #0x50
+	mov r1, #0x66
+	bl PMSDAT_ToString
+	add r5, r0, #0
+_02232046:
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	mov r1, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _0223207C
+	add r2, r5, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x14]
+	add r3, r1, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x14]
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r5, #0
+	bl STRBUF_Delete
+	add r0, r4, #0
+	bl WORDSET_Delete
+	add sp, #0xd8
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+	// _0223207C: .4byte 0x000F0D00
+}
+#endif
 
 static void BR_prof_WinDel_Top( GPP_WORK* gwk, BR_WORK* wk )
 {

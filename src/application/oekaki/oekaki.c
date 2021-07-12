@@ -1065,10 +1065,16 @@ static void SetCellActor(OEKAKI_WORK *wk)
 
 
 // 「やめる」文字列BMP（下画面）
-#define OEKAKI_END_BMP_X	( 26 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/17
+// 「やめる」を中央寄せ
+#define OEKAKI_END_BMP_X	( 25 )
 #define OEKAKI_END_BMP_Y	( 21 )
 #define OEKAKI_END_BMP_W	( 6  )
 #define OEKAKI_END_BMP_H	( 2  )
+
+#define OEKAKI_END_OFS_X	( 2  )
+// ----------------------------------------------------------------------------
 
 
 // 会話ウインドウ表示位置定義
@@ -1103,7 +1109,14 @@ static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 
 	GF_BGL_BmpWinDataFill( &wk->EndWin, 0x0000 );
 //	GF_STR_PrintSimple( &wk->EndWin, FONT_TALK, wk->EndString, 0, 0, MSG_ALLPUT, NULL);
-	GF_STR_PrintColor( &wk->EndWin, FONT_TALK, wk->EndString, 0, 0, MSG_ALLPUT, GF_PRINTCOLOR_MAKE(0x7,0x1,0x0),NULL);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/17
+	// 「やめる」を中央寄せ
+	{
+		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, wk->EndString, 0, OEKAKI_END_BMP_W * 8) + OEKAKI_END_OFS_X;
+		GF_STR_PrintColor( &wk->EndWin, FONT_TALK, wk->EndString, xofs, 0, MSG_ALLPUT, GF_PRINTCOLOR_MAKE(0x7,0x1,0x0),NULL);
+	}
+	// ----------------------------------------------------------------------------
 
 	// ----------- サブ画面名前表示BMP確保 ------------------
 	{

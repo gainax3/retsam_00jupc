@@ -962,7 +962,13 @@ static BOOL CollectControl(GMEVENT_CONTROL * event)
 			num = ebew->RockCount-ebew->RockLimit;
 			UgSecretBaseTalkRegisterNum2(num, 0);
 			//メッセージ：あと	～こ	かいしゅう	できます
-			ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_18);
+            // MatchComment: --------------------------
+            // new localization change in plat US
+            if (num == 1) {
+                ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_18);
+            } else {
+                ebew->MesIndex = UgSecretBaseTalkStart(mes_uw_edit_26);
+            }
 			ebew->MesWait = 0;
 			ebew->SubSeq = COL_SEQ_ROCK_REST;
 		}

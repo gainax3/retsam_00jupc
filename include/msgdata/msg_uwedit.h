@@ -34,5 +34,6 @@
 #define	mes_uw_edit_23		(22)
 #define	mes_uw_edit_24		(23)
 #define	mes_uw_edit_25		(24)
+#define mes_uw_edit_26      (25)
 
 #endif

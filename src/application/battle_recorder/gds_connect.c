@@ -335,6 +335,7 @@ PROC_RESULT GdsConnectProc_Init( PROC * proc, int * seq )
 
 	//実行する動作を決定
 	if(wk->oya_proc_work->connect_success){	//既にネットに繋がっているので切断処理へ移行
+        WirelessIconEasy(); // MatchComment: new localization change
 		GdsConnect_SetNextSeq(wk, ENTER_CLEANUP_INET, ENTER_END);
 	}
 	else{	//ネットに繋がっていないので繋げに行く
@@ -1618,6 +1619,7 @@ static int Enter_CleanupInet( GDS_CONNECT_SYS *wk )
 		wk->local_seq++;
 		break;
 	case 2:
+        WirelessIconEasyEnd(); // MatchComment: new localization change
 		Enter_MessagePrint( wk, wk->SystemMsgManager, dwc_message_0012, 1, 0x0f0f );
 		wk->local_seq++;
 		break;
