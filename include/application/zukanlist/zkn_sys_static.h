@@ -182,8 +182,13 @@ GLOBAL BOOL ZKN_UTIL_BgShutterFade( ZKN_UTIL_BGSHTTER_DADE* p_data );
 #define ZKN_POKELIST_POKENAME_NO_NUM		( 4 )	// STRBUFの領域取得数
 #define ZKN_POKELIST_POKENAME_NO_KETA		( 3 )	// 数字の桁
 #define ZKN_POKELIST_POKENAME_MAT_Y			( 0 )
-#define ZKN_POKELIST_POKENAME_NO_MAT_X		( 18 )
-#define ZKN_POKELIST_POKENAME_NAME_MAT_X	( 52 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// ずかん番号を半角表示にしたことに伴うレイアウト調整
+// ボールと番号の間は4ピクセル、番号と名前の間は5ピクセル（半角スペースと同等）
+#define ZKN_POKELIST_POKENAME_NO_MAT_X		( 22 )
+#define ZKN_POKELIST_POKENAME_NAME_MAT_X	( 49 )
+// ----------------------------------------------------------------------------
 
 // アイコン定数
 #define ZKN_POKELIST_ICON_X_OFS		( -54 * FX32_ONE )	// 今選択されているポケモンテーブルのX座標からの距離

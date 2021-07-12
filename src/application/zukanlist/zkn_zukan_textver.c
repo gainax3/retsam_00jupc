@@ -95,8 +95,19 @@
 #define ZKN_ZUKNATEXTVER_FONT_MONSNAME_X	( 152 )
 #define ZKN_ZUKNATEXTVER_FONT_MONSNAME_Y	( 96 )
 #define ZKN_ZUKNATEXTVER_FONT_MONSTYPE_Y	( 112 )
-#define ZKN_ZUKNATEXTVER_FONT_POKEMON_X	( 240 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 外国語ずかんの「?Pokemon」は、個別にgmmに含める形式に変更
+#define ZKN_ZUKNATEXTVER_FONT_POKEMON_X	( 242 )
+// ----------------------------------------------------------------------------
 #define ZKN_ZUKNATEXTVER_FONT_POKEMON_Y	( 112 )
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// ずかんのテキストを、最長行にあわせてセンタリング
+#define ZKN_ZUKANTEXTVER_FONT_COMMENT_X_CENTER	( 128 )
+#define ZKN_ZUKANTEXTVER_FONT_COMMENT_X_WIDTH	( 240 )
+// ----------------------------------------------------------------------------
 
 //-------------------------------------
 //	描画初期化シーケンス
@@ -137,11 +148,16 @@ enum{
 // ～ポケモン座標
 #define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_MAT_X	( 192 * FX32_ONE )
 #define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_MAT_Y	( 52 * FX32_ONE )
-#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_FONT_OFS_X	( -58 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// 「?ポケモン」表示が入りきらなかったのを修正
+#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_FONT_OFS_X	( -78 )
 #define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_FONT_OFS_Y	( -8 )
-#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_BMP_SCX	( 16 )
-#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_BMP_SCY	( 2 )
-#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_TBL_SEQ	( 0x11 )
+#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_BMP_SCX		( 18 )
+#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_BMP_SCY		( 2 )
+#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_TBL_SEQ		( 0x11 )
+#define ZKN_ZUKANTEXTVER_POKETYPE_TEXT_WIDTH_MAX	( 136 )
+// ----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 /**
@@ -1131,8 +1147,22 @@ static void ZknZukanTextverSetUpFontBg( ZKN_ZUKANTEXTVER_DRAWGLB* p_drawglb, con
 	
 
 	// ポケモンナンバー描画
-	STRBUF_SetNumber( str, mons_no, ZKN_ZUKANTEXTVER_FONT_MONSNO_PLACE, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_ZUKNATEXTVER_FONT_MONSNO_X, ZKN_ZUKNATEXTVER_FONT_MONSNO_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんのポケモンナンバーは、個別にgmmに含める形式に変更
+
+    // MatchComment: removed code shown here
+    //STRBUF_SetNumber( str, mons_no, ZKN_ZUKANTEXTVER_FONT_MONSNO_PLACE, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
+	//GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_ZUKNATEXTVER_FONT_MONSNO_X, ZKN_ZUKNATEXTVER_FONT_MONSNO_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+
+	// ----------------------------------------------------------------------------
+
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんの「?Pokemon」は、個別にgmmに含める形式に変更
+	// ----------------------------------------------------------------------------
+
 
 /*
  	ポケモン種類名のGMMにPoke'monの文字も格納
@@ -1171,9 +1201,18 @@ static void ZknZukanTextverSetUpFontBg( ZKN_ZUKANTEXTVER_DRAWGLB* p_drawglb, con
 //-----------------------------------------------------------------------------
 static void ZknZukanTextverFontSetUpText( ZKN_ZUKANTEXTVER_DRAWGLB* p_drawglb, int heap, int mons_no, int lang, int page )
 {
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// ずかんのテキストを、最長行にあわせてセンタリング
 	STRBUF* str = ZKN_WT_GetText( mons_no, lang, page, heap);
+	u32 maxlen = FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0);
+	u32 xofs = maxlen < ZKN_ZUKANTEXTVER_FONT_COMMENT_X_WIDTH
+	         ? ZKN_ZUKANTEXTVER_FONT_COMMENT_X_CENTER - maxlen / 2
+	         : ZKN_ZUKANTEXTVER_FONT_COMMENT_X;
+
 	// ポケモンのメッセージ
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_ZUKANTEXTVER_FONT_COMMENT_X, ZKN_ZUKANTEXTVER_FONT_COMMENT_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_ZUKANTEXTVER_FONT_COMMENT_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
 
 	// 破棄
 	ZKN_WT_DeleteStrBuf( str );
@@ -1448,8 +1487,15 @@ static GF_BGL_BMPWIN* ZknZukanTextverPokeTypeTextBmpMake( ZKN_ZUKANTEXTVER_DRAWG
 
 	// ～ポケモン文字列取得
 	str = ZKN_WT_GetPokeType( mons_no, PM_LANG, heap );
-	ZKN_FONTOAM_PrintBmpStrBuf( p_drawglb->p_drawglb->fontoam_sys,
-			p_bmp, str, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+	// 「?ポケモン」表示をセンタリング
+	{
+		u32 width = FontProc_GetPrintStrWidth( FONT_BUTTON, str, 0);
+		u32 x = width < ZKN_ZUKANTEXTVER_POKETYPE_TEXT_WIDTH_MAX ? (ZKN_ZUKANTEXTVER_POKETYPE_TEXT_WIDTH_MAX - width) / 2 : 0;
+		ZKN_FONTOAM_PrintBmpStrBuf( p_drawglb->p_drawglb->fontoam_sys, p_bmp, str, x, 0 );
+	}
+	// ----------------------------------------------------------------------------
 	ZKN_WT_DeleteStrBuf( str );
 
 	return p_bmp;
@@ -1905,7 +1951,11 @@ static int ZknZukanTextverZukanNameGmmIDGet( int lang )
 	
 	switch( lang ){
 	case LANG_JAPAN:		///<	言語コード：日本
-		gmm_id = ZNK_ZUKAN_TEXT_00;
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+		// 日本語ずかんに対して、「にほんごのずかん」を表示するように変更
+		gmm_id = ZNK_ZUKAN_TEXT_07;
+		// ----------------------------------------------------------------------------
 		break;
 		
 	case LANG_ENGLISH:		///<	言語コード：英語
@@ -1952,7 +2002,11 @@ static void ZknZukanTextvereFontPokeName( ZKN_ZUKANTEXTVER_DRAWGLB* p_drawglb, i
 {
 	STRBUF* str = ZKN_WT_GetPokeName( mons_no, lang, heap);
 	// ポケモンのメッセージ
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_ZUKNATEXTVER_FONT_MONSNAME_X, ZKN_ZUKNATEXTVER_FONT_MONSNAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんのポケモンナンバーは、個別にgmmに含める形式に変更
+	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_ZUKNATEXTVER_FONT_MONSNO_X, ZKN_ZUKNATEXTVER_FONT_MONSNAME_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
 
 	// 破棄
 	ZKN_WT_DeleteStrBuf( str );
@@ -1976,7 +2030,11 @@ static void ZknZukanTextvereFontPokeType( ZKN_ZUKANTEXTVER_DRAWGLB* p_drawglb, i
 	u32 x_mat;
 
 	// X座標計算
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 外国語ずかんの「?Pokemon」は、個別にgmmに含める形式に変更
 	x_mat = ZKN_ZUKNATEXTVER_FONT_POKEMON_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, str, 0 );
+	// ----------------------------------------------------------------------------
 	
 	// ポケモンのメッセージ
 	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, x_mat, ZKN_ZUKNATEXTVER_FONT_MONSTYPE_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );

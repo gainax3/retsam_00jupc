@@ -32,64 +32,59 @@
  */
 //-------------------------------------------------------------
 enum {
-	INITIAL_WRITE_X_MARGIN = 13,		// １文字ごとの描画幅
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
+	// 頭文字パレットのレイアウト調整
+	INITIAL_WRITE_X_MARGIN = 16,		// １文字ごとの描画幅
 	INITIAL_WRITE_Y_MARGIN = 16,		// １文字ごとの描画高さ
+	INITIAL_WRITE_X_OFFSET = 28,		// 左上の文字のX座標
+	INITIAL_WRITE_Y_OFFSET = 12,		// 左上の文字のY座標
+	// ----------------------------------------------------------------------------
 };
 
-#define INITIAL_XPOS(n)	((n)*INITIAL_WRITE_X_MARGIN)
-#define INITIAL_YPOS(n)	((n)*INITIAL_WRITE_Y_MARGIN)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/09
+// 頭文字パレットのレイアウト調整
+#define INITIAL_XPOS(n)	((n)*INITIAL_WRITE_X_MARGIN+INITIAL_WRITE_X_OFFSET)
+#define INITIAL_YPOS(n)	((n)*INITIAL_WRITE_Y_MARGIN+INITIAL_WRITE_Y_OFFSET)
+// ----------------------------------------------------------------------------
 
 //-------------------------------------------------------------
 /**
  *  各文字のインデックス
  */
 //-------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/09
+// 頭文字パレットのレイアウト調整
 enum {
 	INI_A = 0,
-	INI_I,
-	INI_U,
+	INI_B,
+	INI_C,
+	INI_D,
 	INI_E,
+	INI_F,
+	INI_G,
+	INI_H,
+	INI_I,
+	INI_J,
+	INI_K,
+	INI_L,
+	INI_M,
+	INI_N,
 	INI_O,
-	INI_KA,
-	INI_KI,
-	INI_KU,
-	INI_KE,
-	INI_KO,
-	INI_SA,
-	INI_SI,
-	INI_SU,
-	INI_SE,
-	INI_SO,
-	INI_TA,
-	INI_TI,
-	INI_TU,
-	INI_TE,
-	INI_TO,
-	INI_NA,
-	INI_NI,
-	INI_NU,
-	INI_NE,
-	INI_NO,
-	INI_HA,
-	INI_HI,
-	INI_HU,
-	INI_HE,
-	INI_HO,
-	INI_MA,
-	INI_MI,
-	INI_MU,
-	INI_ME,
-	INI_MO,
-	INI_YA,
-	INI_YU,
-	INI_YO,
-	INI_RA,
-	INI_RI,
-	INI_RU,
-	INI_RE,
-	INI_RO,
-	INI_WA,
-	INI_OTHER,
+	INI_P,
+	INI_Q,
+	INI_R,
+	INI_S,
+	INI_T,
+	INI_U,
+	INI_V,
+	INI_W,
+	INI_X,
+	INI_Y,
+	INI_Z,
+	INI_OTHERS,
 
 	INI_BACK = CATEGORY_POS_BACK,
 	INI_DIS  = CATEGORY_POS_DISABLE,
@@ -107,54 +102,38 @@ static const struct {
 	u8			col_bottom;
 }InitialParamTbl[] = {
 
-	{  a_,  INITIAL_XPOS(0),  INITIAL_YPOS(0), INI_BACK,    INI_KA,      INI_YO,    INI_I,     INI_A,   INI_TA, },
-	{  i_,  INITIAL_XPOS(1),  INITIAL_YPOS(0), INI_BACK,    INI_KI,      INI_A,     INI_U,     INI_I,   INI_TI, },
-	{  u_,  INITIAL_XPOS(2),  INITIAL_YPOS(0), INI_BACK,    INI_KU,      INI_I,     INI_E,     INI_U,   INI_TU, },
-	{  e_,  INITIAL_XPOS(3),  INITIAL_YPOS(0), INI_BACK,    INI_KE,      INI_U,     INI_O,     INI_E,   INI_TE, },
-	{  o_,  INITIAL_XPOS(4),  INITIAL_YPOS(0), INI_BACK,    INI_KO,      INI_E,     INI_NA,    INI_O,   INI_TO, },
-	{ ka_,  INITIAL_XPOS(0),  INITIAL_YPOS(1), INI_A,       INI_SA,      INI_OTHER, INI_KI,    INI_A,   INI_TA, },
-	{ ki_,  INITIAL_XPOS(1),  INITIAL_YPOS(1), INI_I,       INI_SI,      INI_KA,    INI_KU,    INI_I,   INI_TI, },
-	{ ku_,  INITIAL_XPOS(2),  INITIAL_YPOS(1), INI_U,       INI_SU,      INI_KI,    INI_KE,    INI_U,   INI_TU, },
-	{ ke_,  INITIAL_XPOS(3),  INITIAL_YPOS(1), INI_E,       INI_SE,      INI_KU,    INI_KO,    INI_E,   INI_TE, },
-	{ ko_,  INITIAL_XPOS(4),  INITIAL_YPOS(1), INI_O,       INI_SO,      INI_KE,    INI_HA,    INI_O,   INI_TO, },
-	{ sa_,  INITIAL_XPOS(0),  INITIAL_YPOS(2), INI_KA,      INI_TA,      INI_MO,    INI_SI,    INI_A,   INI_TA, },
-	{ si_,  INITIAL_XPOS(1),  INITIAL_YPOS(2), INI_KI,      INI_TI,      INI_SA,    INI_SU,    INI_I,   INI_TI, },
-	{ su_,  INITIAL_XPOS(2),  INITIAL_YPOS(2), INI_KU,      INI_TU,      INI_SI,    INI_SE,    INI_U,   INI_TU, },
-	{ se_,  INITIAL_XPOS(3),  INITIAL_YPOS(2), INI_KE,      INI_TE,      INI_SU,    INI_SO,    INI_E,   INI_TE, },
-	{ so_,  INITIAL_XPOS(4),  INITIAL_YPOS(2), INI_KO,      INI_TO,      INI_SE,    INI_MA,    INI_O,   INI_TO, },
-	{ ta_,  INITIAL_XPOS(0),  INITIAL_YPOS(3), INI_SA,      INI_BACK,    INI_RO,    INI_TI,    INI_A,   INI_TA, },
-	{ ti_,  INITIAL_XPOS(1),  INITIAL_YPOS(3), INI_SI,      INI_BACK,    INI_TA,    INI_TU,    INI_I,   INI_TI, },
-	{ tu_,  INITIAL_XPOS(2),  INITIAL_YPOS(3), INI_SU,      INI_BACK,    INI_TI,    INI_TE,    INI_U,   INI_TU, },
-	{ te_,  INITIAL_XPOS(3),  INITIAL_YPOS(3), INI_SE,      INI_BACK,    INI_TU,    INI_TO,    INI_E,   INI_TE, },
-	{ to_,  INITIAL_XPOS(4),  INITIAL_YPOS(3), INI_SO,      INI_BACK,    INI_TE,    INI_RA,    INI_O,   INI_TO, },
-	{ na_,  INITIAL_XPOS(6),  INITIAL_YPOS(0), INI_BACK,    INI_HA,      INI_O,     INI_NI,    INI_NA,  INI_RA, },
-	{ ni_,  INITIAL_XPOS(7),  INITIAL_YPOS(0), INI_BACK,    INI_HI,      INI_NA,    INI_NU,    INI_NI,  INI_RI, },
-	{ nu_,  INITIAL_XPOS(8),  INITIAL_YPOS(0), INI_BACK,    INI_HU,      INI_NI,    INI_NE,    INI_NU,  INI_RU, },
-	{ ne_,  INITIAL_XPOS(9),  INITIAL_YPOS(0), INI_BACK,    INI_HE,      INI_NU,    INI_NO,    INI_NE,  INI_RE, },
-	{ no_,  INITIAL_XPOS(10), INITIAL_YPOS(0), INI_BACK,    INI_HO,      INI_NE,    INI_YA,    INI_NO,  INI_RO, },
-	{ ha_,  INITIAL_XPOS(6),  INITIAL_YPOS(1), INI_NA,      INI_MA,      INI_KO,    INI_HI,    INI_NA,  INI_RA, },
-	{ hi_,  INITIAL_XPOS(7),  INITIAL_YPOS(1), INI_NI,      INI_MI,      INI_HA,    INI_HU,    INI_NI,  INI_RI, },
-	{ hu_,  INITIAL_XPOS(8),  INITIAL_YPOS(1), INI_NU,      INI_MU,      INI_HI,    INI_HE,    INI_NU,  INI_RU, },
-	{ he_,  INITIAL_XPOS(9),  INITIAL_YPOS(1), INI_NE,      INI_ME,      INI_HU,    INI_HO,    INI_NE,  INI_RE, },
-	{ ho_,  INITIAL_XPOS(10), INITIAL_YPOS(1), INI_NO,      INI_MO,      INI_HE,    INI_WA,    INI_NO,  INI_RO, },
-	{ ma_,  INITIAL_XPOS(6),  INITIAL_YPOS(2), INI_HA,      INI_RA,      INI_SO,    INI_MI,    INI_NA,  INI_RA, },
-	{ mi_,  INITIAL_XPOS(7),  INITIAL_YPOS(2), INI_HI,      INI_RI,      INI_MA,    INI_MU,    INI_NI,  INI_RI, },
-	{ mu_,  INITIAL_XPOS(8),  INITIAL_YPOS(2), INI_HU,      INI_RU,      INI_MI,    INI_ME,    INI_NU,  INI_RU, },
-	{ me_,  INITIAL_XPOS(9),  INITIAL_YPOS(2), INI_HE,      INI_RE,      INI_MU,    INI_MO,    INI_NE,  INI_RE, },
-	{ mo_,  INITIAL_XPOS(10), INITIAL_YPOS(2), INI_HO,      INI_RO,      INI_ME,    INI_SA,    INI_NO,  INI_RO, },
-	{ ya_,  INITIAL_XPOS(12), INITIAL_YPOS(0), INI_BACK,    INI_WA,      INI_NO,    INI_YU,    INI_YA,  INI_WA, },
-	{ yu_,  INITIAL_XPOS(13), INITIAL_YPOS(0), INI_BACK,    INI_OTHER,   INI_YA,    INI_YO,    INI_YU,  INI_OTHER, },
-	{ yo_,  INITIAL_XPOS(14), INITIAL_YPOS(0), INI_BACK,    INI_BACK,    INI_YU,    INI_A,     INI_YO,  INI_YO, },
-	{ ra_,  INITIAL_XPOS(6),  INITIAL_YPOS(3), INI_MA,      INI_BACK,    INI_TO,    INI_RI,    INI_NA,  INI_RA, },
-	{ ri_,  INITIAL_XPOS(7),  INITIAL_YPOS(3), INI_MI,      INI_BACK,    INI_RA,    INI_RU,    INI_NI,  INI_RI, },
-	{ ru_,  INITIAL_XPOS(8),  INITIAL_YPOS(3), INI_MU,      INI_BACK,    INI_RI,    INI_RE,    INI_NU,  INI_RU, },
-	{ re_,  INITIAL_XPOS(9),  INITIAL_YPOS(3), INI_ME,      INI_BACK,    INI_RU,    INI_RO,    INI_NE,  INI_RE, },
-	{ ro_,  INITIAL_XPOS(10), INITIAL_YPOS(3), INI_MO,      INI_BACK,    INI_RE,    INI_TA,    INI_NO,  INI_RO, },
-	{ wa_,  INITIAL_XPOS(12), INITIAL_YPOS(1), INI_YA,      INI_BACK,    INI_HO,    INI_OTHER, INI_YA,  INI_WA, },
-	{ gyoe_,INITIAL_XPOS(13), INITIAL_YPOS(1), INI_YU,      INI_BACK,    INI_WA,    INI_KA,    INI_YU,  INI_OTHER },
+	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 仮対応。
+	{ h_A__,  INITIAL_XPOS(0), INITIAL_YPOS(0), INI_BACK,   INI_K,      INI_J,      INI_B,      INI_A,      INI_U,      },
+	{ h_B__,  INITIAL_XPOS(1), INITIAL_YPOS(0), INI_BACK,   INI_L,      INI_A,      INI_C,      INI_B,      INI_V,      },
+	{ h_C__,  INITIAL_XPOS(2), INITIAL_YPOS(0), INI_BACK,   INI_M,      INI_B,      INI_D,      INI_C,      INI_W,      },
+	{ h_D__,  INITIAL_XPOS(3), INITIAL_YPOS(0), INI_BACK,   INI_N,      INI_C,      INI_E,      INI_D,      INI_X,      },
+	{ h_E__,  INITIAL_XPOS(4), INITIAL_YPOS(0), INI_BACK,   INI_O,      INI_D,      INI_F,      INI_E,      INI_Y,      },
+	{ h_F__,  INITIAL_XPOS(5), INITIAL_YPOS(0), INI_BACK,   INI_P,      INI_E,      INI_G,      INI_F,      INI_Z,      },
+	{ h_G__,  INITIAL_XPOS(6), INITIAL_YPOS(0), INI_BACK,   INI_Q,      INI_F,      INI_H,      INI_G,      INI_Q,      },
+	{ h_H__,  INITIAL_XPOS(7), INITIAL_YPOS(0), INI_BACK,   INI_R,      INI_G,      INI_I,      INI_H,      INI_R,      },
+	{ h_I__,  INITIAL_XPOS(8), INITIAL_YPOS(0), INI_BACK,   INI_S,      INI_H,      INI_J,      INI_I,      INI_S,      },
+	{ h_J__,  INITIAL_XPOS(9), INITIAL_YPOS(0), INI_BACK,   INI_T,      INI_I,      INI_A,      INI_J,      INI_OTHERS, },
+	{ h_K__,  INITIAL_XPOS(0), INITIAL_YPOS(1), INI_A,      INI_U,      INI_T,      INI_L,      INI_A,      INI_U,      },
+	{ h_L__,  INITIAL_XPOS(1), INITIAL_YPOS(1), INI_B,      INI_V,      INI_K,      INI_M,      INI_B,      INI_V,      },
+	{ h_M__,  INITIAL_XPOS(2), INITIAL_YPOS(1), INI_C,      INI_W,      INI_L,      INI_N,      INI_C,      INI_W,      },
+	{ h_N__,  INITIAL_XPOS(3), INITIAL_YPOS(1), INI_D,      INI_X,      INI_M,      INI_O,      INI_D,      INI_X,      },
+	{ h_O__,  INITIAL_XPOS(4), INITIAL_YPOS(1), INI_E,      INI_Y,      INI_N,      INI_P,      INI_E,      INI_Y,      },
+	{ h_P__,  INITIAL_XPOS(5), INITIAL_YPOS(1), INI_F,      INI_Z,      INI_O,      INI_Q,      INI_F,      INI_Z,      },
+	{ h_Q__,  INITIAL_XPOS(6), INITIAL_YPOS(1), INI_G,      INI_BACK,   INI_P,      INI_R,      INI_G,      INI_Q,      },
+	{ h_R__,  INITIAL_XPOS(7), INITIAL_YPOS(1), INI_H,      INI_BACK,   INI_Q,      INI_S,      INI_H,      INI_R,      },
+	{ h_S__,  INITIAL_XPOS(8), INITIAL_YPOS(1), INI_I,      INI_BACK,   INI_R,      INI_T,      INI_I,      INI_S,      },
+	{ h_T__,  INITIAL_XPOS(9), INITIAL_YPOS(1), INI_J,      INI_OTHERS, INI_S,      INI_K,      INI_J,      INI_OTHERS, },
+	{ h_U__,  INITIAL_XPOS(0), INITIAL_YPOS(2), INI_K,      INI_BACK,   INI_OTHERS, INI_V,      INI_A,      INI_U,      },
+	{ h_V__,  INITIAL_XPOS(1), INITIAL_YPOS(2), INI_L,      INI_BACK,   INI_U,      INI_W,      INI_B,      INI_V,      },
+	{ h_W__,  INITIAL_XPOS(2), INITIAL_YPOS(2), INI_M,      INI_BACK,   INI_V,      INI_X,      INI_C,      INI_W,      },
+	{ h_X__,  INITIAL_XPOS(3), INITIAL_YPOS(2), INI_N,      INI_BACK,   INI_W,      INI_Y,      INI_D,      INI_X,      },
+	{ h_Y__,  INITIAL_XPOS(4), INITIAL_YPOS(2), INI_O,      INI_BACK,   INI_X,      INI_Z,      INI_E,      INI_Y,      },
+	{ h_Z__,  INITIAL_XPOS(5), INITIAL_YPOS(2), INI_P,      INI_BACK,   INI_Y,      INI_OTHERS, INI_F,      INI_Z,      },
+	{ h_gyoe_,INITIAL_XPOS(9), INITIAL_YPOS(2), INI_T,      INI_BACK,   INI_Z,      INI_U,      INI_J,      INI_OTHERS, },
 
 
 };
+// ----------------------------------------------------------------------------
 
 
 

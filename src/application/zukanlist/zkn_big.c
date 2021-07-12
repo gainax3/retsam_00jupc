@@ -95,15 +95,32 @@ enum{
 #define ZKN_BIG_HEIGHT_NUM_STR	( 32 )
 
 // 文字列描画位置
-#define ZKN_BIG_HEIGHT_TITLE_X	( 96 )		// タイトル
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+// タイトルの表示位置を、画面中央に自動調整
+#define ZKN_BIG_HEIGHT_TITLE_WIDTH	( 256 )		// タイトル
+// ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_TITLE_Y	( 24 )
 #define ZKN_BIG_HEIGHT_TAKASA_Y	( 168 )		// "高さ"
 #define ZKN_BIG_HEIGHT_TAKASA1_X	( 32 )
 #define ZKN_BIG_HEIGHT_TAKASA2_X	( 152 )
-#define ZKN_BIG_HEIGHT_NUM_OFS_X	( 32 )	// 実際の値を表示する高さからの位置
-#define ZKN_BIG_HEIGHT__M__OFS_X	( 30 )	// Mを表示する値からの位置
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+// 高さの値の表示位置を、右端指定に変更
+#define ZKN_BIG_HEIGHT_NUM_OFS_X	( 78 )	// 実際の値を表示する「たかさ」からの位置
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+// 主人公の身長の単位を、値を格納したメッセージに統合
+// MatchComment: show removed define
+//#define ZKN_BIG_HEIGHT__M__OFS_X	( 30 )	// Mを表示する値からの位置
+// ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_NAME_Y		( 152 )
-#define ZKN_BIG_HEIGHT_MONSNAME_X	( 24 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+// ポケモン名を書き出す位置を、主人公名と統一
+#define ZKN_BIG_HEIGHT_MONSNAME_X	( 26 )
+// ----------------------------------------------------------------------------
 #define ZKN_BIG_HEIGHT_HERO_X		( 146 )
 
 // 主人公基本表示位置
@@ -1184,7 +1201,14 @@ static void ZknBigSetUpFontBgNormal( ZKN_BIG_DRAWGLB* p_drawglb, int heap )
 
 	// たかさくらべ
 	MSGMAN_GetString( man, ZNK_BIG_00, str );
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TITLE_X, ZKN_BIG_HEIGHT_TITLE_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+	// タイトルの表示位置を、画面中央に自動調整
+	{
+		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, str, 0, ZKN_BIG_HEIGHT_TITLE_WIDTH);
+		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TITLE_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 	
 	// たかさ
 	MSGMAN_GetString( man, ZNK_ZUKAN_01, str );
@@ -1227,7 +1251,14 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 	
 	//	ポケモンの高さ
 	MSGMAN_GetString( man, mons_no, str );
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA1_X + ZKN_BIG_HEIGHT_NUM_OFS_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+	// 高さの値の表示位置を、右端指定に変更
+	{
+		u32 xofs = ZKN_BIG_HEIGHT_TAKASA1_X + ZKN_BIG_HEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
+		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 	
 	STRBUF_Delete(monsname_str);
 
@@ -1248,12 +1279,23 @@ static void ZknBigSetUpFontBgHeroPokeData( ZKN_BIG_DRAWGLB* p_drawglb, const ZKN
 	}else{
 		MSGMAN_GetString( man, ZNK_HEIGHT_01, str );
 	}
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA2_X + ZKN_BIG_HEIGHT_NUM_OFS_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
-	
-	// M
-	MSGMAN_GetString( man, ZNK_ZUKAN_03, str );
-	GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA2_X + ZKN_BIG_HEIGHT_NUM_OFS_X + ZKN_BIG_HEIGHT__M__OFS_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
-	
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+	// 高さの値の表示位置を、右端指定に変更
+	{
+		u32 xofs = ZKN_BIG_HEIGHT_TAKASA2_X + ZKN_BIG_HEIGHT_NUM_OFS_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, str, 0);
+		GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, xofs, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
+
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/05
+	// 主人公の身長の単位を、値を格納したメッセージに統合
+    // MatchComment: show removed code
+	//// M
+	//MSGMAN_GetString( man, ZNK_ZUKAN_03, str );
+	//GF_STR_PrintColor( &p_drawglb->p_drawglb->bmp_mfont, FONT_SYSTEM, str, ZKN_BIG_HEIGHT_TAKASA2_X + ZKN_BIG_HEIGHT_NUM_OFS_X + ZKN_BIG_HEIGHT__M__OFS_X, ZKN_BIG_HEIGHT_TAKASA_Y, 0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 	MSGMAN_Delete(man);

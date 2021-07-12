@@ -110,7 +110,11 @@ enum{
 #define ZKN_ZUKANSUB_BUTTON_BACK_Y		( 76 )
 #define ZKN_ZUKANSUB_BUTTON_FONT_OFS_Y	( -6 )
 #define ZKN_ZUKANSUB_BUTTON_FONT_NEXT_OFS_X	( -32 )
-#define ZKN_ZUKANSUB_BUTTON_FONT_BACK_OFS_X	( -16 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// 「ＢＡＣＫ」を右寄せ
+#define ZKN_ZUKANSUB_BUTTON_FONT_BACK_OFS_X	( 32 )
+// ----------------------------------------------------------------------------
 #define ZKN_ZUKANSUB_BUTTON_ANM_SEQ		( 0 )
 #define ZKN_ZUKANSUB_BUTTONFONT_BMP_SIZE_CX	( 8 )
 #define ZKN_ZUKANSUB_BUTTONFONT_BMP_SIZE_CY	( 4 )
@@ -143,6 +147,68 @@ enum{
 	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_NEXT_ICON,
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+// 言語バージョンによって、外国語ずかんボタンの並びを自動ソートするように変更
+
+#define ZKN_ZUKANSUB_BUTTON_WORLD_NUM	(ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_04-ZKN_ZUKANSUB_BUTTON_MY_COUNTRY+1)
+
+static u32 const ZukanSub_WorldButtonX[ZKN_ZUKANSUB_BUTTON_WORLD_NUM] = {
+	ZKN_ZUKANSUB_BUTTON_MY_C_X  << FX32_SHIFT,
+	ZKN_ZUKANSUB_BUTTON_O_C00_X << FX32_SHIFT,
+	ZKN_ZUKANSUB_BUTTON_O_C01_X << FX32_SHIFT,
+	ZKN_ZUKANSUB_BUTTON_O_C02_X << FX32_SHIFT,
+	ZKN_ZUKANSUB_BUTTON_O_C03_X << FX32_SHIFT,
+	ZKN_ZUKANSUB_BUTTON_O_C04_X << FX32_SHIFT
+};
+
+static u32 const ZukanSub_WorldButtonSeq[ZKN_ZUKANSUB_BUTTON_WORLD_NUM] = {
+#if (PM_LANG == LANG_JAPAN)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+#elif (PM_LANG == LANG_ENGLISH)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+#elif (PM_LANG == LANG_FRANCE)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+#elif (PM_LANG == LANG_GERMANY)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+#elif (PM_LANG == LANG_ITALY)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+#elif (PM_LANG == LANG_SPAIN)
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF,
+	ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF,
+#endif
+};
+
+// ----------------------------------------------------------------------------
 
 #define ZKN_ZUKANSUB_BUTTON_PAL_OFS		( 4 )
 #define ZKN_ZUKANSUB_BUTTON_PAL_OFS_ON		( 1 )
@@ -1544,47 +1610,19 @@ static void ZknZukanSubAddClact( ZKN_ZUKAN_SUB_DRAW* p_draw, ZKN_ZUKAN_SUB_DRAWG
 	// 登録共通部分を設定
 	add.ClActHeader = &clact_head;
 
-	// 自国図鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_MY_C_X << FX32_SHIFT;
-	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
-	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_MY_COUNTRY ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_MY_COUNTRY ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_JPN_OFF );	
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 言語バージョンによって、外国語ずかんボタンの並びを自動ソートするように変更
 
-	// 外国語00鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_O_C00_X << FX32_SHIFT;
 	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
 	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_00 ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_00 ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_E_OFF );	
+	for (i = 0; i < ZKN_ZUKANSUB_BUTTON_WORLD_NUM; ++i) {
+		add.mat.x = ZukanSub_WorldButtonX[i];
+		p_draw->button[i+ZKN_ZUKANSUB_BUTTON_MY_COUNTRY] = CLACT_AddSimple(&add);
+		CLACT_AnmChg(p_draw->button[i+ZKN_ZUKANSUB_BUTTON_MY_COUNTRY], ZukanSub_WorldButtonSeq[i]);
+	}
 
-	// 外国語01鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_O_C01_X << FX32_SHIFT;
-	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
-	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_01 ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_01 ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_FRA_OFF );	
-
-	// 外国語02鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_O_C02_X << FX32_SHIFT;
-	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
-	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_02 ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_02 ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_GER_OFF );	
-
-	// 外国語03鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_O_C03_X << FX32_SHIFT;
-	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
-	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_03 ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_03 ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_ITA_OFF );	
-
-	// 外国語04鑑開くようアクター
-	add.mat.x = ZKN_ZUKANSUB_BUTTON_O_C04_X << FX32_SHIFT;
-	add.mat.y = ZKN_ZUKANSUB_BUTTON_DEF_Y << FX32_SHIFT;
-	add.mat.y += SUB_SURFACE_Y;
-	p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_04 ] = CLACT_AddSimple( &add );
-	CLACT_AnmChg( p_draw->button[ ZKN_ZUKANSUB_BUTTON_OUT_COUNTRY_04 ], ZKN_ZUKANSUB_BUTTON_WORLD_SEQ_SPA_OFF );	
+	// ----------------------------------------------------------------------------
 
 	add.pri = ZKN_ZUKAN_SUB_OAM_SF_PRI - 1;
 	
@@ -1695,11 +1733,17 @@ static void ZknZukanSubAddFontOam( ZKN_ZUKAN_SUB_DRAW* p_draw, ZKN_ZUKAN_SUB_DRA
 			ZKN_ZUKANSUB_BUTTONFONT_BMP_SIZE_CY );
 
 	// せつめい
-	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_ZUKAN_BUTTON_01, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+	// 「ＢＡＣＫ」を右寄せ
+	{
+		u32 width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+						NARC_msg_zkn_dat, ZNK_ZUKAN_BUTTON_01, 0, 0 );
+		fontoam_init.x		= ZKN_ZUKANSUB_BUTTON_FONT_BACK_OFS_X - width;
+	}
 	fontoam_init.p_bmp		 = win;
 	fontoam_init.parent = p_draw->button[ ZKN_ZUKANSUB_BUTTON_BACK ];
-	fontoam_init.x		= ZKN_ZUKANSUB_BUTTON_FONT_BACK_OFS_X;
+	// ----------------------------------------------------------------------------
 	p_draw->p_button_font[ ZKN_ZUKANSUB_BUTTON_BACK ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_button_font[ ZKN_ZUKANSUB_BUTTON_BACK ]->p_fontoam, pltt_ofs + ZKN_ZUKANSUB_BUTTON_PAL_OFS );
 
@@ -2245,7 +2289,11 @@ static void ZknZUkanSubWorldTextButtonAnm( CLACT_WORK_PTR act, int button_event,
 	GF_ASSERT( (world >= ZKN_ZUKANSUB_BUTTON_MY_COUNTRY) && (world < ZKN_ZUKANSUB_BUTTON_NUM) );
 
 	// worldからアニメシーケンスナンバー取得
-	anm_seq = (world - ZKN_ZUKANSUB_BUTTON_MY_COUNTRY) * 2;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/05
+	// 言語バージョンによって、外国語ずかんボタンの並びを自動ソートするように変更
+	anm_seq = ZukanSub_WorldButtonSeq[world - ZKN_ZUKANSUB_BUTTON_MY_COUNTRY];
+	// ----------------------------------------------------------------------------
 	
 	if( button_event == BMN_EVENT_RELEASE ){
 		

@@ -131,11 +131,18 @@ enum{
 #define ZKN_RANGE_DAN_HIN_DRAW_OFS_X	( 0 ) 
 #define ZKN_RANGE_DAN_HIN_DRAW_OFS_Y	( -18 )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+// 「あさ」、「ひる」、「よる」を自動でセンタリングするように変更
+
 // あさ　ひる　よる
-#define ZKN_RANGE_TYPE_OAM_X	( 32 )
+#define ZKN_RANGE_TYPE_OAM_X	( 8 )
 #define ZKN_RANGE_TYPE_OAM_Y	( 32 )
 #define ZKN_RANGE_TYPE_FONTOAM_BMP_SIZX	( 9 )
 #define ZKN_RANGE_TYPE_FONTOAM_BMP_SIZY	( 2 )
+#define ZKN_RANGE_TYPE_OAM_SIZX	( ZKN_RANGE_TYPE_FONTOAM_BMP_SIZX * 8 )
+
+// ----------------------------------------------------------------------------
 
 
 // フェード用
@@ -1375,6 +1382,12 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
 	int pltt_ofs;	// パレットアドレス
 	int i;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「あさ」、「ひる」、「よる」、「せいそくちふめい」を
+	// 自動でセンタリングするように変更
+	u32 pixel_width;
+	// ----------------------------------------------------------------------------
 
 	// 先にCLACTを登録してある必要がある
 	GF_ASSERT( p_draw->range_none );
@@ -1402,12 +1415,16 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 			ZKN_RANGE_NONE_FONTOAM_BMP_SIZY );
 
 	// 分布ふてい
-	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_RANGE_00, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「せいそくちふめい」を自動でセンタリングするように変更
+	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+					NARC_msg_zkn_dat, ZNK_RANGE_00, 0, 0 );
 	fontoam_init.p_bmp		 = win;
 	fontoam_init.parent		 = p_draw->range_none;
-	fontoam_init.x			 = ZKN_RANGE_NONE_FONTOAM_OFS_X;
+	fontoam_init.x			 = -(pixel_width / 2);
 	fontoam_init.y			 = ZKN_RANGE_NONE_FONTOAM_OFS_Y;
+	// ----------------------------------------------------------------------------
 	p_draw->range_none_font  = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->range_none_font->p_fontoam, pltt_ofs + ZKN_RANGE_FONTOAM_PAL_OFS );
 
@@ -1422,12 +1439,16 @@ static void ZknRangeFontOamInit( ZKN_RANGE_DRAW* p_draw, ZKN_RANGE_DRAWGLB* p_dr
 				ZKN_RANGE_TYPE_FONTOAM_BMP_SIZY );
 
 		// あさ
-		ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-				NARC_msg_zkn_dat, ZNK_RANGE_01 + i, 0, 0 );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+		// 「あさ」、「ひる」、「よる」を自動でセンタリングするように変更
+		pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+						NARC_msg_zkn_dat, ZNK_RANGE_01 + i, 0, 0 );
 		fontoam_init.p_bmp		 = win;
 		fontoam_init.parent		 = NULL;
-		fontoam_init.x			 = ZKN_RANGE_TYPE_OAM_X;
+		fontoam_init.x			 = ZKN_RANGE_TYPE_OAM_X + (ZKN_RANGE_TYPE_OAM_SIZX - pixel_width) / 2;
 		fontoam_init.y			 = ZKN_RANGE_TYPE_OAM_Y;
+		// ----------------------------------------------------------------------------
 		p_draw->range_mode_font[i]  = ZKN_FONTOAM_Make( &fontoam_init );
 		FONTOAM_SetPaletteNo( p_draw->range_mode_font[i]->p_fontoam, pltt_ofs + ZKN_RANGE_FONTOAM_PAL_OFS );
 

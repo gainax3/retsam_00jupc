@@ -1279,6 +1279,11 @@ static void ZknGraphicSubAddFontOam( ZKN_GRAPHIC_SUB_DRAW* p_draw, ZKN_GRAPHIC_S
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
 	int pltt_ofs;	// パレットアドレス
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「べつのすがたをみる」を自動でセンタリングするように変更
+	u32 pixel_width;
+	// ----------------------------------------------------------------------------
 
 	// 先にCLACTを登録してある必要がある
 	GF_ASSERT( p_draw->button[ ZKN_GRAPHICSUB_BUTTON_GRAPHIC ] );
@@ -1291,7 +1296,12 @@ static void ZknGraphicSubAddFontOam( ZKN_GRAPHIC_SUB_DRAW* p_draw, ZKN_GRAPHIC_S
 	// 共通データ代入
 	fontoam_init.zkn_fontoam = p_glb_draw->fontoam_sys;
 	fontoam_init.pltt		 = CLACT_U_PlttManagerGetProxy( res_obj, NULL );
-	fontoam_init.x			 = ZKN_GRAPHICSUB_BUTTON_FONT_OFS_X;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「べつのすがたをみる」を自動でセンタリングするように変更
+    // MatchComment: show removed code
+	//fontoam_init.x			 = ZKN_GRAPHICSUB_BUTTON_FONT_OFS_X;
+	// ----------------------------------------------------------------------------
 	fontoam_init.y			 = ZKN_GRAPHICSUB_BUTTON_FONT_OFS_Y;
 	fontoam_init.bg_pri		 = ZKN_GRAPHIC_SUB_OAM_BG_PTR;
 	fontoam_init.soft_pri	 = 0;
@@ -1307,8 +1317,13 @@ static void ZknGraphicSubAddFontOam( ZKN_GRAPHIC_SUB_DRAW* p_draw, ZKN_GRAPHIC_S
 			ZKN_GRAPHICSUB_BUTTONFONT_BMP_SIZE_CY );
 
 	// すがた
-	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SHAPE_00, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「べつのすがたをみる」を自動でセンタリングするように変更
+	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+					NARC_msg_zkn_dat, ZNK_SHAPE_00, 0, 0 );
+	fontoam_init.x			 = -(pixel_width / 2);
+	// ----------------------------------------------------------------------------
 	fontoam_init.p_bmp		 = win;
 	fontoam_init.parent = p_draw->button[ ZKN_GRAPHICSUB_BUTTON_GRAPHIC ];
 	p_draw->p_button_font[ ZKN_GRAPHICSUB_BUTTON_GRAPHIC ] = ZKN_FONTOAM_Make( &fontoam_init );

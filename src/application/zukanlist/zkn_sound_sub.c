@@ -226,13 +226,19 @@ enum{
 #define ZKN_SOUNDSUB_DISK_PAN_MAX	( 127 )
 #define ZKN_SOUNDSUB_DISK_PITCH_PAN_PL	( 7 )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+// 「コーラス」、「パン」を自動でセンタリングするように変更
+// ついでに、縦方向も枠の中心になるように調整
+
 // ピッチパン文字列
 #define ZKN_SOUNDSUB_BUTTONFONT_BMP_SIZE_CX	( 8 )
 #define ZKN_SOUNDSUB_BUTTONFONT_BMP_SIZE_CY	( 2 )
-#define ZKN_SOUNDSUB_PITCH_FOTN_X		( 40 )
-#define ZKN_SOUNDSUB_PAN_FOTN_X			( 50 )
-#define ZKN_SOUNDSUB_PITCH_PAN_FOTN_Y	( 86 )
+#define ZKN_SOUNDSUB_PITCH_PAN_FOTN_X		( 64 )
+#define ZKN_SOUNDSUB_PITCH_PAN_FOTN_Y		( 84 )
 #define ZKN_SOUNDSUB_BUTTON_PAL_OFS	(0)
+
+// ----------------------------------------------------------------------------
 
 #define ZKN_SOUNDSUB_FADE_PLANEMSK	( GX_BLEND_PLANEMASK_BG2|GX_BLEND_PLANEMASK_BG3|GX_BLEND_PLANEMASK_BD )
 
@@ -1997,6 +2003,11 @@ static void ZknSoundSubAddFontOam( ZKN_SOUND_SUB_DRAW* p_draw, ZKN_SOUND_SUB_DRA
 	CLACT_U_RES_OBJ_PTR res_obj;
 	ZKN_GLB_DRAWDATA* p_glb_draw = p_drawglb->p_drawglb;
 	int pltt_ofs;	// パレットアドレス
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「コーラス」、「パン」を自動でセンタリングするように変更
+	u32 pixel_width;
+	// ----------------------------------------------------------------------------
 
 	// パレットのリソースデータ取得
 	// パレットプロクシ取得用
@@ -2023,9 +2034,13 @@ static void ZknSoundSubAddFontOam( ZKN_SOUND_SUB_DRAW* p_draw, ZKN_SOUND_SUB_DRA
 
 
 	// ピッチ
-	fontoam_init.x			 = ZKN_SOUNDSUB_PITCH_FOTN_X;
-	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SOUND_BUTTON_00, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「コーラス」を自動でセンタリングするように変更
+	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+					NARC_msg_zkn_dat, ZNK_SOUND_BUTTON_00, 0, 0 );
+	fontoam_init.x = ZKN_SOUNDSUB_PITCH_PAN_FOTN_X - pixel_width / 2;
+	// ----------------------------------------------------------------------------
 	fontoam_init.p_bmp		 = win;
 	p_draw->p_fontoam[ ZKN_SOUNDSUB_SEQ_SWITCH_PICH ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SOUNDSUB_SEQ_SWITCH_PICH ]->p_fontoam, pltt_ofs + ZKN_SOUNDSUB_BUTTON_PAL_OFS );
@@ -2041,9 +2056,13 @@ static void ZknSoundSubAddFontOam( ZKN_SOUND_SUB_DRAW* p_draw, ZKN_SOUND_SUB_DRA
 
 
 	// パン
-	fontoam_init.x			 = ZKN_SOUNDSUB_PAN_FOTN_X;
-	ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
-			NARC_msg_zkn_dat, ZNK_SOUND_BUTTON_01, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/15
+	// 「パン」を自動でセンタリングするように変更
+	pixel_width = ZKN_FONTOAM_PrintBmpStr( p_glb_draw->fontoam_sys, win,
+					NARC_msg_zkn_dat, ZNK_SOUND_BUTTON_01, 0, 0 );
+	fontoam_init.x = ZKN_SOUNDSUB_PITCH_PAN_FOTN_X - pixel_width / 2;
+	// ----------------------------------------------------------------------------
 	fontoam_init.p_bmp		 = win;
 	p_draw->p_fontoam[ ZKN_SOUNDSUB_SEQ_SWITCH_PAN ] = ZKN_FONTOAM_Make( &fontoam_init );
 	FONTOAM_SetPaletteNo( p_draw->p_fontoam[ ZKN_SOUNDSUB_SEQ_SWITCH_PAN ]->p_fontoam, pltt_ofs + ZKN_SOUNDSUB_BUTTON_PAL_OFS );

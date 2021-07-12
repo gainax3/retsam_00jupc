@@ -84,12 +84,19 @@ GLOBAL GF_BGL_BMPWIN* ZknZukanPokeTypeTextBmpMake( ZKN_FONTOAM_SYS_PTR p_fontoam
 GLOBAL int ZknZukanClactTypeNoChg( int type );
 GLOBAL void ZknZukanSetUpFontBg_Minute( GF_BGL_BMPWIN* p_bmp, int monsno, int heap, int page, u32 color_msk );
 
-// ～ポケモン座標
-#define ZKN_ZUKAN_POKETYPE_TEXT_FONT_OFS_X	( -58 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+// 「?ポケモン」表示が入りきらなかったのを修正
+
+// ?ポケモン座標
+#define ZKN_ZUKAN_POKETYPE_TEXT_FONT_OFS_X	( -78 )
 #define ZKN_ZUKAN_POKETYPE_TEXT_FONT_OFS_Y	( -8 )
-#define ZKN_ZUKAN_POKETYPE_TEXT_BMP_SCX	( 16 )
+#define ZKN_ZUKAN_POKETYPE_TEXT_BMP_SCX	( 18 )
 #define ZKN_ZUKAN_POKETYPE_TEXT_BMP_SCY	( 2 )
 #define ZKN_ZUKAN_POKETYPE_TEXT_TBL_SEQ	( 0x11 )
+#define ZKN_ZUKAN_POKETYPE_TEXT_WIDTH_MAX	( 136 )
+
+// ----------------------------------------------------------------------------
 
 // タイプアニメシーケンス
 enum{

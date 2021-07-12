@@ -93,10 +93,24 @@ enum{
 #define ZKN_ZUKAN_FONT_HEIGHTGRAM_X	( 152 )
 #define ZKN_ZUKAN_FONT_HEIGHT_Y	( 88 )
 #define ZKN_ZUKAN_FONT_GRAM_Y	( 104 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/11/29
+// たかさ・おもさの値の表示位置を調整（英語だけ単位系が違う）
+#if (PM_LANG == LANG_ENGLISH)
+#define ZKN_ZUKAN_FONT_HEIGHTGRAM_TEXT_X	( 184 )
+#else
 #define ZKN_ZUKAN_FONT_HEIGHTGRAM_TEXT_X	( 192 )
+#endif
+// ----------------------------------------------------------------------------
 
-#define ZKN_ZUKAN_FONT_COMMENT_X	( 42 )
-#define ZKN_ZUKAN_FONT_COMMENT_Y	( 136 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/27
+// 表示領域拡大に伴い、ずかんのテキストを最長行にあわせてセンタリング
+#define ZKN_ZUKAN_FONT_COMMENT_X			(   8 )
+#define ZKN_ZUKAN_FONT_COMMENT_X_CENTER		( 128 )
+#define ZKN_ZUKAN_FONT_COMMENT_X_WIDTH		( 240 )
+#define ZKN_ZUKAN_FONT_COMMENT_Y			( 136 )
+// ----------------------------------------------------------------------------
 
 //-------------------------------------
 //	描画初期化シーケンス
@@ -1178,8 +1192,17 @@ static void ZknZukanFontSetUpGram( GF_BGL_BMPWIN* p_bmp, int heap, int mons_no, 
 static void ZknZukanFontSetUpText( GF_BGL_BMPWIN* p_bmp, int heap, int mons_no, int page, u32 color_msk )
 {
 	STRBUF* str = ZKN_WT_GetText( mons_no, PM_LANG, page, heap);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/27
+	// 表示領域拡大に伴い、ずかんのテキストを最長行にあわせてセンタリング
+	u32 maxlen = FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0);
+	u32 xofs = maxlen < ZKN_ZUKAN_FONT_COMMENT_X_WIDTH
+	         ? ZKN_ZUKAN_FONT_COMMENT_X_CENTER - maxlen / 2
+	         : ZKN_ZUKAN_FONT_COMMENT_X;
+
 	// ポケモンのメッセージ
-	GF_STR_PrintColor( p_bmp, FONT_SYSTEM, str, ZKN_ZUKAN_FONT_COMMENT_X, ZKN_ZUKAN_FONT_COMMENT_Y, 0, color_msk, NULL );
+	GF_STR_PrintColor( p_bmp, FONT_SYSTEM, str, xofs, ZKN_ZUKAN_FONT_COMMENT_Y, 0, color_msk, NULL );
+	// ----------------------------------------------------------------------------
 
 	// 破棄
 	ZKN_WT_DeleteStrBuf( str );
@@ -1837,8 +1860,15 @@ GF_BGL_BMPWIN* ZknZukanPokeTypeTextBmpMake( ZKN_FONTOAM_SYS_PTR p_fontoamsys, in
 
 	// ～ポケモン文字列取得
 	str = ZKN_WT_GetPokeType( mons_no, PM_LANG, heap );
-	ZKN_FONTOAM_PrintBmpStrBuf( p_fontoamsys,
-			p_bmp, str, 0, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/11/20
+	// 「?ポケモン」表示をセンタリング
+	{
+		u32 width = FontProc_GetPrintStrWidth( FONT_BUTTON, str, 0);
+		u32 x = width < ZKN_ZUKAN_POKETYPE_TEXT_WIDTH_MAX ? (ZKN_ZUKAN_POKETYPE_TEXT_WIDTH_MAX - width) / 2 : 0;
+		ZKN_FONTOAM_PrintBmpStrBuf( p_fontoamsys, p_bmp, str, x, 0 );
+	}
+	// ----------------------------------------------------------------------------
 	ZKN_WT_DeleteStrBuf( str );
 
 	return p_bmp;
