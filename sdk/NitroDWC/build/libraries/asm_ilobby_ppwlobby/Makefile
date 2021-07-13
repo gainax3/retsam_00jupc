@@ -1,6 +1,6 @@
 #! make -f
 #----------------------------------------------------------------------------
-# Project:  NitroDWC - libraries
+# Project:  NitroDWC - base - libraries
 # File:     Makefile
 #
 # Copyright 2005 Nintendo.  All rights reserved.
@@ -11,19 +11,44 @@
 # not be disclosed to third parties or copied or duplicated in any form,
 # in whole or in part, without the prior written consent of Nintendo.
 #
+# $Log: Makefile,v $
+#
+# $NoKeywords: $
+#----------------------------------------------------------------------------
+
+SUBDIRS		=
+
+#----------------------------------------------------------------------------
+
+SRCS  = 
+
+ifndef NITRODWC_NOGS
+SRCS += ov66.s
+endif
+
+NITRODWC_LIB_MODULES_   = ilobby_ppwlobby
+
+TARGET_LIB	=	libdwcilobby_ppwlobby.a
+
+CCFLAGS_MSGSTYLE = -msgstyle gcc
+
 #----------------------------------------------------------------------------
 
 include	$(NITRODWC_ROOT)/build/buildtools/commondefs
 
+CXXFLAGS		+=	-RTTI off
+INSTALL_TARGETS	=	$(TARGETS)
+INSTALL_DIR		=	$(NITRODWC_INSTALL_LIBDIR)
+
+# ilobbyの共通ヘッダ、ユーティリティをインクルード
+LINCLUDES += $(NITRODWC_ROOT)/build/libraries/ilobby/include
+
 #----------------------------------------------------------------------------
 
-SUBDIRS	=	base account asm_ilobby_ppwlobby
-
--include @privates
--include @addencdir
-
-#----------------------------------------------------------------------------
+do-build:		$(TARGETS)
 
 include	$(NITRODWC_ROOT)/build/buildtools/modulerules
+
+#----------------------------------------------------------------------------
 
 #===== End of Makefile =====

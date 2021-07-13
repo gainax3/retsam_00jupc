@@ -378,6 +378,8 @@ DWCi_LOBBY_RESULT   DWCi_LobbySetChannelTopic(const char* channelName, const cha
 // チャンネルパスワードをセットする。
 DWCi_LOBBY_RESULT DWCi_LobbySetChannelPassword(const char* channelName, BOOL enable, const char* password);
 
+extern void ov66_2244758(void);
+
 #ifdef WIN32
 #pragma pack(pop)
 #endif

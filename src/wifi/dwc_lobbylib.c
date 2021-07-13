@@ -785,8 +785,8 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 	return DWC_LOBBY_CheckCommonErr( result );
 }
 #else
-const u8 rodata_DWC_LOBBY_GAMENAME[] = DWC_LOBBY_GAMENAME;
-const u8 rodata_DWC_LOBBY_SECRET_KEY[] = DWC_LOBBY_SECRET_KEY;
+u8 rodata_DWC_LOBBY_GAMENAME[] = DWC_LOBBY_GAMENAME;
+u8 rodata_DWC_LOBBY_SECRET_KEY[] = DWC_LOBBY_SECRET_KEY;
 
 asm BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 {
