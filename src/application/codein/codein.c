@@ -277,22 +277,20 @@ CODEIN_PARAM* CodeInput_ParamCreate( int heap_id, int word_len, int block[], CON
 	return wk;	
 }
 
-void sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 );
-
-void sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 )
+CODEIN_PARAM* sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 )
 {
     CODEIN_PARAM * wk = CodeInput_ParamCreate(heap_id, word_len, block, cfg, a4, a5);
     wk->unk24 = 0;
     wk->unk28 = 0;
+    return wk;
 }
 
-void sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 );
-
-void sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 )
+CODEIN_PARAM* sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 )
 {
     CODEIN_PARAM * wk = CodeInput_ParamCreate(heap_id, word_len, block, cfg, a4, a5);
     wk->unk24 = a6;
     wk->unk28 = a7;
+    return wk;
 }
 
 //--------------------------------------------------------------

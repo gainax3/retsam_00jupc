@@ -1269,6 +1269,30 @@ s32 PPW_LobbyToErrorCode(PPW_LOBBY_ERROR err)
     }
 }
 
+// ??????
+asm PPW_LOBBY_ERROR ov66_2237134(void)
+{
+	cmp r0, #0
+	beq _02237150
+	cmp r0, #1
+	beq _02237158
+	cmp r0, #2
+	beq _02237160
+	b _02237168
+_02237150:
+	mov r0, #0
+	bx lr
+_02237158:
+	mov r0, #2
+	bx lr
+_02237160:
+	mov r0, #3
+	bx lr
+_02237168:
+	mov r0, #1
+	bx lr    
+}
+
 /**
  * @brief FriendsMatch中に、指定したプレイヤーと接続しているかを調べます。
  * 

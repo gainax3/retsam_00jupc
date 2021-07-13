@@ -2038,8 +2038,12 @@ static void BoxShot_BoxWinAdd( BR_WORK* wk )
 		
 		str1 = MSGMAN_AllocString( wk->sys.man, msg_429 );
 		
-		GF_STR_PrintColor( win, FONT_SYSTEM, str1, 0, 0, MSG_NO_PUT, PRINT_COL_BOX_SHOT, NULL );
-		
+        {
+            // MatchComment: localization change for new plat feature (inclusion of FontProc_GetPrintMaxLineWidth)
+            u32 width = (64 - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str1, 0)) / 2;
+            GF_STR_PrintColor( win, FONT_SYSTEM, str1, width, 0, MSG_NO_PUT, PRINT_COL_BOX_SHOT, NULL );
+		}
+
 		GF_BGL_BmpWinOnVReq( win );
 		
 		STRBUF_Delete( str1 );

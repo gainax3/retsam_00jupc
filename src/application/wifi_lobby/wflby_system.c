@@ -315,7 +315,7 @@ typedef struct {
 typedef struct {
 	s16 mg_lock_count;	// ミニゲームロック
 	u8	apl_force_end;	// アプリケーション強制終了
-	u8	pad[2];
+	//u8	pad[2]; // MatchComment: padding not needed?
 } WFLBY_SYSTEM_APLFLAG;
 
 //-------------------------------------
@@ -323,7 +323,7 @@ typedef struct {
 //=====================================
 typedef struct {
 	u8	rate[ WFLBY_ITEM_GROUPNUM ];	// ガジェットの選択RATE
-	u8	pad[3];
+	u8	pad[3]; // MatchComment: padding not needed?
 	u8	gadget_recv[ WFLBY_PLAYER_MAX ];// ガジェットを受信してレートに反映したのか
 } WFLBY_SYSTEM_GADGETRATE;
 
@@ -4930,14 +4930,15 @@ static void WFLBY_SYSTEM_EVENT_PlayBgm( const WFLBY_SYSTEM_EVENT* cp_wk,  u32 bg
 static void WFLBY_SYSTEM_EVENT_SetBgmVolume( const WFLBY_SYSTEM_EVENT* cp_wk )
 {
 	// フェードアウト中は何もしない
-	if( cp_wk->bgm_fadeout == FALSE ){
+	// MatchComment: remove outer if statement
+    //if( cp_wk->bgm_fadeout == FALSE ){
 		
-		if( cp_wk->bgm_vl_down == TRUE ){
-			Snd_PlayerSetPlayerVolume( PLAYER_BGM, BGM_VOL_HIROBA_APP );
-		}else{
-			Snd_PlayerSetPlayerVolume( PLAYER_BGM, BGM_VOL_MAX );
-		}
+	if( cp_wk->bgm_vl_down == TRUE ){
+		Snd_PlayerSetPlayerVolume( PLAYER_BGM, BGM_VOL_HIROBA_APP );
+	}else{
+		Snd_PlayerSetPlayerVolume( PLAYER_BGM, BGM_VOL_MAX );
 	}
+	//}
 }
 
 

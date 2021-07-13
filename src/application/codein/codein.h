@@ -45,6 +45,8 @@ extern const PROC_DATA CodeInput_ProcData;
 
 extern CODEIN_PARAM*	CodeInput_ParamCreate( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 );
 extern void				CodeInput_ParamDelete( CODEIN_PARAM* codein_param );
+extern CODEIN_PARAM* sub_2089400( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5 );
+extern CODEIN_PARAM* sub_208941C( int heap_id, int word_len, int block[], CONFIG* cfg, u32 a4, u32 a5, u32 a6, u32 a7 );
 
 
 //--------------------------------------------------------------
@@ -63,6 +65,7 @@ static inline void CodeIn_BlockDataMake_4_4_4( int block[] )
 	block[ 0 ] = 4;
 	block[ 1 ] = 4;
 	block[ 2 ] = 4;
+    block[ 3 ] = 0; // MatchComment: add this line
 #else
 	block[ 0 ] = 2;
 	block[ 1 ] = 5;

@@ -63,6 +63,9 @@
 #include "wifi_note_snd.h"
 #include "savedata/frontier_savedata.h"
 
+// MatchComment: new change in plat US
+#include "system/pmfprint.h"
+
 //-----------------------------------------------------------------------------
 /**
  *					コーディング規約
@@ -1933,6 +1936,11 @@ static void WFNOTE_DRAW_Init( WFNOTE_DRAW* p_draw, const WFNOTE_DATA* cp_data, u
 
 	// OAM面表示
     GF_Disp_GX_VisibleControl( GX_PLANEMASK_OBJ, VISIBLE_ON );
+
+    // MatchComment: new change in plat US
+    MsgPrintSkipFlagSet(MSG_SKIP_ON);
+    MsgPrintAutoFlagSet(MSG_AUTO_OFF);
+    MsgPrintTouchPanelFlagSet(MSG_TP_OFF);
 }
 
 //----------------------------------------------------------------------------
@@ -2455,7 +2463,8 @@ static BOOL WFNOTE_DRAW_FriendDaySetWordset( WFNOTE_DRAW* p_draw, SAVEDATA* p_sa
 	num = WifiList_GetFriendInfo( p_wifilist, idx, WIFILIST_FRIEND_LASTBT_YEAR);
 	WORDSET_RegisterNumber( p_draw->p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 	num = WifiList_GetFriendInfo( p_wifilist, idx, WIFILIST_FRIEND_LASTBT_MONTH);
-	WORDSET_RegisterNumber( p_draw->p_wordset, 1, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+    // MatchComment: new change in plat US
+    WORDSET_RegisterMonthName(p_draw->p_wordset, 1, num);
 
 	return ret;
 }
@@ -2800,6 +2809,7 @@ static void WFNOTE_MODESELECT_Exit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -2865,6 +2875,189 @@ static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_
 	p_wk->p_scrnbuff = ArcUtil_HDL_ScrnDataGet( p_draw->p_handle,
 			NARC_pl_wifinote_techo_01_NSCR, FALSE, &p_wk->p_scrn, heapID );
 }
+#else
+
+static const u8 sc_msgidx[ 4 ] = {	// msg_idx
+	msg_wifi_note_02,
+	msg_wifi_note_03,
+	msg_wifi_note_04,
+	msg_wifi_note_05,
+};
+static const u8 sc_pos[4][2] = {	// 座標
+	{ 40, 8 },
+	{ 32, 48 },
+	{ 28, 88 },
+	{ 80, 128 },
+};
+
+static const u8 sOv64_223241C[4] = {
+    0x8, 0x30, 0x58, 0x80
+};
+
+asm static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x30
+	str r0, [sp, #0x14]
+	add r0, r0, #4
+	add r5, r1, #0
+	str r2, [sp, #0x18]
+	str r3, [sp, #0x1c]
+	bl GF_BGL_BmpWinInit
+	mov r0, #4
+	str r0, [sp]
+	mov r0, #0x1a
+	str r0, [sp, #4]
+	mov r0, #0x14
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #1
+	str r0, [sp, #0x10]
+	ldr r0, [sp, #0x18]
+	ldr r1, [sp, #0x14]
+	mov r2, #3
+	ldr r0, [r0, #0]
+	add r1, r1, #4
+	add r3, r2, #0
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x14]
+	add r0, #0x1c
+	bl GF_BGL_BmpWinInit
+	mov r0, #0x13
+	str r0, [sp]
+	mov r0, #0x1b
+	str r0, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #0x70
+	str r0, [sp, #0x10]
+	ldr r0, [sp, #0x18]
+	ldr r1, [sp, #0x14]
+	ldr r0, [r0, #0]
+	add r1, #0x1c
+	mov r2, #1
+	mov r3, #2
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	add r0, r0, #4
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	add r0, #0x1c
+	bl GF_BGL_BmpWinDataFill
+	ldr r1, [sp, #0x1c]
+	mov r0, #0x80
+	bl STRBUF_Create
+	ldr r1, [sp, #0x14]
+	str r0, [r1, #0x38]
+	ldr r0, [r5, #0]
+	bl SaveData_GetConfig
+	bl CONFIG_GetMsgPrintSpeed
+	ldr r1, [sp, #0x14]
+	str r0, [r1, #0x34]
+	ldr r1, [sp, #0x1c]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r4, r0, #0
+	ldr r1, [sp, #0x1c]
+	mov r0, #0x80
+	bl STRBUF_Create
+	str r0, [sp, #0x24]
+	ldr r0, [r5, #0]
+	bl SaveData_GetMyStatus
+	add r2, r0, #0
+	mov r1, #0x62
+	ldr r0, [sp, #0x18]
+	lsl r1, r1, #2
+	ldr r0, [r0, r1]
+	mov r1, #0
+	bl WORDSET_RegisterPlayerName
+	mov r0, #0
+	str r0, [sp, #0x20]
+	ldr r0, =sc_msgidx // _0222EDF0
+	ldr r7, =sc_pos // _0222EDF4
+	ldr r5, =sOv64_223241C // _0222EDF8
+	str r0, [sp, #0x2c]
+_0222ED5A:
+	mov r0, #0x63
+	ldr r1, [sp, #0x18]
+	lsl r0, r0, #2
+	ldr r0, [r1, r0]
+	ldr r1, [sp, #0x2c]
+	ldr r2, [sp, #0x24]
+	ldrb r1, [r1]
+	bl MSGMAN_GetString
+	mov r0, #0x62
+	ldr r1, [sp, #0x18]
+	lsl r0, r0, #2
+	ldr r0, [r1, r0]
+	ldr r2, [sp, #0x24]
+	add r1, r4, #0
+	bl WORDSET_ExpandStr
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	mov r3, #0xd0
+	bl FontProc_GetPrintCenteredPositionX
+	mov ip, r0
+	ldr r0, [r7, #0]
+	mov r6, ip
+	str r0, [sp, #0x28]
+	ldrb r0, [r5]
+	ldr r3, [sp, #0x28]
+	mov r1, #0
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _0222EDFC
+	add r2, r4, #0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x14]
+	add r3, r3, r6
+	add r0, r0, #4
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x2c]
+	add r7, r7, #4
+	add r0, r0, #1
+	str r0, [sp, #0x2c]
+	ldr r0, [sp, #0x20]
+	add r5, r5, #1
+	add r0, r0, #1
+	str r0, [sp, #0x20]
+	cmp r0, #4
+	blt _0222ED5A
+	add r0, r4, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x24]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x1c]
+	mov r1, #0x19
+	str r0, [sp]
+	ldr r3, [sp, #0x14]
+	ldr r0, [sp, #0x18]
+	lsl r1, r1, #4
+	ldr r0, [r0, r1]
+	mov r1, #1
+	mov r2, #0
+	add r3, #0x18
+	bl ArcUtil_HDL_ScrnDataGet
+	ldr r1, [sp, #0x14]
+	str r0, [r1, #0x14]
+	add sp, #0x30
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _0222EDF0: .4byte sc_msgidx
+// _0222EDF4: .4byte sc_pos
+// _0222EDF8: .4byte sOv64_223241C
+// _0222EDFC: .4byte 0x00010200
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -3441,6 +3634,7 @@ static void WFNOTE_FRIENDLIST_Exit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	static const u16 sc_TEXTCGX[ WFNOTE_DRAWAREA_NUM ] = {
@@ -3530,6 +3724,245 @@ static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_
 	// とりあえず非表示
 	CLACT_SetDrawFlag( p_wk->p_clearact, FALSE );
 }
+#else
+static const u16 sc_TEXTCGX[ WFNOTE_DRAWAREA_NUM ] = {
+	WFNOTE_FRIENDLIST_TEXT_CGX0,
+	WFNOTE_FRIENDLIST_TEXT_CGX1,
+	WFNOTE_FRIENDLIST_TEXT_CGX1,
+};
+
+static const CLACT_ADD clearadd = {
+	NULL,
+	NULL,
+	{ 0,0,0 },	
+	{ FX32_ONE,FX32_ONE,FX32_ONE },	
+	0,
+	0,
+	NNS_G2D_VRAM_TYPE_2DMAIN,
+	0
+};
+
+asm static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x58
+	ldr r4, =clearadd // _0222F5E0
+	add r7, r2, #0
+	str r3, [sp, #0x18]
+	str r0, [sp, #0x14]
+	add r3, sp, #0x28
+	mov r2, #6
+_0222F424:
+	ldmia r4!, {r0, r1}
+	stmia r3!, {r0, r1}
+	sub r2, r2, #1
+	bne _0222F424
+	ldr r4, [sp, #0x14]
+	mov r0, #0
+	ldr r5, =sc_TEXTCGX // _0222F5E4
+	ldr r6, =sc_SCRNAREA // _0222F5E8
+	str r0, [sp, #0x24]
+	add r4, #8
+_0222F438:
+	ldr r0, [sp, #0x18]
+	add r1, r7, #0
+	str r0, [sp]
+	ldrh r3, [r5]
+	add r0, r4, #0
+	add r2, r6, #0
+	bl WFNOTE_FRIENDLIST_DRAWAREA_Init
+	ldr r0, [sp, #0x24]
+	add r5, r5, #2
+	add r0, r0, #1
+	add r6, r6, #6
+	add r4, #0x38
+	str r0, [sp, #0x24]
+	cmp r0, #3
+	blt _0222F438
+	ldr r0, [r7, #4]
+	ldr r3, [sp, #0x18]
+	mov r1, #0
+	mov r2, #0x10
+	bl WF_2DC_SysInit
+	ldr r1, [sp, #0x14]
+	ldr r3, [sp, #0x18]
+	add r1, #0xb4
+	str r0, [r1, #0]
+	ldr r0, [sp, #0x14]
+	mov r1, #1
+	add r0, #0xb4
+	ldr r0, [r0, #0]
+	mov r2, #2
+	bl WF_2DC_UnionResSet
+	ldr r0, [sp, #0x14]
+	add r0, #0xb8
+	bl GF_BGL_BmpWinInit
+	mov r0, #0x15
+	str r0, [sp]
+	mov r0, #8
+	str r0, [sp, #4]
+	mov r0, #3
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #0x70
+	ldr r1, [sp, #0x14]
+	str r0, [sp, #0x10]
+	ldr r0, [r7, #0]
+	add r1, #0xb8
+	mov r2, #1
+	mov r3, #0xd
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	add r0, #0xb8
+	bl GF_BGL_BmpWinDataFill
+	ldr r1, [sp, #0x18]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r4, r0, #0
+	mov r0, #0x63
+	lsl r0, r0, #2
+	ldr r0, [r7, r0]
+	mov r1, #7
+	add r2, r4, #0
+	bl MSGMAN_GetString
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	mov r3, #0x40
+	bl FontProc_GetPrintCenteredPositionX
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _0222F5EC
+	add r2, r4, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x14]
+	str r1, [sp, #0xc]
+	add r0, #0xb8
+	bl GF_STR_PrintColor
+	add r0, r4, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x14]
+	add r0, #0xe4
+	bl GF_BGL_BmpWinInit
+	mov r0, #9
+	str r0, [sp]
+	mov r0, #0xf
+	str r0, [sp, #4]
+	mov r0, #8
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #0x88
+	ldr r1, [sp, #0x14]
+	str r0, [sp, #0x10]
+	ldr r0, [r7, #0]
+	add r1, #0xe4
+	mov r2, #1
+	mov r3, #0x10
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x14]
+	mov r1, #0
+	add r0, #0xe4
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0
+	str r0, [sp, #0x1c]
+	ldr r0, =sc_WFNOTE_FRIENDLIST_MENU // _0222F5F0
+	ldr r6, [sp, #0x14]
+	str r0, [sp, #0x20]
+_0222F530:
+	ldr r1, [sp, #0x18]
+	mov r0, #4
+	bl BMP_MENULIST_Create
+	add r1, r6, #0
+	add r1, #0xf4
+	ldr r5, [sp, #0x20]
+	str r0, [r1, #0]
+	mov r4, #0
+_0222F542:
+	add r0, r6, #0
+	mov r1, #0x63
+	add r0, #0xf4
+	lsl r1, r1, #2
+	ldr r0, [r0, #0]
+	ldr r1, [r7, r1]
+	ldr r2, [r5, #0]
+	ldr r3, [r5, #4]
+	bl BMP_MENULIST_AddArchiveString
+	add r4, r4, #1
+	add r5, #8
+	cmp r4, #4
+	blt _0222F542
+	ldr r0, [sp, #0x20]
+	add r6, r6, #4
+	add r0, #0x20
+	str r0, [sp, #0x20]
+	ldr r0, [sp, #0x1c]
+	add r0, r0, #1
+	str r0, [sp, #0x1c]
+	cmp r0, #2
+	blt _0222F530
+	ldr r0, [sp, #0x14]
+	add r0, #0xc8
+	bl GF_BGL_BmpWinInit
+	mov r0, #0x13
+	str r0, [sp]
+	mov r0, #0x1b
+	str r0, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	add r0, #0xf9
+	ldr r1, [sp, #0x14]
+	str r0, [sp, #0x10]
+	ldr r0, [r7, #0]
+	add r1, #0xc8
+	mov r2, #1
+	mov r3, #2
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x14]
+	mov r1, #0xf
+	add r0, #0xc8
+	bl GF_BGL_BmpWinDataFill
+	ldr r1, [sp, #0x18]
+	mov r0, #0x80
+	bl STRBUF_Create
+	ldr r1, [sp, #0x14]
+	add r1, #0xd8
+	str r0, [r1, #0]
+	ldr r0, [r7, #4]
+	str r0, [sp, #0x28]
+	mov r0, #0x1b
+	lsl r0, r0, #4
+	add r0, r7, r0
+	str r0, [sp, #0x2c]
+	ldr r0, [sp, #0x18]
+	str r0, [sp, #0x54]
+	add r0, sp, #0x28
+	bl CLACT_Add
+	mov r2, #0x42
+	ldr r1, [sp, #0x14]
+	lsl r2, r2, #2
+	str r0, [r1, r2]
+	add r0, r1, #0
+	ldr r0, [r0, r2]
+	mov r1, #0
+	bl CLACT_SetDrawFlag
+	add sp, #0x58
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _0222F5E0: .4byte clearadd
+// _0222F5E4: .4byte sc_TEXTCGX
+// _0222F5E8: .4byte sc_SCRNAREA
+// _0222F5EC: .4byte 0x00010200
+// _0222F5F0: .4byte sc_WFNOTE_FRIENDLIST_MENU
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -4763,8 +5196,8 @@ static WFNOTE_STRET WFNOTE_CODEIN_Main( WFNOTE_CODEIN* p_wk, WFNOTE_WK* p_sys, W
 		// 名前入力、コード入力パラメータ作成
 		p_wk->p_namein = WFNOTE_CODEIN_NameInParamMake( p_wk, p_data, heapID );
 		CodeIn_BlockDataMake_4_4_4( block );
-		p_wk->p_codein = CodeInput_ParamCreate( heapID, FRIENDCODE_MAXLEN, 
-				block, SaveData_GetConfig(p_data->p_save), 0xBEAD1337, 0xFADEC0CC ); 
+        // MatchComment: use sub_2089400 instead of CodeInput_ParamCreate
+        p_wk->p_codein = sub_2089400( heapID, FRIENDCODE_MAXLEN, block, SaveData_GetConfig(p_data->p_save), 0, 0 );
 
 		WFNOTE_DrawExit( p_sys );	// 画面ワーク全破棄
         p_wk->p_subproc = PROC_Create( &NameInProcData, p_wk->p_namein, heapID );
@@ -5010,6 +5443,7 @@ static void WFNOTE_MYCODE_Exit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	u64 code;
@@ -5074,6 +5508,182 @@ static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WF
 	p_wk->p_scrnbuff = ArcUtil_HDL_ScrnDataGet( p_draw->p_handle,
 			NARC_pl_wifinote_techo_04_NSCR, FALSE, &p_wk->p_scrn, heapID );
 }
+#else
+asm static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r0, #0
+	str r1, [sp, #0x14]
+	add r4, r2, #0
+	add r7, r3, #0
+	bl GF_BGL_BmpWinInit
+	mov r0, #0xd
+	str r0, [sp]
+	mov r0, #0x17
+	str r0, [sp, #4]
+	mov r0, #8
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #1
+	str r0, [sp, #0x10]
+	ldr r0, [r4, #0]
+	add r1, r5, #0
+	mov r2, #3
+	mov r3, #5
+	bl GF_BGL_BmpWinAdd
+	add r0, r5, #0
+	add r0, #0x10
+	bl GF_BGL_BmpWinInit
+	mov r0, #8
+	str r0, [sp]
+	mov r0, #0xf
+	str r0, [sp, #4]
+	mov r0, #2
+	str r0, [sp, #8]
+	mov r0, #7
+	str r0, [sp, #0xc]
+	mov r0, #0xb9
+	str r0, [sp, #0x10]
+	add r1, r5, #0
+	ldr r0, [r4, #0]
+	add r1, #0x10
+	mov r2, #3
+	mov r3, #9
+	bl GF_BGL_BmpWinAdd
+	add r0, r5, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r0, #0x10
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0x80
+	add r1, r7, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	mov r0, #0x80
+	add r1, r7, #0
+	bl STRBUF_Create
+	str r0, [sp, #0x20]
+	ldr r0, [sp, #0x14]
+	ldr r0, [r0, #0]
+	bl SaveData_GetWifiListData
+	bl WifiList_GetMyUserInfo
+	bl DWC_CreateFriendKey
+	str r1, [sp, #0x1c]
+	str r0, [sp, #0x24]
+	ldr r0, [sp, #0x1c]
+	mov r2, #0
+	eor r0, r2
+	ldr r2, [sp, #0x24]
+	mov r1, #0
+	eor r1, r2
+	orr r0, r1
+	beq _022307A6
+	mov r0, #0x63
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x2f
+	add r2, r6, #0
+	bl MSGMAN_GetString
+	mov r0, #0
+	add r1, r6, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintMaxLineWidth
+	mov r1, #0xb8
+	sub r0, r1, r0
+	mov r1, #0
+	lsr r3, r0, #1
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _02230800
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r1, [sp, #0x24]
+	ldr r2, [sp, #0x1c]
+	add r0, r4, #0
+	bl WFNOTE_DRAW_FriendCodeSetWordset
+	mov r0, #0x63
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	ldr r2, [sp, #0x20]
+	mov r1, #0x33
+	bl MSGMAN_GetString
+	mov r0, #0x62
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	ldr r2, [sp, #0x20]
+	add r1, r6, #0
+	bl WORDSET_ExpandStr
+	mov r0, #0
+	add r1, r6, #0
+	add r2, r0, #0
+	mov r3, #0x78
+	bl FontProc_GetPrintCenteredPositionX
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _02230800
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	add r0, #0x10
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	b _022307DA
+_022307A6:
+	mov r0, #0x63
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	mov r1, #0x30
+	add r2, r6, #0
+	bl MSGMAN_GetString
+	mov r0, #0
+	add r1, r6, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintMaxLineWidth
+	mov r1, #0xb8
+	sub r0, r1, r0
+	mov r1, #0
+	lsr r3, r0, #1
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _02230800
+	add r2, r6, #0
+	str r0, [sp, #8]
+	add r0, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+_022307DA:
+	add r0, r6, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x20]
+	bl STRBUF_Delete
+	mov r0, #0x19
+	add r3, r5, #0
+	str r7, [sp]
+	lsl r0, r0, #4
+	ldr r0, [r4, r0]
+	mov r1, #0xb
+	mov r2, #0
+	add r3, #0x24
+	bl ArcUtil_HDL_ScrnDataGet
+	str r0, [r5, #0x20]
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _02230800: .4byte 0x00010200
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -5949,6 +6559,7 @@ static void WFNOTE_FRIENDINFO_DRAWAREA_PageOff( WFNOTE_FRIENDINFO_DRAWAREA* p_wk
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6121,6 +6732,454 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x50
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	str r3, [sp, #0x24]
+	add r4, r2, #0
+	bl SaveData_GetWifiListData
+	str r0, [sp, #0x2c]
+	ldr r1, [sp, #0x24]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r7, r0, #0
+	ldr r1, [sp, #0x24]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r6, r0, #0
+	mov r1, #0
+	str r4, [sp]
+	mov r0, #0xe
+	str r0, [sp, #4]
+	str r1, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	add r2, r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r1, [r5, #0]
+	ldr r3, [sp, #0x24]
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	add r0, r4, #0
+	bl WFNOTE_DRAW_FriendGroupSetWordset
+	mov r1, #0
+	str r4, [sp]
+	mov r0, #0x3d
+	str r0, [sp, #4]
+	mov r0, #0x80
+	str r0, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	add r2, r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #0
+	str r4, [sp]
+	mov r0, #0xf
+	str r0, [sp, #4]
+	str r1, [sp, #8]
+	mov r0, #0x1c
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	add r2, r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r1, [sp, #0x1c]
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x10
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #1
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x2c]
+	mov r2, #1
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x12
+	str r0, [sp, #4]
+	mov r0, #0x40
+	str r0, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #1
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x11
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #0x14
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #1
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x2c]
+	mov r2, #2
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x12
+	str r0, [sp, #4]
+	mov r0, #0x40
+	str r0, [sp, #8]
+	mov r0, #0x14
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #1
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x13
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x2c]
+	mov r2, #3
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x14
+	str r0, [sp, #4]
+	mov r0, #0x80
+	str r0, [sp, #8]
+	mov r0, #4
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r1, #0
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r1, [sp, #0x24]
+	add r0, r5, #0
+	bl WFNOTE_FRIENDINFO_PofinCaseCheck
+	cmp r0, #0
+	beq _02231390
+	str r4, [sp]
+	mov r0, #0x15
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #0x14
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x2c]
+	mov r2, #9
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x16
+	str r0, [sp, #4]
+	mov r0, #0x80
+	str r0, [sp, #8]
+	mov r0, #0x14
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _0223151C
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r1, #0
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+_02231390:
+	str r4, [sp]
+	mov r0, #0x17
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #6
+	str r0, [sp, #0xc]
+	ldr r0, =0x000F0200 // _02231520
+	mov r2, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r1, [r5, #0]
+	add r0, r4, #0
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl WFNOTE_DRAW_FriendDaySetWordset
+	cmp r0, #0
+	beq _022313EC
+	str r4, [sp]
+	mov r0, #0x18
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #6
+	str r0, [sp, #0xc]
+	ldr r0, =0x000F0200 // _02231520
+	mov r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+_022313EC:
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x2c]
+	mov r2, #8
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	mov r2, #7
+	ldrsb r1, [r5, r2]
+	str r0, [sp, #0x30]
+	ldr r0, [sp, #0x2c]
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	ldr r0, [sp, #0x30]
+	mov r2, #1
+	bl UnionView_GetTrainerInfo
+	mov r1, #2
+	add r2, sp, #0x38
+	bl TrCLACTGraDataGet
+	mov r1, #0x32
+	ldr r0, [sp, #0x24]
+	lsl r1, r1, #6
+	bl sys_AllocMemory
+	mov r3, #0
+	str r0, [sp, #0x34]
+	str r3, [sp]
+	mov r0, #0xa
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x34]
+	ldr r2, [sp, #0x24]
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x38]
+	ldr r1, [sp, #0x4c]
+	bl ChangesInto_1D_from_2D
+	mov r1, #0x50
+	str r1, [sp]
+	mov r2, #0
+	str r1, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	str r0, [sp, #0xc]
+	str r1, [sp, #0x10]
+	str r1, [sp, #0x14]
+	ldr r0, [sp, #0x20]
+	ldr r1, [sp, #0x34]
+	ldr r0, [r0, #0xc]
+	add r3, r2, #0
+	add r0, #0x40
+	bl GF_BGL_BmpWinPrint
+	ldr r0, [sp, #0x34]
+	bl sys_FreeMemoryEz
+	mov r0, #0x20
+	str r0, [sp]
+	ldr r0, [sp, #0x24]
+	mov r3, #5
+	str r0, [sp, #4]
+	ldr r0, [sp, #0x38]
+	ldr r1, [sp, #0x40]
+	mov r2, #0
+	lsl r3, r3, #6
+	bl ArcUtil_PalSet
+	ldr r0, [sp, #0x30]
+	cmp r0, #0
+	bne _0223148A
+	ldr r0, =0x00050600 // _02231524
+	str r0, [sp, #0x28]
+	b _0223149A
+_0223148A:
+	cmp r0, #1
+	bne _02231496
+	mov r0, #0xc1
+	lsl r0, r0, #0xa
+	str r0, [sp, #0x28]
+	b _0223149A
+_02231496:
+	ldr r0, =0x00010200 // _0223151C
+	str r0, [sp, #0x28]
+_0223149A:
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r1, [r5, #0]
+	ldr r3, [sp, #0x24]
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	add r0, r4, #0
+	bl WFNOTE_DRAW_FriendNameSetWordset
+	str r4, [sp]
+	mov r0, #6
+	str r0, [sp, #4]
+	mov r0, #0x2c
+	str r0, [sp, #8]
+	mov r0, #0x58
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x28]
+	mov r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #0
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	ldr r0, [sp, #0x20]
+	ldr r0, [r0, #0xc]
+	add r0, #0x40
+	bl GF_BGL_BmpWinGet_PosX
+	add r5, r0, #0
+	ldr r0, [sp, #0x20]
+	ldr r0, [r0, #0xc]
+	add r0, #0x40
+	bl GF_BGL_BmpWinGet_PosY
+	add r3, r0, #0
+	mov r0, #0xb
+	str r0, [sp]
+	str r0, [sp, #4]
+	mov r0, #0xa
+	str r0, [sp, #8]
+	lsl r2, r5, #0x18
+	lsl r3, r3, #0x18
+	ldr r0, [r4, #0]
+	mov r1, #3
+	lsr r2, r2, #0x18
+	lsr r3, r3, #0x18
+	bl GF_BGL_ScrPalChange
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x50
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _0223151C: .4byte 0x00010200
+// _02231520: .4byte 0x000F0200
+// _02231524: .4byte 0x00050600
+}
+#endif
+
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6177,6 +7236,156 @@ static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	add r6, r3, #0
+	add r4, r2, #0
+	bl SaveData_GetFrontier
+	str r0, [sp, #0x24]
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r7, r0, #0
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	str r4, [sp]
+	mov r0, #0x19
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #8
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231660
+	mov r1, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x64
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _0223158A
+	mov r0, #0x1e
+	b _0223158C
+_0223158A:
+	mov r0, #0x1f
+_0223158C:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x20
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231660
+	mov r1, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x71
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x20
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231660
+	mov r1, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r1, [sp, #0x1c]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x38
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231660
+	mov r1, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x70
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x38
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231660
+	mov r1, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	str r1, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #2
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _02231660: .4byte 0x00010200
+}
+#endif
+
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6326,6 +7535,438 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	add r6, r3, #0
+	add r4, r2, #0
+	bl SaveData_GetFrontier
+	str r0, [sp, #0x24]
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r7, r0, #0
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	str r4, [sp]
+	mov r0, #0x1a
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	ldr r0, =0x00010200 // _022319FC
+	str r2, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r2, [sp, #0x1c]
+	mov r1, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x21
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	ldr r0, =0x00010200 // _022319FC
+	str r1, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	mov r2, #1
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x23
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #1
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x66
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _0223170C
+	mov r0, #0x1e
+	b _0223170E
+_0223170C:
+	mov r0, #0x1f
+_0223170E:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	ldr r0, =0x00010200 // _022319FC
+	str r1, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	mov r2, #2
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x73
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #2
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x75
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x27
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r2, [sp, #0x1c]
+	mov r1, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x72
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #2
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x74
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x27
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r2, #2
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r2, [sp, #0x1c]
+	mov r1, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x22
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	ldr r0, =0x00010200 // _022319FC
+	str r1, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	mov r1, #3
+	ldr r0, [sp, #0x20]
+	add r2, r1, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #3
+	str r4, [sp]
+	mov r0, #0x23
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	add r2, r1, #0
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x68
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _022318A6
+	mov r0, #0x1e
+	b _022318A8
+_022318A6:
+	mov r0, #0x1f
+_022318A8:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	ldr r0, =0x00010200 // _022319FC
+	str r1, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x77
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x79
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x27
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r1, #0
+	str r1, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r2, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	str r1, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x76
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x78
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x27
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0x10
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _022319FC
+	mov r1, #3
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #3
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _022319FC: .4byte 0x00010200
+}
+#endif
+
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6404,6 +8045,231 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	add r6, r3, #0
+	add r4, r2, #0
+	bl SaveData_GetFrontier
+	str r0, [sp, #0x24]
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r7, r0, #0
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	str r4, [sp]
+	mov r0, #0x1b
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	ldr r0, =0x00010200 // _02231BDC
+	str r2, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	str r2, [sp, #0x1c]
+	mov r1, #4
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x24
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0x14
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x6c
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _02231A86
+	mov r0, #0x1e
+	b _02231A88
+_02231A86:
+	mov r0, #0x1f
+_02231A88:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x87
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x29
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x88
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x28
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x86
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x29
+	str r0, [sp, #4]
+	mov r0, #0x70
+	str r0, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #1
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x8a
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x28
+	str r0, [sp, #4]
+	mov r0, #0xe0
+	str r0, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231BDC
+	mov r1, #4
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #4
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _02231BDC: .4byte 0x00010200
+}
+#endif
+
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6470,6 +8336,182 @@ static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x30
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	str r3, [sp, #0x24]
+	add r4, r2, #0
+	bl SaveData_GetFrontier
+	str r0, [sp, #0x28]
+	ldr r1, [sp, #0x24]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r7, r0, #0
+	ldr r1, [sp, #0x24]
+	mov r0, #0x80
+	bl STRBUF_Create
+	add r6, r0, #0
+	str r4, [sp]
+	mov r0, #0x1c
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	ldr r0, =0x00010200 // _02231D54
+	str r2, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r1, #5
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x28]
+	mov r1, #0x7c
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	ldr r1, [sp, #0x24]
+	bl MSGDAT_UTIL_GetMonsName
+	str r0, [sp, #0x2c]
+	mov r0, #0x18
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _02231D54
+	mov r1, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x20]
+	str r1, [sp, #0xc]
+	ldr r0, [r0, #0x20]
+	ldr r2, [sp, #0x2c]
+	add r3, r1, #0
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x2c]
+	bl STRBUF_Delete
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x28]
+	mov r1, #0x6a
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _02231C7A
+	mov r0, #0x1e
+	b _02231C7C
+_02231C7A:
+	mov r0, #0x1f
+_02231C7C:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231D54
+	mov r1, #5
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x28]
+	mov r1, #0x7b
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231D54
+	mov r1, #5
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231D54
+	mov r1, #5
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x28]
+	mov r1, #0x7a
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x26
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231D54
+	mov r1, #5
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #5
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x30
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _02231D54: .4byte 0x00010200
+}
+#endif
+
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6528,7 +8570,158 @@ static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	add r6, r3, #0
+	add r4, r2, #0
+	bl SaveData_GetFrontier
+	str r0, [sp, #0x24]
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r7, r0, #0
+	mov r0, #0x80
+	add r1, r6, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	str r4, [sp]
+	mov r0, #0x1d
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	ldr r0, =0x00010200 // _02231E90
+	str r2, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r1, #6
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x6e
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	cmp r0, #0
+	bne _02231DB8
+	mov r0, #0x1e
+	b _02231DBA
+_02231DB8:
+	mov r0, #0x1f
+_02231DBA:
+	str r4, [sp]
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x18
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231E90
+	mov r1, #6
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x8f
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x2a
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x18
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231E90
+	mov r1, #6
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	str r4, [sp]
+	mov r0, #0x20
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231E90
+	mov r1, #6
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r2, #7
+	ldrsb r2, [r5, r2]
+	ldr r0, [sp, #0x24]
+	mov r1, #0x8e
+	add r2, r5, r2
+	ldrb r2, [r2, #0xc]
+	bl FrontierRecord_Get
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x2a
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02231E90
+	mov r1, #6
+	str r0, [sp, #0x10]
+	str r7, [sp, #0x14]
+	str r6, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #6
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _02231E90: .4byte 0x00010200
+}
+#endif
+
 // ミニゲーム
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6596,6 +8789,197 @@ static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
+#else
+asm static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x28
+	add r5, r1, #0
+	str r0, [sp, #0x20]
+	ldr r0, [r5, #0]
+	add r4, r2, #0
+	add r7, r3, #0
+	bl SaveData_GetFrontier
+	ldr r0, [r5, #0]
+	bl SaveData_GetWifiListData
+	str r0, [sp, #0x24]
+	mov r0, #0x80
+	add r1, r7, #0
+	bl STRBUF_Create
+	add r6, r0, #0
+	mov r0, #0x80
+	add r1, r7, #0
+	bl STRBUF_Create
+	add r7, r0, #0
+	str r4, [sp]
+	mov r0, #0x2b
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	ldr r0, =0x00010200 // _02232034
+	str r2, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	mov r1, #1
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	add r0, r4, #0
+	mov r1, #0
+	bl WFNOTE_DRAW_WflbyGameSetWordSet
+	str r4, [sp]
+	mov r0, #0x2c
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x18
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x24]
+	mov r2, #0xa
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x2d
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x18
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	add r0, r4, #0
+	mov r1, #1
+	bl WFNOTE_DRAW_WflbyGameSetWordSet
+	str r4, [sp]
+	mov r0, #0x2c
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x24]
+	mov r2, #0xb
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x2d
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x30
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	add r0, r4, #0
+	mov r1, #2
+	bl WFNOTE_DRAW_WflbyGameSetWordSet
+	str r4, [sp]
+	mov r0, #0x2c
+	str r0, [sp, #4]
+	mov r2, #0
+	str r2, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	ldr r0, [sp, #0x20]
+	add r3, r5, #0
+	str r2, [sp, #0x1c]
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	mov r1, #7
+	ldrsb r1, [r5, r1]
+	ldr r0, [sp, #0x24]
+	mov r2, #0xc
+	add r1, r5, r1
+	ldrb r1, [r1, #0xc]
+	bl WifiList_GetFriendInfo
+	add r1, r0, #0
+	add r0, r4, #0
+	bl WFNOTE_DRAW_NumberSetWordset
+	str r4, [sp]
+	mov r0, #0x2d
+	str r0, [sp, #4]
+	mov r0, #0xa0
+	str r0, [sp, #8]
+	mov r0, #0x48
+	str r0, [sp, #0xc]
+	ldr r0, =0x00010200 // _02232034
+	mov r1, #1
+	str r0, [sp, #0x10]
+	str r6, [sp, #0x14]
+	str r7, [sp, #0x18]
+	mov r0, #2
+	str r0, [sp, #0x1c]
+	ldr r0, [sp, #0x20]
+	mov r2, #0
+	add r3, r5, #0
+	bl WFNOTE_FRIENDINFO_DRAW_Bmp
+	ldr r0, [sp, #0x20]
+	mov r1, #1
+	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add sp, #0x28
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _02232034: .4byte 0x00010200
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -6643,6 +9027,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Clean( WFNOTE_DRAW* p_draw, const WFNOTE_SCRN
  *	@param	p_tmp		使用するSTRBUF
  */
 //-----------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Bmp( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, u32 page, u32 bmp, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 msg_idx, u32 x, u32 y, u32 col, STRBUF* p_str, STRBUF* p_tmp )
 {
 	MSGMAN_GetString( p_draw->p_msgman, msg_idx, p_tmp );
@@ -6650,6 +9035,74 @@ static void WFNOTE_FRIENDINFO_DRAW_Bmp( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, u32 pa
     GF_STR_PrintColor( &p_wk->p_msg[page][bmp], FONT_SYSTEM, 
 			p_str, x, y, MSG_NO_PUT, col, NULL);
 }
+#else
+// MatchComment: this prototype is incorrect, it should have an extra arg after p_tmp 
+asm static void WFNOTE_FRIENDINFO_DRAW_Bmp( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, u32 page, u32 bmp, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 msg_idx, u32 x, u32 y, u32 col, STRBUF* p_str, STRBUF* p_tmp )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x18
+	add r7, r0, #0
+	mov r0, #0x63
+	str r1, [sp, #0x10]
+	str r2, [sp, #0x14]
+	ldr r6, [sp, #0x30]
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	ldr r1, [sp, #0x34]
+	ldr r2, [sp, #0x48]
+	ldr r5, [sp, #0x38]
+	ldr r4, [sp, #0x44]
+	bl MSGMAN_GetString
+	mov r0, #0x62
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	ldr r2, [sp, #0x48]
+	add r1, r4, #0
+	bl WORDSET_ExpandStr
+	ldr r0, [sp, #0x4c]
+	cmp r0, #1
+	beq _022320F0
+	cmp r0, #2
+	beq _02232102
+	b _0223210E
+_022320F0:
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	add r0, r0, #1
+	lsr r0, r0, #1
+	sub r5, r5, r0
+	b _0223210E
+_02232102:
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	sub r5, r5, r0
+_0223210E:
+	ldr r0, [sp, #0x3c]
+	mov r1, #0
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, [sp, #0x40]
+	add r3, r5, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x10]
+	str r1, [sp, #0xc]
+	lsl r0, r0, #2
+	add r0, r7, r0
+	ldr r2, [r0, #0xc]
+	ldr r0, [sp, #0x14]
+	lsl r0, r0, #4
+	add r0, r2, r0
+	add r2, r4, #0
+	bl GF_STR_PrintColor
+	add sp, #0x18
+	pop {r3, r4, r5, r6, r7, pc}
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**

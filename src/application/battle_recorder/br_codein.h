@@ -63,6 +63,7 @@ static inline void CodeIn_BlockDataMake_4_4_4( int block[] )
 	block[ 0 ] = 4;
 	block[ 1 ] = 4;
 	block[ 2 ] = 4;
+    block[ 3 ] = 0; // MatchComment: add this line
 #else
 	block[ 0 ] = 2;
 	block[ 1 ] = 5;

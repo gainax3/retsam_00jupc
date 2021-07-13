@@ -21,12 +21,12 @@ typedef enum {
 	NUMBER_CODETYPE_ZENKAKU,	///< 全角
 	NUMBER_CODETYPE_HANKAKU,	///< 半角
 
-	// ↓基本的にはコレを使う。
-	#if( PM_LANG == LANG_JAPAN )
-	NUMBER_CODETYPE_DEFAULT = NUMBER_CODETYPE_ZENKAKU,
-	#else
+	// ↓基本的にはコレを使う。コイツを国に応じて書き換える。
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+	// 数字の表示は基本的に半角で
 	NUMBER_CODETYPE_DEFAULT = NUMBER_CODETYPE_HANKAKU,
-	#endif
+	// ----------------------------------------------------------------------------
 }NUMBER_CODETYPE;
 
 #endif

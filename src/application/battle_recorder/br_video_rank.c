@@ -1364,7 +1364,12 @@ static void BRV_WinAdd_VideoList( BR_WORK* wk )
 	GF_BGL_BmpWinAdd( wk->sys.bgl, win, GF_BGL_FRAME2_S, 11, 6, 10, 4, eBG_PAL_FONT, ofs );
 	GF_BGL_BmpWinDataFill( win, 0x00 );
 	str1 = MSGMAN_AllocString( wk->sys.man, msg_603 );
-	GF_STR_PrintColor( win, FONT_SYSTEM, str1, 0, 0, MSG_NO_PUT, PRINT_COL_RANK, NULL );
+    // MatchComment: new change in plat US
+    {
+        u32 width = (80 - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str1, 0)) / 2;
+        GF_STR_PrintColor( win, FONT_SYSTEM, str1, width, 0, MSG_NO_PUT, PRINT_COL_RANK, NULL );
+    }
+    // MatchCommentEnd -------------------
 	GF_BGL_BmpWinOnVReq( win );
 	STRBUF_Delete( str1 );
 	
@@ -1551,6 +1556,7 @@ static BOOL VRANK_Main( BR_WORK* wk )
  *
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static BOOL VRANK_Exit( BR_WORK* wk )
 {
 	RANK_WORK* rwk = wk->sub_work;
@@ -1607,6 +1613,159 @@ static BOOL VRANK_Exit( BR_WORK* wk )
 	
 	return FALSE;
 }
+#else
+asm static BOOL VRANK_Exit( BR_WORK* wk )
+{
+	push {r3, r4, r5, lr}
+	mov r1, #0x86
+	add r5, r0, #0
+	lsl r1, r1, #4
+	ldr r4, [r5, r1]
+	ldr r1, [r5, #8]
+	cmp r1, #0
+	beq _0223FB8E
+	cmp r1, #1
+	beq _0223FBA6
+	cmp r1, #2
+	beq _0223FBF6
+	b _0223FC1C
+_0223FB8E:
+	bl BRV_WinDel_Main
+	add r0, r5, #0
+	bl BRV_WinDel_Sub
+	add r0, r5, #0
+	bl Tool_InfoMessageMainDel
+	ldr r0, [r5, #8]
+	add r0, r0, #1
+	str r0, [r5, #8]
+	b _0223FCC0
+_0223FBA6:
+	add r0, r4, #0
+	add r0, #8
+	mov r1, #1
+	bl BR_PaletteFade
+	add r0, r4, #0
+	add r1, r4, #4
+	mov r2, #1
+	mov r3, #0
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _0223FBDC
+	add r0, r5, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r5, #0
+	bl FontButton_Delete
+	add r0, r5, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	ldr r0, [r5, #8]
+	add r0, r0, #1
+	str r0, [r5, #8]
+_0223FBDC:
+	ldr r0, [r5, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r4, #8]
+	ldr r0, [r5, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _0223FCC0
+_0223FBF6:
+	add r4, #8
+	add r0, r4, #0
+	bl BR_PaletteFadeIn_Init
+	add r0, r5, #0
+	bl NormalTag_RecoverAllOp
+	mov r0, #1
+	mov r1, #0x66
+	bl WirelessIconEasy_HoldLCD
+	add r0, r5, #0
+	mov r1, #1
+	bl BR_ChangeDisplayVIntr
+	ldr r0, [r5, #8]
+	add r0, r0, #1
+	str r0, [r5, #8]
+	b _0223FCC0
+_0223FC1C:
+	bl BR_IsChangeDisplay
+	cmp r0, #0
+	beq _0223FCC0
+	add r0, r4, #0
+	add r0, #8
+	mov r1, #0
+	bl BR_PaletteFade
+	cmp r0, #0
+	beq _0223FC90
+	add r0, r5, #0
+	bl PaletteFadeClear
+	add r0, r4, #0
+	add r0, #8
+	bl BR_PaletteFadeIn_Init
+	ldr r0, [r5, #0x58]
+	mov r1, #2
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r0, [r5, #0x28]
+	mov r2, #0xc
+	mov r3, #0x10
+	bl ColorConceChangePfd
+	mov r1, #1
+	ldr r3, [r5, #0x10]
+	add r0, r5, #0
+	add r2, r1, #0
+	bl BR_Main_ProcSeqChange
+	add r0, r5, #0
+	mov r1, #5
+	bl BR_Main_SeqChange
+	ldr r0, [r5, #0x24]
+	mov r1, #2
+	bl GF_BGL_ScrClear
+	ldr r0, [r5, #0x24]
+	mov r1, #6
+	bl GF_BGL_ScrClear
+	ldr r0, [r5, #0x24]
+	mov r1, #3
+	bl GF_BGL_ScrClear
+	ldr r0, [r5, #0x24]
+	mov r1, #7
+	bl GF_BGL_ScrClear
+	add r0, r4, #0
+	bl sys_FreeMemoryEz
+	b _0223FCC0
+_0223FC90:
+	ldr r0, [r5, #0x58]
+	mov r1, #1
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r4, #8]
+	ldr r0, [r5, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #2
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	ldr r0, [r5, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r4, #8]
+	ldr r0, [r5, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+_0223FCC0:
+	mov r0, #0
+	pop {r3, r4, r5, pc}
+}
+#endif
 
 static BOOL VRANK_ProfIn( BR_WORK* wk )
 {
@@ -1923,6 +2082,7 @@ static void InfoMessage( BR_WORK* wk, int no, BOOL flag )
 	STRBUF_Delete( str1 );
 }
 
+#ifdef NONEQUIVALENT
 static BOOL VRANK_SaveIn( BR_WORK* wk )
 {
 	RANK_WORK* rwk = wk->sub_work;
@@ -2095,7 +2255,547 @@ static BOOL VRANK_SaveIn( BR_WORK* wk )
 	}
 	return FALSE;
 }
-
+#else
+asm static BOOL VRANK_SaveIn( BR_WORK* wk )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #0x10
+	add r4, r0, #0
+	mov r0, #0x86
+	lsl r0, r0, #4
+	ldr r5, [r4, r0]
+	bl BattleRec_HeaderPtrGet
+	mov r1, #4
+	mov r2, #0
+	bl RecHeader_ParamGet
+	add r3, r0, #0
+	add r2, r1, #0
+	add r0, r4, #0
+	add r1, r3, #0
+	bl BattleVideo_Preserved
+	cmp r0, #0
+	ldr r0, [r4, #8]
+	bne _02240424
+	b _02240758
+_02240424:
+	cmp r0, #6
+	bls _0224042A
+	b _0224072A
+_0224042A:
+	add r0, r0, r0
+	add r0, pc
+	ldrh r0, [r0, #6]
+	lsl r0, r0, #0x10
+	asr r0, r0, #0x10
+	add pc, r0
+_02240436: // jump table
+	mov r4, r1
+	dcd 0x00d00070
+	dcd 0x011800e0
+	dcd 0x02880168
+	//    0xc // .2byte _02240444 - _02240436 - 2 // case 0
+	//   0x70 // .2byte _022404A8 - _02240436 - 2 // case 1
+	//   0xd0 // .2byte _02240508 - _02240436 - 2 // case 2
+	//   0xe0 // .2byte _02240518 - _02240436 - 2 // case 3
+	//  0x118 // .2byte _02240550 - _02240436 - 2 // case 4
+	//  0x168 // .2byte _022405A0 - _02240436 - 2 // case 5
+	//  0x288 // .2byte _022406C0 - _02240436 - 2 // case 6
+_02240444:
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	ldr r0, [r5, #0x10]
+	cmp r0, #0
+	bne _02240460
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	add r1, r4, #0
+	bl VideoDataFree
+	b _0224046C
+_02240460:
+	mov r0, #0x65
+	lsl r0, r0, #2
+	add r0, r5, r0
+	add r1, r4, #0
+	bl GppDataFree
+_0224046C:
+	add r0, r4, #0
+	bl ProfWin_Del
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl FontButton_DeleteSub
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GX_VisibleControl
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GXS_VisibleControl
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+	b _02240884
+_022404A8:
+	add r0, r5, #0
+	add r0, #8
+	mov r1, #1
+	bl BR_PaletteFade
+	add r0, r5, #0
+	add r1, r5, #4
+	mov r2, #1
+	mov r3, #0
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _022404EE
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl SaveFontButton_Create
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	ldr r0, [r4, #0x24]
+	mov r1, #3
+	bl GF_BGL_ScrClear
+	ldr r0, [r4, #0x24]
+	mov r1, #7
+	bl GF_BGL_ScrClear
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+_022404EE:
+	ldr r0, [r4, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r5, #8]
+	ldr r0, [r4, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _02240884
+_02240508:
+	ldr r1, =0x00000115 // _0224082C
+	add r0, r4, #0
+	bl Tool_InfoMessageMain
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+	b _02240884
+_02240518:
+	bl GF_TP_GetTrg
+	cmp r0, #0
+	bne _02240522
+	b _02240884
+_02240522:
+	add r0, r4, #0
+	bl Tool_InfoMessageMainDel
+	ldr r0, [r4, #0x24]
+	mov r1, #2
+	bl GF_BGL_ScrClear
+	ldr r0, [r4, #0x24]
+	mov r1, #6
+	bl GF_BGL_ScrClear
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GXS_VisibleControl
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GX_VisibleControl
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+	b _02240884
+_02240550:
+	add r0, r5, #0
+	add r0, #8
+	mov r1, #1
+	bl BR_PaletteFade
+	add r0, r5, #0
+	add r1, r5, #4
+	mov r2, #1
+	mov r3, #0
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _02240586
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl SaveFontButton_Delete
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+_02240586:
+	ldr r0, [r4, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r5, #8]
+	ldr r0, [r4, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _02240884
+_022405A0:
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl FontButton_CreateSub
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	ldr r0, =0x0000086C // _02240830
+	ldr r0, [r4, r0]
+	cmp r0, #0xd2
+	bne _022405F6
+	mov r0, #0x45
+	lsl r0, r0, #2
+	add r1, r4, #0
+	add r0, r5, r0
+	add r1, #0x14
+	mov r2, #3
+	bl FontOam_MsgSet
+	mov r0, #0x13
+	lsl r0, r0, #4
+	add r1, r4, #0
+	add r0, r5, r0
+	add r1, #0x14
+	mov r2, #0x5e
+	bl FontOam_MsgSet
+	mov r0, #0x46
+	lsl r0, r0, #2
+	ldr r0, [r5, r0]
+	mov r1, #0
+	bl CATS_ObjectAnimeSeqSetCap
+	mov r0, #0x4d
+	lsl r0, r0, #2
+	ldr r0, [r5, r0]
+	mov r1, #3
+	bl CATS_ObjectAnimeSeqSetCap
+_022405F6:
+	add r0, r4, #0
+	bl ProfWin_Add
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	mov r0, #0x66
+	str r0, [sp, #0xc]
+	ldr r0, [r4, #0x14]
+	ldr r2, [r4, #0x24]
+	mov r1, #0x3e
+	mov r3, #3
+	bl ArcUtil_HDL_BgCharSet
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	mov r0, #0x66
+	str r0, [sp, #0xc]
+	ldr r0, [r4, #0x14]
+	ldr r2, [r4, #0x24]
+	mov r1, #0x3e
+	mov r3, #7
+	bl ArcUtil_HDL_BgCharSet
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	ldr r0, [r5, #0x10]
+	cmp r0, #0
+	bne _02240668
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	add r1, r4, #0
+	bl VideoDataMake
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	mov r1, #0
+	bl VideoData_IconEnable
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	bl ProfileBGGet
+	add r1, r0, #0
+	add r0, r4, #0
+	mov r2, #3
+	bl BR_ScrSet
+	b _02240698
+_02240668:
+	mov r0, #0x65
+	lsl r0, r0, #2
+	add r0, r5, r0
+	add r1, r4, #0
+	bl GppDataMake
+	mov r0, #0x65
+	lsl r0, r0, #2
+	add r0, r5, r0
+	mov r1, #0
+	bl GppData_IconEnable
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	mov r0, #0x66
+	str r0, [sp, #0xc]
+	ldr r0, [r4, #0x14]
+	ldr r2, [r4, #0x24]
+	mov r1, #0x50
+	mov r3, #3
+	bl ArcUtil_HDL_ScrnSet
+_02240698:
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	mov r0, #0x66
+	str r0, [sp, #0xc]
+	ldr r0, [r4, #0x14]
+	ldr r2, [r4, #0x24]
+	mov r1, #6
+	mov r3, #7
+	bl ArcUtil_HDL_ScrnSet
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+	b _02240884
+_022406C0:
+	add r0, r5, #0
+	add r0, #8
+	mov r1, #0
+	bl BR_PaletteFade
+	mov r2, #0
+	add r0, r5, #0
+	add r1, r5, #4
+	add r3, r2, #0
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _02240710
+	ldr r0, [r5, #0x10]
+	cmp r0, #0
+	bne _022406EE
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	mov r1, #1
+	bl VideoData_IconEnable
+	b _022406FA
+_022406EE:
+	mov r0, #0x65
+	lsl r0, r0, #2
+	add r0, r5, r0
+	mov r1, #1
+	bl GppData_IconEnable
+_022406FA:
+	mov r0, #4
+	mov r1, #1
+	bl GF_Disp_GXS_VisibleControl
+	mov r0, #4
+	mov r1, #1
+	bl GF_Disp_GX_VisibleControl
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+_02240710:
+	ldr r0, [r4, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r5, #8]
+	ldr r0, [r4, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _02240884
+_0224072A:
+	ldr r1, =0x00004138 // _02240834
+	mov r0, #0
+	ldr r1, [r4, r1]
+	cmp r1, #0
+	ble _0224074E
+	mov r1, #0x9a
+	lsl r1, r1, #6
+	add r5, r4, r1
+	ldr r2, =0x00004138 // _02240834
+	add r6, r4, #0
+	sub r1, #0x78
+_02240740:
+	str r5, [r6, r1]
+	ldr r3, [r4, r2]
+	add r0, r0, #1
+	add r5, #0xe4
+	add r6, r6, #4
+	cmp r0, r3
+	blt _02240740
+_0224074E:
+	add r0, r4, #0
+	mov r1, #7
+	bl BR_Main_SeqChange
+	b _02240884
+_02240758:
+	cmp r0, #0
+	beq _02240766
+	cmp r0, #1
+	beq _022407CA
+	cmp r0, #2
+	beq _02240838
+	b _0224087C
+_02240766:
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	ldr r0, [r5, #0x10]
+	cmp r0, #0
+	bne _02240782
+	mov r0, #0x22
+	lsl r0, r0, #4
+	add r0, r5, r0
+	add r1, r4, #0
+	bl VideoDataFree
+	b _0224078E
+_02240782:
+	mov r0, #0x65
+	lsl r0, r0, #2
+	add r0, r5, r0
+	add r1, r4, #0
+	bl GppDataFree
+_0224078E:
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl FontButton_DeleteSub
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl ProfWin_Del
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GX_VisibleControl
+	mov r0, #4
+	mov r1, #0
+	bl GF_Disp_GXS_VisibleControl
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+	b _02240884
+_022407CA:
+	add r0, r5, #0
+	add r0, #8
+	mov r1, #1
+	bl BR_PaletteFade
+	add r0, r5, #0
+	add r1, r5, #4
+	mov r2, #1
+	mov r3, #0
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _02240810
+	add r0, r4, #0
+	mov r1, #1
+	bl CATS_SystemActiveSet
+	add r0, r4, #0
+	bl SaveFontButton_Create
+	add r0, r4, #0
+	mov r1, #0
+	bl CATS_SystemActiveSet
+	ldr r0, [r4, #0x24]
+	mov r1, #3
+	bl GF_BGL_ScrClear
+	ldr r0, [r4, #0x24]
+	mov r1, #7
+	bl GF_BGL_ScrClear
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+_02240810:
+	ldr r0, [r4, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r5, #8]
+	ldr r0, [r4, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _02240884
+	nop
+// _0224082C: .4byte 0x00000115
+// _02240830: .4byte 0x0000086C
+// _02240834: .4byte 0x00004138
+_02240838:
+	add r0, r5, #0
+	add r0, #8
+	mov r1, #0
+	bl BR_PaletteFade
+	add r0, r5, #0
+	add r1, r5, #4
+	mov r2, #0
+	mov r3, #1
+	bl Plate_AlphaFade
+	cmp r0, #0
+	beq _02240862
+	add r0, r4, #0
+	mov r1, #0x64
+	mov r2, #0
+	bl InfoMessage
+	ldr r0, [r4, #8]
+	add r0, r0, #1
+	str r0, [r4, #8]
+_02240862:
+	ldr r0, [r4, #0x58]
+	mov r1, #3
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp]
+	ldr r3, [r5, #8]
+	ldr r0, [r4, #0x28]
+	lsl r3, r3, #0x18
+	mov r2, #0xc
+	lsr r3, r3, #0x18
+	bl ColorConceChangePfd
+	b _02240884
+_0224087C:
+	add r0, r4, #0
+	mov r1, #0xc
+	bl BR_Main_SeqChange
+_02240884:
+	mov r0, #0
+	add sp, #0x10
+	pop {r4, r5, r6, pc}
+	// .align 2, 0
+}
+#endif
 
 //--------------------------------------------------------------
 /**

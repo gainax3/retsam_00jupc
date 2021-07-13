@@ -1581,6 +1581,7 @@ static void FontButton_Delete( BR_WORK* wk )
  *
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WinAdd_Send( BR_WORK* wk )
 {
 	GF_BGL_BMPWIN* win;
@@ -1619,7 +1620,143 @@ static void WinAdd_Send( BR_WORK* wk )
 	STRBUF_Delete( tmp );
 	WORDSET_Delete( wset );
 }
-
+#else
+asm static void WinAdd_Send( BR_WORK* wk )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x24
+	add r5, r0, #0
+	mov r0, #0x86
+	lsl r0, r0, #4
+	ldr r6, [r5, r0]
+	add r0, r6, #0
+	add r0, #0x10
+	bl GF_BGL_BmpWinAddCheck
+	cmp r0, #1
+	bne _0223973E
+	b _0223984A
+_0223973E:
+	add r0, r6, #0
+	str r0, [sp, #0x20]
+	add r0, #0x10
+	str r0, [sp, #0x20]
+	bl GF_BGL_BmpWinInit
+	mov r0, #0x13
+	str r0, [sp]
+	mov r3, #0x10
+	str r3, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #0xe
+	str r0, [sp, #0xc]
+	mov r0, #0x4b
+	lsl r0, r0, #2
+	str r0, [sp, #0x10]
+	ldr r0, [r5, #0x24]
+	ldr r1, [sp, #0x20]
+	mov r2, #2
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x20]
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0x66
+	bl BR_WORDSET_Create
+	str r0, [sp, #0x18]
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r7, r0, #0
+	ldr r0, [r5, #0x48]
+	mov r1, #0x38
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x1c]
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r4, r0, #0
+	mov r0, #0x8b
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	add r1, r4, #0
+	bl ImcSaveData_GetTelevisionPokeOyaName
+	add r0, r5, #0
+	add r1, r4, #0
+	bl BR_ErrorStrChange
+	mov r0, #0x8b
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	bl ImcSaveData_GetTelevisionTitlePmsWord
+	add r5, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	mov r1, #0
+	ldr r0, [sp, #0x18]
+	add r2, r4, #0
+	add r3, r1, #0
+	bl WORDSET_RegisterWord
+	ldr r0, [sp, #0x18]
+	mov r1, #1
+	add r2, r5, #0
+	bl WORDSET_RegisterPMSWord
+	ldr r0, [sp, #0x18]
+	ldr r2, [sp, #0x1c]
+	add r1, r7, #0
+	bl WORDSET_ExpandStr
+	add r0, r7, #0
+	bl STRBUF_GetLines
+	mov r5, #0
+	str r0, [sp, #0x14]
+	cmp r0, #0
+	bls _0223982C
+	add r6, r5, #0
+_022397F0:
+	add r0, r4, #0
+	add r1, r7, #0
+	add r2, r5, #0
+	bl STRBUF_CopyLine
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0x80
+	sub r0, r1, r0
+	lsr r3, r0, #1
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _02239850
+	mov r1, #0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x20]
+	add r2, r4, #0
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x14]
+	add r5, r5, #1
+	add r6, #0x10
+	cmp r5, r0
+	blo _022397F0
+_0223982C:
+	ldr r0, [sp, #0x20]
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r4, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x1c]
+	bl STRBUF_Delete
+	add r0, r7, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x18]
+	bl WORDSET_Delete
+_0223984A:
+	add sp, #0x24
+	pop {r4, r5, r6, r7, pc}
+	nop
+// _02239850: .4byte 0x000F0D00
+}
+#endif
 
 //--------------------------------------------------------------
 /**
@@ -1632,6 +1769,7 @@ static void WinAdd_Send( BR_WORK* wk )
  *
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WinAdd_SendEx( BR_WORK* wk, int no )
 {
 	GF_BGL_BMPWIN* win;
@@ -1670,6 +1808,143 @@ static void WinAdd_SendEx( BR_WORK* wk, int no )
 	STRBUF_Delete( tmp );
 	WORDSET_Delete( wset );
 }
+#else
+asm static void WinAdd_SendEx( BR_WORK* wk, int no )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x24
+	add r5, r0, #0
+	mov r0, #0x86
+	lsl r0, r0, #4
+	ldr r6, [r5, r0]
+	add r0, r6, #0
+	add r0, #0x10
+	bl GF_BGL_BmpWinAddCheck
+	cmp r0, #1
+	bne _0223986E
+	b _0223997A
+_0223986E:
+	add r0, r6, #0
+	str r0, [sp, #0x20]
+	add r0, #0x10
+	str r0, [sp, #0x20]
+	bl GF_BGL_BmpWinInit
+	mov r0, #0x13
+	str r0, [sp]
+	mov r3, #0x10
+	str r3, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #0xe
+	str r0, [sp, #0xc]
+	mov r0, #0x4b
+	lsl r0, r0, #2
+	str r0, [sp, #0x10]
+	ldr r0, [r5, #0x24]
+	ldr r1, [sp, #0x20]
+	mov r2, #2
+	bl GF_BGL_BmpWinAdd
+	ldr r0, [sp, #0x20]
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0x66
+	bl BR_WORDSET_Create
+	str r0, [sp, #0x18]
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r7, r0, #0
+	ldr r0, [r5, #0x48]
+	mov r1, #0x38
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x1c]
+	mov r0, #0xff
+	mov r1, #0x66
+	bl STRBUF_Create
+	add r4, r0, #0
+	mov r0, #0x8e
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	add r1, r4, #0
+	bl ImcSaveData_GetTelevisionPokeOyaName
+	add r0, r5, #0
+	add r1, r4, #0
+	bl BR_ErrorStrChange
+	mov r0, #0x8e
+	lsl r0, r0, #2
+	ldr r0, [r6, r0]
+	bl ImcSaveData_GetTelevisionTitlePmsWord
+	add r5, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	mov r1, #0
+	ldr r0, [sp, #0x18]
+	add r2, r4, #0
+	add r3, r1, #0
+	bl WORDSET_RegisterWord
+	ldr r0, [sp, #0x18]
+	mov r1, #1
+	add r2, r5, #0
+	bl WORDSET_RegisterPMSWord
+	ldr r0, [sp, #0x18]
+	ldr r2, [sp, #0x1c]
+	add r1, r7, #0
+	bl WORDSET_ExpandStr
+	add r0, r7, #0
+	bl STRBUF_GetLines
+	mov r5, #0
+	str r0, [sp, #0x14]
+	cmp r0, #0
+	bls _0223995C
+	add r6, r5, #0
+_02239920:
+	add r0, r4, #0
+	add r1, r7, #0
+	add r2, r5, #0
+	bl STRBUF_CopyLine
+	mov r0, #0
+	add r1, r4, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0x80
+	sub r0, r1, r0
+	lsr r3, r0, #1
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _02239980
+	mov r1, #0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x20]
+	add r2, r4, #0
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x14]
+	add r5, r5, #1
+	add r6, #0x10
+	cmp r5, r0
+	blo _02239920
+_0223995C:
+	ldr r0, [sp, #0x20]
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r4, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x1c]
+	bl STRBUF_Delete
+	add r0, r7, #0
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x18]
+	bl WORDSET_Delete
+_0223997A:
+	add sp, #0x24
+	pop {r4, r5, r6, r7, pc}
+	nop
+// _02239980: .4byte 0x000F0D00
+}
+#endif
 
 //--------------------------------------------------------------
 /**
@@ -1851,6 +2126,7 @@ static void Btn_CallBack_AIUEO( u32 button, u32 event, void* work )
  *
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void WinAdd_AIUEO( BR_WORK* wk )
 {
 	STRBUF* 			str1;
@@ -1885,6 +2161,138 @@ static void WinAdd_AIUEO( BR_WORK* wk )
 		}
 	}
 }
+#else
+asm static void WinAdd_AIUEO( BR_WORK* wk )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x34
+	str r0, [sp, #0x14]
+	mov r0, #1
+	str r0, [sp, #0x28]
+	mov r1, #0x86
+	ldr r0, [sp, #0x14]
+	lsl r1, r1, #4
+	ldr r4, [r0, r1]
+	ldr r5, =hit_rect_AIUEO // _02239CDC
+	mov r7, #0
+	add r4, #0xd0
+_02239BF0:
+	ldrb r0, [r5, #2]
+	lsl r0, r0, #0x15
+	lsr r0, r0, #0x18
+	str r0, [sp, #0x24]
+	ldrb r0, [r5]
+	lsl r0, r0, #0x15
+	lsr r0, r0, #0x18
+	str r0, [sp, #0x20]
+	ldrb r0, [r5, #3]
+	lsr r1, r0, #3
+	ldr r0, [sp, #0x24]
+	sub r0, r1, r0
+	lsl r0, r0, #0x18
+	lsr r0, r0, #0x18
+	str r0, [sp, #0x1c]
+	ldrb r0, [r5, #1]
+	lsr r1, r0, #3
+	ldr r0, [sp, #0x20]
+	sub r0, r1, r0
+	lsl r0, r0, #0x18
+	lsr r6, r0, #0x18
+	add r0, r4, #0
+	bl GF_BGL_BmpWinInit
+	ldr r0, [sp, #0x20]
+	add r1, r4, #0
+	str r0, [sp]
+	ldr r0, [sp, #0x1c]
+	mov r2, #6
+	str r0, [sp, #4]
+	str r6, [sp, #8]
+	mov r0, #0xe
+	str r0, [sp, #0xc]
+	ldr r0, [sp, #0x28]
+	lsl r0, r0, #0x10
+	lsr r0, r0, #0x10
+	str r0, [sp, #0x10]
+	ldr r0, [sp, #0x14]
+	ldr r3, [sp, #0x24]
+	ldr r0, [r0, #0x24]
+	bl GF_BGL_BmpWinAdd
+	add r0, r4, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [sp, #0x14]
+	add r1, r7, #0
+	ldr r0, [r0, #0x48]
+	add r1, #0x44
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x2c]
+	ldr r1, [sp, #0x2c]
+	add r0, r4, #0
+	bl BR_print_x_Get
+	lsl r1, r6, #3
+	sub r1, #0x10
+	str r0, [sp, #0x30]
+	lsr r0, r1, #0x1f
+	add r0, r1, r0
+	asr r0, r0, #1
+	str r0, [sp, #0x18]
+	ldr r0, [sp, #0x14]
+	add r1, r7, #0
+	bl IsPokeNameList
+	cmp r0, #1
+	bne _02239C9A
+	ldr r0, [sp, #0x18]
+	ldr r2, [sp, #0x2c]
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000F0D00 // _02239CE0
+	ldr r3, [sp, #0x30]
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r0, r4, #0
+	mov r1, #0
+	bl GF_STR_PrintColor
+	b _02239CB6
+_02239C9A:
+	ldr r0, [sp, #0x18]
+	ldr r2, [sp, #0x2c]
+	str r0, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	ldr r0, =0x000C0B00 // _02239CE4
+	ldr r3, [sp, #0x30]
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r0, r4, #0
+	mov r1, #0
+	bl GF_STR_PrintColor
+_02239CB6:
+	add r0, r4, #0
+	bl GF_BGL_BmpWinOnVReq
+	ldr r0, [sp, #0x2c]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x1c]
+	add r7, r7, #1
+	add r1, r0, #0
+	ldr r0, [sp, #0x28]
+	mul r1, r6
+	add r0, r0, r1
+	str r0, [sp, #0x28]
+	add r4, #0x10
+	add r5, r5, #4
+	cmp r7, #9
+	blo _02239BF0
+	add sp, #0x34
+	pop {r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _02239CDC: .4byte hit_rect_AIUEO
+// _02239CE0: .4byte 0x000F0D00
+// _02239CE4: .4byte 0x000C0B00
+}
+#endif
 
 //--------------------------------------------------------------
 /**
