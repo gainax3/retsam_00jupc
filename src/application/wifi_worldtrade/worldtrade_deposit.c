@@ -883,7 +883,9 @@ static int SubSeq_HeadWordSelectList( WORLDTRADE_WORK *wk )
 static int SubSeq_HeadWordSelectWait( WORLDTRADE_WORK *wk )
 {
 	switch(WorldTrade_BmpListMain( wk->BmpListWork, &wk->listpos )){
-	case 1: case 2: case 3: case 4: case 5:	case 6: case 7: case 8: case 9: case 10:
+    // localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSソート対応。
+	case 1: case 2: case 3: case 4: case 5:	case 6: case 7: case 8: case 9:
+    // MatchComment: end of localization change
 		BmpListExit( wk->BmpListWork, &wk->dw->headwordListPos, &wk->dw->headwordPos );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
 		wk->subprocess_seq  = SUBSEQ_POKENAME_SELECT_LIST;
@@ -1526,29 +1528,32 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
  * @param   sex		
  * @param   flag		
  * @param   color		
- * @param   tbl_select	LEVEL_PRINT_TBL_DEPOSIT or LEVEL_PRINT_TBL_SEARCH
  *
  * @retval  none		
  */
 //==============================================================================
-void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+// x 座標指定のできる WorldTrade_WantLevelPrint() 同等関数を用意
+
+void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, u32 a6, int x )
 {
 	STRBUF *levelbuf;
-	const WT_LEVEL_TERM * level_tbl;
-	
-	if(tbl_select == LEVEL_PRINT_TBL_DEPOSIT){
-		level_tbl = level_minmax_table;
-	}
-	else{	//LEVEL_PRINT_TBL_SEARCH
-		level_tbl = search_level_minmax_table;
-	}
-	
+
 	if(level!=-1){
-		levelbuf = MSGMAN_AllocString( msgman, level_tbl[level].msg );
-		WorldTrade_SysPrint( win, levelbuf,  0, y, flag, color );
+		levelbuf = MSGMAN_AllocString( msgman, level_minmax_table[level].msg );
+		WorldTrade_SysPrint( win, levelbuf, x, y, flag, color );
 		STRBUF_Delete(levelbuf);
 	}
 }
+
+void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color )
+{
+	WorldTrade_WantLevelPrintEx( win, msgman, level, flag, y, color, 0, 0 );
+}
+
+// ----------------------------------------------------------------------------
+
 //------------------------------------------------------------------
 /**
  * @brief   交換して欲しいポケモンの条件を描画する
@@ -1592,8 +1597,8 @@ void WodrldTrade_PokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *Mo
 	}
 
 	// レベル指定
-	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0),
-		LEVEL_PRINT_TBL_DEPOSIT );
+	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0)
+		 ); // TODO__fix_me LEVEL_PRINT_TBL_DEPOSIT
 	
 	
 
@@ -1642,8 +1647,8 @@ void WodrldTrade_MyPokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *
 	}
 
 	// レベル指定
-	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0),
-		LEVEL_PRINT_TBL_DEPOSIT );
+	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0)
+		 ); // TODO__fix_me LEVEL_PRINT_TBL_DEPOSIT
 	
 	
 
@@ -1877,7 +1882,9 @@ static void DepositPokemonDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk )
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-#define DEPOSIT_HEADWORD_NUM	( 10 )
+// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSソート対応。
+#define DEPOSIT_HEADWORD_NUM	(  9 )
+// MatchComment: end of localization change
 #define DEPOSIT_Y_NUM			(  6 )
 
 ///BMPLIST用定義
@@ -1919,7 +1926,9 @@ BMPLIST_WORK *WorldTrade_WordheadBmpListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_
 	BMPLIST_HEADER list_h;
 	int i;
 
-	*menulist = BMP_MENULIST_Create( 10, HEAPID_WORLDTRADE );
+	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSソート対応。
+	*menulist = BMP_MENULIST_Create( DEPOSIT_HEADWORD_NUM, HEAPID_WORLDTRADE );
+    // MatchComment: end of localization change
 	for(i=0;i<10;i++){
 		BMP_MENULIST_AddArchiveString( *menulist, MsgManager, msg_gtc_10_001+i, i+1 );
 	}
@@ -1937,6 +1946,7 @@ BMPLIST_WORK *WorldTrade_WordheadBmpListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_
 }
 
 // 頭文字テーブル（ソートされたポケモンの何番目に「ア・カ・サ…」が登場するか？
+// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSソート対応。
 static u16 NameHeadTable[]={
 	ZKN_AKSTNHMYRW_IDX_A,
 	ZKN_AKSTNHMYRW_IDX_K,
@@ -1947,9 +1957,9 @@ static u16 NameHeadTable[]={
 	ZKN_AKSTNHMYRW_IDX_M,
 	ZKN_AKSTNHMYRW_IDX_Y,
 	ZKN_AKSTNHMYRW_IDX_R,
-	ZKN_AKSTNHMYRW_IDX_W,
 	ZKN_AKSTNHMYRW_IDX_END,
 };
+// MatchComment: end of localization change
 
 //------------------------------------------------------------------
 /**

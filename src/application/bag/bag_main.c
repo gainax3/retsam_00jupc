@@ -145,8 +145,16 @@ typedef int (*seqFunc)(BAG_WORK*);	// シーケンス関数ポインタ型
 #define	ICONPUT_SCRN_SY		( 5 )		// アイテムアイコンを表示する背景Yサイズ
 
 
-#define	LIST_PX_NORMAL		( 0 )		// アイテムリストの表示X座標（通常）
-#define	LIST_PX_WAZAMACHINE	( 32 )		// アイテムリストの表示X座標（技マシン）
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/22
+// わざマシンときのみページで、番号と名前の間にスペースを追加
+
+#define SPACE_SX	(3)
+
+#define	LIST_PX_NORMAL		( 0 )				// アイテムリストの表示X座標（通常）
+#define	LIST_PX_WAZAMACHINE	( 32+SPACE_SX )		// アイテムリストの表示X座標（技マシン）
+
+// ----------------------------------------------------------------------------
 
 #define	SUB_ENTER_PX		( 13 )		// 下画面の決定ボタンのスクリーン書き換えX座標
 #define	SUB_ENTER_PY		( 7 )		// 下画面の決定ボタンのスクリーン書き換えY座標
@@ -3513,7 +3521,15 @@ static int Bag_MenuSubYesNoSelectSeq( BAG_WORK * wk )
 	case 0:
 		{
 			STRBUF * str = MSGMAN_AllocString( wk->msg_man, msg_bag_055 );
-			WORDSET_RegisterItemName( wk->wset, 0, wk->dat->ret_item );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+			// どうぐ破棄時のどうぐ名を売却数で出し分け
+			if (wk->sel_num == 1) {
+				WORDSET_RegisterItemName( wk->wset, 0, wk->dat->ret_item );
+			} else {
+				WORDSET_RegisterItemNamePlural( wk->wset, 0, wk->dat->ret_item );
+			}
+			// ----------------------------------------------------------------------------
 			WORDSET_RegisterNumber(
 				wk->wset, 1, wk->sel_num, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 			WORDSET_ExpandStr( wk->wset, wk->expb, str );
@@ -3984,7 +4000,15 @@ static int SaleYesNoSelectSeq( BAG_WORK * wk )
 	case 0:
 		{
 			STRBUF * str = MSGMAN_AllocString( wk->msg_man, mes_shop_096 );
-			WORDSET_RegisterItemName( wk->wset, 0, wk->dat->ret_item );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/12
+			// どうぐ売却時のどうぐ名を売却数で出し分け
+			if (wk->sel_num > 1) {
+				WORDSET_RegisterItemNamePlural( wk->wset, 0, wk->dat->ret_item );
+			} else {
+				WORDSET_RegisterItemName( wk->wset, 0, wk->dat->ret_item );
+			}
+			// ----------------------------------------------------------------------------
 			WORDSET_RegisterNumber(
 				wk->wset, 1, wk->sel_num*wk->sel_price, 6,
 				NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );

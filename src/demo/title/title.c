@@ -186,6 +186,7 @@ typedef enum {
 	DRAW3DANM_ENABLE,		///<•`‰æ
 };
 
+
 ///	‘JˆÚæƒV[ƒ“’è‹`
 typedef enum {
 	SCENE_ID_NOT_DECIDE = 0,		///<‘JˆÚæƒV[ƒ“–¢Šm’è
@@ -985,21 +986,29 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, TITLE_PRSSTART_FRAME, &PrsSt_Data, GF_BGL_MODE_TEXT );
 	}
 	{	// ƒ_ƒCƒ„Eƒp[ƒ‹ƒƒS ‚a‚fÝ’è(1)
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
+		// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
 		GF_BGL_BGCNT_HEADER DPlogo_Data = {
-			0, 0, 0x1000, 0,
-			GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
+			0, 0, 0x0800, 0,
+			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x08000,
 			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE
 		};
+		// ----------------------------------------------------------------------------
 		GF_BGL_BGControlSet( wk->bgl, TITLE_LOGO2_FRAME, &DPlogo_Data, GF_BGL_MODE_TEXT );
 	}
 	{	// ƒ^ƒCƒgƒ‹ƒƒS ‚a‚fÝ’è(2)
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
+		// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
 		GF_BGL_BGCNT_HEADER Titlelogo_Data = {
-			0, 0, 0x1000, 0,
-			GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
+			0, 0, 0x0800, 0,
+			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x3800, GX_BG_CHARBASE_0x10000,
 			GX_BG_EXTPLTT_23, 0, 0, 0, FALSE
 		};
+		// ----------------------------------------------------------------------------
 		GF_BGL_BGControlSet( wk->bgl, TITLE_LOGO_FRAME, &Titlelogo_Data, GF_BGL_MODE_TEXT );
 	}
 	{	// GAMEFREAK inc ‚a‚fÝ’è(1)
@@ -1183,8 +1192,12 @@ enum{
 	TDSEQ_LIGHT1_DOWN,
 };
 // ƒƒbƒZ[ƒWƒEƒBƒ“ƒhƒE
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/31
+// ƒ^ƒCƒgƒ‹ƒƒS‚ðŠCŠO”Å‚Ì‚à‚Ì‚É·‚µ‘Ö‚¦
 static const BMPWIN_DAT TitleMsgWinData =
-	{ TITLE_PRSSTART_FRAME,2,18,28,2,2,1 };	//frame,startX,startY,sizeX,sizeY,palnum,cgxnum	
+	{ TITLE_PRSSTART_FRAME,2,19,28,2,2,1 };	//frame,startX,startY,sizeX,sizeY,palnum,cgxnum	
+// ----------------------------------------------------------------------------
 
 //----------------------------------
 // ‰Šú‰»
@@ -1666,6 +1679,11 @@ static void Title2DGraphicSet(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* 
 	{	// ƒKƒCƒhƒƒbƒZ[ƒW
 		MSGDATA_MANAGER*	msg_man;
 		STRBUF*				title_str;
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/11/14
+		// u‚o‚t‚r‚g@‚r‚s‚`‚q‚s@‚a‚t‚s‚s‚n‚mv‚ðŽ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚Ä•\Ž¦
+		u32 x;
+		// ----------------------------------------------------------------------------
 
 		GF_BGL_ClearCharSet( TITLE_PRSSTART_FRAME, 32, 0, heapID );
 
@@ -1679,8 +1697,13 @@ static void Title2DGraphicSet(GF_BGL_INI* ini,int heapID, TITLE_TITLEDEMO_WORK* 
 		//•¶Žš—ñ‚ÌŽæ“¾i‚`ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢j
 		MSGMAN_GetString(msg_man,title_msg_01,title_str);
 		//•¶Žš—ñ‚Ì•\Ž¦
-		GF_STR_PrintExpand(&wk->msgwin,FONT_SYSTEM,title_str,0x28,0,MSG_ALLPUT,
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/11/14
+		// u‚o‚t‚r‚g@‚r‚s‚`‚q‚s@‚a‚t‚s‚s‚n‚mv‚ðŽ©“®‚ÅƒZƒ“ƒ^ƒŠƒ“ƒO‚µ‚Ä•\Ž¦
+		x = FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, title_str, 1, wk->msgwin.sizx * 8 );
+		GF_STR_PrintExpand(&wk->msgwin,FONT_SYSTEM,title_str,x,0,MSG_ALLPUT,
 							GF_PRINTCOLOR_MAKE(1, 1, FBMP_COL_NULL),1,0,NULL);
+		// ----------------------------------------------------------------------------
 
 		STRBUF_Delete(title_str);
 		MSGMAN_Delete(msg_man);

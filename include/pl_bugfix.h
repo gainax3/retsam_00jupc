@@ -43,7 +43,7 @@
  *			らおうとするとその際に表示されるテキストが早送りできません
  * 場所	src/demo/ev_poke_select.c
  */
-#define PL_S0789_080710_FIX	(0)
+#define PL_S0789_080710_FIX	(1) // MatchComment: enable this bugfix
 
 
 /*
@@ -142,7 +142,7 @@
  * 
  * 場所 src/application/wifi_lobby/wflby_room.c
  */
-#define PL_T0862_080712_FIX (0)
+#define PL_T0862_080712_FIX (1) // MatchComment: enable this bugfix
 
 
 /*
@@ -151,7 +151,7 @@
  * 
  * 場所 src/application/wifi_earth/wifi_earth.c
  */
-#define PL_T0864_080714_FIX (0)
+#define PL_T0864_080714_FIX (1) // MatchComment: enable this bugfix
 
 
 

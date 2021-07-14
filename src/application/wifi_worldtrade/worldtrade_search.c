@@ -210,6 +210,7 @@ static u16 CursorPos[][2]={
  * @retval  int		
  */
 //==============================================================================
+#ifdef NONEQUIVALENT
 int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
 {
 	// ワーク初期化
@@ -240,7 +241,7 @@ int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
 		// レベル指定決定
 		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, 
 			WorldTrade_LevelTermGet(wk->Search.level_min,wk->Search.level_max, LEVEL_PRINT_TBL_SEARCH),
-			SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0), LEVEL_PRINT_TBL_SEARCH );
+			SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0) ); // TODO__fix_me LEVEL_PRINT_TBL_SEARCH
 
 		// 国指定
 		WorldTrade_CountryPrint( &wk->CountryWin[1], wk->CountryNameManager, wk->MsgManager,
@@ -257,6 +258,113 @@ int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
 
 	return SEQ_FADEIN;
 }
+#else
+asm int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
+{
+	push {r3, r4, lr}
+	sub sp, #0xc
+	add r4, r0, #0
+	bl InitWork
+	ldr r0, [r4, #4]
+	bl BgInit
+	add r0, r4, #0
+	bl BgGraphicSet
+	add r0, r4, #0
+	bl BmpWinInit
+	add r0, r4, #0
+	bl SetCellActor
+	ldr r1, =0x00000F6C // _0223E538
+	ldr r2, =0x00000B94 // _0223E53C
+	add r0, r4, r1
+	add r1, #0xe0
+	ldr r2, [r4, r2]
+	add r1, r4, r1
+	bl WantLabelPrint
+	mov r3, #0
+	ldr r0, =0x00010200 // _0223E540
+	str r3, [sp]
+	str r0, [sp, #4]
+	ldr r2, =0x00000B98 // _0223E544
+	ldr r0, =0x00000F7C // _0223E548
+	ldr r1, [r4, r2]
+	sub r2, #0x1a
+	ldrsh r2, [r4, r2]
+	add r0, r4, r0
+	bl WorldTrade_PokeNamePrint
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _0223E540
+	ldr r2, =0x00000B94 // _0223E53C
+	str r0, [sp, #8]
+	ldr r1, [r4, r2]
+	sub r2, #0x14
+	ldr r0, =0x00000F9C // _0223E54C
+	ldrsb r2, [r4, r2]
+	add r0, r4, r0
+	mov r3, #1
+	bl WorldTrade_SexPrint
+	ldr r1, =0x00000B81 // _0223E550
+	mov r2, #1
+	ldrsb r0, [r4, r1]
+	add r1, r1, #1
+	ldrsb r1, [r4, r1]
+	bl WorldTrade_LevelTermGet
+	add r2, r0, #0
+	mov r3, #0
+	ldr r0, =0x00010200 // _0223E540
+	str r3, [sp]
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	ldr r1, =0x00000B94 // _0223E53C
+	ldr r0, =0x00000FBC // _0223E554
+	ldr r1, [r4, r1]
+	add r0, r4, r0
+	bl WorldTrade_WantLevelPrint // TODO__fix_me
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _0223E540
+	ldr r3, =0x0000105C // _0223E558
+	str r0, [sp, #8]
+	ldr r2, =0x00000BA4 // _0223E55C
+	add r0, r4, r3
+	ldr r1, [r4, r2]
+	sub r2, #0x10
+	add r3, #0xf4
+	ldr r2, [r4, r2]
+	ldr r3, [r4, r3]
+	bl WorldTrade_CountryPrint
+	mov r0, #6
+	str r0, [sp]
+	mov r1, #1
+	str r1, [sp, #4]
+	mov r0, #0x3e
+	str r0, [sp, #8]
+	mov r0, #3
+	add r2, r1, #0
+	mov r3, #0
+	bl WIPE_SYS_Start
+	mov r0, #0
+	str r0, [r4, #0x2c]
+	mov r0, #2
+	add sp, #0xc
+	pop {r3, r4, pc}
+	// .align 2, 0
+// _0223E538: .4byte 0x00000F6C
+// _0223E53C: .4byte 0x00000B94
+// _0223E540: .4byte 0x00010200
+// _0223E544: .4byte 0x00000B98
+// _0223E548: .4byte 0x00000F7C
+// _0223E54C: .4byte 0x00000F9C
+// _0223E550: .4byte 0x00000B81
+// _0223E554: .4byte 0x00000FBC
+// _0223E558: .4byte 0x0000105C
+// _0223E55C: .4byte 0x00000BA4
+}
+#endif
+
 //==============================================================================
 /**
  * $brief   世界交換入り口画面メイン
@@ -517,7 +625,11 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 #define INFORMATION_STR_SX	( 11 )
 #define INFORMATION_STR_SY	(  2 )
 
-#define BUTTON_STR_X		( 0x18 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+// 「さがす」・「もどる」を中央寄せ
+#define BUTTON_STR_X		( 20 )
+// ----------------------------------------------------------------------------
 #define BUTTON1_STR_Y		(  6 )
 #define BUTTON2_STR_Y		( 11 )
 #define BUTTON_STR_SX		(  8 )
@@ -1335,7 +1447,7 @@ static int 	SUBSEQ_HeadwordSelectList( WORLDTRADE_WORK *wk)
 static int SUBSEQ_HeadwordSelectWait( WORLDTRADE_WORK *wk)
 {
 	switch(WorldTrade_BmpListMain( wk->BmpListWork, &wk->listpos )){
-	case 1: case 2: case 3: case 4: case 5:	case 6: case 7: case 8: case 9: case 10:
+	case 1: case 2: case 3: case 4: case 5:	case 6: case 7: case 8: case 9: // MatchComment: remove case 10
 		BmpListExit( wk->BmpListWork, &wk->dw->headwordListPos, &wk->dw->headwordPos );
 		BMP_MENULIST_Delete( wk->BmpMenuList );
 		Snd_SePlay(WORLDTRADE_DECIDE_SE);
@@ -1594,6 +1706,7 @@ static int SUBSEQ_LevelSelectList( WORLDTRADE_WORK *wk)
  * @retval  int		
  */
 //------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
 {
 	u32 result;
@@ -1625,7 +1738,7 @@ static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
 
 		GF_BGL_BmpWinDataFill( &wk->InfoWin[5], 0x0000 );
 		// レベル指定決定
-		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, result, SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0), LEVEL_PRINT_TBL_SEARCH );
+		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, result, SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0) ); // TODO__fix_me , LEVEL_PRINT_TBL_SEARCH
 
 		break;
 	}
@@ -1633,6 +1746,110 @@ static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
 
 	return SEQ_MAIN;
 }
+#else
+asm static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
+{
+	push {r4, r5, lr}
+	sub sp, #0xc
+	add r5, r0, #0
+	ldr r0, =0x00001078 // _0223F704
+	mov r1, #0x43
+	lsl r1, r1, #2
+	ldr r0, [r5, r0]
+	add r1, r5, r1
+	bl WorldTrade_BmpListMain
+	add r4, r0, #0
+	cmp r4, #0xb
+	beq _0223F662
+	mov r0, #1
+	mvn r0, r0
+	cmp r4, r0
+	beq _0223F662
+	add r0, r0, #1
+	cmp r4, r0
+	beq _0223F6FC
+	b _0223F69E
+_0223F662:
+	ldr r0, =0x00001078 // _0223F704
+	mov r1, #0
+	ldr r0, [r5, r0]
+	add r2, r1, #0
+	bl BmpListExit
+	ldr r0, =0x0000106C // _0223F708
+	ldr r0, [r5, r0]
+	bl BMP_MENULIST_Delete
+	ldr r0, =0x00000F3C // _0223F70C
+	mov r1, #0
+	add r0, r5, r0
+	bl BmpMenuWinClear
+	ldr r0, =0x00000EFC // _0223F710
+	mov r1, #0
+	add r0, r5, r0
+	bl BmpTalkWinClear
+	ldr r0, =0x00000F3C // _0223F70C
+	add r0, r5, r0
+	bl GF_BGL_BmpWinDel
+	ldr r0, =0x000005DC // _0223F714
+	bl Snd_SePlay
+	mov r0, #0
+	str r0, [r5, #0x2c]
+	b _0223F6FC
+_0223F69E:
+	ldr r0, =0x00001078 // _0223F704
+	mov r1, #0
+	ldr r0, [r5, r0]
+	add r2, r1, #0
+	bl BmpListExit
+	ldr r0, =0x0000106C // _0223F708
+	ldr r0, [r5, r0]
+	bl BMP_MENULIST_Delete
+	ldr r0, =0x00000F3C // _0223F70C
+	mov r1, #0
+	add r0, r5, r0
+	bl BmpMenuWinClear
+	ldr r0, =0x00000F3C // _0223F70C
+	add r0, r5, r0
+	bl GF_BGL_BmpWinDel
+	ldr r0, =0x000005DC // _0223F714
+	bl Snd_SePlay
+	ldr r0, =0x00000B7E // _0223F718
+	add r1, r4, #0
+	add r0, r5, r0
+	mov r2, #1
+	bl WorldTrade_LevelMinMaxSet
+	ldr r0, =0x00000FBC // _0223F71C
+	mov r1, #0
+	add r0, r5, r0
+	str r1, [r5, #0x2c]
+	bl GF_BGL_BmpWinDataFill
+	mov r3, #0
+	ldr r0, =0x00010200 // _0223F720
+	str r3, [sp]
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	ldr r1, =0x00000B94 // _0223F724
+	ldr r0, =0x00000FBC // _0223F71C
+	ldr r1, [r5, r1]
+	add r0, r5, r0
+	add r2, r4, #0
+	bl WorldTrade_WantLevelPrint // TODO__fix_me
+_0223F6FC:
+	mov r0, #3
+	add sp, #0xc
+	pop {r4, r5, pc}
+	nop
+// _0223F704: .4byte 0x00001078
+// _0223F708: .4byte 0x0000106C
+// _0223F70C: .4byte 0x00000F3C
+// _0223F710: .4byte 0x00000EFC
+// _0223F714: .4byte 0x000005DC
+// _0223F718: .4byte 0x00000B7E
+// _0223F71C: .4byte 0x00000FBC
+// _0223F720: .4byte 0x00010200
+// _0223F724: .4byte 0x00000B94
+}
+#endif
 
 //------------------------------------------------------------------
 /**
@@ -1936,12 +2153,26 @@ static void WantLabelPrint( GF_BGL_BMPWIN *win, GF_BGL_BMPWIN *country_win, MSGD
 
 	//「さがす」描画
 	strbuf = MSGMAN_AllocString( MsgManager, msg_gtc_03_008 );
-	WorldTrade_SysPrint( &win[6], strbuf,    0, 0, 0, GF_PRINTCOLOR_MAKE(1,2,0) );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+	// 「さがす」を中央寄せ
+	{
+		int xofs = FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, strbuf, 0, win[6].sizx*8 );
+		WorldTrade_SysPrint( &win[6], strbuf, xofs, 0, 0, GF_PRINTCOLOR_MAKE(1,2,0) );
+	}
+	// ----------------------------------------------------------------------------
 	STRBUF_Delete(strbuf);
 
 	//「もどる」描画
 	strbuf = MSGMAN_AllocString( MsgManager, msg_gtc_03_009 );
-	WorldTrade_SysPrint( &win[7], strbuf,    0, 0, 0, GF_PRINTCOLOR_MAKE(1,2,0) );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+	// 「もどる」を中央寄せ
+	{
+		int xofs = FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, strbuf, 0, win[7].sizx*8 );
+		WorldTrade_SysPrint( &win[7], strbuf, xofs, 0, 0, GF_PRINTCOLOR_MAKE(1,2,0) );
+	}
+	// ----------------------------------------------------------------------------
 	STRBUF_Delete(strbuf);
 	
 

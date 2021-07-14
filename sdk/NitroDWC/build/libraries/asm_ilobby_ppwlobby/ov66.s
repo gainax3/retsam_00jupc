@@ -35228,3 +35228,8 @@ ov66_rodata:
 	.global ov66_data
 ov66_data:
 	.incbin "ov66_data.bin"
+
+	.bss
+	.global ov66_bss
+ov66_bss:
+	.space 0x1020

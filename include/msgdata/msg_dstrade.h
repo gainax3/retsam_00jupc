@@ -59,5 +59,6 @@
 #define	mes_dstrade_05_11		(47)
 #define	mes_dstrade_05_12		(48)
 #define	mes_dstrade_05_13		(49)
+#define	mes_dstrade_endstr		(50)
 
 #endif

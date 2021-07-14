@@ -986,7 +986,7 @@ static void WFLBY_ROOM_TalkWin_Board_SetPalNo( WFLBY_ROOM_TALKMSG* p_wk, u16 pal
 
 static void WFLBY_ROOM_ListWin_Init( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT* p_sys, u32 heapID );
 static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT* p_sys );
-static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID );
+static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID , u32 a3);
 static void WFLBY_ROOM_ListWin_DeleteBmpList( WFLBY_ROOM_LISTWIN* p_wk );
 static void WFLBY_ROOM_ListWin_SetBmpListStr( WFLBY_ROOM_LISTWIN* p_wk, const STRBUF* cp_str, u32 param );
 static const  BMP_MENULIST_DATA* WFLBY_ROOM_ListWin_GetBmpList( const WFLBY_ROOM_LISTWIN* cp_wk );
@@ -2086,8 +2086,6 @@ void WFLBY_ROOM_BOARDWIN_Off( WFLBY_ROOMWK* p_wk )
 	WFLBY_ROOM_TalkWin_Board_Off( &p_wk->boardwin );
 }
 
-
-
 //----------------------------------------------------------------------------
 /**
  *	@brief	項目リスト作成
@@ -2096,9 +2094,16 @@ void WFLBY_ROOM_BOARDWIN_Off( WFLBY_ROOMWK* p_wk )
  *	@param	num			リスト数
  */
 //-----------------------------------------------------------------------------
+
 void WFLBY_ROOM_LISTWIN_CreateBmpList( WFLBY_ROOMWK* p_wk, u32 num )
 {
-	WFLBY_ROOM_ListWin_CreateBmpList( &p_wk->listwin, num, HEAPID_WFLBY_ROOMGRA );
+	WFLBY_ROOM_ListWin_CreateBmpList( &p_wk->listwin, num, HEAPID_WFLBY_ROOMGRA, 0 );
+}
+
+// MatchComment: New function
+void WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg( WFLBY_ROOMWK* p_wk, u32 num, u32 a2 )
+{
+	WFLBY_ROOM_ListWin_CreateBmpList( &p_wk->listwin, num, HEAPID_WFLBY_ROOMGRA, a2 );
 }
 
 //----------------------------------------------------------------------------
@@ -3844,7 +3849,7 @@ static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
 	
 	// リストデータが残っていたらはき
 	if( p_wk->p_bmplist != NULL ){
-		WFLBY_ROOM_ListWin_DeleteBmpList( p_wk );
+		WFLBY_ROOM_ListWin_DeleteBmpList( p_wk ); // TODO__fix_me
 	}
 	
 	// 動作していたらすべてはき
@@ -3875,12 +3880,47 @@ static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
-static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID )
+#ifdef NONEQUIVALENT
+static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID, u32 a3 )
 {
 	GF_ASSERT( p_wk->p_bmplist == NULL );
 	p_wk->p_bmplist		= BMP_MENULIST_Create( num, heapID );
 	p_wk->bmplistnum	= num;
 }
+#else
+asm static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID, u32 a3 )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	add r5, r0, #0
+	ldr r0, [r5, #0x34]
+	add r4, r1, #0
+	add r7, r2, #0
+	add r6, r3, #0
+	cmp r0, #0
+	beq _0225EDBC
+	bl GF_AssertFailedWarningCall
+_0225EDBC:
+	add r0, r4, #0
+	add r1, r7, #0
+	bl BMP_MENULIST_Create
+	str r0, [r5, #0x34]
+	mov r1, #0
+	strh r4, [r5, #0x38]
+	cmp r4, #0
+	bls _0225EDDE
+	add r2, r1, #0
+_0225EDD0:
+	ldr r0, [r5, #0x34]
+	add r1, r1, #1
+	add r0, r0, r2
+	str r6, [r0, #4]
+	add r2, #8
+	cmp r1, r4
+	blo _0225EDD0
+_0225EDDE:
+	pop {r3, r4, r5, r6, r7, pc}
+}
+#endif
 
 //----------------------------------------------------------------------------
 /**

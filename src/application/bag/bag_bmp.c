@@ -69,10 +69,20 @@
 #define	INFO_HITNUM_PX	( 96+64 )	// 技マシン情報 命中値表示X座標
 #define	INFO_HITNUM_PY	( 32 )		// 技マシン情報 命中値表示Y座標
 
-#define	NX_POS_PX	( 100 )				// 「ｘ」表示X座標（通常）
-#define	WX_POS_PX	( NX_POS_PX+12 )	// 「ｘ」表示X座標（技マシン）
-#define	NUM_POS_EX	( 17*8-2 )			// 個数表示X座標終端
-#define	NUM_BUFLEN	( 10 )				// ("x???"+EOM_) x 海外
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/11/22
+// きのみ名と「x」が重なってしまうのを修正
+
+#define MULTI_SX	(6)
+#define SPACE_SX	(1)
+#define NUMBER_SX	(6)
+
+#define	NUM_POS_EX	( 17*8-2 )										// 個数表示X座標終端
+#define	NX_POS_PX	( NUM_POS_EX-MULTI_SX-SPACE_SX-NUMBER_SX*3 )	// 「ｘ」表示X座標（通常）
+#define	WX_POS_PX	( NX_POS_PX+NUMBER_SX )							// 「ｘ」表示X座標（技マシン）
+#define	NUM_BUFLEN	( 10 )											// ("x???"+EOM_) x 海外
+
+// ----------------------------------------------------------------------------
 
 #define	WM_NO_Y_PLUS	( 5 )		// 技マシンの「No」表示Y座標オフセット
 
@@ -434,6 +444,15 @@ static void ItemNameWordSet( BAG_WORK * wk, u32 pos, u32 buf_id )
 {
 	WORDSET_RegisterItemName( wk->wset, buf_id, Bag_PosItemGet(wk,pos,POS_GET_ID) );
 }
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+// どうぐ破棄時のどうぐ名を売却数で出し分け
+static void ItemNameWordSetPlural( BAG_WORK * wk, u32 pos, u32 buf_id )
+{
+	WORDSET_RegisterItemNamePlural( wk->wset, buf_id, Bag_PosItemGet(wk,pos,POS_GET_ID) );
+}
+// ----------------------------------------------------------------------------
 
 
 //--------------------------------------------------------------------------------------------
@@ -1096,7 +1115,15 @@ void Bag_SubTalkWinSet( BAG_WORK * wk )
 	msg    = MSGMAN_AllocString( wk->msg_man, msg_bag_056 );
 	pocket = &wk->dat->p_data[ wk->dat->p_now ];
 
-	ItemNameWordSet( wk, pocket->scr+pocket->cur-1, 0 );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+	// どうぐ破棄時のどうぐ名を売却数で出し分け
+	if (wk->sel_num == 1) {
+		ItemNameWordSet( wk, pocket->scr+pocket->cur-1, 0 );
+	} else {
+		ItemNameWordSetPlural( wk, pocket->scr+pocket->cur-1, 0 );
+	}
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber(
 		wk->wset, 1, wk->sel_num, 3, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 

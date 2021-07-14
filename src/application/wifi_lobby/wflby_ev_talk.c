@@ -4275,7 +4275,8 @@ static void WFLBY_EV_TALK_WK_InitBmpListRandom( WFLBY_EV_TALK_BMPLIST* p_wk, WFL
 	
 
 	// バッファ作成
-	WFLBY_ROOM_LISTWIN_CreateBmpList( p_rmwk, sel_num );
+    // MatchComment: WFLBY_ROOM_LISTWIN_CreateBmpList -> WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg. use allnum as third arg
+	WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg( p_rmwk, sel_num, allnum );
 	p_wk->bmplist_num = sel_num;
 
 	// データ作成
@@ -4460,7 +4461,7 @@ static void WFLBY_EV_TOPIC_WK_InitMinigameBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, 
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_TALK_WK_ExitBmpList( WFLBY_EV_TALK_BMPLIST* p_wk, WFLBY_ROOMWK* p_rmwk )
 {
-	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk );
+	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk ); // TODO__fix_me
 }
 
 

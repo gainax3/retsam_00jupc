@@ -1502,7 +1502,7 @@ static void WFLBY_EV_MG_WK_InitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_MG_WK_ExitBmpList( WFLBY_EV_MG_WK* p_evwk, WFLBY_ROOMWK* p_rmwk )
 {
-	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk );
+	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk ); // TODO__fix_me
 }
 
 

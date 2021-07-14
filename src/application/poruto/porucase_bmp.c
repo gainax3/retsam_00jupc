@@ -337,10 +337,14 @@ void PoruList_SortMenu(PORU_CASE_WORK* wk,u8 mode)
 	siz =	(BMPL_EXPS_SX*8)-
 			FontProc_GetPrintStrWidth(FONT_SYSTEM,wk->msgDat.exbuf[wk->viewMode],0);
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+	// 文字がウィンドウの中央に来るように、描画位置を1ピクセル下に移動
 	GF_STR_PrintColor(
 		&wk->win[WIN_EXPS], FONT_SYSTEM,
 		wk->msgDat.exbuf[wk->viewMode],
-		siz/2, 2, MSG_ALLPUT, col, NULL );
+		siz/2, 3, MSG_ALLPUT, col, NULL );
+	// ----------------------------------------------------------------------------
 }
 
 /**

@@ -66,8 +66,12 @@ static void PokeTabLabelPrint(MSGDATA_MANAGER *MsgManager, GF_BGL_BMPWIN win[] )
 
 
 static void SubSeq_MessagePrint( WORLDTRADE_WORK *wk, int msgno, int wait, int flag, u16 dat );
-static void PokeInfoPrint( GF_BGL_BMPWIN win[], MSGDATA_MANAGER *gtcmsg, MSGDATA_MANAGER *monsname, Dpw_Tr_PokemonSearchData *dtp);
-static void TrainerInfoPrint( GF_BGL_BMPWIN win[], STRBUF *strbuf1, STRBUF *strbuf2 );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+// 情報ウィンドウを整理統合
+static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_MANAGER *monsname, Dpw_Tr_PokemonSearchData *dtp);
+static void TrainerInfoPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf1, STRBUF *strbuf2 );
+// ----------------------------------------------------------------------------
 
 
 enum{
@@ -389,26 +393,33 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 #define LINE_MESSAGE_OFFSET   ( WORLDTRADE_MENUFRAME_CHR + MENU_WIN_CGX_SIZ )
 #define SELECT_MENU_OFFSET    ( LINE_MESSAGE_OFFSET + LINE_TEXT_SX*LINE_TEXT_SY )
 #define INFO_TEXT_OFFSET	  ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+// 情報ウィンドウを整理統合
 static const info_bmpwin_table[][4]={
-	{  1,  2, 10,  2, },	// ポケモンのニックネーム
-	{  12,  2,  8,  2, },	// ポケモンの種族名
-	{  14, 4,  7,  2, },	// レベル●●
-	{  1,  7,  5,  2, },	// 「もちもの」
-	{  7,  7, 11,  2, },	// 所持アイテム名
-	{  2, 10,  9,  2, },	// 「もちぬし」
-	{ 12, 10,  8,  2, },	// トレーナー名
+	{  2,  2, 10,  2, },	// ポケモンのニックネーム
+	{  3,  4,  8,  2, },	// ポケモンの種族名
+	{  12, 4,  7,  2, },	// レベル●●
+	{  2,  7,  5,  2, },	// 「もちもの」
+	{  8,  7, 11,  2, },	// 所持アイテム名
+	{  4, 10,  6,  2, },	// 「もちぬし」
+	{ 11, 10,  8,  2, },	// トレーナー名
 	{  3, 13,  9,  2, },	// 「ほしいポケモン」
 	{ 16, 13, 13,  2, },	// 「すんでいるばしょ」//154
-	{  2, 15, 27,  2, },	// 情報1
-	{  3, 17, 27,  2, },	// 情報2
-	{  1, 5, 4,  2, },	// 「おや」
-	{  5, 5, 8,  2, },	// 親名
+	{  2, 15, 28,  5, },	// 情報
 };
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/17
+// 情報ウィンドウの拡大により、また届いてしまったのでさらに奥へ
 
 // はい・いいえのBMPWIN領域は最後にもってきたいのだが、
 // 情報ウインドウの総数がよめないので、204キャラずらしておく
 // （届いてしまったので204キャラに変えた by Mori (06.05.09)
-#define YESNO_OFFSET 		   ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY+262 + 36 )
+#define YESNO_OFFSET 		   ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY+262+64 )
+
+// ---------------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /**
@@ -439,7 +450,10 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 		int i, offset;
 
 		offset = INFO_TEXT_OFFSET;
-		for(i=0;i<11+2;i++){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+		// 情報ウィンドウを整理統合
+		for(i=0;i<NELEMS(info_bmpwin_table);i++){
 			GF_BGL_BmpWinAdd(wk->bgl, &wk->InfoWin[i], GF_BGL_FRAME0_M,
 					info_bmpwin_table[i][0], 
 					info_bmpwin_table[i][1], 
@@ -449,6 +463,7 @@ static void BmpWinInit( WORLDTRADE_WORK *wk )
 			GF_BGL_BmpWinDataFill( &wk->InfoWin[i], 0x0000 );
 			offset += info_bmpwin_table[i][2]*info_bmpwin_table[i][3];
 		}
+		// ----------------------------------------------------------------------------
 	}
 
 
@@ -470,9 +485,13 @@ static void BmpWinDelete( WORLDTRADE_WORK *wk )
 	GF_BGL_BmpWinDel( &wk->MenuWin[0] );
 	{
 		int i;
-		for(i=0;i<11+2;i++){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+		// 情報ウィンドウを整理統合
+		for(i=0;i<NELEMS(info_bmpwin_table);i++){
 			GF_BGL_BmpWinDel( &wk->InfoWin[i] );
 		}
+		// ----------------------------------------------------------------------------
 	}
 
 
@@ -816,11 +835,15 @@ static void PokeTabLabelPrint( MSGDATA_MANAGER *MsgManager, GF_BGL_BMPWIN win[] 
 	
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/16
+// 情報ウィンドウを整理統合
+
 //------------------------------------------------------------------
 /**
  * @brief   ほしいポケモンの描画
  *
- * @param   win[]		
+ * @param   *win		
  * @param   gtcmsg		
  * @param   monsname		
  * @param   dtp		
@@ -828,47 +851,43 @@ static void PokeTabLabelPrint( MSGDATA_MANAGER *MsgManager, GF_BGL_BMPWIN win[] 
  * @retval  none		
  */
 //------------------------------------------------------------------
-static void PokeInfoPrint( GF_BGL_BMPWIN win[], MSGDATA_MANAGER *gtcmsg, MSGDATA_MANAGER *monsname, Dpw_Tr_PokemonSearchData *dtsd)
+static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_MANAGER *monsname, Dpw_Tr_PokemonSearchData *dtsd)
 {
+	GF_BGL_BmpWinDataFill( win, 0x0000 );
+
 	//「ほしいポケモン」描画
-	GF_BGL_BmpWinDataFill( &win[0], 0x0000 );
-	WorldTrade_PokeNamePrint(&win[0], monsname, dtsd->characterNo, 0, 3,GF_PRINTCOLOR_MAKE(15,2,0) );
+	WorldTrade_PokeNamePrint( win, monsname, dtsd->characterNo, 0, 3, GF_PRINTCOLOR_MAKE(15,2,0) );
 
 	// 性別
-	WorldTrade_SexPrint( &win[0], gtcmsg, dtsd->gender, 0, 3, 70, GF_PRINTCOLOR_MAKE(15,2,0) );
-
+	WorldTrade_SexPrint( win, gtcmsg, dtsd->gender, 0, 3, 70, GF_PRINTCOLOR_MAKE(15,2,0) );
 
 	// レベル指定
-	GF_BGL_BmpWinDataFill( &win[1], 0x0000 );
-	WorldTrade_WantLevelPrint( &win[1], gtcmsg, 
-		WorldTrade_LevelTermGet(dtsd->level_min, dtsd->level_max, LEVEL_PRINT_TBL_DEPOSIT), 
-		0, 3, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT );
-	
+	WorldTrade_WantLevelPrintEx( win + 1, gtcmsg, 
+		WorldTrade_LevelTermGet(dtsd->level_min, dtsd->level_max, 0), // TODO__fix_me 
+		0, 19, GF_PRINTCOLOR_MAKE(15,2,0), 0, 8 ); // wtf is this +1?
 }
 
 //------------------------------------------------------------------
 /**
  * @brief   トレーナーの国・地域を描画
  *
- * @param   win[]		
+ * @param   *win		
  * @param   strbuf1		
  * @param   strbuf2		
  *
  * @retval  none		
  */
 //------------------------------------------------------------------
-static void TrainerInfoPrint( GF_BGL_BMPWIN win[], STRBUF *strbuf1, STRBUF *strbuf2 )
+static void TrainerInfoPrint( GF_BGL_BMPWIN *win, STRBUF *strbuf1, STRBUF *strbuf2 )
 {
-	
-	GF_BGL_BmpWinDataFill( &win[0], 0x0000 );
-	GF_BGL_BmpWinDataFill( &win[1], 0x0000 );
+	GF_BGL_BmpWinDataFill( win, 0x0000 );
 
 	if(strbuf1!=NULL){
-		WorldTrade_SysPrint( &win[0], strbuf1, 0, 3, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
+		WorldTrade_SysPrint( win, strbuf1, 0,  3, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 	}
 	if(strbuf2!=NULL){
-		WorldTrade_SysPrint( &win[1], strbuf2, 0, 3, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
+		WorldTrade_SysPrint( win, strbuf2, 8, 19, 0, GF_PRINTCOLOR_MAKE(15,2,0) );
 	}
-	
 }
 
+// ----------------------------------------------------------------------------

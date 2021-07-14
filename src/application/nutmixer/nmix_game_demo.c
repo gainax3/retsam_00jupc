@@ -2287,10 +2287,15 @@ void NMixGameDemo_StartComment( NMIX_DEMO_MAIN_WIN* p_work, u32 comm_type )
 	// •¶Žš—ñ•`‰æ
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME], 0 );
 
-	// •¶Žš—ñ•`‰æ
-	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME],
-			FONT_TALK, p_work->p_msg_data->spd[ comm_type ], 0, 0, 0,
-			NMIX_MAINWIN_BMP_PRICOLOR, NULL );
+    {
+        // MatchComment: use for x pos
+        u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, p_work->p_msg_data->spd[ comm_type ], 0, 128);
+        // •¶Žš—ñ•`‰æ
+        GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME],
+                FONT_TALK, p_work->p_msg_data->spd[ comm_type ], xofs, 0, 0,
+                NMIX_MAINWIN_BMP_PRICOLOR, NULL );
+    }
+
 	// “]‘—
 	GF_BGL_BmpWinOn( p_work->p_bmp[NMIX_DEMO_MAINWIN_COMME] );
 
@@ -2375,12 +2380,16 @@ static void NMixGameDemo_MainWin_ResultSeen0( NMIX_DEMO_MAIN_WIN* p_work )
 	// •¶Žš—ñ•`‰æ
 	GF_BGL_BmpWinDataFill( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN], 15 );
 
-	// Œ‹‰Ê”­•\ 
-	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
-			FONT_SYSTEM, p_work->p_msg_data->result, 
-			NMIX_MAINWIN_RESULT_TITLE_X, NMIX_MAINWIN_RESULT_TITLE_Y,
-			0,
-			NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
+    {
+        // Œ‹‰Ê”­•\ 
+        // MatchComment: use calculated xofs
+        u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, p_work->p_msg_data->result, 0, 224);
+        GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
+                FONT_SYSTEM, p_work->p_msg_data->result, 
+                xofs, NMIX_MAINWIN_RESULT_TITLE_Y,
+                0,
+                NMIX_MAINWIN_BMP_SYSTEMPRICOLOR, NULL );
+    }
 
 	// ˜g‚Ì•`‰æ
 	BmpMenuWinWrite( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN], WINDOW_TRANS_ON, NMIX_MAINWIN_SYSTEM_FONT_CG_OFS, NMIX_MAINWIN_MENUFONT_COLOR );
@@ -2451,7 +2460,16 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			NMIX_MAINWIN_RESULT_KOBOSI_KETA,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 
-	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_KOBOSI_NUM] );	// “WŠJ
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+	// ‰ñ”‚É‚æ‚Á‚Ä’PˆÊ‚Ì’P•¡‚ðo‚µ•ª‚¯
+	{
+		int msg_idx = p_work->p_comm_data->get_result_data.kobore_num == 1 ?
+		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM :
+		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL;
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// “WŠJ
+	}
+	// ----------------------------------------------------------------------------
 	
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->tmp, 
@@ -2473,7 +2491,16 @@ static void NMixGameDemo_MainWin_ResultSeen1( NMIX_DEMO_MAIN_WIN* p_work )
 			NMIX_MAINWIN_RESULT_KOGASI_KETA,
 			NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 
-	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_KOGASI_NUM] );	// “WŠJ
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+	// ‰ñ”‚É‚æ‚Á‚Ä’PˆÊ‚Ì’P•¡‚ðo‚µ•ª‚¯
+	{
+		int msg_idx = p_work->p_comm_data->get_result_data.kogasi_num == 1 ?
+		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM :
+		              NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL;
+		WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[msg_idx] );	// “WŠJ
+	}
+	// ----------------------------------------------------------------------------
 	
 	GF_STR_PrintColor( p_work->p_bmp[NMIX_DEMO_MAINWIN_RESULT_MAIN],
 			FONT_SYSTEM, p_work->p_msg_data->tmp, 
@@ -2530,12 +2557,16 @@ static void NMixGameDemo_MainWin_ResultSeen2( NMIX_DEMO_MAIN_WIN* p_work )
 			NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 
 #ifdef NMIX_DEBUG_DUMMY_RESULT_ON
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+	// ”­“®ðŒ‚ðƒZƒŒƒNƒgƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚¢‚½‚Æ‚«‚É•ÏX
 	if( sys.cont & PAD_BUTTON_SELECT ){
 		WORDSET_RegisterNumber( p_work->p_msg_data->wset, 2,
 				99,
 				NMIX_MAINWIN_RESULT_PORUTO_KETA,
 				NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT );
 	}
+	// ----------------------------------------------------------------------------
 #endif
 
 	WORDSET_ExpandStr( p_work->p_msg_data->wset, p_work->p_msg_data->tmp, p_work->p_msg_data->res[NMIX_STMSG_RESULT_PORUTO] );	// “WŠJ

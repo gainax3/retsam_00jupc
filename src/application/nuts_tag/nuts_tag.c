@@ -27,6 +27,12 @@
 #include "application/nuts_tag.h"
 #include "ntag_gra.naix"
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+// cm → inch の変換式をマクロに置き換え
+#include "localize.h"
+// ----------------------------------------------------------------------------
+
 
 //============================================================================================
 //	定数定義
@@ -155,46 +161,53 @@ enum {
 #define	BMP_INFO_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_INFO_CGX	( BMP_HARD_NUM_CGX + BMP_HARD_NUM_SX * BMP_HARD_NUM_SY )
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/07
+// 味グラフを全体に1タイル左へ移動し、各味ラベルの幅を6タイルに統一
+
 // 味：からい
 #define	BMP_KARAI_FRM	( HEADER_STR_FRM )
-#define	BMP_KARAI_PX	( 20 )
+#define	BMP_KARAI_PX	( 18 )
 #define	BMP_KARAI_PY	( 1 )
-#define	BMP_KARAI_SX	( 5 )
+#define	BMP_KARAI_SX	( 7 )					// 見た目は6タイル
 #define	BMP_KARAI_SY	( 2 )
 #define	BMP_KARAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_KARAI_CGX	( 512 )
 // 味：しぶい
 #define	BMP_SIBUI_FRM	( HEADER_STR_FRM )
-#define	BMP_SIBUI_PX	( 27 )
+#define	BMP_SIBUI_PX	( 26 )
 #define	BMP_SIBUI_PY	( 6 )
-#define	BMP_SIBUI_SX	( 5 )
+#define	BMP_SIBUI_SX	( 6 )
 #define	BMP_SIBUI_SY	( 2 )
 #define	BMP_SIBUI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_SIBUI_CGX	( BMP_KARAI_CGX + BMP_KARAI_SX * BMP_KARAI_SY )
 // 味：あまい
 #define	BMP_AMAI_FRM	( HEADER_STR_FRM )
-#define	BMP_AMAI_PX		( 24 )
+#define	BMP_AMAI_PX		( 23 )
 #define	BMP_AMAI_PY		( 12 )
-#define	BMP_AMAI_SX		( 5 )
+#define	BMP_AMAI_SX		( 6 )
 #define	BMP_AMAI_SY		( 2 )
 #define	BMP_AMAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_AMAI_CGX	( BMP_SIBUI_CGX + BMP_SIBUI_SX * BMP_SIBUI_SY )
 // 味：にがい
 #define	BMP_NIGAI_FRM	( HEADER_STR_FRM )
-#define	BMP_NIGAI_PX	( 16 )
+#define	BMP_NIGAI_PX	( 14 )
 #define	BMP_NIGAI_PY	( 12 )
-#define	BMP_NIGAI_SX	( 5 )
+#define	BMP_NIGAI_SX	( 6 )
 #define	BMP_NIGAI_SY	( 2 )
 #define	BMP_NIGAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_NIGAI_CGX	( BMP_AMAI_CGX + BMP_AMAI_SX * BMP_AMAI_SY )
 // 味：すっぱい
 #define	BMP_SUPPAI_FRM	( HEADER_STR_FRM )
-#define	BMP_SUPPAI_PX	( 12 )
+#define	BMP_SUPPAI_PX	( 11 )
 #define	BMP_SUPPAI_PY	( 6 )
 #define	BMP_SUPPAI_SX	( 6 )
 #define	BMP_SUPPAI_SY	( 2 )
 #define	BMP_SUPPAI_PAL	( NTAG_SYSFONT_PAL )
 #define	BMP_SUPPAI_CGX	( BMP_NIGAI_CGX + BMP_NIGAI_SX * BMP_NIGAI_SY )
+
+// ----------------------------------------------------------------------------
+
 // 「おおきさ」
 #define	BMP_SIZE_FRM	( HEADER_STR_FRM )
 #define	BMP_SIZE_PX		( 2 )
@@ -230,6 +243,11 @@ enum {
 	頂点のＩＤは左上を１として時計回り。
 */
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/08
+// 味グラフを全体に1タイル（8ドット = 256）左へ移動
+// メモ: ゲージの座標形は、画面の中心を原点とし、右上端が (4096, 4096)
+
 // ゲージ１
 // 頂点の最大座標
 /*
@@ -242,13 +260,13 @@ enum {
 #define	COND_P1_X4_MAX	( 1664 )
 #define	COND_P1_Y4_MAX	( 1495 )
 */
-#define	COND_P1_X1_MAX	( 1664 )
+#define	COND_P1_X1_MAX	( 1664 - 256 )
 #define	COND_P1_Y1_MAX	( 2986 )
-#define	COND_P1_X2_MAX	( 2796 )
+#define	COND_P1_X2_MAX	( 2796 - 256 )
 #define	COND_P1_Y2_MAX	( 1856 )
-#define	COND_P1_X3_MAX	( 2400 )
+#define	COND_P1_X3_MAX	( 2400 - 256 )
 #define	COND_P1_Y3_MAX	( 167 )
-#define	COND_P1_X4_MAX	( 1664 )
+#define	COND_P1_X4_MAX	( 1664 - 256 )
 #define	COND_P1_Y4_MAX	( 1410 )
 // 頂点の最小座標
 #define	COND_P1_X1_MIN	( COND_P1_X1_MAX )
@@ -272,13 +290,13 @@ enum {
 #define	COND_P2_X4_MAX	( 992 )
 #define	COND_P2_Y4_MAX	( 129 )
 */
-#define	COND_P2_X1_MAX	( 575 )
+#define	COND_P2_X1_MAX	( 575  - 256 )
 #define	COND_P2_Y1_MAX	( 1856 )
-#define	COND_P2_X2_MAX	( 1704 )
+#define	COND_P2_X2_MAX	( 1704 - 256 )
 #define	COND_P2_Y2_MAX	( 2986 )
-#define	COND_P2_X3_MAX	( 1704 )
+#define	COND_P2_X3_MAX	( 1704 - 256 )
 #define	COND_P2_Y3_MAX	( 1410 )
-#define	COND_P2_X4_MAX	( 960 )
+#define	COND_P2_X4_MAX	( 960  - 256 )
 #define	COND_P2_Y4_MAX	( 167 )
 // 頂点の最小座標
 #define	COND_P2_X1_MIN	( COND_P2_X3_MAX+(COND_P2_X1_MAX-COND_P2_X3_MAX)/8 )
@@ -329,6 +347,8 @@ enum {
 #define	COND_P4_Y3_MIN	( COND_P4_Y1_MAX+(COND_P4_Y3_MAX-COND_P4_Y1_MAX)/8 )
 #define	COND_P4_X4_MIN	( COND_P4_X1_MAX+(COND_P4_X4_MAX-COND_P4_X1_MAX)/8 )
 #define	COND_P4_Y4_MIN	( COND_P4_Y1_MAX+(COND_P4_Y4_MAX-COND_P4_Y1_MAX)/8 )
+
+// ----------------------------------------------------------------------------
 
 #define	COND_PRM_MAX	( 50 )	// パラメータ最大値
 
@@ -1215,6 +1235,15 @@ static void NTAG_BmpNutsSizeNumPut( NTAG_WORK * wk )
 	GF_BGL_BmpWinDataFill( win, 0 );
 
 	size = Nuts_ParamGet( wk->nuts, NUTS_PRM_SIZE );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ENGLISH) imatake 2006/11/24
+	// きのみの大きさをインチ系に変換
+	// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/28
+	// cm → inch の変換式をマクロに置き換え
+#if (PM_LANG == LANG_ENGLISH)
+	size = PG5_CM_TO_INCH(size);
+#endif
+	// ----------------------------------------------------------------------------
 	str  = MSGMAN_AllocString( wk->mman, mes_kinomi_tag_04_02 );
 	exp  = STRBUF_Create( 32, HEAPID_NUTSTAG );
 	WORDSET_RegisterNumber(

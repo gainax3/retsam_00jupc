@@ -305,8 +305,11 @@ PROC_RESULT TrCardProc_Init( PROC * proc, int * seq )
 	}
 	
 	TRCBmp_WriteTrWinInfo( wk->win, wk->TrCardData );
-	//コロン描く
-	TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), TRUE, wk->SecBuf);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+	// 単位類を gmm のテキストに移行（コロンを書くのは、点滅させるときだけでよい）
+	if (wk->TrCardData->TimeUpdate) TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), TRUE, wk->SecBuf);
+	// ----------------------------------------------------------------------------
 	
 	wk->is_back = FALSE;		//表面からスタート
 	wk->IsOpen = COVER_CLOSE;			//ケースは閉じた状態からスタート
@@ -1839,14 +1842,18 @@ static void UpdatePlayTime(TR_CARD_WORK *wk, const u8 inUpdateFlg)
 	}
 	
 	if (!wk->is_back){	//表面の場合のみ描画
-		if (wk->SecCount == 0){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+		// コロンの表示が最初の1回だけ長かったのを修正
+		if (wk->SecCount == 15){
 			TRCBmp_WritePlayTime(wk->win, wk->TrCardData, wk->PlayTimeBuf);
 			//コロン描く
 			TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), TRUE, wk->SecBuf);
-		}else if(wk->SecCount == 15){
+		}else if(wk->SecCount == 0){
 			//コロン消す
 			TRCBmp_WriteSec(&(wk->win[TRC_BMPWIN_PLAY_TIME]), FALSE, wk->SecBuf);
 		}
+		// ----------------------------------------------------------------------------
 	}
 	//カウントアップ
 	wk->SecCount = (wk->SecCount+1)%30;		//	1/30なので

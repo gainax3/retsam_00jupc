@@ -29,9 +29,17 @@ enum{
 	NMIX_STMSG_RESULT_COOK_TIME_TI,
 	NMIX_STMSG_RESULT_COOK_TIME,
 	NMIX_STMSG_RESULT_KOBOSI_NUM_TI,
-	NMIX_STMSG_RESULT_KOBOSI_NUM,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+	// 回数によって単位の単複を出し分け
+	NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM,
+	// ----------------------------------------------------------------------------
 	NMIX_STMSG_RESULT_KOGASI_NUM_TI,
-	NMIX_STMSG_RESULT_KOGASI_NUM,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/25
+	// 回数によって単位の単複を出し分け
+	NMIX_STMSG_RESULT_KOBOSI_KOGASI_NUM_PLURAL,
+	// ----------------------------------------------------------------------------
 	NMIX_STMSG_RESULT_PORUTO_TI,
 	NMIX_STMSG_RESULT_PORUTO,
 	NMIX_STMSG_RESULT_TEAMWORK_TI,

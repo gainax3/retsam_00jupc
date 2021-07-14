@@ -62,6 +62,15 @@
 #define COPY_LIGHT_BLD_COUNT_MAX	(4)	//ブレンドする速度4フレに１回変更
 #define OPDEMO_BRIGHTNESS_SYNC	(18)
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+#if PM_LANG == LANG_ENGLISH
+#define	ESRB_NOTICE_FRAME		(GF_BGL_FRAME1_S)
+#define BLD_MASK_ESRB_NOTICE	(GX_BLEND_PLANEMASK_BG1)
+#endif
+// ----------------------------------------------------------------------------
+
 
 //シーン2
 #define TITLE_LOGO_WHITE_IN_SYNC	(8)
@@ -473,6 +482,31 @@ static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, BACK_BASE_M_FRAME, &GF_Back_m_Data, GF_BGL_MODE_TEXT );
 	}
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+
+#if PM_LANG == LANG_ENGLISH
+	{	// コピーライト ＢＧ設定(サブ1)
+		GF_BGL_BGCNT_HEADER EsrbNotice_Data = {
+			0, 0, 0x800, 0,
+			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_16,
+			GX_BG_SCRBASE_0x1000, GX_BG_CHARBASE_0x08000,
+			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE			//プライオリティ0
+		};
+		GF_BGL_BGControlSet( wk->bgl, ESRB_NOTICE_FRAME, &EsrbNotice_Data, GF_BGL_MODE_TEXT );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/10
+// 体験版では ESRB Notice を表示しないように変更
+#ifdef PG5_TRIAL
+			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
+#endif
+// ----------------------------------------------------------------------------
+	}
+#endif
+
+// ----------------------------------------------------------------------------
+
 	{	// ゲーフリロゴ ＢＧ設定(サブ2)
 		GF_BGL_BGCNT_HEADER GF_Logo_s_Data = {
 			0, 0, 0x800, 0,
@@ -483,6 +517,9 @@ static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 		GF_BGL_BGControlSet( wk->bgl, GAME_FREAK_LOGO_S_FRAME, &GF_Logo_s_Data, GF_BGL_MODE_TEXT );
 	}
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
 	{	// ベース背景 ＢＧ設定(サブ3)
 		GF_BGL_BGCNT_HEADER GF_Back_s_Data = {
 			0, 0, 0x800, 0,
@@ -492,6 +529,8 @@ static void OpDemo2DBgSet( OPENING_DEMO_WORK* wk )
 		};
 		GF_BGL_BGControlSet( wk->bgl, BACK_BASE_S_FRAME, &GF_Back_s_Data, GF_BGL_MODE_TEXT );
 	}
+// ----------------------------------------------------------------------------
+
 
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_M, 0x0000 );	//背景色初期化（メイン画面）
 	GF_BGL_BackGroundColorSet( GF_BGL_FRAME0_S, 0x0000 );	//背景色初期化（サブ画面）
@@ -1142,6 +1181,25 @@ static void Scene1_Load(SCENE1_WORK *scene_wk)
 	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_op_demoBG0_logo_back_NSCR,
 						scene_wk->bgl, BACK_BASE_S_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+
+#if PM_LANG == LANG_ENGLISH
+	//--コピーライトデータロード
+	//キャラ
+	ArcUtil_BgCharSet(ARC_OP_DEMO, NARC_op_demo_esrb_notice_NCGR,
+						scene_wk->bgl, ESRB_NOTICE_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
+	//スクリーン
+	ArcUtil_ScrnSet(ARC_OP_DEMO, NARC_op_demo_esrb_notice_NSCR,
+						scene_wk->bgl, ESRB_NOTICE_FRAME, 0, 0, FALSE, HEAPID_OP_DEMO);
+	//パレット
+	ArcUtil_PalSet( ARC_OP_DEMO, NARC_op_demo_esrb_notice_NCLR,
+						PALTYPE_SUB_BG, 0, PAL_ONE_SIZE*16*1, HEAPID_OP_DEMO );	//０番に１６色ロード
+#endif
+
+// ----------------------------------------------------------------------------
+
 
 	//--初期ＢＧ設定
 	//BG0・上下画面ゲーフリロゴ非表示
@@ -1149,6 +1207,13 @@ static void Scene1_Load(SCENE1_WORK *scene_wk)
 	GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG2, VISIBLE_OFF );
 	//ベース背景とコピーライトをブレンド
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, 0, 16);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+#if PM_LANG == LANG_ENGLISH
+	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, 0, 16);
+#endif
+// ----------------------------------------------------------------------------
 
 	OS_WaitIrq(TRUE, OS_IE_V_BLANK); 	// Ｖブランク待ち
 	//マスター輝度を戻す
@@ -1187,6 +1252,13 @@ static BOOL Scene1_Main(SCENE1_WORK *scene_wk, const int inCounter)
 		if ( (scene_wk->BlendEnd)&&(inCounter>=FM_FG_LOGO_IN) ){
 			//コピーライト面非表示
 			GF_Disp_GX_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/10
+// ESRB Notice を消去
+#if PM_LANG == LANG_ENGLISH
+			GF_Disp_GXS_VisibleControl( GX_PLANEMASK_BG1, VISIBLE_OFF );
+#endif
+// ----------------------------------------------------------------------------
 			//ブレンド初期設定
 			G2_SetBlendAlpha( BLD_MASK_GF_LOGO_M, BLD_MASK_BACK_BASE_M, 0, 16);
 			G2S_SetBlendAlpha( BLD_MASK_GF_LOGO_S, BLD_MASK_BACK_BASE_S, 0, 16);
@@ -1239,6 +1311,13 @@ static void Scene1_End(OPENING_DEMO_WORK * wk)
 		GF_BGL_BGControlExit( wk->bgl, GAME_FREAK_LOGO_S_FRAME );
 		GF_BGL_BGControlExit( wk->bgl, BACK_BASE_M_FRAME );
 		GF_BGL_BGControlExit( wk->bgl, BACK_BASE_S_FRAME );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+#if PM_LANG == LANG_ENGLISH
+		GF_BGL_BGControlExit( wk->bgl, ESRB_NOTICE_FRAME );
+#endif
+// ----------------------------------------------------------------------------
 		sys_FreeMemoryEz( wk->bgl );
 		wk->SceneWork1.InitOK = 0;
 	}
@@ -1270,6 +1349,13 @@ static void TCB_BlendInCopyLight( TCB_PTR tcb, void* work )
 	}
 
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, s_work->Alpha, 16);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+#if PM_LANG == LANG_ENGLISH
+	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, s_work->Alpha, 16);
+#endif
+// ----------------------------------------------------------------------------
 }
 
 //コピーライドブレンドアウトＴＣＢ
@@ -1291,7 +1377,13 @@ static void TCB_BlendOutCopyLight( TCB_PTR tcb, void* work )
 	}
 
 	G2_SetBlendAlpha( BLD_MASK_COPY_LIGHT, BLD_MASK_BACK_BASE_M, s_work->Alpha, 16);
-
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2007/02/07
+// 北米版では ESRB Notice を下画面に追加
+#if PM_LANG == LANG_ENGLISH
+	G2S_SetBlendAlpha( BLD_MASK_ESRB_NOTICE, BLD_MASK_BACK_BASE_S, s_work->Alpha, 16);
+#endif
+// ----------------------------------------------------------------------------
 }
 
 //メイン画面ＧＦロゴブレンドインＴＣＢ

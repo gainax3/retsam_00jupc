@@ -4655,7 +4655,7 @@ static void WFLBY_EV_DEF_PlayerInNormal_WazaTypeBmpListInit( WFLBY_EV_DEF_PLAYER
 //-----------------------------------------------------------------------------
 static void WFLBY_EV_DEF_PlayerInNormal_WazaTypeBmpListDelete( WFLBY_EV_DEF_PLAYER_IN_WK* p_wk, WFLBY_ROOMWK* p_rmwk )
 {
-	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk );
+	WFLBY_ROOM_LISTWIN_DeleteBmpList( p_rmwk ); // TODO__fix_me
 }
 
 

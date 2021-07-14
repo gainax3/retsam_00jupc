@@ -12,9 +12,17 @@
 #define TP_SPICY_NY	(6*8)
 #define TP_ASTR_NX	(24*8)
 #define TP_ASTR_NY	(12*8)
-#define TP_SWEET_NX	(21*8+2)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// 文字がボタンの中央に来るように、ボタンの x 座標を8の倍数に
+#define TP_SWEET_NX	(21*8)
+// ----------------------------------------------------------------------------
 #define TP_SWEET_NY	(20*8+2)
-#define TP_BITTER_NX	(11*8-2)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// 文字がボタンの中央に来るように、ボタンの x 座標を8の倍数に
+#define TP_BITTER_NX	(11*8)
+// ----------------------------------------------------------------------------
 #define TP_BITTER_NY	(20*8+4)
 #define TP_SOUR_NX	(8*8)
 #define TP_SOUR_NY	(12*8)
@@ -130,14 +138,20 @@ typedef enum{
 #define BMPL_EXPM_CGX	(BMPL_MYN_CGX+BMPL_MYN_SIZ)
 
 //サブ画面タイトルウィンドウ
-#define BMPL_EXPS_PX	(0)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// g や y の下が欠けるので、ウィンドウの左右を縮めて下に拡大
+#define BMPL_EXPS_PX	(6)
 #define BMPL_EXPS_PY	(0)
-#define BMPL_EXPS_SX	(32)
-#define BMPL_EXPS_SY	(2)
-#define BMPL_EXPS_SIZ	(BMPL_EXPS_SX*BMPL_EXPS_SY)
+#define BMPL_EXPS_SX	(20)
+#define BMPL_EXPS_SY	(3)
+#define BMPL_EXPS_SX_OLD	(32)
+#define BMPL_EXPS_SY_OLD	(2)
+#define BMPL_EXPS_SIZ	(BMPL_EXPS_SX_OLD*BMPL_EXPS_SY_OLD)
 #define BMPL_EXPS_FRM	(SUB_FRAME)
 #define BMPL_EXPS_PAL	(SYSFONT_PAL)
 #define BMPL_EXPS_CGX	(PCASE_BMPCHAR_BASE)
+// ----------------------------------------------------------------------------
 
 //スウィッチウィンドウ
 #define BMPL_SW01_PX	(12)

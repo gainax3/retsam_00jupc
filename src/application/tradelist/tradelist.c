@@ -264,7 +264,11 @@ static const int trade_msg_table[][4]=
 //============================================================================================
 /*** 関数プロトタイプ ***/
 static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int form, int tamago, int no , CLACT_WORK_PTR icon);
-static void TrainerNamePrint( GF_BGL_BMPWIN *win );
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/19
+// 「やめる」文字列をgmmに移行
+static void TrainerNamePrint( TRADELIST_WORK *wk );
+// ----------------------------------------------------------------------------
 static void PokemonInfoSubPrint( TRADELIST_WORK *wk, int page );
 static void VBlankFunc( void * work );
 static void VramBankSet(void);
@@ -525,19 +529,21 @@ static void TransPokeIconCharaPal( NNSG2dCharacterData *chara, int pokeno, int f
 
 }
 
-static const STRCODE endstr[]={ya_,me_,ru_,EOM_};
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/19
+// 「やめる」文字列をgmmに移行
 
 //------------------------------------------------------------------
 /**
  * 自分の通信相手の名前描画
  *
  * @param   bgl		
- * @param   win		
+ * @param   wk		
  *
  * @retval  none		
  */
 //------------------------------------------------------------------
-static void TrainerNamePrint( GF_BGL_BMPWIN *win )
+static void TrainerNamePrint( TRADELIST_WORK *wk )
 {
 	STRBUF *MyNameBuf, *FriendNameBuf, *EndBuf;
 	// Todo 名前の取得方法のインターフェースがはっきりした組み替える
@@ -552,21 +558,22 @@ static void TrainerNamePrint( GF_BGL_BMPWIN *win )
 	MyNameBuf     = MyStatus_CreateNameString(mystatus,     HEAPID_TRADELIST);
 	FriendNameBuf = MyStatus_CreateNameString(friendstatus, HEAPID_TRADELIST);
 
-	EndBuf    = STRBUF_Create( TRADELISTSTR_MAX, HEAPID_TRADELIST );
-	STRBUF_SetStringCode( EndBuf, endstr );
+	EndBuf = MSGMAN_AllocString( wk->MsgManager, mes_dstrade_endstr );
 	
 
 	// 自分の名前
-	TradeListPrint(&win[BMP_M_MYNAME_WIN], MyNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
+	TradeListPrint(&wk->TradeListWin[BMP_M_MYNAME_WIN], MyNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
 	// 相手の名前
-	TradeListPrint(&win[BMP_M_FRIENDNAME_WIN], FriendNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
+	TradeListPrint(&wk->TradeListWin[BMP_M_FRIENDNAME_WIN], FriendNameBuf, TRADELIST_NAME_W, MSG_ALLPUT, CENTER_PRINT,1);
 	// 「おわり」
-	TradeListPrint(&win[BMP_M_ENDSTR_WIN], EndBuf, TRADELIST_ENDSTR_W, MSG_ALLPUT, CENTER_PRINT,1);
+	TradeListPrint(&wk->TradeListWin[BMP_M_ENDSTR_WIN], EndBuf, TRADELIST_ENDSTR_W, MSG_ALLPUT, CENTER_PRINT,1);
 
 	STRBUF_Delete( EndBuf );
 	STRBUF_Delete( FriendNameBuf );
 	STRBUF_Delete( MyNameBuf);
 }
+
+// ---------------------------------------------------------------------------
 
 static const STRCODE testname[]={HU_,SI_,GI_,DA_,NE_,EOM_};
 static const STRCODE testlevel[]={L__,v__,spc_,n1_,n0_,n0_,EOM_};
@@ -627,7 +634,11 @@ static void TradeListReturn( TRADELIST_WORK *wk )
 	PokemonName_Get_Write( wk );
 
 	// トレーナー名
-	TrainerNamePrint( wk->TradeListWin );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/19
+	// 「やめる」文字列をgmmに移行
+	TrainerNamePrint( wk );
+	// ----------------------------------------------------------------------------
 
 	// メイン画面の会話ウインドウ処理
 	TalkWinGraphicSet( wk->bgl, GF_BGL_FRAME0_M, TALKWIN_FRAME_OFFSET, 10, CONFIG_GetWindowType(wk->param->config), HEAPID_TRADELIST );           
@@ -726,7 +737,11 @@ PROC_RESULT TradeListProc_Main( PROC * proc, int * seq )
 	case SEQ_IN:
 		if( WIPE_SYS_EndCheck()){
 			*seq = SEQ_MAIN;
-			TrainerNamePrint( wk->TradeListWin );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/19
+			// 「やめる」文字列をgmmに移行
+			TrainerNamePrint( wk );
+			// ----------------------------------------------------------------------------
 			OS_Printf("ポケパーティー = %d\n",PokeParty_GetPokeCount(wk->MyPokeParty));
 		}
 		break;
@@ -991,6 +1006,8 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 
 		// ソフトリセット不可能にする
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 /* Wifi通信上での交換リスト画面でソフトウェアリセットが効いてしまうバグ対処 */
 #if T1666_060821_FIX
 		// WIFI上での動作も考慮したリセット制御関数
@@ -998,6 +1015,8 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 #else
 		sys.DontSoftReset = 1;
 #endif
+// ----------------------------------------------------------------------------
+
 		
 		// 時間アイコン表示
 		TimeIconAdd( wk );
@@ -1235,6 +1254,8 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 
 			// ソフトリセット可能にする
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2006/12/01
 /* Wifi通信上での交換リスト画面でソフトウェアリセットが効いてしまうバグ対処 */
 #if T1666_060821_FIX
 			// WIFI上での動作も考慮したリセット制御関数(WIFI時はソフトリセットは有効にならない）
@@ -1242,6 +1263,7 @@ static int TradeListPokemonExchange( TRADELIST_WORK *wk )
 #else
 			sys.DontSoftReset = 0;
 #endif
+// ----------------------------------------------------------------------------
 
 			return TRADELIST_SEQ_MAIN;
 		}
@@ -4362,6 +4384,10 @@ static void PokemonDataExchange(POKEPARTY *my, POKEPARTY *your, int mysel, int y
 	// 性別再計算
 	PokeParaPut( pp2, ID_PARA_sex, NULL );
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(JP_VER10) imatake 2007/01/24
+// 日本語版側のソースと統一
+
 /* 通信進化する時にカスタムボールがついていると、カスタムボール情報が外れないバグの対処 */
 #if AFTERMASTER_061220_CUSTOMBALL_NODEL_BUG_FIX
 
@@ -4407,8 +4433,7 @@ static void PokemonDataExchange(POKEPARTY *my, POKEPARTY *your, int mysel, int y
 
 #endif
 
-
-
+// ----------------------------------------------------------------------------
 
 	// てもちからペラップがいなくなったら声データを消去する(このタイミングだと相手からペラップをもらっても声が消える）
 	if(PokeParty_PokemonCheck( my, MONSNO_PERAPPU )==0){

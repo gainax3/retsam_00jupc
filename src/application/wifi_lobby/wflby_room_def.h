@@ -137,6 +137,8 @@ extern void WFLBY_ROOM_BOARDWIN_Off( WFLBY_ROOMWK* p_wk );
 
 
 extern void WFLBY_ROOM_LISTWIN_CreateBmpList( WFLBY_ROOMWK* p_wk, u32 num );
+// MatchComment: new function
+extern void WFLBY_ROOM_LISTWIN_CreateBmpList_WithThirdArg( WFLBY_ROOMWK* p_wk, u32 num, u32 a2);
 extern void WFLBY_ROOM_LISTWIN_DeleteBmpList( WFLBY_ROOMWK* p_wk );
 extern void WFLBY_ROOM_LISTWIN_SetBmpListStr( WFLBY_ROOMWK* p_wk, const STRBUF* cp_str, u32 param );
 extern const BMP_MENULIST_DATA* WFLBY_ROOM_LISTWIN_GetBmpList( const WFLBY_ROOMWK* cp_wk );

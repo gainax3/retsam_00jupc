@@ -25,6 +25,7 @@
 #include "system/wipe.h"
 #include "system/window.h"
 #include "system/font_arc.h"
+#include "system/pmfprint.h" // MatchComment: add this header
 #include "system/winframe.naix"
 #include "poketool/pokeicon.h"
 #include "poketool/monsno.h"
@@ -189,6 +190,7 @@ PROC_RESULT MailViewProc_Init(PROC* proc,int* seq)
 
 	wk->msg_spd = CONFIG_GetMsgPrintSpeed(wk->dat->configSave);
 	wk->win_type = CONFIG_GetWindowType(wk->dat->configSave);
+    MsgPrintSkipFlagSet( MSG_SKIP_ON ); // MatchComment: add this function call
 	return PROC_RES_FINISH;
 };
 
@@ -214,6 +216,7 @@ PROC_RESULT MailViewProc_End(PROC* proc,int* seq)
 	MAIL_VIEW_DAT* wk = (MAIL_VIEW_DAT*)PROC_GetWork(proc);
 	int heap;
 	
+    MsgPrintSkipFlagSet( MSG_SKIP_OFF ); // MatchComment: add this function call
 	//I—¹ƒpƒ‰ƒ[ƒ^Ši”[
 	heap = wk->heapID;
 	

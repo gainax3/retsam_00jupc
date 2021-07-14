@@ -136,8 +136,29 @@
 #define INIT_EARTH_SCALE_XVAL	(FX32_ONE)
 #define INIT_EARTH_SCALE_YVAL	(FX32_ONE)
 #define INIT_EARTH_SCALE_ZVAL	(FX32_ONE)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+// デフォルト位置を言語ごとに変更
+#if PM_LANG == LANG_ENGLISH
+#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// アメリカの真ん中あたり
+#define INIT_EARTH_ROTATE_YVAL	(0x7C00)
+#elif PM_LANG == LANG_FRANCE
+#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// パリ（イル・ド・フランス）
+#define INIT_EARTH_ROTATE_YVAL	(0x3100)
+#elif PM_LANG == LANG_GERMANY
+#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ベルリン
+#define INIT_EARTH_ROTATE_YVAL	(0x2A00)
+#elif PM_LANG == LANG_ITALY
+#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ローマ（ラツィオ）
+#define INIT_EARTH_ROTATE_YVAL	(0x2A00)
+#elif PM_LANG == LANG_SPENCE
+#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// マドリッド
+#define INIT_EARTH_ROTATE_YVAL	(0x35E0)
+#else
 #define INIT_EARTH_ROTATE_XVAL	(0x1980)	//東京をデフォルト位置にする
 #define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//東京をデフォルト位置にする
+#endif
+// ----------------------------------------------------------------------------
 #define INIT_EARTH_ROTATE_ZVAL	(0)
 
 //カメラ初期化定義
@@ -412,9 +433,16 @@ static BOOL Earth_MsgPrint( EARTH_DEMO_WORK * wk,u32 msgID,int button_mode );
 static void Earth_BmpListAdd( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win,const BMPWIN_DAT* windata,
 							const BMPLIST_HEADER* listheader,const EARTH_BMPLIST* list);
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// 地名をアルファベット順にソートして表示するように変更
+// localize_spec_mark(LANG_ALL) imatake 2007/02/21
+// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
 static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win, const BMPWIN_DAT* windata,
-							const BMPLIST_HEADER* listheader,u32 listarcID);
+							const BMPLIST_HEADER* listheader,u32 listarcID,
+							const u8* sortTable, u32 listcount);
+// ----------------------------------------------------------------------------
 static void Earth_BmpListDel( EARTH_DEMO_WORK* wk );
 
 static void Earth_MyPlaceInfoWinSet( EARTH_DEMO_WORK* wk );
@@ -803,8 +831,16 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 		if(Earth_MsgPrint(wk,mes_earth_01_04,A_BUTTON_NOWAIT) == TRUE){
 		
 			wk->my_nation_tmp = 0;//登録情報テンポラリ初期化
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// 地名をアルファベット順にソートして表示するように変更
+			// localize_spec_mark(LANG_ALL) imatake 2007/02/21
+			// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
 			Earth_BmpListAddGmmAll(wk,&wk->listwin,&EarthPlaceListWinData,
-								&PlaceListHeader,NARC_msg_wifi_place_msg_world_dat);
+								&PlaceListHeader,NARC_msg_wifi_place_msg_world_dat,
+								WIFI_COUNTRY_DataIndexToPlaceSortTable(0),
+								WIFI_COUNTRY_DataIndexToPlaceSortTableSize(0));
+			// ----------------------------------------------------------------------------
 
 			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_NATION_SELECT;	//国別登録リスト選択へ
 		}
@@ -821,6 +857,16 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			}
 			Earth_BmpListDel(wk);//選択リスト削除処理
 			Snd_SePlay( WIFIEARTH_SND_SELECT );
+
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// 地名をアルファベット順にソートして表示するように変更
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/30
+			// キャンセル時は変換しないように修正
+			if (list_result != BMPLIST_CANCEL) {
+				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(0)[list_result];	// ソートされた順番からgmm上の順番に
+			}
+			// ----------------------------------------------------------------------------
 
 			switch(list_result){
 			default:
@@ -849,8 +895,19 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 
 		if(Earth_MsgPrint(wk,mes_earth_01_05,A_BUTTON_NOWAIT) == TRUE){
 			wk->my_area_tmp = 0;//登録情報テンポラリ初期化
-			Earth_BmpListAddGmmAll(wk,&wk->listwin,&EarthPlaceListWinData,&PlaceListHeader,
-						WIFI_COUNTRY_CountryCodeToPlaceMsgDataID(wk->my_nation_tmp));
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// 地名をアルファベット順にソートして表示するように変更
+			// localize_spec_mark(LANG_ALL) imatake 2007/02/21
+			// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
+			{
+				u32 dataIndex = WIFI_COUNTRY_CountryCodeToDataIndex(wk->my_nation_tmp);
+				Earth_BmpListAddGmmAll(wk,&wk->listwin,&EarthPlaceListWinData,&PlaceListHeader,
+							WIFI_COUNTRY_DataIndexToPlaceMsgDataID(dataIndex),
+							WIFI_COUNTRY_DataIndexToPlaceSortTable(dataIndex),
+							WIFI_COUNTRY_DataIndexToPlaceSortTableSize(dataIndex));
+			}
+			// ----------------------------------------------------------------------------
 
 			*seq = EARTHDEMO_SEQ_REGISTRATIONLIST_AREA_SELECT;	//地域別登録リスト選択へ
 		}
@@ -867,6 +924,17 @@ PROC_RESULT Earth_Demo_Main(PROC * proc, int * seq)
 			}
 			Earth_BmpListDel(wk);//選択リスト削除処理
 			Snd_SePlay( WIFIEARTH_SND_SELECT );
+
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// 地名をアルファベット順にソートして表示するように変更
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/30
+			// キャンセル時は変換しないように修正
+			if (list_result != BMPLIST_CANCEL) {
+				u32 dataIndex = WIFI_COUNTRY_CountryCodeToDataIndex(wk->my_nation_tmp);
+				list_result = WIFI_COUNTRY_DataIndexToPlaceSortTable(dataIndex)[list_result];	// ソートされた順番からgmm上の順番に
+			}
+			// ----------------------------------------------------------------------------
 
 			switch(list_result){
 			default:
@@ -1454,7 +1522,15 @@ static void Earth_BGdataLoad( EARTH_DEMO_WORK * wk, ARCHANDLE* p_handle )
 		//文字列の取得（やめる）
 		MSGMAN_GetString(wk->msg_man,mes_earth_02_07,back_str);
 		//文字列の表示
-		GF_STR_PrintSimple(&wk->iconwin,FONT_BUTTON,back_str,4,0,MSG_NO_PUT,NULL);	// やめる位置をセンターに変更 tomoya 08.04.03
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// 「やめる」を中央揃え
+		{
+			u32 xofs;
+			xofs = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, back_str, 0, EARTH_ICON_WIN_SX*DOTSIZE );
+			GF_STR_PrintSimple(&wk->iconwin, FONT_BUTTON, back_str, xofs, 0, MSG_NO_PUT, NULL);
+		}
+		// ----------------------------------------------------------------------------
 		STRBUF_Delete(back_str);
 
 		//ボタンフォントの破棄
@@ -1558,16 +1634,22 @@ static void Earth_BmpListAdd( EARTH_DEMO_WORK * wk,
 	GF_BGL_BmpWinOn(win);
 }
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+// 地名をアルファベット順にソートして表示するように変更
+// localize_spec_mark(LANG_ALL) imatake 2007/02/21
+// 地名リストとソートテーブルの実際の要素数が食い違う場合に対応
+
 //----------------------------------
-//リスト表示２:gmmファイル一括、リスト選択返り値はリストの順番と同じ(1orgin)
+//リスト表示２:gmmファイル一括、リスト選択返り値はソート後のリストの順番と同じ
 //----------------------------------
 static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 							GF_BGL_BMPWIN* win, const BMPWIN_DAT* windata,
-							const BMPLIST_HEADER* listheader,u32 listarcID)
+							const BMPLIST_HEADER* listheader,u32 listarcID,
+							const u8 *sortTable, u32 listcount)
 {
 	BMPLIST_HEADER	listheader_tmp;
 	MSGDATA_MANAGER*	msg_man;
-	u32	listcount;
 	int	i;
 
 	//メニュービットマップ追加
@@ -1575,14 +1657,13 @@ static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 		
 	msg_man = MSGMAN_Create(MSGMAN_TYPE_NORMAL,ARC_MSG,listarcID,wk->heapID );
 	//メッセージ総数取得
-	listcount = MSGMAN_GetMessageCount(msg_man);
 
 	//メニューリスト用文字列バッファ作成
 	wk->bmplistdata = BMP_MENULIST_Create(listcount,wk->heapID);
 
 	//メニューリスト用文字列バッファ取得
-	for( i=1; i<listcount; i++ ){	//1オリジンのため
-		BMP_MENULIST_AddArchiveString(wk->bmplistdata,msg_man,i,i);//BMP,man,msgID,param
+	for( i=0; i<listcount; i++ ){
+		BMP_MENULIST_AddArchiveString(wk->bmplistdata,msg_man,sortTable[i],i);//BMP,man,msgID,param
 	}
 	//メッセージデータ破棄
 	MSGMAN_Delete(msg_man);
@@ -1590,7 +1671,7 @@ static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 	//メニュービットマップリストヘッダ作成
 	listheader_tmp = *listheader;
 	listheader_tmp.list = wk->bmplistdata;
-	listheader_tmp.count = listcount-1;	//1originのため補正
+	listheader_tmp.count = listcount;
 	listheader_tmp.win  = win;
 	listheader_tmp.call_back = Earth_BmpListMoveSeCall;
 	//メニュービットマップリスト作成
@@ -1601,6 +1682,8 @@ static void Earth_BmpListAddGmmAll( EARTH_DEMO_WORK * wk,
 	//ＶＲＡＭ転送
 	GF_BGL_BmpWinOn(win);
 }
+
+// ----------------------------------------------------------------------------
 
 //----------------------------------
 //リスト削除
@@ -1860,7 +1943,15 @@ static void EarthCameraInit( EARTH_DEMO_WORK * wk )
 		wk->camera_status = CAMERA_NEAR;
 	}else{
 		//カメラ距離フラグ初期化（開始時は遠距離）
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+		// 国土の広いアメリカのみ遠距離から（イギリスでも遠距離になっちゃうけど）
+		#if PM_LANG == LANG_ENGLISH
 		wk->camera_status = CAMERA_FAR;
+		#else
+		wk->camera_status = CAMERA_NEAR;
+		#endif
+		// ----------------------------------------------------------------------------
 	}
 	while(1){
 		//カメラ設定

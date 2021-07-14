@@ -11,6 +11,11 @@
 #include "system/fontproc.h"
 #include "system/pm_str.h"
 #include "system/buflen.h"
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/13
+// 単位類を gmm のテキストに移行
+#include "system/wordset.h"
+// ----------------------------------------------------------------------------
 #include "strbuf_family.h"
 
 #include "trcard_bmp.h"
@@ -112,8 +117,40 @@
 #define BMP_WIDTH_TYPE2	(8*28)
 
 #define SEC_DISP_OFS	(2)		//適当。いい感じに見える値で。
-#define YEN_OFS			(8*2)	//「円」表示分右スペース
-#define HIKI_OFS		(8*3)	//「ひき」表示分右スペース
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/13
+// 海外版では円・ひきを削除
+#define YEN_OFS			(0)		//「円」表示分右スペース
+#define HIKI_OFS		(0)		//「ひき」表示分右スペース
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ENGLISH) imatake 2006/12/13
+// 単位類を gmm のテキストに移行
+
+#define TIME_OFS		(184)
+#define TIME_WIDTH		(40)
+#define COLON_OFS		(207 - 2)	// 幅5のスペースが用意できたらオフセットは取る
+#define COLON_WIDTH		(5)
+
+#define WIN_OFS		(104 + 8)
+#define LOSE_OFS	(168 + 8)
+
+// 数値等を入れる WORDSET のバッファID
+enum {
+	BUFID_HOUR,
+	BUFID_MINUTE,
+	BUFID_YEAR,
+	BUFID_MONTH,
+	BUFID_DAY,
+	BUFID_MONEY,
+	WORDMAX_ALL
+};
+
+#define WORDMAX_TIME	(BUFID_MINUTE + 1)
+#define WORDMAX_DATE	(BUFID_DAY    + 1)
+
+// ----------------------------------------------------------------------------
 
 #define SEC_DISP_POS_X	(8*25)
 #define MINITE_DISP_POS_X	(8*26)
@@ -294,71 +331,85 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
 	}
 	
 	{
-		STRBUF* str = STRBUF_Create(TR_DIGIT_MAX+1, HEAPID_TR_CARD);
-		STRBUF* name_str = STRBUF_Create(BUFLEN_PERSON_NAME, HEAPID_TR_CARD);
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+		// 単位類を gmm のテキストに移行
+
+		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
+		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_ALL, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
 		
 		//ID
 		WriteNumData(	&win[TRC_BMPWIN_TR_ID],
-						BMP_WIDTH_TYPE1, 0, 0, str, inTrCardData->TrainerID, TR_ID_DIGIT,
+						BMP_WIDTH_TYPE1, 0, 0, msg_buf, inTrCardData->TrainerID, TR_ID_DIGIT,
 						NUMBER_DISPTYPE_ZERO);
 		
 		//なまえ
-		STRBUF_SetStringCode( name_str, inTrCardData->TrainerName );
-		WriteStrData(	&win[TRC_BMPWIN_TR_NAME],
-						BMP_WIDTH_TYPE1, 0, 0, name_str );
+		STRBUF_SetStringCode( msg_buf, inTrCardData->TrainerName );
+		WriteStrData(&win[TRC_BMPWIN_TR_NAME], BMP_WIDTH_TYPE1, 0, 0, msg_buf);
 
 		//おこづかい
-		WriteNumData(	&win[TRC_BMPWIN_MONEY],
-						BMP_WIDTH_TYPE1, YEN_OFS, 0, str, inTrCardData->Money, MONEY_DIGIT,
-						NUMBER_DISPTYPE_SPACE);
+		{
+			u32 xofs;
+			WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->Money, MONEY_DIGIT, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+			MSGMAN_GetString(man, MSG_TCARD_15, tmp_buf);
+			WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			xofs = BMP_WIDTH_TYPE1 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_MONEY], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+		}
 
 		//ずかん
 		if (inTrCardData->PokeBookFlg){	//表示フラグがたっているときのみ表示	
-			WriteNumData(	&win[TRC_BMPWIN_BOOK],
-							BMP_WIDTH_TYPE1, HIKI_OFS, 0, str, inTrCardData->PokeBook, MONS_NUM_DIGIT,
-							NUMBER_DISPTYPE_SPACE);
+			// MatchComment: new change in plat US
+            u32 xofs;
+            WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->PokeBook, MONS_NUM_DIGIT, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
+            MSGMAN_GetString(man, MSG_TCARD_22, tmp_buf);
+            WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			xofs = BMP_WIDTH_TYPE1 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_BOOK], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
 		
 		//スコア
 		WriteNumData(	&win[TRC_BMPWIN_SCORE],
-						BMP_WIDTH_TYPE1, 0, 0, str, inTrCardData->Score, SCORE_DIGIT,
+						BMP_WIDTH_TYPE1, 0, 0, msg_buf, inTrCardData->Score, SCORE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
 		
 		//プレイ時間
-		if ( inTrCardData->TimeUpdate ){	//通常
-			WriteNumData(	&win[TRC_BMPWIN_PLAY_TIME],
-						BMP_WIDTH_TYPE2, 0, 0, str, PLAYTIME_GetMinute(inTrCardData->PlayTime),
-						TIME_M_DIGIT,
-						NUMBER_DISPTYPE_ZERO);		//分
-			WriteNumData(	&win[TRC_BMPWIN_PLAY_TIME],
-						BMP_WIDTH_TYPE2, 3*8, 0, str, PLAYTIME_GetHour(inTrCardData->PlayTime),
-						TIME_H_DIGIT,
-						NUMBER_DISPTYPE_SPACE);		//時
-		}else{						//時間更新しない場合のみ、固定で「：」表示
-			WriteNumData(	&win[TRC_BMPWIN_PLAY_TIME],
-							BMP_WIDTH_TYPE2, 0, 0, str, inTrCardData->PlayTime_m, TIME_M_DIGIT,
-							NUMBER_DISPTYPE_ZERO);		//分
-			WriteNumData(	&win[TRC_BMPWIN_PLAY_TIME],
-							BMP_WIDTH_TYPE2, 3*8, 0, str, inTrCardData->PlayTime_h, TIME_H_DIGIT,
-							NUMBER_DISPTYPE_SPACE);		//時
-			
-			MSGMAN_GetString(man, MSG_TCARD_12 ,str);
-			GF_STR_PrintColor(&win[TRC_BMPWIN_PLAY_TIME], FONT_SYSTEM, str,
-					SEC_DISP_POS_X+SEC_DISP_OFS, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+		{
+			u32 xofs;
+			if ( inTrCardData->TimeUpdate) {	//通常
+				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   PLAYTIME_GetHour(inTrCardData->PlayTime),   TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, PLAYTIME_GetMinute(inTrCardData->PlayTime), TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+				MSGMAN_GetString(man, MSG_TCARD_17, tmp_buf);
+			} else {							//時間更新しない場合のみ、固定で「：」表示
+				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   inTrCardData->PlayTime_h, TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, inTrCardData->PlayTime_m, TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+				MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
+			}
+			WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_PLAY_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
 		
 		//スタート時間
-		WriteNumData(	&win[TRC_BMPWIN_START_TIME],
-						BMP_WIDTH_TYPE2, 1*8, 0, str, inTrCardData->Start_d, DAY_DIGIT,
-						NUMBER_DISPTYPE_ZERO);	//日
-		WriteNumData(	&win[TRC_BMPWIN_START_TIME],
-						BMP_WIDTH_TYPE2, 4*8, 0, str, inTrCardData->Start_m, MONTH_DIGIT,
-						NUMBER_DISPTYPE_ZERO);	//月
-		WriteNumData(	&win[TRC_BMPWIN_START_TIME],
-						BMP_WIDTH_TYPE2, 7*8, 0, str, inTrCardData->Start_y, YEAR_DIGIT,
-						NUMBER_DISPTYPE_ZERO);	//年
-		STRBUF_Delete( name_str );
-		STRBUF_Delete( str );
+		{
+			u32 xofs;
+			WORDSET_RegisterNumber(wordset, BUFID_YEAR,  inTrCardData->Start_y, DAY_DIGIT, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+			// 月の表示を単語表記に変更
+			WORDSET_RegisterMonthName( wordset, BUFID_MONTH, inTrCardData->Start_m );
+			// ----------------------------------------------------------------------------
+			WORDSET_RegisterNumber(wordset, BUFID_DAY,   inTrCardData->Start_d, DAY_DIGIT, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+			MSGMAN_GetString(man, MSG_TCARD_18, tmp_buf);
+			WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_START_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+		}
+
+		STRBUF_Delete( tmp_buf );
+		WORDSET_Delete( wordset );
+
+		// ----------------------------------------------------------------------------
 
 	}
 	STRBUF_Delete( msg_buf );
@@ -375,6 +426,7 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData  )
 {
 	u8 i;
@@ -398,65 +450,440 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 		GF_STR_PrintColor(&win[i], FONT_SYSTEM, msg_buf, 0, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 	}
 	{
-		STRBUF* str = STRBUF_Create(TR_DIGIT_MAX+1, HEAPID_TR_CARD);
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+		// 単位類を gmm のテキストに移行
+
+		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
+		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_DATE, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
+
 		//殿堂入り
+		{
+			u32 xofs;
 
-		if (inTrCardData->Clear_m != 0){	//月が0月でなければ、クリアしたとみなす
-			WriteNumData(	&win[TRC_BMPWIN_CLEAR_TIME],
-							BMP_WIDTH_TYPE2, 8*1, 0, str, inTrCardData->Clear_d, DAY_DIGIT,
-							NUMBER_DISPTYPE_ZERO);		//日
-			WriteNumData(	&win[TRC_BMPWIN_CLEAR_TIME],
-							BMP_WIDTH_TYPE2, 8*4, 0, str, inTrCardData->Clear_m, MONTH_DIGIT,
-							NUMBER_DISPTYPE_ZERO);		//月
-			WriteNumData(	&win[TRC_BMPWIN_CLEAR_TIME],
-							BMP_WIDTH_TYPE2, 8*7, 0, str, inTrCardData->Clear_y, YEAR_DIGIT,
-							NUMBER_DISPTYPE_ZERO);		//年
-			WriteNumData(	&win[TRC_BMPWIN_CLEAR_TIME],
-							BMP_WIDTH_TYPE2, 0, 16, str, inTrCardData->ClearTime_m, TIME_M_DIGIT,
-							NUMBER_DISPTYPE_ZERO);		//分
-			WriteNumData(	&win[TRC_BMPWIN_CLEAR_TIME],
-							BMP_WIDTH_TYPE2, 8*3, 16, str, inTrCardData->ClearTime_h, TIME_H_DIGIT,
-							NUMBER_DISPTYPE_SPACE);	//時
-		}else{
-			MSGMAN_GetString(man, MSG_TCARD_13 ,str);
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-						BMP_WIDTH_TYPE2-(8*9), 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);	//年
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-						BMP_WIDTH_TYPE2-(8*6), 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);	//月
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-						BMP_WIDTH_TYPE2-(8*3), 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);	//日
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/02/13
+			// でんどういり前のでんどういりの日付表示をベタテキストに置き換え
 
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-						BMP_WIDTH_TYPE2-(8*5), 16, MSG_ALLPUT, TR_MSGCOLOR, NULL);	//時
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-						BMP_WIDTH_TYPE2-(8*2), 16, MSG_ALLPUT, TR_MSGCOLOR, NULL);	//分
+			if (inTrCardData->Clear_m != 0){	//月が0月でなければ、クリアしたとみなす
+				WORDSET_RegisterNumber(wordset, BUFID_YEAR,   inTrCardData->Clear_y,     YEAR_DIGIT,   NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+				// 月の表示を単語表記に変更
+				WORDSET_RegisterMonthName( wordset, BUFID_MONTH, inTrCardData->Clear_m );
+				// ----------------------------------------------------------------------------
+				WORDSET_RegisterNumber(wordset, BUFID_DAY,    inTrCardData->Clear_d,     DAY_DIGIT,    NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   inTrCardData->ClearTime_h, TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, inTrCardData->ClearTime_m, TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+				MSGMAN_GetString(man, MSG_TCARD_18, tmp_buf);
+				WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			}else{
+				MSGMAN_GetString(man, MSG_TCARD_13, tmp_buf);
+				WORDSET_RegisterWord(wordset, BUFID_HOUR,   tmp_buf, 0, FALSE, PM_LANG);
+				WORDSET_RegisterWord(wordset, BUFID_MINUTE, tmp_buf, 0, FALSE, PM_LANG);
+				MSGMAN_GetString(man, MSG_TCARD_18_2, msg_buf);
+			}
+			// 殿堂入りの日付
+			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+
+			// ----------------------------------------------------------------------------
+
+			// 殿堂入りまでのプレイ時間
+			MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
+			WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 16, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		}
-		MSGMAN_GetString(man, MSG_TCARD_12 ,str);
-		GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, str,
-					SEC_DISP_POS_X+SEC_DISP_OFS, 16, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		
 		//通信回数
 		WriteNumData(	&win[TRC_BMPWIN_COMM_INFO],
-						BMP_WIDTH_TYPE2, 8*2, 0, str, inTrCardData->CommNum, COMM_DIGIT,
+						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommNum, COMM_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
 		
 		//通信対戦
+		MSGMAN_GetString(man, MSG_TCARD_19, msg_buf);
+		GF_STR_PrintColor(&win[TRC_BMPWIN_BATTLE_INFO], FONT_SYSTEM, msg_buf, WIN_OFS,  0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		WriteNumData(	&win[TRC_BMPWIN_BATTLE_INFO],
-						BMP_WIDTH_TYPE2, 0, 0, str, inTrCardData->CommBattleLose, BATTLE_DIGIT,
+						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommBattleLose, BATTLE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
+		MSGMAN_GetString(man, MSG_TCARD_20, msg_buf);
+		GF_STR_PrintColor(&win[TRC_BMPWIN_BATTLE_INFO], FONT_SYSTEM, msg_buf, LOSE_OFS, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 		WriteNumData(	&win[TRC_BMPWIN_BATTLE_INFO],
-						BMP_WIDTH_TYPE2, 8*8, 0, str, inTrCardData->CommBattleWin, BATTLE_DIGIT,
+						BMP_WIDTH_TYPE2, 8*8, 0, msg_buf, inTrCardData->CommBattleWin, BATTLE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
 		
 		//通信交換
 		WriteNumData(	&win[TRC_BMPWIN_TRADE_INFO],
-						BMP_WIDTH_TYPE2, 8*2, 0, str, inTrCardData->CommTrade, TRADE_DIGIT,
+						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommTrade, TRADE_DIGIT,
 						NUMBER_DISPTYPE_SPACE);
-		STRBUF_Delete( str );
+
+		STRBUF_Delete( tmp_buf );
+		WORDSET_Delete( wordset );
+
+		// ----------------------------------------------------------------------------
 	}
 	STRBUF_Delete( msg_buf );
 	MSGMAN_Delete( man );
 }
+#else
+asm void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData  )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x18
+	add r6, r0, #0
+	mov r0, #0xe0
+	str r0, [sp]
+	mov r0, #0x20
+	str r1, [sp, #0x10]
+	mov r1, #0
+	str r0, [sp, #4]
+	add r0, r6, #0
+	add r0, #0x70
+	add r2, r1, #0
+	add r3, r1, #0
+	bl GF_BGL_BmpWinFill
+	mov r1, #0
+	mov r0, #0xe0
+	str r0, [sp]
+	mov r0, #0x10
+	str r0, [sp, #4]
+	add r0, r6, #0
+	add r0, #0x80
+	add r2, r1, #0
+	add r3, r1, #0
+	bl GF_BGL_BmpWinFill
+	mov r1, #0
+	mov r0, #0xe0
+	str r0, [sp]
+	mov r0, #0x10
+	str r0, [sp, #4]
+	add r0, r6, #0
+	add r0, #0x90
+	add r2, r1, #0
+	add r3, r1, #0
+	bl GF_BGL_BmpWinFill
+	mov r1, #0
+	mov r0, #0xe0
+	str r0, [sp]
+	mov r0, #0x10
+	str r0, [sp, #4]
+	add r0, r6, #0
+	add r0, #0xa0
+	add r2, r1, #0
+	add r3, r1, #0
+	bl GF_BGL_BmpWinFill
+	mov r2, #0x9a
+	mov r0, #0
+	mov r1, #0x1a
+	lsl r2, r2, #2
+	mov r3, #0x19
+	bl MSGMAN_Create
+	add r7, r0, #0
+	mov r0, #0x20
+	mov r1, #0x19
+	bl STRBUF_Create
+	add r5, r0, #0
+	mov r4, #7
+_0223CAA4:
+	ldr r1, =MsgList // _0223CD3C
+	lsl r2, r4, #2
+	ldr r1, [r1, r2]
+	add r0, r7, #0
+	add r2, r5, #0
+	bl MSGMAN_GetString
+	mov r0, #0
+	str r0, [sp]
+	str r0, [sp, #4]
+	ldr r0, =0x00010200 // _0223CD40
+	mov r1, #0
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	lsl r0, r4, #4
+	add r0, r6, r0
+	add r2, r5, #0
+	add r3, r1, #0
+	bl GF_STR_PrintColor
+	add r0, r4, #1
+	lsl r0, r0, #0x18
+	lsr r4, r0, #0x18
+	cmp r4, #0xb
+	blo _0223CAA4
+	mov r0, #0x20
+	mov r1, #0x19
+	bl STRBUF_Create
+	str r0, [sp, #0x14]
+	mov r0, #6
+	mov r1, #0x20
+	mov r2, #0x19
+	bl WORDSET_CreateEx
+	ldr r1, [sp, #0x10]
+	add r4, r0, #0
+	add r1, #0x33
+	ldrb r1, [r1]
+	cmp r1, #0
+	beq _0223CB6E
+	mov r1, #2
+	str r1, [sp]
+	mov r2, #1
+	str r2, [sp, #4]
+	ldr r2, [sp, #0x10]
+	add r3, r1, #0
+	add r2, #0x32
+	ldrb r2, [r2]
+	bl WORDSET_RegisterNumber
+	ldr r2, [sp, #0x10]
+	add r0, r4, #0
+	add r2, #0x33
+	ldrb r2, [r2]
+	mov r1, #3
+	bl WORDSET_RegisterMonthName
+	mov r3, #2
+	ldr r2, [sp, #0x10]
+	str r3, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	add r2, #0x34
+	ldrb r2, [r2]
+	add r0, r4, #0
+	mov r1, #4
+	bl WORDSET_RegisterNumber
+	mov r0, #1
+	str r0, [sp]
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x10]
+	add r0, r4, #0
+	ldrh r2, [r2, #0x2c]
+	mov r1, #0
+	mov r3, #3
+	bl WORDSET_RegisterNumber
+	mov r3, #2
+	ldr r2, [sp, #0x10]
+	str r3, [sp]
+	mov r1, #1
+	str r1, [sp, #4]
+	add r2, #0x35
+	ldrb r2, [r2]
+	add r0, r4, #0
+	bl WORDSET_RegisterNumber
+	ldr r2, [sp, #0x14]
+	add r0, r7, #0
+	mov r1, #0x11
+	bl MSGMAN_GetString
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	add r1, r5, #0
+	bl WORDSET_ExpandStr
+	b _0223CBA6
+_0223CB6E:
+	ldr r2, [sp, #0x14]
+	add r0, r7, #0
+	mov r1, #0xc
+	bl MSGMAN_GetString
+	mov r1, #0
+	str r1, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	add r3, r1, #0
+	bl WORDSET_RegisterWord
+	mov r3, #0
+	str r3, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	mov r1, #1
+	bl WORDSET_RegisterWord
+	add r0, r7, #0
+	mov r1, #0x14
+	add r2, r5, #0
+	bl MSGMAN_GetString
+_0223CBA6:
+	mov r0, #0
+	add r1, r5, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0xe0
+	sub r3, r1, r0
+	mov r1, #0
+	str r1, [sp]
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r6, #0
+	add r0, #0x70
+	add r2, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r2, [sp, #0x14]
+	add r0, r7, #0
+	mov r1, #0xf
+	bl MSGMAN_GetString
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	add r1, r5, #0
+	bl WORDSET_ExpandStr
+	mov r0, #0
+	add r1, r5, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0xe0
+	sub r3, r1, r0
+	mov r0, #0x10
+	str r0, [sp]
+	mov r1, #0
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r6, #0
+	add r0, #0x70
+	add r2, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	mov r0, #0
+	str r0, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x10]
+	add r0, r4, #0
+	ldr r2, [r2, #0x38]
+	mov r1, #5
+	mov r3, #6
+	bl WORDSET_RegisterNumber
+	ldr r2, [sp, #0x14]
+	add r0, r7, #0
+	mov r1, #0x16
+	bl MSGMAN_GetString
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	add r1, r5, #0
+	bl WORDSET_ExpandStr
+	mov r0, #0
+	add r1, r5, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0xe0
+	sub r3, r1, r0
+	mov r1, #0
+	str r1, [sp]
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r6, #0
+	add r0, #0x80
+	add r2, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r7, #0
+	mov r1, #0x12
+	add r2, r5, #0
+	bl MSGMAN_GetString
+	mov r1, #0
+	str r1, [sp]
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r6, #0
+	add r0, #0x90
+	add r2, r5, #0
+	mov r3, #0x70
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	mov r2, #0
+	ldr r0, [sp, #0x10]
+	str r5, [sp]
+	ldr r0, [r0, #0x40]
+	mov r1, #0xe0
+	str r0, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #1
+	str r0, [sp, #0xc]
+	add r0, r6, #0
+	add r0, #0x90
+	add r3, r2, #0
+	bl WriteNumData
+	add r0, r7, #0
+	mov r1, #0x13
+	add r2, r5, #0
+	bl MSGMAN_GetString
+	mov r1, #0
+	str r1, [sp]
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r6, #0
+	add r0, #0x90
+	add r2, r5, #0
+	mov r3, #0xb0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x10]
+	str r5, [sp]
+	ldr r0, [r0, #0x3c]
+	mov r1, #0xe0
+	str r0, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #1
+	str r0, [sp, #0xc]
+	add r0, r6, #0
+	add r0, #0x90
+	mov r2, #0x40
+	mov r3, #0
+	bl WriteNumData
+	mov r0, #0
+	str r0, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	ldr r2, [sp, #0x10]
+	add r0, r4, #0
+	ldr r2, [r2, #0x44]
+	mov r1, #5
+	mov r3, #6
+	bl WORDSET_RegisterNumber
+	ldr r2, [sp, #0x14]
+	add r0, r7, #0
+	mov r1, #0x16
+	bl MSGMAN_GetString
+	ldr r2, [sp, #0x14]
+	add r0, r4, #0
+	add r1, r5, #0
+	bl WORDSET_ExpandStr
+	mov r0, #0
+	add r1, r5, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0xe0
+	sub r3, r1, r0
+	mov r1, #0
+	str r1, [sp]
+	ldr r0, =0x00010200 // _0223CD40
+	str r1, [sp, #4]
+	str r0, [sp, #8]
+	add r6, #0xa0
+	add r0, r6, #0
+	add r2, r5, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	ldr r0, [sp, #0x14]
+	bl STRBUF_Delete
+	add r0, r4, #0
+	bl WORDSET_Delete
+	add r0, r5, #0
+	bl STRBUF_Delete
+	add r0, r7, #0
+	bl MSGMAN_Delete
+	add sp, #0x18
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _0223CD3C: .4byte MsgList
+// _0223CD40: .4byte 0x00010200
+}
+#endif
 
 //--------------------------------------------------------------------------------------------
 /**
@@ -601,18 +1028,33 @@ void TRCBmp_WritePlayTime(GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData, 
 		hour = HOUR_DISP_MAX;
 	}
 
-	WriteNumDataFill(	&win[TRC_BMPWIN_PLAY_TIME],
-						BMP_WIDTH_TYPE2, 0, 0, str,
-						PLAYTIME_GetMinute(inTrCardData->PlayTime),
-						TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,
-						MINITE_DISP_POS_X,
-						MINITE_DISP_W);		//分
-	WriteNumDataFill(	&win[TRC_BMPWIN_PLAY_TIME],
-						BMP_WIDTH_TYPE2, 3*8, 0, str,
-						hour,
-						TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE,
-						HOUR_DISP_POS_X,
-						HOUR_DISP_W);		//時
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+	// 単位類を gmm のテキストに移行
+
+	GF_BGL_BmpWinFill( &win[TRC_BMPWIN_PLAY_TIME], 0, TIME_OFS, 0, TIME_WIDTH, 2*8 );
+
+	{
+		u32 xofs;
+		MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_NORMAL, ARC_MSG, NARC_msg_trainerscard_dat, HEAPID_TR_CARD);
+		STRBUF *msg_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
+		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
+		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_TIME, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
+
+		WORDSET_RegisterNumber(wordset, BUFID_HOUR,   PLAYTIME_GetHour(inTrCardData->PlayTime),   TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+		WORDSET_RegisterNumber(wordset, BUFID_MINUTE, PLAYTIME_GetMinute(inTrCardData->PlayTime), TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
+		MSGMAN_GetString(man, MSG_TCARD_17, tmp_buf);
+		WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+		xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+		GF_STR_PrintColor(&win[TRC_BMPWIN_PLAY_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+
+		MSGMAN_Delete( man );
+		STRBUF_Delete( msg_buf );
+		STRBUF_Delete( tmp_buf );
+		WORDSET_Delete( wordset );
+	}
+
+	// ----------------------------------------------------------------------------
 }
 
 //--------------------------------------------------------------------------------------------
@@ -628,11 +1070,15 @@ void TRCBmp_WritePlayTime(GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData, 
 //--------------------------------------------------------------------------------------------
 void TRCBmp_WriteSec(GF_BGL_BMPWIN	*win, const BOOL inDisp, STRBUF *inSecBuf)
 {
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/14
+	// 単位類を gmm のテキストに移行
 	if (inDisp){
-		GF_STR_PrintColor(win, FONT_SYSTEM, inSecBuf, SEC_DISP_POS_X+SEC_DISP_OFS, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+		GF_STR_PrintColor(win, FONT_SYSTEM, inSecBuf, COLON_OFS, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
 	}else{
-		GF_BGL_BmpWinFill( win, 0, SEC_DISP_POS_X, 0,  8,  WIN_S_TIME_SY*8 );
+		GF_BGL_BmpWinFill( win, 0, COLON_OFS, 0, COLON_WIDTH, WIN_S_TIME_SY*8 );
 		GF_BGL_BmpWinOn( win );
 	}
+	// ----------------------------------------------------------------------------
 }
 

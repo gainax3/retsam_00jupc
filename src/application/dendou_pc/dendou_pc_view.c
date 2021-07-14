@@ -555,7 +555,11 @@ static void update_bmpwin_record( DENDOU_PC_VIEW* vwk )
 
 	WORDSET_RegisterNumber( vwk->wordset, 0, vpara->times, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_RegisterNumber( vwk->wordset, 1, vpara->date.year+2000, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
-	WORDSET_RegisterNumber( vwk->wordset, 2, vpara->date.month, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/29
+	// 月の表示を単語表記に変更
+	WORDSET_RegisterMonthName( vwk->wordset, 2, vpara->date.month );
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber( vwk->wordset, 3, vpara->date.day, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	MSGMAN_GetString( vwk->mm, dendoupc_str_01, vwk->loadStrBuf );
 	WORDSET_ExpandStr( vwk->wordset, vwk->expandStrBuf, vwk->loadStrBuf );

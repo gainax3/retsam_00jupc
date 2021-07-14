@@ -321,8 +321,11 @@ static u8 FNOTE_HederPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * time, GF_BGL_BMPWIN *
 
 	// 日付
 	str = MSGMAN_AllocString( wk->mman, msg_fnote_001 );
-	WORDSET_RegisterNumber(
-		wk->wset, 0, mem.month, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
+	// 月の表示を単語表記に変更
+	WORDSET_RegisterMonthName( wk->wset, 0, mem.month );
+	// ----------------------------------------------------------------------------
 	WORDSET_RegisterNumber(
 		wk->wset, 1, mem.day, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
 	WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );
@@ -555,6 +558,17 @@ static void FNOTE_PokemonPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/10
+// 対戦ログ出し分けの境界値を、英語版の文字数の出現分布を考慮して変更
+enum {
+	LETNUM_SHORTEST = 14,
+	LETNUM_SHORTER  = 16,
+	LETNUM_LONGER   = 19,
+	LETNUM_LONGEST  = 26,
+};
+// ----------------------------------------------------------------------------
+
 static void FNOTE_TrainerPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 {
 	FNOTE_WK_TRAINER	mem;
@@ -593,15 +607,19 @@ static void FNOTE_TrainerPut( FNOTE_WORK * wk, GF_BGL_BMPWIN * info )
 		}
 	}
 
-	if( i <= 10 ){
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/10
+	// 対戦ログ出し分けの境界値を、英語版の文字数の出現分布を考慮して変更
+	if( i <= LETNUM_SHORTEST ){
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_300 );
-	}else if( i <= 12 ){
+	}else if( i <= LETNUM_SHORTER ){
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_301 );
-	}else if( i <= 14 ){
+	}else if( i <= LETNUM_LONGER ){
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_302 );
-	}else{
+	}else{		// LETNUM_LONGEST
 		str = MSGMAN_AllocString( wk->mman, msg_fnote_303 );
 	}
+	// ----------------------------------------------------------------------------
 
 	WORDSET_RegisterPlaceName( wk->wset, 0, ZoneData_GetPlaceNameID(mem.map) );
 	WORDSET_ExpandStr( wk->wset, wk->msg_buf, str );

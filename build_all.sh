@@ -23,7 +23,7 @@ export BUILDING_SDK=1
 #(cd sdk/NitroSDK; make)
 #(cd sdk/NitroSystem; make)
 #(cd sdk/NitroWiFi; make)
-(cd sdk/NitroDWC; make)
+#(cd sdk/NitroDWC; make)
 #exit
 export BUILDING_SDK=0
 make

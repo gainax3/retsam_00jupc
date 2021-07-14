@@ -99,8 +99,29 @@ static BOOL s_WLDTIMER_DEBUG_ALLPLACEOPEN_FLAG = FALSE;
 #define INIT_EARTH_SCALE_XVAL	(FX32_ONE)
 #define INIT_EARTH_SCALE_YVAL	(FX32_ONE)
 #define INIT_EARTH_SCALE_ZVAL	(FX32_ONE)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+// デフォルト位置を言語ごとに変更
+#if PM_LANG == LANG_ENGLISH
+#define INIT_EARTH_ROTATE_XVAL	(0x1A40)	// アメリカの真ん中あたり
+#define INIT_EARTH_ROTATE_YVAL	(0x7C00)
+#elif PM_LANG == LANG_FRANCE
+#define INIT_EARTH_ROTATE_XVAL	(0x2300)	// パリ（イル・ド・フランス）
+#define INIT_EARTH_ROTATE_YVAL	(0x3100)
+#elif PM_LANG == LANG_GERMANY
+#define INIT_EARTH_ROTATE_XVAL	(0x2580)	// ベルリン
+#define INIT_EARTH_ROTATE_YVAL	(0x2A00)
+#elif PM_LANG == LANG_ITALY
+#define INIT_EARTH_ROTATE_XVAL	(0x1DE0)	// ローマ（ラツィオ）
+#define INIT_EARTH_ROTATE_YVAL	(0x2A00)
+#elif PM_LANG == LANG_SPENCE
+#define INIT_EARTH_ROTATE_XVAL	(0x1CA0)	// マドリッド
+#define INIT_EARTH_ROTATE_YVAL	(0x35E0)
+#else
 #define INIT_EARTH_ROTATE_XVAL	(0x1980)	//東京をデフォルト位置にする
 #define INIT_EARTH_ROTATE_YVAL	(0xcfe0)	//東京をデフォルト位置にする
+#endif
+// ---------------------------------------------------------------------------
 #define INIT_EARTH_ROTATE_ZVAL	(0)
 
 //カメラ初期化定義
@@ -3444,8 +3465,13 @@ static void WLDTIMER_TouchInit( WLDTIMER_TOUCH* p_wk, WLDTIMER_DRAWSYS* p_drawsy
 		p_str = WLDTIMER_MsgManGetStr( p_msgman, msg_01 );
 
 		FontProc_LoadFont( FONT_BUTTON, heapID );	//ボタンフォントのロード
-		GF_STR_PrintColor(&p_wk->bttn,FONT_BUTTON,p_str,
-				4,0,MSG_NO_PUT, WLDTIMER_TOUCH_END_MSG_COL, NULL);
+        {
+            // MatchComment
+            u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, p_str, 0, 48);
+            GF_STR_PrintColor(&p_wk->bttn,FONT_BUTTON,p_str,
+					xofs,0,MSG_NO_PUT, WLDTIMER_TOUCH_END_MSG_COL, NULL);
+        }
+                
 		FontProc_UnloadFont( FONT_BUTTON );				//ボタンフォントの破棄
 	}
 
@@ -5536,6 +5562,7 @@ static STRBUF* WLDTIMER_MsgManCountryGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID
 //-----------------------------------------------------------------------------
 static STRBUF* WLDTIMER_MsgManPlaceGetStr( WLDTIMER_MSGMAN* p_wk, u32 nationID, u32 areaID )
 {
+    WORDSET_ClearAllBuffer( p_wk->p_wordset ); // MatchComment: add this function call
 	MSGMAN_GetString( p_wk->p_msgman, msg_03, p_wk->p_msgtmp );
 	WORDSET_RegisterLocalPlaceName( p_wk->p_wordset, 0, nationID, areaID );
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_msgstr, p_wk->p_msgtmp );
