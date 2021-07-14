@@ -20,10 +20,9 @@ if [ "$1" == "-j" ]; then
 fi
 
 export BUILDING_SDK=1
-#(cd sdk/NitroSDK; make)
-#(cd sdk/NitroSystem; make)
-#(cd sdk/NitroWiFi; make)
-#(cd sdk/NitroDWC; make)
-#exit
+(cd sdk/NitroSDK; make)
+(cd sdk/NitroSystem; make)
+(cd sdk/NitroWiFi; make)
+(cd sdk/NitroDWC; make)
 export BUILDING_SDK=0
 make
