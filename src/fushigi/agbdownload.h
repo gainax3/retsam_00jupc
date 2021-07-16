@@ -18,12 +18,26 @@
 #define AGBBEACONDATAPTR	0x08100010
 // ふしぎデータが配置されているアドレス
 #define AGBMISSIONDATAPTR	0x08100100
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// 電子署名認証に対応
+#define AGB_SIGNEDDATA_PTR		((void *)AGBMISSIONDATASIZE)	// 認証対象領域の先頭
+#define AGB_SIGNEDDATA_SIZE		(0x4A8)							// 認証対象領域のサイズ
+#define AGB_SIGNATURE_PTR		((void *)0x08020000)			// 電子署名が配置されているアドレス
+#define AGB_SIGNATURE_SIZE		(128)
+// ----------------------------------------------------------------------------
 
 #define AGB_MAKER_CODE		0x3130		// 任天堂
 
 extern int GetAgbCartridgeDataSize(void);
 extern BOOL GetAgbCartridgeBeaconData(void *dist, int size);
 extern BOOL ReadAgbCartridgeData(void *dist, int size);
+
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// Crypto ライブラリ内でメモリを確保するヒープを指定するための関数
+extern void SetAgbCartridgeHeapID(u32 heapID);
+// ----------------------------------------------------------------------------
 
 
 #endif	// __AGBDOWNLOAD_H__

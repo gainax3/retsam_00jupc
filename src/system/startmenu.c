@@ -43,9 +43,13 @@
 #include "msgdata/msg_wifi_system.h"
 #include "wifi/dwc_rap.h"
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/01
+// AGBカートリッジが抜かれたときは、ブルースクリーンに遷移するように変更
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
 #include "application/backup.h"
 #endif
+// ----------------------------------------------------------------------------
 
 /*
  * ※必ず表示されるメニュー
@@ -937,6 +941,12 @@ static BOOL StartMenuCheckMystery(void *p, int index, MYSTERY_WIN *mw, int y)
     if(SYSTEMDATA_GetWifiMPOpenFlag(SaveData_GetSystemData(wk->sv)) == TRUE)
       wk->mystery = TRUE;
     // AGBでの配布用カセットが刺さってる？
+    // ----------------------------------------------------------------------------
+    // localize_spec_mark(LANG_ALL) imatake 2007/01/15
+    // Crypto ライブラリ内でメモリを確保するヒープを設定
+    SetAgbCartridgeHeapID(HEAPID_STARTMENU);
+    // ----------------------------------------------------------------------------
+
     if(GetAgbCartridgeDataSize()){
       wk->mystery = TRUE;
       MysteryLib_SetAgbCartridgeIntr(TRUE);	/* AGBカートリッジの抜け検出ON */
@@ -1467,6 +1477,9 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 
 	// AGBカセットから連れてくるを選んだ際の停止判定処理
 	if(wk->select == SEL_AGBPOKEMON){
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/01
+// AGBカートリッジが抜かれたときは、ブルースクリーンに遷移するように変更
 #if AFTERMASTER_070123_GBACARTRIDGE_BUG_FIX
 	  // カセットが抜かれていたらエラー画面へ飛ぶ
 	  if(CTRDG_IsPulledOut() == TRUE){
@@ -1478,6 +1491,7 @@ static PROC_RESULT StartMenuProc_Main(PROC * proc, int * seq)
 	  if(CTRDG_IsPulledOut() == TRUE)
 	    CTRDG_TerminateForPulledOut();
 #endif
+// ----------------------------------------------------------------------------
 	}
 	
       } else {

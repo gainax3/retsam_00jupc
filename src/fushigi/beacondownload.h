@@ -86,12 +86,11 @@ extern void* bsdown_c_fileheader(void);
    以下は子機親機共通の設定にする必要がある。
    ====================================================================== */
 
-// GGIDは定数で定義。ビーコン配信は専用のものをつかってください。
-#if 0
-#define BDOWN_GGID 0x003fff20
-#else
-#define BDOWN_GGID 0x00000345
-#endif
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/10
+// GGID の定義を include/communication/ggid.h に移動
+#include "communication/ggid.h"
+// ----------------------------------------------------------------------------
 
 // 受信/送信する可能性のあるファイルの最大値
 #define BSOWN_MAXSIZE (128*1024)

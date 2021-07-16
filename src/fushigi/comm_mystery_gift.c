@@ -799,7 +799,8 @@ static BOOL MovieEffectModeCheck(GIFT_DELIVERY *deli)
 			pp = (POKEMON_PARAM *)&deli->data.pokemon.data;
 			place_no = PokeParaGet(pp, ID_PARA_get_place, NULL);
 	//		if(place_no >= 3003 && place_no <= 3014){	//地名「ポケモンえいが」
-			if(place_no >= 3 && place_no <= 14){	//地名「ポケモンえいが」
+			// MatchComment: add secondary condition to if statement
+            if((place_no >= 3 && place_no <= 14) || (place_no >= 64 && place_no <= 71)){	//地名「ポケモンえいが」
 				//不思議な贈り物の場合、get_placeの方にplace_name_haihu.gmmのindexで入っている
 				return TRUE;
 			}
@@ -920,8 +921,12 @@ static void CreateDirectCommYesNoMenu(PROC *proc, int flag)
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommDirectCommYesNoMenu_MenuData, NELEMS(CommDirectCommYesNoMenu_MenuData), win, msg);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
 }
 
 
@@ -963,6 +968,10 @@ static int CommDirectMenuYesNo(PROC *proc)
   GF_BGL_BMPWIN *win;
   MYSTERYGIFT_WORK *wk = PROC_GetWork(proc);
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/17
+// 一度無線でおくりものを受け取ろうとすると、その後AGBから受け取れなくなる
+// 不具合の修正を反映
 #if !AFTERMASTER_070213_MISTERY_AGBCARTRIDGE_FIX
   if(wk->comm_type != MYSTERYCOMM_TYPE_AGBCARTRIDGE)
     wk->comm_type = MYSTERYCOMM_TYPE_DIRECT;
@@ -972,14 +981,19 @@ static int CommDirectMenuYesNo(PROC *proc)
   else
     wk->comm_type = MYSTERYCOMM_TYPE_DIRECT;
 #endif
+// ----------------------------------------------------------------------------
   /* 今のメニューウィンドウを表示させない */
   CMG_BmpMenuWinClear(&wk->selwin[MYSTERYGIFT_WIN_COMM_TYPE], WINDOW_TRANS_ON);
   /* メニューをすげかえる */
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommDirectYesNoMenu_MenuData, NELEMS(CommDirectYesNoMenu_MenuData), win, mystery_01_003);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
   
   return MYSTERYGIFT_SEQ_DIRECT_YESNO;
 }
@@ -1004,8 +1018,12 @@ static int CommWiFiMenuYesNo(PROC *proc)
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
-  CreateWindowMenuDataWiFi(proc, CommWiFiYesNoMenu_MenuData, NELEMS(CommWiFiYesNoMenu_MenuData), win, dwc_message_0002);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  CreateWindowMenuData(proc, CommWiFiYesNoMenu_MenuData, NELEMS(CommWiFiYesNoMenu_MenuData), win, mystery_wifi_001);
+  // ----------------------------------------------------------------------------
   
   return MYSTERYGIFT_SEQ_DIRECT_YESNO;
 }
@@ -1033,8 +1051,12 @@ static int CommBeaconMenuYesNo(PROC *proc)
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommBeaconYesNoMenu_MenuData, NELEMS(CommBeaconYesNoMenu_MenuData), win, mystery_broadcast_001);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
   
   return MYSTERYGIFT_SEQ_DIRECT_YESNO;
 }
@@ -1054,8 +1076,12 @@ static void CreateBeaconCommYesNoMenu(PROC *proc)
   win = &wk->selwin[MYSTERYGIFT_WIN_COMM_DIRECT_YESNO];
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 23, 10, 6, 4, FONT_PALNO_NORMAL, MYSTERYGIFT_COMMDIRCHR);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommBeaconCommYesNoMenu_MenuData, NELEMS(CommBeaconCommYesNoMenu_MenuData), win, mystery_01_005);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
 }
 
 
@@ -1264,8 +1290,12 @@ static int TopMainMenuRecvGift(PROC *proc)
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 15, 9, 16, 8,
 		     FONT_PALNO_NORMAL, MYSTERYGIFT_COMMTYPECHR);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   CreateWindowMenuData(proc, CommTypeMenu_MenuData, 4, win, mystery_01_002);
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
   
   return MYSTERYGIFT_SEQ_RECV;
 }
@@ -1473,10 +1503,14 @@ static void CreateMenuWindow(PROC *proc, int base, u32 msg)
   // ウィンドウ登録
   if(win->ini == NULL)
     GF_BGL_BmpWinAdd(wk->bgl, win, GF_BGL_FRAME0_M, 8,  7, 16, index*2, FONT_PALNO_NORMAL, base);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+  // ウィンドウの枠だけ描画が遅れるのを修正
+  // ウィンドウ表示
+  BmpMenuWinWrite(win, WINDOW_TRANS_OFF, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
   // メニュー作成
   CreateWindowMenuData(proc, ld, index, win, msg);
-  // ウィンドウ表示
-  BmpMenuWinWrite(win, WINDOW_TRANS_ON, MYSTERYGIFT_FRAMECHR2, WAKU_PALETTE_NUMBER2);
+  // ----------------------------------------------------------------------------
 }
 
 
@@ -1706,6 +1740,8 @@ void WifiMysteryGift_ErrorDisp(MYSTERYGIFT_WORK *wk)
   if(wk->wifi_errmsg != -1)	msg = dwc_error_0001 + wk->wifi_errmsg;
   else				msg = dwc_error_0012;
 
+  // MatchComment: new plat US change
+  SetTimeWaitIcon(wk, FALSE);
   // OBJ画面は非表示
   GF_Disp_GX_VisibleControl(GX_PLANEMASK_OBJ, VISIBLE_OFF);
   // スクリーンをクリアして…
@@ -1856,6 +1892,11 @@ static PROC_RESULT MysteryGiftProc_Init(PROC * proc, int * seq)
   Snd_DataSetByScene( SND_SCENE_HUSIGI, SEQ_PRESENT, 1 );
 
   /* AGBからのダウンロードかどうかのフラグを設定 */
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/15
+  // Crypto ライブラリ内でメモリを確保するヒープを設定
+  SetAgbCartridgeHeapID(HEAPID_MYSTERYGIFT);
+  // ----------------------------------------------------------------------------
   if(GetAgbCartridgeDataSize()){
     wk->comm_type = MYSTERYCOMM_TYPE_AGBCARTRIDGE;
     sys_InitAgbCasetteVer(CasetteVersion);
@@ -3897,7 +3938,11 @@ static void MysteryGift_BeaconMainLoop(MYSTERYGIFT_WORK *wk)
   }
 		
   if(sys.trg & PAD_BUTTON_CANCEL){
-    Snd_SePlay(SEQ_SE_DP_SELECT);
+    // ----------------------------------------------------------------------------
+    // localize_spec_mark(LANG_ALL) imatake 2007/02/15
+    // キャンセル時にSEが2回鳴るのを修正
+    //Snd_SePlay(SEQ_SE_DP_SELECT); // MatchComment: show removed code
+    // ----------------------------------------------------------------------------
     // リセット処理
     switch( s_state ){
     case BEACON_STATE_SCANNING:			// スキャン中

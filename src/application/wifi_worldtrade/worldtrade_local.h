@@ -272,7 +272,17 @@ typedef struct{
 	int pos;
 }EVOLUTION_POKEMON_INFO;
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_KOREA) imatake 2007/11/28
+// 韓国語のソートに対応
+#if   PM_LANG == LANG_JAPAN
 #define NAME_HEAD_MAX	( 10 )	// [アカサタナハマヤラワ]の数は１０個
+#elif PM_LANG == LANG_KOREA
+#define NAME_HEAD_MAX	( 14 )
+#else
+#define NAME_HEAD_MAX	(  9 )
+#endif
+// ----------------------------------------------------------------------------
 
 typedef struct{
 	u16 head_list,head_pos;
@@ -434,10 +444,13 @@ typedef struct _WORLDTRADE_WORK{
 	// worldtrade_deposit.c worldtrade_search.cで兼用
 	SELECT_LIST_POS			selectListPos;
 	
-	// プラチナから追加
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/10/12
+	// サーバへのプロフィール登録に対応
 	Dpw_Common_Profile			dc_profile;					// 自分の情報登録用構造体
 	Dpw_Common_ProfileResult	dc_profile_result;			// 自分の情報登録レスポンス用構造体
-
+	// ----------------------------------------------------------------------------
+    
 	int							country_code;
 	
 	CONNECT_BG_PALANM cbp;		// Wifi接続BG画面のパレットアニメ制御システム

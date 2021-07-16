@@ -24,7 +24,15 @@ extern "C" {
 #define		MP_DEFAULT_BEACON_PERIOD	(200)
   
 /* MP通信用GGID */  
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/31
+// 海外版ポケモンレンジャーと通信できるようにGGIDを変更（5言語共通）
+#if (PM_LANG == LANG_JAPANESE)
 #define		MP_GGID				(0x00000178)
+#else
+#define		MP_GGID				(0x00400131)
+#endif
+// ----------------------------------------------------------------------------
 
 /* 最大接続子機数 */  
 #define		MP_CONNECT_CHILD_MAX		(9)

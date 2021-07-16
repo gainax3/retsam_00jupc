@@ -562,12 +562,16 @@ static void mywh_StateOutStartScan( void *arg )
         // バッファに設定されたBssDescのキャッシュを破棄
         DC_InvalidateRange( &(s_work.BssDesc), sizeof(WMbssDesc) );
                
-        if ( cb->gameInfoLength < 8 || cb->gameInfo.ggid != BDOWN_GGID )
+        // ----------------------------------------------------------------------------
+        // localize_spec_mark(LANG_ALL) imatake 2007/01/10
+        // ふしぎなおくりものビーコンのGGIDを各国語対応
+        if ( cb->gameInfoLength < 8 || cb->gameInfo.ggid != _BCON_DOWNLOAD_GGID )
         {
             // GGIDが違っていれば無視する
-            WH_TRACE("not my parent ggid (%d != %d)\n",  cb->gameInfo.ggid, BDOWN_GGID );
+            WH_TRACE("not my parent ggid (%d != %d)\n",  cb->gameInfo.ggid, _BCON_DOWNLOAD_GGID );
             break;
         }
+        // ----------------------------------------------------------------------------
       
       	// 最後にうけとった電波のリンク強度を記憶
       	s_work.linklevel = cb->linkLevel;
@@ -1222,13 +1226,12 @@ int bsdown_c_checkcrc(void)
 
 		OS_TPrintf("CRYPTO_RC4Init終了\n");
 		
-        // TODO__fix_me
-		/*CRYPTO_RC4Encrypt(
+		CRYPTO_RC4Encrypt(
 			&(s_work.rc4context),
 			s_work.target,
 			s_work.size,
 			s_work.target
-		);*/
+		);
 
 		OS_TPrintf("CRYPTO_RC4Encrypt終了\n");
 		

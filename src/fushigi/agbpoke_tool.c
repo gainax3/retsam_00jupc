@@ -1378,6 +1378,7 @@ void AgbPokePasoParaPut(PokemonPasoParam *PPP,int id,const u8 *buf)
  */
 //------------------------------------------------------------------
 #define	MONSNO_AGB_KIMORI	277
+// MatchComment: don't port over localization change from DP US
 int ChangeAGBPoke2DPPoke(int agbpoke)
 {
   int i;
@@ -1385,7 +1386,7 @@ int ChangeAGBPoke2DPPoke(int agbpoke)
   // キモリ以前ならば同じモンスター番号
   if(agbpoke < MONSNO_AGB_KIMORI)
     return agbpoke;
-  // キモリ～ならば変換して返す
+  // キモリ?ならば変換して返す
   for(i = 0; i < sizeof(PokemonOld2NewTable) / sizeof(POKEMON_CHANGE_TABLE); i++)
     if(PokemonOld2NewTable[i].old == agbpoke)
       return PokemonOld2NewTable[i].new;
@@ -1612,33 +1613,38 @@ void	AGBPPPtoDSPPP(PokemonPasoParam *agb_ppp,POKEMON_PASO_PARAM *ds_ppp)
 	work=AgbPokePasoParaGet(agb_ppp,ID_AGB_tamago_flag,NULL);
 	PokePasoParaPut(ds_ppp,ID_PARA_tamago_flag,(u8 *)&work);
 
-	//海外版では、変更の必要があるかも
-#if PM_LANG==LANG_JAPAN
-	//ニックネームをつけたかどうかフラグ（0:つけていない　1:つけた）
-	if(AgbPokePasoParaGet(agb_ppp,ID_AGB_country_code,NULL)!=CasetteLanguage){
-		//カセットの言語と違う国のポケモンは、ニックネームつけている扱いにする
-		work=1;
-		PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
-	}
-	else{
-		work=AgbPokePasoParaGet(agb_ppp,ID_AGB_monsno,NULL);
-		AgbPokePasoParaGet(agb_ppp,ID_AGB_nickname,&agb_name_buf[0]);
-		for(i=0;i<6;i++){
-			//デフォルト名と違う場合はニックネーム扱い
-			if(PokeNameData[work][i]!=agb_name_buf[i]){
-				work=1;
-				PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
-				break;
-			}
-			//一致しているならデフォルト名
-			else if(agb_name_buf[i]==EOM_){
-				work=0;
-				PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
-				break;
-			}
-		}
-	}
-#endif
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+	// ニックネーム付与のチェックを、ニックネーム変換と一本化
+    // MatchComment: show removed code
+//	//海外版では、変更の必要があるかも
+//#if PM_LANG==LANG_JAPAN
+//	//ニックネームをつけたかどうかフラグ（0:つけていない　1:つけた）
+//	if(AgbPokePasoParaGet(agb_ppp,ID_AGB_country_code,NULL)!=CasetteLanguage){
+//		//カセットの言語と違う国のポケモンは、ニックネームつけている扱いにする
+//		work=1;
+//		PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
+//	}
+//	else{
+//		work=AgbPokePasoParaGet(agb_ppp,ID_AGB_monsno,NULL);
+//		AgbPokePasoParaGet(agb_ppp,ID_AGB_nickname,&agb_name_buf[0]);
+//		for(i=0;i<6;i++){
+//			//デフォルト名と違う場合はニックネーム扱い
+//			if(PokeNameData[work][i]!=agb_name_buf[i]){
+//				work=1;
+//				PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
+//				break;
+//			}
+//			//一致しているならデフォルト名
+//			else if(agb_name_buf[i]==EOM_){
+//				work=0;
+//				PokePasoParaPut(ds_ppp,ID_PARA_nickname_flag,(u8 *)&work);
+//				break;
+//			}
+//		}
+//	}
+//#endif
+	// ----------------------------------------------------------------------------
 
 	//かっこよさ勲章
 	j=AgbPokePasoParaGet(agb_ppp,ID_AGB_stylemedal,NULL);
@@ -1776,9 +1782,22 @@ void	AGBPPPtoDSPPP(PokemonPasoParam *agb_ppp,POKEMON_PASO_PARAM *ds_ppp)
 
 	//ppp3系
 	//ニックネーム
-	AgbPokePasoParaGet(agb_ppp,ID_AGB_nickname,&agb_name_buf[0]);
-	AGBSTR_to_DSSTR(&agb_name_buf[0],&ds_name_buf[0],BUFLEN_POKEMON_NAME,country_code);
-	PokePasoParaPut(ds_ppp,ID_PARA_nickname,&ds_name_buf[0]);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+	// ニックネーム付与のチェックを、ニックネーム変換と一本化
+
+	//ニックネーム
+	AgbPokePasoParaGet(agb_ppp, ID_AGB_nickname, &agb_name_buf[0]);
+	AGBSTR_to_DSSTR(&agb_name_buf[0], &ds_name_buf[0], BUFLEN_POKEMON_NAME, country_code);
+	PokePasoParaPut(ds_ppp, ID_PARA_nickname_code_flag, &ds_name_buf[0]);
+
+	// カセットの言語と違う国のポケモンは、ニックネームつけている扱いにする
+	if (AgbPokePasoParaGet(agb_ppp, ID_AGB_country_code, NULL) != CasetteLanguage) {
+		work = 1;
+		PokePasoParaPut(ds_ppp, ID_PARA_nickname_flag, &work);
+	}
+
+	// ----------------------------------------------------------------------------
 
 	//捕まえたカセットバージョン
 	work=AgbPokePasoParaGet(agb_ppp,ID_AGB_get_cassette,NULL);

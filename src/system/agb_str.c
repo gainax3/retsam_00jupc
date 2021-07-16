@@ -15,7 +15,11 @@
 
 
 static const STRCODE CodeTable[][2] = {
-	{ spc_, spc_ },	// 0x00
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+	// 海外名のスペースが正しく半角になるように修正
+	{ spc_, h_spc_ },	// 0x00
+	// ----------------------------------------------------------------------------
 	{ a_, a_ },		
 	{ i_, i_ },		
 	{ u_, u_ },		
@@ -343,7 +347,17 @@ static STRCODE get_kakot2_code( u32 langCode )
 
 
 #define AGB_EOM_CODE	(0xff)
-#define UNKNOWN_STR_LEN	(5)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+// 海外で不正文字が入っていた場合は、10文字までの半角"?"になるように変更。
+#if (PM_LANG == LANG_JAPAN)
+#define ALTERNATIVE_CODE	(hate_)
+#define UNKNOWN_STR_LEN		(5)
+#else
+#define ALTERNATIVE_CODE	(h_hate_)
+#define UNKNOWN_STR_LEN		(10)
+#endif
+// ----------------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /**
@@ -376,7 +390,11 @@ BOOL AGBSTR_to_DSSTR( const u8* src, STRCODE* dst, u32 dst_arysize, u32 langCode
 			max = ((dst_arysize-1) < UNKNOWN_STR_LEN)? (dst_arysize-1) : UNKNOWN_STR_LEN;
 			for(p=0; p<max; p++)
 			{
-				dst[p] = hate_;
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2006/10/12
+				// 海外で不正文字が入っていた場合は、10文字までの半角"?"になるように変更。
+				dst[p] = ALTERNATIVE_CODE;
+				// ----------------------------------------------------------------------------
 			}
 			dst[p] = EOM_;
 			return FALSE;

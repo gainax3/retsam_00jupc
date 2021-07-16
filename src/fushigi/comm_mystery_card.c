@@ -310,6 +310,12 @@ typedef struct {
   
 } MYSTERYCARD_MSGWIN_TABLE;
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/05/01
+// おすそわけ画面の「くばる」「やめる」を自動で中央寄せに
+
+#define OX_CENTERED		(-1)
+
 MYSTERYCARD_MSGWIN_TABLE MsgWin_Table[] = {
   /*  ------------------------------ 表面 ---------------------------- */
   /* ふしぎなカード */
@@ -341,9 +347,9 @@ MYSTERYCARD_MSGWIN_TABLE MsgWin_Table[] = {
   /* げんざいのエントリー */
   /* 12 */ { MYSTERYCARD_SEND, 23,  7,  9,  4, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_004, _nop, 2, 0 },
   /* くばる */
-  /* 13 */ { MYSTERYCARD_SEND,  6, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_006, _nop, 8, 1},
+  /* 13 */ { MYSTERYCARD_SEND,  6, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_006, _nop, OX_CENTERED, 1},
   /* やめる */
-  /* 14 */ { MYSTERYCARD_SEND, 21, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_007, _nop, 0, 1 },
+  /* 14 */ { MYSTERYCARD_SEND, 20, 20,  6,  2, FONT_SYSTEM, MYSTERYCARD_OWHITE, -1,	mystery_osusowake_007, _nop, OX_CENTERED, 1 },
   /* げんざいのエントリー(○／４) */
   /* 15 */ { MYSTERYCARD_SEND, 25, 12,  4,  2, FONT_TALK, MYSTERYCARD_BLACK, -1,	mystery_osusowake_005, MysteryCardDrawEntry },
   /* 実際にエントリしてる人を表示するウィンドウ */
@@ -353,6 +359,8 @@ MYSTERYCARD_MSGWIN_TABLE MsgWin_Table[] = {
   /* 17 */ { MYSTERYCARD_MENU , 2, 19, 27,  4, FONT_TALK, MYSTERYCARD_BLACK, 14,	mystery_osusowake_008, _nop },
   /* 18 */ { MYSTERYCARD_MENU , 2, 19, 27,  4, FONT_TALK, MYSTERYCARD_BLACK, 14,	mystery_osusowake_009, _nop },
 };
+
+// ----------------------------------------------------------------------------
 
 /* メニュー用データ */
 LISTDATA MysteryCard_Menu1Data[] = {
@@ -762,7 +770,11 @@ static BOOL MysteryCardDateWin(MYSTERYCARD_WORK *wk, GF_BGL_BMPWIN *win, GF_PRIN
 
   // 文字列をセットだけして後はメッセージに任せる
   WORDSET_RegisterNumber(wk->word, 0, date.year+2000, 4, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
-  WORDSET_RegisterNumber(wk->word, 1, date.month,     2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+  // ----------------------------------------------------------------------------
+  // localize_spec_mark(LANG_ALL) imatake 2007/01/29
+  // 月の表示を単語表記に変更
+  WORDSET_RegisterMonthName( wk->word, 1, date.month );
+  // ----------------------------------------------------------------------------
   WORDSET_RegisterNumber(wk->word, 2, date.day,       2, NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
   return TRUE;
 }
@@ -976,7 +988,16 @@ static void MysteryCardCreateMsgWindow(MYSTERYCARD_WORK *wk, int font, int side)
 	// メッセージがあれば表示する
 	if(tbl[i].msgid){
 	  msg = MSGDAT_UTIL_AllocExpandString(wk->word, wk->msgman, tbl[i].msgid, wk->heapid);
-	  GF_STR_PrintColor(&wk->win[i], tbl[i].font, msg, tbl[i].ox, tbl[i].oy, MSG_NO_PUT, col, NULL);
+      // ----------------------------------------------------------------------------
+	  // localize_spec_mark(LANG_ALL) imatake 2007/05/01
+	  // おすそわけ画面の「くばる」「やめる」を自動で中央寄せに
+	  {
+	    u32 xofs = (tbl[i].ox == OX_CENTERED) ?
+		       FontProc_GetPrintCenteredPositionX(tbl[i].font, msg, 0, tbl[i].width * 8) :
+		       tbl[i].ox;
+	    GF_STR_PrintColor(&wk->win[i], tbl[i].font, msg, xofs, tbl[i].oy, MSG_NO_PUT, col, NULL);
+	  }
+	  // ----------------------------------------------------------------------------
 	  STRBUF_Delete(msg);
 	}
       }
