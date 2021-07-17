@@ -720,7 +720,7 @@ $(LCFILE_SPEC):	commondefs.GF modulerules.GF make_prog_files make_g3_files overl
 	make $(LCFDEF_FILE)
 
 main.lsf: overlay_files
-overlay_files: overlaytool.rb
+overlay_files: overlaytool.rb make_prog_files
 	ruby overlaytool.rb
 
 #overlaytool.rbÀsŒã‚Ìoverlay_files‚ğV‚½‚Éinclude‚µ‚Älcf_def.txt‚ğì¬‚·‚é

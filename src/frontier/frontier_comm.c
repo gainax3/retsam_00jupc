@@ -1630,7 +1630,7 @@ BOOL CommCastleSendBufSelData( CASTLE_SCRWORK* wk )
 
 			//子の選択がたいせんでない時、子が採用
 			if( wk->sel_type != CASTLE_SCR_MENU_TAISEN ){
-				wk->parent_check_flag = wk->sel_type;
+				wk->parent_check_flag = wk->sel_type + 6; // MatchComment: add 6
 			}
 		}
 	}

@@ -146,8 +146,8 @@ static int Factory_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number)
 			return FACTORY_LEADER_TR_INDEX_2ND;
 		}
 	}
-
-	if(enemy_number == FACTORY_LAP_ENEMY_MAX-1){
+    // MatchComment: add second condition
+	if(enemy_number == FACTORY_LAP_ENEMY_MAX-1 || enemy_number == FACTORY_LAP_MULTI_ENEMY_MAX-1){
 		offset = TrainerSelectRange[lap].boss_end - TrainerSelectRange[lap].boss_start;
 		start = TrainerSelectRange[lap].boss_start;
 	}

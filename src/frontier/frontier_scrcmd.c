@@ -283,6 +283,8 @@ static BOOL FSSC_BattleRecServerVersionCheck(FSS_TASK *core);
 static BOOL FSSC_WifiCounterListSetLastPlayDate(FSS_TASK *core);
 static BOOL FSSC_TVTempFriendSet(FSS_TASK *core);
 static BOOL FSSC_CommSetWifiBothNet( FSS_TASK * core );
+static BOOL ov104_2231F44( FSS_TASK * core );
+static BOOL ov104_2231F5C( FSS_TASK * core );
 
 
 //============================================================================================
@@ -512,6 +514,10 @@ const FRSCR_CMD FSSCmdTable[]={
 	FSSC_TVTempFriendSet,
 	//
 	FSSC_CommSetWifiBothNet,
+    // MatchComment: add two new script commands
+    ov104_2231F44,
+    ov104_2231F5C
+    
 };
 
 const u32 FSSCmdTableMax = NELEMS(FSSCmdTable);
@@ -3305,6 +3311,10 @@ static BOOL EncountEffect_002(FSS_ECE* wk)
 			GF_BGL_BmpWinDel( wk->p_bmp );
 			GF_BGL_BmpWinFree( wk->p_bmp, 1 );
 			
+            // MatchComment: add these two calls to WIPE_SetBrightness
+            WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
+            WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
+            
 			GF_BGL_ClearCharSet( ENCOUNT_EFF_FRAME, 32, 0, HEAPID_WORLD );
 			GF_BGL_ScrClear( wk->fmap->bgl, ENCOUNT_EFF_FRAME );
 			
@@ -3369,6 +3379,10 @@ static BOOL EncountEffect_003(FSS_ECE* wk)
 			GF_BGL_BmpWinDel( wk->p_bmp );
 			GF_BGL_BmpWinFree( wk->p_bmp, 1 );
 			
+            // MatchComment: add these two calls to WIPE_SetBrightness
+            WIPE_SetBrightness( WIPE_DISP_MAIN, WIPE_FADE_BLACK );
+            WIPE_SetBrightness( WIPE_DISP_SUB, WIPE_FADE_BLACK );
+            
 			GF_BGL_ClearCharSet( ENCOUNT_EFF_FRAME, 32, 0, HEAPID_WORLD );
 			GF_BGL_ScrClear( wk->fmap->bgl, ENCOUNT_EFF_FRAME );
 			
@@ -4318,4 +4332,34 @@ static BOOL FSSC_CommSetWifiBothNet( FSS_TASK * core )
 	return 0;
 }
 
+// NONMATCHING
+static asm BOOL ov104_2231F44( FSS_TASK * core )
+{
+	push {r3, lr}
+	ldr r2, [r0, #0x1c]
+	ldr r3, [r0, #0]
+	add r1, r2, #1
+	str r1, [r0, #0x1c]
+	ldrb r1, [r2]
+	ldr r0, [r3, #0x60]
+	bl ov104_223327C
+	mov r0, #1
+	pop {r3, pc}
+	// .align 2, 0
+}
 
+// NONMATCHING
+static asm BOOL ov104_2231F5C( FSS_TASK * core )
+{
+	push {r3, lr}
+	ldr r2, [r0, #0x1c]
+	ldr r3, [r0, #0]
+	add r1, r2, #1
+	str r1, [r0, #0x1c]
+	ldrb r1, [r2]
+	ldr r0, [r3, #0x60]
+	bl ov104_2233298
+	mov r0, #1
+	pop {r3, pc}
+	// .align 2, 0
+}

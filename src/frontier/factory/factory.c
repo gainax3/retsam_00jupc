@@ -1120,7 +1120,8 @@ static void RentalInit( FACTORY_WORK* wk )
 											CSR_V_MODE, 0, bf_v_menu_csr_pos, NULL );
 
 		//「つよさを見るを選んだ時に表示が消えるので対処する」
-		if( (wk->pair_poke_monsno[0] != 0) && (wk->pair_poke_monsno[1] != 0) ){
+        // MatchComment: change condition from pair_poke_monsno[0] & [1] to pair_sel_count
+		if ( (wk->pair_sel_count != 0) ) {
 
 			//パートナーの選んだポケモンを表示
 			for( i=0; i < m_max ;i++ ){
@@ -2427,6 +2428,9 @@ static BOOL Seq_GameTradeUketoru( FACTORY_WORK* wk )
 		//上下キー
 		if( sys.trg & (PAD_KEY_UP | PAD_KEY_DOWN) ){
 			Snd_SePlay( SEQ_SE_DP_SELECT );
+            // MatchComment: add this call
+			FactoryCommon_ChangePoke(	wk, 0, FactoryCsr_GetCsrPos(wk->p_csr), 
+										FLIP_UKETORU, wk->p_e_party );
 		}
 
 		//左右キーが押されたら表示しているポケモンを変更する

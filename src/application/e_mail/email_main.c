@@ -44,6 +44,8 @@
 #include "application/wifi_p2pmatch.h"
 #include "field/sysflag.h"
 
+// MatchComment: include this header
+#include "application/codein/codein.h"
 
 FS_EXTERN_OVERLAY( title );
 
@@ -144,10 +146,11 @@ static const struct{
 	int comm_free_call;			//TRUEÅÅí êMÉâÉCÉuÉâÉäÇ»Ç«Çâï˙ÇµÇΩèÛë‘Ç≈PROCÇçÏÇÈ
 }EmailProcDataTbl[] = {
 	{SubFuncCall_EmailMenu, ReturnFuncCall_EmailMenu, &EmailMenuProcData, FALSE},
-	{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
+	// MatchComment: remove these?
+    //{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
+	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
+	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
+	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
 	{SubFuncCall_GSProfileIDGet, ReturnFuncCall_GSProfileIDGet, &WifiP2PMatchProcData, TRUE},
 };
 
@@ -679,6 +682,234 @@ static void * SubFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
 static void ReturnFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
 {
 	;
+}
+
+extern void ov98_2246FC4(void);
+// NONMATCHING
+asm void ov98_2246FC4(void)
+{
+	push {r4, lr}
+	sub sp, #0x18
+	add r4, r0, #0
+	mov r0, #4
+	str r0, [sp, #8]
+	str r0, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	ldr r0, [r4, #4]
+	bl SaveData_GetConfig
+	add r3, r0, #0
+	mov r0, #4
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	mov r0, #0x6c
+	mov r1, #0x10
+	add r2, sp, #8
+	bl sub_2089400
+	add r1, r4, #0
+	add r1, #0x94
+	add r4, #0x94
+	str r0, [r1, #0]
+	ldr r0, [r4, #0]
+	add sp, #0x18
+	pop {r4, pc}
+}
+
+extern void ov98_2246FFC(void);
+// NONMATCHING
+asm void ov98_2246FFC(void)
+{
+	push {r3, r4, r5, lr}
+	add r5, r0, #0
+	add r0, #0x94
+	ldr r4, [r0, #0]
+	mov r1, #0x6c
+	ldr r0, [r4, #0x1c]
+	bl NitroMain // FUN_02249A80
+	cmp r0, #0
+	beq _0224701A
+	add r0, r5, #0
+	mov r1, #1
+	bl Email_AddressReturnFlagSet
+	b _0224705C
+_0224701A:
+	add r0, r5, #0
+	bl Email_AddressReturnFlagGet
+	cmp r0, #2
+	bne _02247048
+	mov r0, #0x11
+	lsl r0, r0, #4
+	ldr r0, [r5, r0]
+	ldr r1, [r4, #0x1c]
+	bl STRBUF_Compare
+	cmp r0, #0
+	beq _0224703E
+	add r0, r5, #0
+	mov r1, #3
+	bl Email_AddressReturnFlagSet
+	b _0224705C
+_0224703E:
+	add r0, r5, #0
+	mov r1, #0
+	bl Email_AddressReturnFlagSet
+	b _0224705C
+_02247048:
+	mov r0, #0x11
+	lsl r0, r0, #4
+	ldr r0, [r5, r0]
+	ldr r1, [r4, #0x1c]
+	bl STRBUF_Copy
+	add r0, r5, #0
+	mov r1, #2
+	bl Email_AddressReturnFlagSet
+_0224705C:
+	add r0, r4, #0
+	bl CodeInput_ParamDelete
+	mov r1, #0
+	add r0, r5, #0
+	add r2, r1, #0
+	bl Email_SubProcessChange
+	pop {r3, r4, r5, pc}
+	// .align 2, 0
+}
+
+extern void ov98_2247070(void);
+// NONMATCHING
+asm void ov98_2247070(void)
+{
+	push {r4, lr}
+	sub sp, #0x20
+	add r4, r0, #0
+	mov r0, #3
+	str r0, [sp, #0x10]
+	mov r0, #4
+	str r0, [sp, #0x14]
+	mov r0, #0
+	str r0, [sp, #0x18]
+	str r0, [sp, #0x1c]
+	ldr r0, [r4, #4]
+	bl SaveData_GetConfig
+	add r3, r0, #0
+	mov r0, #5
+	str r0, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	str r0, [sp, #8]
+	add r0, r4, #0
+	add r0, #0x78
+	ldrh r0, [r0]
+	mov r1, #7
+	add r2, sp, #0x10
+	str r0, [sp, #0xc]
+	mov r0, #0x6c
+	bl sub_208941C
+	add r1, r4, #0
+	add r1, #0x94
+	add r4, #0x94
+	str r0, [r1, #0]
+	ldr r0, [r4, #0]
+	add sp, #0x20
+	pop {r4, pc}
+	// .align 2, 0
+}
+
+extern void ov98_22470B8(void);
+extern void _ull_mod(void);
+// NONMATCHING
+
+asm void ov98_22470B8(void)
+{
+	push {r3, r4, r5, lr}
+	add r5, r0, #0
+	add r0, #0x94
+	ldr r4, [r0, #0]
+	add r1, sp, #0
+	ldr r0, [r4, #0x1c]
+	bl STRBUF_GetNumber
+	ldr r2, =0x00002710 // _022470F4
+	mov r3, #0
+	bl _ull_mod
+	mov r1, #0x42
+	lsl r1, r1, #2
+	str r0, [r5, r1]
+	ldr r0, [sp]
+	cmp r0, #0
+	bne _022470E0
+	bl GF_AssertFailedWarningCall
+_022470E0:
+	add r0, r4, #0
+	bl CodeInput_ParamDelete
+	mov r1, #0
+	add r0, r5, #0
+	add r2, r1, #0
+	bl Email_SubProcessChange
+	pop {r3, r4, r5, pc}
+	nop
+// _022470F4: .4byte 0x00002710
+}
+
+extern void ov98_22470F8(void);
+// NONMATCHING
+asm void ov98_22470F8(void)
+{
+	push {r4, lr}
+	sub sp, #0x18
+	add r4, r0, #0
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	ldr r0, [r4, #4]
+	bl SaveData_GetConfig
+	add r3, r0, #0
+	mov r0, #6
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	mov r0, #0x6c
+	mov r1, #4
+	add r2, sp, #8
+	bl sub_2089400
+	add r1, r4, #0
+	add r1, #0x94
+	add r4, #0x94
+	str r0, [r1, #0]
+	ldr r0, [r4, #0]
+	add sp, #0x18
+	pop {r4, pc}
+	// .align 2, 0
+}
+
+extern void ov98_2247134(void);
+// NONMATCHING
+asm void ov98_2247134(void)
+{
+	push {r3, r4, r5, lr}
+	add r5, r0, #0
+	add r0, #0x94
+	ldr r4, [r0, #0]
+	add r1, sp, #0
+	ldr r0, [r4, #0x1c]
+	bl STRBUF_GetNumber
+	mov r1, #0x41
+	lsl r1, r1, #2
+	str r0, [r5, r1]
+	ldr r0, [sp]
+	cmp r0, #0
+	bne _02247154
+	bl GF_AssertFailedWarningCall
+_02247154:
+	add r0, r4, #0
+	bl CodeInput_ParamDelete
+	mov r1, #0
+	add r0, r5, #0
+	add r2, r1, #0
+	bl Email_SubProcessChange
+	pop {r3, r4, r5, pc}
+	// .align 2, 0
 }
 
 //--------------------------------------------------------------

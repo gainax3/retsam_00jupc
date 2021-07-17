@@ -68,5 +68,8 @@ extern void FrontierTalkMsgSub2( FSS_TASK* core, u16* msg, u32 datID );
 extern void FSSC_Sub_ShakeMove(TCB_PTR tcb, void *work);
 extern void FSSC_Sub_Window(TCB_PTR tcb, void *work);
 
+// MatchComment: prototypes for two new functions
+extern void ov104_223327C(void);
+extern void ov104_2233298(void);
 
 #endif	//__FRONTIER_SCRCMD_SUB_H__

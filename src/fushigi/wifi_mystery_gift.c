@@ -26,9 +26,10 @@
 #define USE_AUTHSERVER_RELEASE
 
 // ↓そのままROMに入れると危険なので、後で暗号化を考えようね…
-#define WIFI_ND_LOGIN_NAME		"CPUJ"	//"ADAJ"			// ログイン名
+// MatchComment: change WIFI_ND_LOGIN_NAME from CPUJ to CPUE and WIFI_ND_LOGIN_PASSWD to correct password
+#define WIFI_ND_LOGIN_NAME		"CPUE"	//"ADAJ"			// ログイン名
 #ifdef USE_AUTHSERVER_RELEASE
-#define WIFI_ND_LOGIN_PASSWD		"KQwJTEevSUdNpPL4"	//"E3npkZwqAHyGCNVb"	// パスワード(本番サーバ)
+#define WIFI_ND_LOGIN_PASSWD		"DwuCXmdJfPVLBnKA"	//"E3npkZwqAHyGCNVb"	// パスワード(本番サーバ)
 #else
 #define WIFI_ND_LOGIN_PASSWD		"uSAejwyGLTh4vFxM"	//"XqQPTBt56uEndmND"	// パスワード(テストサーバ)
 #endif

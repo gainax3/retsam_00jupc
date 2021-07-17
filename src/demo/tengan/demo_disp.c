@@ -34,7 +34,7 @@ int Demo_MSG_Set( DEMO_SYSTEM* sys, DEMO_TENGAN_PARAM* param, int msg )
 	int index;
 	MSGDATA_MANAGER* man;
 	STRBUF* str;
-	STRBUF*	tmp = STRBUF_Create( 255, HEAPID_DEMO_TENGAN );
+	STRBUF*	tmp = STRBUF_Create( 511, HEAPID_DEMO_TENGAN ); // MatchComment: 255 -> 511
 	u8 wait = 0;
 
 	man = sys->man;

@@ -101,8 +101,8 @@ static int Roulette_EnemyTrainerIndexGet( u8 type, int lap, int enemy_number )
 	if(lap >= NELEMS(TrainerSelectRange)){
 		lap = NELEMS(TrainerSelectRange) - 1;
 	}
-
-	if(enemy_number == ROULETTE_LAP_ENEMY_MAX-1){
+    // MatchComment: add second condition
+	if(enemy_number == ROULETTE_LAP_ENEMY_MAX-1 || enemy_number == ROULETTE_LAP_MULTI_ENEMY_MAX-1){
 		offset = TrainerSelectRange[lap].boss_end - TrainerSelectRange[lap].boss_start;
 		start = TrainerSelectRange[lap].boss_start;
 	}

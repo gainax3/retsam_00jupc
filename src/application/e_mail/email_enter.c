@@ -1367,6 +1367,7 @@ static void AgreeListCurMove( EMAIL_MENU_WORK* wk )
 	}
 }
 
+#ifdef NONEQUIVALENT
 static void Agreement_TxtRW( EMAIL_MENU_WORK* wk )
 {
 	int i;
@@ -1381,7 +1382,71 @@ static void Agreement_TxtRW( EMAIL_MENU_WORK* wk )
 	}
 	GF_BGL_BmpWinOn( &wk->info_win );
 }
+#else
+asm static void Agreement_TxtRW( EMAIL_MENU_WORK* wk )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x14
+	add r7, r0, #0
+	add r0, #0xc4
+	mov r1, #0xf
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [r7, #0x34]
+	mov r1, #0x2c
+	bl MSGMAN_AllocString
+	str r0, [sp, #0xc]
+	bl STRBUF_GetLen
+	mov r1, #0x6d
+	bl STRBUF_Create
+	add r6, r0, #0
+	add r0, r7, #0
+	add r0, #0xac
+	ldr r4, [r0, #0]
+	add r0, r4, #6
+	cmp r4, r0
+	bge _02248336
+	add r0, r7, #0
+	str r0, [sp, #0x10]
+	add r0, #0xc4
+	mov r5, #0
+	str r0, [sp, #0x10]
+_02248306:
+	ldr r1, [sp, #0xc]
+	add r0, r6, #0
+	add r2, r4, #0
+	bl STRBUF_CopyLine
+	str r5, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x10]
+	mov r1, #0
+	add r2, r6, #0
+	mov r3, #4
+	bl GF_STR_PrintSimple
+	add r0, r7, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	add r4, r4, #1
+	add r0, r0, #6
+	add r5, #0x10
+	cmp r4, r0
+	blt _02248306
+_02248336:
+	ldr r0, [sp, #0xc]
+	bl STRBUF_Delete
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add r7, #0xc4
+	add r0, r7, #0
+	bl GF_BGL_BmpWinOn
+	add sp, #0x14
+	pop {r4, r5, r6, r7, pc}
+}
+#endif
 
+#ifdef NONEQUIVALENT
 static int Enter_Agreement( EMAIL_MENU_WORK *wk )
 {
 	switch ( wk->sub_seq ){
@@ -1508,6 +1573,393 @@ static int Enter_Agreement( EMAIL_MENU_WORK *wk )
 
 	return 0;
 }
+#else
+asm static int Enter_Agreement( EMAIL_MENU_WORK *wk )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x1c
+	add r5, r0, #0
+	add r1, r5, #0
+	add r1, #0xa8
+	ldr r1, [r1, #0]
+	cmp r1, #0
+	beq _0224836E
+	cmp r1, #1
+	bne _02248366
+	b _022484B8
+_02248366:
+	cmp r1, #2
+	bne _0224836C
+	b _02248566
+_0224836C:
+	b _02248614
+_0224836E:
+	ldr r0, [r5, #0x34]
+	mov r1, #0x2c
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x14]
+	bl STRBUF_GetLines
+	add r1, r5, #0
+	mov r2, #0
+	add r1, #0xac
+	str r2, [r1, #0]
+	add r1, r5, #0
+	add r1, #0xb0
+	str r2, [r1, #0]
+	add r1, r5, #0
+	add r1, #0xb8
+	str r2, [r1, #0]
+	add r1, r5, #0
+	add r1, #0xb4
+	str r0, [r1, #0]
+	mov r0, #5
+	str r0, [sp]
+	mov r0, #0x1e
+	str r0, [sp, #4]
+	mov r0, #0xc
+	str r0, [sp, #8]
+	mov r0, #0xd
+	str r0, [sp, #0xc]
+	mov r0, #0x94
+	str r0, [sp, #0x10]
+	add r1, r5, #0
+	ldr r0, [r5, #4]
+	add r1, #0xc4
+	mov r2, #2
+	mov r3, #1
+	bl GF_BGL_BmpWinAdd
+	mov r0, #0x13
+	str r0, [sp]
+	mov r0, #0x1e
+	str r0, [sp, #4]
+	mov r0, #4
+	str r0, [sp, #8]
+	mov r0, #0xd
+	str r0, [sp, #0xc]
+	mov r0, #0x7f
+	lsl r0, r0, #2
+	str r0, [sp, #0x10]
+	add r1, r5, #0
+	ldr r0, [r5, #4]
+	add r1, #0xd4
+	mov r2, #2
+	mov r3, #1
+	bl GF_BGL_BmpWinAdd
+	add r0, r5, #0
+	add r0, #0xc4
+	mov r1, #0xf
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [sp, #0x14]
+	bl STRBUF_GetLen
+	mov r1, #0x6d
+	bl STRBUF_Create
+	add r7, r0, #0
+	add r0, r5, #0
+	mov r6, #0
+	str r0, [sp, #0x18]
+	add r0, #0xc4
+	add r4, r6, #0
+	str r0, [sp, #0x18]
+_02248400:
+	ldr r1, [sp, #0x14]
+	add r0, r7, #0
+	add r2, r6, #0
+	bl STRBUF_CopyLine
+	str r4, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #0
+	str r0, [sp, #8]
+	ldr r0, [sp, #0x18]
+	mov r1, #0
+	add r2, r7, #0
+	mov r3, #4
+	bl GF_STR_PrintSimple
+	add r6, r6, #1
+	add r4, #0x10
+	cmp r6, #6
+	blt _02248400
+	ldr r0, [sp, #0x14]
+	bl STRBUF_Delete
+	add r0, r7, #0
+	bl STRBUF_Delete
+	add r0, r5, #0
+	add r0, #0xc4
+	mov r1, #1
+	mov r2, #0x1f
+	mov r3, #0xb
+	bl BmpMenuWinWrite
+	add r0, r5, #0
+	add r0, #0xc4
+	bl GF_BGL_BmpWinOn
+	add r0, r5, #0
+	add r0, #0xd4
+	mov r1, #0xf
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r0, #0xd4
+	mov r1, #1
+	mov r2, #0x1f
+	mov r3, #0xb
+	bl BmpMenuWinWrite
+	add r0, r5, #0
+	add r0, #0xd4
+	bl GF_BGL_BmpWinOn
+	mov r0, #0x6d
+	bl BMPCURSOR_Create
+	add r1, r5, #0
+	add r1, #0xe4
+	str r0, [r1, #0]
+	add r0, r5, #0
+	add r0, #0x48
+	mov r1, #0xf
+	bl GF_BGL_BmpWinDataFill
+	add r0, r5, #0
+	add r0, #0x48
+	mov r1, #1
+	bl BmpTalkWinClear
+	add r0, r5, #0
+	add r0, #0x48
+	bl GF_BGL_BmpWinOff
+	mov r0, #8
+	mov r1, #1
+	bl GF_Disp_GX_VisibleControl
+	add r0, r5, #0
+	mov r1, #0
+	add r0, #0xbc
+	str r1, [r0, #0]
+	add r0, r5, #0
+	add r0, #0xc0
+	str r1, [r0, #0]
+	add r0, r5, #0
+	add r0, #0xa8
+	ldr r0, [r0, #0]
+	add r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	b _02248670
+_022484B8:
+	ldr r1, =sys // _0224867C
+	add r0, #0xac
+	ldr r2, [r1, #0x4c]
+	ldr r4, [r0, #0]
+	mov r0, #0x40
+	tst r0, r2
+	beq _022484E0
+	cmp r4, #0
+	beq _02248552
+	add r0, r5, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	sub r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xac
+	str r1, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	b _02248552
+_022484E0:
+	mov r0, #0x80
+	tst r0, r2
+	beq _02248534
+	add r0, r5, #0
+	add r0, #0xb4
+	ldr r0, [r0, #0]
+	add r1, r4, #6
+	cmp r1, r0
+	bge _02248506
+	add r0, r5, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	add r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xac
+	str r1, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+_02248506:
+	add r0, r5, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	add r1, r0, #6
+	add r0, r5, #0
+	add r0, #0xb4
+	ldr r0, [r0, #0]
+	cmp r1, r0
+	bne _02248552
+	add r0, r5, #0
+	bl AgreeCurPut
+	add r0, r5, #0
+	add r0, #0xa8
+	ldr r0, [r0, #0]
+	add r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	b _02248552
+_02248534:
+	ldr r1, [r1, #0x48]
+	mov r0, #2
+	tst r0, r1
+	beq _02248552
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	add r0, r5, #0
+	mov r1, #2
+	add r0, #0xb8
+	str r1, [r0, #0]
+	add r0, r5, #0
+	mov r1, #0xff
+	add r0, #0xa8
+	str r1, [r0, #0]
+_02248552:
+	add r0, r5, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	cmp r4, r0
+	bne _0224855E
+	b _02248670
+_0224855E:
+	add r0, r5, #0
+	bl Agreement_TxtRW
+	b _02248670
+_02248566:
+	ldr r1, =sys // _0224867C
+	mov r2, #0x10
+	ldr r1, [r1, #0x48]
+	tst r2, r1
+	bne _02248576
+	mov r2, #0x20
+	tst r2, r1
+	beq _02248594
+_02248576:
+	add r0, r5, #0
+	add r0, #0xb0
+	ldr r1, [r0, #0]
+	mov r0, #1
+	eor r1, r0
+	add r0, r5, #0
+	add r0, #0xb0
+	str r1, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	add r0, r5, #0
+	bl AgreeCurPut
+	b _02248670
+_02248594:
+	mov r2, #1
+	tst r2, r1
+	beq _022485BE
+	add r0, #0xb0
+	ldr r1, [r0, #0]
+	mov r0, #2
+	sub r1, r0, r1
+	add r0, r5, #0
+	add r0, #0xb8
+	str r1, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	add r0, r5, #0
+	add r0, #0xa8
+	ldr r0, [r0, #0]
+	add r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	b _02248670
+_022485BE:
+	mov r2, #2
+	add r3, r1, #0
+	tst r3, r2
+	beq _022485E0
+	add r0, #0xb8
+	str r2, [r0, #0]
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	add r0, r5, #0
+	add r0, #0xa8
+	ldr r0, [r0, #0]
+	add r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	b _02248670
+_022485E0:
+	mov r2, #0x40
+	tst r1, r2
+	beq _02248670
+	bl AgreeCurClear
+	ldr r0, =0x000005DC // _02248680
+	bl Snd_SePlay
+	add r0, r5, #0
+	add r0, #0xa8
+	ldr r0, [r0, #0]
+	sub r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	add r0, r5, #0
+	add r0, #0xac
+	ldr r0, [r0, #0]
+	sub r1, r0, #1
+	add r0, r5, #0
+	add r0, #0xac
+	str r1, [r0, #0]
+	add r0, r5, #0
+	bl Agreement_TxtRW
+	b _02248670
+_02248614:
+	add r0, #0xc4
+	mov r1, #0
+	bl BmpMenuWinClear
+	add r0, r5, #0
+	add r0, #0xc4
+	bl GF_BGL_BmpWinOff
+	add r0, r5, #0
+	add r0, #0xc4
+	bl GF_BGL_BmpWinDel
+	add r0, r5, #0
+	add r0, #0xd4
+	mov r1, #0
+	bl BmpMenuWinClear
+	add r0, r5, #0
+	add r0, #0xd4
+	bl GF_BGL_BmpWinOff
+	add r0, r5, #0
+	add r0, #0xd4
+	bl GF_BGL_BmpWinDel
+	add r0, r5, #0
+	add r0, #0xe4
+	ldr r0, [r0, #0]
+	bl BMPCURSOR_Delete
+	ldr r0, [r5, #4]
+	mov r1, #3
+	bl GF_BGL_ScrClear
+	mov r0, #8
+	mov r1, #0
+	bl GF_Disp_GX_VisibleControl
+	add r0, r5, #0
+	mov r1, #0
+	add r0, #0xa8
+	str r1, [r0, #0]
+	add r5, #0xb8
+	add sp, #0x1c
+	ldr r0, [r5, #0]
+	pop {r4, r5, r6, r7, pc}
+_02248670:
+	add r0, r5, #0
+	bl AgreeListCurMove
+	mov r0, #0
+	add sp, #0x1c
+	pop {r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _0224867C: .4byte sys
+// _02248680: .4byte 0x000005DC
+}
+#endif
 
 static int Enter_AddressEntryStart(EMAIL_MENU_WORK *wk)
 {
@@ -1610,6 +2062,7 @@ static int Enter_AddressInputProcChange(EMAIL_MENU_WORK *wk)
  * @retval  
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static int Enter_AddressReturn(EMAIL_MENU_WORK *wk)
 {
 	STRCODE *code;
@@ -1626,6 +2079,42 @@ static int Enter_AddressReturn(EMAIL_MENU_WORK *wk)
 	}
 	return SUBSEQ_CONTINUE;
 }
+#else
+asm static int Enter_AddressReturn(EMAIL_MENU_WORK *wk)
+{
+	push {r4, lr}
+	add r4, r0, #0
+	ldr r0, [r4, #0]
+	bl Email_AddressReturnFlagGet
+	cmp r0, #1
+	beq _022487E4
+	cmp r0, #2
+	beq _022487EA
+	cmp r0, #3
+	beq _022487EA
+	b _022487F2
+_022487E4:
+	mov r0, #0
+	str r0, [r4, #8]
+	pop {r4, pc}
+_022487EA:
+	mov r0, #0x25
+	str r0, [r4, #8]
+	mov r0, #0
+	pop {r4, pc}
+_022487F2:
+	add r0, r4, #0
+	add r0, #0x94
+	ldr r0, [r0, #0]
+	cmp r0, #0
+	bne _02248800
+	mov r0, #7
+	str r0, [r4, #8]
+_02248800:
+	mov r0, #0
+	pop {r4, pc}
+}
+#endif
 
 //------------------------------------------------------------------
 /**
@@ -3036,6 +3525,7 @@ static int Enter_MessagePrintEndCheck(int msg_index)
  * @retval  int		
  */
 //------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
 {
 	int length=0,ground;
@@ -3054,7 +3544,182 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 	}
 	return x;
 }
+#else
+asm static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
+{
+	push {r3, r4, lr}
+	sub sp, #4
+	add r4, r0, #0
+	ldr r0, [r4, #0x44]
+	bl Enter_MessagePrintEndCheck
+	cmp r0, #1
+	bne _022497AE
+	add sp, #4
+	mov r0, #0
+	pop {r3, r4, pc}
+_022497AE:
+	add r0, r4, #0
+	add r0, #0x94
+	ldr r0, [r0, #0]
+	cmp r0, #0
+	beq _022497BE
+	cmp r0, #1
+	beq _022497EA
+	b _022497EE
+_022497BE:
+	ldr r0, [r4, #0]
+	bl Email_AddressReturnFlagGet
+	cmp r0, #2
+	bne _022497CC
+	mov r2, #0x26
+	b _022497CE
+_022497CC:
+	mov r2, #0x27
+_022497CE:
+	ldr r0, =0x00000F0F // _022497F4
+	mov r3, #1
+	str r0, [sp]
+	ldr r1, [r4, #0x34]
+	add r0, r4, #0
+	bl Enter_MessagePrint
+	add r0, r4, #0
+	add r0, #0x94
+	ldr r0, [r0, #0]
+	add r4, #0x94
+	add r0, r0, #1
+	str r0, [r4, #0]
+	b _022497EE
+_022497EA:
+	mov r0, #5
+	str r0, [r4, #8]
+_022497EE:
+	mov r0, #0
+	add sp, #4
+	pop {r3, r4, pc}
+	// .align 2, 0
+// _022497F4: .4byte 0x00000F0F
+}
+#endif
 
+extern void ov98_22497F8(void);
+// NONMATCHING
+
+asm void ov98_22497F8(void)
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x18
+	add r6, r0, #0
+	ldr r0, [r6, #0x44]
+	ldr r4, [r6, #0]
+	bl Enter_MessagePrintEndCheck
+	cmp r0, #1
+	bne _02249810
+	add sp, #0x18
+	mov r0, #0
+	pop {r3, r4, r5, r6, r7, pc}
+_02249810:
+	add r0, r6, #0
+	add r0, #0x94
+	ldr r0, [r0, #0]
+	cmp r0, #0
+	beq _02249820
+	cmp r0, #1
+	beq _02249884
+	b _02249888
+_02249820:
+	add r0, r4, #0
+	bl Email_PasswordNumberGet
+	add r5, r0, #0
+	ldr r0, [r4, #4]
+	mov r1, #3
+	bl EMAILSAVE_ParamGet
+	cmp r5, r0
+	bne _02249866
+	ldr r0, [r4, #4]
+	bl EMAILSAVE_AddressGet
+	add r1, sp, #8
+	mov r2, #0x6c
+	bl NitroMain // FUN_02249ACC
+	mov r4, #0
+	add r5, sp, #8
+	mov r7, #2
+_02249848:
+	str r7, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	ldr r0, [r6, #0x20]
+	ldr r2, [r5, #0]
+	add r1, r4, #0
+	mov r3, #4
+	bl WORDSET_RegisterNumber
+	add r4, r4, #1
+	add r5, r5, #4
+	cmp r4, #4
+	blo _02249848
+	mov r2, #0x29
+	b _02249868
+_02249866:
+	mov r2, #0x28
+_02249868:
+	ldr r0, =0x00000F0F // _02249890
+	mov r3, #1
+	str r0, [sp]
+	ldr r1, [r6, #0x34]
+	add r0, r6, #0
+	bl Enter_MessagePrint
+	add r0, r6, #0
+	add r0, #0x94
+	ldr r0, [r0, #0]
+	add r6, #0x94
+	add r0, r0, #1
+	str r0, [r6, #0]
+	b _02249888
+_02249884:
+	mov r0, #0
+	str r0, [r6, #8]
+_02249888:
+	mov r0, #0
+	add sp, #0x18
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _02249890: .4byte 0x00000F0F
+}
+
+extern void ov98_2249894(void);
+// NONMATCHING
+
+asm void ov98_2249894(void)
+{
+	push {r4, lr}
+	add r4, r0, #0
+	cmp r3, #1
+	beq _022498A2
+	cmp r3, #2
+	beq _022498B8
+	b _022498C6
+_022498A2:
+	ldr r0, [sp, #0xc]
+	mov r2, #0
+	bl FontProc_GetPrintStrWidth
+	ldrb r1, [r4, #7]
+	lsl r1, r1, #3
+	sub r1, r1, r0
+	lsr r0, r1, #0x1f
+	add r0, r1, r0
+	asr r2, r0, #1
+	b _022498C6
+_022498B8:
+	ldr r0, [sp, #0xc]
+	mov r2, #0
+	bl FontProc_GetPrintStrWidth
+	ldrb r1, [r4, #7]
+	lsl r1, r1, #3
+	sub r2, r1, r0
+_022498C6:
+	add r0, r2, #0
+	pop {r4, pc}
+	// .align 2, 0
+}
 
 //------------------------------------------------------------------
 /**
