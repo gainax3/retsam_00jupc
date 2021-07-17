@@ -53,7 +53,7 @@ enum{
 //----------------------------------------------------------------------------------------------
 enum{
 	 ITEM_INFO_PX			= (1),
-	 ITEM_INFO_PY			= (0),
+	 ITEM_INFO_PY			= (6), // MatchComment: change from 0 to 6
 	 ITEM_INFO_SX			= (23*8),
 	 ITEM_INFO_SY			= (4*8),
 };
@@ -105,8 +105,8 @@ enum{
 	INFO_MULTI_L_OFFSET_X	= 0,				//ペアのオフセット(Ｌ)
 	INFO_MULTI_R_OFFSET_X	= (16*8-4),			//ペアのオフセット(Ｒ)
 
-	INFO_PLAYER_X			= 4, 
-	INFO_PLAYER_Y			= 1,
+	INFO_PLAYER_X			= 0, // MatchComment: 4 -> 0
+	INFO_PLAYER_Y			= 0, // MatchComment: 1 -> 0
 	INFO_PLAYER_CP_X		= (7*8), 
 	INFO_PLAYER_CP_Y		= INFO_PLAYER_Y,
 };

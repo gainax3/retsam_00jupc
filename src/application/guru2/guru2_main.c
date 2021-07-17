@@ -3874,6 +3874,7 @@ static void Guru2NameWin_Delete( GURU2MAIN_WORK *g2m )
  * @retval	nothing
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void Guru2NameWin_Write(
 	GURU2MAIN_WORK *g2m, STRBUF *name, int no, u32 col )
 {
@@ -3886,6 +3887,46 @@ static void Guru2NameWin_Write(
 	GF_STR_PrintColor( bmp, FONT_SYSTEM, name, 4, 1, MSG_NO_PUT, col, NULL );
 	GF_BGL_BmpWinOnVReq( bmp );
 }
+#else
+asm static void Guru2NameWin_Write(
+	GURU2MAIN_WORK *g2m, STRBUF *name, int no, u32 col )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x10
+	add r6, r1, #0
+	ldr r1, =0x00000CB8 // _021D2870
+	lsl r4, r2, #4
+	add r5, r0, r1
+	mov r1, #1
+	add r7, r3, #0
+	add r0, r5, r4
+	add r2, r1, #0
+	mov r3, #0xe
+	bl BmpMenuWinWrite
+	add r0, r5, r4
+	mov r1, #0xf
+	bl GF_BGL_BmpWinDataFill
+	mov r0, #0
+	add r1, r6, #0
+	add r2, r0, #0
+	mov r3, #0x40
+	bl FontProc_GetPrintCenteredPositionX
+	mov r1, #0
+	add r3, r0, #0
+	str r1, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	str r7, [sp, #8]
+	add r0, r5, r4
+	add r2, r6, #0
+	str r1, [sp, #0xc]
+	bl GF_STR_PrintColor
+	add r0, r5, r4
+	bl GF_BGL_BmpWinOnVReq
+	add sp, #0x10
+	pop {r3, r4, r5, r6, r7, pc}
+}
+#endif
 
 //--------------------------------------------------------------
 /**

@@ -2575,6 +2575,36 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  )
 //
 //==============================================================================================
 
+extern void ov107_224379C(void);
+// NONMATCHING
+asm void ov107_224379C(void)
+{
+	push {r4, r5, lr}
+	sub sp, #0x1c
+	ldr r4, [sp, #0x28]
+	str r4, [sp]
+	ldr r4, [sp, #0x2c]
+	str r4, [sp, #4]
+	add r4, sp, #0x18
+	ldrb r5, [r4, #0x18]
+	str r5, [sp, #8]
+	ldrb r4, [r4, #0x1c]
+	str r4, [sp, #0xc]
+	add r4, sp, #0x38
+	ldrb r4, [r4]
+	str r4, [sp, #0x10]
+	add r4, sp, #0x3c
+	ldrb r4, [r4]
+	str r4, [sp, #0x14]
+	mov r4, #0
+	str r4, [sp, #0x18]
+	bl CastleWriteMsg
+	add sp, #0x1c
+	pop {r4, r5, pc}
+	// .align 2, 0
+}
+
+
 //--------------------------------------------------------------
 /**
  * @brief	メッセージ表示
@@ -2593,6 +2623,7 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  )
  * @return	"文字描画ルーチンのインデックス"
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	u8 msg_index;
@@ -2608,6 +2639,110 @@ static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, 
 
 	GF_BGL_BmpWinOnVReq( win );
 	return msg_index;
+}
+#else
+asm static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x10
+	add r6, r1, #0
+	add r1, sp, #0x38
+	ldrb r1, [r1]
+	add r5, r0, #0
+	add r0, r6, #0
+	add r7, r2, #0
+	add r4, r3, #0
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [r5, #0x20]
+	ldr r2, [r5, #0x2c]
+	add r1, r7, #0
+	bl MSGMAN_GetString
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	ldr r2, [r5, #0x2c]
+	bl WORDSET_ExpandStr
+	ldr r0, [sp, #0x40]
+	cmp r0, #1
+	beq _02243802
+	cmp r0, #2
+	beq _02243814
+	b _02243820
+_02243802:
+	mov r0, #0
+	ldr r1, [r5, #0x28]
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	add r0, r0, #1
+	lsr r0, r0, #1
+	sub r4, r4, r0
+	b _02243820
+_02243814:
+	mov r0, #0
+	ldr r1, [r5, #0x28]
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	sub r4, r4, r0
+_02243820:
+	ldr r0, [sp, #0x28]
+	add r2, sp, #0x18
+	str r0, [sp]
+	ldr r0, [sp, #0x2c]
+	add r3, r4, #0
+	str r0, [sp, #4]
+	add r0, sp, #0x38
+	ldrb r1, [r0]
+	ldrb r0, [r2, #0x18]
+	ldrb r2, [r2, #0x1c]
+	lsl r0, r0, #0x18
+	lsl r2, r2, #0x18
+	lsr r0, r0, #8
+	lsr r2, r2, #0x10
+	orr r0, r2
+	orr r0, r1
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r1, sp, #0x3c
+	ldrb r1, [r1]
+	ldr r2, [r5, #0x28]
+	add r0, r6, #0
+	bl GF_STR_PrintColor
+	add r4, r0, #0
+	add r0, r6, #0
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r4, #0
+	add sp, #0x10
+	pop {r3, r4, r5, r6, r7, pc}
+}
+#endif
+
+extern void ov107_2243860(void);
+
+asm void ov107_2243860(void)
+{
+	push {r4, r5, lr}
+	sub sp, #0x1c
+	ldr r4, [sp, #0x28]
+	str r4, [sp]
+	ldr r4, [sp, #0x2c]
+	str r4, [sp, #4]
+	add r4, sp, #0x18
+	ldrb r5, [r4, #0x18]
+	str r5, [sp, #8]
+	ldrb r4, [r4, #0x1c]
+	str r4, [sp, #0xc]
+	add r4, sp, #0x38
+	ldrb r4, [r4]
+	str r4, [sp, #0x10]
+	add r4, sp, #0x3c
+	ldrb r4, [r4]
+	str r4, [sp, #0x14]
+	mov r4, #0
+	str r4, [sp, #0x18]
+	bl CastleWriteMsgSimple
+	add sp, #0x1c
+	pop {r4, r5, pc}
+	// .align 2, 0
 }
 
 //--------------------------------------------------------------
@@ -2630,6 +2765,7 @@ static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, 
  * 塗りつぶしなし
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	u8 msg_index;
@@ -2645,6 +2781,76 @@ static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int ms
 	GF_BGL_BmpWinOnVReq( win );
 	return msg_index;
 }
+#else
+asm static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #0x10
+	add r5, r0, #0
+	add r6, r1, #0
+	add r1, r2, #0
+	ldr r0, [r5, #0x20]
+	ldr r2, [r5, #0x2c]
+	add r4, r3, #0
+	bl MSGMAN_GetString
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	ldr r2, [r5, #0x2c]
+	bl WORDSET_ExpandStr
+	ldr r0, [sp, #0x38]
+	cmp r0, #1
+	beq _022438BA
+	cmp r0, #2
+	beq _022438CC
+	b _022438D8
+_022438BA:
+	mov r0, #0
+	ldr r1, [r5, #0x28]
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	add r0, r0, #1
+	lsr r0, r0, #1
+	sub r4, r4, r0
+	b _022438D8
+_022438CC:
+	mov r0, #0
+	ldr r1, [r5, #0x28]
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	sub r4, r4, r0
+_022438D8:
+	ldr r0, [sp, #0x20]
+	add r2, sp, #0x10
+	str r0, [sp]
+	ldr r0, [sp, #0x24]
+	add r3, r4, #0
+	str r0, [sp, #4]
+	add r0, sp, #0x30
+	ldrb r1, [r0]
+	ldrb r0, [r2, #0x18]
+	ldrb r2, [r2, #0x1c]
+	lsl r0, r0, #0x18
+	lsl r2, r2, #0x18
+	lsr r0, r0, #8
+	lsr r2, r2, #0x10
+	orr r0, r2
+	orr r0, r1
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r1, sp, #0x34
+	ldrb r1, [r1]
+	ldr r2, [r5, #0x28]
+	add r0, r6, #0
+	bl GF_STR_PrintColor
+	add r4, r0, #0
+	add r0, r6, #0
+	bl GF_BGL_BmpWinOnVReq
+	add r0, r4, #0
+	add sp, #0x10
+	pop {r4, r5, r6, pc}
+}
+#endif
 
 //--------------------------------------------------------------
 /**
@@ -2718,6 +2924,7 @@ enum{
 	STATUS_SUBAYASA_NUM_X =	(STATUS_KOUGEKI_NUM_X),
 };
 
+#ifdef NONEQUIVALENT
 static void Castle_StatusMsgWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
 {
 	GF_BGL_BmpWinDataFill( win,FBMP_COL_NULL );			//"********塗りつぶし********"
@@ -2771,13 +2978,271 @@ static void Castle_StatusMsgWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, POK
 	GF_BGL_BmpWinOnVReq( win );
 	return;
 }
+#else
+asm static void Castle_StatusMsgWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
+{
+	push {r4, r5, r6, lr}
+	sub sp, #8
+	add r4, r1, #0
+	add r5, r0, #0
+	add r6, r2, #0
+	add r0, r4, #0
+	mov r1, #0
+	bl GF_BGL_BmpWinDataFill
+	add r0, r6, #0
+	mov r1, #6
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	ldr r0, [r5, #0x24]
+	mov r1, #0
+	bl WORDSET_RegisterItemName
+	mov r0, #8
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x46
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #8
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x47
+	mov r3, #0x40
+	bl StMsgWriteSub
+	add r0, r6, #0
+	bl PokeSeikakuGet
+	add r2, r0, #0
+	ldr r0, [r5, #0x24]
+	mov r1, #0
+	bl WORDSET_RegisterSeikaku
+	mov r0, #0x18
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x48
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #0x18
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x49
+	mov r3, #0x40
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	ldr r0, [r5, #0x24]
+	mov r1, #0
+	bl WORDSET_RegisterTokuseiName
+	mov r0, #0x28
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4a
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #0x28
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4b
+	mov r3, #0x40
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa5
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #3
+	bl Castle_SetNumber
+	mov r0, #0x38
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4c
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #0x38
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4d
+	mov r3, #0x50
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa6
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #3
+	bl Castle_SetNumber
+	mov r0, #0x38
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4e
+	mov r3, #0x60
+	bl StMsgWriteSub
+	mov r0, #0x38
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x4f
+	mov r3, #0xb0
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa8
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #3
+	bl Castle_SetNumber
+	mov r0, #0x48
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x50
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #0x48
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x51
+	mov r3, #0x50
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa9
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #3
+	bl Castle_SetNumber
+	mov r0, #0x48
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x52
+	mov r3, #0x60
+	bl StMsgWriteSub
+	mov r0, #0x48
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x53
+	mov r3, #0xb0
+	bl StMsgWriteSub
+	add r0, r6, #0
+	mov r1, #0xa7
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #3
+	bl Castle_SetNumber
+	mov r0, #0x58
+	str r0, [sp]
+	mov r3, #0
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x54
+	str r3, [sp, #4]
+	bl StMsgWriteSub
+	mov r0, #0x58
+	str r0, [sp]
+	mov r0, #2
+	str r0, [sp, #4]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #0x55
+	mov r3, #0x50
+	bl StMsgWriteSub
+	add r0, r4, #0
+	bl GF_BGL_BmpWinOnVReq
+	add sp, #8
+	pop {r4, r5, r6, pc}
+	// .align 2, 0
+}
+#endif
 
+#ifdef NONEQUIVALENT
 static void StMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y )
 {
 	CastleWriteMsgSimple(	wk, win, msg, x, y, MSG_NO_PUT,
 							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT );
 	return;
 }
+#else
+asm static void StMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y )
+{
+	push {r3, r4, lr}
+	sub sp, #0x1c
+	add r4, sp, #0x18
+	ldrh r4, [r4, #0x10]
+	str r4, [sp]
+	mov r4, #0xff
+	str r4, [sp, #4]
+	mov r4, #1
+	str r4, [sp, #8]
+	mov r4, #2
+	str r4, [sp, #0xc]
+	mov r4, #0
+	str r4, [sp, #0x10]
+	str r4, [sp, #0x14]
+	ldr r4, [sp, #0x2c]
+	str r4, [sp, #0x18]
+	bl CastleWriteMsgSimple
+	add sp, #0x1c
+	pop {r3, r4, pc}
+}
+#endif
 
 //--------------------------------------------------------------
 /**
@@ -3139,6 +3604,7 @@ static void Castle_PokeHpEff( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void CastleMine_Default_Write( CASTLE_MINE_WORK* wk )
 {
 	//「もどる」
@@ -3155,6 +3621,59 @@ static void CastleMine_Default_Write( CASTLE_MINE_WORK* wk )
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, FONT_TALK );
 	return;
 }
+#else
+asm static void CastleMine_Default_Write( CASTLE_MINE_WORK* wk )
+{
+	push {r3, r4, lr}
+	sub sp, #0x1c
+	mov r1, #5
+	str r1, [sp]
+	mov r1, #0xff
+	str r1, [sp, #4]
+	mov r2, #1
+	str r2, [sp, #8]
+	mov r1, #2
+	str r1, [sp, #0xc]
+	mov r1, #0
+	str r1, [sp, #0x10]
+	str r1, [sp, #0x14]
+	add r4, r0, #0
+	add r1, r4, #0
+	str r2, [sp, #0x18]
+	add r1, #0x60
+	mov r2, #6
+	mov r3, #0x10
+	bl CastleWriteMsg
+	strb r0, [r4, #0xa]
+	mov r0, #0x72
+	lsl r0, r0, #2
+	ldr r0, [r4, r0]
+	bl CONFIG_GetWindowType
+	add r1, r0, #0
+	add r0, r4, #0
+	add r0, #0xc0
+	bl CastleTalkWinPut
+	mov r3, #1
+	add r1, r4, #0
+	str r3, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	str r3, [sp, #8]
+	mov r0, #2
+	str r0, [sp, #0xc]
+	mov r0, #0xf
+	str r0, [sp, #0x10]
+	add r0, r4, #0
+	add r1, #0xc0
+	mov r2, #5
+	str r3, [sp, #0x14]
+	bl ov107_224379C
+	strb r0, [r4, #0xa]
+	add sp, #0x1c
+	pop {r3, r4, pc}
+	// .align 2, 0
+}
+#endif
 
 //--------------------------------------------------------------------------------------------
 /**
@@ -5865,6 +6384,7 @@ static void CastleMine_SeqSubListEnd( CASTLE_MINE_WORK* wk )
  * @return	none
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void CastleMine_SeqSubCPWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win )
 {
 	u16 x,y,offset_x,offset_y,pair_offset_x,pair_offset_y,now_cp;
@@ -5946,6 +6466,279 @@ static void CastleMine_SeqSubCPWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win )
 	GF_BGL_BmpWinOnVReq( win );
 	return;
 }
+#else
+asm static void CastleMine_SeqSubCPWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x30
+	add r4, r1, #0
+	add r1, sp, #0x28
+	str r1, [sp]
+	add r1, sp, #0x2c
+	add r3, sp, #0x28
+	add r5, r0, #0
+	add r1, #2
+	add r2, sp, #0x2c
+	add r3, #2
+	bl Castle_GetOffset
+	ldrb r0, [r5, #9]
+	bl Castle_CommCheck
+	cmp r0, #0
+	bne _0224581A
+	add r1, sp, #0x28
+	ldrh r0, [r1, #6]
+	ldrh r6, [r1, #4]
+	mov r1, #0
+	add r0, #0x68
+	lsl r0, r0, #0x10
+	lsr r7, r0, #0x10
+	add r2, r7, #0
+	mov r0, #0x30
+	sub r2, #0x30
+	str r0, [sp]
+	mov r0, #0x10
+	lsl r2, r2, #0x10
+	str r0, [sp, #4]
+	add r0, r4, #0
+	lsr r2, r2, #0x10
+	add r3, r6, #0
+	bl GF_BGL_BmpWinFill
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	str r0, [sp, #0x1c]
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	bl Frontier_GetFriendIndex
+	add r2, r0, #0
+	ldr r0, [r5, #4]
+	ldr r1, [sp, #0x1c]
+	bl FrontierRecord_Get
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #4
+	bl Castle_SetNumber
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r2, #2
+	str r2, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r1, r4, #0
+	add r3, r7, #0
+	str r2, [sp, #0x18]
+	bl CastleWriteMsgSimple
+	strb r0, [r5, #0xa]
+	b _022459C2
+_0224581A:
+	bl CommGetCurrentID
+	cmp r0, #0
+	add r1, sp, #0x28
+	bne _022458F4
+	ldrh r0, [r1, #6]
+	ldrh r6, [r1, #4]
+	mov r1, #0
+	add r0, #0x68
+	lsl r0, r0, #0x10
+	lsr r7, r0, #0x10
+	add r2, r7, #0
+	mov r0, #0x30
+	sub r2, #0x30
+	str r0, [sp]
+	mov r0, #0x10
+	lsl r2, r2, #0x10
+	str r0, [sp, #4]
+	add r0, r4, #0
+	lsr r2, r2, #0x10
+	add r3, r6, #0
+	bl GF_BGL_BmpWinFill
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	str r0, [sp, #0x20]
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	bl Frontier_GetFriendIndex
+	add r2, r0, #0
+	ldr r0, [r5, #4]
+	ldr r1, [sp, #0x20]
+	bl FrontierRecord_Get
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #4
+	bl Castle_SetNumber
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r2, #2
+	str r2, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r1, r4, #0
+	add r3, r7, #0
+	str r2, [sp, #0x18]
+	bl CastleWriteMsgSimple
+	add r1, sp, #0x28
+	strb r0, [r5, #0xa]
+	ldrh r0, [r1, #2]
+	ldrh r6, [r1]
+	mov r1, #0
+	add r0, #0x68
+	lsl r0, r0, #0x10
+	lsr r7, r0, #0x10
+	add r2, r7, #0
+	mov r0, #0x30
+	sub r2, #0x30
+	str r0, [sp]
+	mov r0, #0x10
+	lsl r2, r2, #0x10
+	str r0, [sp, #4]
+	add r0, r4, #0
+	lsr r2, r2, #0x10
+	add r3, r6, #0
+	bl GF_BGL_BmpWinFill
+	mov r0, #1
+	str r0, [sp]
+	ldr r2, =0x00000436 // _022459CC
+	add r0, r5, #0
+	ldrh r2, [r5, r2]
+	mov r1, #0
+	mov r3, #4
+	bl Castle_SetNumber
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r1, #2
+	str r1, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	str r1, [sp, #0x18]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #3
+	add r3, r7, #0
+	bl CastleWriteMsgSimple
+	strb r0, [r5, #0xa]
+	b _022459C2
+_022458F4:
+	ldrh r0, [r1, #6]
+	ldrh r6, [r1, #4]
+	mov r1, #0
+	add r0, #0x68
+	lsl r0, r0, #0x10
+	lsr r7, r0, #0x10
+	add r2, r7, #0
+	mov r0, #0x30
+	sub r2, #0x30
+	str r0, [sp]
+	mov r0, #0x10
+	lsl r2, r2, #0x10
+	str r0, [sp, #4]
+	add r0, r4, #0
+	lsr r2, r2, #0x10
+	add r3, r6, #0
+	bl GF_BGL_BmpWinFill
+	mov r0, #1
+	str r0, [sp]
+	ldr r2, =0x00000436 // _022459CC
+	add r0, r5, #0
+	ldrh r2, [r5, r2]
+	mov r1, #0
+	mov r3, #4
+	bl Castle_SetNumber
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r1, #2
+	str r1, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	str r1, [sp, #0x18]
+	add r0, r5, #0
+	add r1, r4, #0
+	mov r2, #3
+	add r3, r7, #0
+	bl CastleWriteMsgSimple
+	add r1, sp, #0x28
+	strb r0, [r5, #0xa]
+	ldrh r0, [r1, #2]
+	ldrh r6, [r1]
+	mov r1, #0
+	add r0, #0x68
+	lsl r0, r0, #0x10
+	lsr r7, r0, #0x10
+	add r2, r7, #0
+	mov r0, #0x30
+	sub r2, #0x30
+	str r0, [sp]
+	mov r0, #0x10
+	lsl r2, r2, #0x10
+	str r0, [sp, #4]
+	add r0, r4, #0
+	lsr r2, r2, #0x10
+	add r3, r6, #0
+	bl GF_BGL_BmpWinFill
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	str r0, [sp, #0x24]
+	ldrb r0, [r5, #9]
+	bl CastleScr_GetCPRecordID
+	bl Frontier_GetFriendIndex
+	add r2, r0, #0
+	ldr r0, [r5, #4]
+	ldr r1, [sp, #0x24]
+	bl FrontierRecord_Get
+	add r2, r0, #0
+	mov r0, #1
+	str r0, [sp]
+	add r0, r5, #0
+	mov r1, #0
+	mov r3, #4
+	bl Castle_SetNumber
+	str r6, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r2, #2
+	str r2, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r1, r4, #0
+	add r3, r7, #0
+	str r2, [sp, #0x18]
+	bl CastleWriteMsgSimple
+	strb r0, [r5, #0xa]
+_022459C2:
+	add r0, r4, #0
+	bl GF_BGL_BmpWinOnVReq
+	add sp, #0x30
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+// _022459CC: .4byte 0x00000436
+}
+#endif
 
 //--------------------------------------------------------------
 /**
