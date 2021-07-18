@@ -600,7 +600,7 @@ static void Scratch_SetTouchBgGraphic( SCRATCH_WORK * wk, u32 frm  );
 
 //メッセージ
 static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
-static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+extern u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 Scratch_KakuninMsg( SCRATCH_WORK* wk );
 //static u8 Scratch_CardNumMsg( SCRATCH_WORK* wk );
 static u8 Scratch_CardSelectMsg( SCRATCH_WORK* wk );
@@ -2791,7 +2791,9 @@ static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32
  * 塗りつぶしなし
  */
 //--------------------------------------------------------------
-static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+// MatchComment: TODO__fix_me change back to static eventually
+#ifdef NONEQUIVALENT
+u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
 
@@ -2801,6 +2803,62 @@ static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_i
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 }
+#else
+asm u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x10
+	add r4, r1, #0
+	add r1, sp, #0x38
+	ldrb r1, [r1]
+	add r5, r0, #0
+	add r0, r4, #0
+	add r7, r2, #0
+	add r6, r3, #0
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [r5, #0x38]
+	ldr r2, [r5, #0x44]
+	add r1, r7, #0
+	bl MSGMAN_GetString
+	ldr r0, [r5, #0x3c]
+	ldr r1, [r5, #0x40]
+	ldr r2, [r5, #0x44]
+	bl WORDSET_ExpandStr
+	add r0, sp, #0x3c
+	ldrb r0, [r0]
+	ldr r1, [r5, #0x40]
+	mov r2, #0
+	bl FontProc_GetPrintStrWidth
+	add r0, r0, #1
+	lsr r0, r0, #1
+	sub r3, r6, r0
+	ldr r0, [sp, #0x28]
+	add r2, sp, #0x18
+	str r0, [sp]
+	ldr r0, [sp, #0x2c]
+	str r0, [sp, #4]
+	add r0, sp, #0x38
+	ldrb r1, [r0]
+	ldrb r0, [r2, #0x18]
+	ldrb r2, [r2, #0x1c]
+	lsl r0, r0, #0x18
+	lsl r2, r2, #0x18
+	lsr r0, r0, #8
+	lsr r2, r2, #0x10
+	orr r0, r2
+	orr r0, r1
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r1, sp, #0x3c
+	ldrb r1, [r1]
+	ldr r2, [r5, #0x40]
+	add r0, r4, #0
+	bl GF_STR_PrintColor
+	add sp, #0x10
+	pop {r3, r4, r5, r6, r7, pc}
+}
+#endif
 
 //--------------------------------------------------------------
 /**

@@ -3340,6 +3340,7 @@ CATS_ACT_PTR CounterWindow_ActorCreate(BALLOON_GAME_PTR game)
  * @param   game		
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
 {
 	//-- カウンター --//
@@ -3360,6 +3361,99 @@ void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
 		STRBUF_Delete(str0);
 	}
 }
+#else
+extern void _u32_div_f(void);
+
+asm void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x40
+	add r7, r0, #0
+	ldr r0, =0x00003848 // _022661FC
+	add r6, r7, #0
+	ldr r0, [r7, r0]
+	add r4, r7, #0
+	str r0, [sp, #0x2c]
+	mov r0, #5
+	str r0, [sp, #0x30]
+	ldr r0, =0x000016B0 // _02266200
+	add r6, #0x64
+	add r5, r7, r0
+	add r4, #0xc8
+	add r5, #0x64
+_0226616E:
+	ldr r0, =0x000016B0 // _02266200
+	ldr r0, [r6, r0]
+	cmp r0, #0
+	beq _0226617A
+	bl GF_AssertFailedWarningCall
+_0226617A:
+	ldr r0, [sp, #0x2c]
+	mov r1, #0xa
+	bl _u32_div_f
+	add r0, r7, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	add r1, r1, #4
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x34]
+	ldr r0, [sp, #0x2c]
+	mov r1, #0xa
+	bl _u32_div_f
+	str r0, [sp, #0x2c]
+	ldr r0, =0x000015AC // _02266204
+	add r1, sp, #0x3c
+	ldr r0, [r4, r0]
+	add r2, sp, #0x38
+	bl FONTOAM_GetMat
+	ldr r0, [sp, #0x34]
+	add r2, r7, #0
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	ldr r0, =0x000E0F00 // _02266208
+	add r2, #0x90
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00002713 // _0226620C
+	add r3, r5, #0
+	str r0, [sp, #0x10]
+	ldr r0, [sp, #0x3c]
+	str r0, [sp, #0x14]
+	mov r0, #0xa8
+	str r0, [sp, #0x18]
+	mov r0, #0
+	str r0, [sp, #0x1c]
+	mov r0, #1
+	str r0, [sp, #0x20]
+	mov r0, #0xc
+	str r0, [sp, #0x24]
+	mov r0, #2
+	str r0, [sp, #0x28]
+	ldr r0, [r7, #0x2c]
+	ldr r1, [r7, #0x28]
+	ldr r2, [r2, #0]
+	bl BalloonTool_FontOamCreate
+	ldr r0, [sp, #0x34]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x30]
+	sub r6, #0x14
+	sub r4, #0x28
+	sub r5, #0x14
+	sub r0, r0, #1
+	str r0, [sp, #0x30]
+	bpl _0226616E
+	add sp, #0x40
+	pop {r3, r4, r5, r6, r7, pc}
+	nop
+// _022661FC: .4byte 0x00003848
+// _02266200: .4byte 0x000016B0
+// _02266204: .4byte 0x000015AC
+// _02266208: .4byte 0x000E0F00
+// _0226620C: .4byte 0x00002713
+}
+#endif
 
 //--------------------------------------------------------------
 /**

@@ -1605,6 +1605,7 @@ static u32 sAllocTexPalette(u32 size, BOOL is4pltt)
  * @param   game		演技力部門管理ワークへのポインタ
  */
 //--------------------------------------------------------------
+#ifdef NONEQUIVALENT
 static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 {
 	//-- カウンター --//
@@ -1673,6 +1674,282 @@ static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
 		NARC_wlmngm_tool_touchpen_NANR, 0, CELLANMID_TOUCH_PEN);
 	game->pen.cap = TouchPen_ActorCreate(game);
 }
+#else
+asm static void BalloonDefaultOBJSet(BALLOON_GAME_WORK *game, ARCHANDLE *hdl)
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x3c
+	add r5, r0, #0
+	str r1, [sp]
+	mov r0, #0x1b
+	str r0, [sp, #4]
+	mov r0, #0
+	str r0, [sp, #8]
+	mov r0, #1
+	str r0, [sp, #0xc]
+	str r0, [sp, #0x10]
+	ldr r0, =0x00002713 // _022618C4
+	str r1, [sp, #0x2c]
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r0, #0x8c
+	ldr r0, [r0, #0]
+	ldr r2, [r5, #0x24]
+	ldr r3, [r5, #0x28]
+	mov r1, #2
+	bl CATS_LoadResourcePlttWorkArcH
+	add r0, r5, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	mov r1, #2
+	bl MSGMAN_AllocString
+	add r6, r0, #0
+	mov r0, #0
+	add r1, r6, #0
+	add r2, r0, #0
+	bl FontProc_GetPrintStrWidth
+	mov r1, #0x1e
+	sub r0, r1, r0
+	lsr r0, r0, #1
+	add r4, r0, #6
+	add r2, r5, #0
+	ldr r3, =0x0000169C // _022618C8
+	str r6, [sp]
+	mov r0, #0
+	ldr r1, =0x000E0F00 // _022618CC
+	str r0, [sp, #4]
+	str r1, [sp, #8]
+	ldr r1, =0x00002713 // _022618C4
+	str r0, [sp, #0xc]
+	str r1, [sp, #0x10]
+	add r1, r4, #0
+	add r1, #0x24
+	str r1, [sp, #0x14]
+	mov r1, #0xa8
+	str r1, [sp, #0x18]
+	str r0, [sp, #0x1c]
+	mov r0, #1
+	str r0, [sp, #0x20]
+	mov r0, #0xc
+	str r0, [sp, #0x24]
+	mov r0, #2
+	str r0, [sp, #0x28]
+	add r2, #0x90
+	ldr r0, [r5, #0x2c]
+	ldr r1, [r5, #0x28]
+	ldr r2, [r2, #0]
+	add r3, r5, r3
+	bl BalloonTool_FontOamCreate
+	add r0, r6, #0
+	bl STRBUF_Delete
+	add r0, r5, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	mov r1, #0
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x30]
+	add r0, r5, #0
+	add r0, #0x80
+	ldr r0, [r0, #0]
+	mov r1, #1
+	bl MSGMAN_AllocString
+	str r0, [sp, #0x38]
+	mov r0, #0
+	str r0, [sp, #0x34]
+	ldr r0, =0x000015AC // _022618D0
+	add r7, r5, r0
+	add r0, #0x14
+	add r6, r5, r0
+_02261740:
+	ldr r0, [sp, #0x30]
+	add r2, r5, #0
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	ldr r0, =0x000E0F00 // _022618CC
+	add r2, #0x90
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00002713 // _022618C4
+	add r3, r7, #0
+	str r0, [sp, #0x10]
+	str r4, [sp, #0x14]
+	mov r0, #0xa8
+	str r0, [sp, #0x18]
+	mov r0, #0
+	str r0, [sp, #0x1c]
+	mov r0, #3
+	str r0, [sp, #0x20]
+	mov r0, #0xc
+	str r0, [sp, #0x24]
+	mov r0, #0xa
+	str r0, [sp, #0x28]
+	ldr r0, [r5, #0x2c]
+	ldr r1, [r5, #0x28]
+	ldr r2, [r2, #0]
+	bl BalloonTool_FontOamCreate
+	ldr r0, [sp, #0x38]
+	add r2, r5, #0
+	str r0, [sp]
+	mov r0, #0
+	str r0, [sp, #4]
+	ldr r0, =0x000E0F00 // _022618CC
+	add r2, #0x90
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	ldr r0, =0x00002713 // _022618C4
+	add r3, r6, #0
+	str r0, [sp, #0x10]
+	str r4, [sp, #0x14]
+	mov r0, #0xa8
+	str r0, [sp, #0x18]
+	mov r0, #0
+	str r0, [sp, #0x1c]
+	mov r0, #3
+	str r0, [sp, #0x20]
+	mov r0, #0xc
+	str r0, [sp, #0x24]
+	mov r0, #0xa
+	str r0, [sp, #0x28]
+	ldr r0, [r5, #0x2c]
+	ldr r1, [r5, #0x28]
+	ldr r2, [r2, #0]
+	bl BalloonTool_FontOamCreate
+	ldr r0, [sp, #0x34]
+	add r4, r4, #6
+	add r0, r0, #1
+	add r7, #0x28
+	add r6, #0x28
+	str r0, [sp, #0x34]
+	cmp r0, #6
+	blt _02261740
+	ldr r0, [sp, #0x30]
+	bl STRBUF_Delete
+	ldr r0, [sp, #0x38]
+	bl STRBUF_Delete
+	ldr r0, =0x000015A8 // _022618D4
+	add r0, r5, r0
+	bl Balloon_CounterPosUpdate
+	add r0, r5, #0
+	bl CounterDummyNumber_ActorCreate
+	ldr r0, [sp, #0x2c]
+	mov r1, #2
+	str r0, [sp]
+	mov r0, #0x1b
+	str r0, [sp, #4]
+	mov r0, #0
+	str r0, [sp, #8]
+	mov r0, #1
+	str r0, [sp, #0xc]
+	str r0, [sp, #0x10]
+	ldr r0, =0x00002714 // _022618D8
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r0, #0x8c
+	ldr r0, [r0, #0]
+	ldr r2, [r5, #0x24]
+	ldr r3, [r5, #0x28]
+	bl CATS_LoadResourcePlttWorkArcH
+	mov r0, #0
+	str r0, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	ldr r0, =0x00002712 // _022618DC
+	ldr r2, [sp, #0x2c]
+	str r0, [sp, #8]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x18
+	bl CATS_LoadResourceCharArcH
+	mov r0, #0
+	str r0, [sp]
+	ldr r0, =0x00002712 // _022618DC
+	ldr r2, [sp, #0x2c]
+	str r0, [sp, #4]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x1a
+	bl CATS_LoadResourceCellArcH
+	mov r0, #0
+	str r0, [sp]
+	ldr r0, =0x00002712 // _022618DC
+	ldr r2, [sp, #0x2c]
+	str r0, [sp, #4]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x19
+	bl CATS_LoadResourceCellAnmArcH
+	add r0, r5, #0
+	bl CounterWindow_ActorCreate
+	ldr r1, =0x000015A8 // _022618D4
+	str r0, [r5, r1]
+	mov r0, #0xab
+	str r0, [sp]
+	mov r0, #0x14
+	str r0, [sp, #4]
+	mov r0, #0
+	str r0, [sp, #8]
+	mov r0, #1
+	str r0, [sp, #0xc]
+	str r0, [sp, #0x10]
+	ldr r0, =0x00002712 // _022618DC
+	mov r1, #2
+	str r0, [sp, #0x14]
+	add r0, r5, #0
+	add r0, #0x8c
+	ldr r0, [r0, #0]
+	ldr r2, [r5, #0x24]
+	ldr r3, [r5, #0x28]
+	bl CATS_LoadResourcePlttWorkArc
+	mov r0, #0
+	str r0, [sp]
+	mov r0, #1
+	str r0, [sp, #4]
+	ldr r0, =0x00002711 // _022618E0
+	mov r2, #0xab
+	str r0, [sp, #8]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x15
+	bl CATS_LoadResourceCharArc
+	mov r0, #0
+	str r0, [sp]
+	ldr r0, =0x00002711 // _022618E0
+	mov r2, #0xab
+	str r0, [sp, #4]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x16
+	bl CATS_LoadResourceCellArc
+	mov r0, #0
+	str r0, [sp]
+	ldr r0, =0x00002711 // _022618E0
+	mov r2, #0xab
+	str r0, [sp, #4]
+	ldr r0, [r5, #0x24]
+	ldr r1, [r5, #0x28]
+	mov r3, #0x17
+	bl CATS_LoadResourceCellAnmArc
+	add r0, r5, #0
+	bl TouchPen_ActorCreate
+	ldr r1, =0x0000174C // _022618E4
+	str r0, [r5, r1]
+	add sp, #0x3c
+	pop {r4, r5, r6, r7, pc}
+	nop
+// _022618C4: .4byte 0x00002713
+// _022618C8: .4byte 0x0000169C
+// _022618CC: .4byte 0x000E0F00
+// _022618D0: .4byte 0x000015AC
+// _022618D4: .4byte 0x000015A8
+// _022618D8: .4byte 0x00002714
+// _022618DC: .4byte 0x00002712
+// _022618E0: .4byte 0x00002711
+// _022618E4: .4byte 0x0000174C
+}
+#endif
 
 //--------------------------------------------------------------
 /**

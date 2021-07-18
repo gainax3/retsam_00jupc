@@ -1,8 +1,8 @@
 #!/bin/sh
 
 #LENGTH=$((0x405e00))
-LENGTH=$((0x20000))
-START_OFFSET=$((0x3e0000))
+LENGTH=$((0x409000 + 1600))
+START_OFFSET=$((0))
 echo $LENGTH
 
 #if [ ! -f diff/baserom_platinum_u.txt ]; then
