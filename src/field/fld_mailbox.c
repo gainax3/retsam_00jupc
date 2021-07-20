@@ -214,7 +214,11 @@ static const BMPLIST_HEADER MailListHeader = {
 
 #define MAILMENU_EXIT	(0xFFFF)
 #define MAILMENU_BUFLEN	(10)
-#define MAILMSG_BUFLEN	(20*2)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+// メッセージ用バッファのサイズを拡大
+#define MAILMSG_BUFLEN	(128)
+// ----------------------------------------------------------------------------
 
 typedef enum{
  BOX_MENU_VIEW,

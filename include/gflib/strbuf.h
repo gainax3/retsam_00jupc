@@ -166,7 +166,8 @@ extern void STRBUF_CopyLine( STRBUF* dst, const STRBUF* src, u32 line );
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/11/24
 // 先頭の文字をキャピタライズする関数を追加
-extern void STRBUF_Capitalize( STRBUF *strbuf, u32 a1 );
+// MatchComment: add letterIndex arg
+extern void STRBUF_Capitalize( STRBUF *strbuf, int letterIndex );
 // ----------------------------------------------------------------------------
 
 //==========================================================================================

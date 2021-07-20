@@ -3785,7 +3785,8 @@ static int PokeItemSetInit_Bag( PLIST_WORK * wk )
 			//持たせようとしているアイテムがハッキンダマで、対象がギラティナ以外の場合
 			MSGMAN_GetString( wk->msg_man, mes_pokelist_12_02, wk->str_buf );
 			WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
-			WORDSET_RegisterItemName( wk->wset, 1, wk->dat->item );
+            // MatchComment: WORDSET_RegisterItemName -> WORDSET_RegisterItemNameIndefinate
+			WORDSET_RegisterItemNameIndefinate( wk->wset, 1, wk->dat->item );
 			WORDSET_ExpandStr( wk->wset, wk->msg_buf, wk->str_buf );
 			ret = SEQ_ITEMSET_WAIT;
 		}
@@ -3820,7 +3821,11 @@ static int PokeItemSetInit_Bag( PLIST_WORK * wk )
 		case POKEITEM_NORMAL:	// メール以外のアイテムを持っている
 			MSGMAN_GetString( wk->msg_man, mes_pokelist_04_28, wk->str_buf );
 			WORDSET_RegisterPokeNickName( wk->wset, 0, PPPPointerGet(pp) );
-			WORDSET_RegisterItemName( wk->wset, 1, wk->panel[wk->pos].item );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/12/06
+			// 引いてくるアイテム名を不定冠詞付き単数に変更
+			WORDSET_RegisterItemNameIndefinate( wk->wset, 1, wk->panel[wk->pos].item );
+			// ----------------------------------------------------------------------------
 			WORDSET_ExpandStr( wk->wset, wk->msg_buf, wk->str_buf );
 			ret = SEQ_ITEMSET_YN_INIT;
 			break;

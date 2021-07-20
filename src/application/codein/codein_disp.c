@@ -198,7 +198,7 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
  *
  */
 //--------------------------------------------------------------
-extern void _s32_div_f(void);
+extern void _u32_div_f(void);
 #ifdef NONMATCHING
 void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 {
@@ -323,12 +323,12 @@ asm void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 _0208A7C0:
 	add r0, r4, #0
 	add r1, r7, #0
-	bl _s32_div_f
+	bl _u32_div_f
 	add r0, r1, #1
 	str r0, [r5]
 	add r0, r4, #0
 	mov r1, #0xa
-	bl _s32_div_f
+	bl _u32_div_f
 	add r4, r0, #0
 	sub r5, #0x1c
 	sub r6, r6, #1
@@ -397,7 +397,7 @@ _0208A84C:
 	asr r1, r1, #0x10
 	mov r2, #0x18
 	bl CATS_ObjectPosSetCap
-	ldr r0, [r5]
+	ldr r0, [r5, #0]
 	ldr r1, [r5, #8]
 	bl CI_pv_disp_CodeAnimeGet
 	add r1, r0, #0
@@ -780,7 +780,8 @@ static void FontOamPosSet(FONTOAM_OBJ_PTR obj, int ox, int oy)
 	}	
 }
 
-#define BTN_FONT_OAM_OX		( 24 )
+// MatchComment: 24 -> 40
+#define BTN_FONT_OAM_OX		( 40 )
 #define BTN_FONT_OAM_OY		( 7 )
 //--------------------------------------------------------------
 /**
@@ -1226,7 +1227,8 @@ void CI_pv_FontOam_Create(CODEIN_WORK* wk, int no, int x, int y, int pal_offset)
  *
  */
 //--------------------------------------------------------------
-void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int a8 )
+// MatchComment: add argument mes_id
+void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int mes_id )
 {
 	GF_BGL_BmpWinInit( win );
 	GF_BGL_BmpWinAdd( bgl, win, frm, x, y, sx, sy, ePAL_FONT, ofs );
@@ -1236,7 +1238,8 @@ void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int
 	GF_BGL_BmpWinDataFill( win, FBMP_COL_WHITE );
 	GF_BGL_BmpWinOn( win );
 	
-	CI_pv_BMP_MsgSet( win, msg_01 );
+    // MatchComment: use argument mes_id
+	CI_pv_BMP_MsgSet( win, mes_id );
 }
 
 

@@ -465,8 +465,11 @@ BOOL EvCmdMyTrTypeName(VM_MACHINE * core )
 	msg_id = UnionView_GetTrainerInfo( MyStatus_GetMySex(my), 
 										MyStatus_GetTrainerView(my), UNIONVIEW_MSGTYPE );
 
-	//WORDSET_RegisterTrTypeName( *wordset, idx, MyStatus_GetTrainerView(my) );
-	WORDSET_RegisterTrTypeName( *wordset, idx, msg_id );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/19
+	// 引いてくるトレーナータイプ名を不定冠詞付きに変更
+	WORDSET_RegisterTrTypeNameIndefinate( *wordset, idx, msg_id );	// 1カ所でしか呼ばれないのでこちらで対応
+	// ----------------------------------------------------------------------------
 
 	return 0;
 }

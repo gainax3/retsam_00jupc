@@ -528,7 +528,7 @@ BOOL CI_pv_MainInit( CODEIN_WORK* wk )
         NNSG2dPaletteData *palData;
         void* dat = WirelessIconPlttResGet( HEAPID_CODEIN );
         NNS_G2dGetUnpackedPaletteData( dat, &palData );
-        PaletteWorkSet( wk->sys.pfd, palData, PF_BIT_MAIN_BG | PF_BIT_SUB_BG, 0xe0, 0x20 );
+        PaletteWorkSet( wk->sys.pfd, palData->pRawData, PF_BIT_MAIN_BG | PF_BIT_SUB_BG, 0xe0, 0x20 );
         sys_FreeMemoryEz( dat );
     }
 
@@ -1005,7 +1005,7 @@ void CI_KEY_Main( CODEIN_WORK* wk )
 	}
 }
 #else
-const int FunctionRODATA_20f2d8c[][ 5 ] = {
+const int key_tbl[][ 5 ] = {
     { 0, 1, 2, 3, 4 },
     { 5, 6, 7, 8, 9 },
     { 10,10,10,11,11 },
@@ -1015,10 +1015,9 @@ extern void _s32_div_f(void);
 
 asm void CI_KEY_Main( CODEIN_WORK* wk )
 {
-    .volatile
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x40
-	ldr r5, =FunctionRODATA_20f2d8c // _02089F00
+	ldr r5, =key_tbl // _02089F00
 	add r4, r0, #0
 	add r3, sp, #4
 	mov r2, #7
@@ -1027,7 +1026,7 @@ _02089C2C:
 	stmia r3!, {r0, r1}
 	sub r2, r2, #1
 	bne _02089C2C
-	ldr r0, [r5]
+	ldr r0, [r5, #0]
 	mov r1, #0x14
 	str r0, [r3]
 	mov r3, #0x91
@@ -1073,7 +1072,7 @@ _02089C82:
 	str r1, [r4, r0]
 	add r0, r4, #0
 	add r1, r5, #0
-	bl NitroMain // UNK_FUNC_FIX_ME
+	bl CI_pv_disp_CurSQ_PosSet
 	sub r5, #0xa
 	cmp r5, #1
 	bhi _02089CAA
@@ -1401,7 +1400,7 @@ _02089EDC:
 	str r0, [r4, r1]
 	b _02089F22
 	// .align 2, 0
-// _02089F00: .4byte FunctionRODATA_20f2d8c
+// _02089F00: .4byte key_tbl
 // _02089F04: .4byte sys
 // _02089F08: .4byte 0x00000246
 // _02089F0C: .4byte 0x000005E5
@@ -1436,7 +1435,7 @@ _02089F2A:
 	ldr r5, [r1, r0]
 	add r0, r4, #0
 	add r1, r5, #0
-	bl NitroMain // UNK_FUNC_FIX_ME
+	bl CI_pv_disp_CurSQ_PosSet
 	sub r5, #0xa
 	cmp r5, #1
 	bhi _02089F6A
@@ -1535,6 +1534,7 @@ void CI_pv_Input_back( CODEIN_WORK* wk )
 	CATS_ObjectAnimeSeqSetCap( wk->code[ cur_p ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ cur_p ].state, wk->code[ cur_p ].size ) );
 									
 	now_g = wk->code[ cur_p ].group;
+    // MatchComment: change from 0 to wk->unk3f0
 	if ( cur_p > wk->unk3f0 ){						 
 		cur_p--;
 		CATS_ObjectAnimeSeqSetCap( wk->code[ cur_p ].cap, CI_pv_disp_CodeAnimeGet( wk->code[ cur_p ].state, wk->code[ cur_p ].size ) );
@@ -1572,7 +1572,7 @@ void CI_pv_ButtonManagerInit( CODEIN_WORK* wk )
 	int i;
 	
 	///< ƒR[ƒh‚Ì“–‚½‚è”»’è
-	for ( i = 0; i < eHRT_CODE_11 + 1; i ++ ){
+	for ( i = 0; i < eHRT_CODE_15 + 1; i ++ ){
 				
 		wk->code[ i ].hit = &wk->sys.rht[ i ];
 	}
@@ -1631,7 +1631,9 @@ void CI_pv_ButtonManagerCallBack( u32 button, u32 event, void* work )
 	if ( event == BMN_EVENT_TOUCH ){
 		
 		///< •¶Žš“ü—Í•”•ª‚ª‰Ÿ‚³‚ê‚½
-		if ( button >= eHRT_CODE_0 && button <= eHRT_CODE_11 ){
+        // MatchComment: change eHRT_CODE_11 -> eHRT_NUM_0, condition from <= to <
+		if ( button >= eHRT_CODE_0 && button < eHRT_NUM_0 ){
+            // MatchComment: add this check
 			if (button < wk->unk3f0) {
                 return;
             }

@@ -13864,7 +13864,8 @@ static BOOL EvCmdGirathinaFormUpdate( VM_MACHINE * core )
 		for(i = 0; i < poke_max; i++){
 			pp = PokeParty_GetMemberPointer(party, i);
 			if(PokeParaGet(pp, ID_PARA_tamago_flag, NULL) == 0
-                && PokeParaGet(pp, ID_PARA_monsno, NULL) == MONSNO_YONOWAARU){
+                // MatchComment: additional condition
+                && PokeParaGet(pp, ID_PARA_monsno, NULL) == MONSNO_KIMAIRAN){
 				ZukanWork_SetPokeGet(
 					SaveData_GetZukanWork(fsys->savedata), pp);
 			}

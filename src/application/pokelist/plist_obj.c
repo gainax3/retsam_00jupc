@@ -187,8 +187,8 @@ void PokeListIconChange( PLIST_WORK *wk, u8 pos )
     arcData = ArcUtil_HDL_Load(p_handle, PokeIconCgxArcIndexGetByPP(pp), FALSE, HEAPID_POKELIST, ALLOC_BOTTOM);
     res = NNS_G2dGetUnpackedCharacterData(arcData, &charData);
     if (res) {
-        DC_InvalidateRange(charData->pRawData, charData->szByte);
-        GXS_LoadOBJ(charData->pRawData, sp10, charData->szByte);
+        DC_FlushRange(charData->pRawData, charData->szByte);
+        GX_LoadOBJ(charData->pRawData, sp10, charData->szByte);
     }
     sys_FreeMemoryEz(arcData);
 

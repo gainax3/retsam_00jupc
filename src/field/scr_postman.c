@@ -456,7 +456,11 @@ static void Pokemon_OKMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     pPP = (POKEMON_PARAM*)&pGift->pokemon.data;
     WORDSET_RegisterPlayerName(msgwk->wordset, 0, SaveData_GetMyStatus(msgwk->fsys->savedata));
-	WORDSET_RegisterPokeMonsName(msgwk->wordset, 1, PPPPointerGet(pPP));
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/11
+	// 引いてくるポケモン名を不定冠詞付きに変更
+	WORDSET_RegisterPokeMonsNameIndefinate(msgwk->wordset, 1, PPPPointerGet(pPP));
+	// ----------------------------------------------------------------------------
 
 }
 
@@ -572,11 +576,17 @@ static void Item_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_06;
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/09
+// 代入先のWORDSETのインデックスを、メッセージ側で指定されているものに修正
+// localize_spec_mark(LANG_ALL) imatake 2007/02/15
+// bugfix.h のスイッチにより修正が切り換えられるように変更
 #if AFTERMASTER_070213_POSTMAN_ITEMFULL_FIX
     WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 #else
     WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
 #endif
+// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
@@ -792,7 +802,11 @@ static void Card_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_06;
-	WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
+	// 代入先のWORDSETのインデックスを、メッセージ側で指定されているものに修正
+	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
+	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
@@ -853,7 +867,11 @@ static void Ookido_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_06;
-	WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
+	// 代入先のWORDSETのインデックスを、メッセージ側で指定されているものに修正
+	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
+	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================
@@ -906,7 +924,8 @@ static void Key_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_06;
-	WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
+    // MatchComment: 1 -> 0
+	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
 }
 
 //============================================================================================
@@ -959,7 +978,11 @@ static void Whistle_NGMsgFunc(MSG_WORK * msgwk, u16 * arc_id, u16 * msg_id)
 
     *arc_id = NARC_msg_haitatu_dat;
 	*msg_id = msg_haitatu_06;
-	WORDSET_RegisterItemName(msgwk->wordset, 1, item_no);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/09
+	// 代入先のWORDSETのインデックスを、メッセージ側で指定されているものに修正
+	WORDSET_RegisterItemName(msgwk->wordset, 0, item_no);
+	// ----------------------------------------------------------------------------
 }
 
 //============================================================================================

@@ -53,9 +53,9 @@ static const u16 PMS_SrcElems[] = {
 
 static const u16 PMS_SrcFileID[] = {
 	NARC_msg_monsname_dat,
-	NARC_msg_wazaname_dat,
+	NARC_msg_wazaname_cap_dat, // MatchComment: NARC_msg_wazaname_dat -> NARC_msg_wazaname_cap_dat
 	NARC_msg_typename_dat,
-	NARC_msg_tokusei_dat,
+	NARC_msg_tokusei_cap_dat, // MatchComment: NARC_msg_tokusei_dat -> NARC_msg_tokusei_cap_dat
 	NARC_msg_pms_word06_dat,
 	NARC_msg_pms_word07_dat,
 	NARC_msg_pms_word08_dat,
@@ -71,54 +71,55 @@ static const u16 PMS_SrcFileID[] = {
 */
 //----------------------------------------------------------------
 
+// MatchComment: --------
+// Add US DupWord data
 static const PMS_WORD DupWord_00[] = {
-	944,1300
+	1089,1433,
 };
 
 static const PMS_WORD DupWord_01[] = {
-	872,1112,
+	1216,1264,
 };
 
 static const PMS_WORD DupWord_02[] = {
-	 93,971,
+	1191,1249,
 };
 
 static const PMS_WORD DupWord_03[] = {
-	1044,1116,
+	1145,1176,1179,1180,
 };
 
 static const PMS_WORD DupWord_04[] = {
-	1044,1116,
+	1167,1175,
 };
 
 static const PMS_WORD DupWord_05[] = {
-	1044,1116,
+	1276,1430,
 };
 
 static const PMS_WORD DupWord_06[] = {
-	1044,1116,
+	1211,1280,
 };
 
 static const PMS_WORD DupWord_07[] = {
-	1044,1116,
+	590,978,
 };
 
 static const PMS_WORD DupWord_08[] = {
-	1044,1116,
+	1068,1437,
 };
 
 static const PMS_WORD DupWord_09[] = {
-	1044,1116,
+	1200,1279,
 };
 
 static const PMS_WORD DupWord_10[] = {
-	1044,1116,
+	1206,1285,
 };
 
 static const PMS_WORD DupWord_11[] = {
-	1044,1116, 1, 2 // MatchComment: could not be bothered to match the data correctly right now
+	1146,1165,
 };
-
 
 static const struct {
     const PMS_WORD* data;
@@ -127,16 +128,17 @@ static const struct {
 	{ DupWord_00, 2 },
 	{ DupWord_01, 2 },
 	{ DupWord_02, 2 },
-	{ DupWord_03, 2 },
-    { DupWord_04, 2 },
-    { DupWord_05, 2 },
-    { DupWord_06, 2 },
-    { DupWord_07, 2 },
-    { DupWord_08, 2 },
-    { DupWord_09, 2 },
-    { DupWord_10, 2 },
-    { DupWord_11, 2 },
+	{ DupWord_03, 4 },
+	{ DupWord_04, 2 },
+	{ DupWord_05, 2 },
+	{ DupWord_06, 2 },
+	{ DupWord_07, 2 },
+	{ DupWord_08, 2 },
+	{ DupWord_09, 2 },
+	{ DupWord_10, 2 },
+	{ DupWord_11, 2 },
 };
+// MatchCommentEnd: ------
 
 //----------------------------------------------------------------
 /**

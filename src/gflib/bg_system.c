@@ -3306,13 +3306,19 @@ static void GF_BGL_BmpWinOn_Normal( GF_BGL_BMPWIN * win )
 {
 	MakeWinScrnText( win );
 
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/09
+	// キャラクター転送をスクリーン転送より先に（前の描き残しが一瞬映らないように）
+
+	GF_BGL_BmpWinCgxOn( win );
+
 	GF_BGL_LoadScreen(
 		win->ini, win->frmnum, 
 		win->ini->bgsys[ win->frmnum ].screen_buf,
 		win->ini->bgsys[ win->frmnum ].screen_buf_siz,
 		win->ini->bgsys[ win->frmnum ].screen_buf_ofs );
 
-	GF_BGL_BmpWinCgxOn( win );
+	// ----------------------------------------------------------------------------
 }
 //--------------------------------------------------------------------------------------------
 /**

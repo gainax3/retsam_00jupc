@@ -117,7 +117,7 @@ u32 WIFI_COUNTRY_CountryCodeToPlaceIndexMax( u32 countryCode )
 	{
 		if(NationFlag_to_AreaID[i].nationID == countryCode)
 		{
-			return NationFlag_to_AreaID[i].sortTableSize; // MatchComment: place_index_max -> sortTableSize
+			return NationFlag_to_AreaID[i].sortTableSize + 1; // MatchComment: place_index_max -> sortTableSize, + 1
 		}
 	}
 

@@ -60,6 +60,10 @@ enum {
 	eHRT_CODE_9,
 	eHRT_CODE_10,
 	eHRT_CODE_11,
+    eHRT_CODE_12,
+    eHRT_CODE_13,
+    eHRT_CODE_14,
+    eHRT_CODE_15,
 	
 	eHRT_NUM_0,
 	eHRT_NUM_1,
@@ -251,7 +255,7 @@ typedef struct {
 	CODEIN_STATE	state;			///< 状態
 	CODEIN_PARAM	param;			///< 外側からもらうパラメータ // 0x3c8
     int unk3ec;
-    u32 unk3f0;
+    int unk3f0;
 } CODEIN_WORK;
 
 ///< codein_pv.c
@@ -308,7 +312,7 @@ extern void CI_pv_FontOam_Add( CODEIN_WORK* wk );
 extern void CI_pv_FontOam_Enable( CODEIN_WORK* wk, BOOL flag );
 extern void CI_pv_FontOam_Create( CODEIN_WORK* wk, int no, int x, int y, int pal_offset );
 
-extern void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int a8 );
+extern void CI_pv_disp_BMP_WindowAdd( GF_BGL_INI* bgl, GF_BGL_BMPWIN* win, int frm, int x, int y, int sx, int sy, int ofs, int msg_id );
 extern void CI_pv_BMP_MsgSet( GF_BGL_BMPWIN * win, int mes_id );
 
 extern void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk );

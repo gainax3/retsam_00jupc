@@ -1000,7 +1000,8 @@ NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax,
 #endif
 
 	// 文字列最大長＋EOMで文字列バッファを作成
-	param->strbuf = STRBUF_Create( wordmax+1, HeapId );
+    // MatchComment: change wordmax+1 to 32
+	param->strbuf = STRBUF_Create( 32, HeapId );
 
 
 	// ポケモン捕獲の時にボックス転送が発生した時には使用されるメンバ
@@ -3135,16 +3136,23 @@ static void WordPanelSetUp(GF_BGL_BMPWIN *win,u16 bgchara, int frame, GF_PRINTCO
 static void FuncButtonAnimation(int funcbutton[], CLACT_WORK_PTR *ButtonAct, int frame)
 {
 	int i,r;
-	// かな カナ ABC きごう ボタン
-	for(i=0;i<4;i++){
+    
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/10/03
+	// 文字種ボタンを3種類に変更
+
+	// ABC abc !?♪ ボタン
+	for(i=0;i<FONT_BUTTON_NUM;i++){
 		if(funcbutton[i]){
-			for(r=0;r<4;r++){
+			for(r=0;r<FONT_BUTTON_NUM;r++){
 				CLACT_AnmChg( ButtonAct[r], main_button_info[r][2] );
 			}
 			CLACT_AnmChg( ButtonAct[i], main_button_info[i][2]-3 );
 			break;
 		}
 	}
+
+	// ----------------------------------------------------------------------------
 
 	// 小文字化ボタン（かな カナ ABCによってセルアニメが違う）
 //	if(funcbutton[4]){

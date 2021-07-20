@@ -24,5 +24,8 @@ export BUILDING_SDK=1
 (cd sdk/NitroSystem; make)
 (cd sdk/NitroWiFi; make)
 (cd sdk/NitroDWC; make)
+
+(cd platinum_rs; make)
+
 export BUILDING_SDK=0
 make

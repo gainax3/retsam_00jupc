@@ -230,7 +230,11 @@ void STRBUF_SetNumber( STRBUF* dst, int number, u32 keta, NUMBER_DISPTYPE dispTy
 			}
 			else if( dispType == NUMBER_DISPTYPE_SPACE )
 			{
-				dst->buffer[dst->strlen++] = (codeType==NUMBER_CODETYPE_ZENKAKU)? spc_ : h_spc_;
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2006/11/24
+				// 半角スペースでパディングする際は、数字と同じ幅のスペースを用いるように
+				dst->buffer[dst->strlen++] = (codeType==NUMBER_CODETYPE_ZENKAKU)? spc_ : spcnum_;
+				// ----------------------------------------------------------------------------
 			}
 
 			number = num_f;
@@ -725,10 +729,11 @@ void STRBUF_AddCompStr(STRBUF *dst, STRBUF *src)
 // localize_spec_mark(LANG_ALL) imatake 2006/11/24
 // 先頭の文字をキャピタライズする関数を追加
 
-void STRBUF_Capitalize( STRBUF *strbuf, u32 letterIndex )
+void STRBUF_Capitalize( STRBUF *strbuf, int letterIndex )
 {
 	STRBUF_CHECK_STATE( strbuf );
 
+    // MatchComment: letterIndex support instead of forced index of 0
 	if (strbuf->strlen > letterIndex) {
 		STRCODE head = strbuf->buffer[letterIndex];
 		// とりあえずアクセント記号付きのアルファベットは考慮しない
