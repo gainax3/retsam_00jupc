@@ -52,6 +52,9 @@ extern BOOL EvCmdSndPlayerVolume( VM_MACHINE * core );
 extern BOOL EvCmdGetPokeSeeFlag( VM_MACHINE * core );
 #endif
 
+extern BOOL ov05_21F7704( VM_MACHINE * core );
+extern BOOL ov05_21F7754( VM_MACHINE * core );
+
 #endif	/* __ASM_NO_DEF_ */
 
 

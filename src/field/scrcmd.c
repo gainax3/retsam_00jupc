@@ -1907,9 +1907,9 @@ const VM_CMD ScriptCmdTbl[] = {
 #if PL_S0802_080716_FIX
 	EvCmdGetPokeSeeFlag,
 #endif
-    NULL, // TODO__fix_me not the real pointers!
-    NULL,
-    NULL,
+    ov05_21F77A8, // TODO__fix_me not the real pointers!
+    ov05_21F7704,
+    ov05_21F7754,
     // ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
 	// メニュー／リストの指定位置をウィンドウの右端や下端にするための命令を追加

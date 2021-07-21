@@ -34,6 +34,7 @@ extern BOOL EvCmdWazaOshieItemCheck( VM_MACHINE * core );
 extern BOOL EvCmdWazaOshieItemSub( VM_MACHINE * core );
 extern BOOL EvCmdWazaOshieBoardWrite( VM_MACHINE * core );
 extern BOOL EvCmdWazaOshieBoardDel( VM_MACHINE * core );
+extern BOOL ov05_21F77A8( VM_MACHINE * core );
 
 #endif	/* __ASM_NO_DEF_ */
 

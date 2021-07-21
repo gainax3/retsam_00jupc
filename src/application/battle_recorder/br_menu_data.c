@@ -977,7 +977,7 @@ static const BR_MENU_DATA br_gds_video_end_top[ 5 ] =
 	{
 		TRUE,
 		SEAM_LESS_ON,
-		msg_05,
+		msg_1001, // MatchComment: msg_05 -> msg_1001
 		eTAG_GDS_VIDEO_BACK,
 		eMENU_DATA_SEQ_END,
 		eINPUT_TAG_BACK,
@@ -1008,7 +1008,7 @@ static const BR_MENU_DATA br_gds_vrank_end_top[ 5 ] =
 	{
 		TRUE,
 		SEAM_LESS_ON,
-		msg_05,
+		msg_1001, // MatchComment: msg_05 -> msg_1001
 		eTAG_GDS_VR_2,
 		eMENU_DATA_SEQ_END,
 		eINPUT_TAG_BACK,
@@ -1039,7 +1039,7 @@ static const BR_MENU_DATA br_gds_wrank_end_top[ 5 ] =
 	{
 		TRUE,
 		SEAM_LESS_ON,
-		msg_05,
+		msg_1001, // MatchComment: msg_05 -> msg_1001,
 		eTAG_GDS_RANK_BACK,
 		eMENU_DATA_SEQ_END,
 		eINPUT_TAG_BACK,
@@ -1070,7 +1070,7 @@ static const BR_MENU_DATA br_gds_box_dress_end_top[ 5 ] =
 	{
 		TRUE,
 		SEAM_LESS_ON,
-		msg_05,
+		msg_1001, // MatchComment: msg_05 -> msg_1001
 		eTAG_GDS_BOX_DRESS_BACK,
 		eMENU_DATA_SEQ_END,
 		eINPUT_TAG_BACK,

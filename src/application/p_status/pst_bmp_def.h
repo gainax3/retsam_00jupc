@@ -305,7 +305,7 @@
 #define	ADD_WIN_PAGE_CGX	( WIN_GUIDE_CGX + WIN_GUIDE_SX * WIN_GUIDE_SY )
 // ページ１（ポケモン情報）
 // 図鑑No.
-#define	A_WIN_P1_LIBNUM_PX	( 23 )
+#define	A_WIN_P1_LIBNUM_PX	( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_LIBNUM_PY	( 5 )
 #define	A_WIN_P1_LIBNUM_SX	( 6 )
 #define	A_WIN_P1_LIBNUM_SY	( 2 )
@@ -326,21 +326,21 @@
 #define	A_WIN_P1_OYANAME_PAL	( 15 )
 #define	A_WIN_P1_OYANAME_CGX	( A_WIN_P1_NAME_CGX + A_WIN_P1_NAME_SX * A_WIN_P1_NAME_SY )
 // IDNo.
-#define	A_WIN_P1_IDNO_PX	( 23 )
+#define	A_WIN_P1_IDNO_PX	( 25 ) // MatchComment: 23 -> 25
 #define	A_WIN_P1_IDNO_PY	( 13 )
-#define	A_WIN_P1_IDNO_SX	( 5 )
+#define	A_WIN_P1_IDNO_SX	( 4 ) // MatchComment: 5 -> 4
 #define	A_WIN_P1_IDNO_SY	( 2 )
 #define	A_WIN_P1_IDNO_PAL	( 15 )
 #define	A_WIN_P1_IDNO_CGX	( A_WIN_P1_OYANAME_CGX + A_WIN_P1_OYANAME_SX * A_WIN_P1_OYANAME_SY )
 // 現在の経験値
-#define	A_WIN_P1_NOWEXP_PX	( 23 )
+#define	A_WIN_P1_NOWEXP_PX	( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_NOWEXP_PY	( 17 )
-#define	A_WIN_P1_NOWEXP_SX	( 7 )
+#define	A_WIN_P1_NOWEXP_SX	( 6 ) // MatchComment: 7 -> 6
 #define	A_WIN_P1_NOWEXP_SY	( 2 )
 #define	A_WIN_P1_NOWEXP_PAL	( 15 )
 #define	A_WIN_P1_NOWEXP_CGX	( A_WIN_P1_IDNO_CGX + A_WIN_P1_IDNO_SX * A_WIN_P1_IDNO_SY )
 // 次のレベルまで@
-#define	A_WIN_P1_NEXTEXP_PX		( 23 )
+#define	A_WIN_P1_NEXTEXP_PX		( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_NEXTEXP_PY		( 21 )
 #define	A_WIN_P1_NEXTEXP_SX		( 6 )
 #define	A_WIN_P1_NEXTEXP_SY		( 2 )
