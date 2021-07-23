@@ -338,14 +338,14 @@
 #define	A_WIN_P1_NOWEXP_SX	( 6 ) // MatchComment: 7 -> 6
 #define	A_WIN_P1_NOWEXP_SY	( 2 )
 #define	A_WIN_P1_NOWEXP_PAL	( 15 )
-#define	A_WIN_P1_NOWEXP_CGX	( A_WIN_P1_IDNO_CGX + A_WIN_P1_IDNO_SX * A_WIN_P1_IDNO_SY )
+#define	A_WIN_P1_NOWEXP_CGX	( A_WIN_P1_IDNO_CGX + A_WIN_P1_IDNO_SX * A_WIN_P1_IDNO_SY + 2 ) // MatchComment: add 2
 // 次のレベルまで@
 #define	A_WIN_P1_NEXTEXP_PX		( 24 ) // MatchComment: 23 -> 24
 #define	A_WIN_P1_NEXTEXP_PY		( 21 )
 #define	A_WIN_P1_NEXTEXP_SX		( 6 )
 #define	A_WIN_P1_NEXTEXP_SY		( 2 )
 #define	A_WIN_P1_NEXTEXP_PAL	( 15 )
-#define	A_WIN_P1_NEXTEXP_CGX	( A_WIN_P1_NOWEXP_CGX+A_WIN_P1_NOWEXP_SX*A_WIN_P1_NOWEXP_SY )
+#define	A_WIN_P1_NEXTEXP_CGX	( A_WIN_P1_NOWEXP_CGX+A_WIN_P1_NOWEXP_SX*A_WIN_P1_NOWEXP_SY + 2 ) // MatchComment: add 2
 
 // ページ２（トレーナーメモ）
 // トレーナーメモ

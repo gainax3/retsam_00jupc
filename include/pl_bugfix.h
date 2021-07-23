@@ -161,7 +161,7 @@
  * 
  * êŠ src/field/encount_effect.c
  */
-#define PL_S0800_080714_FIX (0)
+#define PL_S0800_080714_FIX (1) // MatchComment: enable this bugfix
 
 
 /*

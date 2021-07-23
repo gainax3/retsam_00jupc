@@ -192,10 +192,10 @@ struct _EV_WIN_WORK{
 	u8  cancel:1;								//キャンセル
 	u8  msgman_del_flag:1;						//メッセージマネージャー削除フラグ
 
-	u8  dmy:6;									//
-    // ----------------------------------------------------------------------------
+	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
 	// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
+	u8  dmy:4;									//
 	u8  align_right:1;							// 真ならx座標は右端指定
 	u8  align_bottom:1;							// 真ならy座標は下端指定
 	// ----------------------------------------------------------------------------
@@ -678,6 +678,19 @@ void CmdEvBmpList_Start( EV_WIN_WORK* wk )
 		len = (len / 8)+1;
 	}
 
+    // ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+	// メニュー／リストの指定位置をウィンドウの右端や下端に対応
+	if (wk->align_right)  wk->x -= len;
+	if (wk->align_bottom) {
+		if (wk->list_no > EV_LIST_LINE) {
+			wk->y -= EV_LIST_LINE * 2;
+		} else {
+			wk->y -= wk->list_no * 2;
+		}
+	}
+	// ----------------------------------------------------------------------------
+
 	CmdEvBmpList_StartCommon( wk, len );
 	return;
 }
@@ -696,18 +709,6 @@ void CmdEvBmpList_StartWidth( EV_WIN_WORK* wk, u16 width )
 //リスト共通処理
 static void CmdEvBmpList_StartCommon( EV_WIN_WORK* wk, u32 len )
 {
-    // ----------------------------------------------------------------------------
-	// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-	// メニュー／リストの指定位置をウィンドウの右端や下端に対応
-	if (wk->align_right)  wk->x -= len;
-	if (wk->align_bottom) {
-		if (wk->list_no > EV_LIST_LINE) {
-			wk->y -= EV_LIST_LINE * 2;
-		} else {
-			wk->y -= wk->list_no * 2;
-		}
-	}
-	// ----------------------------------------------------------------------------
 
 	//表示最大項目数チェック
 	if( wk->list_no > EV_LIST_LINE ){
@@ -1832,22 +1833,6 @@ void EvWin_BtlPointWrite( FIELDSYS_WORK * fsys, GF_BGL_BMPWIN * win )
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-// ----------------------------------------------------------------------------
-// localize_spec_mark(LANG_ALL) imatake 2007/02/14
-// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
-
-void CmdEvBmpMenuList_AlignRight( EV_WIN_WORK* wk, BOOL flag )
-{
-	wk->align_right = flag;
-}
-
-void CmdEvBmpMenuList_AlignBottom( EV_WIN_WORK* wk, BOOL flag )
-{
-	wk->align_bottom = flag;
-}
-
-// ----------------------------------------------------------------------------
-
 //==============================================================================================
 //
 //	スクロールカーソル
@@ -2062,4 +2047,18 @@ void WazaOshieBoardDel( EV_WIN_WORK* wk )
 	return;
 };
 
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/02/14
+// メニュー／リストの指定位置をウィンドウの右端や下端にするための関数
 
+void CmdEvBmpMenuList_AlignRight( EV_WIN_WORK* wk, BOOL flag )
+{
+	wk->align_right = flag;
+}
+
+void CmdEvBmpMenuList_AlignBottom( EV_WIN_WORK* wk, BOOL flag )
+{
+	wk->align_bottom = flag;
+}
+
+// ----------------------------------------------------------------------------

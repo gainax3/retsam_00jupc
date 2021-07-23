@@ -2213,7 +2213,7 @@ asm BOOL ov05_21F7754( VM_MACHINE * core )
 {
     push {r3, lr}
 	add r0, #0x80
-	ldr r0, [r0]
+	ldr r0, [r0, #0]
 	mov r1, #0xf
 	ldr r0, [r0, #0x38]
 	bl FieldOBJSys_OBJIDSearch
