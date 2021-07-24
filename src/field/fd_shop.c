@@ -955,7 +955,7 @@ static u8 ShopBuyScrollSeq( SHOP_WORK * wk )
 }
 
 #define ITEM_LIST_DX_NORMAL		( 0 )
-#define ITEM_LIST_DX_MACHINE	( 32 )
+#define ITEM_LIST_DX_MACHINE	( 35 ) // MatchComment: 32 -> 35
 
 // アイテムリストデータ（BMPリスト）
 static const BMPLIST_HEADER ShopItemList = {

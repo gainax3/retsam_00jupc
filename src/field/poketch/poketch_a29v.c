@@ -209,10 +209,14 @@ static void CmdInit(TCB_PTR tcb, void *wk_ptr)
 		STRBUF* title = MSGDAT_GetStrDirectAlloc( ARC_MSG, NARC_msg_poketch_history_dat, msg_history_title, POKETCH_APP_VIEW_HEAPID );
 		if( title )
 		{
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/05/16
+			// ï∂éöÇÃâeÇÃêFÇàÍíiäKîñÇ≠í≤êÆ
 			GF_STR_PrintColor( &bmpWin, FONT_SYSTEM, title,
 					(POKETCH_MONITOR_DOT_WIDTH - FontProc_GetPrintStrWidth(FONT_SYSTEM, title, 0)) / 2, 0,
-					MSG_NO_PUT, GF_PRINTCOLOR_MAKE(POKETCH_DEFAULTCOLOR_L4_POS, POKETCH_DEFAULTCOLOR_L4_POS, POKETCH_DEFAULTCOLOR_L1_POS),
+					MSG_NO_PUT, GF_PRINTCOLOR_MAKE(POKETCH_DEFAULTCOLOR_L4_POS, POKETCH_DEFAULTCOLOR_L3_POS, POKETCH_DEFAULTCOLOR_L1_POS),
 					NULL );
+			// ----------------------------------------------------------------------------
 
 			GF_BGL_BmpWinCgxOn( &bmpWin );
 

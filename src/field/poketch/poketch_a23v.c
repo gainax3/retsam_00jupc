@@ -253,9 +253,13 @@ static void write_kinomi_str( VIEWWORK* vwk, u32 charpos )
 		GF_BGL_BmpWinAdd( vwk->bgl, &win, USE_BG_FRAME, WIN_OX, WIN_OY, WIN_WIDTH, WIN_HEIGHT, 0, charpos );
 
 		GF_BGL_BmpWinDataFill( &win, POKETCH_DEFAULTCOLOR_L1_POS );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/05/16
+		// ï∂éöÇÃâeÇÃêFÇàÍíiäKîñÇ≠í≤êÆ
 		GF_STR_PrintColor( &win, FONT_SYSTEM, str, 0, 0, MSG_NO_PUT,
-			GF_PRINTCOLOR_MAKE(POKETCH_DEFAULTCOLOR_L4_POS,POKETCH_DEFAULTCOLOR_L4_POS,POKETCH_DEFAULTCOLOR_L1_POS),
+			GF_PRINTCOLOR_MAKE(POKETCH_DEFAULTCOLOR_L4_POS,POKETCH_DEFAULTCOLOR_L3_POS,POKETCH_DEFAULTCOLOR_L1_POS),
 			NULL );
+		// ----------------------------------------------------------------------------
 
 		GF_BGL_BmpWinMakeScrn(&win);
 		GF_BGL_BmpWinCgxOn(&win);

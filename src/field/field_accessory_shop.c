@@ -959,10 +959,12 @@ static void AcceShop_MainMsgChangeEndStrSet( ACCE_SHOP_MAIN_MSG* p_win, MSGDATA_
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/26
 	// きのみ名を複数形に（現在の仕様では、単数のきのみがくることはない）
+    // MatchComment: add if statement for option to call WORDSET_RegisterItemName instead of
+    // calling WORDSET_RegisterItemNamePlural exclusively
     if (cp_data[ data_idx ].need_num == 1) {
-        WORDSET_RegisterItemNamePlural( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
-    } else {
         WORDSET_RegisterItemName( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
+    } else {
+        WORDSET_RegisterItemNamePlural( p_wordset, 0, cp_data[ data_idx ].item_no + NUTS_START_ITEMNUM );
     }
 	// ----------------------------------------------------------------------------
 	// ----------------------------------------------------------------------------

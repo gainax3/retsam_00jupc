@@ -46,7 +46,11 @@
 //	フォントボタンの文字列オフセット位置
 //	
 //=====================================
-#define IMC_FONTBTTN_DRAW_X		(16)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/04/05
+// 「おわる」の位置をボタン中央に自動で調整するように
+#define IMC_FONTBTTN_DRAW_X		(0)
+// ----------------------------------------------------------------------------
 #define IMC_FONTBTTN_DRAW_Y_OFF	(19)
 #define IMC_FONTBTTN_DRAW_Y_ON	(15)
 #define IMC_FONTBTTN_PLTT_OFS_OFF	(3)
@@ -1300,7 +1304,6 @@ static void IMCBTTN_sndStart( IMC_BUTTON* bttn, int se, int timing, int state )
  *
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static GF_BGL_BMPWIN* getBttnStr( IMC_DRAW_DATA* drawData, u32 arcID, u32 dataID, u32 msgID, int bmp_x, int bmp_y )
 {
 	MSGDATA_MANAGER* msg_data;
@@ -1317,7 +1320,14 @@ static GF_BGL_BMPWIN* getBttnStr( IMC_DRAW_DATA* drawData, u32 arcID, u32 dataID
 	GF_BGL_BmpWinObjAdd( drawData->BG_Ini, bmp, bmp_x, bmp_y, 0, 0 );
 
 	// 文字列書き込み
-	GF_STR_PrintColor( bmp, FONT_BUTTON, str, 0, 0, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,3), NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/04/05
+	// 「おわる」の位置をボタン中央に自動で調整するように
+	{
+		u32 xofs = FontProc_GetPrintCenteredPositionX( FONT_BUTTON, str, 0, bmp_x * 8 );
+		GF_STR_PrintColor( bmp, FONT_BUTTON, str, xofs, 0, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,3), NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete( str );
 	MSGMAN_Delete( msg_data );
@@ -1325,68 +1335,6 @@ static GF_BGL_BMPWIN* getBttnStr( IMC_DRAW_DATA* drawData, u32 arcID, u32 dataID
 	return bmp;
 	
 }
-#else
-asm static GF_BGL_BMPWIN* getBttnStr( IMC_DRAW_DATA* drawData, u32 arcID, u32 dataID, u32 msgID, int bmp_x, int bmp_y )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x10
-	add r6, r0, #0
-	add r4, r3, #0
-	mov r0, #0
-	mov r3, #0xd
-	bl MSGMAN_Create
-	add r7, r0, #0
-	bne _0225A360
-	bl GF_AssertFailedWarningCall
-_0225A360:
-	add r0, r7, #0
-	add r1, r4, #0
-	bl MSGMAN_AllocString
-	add r5, r0, #0
-	mov r0, #0xe
-	mov r1, #1
-	bl GF_BGL_BmpWinAllocGet
-	add r4, r0, #0
-	bl GF_BGL_BmpWinInit
-	mov r0, #0
-	ldr r2, [sp, #0x28]
-	ldr r3, [sp, #0x2c]
-	str r0, [sp]
-	str r0, [sp, #4]
-	lsl r2, r2, #0x18
-	lsl r3, r3, #0x18
-	ldr r0, [r6, #0x40]
-	add r1, r4, #0
-	lsr r2, r2, #0x18
-	lsr r3, r3, #0x18
-	bl GF_BGL_BmpWinObjAdd
-	ldr r3, [sp, #0x28]
-	mov r0, #2
-	add r1, r5, #0
-	mov r2, #0
-	lsl r3, r3, #3
-	bl FontProc_GetPrintCenteredPositionX
-	mov r1, #0
-	add r3, r0, #0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010203 // _0225A3CC
-	add r2, r5, #0
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	mov r1, #2
-	bl GF_STR_PrintColor
-	add r0, r5, #0
-	bl STRBUF_Delete
-	add r0, r7, #0
-	bl MSGMAN_Delete
-	add r0, r4, #0
-	add sp, #0x10
-	pop {r3, r4, r5, r6, r7, pc}
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**

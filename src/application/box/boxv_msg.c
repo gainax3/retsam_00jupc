@@ -51,13 +51,17 @@ enum {
 	WIN_MSG_HEIGHT = 2,
 	WIN_MSG_SIZE = WIN_MSG_WIDTH * WIN_MSG_HEIGHT,
 
-	// Menu 162 char
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/02/15
+	// メニューウィンドウの幅を、各国語の TEAM GALACTIC が入るように拡大
+	// Menu 194 char
 	WIN_MENU_CHAROFS = WIN_MSG_CHAROFS + WIN_MSG_SIZE,
-	WIN_MENU_WIDTH = 10,
+	WIN_MENU_WIDTH = 12,
 	WIN_MENU_HEIGHT = BOXAPP_MENU_ELEMS_MAX*2,
 	WIN_MENU_Y_BOTTOM = 18,
 	WIN_MENU_Y = WIN_MENU_Y_BOTTOM - (WIN_MENU_HEIGHT-1),
 	WIN_MENU_X = 31 - WIN_MENU_WIDTH,
+	// ----------------------------------------------------------------------------
 
 
 	MSG_PAL_GROUND = 0x0f,

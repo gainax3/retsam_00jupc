@@ -336,7 +336,7 @@ static u32 setup_initial_window( PMSIV_CATEGORY* wk, GF_BGL_INI* bgl, u32 charpo
 
 		
 		GF_STR_PrintColor( &win, PMSI_FONT_CATEGORY, buf, 
-					x, y, MSG_NO_PUT,
+					x + 3, y, MSG_NO_PUT, // MatchComment: x -> x + 3
 					print_color,
 					NULL);
 	}

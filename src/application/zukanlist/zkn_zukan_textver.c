@@ -98,7 +98,7 @@
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/10/05
 // 外国語ずかんの「?Pokemon」は、個別にgmmに含める形式に変更
-#define ZKN_ZUKNATEXTVER_FONT_POKEMON_X	( 242 )
+#define ZKN_ZUKNATEXTVER_FONT_POKEMON_X	( 240 ) // MatchComment: 242 -> 240
 // ----------------------------------------------------------------------------
 #define ZKN_ZUKNATEXTVER_FONT_POKEMON_Y	( 112 )
 

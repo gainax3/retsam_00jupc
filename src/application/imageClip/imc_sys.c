@@ -2957,7 +2957,11 @@ static u32 setContestTextBmpWin( IMC_SYS_WORK* imc_w, u32 str_idx )
 //-----------------------------------------------------------------------------
 static void setContestWordSet( IMC_SYS_WORK* imc_w, int buff_id, int no )
 {
-	WORDSET_RegisterNumber( imc_w->p_wordset, buff_id, no, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/01/23
+	// 数字の左側のスペースを除去
+	WORDSET_RegisterNumber( imc_w->p_wordset, buff_id, no, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT );
+	// ----------------------------------------------------------------------------
 }
 
 //----------------------------------------------------------------------------

@@ -149,6 +149,7 @@
 #define	msg_gtc_15_003		(137)
 #define	msg_gtc_15_004		(138)
 #define	msg_gtc_15_005		(139)
+// TODO__fix_me increase msg_gtc_error_001 and onwards by 4
 #define	msg_gtc_error_001		(140)
 #define	msg_gtc_error_002		(141)
 #define	msg_gtc_error_003		(142)

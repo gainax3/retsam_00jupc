@@ -72,7 +72,11 @@ enum {
 
 enum {
 	PRINT_COL_LETTER = POKETCH_DEFAULTCOLOR_L4_POS,
-	PRINT_COL_SHADOW = POKETCH_DEFAULTCOLOR_L4_POS,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/05/16
+	// ï∂éöÇÃâeÇÃêFÇàÍíiäKîñÇ≠í≤êÆ
+	PRINT_COL_SHADOW = POKETCH_DEFAULTCOLOR_L3_POS,
+	// ----------------------------------------------------------------------------
 	PRINT_COL_GROUND = POKETCH_DEFAULTCOLOR_L1_POS,
 	PRINT_FONT_TYPE = FONT_SYSTEM,
 

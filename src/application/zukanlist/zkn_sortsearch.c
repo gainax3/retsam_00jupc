@@ -145,6 +145,11 @@ enum{
 #define ZKN_SORTSEARCH_EFECT_ACT_ANM	( 17 )
 #define ZKN_SORTSEARCH_EFECT_FONT_X		( 96 )
 #define ZKN_SORTSEARCH_EFECT_FONT_Y		( 128 )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/10/26
+// 「けんさくちゅう」の表示を中央寄せ
+#define ZKN_SORTSEARCH_EFECT_FONT_AREA_X	( 256 )
+// ----------------------------------------------------------------------------
 
 #define ZKN_SORTSEARCH_EFECT_OAM_ROTA	( FX_GET_ROTA_NUM(180) )
 
@@ -2199,9 +2204,16 @@ static void ZknSortSearchSortEffFontSet( ZKN_SORTSEARCH_DRAWGLB* p_drawglb, int 
 
 	// 文字列を書き込む
 	str = ZKN_UTIL_ZknGmmGet( ZNK_SORTSEARCH_MSG_00, heap );
-	GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
-			(256 - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2, ZKN_SORTSEARCH_EFECT_FONT_Y, // MatchComment: fixed x changed to call to FontProc_GetPrintMaxLineWidth
-			0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/10/26
+	// 「けんさくちゅう」の表示を中央寄せ
+	{
+		u32 xofs = (ZKN_SORTSEARCH_EFECT_FONT_AREA_X - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, str, 0)) / 2;
+		GF_STR_PrintColor( &p_draw_glb->bmp_mfont, FONT_SYSTEM, str, 
+				xofs, ZKN_SORTSEARCH_EFECT_FONT_Y,
+				0, ZKN_BG_FONT_COLOR_MSK, NULL );
+	}
+	// ----------------------------------------------------------------------------
 
 	STRBUF_Delete(str);
 

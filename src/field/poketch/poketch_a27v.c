@@ -67,7 +67,11 @@ enum {
 enum {
 	PRINT_FONT    = FONT_SYSTEM,
 	COLOR_LETTER  = POKETCH_DEFAULTCOLOR_L4_POS,
-	COLOR_SHADOW  = POKETCH_DEFAULTCOLOR_L4_POS,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/05/16
+	// 文字の影の色を一段階薄く調整
+	COLOR_SHADOW  = POKETCH_DEFAULTCOLOR_L3_POS,
+	// ----------------------------------------------------------------------------
 	COLOR_GROUND  = POKETCH_DEFAULTCOLOR_L1_POS,
 	STR_TMPBUFFER_SIZE = 96,
 
@@ -458,7 +462,6 @@ static void CmdImgStatusUpdate( TCB_PTR tcb, void* wk_ptr )
 }
 
 
-#ifdef NONEQUIVALENT
 static void print_bmp_top_title( VIEWWORK* vwk )
 {
 	u32 xpos;
@@ -477,10 +480,18 @@ static void print_bmp_top_title( VIEWWORK* vwk )
 
 #if POKETCH_070126_NOTIFY_COMM_START
 	MSGMAN_GetString( vwk->mm, msg_comm_start, vwk->tmpbuf );
-	xpos = ((POKETCH_MONITOR_SCRN_WIDTH*8) - FontProc_GetPrintStrWidth( PRINT_FONT, vwk->tmpbuf, 0 ) ) / 2;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/03/27
+	// メッセージが複数行になった場合に対応
+	xpos = ((POKETCH_MONITOR_SCRN_WIDTH*8) - FontProc_GetPrintMaxLineWidth( PRINT_FONT, vwk->tmpbuf, 0 ) ) / 2;
 
-	GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xpos, TOP_TITLE_PRINT_Y + 48, MSG_NO_PUT, 
-					GF_PRINTCOLOR_MAKE(COLOR_LETTER,COLOR_SHADOW,COLOR_GROUND), NULL );
+	{
+		u32 ypos = TOP_TITLE_PRINT_Y + 56;
+		ypos -= STRBUF_GetLines( vwk->tmpbuf ) * 8; // FontProc_GetPrintLineNum -> STRBUF_GetLines
+		GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xpos, ypos, MSG_NO_PUT, 
+						GF_PRINTCOLOR_MAKE(COLOR_LETTER,COLOR_SHADOW,COLOR_GROUND), NULL );
+	}
+	// ----------------------------------------------------------------------------
 #endif
 
 // ----------------------------------------------------------------------------
@@ -488,74 +499,6 @@ static void print_bmp_top_title( VIEWWORK* vwk )
 	GF_BGL_BmpWinCgxOn( &vwk->bmpwin );
 
 }
-#else
-asm static void print_bmp_top_title( VIEWWORK* vwk )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	add r5, r0, #0
-	add r0, #0x20
-	mov r1, #4
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r5, #0x58]
-	ldr r2, [r5, #0x5c]
-	mov r1, #0
-	bl MSGMAN_GetString
-	mov r0, #0
-	ldr r1, [r5, #0x5c]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xc0
-	sub r0, r1, r0
-	lsr r3, r0, #1
-	mov r0, #8
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010804 // _02256B0C
-	mov r1, #0
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r5, #0
-	ldr r2, [r5, #0x5c]
-	add r0, #0x20
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0x58]
-	ldr r2, [r5, #0x5c]
-	mov r1, #0xa
-	bl MSGMAN_GetString
-	mov r0, #0
-	ldr r1, [r5, #0x5c]
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	mov r1, #0xc0
-	sub r0, r1, r0
-	lsr r4, r0, #1
-	ldr r0, [r5, #0x5c]
-	mov r6, #0x40
-	bl STRBUF_GetLines
-	lsl r0, r0, #3
-	sub r0, r6, r0
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010804 // _02256B0C
-	mov r1, #0
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r5, #0
-	ldr r2, [r5, #0x5c]
-	add r0, #0x20
-	add r3, r4, #0
-	bl GF_STR_PrintColor
-	add r5, #0x20
-	add r0, r5, #0
-	bl GF_BGL_BmpWinCgxOn
-	add sp, #0x10
-	pop {r4, r5, r6, pc}
-	nop
-}
-#endif
 
 static void print_bmp_searching( VIEWWORK* vwk )
 {

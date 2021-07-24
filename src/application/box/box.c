@@ -2564,7 +2564,7 @@ _021D2D5A:
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]
 	mov r1, #4
-	bl BoxAppView_WaitCommandAll
+	bl BoxAppView_WaitCommand
 	cmp r0, #0
 	beq _021D2DB6
 	add r0, r4, #0
@@ -2573,7 +2573,7 @@ _021D2D5A:
 	tst r0, r1
 	bne _021D2D88
 	add r0, r4, #0
-	bl NitroMain // FUN_021D52F4
+	bl CursorPointPokeUpdate
 	mov r0, #0x45
 	lsl r0, r0, #2
 	ldr r0, [r4, r0]

@@ -1068,9 +1068,11 @@ static void SetCellActor(OEKAKI_WORK *wk)
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/17
 // 「やめる」を中央寄せ
+// localize_spec_mark(LANG_KOREA) imatake 2007/09/20
+// 韓国語版で「やめる」の右端が欠けるのに対処
 #define OEKAKI_END_BMP_X	( 25 )
 #define OEKAKI_END_BMP_Y	( 21 )
-#define OEKAKI_END_BMP_W	( 6  )
+#define OEKAKI_END_BMP_W	( 7  )
 #define OEKAKI_END_BMP_H	( 2  )
 
 #define OEKAKI_END_OFS_X	( 2  )
