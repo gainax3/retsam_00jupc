@@ -182,7 +182,7 @@ static u16 NameHeadTable[]={
 	ZKN_AKSTNHMYRW_IDX_M,
 	ZKN_AKSTNHMYRW_IDX_Y,
 	ZKN_AKSTNHMYRW_IDX_R,
-	ZKN_AKSTNHMYRW_IDX_W,
+    // MatchComment: remove ZKN_AKSTNHMYRW_IDX_W,
 	ZKN_AKSTNHMYRW_IDX_END,
 };
 
@@ -278,18 +278,20 @@ static const RECT_HIT_TBL hit_table_100[] = {
 };
 
 ///< ƒ|ƒPƒ‚ƒ“‚Å’T‚·@‚ ‚¢‚¤‚¦‚¨
-const RECT_HIT_TBL hit_rect_AIUEO[ 10 ] = {	
-	{ 4 * 8, 6 * 8, 3 * 8, 5 * 8 },
-	{ 4 * 8, 6 * 8, 9 * 8,11 * 8 },
-	{ 4 * 8, 6 * 8,15 * 8,17 * 8 },
-	{ 4 * 8, 6 * 8,21 * 8,23 * 8 },
-	{ 4 * 8, 6 * 8,27 * 8,29 * 8 },
-	
-	{10 * 8,12 * 8, 3 * 8, 5 * 8 },
-	{10 * 8,12 * 8, 9 * 8,11 * 8 },
-	{10 * 8,12 * 8,15 * 8,17 * 8 },
-	{10 * 8,12 * 8,21 * 8,23 * 8 },
-	{10 * 8,12 * 8,27 * 8,29 * 8 },
+// MatchComment: change entries to match US data (also means changing length)
+const RECT_HIT_TBL hit_rect_AIUEO[ 9 ] = {	
+	{  3 * 8,  6 * 8,  5 * 8,  9 * 8},
+	{  3 * 8,  6 * 8, 14 * 8, 18 * 8},
+	{  3 * 8,  6 * 8, 23 * 8, 27 * 8},
+
+	{  7 * 8, 10 * 8,  5 * 8,  9 * 8},
+	{  7 * 8, 10 * 8, 14 * 8, 18 * 8},
+	{  7 * 8, 10 * 8, 23 * 8, 27 * 8},
+
+	{ 11 * 8, 14 * 8,  5 * 8,  9 * 8},
+	{ 11 * 8, 14 * 8, 14 * 8, 18 * 8},
+	{ 11 * 8, 14 * 8, 23 * 8, 27 * 8},
+
 };
 
 // ----------
@@ -737,8 +739,9 @@ static void BRV_Word_Profile( BR_WORK* wk, int country, int area )
 	else {
 		
 		wset = BR_WORDSET_Create( HEAPID_BR );
-		
-		if ( area != GT_BATTLE_REC_SEARCH_LOCAL_CODE_NONE ){
+		// MatchComment: GT_BATTLE_REC_SEARCH_LOCAL_CODE_NONE -> 0
+        // TODO__fix_me: what does the 0 mean here?
+		if ( area != 0){
 			str1  = STRBUF_Create( 255, HEAPID_BR );
 			tmp = MSGMAN_AllocString( wk->sys.man, msg_23 );
 			WORDSET_RegisterLocalPlaceName( wset, 0, country, area );
@@ -1492,11 +1495,12 @@ _022423A0:
 
 static void WinDel_AIUEO( BR_WORK* wk )
 {
-	int i;
+	u32 i; // MatchComment: change to u32
 	GF_BGL_BMPWIN*		win;
 	VIDEO_SEARCH_WORK*	vwk = wk->sub_work;
 
-	for ( i = 0; i < 10; i++ ){		
+    // MatchComment: 10 -> 9
+	for ( i = 0; i < 9; i++ ){		
 		win = &vwk->win_s[ i ];					
 		GF_BGL_BmpWinOff( win );
 		GF_BGL_BmpWinDel( win );	

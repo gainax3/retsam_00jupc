@@ -1176,9 +1176,10 @@ static void BoxShot_BoxView_Init( BR_WORK* wk )
  */
 //--------------------------------------------------------------
 static const u8 win_data_c[][ 4 ] = {
-	{  3,  3, 10,  2 },{ 18,  3, 10,  2 },
-	{  3,  8, 10,  2 },{ 18,  8, 10,  2 },
-	{  3, 13, 10,  2 },{ 18, 13, 10,  2 },
+    // MatchComment: all 10s here -> 11s
+	{  3,  3, 11,  2 },{ 18,  3, 11,  2 },
+	{  3,  8, 11,  2 },{ 18,  8, 11,  2 },
+	{  3, 13, 11,  2 },{ 18, 13, 11,  2 },
 };
 static void BoxShot_CategoryWin_Add( BR_WORK* wk )
 {

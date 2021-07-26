@@ -98,7 +98,7 @@ static u16 NameHeadTable[]={
 	ZKN_AKSTNHMYRW_IDX_M,
 	ZKN_AKSTNHMYRW_IDX_Y,
 	ZKN_AKSTNHMYRW_IDX_R,
-	ZKN_AKSTNHMYRW_IDX_W,
+    // MatchComment: remove ZKN_AKSTNHMYRW_IDX_W
 	ZKN_AKSTNHMYRW_IDX_END,
 };
 
@@ -2306,11 +2306,12 @@ _02239CB6:
 //--------------------------------------------------------------
 static void WinDel_AIUEO( BR_WORK* wk )
 {
-	int i;
+	u32 i; // MatchComment: change from int to u32
 	GF_BGL_BMPWIN*		win;
 	DRESS_WORK*	dwk = wk->sub_work;
 
-	for ( i = 0; i < 10; i++ ){		
+    // MatchComment: 10 -> 9
+	for ( i = 0; i < 9; i++ ){		
 		win = &dwk->win_s[ i ];					
 		GF_BGL_BmpWinOff( win );
 		GF_BGL_BmpWinDel( win );	

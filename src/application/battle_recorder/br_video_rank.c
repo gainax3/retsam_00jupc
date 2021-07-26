@@ -2289,7 +2289,7 @@ _0224042A:
 	asr r0, r0, #0x10
 	add pc, r0
 _02240436: // jump table
-	mov r4, r1
+	lsl r4, r1, #0
 	dcd 0x00d00070
 	dcd 0x011800e0
 	dcd 0x02880168
@@ -2749,7 +2749,6 @@ _02240810:
 	lsr r3, r3, #0x18
 	bl ColorConceChangePfd
 	b _02240884
-	nop
 // _0224082C: .4byte 0x00000115
 // _02240830: .4byte 0x0000086C
 // _02240834: .4byte 0x00004138

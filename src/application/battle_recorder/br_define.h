@@ -816,6 +816,7 @@ enum {
 	GET_PAL_BG,	
 };
 
-extern const RECT_HIT_TBL hit_rect_AIUEO[ 10 ];
+// MatchComment: 10 -> 9 (only 9 entries in US)
+extern const RECT_HIT_TBL hit_rect_AIUEO[ 9 ];
 
 #endif

@@ -1114,8 +1114,10 @@ static void BmpWinInit(OEKAKI_WORK *wk, PROC* proc)
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2007/01/17
 	// 「やめる」を中央寄せ
+	// localize_spec_mark(LANG_KOREA) imatake 2007/09/20
+	// 韓国語版で「やめる」の右端が欠けるのに対処
 	{
-		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, wk->EndString, 0, OEKAKI_END_BMP_W * 8) + OEKAKI_END_OFS_X;
+		u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, wk->EndString, 0, (OEKAKI_END_BMP_W-1) * 8) + OEKAKI_END_OFS_X;
 		GF_STR_PrintColor( &wk->EndWin, FONT_TALK, wk->EndString, xofs, 0, MSG_ALLPUT, GF_PRINTCOLOR_MAKE(0x7,0x1,0x0),NULL);
 	}
 	// ----------------------------------------------------------------------------
