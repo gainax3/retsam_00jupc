@@ -9,6 +9,10 @@ if [ ! -x tools/ruby/ruby -a ! -x tools/ruby/ruby.exe ]; then
     (cd tools/ruby; ./build.sh)
 fi
 
+if [ ! -x tools/fixrom/fixrom -a ! -x tools/fixrom/fixrom.exe ]; then
+	(cd tools/fixrom; make)
+fi
+
 . ./env
 export NITRO_FINALROM=yes
 export PM_VERSION

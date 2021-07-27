@@ -394,6 +394,10 @@ endif	# -OBJS -LLIBRARIES
 ifndef	USE_MY_RULE_BIN
 $(BINDIR)/%.bin $(BINDIR)/%.srl: $(SDEPENDS_BIN) $(ROM_SPEC) $(LDEPENDS_BIN) $(EDEPENDS_BIN)
 	$(MAKEROM) $(MAKEROM_FLAGS) $(MAKEROM_DEFS) $(ROM_SPEC) $@
+ifeq ($(BUILDING_SDK),0)
+	$(FIXROM) $@ --secure-crc $(SECURE_CRC) --game-code $(INITIAL_CODE)
+	sha1sum -c platinum.sha1
+endif
 endif	# -USE_MY_RULE_BIN
 
 $(BINDIR)/$(TARGET_SIGN_BIN): $(BINDIR)/$(TARGET_BIN)
