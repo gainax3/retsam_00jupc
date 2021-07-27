@@ -291,7 +291,11 @@ static void Castle_SetSubBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
 
 //メッセージ
 static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+// MatchComment: new function prototype
+static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode );
 static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+// MatchComment: new function prototype
+static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode );
 static u8 Castle_EasyMsg( CASTLE_ENEMY_WORK* wk, int msg_id, u8 font );
 static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y );
@@ -2258,7 +2262,7 @@ static void Castle_SetSubBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  )
 
 extern void ov107_2247650(void);
 
-asm void ov107_2247650(void)
+asm static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	push {r4, r5, lr}
 	sub sp, #0x1c
@@ -2279,7 +2283,7 @@ asm void ov107_2247650(void)
 	str r4, [sp, #0x14]
 	mov r4, #0
 	str r4, [sp, #0x18]
-	bl CastleWriteMsg
+	bl CastleWriteMsg_Full_ov107_2247680
 	add sp, #0x1c
 	pop {r4, r5, pc}
 	// .align 2, 0
@@ -2304,7 +2308,7 @@ asm void ov107_2247650(void)
  */
 //--------------------------------------------------------------
 #ifdef NONEQUIVALENT
-static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+asm static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
 {
 	u8 msg_index;
 
@@ -2321,7 +2325,7 @@ static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id,
 	return msg_index;
 }
 #else
-asm static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+asm static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
 {
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x10
@@ -2396,9 +2400,8 @@ _022476D4:
 }
 #endif
 
-extern void ov107_2247680(void);
-
-asm void ov107_2247680(void)
+// NONMATCHING
+asm static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	push {r4, r5, lr}
 	sub sp, #0x1c
@@ -2419,7 +2422,7 @@ asm void ov107_2247680(void)
 	str r4, [sp, #0x14]
 	mov r4, #0
 	str r4, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	add sp, #0x1c
 	pop {r4, r5, pc}
 	// .align 2, 0
@@ -2446,7 +2449,7 @@ asm void ov107_2247680(void)
  */
 //--------------------------------------------------------------
 #ifdef NONEQUIVALENT
-static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
 {
 	u8 msg_index;
 
@@ -2462,7 +2465,7 @@ static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int m
 	return msg_index;
 }
 #else
-asm static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+asm static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
 {
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
@@ -2938,12 +2941,12 @@ asm static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int ms
 //--------------------------------------------------------------
 enum{
 	//技名
-	STATUS_WAZA_X =			(3*8),
-	STATUS_WAZA_Y =			(2*8),
+	STATUS_WAZA_X =			(4*8), // MatchComment: 3*8 -> 4*8
+	STATUS_WAZA_Y =			(2*8-4), // MatchComment: 2*8 -> 2*8-4
 
 	//技ポイント
 	STATUS_POINT_X =		(12*8),
-	STATUS_POINT_Y =		(2*8),
+	STATUS_POINT_Y =		(0*8), // MatchComment: 2*8 -> 0*8
 };
 
 static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
@@ -2972,6 +2975,7 @@ static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKE
 	return;
 }
 
+#ifdef NONEQUIVALENT
 static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 )
 {
 	u16 x,y,point_x,point_y;
@@ -2995,11 +2999,94 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 						NUMBER_DISPTYPE_SPACE );
 	Castle_SetNumber(	wk, 5, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_LEFT );
-	wk->msg_index = CastleWriteMsgSimple( wk, win,
+    // MatchComment: use CastleWriteMsgSimple_Full_ov107_2247744 instead of CastleWriteMsgSimple
+    // has additional argument of 1
+	wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 									msg_id2, point_x, point_y, MSG_NO_PUT,
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT );
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 1 );
 	return;
 }
+#else
+asm static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 )
+{
+	push {r4, r5, r6, r7, lr}
+	sub sp, #0x1c
+	add r4, r0, #0
+	add r6, r1, #0
+	add r5, r2, #0
+	ldr r0, [sp, #0x34]
+	ldr r1, [sp, #0x38]
+	mov r2, #0
+	add r7, r3, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	ldr r0, [r4, #0x24]
+	add r1, r5, #0
+	bl WORDSET_RegisterWazaName
+	mov r0, #0x18
+	mul r0, r5
+	add r0, #0xc
+	lsl r0, r0, #0x10
+	lsr r5, r0, #0x10
+	str r5, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r0, #1
+	str r0, [sp, #8]
+	mov r0, #2
+	str r0, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	add r0, r4, #0
+	add r1, r6, #0
+	add r2, r7, #0
+	mov r3, #0x20
+	bl CastleWriteMsgSimple
+	strb r0, [r4, #0xa]
+	ldr r0, [sp, #0x34]
+	ldr r1, [sp, #0x3c]
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #0
+	str r0, [sp]
+	add r0, r4, #0
+	mov r1, #4
+	mov r3, #3
+	bl Castle_SetNumber
+	ldr r0, [sp, #0x34]
+	ldr r1, [sp, #0x40]
+	mov r2, #0
+	bl PokeParaGet
+	add r2, r0, #0
+	mov r0, #0
+	str r0, [sp]
+	add r0, r4, #0
+	mov r1, #5
+	mov r3, #3
+	bl Castle_SetNumber
+	str r5, [sp]
+	mov r0, #0xff
+	str r0, [sp, #4]
+	mov r1, #1
+	str r1, [sp, #8]
+	mov r0, #2
+	str r0, [sp, #0xc]
+	mov r0, #0
+	str r0, [sp, #0x10]
+	str r0, [sp, #0x14]
+	str r1, [sp, #0x18]
+	ldr r2, [sp, #0x30]
+	add r0, r4, #0
+	add r1, r6, #0
+	mov r3, #0x91
+	bl CastleWriteMsgSimple_Full_ov107_2247744
+	strb r0, [r4, #0xa]
+	add sp, #0x1c
+	pop {r4, r5, r6, r7, pc}
+}
+#endif
 
 //--------------------------------------------------------------------------------------------
 /**
@@ -3811,7 +3898,7 @@ asm static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 	str r3, [sp, #0x18]
 	add r1, #0x60
 	mov r3, #0x10
-	bl CastleWriteMsg
+	bl CastleWriteMsg_Full_ov107_2247680
 	strb r0, [r4, #0xa]
 	mov r0, #0x52
 	lsl r0, r0, #2
@@ -3835,7 +3922,7 @@ asm static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 	add r1, #0xd0
 	mov r2, #4
 	str r3, [sp, #0x14]
-	bl ov107_2247650
+	bl CastleWriteMsg
 	strb r0, [r4, #0xa]
 	add sp, #0x1c
 	pop {r3, r4, pc}
