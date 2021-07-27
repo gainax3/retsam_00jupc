@@ -139,10 +139,10 @@
 #define MINE_WIN_RENTAL_LIST_CGX	(MINE_WIN_BASIC_LIST_CGX + MINE_WIN_BASIC_LIST_SX * MINE_WIN_BASIC_LIST_SY)
 
 //「道具情報」(フレームを変えている)
-#define MINE_WIN_ITEMINFO_PX	(7)
-#define MINE_WIN_ITEMINFO_PY	(17)
-#define MINE_WIN_ITEMINFO_SX	(23)
-#define MINE_WIN_ITEMINFO_SY	(6)
+#define MINE_WIN_ITEMINFO_PX	(5) // MatchComment: 7 -> 5
+#define MINE_WIN_ITEMINFO_PY	(16) // MatchComment: 17 -> 16
+#define MINE_WIN_ITEMINFO_SX	(27) // MatchComment: 23 -> 27
+#define MINE_WIN_ITEMINFO_SY	(7) // MatchComment: 6 -> 7
 #define MINE_WIN_ITEMINFO_CGX	(MINE_WIN_TALK_CGX + MINE_WIN_TALK_SX *MINE_WIN_TALK_SY)
 
 //「はい・いいえ」(フレームを変えている)

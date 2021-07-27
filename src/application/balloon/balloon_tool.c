@@ -3044,7 +3044,7 @@ void BalloonTool_FontOamCreate(GF_BGL_INI *bgl, CATS_RES_PTR crp,
 	
 	//文字列のドット幅から、使用するキャラ数を算出する
 	{
-		font_len = FontProc_GetPrintStrWidth(font_type, str, margin);
+		font_len = FontProc_GetPrintMaxLineWidth(font_type, str, margin);
 		char_len = font_len / 8;
 		if(FX_ModS32(font_len, 8) != 0){
 			char_len++;

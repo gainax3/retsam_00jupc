@@ -600,7 +600,8 @@ static void Scratch_SetTouchBgGraphic( SCRATCH_WORK * wk, u32 frm  );
 
 //メッセージ
 static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
-extern u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+static u8 ScratchWriteMsg_ov111_21D2424( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+static u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 Scratch_KakuninMsg( SCRATCH_WORK* wk );
 //static u8 Scratch_CardNumMsg( SCRATCH_WORK* wk );
 static u8 Scratch_CardSelectMsg( SCRATCH_WORK* wk );
@@ -2771,6 +2772,62 @@ static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 }
 
+// NONMATCHING
+asm static u8 ScratchWriteMsg_ov111_21D2424( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #0x10
+	add r4, r1, #0
+	add r1, sp, #0x38
+	ldrb r1, [r1]
+	add r5, r0, #0
+	add r0, r4, #0
+	add r7, r2, #0
+	add r6, r3, #0
+	bl GF_BGL_BmpWinDataFill
+	ldr r0, [r5, #0x38]
+	ldr r2, [r5, #0x44]
+	add r1, r7, #0
+	bl MSGMAN_GetString
+	ldr r0, [r5, #0x3c]
+	ldr r1, [r5, #0x40]
+	ldr r2, [r5, #0x44]
+	bl WORDSET_ExpandStr
+	add r0, sp, #0x3c
+	ldrb r0, [r0]
+	ldr r1, [r5, #0x40]
+	mov r2, #0
+	bl FontProc_GetPrintStrWidth
+	add r0, r0, #1
+	lsr r0, r0, #1
+	sub r3, r6, r0
+	ldr r0, [sp, #0x28]
+	add r2, sp, #0x18
+	str r0, [sp]
+	ldr r0, [sp, #0x2c]
+	str r0, [sp, #4]
+	add r0, sp, #0x38
+	ldrb r1, [r0]
+	ldrb r0, [r2, #0x18]
+	ldrb r2, [r2, #0x1c]
+	lsl r0, r0, #0x18
+	lsl r2, r2, #0x18
+	lsr r0, r0, #8
+	lsr r2, r2, #0x10
+	orr r0, r2
+	orr r0, r1
+	str r0, [sp, #8]
+	mov r0, #0
+	str r0, [sp, #0xc]
+	add r1, sp, #0x3c
+	ldrb r1, [r1]
+	ldr r2, [r5, #0x40]
+	add r0, r4, #0
+	bl GF_STR_PrintColor
+	add sp, #0x10
+	pop {r3, r4, r5, r6, r7, pc}
+}
+
 //--------------------------------------------------------------
 /**
  * @brief	メッセージ表示(塗りつぶしなし)
@@ -2792,7 +2849,7 @@ static u8 ScratchWriteMsg( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32
  */
 //--------------------------------------------------------------
 // MatchComment: TODO__fix_me change back to static eventually
-#ifdef NONEQUIVALENT
+#ifndef NONEQUIVALENT
 u8 ScratchWriteMsgSimple( SCRATCH_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	MSGMAN_GetString( wk->msgman, msg_id, wk->tmp_buf );
@@ -2948,8 +3005,9 @@ static u8 Scratch_StartMsg( SCRATCH_WORK* wk )
 	//○まいめをセット
 	Scratch_SetNumber( wk, 0, (wk->card_num+1) );
 
-	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_START], msg_scratch_contents_10, 
-								8*1-1, 1+4, MSG_ALLPUT, 
+    // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, change 3rd (0-indexed) arg from 8*1-1 -> 8*6
+	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_START], msg_scratch_contents_10, 
+								8*6, 1+4, MSG_ALLPUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[BMPWIN_START] );
@@ -3006,8 +3064,9 @@ static u8 Scratch_HazureMsg( SCRATCH_WORK* wk )
 	u8 msg_index;
 
 	Snd_SePlay( SE_D_CARD_HAZURE );
-	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_HAZURE], msg_scratch_contents_12, 
-								8*3-1, 1+4, MSG_ALLPUT, 
+    // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, third (0-indexed) arg from 8*3-1 -> 8*6
+	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_HAZURE], msg_scratch_contents_12, 
+								8*6, 1+4, MSG_ALLPUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[BMPWIN_HAZURE] );
@@ -3027,8 +3086,9 @@ static u8 Scratch_NextMsg( SCRATCH_WORK* wk )
 {
 	u8 msg_index;
 
-	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_NEXT], msg_scratch_contents_05, 
-								4, 1, MSG_ALLPUT, 
+    // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, third (0-indexed) arg from 4 -> 8*6
+	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_NEXT], msg_scratch_contents_05, 
+								8*6, 1, MSG_ALLPUT, 
 								//FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_BUTTON );
 								FBMP_COL_BLACK,FBMP_COL_BLACK,FBMP_COL_NULL, FONT_BUTTON );
 
@@ -3049,8 +3109,9 @@ static u8 Scratch_YameruMsg( SCRATCH_WORK* wk )
 {
 	u8 msg_index;
 
-	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_YAMERU], msg_scratch_contents_06, 
-								4, 1, MSG_ALLPUT, 
+    // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, third (0-indexed) arg from 4 -> 8*3
+	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_YAMERU], msg_scratch_contents_06, 
+								8*3, 1, MSG_ALLPUT, 
 								//FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_BUTTON );
 								FBMP_COL_BLACK,FBMP_COL_BLACK,FBMP_COL_NULL, FONT_BUTTON );
 
@@ -3079,8 +3140,9 @@ static u8 Scratch_YakuMsg( SCRATCH_WORK* wk, u8 no )
 
 	//アイテム名
 	WORDSET_RegisterItemName( wk->wordset, 0, wk->atari_item[no] );
-	msg_index = ScratchWriteMsg(wk, &wk->bmpwin[BMPWIN_ITEM1+no], msg_scratch_contents_02, 
-								4, yaku_offset_y[no], MSG_ALLPUT, 
+    // MatchComment: ScratchWriteMsg -> ScratchWriteMsg_ov111_21D2424, third (0-indexed) arg from 4 -> 8*6-4
+	msg_index = ScratchWriteMsg_ov111_21D2424(wk, &wk->bmpwin[BMPWIN_ITEM1+no], msg_scratch_contents_02, 
+								8*6-4, yaku_offset_y[no], MSG_ALLPUT, 
 								FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BS_FONT );
 
 	//アイテム数

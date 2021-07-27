@@ -37,28 +37,28 @@
 #define WIN_YESNO_CGX		(WIN_TALK_CGX + WIN_TALK_SX * WIN_TALK_SY)
 
 //「アイテム名1」
-#define WIN_ITEM1_PX		(19)
+#define WIN_ITEM1_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM1_PY		(3)
 #define WIN_ITEM1_SX		(11)
 #define WIN_ITEM1_SY		(5)
 #define WIN_ITEM1_CGX		(WIN_YESNO_CGX + WIN_YESNO_SX * WIN_YESNO_SY)
 
 //「アイテム名2」
-#define WIN_ITEM2_PX		(19)
+#define WIN_ITEM2_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM2_PY		(8)
 #define WIN_ITEM2_SX		(11)
 #define WIN_ITEM2_SY		(5)
 #define WIN_ITEM2_CGX		(WIN_ITEM1_CGX + WIN_ITEM1_SX * WIN_ITEM1_SY)
 
 //「アイテム名3」
-#define WIN_ITEM3_PX		(19)
+#define WIN_ITEM3_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM3_PY		(14)
 #define WIN_ITEM3_SX		(11)
 #define WIN_ITEM3_SY		(5)
 #define WIN_ITEM3_CGX		(WIN_ITEM2_CGX + WIN_ITEM2_SX * WIN_ITEM2_SY)
 
 //「アイテム名4」
-#define WIN_ITEM4_PX		(19)
+#define WIN_ITEM4_PX		(17) // MatchComment: 19 -> 17
 #define WIN_ITEM4_PY		(19)
 #define WIN_ITEM4_SX		(11)
 #define WIN_ITEM4_SY		(5)

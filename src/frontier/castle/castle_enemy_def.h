@@ -101,7 +101,7 @@ enum{
 enum{
 	INFO_SINGLE_OFFSET_X	= (4*8),
 	INFO_MULTI_L_OFFSET_X	= (0),				//ペアのオフセット(Ｌ)
-	INFO_MULTI_R_OFFSET_X	= (16*8-4),			//ペアのオフセット(Ｒ)
+	INFO_MULTI_R_OFFSET_X	= (15*8),			//ペアのオフセット(Ｒ) // MatchComment: 16*8-4 -> 15*8
 
 	INFO_PLAYER_X			= (0), // MatchComment: 1 -> 0 
 	INFO_PLAYER_Y			= (0), // MatchComment: 1 -> 0

@@ -298,7 +298,8 @@ static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int m
 static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode );
 static u8 Castle_EasyMsg( CASTLE_ENEMY_WORK* wk, int msg_id, u8 font );
 static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
-static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y );
+// MatchComment: add arg a5_mode
+static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode );
 static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 );
 static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win );
@@ -2898,15 +2899,15 @@ asm static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 }
 #endif
 
-#ifdef NONEQUIVALENT
-static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y )
+#ifndef NONEQUIVALENT
+static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
 {
-	CastleWriteMsgSimple(	wk, win, msg, x, y, MSG_NO_PUT,
-							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT );
+	CastleWriteMsgSimple_Full_ov107_2247744(	wk, win, msg, x, y, MSG_NO_PUT,
+							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, a5_mode );
 	return;
 }
 #else
-asm static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y )
+asm static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
 {
 	push {r3, r4, lr}
 	sub sp, #0x1c
@@ -5440,7 +5441,7 @@ asm static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN*
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	strb r0, [r5, #0xa]
 	b _02248E46
 _02248CA2:
@@ -5496,7 +5497,7 @@ _02248CA2:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	add r1, sp, #0x28
 	strb r0, [r5, #0xa]
 	ldrh r0, [r1, #2]
@@ -5538,7 +5539,7 @@ _02248CA2:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	strb r0, [r5, #0xa]
 	b _02248E46
 _02248D7A:
@@ -5581,7 +5582,7 @@ _02248D7A:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	add r1, sp, #0x28
 	strb r0, [r5, #0xa]
 	ldrh r0, [r1, #2]
@@ -5632,7 +5633,7 @@ _02248D7A:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2247744
 	strb r0, [r5, #0xa]
 _02248E46:
 	add r0, r4, #0
