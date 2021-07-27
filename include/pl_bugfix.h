@@ -21,7 +21,8 @@
 //--------------------------------------------------------------
 
 /* 不思議な贈り物で余計なメッセージ待ちがある(3sec) */
-#define	PL_T0852_080709_FIX		( 0 )	///< comm_mystery_gift.c
+// MatchComment: enable this bugfix
+#define	PL_T0852_080709_FIX		( 1 )	///< comm_mystery_gift.c
 
 
 /*

@@ -9,3 +9,5 @@ make clean
 (cd sdk/NitroWiFi; make clobber)
 (cd sdk/NitroSystem; make clobber)
 (cd sdk/NitroSDK; make clobber)
+
+(cd platinum_rs; make clean)

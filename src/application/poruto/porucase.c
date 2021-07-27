@@ -572,10 +572,14 @@ static void PoruCase_BGLInit(PORU_CASE_WORK* wk)
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xf000,GX_BG_CHARBASE_0x10000,GX_BG_EXTPLTT_01,
 			1,0,0,FALSE},
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+		// カーソルが文字の下にならないように、優先度を変更
 		{	//MAIN BG2
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe800,GX_BG_CHARBASE_0x10000,GX_BG_EXTPLTT_01,
-			2,0,0,FALSE},
+			3,0,0,FALSE},
+		// ----------------------------------------------------------------------------
 		{	//MAIN BG3
 			0,0,0x800,0,GF_BGL_SCRSIZ_256x256,GX_BG_COLORMODE_16,
 			GX_BG_SCRBASE_0xe000,GX_BG_CHARBASE_0x00000,GX_BG_EXTPLTT_01,

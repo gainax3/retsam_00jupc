@@ -128,14 +128,19 @@ enum{
 #define BMPL_REC01_FRM	(GF_BGL_FRAME0_M)
 #define BMPL_REC01_PAL	(FONT_APP_PAL)
 //105
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/04/03
+// ç≈â∫çsÇ… 'g' Ç»Ç«ÇÃï∂éöÇ™Ç†ÇÈÇ∆â∫ë§Ç™êÿÇÍÇƒÇµÇ‹Ç§ÇÃÇèCê≥
+//105
 #define BMPL_REC02_PX	(10)
 #define BMPL_REC02_PY	(17)
 #define BMPL_REC02_SX	(21)
-#define BMPL_REC02_SY	(5)
+#define BMPL_REC02_SY	(6)
 #define BMPL_REC02_CGX_NUM	(BMPL_REC02_SX*BMPL_REC02_SY)
 #define BMPL_REC02_CGX	(BMPL_REC01_CGX+BMPL_REC01_CGX_NUM)
 #define BMPL_REC02_FRM	(GF_BGL_FRAME0_M)
 #define BMPL_REC02_PAL	(FONT_APP_PAL)
+// ----------------------------------------------------------------------------
 
 //
 #define BMPL_NAME_PX	(3)

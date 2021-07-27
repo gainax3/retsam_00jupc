@@ -515,11 +515,11 @@ enum{
 #define MCV_USERD_BTTW_TITLE_Y		(0)
 #define MCV_USERD_BTTW_LAST_X		(8)
 #define MCV_USERD_BTTW_LAST_Y		(24)
-#define MCV_USERD_BTTW_LASTNUM_X	(64)
+#define MCV_USERD_BTTW_LASTNUM_X	(120) // MatchComment: 64 -> 120
 #define MCV_USERD_BTTW_LASTNUM_Y	(24)
 #define MCV_USERD_BTTW_MAX_X		(8)
 #define MCV_USERD_BTTW_MAX_Y		(48)
-#define MCV_USERD_BTTW_MAXNUM_X		(64)
+#define MCV_USERD_BTTW_MAXNUM_X		(120) // MatchComment: 64 -> 120
 #define MCV_USERD_BTTW_MAXNUM_Y		(48)
 
 // PAGE3
@@ -566,15 +566,15 @@ enum{
 #define MCV_USERD_BTKS_K_Y			(24)
 #define MCV_USERD_BTKS_LAST_X		(8)
 #define MCV_USERD_BTKS_LAST_Y		(48)
-#define MCV_USERD_BTKS_LASTNUM_X	(64)
+#define MCV_USERD_BTKS_LASTNUM_X	(104) // MatchComment: 64 -> 104
 #define MCV_USERD_BTKS_LASTNUM_Y	(48)
-#define MCV_USERD_BTKS_LASTCPNUM_X	(184)
+#define MCV_USERD_BTKS_LASTCPNUM_X	(212) // MatchComment: 184 -> 212
 #define MCV_USERD_BTKS_LASTCPNUM_Y	(48)
 #define MCV_USERD_BTKS_MAX_X		(8)
 #define MCV_USERD_BTKS_MAX_Y		(80)
-#define MCV_USERD_BTKS_MAXNUM_X		(64)
+#define MCV_USERD_BTKS_MAXNUM_X		(104) // MatchComment: 64 -> 104
 #define MCV_USERD_BTKS_MAXNUM_Y		(80)
-#define MCV_USERD_BTKS_MAXCPNUM_X	(184)
+#define MCV_USERD_BTKS_MAXCPNUM_X	(212) // MatchComment: 184 -> 212
 #define MCV_USERD_BTKS_MAXCPNUM_Y	(80)
 
 // PAGE5
@@ -584,11 +584,11 @@ enum{
 #define MCV_USERD_BTST_K_Y			(24)
 #define MCV_USERD_BTST_LAST_X		(8)
 #define MCV_USERD_BTST_LAST_Y		(48)
-#define MCV_USERD_BTST_LASTNUM_X	(64)
+#define MCV_USERD_BTST_LASTNUM_X	(108) // MatchComment: 64 -> 108
 #define MCV_USERD_BTST_LASTNUM_Y	(48)
 #define MCV_USERD_BTST_MAX_X		(8)
 #define MCV_USERD_BTST_MAX_Y		(80)
-#define MCV_USERD_BTST_MAXNUM_X		(64)
+#define MCV_USERD_BTST_MAXNUM_X		(108) // MatchComment: 64 -> 108
 #define MCV_USERD_BTST_MAXNUM_Y		(80)
 
 // PAGE6
@@ -596,11 +596,11 @@ enum{
 #define MCV_USERD_BTRT_TITLE_Y		(0)
 #define MCV_USERD_BTRT_LAST_X		(8)
 #define MCV_USERD_BTRT_LAST_Y		(24)
-#define MCV_USERD_BTRT_LASTNUM_X	(64)
+#define MCV_USERD_BTRT_LASTNUM_X	(112) // MatchComment: 64 -> 112
 #define MCV_USERD_BTRT_LASTNUM_Y	(24)
 #define MCV_USERD_BTRT_MAX_X		(8)
 #define MCV_USERD_BTRT_MAX_Y		(48)
-#define MCV_USERD_BTRT_MAXNUM_X		(64)
+#define MCV_USERD_BTRT_MAXNUM_X		(112) // MatchComment: 64 -> 112
 #define MCV_USERD_BTRT_MAXNUM_Y		(48)
 
 // PAGE7
@@ -608,15 +608,15 @@ enum{
 #define MCV_USERD_MINI_TITLE_Y		(0)
 #define MCV_USERD_MINI_BC_X			(8)		// たまいれ
 #define MCV_USERD_MINI_BC_Y			(24)	
-#define MCV_USERD_MINI_BCNUM_X		(136)	// たまいれ　かず
+#define MCV_USERD_MINI_BCNUM_X		(164)	// たまいれ　かず // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BCNUM_Y		(24)
 #define MCV_USERD_MINI_BB_X			(8)		// たまのり
 #define MCV_USERD_MINI_BB_Y			(48)	
-#define MCV_USERD_MINI_BBNUM_X		(136)	// たまのり　かず
+#define MCV_USERD_MINI_BBNUM_X		(164)	// たまのり　かず // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BBNUM_Y		(48)
 #define MCV_USERD_MINI_BL_X			(8)		// ふうせん
 #define MCV_USERD_MINI_BL_Y			(72)	
-#define MCV_USERD_MINI_BLNUM_X		(136)	// ふうせん　かず
+#define MCV_USERD_MINI_BLNUM_X		(164)	// ふうせん　かず // MatchComment: 136 -> 164
 #define MCV_USERD_MINI_BLNUM_Y		(72)
 
 // フロンティア非表示スクリーン描画
@@ -2847,7 +2847,8 @@ static void MainMenuMsgInit(WIFIP2PMATCH_WORK *wk)
     // localize_spec_mark(LANG_ALL) imatake 2007/01/17
     // 「Ｗｉ?Ｆｉコネクションに　せつぞく」を中央寄せ
     {
-        u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_TALK, wk->TitleString, 0, TITLE_TEXT_SX * 8);
+        // MatchComment: call to FontProc_GetPrintCenteredPositionX uses FONT_SYSTEM instead of FONT_TALK
+        u32 xofs = FontProc_GetPrintCenteredPositionX(FONT_SYSTEM, wk->TitleString, 0, TITLE_TEXT_SX * 8);
         GF_STR_PrintColor( &wk->MyInfoWinBack, FONT_TALK, wk->TitleString, xofs, 0, MSG_NO_PUT,_COL_N_WHITE, NULL);
     }
     // ----------------------------------------------------------------------------
@@ -11210,7 +11211,8 @@ static void MCVSys_OamBttnInit( WIFIP2PMATCH_WORK *wk, ARCHANDLE* p_handle, u32 
 
     {
         // 文字列を書き込む
-        width = -((FontProc_GetPrintStrWidth(FONT_BUTTON, wk->TitleString, 0) + 1) / 2);
+        // MatchComment: use FONT_SYSTEM instead of FONT_BUTTON for FontProc_GetPrintStrWidth call
+        width = -((FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->TitleString, 0) + 1) / 2);
         GF_STR_PrintColor( &bttn_font, FONT_BUTTON, p_str, 0, 0, MSG_NO_PUT, GF_PRINTCOLOR_MAKE(1,2,0), NULL );
     }
 

@@ -143,8 +143,12 @@ void FontOam_ResourceLoad(CB_MAIN_WORK* cbmw)
 void FontOam_Add(CB_MAIN_WORK* cbmw)
 {
 	FontOam_ResourceLoad(cbmw);
-	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_1,  78, 165, 0);
-	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_2, 172, 165, 0);
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+	// ボタンのテキストを自動で中央寄せに
+	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_1, 104, 165, 0);
+	FontOam_Create(cbmw, CB_ENUM_WIN_B_BTN_2, 192, 165, 0);
+	// ----------------------------------------------------------------------------
 }
 
 void FontOam_Enable(CB_MAIN_WORK* cbmw, BOOL flag)
@@ -153,7 +157,7 @@ void FontOam_Enable(CB_MAIN_WORK* cbmw, BOOL flag)
 	FONTOAM_SetDrawFlag(cbmw->sys.font_obj[ 1 ], flag);
 }
 
-#ifdef NONEQUIVALENT
+#ifndef NONEQUIVALENT
 void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 {
 	FONTOAM_INIT	finit;
@@ -188,7 +192,11 @@ void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 	finit.pltt			= CATS_PlttProxy(cbmw->sys.crp, pal_id);
 	finit.parent		= NULL;
 	finit.char_ofs		= cbmw->sys.font_vram[ no ].alloc_ofs;
-	finit.x				= x;
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+	// ボタンのテキストを自動で中央寄せに
+	finit.x				= x - FontProc_GetPrintStrWidth( FONT_BUTTON, str, 0 ) / 2;
+	// ----------------------------------------------------------------------------
 	finit.y				= y + 192;
 	finit.bg_pri		= CB_ENUM_BG_PRI_B_OBJ2;
 	finit.soft_pri		= 40;

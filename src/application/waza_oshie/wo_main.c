@@ -421,7 +421,11 @@ static const BMPWIN_DAT BmpWinData[] =
 static const BMPLIST_HEADER BagItemList = {
 	NULL, CB_WazaListMove, CB_WazaListWrite, NULL,
 	0, 7, 0,
-	0, 0,			// 項目X, カーソルX
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2006/12/18
+	// わざ名とタイプアイコンの間隔を「つよさをみる」画面と同じだけ確保
+	2, 0,			// 項目X, カーソルX
+	// ----------------------------------------------------------------------------
 	0,				// 表示Y
 	FBMP_COL_BLACK, FBMP_COL_NULL, FBMP_COL_BLK_SDW,
 	0, 16,						// 文字間隔Ｙ
@@ -501,7 +505,11 @@ static const TCATS_OBJECT_ADD_PARAM_S ClactParamTbl[] =
 		SEL_CURSOR_PX, SEL_CURSOR_PY, 0,
 		0, 0, 0, NNS_G2D_VRAM_TYPE_2DMAIN,
 		{ WO_CHR_ID_CURSOR, WO_PAL_ID_OBJ, WO_CEL_ID_CURSOR, WO_ANM_ID_CURSOR, 0, 0 },
-		2, 0
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+		// 文字がカーソルの上に来ないように修正
+		1, 0
+		// ----------------------------------------------------------------------------
 	},
 	{	// 分類アイコン
 		KIND_ICON_PX, KIND_ICON_PY, 0,
@@ -1610,23 +1618,43 @@ static void BattleWazaParamPut( WO_WORK * wk, u32 prm )
 		if( tmp <= 1 ){
 			MSGMAN_GetString( wk->mman, msg_waza_oboe_01_12, wk->mbuf );
 		}else{
-			NumPrmSet( wk, msg_waza_oboe_01_08, tmp, 3, NUM_MODE_LEFT );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+			// いりょくの値を右揃えした上で中央寄せに
+			NumPrmSet( wk, msg_waza_oboe_01_08, tmp, 3, NUM_MODE_SPACE );
+			// ----------------------------------------------------------------------------
 		}
-		StrPut( wk, WIN_PRM_ATTACK, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_RIGHT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+		// いりょくの値を右揃えした上で中央寄せに
+		StrPut( wk, WIN_PRM_ATTACK, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
+		// ----------------------------------------------------------------------------
 
 		// 命中
 		tmp = WT_WazaDataParaGet( prm, ID_WTD_hitprobability );
 		if( tmp == 0 ){
 			MSGMAN_GetString( wk->mman, msg_waza_oboe_01_12, wk->mbuf );
 		}else{
-			NumPrmSet( wk, msg_waza_oboe_01_09, tmp, 3, NUM_MODE_LEFT );
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+			// めいちゅうの値を右揃えした上で中央寄せに
+			NumPrmSet( wk, msg_waza_oboe_01_09, tmp, 3, NUM_MODE_SPACE );
+			// ----------------------------------------------------------------------------
 		}
-		StrPut( wk, WIN_PRM_HIT, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_RIGHT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+		// めいちゅうの値を右揃えした上で中央寄せに
+		StrPut( wk, WIN_PRM_HIT, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
+		// ----------------------------------------------------------------------------
 
 		// PP/MPP
 		tmp = WT_PPMaxGet( prm, 0 );
 		NumPrmSet( wk, msg_waza_oboe_01_10, tmp, 2, NUM_MODE_LEFT );
-		StrPut( wk, WIN_PRM_PP, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_RIGHT );
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2006/12/21
+		// PPの値を中央寄せに
+		StrPut( wk, WIN_PRM_PP, FONT_SYSTEM, WOFCOL_N_BLACK, STR_MODE_CENTER );
+		// ----------------------------------------------------------------------------
 
 		// 説明
 		mman = MSGMAN_Create(

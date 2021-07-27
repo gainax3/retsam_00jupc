@@ -990,8 +990,9 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
 		// タイトルロゴを海外版のものに差し替え
 		GF_BGL_BGCNT_HEADER DPlogo_Data = {
-			0, 0, 0x0800, 0,
-			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
+            // Actually, don't use this localization change (kept old data)
+			0, 0, 0x1000, 0,
+			GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x3000, GX_BG_CHARBASE_0x08000,
 			GX_BG_EXTPLTT_01, 0, 0, 0, FALSE
 		};
@@ -1003,8 +1004,9 @@ static void Title2DBgSet( TITLE_DEMO_WORK* wk )
 		// localize_spec_mark(LANG_ALL) imatake 2007/01/31
 		// タイトルロゴを海外版のものに差し替え
 		GF_BGL_BGCNT_HEADER Titlelogo_Data = {
-			0, 0, 0x0800, 0,
-			GF_BGL_SCRSIZ_256x256, GX_BG_COLORMODE_256,
+            // Actually, don't use this localization change (kept old data)
+			0, 0, 0x1000, 0,
+			GF_BGL_SCRSIZ_512x256, GX_BG_COLORMODE_256,
 			GX_BG_SCRBASE_0x3800, GX_BG_CHARBASE_0x10000,
 			GX_BG_EXTPLTT_23, 0, 0, 0, FALSE
 		};

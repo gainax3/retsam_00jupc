@@ -280,6 +280,7 @@ typedef struct {
 	// アンケート情報
 	DWC_ANKETO_DATA anketo;
 	
+    PPW_LOBBY_RESULT unk984; // MatchComment: new field, TODO__fix_me what is this? referenced in DWC_LOBBY_GetErr and DWC_LOBBY_LoginEx
 	//
 	// 今後のポケモンバージョンでは下に追加していく
 	//
@@ -737,7 +738,6 @@ BOOL DWC_LOBBY_Login( const void* cp_loginprofile )
  *		PPW_LOBBY_CHANNEL_PREFIX_DEBUG9
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 {
 	PPW_LobbyCallbacks	callbacks;
@@ -771,7 +771,8 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 		DWCUserData*		p_dwcuser;
 		
 		p_dwcuser = WifiList_GetMyUserInfo( p_DWC_LOBBYLIB_WK->p_wifilist );
-		result = PPW_LobbyInitializeAsync( DWC_LOBBY_GAMENAME,
+        // MatchComment: store result in struct field
+		p_DWC_LOBBYLIB_WK->unk984 = PPW_LobbyInitializeAsync( DWC_LOBBY_GAMENAME,
 				DWC_LOBBY_SECRET_KEY, 
 				prefix,
 				&callbacks, 
@@ -782,106 +783,9 @@ BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
 	}
 
 	// エラーチェック
-	return DWC_LOBBY_CheckCommonErr( result );
+    // MatchComment: use value from p_DWC_LOBBYLIB_WK->unk984 instead of result
+	return DWC_LOBBY_CheckCommonErr( p_DWC_LOBBYLIB_WK->unk984 );
 }
-#else
-u8 rodata_DWC_LOBBY_GAMENAME[] = DWC_LOBBY_GAMENAME;
-u8 rodata_DWC_LOBBY_SECRET_KEY[] = DWC_LOBBY_SECRET_KEY;
-
-asm BOOL DWC_LOBBY_LoginEx( const void* cp_loginprofile, u32 prefix )
-{
-	push {r3, r4, r5, lr}
-	sub sp, #0x50
-	add r5, r0, #0
-	ldr r0, =p_DWC_LOBBYLIB_WK // _022327B0
-	add r4, r1, #0
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	bne _02232734
-	bl GF_AssertFailedWarningCall
-_02232734:
-	ldr r0, =DWC_LOBBY_CallBack_JoinChannel // _022327A8
-	str r0, [sp, #0xc]
-	ldr r0, =DWC_LOBBY_CallBack_Connect // _022327AC
-	str r0, [sp, #0x10]
-	ldr r0, =DWC_LOBBY_CallBack_DesconnectedChannel // _022327B0
-	str r0, [sp, #0x14]
-	ldr r0, =DWC_LOBBY_CallBack_StringMessageRecv // _022327B4
-	str r0, [sp, #0x18]
-	ldr r0, =DWC_LOBBY_CallBack_BynaryMessageRecv // _022327B8
-	str r0, [sp, #0x1c]
-	ldr r0, =DWC_LOBBY_CallBack_ChannelDataRecv // _022327BC
-	str r0, [sp, #0x20]
-	ldr r0, =DWC_LOBBY_CallBack_SystemProfileUpdate // _022327C0
-	str r0, [sp, #0x24]
-	ldr r0, =DWC_LOBBY_CallBack_UserProfileUpdate // _022327C4
-	str r0, [sp, #0x28]
-	ldr r0, =DWC_LOBBY_CallBack_Recruit // _022327C8
-	str r0, [sp, #0x2c]
-	ldr r0, =DWC_LOBBY_CallBack_RecruitStop // _022327CC
-	str r0, [sp, #0x30]
-	ldr r0, =DWC_LOBBY_CallBack_Schedule // _022327D0
-	str r0, [sp, #0x34]
-	ldr r0, =DWC_LOBBY_CallBack_CheckProfile // _022327D4
-	str r0, [sp, #0x38]
-	ldr r0, =DWC_LOBBY_CallBack_NotifySchedule // _022327D8
-	str r0, [sp, #0x3c]
-	ldr r0, =DWC_LOBBY_CallBack_Vip // _022327DC
-	str r0, [sp, #0x40]
-	ldr r0, =DWC_LOBBY_CallBack_Anketo // _022327E0
-	str r0, [sp, #0x44]
-	ldr r0, =DWC_LOBBY_CallBack_AnketoSubmit // _022327E4
-	str r0, [sp, #0x48]
-	ldr r0, =DWC_LOBBY_CallBack_ExcessFlood // _022327E8
-	str r0, [sp, #0x4c]
-	ldr r0, =p_DWC_LOBBYLIB_WK // _022327B0
-	ldr r0, [r0, #0]
-	ldr r0, [r0, #4]
-	bl WifiList_GetMyUserInfo
-	str r0, [sp]
-	ldr r0, =p_DWC_LOBBYLIB_WK // _022327B0
-	str r5, [sp, #4]
-	ldr r0, [r0, #0]
-	ldr r1, =rodata_DWC_LOBBY_SECRET_KEY // _022327F8
-	ldr r0, [r0, #0x28]
-	add r2, r4, #0
-	str r0, [sp, #8]
-	ldr r0, =rodata_DWC_LOBBY_GAMENAME // _022327FC
-	add r3, sp, #0xc
-	bl PPW_LobbyInitializeAsync
-	ldr r2, =p_DWC_LOBBYLIB_WK // _022327B0
-	ldr r1, =0x00000984 // _02232800
-	ldr r3, [r2, #0]
-	str r0, [r3, r1]
-	ldr r0, [r2, #0]
-	ldr r0, [r0, r1]
-	bl DWC_LOBBY_CheckCommonErr
-	add sp, #0x50
-	pop {r3, r4, r5, pc}
-	nop
-// _022327B0: .4byte p_DWC_LOBBYLIB_WK
-// _022327B4: .4byte 0x02233B55
-// _022327B8: .4byte 0x02233BF1
-// _022327BC: .4byte 0x02233C61
-// _022327C0: .4byte 0x02233CE5
-// _022327C4: .4byte 0x02233CE9
-// _022327C8: .4byte 0x02233D95
-// _022327CC: .4byte 0x02233DD5
-// _022327D0: .4byte 0x02233E51
-// _022327D4: .4byte 0x02233E8D
-// _022327D8: .4byte 0x02233F19
-// _022327DC: .4byte 0x02233F61
-// _022327E0: .4byte 0x02233F75
-// _022327E4: .4byte 0x02233FA1
-// _022327E8: .4byte 0x02233FC1
-// _022327EC: .4byte 0x02233FED
-// _022327F0: .4byte 0x02234019
-// _022327F4: .4byte 0x02234041
-// _022327F8: .4byte 0x02258E14
-// _022327FC: .4byte 0x02258E04
-// _02232800: .4byte 0x00000984
-}
-#endif
 
 
 //----------------------------------------------------------------------------
@@ -1043,7 +947,8 @@ void DWC_LOBBY_SetMyProfile( const void* cp_data )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 	DWC_LOBBY_Profile_SetData( p_DWC_LOBBYLIB_WK, PPW_LobbyGetMyUserId(), cp_data );
-	PPW_LobbyUpdateMyProfile( cp_data, p_DWC_LOBBYLIB_WK->profilesize, TRUE );
+    // MatchComment: TRUE -> FALSE
+	PPW_LobbyUpdateMyProfile( cp_data, p_DWC_LOBBYLIB_WK->profilesize, FALSE );
 }
 
 //----------------------------------------------------------------------------

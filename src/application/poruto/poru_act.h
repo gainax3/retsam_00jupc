@@ -27,7 +27,11 @@ typedef enum{
 )
 
 #define NACT_CUR_PX	(105)
-#define NACT_CUR_PY	(39)
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/01/15
+// カーソルが g や y の下端と重ならないように1ピクセル下へ移動
+#define NACT_CUR_PY	(40)
+// ----------------------------------------------------------------------------
 #define NACT_CUR_SY	(16)
 #define NACT_UP_PX	(80)
 #define NACT_DOWN_PX	(80)

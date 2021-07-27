@@ -584,8 +584,9 @@ extern void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, in
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
 // x ç¿ïWéwíËÇÃÇ≈Ç´ÇÈ WorldTrade_WantLevelPrint() ìØìôä÷êîÇópà”
-void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, u32 a6, int x );
-void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color );
+// MatchComment: retain arg tbl_select to both functions
+void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x );
+void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select );
 // ----------------------------------------------------------------------------
 extern void WorldTrade_CountryPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *nameman, MSGDATA_MANAGER *msgman, int country_code, int flag, int y, GF_PRINTCOLOR color );
 extern void WorldTrade_PostPokemonBaseDataMake( Dpw_Tr_Data *dtd, WORLDTRADE_WORK *wk );

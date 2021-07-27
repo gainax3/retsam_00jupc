@@ -29,73 +29,17 @@ static const struct{
 	char ascii_code;
 	u8 padding;
 }AsciiConvertTbl[] = {
-	{n0_,'0'},
-	{n1_,'1'},
-	{n2_,'2'},
-	{n3_,'3'},
-	{n4_,'4'},
-	{n5_,'5'},
-	{n6_,'6'},
-	{n7_,'7'},
-	{n8_,'8'},
-	{n9_,'9'},
-	{period_,'.'},
-	{bou_,'-'},
-	{under_,'_'},
-	{anpersand_,'&'},
-	{atmark_,'@'},
-	{A__,'A'},
-	{B__,'B'},
-	{C__,'C'},
-	{D__,'D'},
-	{E__,'E'},
-	{F__,'F'},
-	{G__,'G'},
-	{H__,'H'},
-	{I__,'I'},
-	{J__,'J'},
-	{K__,'K'},
-	{L__,'L'},
-	{M__,'M'},
-	{N__,'N'},
-	{O__,'O'},
-	{P__,'P'},
-	{Q__,'Q'},
-	{R__,'R'},
-	{S__,'S'},
-	{T__,'T'},
-	{U__,'U'},
-	{V__,'V'},
-	{W__,'W'},
-	{X__,'X'},
-	{Y__,'Y'},
-	{Z__,'Z'},
-	{a__,'a'},
-	{b__,'b'},
-	{c__,'c'},
-	{d__,'d'},
-	{e__,'e'},
-	{f__,'f'},
-	{g__,'g'},
-	{h__,'h'},
-	{i__,'i'},
-	{j__,'j'},
-	{k__,'k'},
-	{l__,'l'},
-	{m__,'m'},
-	{n__,'n'},
-	{o__,'o'},
-	{p__,'p'},
-	{q__,'q'},
-	{r__,'r'},
-	{s__,'s'},
-	{t__,'t'},
-	{u__,'u'},
-	{v__,'v'},
-	{w__,'w'},
-	{x__,'x'},
-	{y__,'y'},
-	{z__,'z'},
+    // MatchComment: use h_n constants instead of n constants, also only keep 0-9
+	{h_n0_,'0'},
+	{h_n1_,'1'},
+	{h_n2_,'2'},
+	{h_n3_,'3'},
+	{h_n4_,'4'},
+	{h_n5_,'5'},
+	{h_n6_,'6'},
+	{h_n7_,'7'},
+	{h_n8_,'8'},
+	{h_n9_,'9'},
 };
 
 
@@ -271,3 +215,101 @@ void Email_Ascii_to_Strcode(char *src, STRBUF *dest, int heap_id)
 	sys_FreeMemoryEz(code);
 }
 
+// NONMATCHING
+asm void ov98_2249A80(void)
+{
+	push {r4, r5, r6, lr}
+	add r6, r0, #0
+	add r0, r1, #0
+	mov r1, #0xc8
+	mov r5, #1
+	bl sys_AllocMemory
+	add r4, r0, #0
+	add r0, r6, #0
+	add r1, r4, #0
+	mov r2, #0x64
+	bl STRBUF_GetStringCode
+	ldrh r1, [r4]
+	ldr r0, =0x0000FFFF // _02249AC4
+	cmp r1, r0
+	beq _02249AB8
+	ldr r1, =0x00000121 // _02249AC8
+	add r3, r4, #0
+_02249AA6:
+	ldrh r2, [r3]
+	cmp r2, r1
+	beq _02249AB0
+	mov r5, #0
+	b _02249AB8
+_02249AB0:
+	add r3, r3, #2
+	ldrh r2, [r3]
+	cmp r2, r0
+	bne _02249AA6
+_02249AB8:
+	add r0, r4, #0
+	bl sys_FreeMemoryEz
+	add r0, r5, #0
+	pop {r4, r5, r6, pc}
+	nop
+// _02249AC4: .4byte 0x0000FFFF
+// _02249AC8: .4byte 0x00000121
+}
+
+// NONMATCHING
+asm void ov98_2249ACC(void)
+{
+	push {r3, r4, r5, r6, r7, lr}
+	sub sp, #8
+	mov r4, #0
+	add r5, r0, #0
+	add r7, r1, #0
+	str r4, [sp, #4]
+_02249AD8:
+	mov r0, #0
+	str r0, [r7, #0]
+	str r0, [sp]
+	b _02249B14
+_02249AE0:
+	cmp r0, #0
+	bne _02249AEC
+	bne _02249AFA
+	bl GF_AssertFailedWarningCall
+	b _02249AFA
+_02249AEC:
+	add r4, r4, #1
+_02249AEE:
+	ldrsb r0, [r5, r4]
+	add r6, r5, r4
+	cmp r0, #0x30
+	blt _02249AE0
+	cmp r0, #0x39
+	bgt _02249AE0
+_02249AFA:
+	ldr r1, [r7, #0]
+	mov r0, #0xa
+	mul r0, r1
+	str r0, [r7, #0]
+	mov r1, #0
+	ldrsb r1, [r6, r1]
+	add r4, r4, #1
+	sub r1, #0x30
+	add r0, r0, r1
+	str r0, [r7, #0]
+	ldr r0, [sp]
+	add r0, r0, #1
+	str r0, [sp]
+_02249B14:
+	ldr r0, [sp]
+	cmp r0, #4
+	blt _02249AEE
+	ldr r0, [sp, #4]
+	add r7, r7, #4
+	add r0, r0, #1
+	str r0, [sp, #4]
+	cmp r0, #4
+	blt _02249AD8
+	add sp, #8
+	pop {r3, r4, r5, r6, r7, pc}
+	// .align 2, 0
+}

@@ -139,7 +139,8 @@ int WorldTrade_Partner_Init(WORLDTRADE_WORK *wk, int seq)
 
 	// 持ち主情報の表示
 	pp = (POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data;
-	WorldTrade_PokeInfoPrint2( wk->MsgManager, &wk->InfoWin[5], wk->DownloadPokemonData[wk->TouchTrainerPos].name, pp, &wk->InfoWin[11] );
+    // MatchComment: 11 -> 10 (fixes out of bounds array UB)
+	WorldTrade_PokeInfoPrint2( wk->MsgManager, &wk->InfoWin[5], wk->DownloadPokemonData[wk->TouchTrainerPos].name, pp, &wk->InfoWin[10] );
 
 	// ポケモン画像転送
 	WorldTrade_TransPokeGraphic( (POKEMON_PARAM*)wk->DownloadPokemonData[wk->TouchTrainerPos].postData.data );
@@ -396,19 +397,23 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
 // 情報ウィンドウを整理統合
+// localize_spec_mark(LANG_ALL) imatake 2007/11/29
+// もちものが最大文字数のときに韓国語ではみ出しが起こるのに対処
+// MatchComment: just redump the matching data from plat US
+// two new entries at the bottom
 static const info_bmpwin_table[][4]={
-	{  2,  2, 10,  2, },	// ポケモンのニックネーム
-	{  3,  4,  8,  2, },	// ポケモンの種族名
-	{  12, 4,  7,  2, },	// レベル●●
-	{  2,  7,  5,  2, },	// 「もちもの」
-	{  8,  7, 11,  2, },	// 所持アイテム名
-	{  4, 10,  6,  2, },	// 「もちぬし」
-	{ 11, 10,  8,  2, },	// トレーナー名
+	{  1,  2, 10,  2, },	// ポケモンのニックネーム
+	{ 12,  2,  8,  2, },	// ポケモンの種族名
+	{ 14,  4,  7,  2, },	// レベル●●
+	{  1,  7,  6,  2, },	// 「もちもの」
+	{  7,  7, 11,  2, },	// 所持アイテム名
+	{  2, 10,  9,  2, },	// 「もちぬし」
+	{ 12, 10,  8,  2, },	// トレーナー名
 	{  3, 13,  9,  2, },	// 「ほしいポケモン」
 	{ 16, 13, 13,  2, },	// 「すんでいるばしょ」//154
 	{  2, 15, 28,  5, },	// 情報
-    {  1,  5,  5,  2  }, // MatchComment: add these two entries
-    {  7,  5,  7,  2  },
+	{  1,  5,  5,  2, },
+	{  7,  5,  7,  2, },
 };
 // ----------------------------------------------------------------------------
 
@@ -419,7 +424,8 @@ static const info_bmpwin_table[][4]={
 // はい・いいえのBMPWIN領域は最後にもってきたいのだが、
 // 情報ウインドウの総数がよめないので、204キャラずらしておく
 // （届いてしまったので204キャラに変えた by Mori (06.05.09)
-#define YESNO_OFFSET 		   ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY+262+64 )
+// MatchComment: add 36
+#define YESNO_OFFSET 		   ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY+262+64+36)
 
 // ---------------------------------------------------------------------------
 

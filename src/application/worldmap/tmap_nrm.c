@@ -679,7 +679,11 @@ static void TMapN_ZoneNameWrite(TMAP_MAIN_DAT *pMain,GF_BGL_BMPWIN* win,int zone
 		if(pMain->mode == TMAP_MJUMP){
 			siz = BMPL_M01_NSX;
 		}else{
-			siz = (BMPL_M01_SX*8)-FontProc_GetPrintStrWidth(FONT_SYSTEM,pMain->placeName,0);
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2006/11/28
+			// 地名の表示位置を、ウィンドウの中心ではなくスクリーンの中心に
+			siz = (BMPL_M01_SX-BMPL_M01_PX)*8-FontProc_GetPrintStrWidth(FONT_SYSTEM,pMain->placeName,0);
+			// ----------------------------------------------------------------------------
 			siz/=2;
 		}
 		GF_STR_PrintColor(	win,

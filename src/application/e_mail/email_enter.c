@@ -2894,7 +2894,8 @@ static int Enter_AuthenticateReturn(EMAIL_MENU_WORK *wk)
 						OS_TPrintf(" 認証失敗\n");
 						//再入力へ
 						Enter_MessagePrint( wk, wk->EmailMsgManager, msg_email_105_06, 1, 0x0f0f );
-						Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_AUTH_INPUT_PROC_CHANGE );
+                        // MatchComment: ENTER_AUTH_INPUT_PROC_CHANGE -> ENTER_AUTH_MAIL_END_YESNO
+						Email_SetNextSeq( wk, ENTER_MES_WAIT, ENTER_AUTH_MAIL_END_YESNO );
 						break;
 					//以下のエラー処理はこのシーンでは想定していないメール認証の結果が返った場合
 					// (自分の友達コードが変化したときに以前と同じメールアドレスとパスワードを送
@@ -3509,43 +3510,10 @@ static int Enter_MessagePrintEndCheck(int msg_index)
 	return TRUE;	//メッセージ処理続行中
 }
 
+extern void ov98_2249798(void);
+// NONMATCHING
 
-
-
-//------------------------------------------------------------------
-/**
- * @brief   
- *
- * @param   win		
- * @param   strbuf		
- * @param   flag		1だとセンタリング、２だと右よせ
- * @param   color		
- * @param   font		フォント指定（FONT_TALKかFONT_SYSTEM
- *
- * @retval  int		
- */
-//------------------------------------------------------------------
-#ifdef NONEQUIVALENT
-static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
-{
-	int length=0,ground;
-	switch(flag){
-	// センタリング
-	case 1:
-		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
-		x          = ((win->sizx*8)-length)/2;
-		break;
-
-	// 右寄せ
-	case 2:
-		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
-		x          = (win->sizx*8)-length;
-		break;
-	}
-	return x;
-}
-#else
-asm static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
+asm void ov98_2249798(void)
 {
 	push {r3, r4, lr}
 	sub sp, #4
@@ -3599,7 +3567,6 @@ _022497EE:
 	// .align 2, 0
 // _022497F4: .4byte 0x00000F0F
 }
-#endif
 
 extern void ov98_22497F8(void);
 // NONMATCHING
@@ -3639,7 +3606,7 @@ _02249820:
 	bl EMAILSAVE_AddressGet
 	add r1, sp, #8
 	mov r2, #0x6c
-	bl NitroMain // FUN_02249ACC
+	bl ov98_2249ACC
 	mov r4, #0
 	add r5, sp, #8
 	mov r7, #2
@@ -3685,10 +3652,40 @@ _02249888:
 // _02249890: .4byte 0x00000F0F
 }
 
-extern void ov98_2249894(void);
-// NONMATCHING
+#ifndef NONEQUIVALENT
+//------------------------------------------------------------------
+/**
+ * @brief   
+ *
+ * @param   win		
+ * @param   strbuf		
+ * @param   flag		1だとセンタリング、２だと右よせ
+ * @param   color		
+ * @param   font		フォント指定（FONT_TALKかFONT_SYSTEM
+ *
+ * @retval  int		
+ */
+//------------------------------------------------------------------
+static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
+{
+	int length=0,ground;
+	switch(flag){
+	// センタリング
+	case 1:
+		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
+		x          = ((win->sizx*8)-length)/2;
+		break;
 
-asm void ov98_2249894(void)
+	// 右寄せ
+	case 2:
+		length = FontProc_GetPrintStrWidth( font, strbuf, 0 );
+		x          = (win->sizx*8)-length;
+		break;
+	}
+	return x;
+}
+#else
+asm static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
 {
 	push {r4, lr}
 	add r4, r0, #0
@@ -3720,6 +3717,7 @@ _022498C6:
 	pop {r4, pc}
 	// .align 2, 0
 }
+#endif
 
 //------------------------------------------------------------------
 /**

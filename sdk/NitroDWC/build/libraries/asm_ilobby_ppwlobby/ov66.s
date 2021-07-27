@@ -35227,7 +35227,9 @@ ov66_rodata:
 	.data
 	.global ov66_data
 ov66_data:
-	.incbin "ov66_data.bin"
+	.incbin "ov66_data_pt1.bin"
+	.word 0x2250aa8 // this needed because of a bug in mwasmarm.exe that is replacing 0xa (newline) with 0xd (carriage return)
+	.incbin "ov66_data_pt2.bin"
 
 	.bss
 	.global ov66_bss

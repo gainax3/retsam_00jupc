@@ -83,6 +83,12 @@ static void ReturnFuncCall_AddressInput(EMAIL_SYSWORK *esys);
 static void * SubFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys);
 static void ReturnFuncCall_GSProfileIDGet(EMAIL_SYSWORK *esys);
 
+static void * ov98_2246FC4(EMAIL_SYSWORK *esys);
+static void ov98_2246FFC(EMAIL_SYSWORK *esys);
+static void * ov98_2247070(EMAIL_SYSWORK *esys);
+static void ov98_22470B8(EMAIL_SYSWORK *esys);
+static void * ov98_22470F8(EMAIL_SYSWORK *esys);
+static void ov98_2247134(EMAIL_SYSWORK *esys);
 
 //==============================================================================
 //	PROCデータ
@@ -145,12 +151,12 @@ static const struct{
 	const PROC_DATA *proc_data;
 	int comm_free_call;			//TRUE＝通信ライブラリなどを解放した状態でPROCを作る
 }EmailProcDataTbl[] = {
+    // MatchComment: use matching plat US data
 	{SubFuncCall_EmailMenu, ReturnFuncCall_EmailMenu, &EmailMenuProcData, FALSE},
-	// MatchComment: remove these?
-    //{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
-	//{SubFuncCall_AddressInput, ReturnFuncCall_AddressInput, &EMail_ProcData, FALSE},
+	{ov98_2246FC4, ov98_2246FFC, &CodeInput_ProcData, FALSE},
+	{ov98_2247070, ov98_22470B8, &CodeInput_ProcData, FALSE},
+	{ov98_22470F8, ov98_2247134, &CodeInput_ProcData, FALSE},
+	{ov98_22470F8, ov98_2247134, &CodeInput_ProcData, FALSE},
 	{SubFuncCall_GSProfileIDGet, ReturnFuncCall_GSProfileIDGet, &WifiP2PMatchProcData, TRUE},
 };
 
@@ -684,9 +690,8 @@ static void ReturnFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
 	;
 }
 
-extern void ov98_2246FC4(void);
 // NONMATCHING
-asm void ov98_2246FC4(void)
+asm void * ov98_2246FC4(EMAIL_SYSWORK *esys)
 {
 	push {r4, lr}
 	sub sp, #0x18
@@ -716,9 +721,8 @@ asm void ov98_2246FC4(void)
 	pop {r4, pc}
 }
 
-extern void ov98_2246FFC(void);
 // NONMATCHING
-asm void ov98_2246FFC(void)
+asm void ov98_2246FFC(EMAIL_SYSWORK *esys)
 {
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
@@ -726,7 +730,7 @@ asm void ov98_2246FFC(void)
 	ldr r4, [r0, #0]
 	mov r1, #0x6c
 	ldr r0, [r4, #0x1c]
-	bl NitroMain // FUN_02249A80
+	bl ov98_2249A80
 	cmp r0, #0
 	beq _0224701A
 	add r0, r5, #0
@@ -774,9 +778,8 @@ _0224705C:
 	// .align 2, 0
 }
 
-extern void ov98_2247070(void);
 // NONMATCHING
-asm void ov98_2247070(void)
+asm void * ov98_2247070(EMAIL_SYSWORK *esys)
 {
 	push {r4, lr}
 	sub sp, #0x20
@@ -814,11 +817,10 @@ asm void ov98_2247070(void)
 	// .align 2, 0
 }
 
-extern void ov98_22470B8(void);
 extern void _ull_mod(void);
 // NONMATCHING
 
-asm void ov98_22470B8(void)
+asm void ov98_22470B8(EMAIL_SYSWORK *esys)
 {
 	push {r3, r4, r5, lr}
 	add r5, r0, #0
@@ -849,9 +851,8 @@ _022470E0:
 // _022470F4: .4byte 0x00002710
 }
 
-extern void ov98_22470F8(void);
 // NONMATCHING
-asm void ov98_22470F8(void)
+asm void * ov98_22470F8(EMAIL_SYSWORK *esys)
 {
 	push {r4, lr}
 	sub sp, #0x18
@@ -883,9 +884,8 @@ asm void ov98_22470F8(void)
 	// .align 2, 0
 }
 
-extern void ov98_2247134(void);
 // NONMATCHING
-asm void ov98_2247134(void)
+asm void ov98_2247134(EMAIL_SYSWORK *esys)
 {
 	push {r3, r4, r5, lr}
 	add r5, r0, #0

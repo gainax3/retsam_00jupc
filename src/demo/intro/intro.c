@@ -185,6 +185,11 @@ enum{
 typedef enum {
 	GUIDETYPE_OPERA = 0,
 	GUIDETYPE_GUIDE,
+	// ----------------------------------------------------------------------------
+	// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+	// タッチスクリーンの操作説明は表示の縦位置を自動調整するように変更
+	GUIDETYPE_TOUCH,
+	// ----------------------------------------------------------------------------
 }INTRO_GUIDETYPE;
 
 //背景モード設定(MainDisp)
@@ -925,11 +930,11 @@ static const BMPWIN_DAT name_windata = {
 	INTRO_TEXT_M_FRAME,INTRO_NAME_WIN_PX,INTRO_NAME_WIN_PY,
 	INTRO_NAME_WIN_SX,INTRO_NAME_WIN_SY,INTRO_NAME_WIN_PAL,INTRO_NAME_WIN_CGX 
 };
-static const BMPWIN_DAT opera_windata = {
+const BMPWIN_DAT opera_windata = {
 	INTRO_TEXT_M_FRAME,INTRO_OPERA_WIN_PX,INTRO_OPERA_WIN_PY,
 	INTRO_OPERA_WIN_SX,INTRO_OPERA_WIN_SY,INTRO_OPERA_WIN_PAL,INTRO_OPERA_WIN_CGX 
 };
-static const BMPWIN_DAT guide_windata = {
+const BMPWIN_DAT guide_windata = {
 	INTRO_TEXT_M_FRAME,INTRO_GUIDE_WIN_PX,INTRO_GUIDE_WIN_PY,
 	INTRO_GUIDE_WIN_SX,INTRO_GUIDE_WIN_SY,INTRO_GUIDE_WIN_PAL,INTRO_GUIDE_WIN_CGX 
 };
@@ -1106,7 +1111,6 @@ static BOOL Intro_BmpList( INTRO_DEMO_WORK * wk, INTRO_LISTTYPE type, int button
 //----------------------------------
 //ガイド表示
 //----------------------------------
-#ifdef NONEQUIVALENT
 static BOOL Intro_GuidePrint
 			( INTRO_DEMO_WORK * wk,u32 msgID, INTRO_GUIDETYPE type, int pos_y, int siz_y )
 {
@@ -1144,8 +1148,19 @@ static BOOL Intro_GuidePrint
 		} else {
 			//操作説明用
 			windata = opera_windata;
-			windata.pos_y = pos_y;
-			windata.siz_y = siz_y;
+			// ----------------------------------------------------------------------------
+			// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+			// タッチスクリーンの操作説明は表示の縦位置を自動調整するように変更
+			if ( type == GUIDETYPE_TOUCH ) {
+                // MatchComment: FontProc_GetPrintLineNum -> STRBUF_GetLines
+				u32 linenum = STRBUF_GetLines(wk->msgstr);
+				windata.pos_y = pos_y + siz_y / 2 - linenum;
+				windata.siz_y = linenum * 2;
+			} else {
+				windata.pos_y = pos_y;
+				windata.siz_y = siz_y;
+			}
+			// ----------------------------------------------------------------------------
 			GF_BGL_BmpWinAddEx(wk->bgl,&wk->msgwin,&windata );
 			GF_BGL_BmpWinFill(&wk->msgwin,0,0,0,
 						INTRO_OPERA_WIN_SX*DOTSIZE,INTRO_OPERA_WIN_SY*DOTSIZE);
@@ -1192,220 +1207,6 @@ static BOOL Intro_GuidePrint
 	}
 	return result;
 }
-#else
-asm static BOOL Intro_GuidePrint
-			( INTRO_DEMO_WORK * wk,u32 msgID, INTRO_GUIDETYPE type, int pos_y, int siz_y )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	str r1, [sp, #0x10]
-	ldr r1, [r4, #0x54]
-	add r5, r2, #0
-	add r6, r3, #0
-	mov r7, #0
-	cmp r1, #5
-	bls _021D179A
-	b _021D1914
-_021D179A:
-	add r1, r1, r1
-	add r1, pc
-	ldrh r1, [r1, #6]
-	lsl r1, r1, #0x10
-	asr r1, r1, #0x10
-	add pc, r1
-_021D17A6: // jump table
-	dcd 0x0108000a
-	dcd 0x01260114
-	dcd 0x01580146
-	//    0xa // .2byte _021D17B2 - _021D17A6 - 2 // case 0
-	//  0x108 // .2byte _021D18B0 - _021D17A6 - 2 // case 1
-	//  0x114 // .2byte _021D18BC - _021D17A6 - 2 // case 2
-	//  0x126 // .2byte _021D18CE - _021D17A6 - 2 // case 3
-	//  0x146 // .2byte _021D18EE - _021D17A6 - 2 // case 4
-	//  0x158 // .2byte _021D1900 - _021D17A6 - 2 // case 5
-_021D17B2:
-	add r0, r7, #0
-	add r1, r7, #0
-	bl GF_BGL_VisibleSet
-	mov r0, #1
-	ldr r1, [r4, #0]
-	lsl r0, r0, #0xa
-	bl STRBUF_Create
-	str r0, [r4, #0x5c]
-	ldr r0, [r4, #0x4c]
-	ldr r1, [sp, #0x10]
-	ldr r2, [r4, #0x5c]
-	bl MSGMAN_GetString
-	cmp r5, #1
-	add r0, sp, #0x14
-	bne _021D1834
-	ldr r1, =yesno_windata // _021D191C
-	ldrh r2, [r1, #0x10]
-	strh r2, [r0]
-	ldrh r2, [r1, #0x12]
-	strh r2, [r0, #2]
-	ldrh r2, [r1, #0x14]
-	ldrh r1, [r1, #0x16]
-	strh r2, [r0, #4]
-	strh r1, [r0, #6]
-	ldr r0, [r4, #0x5c]
-	bl STRBUF_GetLines
-	mov r1, #0xc
-	sub r2, r1, r0
-	add r1, sp, #0x14
-	strb r2, [r1, #2]
-	lsl r0, r0, #1
-	strb r0, [r1, #4]
-	add r1, r4, #0
-	ldr r0, [r4, #0x18]
-	add r1, #0x1c
-	add r2, sp, #0x14
-	bl GF_BGL_BmpWinAddEx
-	add r1, r7, #0
-	mov r0, #0xc0
-	str r0, [sp]
-	str r0, [sp, #4]
-	add r0, r4, #0
-	add r0, #0x1c
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	add r1, r7, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _021D1920
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	ldr r2, [r4, #0x5c]
-	add r0, #0x1c
-	add r3, r1, #0
-	bl GF_STR_PrintColor
-	b _021D18A4
-_021D1834:
-	ldr r1, =yesno_windata // _021D191C
-	cmp r5, #2
-	ldrh r2, [r1, #0x20]
-	strh r2, [r0]
-	ldrh r2, [r1, #0x22]
-	strh r2, [r0, #2]
-	ldrh r2, [r1, #0x24]
-	ldrh r1, [r1, #0x26]
-	strh r2, [r0, #4]
-	strh r1, [r0, #6]
-	bne _021D1866
-	ldr r0, [r4, #0x5c]
-	bl STRBUF_GetLines
-	ldr r2, [sp, #0x30]
-	lsr r1, r2, #0x1f
-	add r1, r2, r1
-	asr r1, r1, #1
-	add r1, r6, r1
-	sub r2, r1, r0
-	add r1, sp, #0x14
-	strb r2, [r1, #2]
-	lsl r0, r0, #1
-	strb r0, [r1, #4]
-	b _021D186C
-_021D1866:
-	ldr r1, [sp, #0x30]
-	strb r6, [r0, #2]
-	strb r1, [r0, #4]
-_021D186C:
-	add r1, r4, #0
-	ldr r0, [r4, #0x18]
-	add r1, #0x1c
-	add r2, sp, #0x14
-	bl GF_BGL_BmpWinAddEx
-	mov r1, #0
-	mov r0, #0xc0
-	str r0, [sp]
-	str r0, [sp, #4]
-	add r0, r4, #0
-	add r0, #0x1c
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x000F0200 // _021D1924
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	ldr r2, [r4, #0x5c]
-	add r0, #0x1c
-	add r3, r1, #0
-	bl GF_STR_PrintColor
-_021D18A4:
-	ldr r0, [r4, #0x5c]
-	bl STRBUF_Delete
-	mov r0, #1
-	str r0, [r4, #0x54]
-	b _021D1914
-_021D18B0:
-	add r0, #0x1c
-	bl GF_BGL_BmpWinOn
-	mov r0, #2
-	str r0, [r4, #0x54]
-	b _021D1914
-_021D18BC:
-	add r1, r7, #0
-	add r2, r7, #0
-	bl Intro_AlphaFade
-	cmp r0, #1
-	bne _021D1914
-	mov r0, #3
-	str r0, [r4, #0x54]
-	b _021D1914
-_021D18CE:
-	ldr r0, =sys // _021D1928
-	ldr r1, [r0, #0x48]
-	mov r0, #1
-	and r0, r1
-	cmp r0, #1
-	beq _021D18E2
-	mov r0, #2
-	and r0, r1
-	cmp r0, #2
-	bne _021D1914
-_021D18E2:
-	ldr r0, =0x000005DC // _021D192C
-	bl Snd_SePlay
-	mov r0, #4
-	str r0, [r4, #0x54]
-	b _021D1914
-_021D18EE:
-	add r1, r7, #0
-	mov r2, #1
-	bl Intro_AlphaFade
-	cmp r0, #1
-	bne _021D1914
-	mov r0, #5
-	str r0, [r4, #0x54]
-	b _021D1914
-_021D1900:
-	add r0, #0x1c
-	bl GF_BGL_BmpWinDel
-	ldr r0, [r4, #0x18]
-	add r1, r7, #0
-	bl GF_BGL_ScrClear
-	add r0, r7, #0
-	str r0, [r4, #0x54]
-	mov r7, #1
-_021D1914:
-	add r0, r7, #0
-	add sp, #0x1c
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _021D191C: .4byte yesno_windata
-// _021D1920: .4byte 0x00010200
-// _021D1924: .4byte 0x000F0200
-// _021D1928: .4byte sys
-// _021D192C: .4byte 0x000005DC
-}
-#endif
 
 //----------------------------------
 //グラフィック読み込み
@@ -2207,7 +2008,11 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 		break;
 
 	case SEQ_2_3_01:
-		if( Intro_GuidePrint( wk, msg_operation_03, GUIDETYPE_OPERA, 4, 12 ) == TRUE ){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+		// タッチスクリーンの操作説明は表示の縦位置を自動調整するように変更
+		if( Intro_GuidePrint( wk, msg_operation_03, GUIDETYPE_TOUCH, 4, 12 ) == TRUE ){
+		// ----------------------------------------------------------------------------
 			SUBSEQ_SET( SEQ_2_4_00 )
 		}
 		break;
@@ -2220,7 +2025,11 @@ static BOOL Intro_Seq_introduction( INTRO_DEMO_WORK * wk )
 		break;
 
 	case SEQ_2_4_01:
-		if( Intro_GuidePrint( wk, msg_operation_04, GUIDETYPE_OPERA, 4, 10 ) == TRUE ){
+		// ----------------------------------------------------------------------------
+		// localize_spec_mark(LANG_ALL) imatake 2007/03/26
+		// タッチスクリーンの操作説明は表示の縦位置を自動調整するように変更
+		if( Intro_GuidePrint( wk, msg_operation_04, GUIDETYPE_TOUCH, 4, 10 ) == TRUE ){
+		// ----------------------------------------------------------------------------
 			SUBSEQ_SET( SEQ_2_4_02 )
 			INTRO_TEXT_FRAME_CLEAR
 		}

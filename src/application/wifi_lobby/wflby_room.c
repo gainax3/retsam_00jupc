@@ -4030,8 +4030,9 @@ static void WFLBY_ROOM_ListWin_Start( WFLBY_ROOM_LISTWIN* p_wk, const BMPLIST_HE
 	GF_BGL_BmpWinDataFill( &p_wk->win, 15 );
 	
 	// ƒŠƒXƒgì¬
-    p_wk->p_listwk = BmpListSet(&p_wk->data, list_p, cursor_p, heapID );
+    // MatchComment: move BmpMenuWinWrite above BmpListSet call & assignment
     BmpMenuWinWrite( &p_wk->win, WINDOW_TRANS_OFF, WFLBY_SYSWINGRA_CGX, WFLBY_ROOM_BGPL_SYSWIN );
+    p_wk->p_listwk = BmpListSet(&p_wk->data, list_p, cursor_p, heapID );
 
 	// •\Ž¦
 	GF_BGL_BmpWinOnVReq( &p_wk->win );

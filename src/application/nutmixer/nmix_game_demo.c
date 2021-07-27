@@ -1907,7 +1907,11 @@ void NMixGameDemo_OtherMark_DrawFlag( NMIX_DEMO_OTHER_MARK* p_work, BOOL flg )
 #define NMIX_MAINWIN_BMP_PRICOLOR		( GF_PRINTCOLOR_MAKE(1,2,15) )
 #define NMIX_MAINWIN_BMP_SYSTEMPRICOLOR	( GF_PRINTCOLOR_MAKE(1,2,15) )
 
-#define NMIX_MAINWIN_COMMBMP_X	( 10 )			// 文字面ビットマップsize
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/04/05
+// 調理中のメッセージが自動でウィンドウ中央に表示されるように変更
+#define NMIX_MAINWIN_COMMBMP_X	( 8 )			// 文字面ビットマップsize
+// ----------------------------------------------------------------------------
 #define NMIX_MAINWIN_COMMBMP_Y	( 11 )			// 文字面ビットマップsize
 #define NMIX_MAINWIN_COMMBMP_CX	( 16 )			// 文字面ビットマップsize
 #define NMIX_MAINWIN_COMMBMP_CY	( 4 )			// 文字面ビットマップsize

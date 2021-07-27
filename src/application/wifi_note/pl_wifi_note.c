@@ -2459,9 +2459,11 @@ static BOOL WFNOTE_DRAW_FriendDaySetWordset( WFNOTE_DRAW* p_draw, SAVEDATA* p_sa
 	if( num == 0 ){
 		ret = FALSE;	// ÇOÇ∆Ç¢Ç§Ç±Ç∆ÇÕÇPâÒÇ‡óVÇÒÇ≈Ç¢Ç»Ç¢
 	}
-	WORDSET_RegisterNumber( p_draw->p_wordset, 2, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+	// MatchComment: NUMBER_DISPTYPE_SPACE -> NUMBER_DISPTYPE_LEFT
+	WORDSET_RegisterNumber( p_draw->p_wordset, 2, num, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 	num = WifiList_GetFriendInfo( p_wifilist, idx, WIFILIST_FRIEND_LASTBT_YEAR);
-	WORDSET_RegisterNumber( p_draw->p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+	// MatchComment: NUMBER_DISPTYPE_SPACE -> NUMBER_DISPTYPE_LEFT
+	WORDSET_RegisterNumber( p_draw->p_wordset, 0, num, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 	num = WifiList_GetFriendInfo( p_wifilist, idx, WIFILIST_FRIEND_LASTBT_MONTH);
     // MatchComment: new change in plat US
     WORDSET_RegisterMonthName(p_draw->p_wordset, 1, num);
@@ -2883,11 +2885,10 @@ static const u8 sc_msgidx[ 4 ] = {	// msg_idx
 	msg_wifi_note_04,
 	msg_wifi_note_05,
 };
-static const u8 sc_pos[4][2] = {	// ç¿ïW
-	{ 40, 8 },
-	{ 32, 48 },
-	{ 28, 88 },
-	{ 80, 128 },
+// MatchComment: change from u8[4][2] to int[4]
+// and use matching data
+static const int sc_pos[4] = {	// ç¿ïW
+	-4, -4, -4, 0
 };
 
 static const u8 sOv64_223241C[4] = {

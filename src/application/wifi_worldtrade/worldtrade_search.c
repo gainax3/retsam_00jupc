@@ -210,7 +210,7 @@ static u16 CursorPos[][2]={
  * @retval  int		
  */
 //==============================================================================
-#ifdef NONEQUIVALENT
+#ifndef NONEQUIVALENT
 int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
 {
 	// ワーク初期化
@@ -241,7 +241,7 @@ int WorldTrade_Search_Init(WORLDTRADE_WORK *wk, int seq)
 		// レベル指定決定
 		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, 
 			WorldTrade_LevelTermGet(wk->Search.level_min,wk->Search.level_max, LEVEL_PRINT_TBL_SEARCH),
-			SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0) ); // TODO__fix_me LEVEL_PRINT_TBL_SEARCH
+			SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0), LEVEL_PRINT_TBL_SEARCH );
 
 		// 国指定
 		WorldTrade_CountryPrint( &wk->CountryWin[1], wk->CountryNameManager, wk->MsgManager,
@@ -628,7 +628,7 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
 // 「さがす」・「もどる」を中央寄せ
-#define BUTTON_STR_X		( 20 )
+#define BUTTON_STR_X		( 22 ) // MatchComment: 20 -> 22
 // ----------------------------------------------------------------------------
 #define BUTTON1_STR_Y		(  6 )
 #define BUTTON2_STR_Y		( 11 )
@@ -1706,7 +1706,7 @@ static int SUBSEQ_LevelSelectList( WORLDTRADE_WORK *wk)
  * @retval  int		
  */
 //------------------------------------------------------------------
-#ifdef NONEQUIVALENT
+#ifndef NONEQUIVALENT
 static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
 {
 	u32 result;
@@ -1738,7 +1738,7 @@ static int SUBSEQ_LevelSelectWait( WORLDTRADE_WORK *wk)
 
 		GF_BGL_BmpWinDataFill( &wk->InfoWin[5], 0x0000 );
 		// レベル指定決定
-		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, result, SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0) ); // TODO__fix_me , LEVEL_PRINT_TBL_SEARCH
+		WorldTrade_WantLevelPrint( &wk->InfoWin[5], wk->MsgManager, result, SEARCH_INFO_PRINT_FLAG, 0, GF_PRINTCOLOR_MAKE(1,2,0), LEVEL_PRINT_TBL_SEARCH );
 
 		break;
 	}

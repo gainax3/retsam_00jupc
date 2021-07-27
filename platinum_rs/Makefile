@@ -20,4 +20,4 @@ libsyscall.a: libsyscall.o
 	$(AR) $(ARFLAGS) $< -o $@
 
 clean:
-	rm -f libsyscall.o libsyscall.a
+	rm -f libsyscall.o libsyscall.a libsyscall.d

@@ -219,136 +219,137 @@ static const WT_LEVEL_TERM search_level_minmax_table[]={
 //==============================================================================
 ///国検索：五十音順リスト
 ALIGN4 static const u16 CountryListTbl[] = {
-	country093,
-	country098,
+// MatchComment: add in matching plat US data
 	country001,
-	country220,
-	country221,
-	country218,
-	country003,
-	country009,
 	country002,
+	country003,
 	country006,
 	country008,
-	country219,
+	country009,
+	country012,
+	country013,
+	country015,
+	country016,
+	country017,
+	country018,
+	country020,
+	country021,
+	country022,
+	country023,
+	country025,
+	country027,
+	country028,
 	country029,
-	country100,
-	country101,
-	country097,
-	country094,
-	country095,
-	country216,
-	country222,
+	country031,
+	country033,
+	country034,
+	country035,
+	country036,
+	country040,
+	country042,
+	country043,
+	country045,
+	country048,
+	country049,
+	country050,
+	country052,
+	country054,
+	country055,
+	country056,
+	country058,
+	country059,
 	country060,
 	country061,
 	country062,
-	country012,
-	country013,
-	country157,
-	country146,
-	country078,
-	country088,
-	country036,
-	country074,
-	country035,
-	country110,
-	country034,
-	country086,
-	country054,
-	country080,
-	country085,
-	country083,
-	country111,
-	country049,
-	country081,
-	country082,
-	country052,
-	country107,
-	country050,
-	country045,
-	country048,
-	country179,
-	country186,
-	country079,
-	country102,
-	country187,
-	country200,
-	country199,
-	country193,
-	country196,
-	country194,
-	country188,
-	country189,
-	country198,
-	country183,
-	country205,
-	country202,
-	country204,
-	country055,
-	country040,
-	country043,
-	country211,
-	country042,
-	country056,
-	country077,
-	country207,
-	country058,
-	country059,
-	country212,
-	country152,
-	country150,
-	country151,
-	country103,
-	country148,
-	country149,
-	country156,
-	country016,
-	country089,
-	country158,
-	country160,
-	country224,
-	country015,
-	country161,
-	country023,
-	country018,
-	country092,
-	country017,
 	country069,
-	country164,
 	country070,
-	country028,
 	country071,
 	country072,
-	country031,
-	country033,
-	country227,
-	country022,
-	country226,
-	country021,
-	country163,
-	country020,
-	country166,
-	country027,
-	country025,
-	country167,
-	country091,
+	country074,
+	country077,
+	country078,
+	country079,
+	country080,
+	country081,
+	country082,
+	country083,
+	country085,
+	country086,
+	country088,
+	country089,
 	country090,
+	country091,
+	country092,
+	country093,
+	country094,
+	country095,
+	country097,
+	country098,
+	country100,
+	country101,
+	country102,
+	country103,
+	country104,
+	country107,
+	country111,
+	country115,
+	country117,
+	country118,
+	country121,
 	country122,
+	country126,
 	country129,
 	country131,
-	country126,
-	country192,
-	country142,
-	country135,
 	country133,
+	country135,
 	country140,
-	country104,
-	country118,
-	country117,
+	country142,
+	country146,
+	country148,
+	country149,
+	country150,
+	country151,
+	country152,
+	country156,
+	country157,
+	country158,
+	country160,
+	country161,
+	country163,
+	country164,
+	country166,
+	country167,
+	country110,
 	country171,
-	country121,
-	country115,
 	country172,
+	country179,
+	country183,
+	country186,
+	country187,
+	country188,
+	country189,
+	country192,
+	country193,
+	country194,
+	country196,
+	country198,
+	country199,
+	country200,
+	country202,
+	country205,
+	country207,
+	country211,
+	country212,
+	country216,
+	country218,
+	country219,
+	country204,
+	country221,
+	country220,
+	country222,
+	country224,
+	country226,
+	country227,
 };
 
 const u32 CountryListTblNum = NELEMS(CountryListTbl);
@@ -1537,7 +1538,7 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
 // x 座標指定のできる WorldTrade_WantLevelPrint() 同等関数を用意
 
 #ifdef NONEQUIVALENT
-void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, u32 a6, int x )
+void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x )
 {
 	STRBUF *levelbuf;
 
@@ -1548,7 +1549,7 @@ void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, i
 	}
 }
 #else
-asm void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, u32 a6, int x )
+asm void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x )
 {    
 	push {r4, r5, r6, lr}
 	sub sp, #8
@@ -1590,10 +1591,29 @@ _022422AC:
 }
 #endif
 
-void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color )
+#ifdef NONEQUIVALENT
+void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select )
 {
 	WorldTrade_WantLevelPrintEx( win, msgman, level, flag, y, color, 0, 0 );
 }
+#else
+asm void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select )
+{
+	push {r4, lr}
+	sub sp, #0x10
+	ldr r4, [sp, #0x18]
+	str r4, [sp]
+	ldr r4, [sp, #0x1c]
+	str r4, [sp, #4]
+	ldr r4, [sp, #0x20]
+	str r4, [sp, #8]
+	mov r4, #0
+	str r4, [sp, #0xc]
+	bl WorldTrade_WantLevelPrintEx
+	add sp, #0x10
+	pop {r4, pc}
+}
+#endif
 
 // ----------------------------------------------------------------------------
 
@@ -1640,8 +1660,7 @@ void WodrldTrade_PokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *Mo
 	}
 
 	// レベル指定
-	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0)
-		 ); // TODO__fix_me LEVEL_PRINT_TBL_DEPOSIT
+	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT);
 	
 	
 
@@ -1690,8 +1709,7 @@ void WodrldTrade_MyPokeWantPrint( MSGDATA_MANAGER *MsgManager, MSGDATA_MANAGER *
 	}
 
 	// レベル指定
-	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0)
-		 ); // TODO__fix_me LEVEL_PRINT_TBL_DEPOSIT
+	WorldTrade_WantLevelPrint( &win[2], MsgManager, level, 2, 0, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT);
 	
 	
 
@@ -1972,7 +1990,9 @@ BMPLIST_WORK *WorldTrade_WordheadBmpListMake( WORLDTRADE_WORK *wk, BMP_MENULIST_
 	// localize_spec_mark(LANG_ALL) yamamoto 2006/12/28 GTSソート対応。
 	*menulist = BMP_MENULIST_Create( DEPOSIT_HEADWORD_NUM, HEAPID_WORLDTRADE );
     // MatchComment: end of localization change
-	for(i=0;i<10;i++){
+
+    // MatchComment: 10 -> 9
+	for(i=0;i<9;i++){
 		BMP_MENULIST_AddArchiveString( *menulist, MsgManager, msg_gtc_10_001+i, i+1 );
 	}
 

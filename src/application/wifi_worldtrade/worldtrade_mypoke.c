@@ -408,20 +408,25 @@ static void DelCellActor( WORLDTRADE_WORK *wk )
 #define LINE_MESSAGE_OFFSET   ( WORLDTRADE_MENUFRAME_CHR + MENU_WIN_CGX_SIZ )
 #define SELECT_MENU_OFFSET    ( LINE_MESSAGE_OFFSET + LINE_TEXT_SX*LINE_TEXT_SY )
 #define INFO_TEXT_OFFSET	  ( SELECT_MENU_OFFSET + SELECT_MENU_SX*SELECT_MENU_SY )
+// ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) imatake 2007/11/29
+// もちものが最大文字数のときに韓国語ではみ出しが起こるのに対処
 static const info_bmpwin_table[][4]={
-	{  1,  2, 10,  2,},		//ポケモンのニックネーム
-	{  12,  2,  8,  2,},	//ポケモンの種族名
-	{  14,  4,  7,  2,},	//レベル
-	{  1,  7,  6,  2,},		//「もちもの」
-	{  7,  7, 11,  2,},		//所持アイテム名
-	{  2, 10,  9,  2,},		//「もちぬし」
-	{ 12, 10,  8,  2,},		//トレーナー名
-	{  2, 15, 12,  2,},
-	{  4, 17, 10,  2,},
-	{ 16, 17, 12,  2,},
-	{  1, 5, 4,  2, },	// 「おや」
-	{  5, 5, 8,  2, },	// 親名
+    // MatchComment: just use matching data from plat US
+	{  1,  2, 10,  2, },
+	{ 12,  2,  8,  2, },
+	{ 14,  4,  7,  2, },
+	{  1,  7,  6,  2, },
+	{  7,  7, 11,  2, },
+	{  2, 10,  9,  2, },
+	{ 12, 10,  8,  2, },
+	{  2, 15, 12,  2, },
+	{  4, 17, 10,  2, },
+	{ 16, 17, 12,  2, },
+	{  1,  5,  5,  2, },
+	{  7,  5,  7,  2, },
 };
+// ----------------------------------------------------------------------------
 
 // はい・いいえのBMPWIN領域は最後にもってきたいのだが、
 // 情報ウインドウの総数がよめないので、200キャラずらしておく

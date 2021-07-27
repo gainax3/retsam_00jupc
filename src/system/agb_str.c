@@ -18,7 +18,9 @@ static const STRCODE CodeTable[][2] = {
 	// ----------------------------------------------------------------------------
 	// localize_spec_mark(LANG_ALL) imatake 2006/10/12
 	// 海外名のスペースが正しく半角になるように修正
-	{ spc_, h_spc_ },	// 0x00
+
+    // MatchComment: actually ignore this localization change
+	{ spc_, spc_ },	// 0x00
 	// ----------------------------------------------------------------------------
 	{ a_, a_ },		
 	{ i_, i_ },		
