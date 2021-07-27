@@ -46,7 +46,8 @@
 //「タイプ名(とりあえずきれいに収まらないので画面全体を確保)」(フレームを変えている)
 #define WIN_TYPE_PX			(1)
 #define WIN_TYPE_PY			(0)
-#define WIN_TYPE_SX			(30)
+// MatchComment: 30 -> 31
+#define WIN_TYPE_SX			(31)
 #define WIN_TYPE_SY			(22)
 #if 0
 #define WIN_TYPE_CGX		(WIN_POKE1_CGX + WIN_POKE1_SX * WIN_POKE1_SY)

@@ -52,7 +52,7 @@ enum{
 //アイテム情報の表示位置
 //----------------------------------------------------------------------------------------------
 enum{
-	 ITEM_INFO_PX			= (1),
+	 ITEM_INFO_PX			= (0), // MatchComment: 1 -> 0
 	 ITEM_INFO_PY			= (6), // MatchComment: change from 0 to 6
 	 ITEM_INFO_SX			= (23*8),
 	 ITEM_INFO_SY			= (4*8),
@@ -72,8 +72,8 @@ enum{
 //アイテムアイコン表示位置
 //----------------------------------------------------------------------------------------------
 enum{
-	CASTLE_ITEMICON_X		= (28),
-	CASTLE_ITEMICON_Y		= (164),
+	CASTLE_ITEMICON_X		= (24), // MatchComment: 28 -> 24
+	CASTLE_ITEMICON_Y		= (162), // MatchComment: 164 -> 162
 };
 
 //----------------------------------------------------------------------------------------------
@@ -103,7 +103,7 @@ enum{
 enum{
 	INFO_SINGLE_OFFSET_X	= (3*8+4),
 	INFO_MULTI_L_OFFSET_X	= 0,				//ペアのオフセット(Ｌ)
-	INFO_MULTI_R_OFFSET_X	= (16*8-4),			//ペアのオフセット(Ｒ)
+	INFO_MULTI_R_OFFSET_X	= (15*8),			//ペアのオフセット(Ｒ) // MatchComment: 16*8-4 -> 15*8
 
 	INFO_PLAYER_X			= 0, // MatchComment: 4 -> 0
 	INFO_PLAYER_Y			= 0, // MatchComment: 1 -> 0
@@ -205,7 +205,7 @@ enum{
 //リストのアイテムＣＰ値の表示位置
 //----------------------------------------------------------------------------------------------
 enum{
-	CASTLE_LIST_ITEM_CP_X	= (11*8),//(10*8),
+	CASTLE_LIST_ITEM_CP_X	= (16*8),//(10*8), // MatchComment: 11*8 -> 16*8
 };
 
 

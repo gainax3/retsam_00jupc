@@ -221,6 +221,9 @@ static int Enter_ServerServiceEnd( EMAIL_MENU_WORK *wk );
 static int Enter_MessageWait( EMAIL_MENU_WORK *wk );
 static int Enter_MessageWait1Second( EMAIL_MENU_WORK *wk );
 static int Enter_MessageWaitYesNoStart(EMAIL_MENU_WORK *wk);
+static int ov98_2249798( EMAIL_MENU_WORK *wk );
+static int ov98_22497F8( EMAIL_MENU_WORK *wk );
+
 static void Enter_MessagePrint( EMAIL_MENU_WORK *wk, MSGDATA_MANAGER *msgman, int msgno, int wait, u16 dat );
 static int Enter_MessagePrintEndCheck(int msg_index);
 static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font );
@@ -269,6 +272,8 @@ enum{
 	ENTER_MES_WAIT,
 	ENTER_MES_WAIT_1_SECOND,
 	ENTER_MES_WAIT_YESNO_START,
+	ENTER_UNK_0x25,
+	ENTER_UNK_0x26,
 };
 
 static int (*Functable[])( EMAIL_MENU_WORK *wk ) = {
@@ -309,6 +314,8 @@ static int (*Functable[])( EMAIL_MENU_WORK *wk ) = {
 	Enter_MessageWait,                  //ENTER_MES_WAIT,
 	Enter_MessageWait1Second,           //ENTER_MES_WAIT_1_SECOND,
 	Enter_MessageWaitYesNoStart,        //ENTER_MES_WAIT_YESNO_START,
+    ov98_2249798,                       //ENTER_UNK_0x25
+    ov98_22497F8,                       //ENTER_UNK_0x26
 };
 
 
@@ -354,7 +361,7 @@ static const BMPLIST_HEADER EmailMenuListAllHeader = {
 };
 
 static const u8 EmailMenuBmpSize[4] = {
-	13, 7, 18, 10-2,	//X, Y, SX, SY
+	11, 7, 20, 10-2,	//X, Y, SX, SY
 };
 
 //--------------------------------------------------------------
@@ -391,7 +398,8 @@ static const BMPLIST_HEADER EmailMenuListNoDataHeader = {
 };
 
 static const u8 EmailMenuNoDataBmpSize[4] = {
-	13, 13, 18, 4,	//X, Y, SX, SY
+    // MatchComment: use plat US data
+	11, 13, 20, 4,	//X, Y, SX, SY
 };
 
 //==============================================================================
@@ -1170,7 +1178,8 @@ static int Enter_AddressCheckProcChange(EMAIL_MENU_WORK *wk)
 	//登録コード入力画面へ移行
 	Email_SubProcessChange( wk->esys, 
 			EMAIL_SUBPROC_ADDRESS_CHECK, EMAIL_MODE_INPUT_EMAIL_CHECK);
-	Email_RecoveryMenuModeSet( wk->esys, ENTER_MENU_LIST);
+    // MatchComment: ENTER_MENU_LIST -> ENTER_UNK_0x26
+	Email_RecoveryMenuModeSet( wk->esys, ENTER_UNK_0x26);
 	wk->subprocess_seq = ENTER_END;
 	return SUBSEQ_CONTINUE;
 }
@@ -3510,10 +3519,8 @@ static int Enter_MessagePrintEndCheck(int msg_index)
 	return TRUE;	//メッセージ処理続行中
 }
 
-extern void ov98_2249798(void);
 // NONMATCHING
-
-asm void ov98_2249798(void)
+asm static int ov98_2249798(EMAIL_MENU_WORK *wk)
 {
 	push {r3, r4, lr}
 	sub sp, #4
@@ -3568,10 +3575,8 @@ _022497EE:
 // _022497F4: .4byte 0x00000F0F
 }
 
-extern void ov98_22497F8(void);
 // NONMATCHING
-
-asm void ov98_22497F8(void)
+asm static int ov98_22497F8(EMAIL_MENU_WORK *wk)
 {
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x18
@@ -3652,7 +3657,6 @@ _02249888:
 // _02249890: .4byte 0x00000F0F
 }
 
-#ifndef NONEQUIVALENT
 //------------------------------------------------------------------
 /**
  * @brief   
@@ -3684,40 +3688,6 @@ static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag,
 	}
 	return x;
 }
-#else
-asm static int printCommonFunc( GF_BGL_BMPWIN *win, STRBUF *strbuf, int x, int flag, GF_PRINTCOLOR color, int font )
-{
-	push {r4, lr}
-	add r4, r0, #0
-	cmp r3, #1
-	beq _022498A2
-	cmp r3, #2
-	beq _022498B8
-	b _022498C6
-_022498A2:
-	ldr r0, [sp, #0xc]
-	mov r2, #0
-	bl FontProc_GetPrintStrWidth
-	ldrb r1, [r4, #7]
-	lsl r1, r1, #3
-	sub r1, r1, r0
-	lsr r0, r1, #0x1f
-	add r0, r1, r0
-	asr r2, r0, #1
-	b _022498C6
-_022498B8:
-	ldr r0, [sp, #0xc]
-	mov r2, #0
-	bl FontProc_GetPrintStrWidth
-	ldrb r1, [r4, #7]
-	lsl r1, r1, #3
-	sub r2, r1, r0
-_022498C6:
-	add r0, r2, #0
-	pop {r4, pc}
-	// .align 2, 0
-}
-#endif
 
 //------------------------------------------------------------------
 /**

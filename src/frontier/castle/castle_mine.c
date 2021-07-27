@@ -345,7 +345,10 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  );
 
 //メッセージ
 static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+// TODO__fix_me prototype of below function probably wrong
+static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode );
 static u8 Castle_EasyMsg( CASTLE_MINE_WORK* wk, int msg_id, u8 font );
 static void Castle_StatusMsgWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 static void StMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y );
@@ -1479,7 +1482,8 @@ static BOOL Seq_GameTypeSel( CASTLE_MINE_WORK* wk )
 				//「○はすでに○を持っています！」
 				//「持っている道具を取り替えますか？」
 				Castle_SetPokeName( wk, 0, PPPPointerGet(poke) );
-				WORDSET_RegisterItemName( wk->wordset, 1, PokeParaGet(poke,ID_PARA_item,NULL) );
+                // MatchComment: WORDSET_RegisterItemName -> WORDSET_RegisterItemNameIndefinate
+				WORDSET_RegisterItemNameIndefinate( wk->wordset, 1, PokeParaGet(poke,ID_PARA_item,NULL) );
 				wk->msg_index = Castle_EasyMsg( wk, msg_castle_poke_08, FONT_TALK );
 				wk->sub_seq = SEQ_SUB_RENTAL_ITEM_TRADE;					//すでにアイテム持ってる
 			}
@@ -2575,9 +2579,8 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  )
 //
 //==============================================================================================
 
-extern void ov107_224379C(void);
 // NONMATCHING
-asm void ov107_224379C(void)
+asm static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	push {r4, r5, lr}
 	sub sp, #0x1c
@@ -2598,7 +2601,7 @@ asm void ov107_224379C(void)
 	str r4, [sp, #0x14]
 	mov r4, #0
 	str r4, [sp, #0x18]
-	bl CastleWriteMsg
+	bl CastleWriteMsg_Full_ov107_22437CC
 	add sp, #0x1c
 	pop {r4, r5, pc}
 	// .align 2, 0
@@ -2624,7 +2627,8 @@ asm void ov107_224379C(void)
  */
 //--------------------------------------------------------------
 #ifdef NONEQUIVALENT
-static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+// prototype probably wrong
+static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	u8 msg_index;
 
@@ -2641,7 +2645,7 @@ static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, 
 	return msg_index;
 }
 #else
-asm static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+asm static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #0x10
@@ -2718,7 +2722,7 @@ _02243820:
 
 extern void ov107_2243860(void);
 
-asm void ov107_2243860(void)
+asm static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
 	push {r4, r5, lr}
 	sub sp, #0x1c
@@ -2739,7 +2743,7 @@ asm void ov107_2243860(void)
 	str r4, [sp, #0x14]
 	mov r4, #0
 	str r4, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	add sp, #0x1c
 	pop {r4, r5, pc}
 	// .align 2, 0
@@ -2766,7 +2770,7 @@ asm void ov107_2243860(void)
  */
 //--------------------------------------------------------------
 #ifdef NONEQUIVALENT
-static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode )
 {
 	u8 msg_index;
 
@@ -2782,7 +2786,7 @@ static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int ms
 	return msg_index;
 }
 #else
-asm static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+asm static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode )
 {
 	push {r4, r5, r6, lr}
 	sub sp, #0x10
@@ -3238,7 +3242,7 @@ asm static void StMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg
 	str r4, [sp, #0x14]
 	ldr r4, [sp, #0x2c]
 	str r4, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	add sp, #0x1c
 	pop {r3, r4, pc}
 }
@@ -3259,7 +3263,7 @@ enum{
 	STATUS_WAZA_Y =			(1*8+4),
 
 	//技ポイント
-	STATUS_POINT_X =		(12*8),
+	STATUS_POINT_X =		(17*8+1), // MatchComment: 12*8 -> 17*8+1
 	STATUS_POINT_Y =		(1*8+4),
 };
 
@@ -3308,13 +3312,16 @@ static void WazaMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u3
 	//「技ポイント」
 	//Castle_SetNumber( wk, 0, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS );
 	//Castle_SetNumber( wk, 1, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS );
+    // MatchComment: NUMBER_DISPTYPE_SPACE -> NUMBER_DISPTYPE_LEFT
 	Castle_SetNumber(	wk, 4, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS,
-						NUMBER_DISPTYPE_SPACE );
+						NUMBER_DISPTYPE_LEFT );
 	Castle_SetNumber(	wk, 5, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_LEFT );
-	wk->msg_index = CastleWriteMsgSimple( wk, win,
+    // MatchComment: call CastleWriteMsgSimple_Full_ov107_2243890 instead of CastleWriteMsgSimple
+    // has additional argument of 1
+	wk->msg_index = CastleWriteMsgSimple_Full_ov107_2243890( wk, win,
 									msg_id2, point_x, point_y, MSG_NO_PUT,
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT );
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 1 );
 	return;
 }
 
@@ -3643,7 +3650,7 @@ asm static void CastleMine_Default_Write( CASTLE_MINE_WORK* wk )
 	add r1, #0x60
 	mov r2, #6
 	mov r3, #0x10
-	bl CastleWriteMsg
+	bl CastleWriteMsg_Full_ov107_22437CC
 	strb r0, [r4, #0xa]
 	mov r0, #0x72
 	lsl r0, r0, #2
@@ -3667,7 +3674,7 @@ asm static void CastleMine_Default_Write( CASTLE_MINE_WORK* wk )
 	add r1, #0xc0
 	mov r2, #5
 	str r3, [sp, #0x14]
-	bl ov107_224379C
+	bl CastleWriteMsg
 	strb r0, [r4, #0xa]
 	add sp, #0x1c
 	pop {r3, r4, pc}
@@ -4130,11 +4137,13 @@ static void Castle_LineWriteCallBack( BMPLIST_WORK* work, u32 param, u8 y )
 		//ここは、for文でPARAMをセットしているのでこれでよい
 		Castle_SetNumber(	wk, 0, GetItemCP(wk,param,wk->parent_decide_type), 
 							CASTLE_KETA_CP, NUMBER_DISPTYPE_SPACE );
-		wk->msg_index = CastleWriteMsgSimple(	wk, &wk->bmpwin[MINE_BMPWIN_LIST], 
+        // MatchComment: use CastleWriteMsgSimple_Full_ov107_2243890 instead of CastleWriteMsgSimple
+        // has additional arg of 2
+		wk->msg_index = CastleWriteMsgSimple_Full_ov107_2243890(	wk, &wk->bmpwin[MINE_BMPWIN_LIST], 
 												msg_castle_poke_cp_03, 
 												CASTLE_LIST_ITEM_CP_X, y , MSG_NO_PUT, 
 												FBMP_COL_BLACK, FBMP_COL_BLK_SDW, FBMP_COL_NULL, 
-												BC_FONT );
+												BC_FONT, 2 );
 		GF_BGL_BmpWinOnVReq( &wk->bmpwin[MINE_BMPWIN_LIST] );
 
 		//STRBUF_Delete( strb );
@@ -6534,7 +6543,7 @@ asm static void CastleMine_SeqSubCPWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* w
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	strb r0, [r5, #0xa]
 	b _022459C2
 _0224581A:
@@ -6590,7 +6599,7 @@ _0224581A:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	add r1, sp, #0x28
 	strb r0, [r5, #0xa]
 	ldrh r0, [r1, #2]
@@ -6633,7 +6642,7 @@ _0224581A:
 	add r1, r4, #0
 	mov r2, #3
 	add r3, r7, #0
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	strb r0, [r5, #0xa]
 	b _022459C2
 _022458F4:
@@ -6677,7 +6686,7 @@ _022458F4:
 	add r1, r4, #0
 	mov r2, #3
 	add r3, r7, #0
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	add r1, sp, #0x28
 	strb r0, [r5, #0xa]
 	ldrh r0, [r1, #2]
@@ -6728,7 +6737,7 @@ _022458F4:
 	add r1, r4, #0
 	add r3, r7, #0
 	str r2, [sp, #0x18]
-	bl CastleWriteMsgSimple
+	bl CastleWriteMsgSimple_Full_ov107_2243890
 	strb r0, [r5, #0xa]
 _022459C2:
 	add r0, r4, #0
