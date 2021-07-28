@@ -1,15 +1,15 @@
 #!/bin/sh
 
 #LENGTH=$((0x405e00))
-LENGTH=$((0x409000 + 1600))
-START_OFFSET=$((0))
+LENGTH=$((0x400000))
+START_OFFSET=$((0x0))
 echo $LENGTH
 
 #if [ ! -f diff/baserom_platinum_u.txt ]; then
-hexdump -C -n $LENGTH -s $START_OFFSET diff/pokeplatinum_us.nds > diff/baserom_platinum_u.txt # can create an empty baserom.txt if no baserom.gba
+hexdump -C  -s $START_OFFSET diff/pokeplatinum_us.nds > diff/baserom_platinum_u.txt # can create an empty baserom.txt if no baserom.gba
 #fi
 
-hexdump -C -n $LENGTH -s $START_OFFSET bin/ARM9-TS/Rom/main.srl > diff/main.txt
+hexdump -C  -s $START_OFFSET bin/ARM9-TS/Rom/main.srl > diff/main.txt
 #hexdump -C diff/pokeplatinum_us.nds > diff/baserom_platinum_u.txt # can create an empty baserom.txt if no baserom.gba
 #hexdump -C bin/ARM9-TS/Rom/main.srl > diff/main.txt
 
