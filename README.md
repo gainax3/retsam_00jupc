@@ -131,4 +131,4 @@ To build only the Platinum specific source files (i.e. don't build tools or SDK 
 To remove everything used in the build, run `./clean_all.sh`. To remove only code objects, run `./tidy_all.sh`. 
 
 # Current status
-TODO.
+See [docs/CURRENT_STATUS.md](docs/CURRENT_STATUS.md).
