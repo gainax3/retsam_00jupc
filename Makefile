@@ -236,7 +236,7 @@ PL_ETC_PARTICLEDIR	= src/particledata/pl_etc/
 #----------------------------------------------------------------------------
 #	コンバート対象になるMayaデータの指定
 #----------------------------------------------------------------------------
-include	make_g3_files
+#include	make_g3_files
 
 G3D_NSBMD = $(G3D_IMD:.imd=.nsbmd)
 G3D_NSBMT = $(G3D_IMT:.imd=.nsbmt)
@@ -663,7 +663,7 @@ include	$(NITROVCT_ROOT)/build/buildtools/modulerules
 ################################################################################
 
 #do-build: precompile binData msgData pbrdiff $(LCFILE_SPEC) $(TARGETS) 
-do-build: precompile pbrdiff $(LCFILE_SPEC) $(TARGETS) 
+do-build: precompile pbrdiff $(LCFILE_SPEC) $(LCFDEF_FILE) $(TARGETS) 
 
 binData: $(G3D_TARGETS)
 
@@ -717,18 +717,15 @@ $(MSGDATA_FILEPATH): $(wildcard $(MSG_CONVERTDATA_DIR)*.dat)
 #----------------------------------------------------------------------------
 #	makefileがインクルードするファイルが更新されたらmakelcfが動作するようにした
 #----------------------------------------------------------------------------
-$(LCFILE_SPEC):	commondefs.GF modulerules.GF make_prog_files make_g3_files overlay_files makefile
-	-$(RM) $(BINDIR)/$(LCFILE_SPEC:.lsf=.*)
-	-rm $(LCFDEF_FILE)
-	make $(LCFDEF_FILE)
-
-main.lsf: overlay_files
-overlay_files: overlaytool.rb
+# removed make_g3_files from dependencies
+overlay_files $(LCFILE_SPEC) &: commondefs.GF modulerules.GF overlaytool.rb make_prog_files makefile
 	ruby overlaytool.rb
 
 #overlaytool.rb実行後のoverlay_filesを新たにincludeしてlcf_def.txtを作成する
 #ために、LCFDEF_FILEだけ作成する文を作成
-$(LCFDEF_FILE):
+$(LCFDEF_FILE): overlay_files make_prog_files
+	-$(RM) $(BINDIR)/$(LCFILE_SPEC:.lsf=.*)
+	-rm $(LCFDEF_FILE)
 	echo OBJS_STATIC=$(OBJS_STATIC) > $(LCFDEF_FILE)
 	echo OBJS_AUTOLOAD=$(OBJS_AUTOLOAD) >> $(LCFDEF_FILE)
 	echo OBJS_OVERLAY=$(OBJS_OVERLAY) >> $(LCFDEF_FILE)
