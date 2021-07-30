@@ -496,7 +496,6 @@ static void UserListUpdated(CHAT chat, const char* channel, void* param)
 	(void)param;
 }
 
-#ifndef NONEQUIVALENT
 static void ConnectCallback(CHAT chat, CHATBool success, int failureReason, void* param)
 {
     DWC_ASSERTMSG( s_iLobby, "s_iLobby: Invalid state. s_iLobby is NULL." );
@@ -521,52 +520,6 @@ static void ConnectCallback(CHAT chat, CHATBool success, int failureReason, void
 	(void)failureReason;
 	(void)param;
 }
-#else
-asm static void ConnectCallback(CHAT chat, CHATBool success, int failureReason, void* param)
-{
-	stmfd sp!, {r3, r4, lr}
-	sub sp, sp, #4
-	ldr r0, =s_iLobby // _022438C8
-	mov r4, r1
-	ldr r3, [r0, #0]
-	cmp r3, #0
-	beq _02243860
-	ldr r0, [r3, #4]
-	cmp r0, #5
-	addeq sp, sp, #4
-	ldmeqia sp!, {r3, r4, pc}
-_02243860:
-	mov r2, #0
-	add r1, sp, #0
-	add r0, r3, #0x9c
-	str r2, [sp]
-	bl NitroMain // cpp_ov66_2236CA0
-	cmp r4, #0
-	bne _022438A8
-	ldr r0, =s_iLobby // _022438C8
-	mov r2, #3
-	ldr r3, [r0, #0]
-	mov r1, #5
-	str r2, [r3, #0x58]
-	str r1, [r3, #4]
-	ldr r0, [r0, #0]
-	mov r1, #1
-	str r1, [r0, #0x60]
-	add sp, sp, #4
-	ldmia sp!, {r3, r4, pc}
-_022438A8:
-	ldr r0, =s_iLobby // _022438C8
-	ldr r1, [r0, #0]
-	ldr r0, [r1, #4]
-	cmp r0, #5
-	movne r0, #2
-	strne r0, [r1, #4]
-	add sp, sp, #4
-	ldmia sp!, {r3, r4, pc}
-	// .align 2, 0
-// _022438C8: .4byte s_iLobby
-}
-#endif
 
 static void FillInUserCallback(CHAT chat, unsigned int IP, char user[128], void* param)
 {

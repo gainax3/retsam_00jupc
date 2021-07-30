@@ -2899,37 +2899,12 @@ asm static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 }
 #endif
 
-#ifndef NONEQUIVALENT
 static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
 {
 	CastleWriteMsgSimple_Full_ov107_2247744(	wk, win, msg, x, y, MSG_NO_PUT,
 							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, a5_mode );
 	return;
 }
-#else
-asm static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, sp, #0x18
-	ldrh r4, [r4, #0x10]
-	str r4, [sp]
-	mov r4, #0xff
-	str r4, [sp, #4]
-	mov r4, #1
-	str r4, [sp, #8]
-	mov r4, #2
-	str r4, [sp, #0xc]
-	mov r4, #0
-	str r4, [sp, #0x10]
-	str r4, [sp, #0x14]
-	ldr r4, [sp, #0x2c]
-	str r4, [sp, #0x18]
-	bl CastleWriteMsgSimple
-	add sp, #0x1c
-	pop {r3, r4, pc}
-}
-#endif
 
 //--------------------------------------------------------------
 /**

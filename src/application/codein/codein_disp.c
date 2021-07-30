@@ -199,7 +199,7 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
  */
 //--------------------------------------------------------------
 extern void _u32_div_f(void);
-#ifdef NONMATCHING
+#ifdef NONEQUIVALENT
 void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 {
 	int i;

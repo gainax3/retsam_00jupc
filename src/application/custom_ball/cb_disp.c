@@ -157,7 +157,6 @@ void FontOam_Enable(CB_MAIN_WORK* cbmw, BOOL flag)
 	FONTOAM_SetDrawFlag(cbmw->sys.font_obj[ 1 ], flag);
 }
 
-#ifndef NONEQUIVALENT
 void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 {
 	FONTOAM_INIT	finit;
@@ -211,125 +210,6 @@ void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
 	MSGMAN_Delete(man);
 	GF_BGL_BmpWinDel(&bmpwin);
 }
-#else
-asm void FontOam_Create(CB_MAIN_WORK* cbmw, int no, int x, int y, int pal_offset)
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x5c
-	add r5, r0, #0
-	add r4, r1, #0
-	str r2, [sp, #0x10]
-	add r7, r3, #0
-	mov r0, #0
-	mov r1, #0x1a
-	mov r2, #8
-	mov r3, #0x35
-	bl MSGMAN_Create
-	add r1, r4, #5
-	str r0, [sp, #0x14]
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x18]
-	add r0, sp, #0x1c
-	bl GF_BGL_BmpWinInit
-	mov r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r0, #0xe4
-	ldr r0, [r0, #0]
-	add r1, sp, #0x1c
-	mov r2, #0xa
-	mov r3, #2
-	bl GF_BGL_BmpWinObjAdd
-	mov r3, #0
-	str r3, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D02 // _0223BA88
-	ldr r2, [sp, #0x18]
-	str r0, [sp, #8]
-	add r0, sp, #0x1c
-	mov r1, #2
-	str r3, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r0, sp, #0x1c
-	mov r1, #2
-	mov r2, #0x35
-	bl FONTOAM_NeedCharSize
-	mov r3, #9
-	lsl r3, r3, #6
-	mov r1, #0xc
-	add r6, r4, #0
-	mul r6, r1
-	add r3, r5, r3
-	mov r1, #1
-	mov r2, #2
-	add r3, r3, r6
-	bl CharVramAreaAlloc
-	mov r0, #0x8d
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	str r0, [sp, #0x2c]
-	add r0, sp, #0x1c
-	str r0, [sp, #0x30]
-	add r0, r5, #0
-	add r0, #0xe0
-	ldr r0, [r0, #0]
-	bl CATS_GetClactSetPtr
-	str r0, [sp, #0x34]
-	add r0, r5, #0
-	add r0, #0xe0
-	ldr r0, [r0, #0]
-	ldr r1, =0x00007530 // _0223BA8C
-	bl CATS_PlttProxy
-	str r0, [sp, #0x38]
-	mov r2, #0
-	mov r0, #0x91
-	str r2, [sp, #0x3c]
-	add r1, r5, r6
-	lsl r0, r0, #2
-	ldr r0, [r1, r0]
-	str r0, [sp, #0x40]
-	ldr r1, [sp, #0x18]
-	mov r0, #2
-	bl FontProc_GetPrintStrWidth
-	lsr r1, r0, #1
-	ldr r0, [sp, #0x10]
-	add r7, #0xc0
-	sub r0, r0, r1
-	str r0, [sp, #0x44]
-	mov r0, #1
-	str r0, [sp, #0x4c]
-	mov r0, #0x28
-	str r0, [sp, #0x50]
-	mov r0, #2
-	str r0, [sp, #0x54]
-	mov r0, #0x35
-	str r0, [sp, #0x58]
-	mov r0, #0x8e
-	lsl r0, r0, #2
-	add r5, r5, r0
-	str r7, [sp, #0x48]
-	lsl r4, r4, #2
-	add r0, sp, #0x2c
-	bl FONTOAM_Init
-	str r0, [r5, r4]
-	ldr r0, [r5, r4]
-	ldr r1, [sp, #0x70]
-	bl FONTOAM_SetPaletteOffsetAddTransPlttNo
-	ldr r0, [sp, #0x18]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x14]
-	bl MSGMAN_Delete
-	add r0, sp, #0x1c
-	bl GF_BGL_BmpWinDel
-	add sp, #0x5c
-	pop {r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _0223BA88: .4byte 0x000F0D02
-// _0223BA8C: .4byte 0x00007530
-}
-#endif
 
 // =============================================================================
 //
