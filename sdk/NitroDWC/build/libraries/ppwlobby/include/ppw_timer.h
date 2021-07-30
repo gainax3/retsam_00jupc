@@ -20,7 +20,9 @@
 #ifndef PPW_TIMER_H_
 #define PPW_TIMER_H_
 
-#include "dwci_lobbyData.h"
+// MatchComment: change to lobbyBase to prevent weird header includes
+// (dwci_lobbyData.h needs PPW_LobbyTimer)
+#include "dwci_lobbyBase.h"
 class PPW_Lobby;
 
 class PPW_LobbyTimer : public DWCi_Base

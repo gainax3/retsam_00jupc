@@ -31,6 +31,8 @@ SRCS += \
 	dwci_lobbyData.cpp
 endif
 
+NITRODWC_LIB_MODULES_ = ppwlobby
+
 NITRODWC_MODULE_NAME :=   ilobby
 TARGET_LIB	=	lib$(NITRODWC_LIB_PREFIX)$(NITRODWC_MODULE_NAME)$(NITRO_LIBSUFFIX).a
 
@@ -43,6 +45,8 @@ include	$(NITRODWC_ROOT)/build/buildtools/commondefs
 CXXFLAGS		+=	-RTTI off
 INSTALL_TARGETS	=	$(TARGETS)
 INSTALL_DIR		=	$(NITRODWC_INSTALL_LIBDIR)
+
+LINCLUDES += $(NITRODWC_ROOT)/build/libraries/ppwlobby/include
 
 #----------------------------------------------------------------------------
 

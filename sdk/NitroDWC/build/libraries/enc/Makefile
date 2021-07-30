@@ -26,9 +26,9 @@ ifndef NITRODWC_NOGS
 SRCS += ov66.s
 endif
 
-NITRODWC_LIB_MODULES_   = ilobby_ppwlobby
+NITRODWC_LIB_MODULES_   = enc
 
-TARGET_LIB	=	libdwcilobby_ppwlobby.a
+TARGET_LIB	=	libdwcenc.a
 
 CCFLAGS_MSGSTYLE = -msgstyle gcc
 
@@ -39,9 +39,6 @@ include	$(NITRODWC_ROOT)/build/buildtools/commondefs
 CXXFLAGS		+=	-RTTI off
 INSTALL_TARGETS	=	$(TARGETS)
 INSTALL_DIR		=	$(NITRODWC_INSTALL_LIBDIR)
-
-# ilobbyの共通ヘッダ、ユーティリティをインクルード
-LINCLUDES += $(NITRODWC_ROOT)/build/libraries/ilobby/include
 
 #----------------------------------------------------------------------------
 

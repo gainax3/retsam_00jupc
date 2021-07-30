@@ -94,3 +94,6 @@
 .global PPW_LobbyToErrorCode
 .global PPW_LobbyUpdateMyProfile
 .global PPW_LobbyUpdateRecruitInfo
+
+.extern MATH_CalcSHA1
+.extern strncmp

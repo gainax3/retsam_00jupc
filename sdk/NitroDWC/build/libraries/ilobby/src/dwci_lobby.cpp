@@ -115,6 +115,11 @@ static DWCi_Lobby*  s_iLobby      = NULL;
         return retval;\
     }
 
+// MatchComment: new constants (id and interval)
+static const u32 DWCi_LOBBY_TIMER_ID_0 = 0;
+
+static const u32 DWCi_LOBBY_TIMER_INTERVAL_FOR_ID_0 = 30;
+
 // 静的チェック専用ダミー関数
 static void DummyStaticCheck()
 {
@@ -134,11 +139,13 @@ static void Raw(CHAT chat, const char* raw, void* param)
 	(void)param;
 }
 
-#ifdef NONEQUIVALENT
 static void Disconnected(CHAT chat, const char* reason, void* param)
 {
     DWC_ASSERTMSG( s_iLobby, "s_iLobby: Invalid state. s_iLobby is NULL." );
     RETURN_IF_ERROR_STATE((void)0);
+
+    // MatchComment: add this line
+    s_iLobby->GetTimerManager().RemoveTimer(DWCi_LOBBY_TIMER_ID_0);
 
     // 正規の手順でシャットダウンしたかを確認する
     if(s_iLobby->GetState() == DWCi_LOBBY_STATE_CLOSING)
@@ -160,62 +167,6 @@ static void Disconnected(CHAT chat, const char* reason, void* param)
 	(void)reason;
 	(void)param;
 }
-#else
-asm static void Disconnected(CHAT chat, const char* reason, void* param)
-{
-	stmfd sp!, {r3, r4, lr}
-	sub sp, sp, #4
-	ldr r0, =s_iLobby // _02242CDC
-	ldr r3, [r0, #0]
-	cmp r3, #0
-	beq _02242C4C
-	ldr r0, [r3, #4]
-	cmp r0, #5
-	addeq sp, sp, #4
-	ldmeqia sp!, {r3, r4, pc}
-_02242C4C:
-	mov r2, #0
-	add r1, sp, #0
-	add r0, r3, #0x9c
-	str r2, [sp]
-	bl NitroMain // cpp_ov66_2236CA0
-	ldr r0, =s_iLobby // _02242CDC
-	ldr r4, [r0, #0]
-	ldr r1, [r4, #4]
-	cmp r1, #4
-	bne _02242CB8
-	cmp r4, #0
-	addeq sp, sp, #4
-	ldmeqia sp!, {r3, r4, pc}
-	beq _02242CA4
-	mov r0, r4
-	bl NitroMain // DWCi_Lobby::~DWCi_Lobby() // FUN_02246754
-	cmp r4, #0
-	beq _02242CA4
-	mov r0, #0
-	mov r1, r4
-	mov r2, r0
-	bl DWC_Free
-_02242CA4:
-	ldr r0, =s_iLobby // _02242CDC
-	mov r1, #0
-	str r1, [r0, #0]
-	add sp, sp, #4
-	ldmeqia sp!, {r3, r4, pc}
-_02242CB8:
-	mov r1, #3
-	str r1, [r4, #0x58]
-	mov r1, #5
-	str r1, [r4, #4]
-	ldr r0, [r0, #0]
-	mov r1, #1
-	str r1, [r0, #0x60]
-	add sp, sp, #4
-	ldmia sp!, {r3, r4, pc}
-	// .align 2, 0
-// _02242CDC: .4byte s_iLobby
-}
-#endif
 
 static void ChangedNickCallback(CHAT chat, CHATBool success, const char* oldNick, const char* newNick, void* param)
 {
@@ -545,16 +496,20 @@ static void UserListUpdated(CHAT chat, const char* channel, void* param)
 	(void)param;
 }
 
-#ifdef NONEQUIVALENT
+#ifndef NONEQUIVALENT
 static void ConnectCallback(CHAT chat, CHATBool success, int failureReason, void* param)
 {
     DWC_ASSERTMSG( s_iLobby, "s_iLobby: Invalid state. s_iLobby is NULL." );
     RETURN_IF_ERROR_STATE((void)0);
-    
+    // MatchComment: add this line
+    s_iLobby->GetTimerManager().RemoveTimer(DWCi_LOBBY_TIMER_ID_0);
+
 	if (success == CHATFalse)
     {
 		DWC_Printf(DWC_REPORTFLAG_ERROR, "Failed to connect (%d)\n", failureReason);
         s_iLobby->SetError(DWCi_LOBBY_ERROR_SESSION);
+        // MatchComment: add this line
+        s_iLobby->SetServerDisconnectedMe();
     }
 	else
     {
@@ -1049,7 +1004,8 @@ static void GetChannelBasicUserInfoCallback(CHAT chat, CHATBool success, const c
     (void)param;
 }
 
-asm void ov66_2244758(void)
+// NONMATCHING
+asm BOOL ov66_2244758(void* param)
 {
 	ldr r0, =s_iLobby // _02244778
 	mov r1, #3
@@ -1122,6 +1078,9 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
     return s_iLobby->GetState();
 }
 #else
+extern "C" void _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_(void);
+extern "C" void _ZNSt14__tree_deleterISt4pairIKm14PPW_LobbyTimerENSt18__map_do_transformImS2_St4lessImE14DWCi_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E5eraseENSD_18__generic_iteratorILb1EEE(void);
+
 asm DWCi_LOBBY_STATE DWCi_LobbyProcess()
 {
 	stmfd sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, lr}
@@ -1165,12 +1124,12 @@ _022447C4:
 _0224480C:
 	ldr r1, [r2, #0x10]
 	ldr r0, [r2, #0x14]
-	sub r1, r6, r1
+	subs r1, r6, r1
 	ldr r8, [r2, #0x18]
 	sbc r0, sb, r0
 	ldr r3, [r2, #0x1c]
-	sub r1, r8, r1
-	sbc r1, r3, r0
+	subs r1, r8, r1
+	sbcs r1, r3, r0
 	bge _02244850
 	str r6, [r2, #0x10]
 	str sb, [r2, #0x14]
@@ -1187,16 +1146,16 @@ _02244854:
 	bne _02244880
 	ldr r8, [sp, #8]
 	mov r0, r4
-	bl NitroMain // cpp_ov66_223AD6C
+	bl _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_ // cpp_ov66_223AD6C
 	add r0, sp, #4
 	mov r2, r8
 	add r1, r5, #0x9c
 	str r8, [sp]
-	bl NitroMain // FUN_0223AB54
+	bl _ZNSt14__tree_deleterISt4pairIKm14PPW_LobbyTimerENSt18__map_do_transformImS2_St4lessImE14DWCi_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E5eraseENSD_18__generic_iteratorILb1EEE // FUN_0223AB54
 	b _02244888
 _02244880:
 	mov r0, r4
-	bl NitroMain // cpp_ov66_223AD6C
+	bl _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_ // cpp_ov66_223AD6C
 _02244888:
 	ldr r2, [sp, #8]
 	cmp r2, r7
@@ -1438,7 +1397,10 @@ DWCi_LOBBY_RESULT DWCi_LobbyInitializePidAsync(const char* gameName, const char*
 	}
     s_iLobby->SetChat(chat);
     s_iLobby->SetState(DWCi_LOBBY_STATE_CONNECTING);
-    
+    // MatchComment: add this line
+    s_iLobby->GetTimerManager().AddTimer(DWCi_LOBBY_TIMER_ID_0, DWCi_LOBBY_TIMER_INTERVAL_FOR_ID_0,
+                                            ov66_2244758, s_iLobby, FALSE);
+
     return DWCi_LOBBY_RESULT_SUCCESS;
     
 ERROR_ALLOC:
@@ -1479,7 +1441,8 @@ DWCi_LOBBY_RESULT DWCi_LobbyShutdownAsync()
     else
     {
         // 能動的に終了する場合
-        s_iLobby->SetState(DWCi_LOBBY_STATE_CLOSING);
+        // MatchComment: SetState -> SetStateNoErrorCheck
+        s_iLobby->SetStateNoErrorCheck(DWCi_LOBBY_STATE_CLOSING);
         chatDisconnect(s_iLobby->GetChat());
         // Disconnectedコールバックでs_iLobbyを削除
     }

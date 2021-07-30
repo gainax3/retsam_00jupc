@@ -57,6 +57,12 @@ BOOL DWCi_LobbyInitializeNewHandler(DWCi_Lobby* iLobby)
 
 void DWCi_LobbyDestroyNewHandler()
 {
-    DWC_SAFE_FREE(s_failSafeBuf);
+    // MatchComment: add this null check
+    if (s_failSafeBuf == NULL) {
+        return;
+    }
+    // MatchComment: don't use DWC_SAFE_FREE
+    // new code extracted from DWC_SAFE_FREE, minus the if statement
+    DWC_Free((DWCAllocType)0, s_failSafeBuf, 0);
     s_failSafeBuf = NULL;
 }

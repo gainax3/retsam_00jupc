@@ -31,6 +31,7 @@
 #include "dwci_lobbyBase.h"
 #include "dwci_lobbyUtil.h"
 #include "dwci_lobbyCallback.h"
+#include "ppw_timer.h"
 
 // チャンネル名
 static const char DWCi_LOBBY_CHANNEL_NAME_PREFIX[] = "#GSP";
@@ -91,6 +92,8 @@ class DWCi_Lobby : public DWCi_Base
     
     // 動的コールバック管理
     DWCi_CallbackManager callbackManager;
+    PPW_LobbyTimerManager timerManager;
+
 public:
     DWCi_Lobby(const DWCi_String& _gameName, const DWCi_String& _secretKey, DWC_LOBBY_CHANNEL_PREFIX _prefix, s32 _pid,
                const DWCi_String& _chatNick, const DWCi_String& _chatUser, const DWCi_String& _chatName, const DWCi_LobbyGlobalCallbacks* _globalCallbacks);
@@ -122,7 +125,13 @@ public:
         }
         state = _state;
     }
-    
+
+    // MatchComment: add new SetState without error check
+    void SetStateNoErrorCheck(DWCi_LOBBY_STATE _state)
+    {
+        state = _state;
+    }
+
     s32 GetPid() const
     {
         return pid;
@@ -222,7 +231,13 @@ public:
     {
         return callbackManager;
     }
-    
+
+    // 取得したときは参照を保持しないこと。
+    PPW_LobbyTimerManager& GetTimerManager()
+    {
+        return timerManager;
+    }
+
     static DWCi_String CreateNickName(s32 pid);
     
     static s32 NickNameToPid(const DWCi_String& nick);

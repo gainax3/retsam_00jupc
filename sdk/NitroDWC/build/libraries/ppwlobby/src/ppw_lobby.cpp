@@ -172,8 +172,8 @@ static const u32 PPW_LOBBY_TIMER_ID_CHECK_MAINCHANNEL_SYSTEMDATA        = 5;
 static const u32 PPW_LOBBY_TIMER_ID_CHECK_LOBBY_INFO                    = 6;
 
 // タイマーインターバル(秒)
-static const u32 PPW_LOBBY_TIMER_INTERVAL_SYSTEM_CHANNEL_DATA           = 2;
-static const u32 PPW_LOBBY_TIMER_INTERVAL_USER_CHANNEL_DATA             = 3;
+static const u32 PPW_LOBBY_TIMER_INTERVAL_SYSTEM_CHANNEL_DATA           = 3; // MatchComment: 2 -> 3
+static const u32 PPW_LOBBY_TIMER_INTERVAL_USER_CHANNEL_DATA             = 4; // MatchComment: 3 -> 4
 static const u32 PPW_LOBBY_TIMER_INTERVAL_RECRUIT                       = 5;
 static const u32 PPW_LOBBY_TIMER_INTERVAL_CHECK_MAINCHANNEL_MODE        = 3;
 static const u32 PPW_LOBBY_TIMER_INTERVAL_CHECK_MAINCHANNEL_SYSTEMDATA  = 4;

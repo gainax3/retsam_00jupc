@@ -17,7 +17,7 @@ include	$(NITRODWC_ROOT)/build/buildtools/commondefs
 
 #----------------------------------------------------------------------------
 
-SUBDIRS	=	base account asm_ilobby_ppwlobby
+SUBDIRS	=	base account ilobby ppwlobby enc
 
 -include @privates
 -include @addencdir
