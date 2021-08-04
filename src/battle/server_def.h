@@ -262,6 +262,10 @@ struct	tcb_skill_intp_work{
 	int						ballID;				///<ポケモンゲット時の投げるボールID
 	int						work[8];
 	void					*work_p[2];			///<汎用ワークポインタ
+    // should be compatible with a C-injection style modification
+    // since this struct is alloc'd and we add to the end
+    // so just change alloc sizes in WS_GET_EXP_INIT and WS_POKEMON_GET_INIT
+    int                     handle_catch_exp_work[7];
 };
 
 //レベルアップ時に退避しておくパラメータ

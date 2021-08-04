@@ -363,6 +363,10 @@ static	void	SoubiItemClear(SERVER_PARAM *sp,u8 client_no);
 static	void	TCB_GetExp(TCB_PTR tcb,void *work);
 static	void	TCB_GetPokemon(TCB_PTR tcb,void *work);
 
+// new prototypes for catch exp
+static void GetCatchExpUnmodifiedValue(BATTLE_WORK *bw,SERVER_PARAM *sp,int get_client_no);
+static	void	HandleCatchExp(TCB_SKILL_INTP_WORK *tsiw,int get_client_no);
+
 //============================================================================================
 /**
  *	命令テーブル
@@ -12175,6 +12179,47 @@ enum{
 	SEQ_GP_POKEMON_SUCCESS_WAIT,
 	SEQ_GP_POKEMON_MESSAGE,
 	SEQ_GP_POKEMON_MESSAGE_WAIT,
+    // New constants
+	SEQ_GP_GE_INIT,
+	SEQ_GP_GE_EXP_MESSAGE_INDEX_WAIT,
+	SEQ_GP_GE_EXP_MESSAGE_WAIT,
+	SEQ_GP_GE_EXP_GAUGE,
+	SEQ_GP_GE_EXP_GAUGE_WAIT,
+	SEQ_GP_GE_LEVELUP_CHECK,
+	SEQ_GP_GE_LEVELUP_EFFECT_WAIT,
+	SEQ_GP_GE_LEVELUP_MSG_INDEX_WAIT,
+	SEQ_GP_GE_STATUS_PRINT_INIT1,
+	SEQ_GP_GE_STATUS_PRINT_INIT2,
+	SEQ_GP_GE_STATUS_PRINT1,
+	SEQ_GP_GE_STATUS_PRINT_KEY_WAIT,
+	SEQ_GP_GE_STATUS_PRINT2,
+	SEQ_GP_GE_STATUS_PRINT_KEY_WAIT2,
+	SEQ_GP_GE_STATUS_PRINT_END,
+	SEQ_GP_GE_WAZAOBOE_CHECK,
+	SEQ_GP_GE_WAZAWASURE_MSG1,
+	SEQ_GP_GE_WAZAWASURE_MSG1_WAIT,
+	SEQ_GP_GE_WAZAWASURE_MSG2,
+	SEQ_GP_GE_WAZAWASURE_MSG2_WAIT,
+	SEQ_GP_GE_WAZAWASURE_YES_NO_INIT,
+	SEQ_GP_GE_WAZAWASURE_YES_NO,
+	SEQ_GP_GE_WAZAWASURE_SELECT_INIT,
+	SEQ_GP_GE_WAZAWASURE_SELECT,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG1,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG1_WAIT,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG2,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG2_WAIT,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG3,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG3_WAIT,
+	SEQ_GP_GE_WAZAWASURE_ACT_MSG4,
+	SEQ_GP_GE_WAZAAKIRAME_MSG1,
+	SEQ_GP_GE_WAZAAKIRAME_MSG1_WAIT,
+	SEQ_GP_GE_WAZAAKIRAME_INIT,
+	SEQ_GP_GE_WAZAAKIRAME,
+	SEQ_GP_GE_WAZAAKIRAME_ACT,
+	SEQ_GP_GE_WAZAOBOE_MSG_INDEX_WAIT,
+	SEQ_GP_GE_END_CHECK,
+	SEQ_GP_GE_END,
+    
 	SEQ_GP_POKEMON_GET_WAIT,
 	SEQ_GP_ZUKAN_MESSAGE,
 	SEQ_GP_ZUKAN_INIT,
@@ -12410,10 +12455,60 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 		break;
 	case SEQ_GP_POKEMON_MESSAGE_WAIT:
 		if(GF_MSG_PrintEndCheck(tsiw->work[GP_MSG_INDEX])==0){
-			tsiw->seq_no=SEQ_GP_POKEMON_GET_WAIT;
-			BM_SceneSet(tsiw->bms,EBM_DEMO_SCENE_END_SUCCESS_2);
+            // Don't do catch exp for pal park & catch tutorial
+            BM_SceneSet(tsiw->bms,EBM_DEMO_SCENE_END_SUCCESS_2);
+            if(BattleWorkFightTypeGet(tsiw->bw)&(FIGHT_TYPE_POKE_PARK|FIGHT_TYPE_GET_DEMO)){
+                tsiw->seq_no=SEQ_GP_POKEMON_GET_WAIT;
+            } else {
+                GetCatchExpUnmodifiedValue(tsiw->bw, tsiw->sp, get_client_no);
+                tsiw->handle_catch_exp_work[GE_SEL_MONS_NO] = 0;
+                tsiw->seq_no=SEQ_GP_GE_INIT;
+            }
 		}
 		break;
+	case SEQ_GP_GE_INIT:
+	case SEQ_GP_GE_EXP_MESSAGE_INDEX_WAIT:
+	case SEQ_GP_GE_EXP_MESSAGE_WAIT:
+	case SEQ_GP_GE_EXP_GAUGE:
+	case SEQ_GP_GE_EXP_GAUGE_WAIT:
+	case SEQ_GP_GE_LEVELUP_CHECK:
+	case SEQ_GP_GE_LEVELUP_EFFECT_WAIT:
+	case SEQ_GP_GE_LEVELUP_MSG_INDEX_WAIT:
+	case SEQ_GP_GE_STATUS_PRINT_INIT1:
+	case SEQ_GP_GE_STATUS_PRINT_INIT2:
+	case SEQ_GP_GE_STATUS_PRINT1:
+	case SEQ_GP_GE_STATUS_PRINT_KEY_WAIT:
+	case SEQ_GP_GE_STATUS_PRINT2:
+	case SEQ_GP_GE_STATUS_PRINT_KEY_WAIT2:
+	case SEQ_GP_GE_STATUS_PRINT_END:
+	case SEQ_GP_GE_WAZAOBOE_CHECK:
+	case SEQ_GP_GE_WAZAWASURE_MSG1:
+	case SEQ_GP_GE_WAZAWASURE_MSG1_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_MSG2:
+	case SEQ_GP_GE_WAZAWASURE_MSG2_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_YES_NO_INIT:
+	case SEQ_GP_GE_WAZAWASURE_YES_NO:
+	case SEQ_GP_GE_WAZAWASURE_SELECT_INIT:
+	case SEQ_GP_GE_WAZAWASURE_SELECT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG1:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG1_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG2:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG2_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG3:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG3_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG4:
+	case SEQ_GP_GE_WAZAAKIRAME_MSG1:
+	case SEQ_GP_GE_WAZAAKIRAME_MSG1_WAIT:
+	case SEQ_GP_GE_WAZAAKIRAME_INIT:
+	case SEQ_GP_GE_WAZAAKIRAME:
+	case SEQ_GP_GE_WAZAAKIRAME_ACT:
+	case SEQ_GP_GE_WAZAOBOE_MSG_INDEX_WAIT:
+	case SEQ_GP_GE_END_CHECK:
+	case SEQ_GP_GE_END:
+        BM_SceneStateGet(tsiw->bms,EBM_DEMO_SCENE_END_SUCCESS_2);
+        HandleCatchExp(tsiw, get_client_no);
+        break;
+
 	case SEQ_GP_POKEMON_GET_WAIT:
 		if(BM_SceneStateGet(tsiw->bms,EBM_DEMO_SCENE_END_SUCCESS_2)==FALSE){
 			if(--tsiw->work[GE_MSG_WAIT]==0){
@@ -12428,6 +12523,7 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 					MSG_DsIconFlashReq(BattleWorkMsgIconGet(tsiw->bw),MSG_DSI_REQ_STOP);
 					PaletteFadeReq(pfd,PF_BIT_NORMAL_ALL,0xffff,1,0,16,0x0000);
 					SoftSpritePalFadeSetAll(ssm_p,0,16,0,0x0000);
+                    Snd_BgmFadeOut(0,16);
 					tsiw->seq_no=SEQ_GP_END;
 				}
 				else if(FT_ZukanFlagCheckGet(tsiw->bw,PokeParaGet(pp,ID_PARA_monsno,NULL))){
@@ -12624,9 +12720,9 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 
 				pp=BattleWorkPokemonParamGet(tsiw->bw,get_client_no,tsiw->sp->sel_mons_no[get_client_no]);
 
-				np=NameIn_ParamAllocMake(HEAPID_BATTLE,NAMEIN_POKEMON,
+				np=NameIn_ParamAllocMake_Full(HEAPID_BATTLE,NAMEIN_POKEMON,
 										 PokeParaGet(pp,ID_PARA_monsno,NULL),NAMEIN_POKEMON_LENGTH,
-										 BattleWorkConfigGet(tsiw->bw));
+										 BattleWorkConfigGet(tsiw->bw), TRUE);
 				tsiw->work_p[GP_NICKNAME_PARAM]=np;
 
 				if(BattleWorkPokeCountGet(tsiw->bw,CLIENT_NO_MINE)<POKEMON_TEMOTI_MAX){
@@ -12711,6 +12807,7 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 						MSG_DsIconFlashReq(BattleWorkMsgIconGet(tsiw->bw),MSG_DSI_REQ_STOP);
 						PaletteFadeReq(pfd,PF_BIT_NORMAL_ALL,0xffff,1,0,16,0x0000);
 						SoftSpritePalFadeSetAll(ssm_p,0,16,0,0x0000);
+                        Snd_BgmFadeOut(0,16);
 					}
 					tsiw->seq_no=SEQ_GP_END;
 				}
@@ -12772,6 +12869,7 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 					MSG_DsIconFlashReq(BattleWorkMsgIconGet(tsiw->bw),MSG_DSI_REQ_STOP);
 					PaletteFadeReq(pfd,PF_BIT_NORMAL_ALL,0xffff,1,0,16,0x0000);
 					SoftSpritePalFadeSetAll(ssm_p,0,16,0,0x0000);
+                    Snd_BgmFadeOut(0,16);
 					tsiw->seq_no=SEQ_GP_END;
 				}
 			}
@@ -12860,6 +12958,534 @@ static	void	TCB_GetPokemon(TCB_PTR tcb,void *work)
 			sys_FreeMemoryEz(work);
 			TCB_Delete(tcb);
 		}
+		break;
+	}
+}
+
+// Largely a copypaste from WS_GET_EXP_CHECK
+// this just replaces sp->kizetsu_client with get_client_no
+static void GetCatchExpUnmodifiedValue(BATTLE_WORK *bw,SERVER_PARAM *sp,int get_client_no)
+{
+    int	i;
+    int	total_exp;
+    int	get_exp_poke_total=0;
+    int	get_exp_item_total=0;
+    u16	itemno;
+    u16	totalexp;
+    int	eqp;
+    POKEMON_PARAM	*pp;
+    
+    //手持ちポケモンが学習装置をもっているかチェック
+    for(i=0;i<PokeParty_GetPokeCount(BattleWorkPokePartyGet(bw,CLIENT_NO_MINE));i++){
+        pp=BattleWorkPokemonParamGet(bw,CLIENT_NO_MINE,i);
+        if((PokeParaGet(pp,ID_PARA_monsno,NULL))&&(PokeParaGet(pp,ID_PARA_hp,NULL))){
+            if(sp->get_exp_right_flag[(get_client_no>>1)&1]&No2Bit(i)){
+                get_exp_poke_total++;
+            }
+            itemno=PokeParaGet(pp,ID_PARA_item,NULL);
+            eqp=ItemParamGet(itemno,ITEM_PRM_EQUIP,HEAPID_BATTLE);
+            eqp=ST_ItemParamGet(sp,itemno,ITEM_PRM_EQUIP);
+            if(eqp==SOUBI_KEIKENTIGET){
+                get_exp_item_total++;
+            }
+        }
+    }
+    totalexp=PokePersonalParaGet(sp->psp[get_client_no].monsno,ID_PER_give_exp);
+    totalexp=(totalexp*sp->psp[get_client_no].level)/7;
+    if(get_exp_item_total){
+        sp->get_exp=(totalexp/2)/get_exp_poke_total;
+        if(sp->get_exp==0){
+            sp->get_exp=1;
+        }
+        sp->gakusyuu_get_exp=(totalexp/2)/get_exp_item_total;
+        if(sp->gakusyuu_get_exp==0){
+            sp->gakusyuu_get_exp=1;
+        }
+    }
+    else{
+        sp->get_exp=totalexp/get_exp_poke_total;
+        if(sp->get_exp==0){
+            sp->get_exp=1;
+        }
+        sp->gakusyuu_get_exp=0;
+    }
+}
+
+// Largely a copypaste from TCB_GetExp
+// replaces tsiw->work with tsiw->handle_catch_exp_work for all instances to not conflict
+static	void	HandleCatchExp(TCB_SKILL_INTP_WORK *tsiw,int get_client_no)
+{
+	int					i;
+	int					sel_mons_no;
+	POKEMON_PARAM		*pp;
+	MESSAGE_PARAM		mp;
+	int					client_no;
+	int					exp_client_no;
+	MSGDATA_MANAGER		*msg_m;
+	u32					fight_type;
+	int					itemno;
+	int					eqp;
+
+	msg_m=BattleWorkFightMsgGet(tsiw->bw);
+	fight_type=BattleWorkFightTypeGet(tsiw->bw);
+    // replace tsiw->sp->kizetsu_client with get_client_no
+    // this is done for all instances of tsiw->sp->kizetsu_client
+	client_no=(get_client_no)>>1&1;
+	exp_client_no=CLIENT_NO_MINE;
+
+	for(sel_mons_no=tsiw->handle_catch_exp_work[GE_SEL_MONS_NO];sel_mons_no<BattleWorkPokeCountGet(tsiw->bw,exp_client_no);sel_mons_no++){
+		pp=BattleWorkPokemonParamGet(tsiw->bw,exp_client_no,sel_mons_no);
+		itemno=PokeParaGet(pp,ID_PARA_item,NULL);
+		eqp=ItemParamGet(itemno,ITEM_PRM_EQUIP,HEAPID_BATTLE);
+		if((eqp==SOUBI_KEIKENTIGET)||(tsiw->sp->get_exp_right_flag[client_no]&No2Bit(sel_mons_no))){
+			break;
+		}
+	}
+	if(sel_mons_no==BattleWorkPokeCountGet(tsiw->bw,exp_client_no)){
+		tsiw->seq_no=SEQ_GP_GE_END;
+	}
+	else if((fight_type&FIGHT_TYPE_2vs2)&&((fight_type&FIGHT_TYPE_AI)==0)){
+		if(tsiw->sp->sel_mons_no[CLIENT_NO_MINE2]==sel_mons_no){
+			exp_client_no=CLIENT_NO_MINE2;
+		}
+	}
+
+	switch(tsiw->seq_no){
+	case SEQ_GP_GE_INIT:
+		{
+			u32				get_exp_total;
+			u32				exp;
+
+			itemno=PokeParaGet(pp,ID_PARA_item,NULL);
+			eqp=ItemParamGet(itemno,ITEM_PRM_EQUIP,HEAPID_BATTLE);
+            // NewChange: Remove a check here for playing the victory theme music
+            // since it's already done in TCB_GetPokemon
+
+			get_exp_total=0;
+			//経験値取得メッセージセット
+			mp.msg_id=KeikentiGetMsg;
+
+			if((PokeParaGet(pp,ID_PARA_hp,NULL))&&(PokeParaGet(pp,ID_PARA_level,NULL)!=100)){
+
+				if(tsiw->sp->get_exp_right_flag[client_no]&No2Bit(sel_mons_no)){
+					get_exp_total=tsiw->sp->get_exp;
+				}
+	
+				//学習装置をもっていたら、その分を追加
+				if(eqp==SOUBI_KEIKENTIGET){
+					get_exp_total+=tsiw->sp->gakusyuu_get_exp;
+				}
+				//経験値が増える効果のアイテムをもっていたら、1.5倍に
+				if(eqp==SOUBI_KEIKENTIHUERU){
+					get_exp_total=get_exp_total*150/100;
+				}
+				//トレーナー戦だったら、1.5倍に
+				if(fight_type&FIGHT_TYPE_TRAINER){
+					get_exp_total=get_exp_total*150/100;
+				}
+				//人からもらったポケモンだったら、1.5倍に
+				if(ST_ServerPokeOneSelfCheckActPP(tsiw->bw,pp)==FALSE){
+					//さらに違う国のポケモンだったら、1.7倍に
+					if(PokeParaGet(pp,ID_PARA_country_code,NULL)!=CasetteLanguage){
+						get_exp_total=get_exp_total*170/100;
+					}
+					else{
+						get_exp_total=get_exp_total*150/100;
+					}
+					mp.msg_id=KeikentiGetOomeMsg;
+				}
+				exp=PokeParaGet(pp,ID_PARA_exp,NULL);
+				tsiw->handle_catch_exp_work[GE_NOW_EXP]=exp-PokeParaLevelExpGet(pp);
+				exp+=get_exp_total;
+				if(sel_mons_no==tsiw->sp->sel_mons_no[exp_client_no]){
+					tsiw->sp->psp[exp_client_no].exp=exp;
+				}
+				PokeParaPut(pp,ID_PARA_exp,(u8 *)&exp);
+
+				PokeExpCalc(BattleWorkPokePartyGet(tsiw->bw,exp_client_no),
+							sel_mons_no,
+							tsiw->sp->psp[get_client_no].monsno,
+							tsiw->sp->psp[get_client_no].form_no);
+			}
+
+			if(get_exp_total){
+				mp.msg_tag=TAG_NICK_NUM;
+				mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+				mp.msg_para[1]=get_exp_total;
+				tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+				tsiw->handle_catch_exp_work[GE_MSG_WAIT]=MSG_WAIT/4;
+				tsiw->seq_no++;
+			}
+			else{
+				tsiw->seq_no=SEQ_GP_GE_END_CHECK;
+			}
+		}
+		break;
+	case SEQ_GP_GE_EXP_MESSAGE_INDEX_WAIT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_EXP_MESSAGE_WAIT:
+		if(--tsiw->handle_catch_exp_work[GE_MSG_WAIT]==0){
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_EXP_GAUGE:
+		if(sel_mons_no==tsiw->sp->sel_mons_no[exp_client_no]){
+			SCIO_EXPGaugeCalcSet(tsiw->bw,tsiw->sp,exp_client_no,tsiw->handle_catch_exp_work[GE_NOW_EXP]);
+			tsiw->handle_catch_exp_work[GE_NOW_EXP]=0;
+			tsiw->seq_no++;
+		}
+		else{
+			tsiw->seq_no=SEQ_GP_GE_LEVELUP_CHECK;
+		}
+		break;
+	case SEQ_GP_GE_EXP_GAUGE_WAIT:
+		if(ST_ServerQueCheck(tsiw->sp)){
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_LEVELUP_CHECK:
+		if(PokeLevelUpCheck(pp)){
+			if(tsiw->sp->sel_mons_no[exp_client_no]==sel_mons_no){
+				SCIO_StatusEffectSet(tsiw->bw,tsiw->sp,exp_client_no,STATUS_LVUP);
+				SCIO_LevelUpEffectSet(tsiw->bw,exp_client_no);
+			}
+			tsiw->seq_no=SEQ_GP_GE_LEVELUP_EFFECT_WAIT;
+		}
+		else{
+			tsiw->seq_no=SEQ_GP_GE_END_CHECK;
+		}
+		break;
+	case SEQ_GP_GE_LEVELUP_EFFECT_WAIT:
+		if(ST_ServerQueCheck(tsiw->sp)){
+			{
+				int					level;
+				int					status_id[6]={ID_PARA_hpmax,ID_PARA_pow,ID_PARA_def,
+												  ID_PARA_spepow,ID_PARA_spedef,ID_PARA_agi};
+				PUSH_POKEMON_PARAM	*ppp;
+
+				level=PokeParaGet(pp,ID_PARA_level,NULL);
+
+				tsiw->sp->work=sys_AllocMemory(HEAPID_BATTLE,sizeof(PUSH_POKEMON_PARAM));
+				ppp=(PUSH_POKEMON_PARAM *)tsiw->sp->work;
+
+				for(i=0;i<6;i++){
+					ppp->para[i]=PokeParaGet(pp,status_id[i],NULL);
+				}
+
+				FriendCalc(pp,FRIEND_LEVELUP,BattleWorkPlaceIDGet(tsiw->bw));
+				PokeParaCalcLevelUp(pp);
+				if(tsiw->sp->sel_mons_no[exp_client_no]==sel_mons_no){
+					ST_PokemonParamReload(tsiw->bw,tsiw->sp,exp_client_no,tsiw->sp->sel_mons_no[exp_client_no]);
+				}
+				tsiw->sp->level_up_pokemon|=No2Bit(sel_mons_no);
+				SCIO_HPGaugeRefreshSet(tsiw->bw,tsiw->sp,exp_client_no);
+
+				mp.msg_id=LevelUpMsg;
+				mp.msg_tag=TAG_NICK_NUM;
+				mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+				mp.msg_para[1]=level;
+				tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+				tsiw->seq_no=SEQ_GP_GE_LEVELUP_MSG_INDEX_WAIT;
+			}
+		}
+		break;
+	case SEQ_GP_GE_LEVELUP_MSG_INDEX_WAIT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			tsiw->seq_no=SEQ_GP_GE_STATUS_PRINT_INIT1;
+			tsiw->handle_catch_exp_work[GE_WAZA_CNT]=0;
+		}
+		break;
+	case SEQ_GP_GE_STATUS_PRINT_INIT1:
+		if(tsiw->sp->sel_mons_no[exp_client_no]!=sel_mons_no){
+			//控えのレベルアップ
+			BenchLevelUpPokeIconActorSet(tsiw->bw,tsiw,pp);
+		}
+		tsiw->seq_no=SEQ_GP_GE_STATUS_PRINT_INIT2;
+		break;
+	case SEQ_GP_GE_STATUS_PRINT_INIT2:
+		{
+			GF_BGL_INI			*bgl;
+			GF_BGL_BMPWIN		*win;
+			PALETTE_FADE_PTR	pfd;
+
+			bgl=BattleWorkGF_BGL_INIGet(tsiw->bw);
+			win=BattleWorkGF_BGL_BMPWINGet(tsiw->bw,MENU_WIN_NO);
+			pfd=BattleWorkPfdGet(tsiw->bw);
+
+			G2_SetBG0Priority(BATTLE_3DBG_PRIORITY+1);
+			GF_BGL_PrioritySet(BATTLE_FRAME_WINDOW,BATTLE_BGPRI_EFFECT);
+			GF_BGL_PrioritySet(BATTLE_FRAME_EFFECT,BATTLE_BGPRI_WINDOW);
+
+			BattleGaugePriSet(tsiw->bw,GAUGE_DEFAULT_BGPRI+2);
+
+			MenuWinCgxSet(bgl,GF_BGL_FRAME2_M,MENU_WIN_CGX_START,MENU_TYPE_SYSTEM,HEAPID_BATTLE);
+			PaletteWorkSet_Arc(pfd, ARC_WINFRAME, MenuWinPalArcGet(), HEAPID_BATTLE, 
+							FADE_MAIN_BG, 0x20, MENU_WIN_PAL_NO*0x10);
+			GF_BGL_BmpWinAdd(bgl,win,GF_BGL_FRAME2_M,
+							 MENU_WIN_X,MENU_WIN_Y,MENU_WIN_SIZE_X,MENU_WIN_SIZE_Y,MENU_MSG_PAL_NO,MENU_MSG_START);
+			GF_BGL_BmpWinDataFill(win,0xff);
+			BmpMenuWinWrite(win,WINDOW_TRANS_ON,MENU_WIN_CGX_START,MENU_WIN_PAL_NO);
+
+			tsiw->seq_no=SEQ_GP_GE_STATUS_PRINT1;
+
+		}
+		break;
+	case SEQ_GP_GE_STATUS_PRINT1:
+		{
+			int					status_msg[6]={STATUS_008,STATUS_001,STATUS_002,STATUS_004,STATUS_005,STATUS_003};
+			int					status_id[6]={ID_PARA_hpmax,ID_PARA_pow,ID_PARA_def,ID_PARA_spepow,ID_PARA_spedef,ID_PARA_agi};
+			GF_BGL_BMPWIN		*win;
+			PUSH_POKEMON_PARAM	*ppp;
+
+			win=BattleWorkGF_BGL_BMPWINGet(tsiw->bw,MENU_WIN_NO);
+			ppp=(PUSH_POKEMON_PARAM *)tsiw->sp->work;
+
+			for(i=0;i<6;i++){
+				mp.msg_id=LevelUpStatusMsg;
+				mp.msg_tag=TAG_STAT;
+				mp.msg_para[0]=status_msg[i];
+				StatusMSG_Print(tsiw->bw,win,msg_m,&mp,0,16*i,0,0,0);
+				mp.msg_id=LevelUpStatusUpMsg;
+				mp.msg_tag=TAG_NUMS;
+				mp.msg_para[0]=PokeParaGet(pp,status_id[i],NULL)-ppp->para[i];
+				mp.msg_keta=2;
+				// ----------------------------------------------------------------------------
+				// localize_spec_mark(LANG_ALL) imatake 2006/12/26
+				// パラメタ増分の表示を、新パラメタと同じ位置に右寄せ
+				StatusMSG_Print(tsiw->bw,win,msg_m,&mp,80,16*i,BATTLE_MSG_WIDTH_OFS,28,0);
+				// ----------------------------------------------------------------------------
+			}
+			tsiw->seq_no=SEQ_GP_GE_STATUS_PRINT_KEY_WAIT;
+		}
+		break;
+	case SEQ_GP_GE_STATUS_PRINT2:
+		{
+			int					status_msg[6]={STATUS_008,STATUS_001,STATUS_002,STATUS_004,STATUS_005,STATUS_003};
+			int					status_id[6]={ID_PARA_hpmax,ID_PARA_pow,ID_PARA_def,ID_PARA_spepow,ID_PARA_spedef,ID_PARA_agi};
+			GF_BGL_BMPWIN		*win;
+			PUSH_POKEMON_PARAM	*ppp;
+
+			win=BattleWorkGF_BGL_BMPWINGet(tsiw->bw,MENU_WIN_NO);
+			ppp=(PUSH_POKEMON_PARAM *)tsiw->sp->work;
+
+			GF_BGL_BmpWinFill(win,0x0f,80,0,36,96);
+
+			for(i=0;i<6;i++){
+				mp.msg_id=LevelUpStatusValueMsg;
+				mp.msg_tag=TAG_NUMS;
+				mp.msg_para[0]=PokeParaGet(pp,status_id[i],NULL);
+				mp.msg_keta=3;
+				StatusMSG_Print(tsiw->bw,win,msg_m,&mp,72,16*i,BATTLE_MSG_WIDTH_OFS,36,0);
+			}
+			tsiw->seq_no=SEQ_GP_GE_STATUS_PRINT_KEY_WAIT2;
+		}
+		break;
+	case SEQ_GP_GE_STATUS_PRINT_KEY_WAIT:
+	case SEQ_GP_GE_STATUS_PRINT_KEY_WAIT2:
+#ifdef PM_DEBUG
+		if(BattleWorkBattleStatusFlagGet(tsiw->bw)&BATTLE_STATUS_FLAG_AUTO_BATTLE){
+			Snd_SePlay(BSE_OKURI);
+			tsiw->seq_no++;
+		}
+#endif PM_DEBUG
+		if((sys.trg&(PAD_BUTTON_A|PAD_BUTTON_B|PAD_BUTTON_X|PAD_BUTTON_Y))||
+		   (GF_TP_GetTrg())){
+			Snd_SePlay(BSE_OKURI);
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_STATUS_PRINT_END:
+		{
+			GF_BGL_BMPWIN		*win;
+
+			win=BattleWorkGF_BGL_BMPWINGet(tsiw->bw,MENU_WIN_NO);
+
+			BmpMenuWinClear(win,WINDOW_TRANS_ON);
+			GF_BGL_BmpWinDel(win);
+
+			G2_SetBG0Priority(BATTLE_3DBG_PRIORITY);
+			GF_BGL_PrioritySet(BATTLE_FRAME_WINDOW,BATTLE_BGPRI_WINDOW);
+			GF_BGL_PrioritySet(BATTLE_FRAME_EFFECT,BATTLE_BGPRI_EFFECT);
+
+			BattleGaugePriSet(tsiw->bw,GAUGE_DEFAULT_BGPRI);
+
+			if(tsiw->sp->sel_mons_no[exp_client_no]!=sel_mons_no){
+				//控えのレベルアップ
+				BenchLevelUpPokeIconActorDelete(tsiw->bw,tsiw);
+			}
+
+			sys_FreeMemoryEz(tsiw->sp->work);
+
+			tsiw->seq_no=SEQ_GP_GE_WAZAOBOE_CHECK;
+		}
+		break;
+	case SEQ_GP_GE_WAZAOBOE_CHECK:
+		{
+			u16	wazano;
+			GF_BGL_INI			*bgl=BattleWorkGF_BGL_INIGet(tsiw->bw);
+
+			switch(PokeWazaOboeCheck(pp,&tsiw->handle_catch_exp_work[GE_WAZA_CNT],&wazano)){
+			case SAME_WAZA_SET:
+				//同じ技は覚えられないので、再度チェックのループに回す
+				break;
+			case NO_WAZA_OBOE:
+				tsiw->seq_no=SEQ_GP_GE_EXP_GAUGE;
+				break;
+			case NO_WAZA_SET:
+				tsiw->handle_catch_exp_work[GE_WAZANO]=wazano;
+				tsiw->seq_no=SEQ_GP_GE_WAZAWASURE_MSG1;
+				break;
+			default:
+				if(tsiw->sp->sel_mons_no[exp_client_no]==sel_mons_no){
+					ST_PokemonParamReload(tsiw->bw,tsiw->sp,exp_client_no,tsiw->sp->sel_mons_no[exp_client_no]);
+				}
+				mp.msg_id=WazaOboeMsg;
+				mp.msg_tag=TAG_NICK_WAZA;
+				mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+				mp.msg_para[1]=wazano;
+				tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+				tsiw->seq_no=SEQ_GP_GE_WAZAOBOE_MSG_INDEX_WAIT;
+				break;
+			}
+		}
+		break;
+	case SEQ_GP_GE_WAZAWASURE_MSG1:
+		mp.msg_id=battle_WazaOboeMsg1;
+		mp.msg_tag=TAG_NICK_WAZA;
+		mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+		mp.msg_para[1]=tsiw->handle_catch_exp_work[GE_WAZANO];
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_MSG2:
+		mp.msg_id=battle_WazaOboeMsg2;
+		mp.msg_tag=TAG_NICK;
+		mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_MSG1_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_MSG2_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG1_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG2_WAIT:
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG3_WAIT:
+	case SEQ_GP_GE_WAZAAKIRAME_MSG1_WAIT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_WAZAWASURE_YES_NO_INIT:
+		SCIO_YesNoSelectSet(tsiw->bw,tsiw->sp,exp_client_no,battle_WazaWasureMsg1,YNTYPE_WASURE,NULL,NULL);
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_YES_NO:
+		if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)){
+			if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)==SELECT_CANCEL){
+				tsiw->seq_no=SEQ_GP_GE_WAZAAKIRAME_MSG1;
+			}
+			else{
+				mp.msg_id=battle_WazaWasureMsg2;
+				mp.msg_tag=TAG_NONE;
+				tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+				tsiw->seq_no=SEQ_GP_GE_WAZAWASURE_SELECT_INIT;
+			}
+		}
+		break;
+	case SEQ_GP_GE_WAZAWASURE_SELECT_INIT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			SCIO_WazaWasureSet(tsiw->bw,exp_client_no,tsiw->handle_catch_exp_work[GE_WAZANO],sel_mons_no);
+			tsiw->seq_no++;
+		}
+		break;
+	case SEQ_GP_GE_WAZAWASURE_SELECT:
+		if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)==SELECT_CANCEL){
+			tsiw->seq_no=SEQ_GP_GE_WAZAAKIRAME_MSG1;
+		}
+		else if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)){
+			tsiw->handle_catch_exp_work[GE_WAZAPOS]=tsiw->sp->server_buffer[exp_client_no][0]-1;
+			tsiw->seq_no=SEQ_GP_GE_WAZAWASURE_ACT_MSG1;
+		}
+		break;
+	case SEQ_GP_GE_WAZAAKIRAME_MSG1:
+		mp.msg_id=battle_WazaAkirameMsg1;
+		mp.msg_tag=TAG_NONE;
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAAKIRAME_INIT:
+		SCIO_YesNoSelectSet(tsiw->bw,tsiw->sp,exp_client_no,battle_WazaAkirameMsg2,YNTYPE_AKIRAME,tsiw->handle_catch_exp_work[GE_WAZANO],NULL);
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAAKIRAME:
+		if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)){
+			if(ST_ServerBufferResGet(tsiw->sp,exp_client_no)==SELECT_CANCEL){
+				tsiw->seq_no=SEQ_GP_GE_WAZAWASURE_MSG1;
+			}
+			else{
+				mp.msg_id=battle_WazaAkirameMsg3;
+				mp.msg_tag=TAG_NICK_WAZA;
+				mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+				mp.msg_para[1]=tsiw->handle_catch_exp_work[GE_WAZANO];
+				tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+				tsiw->seq_no=SEQ_GP_GE_WAZAAKIRAME_ACT;
+			}
+		}
+		break;
+	case SEQ_GP_GE_WAZAAKIRAME_ACT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			tsiw->seq_no=SEQ_GP_GE_WAZAOBOE_CHECK;
+		}
+		break;
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG1:
+		mp.msg_id=battle_WazaWasureMsg3;
+		mp.msg_tag=TAG_NONE;
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG2:
+		mp.msg_id=battle_WazaWasureMsg4;
+		mp.msg_tag=TAG_NICK_WAZA;
+		mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+		mp.msg_para[1]=PokeParaGet(pp,ID_PARA_waza1+tsiw->handle_catch_exp_work[GE_WAZAPOS],NULL);
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG3:
+		mp.msg_id=battle_WazaOboeMsg3;
+		mp.msg_tag=TAG_NONE;
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		tsiw->seq_no++;
+		break;
+	case SEQ_GP_GE_WAZAWASURE_ACT_MSG4:
+		mp.msg_id=battle_WazaOboeMsg4;
+		mp.msg_tag=TAG_NICK_WAZA;
+		mp.msg_para[0]=exp_client_no|(sel_mons_no<<8);
+		mp.msg_para[1]=tsiw->handle_catch_exp_work[GE_WAZANO];
+		tsiw->handle_catch_exp_work[GE_MSG_INDEX]=BattleMSG_Print(tsiw->bw,msg_m,&mp,BattleWorkConfigMsgSpeedGet(tsiw->bw));
+		i=0;
+		PokeParaPut(pp,ID_PARA_pp_count1+tsiw->handle_catch_exp_work[GE_WAZAPOS],&i);		//pp_countをクリア
+		PokeWazaSetPos(pp,tsiw->handle_catch_exp_work[GE_WAZANO],tsiw->handle_catch_exp_work[GE_WAZAPOS]);
+		if(tsiw->sp->sel_mons_no[exp_client_no]==sel_mons_no){
+			ST_PokemonParamReload(tsiw->bw,tsiw->sp,exp_client_no,tsiw->sp->sel_mons_no[exp_client_no]);
+		}
+		tsiw->seq_no=SEQ_GP_GE_WAZAOBOE_MSG_INDEX_WAIT;
+		break;
+	case SEQ_GP_GE_WAZAOBOE_MSG_INDEX_WAIT:
+		if(GF_MSG_PrintEndCheck(tsiw->handle_catch_exp_work[GE_MSG_INDEX])==0){
+			tsiw->seq_no=SEQ_GP_GE_WAZAOBOE_CHECK;
+		}
+		break;
+	case SEQ_GP_GE_END_CHECK:
+		tsiw->sp->get_exp_right_flag[client_no]&=(No2Bit(sel_mons_no)^0xffffffff);
+		tsiw->handle_catch_exp_work[GE_SEL_MONS_NO]=sel_mons_no+1;
+		tsiw->seq_no=SEQ_GP_GE_INIT;
+		break;
+	case SEQ_GP_GE_END:
+        tsiw->seq_no=SEQ_GP_POKEMON_GET_WAIT;
+        //BM_SceneSet(tsiw->bms,EBM_DEMO_SCENE_END_SUCCESS_2);
 		break;
 	}
 }

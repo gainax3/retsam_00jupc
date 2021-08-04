@@ -92,7 +92,11 @@ typedef struct{
 	int get_msg_id; 	// ポケモン捕獲の時にBOX転送が発生した時のメッセージIDが入る
 	BOX_DATA  *boxdata;	// ポケモン捕獲の時にBOX転送が発生した時に、BOXの名前を取得するために必要
 	CONFIG    *config;  // コンフィグ構造体
-
+    // NewChange: field to control whether to
+    // fade sound after inputting name
+    // TODO: what if there's an array of NAMEIN_PARAMs? size also matters there
+    // but it seems unlikely
+    BOOL fade_bgm_on_exit;
 }NAMEIN_PARAM;
 
 //==============================================================================
@@ -108,6 +112,8 @@ typedef struct{
  */
 //==============================================================================
 extern NAMEIN_PARAM* NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax, CONFIG *config);
+
+extern NAMEIN_PARAM *NameIn_ParamAllocMake_Full(int HeapId, int mode, int info, int wordmax, CONFIG *config, BOOL fade_bgm_on_exit);
 
 //==============================================================================
 /**

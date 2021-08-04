@@ -635,6 +635,7 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 			wk->wait++;
 			if(wk->wait>30){
 				WIPE_SYS_Start(WIPE_PATTERN_FSAM, WIPE_TYPE_FADEOUT, WIPE_TYPE_FADEOUT, WIPE_FADE_BLACK, 16, 1, HEAPID_NAMEIN );
+                wk->wait = 0;
 				*seq = SEQ_OUT;
 			}
 			break;
@@ -652,6 +653,13 @@ static PROC_RESULT NameInProc_Main( PROC * proc, int * seq )
 
 	case SEQ_OUT:
 //		if( IsFinishedBrightnessChg(MASK_DOUBLE_DISPLAY) ){
+        wk->wait++;
+        if (wk->wait == 19) {
+            NAMEIN_PARAM *param = (NAMEIN_PARAM*)PROC_GetParentWork(proc);
+            if (param->fade_bgm_on_exit) {
+                Snd_BgmFadeOut(0,16);
+            }
+        }
 		if( WIPE_SYS_EndCheck() ){
 			return PROC_RES_FINISH;
 		}
@@ -986,6 +994,11 @@ static PROC_RESULT NameInProc_End( PROC * proc, int * seq )
 //==============================================================================
 NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax, CONFIG *config)
 {
+    return NameIn_ParamAllocMake_Full(HeapId, mode, info, wordmax, config, FALSE);
+}
+
+NAMEIN_PARAM *NameIn_ParamAllocMake_Full(int HeapId, int mode, int info, int wordmax, CONFIG *config, BOOL fade_bgm_on_exit)
+{
 	NAMEIN_PARAM *param;
 	
 	
@@ -1010,9 +1023,11 @@ NAMEIN_PARAM *NameIn_ParamAllocMake(int HeapId, int mode, int info, int wordmax,
 	param->sex		   = 0;
 	param->config      = config;
 	param->form		   = 0;
+    param->fade_bgm_on_exit = fade_bgm_on_exit;
 
 	return param;
 }
+
 
 //==============================================================================
 /**
