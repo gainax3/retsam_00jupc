@@ -34,7 +34,8 @@ typedef struct {
 	u16	DebugBattle:1;
 	u16	DebugHook:1;
 	u16 DebugKeyPush:1;
-	u16	:4;
+	u16 OpenPCCheck:1;
+	u16	:3;
 
 	u8	Site;
 	s8	PushSite;

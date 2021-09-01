@@ -181,6 +181,7 @@ static void ClearRequest( EV_REQUEST * req )
 	req->PushCheck  = FALSE;
 	req->MoveCheck  = FALSE;
 	req->FloatCheck = FALSE;
+	req->OpenPCCheck = FALSE;
 
 	req->DebugMenu   = FALSE;
 	req->DebugBattle = FALSE;
@@ -233,6 +234,9 @@ void SetRequest( EV_REQUEST * req, FIELDSYS_WORK * repw, u16 trg, u16 cont )
 			}
 			if( trg & PAD_BUTTON_CANCEL ){
 				req->FloatCheck = TRUE;
+			}
+			if( trg & PAD_BUTTON_R ){
+				req->OpenPCCheck = TRUE;
 			}
 //		}
 		if( cont & ALL_KEY ){
@@ -655,6 +659,10 @@ int CheckRequest(const EV_REQUEST * req, FIELDSYS_WORK * repw)
 		    FieldMenuInit( repw );
 			return TRUE;
 		}
+	}
+	if( req->OpenPCCheck ){
+		EventSet_Script(repw, SCRID_PC_ON, NULL);
+		return TRUE;
 	}
 #ifdef	PM_DEBUG
 	// í“¬ƒeƒXƒg‚Ö

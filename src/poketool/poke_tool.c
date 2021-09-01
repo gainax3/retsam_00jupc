@@ -473,7 +473,7 @@ BOOL	PokePasoParaFastModeOff(POKEMON_PASO_PARAM *ppp,BOOL flag)
 //============================================================================================
 void	PokeParaSet(POKEMON_PARAM *pp,int mons_no,int level,int pow,int rndflag,u32 rnd,int idflag,u32 id)
 {
-	u32				i;
+	u32 i;
 	MAIL_DATA		*mail_data;
 //	CB_SAVE_DATA	*cb_core;
 	CB_CORE cb_core;
@@ -488,6 +488,7 @@ void	PokeParaSet(POKEMON_PARAM *pp,int mons_no,int level,int pow,int rndflag,u32
 
 //レベルセット
 	PokeParaPut(pp,ID_PARA_level,(u8 *)&level);
+	PokeParaPut(pp, ID_PARA_dummy_p2_1,(u8 *)&level);
 
 //メールデータ
 	mail_data=MailData_CreateWork(HEAPID_BASE_SYSTEM);
@@ -876,6 +877,9 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 	int	level;
 	int	form_no;
 	int	speabi1,speabi2,rnd;
+	int	hp_current;
+	int hp_to_write;
+	int i;
 	POKEMON_PERSONAL_DATA *ppd;
 	BOOL	flag;
 
@@ -883,7 +887,7 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 
 	level=		PokeParaGet(pp,ID_PARA_level,		0);
 	oldhpmax=	PokeParaGet(pp,ID_PARA_hpmax,		0);
-	hp=			PokeParaGet(pp,ID_PARA_hp,			0);
+	hp=			PokeParaGet(pp,ID_PARA_dummy_p4_1,			0); //hacky i guess, but hey it works
 	hp_rnd=		PokeParaGet(pp,ID_PARA_hp_rnd,		0);
 	hp_exp=		PokeParaGet(pp,ID_PARA_hp_exp,		0);
 	pow_rnd=	PokeParaGet(pp,ID_PARA_pow_rnd,		0);
@@ -897,6 +901,9 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 	spedef_rnd=	PokeParaGet(pp,ID_PARA_spedef_rnd,	0);
 	spedef_exp=	PokeParaGet(pp,ID_PARA_spedef_exp,	0);
 	form_no=	PokeParaGet(pp,ID_PARA_form_no,		0);
+	hp_current = PokeParaGet(pp, ID_PARA_dummy_p4_1, 0);
+	hp_to_write = hp;
+	i = 0;
 
 	monsno=PokeParaGet(pp,ID_PARA_monsno,0);
 
@@ -938,19 +945,25 @@ void	PokeParaCalcLevelUp(POKEMON_PARAM *pp)
 		;
 	}
 	else{
-		if(monsno==MONSNO_NUKENIN){
-			hp=1;
+		if(monsno==MONSNO_NUKENIN){ //no changes to shedinja
+			hp_to_write=1;
 		}
-		else if(hp==0){
-			hp=hpmax;
+		if(hp_current > -1 && oldhpmax == 0){ //If hp_current is 0 or more and not a levelup, assign it
+			hp_to_write = hp_current;
 		}
-		else{
-			hp+=(hpmax-oldhpmax);
+		if(hp_to_write == 0 && PokeParaGet(pp, ID_PARA_dummy_p2_1, 0) == level){ //If a rare candy is used and the pokemon is dead, or data initialisation
+			hp_to_write=hpmax;
+			PokeParaPut(pp, ID_PARA_dummy_p2_1, (u8 *)&i);
 		}
+		else{ //if we here, its a legit levelup
+			if (hpmax-oldhpmax != hpmax)
+				hp_to_write+=(hpmax-oldhpmax);
+		}
+		PokeParaPut(pp,ID_PARA_hp,(u8 *)&hp_to_write); //write data here because the if under will not write a hp value of 0
 	}
 
 	if(hp){
-		PokeParaPut(pp,ID_PARA_hp,(u8 *)&hp);
+		PokeParaPut(pp,ID_PARA_hp,(u8 *)&hp_to_write);
 	}
 
 	PokeParaFastModeOff(pp,flag);
@@ -1703,9 +1716,12 @@ static	void	PokeParaPutAct(POKEMON_PARAM *pp,int id,const void *buf)
 	case ID_PARA_cb_id:
 		pp->pcp.cb_id=buf8[0];	
 		break;
+#if 0
 	case ID_PARA_hp:
 		pp->pcp.hp=buf16[0];
-		break;
+		id = ID_PARA_dummy_p4_1;
+		goto default;
+#endif
 	case ID_PARA_hpmax:
 		pp->pcp.hpmax=buf16[0];
 		break;
@@ -1729,6 +1745,11 @@ static	void	PokeParaPutAct(POKEMON_PARAM *pp,int id,const void *buf)
 		break;
 	case ID_PARA_cb_core:
 		CB_Tool_CoreData_Copy((CB_CORE *)buf,&pp->pcp.cb_core);
+		break;
+	case ID_PARA_hp:
+		pp->pcp.hp=buf16[0];
+		id = ID_PARA_dummy_p4_1;
+		PokePasoParaPutAct((POKEMON_PASO_PARAM *)&pp->ppp,id,buf);
 		break;
 	default:
 		PokePasoParaPutAct((POKEMON_PASO_PARAM *)&pp->ppp,id,buf);
@@ -5491,7 +5512,8 @@ void	PokeReplace(POKEMON_PASO_PARAM *ppp,POKEMON_PARAM *pp)
 	PokeParaPut(pp,ID_PARA_condition,(u8 *)&i);
 
 //HP初期化
-	PokeParaPut(pp,ID_PARA_hp,(u8 *)&i);
+	//PokeParaPut(pp,ID_PARA_hp,(u8 *)&i);
+	//deactivated since we keep the hp val before putting in pc
 	PokeParaPut(pp,ID_PARA_hpmax,(u8 *)&i);
 
 //メールデータ
