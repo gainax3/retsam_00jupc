@@ -56,7 +56,7 @@ do-build:		$(TARGETS)
 include	$(NITROSDK_ROOT)/build/buildtools/modulerules
 
 $(OBJDIR)/std_sprintf.o: ../common/src/std_sprintf.c
-	$(CW_BINDIR)/2.0/sp1p2/mwccarm.exe $(CCFLAGS) $(INCLUDES) -include $(call PATH_UNIX2DOS,$(PCHDR_SRC)) -c $< -MD -o $@
+	$(WINE) $(CW_BINDIR)/2.0/sp1p2/mwccarm.exe $(CCFLAGS) $(INCLUDES) -include $(call PATH_UNIX2DOS,$(PCHDR_SRC)) -c $< -MD -o $@
 	@$(MOVE_SRC_DEPEND)
 
 #===== End of Makefile =====
