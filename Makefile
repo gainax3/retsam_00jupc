@@ -718,7 +718,7 @@ $(MSGDATA_FILEPATH): $(wildcard $(MSG_CONVERTDATA_DIR)*.dat)
 #	makefileがインクルードするファイルが更新されたらmakelcfが動作するようにした
 #----------------------------------------------------------------------------
 # removed make_g3_files from dependencies
-overlay_files $(LCFILE_SPEC) &: commondefs.GF modulerules.GF overlaytool.rb make_prog_files makefile
+overlay_files $(LCFILE_SPEC) &: commondefs.GF modulerules.GF overlaytool.rb make_prog_files Makefile
 	ruby overlaytool.rb
 
 #overlaytool.rb実行後のoverlay_filesを新たにincludeしてlcf_def.txtを作成する
