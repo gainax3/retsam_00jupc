@@ -7,9 +7,9 @@
  */
 //=============================================================================================
 #include "common.h"
-#include "system\pms_word.h"
-#include "savedata\mystatus.h"
-#include "application\pms_input_data.h"
+#include "system/pms_word.h"
+#include "savedata/mystatus.h"
+#include "application/pms_input_data.h"
 
 #include "scr_boxpwd.h"
 

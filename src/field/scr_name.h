@@ -94,7 +94,7 @@ extern BOOL EvCmdSealNamePlural(VM_MACHINE * core );
 extern BOOL EvCmdCapitalizeName(VM_MACHINE * core);
 // ----------------------------------------------------------------------------
 
-extern BOOL EvCmd_2048080(VM_MACHINE * core); // plat_us_match
+extern BOOL EvCmdTobariDepartFloorNo(VM_MACHINE * core); // plat_us_match
 
 #endif	/* __ASM_NO_DEF_ */
 

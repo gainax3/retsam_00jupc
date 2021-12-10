@@ -9,8 +9,8 @@
 #ifndef __PMS_INPUT_VIEW_H__
 #define __PMS_INPUT_VIEW_H__
 
-#include "gflib\tcb.h"
-#include "system\fontproc.h"
+#include "gflib/tcb.h"
+#include "system/fontproc.h"
 #include "pmsi.naix"
 
 

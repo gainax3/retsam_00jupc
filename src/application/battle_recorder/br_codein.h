@@ -15,7 +15,7 @@
 //#include "br_codein.h"
 #include "application/codein/codein_gra.naix"
 //#include "application/codein/codein.h"
-#include "system\font_arc.h"
+#include "system/font_arc.h"
 
 #include "gflib/strbuf.h"
 #include "savedata/config.h"

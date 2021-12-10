@@ -7,17 +7,17 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\strbuf_family.h"
-#include "poketool\poke_tool.h"
-#include "system\pm_str.h"
-#include "system\msgdata.h"
-#include "savedata\savedata.h"
+#include "gflib/strbuf_family.h"
+#include "poketool/poke_tool.h"
+#include "system/pm_str.h"
+#include "system/msgdata.h"
+#include "savedata/savedata.h"
 
-#include "system\arc_tool.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_boxmenu.h"
-#include "poketool\boxdata.h"
-#include "..\poke_tool_def.h"
+#include "system/arc_tool.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_boxmenu.h"
+#include "poketool/boxdata.h"
+#include "../poke_tool_def.h"
 
 #include "battle/battle_server.h"
 

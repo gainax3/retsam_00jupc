@@ -7,9 +7,9 @@
  */
 //============================================================================================
 #include  "common.h"
-#include  "system\arc_util.h"
-#include  "system\clact_util.h"
-#include  "poketool\pokeparty.h"
+#include  "system/arc_util.h"
+#include  "system/clact_util.h"
+#include  "poketool/pokeparty.h"
 
 #include  "box_arc.h"
 

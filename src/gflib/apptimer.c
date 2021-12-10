@@ -8,7 +8,7 @@
 #include "common.h"
 
 #define __APPTIMER_H_GLOBAL__
-#include "gflib\apptimer.h"
+#include "gflib/apptimer.h"
 
 #define	APP_TIMER_NUMBER	(OS_TIMER_3)
 #define	APP_TIMER_IE		(OS_IE_TIMER3)

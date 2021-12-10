@@ -46,7 +46,7 @@
 #define __WIFI_P2PMATCHFOUR_H_GLOBAL
 #include "wifi_p2pmatchfour.h"
 
-#include "application\namein.h"
+#include "application/namein.h"
 #include "wifi_p2pmatch_local.h"
 #include "wifi_p2pmatchfour_local.h"
 

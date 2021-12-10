@@ -38,8 +38,8 @@
 #include "scratch.naix"
 #include "application/scratch.h"
 
-#include "msgdata\msg.naix"						//NARC_msg_??_dat
-#include "msgdata\msg_scratch_contents.h"		//msg_??
+#include "msgdata/msg.naix"						//NARC_msg_??_dat
+#include "msgdata/msg_scratch_contents.h"		//msg_??
 
 #include "gflib/touchpanel.h"
 #include "../../system/touchpanel_draw.h"

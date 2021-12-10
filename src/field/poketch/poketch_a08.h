@@ -8,7 +8,7 @@
 #ifndef _POKETCH_A08_H_
 #define _POKETCH_A08_H_
 
-#include "field\script.h"
+#include "field/script.h"
 
 //====================================================
 // •`‰æƒRƒ}ƒ“ƒh

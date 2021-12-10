@@ -9,8 +9,8 @@
 #ifndef __PMS_INPUT_PRV_H__
 #define __PMS_INPUT_PRV_H__
 
-#include "application\pms_input.h"
-#include "application\pms_input_data.h"
+#include "application/pms_input.h"
+#include "application/pms_input_data.h"
 #include "pms_input_param.h"
 
 //------------------------------------------------------

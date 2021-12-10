@@ -26,8 +26,8 @@
 #include "sysflag.h"
 
 #include "script.h"							//StartFieldScript
-#include "..\fielddata\script\common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
-#include "..\fielddata\script\connect_def.h"		//SCRID_CONNECT_COLOSSEUM
+#include "../fielddata/script/common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
+#include "../fielddata/script/connect_def.h"		//SCRID_CONNECT_COLOSSEUM
 #include "../fielddata/script/battle_room_def.h"
 #include "savedata/trainercard_data.h"
 #include "application/trainer_card.h"

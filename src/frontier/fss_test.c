@@ -15,7 +15,7 @@
 #include "system/snd_tool.h"
 #include "system/bmp_list.h"
 //#include "script.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 
 #include "system/msgdata.h"
 #include "msgdata/msg.naix"

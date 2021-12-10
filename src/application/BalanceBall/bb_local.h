@@ -18,7 +18,7 @@
 #include "system/clact_tool.h"
 #include "system/snd_tool.h"
 #include "system/d3dobj.h"
-#include "system\font_arc.h"
+#include "system/font_arc.h"
 
 #include "include/gflib/strbuf.h"
 #include "include/gflib/msg_print.h"

@@ -42,7 +42,7 @@
 
 #include "gauge.h"
 
-#include "itemtool\item.h"
+#include "itemtool/item.h"
 
 #ifdef PM_DEBUG
 #include "debug/d_battle.h"

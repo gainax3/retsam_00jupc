@@ -1268,8 +1268,8 @@ BOOL CastleScr_CommSetSendBuf( CASTLE_SCRWORK* wk, u16 type, u16 param )
 #include "system/arc_tool.h"					//NARC_
 #include "system/fontproc.h"					//FONT_SYSTEM
 #include "communication/comm_info.h"			//CommInfoGetMyStatus
-#include "msgdata\msg.naix"						//NARC_msg_??_dat
-#include "msgdata\msg_castle_poke.h"
+#include "msgdata/msg.naix"						//NARC_msg_??_dat
+#include "msgdata/msg_castle_poke.h"
 
 void FSSC_Sub_CPWinWrite( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );
 void FSSC_Sub_CPWinDel( FSS_PTR fss, CASTLE_SCRWORK* bc_scr_wk );

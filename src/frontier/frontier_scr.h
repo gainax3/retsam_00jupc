@@ -10,8 +10,8 @@
 #define __FRONTIER_SCR_H__
 
 #include "gflib/msg_print.h"						//STRCODE
-#include "system\msgdata.h"							//MSGMAN_TYPE_DIRECT
-#include "system\bmp_menu.h"
+#include "system/msgdata.h"							//MSGMAN_TYPE_DIRECT
+#include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/pm_str.h"
 #include "system/msgdata_util.h"

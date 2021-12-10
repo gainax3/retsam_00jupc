@@ -7,7 +7,7 @@
  */
 //==============================================================================
 #include "common.h"
-#include "poketool\poke_tool.h"	// POKEMON_PASO_PARAM éQè∆ÇÃÇΩÇﬂ
+#include "poketool/poke_tool.h"	// POKEMON_PASO_PARAM éQè∆ÇÃÇΩÇﬂ
 #include "battle/battle_common.h"
 #include "system/clact_tool.h"
 #include "system/arc_tool.h"

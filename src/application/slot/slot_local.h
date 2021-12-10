@@ -12,22 +12,22 @@
 #include "system/render_oam.h"
 #include "system/clact_util.h"
 #include "system/arc_tool.h"
-#include "..\..\field\eoa.h"
+#include "../../field/eoa.h"
 #include "system/snd_tool.h"
 
 #include "system/bmp_list.h"
 #include "system/fontproc.h"
 #include "system/pm_str.h"
 #include "system/wordset.h"
-#include "system\fontproc.h"
-#include "system\window.h"
+#include "system/fontproc.h"
+#include "system/window.h"
 #include "msgdata/msg.naix"
 
-#include "poketool\monsno.h"
+#include "poketool/monsno.h"
 
 #include "slot.naix"	//ARC_SLOT
 #include "msgdata/msg_slot.h"
-#include "application\slot.h"
+#include "application/slot.h"
 
 //==============================================================================
 //	define

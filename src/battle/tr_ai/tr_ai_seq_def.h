@@ -9,7 +9,7 @@
 //=============================================================================
 
 #define	__ASM_NO_DEF_
-	.include	"..\tr_ai_def.h"
+	.include	"../tr_ai_def.h"
 	.include	"../../../include/battle/battle_common.h"
 	.include	"../../../include/battle/battle_server.h"
 	.include	"../../../include/battle/wazano_def.h"

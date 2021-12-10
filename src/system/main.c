@@ -13,8 +13,8 @@
 
 #include "system/main.h"
 
-#include "gflib\apptimer.h"
-#include "system\fontproc.h"
+#include "gflib/apptimer.h"
+#include "system/fontproc.h"
 #include "system/brightness.h"
 #include "system/pm_rtc.h"
 #include "gflib/gf_gx.h"

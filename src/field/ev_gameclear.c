@@ -26,16 +26,16 @@
 #include "ev_time.h"				//EVTIME_SetGameClearDateTime
 #include "ev_pokemon.h"				//EvPoke_SetChampionRibbon
 #include "fieldmap.h"
-#include "system\msgdata_util.h"
-#include "system\window.h"
-#include "system\wipe.h"
-#include "system\snd_tool.h"
+#include "system/msgdata_util.h"
+#include "system/window.h"
+#include "system/wipe.h"
+#include "system/snd_tool.h"
 #include "talk_msg.h"
 #include "fld_bmp.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_common_scr.h"
-#include "system\main.h"
-#include "poketool\status_rcv.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_common_scr.h"
+#include "system/main.h"
+#include "poketool/status_rcv.h"
 
 #include "report.h"				//Field_Save
 

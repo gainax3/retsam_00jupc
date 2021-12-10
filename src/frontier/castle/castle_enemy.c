@@ -53,8 +53,8 @@
 #include "../../field/fieldobj.h"
 #include "../../field/scr_tool.h"
 
-#include "msgdata\msg.naix"							//NARC_msg_??_dat
-#include "msgdata\msg_castle_trainer.h"				//msg_??
+#include "msgdata/msg.naix"							//NARC_msg_??_dat
+#include "msgdata/msg_castle_trainer.h"				//msg_??
 
 #include "../graphic/frontier_obj_def.h"
 #include "../graphic/frontier_bg_def.h"

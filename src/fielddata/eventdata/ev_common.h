@@ -24,7 +24,7 @@ typedef s32 fx32;
 #include "../script/savework.h"
 #include "../../field/script_def.h"
 
-#include "..\maptable\doorevent.h"
+#include "../maptable/doorevent.h"
 //#include "../maptable/msg_header.h"
 #include "evc_id.h"
 #define SCRID_NULL 0

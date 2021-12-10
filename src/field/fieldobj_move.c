@@ -14,7 +14,7 @@
 #include "fieldobj.h"
 #include "field_effect.h"
 
-#include "..\system/snd_tool.h"
+#include "../system/snd_tool.h"
 
 //==============================================================================
 //	define

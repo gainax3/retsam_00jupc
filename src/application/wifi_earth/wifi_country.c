@@ -12,7 +12,7 @@
 #include "msgdata/msg_wifi_place_msg_world.h"
 #include "wifi_earth_place.naix"
 
-#include "application\wifi_country.h"
+#include "application/wifi_country.h"
 
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2007/01/26

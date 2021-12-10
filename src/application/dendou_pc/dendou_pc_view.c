@@ -8,25 +8,25 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\msg_print.h"
-#include "system\clact_util.h"
-#include "system\render_oam.h"
-#include "system\fontproc.h"
-#include "system\arc_util.h"
-#include "system\wipe.h"
-#include "system\msgdata.h"
-#include "system\wordset.h"
-#include "system\window.h"
-#include "system\gra_tool.h"
-#include "system\snd_perap.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_dendou_pc.h"
-#include "battle\graphic\pl_batt_obj_def.h"
+#include "gflib/msg_print.h"
+#include "system/clact_util.h"
+#include "system/render_oam.h"
+#include "system/fontproc.h"
+#include "system/arc_util.h"
+#include "system/wipe.h"
+#include "system/msgdata.h"
+#include "system/wordset.h"
+#include "system/window.h"
+#include "system/gra_tool.h"
+#include "system/snd_perap.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_dendou_pc.h"
+#include "battle/graphic/pl_batt_obj_def.h"
 
 #include "dendou_pc_common.h"
 #include "dendou_pc.naix"
 
-#include "poketool\poke_tool.h"
+#include "poketool/poke_tool.h"
 
 //--------------------------------------------------------------
 /**

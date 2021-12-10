@@ -23,7 +23,7 @@
 #include "system/wordset.h"
 #include "system/main.h"
 
-#include "demo\syoujyou.h"
+#include "demo/syoujyou.h"
 #include "msgdata/msg_award.h"
 #include "syoujyou.naix"
 

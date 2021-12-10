@@ -8,10 +8,10 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\strbuf.h"
-#include "system\buflen.h"
+#include "gflib/strbuf.h"
+#include "system/buflen.h"
 
-#include "application\dendou_pc.h"
+#include "application/dendou_pc.h"
 #include "dendou_pc_common.h"
 
 //--------------------------------------------------------------

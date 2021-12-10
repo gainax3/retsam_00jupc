@@ -7,10 +7,10 @@
 //============================================================================================
 #include "common.h"
 #include "tcb.h"
-#include "system\lib_pack.h"
-#include "system\snd_tool.h"
+#include "system/lib_pack.h"
+#include "system/snd_tool.h"
 
-#include "field\poketch.h"
+#include "field/poketch.h"
 #include "poketch_prv.h"
 #include "poketch_main.h"
 #include "poketch_view.h"

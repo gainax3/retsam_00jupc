@@ -26,7 +26,7 @@
 #include "system/pmfprint.h"
 
 #include "gflib/msg_print.h"						//STRCODE
-#include "system\msgdata.h"							//MSGMAN_TYPE_DIRECT
+#include "system/msgdata.h"							//MSGMAN_TYPE_DIRECT
 #include "system/bmp_list.h"
 #include "system/pm_str.h"
 #include "system/msgdata_util.h"

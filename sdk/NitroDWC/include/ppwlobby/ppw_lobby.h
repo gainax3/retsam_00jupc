@@ -650,7 +650,7 @@ BOOL PPW_IsConnectedUserId(const DWCFriendsMatchControl* dwcFriendMatchCtrl, s32
 // デバッグ用に任意のEncInitDataを指定
 void PPW_LobbySetEncInitData(const char* initData);
 
-extern PPW_LOBBY_ERROR ov66_2237134();
+extern PPW_LOBBY_ERROR ov66_2237134(PPW_LOBBY_RESULT result);
 
 #ifdef WIN32
 #pragma pack(pop)

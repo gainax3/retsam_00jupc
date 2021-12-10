@@ -26,7 +26,7 @@
 
 #include "field_zoom.h"
 
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 //==============================================================================
 //	define

@@ -49,7 +49,7 @@
 #include "eventdata.h"
 
 #include "field_3d_anime.h"
-#include "place_name.h"	//’n–¼•\Ž¦
+#include "place_name.h"	//’n–¼•/Ž¦
 
 #include "field_effect.h"
 

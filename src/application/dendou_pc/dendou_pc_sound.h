@@ -10,7 +10,7 @@
 #ifndef __DENDOU_PC_SOUND_H__
 #define __DENDOU_PC_SOUND_H__
 
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 enum {
 	SE_DENDOUPC_LOGIN = SEQ_SE_DP_PC_LOGIN,

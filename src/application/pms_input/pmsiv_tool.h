@@ -9,8 +9,8 @@
 #ifndef __PMSIV_TOOL_H__
 #define __PMSIV_TOOL_H__
 
-#include "gflib\bg_system.h"
-#include "gflib\tcb.h"
+#include "gflib/bg_system.h"
+#include "gflib/tcb.h"
 
 
 

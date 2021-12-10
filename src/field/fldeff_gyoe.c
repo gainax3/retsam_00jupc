@@ -14,7 +14,7 @@
 #include "fieldobj.h"
 #include "fldeff_gyoe.h"
 
-#include "..\system/snd_tool.h"
+#include "../system/snd_tool.h"
 
 //==============================================================================
 //	define

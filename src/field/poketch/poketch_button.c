@@ -6,7 +6,7 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\touchpanel.h"
+#include "gflib/touchpanel.h"
 
 #define __POKETCH_BUTTON_MAN_GLOBAL__
 #include "poketch_button.h"

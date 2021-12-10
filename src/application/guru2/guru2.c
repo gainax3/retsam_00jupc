@@ -10,8 +10,8 @@
 //******************************************************************************
 #include "guru2_local.h"
 
-#include "..\..\field\fieldsys.h"
-#include "..\..\field\field_subproc.h"
+#include "../../field/fieldsys.h"
+#include "../../field/field_subproc.h"
 
 //==============================================================================
 //	define

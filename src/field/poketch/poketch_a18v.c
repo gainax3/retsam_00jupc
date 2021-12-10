@@ -6,11 +6,11 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\msgdata.h"
-#include "system\lib_pack.h"
-#include "system\fontproc.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_poketch_aisyou.h"
+#include "system/msgdata.h"
+#include "system/lib_pack.h"
+#include "system/fontproc.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_poketch_aisyou.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

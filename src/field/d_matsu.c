@@ -21,7 +21,7 @@
 #include "contest/contest.h"
 
 #include "script.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 
 #include "system/particle.h"
 #include "particledata/particledata.h"
@@ -41,11 +41,11 @@
 #include "savedata/misc.h"
 
 #include "application/balloon.h"
-#include "field\ev_mapchange.h"
+#include "field/ev_mapchange.h"
 
 #include "include/application/imageClip/imc_sys.h"
 
-#include "wifi\dwc_rap.h"
+#include "wifi/dwc_rap.h"
 #include "application/br_sys.h"
 
 
@@ -433,7 +433,7 @@ static void TestSet(DMATSU_WORK *dm)
 #endif
 }
 
-#include "savedata\battle_rec.h"
+#include "savedata/battle_rec.h"
 
 static void DM_ExtraSave(DMATSU_WORK *dm)
 {

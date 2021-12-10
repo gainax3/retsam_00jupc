@@ -9,8 +9,8 @@
 #ifndef __PMS_DATA_H__
 #define __PMS_DATA_H__
 
-#include "gflib\strbuf.h"
-#include "savedata\b_tower_def.h"
+#include "gflib/strbuf.h"
+#include "savedata/b_tower_def.h"
 
 //------------------------------------------------------
 /**

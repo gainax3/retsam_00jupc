@@ -36,9 +36,9 @@
 #include "savedata/misc.h"
 
 #include "gflib/strcode.h"
-#include "gflib\msg_print.h"
-#include "system\fontproc.h"
-#include "system\msgdata.h"
+#include "gflib/msg_print.h"
+#include "system/fontproc.h"
+#include "system/msgdata.h"
 #include "msgdata/msg.naix"
 #include "msgdata/msg_battle_rec.h"
 

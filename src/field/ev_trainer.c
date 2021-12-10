@@ -19,10 +19,10 @@
 
 #include "field/gym_init.h"
 #include "gym.h"
-#include "field\field_gimmick_def.h"
+#include "field/field_gimmick_def.h"
 														//add nohara
 #include "script.h"										//StartFieldScript
-#include "..\fielddata\script\trainer_def.h"			//SCRID_TRAINER_MOVE_BATTLE
+#include "../fielddata/script/trainer_def.h"			//SCRID_TRAINER_MOVE_BATTLE
 
 //==============================================================================
 //	define

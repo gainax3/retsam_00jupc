@@ -12,7 +12,7 @@
 #include "fieldsys.h"
 #include "fieldobj.h"
 
-#include "..\system/snd_tool.h"
+#include "../system/snd_tool.h"
 #include "tornworld_snd_def.h"
 
 //==============================================================================

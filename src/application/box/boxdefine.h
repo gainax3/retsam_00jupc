@@ -9,7 +9,7 @@
 #ifndef __BOXDEFINE_H__
 #define __BOXDEFINE_H__
 
-#include "system\gamedata.h"
+#include "system/gamedata.h"
 
 
 typedef enum {

@@ -24,7 +24,7 @@
 #include "gflib/camera.h"					//Šî–{ƒJƒƒ‰ƒVƒXƒeƒ€
 #include "gflib/clact.h"
 #include "gflib/char_manager.h"
-#include "gflib/display.h"				//•\¦‰æ–Êİ’è
+#include "gflib/display.h"				//•/¦‰æ–Êİ’è
 #include "gflib/bounding_box.h"
 #include "gflib/fntequ_agb_jp.h"
 #include "gflib/fntsys.h"
@@ -45,8 +45,8 @@
 #include "src_os_print.h"			// OS_Printf()‚Ì—LŒø/–³Œø’è‹`
 
 
-#include "gflib\assert.h"
-#include "gflib\sdkdef.h"
+#include "gflib/assert.h"
+#include "gflib/sdkdef.h"
 
 
 

@@ -18,7 +18,7 @@
 #include "msgdata/msg.naix"
 #include "msgdata/msg_wifi_lobby.h"
 #include "msgdata/msg_wifi_system.h"
-#include "application\namein.h"
+#include "application/namein.h"
 #include "system/wipe.h"
 #include "system/fontproc.h"
 #include "system/lib_pack.h"

@@ -7,10 +7,10 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\apptimer.h"
+#include "gflib/apptimer.h"
 #include "savedata/playtime.h"
 
-#include "system\playtime_ctrl.h"
+#include "system/playtime_ctrl.h"
 
 
 static BOOL StartFlag = FALSE;

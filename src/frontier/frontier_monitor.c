@@ -33,8 +33,8 @@
 #include "savedata/roulette_savedata.h"
 #include "savedata/b_tower.h"
 
-#include "msgdata\msg.naix"					//NARC_msg_??_dat
-#include "msgdata\msg_bf_seiseki.h"			//msg_??
+#include "msgdata/msg.naix"					//NARC_msg_??_dat
+#include "msgdata/msg_bf_seiseki.h"			//msg_??
 
 #include "../field/fieldsys.h"				//scr_tool.h‚É•K—v
 #include "../field/scr_tool.h"				//FactoryScr_GetWinRecordID
