@@ -1376,84 +1376,35 @@ static void AgreeListCurMove( EMAIL_MENU_WORK* wk )
 	}
 }
 
-#ifdef NONEQUIVALENT
 static void Agreement_TxtRW( EMAIL_MENU_WORK* wk )
 {
 	int i;
 	int no = 0;
 						
 	GF_BGL_BmpWinDataFill( &wk->info_win,  0x0f0f );
+    // Matching
+#if (PM_LANG == LANG_ENGLISH)
+    {
+        STRBUF* str1 = MSGMAN_AllocString( wk->EmailMsgManager, msg_email_info_000 );
+        STRBUF* str2 = STRBUF_Create( STRBUF_GetLen( str1 ), HEAPID_EMAIL );
+        for ( i = wk->info_pos; i < wk->info_pos + INFO_MESSAGE_LINE; i++ ) {
+            STRBUF_CopyLine( str2, str1, i );
+            GF_STR_PrintSimple( &wk->info_win, FONT_SYSTEM, str2, 4, no * 16, MSG_NO_PUT, NULL );
+            no++;
+        }
+        STRBUF_Delete(str1);
+        STRBUF_Delete(str2);
+    }
+#else
 	for ( i = wk->info_pos; i < wk->info_pos + INFO_MESSAGE_LINE; i++ ){
 		STRBUF* str = MSGMAN_AllocString( wk->EmailMsgManager, Agreement_Str[ i ] );
 		GF_STR_PrintSimple( &wk->info_win, FONT_SYSTEM, str, 4, no * 16, MSG_NO_PUT, NULL );
 		STRBUF_Delete( str );
 		no++;
 	}
+#endif
 	GF_BGL_BmpWinOn( &wk->info_win );
 }
-#else
-asm static void Agreement_TxtRW( EMAIL_MENU_WORK* wk )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x14
-	add r7, r0, #0
-	add r0, #0xc4
-	mov r1, #0xf
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r7, #0x34]
-	mov r1, #0x2c
-	bl MSGMAN_AllocString
-	str r0, [sp, #0xc]
-	bl STRBUF_GetLen
-	mov r1, #0x6d
-	bl STRBUF_Create
-	add r6, r0, #0
-	add r0, r7, #0
-	add r0, #0xac
-	ldr r4, [r0, #0]
-	add r0, r4, #6
-	cmp r4, r0
-	bge _02248336
-	add r0, r7, #0
-	str r0, [sp, #0x10]
-	add r0, #0xc4
-	mov r5, #0
-	str r0, [sp, #0x10]
-_02248306:
-	ldr r1, [sp, #0xc]
-	add r0, r6, #0
-	add r2, r4, #0
-	bl STRBUF_CopyLine
-	str r5, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r0, #0
-	str r0, [sp, #8]
-	ldr r0, [sp, #0x10]
-	mov r1, #0
-	add r2, r6, #0
-	mov r3, #4
-	bl GF_STR_PrintSimple
-	add r0, r7, #0
-	add r0, #0xac
-	ldr r0, [r0, #0]
-	add r4, r4, #1
-	add r0, r0, #6
-	add r5, #0x10
-	cmp r4, r0
-	blt _02248306
-_02248336:
-	ldr r0, [sp, #0xc]
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add r7, #0xc4
-	add r0, r7, #0
-	bl GF_BGL_BmpWinOn
-	add sp, #0x14
-	pop {r4, r5, r6, r7, pc}
-}
-#endif
 
 #ifdef NONEQUIVALENT
 static int Enter_Agreement( EMAIL_MENU_WORK *wk )
