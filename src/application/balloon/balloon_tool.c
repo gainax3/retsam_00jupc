@@ -3352,6 +3352,7 @@ void CounterDummyNumber_ActorCreate(BALLOON_GAME_PTR game)
 		GF_ASSERT(game->counter.fontact_dummy[i].fontoam == NULL);
 		str0 = MSGMAN_AllocString(game->msgman, msg_balloon_num0 + (number % 10));
 		number /= 10;
+        // anon2 matching
         FONTOAM_GetMat(game->counter.fontact[i][0].fontoam, &x, &y);
 		BalloonTool_FontOamCreate(game->bgl, game->crp, game->fontoam_sys,
 			&game->counter.fontact_dummy[i], str0, FONT_SYSTEM, 

@@ -1581,7 +1581,6 @@ static void FontButton_Delete( BR_WORK* wk )
  *
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WinAdd_Send( BR_WORK* wk )
 {
 	GF_BGL_BMPWIN* win;
@@ -1591,8 +1590,11 @@ static void WinAdd_Send( BR_WORK* wk )
 	WORDSET*	wset;
 	DRESS_WORK* dwk = wk->sub_work;
 	PMS_WORD	word;
-	
-	if ( GF_BGL_BmpWinAddCheck( &dwk->win_m[ 0 ] ) == TRUE ){ return; }
+
+    u32 lines;
+    int i, x;
+
+    if ( GF_BGL_BmpWinAddCheck( &dwk->win_m[ 0 ] ) == TRUE ){ return; }
 	
 	win = &dwk->win_m[ 0 ];
 	GF_BGL_BmpWinInit( win );
@@ -1602,8 +1604,8 @@ static void WinAdd_Send( BR_WORK* wk )
 	wset = BR_WORDSET_Create( HEAPID_BR );
 	tmp  = STRBUF_Create( 255, HEAPID_BR );						///< テンポラリ
 	str2 = MSGMAN_AllocString( wk->sys.man, msg_305 );			///< ～ の記録
-	
-	str1 = STRBUF_Create( IMC_SAVEDATA_STRBUF_NUM, HEAPID_BR );		///< 親名
+
+	str1 = STRBUF_Create( 255, HEAPID_BR );		///< 親名
 	ImcSaveData_GetTelevisionPokeOyaName( dwk->dress, str1 );
 	BR_ErrorStrChange( wk, str1 );
 	word = ImcSaveData_GetTelevisionTitlePmsWord( dwk->dress );		///< 作品名
@@ -1611,7 +1613,15 @@ static void WinAdd_Send( BR_WORK* wk )
 	WORDSET_RegisterWord( wset, 0, str1, 0, TRUE, PM_LANG );
 	WORDSET_RegisterPMSWord( wset, 1, word );
 	WORDSET_ExpandStr( wset, tmp, str2 );
-	GF_STR_PrintColor( win, FONT_SYSTEM, tmp, 0, 0, MSG_NO_PUT, PRINT_COL_PHOTO, NULL );	
+
+    // anon2 matching
+    lines = STRBUF_GetLines( tmp );
+    for (i = 0; i < lines; i++)
+    {
+        STRBUF_CopyLine( str1, tmp, i );
+        x = (128 - FontProc_GetPrintStrWidth( FONT_SYSTEM, str1, 0 )) / 2;
+        GF_STR_PrintColor( win, FONT_SYSTEM, str1, x, 16 * i, MSG_NO_PUT, PRINT_COL_PHOTO, NULL );
+    }
 	
 	GF_BGL_BmpWinOnVReq( win );
 	
@@ -1620,143 +1630,6 @@ static void WinAdd_Send( BR_WORK* wk )
 	STRBUF_Delete( tmp );
 	WORDSET_Delete( wset );
 }
-#else
-asm static void WinAdd_Send( BR_WORK* wk )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x24
-	add r5, r0, #0
-	mov r0, #0x86
-	lsl r0, r0, #4
-	ldr r6, [r5, r0]
-	add r0, r6, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinAddCheck
-	cmp r0, #1
-	bne _0223973E
-	b _0223984A
-_0223973E:
-	add r0, r6, #0
-	str r0, [sp, #0x20]
-	add r0, #0x10
-	str r0, [sp, #0x20]
-	bl GF_BGL_BmpWinInit
-	mov r0, #0x13
-	str r0, [sp]
-	mov r3, #0x10
-	str r3, [sp, #4]
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	str r0, [sp, #0x10]
-	ldr r0, [r5, #0x24]
-	ldr r1, [sp, #0x20]
-	mov r2, #2
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x20]
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r0, #0x66
-	bl BR_WORDSET_Create
-	str r0, [sp, #0x18]
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	add r7, r0, #0
-	ldr r0, [r5, #0x48]
-	mov r1, #0x38
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x1c]
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	add r4, r0, #0
-	mov r0, #0x8b
-	lsl r0, r0, #2
-	ldr r0, [r6, r0]
-	add r1, r4, #0
-	bl ImcSaveData_GetTelevisionPokeOyaName
-	add r0, r5, #0
-	add r1, r4, #0
-	bl BR_ErrorStrChange
-	mov r0, #0x8b
-	lsl r0, r0, #2
-	ldr r0, [r6, r0]
-	bl ImcSaveData_GetTelevisionTitlePmsWord
-	add r5, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	mov r1, #0
-	ldr r0, [sp, #0x18]
-	add r2, r4, #0
-	add r3, r1, #0
-	bl WORDSET_RegisterWord
-	ldr r0, [sp, #0x18]
-	mov r1, #1
-	add r2, r5, #0
-	bl WORDSET_RegisterPMSWord
-	ldr r0, [sp, #0x18]
-	ldr r2, [sp, #0x1c]
-	add r1, r7, #0
-	bl WORDSET_ExpandStr
-	add r0, r7, #0
-	bl STRBUF_GetLines
-	mov r5, #0
-	str r0, [sp, #0x14]
-	cmp r0, #0
-	bls _0223982C
-	add r6, r5, #0
-_022397F0:
-	add r0, r4, #0
-	add r1, r7, #0
-	add r2, r5, #0
-	bl STRBUF_CopyLine
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0x80
-	sub r0, r1, r0
-	lsr r3, r0, #1
-	str r6, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _02239850
-	mov r1, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x20]
-	add r2, r4, #0
-	bl GF_STR_PrintColor
-	ldr r0, [sp, #0x14]
-	add r5, r5, #1
-	add r6, #0x10
-	cmp r5, r0
-	blo _022397F0
-_0223982C:
-	ldr r0, [sp, #0x20]
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x1c]
-	bl STRBUF_Delete
-	add r0, r7, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x18]
-	bl WORDSET_Delete
-_0223984A:
-	add sp, #0x24
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _02239850: .4byte 0x000F0D00
-}
-#endif
 
 //--------------------------------------------------------------
 /**
