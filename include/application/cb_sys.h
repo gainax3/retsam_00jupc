@@ -23,7 +23,7 @@
 #include "system/touch_subwindow.h"
 
 #include "include/application/imageClip/imc_hand.h"
-#include "system\font_arc.h"
+#include "system/font_arc.h"
 #include "include/msgdata/msg.naix"
 #include "include/msgdata/msg_ball_custom.h"
 #include "include/msgdata/msg_bc_seal_name.h"

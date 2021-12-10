@@ -62,8 +62,8 @@
 // -----------------------------------------
 #include "wazaeffect/effectdata/waza_particle_def.h"
 //#include "wazaeffect/effectdata/p_ball_effect.h"
-//#include "wazaeffect\effectdata\we_list.h"
-#include "wazaeffect\effectdata\ball_effect_setup.h"
+//#include "wazaeffect/effectdata/we_list.h"
+#include "wazaeffect/effectdata/ball_effect_setup.h"
 #define BALL_EFFECT_USE_SPA		(SPA_P_BALL_EFFECT)			///< —˜—p‚·‚éSPA
 #define BALL_EFFECT_BIT_MAX		(20)//P_BALL_EFFECT_SPAMAX)		///< SPA‚Ì“o˜^ŒÂ”
 

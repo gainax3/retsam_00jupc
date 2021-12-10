@@ -17,7 +17,7 @@
 #include "system/font_arc.h"
 #include "system/window.h"
 //#include "script.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 #include "system/clact_tool.h"
 #include "communication/wm_icon.h"
 

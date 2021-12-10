@@ -32,8 +32,8 @@
 #include "system/snd_tool.h"
 #include "system/bmp_list.h"
 #include "scr_wazaoshie.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_ev_win.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_ev_win.h"
 #include "ev_win.h"
 #include "fieldmap.h"
 #include "fld_bmp.h"
@@ -158,35 +158,6 @@ static u16 GetWazaOshieDataCount( POKEMON_PARAM* poke, u16 color );
 //============================================================================================
 
 // NONMATCHING
-asm BOOL ov05_21F77A8( VM_MACHINE * core )
-{
-    push {r4, r5, r6, lr}
-	add r5, r0, #0
-	bl VMGetU16
-	add r1, r0, #0
-	add r0, r5, #0
-	add r0, #0x80
-	ldr r0, [r0, #0]
-	bl GetEventWorkValue
-	add r6, r0, #0
-	add r0, r5, #0
-	bl VMGetU16
-	add r1, r0, #0
-	add r0, r5, #0
-	add r0, #0x80
-	ldr r0, [r0, #0]
-	bl GetEventWorkAdrs
-	add r5, #0x80
-	add r4, r0, #0
-	ldr r0, [r5, #0]
-	ldr r0, [r0, #0xc]
-	bl SaveData_GetZukanWork
-	add r1, r6, #0
-	bl ZukanWork_GetPokeSeeFlag
-	strh r0, [r4]
-	mov r0, #0
-	pop {r4, r5, r6, pc}
-}
 
 //--------------------------------------------------------------------------------------------
 /**

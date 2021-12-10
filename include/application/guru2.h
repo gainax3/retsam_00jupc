@@ -9,8 +9,8 @@
 #ifndef GURU2_H_FILE
 #define GURU2_H_FILE
 
-#include "system\procsys.h"
-#include "savedata\config.h"
+#include "system/procsys.h"
+#include "savedata/config.h"
 
 #include "savedata/savedata_def.h"
 #include "field/comm_union_view_common.h"

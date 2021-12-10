@@ -9,8 +9,8 @@
 #include "common.h"
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"						//MSGMAN_GetString
-#include "system\wordset.h"						//WordSet_RegistPlayerName
+#include "system/msgdata.h"						//MSGMAN_GetString
+#include "system/wordset.h"						//WordSet_RegistPlayerName
 #include "system/lib_pack.h"
 #include "system/snd_tool.h"
 #include "savedata/frontier_savedata.h"

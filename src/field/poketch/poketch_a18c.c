@@ -7,7 +7,7 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
+#include "system/lib_pack.h"
 
 #include "poketch_button.h"
 #include "poketch_a18.h"

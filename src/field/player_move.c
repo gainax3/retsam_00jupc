@@ -17,7 +17,7 @@
 
 #include "system/snd_tool.h"
 
-#include "savedata\record.h"
+#include "savedata/record.h"
 
 #include "field_gimmick_def.h"
 #include "gym_init.h"

@@ -7,16 +7,16 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\touchpanel.h"
-#include "system\lib_pack.h"
-#include "communication\communication.h"
-#include "communication\comm_state.h"
-#include "savedata\mystatus.h"
+#include "gflib/touchpanel.h"
+#include "system/lib_pack.h"
+#include "communication/communication.h"
+#include "communication/comm_state.h"
+#include "savedata/mystatus.h"
 
 
-#include "..\fieldsys.h"
-#include "..\zonedata.h"
-#include "field\location.h"
+#include "../fieldsys.h"
+#include "../zonedata.h"
+#include "field/location.h"
 
 #include "poketch_a27.h"
 #include "poketch_prv.h"

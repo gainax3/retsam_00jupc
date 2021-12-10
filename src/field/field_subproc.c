@@ -49,7 +49,7 @@
 #include "application/oekaki.h"
 #include "application/record_corner.h"
 #include "application/trainer_card.h"
-#include "application\box.h"
+#include "application/box.h"
 #include "application/imageClip/imc_sys.h"
 #include "application/imageClip/imc_preview.h"
 #include "application/zukanlist/zkn_sys.h"
@@ -1352,8 +1352,8 @@ static PROC_DATA TradeListProcData = {
 };
 
 // åä∑ÉfÉÇ
-#include "demo\demo_trade.h"
-#include "system\timezone.h"
+#include "demo/demo_trade.h"
+#include "system/timezone.h"
 #include "ev_time.h"
 
 FS_EXTERN_OVERLAY(demo_trade);
@@ -2129,7 +2129,7 @@ void Field_WifiEarth_SetProc(FIELDSYS_WORK * fsys)
 // ìaì∞ì¸ÇËÉfÉÇåƒÇ—èoÇµ
 //
 //==============================================================================================
-#include  "demo\demo_dendou.h"
+#include  "demo/demo_dendou.h"
 
 void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param )
 {
@@ -2155,8 +2155,8 @@ void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param )
 //==============================================================================================
 FS_EXTERN_OVERLAY(dendou_pc);
 
-#include "savedata\dendou_data.h"
-#include "application\dendou_pc.h"
+#include "savedata/dendou_data.h"
+#include "application/dendou_pc.h"
 
 void * Field_DendouPC_Call( FIELDSYS_WORK* fsys )
 {

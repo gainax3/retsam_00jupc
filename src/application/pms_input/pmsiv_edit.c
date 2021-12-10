@@ -7,17 +7,17 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\heapsys.h"
-#include "gflib\strbuf_family.h"
-#include "system\arc_util.h"
-#include "system\window.h"
-#include "system\buflen.h"
-#include "system\pms_word.h"
-#include "system\winframe.naix"
-#include "system\msgdata.h"
-#include "system\bmp_cursor.h"
-#include "msgdata\msg_pms_input.h"
-#include "msgdata\msg.naix"
+#include "gflib/heapsys.h"
+#include "gflib/strbuf_family.h"
+#include "system/arc_util.h"
+#include "system/window.h"
+#include "system/buflen.h"
+#include "system/pms_word.h"
+#include "system/winframe.naix"
+#include "system/msgdata.h"
+#include "system/bmp_cursor.h"
+#include "msgdata/msg_pms_input.h"
+#include "msgdata/msg.naix"
 
 
 #include "pms_input_prv.h"
@@ -677,7 +677,7 @@ u32 PMSIV_EDIT_GetWordPosMax( const PMSIV_EDIT* wk )
 
 //======================================================================================
 //======================================================================================
-#include "system\wordset.h"
+#include "system/wordset.h"
 //------------------------------------------------------------------
 /**
  * 

@@ -10,7 +10,7 @@
 #define __GYM_H__
 
 #include "common.h"
-#include "system\msgdata.h"	
+#include "system/msgdata.h"	
 
 //êÖÉWÉÄ
 extern void GYM_CheckWaterGymButton(FIELDSYS_WORK *fsys);

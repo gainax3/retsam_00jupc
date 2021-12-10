@@ -9,7 +9,7 @@
 #ifndef	__STAGE_SAVEDATA_LOCAL_H__
 #define	__STAGE_SAVEDATA_LOCAL_H__
 
-#include "..\frontier\stage_def.h"
+#include "../frontier/stage_def.h"
 
 //============================================================================================
 //

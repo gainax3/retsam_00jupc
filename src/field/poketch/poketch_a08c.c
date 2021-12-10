@@ -7,8 +7,8 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\touchpanel.h"
-#include "system\lib_pack.h"
+#include "gflib/touchpanel.h"
+#include "system/lib_pack.h"
 
 
 #include "poketch_a08.h"

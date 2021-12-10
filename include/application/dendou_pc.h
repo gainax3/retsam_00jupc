@@ -10,7 +10,7 @@
 #ifndef __DENDOU_PC_H__
 #define __DENDOU_PC_H__
 
-#include "system\procsys.h"
+#include "system/procsys.h"
 
 extern PROC_RESULT DendouPc_PROC_Init( PROC * proc, int * seq );
 extern PROC_RESULT DendouPc_PROC_Quit( PROC * proc, int * seq );

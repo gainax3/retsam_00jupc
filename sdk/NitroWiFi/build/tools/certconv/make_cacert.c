@@ -280,8 +280,8 @@ int main(int argc, char ** argv)
         exit(1);
     }
 
-    fprintf(fp, "#include <nitro.h>\n");
-    fprintf(fp, "#include <nitroWiFi.h>\n");
+    fprintf(fp, "#include <nitro.h>/n");
+    fprintf(fp, "#include <nitroWiFi.h>/n");
     fpi = fopen(*++argv, "rb");
     if (fpi == NULL)
     {

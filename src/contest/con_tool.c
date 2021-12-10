@@ -13,7 +13,7 @@
 
 #include "field/fieldobj_code.h"
 
-#include "battle\chr_def.h"
+#include "battle/chr_def.h"
 #include "system/gra_tool.h"
 #include "poketool/monsno.h"
 

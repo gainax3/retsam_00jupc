@@ -8,8 +8,8 @@
 //============================================================================================
 #include "demo_trade_common.h"
 #include "demo_trade_3d.h"
-#include "gflib\simple_3dgraphics.h"
-#include "gflib\bounding_box.h"
+#include "gflib/simple_3dgraphics.h"
+#include "gflib/bounding_box.h"
 
 
 //-------------------------------------------------

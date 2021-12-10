@@ -7,14 +7,14 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\tcb.h"
-#include "gflib\bg_system.h"
-#include "gflib\clact.h"
-#include "system\clact_util.h"
-#include "system\render_oam.h"
-#include "system\brightness.h"
-#include "system\arc_util.h"
-#include "system\wipe.h"
+#include "gflib/tcb.h"
+#include "gflib/bg_system.h"
+#include "gflib/clact.h"
+#include "system/clact_util.h"
+#include "system/render_oam.h"
+#include "system/brightness.h"
+#include "system/arc_util.h"
+#include "system/wipe.h"
 
 #include "pms_input_prv.h"
 #include "pms_input_view.h"

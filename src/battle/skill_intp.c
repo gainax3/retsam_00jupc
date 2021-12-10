@@ -60,9 +60,9 @@
 
 #include "battle_snd_def.h"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/skill/waza_seq.naix"

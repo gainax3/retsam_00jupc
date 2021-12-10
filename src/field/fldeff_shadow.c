@@ -13,8 +13,8 @@
 #include "field_effect.h"
 #include "fieldobj.h"
 
-#include "..\..\include\system\timezone.h"
-#include "..\..\include\system\pm_rtc.h"
+#include "../../include/system/timezone.h"
+#include "../../include/system/pm_rtc.h"
 
 //==============================================================================
 //	define

@@ -12,8 +12,8 @@
 #include <nitro.h>
 #include <nnsys.h>
 #include "tcb.h"
-#include "gflib\bg_system.h"
-#include "gflib\strbuf.h"
+#include "gflib/bg_system.h"
+#include "gflib/strbuf.h"
 
 
 #undef	GLOBAL

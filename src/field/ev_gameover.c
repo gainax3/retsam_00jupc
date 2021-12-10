@@ -27,7 +27,7 @@
 #include "script.h"
 #include "scr_tool.h"
 #include "mapdefine.h"
-#include "..\fielddata\script\common_scr_def.h"		//SCRID_GAME_OVER_RECOVER_PC
+#include "../fielddata/script/common_scr_def.h"		//SCRID_GAME_OVER_RECOVER_PC
 #include "sysflag.h"
 #include "fld_flg_init.h"			//FldFlgInit_GameOver
 #include "poketool/poke_tool.h"

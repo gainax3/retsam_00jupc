@@ -9,10 +9,10 @@
 #ifndef  __DEMO_DENDOU_H__
 #define  __DEMO_DENDOU_H__
 
-#include "system\procsys.h"
-#include "savedata\mystatus.h"
-#include "savedata\playtime.h"
-#include "poketool\pokeparty.h"
+#include "system/procsys.h"
+#include "savedata/mystatus.h"
+#include "savedata/playtime.h"
+#include "poketool/pokeparty.h"
 
 
 typedef struct {

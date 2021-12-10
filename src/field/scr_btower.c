@@ -37,7 +37,7 @@
 #include "savedata/record.h"
 #include "savedata/config.h"
 
-#include "msgdata\msg.naix"						//NARC_msg_??_dat
+#include "msgdata/msg.naix"						//NARC_msg_??_dat
 #include "communication/comm_tool.h"
 #include "communication/comm_system.h"
 #include "communication/comm_def.h"

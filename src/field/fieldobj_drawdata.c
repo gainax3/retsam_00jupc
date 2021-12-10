@@ -38,7 +38,7 @@
 #include "fieldsys.h"
 #include "fieldobj.h"
 
-#include "..\data\mmodel\mmodel.naix"	//アーカイブID
+#include "../data/mmodel/mmodel.naix"	//アーカイブID
 
 //==============================================================================
 //	extern

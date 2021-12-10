@@ -9,10 +9,10 @@
 #ifndef __DEMO_TRADE_H__
 #define __DEMO_TRADE_H__
 
-#include "system\procsys.h"
-#include "poketool\poke_tool.h"
-#include "savedata\mystatus.h"
-#include "savedata\config.h"
+#include "system/procsys.h"
+#include "poketool/poke_tool.h"
+#include "savedata/mystatus.h"
+#include "savedata/config.h"
 
 //----------------------------------------------
 /**

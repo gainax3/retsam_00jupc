@@ -70,7 +70,7 @@
 #include "fieldobj.h"					//FIELD_OBJ
 
 #include "field_effect_code.h"			//エフェクトシンボル定義
-#include "..\data\mmodel\fldeff.naix"	//ARC_FLDEFF
+#include "../data/mmodel/fldeff.naix"	//ARC_FLDEFF
 
 //#include "field_3dobj.h"		//kari
 

@@ -55,15 +55,15 @@
 #include "map_attr.h"
 #include "ev_pokemon.h"		//EvPoke_Enable2vs2Battle
 
-#include "field\eventflag.h"
+#include "field/eventflag.h"
 
-#include "..\fielddata\script\common_scr_def.h"
-#include "..\fielddata\script\hiden_def.h"
-#include "..\fielddata\script\bg_attr_def.h"
-#include "..\fielddata\script\r201_def.h"
-#include "..\fielddata\script\safari_def.h"
-#include "..\fielddata\script\battle_room_def.h"
-#include "..\fielddata\script\tv_def.h"
+#include "../fielddata/script/common_scr_def.h"
+#include "../fielddata/script/hiden_def.h"
+#include "../fielddata/script/bg_attr_def.h"
+#include "../fielddata/script/r201_def.h"
+#include "../fielddata/script/safari_def.h"
+#include "../fielddata/script/battle_room_def.h"
+#include "../fielddata/script/tv_def.h"
 #include "../fielddata/script/union_def.h"
 
 #define	SCRID_COMMON_MSG	0
@@ -88,7 +88,7 @@
 #include "poison_effect.h"
 #include "fieldmap_work.h"
 
-#include "battle\wazano_def.h"
+#include "battle/wazano_def.h"
 #include "comm_union_beacon.h"
 
 #include "btl_searcher.h"
@@ -106,7 +106,7 @@
 #include "field_villa.h"	//ï ëëÅ@â∆ãÔòbÇµÇ©ÇØ
 
 #include "field/gym_init.h"
-#include "field\field_gimmick_def.h"
+#include "field/field_gimmick_def.h"
 
 //#define	DEBUG_ALL_EXIT_CONNECT
 //============================================================================================

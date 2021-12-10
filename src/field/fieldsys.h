@@ -24,7 +24,7 @@
 #include "weather_sys_def.h"
 #include "field_anime_def.h"
 
-#include "system\procsys.h"
+#include "system/procsys.h"
 
 #include "fieldobj.h"
 #include "player.h"
@@ -48,7 +48,7 @@
 
 #include "field/location.h"
 
-#include "application\tradelist.h"
+#include "application/tradelist.h"
 
 #include "sp_attribute_def.h"
 #include "floor_touch.h"

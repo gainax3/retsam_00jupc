@@ -7,9 +7,9 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\strcode.h"
+#include "gflib/strcode.h"
 
-#include "system\agb_str.h"
+#include "system/agb_str.h"
 
 
 

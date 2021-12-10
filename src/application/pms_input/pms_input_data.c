@@ -7,12 +7,12 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\heapsys.h"
-#include "system\pms_word.h"
-#include "savedata\zukanwork.h"
-#include "msgdata\msg.naix"
+#include "gflib/heapsys.h"
+#include "system/pms_word.h"
+#include "savedata/zukanwork.h"
+#include "msgdata/msg.naix"
 
-#include "application\pms_input_data.h"
+#include "application/pms_input_data.h"
 #include "pms_input_param.h"
 
 

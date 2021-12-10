@@ -1,4 +1,4 @@
-//#include "c:\nitrosdk\include\nitro\types.h"
+//#include "c:/nitrosdk/include/nitro/types.h"
 //#include <nitro/types.h>
 #include "../../field/encount_dat.h"
 //#include "encount_dat.h"

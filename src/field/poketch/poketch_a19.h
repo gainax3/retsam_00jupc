@@ -8,7 +8,7 @@
 #ifndef _POKETCH_A19_H_
 #define _POKETCH_A19_H_
 
-#include "system\gamedata.h"	// TEMOTI_POKEMAXéQè∆ÇÃÇΩÇﬂ
+#include "system/gamedata.h"	// TEMOTI_POKEMAXéQè∆ÇÃÇΩÇﬂ
 #include "poketch_prv.h"
 
 //====================================================

@@ -18,9 +18,9 @@
 #include "system/pm_str.h"
 #include "system/pm_overlay.h"
 #include "field_event.h"
-#include "system\palanm.h"
-#include "application\pms_input.h"
-#include "system\pm_rtc.h"
+#include "system/palanm.h"
+#include "application/pms_input.h"
+#include "system/pm_rtc.h"
 
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_taya.h"
@@ -288,9 +288,9 @@ static void DebugTayaMenuMain( TCB_PTR _tcb, void * work )
 /*====================================================================================================*/
 /*  ポケッチ関連                                                                                      */
 /*====================================================================================================*/
-#include "field\poketch.h"
-#include "field\poketch_data.h"
-#include "field\eventflag.h"
+#include "field/poketch.h"
+#include "field/poketch_data.h"
+#include "field/eventflag.h"
 #include "syswork.h"
 ///オーバーレイモジュールのextern宣言です。
 FS_EXTERN_OVERLAY(ol_poketch);
@@ -350,10 +350,10 @@ static void PoketchStartDebug(FIELDSYS_WORK* fsys)
 /*====================================================================================================*/
 /*  ボックス関連                                                                                      */
 /*====================================================================================================*/
-#include "application\box.h"
-#include "field\field_subproc.h"
-#include "savedata\mystatus.h"
-#include "itemtool\itemsym.h"
+#include "application/box.h"
+#include "field/field_subproc.h"
+#include "savedata/mystatus.h"
+#include "itemtool/itemsym.h"
 
 static void BoxStartDebug(FIELDSYS_WORK* fsys, BOX_MODE mode )
 {
@@ -377,7 +377,7 @@ static void BoxStartCallBack( FIELDSYS_WORK* fsys, void* wk )
 
 #if 0
 	{
-		#include "poketool\monsno.h"
+		#include "poketool/monsno.h"
 		static const u16 monsno[] = {
 			MONSNO_HUSIGIDANE,
 			MONSNO_HUSIGISOU,
@@ -440,7 +440,7 @@ static void BoxStartDebugComp(FIELDSYS_WORK* fsys)
 /*====================================================================================================*/
 /*  交換デモ                                                                                          */
 /*====================================================================================================*/
-#include "demo\demo_trade.h"
+#include "demo/demo_trade.h"
 
 static void TradeDemoStart( FIELDSYS_WORK* fsys )
 {
@@ -537,7 +537,7 @@ static void TestTaskSet( void )
 
 FS_EXTERN_OVERLAY(demo_dendou);
 
-#include "demo\demo_dendou.h"
+#include "demo/demo_dendou.h"
 
 static void DendouDemo_Call( FIELDSYS_WORK* fsys )
 {
@@ -574,9 +574,9 @@ static void DendouDemo_EndCallBack( FIELDSYS_WORK* fsys, void* wk )
 /*====================================================================================================*/
 FS_EXTERN_OVERLAY(dendou_pc);
 
-#include "savedata\dendou_data.h"
-#include "application\dendou_pc.h"
-#include "system\snd_tool.h"
+#include "savedata/dendou_data.h"
+#include "application/dendou_pc.h"
+#include "system/snd_tool.h"
 
 static void DendouPC_Call( FIELDSYS_WORK* fsys )
 {
@@ -647,8 +647,8 @@ static void DendouPC_EndCallBack(FIELDSYS_WORK* fsys, void* wk)
 /*====================================================================================================*/
 /*  エンディングデモ呼び出し                                                                          */
 /*====================================================================================================*/
-//#include "demo\demo_ending.h"
-#include "demo\ending.h"
+//#include "demo/demo_ending.h"
+#include "demo/ending.h"
 #include "demo/hakai_warp.h"
 FS_EXTERN_OVERLAY(demo_ending);
 FS_EXTERN_OVERLAY(warp);
@@ -691,7 +691,7 @@ static void EndingEndCallback( FIELDSYS_WORK* fsys, void* wk )
 /*====================================================================================================*/
 /*  簡易会話入力画面関連                                                                              */
 /*====================================================================================================*/
-#include "application\pms_input.h"
+#include "application/pms_input.h"
 
 static void PmsStartSingle( FIELDSYS_WORK* fsys )
 {
@@ -725,10 +725,10 @@ static void PmsCallbackEnd(FIELDSYS_WORK* fsys, void* wk)
 /*====================================================================================================*/
 /*  その他デバッグ機能                                                                                */
 /*====================================================================================================*/
-#include "poketool\monsno.h"
-#include "poketool\boxdata.h"
-#include "savedata\mystatus.h"
-#include "gflib\strcode.h"
+#include "poketool/monsno.h"
+#include "poketool/boxdata.h"
+#include "savedata/mystatus.h"
+#include "gflib/strcode.h"
 static void CurrentFullTool( FIELDSYS_WORK* fsys )
 {
 	BOX_DATA* boxdat = SaveData_GetBoxData(fsys->savedata);

@@ -9,9 +9,9 @@
 #include "common.h"
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"						//MSGMAN_GetString
+#include "system/msgdata.h"						//MSGMAN_GetString
 #include "system/brightness.h"					//ChangeBrightnessRequest
-#include "system\wordset.h"						//WordSet_RegistPlayerName
+#include "system/wordset.h"						//WordSet_RegistPlayerName
 #include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/get_text.h"
@@ -26,7 +26,7 @@
 #include "savedata/misc.h"
 #include "savedata/b_tower.h"
 #include "savedata/frontier_savedata.h"
-#include "msgdata\msg.naix"						//NARC_msg_??_dat
+#include "msgdata/msg.naix"						//NARC_msg_??_dat
 
 #include "field/fieldobj.h"
 #include "field/scr_tool.h"

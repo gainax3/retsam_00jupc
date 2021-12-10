@@ -18,8 +18,8 @@
 #include "system/pmfprint.h"
 
 #include "field/game_init.h"
-#include "msgdata\msg.naix"							//NARC_msg_??_dat
-#include "msgdata\msg_opening.h"					//msg_??
+#include "msgdata/msg.naix"							//NARC_msg_??_dat
+#include "msgdata/msg_opening.h"					//msg_??
 
 #include "opening.naix"
 #include "opening_sys.h"

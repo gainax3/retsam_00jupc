@@ -8,32 +8,35 @@
 //============================================================================================
 #include "common.h"
 
-#include "gflib\msg_print.h"
-#include "gflib\fntsys.h"
-#include "gflib\strbuf_family.h"
-#include "system\gamedata.h"
-#include "system\msgdata.h"
-#include "system\pm_str.h"
-#include "system\placename.h"
-#include "application\wifi_country.h"
-#include "savedata\mystatus.h"
-#include "savedata\randomgroup.h"
-#include "savedata\misc.h"
-#include "msgdata\msg_sodateya.h"
-#include "msgdata\msg_common_scr.h"
-#include "msgdata\msg_supportname.h"
+#include "gflib/msg_print.h"
+#include "gflib/fntsys.h"
+#include "gflib/strbuf_family.h"
+#include "system/gamedata.h"
+#include "system/msgdata.h"
+#include "system/pm_str.h"
+#include "system/placename.h"
+#include "application/wifi_country.h"
+#include "savedata/mystatus.h"
+#include "savedata/randomgroup.h"
+#include "savedata/misc.h"
+#include "msgdata/msg_sodateya.h"
+#include "msgdata/msg_common_scr.h"
+#include "msgdata/msg_supportname.h"
 // ----------------------------------------------------------------------------
 // localize_spec_mark(LANG_ALL) imatake 2006/12/29
 // 月の名前（の短縮形）を列挙したgmmを追加
-#include "msgdata\msg_month.h"
+#include "msgdata/msg_month.h"
 // ----------------------------------------------------------------------------
 
-#include "battle\battle_common.h"
+#include "battle/battle_common.h"
 
-#include "msgdata\msg.naix"
-#include "system\wordset.h"
+#include "msgdata/msg.naix"
+#include "system/wordset.h"
 #include "msgdata/msg_place_name_haihu.h"
 #include "msgdata/msg_place_name_tokusyu.h"
+// localize_spec_mark(LANG_ALL) anon2 2021/12/07
+// この機能がトバリデパートに関連していることを確認します
+#include "msgdata/msg_ev_win.h"
 
 
 /*----------------------------------*/
@@ -96,7 +99,7 @@ void WORDSET_RegisterSealNamePlural( WORDSET* wordset, u32 bufID, u32 strID );
 void WORDSET_RegisterAccessoryNameIndefinate( WORDSET* wordset, u32 bufID, u32 acID );
 void WORDSET_RegisterMonthName( WORDSET* wordset, u32 bufID, u32 month );
 void WORDSET_Capitalize( WORDSET* wordset, u32 bufID );
-void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID );
+void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floorID );
 //======================================================================================================
 // システム初期化・終了
 //======================================================================================================
@@ -1713,22 +1716,24 @@ void WORDSET_Capitalize( WORDSET* wordset, u32 bufID )
 }
 
 // ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) anon2 2021/12/07
+// この機能がトバリデパートに関連していることを確認します
 
-void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID )
+void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floorID )
 {
 	MSGDATA_MANAGER *man = MSGMAN_Create(MSGMAN_TYPE_DIRECT, ARC_MSG, NARC_msg_ev_win_dat, wordset->heapID);
 
-    GF_ASSERT(unkID <= 5);
+    GF_ASSERT(floorID <= 5);
         
 	if( man )
 	{
-        if (unkID == 0) {
-            unkID = 121;
+        if (floorID == 0) {
+            floorID = msg_ev_win_118; // ちか１かい
         } else {
-            unkID += 115;
+            floorID += msg_ev_win_113 - 1; // １かいなど
         }
 
-		MSGMAN_GetString( man, unkID, wordset->tmpBuf );
+		MSGMAN_GetString(man, floorID, wordset->tmpBuf );
 		RegisterWord( wordset, bufID, wordset->tmpBuf, NULL );
 		MSGMAN_Delete(man);
 	}

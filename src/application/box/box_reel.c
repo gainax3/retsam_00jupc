@@ -7,7 +7,7 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\touchpanel.h"
+#include "gflib/touchpanel.h"
 
 #include  "box_common.h"
 #include  "box_reel.h"

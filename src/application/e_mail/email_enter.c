@@ -48,8 +48,8 @@
 #include "system/bmp_list.h"
 #include "system/pmfprint.h"
 #include "savedata/config.h"
-#include "savedata\system_data.h"
-#include "savedata\email_savedata.h"
+#include "savedata/system_data.h"
+#include "savedata/email_savedata.h"
 #include "email_snd_def.h"
 
 #include "application/connect_anm.h"

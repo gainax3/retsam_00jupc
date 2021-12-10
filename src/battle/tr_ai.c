@@ -25,8 +25,8 @@
 #include "tr_ai_def.h"
 #include "tr_ai/tr_ai.dat"
 
-#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
-#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+#include "server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 //MAKE‚ÌˆË‘¶ŠÖŒW‚ÉŠÜ‚ß‚é‚½‚ß‚ÉIncludei–{—ˆ‚Í•K—v‚È‚¢j
 #include "battle/tr_ai/tr_ai_seq.naix"

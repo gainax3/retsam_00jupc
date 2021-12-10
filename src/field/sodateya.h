@@ -10,9 +10,9 @@
 #ifndef __SODATEYA_H__
 #define __SODATEYA_H__
 
-#include "savedata\sodateyadata.h"
-#include "poketool\pokeparty.h"
-#include "system\wordset.h"
+#include "savedata/sodateyadata.h"
+#include "poketool/pokeparty.h"
+#include "system/wordset.h"
 // =================================================================
 // ’è”’è‹`
 // =================================================================

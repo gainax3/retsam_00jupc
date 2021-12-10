@@ -8,7 +8,7 @@
 #ifndef _POKETCH_A18_H_
 #define _POKETCH_A18_H_
 
-#include "battle\battle_common.h"
+#include "battle/battle_common.h"
 
 //====================================================
 // •`‰æƒRƒ}ƒ“ƒh

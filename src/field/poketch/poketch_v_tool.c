@@ -7,9 +7,9 @@
 //============================================================================================
 #include "common.h"
 #include "tcb.h"
-#include "system\lib_pack.h"
-#include "poketool\pokeicon.h"
-#include "field\poketch.h"
+#include "system/lib_pack.h"
+#include "poketool/pokeicon.h"
+#include "field/poketch.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

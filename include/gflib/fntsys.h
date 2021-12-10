@@ -1,8 +1,8 @@
 #ifndef __FNTSYS_H__
 #define __FNTSYS_H__
 
-#include "gflib\bg_system.h"
-#include "gflib\msg_print.h"
+#include "gflib/bg_system.h"
+#include "gflib/msg_print.h"
 
 
 

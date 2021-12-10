@@ -8,8 +8,8 @@
 #ifndef _POKETCH_VIEW_H_
 #define _POKETCH_VIEW_H_
 
-#include "system\arc_tool.h"
-#include "system\arc_util.h"
+#include "system/arc_tool.h"
+#include "system/arc_util.h"
 
 #include "poketch_sound.h"
 #include "poketch_act.h"

@@ -38,7 +38,7 @@
 #include "savedata/get_poke.h"
 
 #include "include/itemtool/itemsym.h"
-#include "src\system\pm_overlay.h"
+#include "src/system/pm_overlay.h"
 
 static PROC_RESULT	EGG_ProcInit(PROC* proc, int* seq);
 static PROC_RESULT	EGG_ProcMain(PROC* proc, int* seq);

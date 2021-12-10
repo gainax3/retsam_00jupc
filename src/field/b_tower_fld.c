@@ -47,7 +47,7 @@
 #include "battle/trno_def.h"
 //#include "b_tower_fld.dat"
 
-#include "msgdata\msg.naix"
+#include "msgdata/msg.naix"
 
 //============================================================================================
 /**

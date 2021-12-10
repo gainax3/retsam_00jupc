@@ -2,16 +2,16 @@
 #define __DEMO_TRADE_COMMON_H__
 
 #include "common.h"
-#include "gflib\bg_system.h"
-#include "gflib\strbuf.h"
-#include "system\arc_util.h"
-#include "system\clact_util.h"
-#include "system\wordset.h"
-#include "system\wipe.h"
-#include "system\fontproc.h"
-#include "msgdata\msg_demo_trade.h"
+#include "gflib/bg_system.h"
+#include "gflib/strbuf.h"
+#include "system/arc_util.h"
+#include "system/clact_util.h"
+#include "system/wordset.h"
+#include "system/wipe.h"
+#include "system/fontproc.h"
+#include "msgdata/msg_demo_trade.h"
 
-#include "demo\demo_trade.h"
+#include "demo/demo_trade.h"
 #include "demo_trade_sound.h"
 #include "demo_trade.naix"
 

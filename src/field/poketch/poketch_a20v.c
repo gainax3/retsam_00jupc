@@ -6,8 +6,8 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
-#include "poketool\monsno.h"
+#include "system/lib_pack.h"
+#include "poketool/monsno.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

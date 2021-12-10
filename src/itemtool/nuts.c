@@ -9,9 +9,9 @@
 #include "common.h"
 #include "system/arc_tool.h"
 #include "system/msgdata.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_nuts_name.h"
-#include "msgdata\msg_nuts_info.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_nuts_name.h"
+#include "msgdata/msg_nuts_info.h"
 
 #define	NUTS_H_GLOBAL
 #include "itemtool/nuts.h"

@@ -23,9 +23,9 @@
 #include "poketool/status_rcv.h"		//PokeParty_RecoverAll
 #include "system/procsys.h"
 
-//#include "battle/fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ\[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
@@ -68,7 +68,7 @@
 #include "savedata/battle_rec.h"
 #include "../field/field_subproc.h"
 //ƒ[ƒhƒZƒbƒg
-#include "msgdata\msg.naix"							//NARC_msg_??_dat
+#include "msgdata/msg.naix"							//NARC_msg_??_dat
 //’ÊM
 #include "communication/comm_info.h"
 #include "communication/comm_system.h"
@@ -2164,7 +2164,7 @@ static BOOL FSSC_ObjMoveCode_Kyoro(FSS_TASK *core)
  * @retval  
  */
 //--------------------------------------------------------------
-#include "application\namein.h"
+#include "application/namein.h"
 static void NameInFreeMemory(void *parent_work);
 
 static BOOL FSSC_NameInProc(FSS_TASK *core)

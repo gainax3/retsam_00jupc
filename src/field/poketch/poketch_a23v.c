@@ -6,16 +6,16 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
+#include "system/lib_pack.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"
 #include "poketch_a23.h"
 
-#include "system\msgdata.h"
-#include "system\fontproc.h"
-#include "msgdata\msg_poketch_kinomi.h"
-#include "msgdata\msg.naix"
+#include "system/msgdata.h"
+#include "system/fontproc.h"
+#include "msgdata/msg_poketch_kinomi.h"
+#include "msgdata/msg.naix"
 
 //==============================================================
 // consts

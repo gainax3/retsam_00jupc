@@ -8,11 +8,11 @@
 
 #define CRC_LOADCHECK  (1) //CRC‚É‚æ‚éŒŸ¸‚ğ—LŒø‚É‚·‚éê‡ 1 –³Œø‚É‚·‚éê‡ 0
 
-#include "gflib\crcloadcheck.h"
-#include "gflib\heapsys.h"
-#include "gflib\tcb.h"
-#include "system\heapdefine.h"
-#include "system\tcbman.h"
+#include "gflib/crcloadcheck.h"
+#include "gflib/heapsys.h"
+#include "gflib/tcb.h"
+#include "system/heapdefine.h"
+#include "system/tcbman.h"
 
 
 /*---------------------------------------------------------------------------*

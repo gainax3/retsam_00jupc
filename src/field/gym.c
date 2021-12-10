@@ -28,7 +28,7 @@
 #include "gym.h"
 
 #include "script.h"
-#include "..\fielddata\script\trainer_def.h"	//SCRID_TRAINER_MOVE_BATTLE
+#include "../fielddata/script/trainer_def.h"	//SCRID_TRAINER_MOVE_BATTLE
 #include "ev_trainer.h"
 //#include "arc/plgym_ghost.naix"	//未使用
 
@@ -40,7 +40,7 @@
 #include "fieldmap.h"
 #include	"../../include/msgdata/msg_c04gym0101.h"
 	
-#include "..\fielddata\eventdata\zone_c05gym0101evd.h" //PLゴーストジム
+#include "../fielddata/eventdata/zone_c05gym0101evd.h" //PLゴーストジム
 
 //定義でDP格闘ジムを無効化
 #define DP_OLDGYM_NULL_FIGHT

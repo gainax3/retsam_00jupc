@@ -7,11 +7,11 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
-#include "savedata\seedbed.h"
-#include "field\eventflag.h"
-#include "..\syswork.h"
-#include "..\field_townmap.h"
+#include "system/lib_pack.h"
+#include "savedata/seedbed.h"
+#include "field/eventflag.h"
+#include "../syswork.h"
+#include "../field_townmap.h"
 
 #include "poketch_a23.h"
 #include "poketch_prv.h"

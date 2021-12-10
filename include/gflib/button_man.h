@@ -9,7 +9,7 @@
 #ifndef __BUTTON_MAN_H__
 #define __BUTTON_MAN_H__
 
-#include "gflib\touchpanel.h"
+#include "gflib/touchpanel.h"
 
 //--------------------------------------------------------------
 /**

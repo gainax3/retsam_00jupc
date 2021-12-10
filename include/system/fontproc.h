@@ -1,9 +1,9 @@
 #ifndef __FONTPROC_H__
 #define __FONTPROC_H__
 
-#include "gflib\fontdata_loadtype.h"
-#include "gflib\msg_print.h"
-#include "gflib\strbuf.h"
+#include "gflib/fontdata_loadtype.h"
+#include "gflib/msg_print.h"
+#include "gflib/strbuf.h"
 
 //--------------------------------------------------------------
 /**

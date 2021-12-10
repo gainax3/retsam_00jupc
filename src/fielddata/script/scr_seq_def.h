@@ -14,7 +14,7 @@
 
 //スクリプトで使用するヘッダーファイル
 	.include	"usescript.h"
-	.include	"..\..\..\include\pl_bugfix.h"
+	.include	"../../../include/pl_bugfix.h"
 
 //データを自然な境界にアラインするかの設定
 	.option alignment off
@@ -1102,6 +1102,23 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 #if PL_S0802_080716_FIX
 	DEF_CMD	EV_SEQ_GET_POKE_SEE_FLAG
 #endif
+    DEF_CMD EV_SEQ_OV05_21F77A8
+    DEF_CMD EV_SEQ_OV05_21F7704
+    DEF_CMD EV_SEQ_OV05_21F7754
+    DEF_CMD EV_SEQ_BMP_MENU_LIST_ALIGN_RIGHT
+    DEF_CMD EV_SEQ_BMP_MENU_LIST_ALIGN_BOTTOM
+    DEF_CMD EV_SEQ_ITEM_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_ITEM_NAME_PLURAL
+    DEF_CMD EV_SEQ_GOODS_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_TRAP_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_TAMA_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_POKEMON_NAME_EXTRA_INDEFINATE
+    DEF_CMD EV_SEQ_SUPPORT_POKEMON_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_ACCE_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_TRTYPE_NAME_INDEFINATE
+    DEF_CMD EV_SEQ_SEAL_NAME_PLURAL
+    DEF_CMD EV_SEQ_CAPITALIZE_NAME
+    DEF_CMD EV_SEQ_TOBARI_DEPART_FLOOR_NO
 
 	
 //=============================================================================
@@ -10824,3 +10841,17 @@ DEF_CMD_COUNT	=	( DEF_CMD_COUNT + 1 )
 	.short \ret
 	.endm
 	
+
+    .macro _OV05_21F77A8 monsno ret
+    .short EV_SEQ_OV05_21F77A8
+    .short \monsno
+    .short \ret
+    .endm
+
+    .macro _OV05_21F7704
+    .short EV_SEQ_OV05_21F7704
+    .endm
+
+    .macro _OV05_21F7754
+    .short EV_SEQ_OV05_21F7754
+    .endm

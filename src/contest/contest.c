@@ -28,9 +28,9 @@
 #include "field/comm_field_state.h"
 #include "msgdata/msg_cmsg_acting.h"
 #include "include/application/imageClip/imc_sys.h"
-#include "field\eventflag.h"
-#include "field\sysflag.h"
-#include "savedata\config.h"
+#include "field/eventflag.h"
+#include "field/sysflag.h"
+#include "savedata/config.h"
 #include "savedata/perapvoice.h"
 #include "system/brightness.h"
 

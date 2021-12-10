@@ -11,7 +11,7 @@
 
 #include "savedata/savedata_def.h"	//SAVEDATAéQè∆ÇÃÇΩÇﬂ
 #include "savedata/mail_util.h"
-#include "poketool\poke_tool.h"
+#include "poketool/poke_tool.h"
 
 //============================================================================================
 //============================================================================================

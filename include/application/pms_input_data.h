@@ -9,9 +9,9 @@
 #ifndef __PMS_INPUT_DATA_H__
 #define __PMS_INPUT_DATA_H__
 
-#include "application\pms_input.h"
-#include "savedata\savedata_def.h"
-#include "gflib\strbuf.h"
+#include "application/pms_input.h"
+#include "savedata/savedata_def.h"
+#include "gflib/strbuf.h"
 
 
 //--------------------------------------------------------------

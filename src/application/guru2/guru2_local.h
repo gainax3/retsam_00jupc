@@ -10,7 +10,7 @@
 #define GURU2_LH_FILE
 
 #include "common.h"
-#include "application\guru2.h"
+#include "application/guru2.h"
 
 #include "guru2_comm.h"
 #include "guru2.naix"

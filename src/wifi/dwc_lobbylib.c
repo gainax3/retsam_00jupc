@@ -650,39 +650,19 @@ DWC_LOBBY_CHANNEL_STATE DWC_LOBBY_Update( void )
  *	@retval	PPW_LOBBY_ERROR_STATS_SESSION			///< 致命的な通信エラー(ルーム設定サーバ)。  
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void )
 {
 	GF_ASSERT( p_DWC_LOBBYLIB_WK != NULL );
 
-	return PPW_LobbyGetLastError();
+    if (p_DWC_LOBBYLIB_WK->unk984 == PPW_LOBBY_RESULT_SUCCESS)
+    {
+        return PPW_LobbyGetLastError();
+    }
+    else
+    {
+        return ov66_2237134(p_DWC_LOBBYLIB_WK->unk984);
+    }
 }
-#else
-asm PPW_LOBBY_ERROR DWC_LOBBY_GetErr( void )
-{
-	push {r3, lr}
-	ldr r0, =p_DWC_LOBBYLIB_WK // _02232704
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	bne _022326EA
-	bl GF_AssertFailedWarningCall
-_022326EA:
-	ldr r0, =p_DWC_LOBBYLIB_WK // _02232704
-	ldr r1, [r0, #0]
-	ldr r0, =0x00000984 // _02232708
-	ldr r0, [r1, r0]
-	cmp r0, #0
-	bne _022326FC
-	bl PPW_LobbyGetLastError
-	pop {r3, pc}
-_022326FC:
-	bl ov66_2237134
-	pop {r3, pc}
-	nop
-// _02232704: .4byte p_DWC_LOBBYLIB_WK
-// _02232708: .4byte 0x00000984
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**

@@ -7,12 +7,12 @@
  */
 //============================================================================================
 #include "common.h"
-#include "savedata\savedata.h"
-#include "system\gamedata.h"
-#include "gflib\strbuf_family.h"
-#include "poketool\pokeparty.h"
+#include "savedata/savedata.h"
+#include "system/gamedata.h"
+#include "gflib/strbuf_family.h"
+#include "poketool/pokeparty.h"
 
-#include "savedata\dendou_data.h"
+#include "savedata/dendou_data.h"
 
 
 enum {

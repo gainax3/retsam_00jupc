@@ -9,17 +9,17 @@
 #ifndef __BOX_COMMON_H__
 #define __BOX_COMMON_H__
 
-#include "gflib\msg_print.h"	// STRCODE‚Ì‚½‚ß
-#include "gflib\strbuf.h"
-#include "system\wordset.h"
-#include "system\msgdata.h"
-#include "system\buflen.h"
-#include "itemtool\item.h"
-#include "msgdata\msg_boxmes.h"
-#include "poketool\boxdata.h"
-#include "poketool\pokeparty.h"
+#include "gflib/msg_print.h"	// STRCODE‚Ì‚½‚ß
+#include "gflib/strbuf.h"
+#include "system/wordset.h"
+#include "system/msgdata.h"
+#include "system/buflen.h"
+#include "itemtool/item.h"
+#include "msgdata/msg_boxmes.h"
+#include "poketool/boxdata.h"
+#include "poketool/pokeparty.h"
 
-#include "application\box.h"
+#include "application/box.h"
 
 #include "box_sound_def.h"
 

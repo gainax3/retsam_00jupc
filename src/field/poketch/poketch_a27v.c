@@ -6,12 +6,12 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
-#include "system\msgdata.h"
-#include "system\fontproc.h"
-#include "system\wordset.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_poketch_tusin.h"
+#include "system/lib_pack.h"
+#include "system/msgdata.h"
+#include "system/fontproc.h"
+#include "system/wordset.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_poketch_tusin.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

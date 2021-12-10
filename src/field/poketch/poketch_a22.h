@@ -8,9 +8,9 @@
 #ifndef _POKETCH_A22_H_
 #define _POKETCH_A22_H_
 
-#include "field\poketch_data.h"
+#include "field/poketch_data.h"
 #include "poketch_map.h"
-#include "..\move_pokemon_def.h"
+#include "../move_pokemon_def.h"
 
 //====================================================
 // •`‰æƒRƒ}ƒ“ƒh

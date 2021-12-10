@@ -7,8 +7,8 @@
 //============================================================================================
 #include "common.h"
 #include "tcb.h"
-#include "system\arc_util.h"
-#include "field\poketch.h"
+#include "system/arc_util.h"
+#include "field/poketch.h"
 
 
 #include "poketch_arc.h"

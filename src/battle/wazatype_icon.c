@@ -9,8 +9,8 @@
 #include "common.h"
 #include "system/clact_tool.h"
 #include "system/arc_tool.h"
-#include "system\arc_util.h"
-#include "battle\graphic\pl_batt_obj_def.h"
+#include "system/arc_util.h"
+#include "battle/graphic/pl_batt_obj_def.h"
 #include "battle/battle_common.h"
 #include "battle/wazatype_icon.h"
 

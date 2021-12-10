@@ -8,7 +8,7 @@
 //==============================================================================
 #include "common.h"
 #include "gauge.h"
-#include "graphic\pl_batt_obj_def.h"
+#include "graphic/pl_batt_obj_def.h"
 #include "system/arc_tool.h"
 #include "battle/fight_tool.h"
 #include "system/fontproc.h"

@@ -7,11 +7,11 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\heapsys.h"
-#include "gflib\touchpanel.h"
-#include "gflib\button_man.h"
-#include "system\procsys.h"
-#include "system\pms_data.h"
+#include "gflib/heapsys.h"
+#include "gflib/touchpanel.h"
+#include "gflib/button_man.h"
+#include "system/procsys.h"
+#include "system/pms_data.h"
 
 #include "pmsi_sound_def.h"
 #include "pms_input_prv.h"

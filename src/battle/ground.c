@@ -7,7 +7,7 @@
  */
 //==============================================================================
 #include "common.h"
-#include "graphic\pl_batt_obj_def.h"
+#include "graphic/pl_batt_obj_def.h"
 #include "battle/battle_common.h"
 #include "battle/fight_tool.h"
 #include "ground.h"

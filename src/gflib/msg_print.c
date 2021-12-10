@@ -18,7 +18,7 @@
 #define	__MSG_PRINT_H_GLOBAL
 #include "msg_print.h"
 
-#include "system\fontproc.h"
+#include "system/fontproc.h"
 #include "system/arc_util.h"
 #include "system/font_arc.h"
 
@@ -625,7 +625,7 @@ void FntDataColorRecover(u8* col_f, u8* col_b, u8* col_s)
  * @retval	x_size		文字Ｘサイズ(文字詰め用)
  */
 //---------------------------------------------------------------------------------------------
-#include "gflib\apptimer.h"
+#include "gflib/apptimer.h"
 void FntDataSet8x8_2bit(u32 radrs,u32 wadrs)
 {
 	u32 dat;

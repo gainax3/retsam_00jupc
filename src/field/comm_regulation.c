@@ -16,7 +16,7 @@
 #include "system/gamedata.h"
 #include "system/window.h"
 #include "system/wipe.h"
-#include "system\bmp_cursor.h"
+#include "system/bmp_cursor.h"
 
 #include "communication/communication.h"
 #include "communication/comm_state.h"

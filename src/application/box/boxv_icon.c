@@ -7,10 +7,10 @@
  */
 //============================================================================================
 #include  "common.h"
-#include  "system\arc_util.h"
-#include  "system\clact_util.h"
-#include  "poketool\pokeicon.h"
-#include  "poketool\boxdata.h"
+#include  "system/arc_util.h"
+#include  "system/clact_util.h"
+#include  "poketool/pokeicon.h"
+#include  "poketool/boxdata.h"
 
 #include  "box_arc.h"
 #include  "box_view.h"

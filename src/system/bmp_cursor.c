@@ -7,13 +7,13 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\arc_util.h"
-#include "gflib\heapsys.h"
-#include "gflib\bg_system.h"
-#include "gflib\strbuf_family.h"
-#include "system\fontproc.h"
+#include "system/arc_util.h"
+#include "gflib/heapsys.h"
+#include "gflib/bg_system.h"
+#include "gflib/strbuf_family.h"
+#include "system/fontproc.h"
 
-#include "system\bmp_cursor.h"
+#include "system/bmp_cursor.h"
 
 
 

@@ -7,8 +7,8 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
-#include "system\pm_rtc.h"
+#include "system/lib_pack.h"
+#include "system/pm_rtc.h"
 
 #include "poketch_button.h"
 #include "poketch_a00.h"

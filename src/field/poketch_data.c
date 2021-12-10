@@ -12,7 +12,7 @@
 #include "common.h"
 #include "gflib/system.h"
 #include "system/savedata.h"
-#include "poketool\pokeicon.h"
+#include "poketool/pokeicon.h"
 
 #include "field/poketch_data.h"
 

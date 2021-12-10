@@ -8,12 +8,12 @@
 //============================================================================================
 #include  "common.h"
 
-#include  "gflib\msg_print.h"
-#include  "gflib\bg_system.h"
-#include  "system\arc_util.h"
-#include  "system\font_arc.h"
+#include  "gflib/msg_print.h"
+#include  "gflib/bg_system.h"
+#include  "system/arc_util.h"
+#include  "system/font_arc.h"
 
-#include  "system\numfont.h"
+#include  "system/numfont.h"
 
 // フォントのビット列パターン
 enum {

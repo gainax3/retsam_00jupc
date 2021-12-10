@@ -11,9 +11,9 @@
 #ifndef __BOXDATA_H__
 #define __BOXDATA_H__
 
-#include  "system\savedata_def.h"
-#include  "gflib\strbuf.h"
-#include  "poketool\poke_tool.h"	// POKEMON_PASO_PARAM éQè∆ÇÃÇΩÇﬂ
+#include  "system/savedata_def.h"
+#include  "gflib/strbuf.h"
+#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM éQè∆ÇÃÇΩÇﬂ
 
 //------------------------------------------------------------
 /**

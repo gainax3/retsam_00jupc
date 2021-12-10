@@ -26,7 +26,7 @@
 #include "field_light.h"
 
 #include "system/snd_tool.h"
-#include "src\demo\tengan\demo_tengan_gra.naix"
+#include "src/demo/tengan/demo_tengan_gra.naix"
 
 #define	__FIELD_DEMO_H_GLOBAL
 #include "field_demo.h"

@@ -20,7 +20,7 @@
 #include "contest/contest.h"
 
 #include "script.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 
 #include "system/particle.h"
 #include "particledata/particledata.h"

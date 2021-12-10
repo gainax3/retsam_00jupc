@@ -7,12 +7,12 @@
  */
 //============================================================================================
 #include  "common.h"
-#include  "system\arc_util.h"
-#include  "system\clact_util.h"
-#include  "system\render_oam.h"
-#include  "system\brightness.h"
-#include  "system\wipe.h"
-#include  "system\fontproc.h"
+#include  "system/arc_util.h"
+#include  "system/clact_util.h"
+#include  "system/render_oam.h"
+#include  "system/brightness.h"
+#include  "system/wipe.h"
+#include  "system/fontproc.h"
 
 #include  "box_arc.h"
 #include  "box_view.h"

@@ -9,12 +9,12 @@
 #include "demo_trade_common.h"
 #include "demo_trade_3d.h"
 
-#include "gflib\msg_print.h"
-#include "gflib\calctool.h"
-#include "system\window.h"
-#include "system\font_arc.h"
+#include "gflib/msg_print.h"
+#include "gflib/calctool.h"
+#include "system/window.h"
+#include "system/font_arc.h"
 
-#include "..\ev_pokeselect.naix"
+#include "../ev_pokeselect.naix"
 
 //======================================================================================================
 //======================================================================================================

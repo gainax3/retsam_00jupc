@@ -9,9 +9,9 @@
 #ifndef __DENDOU_DATA_H__
 #define __DENDOU_DATA_H__
 
-#include "savedata\savedata_def.h"
-#include "poketool\pokeparty.h"
-#include "gflib\strbuf.h"
+#include "savedata/savedata_def.h"
+#include "poketool/pokeparty.h"
+#include "gflib/strbuf.h"
 
 
 //--------------------------------------------------------------

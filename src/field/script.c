@@ -12,8 +12,8 @@
 //============================================================================================
 #include "common.h"
 #include "gflib/msg_print.h"						//STRCODE
-#include "system\msgdata.h"							//MSGMAN_TYPE_DIRECT
-#include "system\bmp_menu.h"
+#include "system/msgdata.h"							//MSGMAN_TYPE_DIRECT
+#include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/pm_str.h"
 #include "system/wordset.h"							//WORDSET_Create
@@ -29,7 +29,7 @@
 
 #include "system/arc_tool.h"
 #include "../fielddata/script/scr_seq.naix"
-#include "msgdata\msg.naix"							//NARC_msg_??_dat
+#include "msgdata/msg.naix"							//NARC_msg_??_dat
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"

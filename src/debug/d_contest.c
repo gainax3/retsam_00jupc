@@ -37,7 +37,7 @@
 #include "contest/contest.h"
 
 #include "field/script.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 
 #include "system/particle.h"
 #include "particledata/particledata.h"
@@ -57,11 +57,11 @@
 #include "savedata/misc.h"
 
 #include "application/balloon.h"
-//#include "field\ev_mapchange.h"
+//#include "field/ev_mapchange.h"
 
 #include "include/application/imageClip/imc_sys.h"
 
-#include "wifi\dwc_rap.h"
+#include "wifi/dwc_rap.h"
 #include "application/br_sys.h"
 
 

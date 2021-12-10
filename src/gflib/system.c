@@ -9,12 +9,12 @@
 #define __SYSTEM_H_GLOBAL__
 #include "standard.h" 
 #include "system.h"
-#include "system\wordset.h"
+#include "system/wordset.h"
 #include "gflib_os_print.h"
 #include "assert.h"
 #include "rebooter.h"
 #if CRC_LOADCHECK
-#include "gflib\calctool.h"
+#include "gflib/calctool.h"
 #endif
 
 //==============================================================================

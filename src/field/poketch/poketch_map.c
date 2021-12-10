@@ -8,7 +8,7 @@
 #include "common.h"
 #include "poketch_prv.h"
 #include "poketch_map.h"
-#include "..\mapdefine.h"
+#include "../mapdefine.h"
 
 //--------------------------------------------------------------
 // マップグリッドから

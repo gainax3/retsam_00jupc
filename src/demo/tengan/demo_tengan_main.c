@@ -5,9 +5,9 @@
 #include "system/fontproc.h"
 #include "system/pm_str.h"
 #include "system/pm_overlay.h"
-#include "system\palanm.h"
-#include "application\pms_input.h"
-#include "system\pm_rtc.h"
+#include "system/palanm.h"
+#include "application/pms_input.h"
+#include "system/pm_rtc.h"
 
 #include "field/field_common.h"
 #include "field/field_event.h"

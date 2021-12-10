@@ -9,8 +9,8 @@
 #ifndef __ARC_UTIL_H__
 #define __ARC_UTIL_H__
 
-#include "gflib\bg_system.h"
-#include "system\arc_tool.h"
+#include "gflib/bg_system.h"
+#include "system/arc_tool.h"
 
 
 //------------------------------------------------------------------

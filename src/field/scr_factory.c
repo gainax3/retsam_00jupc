@@ -10,8 +10,8 @@
 
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"			//MSGMAN_GetString
-#include "system\wordset.h"			//WordSet_RegistPlayerName
+#include "system/msgdata.h"			//MSGMAN_GetString
+#include "system/wordset.h"			//WordSet_RegistPlayerName
 #include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/get_text.h"

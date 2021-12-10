@@ -16,7 +16,7 @@
 #include "system/gamedata.h"
 #include "system/window.h"
 #include "system/wipe.h"
-#include "system\bmp_cursor.h"
+#include "system/bmp_cursor.h"
 
 #include "communication/communication.h"
 #include "communication/comm_state.h"
@@ -42,7 +42,7 @@
 #include "savedata/perapvoice.h"
 #include "ev_time.h"
 #include "comm_direct_counter_def.h"
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 #include "savedata/sp_ribbon.h"
 

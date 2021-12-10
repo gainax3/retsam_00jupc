@@ -7,9 +7,9 @@
  */
 //============================================================================================
 #include  "common.h"
-#include  "system\arc_util.h"
-#include  "system\fontproc.h"
-#include  "battle\wazatype_icon.h"
+#include  "system/arc_util.h"
+#include  "system/fontproc.h"
+#include  "battle/wazatype_icon.h"
 
 #include  "box_arc.h"
 #include  "box_view.h"

@@ -14,7 +14,7 @@
 
 //サウンドデータの指定を番号ではなく、サウンドデザイナーが定義したラベルで行えるようになる
 //C:\NitroSystem\build\demos\snd\data
-//#include "C:\NitroSystem\tools\nitro\SoundPlayer\data\sound_data.sadl"
+//#include "C:/NitroSystem/tools/nitro/SoundPlayer/data/sound_data.sadl"
 #include "data/sound/pl_sound_data.sadl"		//サウンドラベルファイル
 
 

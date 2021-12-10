@@ -16,7 +16,7 @@
 #include	"system/pmfprint.h"
 
 #include	"system/snd_tool.h"
-#include	"system\fontproc.h"
+#include	"system/fontproc.h"
 #include "../field/fld_bmp.h"
 
 
@@ -31,7 +31,7 @@
 extern void	BmpPrintMsg(MSG_DATA_HEADER* mdh_p);
 
 
-#include "skip_cur.dat"			//‘—‚èƒJ[ƒ\ƒ‹ƒf[ƒ^
+#include "skip_cur.dat"			//‘—‚èƒJ[ƒ/ƒ‹ƒf[ƒ^
 
 static MSG_PRINT_MODE msg_print_flag;
 

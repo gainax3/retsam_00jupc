@@ -9,7 +9,7 @@
 #ifndef PM_STR_H
 #define PM_STR_H
 
-#include "gflib\msg_print.h"	// STRCODE ’è‹`‚Ì‚½‚ß
+#include "gflib/msg_print.h"	// STRCODE ’è‹`‚Ì‚½‚ß
 
 #undef GLOBAL
 #ifdef PM_STR_H_GLOBAL

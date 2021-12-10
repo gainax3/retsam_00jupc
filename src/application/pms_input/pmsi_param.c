@@ -1,12 +1,12 @@
 
 
 #include "common.h"
-#include "system\pms_data.h"
-#include "system\pms_word.h"
-#include "savedata\zukanwork.h"
-#include "savedata\config.h"
+#include "system/pms_data.h"
+#include "system/pms_word.h"
+#include "savedata/zukanwork.h"
+#include "savedata/config.h"
 
-#include "field\sysflag.h"
+#include "field/sysflag.h"
 
 #include "pms_input_prv.h"
 

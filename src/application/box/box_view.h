@@ -10,12 +10,12 @@
 #define __BOX_VIEW_H__
 
 #include "box_common.h"
-#include "system\arc_tool.h"
-#include "system\clact_util.h"
-#include "system\numfont.h"
-#include "system\softsprite.h"
-#include  "system\msgdata.h"
-#include  "system\wordset.h"
+#include "system/arc_tool.h"
+#include "system/clact_util.h"
+#include "system/numfont.h"
+#include "system/softsprite.h"
+#include  "system/msgdata.h"
+#include  "system/wordset.h"
 
 //------------------------------------------------------
 /*

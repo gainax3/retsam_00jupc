@@ -9,9 +9,9 @@
 #ifndef __PMS_INPUT_PARAM_H__
 #define __PMS_INPUT_PARAM_H__
 
-#include "savedata\zukanwork.h"
-#include "application\pms_input.h"
-#include "system\pms_word.h"
+#include "savedata/zukanwork.h"
+#include "application/pms_input.h"
+#include "system/pms_word.h"
 
 extern u32 PMSI_PARAM_GetInputMode( const PMSI_PARAM* p );
 extern u32 PMSI_PARAM_GetGuidanceType( const PMSI_PARAM* p );

@@ -1,7 +1,7 @@
 #ifndef	__STR_TOOL_H__
 #define	__STR_TOOL_H__
 
-#include "gflib\msg_print.h"
+#include "gflib/msg_print.h"
 
 #undef GLOBAL
 #ifdef __STR_TOOL_H_GLOBAL__

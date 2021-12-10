@@ -9,7 +9,7 @@
 #ifndef	__FACTORY_SAVEDATA_LOCAL_H__
 #define	__FACTORY_SAVEDATA_LOCAL_H__
 
-#include "..\frontier\factory_def.h"
+#include "../frontier/factory_def.h"
 
 //============================================================================================
 //

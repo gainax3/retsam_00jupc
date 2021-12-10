@@ -428,8 +428,8 @@ static void DG_BattleRecoder_Score( DGOTO_WORK *dm )
 	TCB_Add( DG_ScoreTCB, wk, 100 );
 }
 
-#include "savedata\honeytree_data.h"
-#include "savedata\encount.h"
+#include "savedata/honeytree_data.h"
+#include "savedata/encount.h"
 
 typedef struct {
 	

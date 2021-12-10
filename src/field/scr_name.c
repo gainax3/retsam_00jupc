@@ -10,9 +10,9 @@
 
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"			//MSGMAN_GetString
+#include "system/msgdata.h"			//MSGMAN_GetString
 #include "system/brightness.h"		//ChangeBrightnessRequest
-#include "system\wordset.h"			//WordSet_RegistPlayerName
+#include "system/wordset.h"			//WordSet_RegistPlayerName
 #include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/get_text.h"
@@ -32,13 +32,13 @@
 #include "sysflag.h"
 #include "syswork.h"
 
-#include "..\application\p_status\ribbon.h"
+#include "../application/p_status/ribbon.h"
 
 #include "scr_tool.h"
 #include "itemtool/item.h"
 #include "itemtool/nuts.h"
 #include "savedata/misc.h"
-#include "msgdata\msg.naix"			//NARC_msg_??_dat
+#include "msgdata/msg.naix"			//NARC_msg_??_dat
 
 #include "poketool/boxdata.h"
 
@@ -1031,14 +1031,16 @@ BOOL EvCmdCapitalizeName(VM_MACHINE * core)
 }
 
 // ----------------------------------------------------------------------------
+// localize_spec_mark(LANG_ALL) anon2 2021/12/07
+// この機能がトバリデパートに関連していることを確認します
 
-BOOL EvCmd_2048080(VM_MACHINE * core)
+BOOL EvCmdTobariDepartFloorNo(VM_MACHINE * core)
 {
 	FIELDSYS_WORK * fsys	= core->fsys;
 	WORDSET** wordset		= GetEvScriptWorkMemberAdrs( fsys, ID_EVSCR_WORDSET );
 	u8 idx					= VMGetU8(core);
-    u8 unkID                = VMGetU8(core);
+    u8 floorID              = VMGetU8(core);
 
-    WORDSET_Register_200C338( *wordset, idx, unkID );
+    WORDSET_RegisterTobariDepartFloorNo(*wordset, idx, floorID );
     return 0;
 }

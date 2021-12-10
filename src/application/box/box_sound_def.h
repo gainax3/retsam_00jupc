@@ -10,7 +10,7 @@
 #ifndef __BOX_SOUND_DEF_H__
 #define __BOX_SOUND_DEF_H__
 
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 
 #define  SOUND_LOG_IN			(SEQ_SE_DP_PC_LOGIN)	// ボックス画面開始

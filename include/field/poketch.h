@@ -8,9 +8,9 @@
 #ifndef _POKETCH_H_
 #define _POKETCH_H_
 
-#include "gflib\bg_system.h"
-#include "field\field_common.h"
-#include "field\poketch_data.h"
+#include "gflib/bg_system.h"
+#include "field/field_common.h"
+#include "field/poketch_data.h"
 
 
 //====================================================

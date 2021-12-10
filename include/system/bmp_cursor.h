@@ -9,7 +9,7 @@
 #ifndef __BMP_CURSOR_H__
 #define __BMP_CURSOR_H__
 
-#include "gflib\msg_print.h"
+#include "gflib/msg_print.h"
 
 typedef struct _BMPCURSOR	BMPCURSOR;
 

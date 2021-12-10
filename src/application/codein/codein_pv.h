@@ -14,7 +14,7 @@
 
 #include "codein.h"
 #include "codein_gra.naix"
-#include "system\font_arc.h"
+#include "system/font_arc.h"
 
 #define HEAP_SIZE_CODEIN	( 0x40000 )				///< HEAPサイズ
 #define CODE_OAM_MAX		( 16 )					///< 文字コード数

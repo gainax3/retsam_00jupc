@@ -10,7 +10,7 @@
 #ifndef __COMM_VSROOM_H__
 #define __COMM_VSROOM_H__
 
-#include "poketool\pokeparty.h"
+#include "poketool/pokeparty.h"
 
 typedef void (StartLineCallBack)(BOOL bStart, const POKEPARTY* party);
 

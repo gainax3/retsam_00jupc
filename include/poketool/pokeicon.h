@@ -9,7 +9,7 @@
 #ifndef POKEICON_H
 #define POKEICON_H
 
-#include "poketool\poke_tool.h"
+#include "poketool/poke_tool.h"
 
 #undef GLOBAL
 #ifdef POKEICON_H_GLOBAL

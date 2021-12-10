@@ -13,9 +13,9 @@
 #include "map_tool.h"
 #include "player.h"
 #include "fieldsys.h"
-#include "..\fielddata\script\common_scr_def.h"		//for SCRID_HONEY_TREE
+#include "../fielddata/script/common_scr_def.h"		//for SCRID_HONEY_TREE
 #include "honey_tree_def.h"
-#include "..\fielddata\maptable\zone_id.h"
+#include "../fielddata/maptable/zone_id.h"
 
 #include "../fielddata/build_model/build_model_id.h"
 

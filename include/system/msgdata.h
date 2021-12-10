@@ -9,8 +9,8 @@
 #ifndef __MSGDATA_H__
 #define __MSGDATA_H__
 
-#include "gflib\strbuf.h"
-#include "system\arc_tool.h"
+#include "gflib/strbuf.h"
+#include "system/arc_tool.h"
 
 
 

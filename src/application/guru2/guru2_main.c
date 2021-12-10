@@ -12,19 +12,19 @@
 #include "guru2_snd.h"
 
 #include "system/render_oam.h"
-#include "..\..\system\clact_tool.h"
+#include "../../system/clact_tool.h"
 #include "system/arc_tool.h"
 #include "system/snd_tool.h"
-#include "system\wipe.h"
+#include "system/wipe.h"
 
 #include "system/bmp_list.h"
 #include "system/fontproc.h"
 #include "system/pm_str.h"
 #include "system/wordset.h"
-#include "system\fontproc.h"
-#include "system\window.h"
-#include "..\..\field\fld_bmp.h"
-#include "..\..\field\field_rdobj.h"
+#include "system/fontproc.h"
+#include "system/window.h"
+#include "../../field/fld_bmp.h"
+#include "../../field/field_rdobj.h"
 
 #include "msgdata/msg.naix"
 #include "msgdata/msg_guru2.h"
@@ -33,9 +33,9 @@
 #include "itemtool/myitem.h"
 #include "poketool/poke_memo.h"
 
-#include "system\font_arc.h"	//フォントアーカイブインデックス
-#include "..\..\demo\egg\data\egg_data_def.h" //卵アーカイブインデックス
-#include "..\nutmixer\nutmixer.naix"
+#include "system/font_arc.h"	//フォントアーカイブインデックス
+#include "../../demo/egg/data/egg_data_def.h" //卵アーカイブインデックス
+#include "../nutmixer/nutmixer.naix"
 
 //==============================================================================
 //	define

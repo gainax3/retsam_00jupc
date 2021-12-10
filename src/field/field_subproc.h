@@ -147,13 +147,13 @@ extern PORUTO_PARAM* FieldPorutoCase_InitCall(FIELDSYS_WORK* fsys,int heapID);
  *	@retval	0:成功
  *	@retval else	失敗
  */
-#include "application\btwr_app.h"
+#include "application/btwr_app.h"
 extern void BTowerApp_SetProc(FIELDSYS_WORK *fsys,BTOWER_APP_PARAM * ap);
 
 //==============================================================================
 // 簡易会話入力画面
 //==============================================================================
-#include "application\pms_input.h"
+#include "application/pms_input.h"
 extern void FieldProc_SetPmsInput( FIELDSYS_WORK* fsys, PMSI_PARAM* param );
 
 //イベントコマンド：簡易会話単語入力呼び出し
@@ -194,7 +194,7 @@ extern BOOL GMEVENT_UnionTradeList(GMEVENT_CONTROL * event);
 //==============================================================================
 // 殿堂入りデモ
 //==============================================================================
-#include "demo\demo_dendou.h"
+#include "demo/demo_dendou.h"
 extern void Field_DendouDemo_SetProc( FIELDSYS_WORK * fsys, DEMO_DENDOU_PARAM* param );
 
 //==============================================================================
@@ -206,7 +206,7 @@ extern void * Field_DendouPC_Call( FIELDSYS_WORK* fsys );
 //==============================================================================
 // エンディングデモ
 //==============================================================================
-#include "demo\ending.h"
+#include "demo/ending.h"
 extern void Field_EndingDemo_SetProc( FIELDSYS_WORK * fsys, ENDING_PARENT_PARAM* param );
 
 //==============================================================================

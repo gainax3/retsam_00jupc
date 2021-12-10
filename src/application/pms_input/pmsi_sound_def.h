@@ -10,7 +10,7 @@
 #ifndef __PMSI_SOUND_DEF_H__
 #define __PMSI_SOUND_DEF_H__
 
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 
 #define  SOUND_MOVE_CURSOR		(SEQ_SE_DP_SELECT)		// ÉJÅ[É\Éãà⁄ìÆ

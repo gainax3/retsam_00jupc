@@ -9,10 +9,10 @@
 #ifndef SLOT_H_FILE
 #define SLOT_H_FILE
 
-#include "system\procsys.h"
-#include "savedata\record.h"
-#include "savedata\coin.h"
-#include "savedata\config.h"
+#include "system/procsys.h"
+#include "savedata/record.h"
+#include "savedata/coin.h"
+#include "savedata/config.h"
 
 //==============================================================================
 //	define

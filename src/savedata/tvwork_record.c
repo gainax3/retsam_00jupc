@@ -24,7 +24,7 @@
 #include "system/pm_rtc.h"
 #include "system/pm_str.h"
 
-#include "savedata\savedata.h"
+#include "savedata/savedata.h"
 #include "communication/comm_info.h"
 
 #ifdef	DEBUG_ONLY_FOR_tamada

@@ -7,14 +7,14 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\gamedata.h"
-#include "savedata\savedata.h"
-#include "poketool\poke_tool.h"
+#include "system/gamedata.h"
+#include "savedata/savedata.h"
+#include "poketool/poke_tool.h"
 
-#include "savedata\zukanwork.h"
-#include "field\poketch_data.h"
+#include "savedata/zukanwork.h"
+#include "field/poketch_data.h"
 
-#include "savedata\get_poke.h"
+#include "savedata/get_poke.h"
 #include "savedata/record.h"
 
 

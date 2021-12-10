@@ -12,8 +12,8 @@
 
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"			//MSGMAN_GetString
-#include "system\wordset.h"			//WordSet_RegistPlayerName
+#include "system/msgdata.h"			//MSGMAN_GetString
+#include "system/wordset.h"			//WordSet_RegistPlayerName
 #include "gflib/strbuf_family.h"	//ãñâ¬êß
 
 //í êM

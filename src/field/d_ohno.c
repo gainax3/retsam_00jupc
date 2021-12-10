@@ -34,8 +34,8 @@
 
 #include "script.h"							//StartFieldScript
 
-#include "..\fielddata\script\common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
-#include "..\fielddata\script\connect_def.h"		//SCRID_CONNECT_COLOSSEUM
+#include "../fielddata/script/common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
+#include "../fielddata/script/connect_def.h"		//SCRID_CONNECT_COLOSSEUM
 
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_ohno.h"
@@ -50,7 +50,7 @@
 #include "poketool/poke_regulation.h"
 #include "tv_topic.h"
 
-#include "..\fielddata\script\debug_scr_def.h"	//
+#include "../fielddata/script/debug_scr_def.h"	//
 #include "d_nohara.h"							//Debug_FrontierWifiMultiRecordMaxSet
 
 //==============================================================================

@@ -7,12 +7,12 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\touchpanel.h"
-#include "system\lib_pack.h"
-#include "poketool\poke_tool.h"
-#include "poketool\pokeicon.h"
-#include "savedata\sodateyadata.h"
-#include "..\sodateya.h"
+#include "gflib/touchpanel.h"
+#include "system/lib_pack.h"
+#include "poketool/poke_tool.h"
+#include "poketool/pokeicon.h"
+#include "savedata/sodateyadata.h"
+#include "../sodateya.h"
 
 #include "poketch_a15.h"
 #include "poketch_prv.h"

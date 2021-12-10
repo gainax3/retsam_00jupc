@@ -10,10 +10,10 @@
 //==============================================================================
 #include "common.h"
 #include "system.h"
-#include "gflib\heapsys.h"
+#include "gflib/heapsys.h"
 
 #ifdef PM_DEBUG
-#include  "system\heapdefine.h"
+#include  "system/heapdefine.h"
 //#define  ALLOCINFO_PRINT_HEAPID   HEAPID_FIELD	// ‚±‚Ìƒq[ƒv‚h‚c‚ÉŠÖ‚µ‚Ä‚Ì‚İÚ×‚Èî•ñ‚ğo—Í
 #endif
 
@@ -474,8 +474,8 @@ static void* AllocMemoryCore( NNSFndHeapHandle heapHandle, u32 size, s32 alignme
 
 #ifndef PM_DEBUG
 
-#include "system\assert_warning_reset.h"
-#include "communication\comm_state.h"
+#include "system/assert_warning_reset.h"
+#include "communication/comm_state.h"
 
 //------------------------------------------------------------------
 /**

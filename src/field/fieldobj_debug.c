@@ -14,7 +14,7 @@
 #include "common.h"
 #include "fieldobj.h"
 
-#include "..\fielddata\maptable\zone_id.h"
+#include "../fielddata/maptable/zone_id.h"
 
 //==============================================================================
 //	エイリアステスト

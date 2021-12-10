@@ -40,7 +40,7 @@
 #include "gflib/strbuf.h"
 #include "savedata/config.h"
 #include "gflib/button_man.h"
-#include "system\font_arc.h"
+#include "system/font_arc.h"
 
 #include "demo/title.h"
 #include "include/application/email.h"

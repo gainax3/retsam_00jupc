@@ -6,8 +6,8 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
-#include "poketool\pokeicon.h"
+#include "system/lib_pack.h"
+#include "poketool/pokeicon.h"
 
 #include "poketch_a19.h"
 #include "poketch_view.h"

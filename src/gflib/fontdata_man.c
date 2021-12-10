@@ -9,9 +9,9 @@
 #include	"common.h"
 #include	"bg_system.h"
 #include	"fntsys.h"
-#include	"gflib\fontdata_man.h"
+#include	"gflib/fontdata_man.h"
 
-#include	"system\arc_tool.h"
+#include	"system/arc_tool.h"
 
 typedef u8 (*pWidthGetFunc)(const GF_FONTDATA_MAN*, u32);
 typedef void (*pGetBitmapFunc)(const GF_FONTDATA_MAN*, STRCODE, MSG_FONT_DATA* );

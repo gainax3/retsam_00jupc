@@ -7,10 +7,10 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
+#include "system/lib_pack.h"
 
 
-#include "system\snd_play.h"
+#include "system/snd_play.h"
 #include "poketch_sound.h"
 
 #include "poketch_button.h"

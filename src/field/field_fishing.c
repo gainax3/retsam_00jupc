@@ -17,17 +17,17 @@
 #include "talk_msg.h"
 #include "script.h"
 #include "field_effect.h"
-#include "system\window.h"
+#include "system/window.h"
 #include "field_encount.h"
 #include "encount_set.h"
 #include "field_battle.h"
 #include "field_fishing.h"
 #include "tv_topic.h"
 
-#include "msgdata\msg_common_scr.h"
-#include "msgdata\msg.naix"
+#include "msgdata/msg_common_scr.h"
+#include "msgdata/msg.naix"
 
-#include "savedata\record.h"
+#include "savedata/record.h"
 
 #include "system/snd_tool.h"
 

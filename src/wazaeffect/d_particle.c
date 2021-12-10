@@ -371,7 +371,7 @@ void DebugParticle_EmitMove2(PTC_PTR ptc, EMIT_PTR emit, WE_SYS_PTR we_sys)
 //	パーティクルシステムのカメラを移動
 //
 //==============================================================================
-#include "field\camera_move_test.h"
+#include "field/camera_move_test.h"
 
 typedef struct{
 	EMIT_PTR emit;

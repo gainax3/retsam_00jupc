@@ -10,7 +10,7 @@
 #ifndef	__COMM_UNION_H__
 #define	__COMM_UNION_H__
 
-#include "system\wordset.h"
+#include "system/wordset.h"
 
 typedef struct COMM_UNIONROOM_WORK COMM_UNIONROOM_WORK;
 

@@ -9,7 +9,7 @@
 #ifndef	__CASTLE_SAVEDATA_LOCAL_H__
 #define	__CASTLE_SAVEDATA_LOCAL_H__
 
-#include "..\frontier\castle_def.h"
+#include "../frontier/castle_def.h"
 
 //============================================================================================
 //

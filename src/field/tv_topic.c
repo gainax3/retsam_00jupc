@@ -3683,7 +3683,7 @@ static const u16 KinomiFlagTable[] = {
 	FLAG_ARRIVE_C10,	//(16)
 	FLAG_ARRIVE_C11,	//(17)
 };
-#include "..\fielddata\setting\kinomi_zone.c"
+#include "../fielddata/setting/kinomi_zone.c"
 
 //--------------------------------------------------------------------
 //--------------------------------------------------------------------

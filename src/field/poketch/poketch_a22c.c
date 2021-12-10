@@ -7,12 +7,12 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
-#include "field\fieldsys.h"
-#include "field\eventflag.h"
-#include "savedata\encount.h"
-#include "..\field_townmap.h"
-#include "..\syswork.h"
+#include "system/lib_pack.h"
+#include "field/fieldsys.h"
+#include "field/eventflag.h"
+#include "savedata/encount.h"
+#include "../field_townmap.h"
+#include "../syswork.h"
 
 
 #include "poketch_a22.h"

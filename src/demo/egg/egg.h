@@ -21,8 +21,8 @@
 #include "system/clact_tool.h"
 #include "system/touch_subwindow.h"
 
-#include "system\font_arc.h"
-#include "system\particle.h"
+#include "system/font_arc.h"
+#include "system/particle.h"
 
 #include "include/application/namein.h"
 #include "include/system/softsprite.h"
