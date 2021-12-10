@@ -114,9 +114,18 @@ ERRTABLE_H	= include/errtable.h
 
 $(OBJDIR)/socl_misc.o:	$(ERRTABLE_H)
 
+# Platform support note: Require GNU coreutils on MacOS
+SED := sed
+ifneq ($(OS),Windows_NT)
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+SED := gsed
+endif
+endif
+
 $(ERRTABLE_H): $(NWIFI_ROOT)/include/nitroWiFi/socl.h
 	mkdir -p include
-	sed -e '/^\/\/ ERROR-CODE BEGINS/,/^\/\/ ERROR-CODE ENDS/!d;\
+	$(SED) -e '/^\/\/ ERROR-CODE BEGINS/,/^\/\/ ERROR-CODE ENDS/!d;\
 		/SOC_/!d;\
 		s/^.*SOC_\([A-Z]*\).*$$/{ SOC_\1, "\1" },/g' $< > $@
 

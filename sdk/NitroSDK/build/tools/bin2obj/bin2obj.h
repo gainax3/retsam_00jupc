@@ -41,7 +41,10 @@
 #define BIN2OBJ_H__
 
 #include <stdio.h>
+#ifndef __clang__
+// Platform support note: <malloc.h> not available on MacOS
 #include <malloc.h>                    // calloc()
+#endif //__clang__
 #include <stdlib.h>                    // free(), exit()
 #include <sys/stat.h>                  // stat()
 #include <string.h>                    // strlen/strdup/strcpy/memcpy

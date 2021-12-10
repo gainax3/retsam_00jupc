@@ -4,6 +4,8 @@
 //	Copyright (C) Ubiquitous Corp. 2001-2005. All rights reserved.
 //
 #include <stdio.h>
+#include <string.h>              // memcmp, strlen, strcpy
+#include <stdlib.h>              // exit
 
 typedef unsigned char   uchar;
 typedef unsigned long   ulong;
