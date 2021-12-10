@@ -1924,12 +1924,12 @@ static void WinAdd_AIUEO( BR_WORK* wk )
 //--------------------------------------------------------------
 static void WinDel_AIUEO( BR_WORK* wk )
 {
-	u32 i; // MatchComment: change from int to u32
+	int i;
 	GF_BGL_BMPWIN*		win;
 	DRESS_WORK*	dwk = wk->sub_work;
 
-    // MatchComment: 10 -> 9
-	for ( i = 0; i < 9; i++ ){		
+    // MatchComment: 10 -> 9u
+	for ( i = 0; i < 9u; i++ ){
 		win = &dwk->win_s[ i ];					
 		GF_BGL_BmpWinOff( win );
 		GF_BGL_BmpWinDel( win );	
