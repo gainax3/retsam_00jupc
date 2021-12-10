@@ -81,7 +81,10 @@
 #include	<stdio.h>
 #include	<stdlib.h>             // exit()
 #include	<string.h>             // strcpy(), strcat()
+#ifndef __clang__
+// Platform support note: <malloc.h> not available on MacOS
 #include	<malloc.h>
+#endif //__clang__
 #include	"misc.h"
 #include	"makelcf.h"
 #include	"defval.h"

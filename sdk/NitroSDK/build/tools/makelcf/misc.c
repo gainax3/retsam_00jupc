@@ -29,7 +29,10 @@
   $NoKeywords: $
  *---------------------------------------------------------------------------*/
 #include	<stdio.h>
+#ifndef __clang__
+// Platform support note: <malloc.h> not available on MacOS
 #include	<malloc.h>             // calloc()
+#endif //__clang__
 #include	<stdlib.h>             // free(), exit()
 #include	<string.h>             // strlen(), strcpy()
 #include	<stdarg.h>             // va_start(),va_end()
