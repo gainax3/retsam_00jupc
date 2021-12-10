@@ -257,7 +257,7 @@ _02249AB8:
 }
 
 // NONMATCHING
-asm void ov98_2249ACC(void)
+asm void ov98_2249ACC(char *address, u32 *dest, int heap_id)
 {
 	push {r3, r4, r5, r6, r7, lr}
 	sub sp, #8

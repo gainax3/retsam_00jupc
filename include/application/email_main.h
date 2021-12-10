@@ -134,7 +134,7 @@ extern void Email_Strcode_to_Ascii(STRBUF *src, char *dest, int heap_id);
 extern void Email_Ascii_to_Strcode(char *src, STRBUF *dest, int heap_id);
 // TODO__fix_me incorrect prototypes
 extern void ov98_2249A80(void);
-extern void ov98_2249ACC(void);
+extern void ov98_2249ACC(char *address, u32 *dest, int heap_id);
 
 //-- email_test.c Å¶å„Ç≈è¡Ç∑ --//
 extern PROC_RESULT EmailAddress_Init( PROC * proc, int * seq );
