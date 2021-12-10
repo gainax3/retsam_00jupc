@@ -3519,142 +3519,56 @@ static int Enter_MessagePrintEndCheck(int msg_index)
 	return TRUE;	//メッセージ処理続行中
 }
 
-// NONMATCHING
-asm static int ov98_2249798(EMAIL_MENU_WORK *wk)
+static int ov98_2249798(EMAIL_MENU_WORK *wk)
 {
-	push {r3, r4, lr}
-	sub sp, #4
-	add r4, r0, #0
-	ldr r0, [r4, #0x44]
-	bl Enter_MessagePrintEndCheck
-	cmp r0, #1
-	bne _022497AE
-	add sp, #4
-	mov r0, #0
-	pop {r3, r4, pc}
-_022497AE:
-	add r0, r4, #0
-	add r0, #0x94
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	beq _022497BE
-	cmp r0, #1
-	beq _022497EA
-	b _022497EE
-_022497BE:
-	ldr r0, [r4, #0]
-	bl Email_AddressReturnFlagGet
-	cmp r0, #2
-	bne _022497CC
-	mov r2, #0x26
-	b _022497CE
-_022497CC:
-	mov r2, #0x27
-_022497CE:
-	ldr r0, =0x00000F0F // _022497F4
-	mov r3, #1
-	str r0, [sp]
-	ldr r1, [r4, #0x34]
-	add r0, r4, #0
-	bl Enter_MessagePrint
-	add r0, r4, #0
-	add r0, #0x94
-	ldr r0, [r0, #0]
-	add r4, #0x94
-	add r0, r0, #1
-	str r0, [r4, #0]
-	b _022497EE
-_022497EA:
-	mov r0, #5
-	str r0, [r4, #8]
-_022497EE:
-	mov r0, #0
-	add sp, #4
-	pop {r3, r4, pc}
-	// .align 2, 0
-// _022497F4: .4byte 0x00000F0F
+    if(Enter_MessagePrintEndCheck( wk->MsgIndex ) == TRUE){
+        return FALSE;
+    }
+
+    switch(wk->local_seq) {
+    case 0:
+        Enter_MessagePrint( wk, wk->EmailMsgManager, (Email_AddressReturnFlagGet( wk->esys ) == 2) ?msg_email_903:msg_email_904, 1, 0x0F0F );
+        wk->local_seq++;
+        break;
+    case 1:
+        wk->subprocess_seq = ENTER_ADDRESS_INPUT_PROC_CHANGE;
+        break;
+    }
+
+    return FALSE;
 }
 
-// NONMATCHING
-asm static int ov98_22497F8(EMAIL_MENU_WORK *wk)
+static int ov98_22497F8(EMAIL_MENU_WORK *wk)
 {
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r6, r0, #0
-	ldr r0, [r6, #0x44]
-	ldr r4, [r6, #0]
-	bl Enter_MessagePrintEndCheck
-	cmp r0, #1
-	bne _02249810
-	add sp, #0x18
-	mov r0, #0
-	pop {r3, r4, r5, r6, r7, pc}
-_02249810:
-	add r0, r6, #0
-	add r0, #0x94
-	ldr r0, [r0, #0]
-	cmp r0, #0
-	beq _02249820
-	cmp r0, #1
-	beq _02249884
-	b _02249888
-_02249820:
-	add r0, r4, #0
-	bl Email_PasswordNumberGet
-	add r5, r0, #0
-	ldr r0, [r4, #4]
-	mov r1, #3
-	bl EMAILSAVE_ParamGet
-	cmp r5, r0
-	bne _02249866
-	ldr r0, [r4, #4]
-	bl EMAILSAVE_AddressGet
-	add r1, sp, #8
-	mov r2, #0x6c
-	bl ov98_2249ACC
-	mov r4, #0
-	add r5, sp, #8
-	mov r7, #2
-_02249848:
-	str r7, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r0, [r6, #0x20]
-	ldr r2, [r5, #0]
-	add r1, r4, #0
-	mov r3, #4
-	bl WORDSET_RegisterNumber
-	add r4, r4, #1
-	add r5, r5, #4
-	cmp r4, #4
-	blo _02249848
-	mov r2, #0x29
-	b _02249868
-_02249866:
-	mov r2, #0x28
-_02249868:
-	ldr r0, =0x00000F0F // _02249890
-	mov r3, #1
-	str r0, [sp]
-	ldr r1, [r6, #0x34]
-	add r0, r6, #0
-	bl Enter_MessagePrint
-	add r0, r6, #0
-	add r0, #0x94
-	ldr r0, [r0, #0]
-	add r6, #0x94
-	add r0, r0, #1
-	str r0, [r6, #0]
-	b _02249888
-_02249884:
-	mov r0, #0
-	str r0, [r6, #8]
-_02249888:
-	mov r0, #0
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _02249890: .4byte 0x00000F0F
+    EMAIL_SYSWORK* esys = wk->esys;
+    int     msgno;
+    u32     address[4];
+    u32     i;
+
+    if(Enter_MessagePrintEndCheck( wk->MsgIndex ) == TRUE){
+        return FALSE;
+    }
+
+    switch(wk->local_seq) {
+    case 0:
+        if(Email_PasswordNumberGet( esys ) == EMAILSAVE_ParamGet( esys->savedata, EMAIL_PARAM_PASSWORD )){
+            ov98_2249ACC( EMAILSAVE_AddressGet( esys->savedata ), address, HEAPID_EMAIL_MANAGE );
+            for(i=0; i<4; i++) {
+                WORDSET_RegisterNumber( wk->WordSet, i, address[i], 4, 2, 1 );
+            }
+            msgno = msg_email_906;
+        }else{
+            msgno = msg_email_905;
+        }
+        Enter_MessagePrint( wk, wk->EmailMsgManager, msgno, 1, 0x0F0F );
+        wk->local_seq++;
+        break;
+    case 1:
+        wk->subprocess_seq = ENTER_MENU_LIST;
+        break;
+    }
+
+    return FALSE;
 }
 
 //------------------------------------------------------------------
