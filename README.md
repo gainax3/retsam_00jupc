@@ -63,7 +63,7 @@ Some tips before proceeding:
     ```
 
 5. Change to a directory accessible from Windows where you'll store the files, for example:
-    ```
+    ```bash
     cd /mnt/c/Users/$USER/Desktop
     ```
 
@@ -76,7 +76,7 @@ Get the installer ([64 bit](https://www.cygwin.com/setup-x86_64.exe) or [32 bit]
 Place these files next to each other and run the batch file. Follow through the installation, there's no need to select any additional packages.
 
 Change to a directory accessible from Windows where you'll store the files, for example:
-```
+```bash
 cd /cygdrive/c/Users/$USER/Desktop
 ```
 
@@ -94,10 +94,25 @@ You need to install the following software:
 * wine (with 32-bit support!)
 
 On Debian or Ubuntu you can do this by running:
-```
+```bash
 sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install git gcc make bison flex wine32
+```
+
+Continue with the [building instructions](#building)
+
+
+## Mac OSX
+
+First, download and install Xcode from the App Store, then set up developer tools using `sudo xcode-select --install`.
+
+Next, navigate to `https://brew.sh/` and follow the instructions to install Homebrew.
+
+Using Homebrew, install the required packages:
+
+```shell
+brew install wine-crossover coreutils
 ```
 
 Continue with the [building instructions](#building)
