@@ -1323,7 +1323,6 @@ static BOOL CS_Pokemon( BR_WORK* wk )
 	return FALSE;
 }
 
-#ifdef NONEQUIVALENT
 static void WinAdd_AIUEO( BR_WORK* wk )
 {
 	STRBUF* 			str1;
@@ -1333,174 +1332,45 @@ static void WinAdd_AIUEO( BR_WORK* wk )
 	{
 		int i;
 		int ofs = 1;
-		u8  x, y;
-		int	px;
+		u8  x, y, w, h;
+		int	px, py;
 		
-		for ( i = 0; i < 10; i++ ){		
+		for ( i = 0; i < 9u; i++ ){
 			win = &vwk->win_s[ i ];			
 			x = hit_rect_AIUEO[ i ].rect.left / 8;
-			y = hit_rect_AIUEO[ i ].rect.top  / 8;		
+			y = hit_rect_AIUEO[ i ].rect.top  / 8;
+            w = hit_rect_AIUEO[ i ].rect.right / 8
+                - x;
+            h = hit_rect_AIUEO[ i ].rect.bottom / 8
+                - y;
 			GF_BGL_BmpWinInit( win );
-			GF_BGL_BmpWinAdd( wk->sys.bgl, win, GF_BGL_FRAME2_S, x, y, 2, 2, eBG_PAL_FONT, ofs );
+			GF_BGL_BmpWinAdd( wk->sys.bgl, win, GF_BGL_FRAME2_S, x, y, w, h, eBG_PAL_FONT, ofs );
 			GF_BGL_BmpWinDataFill( win, 0x00 );
 			str1 = MSGMAN_AllocString( wk->sys.man, msg_900 + i );
 			px = BR_print_x_Get( win, str1 );
+            py = (8 * h - 16) / 2;
 			
 			if ( IsPokeNameList( wk, i ) == TRUE ){
-				GF_STR_PrintColor( win, FONT_SYSTEM, str1, px, 0, MSG_NO_PUT, PRINT_COL_VIDEO, NULL );
+				GF_STR_PrintColor( win, FONT_SYSTEM, str1, px, py, MSG_NO_PUT, PRINT_COL_VIDEO, NULL );
 			}
 			else {
-				GF_STR_PrintColor( win, FONT_SYSTEM, str1, px, 0, MSG_NO_PUT, PRINT_COL_VIDEO2, NULL );
+				GF_STR_PrintColor( win, FONT_SYSTEM, str1, px, py, MSG_NO_PUT, PRINT_COL_VIDEO2, NULL );
 			}
 			GF_BGL_BmpWinOnVReq( win );			
 			STRBUF_Delete( str1 );
-			ofs += 4;
+			ofs += w * h;
 		}
 	}
 }
-#else
-asm static void WinAdd_AIUEO( BR_WORK* wk )
-{
-    push {r4, r5, r6, r7, lr}
-	sub sp, #0x34
-	str r0, [sp, #0x14]
-	mov r0, #1
-	str r0, [sp, #0x28]
-	mov r1, #0x86
-	ldr r0, [sp, #0x14]
-	lsl r1, r1, #4
-	ldr r1, [r0, r1]
-	ldr r0, =0x000006D4 // _022423C8
-	ldr r5, =hit_rect_AIUEO // _022423CC
-	mov r7, #0
-	add r4, r1, r0
-_022422DA:
-	ldrb r0, [r5, #2]
-	lsl r0, r0, #0x15
-	lsr r0, r0, #0x18
-	str r0, [sp, #0x24]
-	ldrb r0, [r5]
-	lsl r0, r0, #0x15
-	lsr r0, r0, #0x18
-	str r0, [sp, #0x20]
-	ldrb r0, [r5, #3]
-	lsr r1, r0, #3
-	ldr r0, [sp, #0x24]
-	sub r0, r1, r0
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp, #0x1c]
-	ldrb r0, [r5, #1]
-	lsr r1, r0, #3
-	ldr r0, [sp, #0x20]
-	sub r0, r1, r0
-	lsl r0, r0, #0x18
-	lsr r6, r0, #0x18
-	add r0, r4, #0
-	bl GF_BGL_BmpWinInit
-	ldr r0, [sp, #0x20]
-	add r1, r4, #0
-	str r0, [sp]
-	ldr r0, [sp, #0x1c]
-	mov r2, #6
-	str r0, [sp, #4]
-	str r6, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x28]
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp, #0x10]
-	ldr r0, [sp, #0x14]
-	ldr r3, [sp, #0x24]
-	ldr r0, [r0, #0x24]
-	bl GF_BGL_BmpWinAdd
-	add r0, r4, #0
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [sp, #0x14]
-	add r1, r7, #0
-	ldr r0, [r0, #0x48]
-	add r1, #0x44
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x2c]
-	ldr r1, [sp, #0x2c]
-	add r0, r4, #0
-	bl BR_print_x_Get
-	lsl r1, r6, #3
-	sub r1, #0x10
-	str r0, [sp, #0x30]
-	lsr r0, r1, #0x1f
-	add r0, r1, r0
-	asr r0, r0, #1
-	str r0, [sp, #0x18]
-	ldr r0, [sp, #0x14]
-	add r1, r7, #0
-	bl IsPokeNameList
-	cmp r0, #1
-	bne _02242384
-	ldr r0, [sp, #0x18]
-	ldr r2, [sp, #0x2c]
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _022423D0
-	ldr r3, [sp, #0x30]
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	add r0, r4, #0
-	mov r1, #0
-	bl GF_STR_PrintColor
-	b _022423A0
-_02242384:
-	ldr r0, [sp, #0x18]
-	ldr r2, [sp, #0x2c]
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000C0B00 // _022423D4
-	ldr r3, [sp, #0x30]
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	add r0, r4, #0
-	mov r1, #0
-	bl GF_STR_PrintColor
-_022423A0:
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	ldr r0, [sp, #0x2c]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x1c]
-	add r7, r7, #1
-	add r1, r0, #0
-	ldr r0, [sp, #0x28]
-	mul r1, r6
-	add r0, r0, r1
-	str r0, [sp, #0x28]
-	add r4, #0x10
-	add r5, r5, #4
-	cmp r7, #9
-	blo _022422DA
-	add sp, #0x34
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _022423C8: .4byte 0x000006D4
-// _022423CC: .4byte hit_rect_AIUEO
-// _022423D0: .4byte 0x000F0D00
-// _022423D4: .4byte 0x000C0B00
-}
-#endif
 
 static void WinDel_AIUEO( BR_WORK* wk )
 {
-	u32 i; // MatchComment: change to u32
+	int i;
 	GF_BGL_BMPWIN*		win;
 	VIDEO_SEARCH_WORK*	vwk = wk->sub_work;
 
-    // MatchComment: 10 -> 9
-	for ( i = 0; i < 9; i++ ){		
+    // MatchComment: 10 -> 9u
+	for ( i = 0; i < 9u; i++ ){
 		win = &vwk->win_s[ i ];					
 		GF_BGL_BmpWinOff( win );
 		GF_BGL_BmpWinDel( win );	
