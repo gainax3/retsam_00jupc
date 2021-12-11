@@ -98,22 +98,12 @@ void CI_pv_FocusSet( CODEIN_WORK* wk, int next_focus )
  *
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 void CI_pv_ParamInit( CODEIN_WORK* wk )
 {
 	int i;
 
 	///< Touch パネルモード
 	wk->sys.touch = TRUE;
-	//r5 = 0;
-    //r7 = 0x374;
-    //r5 = 0;
-    //r1 = 0xab;
-    //r3 = 0;
-    //r6 = wk;
-    //r7 = 0x2aa;
-    //r0 = 0x3bc;
-    //r1 = 0x2ac;
     
     {
         u16 r5 = 0;
@@ -148,65 +138,17 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
     }
 
     {
-        // wtf? somehow this is like somewhat close to matching too
-        u32 intermediate;
-        //int intermediate2;
+        int intermediate;
 
         wk->unk3ec--;
-        //r7 = 0x2a2
-        //r1 = 0x2d0
-        //r2 = wk->code_max
-        //r0 = wk->unk3ec
-        //r1 = 0x2a0;
-        //r0 = wk->code_max + wk->unk3ec;
-        //r2 = ((wk->code_max + wk->unk3ec) << 3); // get bit 28
-        //r0 = r2 >> 0x1f;
-        ////r0 = r2 >> 0x1f;
-        //r0 = r2 + r0;
-        //r2 = r0 >> 1;
-        //r0 = 0x70 - r2;
-        // then store
-
-        //r0 = r2 >> 0x1f;
-        //r0 = r2 >> 0x1f;
-        //r0 = ;
-        //r2 = (r2 + (r2 >> 0x1f)) >> 1;
-        intermediate = ((wk->code_max + wk->unk3ec) << 3);
-        //intermediate2 = (intermediate + (intermediate >> 0x1f));
-        wk->x_tbl[ 0 ] = 112 - ((intermediate + (intermediate >> 0x1f)) >> 1);
-
-        //r0 = (r0 >> 28) & 1;
-        //r0 = r2 + ((r0 >> 28) & 1);
-        //r2 = r0 >> 1; // asrs
-        //r0 = 0x70 - r2;
-        //wk->x_tbl[ 0 ] = 112 - ((r2 + (((wk->code_max + wk->unk3ec) >> 28) & 1)) >> 1);
+        intermediate = 8 * (wk->code_max + wk->unk3ec);
+        wk->x_tbl[ 0 ] = 112 - intermediate / 2;
 
         for (i = 0; i < CODE_BLOCK_MAX; i++) {
-            intermediate = (wk->unk3ec << 3) + ((wk->code_max - wk->param.block[i]) << 3) + (wk->param.block[i] << 5);
-            //intermediate2 = (intermediate + (intermediate >> 0x1f));
-            wk->x_tbl[ i + 1 ] = 112 - ((intermediate + (intermediate >> 0x1f)) >> 1);
+            intermediate = 8 * wk->unk3ec + (8 * (wk->code_max - wk->param.block[i]) + 32 * wk->param.block[i]);
+            wk->x_tbl[ i + 1 ] = 112 - intermediate / 2;
         }
 
-        // START OF FOR LOOP
-        //r6 = 0
-        //r3 = wk
-        //r5 = wk
-        //r2 = wk->param.block[i]
-        //r0 = wk->unk3ec;
-        //r6 += 1;
-        //r1 = wk->unk3ec << 3
-        //r0 = wk->code_max;
-        //r3 += 4
-        //r0 = wk->code_max - wk->param.block[i];
-        //r0 = (wk->code_max - wk->param.block[i]) << 3;
-        //r2 = wk->param.block[i] << 5;
-        //r0 = ((wk->code_max - wk->param.block[i]) << 3) + (wk->param.block[i] << 5);
-
-
-        //r0 = r1 >> 0x1f;
-        //r0 = r1 + (r1 >> 0x1f);
-        //r1 = (r1 + (r1 >> 0x1f)) >> 1; // asrs
-        //r0 = 0x70 - ((r1 + (r1 >> 0x1f)) >> 1); // asrs        
     }
 
     wk->x_tbl[ 1 ] += 12;
@@ -270,211 +212,6 @@ void CI_pv_ParamInit( CODEIN_WORK* wk )
         }
     }
 }
-#else
-asm void CI_pv_ParamInit( CODEIN_WORK* wk )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	add r4, r0, #0
-	mov r0, #0xdd
-	lsl r0, r0, #2
-	mov r1, #1
-	str r1, [r4, r0]
-	add r7, r0, #0
-	mov r5, #0
-	mov r1, #0xab
-	add r3, r5, #0
-	add r6, r4, #0
-	sub r7, #0xca
-	add r0, #0x48
-	lsl r1, r1, #2
-_020896A4:
-	strh r5, [r6, r7]
-	ldr r2, [r6, r0]
-	add r3, r3, #1
-	add r2, r5, r2
-	lsl r2, r2, #0x10
-	lsr r5, r2, #0x10
-	strh r5, [r6, r1]
-	add r6, r6, #4
-	cmp r3, #5
-	blt _020896A4
-	mov r1, #0xf7
-	lsl r1, r1, #2
-	ldr r1, [r4, r1]
-	add r0, r4, #0
-	add r1, r1, #1
-	bl CI_pv_FocusSet
-	mov r1, #0xfb
-	lsl r1, r1, #2
-	mov r0, #0x2d
-	add r7, r1, #0
-	mov r6, #0
-	add r5, r4, #0
-	lsl r0, r0, #4
-	sub r7, #0x30
-_020896D6:
-	ldr r3, [r5, r7]
-	cmp r3, #0
-	beq _020896F0
-	ldr r2, [r4, r0]
-	add r6, r6, #1
-	add r2, r2, r3
-	str r2, [r4, r0]
-	ldr r2, [r4, r1]
-	add r5, r5, #4
-	add r2, r2, #1
-	str r2, [r4, r1]
-	cmp r6, #4
-	blt _020896D6
-_020896F0:
-	mov r0, #0xfb
-	lsl r0, r0, #2
-	ldr r1, [r4, r0]
-	ldr r7, =0x000002A2 // _02089804
-	sub r1, r1, #1
-	str r1, [r4, r0]
-	mov r1, #0x2d
-	lsl r1, r1, #4
-	ldr r2, [r4, r1]
-	ldr r0, [r4, r0]
-	sub r1, #0x30
-	add r0, r2, r0
-	lsl r2, r0, #3
-	lsr r0, r2, #0x1f
-	add r0, r2, r0
-	asr r2, r0, #1
-	mov r0, #0x70
-	sub r0, r0, r2
-	strh r0, [r4, r1]
-	mov r6, #0
-	add r3, r4, #0
-	add r5, r4, #0
-_0208971C:
-	mov r0, #0xef
-	lsl r0, r0, #2
-	ldr r2, [r3, r0]
-	add r0, #0x30
-	ldr r0, [r4, r0]
-	add r6, r6, #1
-	lsl r1, r0, #3
-	mov r0, #0x2d
-	lsl r0, r0, #4
-	ldr r0, [r4, r0]
-	add r3, r3, #4
-	sub r0, r0, r2
-	lsl r0, r0, #3
-	lsl r2, r2, #5
-	add r0, r0, r2
-	add r1, r1, r0
-	lsr r0, r1, #0x1f
-	add r0, r1, r0
-	asr r1, r0, #1
-	mov r0, #0x70
-	sub r0, r0, r1
-	strh r0, [r5, r7]
-	add r5, r5, #2
-	cmp r6, #4
-	blt _0208971C
-	ldr r0, =0x000002A2 // _02089804
-	ldrsh r1, [r4, r0]
-	add r1, #0xc
-	strh r1, [r4, r0]
-	mov r1, #0xfb
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r4, r1]
-	add r3, r0, #0
-	cmp r1, #0
-	ble _02089788
-	mov r7, #7
-	mov r6, #0xfb
-	add r1, r4, #0
-	add r2, r4, #0
-	lsl r7, r7, #6
-	lsl r6, r6, #2
-_02089770:
-	mov r5, #0xef
-	lsl r5, r5, #2
-	ldr r5, [r1, r5]
-	add r3, r3, #1
-	add r0, r0, r5
-	sub r5, r0, #1
-	str r5, [r2, r7]
-	ldr r5, [r4, r6]
-	add r1, r1, #4
-	add r2, #0x1c
-	cmp r3, r5
-	blt _02089770
-_02089788:
-	mov r3, #0
-	mov ip, r3
-	str r4, [sp]
-	add r2, r4, #0
-_02089790:
-	mov r1, #0xef
-	ldr r5, [sp]
-	lsl r1, r1, #2
-	ldr r1, [r5, r1]
-	mov r0, #0
-	cmp r1, #0
-	ble _020897BE
-	mov r5, ip
-	lsl r5, r5, #2
-	add r7, r4, r5
-	mov r5, ip
-	add r1, r2, #0
-	add r6, r5, #1
-_020897AA:
-	mov r5, #0xef
-	str r6, [r1, #4]
-	lsl r5, r5, #2
-	ldr r5, [r7, r5]
-	add r0, r0, #1
-	add r1, #0x1c
-	add r2, #0x1c
-	add r3, r3, #1
-	cmp r0, r5
-	blt _020897AA
-_020897BE:
-	ldr r0, [sp]
-	add r0, r0, #4
-	str r0, [sp]
-	mov r0, ip
-	add r0, r0, #1
-	mov ip, r0
-	mov r0, #0x2d
-	lsl r0, r0, #4
-	ldr r0, [r4, r0]
-	cmp r3, r0
-	blt _02089790
-	mov r0, #0xf7
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r1, #0
-	cmp r0, #0
-	ble _02089800
-	mov r5, #0x3f
-	lsl r5, r5, #4
-	add r2, r5, #0
-	add r3, r5, #0
-	add r0, r4, #0
-	sub r2, #0x34
-	sub r3, #0x14
-_020897EE:
-	ldr r6, [r0, r2]
-	ldr r7, [r4, r5]
-	add r1, r1, #1
-	add r6, r7, r6
-	str r6, [r4, r5]
-	ldr r6, [r4, r3]
-	add r0, r0, #4
-	cmp r1, r6
-	blt _020897EE
-_02089800:
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-}
-#endif
 
 //--------------------------------------------------------------
 /**
