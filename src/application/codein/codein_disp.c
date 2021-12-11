@@ -198,14 +198,11 @@ void CI_pv_disp_CodeRes_Delete( CODEIN_WORK* wk )
  *
  */
 //--------------------------------------------------------------
-extern void _u32_div_f(void);
-#ifdef NONEQUIVALENT
 void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 {
 	int i;
 	int i_c = 0;
 	int i_b = 0;
-    int r4;
 	
 	TCATS_OBJECT_ADD_PARAM_S coap;
 	CATS_SYS_PTR csp;
@@ -230,22 +227,18 @@ void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 	coap.id[2]		= eID_CODE_OAM;
 	coap.id[3]		= eID_CODE_OAM;
 	coap.id[4]		= CLACT_U_HEADER_DATA_NONE;
-	coap.id[5]		= CLACT_U_HEADER_DATA_NONE;	
+	coap.id[5]		= CLACT_U_HEADER_DATA_NONE;
 
-    //{
-        //int r4;
+    {
+    unsigned r4;
     for ( r4 = wk->param.unk28, i = wk->unk3f0 - 1; i >= 0; i-- ) {
         wk->code[i].state = (r4 % 10) + 1;
         r4 /= 10;
     }
-    //}
+    }
 
 	for ( i = 0; i < wk->code_max + wk->unk3ec; i++ ){
-		if (wk->unk3ec == 0) {
-            return;
-        }
-
-		if ( i == ( wk->bar[ i_b ].state + i_b + 1 ) ){
+		if (wk->unk3ec != 0 && i == ( wk->bar[ i_b ].state + i_b + 1 ) ){
 			
 			wk->bar[ i_b ].cap = CATS_ObjectAdd_S( csp, crp, &coap );
 
@@ -265,170 +258,6 @@ void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
 		}
 	}
 }
-#else
-asm void CI_pv_disp_CodeOAM_Create( CODEIN_WORK* wk )
-{
-    push {r4, r5, r6, r7, lr}
-	sub sp, #0x44
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	mov r0, #0x2f
-	lsl r0, r0, #4
-	ldr r1, [sp]
-	add r2, r0, #4
-	ldr r1, [r1, r0]
-	str r1, [sp, #8]
-	ldr r1, [sp]
-	ldr r1, [r1, r2]
-	add r2, sp, #0x10
-	str r1, [sp, #4]
-	ldr r1, [sp, #0xc]
-	strh r1, [r2]
-	strh r1, [r2, #2]
-	strh r1, [r2, #4]
-	strh r1, [r2, #6]
-	mov r1, #0xa
-	str r1, [sp, #0x18]
-	ldr r1, [sp, #0xc]
-	mov r2, #1
-	str r1, [sp, #0x3c]
-	str r1, [sp, #0x40]
-	str r1, [sp, #0x1c]
-	add r1, r0, #0
-	add r1, #0xf8
-	str r1, [sp, #0x24]
-	str r1, [sp, #0x28]
-	str r1, [sp, #0x2c]
-	str r1, [sp, #0x30]
-	sub r1, r2, #2
-	str r1, [sp, #0x34]
-	str r1, [sp, #0x38]
-	ldr r1, [sp]
-	str r2, [sp, #0x20]
-	add r0, #0xf0
-	ldr r4, [r1, r0]
-	mov r1, #0x3f
-	ldr r0, [sp]
-	lsl r1, r1, #4
-	ldr r0, [r0, r1]
-	sub r6, r0, #1
-	bmi _0208A7DC
-	mov r0, #0x1c
-	add r1, r6, #0
-	mul r1, r0
-	ldr r0, [sp]
-	mov r7, #0xa
-	add r5, r0, r1
-_0208A7C0:
-	add r0, r4, #0
-	add r1, r7, #0
-	bl _u32_div_f
-	add r0, r1, #1
-	str r0, [r5]
-	add r0, r4, #0
-	mov r1, #0xa
-	bl _u32_div_f
-	add r4, r0, #0
-	sub r5, #0x1c
-	sub r6, r6, #1
-	bpl _0208A7C0
-_0208A7DC:
-	mov r1, #0xfb
-	ldr r0, [sp]
-	lsl r1, r1, #2
-	ldr r0, [r0, r1]
-	mov r2, #0x2d
-	ldr r1, [sp]
-	lsl r2, r2, #4
-	ldr r1, [r1, r2]
-	mov r6, #0
-	add r1, r1, r0
-	cmp r1, #0
-	ble _0208A89C
-	ldr r4, [sp]
-	mov r7, #0x4c
-	add r5, r4, #0
-_0208A7FA:
-	cmp r0, #0
-	beq _0208A84C
-	mov r0, #7
-	lsl r0, r0, #6
-	ldr r1, [r4, r0]
-	ldr r0, [sp, #0xc]
-	add r0, r0, r1
-	add r0, r0, #1
-	cmp r6, r0
-	bne _0208A84C
-	ldr r0, [sp, #8]
-	ldr r1, [sp, #4]
-	add r2, sp, #0x10
-	bl CATS_ObjectAdd_S
-	mov r1, #0x73
-	lsl r1, r1, #2
-	str r0, [r4, r1]
-	add r0, r1, #0
-	lsl r1, r7, #0x10
-	ldr r0, [r4, r0]
-	asr r1, r1, #0x10
-	mov r2, #0x18
-	bl CATS_ObjectPosSetCap
-	mov r0, #0x73
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r1, #0x16
-	bl CATS_ObjectAnimeSeqSetCap
-	mov r0, #0x73
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	bl CATS_ObjectUpdateCap
-	ldr r0, [sp, #0xc]
-	add r4, #0x1c
-	add r0, r0, #1
-	str r0, [sp, #0xc]
-	b _0208A882
-_0208A84C:
-	ldr r0, [sp, #8]
-	ldr r1, [sp, #4]
-	add r2, sp, #0x10
-	bl CATS_ObjectAdd_S
-	lsl r1, r7, #0x10
-	str r0, [r5, #0xc]
-	asr r1, r1, #0x10
-	mov r2, #0x18
-	bl CATS_ObjectPosSetCap
-	ldr r0, [r5, #0]
-	ldr r1, [r5, #8]
-	bl CI_pv_disp_CodeAnimeGet
-	add r1, r0, #0
-	ldr r0, [r5, #0xc]
-	bl CATS_ObjectAnimeSeqSetCap
-	ldr r0, [r5, #0xc]
-	mov r1, #2
-	bl CATS_ObjectAffineSetCap
-	ldr r0, [r5, #0xc]
-	bl CATS_ObjectUpdateCap
-	add r5, #0x1c
-_0208A882:
-	ldr r1, [sp]
-	mov r0, #0xfb
-	lsl r0, r0, #2
-	ldr r0, [r1, r0]
-	add r2, r1, #0
-	mov r1, #0x2d
-	lsl r1, r1, #4
-	ldr r1, [r2, r1]
-	add r6, r6, #1
-	add r1, r1, r0
-	add r7, #8
-	cmp r6, r1
-	blt _0208A7FA
-_0208A89C:
-	add sp, #0x44
-	pop {r4, r5, r6, r7, pc}
-}
-#endif
-
 //--------------------------------------------------------------
 /**
  * @brief	ÉJÅ[É\ÉãOAMÇÃçÏê¨
