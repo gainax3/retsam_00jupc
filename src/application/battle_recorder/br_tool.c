@@ -1336,11 +1336,10 @@ void TouchList_InitEx( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, const 
 	GF_BGL_BmpWinOnVReq( win );
 }
 
-#ifdef NONEQUIVALENT
 void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, const TOUCH_LIST_HEADER* head, int ranking_no, int group_no, STRBUF* unit )
 {
 	int i;
-	
+
 	GF_BGL_BMPWIN* win;
 	STRBUF* 	str;
 	STRBUF*		str1;
@@ -1368,34 +1367,34 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 		tl->man	 = wk->sys.man;
 	}
 	tl->page = ( tl->max / tl->lim ) + 1;
-	
+
 	if ( tl->max < tl->lim ){
 		 tl->lim = tl->max;
 		 tl->view.t_stoper = tl->lim - 1;
 		 tl->view.b_stoper = tl->lim - 1;
-	}	
+	}
 //	tl->bView = TRUE;
 	tl->view.t_stoper = tl->lim / 2;
 	tl->view.b_stoper = tl->lim / 2;
 //	OS_Printf( "stoper = %d %d\n", tl->view.t_stoper, tl->view.b_stoper );
 //	OS_Printf( "list max = %d\n", tl->max );
-	
+
 	GF_BGL_BmpWinInit( win );
 	GF_BGL_BmpWinAdd( wk->sys.bgl, win, head->frame, head->px, head->py, head->sx, head->sy, eBG_PAL_FONT, head->ofs );
-	GF_BGL_BmpWinDataFill( win, 0x00 );	
-	
+	GF_BGL_BmpWinDataFill( win, 0x00 );
+
 	wset = BR_WORDSET_Create( HEAPID_BR );
-	
-	
+
+
 	{
 		u64 score = tl->head->info[ 0 ].param_ex;
 		int num[] = { GT_TRAINER_VIEW_MAX, GT_YEAR_MONTH_NUM, GT_MONSNO_RANKING_MAX };
 		now_param = score;
-		rank_table[ 0 ] = now_rank;		
+		rank_table[ 0 ] = now_rank;
 
-		for ( i = 1; i < num[ group_no ]; i++ ){				
+		for ( i = 1; i < num[ group_no ]; i++ ){
 			u64 score = tl->head->info[ i ].param_ex;
-			
+
 			if ( score == now_param ){
 				rank_table[ i ] = now_rank;
 			}
@@ -1407,28 +1406,29 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 		//	OS_Printf( "rank = %2d\n", rank_table[ i ] );
 		}
 	}
-	
-	for ( i = 0; i < tl->lim; i++ ){		
+
+	for ( i = 0; i < tl->lim; i++ ){
 		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + group_no );		///< 順位：トレーナータイプ or 生まれ月 or すきなポケモン
 //		str1 = MSGMAN_AllocString( wk->sys.man, msg_510 + ranking_no );		///< 順位：トレーナータイプ or 生まれ月 or すきなポケモン
 		str2 = STRBUF_Create( 255, HEAPID_BR );
-		temp = STRBUF_Create( 255, HEAPID_BR );		
+		temp = STRBUF_Create( 255, HEAPID_BR );
 		str_num  = STRBUF_Create( 255, HEAPID_BR );
-		
+
 	//	OS_Printf( "ranking data = %d\n", tl->head->info[ i ].param );
-		
+
 		switch ( group_no ){
 		case 0:
 			{
 				int view  = tl->head->info[ i ].param;
 				str3 = MSGMAN_AllocString( tl->man, view );
+                WORDSET_RegisterWord( wset, 1, str3, 0, TRUE, PM_LANG );
 			}
 			break;
 		case 1:
 			{
 				int month = tl->head->info[ i ].param;
 				str3 = STRBUF_Create( 255, HEAPID_BR );
-				STRBUF_SetNumber( str3, month, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                WORDSET_RegisterMonthName( wset, 1, month );
 			}
 			break;
 		case 2:
@@ -1438,6 +1438,7 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 				str3 = STRBUF_Create( 255, HEAPID_BR );
 				MSGDAT_MonsNameGet( monsno, HEAPID_BR, code );
 				STRBUF_SetStringCode( str3, code );
+                WORDSET_RegisterWord( wset, 1, str3, 0, TRUE, PM_LANG );
 			}
 			break;
 		}
@@ -1447,430 +1448,31 @@ void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, c
 		}
 		STRBUF_SetNumber( str2, rank_table[ i ] + 1, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 		WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );	///< 順位
-		WORDSET_RegisterWord( wset, 1, str3, 0, TRUE, PM_LANG );	///< 項目
 		WORDSET_ExpandStr( wset, temp, str1 );
-		
+
 		GF_STR_PrintColor( win, FONT_SYSTEM, temp, 0, i * ( 16 * tl->head->list_height ), MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
 		if ( tl->head->list_height == 2 ){
-			int width = FontProc_GetPrintStrWidth( FONT_SYSTEM, str_num, 0 );
-			GF_STR_PrintColor( win, FONT_SYSTEM, str_num, 16, ( i * ( 16 * tl->head->list_height ) ) + 16, MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
+			//int width = FontProc_GetPrintStrWidth( FONT_SYSTEM, str_num, 0 );
+			//GF_STR_PrintColor( win, FONT_SYSTEM, str_num, 16, ( i * ( 16 * tl->head->list_height ) ) + 16, MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
 			if ( unit ){
-				GF_STR_PrintColor( win, FONT_SYSTEM, unit, 16 + width, ( i * ( 16 * tl->head->list_height ) ) + 16, MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
+                WORDSET_RegisterWord( wset, 2, str_num, 0, TRUE, PM_LANG );
+                WORDSET_ExpandStr( wset, temp, unit );
+				GF_STR_PrintColor( win, FONT_SYSTEM, temp, 16, ( i * ( 16 * tl->head->list_height ) ) + 16, MSG_NO_PUT, PRINT_COL_NORMAL, NULL );
 			}
 		}
 		STRBUF_Delete( str1 );
 		STRBUF_Delete( str2 );
 		STRBUF_Delete( str3 );
 		STRBUF_Delete( temp );
-		
-		STRBUF_Delete( str_num );
-		
-		WORDSET_ClearAllBuffer( wset );	
-	}	
 
-	GF_BGL_BmpWinOnVReq( win );	
+		STRBUF_Delete( str_num );
+
+		WORDSET_ClearAllBuffer( wset );
+	}
+
+	GF_BGL_BmpWinOnVReq( win );
 	WORDSET_Delete( wset );
 }
-#else
-
-extern void _s32_div_f(void);
-
-const int TouchList_InitRanking_num[] = { GT_TRAINER_VIEW_MAX, GT_YEAR_MONTH_NUM, GT_MONSNO_RANKING_MAX };
-
-asm void TouchList_InitRanking( TOUCH_LIST* tl, BR_WORK* wk, MSGDATA_MANAGER* man, const TOUCH_LIST_HEADER* head, int ranking_no, int group_no, STRBUF* unit )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x1fc
-	sub sp, #0xe0
-	add r4, r0, #0
-	ldr r0, [sp, #0x2f4]
-	add r5, r3, #0
-	str r0, [sp, #0x2f4]
-	ldr r0, [sp, #0x2f8]
-	str r1, [sp, #0x14]
-	str r0, [sp, #0x2f8]
-	mov r0, #0
-	str r0, [sp, #0x40]
-	add r6, sp, #0x264
-	add r1, r0, #0
-	mov r3, #7
-_02232796:
-	stmia r6!, {r0, r1}
-	stmia r6!, {r0, r1}
-	sub r3, r3, #1
-	bne _02232796
-	stmia r6!, {r0, r1}
-	add r0, r4, #0
-	str r0, [sp, #0x50]
-	add r0, #0x18
-	str r0, [sp, #0x50]
-	ldr r0, [r5, #4]
-	str r0, [r4, #4]
-	mov r0, #0
-	str r0, [r4, #0]
-	str r0, [r4, #0xc]
-	ldr r0, [r5, #0x24]
-	cmp r2, #0
-	str r0, [r4, #0x10]
-	str r5, [r4, #0x28]
-	beq _022327C0
-	str r2, [r4, #0x34]
-	b _022327C6
-_022327C0:
-	ldr r0, [sp, #0x14]
-	ldr r0, [r0, #0x48]
-	str r0, [r4, #0x34]
-_022327C6:
-	ldr r0, [r4, #4]
-	ldr r1, [r4, #0x10]
-	bl _s32_div_f
-	add r0, r0, #1
-	str r0, [r4, #0x14]
-	ldr r1, [r4, #4]
-	ldr r0, [r4, #0x10]
-	cmp r1, r0
-	bge _022327E6
-	str r1, [r4, #0x10]
-	sub r0, r1, #1
-	str r0, [r4, #0x40]
-	ldr r0, [r4, #0x10]
-	sub r0, r0, #1
-	str r0, [r4, #0x44]
-_022327E6:
-	ldr r1, [r4, #0x10]
-	lsr r0, r1, #0x1f
-	add r0, r1, r0
-	asr r0, r0, #1
-	str r0, [r4, #0x40]
-	ldr r1, [r4, #0x10]
-	lsr r0, r1, #0x1f
-	add r0, r1, r0
-	asr r0, r0, #1
-	str r0, [r4, #0x44]
-	ldr r0, [sp, #0x50]
-	bl GF_BGL_BmpWinInit
-	ldr r0, [r5, #0x10]
-	ldr r1, [sp, #0x50]
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp]
-	ldr r0, [r5, #0x14]
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp, #4]
-	ldr r0, [r5, #0x18]
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	ldr r0, [r5, #0x1c]
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp, #0x10]
-	ldr r0, [sp, #0x14]
-	ldr r2, [r5, #0x20]
-	ldr r3, [r5, #0xc]
-	lsl r2, r2, #0x18
-	lsl r3, r3, #0x18
-	ldr r0, [r0, #0x24]
-	lsr r2, r2, #0x18
-	lsr r3, r3, #0x18
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x50]
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r0, #0x66
-	bl BR_WORDSET_Create
-	add r2, sp, #0x58
-	ldr r3, =TouchList_InitRanking_num // _02232AA4
-	add r5, r0, #0
-	ldmia r3!, {r0, r1}
-	add r7, r2, #0
-	stmia r2!, {r0, r1}
-	ldr r0, [r3, #0]
-	mov r6, #1
-	str r0, [r2, #0]
-	ldr r0, [r4, #0x28]
-	ldr r1, [r0, #0]
-	ldr r0, [r1, #8]
-	str r0, [sp, #0x38]
-	ldr r0, [r1, #0xc]
-	str r0, [sp, #0x3c]
-	mov r0, #0
-	str r0, [sp, #0x264]
-	ldr r0, [sp, #0x2f4]
-	lsl r0, r0, #2
-	ldr r1, [r7, r0]
-	cmp r1, #1
-	ble _022328B0
-	add r0, r1, #0
-	mov r2, #0x10
-	add r3, sp, #0x268
-	mov ip, r0
-_0223287C:
-	ldr r0, [r4, #0x28]
-	ldr r0, [r0, #0]
-	add r0, r0, r2
-	ldr r1, [r0, #0xc]
-	ldr r7, [r0, #8]
-	ldr r0, [sp, #0x3c]
-	str r1, [sp, #0x54]
-	eor r1, r0
-	ldr r0, [sp, #0x38]
-	eor r0, r7
-	orr r0, r1
-	bne _0223289A
-	ldr r0, [sp, #0x40]
-	str r0, [r3, #0]
-	b _022328A4
-_0223289A:
-	ldr r0, [sp, #0x54]
-	str r7, [sp, #0x38]
-	str r0, [sp, #0x3c]
-	str r6, [r3, #0]
-	str r6, [sp, #0x40]
-_022328A4:
-	add r6, r6, #1
-	mov r0, ip
-	add r2, #0x10
-	add r3, r3, #4
-	cmp r6, r0
-	blt _0223287C
-_022328B0:
-	mov r0, #0
-	str r0, [sp, #0x18]
-	ldr r0, [r4, #0x10]
-	cmp r0, #0
-	bgt _022328BC
-	b _02232A90
-_022328BC:
-	add r0, sp, #0x264
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x2f4]
-	ldr r6, [sp, #0x18]
-	str r0, [sp, #0x1c]
-	add r0, #0x58
-	str r0, [sp, #0x1c]
-_022328CA:
-	ldr r0, [sp, #0x14]
-	ldr r1, [sp, #0x1c]
-	ldr r0, [r0, #0x48]
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x4c]
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	str r0, [sp, #0x48]
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	add r7, r0, #0
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	str r0, [sp, #0x34]
-	ldr r0, [sp, #0x2f4]
-	cmp r0, #0
-	beq _02232904
-	cmp r0, #1
-	beq _0223292A
-	cmp r0, #2
-	beq _0223294A
-	b _02232984
-_02232904:
-	ldr r1, [r4, #0x28]
-	ldr r0, [r4, #0x34]
-	ldr r1, [r1, #0]
-	add r1, r1, r6
-	ldr r1, [r1, #4]
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x44]
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x44]
-	add r0, r5, #0
-	mov r1, #1
-	mov r3, #0
-	bl WORDSET_RegisterWord
-	b _02232984
-_0223292A:
-	ldr r0, [r4, #0x28]
-	mov r1, #0x66
-	ldr r0, [r0, #0]
-	add r0, r0, r6
-	ldr r0, [r0, #4]
-	str r0, [sp, #0x30]
-	mov r0, #0xff
-	bl STRBUF_Create
-	str r0, [sp, #0x44]
-	ldr r2, [sp, #0x30]
-	add r0, r5, #0
-	mov r1, #1
-	bl WORDSET_RegisterMonthName
-	b _02232984
-_0223294A:
-	ldr r0, [r4, #0x28]
-	mov r1, #0x66
-	ldr r0, [r0, #0]
-	add r0, r0, r6
-	ldr r0, [r0, #4]
-	str r0, [sp, #0x2c]
-	mov r0, #0xff
-	bl STRBUF_Create
-	str r0, [sp, #0x44]
-	ldr r0, [sp, #0x2c]
-	mov r1, #0x66
-	add r2, sp, #0x64
-	bl MSGDAT_MonsNameGet
-	ldr r0, [sp, #0x44]
-	add r1, sp, #0x64
-	bl STRBUF_SetStringCode
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x44]
-	add r0, r5, #0
-	mov r1, #1
-	mov r3, #0
-	bl WORDSET_RegisterWord
-_02232984:
-	ldr r0, [r4, #0x28]
-	ldr r0, [r0, #0]
-	add r1, r0, r6
-	ldr r0, [r1, #8]
-	str r0, [sp, #0x24]
-	ldr r0, [r1, #0xc]
-	str r0, [sp, #0x28]
-	ldr r0, [sp, #0x24]
-	ldr r1, [sp, #0x28]
-	bl Number_to_Unit_Get
-	add r3, r0, #0
-	mov r0, #0
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r0, [sp, #0x34]
-	ldr r1, [sp, #0x24]
-	ldr r2, [sp, #0x28]
-	bl STRBUF_SetNumber64
-	mov r0, #1
-	str r0, [sp]
-	ldr r1, [sp, #0x20]
-	ldr r0, [sp, #0x48]
-	ldr r1, [r1, #0]
-	mov r2, #2
-	add r1, r1, #1
-	mov r3, #1
-	bl STRBUF_SetNumber
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	mov r1, #0
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x48]
-	add r0, r5, #0
-	add r3, r1, #0
-	bl WORDSET_RegisterWord
-	ldr r2, [sp, #0x4c]
-	add r0, r5, #0
-	add r1, r7, #0
-	bl WORDSET_ExpandStr
-	ldr r0, [r4, #0x28]
-	add r2, r7, #0
-	ldr r0, [r0, #8]
-	lsl r1, r0, #4
-	ldr r0, [sp, #0x18]
-	mul r1, r0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _02232AA8
-	mov r1, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x50]
-	add r3, r1, #0
-	bl GF_STR_PrintColor
-	ldr r0, [r4, #0x28]
-	ldr r0, [r0, #8]
-	cmp r0, #2
-	bne _02232A56
-	ldr r0, [sp, #0x2f8]
-	cmp r0, #0
-	beq _02232A56
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x34]
-	add r0, r5, #0
-	mov r1, #2
-	mov r3, #0
-	bl WORDSET_RegisterWord
-	ldr r2, [sp, #0x2f8]
-	add r0, r5, #0
-	add r1, r7, #0
-	bl WORDSET_ExpandStr
-	ldr r0, [r4, #0x28]
-	add r2, r7, #0
-	ldr r0, [r0, #8]
-	mov r3, #0x10
-	lsl r1, r0, #4
-	ldr r0, [sp, #0x18]
-	mul r1, r0
-	add r1, #0x10
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _02232AA8
-	mov r1, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x50]
-	bl GF_STR_PrintColor
-_02232A56:
-	ldr r0, [sp, #0x4c]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x48]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x44]
-	bl STRBUF_Delete
-	add r0, r7, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x34]
-	bl STRBUF_Delete
-	add r0, r5, #0
-	bl WORDSET_ClearAllBuffer
-	ldr r0, [sp, #0x20]
-	ldr r1, [r4, #0x10]
-	add r0, r0, #4
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x18]
-	add r6, #0x10
-	add r0, r0, #1
-	str r0, [sp, #0x18]
-	cmp r0, r1
-	bge _02232A90
-	b _022328CA
-_02232A90:
-	ldr r0, [sp, #0x50]
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r5, #0
-	bl WORDSET_Delete
-	add sp, #0x1fc
-	add sp, #0xe0
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _02232AA4: .4byte TouchList_InitRanking_num
-// _02232AA8: .4byte 0x000F0D00
-}
-#endif
 
 //--------------------------------------------------------------
 /**
