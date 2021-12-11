@@ -317,7 +317,6 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 	// ----------------------------------------------------------------------------
 }
 
-#ifdef NONEQUIVALENT
 static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* str, int yofs )
 {
 	// ----------------------------------------------------------------------------
@@ -329,6 +328,7 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 		COL_2 = 0x02,
 		COL_3 = 0x03,
 
+        LINE_HEIGHT = 16,
 		WRITE_Y_ORG = 22,
 		WRITE_Y_DIFF = 56,
 
@@ -342,114 +342,28 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 		(WRITE_Y_ORG + WRITE_Y_DIFF*3)-1,
 	};
 
-	int i, x, y;
+	int i, j, x, y;
+    u32 nlines;
+    STRBUF* line;
 
-	x = (BUTTON_WIDTH - FontProc_GetPrintMaxLineWidth(FONT_BUTTON, str, 0)) / 2;	// 1行ずつに変更したが念のため複数行対応
 
-	for(i=0; i<NELEMS(write_y); i++)
-	{
-		y = write_y[i] + yofs;
-		GF_STR_PrintColor( win, FONT_BUTTON, str, x, y,
-							MSG_NO_PUT, GF_PRINTCOLOR_MAKE(COL_1,COL_2,COL_3), NULL );
-	}
+    nlines = STRBUF_GetLines( str );
+    line = STRBUF_Create( 32, HEAPID_PMS_INPUT_VIEW );
+    yofs += ((2 - nlines) * LINE_HEIGHT) / 2;
 
+    for (j = 0; j < nlines; j++) {
+        STRBUF_CopyLine(line, str, j);
+        x = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, line, 0, BUTTON_WIDTH);	// 1行ずつに変更したが念のため複数行対応
+        for (i = 0; i < NELEMS(write_y); i++) {
+            y = write_y[i] + yofs;
+            GF_STR_PrintColor(win, FONT_BUTTON, line, x, y,
+                              MSG_NO_PUT, GF_PRINTCOLOR_MAKE(COL_1, COL_2, COL_3), NULL);
+        }
+        yofs += LINE_HEIGHT;
+    }
+    STRBUF_Delete(line);
 	// ----------------------------------------------------------------------------
 }
-#else
-enum {
-    COL_1 = 0x01,
-    COL_2 = 0x02,
-    COL_3 = 0x03,
-
-    WRITE_Y_ORG = 22,
-    WRITE_Y_DIFF = 56,
-
-    BUTTON_WIDTH = 88,		// setup_cgs_datas() の CGX_WIDTH * 8
-};
-
-static const s16 write_y[] = {
-     WRITE_Y_ORG,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*1)-1,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*2)-2,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*3)-1,
-};
-
-asm static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* str, int yofs )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x24
-	str r0, [sp, #0x10]
-	add r0, r2, #0
-	str r2, [sp, #0x14]
-	add r7, r3, #0
-	bl STRBUF_GetLines
-	str r0, [sp, #0x1c]
-	mov r0, #0x20
-	mov r1, #0x23
-	bl STRBUF_Create
-	add r6, r0, #0
-	ldr r0, [sp, #0x1c]
-	mov r1, #2
-	sub r0, r1, r0
-	lsl r0, r0, #4
-	lsr r0, r0, #1
-	add r7, r7, r0
-	mov r0, #0
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x1c]
-	cmp r0, #0
-	bls _021D4A10
-_021D49BE:
-	ldr r1, [sp, #0x14]
-	ldr r2, [sp, #0x20]
-	add r0, r6, #0
-	bl STRBUF_CopyLine
-	mov r0, #2
-	add r1, r6, #0
-	mov r2, #0
-	mov r3, #0x58
-	bl FontProc_GetPrintCenteredPositionX
-	ldr r5, =write_y // _021D4A1C
-	str r0, [sp, #0x18]
-	mov r4, #0
-_021D49DA:
-	mov r0, #0
-	ldrsh r0, [r5, r0]
-	ldr r3, [sp, #0x18]
-	mov r1, #2
-	add r0, r7, r0
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010203 // _021D4A20
-	add r2, r6, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x10]
-	bl GF_STR_PrintColor
-	add r4, r4, #1
-	add r5, r5, #2
-	cmp r4, #4
-	blo _021D49DA
-	ldr r0, [sp, #0x20]
-	add r7, #0x10
-	add r1, r0, #1
-	ldr r0, [sp, #0x1c]
-	str r1, [sp, #0x20]
-	cmp r1, r0
-	blo _021D49BE
-_021D4A10:
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add sp, #0x24
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _021D4A1C: .4byte write_y
-// _021D4A20: .4byte 0x00010203
-}
-#endif
-
 //==============================================================================================
 //==============================================================================================
 
