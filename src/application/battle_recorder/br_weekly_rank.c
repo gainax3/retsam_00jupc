@@ -202,7 +202,6 @@ static const TOUCH_LIST_HEADER tl_head_last_week = {
  *
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void TL_HeaderMake( BR_WORK* wk )
 {
 	RANK_WORK* rwk = wk->sub_work;
@@ -213,7 +212,7 @@ static void TL_HeaderMake( BR_WORK* wk )
 	}
 	else {
 		rwk->tl_head = tl_head_last_week;
-		rwk->unit_str= MSGMAN_AllocString( wk->sys.man_ranking, Score_Unit_IndexTable[ rwk->last_week_data->ranking_data[ rwk->ranking_no ].ranking_type - 1 ] );
+		rwk->unit_str= MSGMAN_AllocString( wk->sys.man_ranking, rwk->last_week_data->ranking_data[ rwk->ranking_no ].ranking_type - 1 + 95 );
 	}
 	rwk->tl_head.data_max = rwk->ranking_num;		
 	rwk->tl_head.info = rwk->tl_info[ rwk->ranking_no ];
@@ -229,122 +228,6 @@ static void TL_HeaderMake( BR_WORK* wk )
 	TouchList_CursorPosSet( &wk->sys.touch_list, 112, 184 );				///< カーソルの位置変更
 	CATS_SystemActiveSet( wk, FALSE );
 }
-#else
-asm static void TL_HeaderMake( BR_WORK* wk )
-{
-	push {r3, r4, r5, r6, lr}
-	sub sp, #0xc
-	add r5, r0, #0
-	mov r0, #0x86
-	lsl r0, r0, #4
-	ldr r4, [r5, r0]
-	ldr r0, [r4, #0x1c]
-	cmp r0, #0
-	ldr r0, =0x00000B0C // _0223CBC0
-	bne _0223CB1A
-	ldr r3, =tl_head_this_week // _0223CBC4
-	add r2, r4, r0
-	mov r6, #5
-_0223CB06:
-	ldmia r3!, {r0, r1}
-	stmia r2!, {r0, r1}
-	sub r6, r6, #1
-	bne _0223CB06
-	ldr r0, [r3, #0]
-	mov r1, #0
-	str r0, [r2, #0]
-	ldr r0, =0x00000748 // _0223CBC8
-	str r1, [r4, r0]
-	b _0223CB46
-_0223CB1A:
-	ldr r3, =tl_head_last_week // _0223CBCC
-	add r2, r4, r0
-	mov r6, #5
-_0223CB20:
-	ldmia r3!, {r0, r1}
-	stmia r2!, {r0, r1}
-	sub r6, r6, #1
-	bne _0223CB20
-	ldr r0, [r3, #0]
-	ldr r1, =0x00000714 // _0223CBD0
-	str r0, [r2, #0]
-	ldr r3, [r4, r1]
-	mov r1, #0x72
-	ldr r2, [r4, #0xc]
-	lsl r1, r1, #2
-	mul r1, r2
-	ldrb r1, [r3, r1]
-	ldr r0, [r5, #0x4c]
-	add r1, #0x5e
-	bl MSGMAN_AllocString
-	ldr r1, =0x00000748 // _0223CBC8
-	str r0, [r4, r1]
-_0223CB46:
-	mov r1, #0xb1
-	ldr r0, [r4, #0x20]
-	lsl r1, r1, #4
-	str r0, [r4, r1]
-	ldr r3, [r4, #0xc]
-	ldr r0, =0x0000074C // _0223CBD4
-	lsl r2, r3, #2
-	add r2, r3, r2
-	add r0, r4, r0
-	lsl r2, r2, #6
-	add r2, r0, r2
-	sub r0, r1, #4
-	str r2, [r4, r0]
-	add r0, r5, #0
-	mov r1, #1
-	bl CATS_SystemActiveSet
-	ldr r0, =0x0000049C // _0223CBD8
-	add r0, r5, r0
-	bl TouchList_WorkClear
-	ldr r0, [r4, #0xc]
-	ldr r3, =0x00000B0C // _0223CBC0
-	str r0, [sp]
-	ldr r0, [r4, #0x14]
-	ldr r2, =0x00000748 // _0223CBC8
-	str r0, [sp, #4]
-	ldr r0, [r4, r2]
-	sub r2, r2, #4
-	str r0, [sp, #8]
-	ldr r0, =0x0000049C // _0223CBD8
-	ldr r2, [r4, r2]
-	add r0, r5, r0
-	add r1, r5, #0
-	add r3, r4, r3
-	bl TouchList_InitRanking
-	ldr r1, =0x0000047C // _0223CBDC
-	add r0, r5, r1
-	add r1, #0x20
-	add r1, r5, r1
-	bl Slider_AnimeCheck
-	ldr r0, =0x0000049C // _0223CBD8
-	add r1, r5, #0
-	add r0, r5, r0
-	mov r2, #1
-	bl TouchList_CursorAdd
-	ldr r0, =0x0000049C // _0223CBD8
-	mov r1, #0x70
-	add r0, r5, r0
-	mov r2, #0xb8
-	bl TouchList_CursorPosSet
-	add r0, r5, #0
-	mov r1, #0
-	bl CATS_SystemActiveSet
-	add sp, #0xc
-	pop {r3, r4, r5, r6, pc}
-	// .align 2, 0
-// _0223CBC0: .4byte 0x00000B0C
-// _0223CBC4: .4byte tl_head_this_week
-// _0223CBC8: .4byte 0x00000748
-// _0223CBCC: .4byte tl_head_last_week
-// _0223CBD0: .4byte 0x00000714
-// _0223CBD4: .4byte 0x0000074C
-// _0223CBD8: .4byte 0x0000049C
-// _0223CBDC: .4byte 0x0000047C
-}
-#endif
 
 static void TL_InfoMake( BR_WORK* wk )
 {
@@ -782,7 +665,6 @@ static u32 Send_RECORD_Get( BR_WORK* wk, int no )
 	return data;
 }
 
-#ifdef NONEQUIVALENT
 static void Ranking_WinTitlePut( BR_WORK* wk )
 {
 	STRBUF*		str1;
@@ -834,6 +716,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 			int view = GDS_Profile_GetTrainerView( wk->br_gpp[ 0 ] );
 			str1 = MSGMAN_AllocString( wk->sys.man, msg_507 );
 			str2 = MSGMAN_AllocString( rwk->man_trtype, WiFi_TR_DataGet( view, 4 ) );
+            WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );
 		}
 		break;
 	case 1:
@@ -841,7 +724,7 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 			int month = GDS_Profile_GetMonthBirthday( wk->br_gpp[ 0 ] );
 			str1 = MSGMAN_AllocString( wk->sys.man, msg_508 );
 			str2 = STRBUF_Create( 255, HEAPID_BR );
-			STRBUF_SetNumber( str2, month, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+            WORDSET_RegisterMonthName( wset, 0, month );
 		}
 		break;
 	case 2:
@@ -861,10 +744,10 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 			else {
 				str2 = MSGMAN_AllocString( wk->sys.man, msg_21 );
 			}
+            WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );
 		}
 		break;
 	}
-	WORDSET_RegisterWord( wset, 0, str2, 0, TRUE, PM_LANG );
 	WORDSET_RegisterWord( wset, 1, name, 0, TRUE, PM_LANG );
 	WORDSET_ExpandStr( wset, temp, str1 );
 	
@@ -878,267 +761,6 @@ static void Ranking_WinTitlePut( BR_WORK* wk )
 	
 	WORDSET_Delete( wset );
 }
-#else
-asm static void Ranking_WinTitlePut( BR_WORK* wk )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x1fc
-	sub sp, #0x30
-	add r5, r0, #0
-	mov r0, #0x86
-	lsl r0, r0, #4
-	ldr r4, [r5, r0]
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	str r0, [sp, #0x14]
-	mov r0, #0x66
-	bl BR_WORDSET_Create
-	add r6, r0, #0
-	add r0, r4, #0
-	add r0, #0x24
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r4, #0x1c]
-	cmp r0, #0
-	ldr r0, [r5, #0x4c]
-	bne _0223D1A6
-	ldr r1, =0x00000718 // _0223D390
-	ldr r3, [r4, #0xc]
-	mov r2, #0x48
-	ldr r1, [r4, r1]
-	mul r2, r3
-	ldrb r1, [r1, r2]
-	sub r1, r1, #1
-	bl MSGMAN_AllocString
-	b _0223D1BA
-_0223D1A6:
-	ldr r1, =0x00000714 // _0223D394
-	mov r2, #0x72
-	ldr r3, [r4, #0xc]
-	lsl r2, r2, #2
-	ldr r1, [r4, r1]
-	mul r2, r3
-	ldrb r1, [r1, r2]
-	sub r1, r1, #1
-	bl MSGMAN_AllocString
-_0223D1BA:
-	mov r1, #0
-	add r7, r0, #0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _0223D398
-	add r2, r7, #0
-	str r0, [sp, #8]
-	add r0, r4, #0
-	add r0, #0x24
-	add r3, r1, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r0, r4, #0
-	add r0, #0x24
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r7, #0
-	bl STRBUF_Delete
-	add r0, r4, #0
-	add r0, #0x34
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r4, #0x1c]
-	cmp r0, #0
-	ldr r0, [r5, #0x48]
-	bne _0223D200
-	ldr r1, [r4, #0x14]
-	add r1, #0x52
-	bl MSGMAN_AllocString
-	b _0223D206
-_0223D200:
-	mov r1, #0x5b
-	bl MSGMAN_AllocString
-_0223D206:
-	mov r1, #0
-	add r7, r0, #0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _0223D398
-	add r2, r7, #0
-	str r0, [sp, #8]
-	add r0, r4, #0
-	add r0, #0x34
-	add r3, r1, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r0, r4, #0
-	add r0, #0x34
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r7, #0
-	bl STRBUF_Delete
-	ldr r0, =0x0000088C // _0223D39C
-	mov r1, #0x66
-	ldr r0, [r5, r0]
-	bl GDS_Profile_CreateNameString
-	str r0, [sp, #0x18]
-	ldr r1, [sp, #0x18]
-	add r0, r5, #0
-	bl BR_ErrorStrChange
-	ldr r0, [r4, #0x14]
-	cmp r0, #0
-	beq _0223D254
-	cmp r0, #1
-	beq _0223D292
-	cmp r0, #2
-	beq _0223D2BC
-	b _0223D326
-_0223D254:
-	ldr r0, =0x0000088C // _0223D39C
-	ldr r0, [r5, r0]
-	bl GDS_Profile_GetTrainerView
-	str r0, [sp, #0x20]
-	ldr r0, [r5, #0x48]
-	mov r1, #0x55
-	bl MSGMAN_AllocString
-	add r7, r0, #0
-	ldr r0, [sp, #0x20]
-	mov r1, #4
-	bl WiFi_TR_DataGet
-	add r1, r0, #0
-	ldr r0, =0x00000744 // _0223D3A0
-	ldr r0, [r4, r0]
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x1c]
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	mov r1, #0
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x1c]
-	add r0, r6, #0
-	add r3, r1, #0
-	bl WORDSET_RegisterWord
-	b _0223D326
-_0223D292:
-	ldr r0, =0x0000088C // _0223D39C
-	ldr r0, [r5, r0]
-	bl GDS_Profile_GetMonthBirthday
-	str r0, [sp, #0x24]
-	ldr r0, [r5, #0x48]
-	mov r1, #0x56
-	bl MSGMAN_AllocString
-	add r7, r0, #0
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	str r0, [sp, #0x1c]
-	ldr r2, [sp, #0x24]
-	add r0, r6, #0
-	mov r1, #0
-	bl WORDSET_RegisterMonthName
-	b _0223D326
-_0223D2BC:
-	ldr r0, =0x0000088C // _0223D39C
-	ldr r0, [r5, r0]
-	bl GDS_Profile_GetMonsNo
-	str r0, [sp, #0x10]
-	ldr r0, =0x0000088C // _0223D39C
-	ldr r0, [r5, r0]
-	bl GDS_Profile_GetEggFlag
-	str r0, [sp, #0x28]
-	ldr r0, [r5, #0x48]
-	mov r1, #0x57
-	bl MSGMAN_AllocString
-	add r7, r0, #0
-	ldr r0, [sp, #0x28]
-	cmp r0, #0
-	beq _0223D2E4
-	ldr r0, =0x000001EE // _0223D3A4
-	str r0, [sp, #0x10]
-_0223D2E4:
-	ldr r0, [sp, #0x10]
-	cmp r0, #0
-	beq _0223D308
-	mov r0, #0xff
-	mov r1, #0x66
-	bl STRBUF_Create
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x10]
-	mov r1, #0x66
-	add r2, sp, #0x2c
-	bl MSGDAT_MonsNameGet
-	ldr r0, [sp, #0x1c]
-	add r1, sp, #0x2c
-	bl STRBUF_SetStringCode
-	b _0223D312
-_0223D308:
-	ldr r0, [r5, #0x48]
-	mov r1, #0x15
-	bl MSGMAN_AllocString
-	str r0, [sp, #0x1c]
-_0223D312:
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #2
-	mov r1, #0
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x1c]
-	add r0, r6, #0
-	add r3, r1, #0
-	bl WORDSET_RegisterWord
-_0223D326:
-	mov r1, #1
-	str r1, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x18]
-	add r0, r6, #0
-	mov r3, #0
-	bl WORDSET_RegisterWord
-	ldr r1, [sp, #0x14]
-	add r0, r6, #0
-	add r2, r7, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0x10
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x000F0D00 // _0223D398
-	mov r1, #0
-	str r0, [sp, #8]
-	add r0, r4, #0
-	ldr r2, [sp, #0x14]
-	add r0, #0x34
-	add r3, r1, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r4, #0x34
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r7, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x1c]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x14]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x18]
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl WORDSET_ClearAllBuffer
-	add r0, r6, #0
-	bl WORDSET_Delete
-	add sp, #0x1fc
-	add sp, #0x30
-	pop {r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _0223D390: .4byte 0x00000718
-// _0223D394: .4byte 0x00000714
-// _0223D398: .4byte 0x000F0D00
-// _0223D39C: .4byte 0x0000088C
-// _0223D3A0: .4byte 0x00000744
-// _0223D3A4: .4byte 0x000001EE
-}
-#endif
-
 static void ButtonOAM_PoeSet( BR_WORK* wk, int mode )
 {
 	RANK_WORK* rwk = wk->sub_work;
