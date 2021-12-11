@@ -767,7 +767,6 @@ static void IMC_IMCBTTN_Call( u32 button, u32 event, void* work )
  *
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void makeBttn( IMC_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData, int x, int y, int sx, int sy )
 {
 	IMC_BUTTON_INIT init;
@@ -804,64 +803,6 @@ static void makeBttn( IMC_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData, in
 	
 	IMC_BTTN_Init( bttn, &init );
 }
-#else
-asm static void makeBttn( IMC_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData, int x, int y, int sx, int sy )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x90
-	add r6, r0, #0
-	mov r0, #0
-	str r1, [sp]
-	mvn r0, r0
-	str r0, [sp, #4]
-	add r5, r2, #0
-	str r0, [sp, #8]
-	mov r2, #0
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	ldr r0, [r5, #0x48]
-	add r4, r3, #0
-	str r0, [sp, #0x14]
-	ldr r0, [r5, #0x4c]
-	add r3, r1, #0
-	str r0, [sp, #0x18]
-	ldr r0, [r5, #0x50]
-	str r0, [sp, #0x1c]
-	ldr r0, [r5, #0x54]
-	str r0, [sp, #0x20]
-	str r2, [sp, #0x24]
-	str r2, [sp, #0x28]
-	add r0, sp, #0x5c
-	bl CLACT_U_MakeHeader
-	ldr r0, [r5, #0x44]
-	mov r2, #0
-	mov r1, #1
-	str r0, [sp, #0x2c]
-	add r0, sp, #0x5c
-	str r0, [sp, #0x30]
-	lsl r0, r4, #0xc
-	str r0, [sp, #0x34]
-	ldr r0, [sp, #0xa0]
-	str r1, [sp, #0x54]
-	lsl r0, r0, #0xc
-	str r0, [sp, #0x38]
-	mov r0, #2
-	str r0, [sp, #0x50]
-	mov r0, #0xe
-	str r0, [sp, #0x58]
-	add r0, sp, #0x2c
-	str r0, [sp, #0x80]
-	str r1, [sp, #0x8c]
-	add r0, r6, #0
-	add r1, sp, #0x80
-	str r2, [sp, #0x3c]
-	str r2, [sp, #0x84]
-	str r2, [sp, #0x88]
-	bl IMC_BTTN_Init
-	add sp, #0x90
-	pop {r4, r5, r6, pc}
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -884,7 +825,6 @@ asm static void makeBttn( IMC_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData
  *
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void makeFontBttn( IMC_FONT_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData, CONST_FONTOAM_SYS_PTR fnt_sys, const GF_BGL_BMPWIN* bmp, int x, int y, int sx, int sy )
 {
 	IMC_FONT_BUTTON_INIT init;
@@ -944,91 +884,6 @@ static void makeFontBttn( IMC_FONT_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* dra
 	// ï∂éöóÒÇ¬Ç´É{É^ÉìçÏê¨
 	IMC_BTTN_FontBttnInit( bttn, &init );
 }
-#else
-asm static void makeFontBttn( IMC_FONT_BUTTON* bttn, int bttn_no, IMC_DRAW_DATA* drawData, CONST_FONTOAM_SYS_PTR fnt_sys, const GF_BGL_BMPWIN* bmp, int x, int y, int sx, int sy )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0xa8
-	add r5, r0, #0
-	mov r0, #0
-	str r1, [sp]
-	mvn r0, r0
-	str r0, [sp, #4]
-	add r4, r2, #0
-	str r0, [sp, #8]
-	mov r2, #0
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	ldr r0, [r4, #0x48]
-	add r6, r3, #0
-	str r0, [sp, #0x14]
-	ldr r0, [r4, #0x4c]
-	add r3, r1, #0
-	str r0, [sp, #0x18]
-	ldr r0, [r4, #0x50]
-	str r0, [sp, #0x1c]
-	ldr r0, [r4, #0x54]
-	str r0, [sp, #0x20]
-	str r2, [sp, #0x24]
-	str r2, [sp, #0x28]
-	add r0, sp, #0x5c
-	bl CLACT_U_MakeHeader
-	ldr r0, [r4, #0x44]
-	mov r2, #0xe
-	str r0, [sp, #0x2c]
-	add r0, sp, #0x5c
-	str r0, [sp, #0x30]
-	ldr r0, [sp, #0xbc]
-	str r2, [sp, #0x58]
-	lsl r0, r0, #0xc
-	str r0, [sp, #0x34]
-	ldr r0, [sp, #0xc0]
-	add r2, sp, #0x2c
-	lsl r0, r0, #0xc
-	mov r1, #2
-	str r2, [sp, #0x80]
-	ldr r2, [sp, #0xb8]
-	str r0, [sp, #0x38]
-	mov r0, #0
-	str r1, [sp, #0x50]
-	mov r1, #1
-	str r0, [sp, #0x3c]
-	str r1, [sp, #0x54]
-	str r0, [sp, #0x84]
-	str r0, [sp, #0x88]
-	str r0, [sp, #0x9c]
-	mov r0, #0x13
-	str r1, [sp, #0x8c]
-	str r6, [sp, #0x94]
-	str r2, [sp, #0x90]
-	str r0, [sp, #0xa0]
-	ldr r0, [r4, #0x4c]
-	bl CLACT_U_ResManagerGetIDResObjPtr
-	mov r1, #0
-	bl CLACT_U_PlttManagerGetProxy
-	str r0, [sp, #0x98]
-	ldr r0, [sp, #0xb8]
-	mov r1, #1
-	mov r2, #0xd
-	bl FONTOAM_NeedCharSize
-	mov r1, #1
-	add r3, r5, #0
-	add r2, r1, #0
-	add r3, #0x14
-	bl CharVramAreaAlloc
-	cmp r0, #0
-	bne _0225A1F0
-	bl GF_AssertFailedWarningCall
-_0225A1F0:
-	ldr r0, [r5, #0x18]
-	add r1, sp, #0x80
-	str r0, [sp, #0xa4]
-	add r0, r5, #0
-	bl IMC_BTTN_FontBttnInit
-	add sp, #0xa8
-	pop {r4, r5, r6, pc}
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**

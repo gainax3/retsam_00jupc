@@ -259,7 +259,6 @@ static void load_scrn_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 	}
 }
 
-#ifdef NONEQUIVALENT
 static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 {
 	// ----------------------------------------------------------------------------
@@ -280,10 +279,10 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 	FontProc_LoadFont( FONT_BUTTON, HEAPID_BASE_SYSTEM );
 	str_group    = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_group_mode,    HEAPID_PMS_INPUT_VIEW );
 	str_group2   = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_group_mode2,   HEAPID_PMS_INPUT_VIEW );
-	str_initial  = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode,  HEAPID_PMS_INPUT_VIEW );
-	str_initial2 = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode2, HEAPID_PMS_INPUT_VIEW );
+//	str_initial  = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode,  HEAPID_PMS_INPUT_VIEW );
+//	str_initial2 = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode2, HEAPID_PMS_INPUT_VIEW );
 
-	loadPtr = ArcUtil_CharDataGet(ARC_PMSI_GRAPHIC, NARC_pmsi_bg_sub_lz_ncgr, TRUE, &charData, HEAPID_PMS_INPUT_VIEW);
+	loadPtr = ArcUtil_HDL_CharDataGet(p_handle, NARC_pmsi_bg_sub_lz_ncgr, TRUE, &charData, HEAPID_PMS_INPUT_VIEW);
 	if(loadPtr)
 	{
 		GF_BGL_BMPWIN   win;
@@ -296,11 +295,12 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 		win.bitmode = GF_BGL_BMPWIN_BITMODE_4;
 		win.chrbuf = charData->pRawData;
 		print_mode_name( &win, wk->bgl, str_group,  0 );
-		print_mode_name( &win, wk->bgl, str_group2, LINE_HEIGHT );
-
-		win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
-		print_mode_name( &win, wk->bgl, str_initial,  0 );
-		print_mode_name( &win, wk->bgl, str_initial2, LINE_HEIGHT );
+        win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
+		print_mode_name( &win, wk->bgl, str_group2, 0 );
+//
+//		win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
+//		print_mode_name( &win, wk->bgl, str_initial,  0 );
+//		print_mode_name( &win, wk->bgl, str_initial2, LINE_HEIGHT );
 
 		DC_FlushRange( charData->pRawData, charData->szByte );
 		GF_BGL_LoadCharacter(wk->bgl, FRM_SUB_BG, charData->pRawData, charData->szByte, 0);
@@ -308,105 +308,14 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 		sys_FreeMemoryEz(loadPtr);
 	}
 
-	STRBUF_Delete(str_initial);
-	STRBUF_Delete(str_initial2);
-	STRBUF_Delete(str_group);
+//	STRBUF_Delete(str_initial);
+//	STRBUF_Delete(str_initial2);
 	STRBUF_Delete(str_group2);
+	STRBUF_Delete(str_group);
 	FontProc_UnloadFont( FONT_BUTTON );
 
 	// ----------------------------------------------------------------------------
 }
-#else
-asm static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r5, r0, #0
-	add r7, r1, #0
-	mov r0, #2
-	mov r1, #0
-	bl FontProc_LoadFont
-	ldr r1, =0x000001B5 // _021D4984
-	mov r0, #0x1a
-	mov r2, #0xb
-	mov r3, #0x23
-	bl MSGDAT_GetStrDirectAlloc
-	add r6, r0, #0
-	ldr r1, =0x000001B5 // _021D4984
-	mov r0, #0x1a
-	mov r2, #0xc
-	mov r3, #0x23
-	bl MSGDAT_GetStrDirectAlloc
-	add r4, r0, #0
-	mov r0, #0x23
-	str r0, [sp]
-	add r0, r7, #0
-	mov r1, #0x14
-	mov r2, #1
-	add r3, sp, #4
-	bl ArcUtil_HDL_CharDataGet
-	add r7, r0, #0
-	beq _021D496C
-	add r0, sp, #8
-	bl GF_BGL_BmpWinInit
-	ldr r0, [r5, #0xc]
-	add r1, sp, #4
-	str r0, [sp, #8]
-	mov r0, #0xb
-	strb r0, [r1, #0xb]
-	mov r0, #0x39
-	strb r0, [r1, #0xc]
-	ldrh r2, [r1, #0xe]
-	ldr r0, =0xFFFF7FFF // _021D4988
-	mov r3, #0
-	and r0, r2
-	strh r0, [r1, #0xe]
-	ldr r0, [sp, #4]
-	add r2, r6, #0
-	ldr r0, [r0, #0x14]
-	str r0, [sp, #0x14]
-	ldr r1, [r5, #0xc]
-	add r0, sp, #8
-	bl print_mode_name
-	ldr r0, [sp, #4]
-	add r2, r4, #0
-	ldr r1, [r0, #0x14]
-	mov r0, #0x9a
-	lsl r0, r0, #6
-	add r0, r1, r0
-	str r0, [sp, #0x14]
-	ldr r1, [r5, #0xc]
-	add r0, sp, #8
-	mov r3, #0
-	bl print_mode_name
-	ldr r1, [sp, #4]
-	ldr r0, [r1, #0x14]
-	ldr r1, [r1, #0x10]
-	bl DC_FlushRange
-	ldr r3, [sp, #4]
-	mov r0, #0
-	str r0, [sp]
-	ldr r2, [r3, #0x14]
-	ldr r0, [r5, #0xc]
-	ldr r3, [r3, #0x10]
-	mov r1, #4
-	bl GF_BGL_LoadCharacter
-	add r0, r7, #0
-	bl sys_FreeMemoryEz
-_021D496C:
-	add r0, r4, #0
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl STRBUF_Delete
-	mov r0, #2
-	bl FontProc_UnloadFont
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _021D4984: .4byte 0x000001B5
-// _021D4988: .4byte 0xFFFF7FFF
-}
-#endif
 
 #ifdef NONEQUIVALENT
 static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* str, int yofs )
