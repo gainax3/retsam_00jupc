@@ -1556,7 +1556,6 @@ static BOOL VRANK_Main( BR_WORK* wk )
  *
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static BOOL VRANK_Exit( BR_WORK* wk )
 {
 	RANK_WORK* rwk = wk->sub_work;
@@ -1573,7 +1572,10 @@ static BOOL VRANK_Exit( BR_WORK* wk )
 	case 1:
 		///< フェードアウト
 		BR_PaletteFade( &rwk->color, eFADE_MODE_OUT );
-		if ( Plate_AlphaFade( &rwk->eva, &rwk->evb, eFADE_MODE_OUT, ePLANE_ALL ) ){			
+		if ( Plate_AlphaFade( &rwk->eva, &rwk->evb, eFADE_MODE_OUT, ePLANE_ALL ) ){
+            CATS_SystemActiveSet( wk, TRUE );
+            FontButton_Delete( wk );
+            CATS_SystemActiveSet( wk, FALSE );
 			wk->sub_seq++;
 		}
 		ColorConceChangePfd( wk->sys.pfd, FADE_SUB_OBJ, LINE_OTHER_SUB_PALETTE, rwk->color, wk->sys.logo_color );
@@ -1581,10 +1583,8 @@ static BOOL VRANK_Exit( BR_WORK* wk )
 	
 	case 2:
 		///< 復帰
-		CATS_SystemActiveSet( wk, TRUE );
-		FontButton_Delete( wk );
+		BR_PaletteFadeIn_Init( &rwk->color );
 		NormalTag_RecoverAllOp( wk );
-		CATS_SystemActiveSet( wk, FALSE );
 		WirelessIconEasy_HoldLCD( TRUE, HEAPID_BR );
 		BR_ChangeDisplayVIntr( wk, DISP_3D_TO_SUB );				///< main = top
 		wk->sub_seq++;
@@ -1613,159 +1613,6 @@ static BOOL VRANK_Exit( BR_WORK* wk )
 	
 	return FALSE;
 }
-#else
-asm static BOOL VRANK_Exit( BR_WORK* wk )
-{
-	push {r3, r4, r5, lr}
-	mov r1, #0x86
-	add r5, r0, #0
-	lsl r1, r1, #4
-	ldr r4, [r5, r1]
-	ldr r1, [r5, #8]
-	cmp r1, #0
-	beq _0223FB8E
-	cmp r1, #1
-	beq _0223FBA6
-	cmp r1, #2
-	beq _0223FBF6
-	b _0223FC1C
-_0223FB8E:
-	bl BRV_WinDel_Main
-	add r0, r5, #0
-	bl BRV_WinDel_Sub
-	add r0, r5, #0
-	bl Tool_InfoMessageMainDel
-	ldr r0, [r5, #8]
-	add r0, r0, #1
-	str r0, [r5, #8]
-	b _0223FCC0
-_0223FBA6:
-	add r0, r4, #0
-	add r0, #8
-	mov r1, #1
-	bl BR_PaletteFade
-	add r0, r4, #0
-	add r1, r4, #4
-	mov r2, #1
-	mov r3, #0
-	bl Plate_AlphaFade
-	cmp r0, #0
-	beq _0223FBDC
-	add r0, r5, #0
-	mov r1, #1
-	bl CATS_SystemActiveSet
-	add r0, r5, #0
-	bl FontButton_Delete
-	add r0, r5, #0
-	mov r1, #0
-	bl CATS_SystemActiveSet
-	ldr r0, [r5, #8]
-	add r0, r0, #1
-	str r0, [r5, #8]
-_0223FBDC:
-	ldr r0, [r5, #0x58]
-	mov r1, #3
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp]
-	ldr r3, [r4, #8]
-	ldr r0, [r5, #0x28]
-	lsl r3, r3, #0x18
-	mov r2, #0xc
-	lsr r3, r3, #0x18
-	bl ColorConceChangePfd
-	b _0223FCC0
-_0223FBF6:
-	add r4, #8
-	add r0, r4, #0
-	bl BR_PaletteFadeIn_Init
-	add r0, r5, #0
-	bl NormalTag_RecoverAllOp
-	mov r0, #1
-	mov r1, #0x66
-	bl WirelessIconEasy_HoldLCD
-	add r0, r5, #0
-	mov r1, #1
-	bl BR_ChangeDisplayVIntr
-	ldr r0, [r5, #8]
-	add r0, r0, #1
-	str r0, [r5, #8]
-	b _0223FCC0
-_0223FC1C:
-	bl BR_IsChangeDisplay
-	cmp r0, #0
-	beq _0223FCC0
-	add r0, r4, #0
-	add r0, #8
-	mov r1, #0
-	bl BR_PaletteFade
-	cmp r0, #0
-	beq _0223FC90
-	add r0, r5, #0
-	bl PaletteFadeClear
-	add r0, r4, #0
-	add r0, #8
-	bl BR_PaletteFadeIn_Init
-	ldr r0, [r5, #0x58]
-	mov r1, #2
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp]
-	ldr r0, [r5, #0x28]
-	mov r2, #0xc
-	mov r3, #0x10
-	bl ColorConceChangePfd
-	mov r1, #1
-	ldr r3, [r5, #0x10]
-	add r0, r5, #0
-	add r2, r1, #0
-	bl BR_Main_ProcSeqChange
-	add r0, r5, #0
-	mov r1, #5
-	bl BR_Main_SeqChange
-	ldr r0, [r5, #0x24]
-	mov r1, #2
-	bl GF_BGL_ScrClear
-	ldr r0, [r5, #0x24]
-	mov r1, #6
-	bl GF_BGL_ScrClear
-	ldr r0, [r5, #0x24]
-	mov r1, #3
-	bl GF_BGL_ScrClear
-	ldr r0, [r5, #0x24]
-	mov r1, #7
-	bl GF_BGL_ScrClear
-	add r0, r4, #0
-	bl sys_FreeMemoryEz
-	b _0223FCC0
-_0223FC90:
-	ldr r0, [r5, #0x58]
-	mov r1, #1
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp]
-	ldr r3, [r4, #8]
-	ldr r0, [r5, #0x28]
-	lsl r3, r3, #0x18
-	mov r2, #2
-	lsr r3, r3, #0x18
-	bl ColorConceChangePfd
-	ldr r0, [r5, #0x58]
-	mov r1, #3
-	lsl r0, r0, #0x10
-	lsr r0, r0, #0x10
-	str r0, [sp]
-	ldr r3, [r4, #8]
-	ldr r0, [r5, #0x28]
-	lsl r3, r3, #0x18
-	mov r2, #0xc
-	lsr r3, r3, #0x18
-	bl ColorConceChangePfd
-_0223FCC0:
-	mov r0, #0
-	pop {r3, r4, r5, pc}
-}
-#endif
 
 static BOOL VRANK_ProfIn( BR_WORK* wk )
 {
