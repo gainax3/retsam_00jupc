@@ -2412,319 +2412,82 @@ enum{
 	//こうげき
 	STATUS_KOUGEKI_X =		(1*8),
 	STATUS_KOUGEKI_Y =		(7*8),
-	STATUS_KOUGEKI_NUM_X =	(8*8),
+	STATUS_KOUGEKI_NUM_X =	(11*8),
 
 	//ぼうぎょ
-	STATUS_BOUGYO_X =		(12*8),
+	STATUS_BOUGYO_X =		(13*8),
 	STATUS_BOUGYO_Y =		(STATUS_KOUGEKI_Y),
-	STATUS_BOUGYO_NUM_X =	(19*8),
+	STATUS_BOUGYO_NUM_X =	(23*8),
 
 	//とくこう
 	STATUS_TOKUKOU_X =		(1*8),
 	STATUS_TOKUKOU_Y =		(9*8),
-	STATUS_TOKUKOU_NUM_X =	(STATUS_KOUGEKI_NUM_X),
+	STATUS_TOKUKOU_NUM_X =	(11*8),
 
 	//とくぼう
-	STATUS_TOKUBOU_X =		(12*8),
+	STATUS_TOKUBOU_X =		(13*8),
 	STATUS_TOKUBOU_Y =		(STATUS_TOKUKOU_Y),
-	STATUS_TOKUBOU_NUM_X =	(STATUS_BOUGYO_NUM_X),
+	STATUS_TOKUBOU_NUM_X =	(23*8),
 
 	//すばやさ
 	STATUS_SUBAYASA_X =		(1*8),
 	STATUS_SUBAYASA_Y =		(11*8),
-	STATUS_SUBAYASA_NUM_X =	(STATUS_KOUGEKI_NUM_X),
+	STATUS_SUBAYASA_NUM_X =	(11*8),
 };
 
-#ifdef NONEQUIVALENT
 static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
 {
 	GF_BGL_BmpWinDataFill( win, FBMP_COL_NULL );	//塗りつぶし
 
 	//「もちもの」
 	WORDSET_RegisterItemName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_item,NULL) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_01, STATUS_MOTIMONO_X, STATUS_MOTIMONO_Y );
-	StMsgWriteSub( wk, win,msg_castle_trainer_status_01_01,STATUS_MOTIMONO_NUM_X,STATUS_MOTIMONO_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_01, STATUS_MOTIMONO_X, STATUS_MOTIMONO_Y, 0 );
+	StMsgWriteSub( wk, win,msg_castle_trainer_status_01_01,STATUS_MOTIMONO_NUM_X,STATUS_MOTIMONO_Y, 0 );
 
 	//「せいかく」
 	WORDSET_RegisterSeikaku( wk->wordset, 0, PokeSeikakuGet(poke) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_02, STATUS_SEIKAKU_X, STATUS_SEIKAKU_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_02_01, STATUS_SEIKAKU_NUM_X,STATUS_SEIKAKU_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_02, STATUS_SEIKAKU_X, STATUS_SEIKAKU_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_02_01, STATUS_SEIKAKU_NUM_X,STATUS_SEIKAKU_Y, 0 );
 
 	//「とくせい」
 	WORDSET_RegisterTokuseiName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_speabino,NULL) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_03, STATUS_TOKUSEI_X, STATUS_TOKUSEI_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_03_01, STATUS_TOKUSEI_NUM_X,STATUS_TOKUSEI_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_03, STATUS_TOKUSEI_X, STATUS_TOKUSEI_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_03_01, STATUS_TOKUSEI_NUM_X,STATUS_TOKUSEI_Y, 0 );
 
 	//「こうげき」
 	//OS_Printf( "pow = %d\n", PokeParaGet(poke,ID_PARA_pow,NULL) );
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_pow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_04, STATUS_KOUGEKI_X, STATUS_KOUGEKI_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_04_01, STATUS_KOUGEKI_NUM_X,STATUS_KOUGEKI_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_04, STATUS_KOUGEKI_X, STATUS_KOUGEKI_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_04_01, STATUS_KOUGEKI_NUM_X,STATUS_KOUGEKI_Y, 2 );
 
 	//「ぼうぎょ」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_def,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_05, STATUS_BOUGYO_X, STATUS_BOUGYO_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_05_01, STATUS_BOUGYO_NUM_X, STATUS_BOUGYO_Y );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_05, STATUS_BOUGYO_X, STATUS_BOUGYO_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_05_01, STATUS_BOUGYO_NUM_X, STATUS_BOUGYO_Y, 2 );
 
 	//「とくこう」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spepow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_06, STATUS_TOKUKOU_X, STATUS_TOKUKOU_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_06_01, STATUS_TOKUKOU_NUM_X,STATUS_TOKUKOU_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_06, STATUS_TOKUKOU_X, STATUS_TOKUKOU_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_06_01, STATUS_TOKUKOU_NUM_X,STATUS_TOKUKOU_Y, 2 );
 
 	//「とくぼう」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spedef,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_07, STATUS_TOKUBOU_X, STATUS_TOKUBOU_Y );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_07_01, STATUS_TOKUBOU_NUM_X,STATUS_TOKUBOU_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_07, STATUS_TOKUBOU_X, STATUS_TOKUBOU_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_07_01, STATUS_TOKUBOU_NUM_X,STATUS_TOKUBOU_Y, 2 );
 
 	//「すばやさ」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_agi,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_08, STATUS_SUBAYASA_X, STATUS_SUBAYASA_Y );
-	StMsgWriteSub( wk, win,msg_castle_trainer_status_08_01,STATUS_SUBAYASA_NUM_X,STATUS_SUBAYASA_Y);
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_08, STATUS_SUBAYASA_X, STATUS_SUBAYASA_Y, 0 );
+	StMsgWriteSub( wk, win,msg_castle_trainer_status_08_01,STATUS_SUBAYASA_NUM_X,STATUS_SUBAYASA_Y, 2 );
 
 	GF_BGL_BmpWinOnVReq( win );
 	return;
 }
-#else
-asm static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	add r4, r1, #0
-	add r5, r0, #0
-	add r6, r2, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	add r0, r6, #0
-	mov r1, #6
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	ldr r0, [r5, #0x24]
-	mov r1, #0
-	bl WORDSET_RegisterItemName
-	mov r3, #8
-	str r3, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x30
-	bl StMsgWriteSub
-	mov r0, #8
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x31
-	mov r3, #0x48
-	bl StMsgWriteSub
-	add r0, r6, #0
-	bl PokeSeikakuGet
-	add r2, r0, #0
-	ldr r0, [r5, #0x24]
-	mov r1, #0
-	bl WORDSET_RegisterSeikaku
-	mov r0, #0x18
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x32
-	mov r3, #8
-	bl StMsgWriteSub
-	mov r0, #0x18
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x33
-	mov r3, #0x48
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	ldr r0, [r5, #0x24]
-	mov r1, #0
-	bl WORDSET_RegisterTokuseiName
-	mov r0, #0x28
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x34
-	mov r3, #8
-	bl StMsgWriteSub
-	mov r0, #0x28
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x35
-	mov r3, #0x48
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa5
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	add r0, r5, #0
-	mov r1, #0
-	mov r3, #3
-	bl Castle_SetNumber
-	mov r0, #0x38
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x36
-	mov r3, #8
-	bl StMsgWriteSub
-	mov r0, #0x38
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x37
-	mov r3, #0x58
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa6
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	add r0, r5, #0
-	mov r1, #0
-	mov r3, #3
-	bl Castle_SetNumber
-	mov r2, #0x38
-	str r2, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r3, #0x68
-	bl StMsgWriteSub
-	mov r0, #0x38
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x39
-	mov r3, #0xb8
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa8
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	add r0, r5, #0
-	mov r1, #0
-	mov r3, #3
-	bl Castle_SetNumber
-	mov r0, #0x48
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3a
-	mov r3, #8
-	bl StMsgWriteSub
-	mov r0, #0x48
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3b
-	mov r3, #0x58
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa9
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	add r0, r5, #0
-	mov r1, #0
-	mov r3, #3
-	bl Castle_SetNumber
-	mov r0, #0x48
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3c
-	mov r3, #0x68
-	bl StMsgWriteSub
-	mov r0, #0x48
-	str r0, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3d
-	mov r3, #0xb8
-	bl StMsgWriteSub
-	add r0, r6, #0
-	mov r1, #0xa7
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	add r0, r5, #0
-	mov r1, #0
-	mov r3, #3
-	bl Castle_SetNumber
-	mov r0, #0x58
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3e
-	mov r3, #8
-	bl StMsgWriteSub
-	mov r3, #0x58
-	str r3, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r1, r4, #0
-	mov r2, #0x3f
-	bl StMsgWriteSub
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #8
-	pop {r4, r5, r6, pc}
-}
-#endif
-
 static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
 {
 	CastleWriteMsgSimple_Full_ov107_2247744(	wk, win, msg, x, y, MSG_NO_PUT,
@@ -2747,8 +2510,8 @@ enum{
 	STATUS_WAZA_Y =			(2*8-4), // MatchComment: 2*8 -> 2*8-4
 
 	//技ポイント
-	STATUS_POINT_X =		(12*8),
-	STATUS_POINT_Y =		(0*8), // MatchComment: 2*8 -> 0*8
+	STATUS_POINT_X =		(18*8+1), // MatchComment: 12*8 -> 18*8+1
+	STATUS_POINT_Y =		(2*8-4), // MatchComment: 2*8 -> 2*8-4
 };
 
 static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke )
@@ -2777,7 +2540,6 @@ static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKE
 	return;
 }
 
-#ifdef NONEQUIVALENT
 static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 )
 {
 	u16 x,y,point_x,point_y;
@@ -2798,7 +2560,7 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 	//Castle_SetNumber( wk, 0, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS );
 	//Castle_SetNumber( wk, 1, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS );
 	Castle_SetNumber(	wk, 4, PokeParaGet(poke,id2,NULL), CASTLE_KETA_STATUS,
-						NUMBER_DISPTYPE_SPACE );
+                         NUMBER_DISPTYPE_LEFT );
 	Castle_SetNumber(	wk, 5, PokeParaGet(poke,id3,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_LEFT );
     // MatchComment: use CastleWriteMsgSimple_Full_ov107_2247744 instead of CastleWriteMsgSimple
@@ -2808,87 +2570,6 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 1 );
 	return;
 }
-#else
-asm static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r6, r1, #0
-	add r5, r2, #0
-	ldr r0, [sp, #0x34]
-	ldr r1, [sp, #0x38]
-	mov r2, #0
-	add r7, r3, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	ldr r0, [r4, #0x24]
-	add r1, r5, #0
-	bl WORDSET_RegisterWazaName
-	mov r0, #0x18
-	mul r0, r5
-	add r0, #0xc
-	lsl r0, r0, #0x10
-	lsr r5, r0, #0x10
-	str r5, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r0, #1
-	str r0, [sp, #8]
-	mov r0, #2
-	str r0, [sp, #0xc]
-	mov r0, #0
-	str r0, [sp, #0x10]
-	str r0, [sp, #0x14]
-	add r0, r4, #0
-	add r1, r6, #0
-	add r2, r7, #0
-	mov r3, #0x20
-	bl CastleWriteMsgSimple
-	strb r0, [r4, #0xa]
-	ldr r0, [sp, #0x34]
-	ldr r1, [sp, #0x3c]
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #0
-	str r0, [sp]
-	add r0, r4, #0
-	mov r1, #4
-	mov r3, #3
-	bl Castle_SetNumber
-	ldr r0, [sp, #0x34]
-	ldr r1, [sp, #0x40]
-	mov r2, #0
-	bl PokeParaGet
-	add r2, r0, #0
-	mov r0, #0
-	str r0, [sp]
-	add r0, r4, #0
-	mov r1, #5
-	mov r3, #3
-	bl Castle_SetNumber
-	str r5, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #1
-	str r1, [sp, #8]
-	mov r0, #2
-	str r0, [sp, #0xc]
-	mov r0, #0
-	str r0, [sp, #0x10]
-	str r0, [sp, #0x14]
-	str r1, [sp, #0x18]
-	ldr r2, [sp, #0x30]
-	add r0, r4, #0
-	add r1, r6, #0
-	mov r3, #0x91
-	bl CastleWriteMsgSimple_Full_ov107_2247744
-	strb r0, [r4, #0xa]
-	add sp, #0x1c
-	pop {r4, r5, r6, r7, pc}
-}
-#endif
 
 //--------------------------------------------------------------------------------------------
 /**
