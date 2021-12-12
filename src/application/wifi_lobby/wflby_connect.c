@@ -1443,7 +1443,6 @@ static BOOL WFLBY_CONNECT_WIN_PrintEndWait( const WFLBY_WINWK* cp_wk )
  *	@param	strid		文字列ID
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFLBY_CONNECT_WIN_PrintTitle( WFLBY_WINWK* p_wk, u32 strid )
 {
 	// ウィンドウのクリーン
@@ -1454,50 +1453,10 @@ static void WFLBY_CONNECT_WIN_PrintTitle( WFLBY_WINWK* p_wk, u32 strid )
 	WORDSET_ExpandStr( p_wk->p_wordset, p_wk->p_str, p_wk->p_tmp );
 
 	GF_STR_PrintColor(&p_wk->win, FONT_TALK, p_wk->p_str,
-			0,0, MSG_ALLPUT, WFLBY_TITLEWIN_COL, NULL);
+                      FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, p_wk->p_str, 0, WFLBY_TITLEWIN_SIZX*8 ),0,
+                      MSG_ALLPUT, WFLBY_TITLEWIN_COL, NULL);
 
 }
-#else
-asm static void WFLBY_CONNECT_WIN_PrintTitle( WFLBY_WINWK* p_wk, u32 strid )
-{    
-	push {r3, r4, r5, lr}
-	sub sp, #0x10
-	add r4, r0, #0
-	add r5, r1, #0
-	add r0, #8
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r4, #4]
-	ldr r2, [r4, #0x1c]
-	add r1, r5, #0
-	bl MSGMAN_GetString
-	ldr r0, [r4, #0]
-	ldr r1, [r4, #0x18]
-	ldr r2, [r4, #0x1c]
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	ldr r1, [r4, #0x18]
-	add r2, r0, #0
-	mov r3, #0xb0
-	bl FontProc_GetPrintCenteredPositionX
-	mov r1, #0
-	add r3, r0, #0
-	str r1, [sp]
-	ldr r0, =0x000F0E00 // _0225D3CC
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	ldr r2, [r4, #0x18]
-	add r0, #8
-	mov r1, #1
-	bl GF_STR_PrintColor
-	add sp, #0x10
-	pop {r3, r4, r5, pc}
-	nop
-// _0225D3CC: .4byte 0x000F0E00
-}
-#endif
 
 #ifdef WFLBY_CONNECT_DEBUG_START
 //----------------------------------------------------------------------------

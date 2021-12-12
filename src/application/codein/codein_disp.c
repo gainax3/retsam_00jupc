@@ -1002,7 +1002,7 @@ void CI_pv_FontOam_Create(CODEIN_WORK* wk, int no, int x, int y, int pal_offset)
 		///< FONT_BUTTON ‚Í 2dot‚Å‚©‚¢
 		GF_BGL_BmpWinInit(&bmpwin);
 		GF_BGL_BmpWinObjAdd(wk->sys.bgl, &bmpwin, 10, 2, 0, 0);
-		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, FontProc_GetPrintCenteredPositionX(FONT_BUTTON, str, 0, 80), 0,
+		GF_STR_PrintColor(&bmpwin, FONT_BUTTON, str, FontProc_GetPrintCenteredPositionX(FONT_BUTTON, str, 0, 10*8), 0,
 						  MSG_NO_PUT, PRINT_COL_BLACK, NULL);
 	}
 
