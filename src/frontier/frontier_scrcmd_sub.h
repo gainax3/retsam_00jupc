@@ -69,7 +69,7 @@ extern void FSSC_Sub_ShakeMove(TCB_PTR tcb, void *work);
 extern void FSSC_Sub_Window(TCB_PTR tcb, void *work);
 
 // MatchComment: prototypes for two new functions
-extern void ov104_223327C(void);
-extern void ov104_2233298(void);
+extern void ov104_223327C(FSEVWIN_PTR ev_win, int value);
+extern void ov104_2233298(FSEVWIN_PTR ev_win, int value);
 
 #endif	//__FRONTIER_SCRCMD_SUB_H__
