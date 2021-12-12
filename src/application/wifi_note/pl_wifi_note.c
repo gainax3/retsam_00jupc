@@ -318,7 +318,7 @@ enum{	// カーソルデータすう
 #define WFNOTE_FRIENDLIST_TEXT_CGX0	( 1 )	// サイズｙ
 #define WFNOTE_FRIENDLIST_TEXT_CGX1	( WFNOTE_FRIENDLIST_TEXT_CGX0+(WFNOTE_FRIENDLIST_TEXT_SIZX*WFNOTE_FRIENDLIST_TEXT_SIZY) )	// サイズｙ
 
-#define WFNOTE_FRIENDLIST_BACKMSG_X	( 15 )	// 開始位置ｘ
+#define WFNOTE_FRIENDLIST_BACKMSG_X	( 13 )	// 開始位置ｘ
 #define WFNOTE_FRIENDLIST_BACKMSG_Y	( 21 )	// 開始位置ｙ
 #define WFNOTE_FRIENDLIST_BACKMSG_SIZX	( 8 )	// サイズｘ
 #define WFNOTE_FRIENDLIST_BACKMSG_SIZY	( 3 )	// サイズｙ
@@ -2872,6 +2872,7 @@ static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_
         int x,y,xofs;
 		MSGMAN_GetString( p_draw->p_msgman, sc_msgidx[i], p_tmp );
 		WORDSET_ExpandStr( p_draw->p_wordset, p_str, p_tmp );
+        //MatchComment: center align; temp vars needed
         x = sc_pos[i] + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, p_str, 0, WFNOTE_FRIENDLIST_TEXT_SIZX*8 );
         y = sOv64_223241C[i];
 		GF_STR_PrintColor( &p_wk->msg, FONT_SYSTEM, 
@@ -3461,7 +3462,6 @@ static void WFNOTE_FRIENDLIST_Exit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	static const u16 sc_TEXTCGX[ WFNOTE_DRAWAREA_NUM ] = {
@@ -3510,9 +3510,10 @@ static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_
 	p_str = STRBUF_Create( WFNOTE_STRBUF_SIZE, heapID );
 
 	MSGMAN_GetString( p_draw->p_msgman, msg_wifi_note_08, p_str );
+    //MatchComment: center align
     GF_STR_PrintColor( &p_wk->backmsg, FONT_SYSTEM, 
 			p_str,
-			0, 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
+			FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, p_str, 0, WFNOTE_FRIENDLIST_BACKMSG_SIZX*8 ), 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
 	STRBUF_Delete( p_str );
 
 	// メニュー作成
@@ -3551,245 +3552,6 @@ static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_
 	// とりあえず非表示
 	CLACT_SetDrawFlag( p_wk->p_clearact, FALSE );
 }
-#else
-static const u16 sc_TEXTCGX[ WFNOTE_DRAWAREA_NUM ] = {
-	WFNOTE_FRIENDLIST_TEXT_CGX0,
-	WFNOTE_FRIENDLIST_TEXT_CGX1,
-	WFNOTE_FRIENDLIST_TEXT_CGX1,
-};
-
-static const CLACT_ADD clearadd = {
-	NULL,
-	NULL,
-	{ 0,0,0 },	
-	{ FX32_ONE,FX32_ONE,FX32_ONE },	
-	0,
-	0,
-	NNS_G2D_VRAM_TYPE_2DMAIN,
-	0
-};
-
-asm static void WFNOTE_FRIENDLIST_DrawInit( WFNOTE_FRIENDLIST* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x58
-	ldr r4, =clearadd // _0222F5E0
-	add r7, r2, #0
-	str r3, [sp, #0x18]
-	str r0, [sp, #0x14]
-	add r3, sp, #0x28
-	mov r2, #6
-_0222F424:
-	ldmia r4!, {r0, r1}
-	stmia r3!, {r0, r1}
-	sub r2, r2, #1
-	bne _0222F424
-	ldr r4, [sp, #0x14]
-	mov r0, #0
-	ldr r5, =sc_TEXTCGX // _0222F5E4
-	ldr r6, =sc_SCRNAREA // _0222F5E8
-	str r0, [sp, #0x24]
-	add r4, #8
-_0222F438:
-	ldr r0, [sp, #0x18]
-	add r1, r7, #0
-	str r0, [sp]
-	ldrh r3, [r5]
-	add r0, r4, #0
-	add r2, r6, #0
-	bl WFNOTE_FRIENDLIST_DRAWAREA_Init
-	ldr r0, [sp, #0x24]
-	add r5, r5, #2
-	add r0, r0, #1
-	add r6, r6, #6
-	add r4, #0x38
-	str r0, [sp, #0x24]
-	cmp r0, #3
-	blt _0222F438
-	ldr r0, [r7, #4]
-	ldr r3, [sp, #0x18]
-	mov r1, #0
-	mov r2, #0x10
-	bl WF_2DC_SysInit
-	ldr r1, [sp, #0x14]
-	ldr r3, [sp, #0x18]
-	add r1, #0xb4
-	str r0, [r1, #0]
-	ldr r0, [sp, #0x14]
-	mov r1, #1
-	add r0, #0xb4
-	ldr r0, [r0, #0]
-	mov r2, #2
-	bl WF_2DC_UnionResSet
-	ldr r0, [sp, #0x14]
-	add r0, #0xb8
-	bl GF_BGL_BmpWinInit
-	mov r0, #0x15
-	str r0, [sp]
-	mov r0, #8
-	str r0, [sp, #4]
-	mov r0, #3
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #0x70
-	ldr r1, [sp, #0x14]
-	str r0, [sp, #0x10]
-	ldr r0, [r7, #0]
-	add r1, #0xb8
-	mov r2, #1
-	mov r3, #0xd
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	add r0, #0xb8
-	bl GF_BGL_BmpWinDataFill
-	ldr r1, [sp, #0x18]
-	mov r0, #0x80
-	bl STRBUF_Create
-	add r4, r0, #0
-	mov r0, #0x63
-	lsl r0, r0, #2
-	ldr r0, [r7, r0]
-	mov r1, #7
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	mov r3, #0x40
-	bl FontProc_GetPrintCenteredPositionX
-	mov r1, #0
-	add r3, r0, #0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _0222F5EC
-	add r2, r4, #0
-	str r0, [sp, #8]
-	ldr r0, [sp, #0x14]
-	str r1, [sp, #0xc]
-	add r0, #0xb8
-	bl GF_STR_PrintColor
-	add r0, r4, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x14]
-	add r0, #0xe4
-	bl GF_BGL_BmpWinInit
-	mov r0, #9
-	str r0, [sp]
-	mov r0, #0xf
-	str r0, [sp, #4]
-	mov r0, #8
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #0x88
-	ldr r1, [sp, #0x14]
-	str r0, [sp, #0x10]
-	ldr r0, [r7, #0]
-	add r1, #0xe4
-	mov r2, #1
-	mov r3, #0x10
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	add r0, #0xe4
-	bl GF_BGL_BmpWinDataFill
-	mov r0, #0
-	str r0, [sp, #0x1c]
-	ldr r0, =sc_WFNOTE_FRIENDLIST_MENU // _0222F5F0
-	ldr r6, [sp, #0x14]
-	str r0, [sp, #0x20]
-_0222F530:
-	ldr r1, [sp, #0x18]
-	mov r0, #4
-	bl BMP_MENULIST_Create
-	add r1, r6, #0
-	add r1, #0xf4
-	ldr r5, [sp, #0x20]
-	str r0, [r1, #0]
-	mov r4, #0
-_0222F542:
-	add r0, r6, #0
-	mov r1, #0x63
-	add r0, #0xf4
-	lsl r1, r1, #2
-	ldr r0, [r0, #0]
-	ldr r1, [r7, r1]
-	ldr r2, [r5, #0]
-	ldr r3, [r5, #4]
-	bl BMP_MENULIST_AddArchiveString
-	add r4, r4, #1
-	add r5, #8
-	cmp r4, #4
-	blt _0222F542
-	ldr r0, [sp, #0x20]
-	add r6, r6, #4
-	add r0, #0x20
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x1c]
-	add r0, r0, #1
-	str r0, [sp, #0x1c]
-	cmp r0, #2
-	blt _0222F530
-	ldr r0, [sp, #0x14]
-	add r0, #0xc8
-	bl GF_BGL_BmpWinInit
-	mov r0, #0x13
-	str r0, [sp]
-	mov r0, #0x1b
-	str r0, [sp, #4]
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	add r0, #0xf9
-	ldr r1, [sp, #0x14]
-	str r0, [sp, #0x10]
-	ldr r0, [r7, #0]
-	add r1, #0xc8
-	mov r2, #1
-	mov r3, #2
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	mov r1, #0xf
-	add r0, #0xc8
-	bl GF_BGL_BmpWinDataFill
-	ldr r1, [sp, #0x18]
-	mov r0, #0x80
-	bl STRBUF_Create
-	ldr r1, [sp, #0x14]
-	add r1, #0xd8
-	str r0, [r1, #0]
-	ldr r0, [r7, #4]
-	str r0, [sp, #0x28]
-	mov r0, #0x1b
-	lsl r0, r0, #4
-	add r0, r7, r0
-	str r0, [sp, #0x2c]
-	ldr r0, [sp, #0x18]
-	str r0, [sp, #0x54]
-	add r0, sp, #0x28
-	bl CLACT_Add
-	mov r2, #0x42
-	ldr r1, [sp, #0x14]
-	lsl r2, r2, #2
-	str r0, [r1, r2]
-	add r0, r1, #0
-	ldr r0, [r0, r2]
-	mov r1, #0
-	bl CLACT_SetDrawFlag
-	add sp, #0x58
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _0222F5E0: .4byte clearadd
-// _0222F5E4: .4byte sc_TEXTCGX
-// _0222F5E8: .4byte sc_SCRNAREA
-// _0222F5EC: .4byte 0x00010200
-// _0222F5F0: .4byte sc_WFNOTE_FRIENDLIST_MENU
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
