@@ -346,9 +346,9 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  );
 //ƒƒbƒZ[ƒW
 static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 // TODO__fix_me prototype of below function probably wrong
-static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
+static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln align );
 static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
-static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode );
+static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln align );
 static u8 Castle_EasyMsg( CASTLE_MINE_WORK* wk, int msg_id, u8 font );
 static void Castle_StatusMsgWrite( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 static void StMsgWriteSub( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y );
@@ -2579,32 +2579,10 @@ static void Castle_SetSubBgGraphic( CASTLE_MINE_WORK * wk, u32 frm  )
 //
 //==============================================================================================
 
-// NONMATCHING
-asm static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-	push {r4, r5, lr}
-	sub sp, #0x1c
-	ldr r4, [sp, #0x28]
-	str r4, [sp]
-	ldr r4, [sp, #0x2c]
-	str r4, [sp, #4]
-	add r4, sp, #0x18
-	ldrb r5, [r4, #0x18]
-	str r5, [sp, #8]
-	ldrb r4, [r4, #0x1c]
-	str r4, [sp, #0xc]
-	add r4, sp, #0x38
-	ldrb r4, [r4]
-	str r4, [sp, #0x10]
-	add r4, sp, #0x3c
-	ldrb r4, [r4]
-	str r4, [sp, #0x14]
-	mov r4, #0
-	str r4, [sp, #0x18]
-	bl CastleWriteMsg_Full_ov107_22437CC
-	add sp, #0x1c
-	pop {r4, r5, pc}
-	// .align 2, 0
+	return CastleWriteMsg_Full_ov107_22437CC( wk, win, msg_id, x, y,
+        wait, f_col, s_col, b_col, font, CASTLE_MSG_ALN_LEFT );
 }
 
 
@@ -2626,9 +2604,8 @@ asm static u8 CastleWriteMsg( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_
  * @return	"•¶Žš•`‰æƒ‹[ƒ`ƒ“‚ÌƒCƒ“ƒfƒbƒNƒX"
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 // prototype probably wrong
-static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln align )
 {
 	u8 msg_index;
 
@@ -2638,115 +2615,27 @@ static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN
 	//“o˜^‚³‚ê‚½’PŒê‚ðŽg‚Á‚Ä•¶Žš—ñ“WŠJ‚·‚é
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
+    switch(align){
+    case CASTLE_MSG_ALN_CENTER:
+        x -= (FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 ) + 1) / 2;
+        break;
+    case CASTLE_MSG_ALN_RIGHT:
+        x -= FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
+        break;
+    }
+
 	msg_index = GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 
 	GF_BGL_BmpWinOnVReq( win );
 	return msg_index;
 }
-#else
-asm static u8 CastleWriteMsg_Full_ov107_22437CC( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x10
-	add r6, r1, #0
-	add r1, sp, #0x38
-	ldrb r1, [r1]
-	add r5, r0, #0
-	add r0, r6, #0
-	add r7, r2, #0
-	add r4, r3, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r5, #0x20]
-	ldr r2, [r5, #0x2c]
-	add r1, r7, #0
-	bl MSGMAN_GetString
-	ldr r0, [r5, #0x24]
-	ldr r1, [r5, #0x28]
-	ldr r2, [r5, #0x2c]
-	bl WORDSET_ExpandStr
-	ldr r0, [sp, #0x40]
-	cmp r0, #1
-	beq _02243802
-	cmp r0, #2
-	beq _02243814
-	b _02243820
-_02243802:
-	mov r0, #0
-	ldr r1, [r5, #0x28]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	add r0, r0, #1
-	lsr r0, r0, #1
-	sub r4, r4, r0
-	b _02243820
-_02243814:
-	mov r0, #0
-	ldr r1, [r5, #0x28]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	sub r4, r4, r0
-_02243820:
-	ldr r0, [sp, #0x28]
-	add r2, sp, #0x18
-	str r0, [sp]
-	ldr r0, [sp, #0x2c]
-	add r3, r4, #0
-	str r0, [sp, #4]
-	add r0, sp, #0x38
-	ldrb r1, [r0]
-	ldrb r0, [r2, #0x18]
-	ldrb r2, [r2, #0x1c]
-	lsl r0, r0, #0x18
-	lsl r2, r2, #0x18
-	lsr r0, r0, #8
-	lsr r2, r2, #0x10
-	orr r0, r2
-	orr r0, r1
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	add r1, sp, #0x3c
-	ldrb r1, [r1]
-	ldr r2, [r5, #0x28]
-	add r0, r6, #0
-	bl GF_STR_PrintColor
-	add r4, r0, #0
-	add r0, r6, #0
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	add sp, #0x10
-	pop {r3, r4, r5, r6, r7, pc}
-}
-#endif
-
 extern void ov107_2243860(void);
 
-asm static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
+static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-	push {r4, r5, lr}
-	sub sp, #0x1c
-	ldr r4, [sp, #0x28]
-	str r4, [sp]
-	ldr r4, [sp, #0x2c]
-	str r4, [sp, #4]
-	add r4, sp, #0x18
-	ldrb r5, [r4, #0x18]
-	str r5, [sp, #8]
-	ldrb r4, [r4, #0x1c]
-	str r4, [sp, #0xc]
-	add r4, sp, #0x38
-	ldrb r4, [r4]
-	str r4, [sp, #0x10]
-	add r4, sp, #0x3c
-	ldrb r4, [r4]
-	str r4, [sp, #0x14]
-	mov r4, #0
-	str r4, [sp, #0x18]
-	bl CastleWriteMsgSimple_Full_ov107_2243890
-	add sp, #0x1c
-	pop {r4, r5, pc}
-	// .align 2, 0
+    return CastleWriteMsgSimple_Full_ov107_2243890( wk, win, msg_id, x, y,
+        wait, f_col, s_col, b_col, font, CASTLE_MSG_ALN_LEFT );
 }
 
 //--------------------------------------------------------------
@@ -2769,8 +2658,7 @@ asm static u8 CastleWriteMsgSimple( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, in
  * “h‚è‚Â‚Ô‚µ‚È‚µ
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
-static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode )
+static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln align )
 {
 	u8 msg_index;
 
@@ -2779,82 +2667,21 @@ static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_
 	//“o˜^‚³‚ê‚½’PŒê‚ðŽg‚Á‚Ä•¶Žš—ñ“WŠJ‚·‚é
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
+    switch(align){
+    case CASTLE_MSG_ALN_CENTER:
+        x -= (FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 ) + 1) / 2;
+        break;
+    case CASTLE_MSG_ALN_RIGHT:
+        x -= FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
+        break;
+    }
+
 	msg_index = GF_STR_PrintColor( win, font, wk->msg_buf, x, y, wait, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 
 	GF_BGL_BmpWinOnVReq( win );
 	return msg_index;
 }
-#else
-asm static u8 CastleWriteMsgSimple_Full_ov107_2243890( CASTLE_MINE_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_unk_mode )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x10
-	add r5, r0, #0
-	add r6, r1, #0
-	add r1, r2, #0
-	ldr r0, [r5, #0x20]
-	ldr r2, [r5, #0x2c]
-	add r4, r3, #0
-	bl MSGMAN_GetString
-	ldr r0, [r5, #0x24]
-	ldr r1, [r5, #0x28]
-	ldr r2, [r5, #0x2c]
-	bl WORDSET_ExpandStr
-	ldr r0, [sp, #0x38]
-	cmp r0, #1
-	beq _022438BA
-	cmp r0, #2
-	beq _022438CC
-	b _022438D8
-_022438BA:
-	mov r0, #0
-	ldr r1, [r5, #0x28]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	add r0, r0, #1
-	lsr r0, r0, #1
-	sub r4, r4, r0
-	b _022438D8
-_022438CC:
-	mov r0, #0
-	ldr r1, [r5, #0x28]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	sub r4, r4, r0
-_022438D8:
-	ldr r0, [sp, #0x20]
-	add r2, sp, #0x10
-	str r0, [sp]
-	ldr r0, [sp, #0x24]
-	add r3, r4, #0
-	str r0, [sp, #4]
-	add r0, sp, #0x30
-	ldrb r1, [r0]
-	ldrb r0, [r2, #0x18]
-	ldrb r2, [r2, #0x1c]
-	lsl r0, r0, #0x18
-	lsl r2, r2, #0x18
-	lsr r0, r0, #8
-	lsr r2, r2, #0x10
-	orr r0, r2
-	orr r0, r1
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	add r1, sp, #0x34
-	ldrb r1, [r1]
-	ldr r2, [r5, #0x28]
-	add r0, r6, #0
-	bl GF_STR_PrintColor
-	add r4, r0, #0
-	add r0, r6, #0
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	add sp, #0x10
-	pop {r4, r5, r6, pc}
-}
-#endif
 
 //--------------------------------------------------------------
 /**
