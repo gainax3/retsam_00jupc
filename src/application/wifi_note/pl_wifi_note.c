@@ -648,26 +648,26 @@ enum{
 #define WFNOTE_FRIENDINFO_PAGE02_TT_X		( 0 )	// タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_TT_Y		( 0 )	// タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_LV50TT_X	( 0 )	// LV50タイトル
-#define WFNOTE_FRIENDINFO_PAGE02_LV50TT2_X	( 120 )	// LV50タイトル
+#define WFNOTE_FRIENDINFO_PAGE02_LV50TT2_X	( 224 )	// LV50タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_LV50TT_Y	( 0 )	// LV50タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_LV50LT_X	( 0 )	// LV50前回
-#define WFNOTE_FRIENDINFO_PAGE02_LV50LN0_X	( 56 )	// LV50前回
-#define WFNOTE_FRIENDINFO_PAGE02_LV50LN1_X	( 168 )	// LV50前回
+#define WFNOTE_FRIENDINFO_PAGE02_LV50LN0_X	( 112 )	// LV50前回
+#define WFNOTE_FRIENDINFO_PAGE02_LV50LN1_X	( 224 )	// LV50前回
 #define WFNOTE_FRIENDINFO_PAGE02_LV50L_Y	( 0 )	// LV50前回
 #define WFNOTE_FRIENDINFO_PAGE02_LV50MT_X	( 0 )	// LV50最高
-#define WFNOTE_FRIENDINFO_PAGE02_LV50MN0_X	( 56 )	// LV50最高
-#define WFNOTE_FRIENDINFO_PAGE02_LV50MN1_X	( 168 )	// LV50最高
+#define WFNOTE_FRIENDINFO_PAGE02_LV50MN0_X	( 112 )	// LV50最高
+#define WFNOTE_FRIENDINFO_PAGE02_LV50MN1_X	( 224 )	// LV50最高
 #define WFNOTE_FRIENDINFO_PAGE02_LV50M_Y	( 16 )	// LV50最高
 #define WFNOTE_FRIENDINFO_PAGE02_LV100TT_X	( 0 )	// LV100タイトル
-#define WFNOTE_FRIENDINFO_PAGE02_LV100TT2_X	( 120 )	// LV100タイトル
+#define WFNOTE_FRIENDINFO_PAGE02_LV100TT2_X	( 224 )	// LV100タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_LV100TT_Y	( 0 )	// LV100タイトル
 #define WFNOTE_FRIENDINFO_PAGE02_LV100LT_X	( 0 )	// LV100前回
-#define WFNOTE_FRIENDINFO_PAGE02_LV100LN0_X	( 56 )	// LV100前回
-#define WFNOTE_FRIENDINFO_PAGE02_LV100LN1_X	( 168 )	// LV100前回
+#define WFNOTE_FRIENDINFO_PAGE02_LV100LN0_X	( 112 )	// LV100前回
+#define WFNOTE_FRIENDINFO_PAGE02_LV100LN1_X	( 224 )	// LV100前回
 #define WFNOTE_FRIENDINFO_PAGE02_LV100L_Y	( 0 )	// LV100前回
 #define WFNOTE_FRIENDINFO_PAGE02_LV100MT_X	( 0 )	// LV100最高
-#define WFNOTE_FRIENDINFO_PAGE02_LV100MN0_X	( 56 )	// LV100最高
-#define WFNOTE_FRIENDINFO_PAGE02_LV100MN1_X	( 168 )	// LV100最高
+#define WFNOTE_FRIENDINFO_PAGE02_LV100MN0_X	( 112 )	// LV100最高
+#define WFNOTE_FRIENDINFO_PAGE02_LV100MN1_X	( 224 )	// LV100最高
 #define WFNOTE_FRIENDINFO_PAGE02_LV100M_Y	( 16 )	// LV100最高
 
 
@@ -6214,7 +6214,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_tmp );
 }
 
-#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6232,7 +6231,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_BA_TT,
 			p_data, p_draw, msg_wifi_note_37, 
 			WFNOTE_FRIENDINFO_PAGE02_TT_X, WFNOTE_FRIENDINFO_PAGE02_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 	// LV50
 	{
@@ -6240,11 +6239,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50TT,
 				p_data, p_draw, msg_wifi_note_43, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50TT_X, WFNOTE_FRIENDINFO_PAGE02_LV50TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50TT,
 				p_data, p_draw, msg_wifi_note_45, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50TT2_X, WFNOTE_FRIENDINFO_PAGE02_LV50TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 		//前回
 		clear_flag = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_CLEAR_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6256,7 +6255,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, stridx, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LT_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6264,21 +6263,21 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LN0_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE_CNT, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LN1_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 
 		//最高
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_42, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MT_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
@@ -6286,14 +6285,14 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MN0_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MN1_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 	}
 
 	// LV100
@@ -6302,11 +6301,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100TT,
 				p_data, p_draw, msg_wifi_note_44, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100TT_X, WFNOTE_FRIENDINFO_PAGE02_LV100TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100TT,
 				p_data, p_draw, msg_wifi_note_45, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100TT2_X, WFNOTE_FRIENDINFO_PAGE02_LV100TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 		//前回
 		clear_flag = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6318,7 +6317,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, stridx, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LT_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU100_CNT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6326,21 +6325,21 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LN0_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE100_CNT, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LN1_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 
 		//最高
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_42, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MT_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU100, p_data->idx.fridx[p_data->select_listidx]);
@@ -6348,14 +6347,14 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MN0_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE100, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MN1_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp );
+				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 	}
 	
 
@@ -6364,436 +6363,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
-#else
-asm static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x28
-	add r5, r1, #0
-	str r0, [sp, #0x20]
-	ldr r0, [r5, #0]
-	add r6, r3, #0
-	add r4, r2, #0
-	bl SaveData_GetFrontier
-	str r0, [sp, #0x24]
-	mov r0, #0x80
-	add r1, r6, #0
-	bl STRBUF_Create
-	add r7, r0, #0
-	mov r0, #0x80
-	add r1, r6, #0
-	bl STRBUF_Create
-	add r6, r0, #0
-	str r4, [sp]
-	mov r0, #0x1a
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	ldr r0, =0x00010200 // _022319FC
-	str r2, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	str r2, [sp, #0x1c]
-	mov r1, #3
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x21
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	ldr r0, =0x00010200 // _022319FC
-	str r1, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	mov r2, #1
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x23
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #1
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x66
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	cmp r0, #0
-	bne _0223170C
-	mov r0, #0x1e
-	b _0223170E
-_0223170C:
-	mov r0, #0x1f
-_0223170E:
-	str r4, [sp]
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	ldr r0, =0x00010200 // _022319FC
-	str r1, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	mov r2, #2
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x73
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x26
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #2
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x75
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x27
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r2, #2
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	str r2, [sp, #0x1c]
-	mov r1, #3
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x20
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r2, #2
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x72
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x26
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #2
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x74
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x27
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r2, #2
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	str r2, [sp, #0x1c]
-	mov r1, #3
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x22
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	ldr r0, =0x00010200 // _022319FC
-	str r1, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	mov r1, #3
-	ldr r0, [sp, #0x20]
-	add r2, r1, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r1, #3
-	str r4, [sp]
-	mov r0, #0x23
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	add r2, r1, #0
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x68
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	cmp r0, #0
-	bne _022318A6
-	mov r0, #0x1e
-	b _022318A8
-_022318A6:
-	mov r0, #0x1f
-_022318A8:
-	str r4, [sp]
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	ldr r0, =0x00010200 // _022319FC
-	str r1, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	mov r2, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x77
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x26
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x79
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x27
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x20
-	str r0, [sp, #4]
-	mov r1, #0
-	str r1, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r2, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	str r1, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x76
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x26
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x78
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x27
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0x10
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _022319FC
-	mov r1, #3
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	ldr r0, [sp, #0x20]
-	mov r1, #3
-	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
-	add r0, r7, #0
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add sp, #0x28
-	pop {r3, r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _022319FC: .4byte 0x00010200
-}
-#endif
 
 #ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
