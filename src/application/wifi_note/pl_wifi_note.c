@@ -239,7 +239,7 @@ enum{
 ///	MODESELECT
 //=====================================
 // BMP
-#define WFNOTE_MODESELECT_MSG_X		( 4 )	// 開始位置（キャラ単位）
+#define WFNOTE_MODESELECT_MSG_X		( 3 )	// 開始位置（キャラ単位）
 #define WFNOTE_MODESELECT_MSG_Y		( 4 )	// 開始位置（キャラ単位）
 #define WFNOTE_MODESELECT_MSG_SIZX	( 26 )	// サイズ（キャラ単位）
 #define WFNOTE_MODESELECT_MSG_SIZY	( 20 )	// サイズ（キャラ単位）
@@ -2811,7 +2811,6 @@ static void WFNOTE_MODESELECT_Exit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -2823,12 +2822,18 @@ static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_
 		msg_wifi_note_04,
 		msg_wifi_note_05,
 	};
-	static const u8 sc_pos[4][2] = {	// 座標
-		{ 40, 8 },
-		{ 32, 48 },
-		{ 28, 88 },
-		{ 80, 128 },
-	};
+    static const int sc_pos[4] = {	// 座標
+        -4,
+        -4,
+        -4,
+        0,
+    };
+    static const u8 sOv64_223241C[] = {
+        8,
+        48,
+        88,
+        128,
+    };
 
 	
 	// ビットマップウィンドウ作成
@@ -2864,10 +2869,13 @@ static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_
 	WORDSET_RegisterPlayerName( p_draw->p_wordset, 0, SaveData_GetMyStatus( p_data->p_save ) );
 	
 	for( i=0; i<4; i++ ){
+        int x,y,xofs;
 		MSGMAN_GetString( p_draw->p_msgman, sc_msgidx[i], p_tmp );
 		WORDSET_ExpandStr( p_draw->p_wordset, p_str, p_tmp );
+        x = sc_pos[i] + FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, p_str, 0, WFNOTE_FRIENDLIST_TEXT_SIZX*8 );
+        y = sOv64_223241C[i];
 		GF_STR_PrintColor( &p_wk->msg, FONT_SYSTEM, 
-				p_str, sc_pos[i][0], sc_pos[i][1], MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
+				p_str, x, y, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
 	}
 	
 	STRBUF_Delete( p_str );
@@ -2877,188 +2885,6 @@ static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_
 	p_wk->p_scrnbuff = ArcUtil_HDL_ScrnDataGet( p_draw->p_handle,
 			NARC_pl_wifinote_techo_01_NSCR, FALSE, &p_wk->p_scrn, heapID );
 }
-#else
-
-static const u8 sc_msgidx[ 4 ] = {	// msg_idx
-	msg_wifi_note_02,
-	msg_wifi_note_03,
-	msg_wifi_note_04,
-	msg_wifi_note_05,
-};
-// MatchComment: change from u8[4][2] to int[4]
-// and use matching data
-static const int sc_pos[4] = {	// 座標
-	-4, -4, -4, 0
-};
-
-static const u8 sOv64_223241C[4] = {
-    0x8, 0x30, 0x58, 0x80
-};
-
-asm static void WFNOTE_MODESELECT_DrawInit( WFNOTE_MODESELECT* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x30
-	str r0, [sp, #0x14]
-	add r0, r0, #4
-	add r5, r1, #0
-	str r2, [sp, #0x18]
-	str r3, [sp, #0x1c]
-	bl GF_BGL_BmpWinInit
-	mov r0, #4
-	str r0, [sp]
-	mov r0, #0x1a
-	str r0, [sp, #4]
-	mov r0, #0x14
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #1
-	str r0, [sp, #0x10]
-	ldr r0, [sp, #0x18]
-	ldr r1, [sp, #0x14]
-	mov r2, #3
-	ldr r0, [r0, #0]
-	add r1, r1, #4
-	add r3, r2, #0
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	add r0, #0x1c
-	bl GF_BGL_BmpWinInit
-	mov r0, #0x13
-	str r0, [sp]
-	mov r0, #0x1b
-	str r0, [sp, #4]
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #0x70
-	str r0, [sp, #0x10]
-	ldr r0, [sp, #0x18]
-	ldr r1, [sp, #0x14]
-	ldr r0, [r0, #0]
-	add r1, #0x1c
-	mov r2, #1
-	mov r3, #2
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	add r0, r0, #4
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	add r0, #0x1c
-	bl GF_BGL_BmpWinDataFill
-	ldr r1, [sp, #0x1c]
-	mov r0, #0x80
-	bl STRBUF_Create
-	ldr r1, [sp, #0x14]
-	str r0, [r1, #0x38]
-	ldr r0, [r5, #0]
-	bl SaveData_GetConfig
-	bl CONFIG_GetMsgPrintSpeed
-	ldr r1, [sp, #0x14]
-	str r0, [r1, #0x34]
-	ldr r1, [sp, #0x1c]
-	mov r0, #0x80
-	bl STRBUF_Create
-	add r4, r0, #0
-	ldr r1, [sp, #0x1c]
-	mov r0, #0x80
-	bl STRBUF_Create
-	str r0, [sp, #0x24]
-	ldr r0, [r5, #0]
-	bl SaveData_GetMyStatus
-	add r2, r0, #0
-	mov r1, #0x62
-	ldr r0, [sp, #0x18]
-	lsl r1, r1, #2
-	ldr r0, [r0, r1]
-	mov r1, #0
-	bl WORDSET_RegisterPlayerName
-	mov r0, #0
-	str r0, [sp, #0x20]
-	ldr r0, =sc_msgidx // _0222EDF0
-	ldr r7, =sc_pos // _0222EDF4
-	ldr r5, =sOv64_223241C // _0222EDF8
-	str r0, [sp, #0x2c]
-_0222ED5A:
-	mov r0, #0x63
-	ldr r1, [sp, #0x18]
-	lsl r0, r0, #2
-	ldr r0, [r1, r0]
-	ldr r1, [sp, #0x2c]
-	ldr r2, [sp, #0x24]
-	ldrb r1, [r1]
-	bl MSGMAN_GetString
-	mov r0, #0x62
-	ldr r1, [sp, #0x18]
-	lsl r0, r0, #2
-	ldr r0, [r1, r0]
-	ldr r2, [sp, #0x24]
-	add r1, r4, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	mov r3, #0xd0
-	bl FontProc_GetPrintCenteredPositionX
-	mov ip, r0
-	ldr r0, [r7, #0]
-	mov r6, ip
-	str r0, [sp, #0x28]
-	ldrb r0, [r5]
-	ldr r3, [sp, #0x28]
-	mov r1, #0
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _0222EDFC
-	add r2, r4, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x14]
-	add r3, r3, r6
-	add r0, r0, #4
-	bl GF_STR_PrintColor
-	ldr r0, [sp, #0x2c]
-	add r7, r7, #4
-	add r0, r0, #1
-	str r0, [sp, #0x2c]
-	ldr r0, [sp, #0x20]
-	add r5, r5, #1
-	add r0, r0, #1
-	str r0, [sp, #0x20]
-	cmp r0, #4
-	blt _0222ED5A
-	add r0, r4, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x24]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x1c]
-	mov r1, #0x19
-	str r0, [sp]
-	ldr r3, [sp, #0x14]
-	ldr r0, [sp, #0x18]
-	lsl r1, r1, #4
-	ldr r0, [r0, r1]
-	mov r1, #1
-	mov r2, #0
-	add r3, #0x18
-	bl ArcUtil_HDL_ScrnDataGet
-	ldr r1, [sp, #0x14]
-	str r0, [r1, #0x14]
-	add sp, #0x30
-	pop {r3, r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _0222EDF0: .4byte sc_msgidx
-// _0222EDF4: .4byte sc_pos
-// _0222EDF8: .4byte sOv64_223241C
-// _0222EDFC: .4byte 0x00010200
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
