@@ -3883,7 +3883,7 @@ static void Guru2NameWin_Write(
 	BmpMenuWinWrite(
 		bmp, WINDOW_TRANS_OFF, BGF_CHARNO_MENU, BGF_PANO_TALK_WIN );
 	GF_BGL_BmpWinDataFill( bmp, FBMP_COL_WHITE );
-	GF_STR_PrintColor( bmp, FONT_SYSTEM, name, FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, name, 0, 64 ), 0, MSG_NO_PUT, col, NULL );
+	GF_STR_PrintColor( bmp, FONT_SYSTEM, name, FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, name, 0, BMPSIZE_NAME_X*8 ), 0, MSG_NO_PUT, col, NULL );
 	GF_BGL_BmpWinOnVReq( bmp );
 }
 
