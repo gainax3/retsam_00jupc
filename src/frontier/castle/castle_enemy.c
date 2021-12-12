@@ -292,14 +292,14 @@ static void Castle_SetSubBgGraphic( CASTLE_ENEMY_WORK * wk, u32 frm  );
 //メッセージ
 static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 // MatchComment: new function prototype
-static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode );
+static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode );
 static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font );
 // MatchComment: new function prototype
-static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode );
+static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode );
 static u8 Castle_EasyMsg( CASTLE_ENEMY_WORK* wk, int msg_id, u8 font );
 static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 // MatchComment: add arg a5_mode
-static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode );
+static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, CastleMsgAln a5_mode );
 static void Castle_WazaMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, POKEMON_PARAM* poke );
 static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u32 msg_id, u32 msg_id2, POKEMON_PARAM* poke, u32 id, u32 id2, u32 id3 );
 static void Castle_PokeHpMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win );
@@ -2265,7 +2265,7 @@ extern void ov107_2247650(void);
 
 static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-    return CastleWriteMsg_Full_ov107_2247680( wk, win, msg_id, x, y, wait, f_col, s_col, b_col, font, 0 );
+    return CastleWriteMsg_Full_ov107_2247680( wk, win, msg_id, x, y, wait, f_col, s_col, b_col, font, CASTLE_MSG_ALN_LEFT );
 }
 
 //--------------------------------------------------------------
@@ -2286,7 +2286,7 @@ static u8 CastleWriteMsg( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id,
  * @return	"文字描画ルーチンのインデックス"
  */
 //--------------------------------------------------------------
-static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
+static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode )
 {
 	u8 msg_index;
 
@@ -2297,10 +2297,10 @@ static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWI
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
     switch(a10_mode){
-    case 1:
+    case CASTLE_MSG_ALN_CENTER:
         x -= (FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0) + 1) / 2;
         break;
-    case 2:
+    case CASTLE_MSG_ALN_RIGHT:
         x -= FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0);
         break;
     }
@@ -2314,7 +2314,7 @@ static u8 CastleWriteMsg_Full_ov107_2247680( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWI
 
 static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font )
 {
-    return CastleWriteMsgSimple_Full_ov107_2247744( wk, win, msg_id, x, y, wait, f_col, s_col, b_col, font, 0 );
+    return CastleWriteMsgSimple_Full_ov107_2247744( wk, win, msg_id, x, y, wait, f_col, s_col, b_col, font, CASTLE_MSG_ALN_LEFT );
 }
 
 //--------------------------------------------------------------
@@ -2337,7 +2337,7 @@ static u8 CastleWriteMsgSimple( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int m
  * 塗りつぶしなし
  */
 //--------------------------------------------------------------
-static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, u32 a10_mode )
+static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u32 wait, u8 f_col, u8 s_col, u8 b_col, u8 font, CastleMsgAln a10_mode )
 {
 	u8 msg_index;
 
@@ -2347,10 +2347,10 @@ static u8 CastleWriteMsgSimple_Full_ov107_2247744( CASTLE_ENEMY_WORK* wk, GF_BGL
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
     switch(a10_mode){
-    case 1:
+    case CASTLE_MSG_ALN_CENTER:
         x -= (FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0) + 1) / 2;
         break;
-    case 2:
+    case CASTLE_MSG_ALN_RIGHT:
         x -= FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->msg_buf, 0);
         break;
     }
@@ -2441,54 +2441,55 @@ static void Castle_StatusMsgWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, PO
 
 	//「もちもの」
 	WORDSET_RegisterItemName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_item,NULL) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_01, STATUS_MOTIMONO_X, STATUS_MOTIMONO_Y, 0 );
-	StMsgWriteSub( wk, win,msg_castle_trainer_status_01_01,STATUS_MOTIMONO_NUM_X,STATUS_MOTIMONO_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_01, STATUS_MOTIMONO_X, STATUS_MOTIMONO_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win,msg_castle_trainer_status_01_01,STATUS_MOTIMONO_NUM_X,STATUS_MOTIMONO_Y, CASTLE_MSG_ALN_LEFT );
 
 	//「せいかく」
 	WORDSET_RegisterSeikaku( wk->wordset, 0, PokeSeikakuGet(poke) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_02, STATUS_SEIKAKU_X, STATUS_SEIKAKU_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_02_01, STATUS_SEIKAKU_NUM_X,STATUS_SEIKAKU_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_02, STATUS_SEIKAKU_X, STATUS_SEIKAKU_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_02_01, STATUS_SEIKAKU_NUM_X,STATUS_SEIKAKU_Y, CASTLE_MSG_ALN_LEFT );
 
 	//「とくせい」
 	WORDSET_RegisterTokuseiName( wk->wordset, 0, PokeParaGet(poke,ID_PARA_speabino,NULL) );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_03, STATUS_TOKUSEI_X, STATUS_TOKUSEI_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_03_01, STATUS_TOKUSEI_NUM_X,STATUS_TOKUSEI_Y, 0 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_03, STATUS_TOKUSEI_X, STATUS_TOKUSEI_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_03_01, STATUS_TOKUSEI_NUM_X,STATUS_TOKUSEI_Y, CASTLE_MSG_ALN_LEFT );
 
 	//「こうげき」
 	//OS_Printf( "pow = %d\n", PokeParaGet(poke,ID_PARA_pow,NULL) );
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_pow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_04, STATUS_KOUGEKI_X, STATUS_KOUGEKI_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_04_01, STATUS_KOUGEKI_NUM_X,STATUS_KOUGEKI_Y, 2 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_04, STATUS_KOUGEKI_X, STATUS_KOUGEKI_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_04_01, STATUS_KOUGEKI_NUM_X,STATUS_KOUGEKI_Y, CASTLE_MSG_ALN_RIGHT );
 
 	//「ぼうぎょ」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_def,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_05, STATUS_BOUGYO_X, STATUS_BOUGYO_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_05_01, STATUS_BOUGYO_NUM_X, STATUS_BOUGYO_Y, 2 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_05, STATUS_BOUGYO_X, STATUS_BOUGYO_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_05_01, STATUS_BOUGYO_NUM_X, STATUS_BOUGYO_Y, CASTLE_MSG_ALN_RIGHT );
 
 	//「とくこう」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spepow,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_06, STATUS_TOKUKOU_X, STATUS_TOKUKOU_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_06_01, STATUS_TOKUKOU_NUM_X,STATUS_TOKUKOU_Y, 2 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_06, STATUS_TOKUKOU_X, STATUS_TOKUKOU_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_06_01, STATUS_TOKUKOU_NUM_X,STATUS_TOKUKOU_Y, CASTLE_MSG_ALN_RIGHT );
 
 	//「とくぼう」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_spedef,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_07, STATUS_TOKUBOU_X, STATUS_TOKUBOU_Y, 0 );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_07_01, STATUS_TOKUBOU_NUM_X,STATUS_TOKUBOU_Y, 2 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_07, STATUS_TOKUBOU_X, STATUS_TOKUBOU_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_07_01, STATUS_TOKUBOU_NUM_X,STATUS_TOKUBOU_Y, CASTLE_MSG_ALN_RIGHT );
 
 	//「すばやさ」
 	Castle_SetNumber(	wk, 0, PokeParaGet(poke,ID_PARA_agi,NULL), CASTLE_KETA_STATUS,
 						NUMBER_DISPTYPE_SPACE );
-	StMsgWriteSub( wk, win, msg_castle_trainer_status_08, STATUS_SUBAYASA_X, STATUS_SUBAYASA_Y, 0 );
-	StMsgWriteSub( wk, win,msg_castle_trainer_status_08_01,STATUS_SUBAYASA_NUM_X,STATUS_SUBAYASA_Y, 2 );
+	StMsgWriteSub( wk, win, msg_castle_trainer_status_08, STATUS_SUBAYASA_X, STATUS_SUBAYASA_Y, CASTLE_MSG_ALN_LEFT );
+	StMsgWriteSub( wk, win,msg_castle_trainer_status_08_01,STATUS_SUBAYASA_NUM_X,STATUS_SUBAYASA_Y, CASTLE_MSG_ALN_RIGHT );
 
 	GF_BGL_BmpWinOnVReq( win );
 	return;
 }
-static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, u32 a5_mode )
+
+static void StMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, int msg, u16 x, u16 y, CastleMsgAln a5_mode )
 {
 	CastleWriteMsgSimple_Full_ov107_2247744(	wk, win, msg, x, y, MSG_NO_PUT,
 							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, a5_mode );
@@ -2567,7 +2568,7 @@ static void WazaMsgWriteSub( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u8 no, u
     // has additional argument of 1
 	wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 									msg_id2, point_x, point_y, MSG_NO_PUT,
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 1 );
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_CENTER );
 	return;
 }
 
@@ -3351,7 +3352,7 @@ static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
     // MatchComment: extra arg: 1 (centering)
 	wk->msg_index = CastleWriteMsg_Full_ov107_2247680( wk, &wk->bmpwin[ENEMY_BMPWIN_MODORU],
 									msg_castle_trainer_00_02, 16, 1+4 , MSG_NO_PUT,
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 1 );
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, CASTLE_MSG_ALN_CENTER );
 
 	//下にメニューウィンドウで説明を表示
 	//CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU] );
@@ -4749,7 +4750,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
         //MatchComment: Extra arg of 2 (right-align)
 		wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 									msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 2 );
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 	}else{
 
 		//親、子の画面とも、親、子の順番にCPが表示されるようにする
@@ -4768,7 +4769,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 								CASTLE_KETA_CP, NUMBER_DISPTYPE_SPACE );
 			wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 										msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
-										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 2 );
+										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 
 			//パートナーのCPを表示
 			x = pair_offset_x + INFO_PLAYER_CP_X;
@@ -4777,7 +4778,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 			Castle_SetNumber( wk, 0, wk->pair_cp, CASTLE_KETA_CP, NUMBER_DISPTYPE_SPACE );
 			wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 										msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
-										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 2 );
+										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 
 		//////////////////////////////////////////////////////////////////////////////
 		//子なら
@@ -4789,7 +4790,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 			Castle_SetNumber( wk, 0, wk->pair_cp, CASTLE_KETA_CP, NUMBER_DISPTYPE_SPACE );
 			wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 										msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
-										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 2 );
+										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 
 			x = pair_offset_x + INFO_PLAYER_CP_X;
 			y = pair_offset_y + INFO_PLAYER_CP_Y;
@@ -4802,7 +4803,7 @@ static void CastleEnemy_SeqSubCPWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win
 								CASTLE_KETA_CP, NUMBER_DISPTYPE_SPACE );
 			wk->msg_index = CastleWriteMsgSimple_Full_ov107_2247744( wk, win,
 										msg_castle_trainer_cp_01, x, y , MSG_NO_PUT, 
-										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, 2 );
+										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, BC_FONT, CASTLE_MSG_ALN_RIGHT );
 		}
 	}
 
