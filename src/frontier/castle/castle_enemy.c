@@ -3343,13 +3343,15 @@ static void PokeSexWrite( CASTLE_ENEMY_WORK* wk, GF_BGL_BMPWIN* win, u32 x, u32 
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 {
 	//「もどる」
-	wk->msg_index = CastleWriteMsg( wk, &wk->bmpwin[ENEMY_BMPWIN_MODORU], 
-									msg_castle_trainer_00_02, 1, 1+4 , MSG_NO_PUT, 
-									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM );
+    // MatchComment: Call CastleWriteMsg_Full_ov107_2247680 instead of CastleWriteMsg
+    // MatchComment: x: 1 -> 16
+    // MatchComment: extra arg: 1 (centering)
+	wk->msg_index = CastleWriteMsg_Full_ov107_2247680( wk, &wk->bmpwin[ENEMY_BMPWIN_MODORU],
+									msg_castle_trainer_00_02, 16, 1+4 , MSG_NO_PUT,
+									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 1 );
 
 	//下にメニューウィンドウで説明を表示
 	//CastleWriteMenuWin( wk->bgl, &wk->bmpwin[ENEMY_BMPWIN_TALKMENU] );
@@ -3360,57 +3362,6 @@ static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
 									FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, FONT_TALK );
 	return;
 }
-#else
-asm static void CastleEnemy_Default_Write( CASTLE_ENEMY_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	mov r2, #5
-	str r2, [sp]
-	mov r1, #0xff
-	str r1, [sp, #4]
-	mov r3, #1
-	str r3, [sp, #8]
-	mov r1, #2
-	str r1, [sp, #0xc]
-	mov r1, #0
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r4, r0, #0
-	add r1, r4, #0
-	str r3, [sp, #0x18]
-	add r1, #0x60
-	mov r3, #0x10
-	bl CastleWriteMsg_Full_ov107_2247680
-	strb r0, [r4, #0xa]
-	mov r0, #0x52
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	bl CONFIG_GetWindowType
-	add r1, r0, #0
-	add r0, r4, #0
-	add r0, #0xd0
-	bl CastleTalkWinPut
-	mov r3, #1
-	add r1, r4, #0
-	str r3, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	str r3, [sp, #8]
-	mov r0, #2
-	str r0, [sp, #0xc]
-	mov r0, #0xf
-	str r0, [sp, #0x10]
-	add r0, r4, #0
-	add r1, #0xd0
-	mov r2, #4
-	str r3, [sp, #0x14]
-	bl CastleWriteMsg
-	strb r0, [r4, #0xa]
-	add sp, #0x1c
-	pop {r3, r4, pc}
-}
-#endif
 
 //--------------------------------------------------------------------------------------------
 /**
