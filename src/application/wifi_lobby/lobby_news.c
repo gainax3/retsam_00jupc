@@ -212,6 +212,13 @@ enum {
 
 
 
+//MatchComment: variable message alignment
+enum {
+    NEWSDRAW_ALIGN_LEFT,
+    NEWSDRAW_ALIGN_CENTER,
+    NEWSDRAW_ALIGN_RIGHT,
+} ;
+
 
 
 
@@ -352,14 +359,16 @@ enum {
 	NEWSDRAW_TITLEWIN_NUM,
 } ;
 // アプリ名
-#define NEWSDRAW_TITLEWIN_APLNAME_X		( 11 )		// ビットマップX
+#define NEWSDRAW_TITLEWIN_APLNAME_X		( 6 )		// ビットマップX
 #define NEWSDRAW_TITLEWIN_APLNAME_Y		( 0 )		// ビットマップY
 #define NEWSDRAW_TITLEWIN_APLNAME_SX	( 20 )		// ビットマップサイズX
 #define NEWSDRAW_TITLEWIN_APLNAME_SY	( 8 )		// ビットマップサイズY
 #define NEWSDRAW_TITLEWIN_APLNAME_CGX	( 0x1 )	// CGX
 #define NEWSDRAW_TITLEWIN_APLNAME_PAL	( NEWS_PLTT_TALKFONT )	// パレット
-#define NEWSDRAW_TITLEWIN_APLNAME_DRAW_X	( 0 )
+#define NEWSDRAW_TITLEWIN_APLNAME_DRAW_X	( 80 )
 #define NEWSDRAW_TITLEWIN_APLNAME_DRAW_Y	( 6 )
+#define NEWSDRAW_TITLEWIN_APLNAME_ALIGN     ( NEWSDRAW_ALIGN_CENTER )
+#define NEWSDRAW_TITLEWIN_APLNAME_COLOR     ( NEWSDRAW_TITLEWIN_APL_COL )
 
 // 時間
 #define NEWSDRAW_TITLEWIN_TIME_X		( 0 )		// ビットマップX
@@ -368,8 +377,10 @@ enum {
 #define NEWSDRAW_TITLEWIN_TIME_SY		( 3 )		// ビットマップサイズY
 #define NEWSDRAW_TITLEWIN_TIME_CGX		( NEWSDRAW_TITLEWIN_APLNAME_CGX + (NEWSDRAW_TITLEWIN_APLNAME_SX*NEWSDRAW_TITLEWIN_APLNAME_SY) )	// CGX
 #define NEWSDRAW_TITLEWIN_TIME_PAL		( NEWS_PLTT_FONT )	// パレット
-#define NEWSDRAW_TITLEWIN_TIME_DRAW_X	( 2 )
+#define NEWSDRAW_TITLEWIN_TIME_DRAW_X	( 16 )
 #define NEWSDRAW_TITLEWIN_TIME_DRAW_Y	( 4 )
+#define NEWSDRAW_TITLEWIN_TIME_ALIGN    ( NEWSDRAW_ALIGN_CENTER )
+#define NEWSDRAW_TITLEWIN_TIME_COLOR    ( NEWSDRAW_TITLEWIN_COL )
 
 // プレイヤー表示
 #define NEWSDRAW_TITLEWIN_PLAYER_X		( 15 )		// ビットマップX
@@ -378,8 +389,10 @@ enum {
 #define NEWSDRAW_TITLEWIN_PLAYER_SY		( 5 )		// ビットマップサイズY
 #define NEWSDRAW_TITLEWIN_PLAYER_CGX	( NEWSDRAW_TITLEWIN_TIME_CGX + (NEWSDRAW_TITLEWIN_TIME_SX*NEWSDRAW_TITLEWIN_TIME_SY) )	// CGX
 #define NEWSDRAW_TITLEWIN_PLAYER_PAL	( NEWS_PLTT_FONT )	// パレット
-#define NEWSDRAW_TITLEWIN_PLAYER_DRAW_X	( 4 )
+#define NEWSDRAW_TITLEWIN_PLAYER_DRAW_X	( 24 )
 #define NEWSDRAW_TITLEWIN_PLAYER_DRAW_Y	( 4 )
+#define NEWSDRAW_TITLEWIN_PLAYER_ALIGN  ( NEWSDRAW_ALIGN_CENTER )
+#define NEWSDRAW_TITLEWIN_PLAYER_COLOR  ( NEWSDRAW_TITLEWIN_COL )
 
 // トピック表示
 #define NEWSDRAW_TITLEWIN_TOPIC_X		( 4 )		// ビットマップX
@@ -390,58 +403,10 @@ enum {
 #define NEWSDRAW_TITLEWIN_TOPIC_PAL		( NEWS_PLTT_FONT )	// パレット
 #define NEWSDRAW_TITLEWIN_TOPIC_DRAW_X	( 4 )
 #define NEWSDRAW_TITLEWIN_TOPIC_DRAW_Y	( 4 )
+#define NEWSDRAW_TITLEWIN_TOPIC_ALIGN   ( NEWSDRAW_ALIGN_LEFT )
+#define NEWSDRAW_TITLEWIN_TOPIC_COLOR   ( NEWSDRAW_TITLEWIN_COL )
 
-#ifdef NONEQUIVALENT
-typedef struct{
-	u8	x;
-	u8	y;
-	u8	sizx;
-	u8	sizy;
-	u16	cgx;
-	u8	pal;
-	u8	dx:4;
-	u8	dy:4;
-} NEWSDRAW_BMPDATA;
-static const NEWSDRAW_BMPDATA NEWSDRAW_TITLE_BMPDATA[ NEWSDRAW_TITLEWIN_NUM ] = {
-	{
-		NEWSDRAW_TITLEWIN_APLNAME_X,
-		NEWSDRAW_TITLEWIN_APLNAME_Y, 
-		NEWSDRAW_TITLEWIN_APLNAME_SX, 
-		NEWSDRAW_TITLEWIN_APLNAME_SY,
-		NEWSDRAW_TITLEWIN_APLNAME_CGX,
-		NEWSDRAW_TITLEWIN_APLNAME_PAL,
-		NEWSDRAW_TITLEWIN_APLNAME_DRAW_X,NEWSDRAW_TITLEWIN_APLNAME_DRAW_Y
-	},
-	{
-		NEWSDRAW_TITLEWIN_TIME_X,
-		NEWSDRAW_TITLEWIN_TIME_Y, 
-		NEWSDRAW_TITLEWIN_TIME_SX, 
-		NEWSDRAW_TITLEWIN_TIME_SY,
-		NEWSDRAW_TITLEWIN_TIME_CGX,
-		NEWSDRAW_TITLEWIN_TIME_PAL,
-		NEWSDRAW_TITLEWIN_TIME_DRAW_X,NEWSDRAW_TITLEWIN_TIME_DRAW_Y
-	},
-	{
-		NEWSDRAW_TITLEWIN_PLAYER_X,
-		NEWSDRAW_TITLEWIN_PLAYER_Y, 
-		NEWSDRAW_TITLEWIN_PLAYER_SX, 
-		NEWSDRAW_TITLEWIN_PLAYER_SY,
-		NEWSDRAW_TITLEWIN_PLAYER_CGX,
-		NEWSDRAW_TITLEWIN_PLAYER_PAL,
-		NEWSDRAW_TITLEWIN_PLAYER_DRAW_X, NEWSDRAW_TITLEWIN_PLAYER_DRAW_Y
-	},
-	{
-		NEWSDRAW_TITLEWIN_TOPIC_X,
-		NEWSDRAW_TITLEWIN_TOPIC_Y, 
-		NEWSDRAW_TITLEWIN_TOPIC_SX, 
-		NEWSDRAW_TITLEWIN_TOPIC_SY,
-		NEWSDRAW_TITLEWIN_TOPIC_CGX,
-		NEWSDRAW_TITLEWIN_TOPIC_PAL,
-		NEWSDRAW_TITLEWIN_TOPIC_DRAW_X, NEWSDRAW_TITLEWIN_TOPIC_DRAW_Y
-	},
-};
-#else
-// MatchComment: struct definition changed + TODO__fix_me use constants + color maker
+// MatchComment: struct definition changed
 typedef struct{
 	u8	x;
 	u8	y;
@@ -451,56 +416,55 @@ typedef struct{
 	u8	pal;
 	u8	dx;
 	u8	dy;
-    u8  unk09Switch;
+    u8  alignment;
     GF_PRINTCOLOR color;
 } NEWSDRAW_BMPDATA;
 static const NEWSDRAW_BMPDATA NEWSDRAW_TITLE_BMPDATA[ NEWSDRAW_TITLEWIN_NUM ] = {
-	{
-		6,
-		0,
-		20,
-		8,
-		1,
-		10,
-		80, 6,
-		1,
-		0x00030400,
-	},
-	{
-		0,
-		6,
-		6,
-		3,
-		161,
-		7,
-		16, 4,
-		1,
-		0x000d0e00,
-	},
-	{
-		15,
-		6,
-		6,
-		5,
-		179,
-		7,
-		24, 4,
-		1,
-		0x000d0e00,
-	},
-	{
-		4,
-		12,
-		18,
-		3,
-		209,
-		7,
-		4, 4,
-		0,
-		0x000d0e00,
-	},
+    {
+        NEWSDRAW_TITLEWIN_APLNAME_X,
+        NEWSDRAW_TITLEWIN_APLNAME_Y,
+        NEWSDRAW_TITLEWIN_APLNAME_SX,
+        NEWSDRAW_TITLEWIN_APLNAME_SY,
+        NEWSDRAW_TITLEWIN_APLNAME_CGX,
+        NEWSDRAW_TITLEWIN_APLNAME_PAL,
+        NEWSDRAW_TITLEWIN_APLNAME_DRAW_X,NEWSDRAW_TITLEWIN_APLNAME_DRAW_Y,
+        NEWSDRAW_TITLEWIN_APLNAME_ALIGN,
+        NEWSDRAW_TITLEWIN_APLNAME_COLOR,
+    },
+    {
+        NEWSDRAW_TITLEWIN_TIME_X,
+        NEWSDRAW_TITLEWIN_TIME_Y,
+        NEWSDRAW_TITLEWIN_TIME_SX,
+        NEWSDRAW_TITLEWIN_TIME_SY,
+        NEWSDRAW_TITLEWIN_TIME_CGX,
+        NEWSDRAW_TITLEWIN_TIME_PAL,
+        NEWSDRAW_TITLEWIN_TIME_DRAW_X,NEWSDRAW_TITLEWIN_TIME_DRAW_Y,
+        NEWSDRAW_TITLEWIN_TIME_ALIGN,
+        NEWSDRAW_TITLEWIN_TIME_COLOR,
+    },
+    {
+        NEWSDRAW_TITLEWIN_PLAYER_X,
+        NEWSDRAW_TITLEWIN_PLAYER_Y,
+        NEWSDRAW_TITLEWIN_PLAYER_SX,
+        NEWSDRAW_TITLEWIN_PLAYER_SY,
+        NEWSDRAW_TITLEWIN_PLAYER_CGX,
+        NEWSDRAW_TITLEWIN_PLAYER_PAL,
+        NEWSDRAW_TITLEWIN_PLAYER_DRAW_X, NEWSDRAW_TITLEWIN_PLAYER_DRAW_Y,
+        NEWSDRAW_TITLEWIN_PLAYER_ALIGN,
+        NEWSDRAW_TITLEWIN_PLAYER_COLOR,
+    },
+    {
+        NEWSDRAW_TITLEWIN_TOPIC_X,
+        NEWSDRAW_TITLEWIN_TOPIC_Y,
+        NEWSDRAW_TITLEWIN_TOPIC_SX,
+        NEWSDRAW_TITLEWIN_TOPIC_SY,
+        NEWSDRAW_TITLEWIN_TOPIC_CGX,
+        NEWSDRAW_TITLEWIN_TOPIC_PAL,
+        NEWSDRAW_TITLEWIN_TOPIC_DRAW_X, NEWSDRAW_TITLEWIN_TOPIC_DRAW_Y,
+        NEWSDRAW_TITLEWIN_TOPIC_ALIGN,
+        NEWSDRAW_TITLEWIN_TOPIC_COLOR,
+    },
 };
-#endif
 
 // パレットオフセット
 static u16 NEWSDRAW_TITLEWIN_PLTT_OFFS[ NEWSDRAW_TITLEWIN_NUM ] = {
@@ -2291,7 +2255,6 @@ static void NEWSDRAW_TopicDraw( const NEWSDRAW_TOPIC* cp_wk, GF_BGL_BMPWIN* p_bm
  *	@param	heapID		ヒープ
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID )
 {
 	int i;
@@ -2338,192 +2301,53 @@ static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_
 		}
 //*/
 
+        //MatchComment: Multiline string with runtime-computed alignment
+        {
+            u32     nline;
+            STRBUF* line;
+            u32     j;
+            u32     dx,dy;
 
-		if( i==NEWSDRAW_TITLEWIN_APLNAME ){
-			GF_STR_PrintColor(
-				&p_wk->bmp[i], FONT_SYSTEM, p_str, NEWSDRAW_TITLE_BMPDATA[i].dx,
-				NEWSDRAW_TITLE_BMPDATA[i].dy, MSG_NO_PUT, NEWSDRAW_TITLEWIN_APL_COL, NULL );
-		}else{
-	
-			GF_STR_PrintColor(
-				&p_wk->bmp[i], FONT_SYSTEM, p_str, NEWSDRAW_TITLE_BMPDATA[i].dx,
-				NEWSDRAW_TITLE_BMPDATA[i].dy, MSG_NO_PUT, NEWSDRAW_TITLEWIN_COL, NULL );
-		}
-		
-		GF_BGL_BmpWinOnVReq( &p_wk->bmp[i] );
-	}
+            nline = STRBUF_GetLines(p_str);
+            dy = NEWSDRAW_TITLE_BMPDATA[i].dy;
+            line = STRBUF_Create(STRBUF_GetLen(p_str)+1, heapID);
+            for(j = 0; j < nline; j++){
+                STRBUF_CopyLine(line, p_str, j);
+                switch(NEWSDRAW_TITLE_BMPDATA[i].alignment){
+                case 0:
+                    dx = NEWSDRAW_TITLE_BMPDATA[i].dx;
+                    break;
+                case 1:
+                    dx = NEWSDRAW_TITLE_BMPDATA[i].dx - (FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, line, 0)+1)/2;
+                    break;
+                case 2:
+                    dx = NEWSDRAW_TITLE_BMPDATA[i].dx - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, line, 0);
+                    break;
+                }
+//		if( i==NEWSDRAW_TITLEWIN_APLNAME ){
+                GF_STR_PrintColor(
+                    &p_wk->bmp[i], FONT_SYSTEM, line, dx,
+                    dy, MSG_NO_PUT, NEWSDRAW_TITLE_BMPDATA[i].color, NULL );
+//		}else{
+//
+//			GF_STR_PrintColor(
+//				&p_wk->bmp[i], FONT_SYSTEM, p_str, NEWSDRAW_TITLE_BMPDATA[i].dx,
+//				NEWSDRAW_TITLE_BMPDATA[i].dy, MSG_NO_PUT, NEWSDRAW_TITLEWIN_COL, NULL );
+//		}
+
+                dy += 16;
+
+            }
+            STRBUF_Delete( line );
+        }
+
+        GF_BGL_BmpWinOnVReq( &p_wk->bmp[i] );
+    }
 
 	// メッセージデータ破棄
 	STRBUF_Delete( p_str );
 	MSGMAN_Delete( p_msgman );
 }
-#else
-asm static void NEWSDRAW_TitleWinInit( NEWSDRAW_TITLEWIN* p_wk, NEWSDRAW_DRAWSYS* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x40
-	str r1, [sp, #0x18]
-	str r2, [sp, #0x1c]
-	mov r1, #0
-	mov r2, #0x70
-	str r0, [sp, #0x14]
-	bl memset
-	ldr r2, =0x0000028D // _0225D6CC
-	ldr r3, [sp, #0x1c]
-	mov r0, #0
-	mov r1, #0x1a
-	bl MSGMAN_Create
-	str r0, [sp, #0x38]
-	ldr r1, [sp, #0x1c]
-	mov r0, #0x80
-	bl STRBUF_Create
-	str r0, [sp, #0x34]
-	mov r0, #0
-	str r0, [sp, #0x3c]
-	ldr r0, =NEWSDRAW_TITLEWIN_SND_TBL // _0225D6D0
-	ldr r5, =NEWSDRAW_TITLE_BMPDATA // _0225D6D4
-	str r0, [sp, #0x28]
-	ldr r0, =NEWSDRAW_TITLEWIN_PLTT_OFFS // _0225D6D8
-	str r0, [sp, #0x24]
-	ldr r0, [sp, #0x14]
-	str r0, [sp, #0x20]
-	add r0, #0x40
-	str r0, [sp, #0x20]
-_0225D5BC:
-	ldr r1, [sp, #0x24]
-	ldr r2, [sp, #0x28]
-	ldrh r1, [r1]
-	ldr r0, [sp, #0x20]
-	ldr r2, [r2, #0]
-	bl NEWSDRAW_TitleEffInit
-	ldrb r0, [r5, #1]
-	ldr r1, [sp, #0x14]
-	mov r2, #0
-	str r0, [sp]
-	ldrb r0, [r5, #2]
-	str r0, [sp, #4]
-	ldrb r0, [r5, #3]
-	str r0, [sp, #8]
-	ldrb r0, [r5, #6]
-	str r0, [sp, #0xc]
-	ldrh r0, [r5, #4]
-	str r0, [sp, #0x10]
-	ldr r0, [sp, #0x18]
-	ldrb r3, [r5]
-	ldr r0, [r0, #0]
-	bl GF_BGL_BmpWinAdd
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [sp, #0x38]
-	ldr r1, [sp, #0x3c]
-	ldr r2, [sp, #0x34]
-	bl MSGMAN_GetString
-	ldr r0, [sp, #0x34]
-	bl STRBUF_GetLines
-	str r0, [sp, #0x30]
-	ldr r0, [sp, #0x34]
-	ldrb r6, [r5, #8]
-	bl STRBUF_GetLen
-	ldr r1, [sp, #0x1c]
-	add r0, r0, #1
-	bl STRBUF_Create
-	add r4, r0, #0
-	ldr r0, [sp, #0x30]
-	mov r7, #0
-	cmp r0, #0
-	bls _0225D68A
-_0225D620:
-	ldr r1, [sp, #0x34]
-	add r0, r4, #0
-	add r2, r7, #0
-	bl STRBUF_CopyLine
-	ldrb r0, [r5, #9]
-	cmp r0, #0
-	beq _0225D63A
-	cmp r0, #1
-	beq _0225D640
-	cmp r0, #2
-	beq _0225D656
-	b _0225D666
-_0225D63A:
-	ldrb r0, [r5, #7]
-	str r0, [sp, #0x2c]
-	b _0225D666
-_0225D640:
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	add r0, r0, #1
-	ldrb r1, [r5, #7]
-	lsr r0, r0, #1
-	sub r0, r1, r0
-	str r0, [sp, #0x2c]
-	b _0225D666
-_0225D656:
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	ldrb r1, [r5, #7]
-	sub r0, r1, r0
-	str r0, [sp, #0x2c]
-_0225D666:
-	str r6, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, [r5, #0xc]
-	ldr r3, [sp, #0x2c]
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	add r2, r4, #0
-	bl GF_STR_PrintColor
-	ldr r0, [sp, #0x30]
-	add r7, r7, #1
-	add r6, #0x10
-	cmp r7, r0
-	blo _0225D620
-_0225D68A:
-	add r0, r4, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x14]
-	bl GF_BGL_BmpWinOnVReq
-	ldr r0, [sp, #0x28]
-	add r5, #0x10
-	add r0, r0, #4
-	str r0, [sp, #0x28]
-	ldr r0, [sp, #0x24]
-	add r0, r0, #2
-	str r0, [sp, #0x24]
-	ldr r0, [sp, #0x20]
-	add r0, #0xc
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x14]
-	add r0, #0x10
-	str r0, [sp, #0x14]
-	ldr r0, [sp, #0x3c]
-	add r0, r0, #1
-	str r0, [sp, #0x3c]
-	cmp r0, #4
-	blt _0225D5BC
-	ldr r0, [sp, #0x34]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x38]
-	bl MSGMAN_Delete
-	add sp, #0x40
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _0225D6CC: .4byte 0x0000028D
-// _0225D6D0: .4byte NEWSDRAW_TITLEWIN_SND_TBL
-// _0225D6D4: .4byte NEWSDRAW_TITLE_BMPDATA
-// _0225D6D8: .4byte NEWSDRAW_TITLEWIN_PLTT_OFFS
-}
-#endif
-
 //----------------------------------------------------------------------------
 /**
  *	@brief	タイトルウィンドウ破棄
