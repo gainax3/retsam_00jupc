@@ -683,15 +683,15 @@ enum{
 
 #define WFNOTE_FRIENDINFO_PAGE03_TT_X	( 0 )	// タイトル
 #define WFNOTE_FRIENDINFO_PAGE03_TT_Y	( 0 )	// タイトル
-#define WFNOTE_FRIENDINFO_PAGE03_CPT_X	( 104 )	// キャッスルポイントタイトル
+#define WFNOTE_FRIENDINFO_PAGE03_CPT_X	( 224 )	// キャッスルポイントタイトル
 #define WFNOTE_FRIENDINFO_PAGE03_CPT_Y	( 20 )	// キャッスルポイントタイトル
 #define WFNOTE_FRIENDINFO_PAGE03_CPLT_X	( 0 )	// キャッスルポイント前回
-#define WFNOTE_FRIENDINFO_PAGE03_CPLN0_X	( 56 )	// キャッスルポイント前回
-#define WFNOTE_FRIENDINFO_PAGE03_CPLN1_X	( 168 )	// キャッスルポイント前回
+#define WFNOTE_FRIENDINFO_PAGE03_CPLN0_X	( 112 )	// キャッスルポイント前回
+#define WFNOTE_FRIENDINFO_PAGE03_CPLN1_X	( 224 )	// キャッスルポイント前回
 #define WFNOTE_FRIENDINFO_PAGE03_CPL_Y	( 48 )	// キャッスルポイント前回
 #define WFNOTE_FRIENDINFO_PAGE03_CPMT_X	( 0 )	// キャッスルポイント最大
-#define WFNOTE_FRIENDINFO_PAGE03_CPMN0_X	( 56 )	// キャッスルポイント最大
-#define WFNOTE_FRIENDINFO_PAGE03_CPMN1_X	( 168 )	// キャッスルポイント最大
+#define WFNOTE_FRIENDINFO_PAGE03_CPMN0_X	( 112 )	// キャッスルポイント最大
+#define WFNOTE_FRIENDINFO_PAGE03_CPMN1_X	( 224 )	// キャッスルポイント最大
 #define WFNOTE_FRIENDINFO_PAGE03_CPM_Y	( 72 )	// キャッスルポイント最大
 
 
@@ -6364,7 +6364,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_tmp );
 }
 
-#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6383,11 +6382,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_38, 
 			WFNOTE_FRIENDINFO_PAGE03_TT_X, WFNOTE_FRIENDINFO_PAGE03_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_46, 
 			WFNOTE_FRIENDINFO_PAGE03_CPT_X, WFNOTE_FRIENDINFO_PAGE03_CPT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 	// 前回
 	clear_flag = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_CLEAR_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6399,42 +6398,42 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, stridx, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLT_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	// くりあ
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_51, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLN0_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 	// CP
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_CP, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_50, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLN1_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 
 	// 最高
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_42, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMT_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	// くりあ
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_51, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMN0_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
 	// CP
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_REMAINDER_CP, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_50, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMN1_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 4 );
@@ -6443,229 +6442,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
-#else
-asm static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x28
-	add r5, r1, #0
-	str r0, [sp, #0x20]
-	ldr r0, [r5, #0]
-	add r6, r3, #0
-	add r4, r2, #0
-	bl SaveData_GetFrontier
-	str r0, [sp, #0x24]
-	mov r0, #0x80
-	add r1, r6, #0
-	bl STRBUF_Create
-	add r7, r0, #0
-	mov r0, #0x80
-	add r1, r6, #0
-	bl STRBUF_Create
-	add r6, r0, #0
-	str r4, [sp]
-	mov r0, #0x1b
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	ldr r0, =0x00010200 // _02231BDC
-	str r2, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	str r2, [sp, #0x1c]
-	mov r1, #4
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x24
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0x14
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x6c
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	cmp r0, #0
-	bne _02231A86
-	mov r0, #0x1e
-	b _02231A88
-_02231A86:
-	mov r0, #0x1f
-_02231A88:
-	str r4, [sp]
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	mov r0, #0x30
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x87
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x29
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0x30
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x88
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x28
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0x30
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	str r4, [sp]
-	mov r0, #0x20
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	mov r0, #0x48
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x86
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x29
-	str r0, [sp, #4]
-	mov r0, #0x70
-	str r0, [sp, #8]
-	mov r0, #0x48
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #1
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r2, #7
-	ldrsb r2, [r5, r2]
-	ldr r0, [sp, #0x24]
-	mov r1, #0x8a
-	add r2, r5, r2
-	ldrb r2, [r2, #0xc]
-	bl FrontierRecord_Get
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x28
-	str r0, [sp, #4]
-	mov r0, #0xe0
-	str r0, [sp, #8]
-	mov r0, #0x48
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02231BDC
-	mov r1, #4
-	str r0, [sp, #0x10]
-	str r7, [sp, #0x14]
-	str r6, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	ldr r0, [sp, #0x20]
-	mov r1, #4
-	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
-	add r0, r7, #0
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add sp, #0x28
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _02231BDC: .4byte 0x00010200
-}
-#endif
 
 #ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
