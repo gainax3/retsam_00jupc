@@ -105,7 +105,7 @@ enum{
 
 	INFO_PLAYER_X			= (0), // MatchComment: 1 -> 0 
 	INFO_PLAYER_Y			= (0), // MatchComment: 1 -> 0
-	INFO_PLAYER_CP_X		= (7*8), 
+	INFO_PLAYER_CP_X		= (13*8),
 	INFO_PLAYER_CP_Y		= (INFO_PLAYER_Y),
 };
 
