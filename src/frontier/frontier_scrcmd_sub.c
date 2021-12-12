@@ -96,7 +96,9 @@ typedef struct _FSEV_WIN{
 	u8  cursor_pos;								//カーソル位置
 	u8  cancel:1;								//キャンセル
 	u8  msgman_del_flag:1;						//メッセージマネージャー削除フラグ
-	u8  dmy:6;									//
+	u8  dmy:4;									//
+    u8  unk_97_x40:1;
+    u8  unk_97_x80:1;
 
 	u8  x;										//ウィンドウ位置X
 	u8  y;										//ウィンドウ位置Y
@@ -479,7 +481,6 @@ void FSSC_Sub_BmpMenu_MakeList( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 {
 	u32 len;
@@ -495,6 +496,12 @@ void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 		len = (len / 8)+1;
 	}
 
+    if(wk->unk_97_x40){
+        wk->x -= len;
+    }
+    if(wk->unk_97_x80){
+        wk->y -= wk->list_no * 2;
+    }
 	GF_BGL_BmpWinAdd( fmap->bgl, &wk->bmpwin, FRMAP_FRAME_WIN, wk->x, wk->y, 
 									len, wk->list_no*2, FFD_SYSFONT_PAL, FFD_FREE_CGX );
 
@@ -517,117 +524,6 @@ void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
 
 	return;
 }
-#else
-asm void FSSC_Sub_BmpMenu_Start( FSEVWIN_PTR wk )
-{
-	push {r4, r5, lr}
-	sub sp, #0x14
-	add r5, r0, #0
-	ldr r0, [r5, #0]
-	bl FSS_GetFMapAdrs
-	add r4, r0, #0
-	add r0, r5, #0
-	bl BmpMenu_length_get
-	mov r1, #7
-	tst r1, r0
-	bne _022322CE
-	lsr r0, r0, #3
-	b _022322D2
-_022322CE:
-	lsr r0, r0, #3
-	add r0, r0, #1
-_022322D2:
-	add r1, r5, #0
-	add r1, #0x97
-	ldrb r1, [r1]
-	lsl r1, r1, #0x19
-	lsr r1, r1, #0x1f
-	beq _022322EC
-	add r1, r5, #0
-	add r1, #0x98
-	ldrb r1, [r1]
-	sub r2, r1, r0
-	add r1, r5, #0
-	add r1, #0x98
-	strb r2, [r1]
-_022322EC:
-	add r1, r5, #0
-	add r1, #0x97
-	ldrb r1, [r1]
-	lsl r1, r1, #0x18
-	lsr r1, r1, #0x1f
-	beq _0223230E
-	add r1, r5, #0
-	add r1, #0x99
-	ldrb r2, [r1]
-	add r1, r5, #0
-	add r1, #0x9b
-	ldrb r1, [r1]
-	lsl r1, r1, #1
-	sub r2, r2, r1
-	add r1, r5, #0
-	add r1, #0x99
-	strb r2, [r1]
-_0223230E:
-	add r1, r5, #0
-	add r1, #0x99
-	ldrb r1, [r1]
-	lsl r0, r0, #0x18
-	add r3, r5, #0
-	str r1, [sp]
-	lsr r0, r0, #0x18
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r0, #0x9b
-	ldrb r0, [r0]
-	add r1, r5, #0
-	mov r2, #1
-	lsl r0, r0, #0x19
-	lsr r0, r0, #0x18
-	str r0, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	str r2, [sp, #0x10]
-	add r3, #0x98
-	ldrb r3, [r3]
-	ldr r0, [r4, #0]
-	add r1, #8
-	bl GF_BGL_BmpWinAdd
-	add r0, r5, #0
-	ldr r2, =0x000003D9 // _02232388
-	add r0, #8
-	mov r1, #1
-	mov r3, #0xc
-	bl BmpMenuWinWrite
-	add r0, r5, #0
-	bl BmpMenu_h_default_set
-	ldr r2, [r5, #0]
-	add r1, r5, #0
-	add r1, #0x96
-	ldr r2, [r2, #0x34]
-	add r0, r5, #0
-	lsl r2, r2, #0x18
-	ldrb r1, [r1]
-	add r0, #0xa4
-	lsr r2, r2, #0x18
-	bl BmpMenuAdd
-	add r1, r5, #0
-	add r1, #0xb0
-	str r0, [r1, #0]
-	add r0, r5, #0
-	bl menu_talk_msg_update
-	ldr r0, =EvBmpMenu_MainTCB // _0223238C
-	add r1, r5, #0
-	mov r2, #0
-	bl TCB_Add
-	str r0, [r5, #4]
-	add sp, #0x14
-	pop {r4, r5, pc}
-	nop
-// _02232388: .4byte 0x000003D9
-// _0223238C: .4byte EvBmpMenu_MainTCB
-}
-#endif
 
 //--------------------------------------------------------------
 /**
@@ -948,7 +844,6 @@ void FSSC_Sub_BmpList_MakeList( FSEVWIN_PTR wk, u32 msg_id, u32 talk_msg_id, u32
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 {
 	u32 len;
@@ -964,11 +859,20 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 		len = (len / 8)+1;
 	}
 
+    if(wk->unk_97_x40){
+        wk->x -= len;
+    }
 	//表示最大項目数チェック
 	if( wk->list_no > EV_LIST_LINE ){
+        if(wk->unk_97_x80){
+            wk->y -= EV_LIST_LINE * 2;
+        }
 		GF_BGL_BmpWinAdd( fmap->bgl, &wk->bmpwin, FRMAP_FRAME_WIN, wk->x, wk->y, 
 									len, EV_LIST_LINE*2, FFD_SYSFONT_PAL, FFD_FREE_CGX );
 	}else{
+        if(wk->unk_97_x80){
+            wk->y -= wk->list_no * 2;
+        }
 		GF_BGL_BmpWinAdd( fmap->bgl, &wk->bmpwin, FRMAP_FRAME_WIN, wk->x, wk->y, 
 									len, wk->list_no*2, FFD_SYSFONT_PAL, FFD_FREE_CGX );
 	}
@@ -997,158 +901,6 @@ void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
 
 	return;
 }
-#else
-asm void FSSC_Sub_BmpList_Start( FSEVWIN_PTR wk )
-{
-	push {r4, r5, lr}
-	sub sp, #0x14
-	add r5, r0, #0
-	ldr r0, [r5, #0]
-	bl FSS_GetFMapAdrs
-	add r4, r0, #0
-	add r0, r5, #0
-	bl BmpList_length_get
-	mov r1, #7
-	tst r1, r0
-	bne _02232642
-	lsr r1, r0, #3
-	b _02232646
-_02232642:
-	lsr r0, r0, #3
-	add r1, r0, #1
-_02232646:
-	add r0, r5, #0
-	add r0, #0x97
-	ldrb r0, [r0]
-	lsl r0, r0, #0x19
-	lsr r0, r0, #0x1f
-	beq _02232660
-	add r0, r5, #0
-	add r0, #0x98
-	ldrb r0, [r0]
-	sub r2, r0, r1
-	add r0, r5, #0
-	add r0, #0x98
-	strb r2, [r0]
-_02232660:
-	add r0, r5, #0
-	add r0, #0x9b
-	ldrb r0, [r0]
-	cmp r0, #8
-	bls _022326B0
-	add r0, r5, #0
-	add r0, #0x97
-	ldrb r0, [r0]
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x1f
-	beq _02232684
-	add r0, r5, #0
-	add r0, #0x99
-	ldrb r2, [r0]
-	add r0, r5, #0
-	add r0, #0x99
-	sub r2, #0x10
-	strb r2, [r0]
-_02232684:
-	add r0, r5, #0
-	add r0, #0x99
-	ldrb r0, [r0]
-	add r3, r5, #0
-	mov r2, #1
-	str r0, [sp]
-	lsl r0, r1, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp, #4]
-	mov r0, #0x10
-	str r0, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	str r2, [sp, #0x10]
-	add r3, #0x98
-	add r1, r5, #0
-	ldrb r3, [r3]
-	ldr r0, [r4, #0]
-	add r1, #8
-	bl GF_BGL_BmpWinAdd
-	b _022326FE
-_022326B0:
-	add r2, r5, #0
-	add r2, #0x97
-	ldrb r2, [r2]
-	lsl r2, r2, #0x18
-	lsr r2, r2, #0x1f
-	beq _022326CC
-	add r2, r5, #0
-	add r2, #0x99
-	ldrb r2, [r2]
-	lsl r0, r0, #1
-	sub r2, r2, r0
-	add r0, r5, #0
-	add r0, #0x99
-	strb r2, [r0]
-_022326CC:
-	add r0, r5, #0
-	add r0, #0x99
-	ldrb r0, [r0]
-	add r3, r5, #0
-	mov r2, #1
-	str r0, [sp]
-	lsl r0, r1, #0x18
-	lsr r0, r0, #0x18
-	str r0, [sp, #4]
-	add r0, r5, #0
-	add r0, #0x9b
-	ldrb r0, [r0]
-	add r1, r5, #0
-	add r3, #0x98
-	lsl r0, r0, #0x19
-	lsr r0, r0, #0x18
-	str r0, [sp, #8]
-	mov r0, #0xe
-	str r0, [sp, #0xc]
-	str r2, [sp, #0x10]
-	ldrb r3, [r3]
-	ldr r0, [r4, #0]
-	add r1, #8
-	bl GF_BGL_BmpWinAdd
-_022326FE:
-	add r0, r5, #0
-	ldr r2, =0x000003D9 // _02232748
-	add r0, #8
-	mov r1, #1
-	mov r3, #0xc
-	bl BmpMenuWinWrite
-	add r0, r5, #0
-	bl BmpList_h_default_set
-	ldr r3, [r5, #0]
-	add r2, r5, #0
-	add r2, #0x96
-	ldr r3, [r3, #0x34]
-	mov r0, #0x65
-	lsl r0, r0, #2
-	lsl r3, r3, #0x18
-	ldrb r2, [r2]
-	add r0, r5, r0
-	mov r1, #0
-	lsr r3, r3, #0x18
-	bl BmpListSet
-	mov r1, #0x6d
-	lsl r1, r1, #2
-	str r0, [r5, r1]
-	add r0, r5, #0
-	bl list_talk_msg_update
-	ldr r0, =EvBmpList_MainTCB // _0223274C
-	add r1, r5, #0
-	mov r2, #0
-	bl TCB_Add
-	str r0, [r5, #4]
-	add sp, #0x14
-	pop {r4, r5, pc}
-	// .align 2, 0
-// _02232748: .4byte 0x000003D9
-// _0223274C: .4byte EvBmpList_MainTCB
-}
-#endif
 
 //--------------------------------------------------------------
 /**
@@ -2195,42 +1947,12 @@ void FSSC_Sub_Window(TCB_PTR tcb, void *work)
 	}
 }
 
-extern void ov104_223327C(void);
-// NONMATCHING
-asm void ov104_223327C(void)
+void ov104_223327C(FSEVWIN_PTR ev_win, int value)
 {
-	add r2, r0, #0
-	add r2, #0x97
-	ldrb r3, [r2]
-	lsl r1, r1, #0x18
-	lsr r1, r1, #0x18
-	mov r2, #0x40
-	lsl r1, r1, #0x1f
-	bic r3, r2
-	lsr r1, r1, #0x19
-	orr r1, r3
-	add r0, #0x97
-	strb r1, [r0]
-	bx lr
-	// .align 2, 0
+    ev_win->unk_97_x40 = value;
 }
 
-extern void ov104_2233298(void);
-// NONMATCHING
-asm void ov104_2233298(void)
+void ov104_2233298(FSEVWIN_PTR ev_win, int value)
 {
-	add r2, r0, #0
-	add r2, #0x97
-	ldrb r3, [r2]
-	lsl r1, r1, #0x18
-	lsr r1, r1, #0x18
-	mov r2, #0x80
-	lsl r1, r1, #0x1f
-	bic r3, r2
-	lsr r1, r1, #0x18
-	orr r1, r3
-	add r0, #0x97
-	strb r1, [r0]
-	bx lr
-	// .align 2, 0
+    ev_win->unk_97_x80 = value;
 }

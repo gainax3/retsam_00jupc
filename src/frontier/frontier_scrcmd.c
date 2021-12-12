@@ -23,9 +23,9 @@
 #include "poketool/status_rcv.h"		//PokeParty_RecoverAll
 #include "system/procsys.h"
 
-//#include "battle/fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
-//#include "battle/client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢ƒ/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/fight_def.h"		///<BattleWork‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/server_def.h"		///<ServerParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
+//#include "battle/client_def.h"		///<ClientParam‚Ö‚ÌˆË‘¶“x‚ª‚‚¢?/[ƒX‚È‚Ì‚ÅA‹–‰Â
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
@@ -4333,33 +4333,19 @@ static BOOL FSSC_CommSetWifiBothNet( FSS_TASK * core )
 }
 
 // NONMATCHING
-static asm BOOL ov104_2231F44( FSS_TASK * core )
+static BOOL ov104_2231F44( FSS_TASK * core )
 {
-	push {r3, lr}
-	ldr r2, [r0, #0x1c]
-	ldr r3, [r0, #0]
-	add r1, r2, #1
-	str r1, [r0, #0x1c]
-	ldrb r1, [r2]
-	ldr r0, [r3, #0x60]
-	bl ov104_223327C
-	mov r0, #1
-	pop {r3, pc}
-	// .align 2, 0
+    FSS_PTR fss = core->fss;
+    u8 byte = FSSTGetU8( core );
+    ov104_223327C( fss->ev_win, byte );
+    return 1;
 }
 
 // NONMATCHING
-static asm BOOL ov104_2231F5C( FSS_TASK * core )
+static BOOL ov104_2231F5C( FSS_TASK * core )
 {
-	push {r3, lr}
-	ldr r2, [r0, #0x1c]
-	ldr r3, [r0, #0]
-	add r1, r2, #1
-	str r1, [r0, #0x1c]
-	ldrb r1, [r2]
-	ldr r0, [r3, #0x60]
-	bl ov104_2233298
-	mov r0, #1
-	pop {r3, pc}
-	// .align 2, 0
+    FSS_PTR fss = core->fss;
+    u8 byte = FSSTGetU8( core );
+    ov104_2233298( fss->ev_win, byte );
+    return 1;
 }
