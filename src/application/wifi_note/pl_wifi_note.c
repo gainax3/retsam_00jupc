@@ -475,7 +475,7 @@ enum{	// シーケンス
 #define WFNOTE_MYCODE_MSG_SIZY	( 8 )	// サイズ（キャラ単位）
 #define WFNOTE_MYCODE_CGX		( 1 )	// キャラクタオフセット
 // BMP	コード
-#define WFNOTE_MYCODE_CODE_X		( 10 )	// 開始位置（キャラ単位）
+#define WFNOTE_MYCODE_CODE_X		( 9 )	// 開始位置（キャラ単位）
 #define WFNOTE_MYCODE_CODE_Y		( 8 )	// 開始位置（キャラ単位）
 #define WFNOTE_MYCODE_CODE_SIZX		( 15 )	// サイズ（キャラ単位）
 #define WFNOTE_MYCODE_CODE_SIZY		( 2 )	// サイズ（キャラ単位）
@@ -5032,7 +5032,6 @@ static void WFNOTE_MYCODE_Exit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE
  *	@param	heapID		ヒープID
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	u64 code;
@@ -5040,6 +5039,7 @@ static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WF
 	WIFI_LIST* p_list;
 	STRBUF* p_str;
 	STRBUF* p_tmp;
+    int x;
 
 	// ビットマップ作成
 	GF_BGL_BmpWinInit( &p_wk->msg );
@@ -5070,22 +5070,25 @@ static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WF
 		// コードあり
 		// メッセージ
         MSGMAN_GetString( p_draw->p_msgman, msg_wifi_note_24, p_str );
+        x = (WFNOTE_MYCODE_MSG_SIZX*8 - FontProc_GetPrintMaxLineWidth( FONT_SYSTEM, p_str, 0 ))/2;
 		GF_STR_PrintColor( &p_wk->msg, FONT_SYSTEM,
-						   p_str, 0, 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
+						   p_str, x, 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
 
 		// 数字
 		WFNOTE_DRAW_FriendCodeSetWordset( p_draw, code );
         MSGMAN_GetString( p_draw->p_msgman, msg_wifi_note_28, p_tmp );
 		WORDSET_ExpandStr( p_draw->p_wordset, p_str, p_tmp );
+        x = FontProc_GetPrintCenteredPositionX( FONT_SYSTEM, p_str, 0, WFNOTE_MYCODE_CODE_SIZX*8 );
 		GF_STR_PrintColor( &p_wk->code, FONT_SYSTEM,
-						   p_str, WFNOTE_MYCODE_CODE_PR_X, 0, 
+						   p_str, x, 0,
 						   MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
 	}else{
 		// コードなし
 		// メッセージ
         MSGMAN_GetString( p_draw->p_msgman, msg_wifi_note_25, p_str );
+        x = (WFNOTE_MYCODE_MSG_SIZX*8 - FontProc_GetPrintMaxLineWidth( FONT_SYSTEM, p_str, 0 ))/2;
 		GF_STR_PrintColor( &p_wk->msg, FONT_SYSTEM,
-						   p_str, 0, 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
+						   p_str, x, 0, MSG_NO_PUT, WFNOTE_COL_BLACK, NULL);
 
 		// 数字
 	}
@@ -5097,182 +5100,6 @@ static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WF
 	p_wk->p_scrnbuff = ArcUtil_HDL_ScrnDataGet( p_draw->p_handle,
 			NARC_pl_wifinote_techo_04_NSCR, FALSE, &p_wk->p_scrn, heapID );
 }
-#else
-asm static void WFNOTE_MYCODE_DrawInit( WFNOTE_MYCODE* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x28
-	add r5, r0, #0
-	str r1, [sp, #0x14]
-	add r4, r2, #0
-	add r7, r3, #0
-	bl GF_BGL_BmpWinInit
-	mov r0, #0xd
-	str r0, [sp]
-	mov r0, #0x17
-	str r0, [sp, #4]
-	mov r0, #8
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #1
-	str r0, [sp, #0x10]
-	ldr r0, [r4, #0]
-	add r1, r5, #0
-	mov r2, #3
-	mov r3, #5
-	bl GF_BGL_BmpWinAdd
-	add r0, r5, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinInit
-	mov r0, #8
-	str r0, [sp]
-	mov r0, #0xf
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	mov r0, #7
-	str r0, [sp, #0xc]
-	mov r0, #0xb9
-	str r0, [sp, #0x10]
-	add r1, r5, #0
-	ldr r0, [r4, #0]
-	add r1, #0x10
-	mov r2, #3
-	mov r3, #9
-	bl GF_BGL_BmpWinAdd
-	add r0, r5, #0
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	add r0, r5, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r0, #0x80
-	add r1, r7, #0
-	bl STRBUF_Create
-	add r6, r0, #0
-	mov r0, #0x80
-	add r1, r7, #0
-	bl STRBUF_Create
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x14]
-	ldr r0, [r0, #0]
-	bl SaveData_GetWifiListData
-	bl WifiList_GetMyUserInfo
-	bl DWC_CreateFriendKey
-	str r1, [sp, #0x1c]
-	str r0, [sp, #0x24]
-	ldr r0, [sp, #0x1c]
-	mov r2, #0
-	eor r0, r2
-	ldr r2, [sp, #0x24]
-	mov r1, #0
-	eor r1, r2
-	orr r0, r1
-	beq _022307A6
-	mov r0, #0x63
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r1, #0x2f
-	add r2, r6, #0
-	bl MSGMAN_GetString
-	mov r0, #0
-	add r1, r6, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	mov r1, #0xb8
-	sub r0, r1, r0
-	mov r1, #0
-	lsr r3, r0, #1
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _02230800
-	add r2, r6, #0
-	str r0, [sp, #8]
-	add r0, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	ldr r1, [sp, #0x24]
-	ldr r2, [sp, #0x1c]
-	add r0, r4, #0
-	bl WFNOTE_DRAW_FriendCodeSetWordset
-	mov r0, #0x63
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	ldr r2, [sp, #0x20]
-	mov r1, #0x33
-	bl MSGMAN_GetString
-	mov r0, #0x62
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	ldr r2, [sp, #0x20]
-	add r1, r6, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	add r1, r6, #0
-	add r2, r0, #0
-	mov r3, #0x78
-	bl FontProc_GetPrintCenteredPositionX
-	mov r1, #0
-	add r3, r0, #0
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _02230800
-	add r2, r6, #0
-	str r0, [sp, #8]
-	add r0, r5, #0
-	add r0, #0x10
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	b _022307DA
-_022307A6:
-	mov r0, #0x63
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r1, #0x30
-	add r2, r6, #0
-	bl MSGMAN_GetString
-	mov r0, #0
-	add r1, r6, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	mov r1, #0xb8
-	sub r0, r1, r0
-	mov r1, #0
-	lsr r3, r0, #1
-	str r1, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _02230800
-	add r2, r6, #0
-	str r0, [sp, #8]
-	add r0, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-_022307DA:
-	add r0, r6, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x20]
-	bl STRBUF_Delete
-	mov r0, #0x19
-	add r3, r5, #0
-	str r7, [sp]
-	lsl r0, r0, #4
-	ldr r0, [r4, r0]
-	mov r1, #0xb
-	mov r2, #0
-	add r3, #0x24
-	bl ArcUtil_HDL_ScrnDataGet
-	str r0, [r5, #0x20]
-	add sp, #0x28
-	pop {r3, r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _02230800: .4byte 0x00010200
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
