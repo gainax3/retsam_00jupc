@@ -426,7 +426,6 @@ void TRCBmp_WriteTrWinInfo( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData
  * @return	none
  */
 //--------------------------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData  )
 {
 	u8 i;
@@ -455,51 +454,68 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 		// 単位類を gmm のテキストに移行
 
 		STRBUF *tmp_buf = STRBUF_Create(TR_STRING_LEN, HEAPID_TR_CARD);
-		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_DATE, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
+		WORDSET *wordset = WORDSET_CreateEx(WORDMAX_ALL, WORDSET_DEFAULT_BUFLEN, HEAPID_TR_CARD);
 
 		//殿堂入り
-		{
-			u32 xofs;
+        {
+            u32 xofs;
 
-			// ----------------------------------------------------------------------------
-			// localize_spec_mark(LANG_ALL) imatake 2007/02/13
-			// でんどういり前のでんどういりの日付表示をベタテキストに置き換え
+            // ----------------------------------------------------------------------------
+            // localize_spec_mark(LANG_ALL) imatake 2007/02/13
+            // でんどういり前のでんどういりの日付表示をベタテキストに置き換え
 
-			if (inTrCardData->Clear_m != 0){	//月が0月でなければ、クリアしたとみなす
-				WORDSET_RegisterNumber(wordset, BUFID_YEAR,   inTrCardData->Clear_y,     YEAR_DIGIT,   NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
-				// ----------------------------------------------------------------------------
-				// localize_spec_mark(LANG_ALL) imatake 2007/01/26
-				// 月の表示を単語表記に変更
-				WORDSET_RegisterMonthName( wordset, BUFID_MONTH, inTrCardData->Clear_m );
-				// ----------------------------------------------------------------------------
-				WORDSET_RegisterNumber(wordset, BUFID_DAY,    inTrCardData->Clear_d,     DAY_DIGIT,    NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
-				WORDSET_RegisterNumber(wordset, BUFID_HOUR,   inTrCardData->ClearTime_h, TIME_H_DIGIT, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
-				WORDSET_RegisterNumber(wordset, BUFID_MINUTE, inTrCardData->ClearTime_m, TIME_M_DIGIT, NUMBER_DISPTYPE_ZERO,  NUMBER_CODETYPE_DEFAULT);
-				MSGMAN_GetString(man, MSG_TCARD_18, tmp_buf);
-				WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
-			}else{
-				MSGMAN_GetString(man, MSG_TCARD_13, tmp_buf);
-				WORDSET_RegisterWord(wordset, BUFID_HOUR,   tmp_buf, 0, FALSE, PM_LANG);
-				WORDSET_RegisterWord(wordset, BUFID_MINUTE, tmp_buf, 0, FALSE, PM_LANG);
-				MSGMAN_GetString(man, MSG_TCARD_18_2, msg_buf);
-			}
-			// 殿堂入りの日付
-			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+            if (inTrCardData->Clear_m != 0) {    //月が0月でなければ、クリアしたとみなす
+                WORDSET_RegisterNumber(wordset, BUFID_YEAR, inTrCardData->Clear_y, YEAR_DIGIT, NUMBER_DISPTYPE_ZERO,
+                                       NUMBER_CODETYPE_DEFAULT);
+                // ----------------------------------------------------------------------------
+                // localize_spec_mark(LANG_ALL) imatake 2007/01/26
+                // 月の表示を単語表記に変更
+                WORDSET_RegisterMonthName(wordset, BUFID_MONTH, inTrCardData->Clear_m);
+                // ----------------------------------------------------------------------------
+                WORDSET_RegisterNumber(wordset, BUFID_DAY, inTrCardData->Clear_d, DAY_DIGIT, NUMBER_DISPTYPE_ZERO,
+                                       NUMBER_CODETYPE_DEFAULT);
+                WORDSET_RegisterNumber(wordset, BUFID_HOUR, inTrCardData->ClearTime_h, TIME_H_DIGIT,
+                                       NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+                WORDSET_RegisterNumber(wordset, BUFID_MINUTE, inTrCardData->ClearTime_m, TIME_M_DIGIT,
+                                       NUMBER_DISPTYPE_ZERO, NUMBER_CODETYPE_DEFAULT);
+                MSGMAN_GetString(man, MSG_TCARD_18, tmp_buf);
+                WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+            }
+            else {
+                MSGMAN_GetString(man, MSG_TCARD_13, tmp_buf);
+                WORDSET_RegisterWord(wordset, BUFID_HOUR, tmp_buf, 0, FALSE, PM_LANG);
+                WORDSET_RegisterWord(wordset, BUFID_MINUTE, tmp_buf, 0, FALSE, PM_LANG);
+                MSGMAN_GetString(man, MSG_TCARD_18_2, msg_buf);
+            }
+            // 殿堂入りの日付
+            xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+            GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR,
+                              NULL);
 
-			// ----------------------------------------------------------------------------
+            // ----------------------------------------------------------------------------
 
-			// 殿堂入りまでのプレイ時間
-			MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
-			WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
-			xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
-			GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 16, MSG_ALLPUT, TR_MSGCOLOR, NULL);
-		}
-		
-		//通信回数
-		WriteNumData(	&win[TRC_BMPWIN_COMM_INFO],
-						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommNum, COMM_DIGIT,
-						NUMBER_DISPTYPE_SPACE);
+            // 殿堂入りまでのプレイ時間
+            MSGMAN_GetString(man, MSG_TCARD_16, tmp_buf);
+            WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+            xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+            GF_STR_PrintColor(&win[TRC_BMPWIN_CLEAR_TIME], FONT_SYSTEM, msg_buf, xofs, 16, MSG_ALLPUT, TR_MSGCOLOR,
+                              NULL);
+        }
+
+        //通信回数
+        {
+            u32 xofs;
+
+            WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->CommNum, COMM_DIGIT, NUMBER_DISPTYPE_LEFT,  NUMBER_CODETYPE_DEFAULT);
+            MSGMAN_GetString(man, 22, tmp_buf);
+            WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+            xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+            GF_STR_PrintColor(&win[TRC_BMPWIN_COMM_INFO], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+        }
+
+//        WriteNumData(	&win[TRC_BMPWIN_COMM_INFO],
+//						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommNum, COMM_DIGIT,
+//						NUMBER_DISPTYPE_SPACE);
 		
 		//通信対戦
 		MSGMAN_GetString(man, MSG_TCARD_19, msg_buf);
@@ -514,9 +530,18 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 						NUMBER_DISPTYPE_SPACE);
 		
 		//通信交換
-		WriteNumData(	&win[TRC_BMPWIN_TRADE_INFO],
-						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommTrade, TRADE_DIGIT,
-						NUMBER_DISPTYPE_SPACE);
+        {
+            u32 xofs;
+
+            WORDSET_RegisterNumber(wordset, BUFID_MONEY, inTrCardData->CommTrade, TRADE_DIGIT, NUMBER_DISPTYPE_LEFT,  NUMBER_CODETYPE_DEFAULT);
+            MSGMAN_GetString(man, 22, tmp_buf);
+            WORDSET_ExpandStr(wordset, msg_buf, tmp_buf);
+            xofs = BMP_WIDTH_TYPE2 - FontProc_GetPrintStrWidth(FONT_SYSTEM, msg_buf, 0);
+            GF_STR_PrintColor(&win[TRC_BMPWIN_TRADE_INFO], FONT_SYSTEM, msg_buf, xofs, 0, MSG_ALLPUT, TR_MSGCOLOR, NULL);
+        }
+//		WriteNumData(	&win[TRC_BMPWIN_TRADE_INFO],
+//						BMP_WIDTH_TYPE2, 0, 0, msg_buf, inTrCardData->CommTrade, TRADE_DIGIT,
+//						NUMBER_DISPTYPE_SPACE);
 
 		STRBUF_Delete( tmp_buf );
 		WORDSET_Delete( wordset );
@@ -526,364 +551,6 @@ void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardD
 	STRBUF_Delete( msg_buf );
 	MSGMAN_Delete( man );
 }
-#else
-asm void TRCBmp_WriteTrWinInfoRev( GF_BGL_BMPWIN	*win, const TR_CARD_DATA *inTrCardData  )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r6, r0, #0
-	mov r0, #0xe0
-	str r0, [sp]
-	mov r0, #0x20
-	str r1, [sp, #0x10]
-	mov r1, #0
-	str r0, [sp, #4]
-	add r0, r6, #0
-	add r0, #0x70
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	mov r1, #0
-	mov r0, #0xe0
-	str r0, [sp]
-	mov r0, #0x10
-	str r0, [sp, #4]
-	add r0, r6, #0
-	add r0, #0x80
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	mov r1, #0
-	mov r0, #0xe0
-	str r0, [sp]
-	mov r0, #0x10
-	str r0, [sp, #4]
-	add r0, r6, #0
-	add r0, #0x90
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	mov r1, #0
-	mov r0, #0xe0
-	str r0, [sp]
-	mov r0, #0x10
-	str r0, [sp, #4]
-	add r0, r6, #0
-	add r0, #0xa0
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	mov r2, #0x9a
-	mov r0, #0
-	mov r1, #0x1a
-	lsl r2, r2, #2
-	mov r3, #0x19
-	bl MSGMAN_Create
-	add r7, r0, #0
-	mov r0, #0x20
-	mov r1, #0x19
-	bl STRBUF_Create
-	add r5, r0, #0
-	mov r4, #7
-_0223CAA4:
-	ldr r1, =MsgList // _0223CD3C
-	lsl r2, r4, #2
-	ldr r1, [r1, r2]
-	add r0, r7, #0
-	add r2, r5, #0
-	bl MSGMAN_GetString
-	mov r0, #0
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r0, =0x00010200 // _0223CD40
-	mov r1, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	lsl r0, r4, #4
-	add r0, r6, r0
-	add r2, r5, #0
-	add r3, r1, #0
-	bl GF_STR_PrintColor
-	add r0, r4, #1
-	lsl r0, r0, #0x18
-	lsr r4, r0, #0x18
-	cmp r4, #0xb
-	blo _0223CAA4
-	mov r0, #0x20
-	mov r1, #0x19
-	bl STRBUF_Create
-	str r0, [sp, #0x14]
-	mov r0, #6
-	mov r1, #0x20
-	mov r2, #0x19
-	bl WORDSET_CreateEx
-	ldr r1, [sp, #0x10]
-	add r4, r0, #0
-	add r1, #0x33
-	ldrb r1, [r1]
-	cmp r1, #0
-	beq _0223CB6E
-	mov r1, #2
-	str r1, [sp]
-	mov r2, #1
-	str r2, [sp, #4]
-	ldr r2, [sp, #0x10]
-	add r3, r1, #0
-	add r2, #0x32
-	ldrb r2, [r2]
-	bl WORDSET_RegisterNumber
-	ldr r2, [sp, #0x10]
-	add r0, r4, #0
-	add r2, #0x33
-	ldrb r2, [r2]
-	mov r1, #3
-	bl WORDSET_RegisterMonthName
-	mov r3, #2
-	ldr r2, [sp, #0x10]
-	str r3, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	add r2, #0x34
-	ldrb r2, [r2]
-	add r0, r4, #0
-	mov r1, #4
-	bl WORDSET_RegisterNumber
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x10]
-	add r0, r4, #0
-	ldrh r2, [r2, #0x2c]
-	mov r1, #0
-	mov r3, #3
-	bl WORDSET_RegisterNumber
-	mov r3, #2
-	ldr r2, [sp, #0x10]
-	str r3, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	add r2, #0x35
-	ldrb r2, [r2]
-	add r0, r4, #0
-	bl WORDSET_RegisterNumber
-	ldr r2, [sp, #0x14]
-	add r0, r7, #0
-	mov r1, #0x11
-	bl MSGMAN_GetString
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	add r1, r5, #0
-	bl WORDSET_ExpandStr
-	b _0223CBA6
-_0223CB6E:
-	ldr r2, [sp, #0x14]
-	add r0, r7, #0
-	mov r1, #0xc
-	bl MSGMAN_GetString
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	add r3, r1, #0
-	bl WORDSET_RegisterWord
-	mov r3, #0
-	str r3, [sp]
-	mov r0, #2
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	mov r1, #1
-	bl WORDSET_RegisterWord
-	add r0, r7, #0
-	mov r1, #0x14
-	add r2, r5, #0
-	bl MSGMAN_GetString
-_0223CBA6:
-	mov r0, #0
-	add r1, r5, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe0
-	sub r3, r1, r0
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r6, #0
-	add r0, #0x70
-	add r2, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	ldr r2, [sp, #0x14]
-	add r0, r7, #0
-	mov r1, #0xf
-	bl MSGMAN_GetString
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	add r1, r5, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	add r1, r5, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe0
-	sub r3, r1, r0
-	mov r0, #0x10
-	str r0, [sp]
-	mov r1, #0
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r6, #0
-	add r0, #0x70
-	add r2, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	mov r0, #0
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x10]
-	add r0, r4, #0
-	ldr r2, [r2, #0x38]
-	mov r1, #5
-	mov r3, #6
-	bl WORDSET_RegisterNumber
-	ldr r2, [sp, #0x14]
-	add r0, r7, #0
-	mov r1, #0x16
-	bl MSGMAN_GetString
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	add r1, r5, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	add r1, r5, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe0
-	sub r3, r1, r0
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r6, #0
-	add r0, #0x80
-	add r2, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r0, r7, #0
-	mov r1, #0x12
-	add r2, r5, #0
-	bl MSGMAN_GetString
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r6, #0
-	add r0, #0x90
-	add r2, r5, #0
-	mov r3, #0x70
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	mov r2, #0
-	ldr r0, [sp, #0x10]
-	str r5, [sp]
-	ldr r0, [r0, #0x40]
-	mov r1, #0xe0
-	str r0, [sp, #4]
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #1
-	str r0, [sp, #0xc]
-	add r0, r6, #0
-	add r0, #0x90
-	add r3, r2, #0
-	bl WriteNumData
-	add r0, r7, #0
-	mov r1, #0x13
-	add r2, r5, #0
-	bl MSGMAN_GetString
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r6, #0
-	add r0, #0x90
-	add r2, r5, #0
-	mov r3, #0xb0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	ldr r0, [sp, #0x10]
-	str r5, [sp]
-	ldr r0, [r0, #0x3c]
-	mov r1, #0xe0
-	str r0, [sp, #4]
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #1
-	str r0, [sp, #0xc]
-	add r0, r6, #0
-	add r0, #0x90
-	mov r2, #0x40
-	mov r3, #0
-	bl WriteNumData
-	mov r0, #0
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x10]
-	add r0, r4, #0
-	ldr r2, [r2, #0x44]
-	mov r1, #5
-	mov r3, #6
-	bl WORDSET_RegisterNumber
-	ldr r2, [sp, #0x14]
-	add r0, r7, #0
-	mov r1, #0x16
-	bl MSGMAN_GetString
-	ldr r2, [sp, #0x14]
-	add r0, r4, #0
-	add r1, r5, #0
-	bl WORDSET_ExpandStr
-	mov r0, #0
-	add r1, r5, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe0
-	sub r3, r1, r0
-	mov r1, #0
-	str r1, [sp]
-	ldr r0, =0x00010200 // _0223CD40
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r6, #0xa0
-	add r0, r6, #0
-	add r2, r5, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	ldr r0, [sp, #0x14]
-	bl STRBUF_Delete
-	add r0, r4, #0
-	bl WORDSET_Delete
-	add r0, r5, #0
-	bl STRBUF_Delete
-	add r0, r7, #0
-	bl MSGMAN_Delete
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _0223CD3C: .4byte MsgList
-// _0223CD40: .4byte 0x00010200
-}
-#endif
 
 //--------------------------------------------------------------------------------------------
 /**

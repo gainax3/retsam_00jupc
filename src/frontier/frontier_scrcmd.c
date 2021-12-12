@@ -4332,7 +4332,6 @@ static BOOL FSSC_CommSetWifiBothNet( FSS_TASK * core )
 	return 0;
 }
 
-// NONMATCHING
 static BOOL ov104_2231F44( FSS_TASK * core )
 {
     FSS_PTR fss = core->fss;
@@ -4341,7 +4340,6 @@ static BOOL ov104_2231F44( FSS_TASK * core )
     return 1;
 }
 
-// NONMATCHING
 static BOOL ov104_2231F5C( FSS_TASK * core )
 {
     FSS_PTR fss = core->fss;
