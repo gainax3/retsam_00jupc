@@ -1525,7 +1525,6 @@ static u32 Castle_GetMsg( FRONTIER_MONITOR_WORK* wk )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -1540,7 +1539,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルルーレット」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list05, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == ROULETTE_TYPE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -1555,7 +1554,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -1568,7 +1567,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list22, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
@@ -1582,150 +1581,11 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list22, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x19
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r4, #5]
-	cmp r0, #0
-	bne _021D1C7C
-	mov r2, #0x1a
-	mov r3, #0xd8
-	b _021D1C8A
-_021D1C7C:
-	cmp r0, #1
-	bne _021D1C86
-	mov r2, #0x1b
-	mov r3, #0xd8
-	b _021D1C8A
-_021D1C86:
-	mov r2, #0x1c
-	mov r3, #0xd8
-_021D1C8A:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	bl Roulette_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl RouletteScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r2, #0x2b
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl RouletteScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x2b
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r4, #0x30
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-	// .align 2, 0
-}
-#endif
 
 static u32 Roulette_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
