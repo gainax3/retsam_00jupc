@@ -761,6 +761,13 @@ enum{
 // ページ変更ウエイト
 #define WFNOTE_FRIENDINFO_PAGECHG_WAIT	( 4 )
 
+// Message alignment
+enum {
+    WFNOTE_ALIGN_LEFT,
+    WFNOTE_ALIGN_CENTER,
+    WFNOTE_ALIGN_RIGHT,
+};
+
 
 
 //-----------------------------------------------------------------------------
@@ -6001,7 +6008,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_GR,
 			p_data, p_draw, msg_wifi_note_15, 
 			WFNOTE_FRIENDINFO_PAGE00_GRT_X, WFNOTE_FRIENDINFO_PAGE00_GRT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
     // MatchComment: Above message was split in two
     // TODO: append new msg idxs to msg_wifi_note.h
@@ -6010,39 +6017,39 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
     WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_GR,
             p_data, p_draw, 61,
             WFNOTE_FRIENDINFO_PAGE00_GRT2_X, WFNOTE_FRIENDINFO_PAGE00_GRT2_Y,
-            WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+            WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
     // 対戦成績
     {
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_GR,
 				p_data, p_draw, msg_wifi_note_16, 
 				WFNOTE_FRIENDINFO_PAGE00_BTT_X, WFNOTE_FRIENDINFO_PAGE00_BTT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 		// かち
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_BT,
 				p_data, p_draw, msg_wifi_note_17, 
 				WFNOTE_FRIENDINFO_PAGE00_BTW_X, WFNOTE_FRIENDINFO_PAGE00_BTW_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BATTLE_WIN );
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_BT,
 				p_data, p_draw, msg_wifi_note_59, 
 				WFNOTE_FRIENDINFO_PAGE00_BTWLN_X, WFNOTE_FRIENDINFO_PAGE00_BTW_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 		// まけ
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_BT,
 				p_data, p_draw, msg_wifi_note_18, 
 				WFNOTE_FRIENDINFO_PAGE00_BTL_X, WFNOTE_FRIENDINFO_PAGE00_BTL_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BATTLE_LOSE );
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_BT,
 				p_data, p_draw, msg_wifi_note_59, 
 				WFNOTE_FRIENDINFO_PAGE00_BTWLN_X, WFNOTE_FRIENDINFO_PAGE00_BTL_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 
 	// ポケモン交換
@@ -6050,13 +6057,13 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_TR,
 				p_data, p_draw, msg_wifi_note_19, 
 				WFNOTE_FRIENDINFO_PAGE00_TRT_X, WFNOTE_FRIENDINFO_PAGE00_TRT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_TRADE_NUM );
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_TR,
 				p_data, p_draw, msg_wifi_note_20, 
 				WFNOTE_FRIENDINFO_PAGE00_TRN_X, WFNOTE_FRIENDINFO_PAGE00_TRN_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 
 	// 料理回数
@@ -6064,13 +6071,13 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_TR,
 				p_data, p_draw, msg_wifi_note_34, 
 				WFNOTE_FRIENDINFO_PAGE00_POT_X, WFNOTE_FRIENDINFO_PAGE00_POT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_POFIN_NUM );
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_TR,
 				p_data, p_draw, msg_wifi_note_35, 
 				WFNOTE_FRIENDINFO_PAGE00_PON_X, WFNOTE_FRIENDINFO_PAGE00_PON_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 
 	// 最後に遊んだ日付
@@ -6078,14 +6085,14 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_DAY,
 				p_data, p_draw, msg_wifi_note_21, 
 				WFNOTE_FRIENDINFO_PAGE00_DAYT_X, WFNOTE_FRIENDINFO_PAGE00_DAYT_Y,
-				WFNOTE_COL_WHITE, p_str, p_tmp, 0 );
+				WFNOTE_COL_WHITE, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		result = WFNOTE_DRAW_FriendDaySetWordset( p_draw, p_data->p_save, 
 				p_data->idx.fridx[p_data->select_listidx] );
 		if( result ){
 			WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_DAY,
 					p_data, p_draw, msg_wifi_note_22, 
 					WFNOTE_FRIENDINFO_PAGE00_DAYN_X, WFNOTE_FRIENDINFO_PAGE00_DAYN_Y,
-					WFNOTE_COL_WHITE, p_str, p_tmp, 2 );
+					WFNOTE_COL_WHITE, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 		}
 	}
 
@@ -6134,7 +6141,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page00( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 0, WFNOTE_FRIENDINFO_PAGE00_BA_TRG,
 				p_data, p_draw, msg_wifi_note_07, 
 				WFNOTE_FRIENDINFO_PAGE00_TRNNA_X, WFNOTE_FRIENDINFO_PAGE00_TRNNA_Y,
-				col, p_str, p_tmp, 1 );
+				col, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 	}
 	
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 0 );
@@ -6173,7 +6180,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 2, WFNOTE_FRIENDINFO_PAGE01_BA,
 			p_data, p_draw, msg_wifi_note_36, 
 			WFNOTE_FRIENDINFO_PAGE01_BTT_X, WFNOTE_FRIENDINFO_PAGE01_BTT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 	// 前回
 	{
@@ -6187,26 +6194,26 @@ static void WFNOTE_FRIENDINFO_DRAW_Page01( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 2, WFNOTE_FRIENDINFO_PAGE01_BA,
 				p_data, p_draw, title_stridx, 
 				WFNOTE_FRIENDINFO_PAGE01_BTL_X, WFNOTE_FRIENDINFO_PAGE01_BTL_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		num = FrontierRecord_Get(p_fsave, FRID_TOWER_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 2, WFNOTE_FRIENDINFO_PAGE01_BA,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE01_BTLN_X, WFNOTE_FRIENDINFO_PAGE01_BTL_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 
 	//  最高
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 2, WFNOTE_FRIENDINFO_PAGE01_BA,
 			p_data, p_draw, msg_wifi_note_42, 
 			WFNOTE_FRIENDINFO_PAGE01_BTM_X, WFNOTE_FRIENDINFO_PAGE01_BTM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	num = FrontierRecord_Get(p_fsave, FRID_TOWER_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 2, WFNOTE_FRIENDINFO_PAGE01_BA,
 			p_data, p_draw, msg_wifi_note_48, 
 			WFNOTE_FRIENDINFO_PAGE01_BTMN_X, WFNOTE_FRIENDINFO_PAGE01_BTM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 2 );
 
@@ -6231,7 +6238,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_BA_TT,
 			p_data, p_draw, msg_wifi_note_37, 
 			WFNOTE_FRIENDINFO_PAGE02_TT_X, WFNOTE_FRIENDINFO_PAGE02_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 	// LV50
 	{
@@ -6239,11 +6246,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50TT,
 				p_data, p_draw, msg_wifi_note_43, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50TT_X, WFNOTE_FRIENDINFO_PAGE02_LV50TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50TT,
 				p_data, p_draw, msg_wifi_note_45, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50TT2_X, WFNOTE_FRIENDINFO_PAGE02_LV50TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 		//前回
 		clear_flag = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_CLEAR_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6255,7 +6262,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, stridx, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LT_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6263,21 +6270,21 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LN0_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE_CNT, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50LN1_X, WFNOTE_FRIENDINFO_PAGE02_LV50L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 		//最高
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_42, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MT_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
@@ -6285,14 +6292,14 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MN0_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV50NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV50MN1_X, WFNOTE_FRIENDINFO_PAGE02_LV50M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 
 	// LV100
@@ -6301,11 +6308,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100TT,
 				p_data, p_draw, msg_wifi_note_44, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100TT_X, WFNOTE_FRIENDINFO_PAGE02_LV100TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100TT,
 				p_data, p_draw, msg_wifi_note_45, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100TT2_X, WFNOTE_FRIENDINFO_PAGE02_LV100TT_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 		//前回
 		clear_flag = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_CLEAR100_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6317,7 +6324,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, stridx, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LT_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU100_CNT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6325,21 +6332,21 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LN0_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE100_CNT, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100LN1_X, WFNOTE_FRIENDINFO_PAGE02_LV100L_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 		//最高
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_42, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MT_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 		// 連勝
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_RENSHOU100, p_data->idx.fridx[p_data->select_listidx]);
@@ -6347,14 +6354,14 @@ static void WFNOTE_FRIENDINFO_DRAW_Page02( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_48, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MN0_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 		// 交換
 		num = FrontierRecord_Get(p_fsave, FRID_FACTORY_MULTI_WIFI_TRADE100, p_data->idx.fridx[p_data->select_listidx]);
 		WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 		WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 3, WFNOTE_FRIENDINFO_PAGE02_LV100NO,
 				p_data, p_draw, msg_wifi_note_49, 
 				WFNOTE_FRIENDINFO_PAGE02_LV100MN1_X, WFNOTE_FRIENDINFO_PAGE02_LV100M_Y,
-				WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+				WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 	}
 	
 
@@ -6382,11 +6389,11 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_38, 
 			WFNOTE_FRIENDINFO_PAGE03_TT_X, WFNOTE_FRIENDINFO_PAGE03_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_46, 
 			WFNOTE_FRIENDINFO_PAGE03_CPT_X, WFNOTE_FRIENDINFO_PAGE03_CPT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	// 前回
 	clear_flag = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_CLEAR_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6398,42 +6405,42 @@ static void WFNOTE_FRIENDINFO_DRAW_Page03( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, stridx, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLT_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// くりあ
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_51, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLN0_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 	// CP
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_CP, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_50, 
 			WFNOTE_FRIENDINFO_PAGE03_CPLN1_X, WFNOTE_FRIENDINFO_PAGE03_CPL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 	// 最高
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_42, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMT_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// くりあ
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_51, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMN0_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 1 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_CENTER );
 	// CP
 	num = FrontierRecord_Get(p_fsave, FRID_CASTLE_MULTI_WIFI_REMAINDER_CP, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 4, WFNOTE_FRIENDINFO_PAGE03_BA,
 			p_data, p_draw, msg_wifi_note_50, 
 			WFNOTE_FRIENDINFO_PAGE03_CPMN1_X, WFNOTE_FRIENDINFO_PAGE03_CPM_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 4 );
@@ -6462,7 +6469,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 5, WFNOTE_FRIENDINFO_PAGE04_BA,
 			p_data, p_draw, msg_wifi_note_39, 
 			WFNOTE_FRIENDINFO_PAGE04_TT_X, WFNOTE_FRIENDINFO_PAGE04_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 	num = FrontierRecord_Get(p_fsave, FRID_STAGE_MULTI_WIFI_MONSNO, p_data->idx.fridx[p_data->select_listidx]);
 	p_monsstr = MSGDAT_UTIL_GetMonsName( num, heapID );
@@ -6482,27 +6489,27 @@ static void WFNOTE_FRIENDINFO_DRAW_Page04( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 5, WFNOTE_FRIENDINFO_PAGE04_BA,
 			p_data, p_draw, stridx, 
 			WFNOTE_FRIENDINFO_PAGE04_LT_X, WFNOTE_FRIENDINFO_PAGE04_L_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = FrontierRecord_Get(p_fsave, FRID_STAGE_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 5, WFNOTE_FRIENDINFO_PAGE04_BA,
 			p_data, p_draw, msg_wifi_note_48, 
 			WFNOTE_FRIENDINFO_PAGE04_LN_X, WFNOTE_FRIENDINFO_PAGE04_L_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	// 最高
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 5, WFNOTE_FRIENDINFO_PAGE04_BA,
 			p_data, p_draw, msg_wifi_note_42, 
 			WFNOTE_FRIENDINFO_PAGE04_MT_X, WFNOTE_FRIENDINFO_PAGE04_M_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = FrontierRecord_Get(p_fsave, FRID_STAGE_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 5, WFNOTE_FRIENDINFO_PAGE04_BA,
 			p_data, p_draw, msg_wifi_note_48, 
 			WFNOTE_FRIENDINFO_PAGE04_MN_X, WFNOTE_FRIENDINFO_PAGE04_M_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 5 );
 
@@ -6527,7 +6534,7 @@ static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 6, WFNOTE_FRIENDINFO_PAGE05_BA,
 			p_data, p_draw, msg_wifi_note_40, 
 			WFNOTE_FRIENDINFO_PAGE05_TT_X, WFNOTE_FRIENDINFO_PAGE05_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 	// 前回
 	clear_flag = FrontierRecord_Get(p_fsave, FRID_ROULETTE_MULTI_WIFI_CLEAR_BIT, p_data->idx.fridx[p_data->select_listidx]);
@@ -6539,27 +6546,27 @@ static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 6, WFNOTE_FRIENDINFO_PAGE05_BA,
 			p_data, p_draw, stridx, 
 			WFNOTE_FRIENDINFO_PAGE05_LT_X, WFNOTE_FRIENDINFO_PAGE05_L_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = FrontierRecord_Get(p_fsave, FRID_ROULETTE_MULTI_WIFI_RENSHOU_CNT, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 6, WFNOTE_FRIENDINFO_PAGE05_BA,
 			p_data, p_draw, msg_wifi_note_57, 
 			WFNOTE_FRIENDINFO_PAGE05_LN_X, WFNOTE_FRIENDINFO_PAGE05_L_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	// 最高
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 6, WFNOTE_FRIENDINFO_PAGE05_BA,
 			p_data, p_draw, msg_wifi_note_42, 
 			WFNOTE_FRIENDINFO_PAGE05_MT_X, WFNOTE_FRIENDINFO_PAGE05_M_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = FrontierRecord_Get(p_fsave, FRID_ROULETTE_MULTI_WIFI_RENSHOU, p_data->idx.fridx[p_data->select_listidx]);
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 6, WFNOTE_FRIENDINFO_PAGE05_BA,
 			p_data, p_draw, msg_wifi_note_57, 
 			WFNOTE_FRIENDINFO_PAGE05_MN_X, WFNOTE_FRIENDINFO_PAGE05_M_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 
@@ -6587,49 +6594,49 @@ static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_52, 
 			WFNOTE_FRIENDINFO_PAGE06_TT_X, WFNOTE_FRIENDINFO_PAGE06_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 
 	// たまいれ
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALLSLOW );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BC_X, WFNOTE_FRIENDINFO_PAGE06_BC_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALLSLOW_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BC_N_X, WFNOTE_FRIENDINFO_PAGE06_BC_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	// たまのり
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALANCEBALL );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BB_X, WFNOTE_FRIENDINFO_PAGE06_BB_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALANCEBALL_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BB_N_X, WFNOTE_FRIENDINFO_PAGE06_BB_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 	// ふうせん
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALLOON );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BL_X, WFNOTE_FRIENDINFO_PAGE06_BL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_LEFT );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALLOON_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BL_N_X, WFNOTE_FRIENDINFO_PAGE06_BL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
+			WFNOTE_COL_BLACK, p_str, p_tmp, WFNOTE_ALIGN_RIGHT );
 
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 1 );
@@ -6684,83 +6691,21 @@ static void WFNOTE_FRIENDINFO_DRAW_Clean( WFNOTE_DRAW* p_draw, const WFNOTE_SCRN
  *	@param	p_tmp		使用するSTRBUF
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Bmp( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, u32 page, u32 bmp, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 msg_idx, u32 x, u32 y, u32 col, STRBUF* p_str, STRBUF* p_tmp, int align )
 {
 	MSGMAN_GetString( p_draw->p_msgman, msg_idx, p_tmp );
 	WORDSET_ExpandStr( p_draw->p_wordset, p_str, p_tmp );
+    switch(align){
+    case 1:
+        x -= (FontProc_GetPrintStrWidth( FONT_SYSTEM, p_str, 0 )+1)/2;
+        break;
+    case 2:
+        x -= FontProc_GetPrintStrWidth( FONT_SYSTEM, p_str, 0 );
+        break;
+    }
     GF_STR_PrintColor( &p_wk->p_msg[page][bmp], FONT_SYSTEM, 
 			p_str, x, y, MSG_NO_PUT, col, NULL);
 }
-#else
-// MatchComment: this prototype is incorrect, it should have an extra arg after p_tmp 
-asm static void WFNOTE_FRIENDINFO_DRAW_Bmp( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, u32 page, u32 bmp, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 msg_idx, u32 x, u32 y, u32 col, STRBUF* p_str, STRBUF* p_tmp, int align )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r7, r0, #0
-	mov r0, #0x63
-	str r1, [sp, #0x10]
-	str r2, [sp, #0x14]
-	ldr r6, [sp, #0x30]
-	lsl r0, r0, #2
-	ldr r0, [r6, r0]
-	ldr r1, [sp, #0x34]
-	ldr r2, [sp, #0x48]
-	ldr r5, [sp, #0x38]
-	ldr r4, [sp, #0x44]
-	bl MSGMAN_GetString
-	mov r0, #0x62
-	lsl r0, r0, #2
-	ldr r0, [r6, r0]
-	ldr r2, [sp, #0x48]
-	add r1, r4, #0
-	bl WORDSET_ExpandStr
-	ldr r0, [sp, #0x4c]
-	cmp r0, #1
-	beq _022320F0
-	cmp r0, #2
-	beq _02232102
-	b _0223210E
-_022320F0:
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	add r0, r0, #1
-	lsr r0, r0, #1
-	sub r5, r5, r0
-	b _0223210E
-_02232102:
-	mov r0, #0
-	add r1, r4, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	sub r5, r5, r0
-_0223210E:
-	ldr r0, [sp, #0x3c]
-	mov r1, #0
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, [sp, #0x40]
-	add r3, r5, #0
-	str r0, [sp, #8]
-	ldr r0, [sp, #0x10]
-	str r1, [sp, #0xc]
-	lsl r0, r0, #2
-	add r0, r7, r0
-	ldr r2, [r0, #0xc]
-	ldr r0, [sp, #0x14]
-	lsl r0, r0, #4
-	add r0, r2, r0
-	add r2, r4, #0
-	bl GF_STR_PrintColor
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-}
-#endif
-
 //----------------------------------------------------------------------------
 /**
  *	@brief	ページ変更
