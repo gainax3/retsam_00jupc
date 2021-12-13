@@ -168,7 +168,6 @@ static NumGetFunc funcTbl[]={
 };
 
 
-#ifdef NONEQUIVALENT
 static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
                                MYSTATUS* pMyStatus, const SB_RECORD_DATA* pRecord)
 {
@@ -197,12 +196,13 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
     MSGMAN_GetString( msgman, mes_uw_status_02, pBuf1 );   // しょうごう
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT, _HEAD_UP, MSG_NO_PUT, NULL);
 
-    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ：
-    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, 1, MSG_NO_PUT, NULL);
+    //MatchComment: these messages are not printed in the US release
+//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ：
+//    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, 1, MSG_NO_PUT, NULL);
     MSGMAN_GetString( msgman, mes_uw_status_03, pBuf1 );   // id
     GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _ID, 1, MSG_NO_PUT, NULL);
-    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ：
-    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, _HEAD_UP, MSG_NO_PUT, NULL);
+//    MSGMAN_GetString( msgman, mes_uw_status_04, pBuf1 );   // ：
+//    GF_STR_PrintSimple(pWin, FONT_SYSTEM, pBuf1, _HEAD_LEFT + _COLON, _HEAD_UP, MSG_NO_PUT, NULL);
 
     WORDSET_RegisterNumber(pWordSet, 6,
                            MyStatus_GetID_Low(pMyStatus), 5,
@@ -247,211 +247,6 @@ static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
     STRBUF_Delete(pBuf2);
     WORDSET_Delete(pWordSet);
 }
-#else
-asm static void _statusListMessage(GF_BGL_BMPWIN* pWin, MSGDATA_MANAGER* msgman,
-                               MYSTATUS* pMyStatus, const SB_RECORD_DATA* pRecord)
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x20
-	add r7, r0, #0
-	mov r0, #4
-	str r1, [sp, #0xc]
-	add r5, r2, #0
-	str r3, [sp, #0x10]
-	bl WORDSET_Create
-	str r0, [sp, #0x1c]
-	mov r0, #0x1e
-	mov r1, #4
-	bl STRBUF_Create
-	add r4, r0, #0
-	mov r0, #0x1e
-	mov r1, #4
-	bl STRBUF_Create
-	str r0, [sp, #0x18]
-	ldr r0, [sp, #0xc]
-	mov r1, #0
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	add r0, r7, #0
-	add r2, r4, #0
-	mov r3, #2
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	ldr r0, [sp, #0xc]
-	mov r1, #1
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	mov r0, #0x11
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	add r0, r7, #0
-	add r2, r4, #0
-	mov r3, #2
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	ldr r0, [sp, #0xc]
-	mov r1, #2
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	add r0, r7, #0
-	add r2, r4, #0
-	mov r3, #0x84
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	add r0, r5, #0
-	bl MyStatus_GetID_Low
-	add r2, r0, #0
-	mov r0, #2
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r0, [sp, #0x1c]
-	mov r1, #6
-	mov r3, #5
-	bl WORDSET_RegisterNumber
-	ldr r0, [sp, #0xc]
-	mov r1, #5
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	ldr r0, [sp, #0x1c]
-	ldr r1, [sp, #0x18]
-	add r2, r4, #0
-	bl WORDSET_ExpandStr
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	ldr r2, [sp, #0x18]
-	add r0, r7, #0
-	mov r3, #0x94
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	ldr r0, [sp, #0x1c]
-	mov r1, #0
-	add r2, r5, #0
-	bl WORDSET_RegisterPlayerName
-	ldr r0, [sp, #0xc]
-	mov r1, #4
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	ldr r0, [sp, #0x1c]
-	ldr r1, [sp, #0x18]
-	add r2, r4, #0
-	bl WORDSET_ExpandStr
-	mov r0, #1
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	ldr r2, [sp, #0x18]
-	add r0, r7, #0
-	mov r3, #0x39
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	ldr r0, [sp, #0x10]
-	bl SecretBaseRecordGetFlagType
-	add r1, r0, #0
-	ldr r0, [sp, #0xc]
-	add r1, #0x14
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	mov r0, #0x11
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r1, #0
-	add r0, r7, #0
-	add r2, r4, #0
-	mov r3, #0x39
-	str r1, [sp, #8]
-	bl GF_STR_PrintSimple
-	mov r5, #0
-	mov r6, #0x27
-_02253738:
-	ldr r0, [sp, #0xc]
-	add r1, r5, #6
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	str r6, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r0, #0
-	str r0, [sp, #8]
-	add r0, r7, #0
-	mov r1, #0
-	add r2, r4, #0
-	mov r3, #2
-	bl GF_STR_PrintSimple
-	add r5, r5, #1
-	add r6, #0x10
-	cmp r5, #7
-	blt _02253738
-	mov r0, #0
-	ldr r6, =funcTbl // _022537D0
-	str r0, [sp, #0x14]
-	mov r5, #0x27
-_02253768:
-	ldr r0, [sp, #0x10]
-	ldr r1, [r6, #0]
-	blx r1
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	mov r1, #6
-	ldr r0, [sp, #0x1c]
-	add r3, r1, #0
-	bl WORDSET_RegisterNumber
-	ldr r0, [sp, #0xc]
-	mov r1, #0xd
-	add r2, r4, #0
-	bl MSGMAN_GetString
-	ldr r0, [sp, #0x1c]
-	ldr r1, [sp, #0x18]
-	add r2, r4, #0
-	bl WORDSET_ExpandStr
-	str r5, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r0, #0
-	str r0, [sp, #8]
-	ldr r2, [sp, #0x18]
-	add r0, r7, #0
-	mov r1, #0
-	mov r3, #0x94
-	bl GF_STR_PrintSimple
-	ldr r0, [sp, #0x14]
-	add r6, r6, #4
-	add r0, r0, #1
-	add r5, #0x10
-	str r0, [sp, #0x14]
-	cmp r0, #7
-	blt _02253768
-	add r0, r4, #0
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x18]
-	bl STRBUF_Delete
-	ldr r0, [sp, #0x1c]
-	bl WORDSET_Delete
-	add sp, #0x20
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _022537D0: .4byte funcTbl
-}
-#endif
 
 //--------------------------------------------------------------
 /**
