@@ -195,7 +195,6 @@ int ZKN_WT_WORLD_TEXT_GMM_Idx_LANG_Code( int country )
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 {
 	int country_poke_num;
@@ -221,65 +220,21 @@ STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
 	}else{
 		// 外国
 		// GMMの中のデータインデックスを求める
-		gmm_file_idx = NARC_msg_zkn_worldname_dat + country_gmm_idx;
+        const int gmm_file_idx_tbl[] = {
+            NARC_msg_zkn_worldnamejp_dat,
+            NARC_msg_zkn_worldname_dat,
+            NARC_msg_zkn_worldname01_dat,
+            NARC_msg_zkn_worldname02_dat,
+            NARC_msg_zkn_worldname03_dat,
+            NARC_msg_zkn_worldname04_dat,
+        };
+		gmm_file_idx = gmm_file_idx_tbl[country_gmm_idx];
 		country_gmm_idx = country_poke_num;
 	}
 
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
-#else
-
-static const u32 sOv21_21E9CCC[] = {
-    0x2cd,
-    0x2c8,
-    0x2c9,
-    0x2ca,
-    0x2cb,
-    0x2cc
-};
-
-asm STRBUF* ZKN_WT_GetPokeName( int monsno, int country, int heap )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x28
-	add r4, r2, #0
-	add r2, sp, #4
-	str r2, [sp]
-	add r2, sp, #0xc
-	add r3, sp, #8
-	add r5, r0, #0
-	bl ZknWt_GetCountryPokeData
-	ldr r2, [sp, #4]
-	cmp r2, #6
-	bne _021D5642
-	add r0, r5, #0
-	add r1, r4, #0
-	bl MSGDAT_UTIL_GetMonsName
-	add sp, #0x28
-	pop {r4, r5, r6, pc}
-_021D5642:
-	ldr r6, =sOv21_21E9CCC // _021D5668
-	add r5, sp, #0x10
-	add r3, r5, #0
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	lsl r0, r2, #2
-	ldr r1, [sp, #0xc]
-	ldr r0, [r3, r0]
-	add r2, r4, #0
-	str r1, [sp, #4]
-	bl ZknWt_GetSTRData
-	add sp, #0x28
-	pop {r4, r5, r6, pc}
-	nop
-// _021D5668: .4byte 0x021E9CCC
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -292,7 +247,6 @@ _021D5642:
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 {
 	int country_poke_num;
@@ -315,62 +269,21 @@ STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
 	}else{
 		// 外国
 		// GMMの中のデータインデックスを求める
-		gmm_file_idx = NARC_msg_zkn_worldtype_dat + country_gmm_idx;
+        const int gmm_file_idx_tbl[] = {
+            NARC_msg_zkn_worldtypejp_dat,
+            NARC_msg_zkn_worldtype_dat,
+            NARC_msg_zkn_worldtype01_dat,
+            NARC_msg_zkn_worldtype02_dat,
+            NARC_msg_zkn_worldtype03_dat,
+            NARC_msg_zkn_worldtype04_dat,
+        };
+		gmm_file_idx = gmm_file_idx_tbl[country_gmm_idx];
 		country_gmm_idx = country_poke_num;
 	}
 
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
-#else
-static const u32 sOv21_21E9CE4[] = {
-    0x2d3,
-    0x2ce,
-    0x2cf,
-    0x2d0,
-    0x2d1,
-    0x2d2
-};
-
-asm STRBUF* ZKN_WT_GetPokeType( int monsno, int country, int heap )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x28
-	add r4, r2, #0
-	add r2, sp, #4
-	str r2, [sp]
-	add r2, sp, #0xc
-	add r3, sp, #8
-	add r5, r0, #0
-	bl ZknWt_GetCountryPokeData
-	ldr r2, [sp, #4]
-	cmp r2, #6
-	bne _021D568C
-	str r5, [sp, #4]
-	ldr r0, =0x000002C7 // _021D56B4
-	b _021D56A6
-_021D568C:
-	ldr r6, =sOv21_21E9CE4 // _021D56B8
-	add r5, sp, #0x10
-	add r3, r5, #0
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	ldmia r6!, {r0, r1}
-	stmia r5!, {r0, r1}
-	lsl r0, r2, #2
-	ldr r1, [sp, #0xc]
-	ldr r0, [r3, r0]
-	str r1, [sp, #4]
-_021D56A6:
-	ldr r1, [sp, #4]
-	add r2, r4, #0
-	bl ZknWt_GetSTRData
-	add sp, #0x28
-	pop {r4, r5, r6, pc}
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
@@ -384,7 +297,6 @@ _021D56A6:
  *	@return	文字列データ
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
 {
 	int country_poke_num;
@@ -408,82 +320,25 @@ STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
 		country_gmm_idx = (monsno * ZKN_WT_HOME_TEXT_PAGE_NUM) + page;
 		gmm_file_idx = ZKN_TEXT_DAT;
 	}else{
-
+        const int gmm_file_idx_tbl[] = {
+            NARC_msg_zkn_comment_jp_dat,
+            NARC_msg_zkn_comment_02_dat,
+            NARC_msg_zkn_comment_03_dat,
+            NARC_msg_zkn_comment_04_dat,
+            NARC_msg_zkn_comment_05_dat,
+            NARC_msg_zkn_comment_06_dat,
+        };
 		// ページ数チェック
 		GF_ASSERT( page < ZKN_WT_WORLD_TEXT_PAGE_NUM );
 		// 外国
 		// GMMの中のデータインデックスを求める
-		gmm_file_idx = NARC_msg_zkn_comment_02_dat + country_gmm_idx;
+		gmm_file_idx = gmm_file_idx_tbl[country_gmm_idx];
 		country_gmm_idx = (country_poke_num * ZKN_WT_WORLD_TEXT_PAGE_NUM) + page;
 	}
 
 	// gmm_file_idxとcountry_gmm_idxからSTRBUFを取得する
 	return ZknWt_GetSTRData( gmm_file_idx, country_gmm_idx, heap );
 }
-#else
-static const u32 sOv21_21E9CFC[] = {
-    0x2c1,
-    0x2bc,
-    0x2bd,
-    0x2be,
-    0x2bf,
-    0x2c0
-};
-
-asm STRBUF* ZKN_WT_GetText( int monsno, int country, int page, int heap )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x28
-	add r4, r2, #0
-	add r2, sp, #4
-	add r6, r3, #0
-	str r2, [sp]
-	add r2, sp, #0xc
-	add r3, sp, #8
-	add r5, r0, #0
-	bl ZknWt_GetCountryPokeData
-	ldr r0, [sp, #4]
-	cmp r0, #6
-	bne _021D56E8
-	cmp r4, #1
-	blt _021D56E0
-	bl GF_AssertFailedWarningCall
-_021D56E0:
-	add r0, r5, r4
-	str r0, [sp, #4]
-	ldr r0, =0x000002C2 // _021D571C
-	b _021D570E
-_021D56E8:
-	ldr r3, =sOv21_21E9CFC // _021D5720
-	add r2, sp, #0x10
-	ldmia r3!, {r0, r1}
-	stmia r2!, {r0, r1}
-	ldmia r3!, {r0, r1}
-	stmia r2!, {r0, r1}
-	ldmia r3!, {r0, r1}
-	stmia r2!, {r0, r1}
-	cmp r4, #1
-	blt _021D5700
-	bl GF_AssertFailedWarningCall
-_021D5700:
-	ldr r0, [sp, #4]
-	lsl r1, r0, #2
-	add r0, sp, #0x10
-	ldr r0, [r0, r1]
-	ldr r1, [sp, #0xc]
-	add r1, r1, r4
-	str r1, [sp, #4]
-_021D570E:
-	ldr r1, [sp, #4]
-	add r2, r6, #0
-	bl ZknWt_GetSTRData
-	add sp, #0x28
-	pop {r4, r5, r6, pc}
-	nop
-// _021D571C: .4byte 0x000002C2
-// _021D5720: .4byte sOv21_21E9CFC
-}
-#endif
 
 //-----------------------------------------------------------------------------
 /**
