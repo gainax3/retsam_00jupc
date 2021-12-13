@@ -1542,7 +1542,13 @@ void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, i
 	STRBUF *levelbuf;
 
 	if(level!=-1){
-		levelbuf = MSGMAN_AllocString( msgman, ((tbl_select==0)?level_minmax_table:search_level_minmax_table)[level].msg );
+        const WT_LEVEL_TERM *tbl;
+        if(tbl_select==LEVEL_PRINT_TBL_DEPOSIT){
+            tbl = level_minmax_table;
+        }else{       //LEVEL_PRINT_TBL_SEARCH
+            tbl = search_level_minmax_table;
+        }
+		levelbuf = MSGMAN_AllocString( msgman, tbl[level].msg );
 		WorldTrade_SysPrint( win, levelbuf, x, y, flag, color );
 		STRBUF_Delete(levelbuf);
 	}
