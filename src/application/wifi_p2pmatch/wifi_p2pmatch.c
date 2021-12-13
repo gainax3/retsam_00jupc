@@ -3768,7 +3768,6 @@ static int _retry( WIFIP2PMATCH_WORK *wk, int seq )
  * @retval  int
  */
 //------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
 {
     int i;
@@ -3795,12 +3794,14 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
         // ----------------------------------------------------------------------------
         // localize_spec_mark(LANG_ALL) imatake 2007/02/15
         // メッセージ表示中に接続が完了した場合に対処
+    #if 0
         if(wk->MsgIndex != _PRINTTASK_MAX){
             if(GF_MSG_PrintEndCheck(wk->MsgIndex)!=0){
                 GF_STR_PrintForceStop(wk->MsgIndex);
                 wk->MsgIndex = _PRINTTASK_MAX;
             }
         }
+    #endif
         // ----------------------------------------------------------------------------
         if( wk->bInitMessage ){  // 初回接続時にはセーブシーケンスへ
 //            SaveData_SaveParts(wk->pSaveData, SVBLK_ID_NORMAL);  //セーブ中
@@ -3817,89 +3818,6 @@ static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
     }
     return seq;
 }
-#else
-asm static int WifiP2PMatch_Connecting( WIFIP2PMATCH_WORK *wk, int seq )
-{
-	push {r3, r4, r5, lr}
-	add r5, r0, #0
-	mov r0, #6
-	lsl r0, r0, #6
-	ldr r0, [r5, r0]
-	add r4, r1, #0
-	lsl r0, r0, #0x18
-	lsr r0, r0, #0x18
-	bl GF_MSG_PrintEndCheck
-	cmp r0, #0
-	beq _0222FABC
-	add r0, r4, #0
-	pop {r3, r4, r5, pc}
-_0222FABC:
-	bl mydwc_getSaving
-	cmp r0, #0
-	beq _0222FAF6
-	mov r0, #0xd1
-	mov r1, #0x45
-	lsl r0, r0, #2
-	str r1, [r5, r0]
-	add r0, r5, #0
-	mov r1, #0x1e
-	mov r2, #1
-	bl WifiP2PMatchMessagePrint
-	mov r0, #0x62
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	cmp r0, #0
-	beq _0222FAE4
-	bl GF_AssertFailedWarningCall
-_0222FAE4:
-	mov r1, #0xb3
-	lsl r1, r1, #2
-	add r0, r5, r1
-	sub r1, #0xea
-	bl TimeWaitIconAdd
-	mov r1, #0x62
-	lsl r1, r1, #2
-	str r0, [r5, r1]
-_0222FAF6:
-	bl CommStateIsWifiLoginState
-	cmp r0, #0
-	beq _0222FB2A
-	mov r0, #0xd9
-	lsl r0, r0, #2
-	ldr r1, [r5, r0]
-	cmp r1, #0
-	beq _0222FB10
-	mov r1, #0x10
-	sub r0, #0x20
-	str r1, [r5, r0]
-	b _0222FB40
-_0222FB10:
-	add r0, r5, #0
-	mov r1, #0x10
-	bl _makeMyMatchStatus
-	add r0, r5, #0
-	bl _readFriendMatchStatus
-	bl WifiP2PMatchFriendListStart
-	mov r1, #0xd1
-	lsl r1, r1, #2
-	str r0, [r5, r1]
-	b _0222FB40
-_0222FB2A:
-	bl CommStateIsWifiError
-	cmp r0, #0
-	bne _0222FB3A
-	bl CommWifiIsMatched
-	cmp r0, #3
-	bne _0222FB40
-_0222FB3A:
-	add r0, r5, #0
-	bl _errorDisp
-_0222FB40:
-	add r0, r4, #0
-	pop {r3, r4, r5, pc}
-}
-#endif
-
 //------------------------------------------------------------------
 /**
  * $brief   初回セーブ処理
