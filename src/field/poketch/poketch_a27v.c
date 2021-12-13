@@ -536,7 +536,7 @@ static void print_bmp_cant_connect( VIEWWORK* vwk )
 
 	GF_BGL_BmpWinCgxOn( &vwk->bmpwin );
 }
-#ifdef NONEQUIVALENT
+
 static void print_bmp_dont_move( VIEWWORK* vwk )
 {
 	u32 xpos;
@@ -548,77 +548,22 @@ static void print_bmp_dont_move( VIEWWORK* vwk )
 	// localize_spec_mark(LANG_ALL) imatake 2007/02/17
 	// つうしんサーチのエラーメッセージをポケッチの画面中央に
 	{
-		u32 xofs = (POKETCH_MONITOR_SCRN_WIDTH * 8 - FontProc_GetPrintMaxLineWidth( PRINT_FONT, vwk->tmpbuf, 0)) / 2;
-		GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xofs, ERR_STR_PRINT_Y, MSG_NO_PUT, 
+		u32 xofs = (POKETCH_MONITOR_SCRN_WIDTH * 8 - FontProc_GetPrintStrWidth( PRINT_FONT, vwk->tmpbuf, 0)) / 2;
+		GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xofs, TOP_TITLE_PRINT_Y, MSG_NO_PUT,
 						GF_PRINTCOLOR_MAKE(COLOR_LETTER,COLOR_SHADOW,COLOR_GROUND), NULL );
 	}
 	// ----------------------------------------------------------------------------
 
+    //MatchComment: second string
+    MSGMAN_GetString( vwk->mm, msg_err_dont_move, vwk->tmpbuf );
+    {
+        u32 xofs = (POKETCH_MONITOR_SCRN_WIDTH * 8 - FontProc_GetPrintMaxLineWidth( PRINT_FONT, vwk->tmpbuf, 0)) / 2;
+        GF_STR_PrintColor( &vwk->bmpwin, PRINT_FONT, vwk->tmpbuf, xofs, ERR_STR_PRINT_Y, MSG_NO_PUT,
+                           GF_PRINTCOLOR_MAKE(COLOR_LETTER,COLOR_SHADOW,COLOR_GROUND), NULL );
+    }
+
 	GF_BGL_BmpWinCgxOn( &vwk->bmpwin );
 }
-#else
-asm static void print_bmp_dont_move( VIEWWORK* vwk )
-{
-    push {r4, lr}
-	sub sp, #0x10
-	add r4, r0, #0
-	add r0, #0x20
-	mov r1, #4
-	bl GF_BGL_BmpWinDataFill
-	ldr r0, [r4, #0x58]
-	ldr r2, [r4, #0x5c]
-	mov r1, #2
-	bl MSGMAN_GetString
-	mov r0, #0
-	ldr r1, [r4, #0x5c]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xc0
-	sub r0, r1, r0
-	lsr r3, r0, #1
-	mov r0, #8
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010804 // _02256C60
-	mov r1, #0
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	ldr r2, [r4, #0x5c]
-	add r0, #0x20
-	bl GF_STR_PrintColor
-	ldr r0, [r4, #0x58]
-	ldr r2, [r4, #0x5c]
-	mov r1, #4
-	bl MSGMAN_GetString
-	mov r0, #0
-	ldr r1, [r4, #0x5c]
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	mov r1, #0xc0
-	sub r0, r1, r0
-	lsr r3, r0, #1
-	mov r0, #0x18
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010804 // _02256C60
-	mov r1, #0
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	add r0, r4, #0
-	ldr r2, [r4, #0x5c]
-	add r0, #0x20
-	bl GF_STR_PrintColor
-	add r4, #0x20
-	add r0, r4, #0
-	bl GF_BGL_BmpWinCgxOn
-	add sp, #0x10
-	pop {r4, pc}
-	nop
-}
-#endif
 
 static void print_bmp_status( VIEWWORK* vwk, const VIEWPARAM* vpara )
 {
