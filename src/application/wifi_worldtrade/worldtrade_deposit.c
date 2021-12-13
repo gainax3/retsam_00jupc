@@ -1537,83 +1537,21 @@ void WorldTrade_SexPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int sex, 
 // localize_spec_mark(LANG_ALL) imatake 2007/01/16
 // x ç¿ïWéwíËÇÃÇ≈Ç´ÇÈ WorldTrade_WantLevelPrint() ìØìôä÷êîÇópà”
 
-#ifdef NONEQUIVALENT
 void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x )
 {
 	STRBUF *levelbuf;
 
 	if(level!=-1){
-		levelbuf = MSGMAN_AllocString( msgman, level_minmax_table[level].msg );
+		levelbuf = MSGMAN_AllocString( msgman, ((tbl_select==0)?level_minmax_table:search_level_minmax_table)[level].msg );
 		WorldTrade_SysPrint( win, levelbuf, x, y, flag, color );
 		STRBUF_Delete(levelbuf);
 	}
 }
-#else
-asm void WorldTrade_WantLevelPrintEx( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select, int x )
-{    
-	push {r4, r5, r6, lr}
-	sub sp, #8
-	add r6, r0, #0
-	mov r0, #0
-	mvn r0, r0
-	add r5, r3, #0
-	cmp r2, r0
-	beq _022422AC
-	ldr r0, [sp, #0x20]
-	cmp r0, #0
-	bne _02242286
-	ldr r3, =level_minmax_table // TODO__fix_me // _022422B0
-	b _02242288
-_02242286:
-	ldr r3, =search_level_minmax_table // TODO__fix_me // _022422B4
-_02242288:
-	add r0, r1, #0
-	lsl r1, r2, #3
-	ldr r1, [r3, r1]
-	bl MSGMAN_AllocString
-	add r4, r0, #0
-	ldr r0, [sp, #0x1c]
-	str r5, [sp]
-	str r0, [sp, #4]
-	ldr r2, [sp, #0x24]
-	ldr r3, [sp, #0x18]
-	add r0, r6, #0
-	add r1, r4, #0
-	bl WorldTrade_SysPrint
-	add r0, r4, #0
-	bl STRBUF_Delete
-_022422AC:
-	add sp, #8
-	pop {r4, r5, r6, pc}
-	// .align 2, 0
-// _022422B0: .4byte level_minmax_table // TODO__fix_me
-// _022422B4: .4byte search_level_minmax_table // TODO__fix_me
-}
-#endif
 
-#ifdef NONEQUIVALENT
 void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select )
 {
-	WorldTrade_WantLevelPrintEx( win, msgman, level, flag, y, color, 0, 0 );
+	WorldTrade_WantLevelPrintEx( win, msgman, level, flag, y, color, tbl_select, 0 );
 }
-#else
-asm void WorldTrade_WantLevelPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *msgman, int level, int flag, int y, GF_PRINTCOLOR color, int tbl_select )
-{
-	push {r4, lr}
-	sub sp, #0x10
-	ldr r4, [sp, #0x18]
-	str r4, [sp]
-	ldr r4, [sp, #0x1c]
-	str r4, [sp, #4]
-	ldr r4, [sp, #0x20]
-	str r4, [sp, #8]
-	mov r4, #0
-	str r4, [sp, #0xc]
-	bl WorldTrade_WantLevelPrintEx
-	add sp, #0x10
-	pop {r4, pc}
-}
-#endif
 
 // ----------------------------------------------------------------------------
 
