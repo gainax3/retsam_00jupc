@@ -2588,7 +2588,6 @@ static void SetUketoru( FACTORY_WORK* wk )
  * @return	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void SetUketoruNo( FACTORY_WORK* wk )
 {
 	FactoryCsr_Delete( wk->p_csr_menu );	//メニューカーソルOBJ削除
@@ -2603,85 +2602,13 @@ static void SetUketoruNo( FACTORY_WORK* wk )
 	wk->msg_index = FactoryWriteMsgSimple(wk,&wk->bmpwin[BMPWIN_SEL],msg_f_change_choice_06,
 										1, 1+16, MSG_NO_PUT, 
 										FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_WHITE, BF_FONT );
+    //MatchComment: More stuff to print
+    FactoryTalkWinPut( &wk->bmpwin[BMPWIN_TALK], CONFIG_GetWindowType( wk->config ) );
+    wk->msg_index = Factory_EasyMsg( wk, msg_f_change_05 );
+    //----
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[BMPWIN_SEL] );
 	return;
 }
-#else
-asm static void SetUketoruNo( FACTORY_WORK* wk )
-{
-	push {r4, lr}
-	sub sp, #0x18
-	add r4, r0, #0
-	mov r0, #0xab
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	bl FactoryCsr_Delete
-	mov r0, #0xab
-	mov r1, #0
-	lsl r0, r0, #2
-	str r1, [r4, r0]
-	sub r0, r0, #4
-	ldr r0, [r4, r0]
-	bl FactoryCsr_Pause
-	add r1, r4, #0
-	ldr r0, [r4, #0x4c]
-	add r1, #0xc0
-	bl FactoryWriteMenuWin
-	mov r3, #1
-	add r1, r4, #0
-	str r3, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	str r3, [sp, #8]
-	mov r0, #2
-	str r0, [sp, #0xc]
-	mov r0, #0xf
-	str r0, [sp, #0x10]
-	mov r0, #0
-	str r0, [sp, #0x14]
-	add r0, r4, #0
-	add r1, #0xc0
-	mov r2, #0x17
-	bl FactoryWriteMsg
-	strb r0, [r4, #0x10]
-	mov r0, #0x11
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	mov r3, #1
-	add r1, r4, #0
-	str r3, [sp, #8]
-	mov r0, #2
-	str r0, [sp, #0xc]
-	mov r0, #0xf
-	str r0, [sp, #0x10]
-	mov r0, #0
-	str r0, [sp, #0x14]
-	add r0, r4, #0
-	add r1, #0xc0
-	mov r2, #0x18
-	bl FactoryWriteMsgSimple
-	strb r0, [r4, #0x10]
-	mov r0, #0x4e
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	bl CONFIG_GetWindowType
-	add r1, r0, #0
-	add r0, r4, #0
-	add r0, #0xa0
-	bl FactoryTalkWinPut
-	add r0, r4, #0
-	mov r1, #0xd
-	bl Factory_EasyMsg
-	strb r0, [r4, #0x10]
-	add r4, #0xc0
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x18
-	pop {r4, pc}
-	// .align 2, 0
-}
-#endif
 
 //--------------------------------------------------------------
 /**
