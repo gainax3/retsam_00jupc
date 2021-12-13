@@ -748,13 +748,13 @@ enum{
 #define WFNOTE_FRIENDINFO_PAGE06_TT_X	( 0 )	// タイトル
 #define WFNOTE_FRIENDINFO_PAGE06_TT_Y	( 0 )	// タイトル
 #define WFNOTE_FRIENDINFO_PAGE06_BC_X	( 0 )	// たまなげ
-#define WFNOTE_FRIENDINFO_PAGE06_BC_N_X	( 120 )	// 値
+#define WFNOTE_FRIENDINFO_PAGE06_BC_N_X	( 160 )	// 値
 #define WFNOTE_FRIENDINFO_PAGE06_BC_Y	( 24 )	// Y
 #define WFNOTE_FRIENDINFO_PAGE06_BB_X	( 0 )	// たまのり
-#define WFNOTE_FRIENDINFO_PAGE06_BB_N_X	( 120 )	// 値
+#define WFNOTE_FRIENDINFO_PAGE06_BB_N_X	( 160 )	// 値
 #define WFNOTE_FRIENDINFO_PAGE06_BB_Y	( 48 )	// Y
 #define WFNOTE_FRIENDINFO_PAGE06_BL_X	( 0 )	// たまのり
-#define WFNOTE_FRIENDINFO_PAGE06_BL_N_X	( 120 )	// 値
+#define WFNOTE_FRIENDINFO_PAGE06_BL_N_X	( 160 )	// 値
 #define WFNOTE_FRIENDINFO_PAGE06_BL_Y	( 72 )	// Y
 
 
@@ -6570,7 +6570,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page05( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 }
 
 // ミニゲーム
-#ifdef NONEQUIVALENT
 static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
 {
 	STRBUF* p_str;
@@ -6588,49 +6587,49 @@ static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_52, 
 			WFNOTE_FRIENDINFO_PAGE06_TT_X, WFNOTE_FRIENDINFO_PAGE06_TT_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 
 	// たまいれ
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALLSLOW );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BC_X, WFNOTE_FRIENDINFO_PAGE06_BC_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALLSLOW_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BC_N_X, WFNOTE_FRIENDINFO_PAGE06_BC_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 	// たまのり
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALANCEBALL );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BB_X, WFNOTE_FRIENDINFO_PAGE06_BB_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALANCEBALL_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BB_N_X, WFNOTE_FRIENDINFO_PAGE06_BB_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 	// ふうせん
 	WFNOTE_DRAW_WflbyGameSetWordSet( p_draw, WFLBY_GAME_BALLOON );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_53, 
 			WFNOTE_FRIENDINFO_PAGE06_BL_X, WFNOTE_FRIENDINFO_PAGE06_BL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 0 );
 	// 値
 	num = WifiList_GetFriendInfo( p_wifilist, p_data->idx.fridx[p_data->select_listidx], WIFILIST_FRIEND_BALLOON_NUM );
 	WFNOTE_DRAW_NumberSetWordset( p_draw, num );
 	WFNOTE_FRIENDINFO_DRAW_Bmp( p_wk, 1, WFNOTE_FRIENDINFO_PAGE06_BA,
 			p_data, p_draw, msg_wifi_note_56, 
 			WFNOTE_FRIENDINFO_PAGE06_BL_N_X, WFNOTE_FRIENDINFO_PAGE06_BL_Y,
-			WFNOTE_COL_BLACK, p_str, p_tmp );
+			WFNOTE_COL_BLACK, p_str, p_tmp, 2 );
 
 
 	WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq( p_wk, 1 );
@@ -6638,197 +6637,6 @@ static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFN
 	STRBUF_Delete( p_str );
 	STRBUF_Delete( p_tmp );
 }
-#else
-asm static void WFNOTE_FRIENDINFO_DRAW_Page06( WFNOTE_FRIENDINFO_DRAWAREA* p_wk, WFNOTE_DATA* p_data, WFNOTE_DRAW* p_draw, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x28
-	add r5, r1, #0
-	str r0, [sp, #0x20]
-	ldr r0, [r5, #0]
-	add r4, r2, #0
-	add r7, r3, #0
-	bl SaveData_GetFrontier
-	ldr r0, [r5, #0]
-	bl SaveData_GetWifiListData
-	str r0, [sp, #0x24]
-	mov r0, #0x80
-	add r1, r7, #0
-	bl STRBUF_Create
-	add r6, r0, #0
-	mov r0, #0x80
-	add r1, r7, #0
-	bl STRBUF_Create
-	add r7, r0, #0
-	str r4, [sp]
-	mov r0, #0x2b
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	ldr r0, =0x00010200 // _02232034
-	str r2, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	mov r1, #1
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	add r0, r4, #0
-	mov r1, #0
-	bl WFNOTE_DRAW_WflbyGameSetWordSet
-	str r4, [sp]
-	mov r0, #0x2c
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	mov r0, #0x18
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r1, #7
-	ldrsb r1, [r5, r1]
-	ldr r0, [sp, #0x24]
-	mov r2, #0xa
-	add r1, r5, r1
-	ldrb r1, [r1, #0xc]
-	bl WifiList_GetFriendInfo
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x2d
-	str r0, [sp, #4]
-	mov r0, #0xa0
-	str r0, [sp, #8]
-	mov r0, #0x18
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	add r0, r4, #0
-	mov r1, #1
-	bl WFNOTE_DRAW_WflbyGameSetWordSet
-	str r4, [sp]
-	mov r0, #0x2c
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	mov r0, #0x30
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r1, #7
-	ldrsb r1, [r5, r1]
-	ldr r0, [sp, #0x24]
-	mov r2, #0xb
-	add r1, r5, r1
-	ldrb r1, [r1, #0xc]
-	bl WifiList_GetFriendInfo
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x2d
-	str r0, [sp, #4]
-	mov r0, #0xa0
-	str r0, [sp, #8]
-	mov r0, #0x30
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	add r0, r4, #0
-	mov r1, #2
-	bl WFNOTE_DRAW_WflbyGameSetWordSet
-	str r4, [sp]
-	mov r0, #0x2c
-	str r0, [sp, #4]
-	mov r2, #0
-	str r2, [sp, #8]
-	mov r0, #0x48
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	ldr r0, [sp, #0x20]
-	add r3, r5, #0
-	str r2, [sp, #0x1c]
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	mov r1, #7
-	ldrsb r1, [r5, r1]
-	ldr r0, [sp, #0x24]
-	mov r2, #0xc
-	add r1, r5, r1
-	ldrb r1, [r1, #0xc]
-	bl WifiList_GetFriendInfo
-	add r1, r0, #0
-	add r0, r4, #0
-	bl WFNOTE_DRAW_NumberSetWordset
-	str r4, [sp]
-	mov r0, #0x2d
-	str r0, [sp, #4]
-	mov r0, #0xa0
-	str r0, [sp, #8]
-	mov r0, #0x48
-	str r0, [sp, #0xc]
-	ldr r0, =0x00010200 // _02232034
-	mov r1, #1
-	str r0, [sp, #0x10]
-	str r6, [sp, #0x14]
-	str r7, [sp, #0x18]
-	mov r0, #2
-	str r0, [sp, #0x1c]
-	ldr r0, [sp, #0x20]
-	mov r2, #0
-	add r3, r5, #0
-	bl WFNOTE_FRIENDINFO_DRAW_Bmp
-	ldr r0, [sp, #0x20]
-	mov r1, #1
-	bl WFNOTE_FRIENDINFO_DRAWAREA_MSGBmpOnVReq
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add r0, r7, #0
-	bl STRBUF_Delete
-	add sp, #0x28
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _02232034: .4byte 0x00010200
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**
