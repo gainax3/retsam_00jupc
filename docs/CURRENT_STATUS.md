@@ -1,6 +1,8 @@
 # Current Status
 Apart from building a ROM that matches version v1.0 of Pokémon Platinum (US), the repository as is should allow "shifting", i.e. inserting or removing code, although this has not been tested. However, there is no guarantee as to how complex changes to the source can become before bugs arise in the resulting ROM. Since there are still NONEQUIVALENT functions left (functions where the compiled assembly is included instead as the corresponding C code does not match), changing some constant values or struct definitions could cause bugs, as said changes wouldn't be seen in the included assembly. 
 
+**Update 14 Dec 2021** - All NONEQUIVALENT and NONMATCHING functions have been matched and made equivalent to Platinum US. There may remain some constants which have yet to be updated and/or integrated into the revised source code, but struct definitions should be mutable now.
+
 Throughout the build, the phrase `MatchComment` has been scattered around indicating changes from Platinum JP to US, with a barebones comment indicating what was changed (except for changes taken from the Diamond/Pearl US source; these just copy the unaltered localization changes). However, this was not applied exhaustively towards every change. If you're unsure, check the commit history.
 
 The Makefile system is very, very, very bloated and confusing to understand, and almost certainly needs a stripping down (e.g. dynamic inclusion of makefiles depending on the target system which is not necessary for this project). However, it might be better to just clean up the Makefile system as part of a standalone repository which includes only the minimum necessary to build.
