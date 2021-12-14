@@ -491,24 +491,25 @@ enum{
 #define MCV_USERD_ST_X	( 104 )
 #define MCV_USERD_ST_Y	( 8 )
 #define MCV_USERD_GR_X	( 8 )
+#define MCV_USERD_GR2_X	( 232 )
 #define MCV_USERD_GR_Y	( 32 )
 #define MCV_USERD_VS_X	( 8 )
 #define MCV_USERD_VS_Y	( 56 )
 #define MCV_USERD_VS_WIN_X	( 120 )
 #define MCV_USERD_VS_WIN_Y	( 56 )
-#define MCV_USERD_VS_LOS_X	( 184 )
+#define MCV_USERD_VS_LOS_X	( 232 )
 #define MCV_USERD_TR_X		( 8 )
 #define MCV_USERD_TR_Y		( 80 )
-#define MCV_USERD_TRNUM_X	( 152 )
+#define MCV_USERD_TRNUM_X	( 232 )
 #define MCV_USERD_DAY_X		( 8 )
 #define MCV_USERD_DAY_Y		( 128 )
-#define MCV_USERD_DAYNUM_X	( 152 )
+#define MCV_USERD_DAYNUM_X	( 232 )
 #define MCV_USERD_ICON_X	( 2 )
 #define MCV_USERD_VCTICON_X	( 28 )
 #define MCV_USERD_ICON_Y	( 2 )
 #define MCV_USERD_POFIN_X		( 8 )
 #define MCV_USERD_POFIN_Y		( 104 )
-#define MCV_USERD_POFINNUM_X	( 152 )
+#define MCV_USERD_POFINNUM_X	( 232 )
 
 // PAGE2
 #define MCV_USERD_BTTW_TITLE_X		(8)
@@ -9333,7 +9334,6 @@ static void MCVSys_UserDispDraw( WIFIP2PMATCH_WORK *wk, u32 heapID )
 }
 
 // 通常
-#ifdef NONEQUIVALENT
 static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int sex;
@@ -9373,17 +9373,22 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	// グループ
     {
+        u32 xpos;
         MYSTATUS* pTarget = MyStatus_AllocWork(HEAPID_WIFIP2PMATCH);
         MyStatus_SetMyName(pTarget, WifiList_GetFriendGroupNamePtr(wk->pList,friendNo));
         WORDSET_RegisterPlayerName( wk->view.p_wordset, 0, pTarget);
         sys_FreeMemoryEz(pTarget);
-		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_034, wk->pExpStrBuf );
-		WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
-		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_GR_X, MCV_USERD_GR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_034, wk->TitleString );
+        GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_GR_X, MCV_USERD_GR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+        MSGMAN_GetString(  wk->MsgManager, 150, wk->pExpStrBuf );
+        WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
+        xpos = MCV_USERD_GR2_X - FontProc_GetPrintStrWidth(FONT_SYSTEM, wk->TitleString, 0);
+        GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos, MCV_USERD_GR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
     }
 
     // 対戦成績
 	{
+        u32 xpos;
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_035, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
 				MCV_USERD_VS_X, MCV_USERD_VS_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
@@ -9398,11 +9403,14 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		WORDSET_RegisterNumber(wk->view.p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_037, wk->pExpStrBuf );
 		WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
+        xpos = MCV_USERD_VS_LOS_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
-				MCV_USERD_VS_LOS_X, MCV_USERD_VS_WIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+				xpos, MCV_USERD_VS_WIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	}
 	// ポケモン交換
 	{
+        u32 xpos;
+
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_038, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_TR_X,  MCV_USERD_TR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9411,11 +9419,13 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_039, wk->pExpStrBuf );
 		WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
 
-		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_TRNUM_X, MCV_USERD_TR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+        xpos = MCV_USERD_TRNUM_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
+		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos, MCV_USERD_TR_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 	}
 
 	// 料理数
 	if( _pofinCaseCheck( wk ) == TRUE ){
+        u32 xpos;
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_102, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_POFIN_X,  MCV_USERD_POFIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
@@ -9424,7 +9434,8 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_103, wk->pExpStrBuf );
 		WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
 
-		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_POFINNUM_X, MCV_USERD_POFIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+        xpos = MCV_USERD_POFINNUM_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
+		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos, MCV_USERD_POFIN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
 	}
 	
@@ -9436,15 +9447,18 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 		num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_LASTBT_DAY);
 		if(num!=0){
-			WORDSET_RegisterNumber(wk->view.p_wordset, 2, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+            u32 xpos;
+			WORDSET_RegisterNumber(wk->view.p_wordset, 2, num, 2, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 			num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_LASTBT_YEAR);
-			WORDSET_RegisterNumber(wk->view.p_wordset, 0, num, 4, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+			WORDSET_RegisterNumber(wk->view.p_wordset, 0, num, 4, NUMBER_DISPTYPE_LEFT, NUMBER_CODETYPE_DEFAULT);
 			num = WifiList_GetFriendInfo(wk->pList, friendNo, WIFILIST_FRIEND_LASTBT_MONTH);
-			WORDSET_RegisterNumber(wk->view.p_wordset, 1, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+//			WORDSET_RegisterNumber(wk->view.p_wordset, 1, num, 2, NUMBER_DISPTYPE_SPACE, NUMBER_CODETYPE_DEFAULT);
+            WORDSET_RegisterMonthName(wk->view.p_wordset, 1, num);
 			MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_041, wk->pExpStrBuf );
 			WORDSET_ExpandStr( wk->view.p_wordset, wk->TitleString, wk->pExpStrBuf );
+            xpos = MCV_USERD_DAYNUM_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
 			GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, 
-					MCV_USERD_DAYNUM_X, MCV_USERD_DAY_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+					xpos, MCV_USERD_DAY_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 		}
 	}
 
@@ -9462,568 +9476,6 @@ static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
 			vct_icon, 0 );
 
 }
-#else
-asm static void MCVSys_UserDispDrawType00( WIFIP2PMATCH_WORK *wk, u32 heapID )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r5, r0, #0
-	ldr r0, =0x00000B89 // _02233CD4
-	mov r2, #8
-	ldrb r0, [r5, r0]
-	sub r4, r0, #1
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	bl WifiList_GetFriendInfo
-	cmp r0, #0
-	bne _0223395E
-	ldr r0, =0x00050600 // _02233CD8
-	b _02233962
-_0223395E:
-	mov r0, #0xc1
-	lsl r0, r0, #0xa
-_02233962:
-	str r0, [sp, #0x14]
-	add r0, r5, #0
-	add r1, r4, #0
-	bl MCVSys_FriendNameSet
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	mov r1, #0x2a
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r0, #8
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, [sp, #0x14]
-	add r2, #0x79
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, =0x00000D14 // _02233CE0
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r1, #1
-	mov r3, #0x20
-	bl GF_STR_PrintColor
-	add r0, r5, #0
-	add r1, r4, #0
-	bl WifiFriendMatchStatusGet
-	str r0, [sp, #0x10]
-	ldr r1, [sp, #0x10]
-	add r0, r5, #0
-	bl _WifiMyStatusGet
-	add r1, sp, #0x14
-	add r7, r0, #0
-	bl MCVSys_StatusMsgIdGet
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	add r1, r0, #0
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	bl MSGMAN_GetString
-	mov r0, #8
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, [sp, #0x14]
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x71
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #0x68
-	bl GF_STR_PrintColor
-	mov r0, #0x36
-	bl MyStatus_AllocWork
-	add r6, r0, #0
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	bl WifiList_GetFriendGroupNamePtr
-	add r1, r0, #0
-	add r0, r6, #0
-	bl MyStatus_SetMyName
-	ldr r0, =0x00000B18 // _02233CDC
-	mov r1, #0
-	ldr r0, [r5, r0]
-	add r2, r6, #0
-	bl WORDSET_RegisterPlayerName
-	add r0, r6, #0
-	bl sys_FreeMemoryEz
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x2b
-	bl MSGMAN_GetString
-	mov r0, #0x20
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r1, #0x96
-	mov r0, #0x5a
-	add r2, r1, #0
-	lsl r0, r0, #2
-	add r2, #0xda
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x20
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x2c
-	bl MSGMAN_GetString
-	mov r0, #0x38
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #1
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233CDC
-	mov r1, #0
-	ldr r0, [r5, r0]
-	mov r3, #4
-	bl WORDSET_RegisterNumber
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	mov r1, #0x2d
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r0, #0x38
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #0x78
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #2
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233CDC
-	mov r1, #0
-	ldr r0, [r5, r0]
-	mov r3, #4
-	bl WORDSET_RegisterNumber
-	mov r0, #0x5a
-	mov r1, #0x2e
-	lsl r0, r0, #2
-	lsl r2, r1, #3
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x38
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-	mov r0, #0x5a
-	mov r1, #0x2f
-	lsl r0, r0, #2
-	lsl r2, r1, #3
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl MSGMAN_GetString
-	mov r0, #0x50
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #3
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233CDC
-	mov r1, #0
-	ldr r0, [r5, r0]
-	mov r3, #4
-	bl WORDSET_RegisterNumber
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	mov r1, #0x30
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x50
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-	add r0, r5, #0
-	bl _pofinCaseCheck
-	cmp r0, #1
-	bne _02233CF4
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x31
-	bl MSGMAN_GetString
-	mov r0, #0x68
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #9
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	mov r0, #1
-	str r0, [sp]
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233CDC
-	mov r1, #0
-	ldr r0, [r5, r0]
-	mov r3, #4
-	bl WORDSET_RegisterNumber
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	mov r1, #0x32
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233CDC
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x68
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233CE4
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233CE0
-	b _02233CE8
-// _02233CD4: .4byte 0x00000B89
-// _02233CD8: .4byte 0x00050600
-// _02233CDC: .4byte 0x00000B18
-// _02233CE0: .4byte 0x00000D14
-// _02233CE4: .4byte 0x00010200
-_02233CE8:
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-_02233CF4:
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x33
-	bl MSGMAN_GetString
-	mov r0, #0x80
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233E10
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233E14
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #6
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	beq _02233DC8
-	mov r0, #0
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233E18
-	mov r1, #2
-	ldr r0, [r5, r0]
-	add r3, r1, #0
-	bl WORDSET_RegisterNumber
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #4
-	bl WifiList_GetFriendInfo
-	mov r1, #0
-	add r2, r0, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	ldr r0, =0x00000B18 // _02233E18
-	mov r3, #4
-	ldr r0, [r5, r0]
-	bl WORDSET_RegisterNumber
-	ldr r0, [r5, #0]
-	add r1, r4, #0
-	mov r2, #5
-	bl WifiList_GetFriendInfo
-	add r2, r0, #0
-	ldr r0, =0x00000B18 // _02233E18
-	mov r1, #1
-	ldr r0, [r5, r0]
-	bl WORDSET_RegisterMonthName
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r2, [r5, r2]
-	mov r1, #0x4a
-	bl MSGMAN_GetString
-	mov r2, #0x5e
-	ldr r0, =0x00000B18 // _02233E18
-	lsl r2, r2, #2
-	ldr r1, [r5, r2]
-	sub r2, #8
-	ldr r0, [r5, r0]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x80
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02233E10
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02233E14
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-_02233DC8:
-	mov r3, #2
-	str r3, [sp]
-	mov r0, #0x57
-	ldr r1, =0x00000B08 // _02233E1C
-	str r7, [sp, #4]
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	add r1, r5, r1
-	mov r2, #6
-	bl WifiP2PMatchFriendListStIconWrite
-	ldr r0, [sp, #0x10]
-	add r0, #0x21
-	str r0, [sp, #0x10]
-	ldrb r0, [r0]
-	cmp r0, #0
-	beq _02233DEE
-	mov r1, #8
-	b _02233DF0
-_02233DEE:
-	mov r1, #1
-_02233DF0:
-	mov r0, #2
-	str r0, [sp]
-	str r1, [sp, #4]
-	mov r0, #0
-	str r0, [sp, #8]
-	mov r0, #0x57
-	lsl r0, r0, #2
-	ldr r1, =0x00000B08 // _02233E1C
-	ldr r0, [r5, r0]
-	add r1, r5, r1
-	mov r2, #6
-	mov r3, #0x1c
-	bl WifiP2PMatchFriendListIconWrite
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-	// .align 2, 0
-// _02233E10: .4byte 0x00010200
-// _02233E14: .4byte 0x00000D14
-// _02233E18: .4byte 0x00000B18
-// _02233E1C: .4byte 0x00000B08
-}
-#endif
 
 // バトルタワー
 static void MCVSys_UserDispDrawType01( WIFIP2PMATCH_WORK *wk, u32 heapID )
