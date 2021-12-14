@@ -528,35 +528,35 @@ enum{
 #define MCV_USERD_BTFC_TITLE_Y			(0)
 #define MCV_USERD_BTFC_LV50_X			(8)
 #define MCV_USERD_BTFC_LV50_Y			(24)
-#define MCV_USERD_BTFC_LV50K_X			(136)
+#define MCV_USERD_BTFC_LV50K_X			(232)
 #define MCV_USERD_BTFC_LV50K_Y			(24)
 #define MCV_USERD_BTFC_LV50LAST_X		(8)
 #define MCV_USERD_BTFC_LV50LAST_Y		(48)
-#define MCV_USERD_BTFC_LV50LASTNUM_X	(64)
+#define MCV_USERD_BTFC_LV50LASTNUM_X	(104)
 #define MCV_USERD_BTFC_LV50LASTNUM_Y	(48)
-#define MCV_USERD_BTFC_LV50LASTTRNUM_X	(184)
+#define MCV_USERD_BTFC_LV50LASTTRNUM_X	(212)
 #define MCV_USERD_BTFC_LV50LASTTRNUM_Y	(48)
 #define MCV_USERD_BTFC_LV50MAX_X		(8)
 #define MCV_USERD_BTFC_LV50MAX_Y		(64)
-#define MCV_USERD_BTFC_LV50MAXNUM_X		(64)
+#define MCV_USERD_BTFC_LV50MAXNUM_X		(104)
 #define MCV_USERD_BTFC_LV50MAXNUM_Y		(64)
-#define MCV_USERD_BTFC_LV50MAXTRNUM_X	(184)
+#define MCV_USERD_BTFC_LV50MAXTRNUM_X	(212)
 #define MCV_USERD_BTFC_LV50MAXTRNUM_Y	(64)
 #define MCV_USERD_BTFC_OPN_X			(8)
 #define MCV_USERD_BTFC_OPN_Y			(88)
-#define MCV_USERD_BTFC_OPNK_X			(136)
+#define MCV_USERD_BTFC_OPNK_X			(232)
 #define MCV_USERD_BTFC_OPNK_Y			(88)
 #define MCV_USERD_BTFC_OPNLAST_X		(8)
 #define MCV_USERD_BTFC_OPNLAST_Y		(112)
-#define MCV_USERD_BTFC_OPNLASTNUM_X	(64)
+#define MCV_USERD_BTFC_OPNLASTNUM_X	(104)
 #define MCV_USERD_BTFC_OPNLASTNUM_Y	(112)
-#define MCV_USERD_BTFC_OPNLASTTRNUM_X	(184)
+#define MCV_USERD_BTFC_OPNLASTTRNUM_X	(212)
 #define MCV_USERD_BTFC_OPNLASTTRNUM_Y	(112)
 #define MCV_USERD_BTFC_OPNMAX_X		(8)
 #define MCV_USERD_BTFC_OPNMAX_Y		(128)
-#define MCV_USERD_BTFC_OPNMAXNUM_X		(64)
+#define MCV_USERD_BTFC_OPNMAXNUM_X		(104)
 #define MCV_USERD_BTFC_OPNMAXNUM_Y		(128)
-#define MCV_USERD_BTFC_OPNMAXTRNUM_X	(184)
+#define MCV_USERD_BTFC_OPNMAXTRNUM_X	(212)
 #define MCV_USERD_BTFC_OPNMAXTRNUM_Y	(128)
 
 
@@ -9513,7 +9513,6 @@ static void MCVSys_UserDispDrawType01( WIFIP2PMATCH_WORK *wk, u32 heapID )
 }
 
 // バトルファクトリー
-#ifdef NONEQUIVALENT
 static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 {
 	int friendNo;
@@ -9528,12 +9527,14 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	// LV50
 	{
+        u32 xpos;
 		// タイトル
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf08, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_LV50_X,  MCV_USERD_BTFC_LV50_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf10, wk->TitleString );
-		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_LV50K_X,  MCV_USERD_BTFC_LV50K_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+        xpos = MCV_USERD_BTFC_LV50K_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
+		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos,  MCV_USERD_BTFC_LV50K_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
 		// 前回
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_FACTORY, friendNo );
@@ -9562,12 +9563,14 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 
 	// OPEN
 	{
+        u32 xpos;
 		// タイトル
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf09, wk->TitleString );
 		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_OPN_X,  MCV_USERD_BTFC_OPN_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
 		MSGMAN_GetString(  wk->MsgManager, msg_wifilobby_bf10, wk->TitleString );
-		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, MCV_USERD_BTFC_OPNK_X,  MCV_USERD_BTFC_OPNK_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
+        xpos = MCV_USERD_BTFC_OPNK_X - FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->TitleString, 0 );
+		GF_STR_PrintColor( &wk->view.userWin, FONT_SYSTEM, wk->TitleString, xpos,  MCV_USERD_BTFC_OPNK_Y, MSG_NO_PUT, _COL_N_BLACK, NULL);
 
 		// 前回
 		MCVSys_UserDispFrontiorTitleStrGet( wk, wk->TitleString, MCV_FRONTIOR_FACTORY100, friendNo );
@@ -9594,298 +9597,6 @@ static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
 				MCV_USERD_BTFC_OPNMAXTRNUM_X, MCV_USERD_BTFC_OPNMAXTRNUM_Y );
 	}
 }
-#else
-asm static void MCVSys_UserDispDrawType02( WIFIP2PMATCH_WORK *wk, u32 heapID )
-{
-	push {r3, r4, r5, lr}
-	sub sp, #0x10
-	add r5, r0, #0
-	ldr r0, =0x00000B89 // _0223415C
-	mov r2, #0x5a
-	ldrb r0, [r5, r0]
-	lsl r2, r2, #2
-	mov r1, #0x35
-	sub r4, r0, #1
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	bl MSGMAN_GetString
-	mov r1, #0
-	str r1, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x000F0E00 // _02234160
-	add r2, #0x79
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	ldr r0, =0x00000D14 // _02234164
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3c
-	bl MSGMAN_GetString
-	mov r0, #0x18
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3e
-	bl MSGMAN_GetString
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x18
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	ldr r1, [r5, r1]
-	add r0, r5, #0
-	mov r2, #1
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorTitleStrGet
-	mov r0, #0x30
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r0, #0x68
-	str r0, [sp]
-	mov r0, #0x30
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x41
-	mov r2, #0x73
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r0, #0xd4
-	str r0, [sp]
-	mov r0, #0x30
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x42
-	mov r2, #0x75
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3b
-	bl MSGMAN_GetString
-	mov r0, #0x40
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r0, #0x68
-	str r0, [sp]
-	mov r0, #0x40
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x41
-	mov r2, #0x72
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r0, #0xd4
-	str r0, [sp]
-	mov r0, #0x40
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x42
-	mov r2, #0x74
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3d
-	bl MSGMAN_GetString
-	mov r0, #0x58
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3e
-	bl MSGMAN_GetString
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	mov r1, #0xe8
-	sub r3, r1, r0
-	mov r0, #0x58
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	bl GF_STR_PrintColor
-	mov r1, #0x5e
-	lsl r1, r1, #2
-	ldr r1, [r5, r1]
-	add r0, r5, #0
-	mov r2, #2
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorTitleStrGet
-	mov r0, #0x70
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r0, #0x68
-	str r0, [sp]
-	mov r0, #0x70
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x41
-	mov r2, #0x77
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r0, #0xd4
-	str r0, [sp]
-	mov r0, #0x70
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x42
-	mov r2, #0x79
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r2, #0x5a
-	lsl r2, r2, #2
-	ldr r0, [r5, r2]
-	add r2, #0x10
-	ldr r2, [r5, r2]
-	mov r1, #0x3b
-	bl MSGMAN_GetString
-	mov r0, #0x80
-	str r0, [sp]
-	mov r2, #0xff
-	str r2, [sp, #4]
-	ldr r0, =0x00010200 // _02234168
-	mov r1, #0
-	str r0, [sp, #8]
-	ldr r0, =0x00000D14 // _02234164
-	str r1, [sp, #0xc]
-	add r2, #0x79
-	ldr r2, [r5, r2]
-	add r0, r5, r0
-	mov r3, #8
-	bl GF_STR_PrintColor
-	mov r0, #0x68
-	str r0, [sp]
-	mov r0, #0x80
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x41
-	mov r2, #0x76
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	mov r0, #0xd4
-	str r0, [sp]
-	mov r0, #0x80
-	str r0, [sp, #4]
-	add r0, r5, #0
-	mov r1, #0x42
-	mov r2, #0x78
-	add r3, r4, #0
-	bl MCVSys_UserDispFrontiorNumDraw
-	add sp, #0x10
-	pop {r3, r4, r5, pc}
-	// .align 2, 0
-// _0223415C: .4byte 0x00000B89
-// _02234160: .4byte 0x000F0E00
-// _02234164: .4byte 0x00000D14
-// _02234168: .4byte 0x00010200
-}
-#endif
 
 // バトルキャッスル
 static void MCVSys_UserDispDrawType03( WIFIP2PMATCH_WORK *wk, u32 heapID )
