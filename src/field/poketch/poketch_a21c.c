@@ -7,8 +7,8 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\apptimer.h"
-#include "system\lib_pack.h"
+#include "gflib/apptimer.h"
+#include "system/lib_pack.h"
 
 
 #include "poketch_sound.h"

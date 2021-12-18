@@ -957,17 +957,19 @@ static void GetChannelBasicUserInfoCallback(CHAT chat, CHATBool success, const c
     (void)param;
 }
 
-// NONMATCHING
-asm BOOL ov66_2244758(void* param)
+BOOL ov66_2244758(void* param)
 {
-	ldr r0, =s_iLobby // _02244778
-	mov r1, #3
-	ldr r2, [r0, #0]
-	mov r0, #5
-	str r1, [r2, #0x58]
-	str r0, [r2, #4]
-	mov r0, #0
-	bx lr
+    s_iLobby->SetError(DWCi_LOBBY_ERROR_SESSION);
+
+    (void)param;
+
+    return FALSE;
+}
+
+    // 07 Dec 2021 pikalaxalt
+    // 私は明らかに機械翻訳を使用して、この行がここにあることを表現しています。
+inline void ProcessTimers() {
+    s_iLobby->GetTimerManager().Process();
 }
 
 /**
@@ -985,7 +987,6 @@ asm BOOL ov66_2244758(void* param)
  * @retval ::DWCi_LOBBY_STATE_CLOSING ロビーライブラリを終了中です。
  * @retval ::DWCi_LOBBY_STATE_ERROR ロビーライブラリが初期化されていません。
  */
-#ifdef NONEQUIVALENT
 DWCi_LOBBY_STATE DWCi_LobbyProcess()
 {
     RETURN_IF_NOTINITIALIZED(DWCi_LOBBY_STATE_NOTINITIALIZED);
@@ -996,7 +997,8 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
         // ここで各種コールバックが呼ばれる
         chatThink(s_iLobby->GetChat());
     }
-    
+
+    ProcessTimers();
     // コールバック中に致命的なエラーが発生していないかチェック
     RETURN_IF_ERROR_STATE(DWCi_LOBBY_STATE_ERROR);
     
@@ -1030,149 +1032,6 @@ DWCi_LOBBY_STATE DWCi_LobbyProcess()
     
     return s_iLobby->GetState();
 }
-#else
-extern "C" void _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_(void);
-extern "C" void _ZNSt14__tree_deleterISt4pairIKm14PPW_LobbyTimerENSt18__map_do_transformImS2_St4lessImE14DWCi_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E5eraseENSD_18__generic_iteratorILb1EEE(void);
-
-asm DWCi_LOBBY_STATE DWCi_LobbyProcess()
-{
-	stmfd sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, lr}
-	sub sp, sp, #0x28
-	ldr r0, =s_iLobby // _0224495C
-	ldr r1, [r0, #0]
-	cmp r1, #0
-	addeq sp, sp, #0x28
-	moveq r0, #0
-	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, pc}
-	beq _022447B4
-	ldr r0, [r1, #4]
-	cmp r0, #5
-	addeq sp, sp, #0x28
-	moveq r0, #5
-	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, pc}
-_022447B4:
-	ldr r0, [r1, #0]
-	cmp r0, #0
-	beq _022447C4
-	bl chatThink
-_022447C4:
-	ldr r2, =s_iLobby // _0224495C
-	add r0, sp, #0xc
-	add r1, sp, #0x1c
-	ldr r5, [r2, #0]
-	bl DWC_GetDateTime
-	add r0, sp, #0xc
-	add r1, sp, #0x1c
-	bl RTC_ConvertDateTimeToSecond
-	ldr r2, [r5, #0xa8]
-	add r7, r5, #0xa0
-	mov r6, r0
-	mov sb, r1
-	str r2, [sp, #8]
-	cmp r2, r7
-	beq _02244894
-	mov r11, #1
-	mov r10, #0
-	add r4, sp, #8
-_0224480C:
-	ldr r1, [r2, #0x10]
-	ldr r0, [r2, #0x14]
-	subs r1, r6, r1
-	ldr r8, [r2, #0x18]
-	sbc r0, sb, r0
-	ldr r3, [r2, #0x1c]
-	subs r1, r8, r1
-	sbcs r1, r3, r0
-	bge _02244850
-	str r6, [r2, #0x10]
-	str sb, [r2, #0x14]
-	ldr r0, [r2, #0x20]
-	ldr r1, [r2, #0x24]
-	blx r1
-	cmp r0, #0
-	moveq r0, r10
-	beq _02244854
-_02244850:
-	mov r0, r11
-_02244854:
-	cmp r0, #0
-	bne _02244880
-	ldr r8, [sp, #8]
-	mov r0, r4
-	bl _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_ // cpp_ov66_223AD6C
-	add r0, sp, #4
-	mov r2, r8
-	add r1, r5, #0x9c
-	str r8, [sp]
-	bl _ZNSt14__tree_deleterISt4pairIKm14PPW_LobbyTimerENSt18__map_do_transformImS2_St4lessImE14DWCi_AllocatorIS0_ImS2_EELb0EE13value_compareES9_E5eraseENSD_18__generic_iteratorILb1EEE // FUN_0223AB54
-	b _02244888
-_02244880:
-	mov r0, r4
-	bl _ZNSt16__red_black_treeIPSt16__tree_node_baseI14DWCi_AllocatorIPvEEE9incrementERS5_ // cpp_ov66_223AD6C
-_02244888:
-	ldr r2, [sp, #8]
-	cmp r2, r7
-	bne _0224480C
-_02244894:
-	ldr r0, =s_iLobby // _0224495C
-	ldr r3, [r0, #0]
-	cmp r3, #0
-	beq _022448B8
-	ldr r0, [r3, #4]
-	cmp r0, #5
-	addeq sp, sp, #0x28
-	moveq r0, #5
-	ldmeqia sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, pc}
-_022448B8:
-	ldr r1, [r3, #0x54]
-	ldr r0, =s_iLobby // _0224495C
-	cmp r1, #3
-	ldr r2, [r0, #0]
-	blo _022448F8
-	mov r1, #0
-	str r1, [r3, #0x54]
-	ldr r2, [r0, #0]
-	mov r1, #3
-	str r1, [r2, #0x58]
-	mov r1, #5
-	str r1, [r2, #4]
-	ldr r0, [r0, #0]
-	add sp, sp, #0x28
-	ldr r0, [r0, #4]
-	ldmia sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, pc}
-_022448F8:
-	ldr r0, [r2, #4]
-	cmp r0, #4
-	addls pc, pc, r0, lsl #2
-	b _02244948
-_02244908: // jump table
-	b _02244948 // case 0
-	b _02244948 // case 1
-	b _0224491C // case 2
-	b _02244948 // case 3
-	b _02244948 // case 4
-_0224491C:
-	ldr r1, [r2, #0x5c]
-	add r0, r1, #1
-	str r0, [r2, #0x5c]
-	cmp r1, #0x3c
-	bne _02244948
-	mov r0, #0
-	str r0, [r2, #0x5c]
-	ldr r0, [r2, #4]
-	cmp r0, #5
-	movne r0, #3
-	strne r0, [r2, #4]
-_02244948:
-	ldr r0, =s_iLobby // _0224495C
-	ldr r0, [r0, #0]
-	ldr r0, [r0, #4]
-	add sp, sp, #0x28
-	ldmia sp!, {r3, r4, r5, r6, r7, r8, r9, r10, r11, pc}
-	// .align 2, 0
-// _0224495C: .4byte s_iLobby
-}
-#endif
 
 /**
  * @brief 発生している致命的なエラーの情報を取得します。

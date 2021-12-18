@@ -8,8 +8,8 @@
 //============================================================================================
 #include "common.h"
 #include "system/pm_str.h"
-#include "system\msgdata.h"
-#include "system\wordset.h"
+#include "system/msgdata.h"
+#include "system/wordset.h"
 #include "system/get_text.h"
 #include "system/window.h"
 #include "system/fontproc.h"

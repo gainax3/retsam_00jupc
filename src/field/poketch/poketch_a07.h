@@ -8,8 +8,8 @@
 #ifndef _POKETCH_A07_H_
 #define _POKETCH_A07_H_
 
-#include "system\gamedata.h"	// TEMOTI_POKEMAX
-#include "poketool\poke_tool.h"	// POKEMON_PARAM
+#include "system/gamedata.h"	// TEMOTI_POKEMAX
+#include "poketool/poke_tool.h"	// POKEMON_PARAM
 
 
 //====================================================

@@ -28,8 +28,8 @@
 #include "gym_local.h"
 #include "field_villa.h"
 
-#include "..\fielddata\script\t07r0201_def.h"
-#include "..\fielddata\script\tv_def.h"
+#include "../fielddata/script/t07r0201_def.h"
+#include "../fielddata/script/tv_def.h"
 
 //==============================================================================
 //	define

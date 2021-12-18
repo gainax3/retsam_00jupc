@@ -6,7 +6,7 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
+#include "system/lib_pack.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

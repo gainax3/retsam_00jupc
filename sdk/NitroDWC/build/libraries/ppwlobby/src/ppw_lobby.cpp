@@ -1270,27 +1270,19 @@ s32 PPW_LobbyToErrorCode(PPW_LOBBY_ERROR err)
 }
 
 // ??????
-asm PPW_LOBBY_ERROR ov66_2237134(void)
+PPW_LOBBY_ERROR ov66_2237134(PPW_LOBBY_RESULT result)
 {
-	cmp r0, #0
-	beq _02237150
-	cmp r0, #1
-	beq _02237158
-	cmp r0, #2
-	beq _02237160
-	b _02237168
-_02237150:
-	mov r0, #0
-	bx lr
-_02237158:
-	mov r0, #2
-	bx lr
-_02237160:
-	mov r0, #3
-	bx lr
-_02237168:
-	mov r0, #1
-	bx lr    
+    switch (result)
+    {
+    case PPW_LOBBY_RESULT_SUCCESS:
+        return PPW_LOBBY_ERROR_NONE;
+    case PPW_LOBBY_RESULT_ERROR_ALLOC:
+        return PPW_LOBBY_ERROR_ALLOC;
+    case PPW_LOBBY_RESULT_ERROR_SESSION:
+        return PPW_LOBBY_ERROR_SESSION;
+    default:
+        return PPW_LOBBY_ERROR_UNKNOWN;
+    }
 }
 
 /**

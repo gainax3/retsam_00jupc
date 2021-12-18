@@ -440,7 +440,6 @@ static const BMPWIN_DAT telop_windata = {
 	INTRO_TV_TELOP_WIN_SX,INTRO_TV_TELOP_WIN_SY,INTRO_TV_TELOP_WIN_PAL,INTRO_TV_TELOP_WIN_CGX 
 };
 
-#ifdef NONEQUIVALENT
 static BOOL IntroTV_TelopPrint( INTRO_DEMO_WORK * wk, int msgID, int x, int y )
 {
 	BOOL	result = FALSE;
@@ -460,6 +459,8 @@ static BOOL IntroTV_TelopPrint( INTRO_DEMO_WORK * wk, int msgID, int x, int y )
 			// テロップを自動で中央寄せに（与えられた x の値は破棄）
 			x = (INTRO_TV_TELOP_WIN_SX * DOTSIZE - FontProc_GetPrintMaxLineWidth(FONT_SYSTEM, msgstr, 0)) / 2;
 			// ----------------------------------------------------------------------------
+            //MatchComment: set y
+            y = (INTRO_TV_TELOP_WIN_SY * DOTSIZE - 2 * DOTSIZE * STRBUF_GetLines( msgstr )) / 2;
 			GF_STR_PrintColor( &wk->telopwin, FONT_SYSTEM, msgstr, x, y, 0,
 								GF_PRINTCOLOR_MAKE(15, 2, 0), NULL );
 			STRBUF_Delete( msgstr );
@@ -494,143 +495,6 @@ static BOOL IntroTV_TelopPrint( INTRO_DEMO_WORK * wk, int msgID, int x, int y )
 	}
 	return result;
 }
-#else
-asm static BOOL IntroTV_TelopPrint( INTRO_DEMO_WORK * wk, int msgID, int x, int y )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x10
-	add r4, r0, #0
-	ldr r0, [r4, #0xc]
-	add r7, r1, #0
-	mov r6, #0
-	cmp r0, #3
-	bhi _021D3798
-	add r0, r0, r0
-	add r0, pc
-	ldrh r0, [r0, #6]
-	lsl r0, r0, #0x10
-	asr r0, r0, #0x10
-	add pc, r0
-_021D36B4: // jump table
-	dcd 0x00a00006
-	dcd 0x00cc00b2
-	//    0x6 // .2byte _021D36BC - _021D36B4 - 2 // case 0
-	//   0xa0 // .2byte _021D3756 - _021D36B4 - 2 // case 1
-	//   0xb2 // .2byte _021D3768 - _021D36B4 - 2 // case 2
-	//   0xcc // .2byte _021D3782 - _021D36B4 - 2 // case 3
-_021D36BC:
-	mov r0, #2
-	add r1, r6, #0
-	bl GF_BGL_VisibleSet
-	mov r0, #1
-	ldr r1, [r4, #0]
-	lsl r0, r0, #0xa
-	bl STRBUF_Create
-	add r5, r0, #0
-	ldr r0, [r4, #8]
-	add r1, r7, #0
-	add r2, r5, #0
-	bl MSGMAN_GetString
-	add r1, r4, #0
-	ldr r0, [r4, #4]
-	ldr r2, =telop_windata // _021D37A0
-	add r1, #0x10
-	bl GF_BGL_BmpWinAddEx
-	add r1, r6, #0
-	mov r0, #1
-	lsl r0, r0, #8
-	str r0, [sp]
-	mov r0, #0xc0
-	str r0, [sp, #4]
-	add r0, r4, #0
-	add r0, #0x10
-	add r2, r1, #0
-	add r3, r1, #0
-	bl GF_BGL_BmpWinFill
-	add r0, r6, #0
-	add r1, r5, #0
-	add r2, r0, #0
-	bl FontProc_GetPrintMaxLineWidth
-	mov r1, #1
-	lsl r1, r1, #8
-	sub r0, r1, r0
-	lsr r7, r0, #1
-	add r0, r5, #0
-	bl STRBUF_GetLines
-	lsl r1, r0, #4
-	mov r0, #0xc0
-	sub r0, r0, r1
-	lsr r0, r0, #1
-	str r0, [sp]
-	add r1, r6, #0
-	ldr r0, =0x000F0200 // _021D37A4
-	str r1, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r4, #0
-	add r0, #0x10
-	add r2, r5, #0
-	add r3, r7, #0
-	str r1, [sp, #0xc]
-	bl GF_STR_PrintColor
-	add r0, r5, #0
-	bl STRBUF_Delete
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOn
-	mov r0, #2
-	mov r1, #1
-	bl GF_BGL_VisibleSet
-	mov r0, #0xf0
-	str r0, [r4, #0x24]
-	mov r0, #1
-	str r0, [r4, #0xc]
-	b _021D3798
-_021D3756:
-	ldr r0, [r4, #0x24]
-	cmp r0, #0
-	beq _021D3762
-	sub r0, r0, #1
-	str r0, [r4, #0x24]
-	b _021D3798
-_021D3762:
-	mov r0, #2
-	str r0, [r4, #0xc]
-	b _021D3798
-_021D3768:
-	ldr r0, =sys // _021D37A8
-	ldr r1, [r0, #0x48]
-	mov r0, #1
-	and r0, r1
-	cmp r0, #1
-	beq _021D377C
-	mov r0, #2
-	and r0, r1
-	cmp r0, #2
-	bne _021D3798
-_021D377C:
-	mov r0, #3
-	str r0, [r4, #0xc]
-	b _021D3798
-_021D3782:
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinDel
-	ldr r0, [r4, #4]
-	mov r1, #2
-	bl GF_BGL_ScrClear
-	add r0, r6, #0
-	str r0, [r4, #0xc]
-	mov r6, #1
-_021D3798:
-	add r0, r6, #0
-	add sp, #0x10
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _021D37A0: .4byte telop_windata
-// _021D37A4: .4byte 0x000F0200
-// _021D37A8: .4byte sys
-}
-#endif
 
 //----------------------------------
 //走査線スクロール

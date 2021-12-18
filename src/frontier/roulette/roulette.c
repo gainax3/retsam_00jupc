@@ -53,8 +53,8 @@
 #include "../../field/scr_tool.h"
 #include "field/weather_no.h"
 
-#include "msgdata\msg.naix"						//NARC_msg_??_dat
-#include "msgdata\msg_roulette.h"				//msg_??
+#include "msgdata/msg.naix"						//NARC_msg_??_dat
+#include "msgdata/msg_roulette.h"				//msg_??
 
 #include "../graphic/frontier_obj_def.h"
 #include "../graphic/frontier_bg_def.h"

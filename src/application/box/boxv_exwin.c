@@ -7,12 +7,12 @@
  */
 //============================================================================================
 #include  "common.h"
-#include  "system\arc_util.h"
-#include  "system\numfont.h"
-#include  "system\brightness.h"
-#include  "system\fontproc.h"
-#include  "msgdata\msg.naix"
-#include  "poketool\monsno.h"
+#include  "system/arc_util.h"
+#include  "system/numfont.h"
+#include  "system/brightness.h"
+#include  "system/fontproc.h"
+#include  "msgdata/msg.naix"
+#include  "poketool/monsno.h"
 
 #include  "box_arc.h"
 #include  "box_view.h"

@@ -6,13 +6,13 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
-#include "system\msgdata.h"
-#include "system\fontproc.h"
-#include "poketool\pokeicon.h"
+#include "system/lib_pack.h"
+#include "system/msgdata.h"
+#include "system/fontproc.h"
+#include "poketool/pokeicon.h"
 
-#include "msgdata\msg.naix"
-#include "msgdata\msg_poketch_history.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_poketch_history.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

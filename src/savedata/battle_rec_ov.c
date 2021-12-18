@@ -10,16 +10,16 @@
  */
 //==============================================================================
 #include "common.h"
-#include "savedata\savedata.h"
-#include "system\gamedata.h"
-#include "gflib\strbuf_family.h"
-#include "poketool\pokeparty.h"
-#include "savedata\pokeparty_local.h"
-#include "savedata\mystatus_local.h"
-#include "savedata\config.h"
+#include "savedata/savedata.h"
+#include "system/gamedata.h"
+#include "gflib/strbuf_family.h"
+#include "poketool/pokeparty.h"
+#include "savedata/pokeparty_local.h"
+#include "savedata/mystatus_local.h"
+#include "savedata/config.h"
 
 #include "gds_local_common.h"
-#include "savedata\battle_rec.h"
+#include "savedata/battle_rec.h"
 #include "itemtool/itemsym.h"
 #include "battle/wazano_def.h"
 #include "gds_profile_types.h"
@@ -32,9 +32,9 @@
 
 #include "battle_rec_local.h"
 #include "gflib/strcode.h"
-#include "gflib\msg_print.h"
-#include "system\fontproc.h"
-#include "system\msgdata.h"
+#include "gflib/msg_print.h"
+#include "system/fontproc.h"
+#include "system/msgdata.h"
 #include "msgdata/msg.naix"
 #include "msgdata/msg_battle_rec.h"
 

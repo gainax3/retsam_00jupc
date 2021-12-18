@@ -690,226 +690,79 @@ static void ReturnFuncCall_EmailMenu(EMAIL_SYSWORK *esys)
 	;
 }
 
-// NONMATCHING
-asm void * ov98_2246FC4(EMAIL_SYSWORK *esys)
+void * ov98_2246FC4(EMAIL_SYSWORK *esys)
 {
-	push {r4, lr}
-	sub sp, #0x18
-	add r4, r0, #0
-	mov r0, #4
-	str r0, [sp, #8]
-	str r0, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r0, [sp, #0x14]
-	ldr r0, [r4, #4]
-	bl SaveData_GetConfig
-	add r3, r0, #0
-	mov r0, #4
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	mov r0, #0x6c
-	mov r1, #0x10
-	add r2, sp, #8
-	bl sub_2089400
-	add r1, r4, #0
-	add r1, #0x94
-	add r4, #0x94
-	str r0, [r1, #0]
-	ldr r0, [r4, #0]
-	add sp, #0x18
-	pop {r4, pc}
+    int       block[4];
+
+    block[0] = 4;
+    block[1] = 4;
+    block[2] = 4;
+    block[3] = 4;
+    esys->sub_proc_parent_work = sub_2089400( HEAPID_EMAIL_MANAGE, 16, block, SaveData_GetConfig( esys->savedata ), 4, 0 );
+    return esys->sub_proc_parent_work;
 }
 
-// NONMATCHING
-asm void ov98_2246FFC(EMAIL_SYSWORK *esys)
+void ov98_2246FFC(EMAIL_SYSWORK *esys)
 {
-	push {r3, r4, r5, lr}
-	add r5, r0, #0
-	add r0, #0x94
-	ldr r4, [r0, #0]
-	mov r1, #0x6c
-	ldr r0, [r4, #0x1c]
-	bl ov98_2249A80
-	cmp r0, #0
-	beq _0224701A
-	add r0, r5, #0
-	mov r1, #1
-	bl Email_AddressReturnFlagSet
-	b _0224705C
-_0224701A:
-	add r0, r5, #0
-	bl Email_AddressReturnFlagGet
-	cmp r0, #2
-	bne _02247048
-	mov r0, #0x11
-	lsl r0, r0, #4
-	ldr r0, [r5, r0]
-	ldr r1, [r4, #0x1c]
-	bl STRBUF_Compare
-	cmp r0, #0
-	beq _0224703E
-	add r0, r5, #0
-	mov r1, #3
-	bl Email_AddressReturnFlagSet
-	b _0224705C
-_0224703E:
-	add r0, r5, #0
-	mov r1, #0
-	bl Email_AddressReturnFlagSet
-	b _0224705C
-_02247048:
-	mov r0, #0x11
-	lsl r0, r0, #4
-	ldr r0, [r5, r0]
-	ldr r1, [r4, #0x1c]
-	bl STRBUF_Copy
-	add r0, r5, #0
-	mov r1, #2
-	bl Email_AddressReturnFlagSet
-_0224705C:
-	add r0, r4, #0
-	bl CodeInput_ParamDelete
-	mov r1, #0
-	add r0, r5, #0
-	add r2, r1, #0
-	bl Email_SubProcessChange
-	pop {r3, r4, r5, pc}
-	// .align 2, 0
+    CODEIN_PARAM* parent_wk = esys->sub_proc_parent_work;
+    if(ov98_2249A80( parent_wk->strbuf, HEAPID_EMAIL_MANAGE )){
+        Email_AddressReturnFlagSet( esys, EMAIL_ADDRESS_RET_CANCEL );
+    }else if(Email_AddressReturnFlagGet( esys ) == 2){
+        if(STRBUF_Compare( esys->email_address, parent_wk->strbuf ) != 0){
+            Email_AddressReturnFlagSet( esys, 3 );
+        }else{
+            Email_AddressReturnFlagSet( esys, EMAIL_ADDRESS_RET_SET );
+        }
+    }else{
+        STRBUF_Copy( esys->email_address, parent_wk->strbuf );
+        Email_AddressReturnFlagSet( esys, 2 );
+    }
+    CodeInput_ParamDelete( parent_wk );
+    Email_SubProcessChange( esys, EMAIL_SUBPROC_MENU, EMAIL_MODE_INPUT_EMAIL );
 }
 
-// NONMATCHING
-asm void * ov98_2247070(EMAIL_SYSWORK *esys)
+void * ov98_2247070(EMAIL_SYSWORK *esys)
 {
-	push {r4, lr}
-	sub sp, #0x20
-	add r4, r0, #0
-	mov r0, #3
-	str r0, [sp, #0x10]
-	mov r0, #4
-	str r0, [sp, #0x14]
-	mov r0, #0
-	str r0, [sp, #0x18]
-	str r0, [sp, #0x1c]
-	ldr r0, [r4, #4]
-	bl SaveData_GetConfig
-	add r3, r0, #0
-	mov r0, #5
-	str r0, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	str r0, [sp, #8]
-	add r0, r4, #0
-	add r0, #0x78
-	ldrh r0, [r0]
-	mov r1, #7
-	add r2, sp, #0x10
-	str r0, [sp, #0xc]
-	mov r0, #0x6c
-	bl sub_208941C
-	add r1, r4, #0
-	add r1, #0x94
-	add r4, #0x94
-	str r0, [r1, #0]
-	ldr r0, [r4, #0]
-	add sp, #0x20
-	pop {r4, pc}
-	// .align 2, 0
+	int    block[4];
+
+    block[0] = 3;
+    block[1] = 4;
+    block[2] = 0;
+    block[3] = 0;
+    esys->sub_proc_parent_work = sub_208941C( HEAPID_EMAIL_MANAGE, 7, block, SaveData_GetConfig( esys->savedata ), 5, 1, 1, esys->authenticate_rand_code );
+    return esys->sub_proc_parent_work;
 }
 
-extern void _ull_mod(void);
-// NONMATCHING
-
-asm void ov98_22470B8(EMAIL_SYSWORK *esys)
+void ov98_22470B8(EMAIL_SYSWORK *esys)
 {
-	push {r3, r4, r5, lr}
-	add r5, r0, #0
-	add r0, #0x94
-	ldr r4, [r0, #0]
-	add r1, sp, #0
-	ldr r0, [r4, #0x1c]
-	bl STRBUF_GetNumber
-	ldr r2, =0x00002710 // _022470F4
-	mov r3, #0
-	bl _ull_mod
-	mov r1, #0x42
-	lsl r1, r1, #2
-	str r0, [r5, r1]
-	ldr r0, [sp]
-	cmp r0, #0
-	bne _022470E0
-	bl GF_AssertFailedWarningCall
-_022470E0:
-	add r0, r4, #0
-	bl CodeInput_ParamDelete
-	mov r1, #0
-	add r0, r5, #0
-	add r2, r1, #0
-	bl Email_SubProcessChange
-	pop {r3, r4, r5, pc}
-	nop
-// _022470F4: .4byte 0x00002710
+    CODEIN_PARAM* parent_wk = esys->sub_proc_parent_work;
+    BOOL success;
+    esys->ret_authenticate_code = STRBUF_GetNumber( parent_wk->strbuf, &success ) % 10000;
+    GF_ASSERT( success );
+    CodeInput_ParamDelete( parent_wk );
+    Email_SubProcessChange( esys, EMAIL_SUBPROC_MENU, EMAIL_MODE_INPUT_EMAIL );
 }
 
-// NONMATCHING
-asm void * ov98_22470F8(EMAIL_SYSWORK *esys)
+void * ov98_22470F8(EMAIL_SYSWORK *esys)
 {
-	push {r4, lr}
-	sub sp, #0x18
-	add r4, r0, #0
-	mov r0, #4
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	str r0, [sp, #0x10]
-	str r0, [sp, #0x14]
-	ldr r0, [r4, #4]
-	bl SaveData_GetConfig
-	add r3, r0, #0
-	mov r0, #6
-	str r0, [sp]
-	mov r0, #0
-	str r0, [sp, #4]
-	mov r0, #0x6c
-	mov r1, #4
-	add r2, sp, #8
-	bl sub_2089400
-	add r1, r4, #0
-	add r1, #0x94
-	add r4, #0x94
-	str r0, [r1, #0]
-	ldr r0, [r4, #0]
-	add sp, #0x18
-	pop {r4, pc}
-	// .align 2, 0
+    int       block[4];
+
+    block[0] = 4;
+    block[1] = 0;
+    block[2] = 0;
+    block[3] = 0;
+    esys->sub_proc_parent_work = sub_2089400( HEAPID_EMAIL_MANAGE, 4, block, SaveData_GetConfig( esys->savedata ), 6, 0 );
+    return esys->sub_proc_parent_work;
 }
 
-// NONMATCHING
-asm void ov98_2247134(EMAIL_SYSWORK *esys)
+void ov98_2247134(EMAIL_SYSWORK *esys)
 {
-	push {r3, r4, r5, lr}
-	add r5, r0, #0
-	add r0, #0x94
-	ldr r4, [r0, #0]
-	add r1, sp, #0
-	ldr r0, [r4, #0x1c]
-	bl STRBUF_GetNumber
-	mov r1, #0x41
-	lsl r1, r1, #2
-	str r0, [r5, r1]
-	ldr r0, [sp]
-	cmp r0, #0
-	bne _02247154
-	bl GF_AssertFailedWarningCall
-_02247154:
-	add r0, r4, #0
-	bl CodeInput_ParamDelete
-	mov r1, #0
-	add r0, r5, #0
-	add r2, r1, #0
-	bl Email_SubProcessChange
-	pop {r3, r4, r5, pc}
-	// .align 2, 0
+    CODEIN_PARAM* parent_wk = esys->sub_proc_parent_work;
+    BOOL success;
+    esys->ret_password = STRBUF_GetNumber( parent_wk->strbuf, &success );
+    GF_ASSERT( success );
+    CodeInput_ParamDelete( parent_wk );
+    Email_SubProcessChange( esys, EMAIL_SUBPROC_MENU, EMAIL_MODE_INPUT_EMAIL );
 }
 
 //--------------------------------------------------------------

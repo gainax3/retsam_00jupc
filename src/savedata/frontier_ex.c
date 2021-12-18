@@ -7,13 +7,13 @@
  */
 //==============================================================================
 #include "common.h"
-#include "savedata\savedata.h"
-#include "system\gamedata.h"
-#include "gflib\strbuf_family.h"
-#include "poketool\pokeparty.h"
-#include "savedata\pokeparty_local.h"
-#include "savedata\mystatus_local.h"
-#include "savedata\config.h"
+#include "savedata/savedata.h"
+#include "system/gamedata.h"
+#include "gflib/strbuf_family.h"
+#include "poketool/pokeparty.h"
+#include "savedata/pokeparty_local.h"
+#include "savedata/mystatus_local.h"
+#include "savedata/config.h"
 
 #include "savedata/frontier_savedata.h"
 #include "savedata/frontier_ex.h"

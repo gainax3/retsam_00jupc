@@ -43,15 +43,15 @@
 #include "scrcmd_def.h"
 #include "ev_win.h"
 #include "ev_time.h"
-//#include "..\fielddata\script\usescript.h"
+//#include "../fielddata/script/usescript.h"
 
 #include  "d_print.h"
 
 
 #ifdef	USE_DEBUG_SCRIPT_PRINT
 
-#include "..\fielddata\script\savwtxt.dat"
-#include "..\fielddata\script\savftxt.dat"
+#include "../fielddata/script/savwtxt.dat"
+#include "../fielddata/script/savftxt.dat"
 
 //-----------------------------------------------------------------------------
 /**

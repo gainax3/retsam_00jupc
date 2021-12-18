@@ -21,9 +21,9 @@
 #include "system/pm_str.h"
 #include "system/pm_overlay.h"
 #include "field_event.h"
-#include "system\palanm.h"
-#include "application\pms_input.h"
-#include "system\pm_rtc.h"
+#include "system/palanm.h"
+#include "application/pms_input.h"
+#include "system/pm_rtc.h"
 
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_taya.h"

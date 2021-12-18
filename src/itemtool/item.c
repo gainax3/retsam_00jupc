@@ -13,8 +13,8 @@
 #include "system/msgdata.h"
 #include "battle/wazano_def.h"
 
-#include "msgdata\msg.naix"
-#include "msgdata\msg_iteminfo.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_iteminfo.h"
 
 #include "itemtool/myitem.h"
 

@@ -10,17 +10,17 @@
 #ifndef __WORDSET_H__
 #define __WORDSET_H__
 
-#include  "system\pm_str.h"
-#include  "system\msgdata.h"
-#include  "poketool\poke_tool.h"	// POKEMON_PASO_PARAM 参照等
-#include  "field\field_common.h"	// FIELDSYS_WORK 参照
-#include  "system\mystatus.h"		// MYSTATUS 参照
-#include  "gflib\number_str.h"
-#include  "system\savedata_def.h"
-#include  "poketool\boxdata.h"
-#include  "system\pms_word.h"
-#include  "battle\battle_common.h"
-#include  "application\wifi_lobby\wflby_def.h"
+#include  "system/pm_str.h"
+#include  "system/msgdata.h"
+#include  "poketool/poke_tool.h"	// POKEMON_PASO_PARAM 参照等
+#include  "field/field_common.h"	// FIELDSYS_WORK 参照
+#include  "system/mystatus.h"		// MYSTATUS 参照
+#include  "gflib/number_str.h"
+#include  "system/savedata_def.h"
+#include  "poketool/boxdata.h"
+#include  "system/pms_word.h"
+#include  "battle/battle_common.h"
+#include  "application/wifi_lobby/wflby_def.h"
 
 enum {
 	WORDSET_DEFAULT_SETNUM = 8,		// デフォルトバッファ数
@@ -203,5 +203,5 @@ extern void WORDSET_RegisterWiFiLobbyAisatsuSpain( WORDSET* wordset, u32 bufID, 
 
 extern void WORDSET_RegisterFurniture( WORDSET * wordset, u32 bufID, u32 furnitureID );
 
-extern void WORDSET_Register_200C338( WORDSET* wordset, u32 bufID, u32 unkID ); // plat_us_match
+extern void WORDSET_RegisterTobariDepartFloorNo( WORDSET* wordset, u32 bufID, u32 floorID ); // plat_us_match
 #endif

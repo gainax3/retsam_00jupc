@@ -31,8 +31,8 @@
 #include "scrcmd_def.h"
 #include "ev_win.h"
 #include "scr_field.h"
-#include "msgdata\msg.naix"								//NARC_msg_??_dat
-#include "msgdata\msg_ev_win.h"	
+#include "msgdata/msg.naix"								//NARC_msg_??_dat
+#include "msgdata/msg_ev_win.h"	
 #include "src/application/zukanlist/zkn_data/zukan_data.naix"
 
 #include "system/msgdata.h"								//MSGMAN_TYPE_DIRECT
@@ -2158,73 +2158,45 @@ BOOL EvCmdFldOBJForceDraw_C04EventAfterOnly( VM_MACHINE * core )
 	return 0;
 }
 
-// NONMATCHING
-asm BOOL ov05_21F7704( VM_MACHINE * core )
+BOOL ov05_21F7704( VM_MACHINE * core )
 {
-	push {r4, lr}
-	add r0, #0x80
-	ldr r0, [r0, #0]
-	mov r1, #0xf
-	ldr r0, [r0, #0x38]
-	bl FieldOBJSys_OBJIDSearch
-	add r4, r0, #0
-	beq _021F774E
-	bl FieldOBJ_NowPosGX_Get
-	cmp r0, #0x28
-	bgt _021F7730
-	cmp r0, #0x26
-	blt _021F772A
-	beq _021F773A
-	cmp r0, #0x28
-	beq _021F773E
-	b _021F7746
-_021F772A:
-	cmp r0, #0x1c
-	beq _021F7736
-	b _021F7746
-_021F7730:
-	cmp r0, #0x30
-	beq _021F7742
-	b _021F7746
-_021F7736:
-	mov r1, #6
-	b _021F7748
-_021F773A:
-	mov r1, #5
-	b _021F7748
-_021F773E:
-	mov r1, #3
-	b _021F7748
-_021F7742:
-	mov r1, #2
-	b _021F7748
-_021F7746:
-	mov r1, #4
-_021F7748:
-	add r0, r4, #0
-	bl evcmd_FldOBJForceDrawC04OnlyCore
-_021F774E:
-	mov r0, #0
-	pop {r4, pc}
+    int grid;
+    FIELD_OBJ_PTR fldobj = FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, C04_IAIGIRI_02 );
+    if ( fldobj != NULL )
+    {
+        switch (FieldOBJ_NowPosGX_Get( fldobj ))
+        {
+        case 28:
+            grid = 6;
+            break;
+        case 38:
+            grid = 5;
+            break;
+        case 40:
+            grid = 3;
+            break;
+        case 48:
+            grid = 2;
+            break;
+        default:
+            grid = 4;
+            break;
+        }
+        evcmd_FldOBJForceDrawC04OnlyCore( fldobj, grid );
+    }
+    return 0;
 }
 
-// NONMATCHING
-asm BOOL ov05_21F7754( VM_MACHINE * core )
+BOOL ov05_21F7754( VM_MACHINE * core )
 {
-    push {r3, lr}
-	add r0, #0x80
-	ldr r0, [r0, #0]
-	mov r1, #0xf
-	ldr r0, [r0, #0x38]
-	bl FieldOBJSys_OBJIDSearch
-	cmp r0, #0
-	beq _021F776E
-	mov r1, #2
-	lsl r1, r1, #0xc
-	bl FieldOBJ_StatusBit_OFF
-_021F776E:
-	mov r0, #0
-	pop {r3, pc}
+    FIELD_OBJ_PTR fldobj = FieldOBJSys_OBJIDSearch( core->fsys->fldobjsys, C04_IAIGIRI_02 );
+
+    if ( fldobj != NULL )
+    {
+        FieldOBJ_StatusBit_OFF( fldobj, FLDOBJ_STA_BIT_HEIGHT_VANISH_OFF );
+    }
+
+    return 0;
 }
 
 //--------------------------------------------------------------
@@ -2279,3 +2251,12 @@ BOOL EvCmdGetPokeSeeFlag( VM_MACHINE * core )
 }
 #endif
 
+BOOL ov05_21F77A8( VM_MACHINE * core )
+{
+    u16  monsno          = GetEventWorkValue( core->fsys, VMGetU16( core ) );
+    u16* work            = GetEventWorkAdrs( core->fsys, VMGetU16( core ) );
+    ZUKAN_WORK *zkn      = SaveData_GetZukanWork( core->fsys->savedata );
+
+    *work = ZukanWork_GetPokeSeeFlag( zkn, monsno );
+    return 0;
+}

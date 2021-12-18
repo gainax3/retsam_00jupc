@@ -77,8 +77,8 @@
 #include "battle/battle_server.h"
 #include "savedata/frontier_savedata.h"
 #include "msgdata/msg_place_name.h"
-#include "field\eventflag.h"
-#include "field\syswork.h"
+#include "field/eventflag.h"
+#include "field/syswork.h"
 
 
 #define FIRST_NATUKIDO  (70)				///ŒðŠ·‚³‚ê‚½ƒ|ƒPƒ‚ƒ“‚É“ü‚ê‚é‚È‚Â‚«“x

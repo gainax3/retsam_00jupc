@@ -66,8 +66,8 @@
 #include "../../field/tv_topic.h"	//テレビトピック生成用
 #include "field/tvtopic_extern.h"
 #include "msgdata/msg_place_name.h"
-#include "field\eventflag.h"
-#include "field\syswork.h"
+#include "field/eventflag.h"
+#include "field/syswork.h"
 
 #define FIRST_NATUKIDO  (70)		///交換されたポケモンに入れるなつき度
 

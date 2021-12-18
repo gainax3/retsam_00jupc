@@ -280,6 +280,36 @@ static void _talkStart(int messageIdx, BOOL bExpand)
     _pInfo->msgIndex = FieldTalkMsgStart(&_pInfo->talkWin, _pInfo->pStrBuf[5], SaveData_GetConfig(_pInfo->pFSys->savedata), 1);
 }
 
+//MatchComment: duplicate the above function to an inline routine
+//MatchComment: copy these defines from savedata/config.c
+#define	MSG_SPEED_SLOW		( 8 )		///< メッセージ速度：遅い
+#define	MSG_SPEED_NORMAL	( 4 )		///< メッセージ速度：普通
+#define	MSG_SPEED_FAST		( 1 )		///< メッセージ速度：速い
+
+static inline void _talkStartFast(int messageIdx, BOOL bExpand)
+{
+    if(!FldTalkMsgEndCheck(_pInfo->msgIndex)){
+        GF_STR_PrintForceStop(_pInfo->msgIndex);
+    }
+    if(bExpand){
+        MSGMAN_GetString( _pInfo->msg_man, messageIdx, _pInfo->pStrBuf[4] );
+        WORDSET_ExpandStr( _pInfo->pWordSetTalk, _pInfo->pStrBuf[5], _pInfo->pStrBuf[4] );
+    }
+    else{
+        MSGMAN_GetString( _pInfo->msg_man, messageIdx, _pInfo->pStrBuf[5] );
+    }
+    if(!GF_BGL_BmpWinAddCheck(&_pInfo->talkWin)){
+        FldTalkBmpAdd( _pInfo->pFSys->bgl, &_pInfo->talkWin, FLD_MBGFRM_FONT );
+    }
+    FieldTalkWinPut( &_pInfo->talkWin,SaveData_GetConfig(_pInfo->pFSys->savedata) );
+    //_pInfo->msgIndex = FieldTalkMsgStart(&_pInfo->talkWin, _pInfo->pStrBuf[5], SaveData_GetConfig(_pInfo->pFSys->savedata), 1);
+    MsgPrintSkipFlagSet( MSG_SKIP_ON );
+    MsgPrintAutoFlagSet( MSG_AUTO_OFF );
+    MsgPrintTouchPanelFlagSet( MSG_TP_OFF );
+
+    _pInfo->msgIndex = GF_STR_PrintSimple(&_pInfo->talkWin, FONT_TALK, _pInfo->pStrBuf[5], 0, 0, MSG_SPEED_FAST, NULL);
+}
+
 //--------------------------------------------------------------
 /**
  * @brief   汎用リストの作成
@@ -747,7 +777,6 @@ static void _selectParentSetName(_INFO_WORK* pInfo)
  * @retval  none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void _selectParentExec(TCB_PTR tcb, void* work)
 {
     _INFO_WORK* pInfo = (_INFO_WORK*)work;
@@ -779,139 +808,12 @@ static void _selectParentExec(TCB_PTR tcb, void* work)
         _talkStart(DBCChildWait, TRUE);
     }
     else{
-        _talkStart(DBCChildWaitMulti, TRUE);
+        //MatchComment: above function is duplicated to inline version
+        _talkStartFast(DBCChildWaitMulti, TRUE);
     }
     _changeState(_waitWindowFunc);
 
 }
-#else
-asm static void _selectParentExec(TCB_PTR tcb, void* work)
-{
-	push {r4, r5, lr}
-	sub sp, #0xc
-	add r5, r0, #0
-	add r4, r1, #0
-	bl CommIsError
-	cmp r0, #0
-	beq _0224A152
-	add r0, r5, #0
-	add r1, r4, #0
-	bl _listEnd
-	mov r0, #0
-	add r1, r0, #0
-	bl _talkStart
-	add r0, r4, #0
-	bl _startChildConnectReset
-	add sp, #0xc
-	pop {r4, r5, pc}
-_0224A152:
-	bl CommGetCurrentID
-	bl CommInfoGetMyStatus
-	cmp r0, #0
-	beq _0224A238
-	bl CommListReset
-	ldr r1, =_pInfo // _0224A23C
-	add r0, r4, #0
-	add r0, #0x8e
-	ldr r1, [r1, #0]
-	ldrh r0, [r0]
-	ldr r1, [r1, #0x7c]
-	bl CommMPGetParentName
-	ldr r2, =_pInfo // _0224A23C
-	ldr r0, [r4, #0x58]
-	ldr r2, [r2, #0]
-	mov r1, #1
-	ldr r2, [r2, #0x7c]
-	bl WORDSET_RegisterPlayerName
-	bl _getMinPlayNum
-	cmp r0, #2
-	bgt _0224A192
-	mov r0, #1
-	add r1, r0, #0
-	bl _talkStart
-	b _0224A232
-_0224A192:
-	ldr r0, =_pInfo // _0224A23C
-	ldr r0, [r0, #0]
-	add r0, #0x94
-	ldrb r0, [r0]
-	bl FldTalkMsgEndCheck
-	cmp r0, #0
-	bne _0224A1AE
-	ldr r0, =_pInfo // _0224A23C
-	ldr r0, [r0, #0]
-	add r0, #0x94
-	ldrb r0, [r0]
-	bl GF_STR_PrintForceStop
-_0224A1AE:
-	ldr r0, =_pInfo // _0224A23C
-	mov r1, #2
-	ldr r2, [r0, #0]
-	ldr r0, [r2, #0x74]
-	ldr r2, [r2, #0x10]
-	bl MSGMAN_GetString
-	ldr r0, =_pInfo // _0224A23C
-	ldr r2, [r0, #0]
-	ldr r0, [r2, #0x58]
-	ldr r1, [r2, #0x14]
-	ldr r2, [r2, #0x10]
-	bl WORDSET_ExpandStr
-	ldr r0, =_pInfo // _0224A23C
-	ldr r0, [r0, #0]
-	add r0, #0x40
-	bl GF_BGL_BmpWinAddCheck
-	cmp r0, #0
-	bne _0224A1E8
-	ldr r0, =_pInfo // _0224A23C
-	mov r2, #3
-	ldr r1, [r0, #0]
-	ldr r0, [r1, #0x68]
-	add r1, #0x40
-	ldr r0, [r0, #8]
-	bl FldTalkBmpAdd
-_0224A1E8:
-	ldr r0, =_pInfo // _0224A23C
-	ldr r0, [r0, #0]
-	ldr r0, [r0, #0x68]
-	ldr r0, [r0, #0xc]
-	bl SaveData_GetConfig
-	add r1, r0, #0
-	ldr r0, =_pInfo // _0224A23C
-	ldr r0, [r0, #0]
-	add r0, #0x40
-	bl FieldTalkWinPut
-	mov r0, #1
-	bl MsgPrintSkipFlagSet
-	mov r0, #0
-	bl MsgPrintAutoFlagSet
-	mov r0, #0
-	bl MsgPrintTouchPanelFlagSet
-	ldr r0, =_pInfo // _0224A23C
-	mov r3, #0
-	ldr r2, [r0, #0]
-	mov r1, #1
-	str r3, [sp]
-	str r1, [sp, #4]
-	add r0, r2, #0
-	str r3, [sp, #8]
-	ldr r2, [r2, #0x14]
-	add r0, #0x40
-	bl GF_STR_PrintSimple
-	ldr r1, =_pInfo // _0224A23C
-	ldr r1, [r1, #0]
-	add r1, #0x94
-	strb r0, [r1]
-_0224A232:
-	ldr r0, =_waitWindowFunc // _0224A240
-	bl _changeState
-_0224A238:
-	add sp, #0xc
-	pop {r4, r5, pc}
-	// .align 2, 0
-// _0224A23C: .4byte _pInfo
-// _0224A240: .4byte _waitWindowFunc
-}
-#endif
 
 //--------------------------------------------------------------
 /**

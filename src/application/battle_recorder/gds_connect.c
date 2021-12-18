@@ -10,7 +10,7 @@
 #include <dwc.h>
 #include "libdpw/dpw_tr.h"
 #include "wifi/dwc_rap.h"
-#include "savedata\savedata.h"
+#include "savedata/savedata.h"
 #include "gds_battle_rec.h"
 #include "gds_ranking.h"
 #include "gds_boxshot.h"
@@ -30,11 +30,11 @@
 #include "system/fontproc.h"
 #include "gflib/strbuf_family.h"
 
-#include "communication\comm_system.h"
-#include "communication\comm_state.h"
-#include "communication\comm_def.h"
+#include "communication/comm_system.h"
+#include "communication/comm_state.h"
+#include "communication/comm_def.h"
 #include "communication/wm_icon.h"
-#include "communication\communication.h"
+#include "communication/communication.h"
 
 #include "gds_battle_rec.h"
 #include "gds_ranking.h"
@@ -50,7 +50,7 @@
 #include "system/bmp_list.h"
 #include "system/pmfprint.h"
 #include "savedata/config.h"
-#include "savedata\system_data.h"
+#include "savedata/system_data.h"
 #include "system/bmp_menu.h"
 #include "system/procsys.h"
 #include "system/wipe.h"

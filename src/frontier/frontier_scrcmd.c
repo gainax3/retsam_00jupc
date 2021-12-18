@@ -23,9 +23,9 @@
 #include "poketool/status_rcv.h"		//PokeParty_RecoverAll
 #include "system/procsys.h"
 
-//#include "battle/fight_def.h"		///<BattleWorkへの依存度が高いソースなので、許可
-//#include "battle/server_def.h"		///<ServerParamへの依存度が高いソースなので、許可
-//#include "battle/client_def.h"		///<ClientParamへの依存度が高いソースなので、許可
+//#include "battle/fight_def.h"		///<BattleWorkへの依存度が高い?/ースなので、許可
+//#include "battle/server_def.h"		///<ServerParamへの依存度が高い?/ースなので、許可
+//#include "battle/client_def.h"		///<ClientParamへの依存度が高い?/ースなので、許可
 
 #include "field/eventflag.h"
 #include "field/evwkdef.h"
@@ -68,7 +68,7 @@
 #include "savedata/battle_rec.h"
 #include "../field/field_subproc.h"
 //ワードセット
-#include "msgdata\msg.naix"							//NARC_msg_??_dat
+#include "msgdata/msg.naix"							//NARC_msg_??_dat
 //通信
 #include "communication/comm_info.h"
 #include "communication/comm_system.h"
@@ -2164,7 +2164,7 @@ static BOOL FSSC_ObjMoveCode_Kyoro(FSS_TASK *core)
  * @retval  
  */
 //--------------------------------------------------------------
-#include "application\namein.h"
+#include "application/namein.h"
 static void NameInFreeMemory(void *parent_work);
 
 static BOOL FSSC_NameInProc(FSS_TASK *core)
@@ -4332,34 +4332,18 @@ static BOOL FSSC_CommSetWifiBothNet( FSS_TASK * core )
 	return 0;
 }
 
-// NONMATCHING
-static asm BOOL ov104_2231F44( FSS_TASK * core )
+static BOOL ov104_2231F44( FSS_TASK * core )
 {
-	push {r3, lr}
-	ldr r2, [r0, #0x1c]
-	ldr r3, [r0, #0]
-	add r1, r2, #1
-	str r1, [r0, #0x1c]
-	ldrb r1, [r2]
-	ldr r0, [r3, #0x60]
-	bl ov104_223327C
-	mov r0, #1
-	pop {r3, pc}
-	// .align 2, 0
+    FSS_PTR fss = core->fss;
+    u8 byte = FSSTGetU8( core );
+    ov104_223327C( fss->ev_win, byte );
+    return 1;
 }
 
-// NONMATCHING
-static asm BOOL ov104_2231F5C( FSS_TASK * core )
+static BOOL ov104_2231F5C( FSS_TASK * core )
 {
-	push {r3, lr}
-	ldr r2, [r0, #0x1c]
-	ldr r3, [r0, #0]
-	add r1, r2, #1
-	str r1, [r0, #0x1c]
-	ldrb r1, [r2]
-	ldr r0, [r3, #0x60]
-	bl ov104_2233298
-	mov r0, #1
-	pop {r3, pc}
-	// .align 2, 0
+    FSS_PTR fss = core->fss;
+    u8 byte = FSSTGetU8( core );
+    ov104_2233298( fss->ev_win, byte );
+    return 1;
 }

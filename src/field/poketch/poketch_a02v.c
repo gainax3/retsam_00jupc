@@ -6,10 +6,10 @@
  */
 //============================================================================================
 #include "common.h"
-#include "system\lib_pack.h"
-#include "system\fontproc.h"
+#include "system/lib_pack.h"
+#include "system/fontproc.h"
 
-#include "field\poketch.h"
+#include "field/poketch.h"
 
 #include "poketch_prv.h"
 #include "poketch_view.h"

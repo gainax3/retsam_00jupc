@@ -7,22 +7,22 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\strbuf_family.h"
-#include "system\arc_tool.h"
-#include "system\pm_str.h"
-#include "system\get_text.h"
-#include "system\msgdata.h"
+#include "gflib/strbuf_family.h"
+#include "system/arc_tool.h"
+#include "system/pm_str.h"
+#include "system/get_text.h"
+#include "system/msgdata.h"
 
-#include "msgdata\msg.naix"
-#include "msgdata\msg_monsname.h"
-#include "msgdata\msg_wazaname.h"
-#include "msgdata\msg_typename.h"
-#include "msgdata\msg_tokusei.h"
-#include "msgdata\msg_status.h"
-#include "msgdata\msg_condition.h"
-#include "msgdata\msg_taste.h"
-#include "msgdata\msg_itemname.h"
-#include "msgdata\msg_iteminfo.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_monsname.h"
+#include "msgdata/msg_wazaname.h"
+#include "msgdata/msg_typename.h"
+#include "msgdata/msg_tokusei.h"
+#include "msgdata/msg_status.h"
+#include "msgdata/msg_condition.h"
+#include "msgdata/msg_taste.h"
+#include "msgdata/msg_itemname.h"
+#include "msgdata/msg_iteminfo.h"
 
 
 // このdefineを有効にすると、暗号化メッセージ対応

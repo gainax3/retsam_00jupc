@@ -10,8 +10,8 @@
 #ifndef __DENDOU_PC_COMMON_H__
 #define __DENDOU_PC_COMMON_H__
 
-#include "system\gamedata.h"
-#include "savedata\dendou_data.h"
+#include "system/gamedata.h"
+#include "savedata/dendou_data.h"
 
 #include "dendou_pc_sound.h"
 

@@ -11,7 +11,7 @@
 #include "system/arc_util.h"
 #include "system/palanm.h"
 #include "battle/wazatype_panel.h"
-#include "graphic\pl_batt_bg_def.h"
+#include "graphic/pl_batt_bg_def.h"
 
 //==============================================================================
 //	’è”’è‹`

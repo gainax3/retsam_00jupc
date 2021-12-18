@@ -33,8 +33,8 @@
 #include "savedata/roulette_savedata.h"
 #include "savedata/b_tower.h"
 
-#include "msgdata\msg.naix"					//NARC_msg_??_dat
-#include "msgdata\msg_bf_seiseki.h"			//msg_??
+#include "msgdata/msg.naix"					//NARC_msg_??_dat
+#include "msgdata/msg_bf_seiseki.h"			//msg_??
 
 #include "../field/fieldsys.h"				//scr_tool.hに必要
 #include "../field/scr_tool.h"				//FactoryScr_GetWinRecordID
@@ -68,22 +68,30 @@ enum {
 enum{
 	BF_STR_X	= (1*8),									//バトル○(施設名)
 
-	TITLE_STR_SINGLE_X_TOWER	= (17*8),					//シングルせいせき
-	TITLE_STR_SINGLE_X_FACTORY	= (17*8),					//シングルせいせき
-	TITLE_STR_SINGLE_X_STAGE	= (17*8),					//シングルせいせき
-	TITLE_STR_SINGLE_X_CASTLE	= (17*8),					//シングルせいせき
-	TITLE_STR_SINGLE_X_ROULETTE	= (17*8),					//シングルせいせき
+	TITLE_STR_SINGLE_X_TOWER	= (27*8),					//シングルせいせき
+	TITLE_STR_SINGLE_X_FACTORY	= (27*8),					//シングルせいせき
+	TITLE_STR_SINGLE_X_STAGE	= (27*8),					//シングルせいせき
+	TITLE_STR_SINGLE_X_CASTLE	= (27*8),					//シングルせいせき
+	TITLE_STR_SINGLE_X_ROULETTE	= (27*8),					//シングルせいせき
 
-	TITLE_STR_X_TOWER	= (18*8),							//ダブル、マルチせいせき
-	TITLE_STR_X_FACTORY = (18*8),							//ダブル、マルチせいせき
-	TITLE_STR_X_STAGE	= (18*8),							//ダブル、マルチせいせき
-	TITLE_STR_X_CASTLE	= (18*8),							//ダブル、マルチせいせき
-	TITLE_STR_X_ROULETTE= (18*8),							//ダブル、マルチせいせき
+	TITLE_STR_X_TOWER	= (27*8),							//ダブル、マルチせいせき
+	TITLE_STR_X_FACTORY = (27*8),							//ダブル、マルチせいせき
+	TITLE_STR_X_STAGE	= (27*8),							//ダブル、マルチせいせき
+	TITLE_STR_X_CASTLE	= (27*8),							//ダブル、マルチせいせき
+	TITLE_STR_X_ROULETTE= (27*8),							//ダブル、マルチせいせき
 
-	WIN_NUM_X	= (8*8),									//連勝数を書く位置
-	CP_STR_X	= (22*8),
-	TRD_NUM_X	= (21*8),
+	WIN_NUM_X	= (14*8),									//連勝数を書く位置
+	CP_STR_X	= (28*8),
+	TRD_NUM_X	= (28*8),
+    ENTRY1_X    = (12*8),
 	//TRD_STR_X	= (27*8),
+};
+
+//Horizontal alignment
+enum {
+    FTRM_ALN_LEFT,
+    FTRM_ALN_CENTER,
+    FTRM_ALN_RIGHT,
 };
 
 
@@ -165,7 +173,7 @@ static void Frontier_SetSubBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  );
 
 //メッセージ関連
 // MatchComment: FrontierWriteMsg has 10th (0-indexed) argument
-static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill );
+static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill, int align );
 static u8 EasyMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u8 fill );
 static void SetNumber( FRONTIER_MONITOR_WORK* wk, u32 bufID, s32 number );
 static void Frontier_Write( FRONTIER_MONITOR_WORK* wk );
@@ -869,12 +877,12 @@ static void Frontier_SetSubBgGraphic( FRONTIER_MONITOR_WORK * wk, u32 frm  )
  * @param	b_col	背景色ナンバー
  * @param	font	フォント種類
  * @param	fill	塗りつぶし有り無し
+ * @param   align   水平方向の配置
  *
  * @return	"文字描画ルーチンのインデックス"
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
-static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill )
+static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill, int align )
 {
 	if( fill != 0 ){
 		GF_BGL_BmpWinDataFill( win, b_col );			//塗りつぶし
@@ -885,96 +893,19 @@ static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int m
 	//登録された単語を使って文字列展開する
 	WORDSET_ExpandStr( wk->wordset, wk->msg_buf, wk->tmp_buf );
 
+    //MatchComment: string alignment
+    switch(align){
+    case FTRM_ALN_CENTER:
+        x -= (FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 )+1)/2;
+        break;
+    case FTRM_ALN_RIGHT:
+        x -= FontProc_GetPrintStrWidth( FONT_SYSTEM, wk->msg_buf, 0 );
+        break;
+    }
+
 	return GF_STR_PrintColor( win, font, wk->msg_buf, x, y, MSG_ALLPUT, 
 								GF_PRINTCOLOR_MAKE(f_col,s_col,b_col), NULL );
 }
-#else
-asm static u8 FrontierWriteMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u32 x, u32 y, u8 f_col, u8 s_col, u8 b_col, u8 font, u8 fill )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x10
-	add r5, r0, #0
-	add r0, sp, #0x3c
-	ldrb r0, [r0]
-	add r6, r1, #0
-	add r7, r2, #0
-	add r4, r3, #0
-	cmp r0, #0
-	beq _021D1342
-	add r1, sp, #0x18
-	ldrb r1, [r1, #0x1c]
-	add r0, r6, #0
-	bl GF_BGL_BmpWinDataFill
-_021D1342:
-	mov r2, #0x11
-	lsl r2, r2, #4
-	ldr r0, [r5, r2]
-	add r2, #0xc
-	ldr r2, [r5, r2]
-	add r1, r7, #0
-	bl MSGMAN_GetString
-	mov r2, #0x45
-	lsl r2, r2, #2
-	add r1, r2, #4
-	ldr r0, [r5, r2]
-	add r2, #8
-	ldr r1, [r5, r1]
-	ldr r2, [r5, r2]
-	bl WORDSET_ExpandStr
-	ldr r0, [sp, #0x40]
-	cmp r0, #1
-	beq _021D1370
-	cmp r0, #2
-	beq _021D1386
-	b _021D1396
-_021D1370:
-	mov r1, #0x46
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	add r0, r0, #1
-	lsr r0, r0, #1
-	sub r4, r4, r0
-	b _021D1396
-_021D1386:
-	mov r1, #0x46
-	lsl r1, r1, #2
-	mov r0, #0
-	ldr r1, [r5, r1]
-	add r2, r0, #0
-	bl FontProc_GetPrintStrWidth
-	sub r4, r4, r0
-_021D1396:
-	ldr r0, [sp, #0x28]
-	mov r2, #0
-	str r0, [sp]
-	str r2, [sp, #4]
-	add r3, sp, #0x18
-	ldrb r0, [r3, #0x14]
-	ldrb r1, [r3, #0x1c]
-	ldrb r3, [r3, #0x18]
-	lsl r0, r0, #0x18
-	lsr r0, r0, #8
-	lsl r3, r3, #0x18
-	lsr r3, r3, #0x10
-	orr r0, r3
-	orr r0, r1
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	add r1, sp, #0x38
-	mov r2, #0x46
-	lsl r2, r2, #2
-	ldrb r1, [r1]
-	ldr r2, [r5, r2]
-	add r0, r6, #0
-	add r3, r4, #0
-	bl GF_STR_PrintColor
-	add sp, #0x10
-	pop {r3, r4, r5, r6, r7, pc}
-}
-#endif
  
 //--------------------------------------------------------------
 /**
@@ -986,34 +917,11 @@ _021D1396:
  * @return	"msg_index"
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static u8 EasyMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u8 fill )
 {
-	return FrontierWriteMsg(	wk, win, msg_id, 1, 1,
-							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, fill );
+	return FrontierWriteMsg(	wk, win, msg_id, 0, 0,
+							FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, fill, FTRM_ALN_LEFT );
 }
-#else
-asm static u8 EasyMsg( FRONTIER_MONITOR_WORK* wk, GF_BGL_BMPWIN* win, int msg_id, u8 fill )
-{
-	push {r4, r5, lr}
-	sub sp, #0x1c
-	mov r5, #0
-	str r5, [sp]
-	mov r4, #1
-	str r4, [sp, #4]
-	mov r4, #2
-	str r4, [sp, #8]
-	str r5, [sp, #0xc]
-	str r5, [sp, #0x10]
-	str r3, [sp, #0x14]
-	add r3, r5, #0
-	str r5, [sp, #0x18]
-	bl FrontierWriteMsg
-	add sp, #0x1c
-	pop {r4, r5, pc}
-	// .align 2, 0
-}
-#endif
 
 //--------------------------------------------------------------
 /**
@@ -1105,7 +1013,6 @@ static void Frontier_Write( FRONTIER_MONITOR_WORK* wk )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no,clear_flag;
@@ -1119,7 +1026,7 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルファクトリー」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list02, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == FACTORY_TYPE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -1134,7 +1041,7 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	
 	//----------------------------------------------------------
@@ -1142,8 +1049,8 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 	//「ＬＶ５０」
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list13, 1 );
 	//「レンタル／こうかん」
-	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 16*8, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 28*8, 0,
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -1156,14 +1063,14 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetWinRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○かい」
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetTradeRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list19, TRD_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
 	//----------------------------------------------------------
@@ -1176,241 +1083,17 @@ static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get(	wk->f_sv,FactoryScr_GetMaxWinRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○かい」
 	SetNumber(	wk, 0,
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetMaxTradeRecordID(FACTORY_LEVEL_50,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list19, TRD_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Factory_SetLv50Info( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x16
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r4, #5]
-	cmp r0, #0
-	bne _021D14A4
-	mov r2, #0x1a
-	mov r3, #0xd8
-	b _021D14B2
-_021D14A4:
-	cmp r0, #1
-	bne _021D14AE
-	mov r2, #0x1b
-	mov r3, #0xd8
-	b _021D14B2
-_021D14AE:
-	mov r2, #0x1c
-	mov r3, #0xd8
-_021D14B2:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r2, #0x22
-	mov r3, #1
-	bl EasyMsg
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x20
-	mov r2, #0x24
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	mov r1, #0
-	bl Factory_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r3, #1
-	bl EasyMsg
-	ldrb r1, [r4, #5]
-	mov r0, #0
-	bl FactoryScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	ldrb r1, [r4, #5]
-	mov r0, #0
-	bl FactoryScr_GetTradeRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x28
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x30
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x40
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r1, [r4, #5]
-	mov r0, #0
-	bl FactoryScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x40
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	ldrb r1, [r4, #5]
-	mov r0, #0
-	bl FactoryScr_GetMaxTradeRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x40
-	mov r2, #0x28
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r4, #0x40
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-}
-#endif
 
 //--------------------------------------------------------------
 /**
@@ -1421,7 +1104,6 @@ _021D14B2:
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -1433,8 +1115,8 @@ static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list14, 1 );
 
 	//「レンタル／こうかん」
-	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 19*8, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+//	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list15, 19*8, 0,
+//					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -1447,14 +1129,14 @@ static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetWinRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○かい」
 	SetNumber(	wk, 0, 
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetTradeRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list19, TRD_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
 	//----------------------------------------------------------
@@ -1467,172 +1149,17 @@ static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get( wk->f_sv,FactoryScr_GetMaxWinRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○かい」
 	SetNumber(	wk, 0,
 		FrontierRecord_Get( wk->f_sv, FactoryScr_GetMaxTradeRecordID(FACTORY_LEVEL_OPEN,wk->type),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list19, TRD_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Factory_SetLv100Info( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r1, r4, #0
-	add r1, #0x50
-	mov r2, #0x23
-	mov r3, #1
-	bl EasyMsg
-	add r0, r4, #0
-	add r0, #0x50
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	mov r1, #1
-	bl Factory_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x60
-	mov r3, #1
-	bl EasyMsg
-	ldrb r1, [r4, #5]
-	mov r0, #1
-	bl FactoryScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x60
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	ldrb r1, [r4, #5]
-	mov r0, #1
-	bl FactoryScr_GetTradeRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x60
-	mov r2, #0x28
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x60
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x70
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r1, [r4, #5]
-	mov r0, #1
-	bl FactoryScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x70
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	ldrb r1, [r4, #5]
-	mov r0, #1
-	bl FactoryScr_GetMaxTradeRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x70
-	mov r2, #0x28
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r4, #0x70
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-}
-#endif
 
 static u32 Factory_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 level )
 {
@@ -1682,7 +1209,6 @@ static u32 Factory_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 level )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -1700,7 +1226,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルステージ」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list04, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == STAGE_TYPE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -1715,7 +1241,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	
 	//----------------------------------------------------------
@@ -1727,7 +1253,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list18, 19*8, 0,
 	//FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list18, 4*8, 0,
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list18, 0, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -1753,7 +1279,7 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//「○○れんしょう」
 	SetNumber(	wk, 0, num );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
 	//----------------------------------------------------------
@@ -1793,209 +1319,10 @@ static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	SetNumber(	wk, 0, num );
 #endif
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Stage_SetInfo( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r4, r5, r6, lr}
-	sub sp, #0x20
-	add r5, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x10
-	mov r2, #0x18
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r5, #5]
-	cmp r0, #0
-	bne _021D1844
-	mov r2, #0x1a
-	mov r3, #0xd8
-	b _021D1852
-_021D1844:
-	cmp r0, #1
-	bne _021D184E
-	mov r2, #0x1b
-	mov r3, #0xd8
-	b _021D1852
-_021D184E:
-	mov r2, #0x1c
-	mov r3, #0xd8
-_021D1852:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r5, #0
-	str r0, [sp, #0x18]
-	add r0, r5, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r5, #0
-	bl FrontierMonitor_PokeName
-	mov r3, #0
-	add r1, r5, #0
-	str r3, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r3, [sp, #0xc]
-	str r3, [sp, #0x10]
-	str r3, [sp, #0x14]
-	add r0, r5, #0
-	add r1, #0x20
-	mov r2, #0x27
-	str r3, [sp, #0x18]
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x30
-	mov r2, #0x1d
-	mov r3, #1
-	bl EasyMsg
-	mov r0, #0x4a
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	bl SaveData_GetFrontier
-	add r4, r0, #0
-	ldrb r0, [r5, #5]
-	bl StageScr_GetMonsNoRecordID
-	add r6, r0, #0
-	ldrb r0, [r5, #5]
-	bl StageScr_GetMonsNoRecordID
-	bl Frontier_GetFriendIndex
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, r6, #0
-	bl FrontierRecord_Get
-	ldrh r1, [r5, #8]
-	cmp r1, r0
-	beq _021D18E6
-	mov r2, #0
-	b _021D18FC
-_021D18E6:
-	ldrb r0, [r5, #5]
-	bl StageScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-_021D18FC:
-	add r0, r5, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x30
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x30
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x40
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	mov r0, #0x4a
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	mov r1, #0xb
-	add r2, sp, #0x1c
-	bl FrontierEx_Load
-	add r4, r0, #0
-	ldr r0, [sp, #0x1c]
-	cmp r0, #1
-	beq _021D1956
-	mov r6, #0
-	b _021D196E
-_021D1956:
-	ldrb r0, [r5, #5]
-	bl StageScr_GetExMaxWinRecordID
-	add r2, r0, #0
-	mov r0, #0x4a
-	lsl r0, r0, #2
-	ldrh r3, [r5, #8]
-	ldr r0, [r5, r0]
-	add r1, r4, #0
-	bl FrontierEx_StageRenshou_Get
-	add r6, r0, #0
-_021D196E:
-	cmp r4, #0
-	beq _021D1978
-	add r0, r4, #0
-	bl sys_FreeMemoryEz
-_021D1978:
-	add r0, r5, #0
-	mov r1, #0
-	add r2, r6, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x40
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r5, #0x40
-	add r0, r5, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x20
-	pop {r4, r5, r6, pc}
-}
-#endif
 
 static u32 Stage_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
@@ -2069,7 +1396,6 @@ static void FrontierMonitor_PokeName( FRONTIER_MONITOR_WORK* wk )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -2084,7 +1410,7 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルキャッスル」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list03, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == CASTLE_TYPE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -2099,13 +1425,16 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
 	no = BC_BMPWIN_ENTRY1;
 	//「キャッスルポイント」
-	EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list16, 1 );
+	//EasyMsg( wk, &wk->bmpwin[no], msg_bf_seiseki_list16, 1 );
+    FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list16, ENTRY1_X, 0,
+                    FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM,
+                    1, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -2118,7 +1447,7 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, CastleScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list21, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○ＣＰ」残りCPを表示
 	now_cp = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), CastleScr_GetCPRecordID(wk->type),
@@ -2126,7 +1455,7 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//OS_Printf( "前回残りcp = %d\n", now_cp );
 	SetNumber(	wk, 0, now_cp );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list20, CP_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
@@ -2140,7 +1469,7 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, CastleScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list21, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	//「○○ＣＰ」残りCPを表示
 	now_cp = FrontierRecord_Get(SaveData_GetFrontier(wk->sv), 
@@ -2149,238 +1478,11 @@ static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
 	//OS_Printf( "最高残りcp = %d\n", now_cp );
 	SetNumber(	wk, 0, now_cp );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list20, CP_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Castle_SetInfo( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, r5, r6, lr}
-	sub sp, #0x1c
-	add r5, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x10
-	mov r2, #0x17
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r5, #5]
-	cmp r0, #0
-	bne _021D1A30
-	mov r2, #0x1a
-	mov r3, #0xd8
-	b _021D1A3E
-_021D1A30:
-	cmp r0, #1
-	bne _021D1A3A
-	mov r2, #0x1b
-	mov r3, #0xd8
-	b _021D1A3E
-_021D1A3A:
-	mov r2, #0x1c
-	mov r3, #0xd8
-_021D1A3E:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r5, #0
-	str r0, [sp, #0x18]
-	add r0, r5, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r5, #0
-	str r0, [sp, #0x18]
-	add r0, r5, #0
-	add r1, #0x20
-	mov r2, #0x25
-	mov r3, #0x60
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r5, #0
-	bl Castle_GetMsg
-	add r1, r5, #0
-	add r2, r0, #0
-	add r0, r5, #0
-	add r1, #0x30
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r5, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x30
-	mov r2, #0x2a
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	mov r0, #0x4a
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	bl SaveData_GetFrontier
-	add r4, r0, #0
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetCPRecordID
-	add r6, r0, #0
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetCPRecordID
-	bl Frontier_GetFriendIndex
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, r6, #0
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r5, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r5, #0
-	str r0, [sp, #0x18]
-	add r0, r5, #0
-	add r1, #0x30
-	mov r2, #0x29
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r0, r5, #0
-	add r0, #0x30
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x40
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r5, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r5, #0
-	add r0, r5, #0
-	add r1, #0x40
-	mov r2, #0x2a
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	mov r0, #0x4a
-	lsl r0, r0, #2
-	ldr r0, [r5, r0]
-	bl SaveData_GetFrontier
-	add r4, r0, #0
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetRemainderCPRecordID
-	add r6, r0, #0
-	ldrb r0, [r5, #5]
-	bl CastleScr_GetRemainderCPRecordID
-	bl Frontier_GetFriendIndex
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, r6, #0
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r5, #0
-	mov r1, #0
-	bl SetNumber
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r5, #0
-	str r0, [sp, #0x18]
-	add r0, r5, #0
-	add r1, #0x40
-	mov r2, #0x29
-	mov r3, #0xe0
-	bl FrontierWriteMsg
-	add r5, #0x40
-	add r0, r5, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, r5, r6, pc}
-}
-#endif
 
 static u32 Castle_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
@@ -2423,7 +1525,6 @@ static u32 Castle_GetMsg( FRONTIER_MONITOR_WORK* wk )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -2438,7 +1539,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルルーレット」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list05, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == ROULETTE_TYPE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -2453,7 +1554,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -2466,7 +1567,7 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list22, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
@@ -2480,150 +1581,11 @@ static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, RouletteScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list22, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Roulette_SetInfo( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x19
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r4, #5]
-	cmp r0, #0
-	bne _021D1C7C
-	mov r2, #0x1a
-	mov r3, #0xd8
-	b _021D1C8A
-_021D1C7C:
-	cmp r0, #1
-	bne _021D1C86
-	mov r2, #0x1b
-	mov r3, #0xd8
-	b _021D1C8A
-_021D1C86:
-	mov r2, #0x1c
-	mov r3, #0xd8
-_021D1C8A:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	bl Roulette_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl RouletteScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r2, #0x2b
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl RouletteScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x2b
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r4, #0x30
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-	// .align 2, 0
-}
-#endif
 
 static u32 Roulette_GetMsg( FRONTIER_MONITOR_WORK* wk )
 {
@@ -2666,7 +1628,6 @@ static u32 Roulette_GetMsg( FRONTIER_MONITOR_WORK* wk )
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -2680,7 +1641,7 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルタワー」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list01, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	if( wk->type == BTWR_MODE_SINGLE ){
 		msg_id = msg_bf_seiseki_list06;
@@ -2692,7 +1653,7 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_id, x, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -2705,7 +1666,7 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
@@ -2719,143 +1680,11 @@ static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Tower_SetInfoSingleDouble( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x15
-	mov r3, #8
-	bl FrontierWriteMsg
-	ldrb r0, [r4, #5]
-	cmp r0, #0
-	bne _021D1DF6
-	mov r2, #0x1a
-	b _021D1DF8
-_021D1DF6:
-	mov r2, #0x1b
-_021D1DF8:
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	mov r3, #0xd8
-	add r0, r4, #0
-	add r1, #0x10
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	ldrb r1, [r4, #5]
-	add r0, r4, #0
-	bl Tower_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl TowerScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x30
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x30
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x40
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl TowerScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x40
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r4, #0x40
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-}
-#endif
 
 //--------------------------------------------------------------
 /**
@@ -2866,7 +1695,6 @@ _021D1DF8:
  * @retval	none
  */
 //--------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 {
 	u8 no;
@@ -2879,11 +1707,11 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 
 	//「バトルタワー」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list01, BF_STR_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_LEFT );
 
 	//「シングルせいせき」
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list08, TITLE_STR_X_TOWER, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_RIGHT );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -2902,7 +1730,7 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 		
@@ -2916,7 +1744,7 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 				FrontierRecord_Get( wk->f_sv, TowerScr_GetMaxWinRecordID(wk->type),
 									FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
@@ -2936,7 +1764,7 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get( wk->f_sv, TowerScr_GetWinRecordID(BTWR_MODE_COMM_MULTI),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 
 	//----------------------------------------------------------
@@ -2949,232 +1777,11 @@ static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
 		FrontierRecord_Get( wk->f_sv,TowerScr_GetMaxWinRecordID(BTWR_MODE_COMM_MULTI),
 							FRONTIER_RECORD_NOT_FRIEND) );
 	FrontierWriteMsg(wk, &wk->bmpwin[no], msg_bf_seiseki_list17, WIN_NUM_X, 0,
-					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0 );
+					FBMP_COL_BLACK,FBMP_COL_BLK_SDW,FBMP_COL_NULL, FONT_SYSTEM, 0, FTRM_ALN_CENTER );
 	GF_BGL_BmpWinOnVReq( &wk->bmpwin[no] );
 	return;
 }
-#else
-asm static void Tower_SetInfoMulti( FRONTIER_MONITOR_WORK* wk )
-{
-	push {r3, r4, lr}
-	sub sp, #0x1c
-	add r4, r0, #0
-	add r0, #0x10
-	mov r1, #0
-	bl GF_BGL_BmpWinDataFill
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x15
-	mov r3, #8
-	bl FrontierWriteMsg
-	mov r1, #0
-	str r1, [sp]
-	mov r0, #1
-	str r0, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r1, [sp, #0xc]
-	str r1, [sp, #0x10]
-	str r1, [sp, #0x14]
-	add r1, r4, #0
-	str r0, [sp, #0x18]
-	add r0, r4, #0
-	add r1, #0x10
-	mov r2, #0x1c
-	mov r3, #0xd8
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x10
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x20
-	mov r2, #0x20
-	mov r3, #1
-	bl EasyMsg
-	add r0, r4, #0
-	add r0, #0x20
-	bl GF_BGL_BmpWinOnVReq
-	ldrb r1, [r4, #5]
-	add r0, r4, #0
-	bl Tower_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x50
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl TowerScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x50
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x50
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x60
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	ldrb r0, [r4, #5]
-	bl TowerScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x60
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x60
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x70
-	mov r2, #0x21
-	mov r3, #1
-	bl EasyMsg
-	add r0, r4, #0
-	add r0, #0x70
-	bl GF_BGL_BmpWinOnVReq
-	add r0, r4, #0
-	mov r1, #3
-	bl Tower_GetMsg
-	add r1, r4, #0
-	add r2, r0, #0
-	add r0, r4, #0
-	add r1, #0x80
-	mov r3, #1
-	bl EasyMsg
-	mov r0, #3
-	bl TowerScr_GetWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x80
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r0, r4, #0
-	add r0, #0x80
-	bl GF_BGL_BmpWinOnVReq
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x90
-	mov r2, #0x1f
-	mov r3, #1
-	bl EasyMsg
-	mov r0, #3
-	bl TowerScr_GetMaxWinRecordID
-	add r1, r0, #0
-	mov r0, #0x4b
-	lsl r0, r0, #2
-	ldr r0, [r4, r0]
-	mov r2, #0xff
-	bl FrontierRecord_Get
-	add r2, r0, #0
-	add r0, r4, #0
-	mov r1, #0
-	bl SetNumber
-	mov r2, #0
-	str r2, [sp]
-	mov r1, #1
-	str r1, [sp, #4]
-	mov r0, #2
-	str r0, [sp, #8]
-	str r2, [sp, #0xc]
-	str r2, [sp, #0x10]
-	str r2, [sp, #0x14]
-	str r1, [sp, #0x18]
-	add r1, r4, #0
-	add r0, r4, #0
-	add r1, #0x90
-	mov r2, #0x26
-	mov r3, #0x70
-	bl FrontierWriteMsg
-	add r4, #0x90
-	add r0, r4, #0
-	bl GF_BGL_BmpWinOnVReq
-	add sp, #0x1c
-	pop {r3, r4, pc}
-	// .align 2, 0
-}
-#endif
-    
+
 static u32 Tower_GetMsg( FRONTIER_MONITOR_WORK* wk, u8 type )
 {
 	u16 id;

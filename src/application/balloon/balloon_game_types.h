@@ -230,9 +230,9 @@ enum{
 ///カウンターのフォントカラー設定
 #define COUNTER_FONT_COLOR		(GF_PRINTCOLOR_MAKE(0xe,0xf,0))
 ///カウンターX座標基準値
-#define COUNTER_BASE_X			(8)
+#define COUNTER_BASE_X			(6)
 ///カウンターX座標の配置間隔
-#define COUNTER_X_SPACE			(8)
+#define COUNTER_X_SPACE			(6)
 ///カウンターY座標
 #define COUNTER_Y				(168)
 

@@ -871,8 +871,8 @@ static void PokeInfoPrint( GF_BGL_BMPWIN *win, MSGDATA_MANAGER *gtcmsg, MSGDATA_
 
 	// ƒŒƒxƒ‹Žw’è
 	WorldTrade_WantLevelPrintEx( win + 1, gtcmsg, 
-		WorldTrade_LevelTermGet(dtsd->level_min, dtsd->level_max, 0), // TODO__fix_me 
-		0, 19, GF_PRINTCOLOR_MAKE(15,2,0), 0, 8 ); // wtf is this +1?
+		WorldTrade_LevelTermGet(dtsd->level_min, dtsd->level_max, LEVEL_PRINT_TBL_DEPOSIT),
+		0, 19, GF_PRINTCOLOR_MAKE(15,2,0), LEVEL_PRINT_TBL_DEPOSIT, 8 ); // wtf is this +1?
 }
 
 //------------------------------------------------------------------

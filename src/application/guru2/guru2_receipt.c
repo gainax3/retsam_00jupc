@@ -65,7 +65,7 @@
 
 #define RECORD_1SEC_WAIT	( 45 )
 
-#include "..\record\record.naix"			// グラフィックアーカイブ定義
+#include "../record/record.naix"			// グラフィックアーカイブ定義
 #include "../wifi_worldtrade/worldtrade.naix"
 #include "../../field/poketch/poketch_arc.h"
 #include "communication/wh.h"

@@ -20,13 +20,13 @@
 #include "system/savedata.h"
 #include "savedata/mystatus.h"
 #include "savedata/zukanwork.h"
-#include "savedata\battle_rec.h"
-#include "savedata\frontier_savedata.h"
-#include "savedata\frontier_ex.h"
-#include "savedata\factory_savedata.h"
-#include "savedata\stage_savedata.h"
-#include "savedata\castle_savedata.h"
-#include "savedata\roulette_savedata.h"
+#include "savedata/battle_rec.h"
+#include "savedata/frontier_savedata.h"
+#include "savedata/frontier_ex.h"
+#include "savedata/factory_savedata.h"
+#include "savedata/stage_savedata.h"
+#include "savedata/castle_savedata.h"
+#include "savedata/roulette_savedata.h"
 
 #include "fld_bgm.h"
 #include "poketool/monsno.h"
@@ -49,19 +49,19 @@
 #include "msgdata/msg.naix"
 #include "msgdata/msg_debug_nohara.h"
 
-#include "..\fielddata\script\t01r0202_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
-#include "..\fielddata\script\common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
-#include "..\fielddata\script\connect_def.h"		//SCRID_CONNECT_COLOSSEUM
-#include "..\fielddata\script\trainer_def.h"		//SCRID_TANPAN_01
-#include "..\fielddata\script\r201_def.h"			//SCRID_R201_FLAG_CHANGE
-#include "..\fielddata\script\hiden_def.h"			//SCRID_R201_FLAG_CHANGE
-#include "..\fielddata\script\con_reception_def.h"	//
-#include "..\fielddata\script\pc_ug_def.h"	//
-#include "..\fielddata\script\perap_def.h"	//
-#include "..\fielddata\script\saisen_def.h"	//
-#include "..\fielddata\script\debug_scr_def.h"	//
-#include "..\fielddata\script\factory_lobby_def.h"	//
-#include "..\fielddata\script\seiseki_def.h"	//
+#include "../fielddata/script/t01r0202_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
+#include "../fielddata/script/common_scr_def.h"		//SCRID_TRAINER_MOVE_SCRIPT
+#include "../fielddata/script/connect_def.h"		//SCRID_CONNECT_COLOSSEUM
+#include "../fielddata/script/trainer_def.h"		//SCRID_TANPAN_01
+#include "../fielddata/script/r201_def.h"			//SCRID_R201_FLAG_CHANGE
+#include "../fielddata/script/hiden_def.h"			//SCRID_R201_FLAG_CHANGE
+#include "../fielddata/script/con_reception_def.h"	//
+#include "../fielddata/script/pc_ug_def.h"	//
+#include "../fielddata/script/perap_def.h"	//
+#include "../fielddata/script/saisen_def.h"	//
+#include "../fielddata/script/debug_scr_def.h"	//
+#include "../fielddata/script/factory_lobby_def.h"	//
+#include "../fielddata/script/seiseki_def.h"	//
 
 #include "itemtool/myitem.h"
 #include "itemtool/itemsym.h"

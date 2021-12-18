@@ -17,14 +17,14 @@
 //=============================================================================================
 #include "common.h"
 
-#include "gflib\msg_print.h"
-#include "gflib\strbuf_family.h"
-#include "system\pmfprint.h"
-#include "system\fontproc.h"
+#include "gflib/msg_print.h"
+#include "gflib/strbuf_family.h"
+#include "system/pmfprint.h"
+#include "system/fontproc.h"
 
-#include "system\arc_util.h"
-#include "system\font_arc.h"
-#include "gflib\fontdata_man.h"
+#include "system/arc_util.h"
+#include "system/font_arc.h"
+#include "gflib/fontdata_man.h"
 
 //---------------------------------------------------------------------------------------------
 /**

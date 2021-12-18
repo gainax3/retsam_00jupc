@@ -7,15 +7,15 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\heapsys.h"
-#include "gflib\strbuf.h"
-#include "system\arc_util.h"
-#include "system\window.h"
-#include "system\pms_word.h"
-#include "system\winframe.naix"
-#include "system\msgdata.h"
-#include "msgdata\msg_pms_input.h"
-#include "msgdata\msg.naix"
+#include "gflib/heapsys.h"
+#include "gflib/strbuf.h"
+#include "system/arc_util.h"
+#include "system/window.h"
+#include "system/pms_word.h"
+#include "system/winframe.naix"
+#include "system/msgdata.h"
+#include "msgdata/msg_pms_input.h"
+#include "msgdata/msg.naix"
 
 
 #include "pms_input_prv.h"
@@ -259,7 +259,6 @@ static void load_scrn_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 	}
 }
 
-#ifdef NONEQUIVALENT
 static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 {
 	// ----------------------------------------------------------------------------
@@ -280,10 +279,10 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 	FontProc_LoadFont( FONT_BUTTON, HEAPID_BASE_SYSTEM );
 	str_group    = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_group_mode,    HEAPID_PMS_INPUT_VIEW );
 	str_group2   = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_group_mode2,   HEAPID_PMS_INPUT_VIEW );
-	str_initial  = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode,  HEAPID_PMS_INPUT_VIEW );
-	str_initial2 = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode2, HEAPID_PMS_INPUT_VIEW );
+//	str_initial  = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode,  HEAPID_PMS_INPUT_VIEW );
+//	str_initial2 = MSGDAT_GetStrDirectAlloc(ARC_MSG, NARC_msg_pms_input_dat, str_initial_mode2, HEAPID_PMS_INPUT_VIEW );
 
-	loadPtr = ArcUtil_CharDataGet(ARC_PMSI_GRAPHIC, NARC_pmsi_bg_sub_lz_ncgr, TRUE, &charData, HEAPID_PMS_INPUT_VIEW);
+	loadPtr = ArcUtil_HDL_CharDataGet(p_handle, NARC_pmsi_bg_sub_lz_ncgr, TRUE, &charData, HEAPID_PMS_INPUT_VIEW);
 	if(loadPtr)
 	{
 		GF_BGL_BMPWIN   win;
@@ -296,11 +295,12 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 		win.bitmode = GF_BGL_BMPWIN_BITMODE_4;
 		win.chrbuf = charData->pRawData;
 		print_mode_name( &win, wk->bgl, str_group,  0 );
-		print_mode_name( &win, wk->bgl, str_group2, LINE_HEIGHT );
-
-		win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
-		print_mode_name( &win, wk->bgl, str_initial,  0 );
-		print_mode_name( &win, wk->bgl, str_initial2, LINE_HEIGHT );
+        win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
+		print_mode_name( &win, wk->bgl, str_group2, 0 );
+//
+//		win.chrbuf = (u8*)(charData->pRawData) + ((CGX_WIDTH * (MODEBUTTON_SCRN_HEIGHT*4))*0x20);
+//		print_mode_name( &win, wk->bgl, str_initial,  0 );
+//		print_mode_name( &win, wk->bgl, str_initial2, LINE_HEIGHT );
 
 		DC_FlushRange( charData->pRawData, charData->szByte );
 		GF_BGL_LoadCharacter(wk->bgl, FRM_SUB_BG, charData->pRawData, charData->szByte, 0);
@@ -308,107 +308,15 @@ static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
 		sys_FreeMemoryEz(loadPtr);
 	}
 
-	STRBUF_Delete(str_initial);
-	STRBUF_Delete(str_initial2);
-	STRBUF_Delete(str_group);
+//	STRBUF_Delete(str_initial);
+//	STRBUF_Delete(str_initial2);
 	STRBUF_Delete(str_group2);
+	STRBUF_Delete(str_group);
 	FontProc_UnloadFont( FONT_BUTTON );
 
 	// ----------------------------------------------------------------------------
 }
-#else
-asm static void setup_cgx_datas( PMSIV_SUB* wk, ARCHANDLE* p_handle )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	sub sp, #0x18
-	add r5, r0, #0
-	add r7, r1, #0
-	mov r0, #2
-	mov r1, #0
-	bl FontProc_LoadFont
-	ldr r1, =0x000001B5 // _021D4984
-	mov r0, #0x1a
-	mov r2, #0xb
-	mov r3, #0x23
-	bl MSGDAT_GetStrDirectAlloc
-	add r6, r0, #0
-	ldr r1, =0x000001B5 // _021D4984
-	mov r0, #0x1a
-	mov r2, #0xc
-	mov r3, #0x23
-	bl MSGDAT_GetStrDirectAlloc
-	add r4, r0, #0
-	mov r0, #0x23
-	str r0, [sp]
-	add r0, r7, #0
-	mov r1, #0x14
-	mov r2, #1
-	add r3, sp, #4
-	bl ArcUtil_HDL_CharDataGet
-	add r7, r0, #0
-	beq _021D496C
-	add r0, sp, #8
-	bl GF_BGL_BmpWinInit
-	ldr r0, [r5, #0xc]
-	add r1, sp, #4
-	str r0, [sp, #8]
-	mov r0, #0xb
-	strb r0, [r1, #0xb]
-	mov r0, #0x39
-	strb r0, [r1, #0xc]
-	ldrh r2, [r1, #0xe]
-	ldr r0, =0xFFFF7FFF // _021D4988
-	mov r3, #0
-	and r0, r2
-	strh r0, [r1, #0xe]
-	ldr r0, [sp, #4]
-	add r2, r6, #0
-	ldr r0, [r0, #0x14]
-	str r0, [sp, #0x14]
-	ldr r1, [r5, #0xc]
-	add r0, sp, #8
-	bl print_mode_name
-	ldr r0, [sp, #4]
-	add r2, r4, #0
-	ldr r1, [r0, #0x14]
-	mov r0, #0x9a
-	lsl r0, r0, #6
-	add r0, r1, r0
-	str r0, [sp, #0x14]
-	ldr r1, [r5, #0xc]
-	add r0, sp, #8
-	mov r3, #0
-	bl print_mode_name
-	ldr r1, [sp, #4]
-	ldr r0, [r1, #0x14]
-	ldr r1, [r1, #0x10]
-	bl DC_FlushRange
-	ldr r3, [sp, #4]
-	mov r0, #0
-	str r0, [sp]
-	ldr r2, [r3, #0x14]
-	ldr r0, [r5, #0xc]
-	ldr r3, [r3, #0x10]
-	mov r1, #4
-	bl GF_BGL_LoadCharacter
-	add r0, r7, #0
-	bl sys_FreeMemoryEz
-_021D496C:
-	add r0, r4, #0
-	bl STRBUF_Delete
-	add r0, r6, #0
-	bl STRBUF_Delete
-	mov r0, #2
-	bl FontProc_UnloadFont
-	add sp, #0x18
-	pop {r3, r4, r5, r6, r7, pc}
-	nop
-// _021D4984: .4byte 0x000001B5
-// _021D4988: .4byte 0xFFFF7FFF
-}
-#endif
 
-#ifdef NONEQUIVALENT
 static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* str, int yofs )
 {
 	// ----------------------------------------------------------------------------
@@ -420,6 +328,7 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 		COL_2 = 0x02,
 		COL_3 = 0x03,
 
+        LINE_HEIGHT = 16,
 		WRITE_Y_ORG = 22,
 		WRITE_Y_DIFF = 56,
 
@@ -433,114 +342,28 @@ static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* 
 		(WRITE_Y_ORG + WRITE_Y_DIFF*3)-1,
 	};
 
-	int i, x, y;
+	int i, j, x, y;
+    u32 nlines;
+    STRBUF* line;
 
-	x = (BUTTON_WIDTH - FontProc_GetPrintMaxLineWidth(FONT_BUTTON, str, 0)) / 2;	// 1行ずつに変更したが念のため複数行対応
 
-	for(i=0; i<NELEMS(write_y); i++)
-	{
-		y = write_y[i] + yofs;
-		GF_STR_PrintColor( win, FONT_BUTTON, str, x, y,
-							MSG_NO_PUT, GF_PRINTCOLOR_MAKE(COL_1,COL_2,COL_3), NULL );
-	}
+    nlines = STRBUF_GetLines( str );
+    line = STRBUF_Create( 32, HEAPID_PMS_INPUT_VIEW );
+    yofs += ((2 - nlines) * LINE_HEIGHT) / 2;
 
+    for (j = 0; j < nlines; j++) {
+        STRBUF_CopyLine(line, str, j);
+        x = FontProc_GetPrintCenteredPositionX(FONT_BUTTON, line, 0, BUTTON_WIDTH);	// 1行ずつに変更したが念のため複数行対応
+        for (i = 0; i < NELEMS(write_y); i++) {
+            y = write_y[i] + yofs;
+            GF_STR_PrintColor(win, FONT_BUTTON, line, x, y,
+                              MSG_NO_PUT, GF_PRINTCOLOR_MAKE(COL_1, COL_2, COL_3), NULL);
+        }
+        yofs += LINE_HEIGHT;
+    }
+    STRBUF_Delete(line);
 	// ----------------------------------------------------------------------------
 }
-#else
-enum {
-    COL_1 = 0x01,
-    COL_2 = 0x02,
-    COL_3 = 0x03,
-
-    WRITE_Y_ORG = 22,
-    WRITE_Y_DIFF = 56,
-
-    BUTTON_WIDTH = 88,		// setup_cgs_datas() の CGX_WIDTH * 8
-};
-
-static const s16 write_y[] = {
-     WRITE_Y_ORG,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*1)-1,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*2)-2,
-    (WRITE_Y_ORG + WRITE_Y_DIFF*3)-1,
-};
-
-asm static void print_mode_name( GF_BGL_BMPWIN* win, GF_BGL_INI* bgl, const STRBUF* str, int yofs )
-{
-	push {r4, r5, r6, r7, lr}
-	sub sp, #0x24
-	str r0, [sp, #0x10]
-	add r0, r2, #0
-	str r2, [sp, #0x14]
-	add r7, r3, #0
-	bl STRBUF_GetLines
-	str r0, [sp, #0x1c]
-	mov r0, #0x20
-	mov r1, #0x23
-	bl STRBUF_Create
-	add r6, r0, #0
-	ldr r0, [sp, #0x1c]
-	mov r1, #2
-	sub r0, r1, r0
-	lsl r0, r0, #4
-	lsr r0, r0, #1
-	add r7, r7, r0
-	mov r0, #0
-	str r0, [sp, #0x20]
-	ldr r0, [sp, #0x1c]
-	cmp r0, #0
-	bls _021D4A10
-_021D49BE:
-	ldr r1, [sp, #0x14]
-	ldr r2, [sp, #0x20]
-	add r0, r6, #0
-	bl STRBUF_CopyLine
-	mov r0, #2
-	add r1, r6, #0
-	mov r2, #0
-	mov r3, #0x58
-	bl FontProc_GetPrintCenteredPositionX
-	ldr r5, =write_y // _021D4A1C
-	str r0, [sp, #0x18]
-	mov r4, #0
-_021D49DA:
-	mov r0, #0
-	ldrsh r0, [r5, r0]
-	ldr r3, [sp, #0x18]
-	mov r1, #2
-	add r0, r7, r0
-	str r0, [sp]
-	mov r0, #0xff
-	str r0, [sp, #4]
-	ldr r0, =0x00010203 // _021D4A20
-	add r2, r6, #0
-	str r0, [sp, #8]
-	mov r0, #0
-	str r0, [sp, #0xc]
-	ldr r0, [sp, #0x10]
-	bl GF_STR_PrintColor
-	add r4, r4, #1
-	add r5, r5, #2
-	cmp r4, #4
-	blo _021D49DA
-	ldr r0, [sp, #0x20]
-	add r7, #0x10
-	add r1, r0, #1
-	ldr r0, [sp, #0x1c]
-	str r1, [sp, #0x20]
-	cmp r1, r0
-	blo _021D49BE
-_021D4A10:
-	add r0, r6, #0
-	bl STRBUF_Delete
-	add sp, #0x24
-	pop {r4, r5, r6, r7, pc}
-	nop
-// _021D4A1C: .4byte write_y
-// _021D4A20: .4byte 0x00010203
-}
-#endif
-
 //==============================================================================================
 //==============================================================================================
 

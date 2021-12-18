@@ -42,12 +42,12 @@ typedef struct{
 //	ÉfÅ[É^
 //
 //============================================================================================
-#include "..\fielddata\shopdata\shop_item.dat"
-#include "..\fielddata\shopdata\fs_item.dat"
-#include "..\fielddata\base_goods\goods_id_def.h"
-#include "..\fielddata\shopdata\fs_goods.dat"
-#include "application\seal_id.h"
-#include "..\fielddata\shopdata\fs_seal.dat"
+#include "../fielddata/shopdata/shop_item.dat"
+#include "../fielddata/shopdata/fs_item.dat"
+#include "../fielddata/base_goods/goods_id_def.h"
+#include "../fielddata/shopdata/fs_goods.dat"
+#include "application/seal_id.h"
+#include "../fielddata/shopdata/fs_seal.dat"
 
 
 //============================================================================================

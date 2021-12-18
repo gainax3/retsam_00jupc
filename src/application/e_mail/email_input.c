@@ -43,7 +43,7 @@
 #include "system/bmp_list.h"
 #include "system/pmfprint.h"
 #include "savedata/config.h"
-#include "savedata\system_data.h"
+#include "savedata/system_data.h"
 
 #include "../wifi_p2pmatch/wifip2pmatch.naix"			// グラフィックアーカイブ定義
 

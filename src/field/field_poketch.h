@@ -10,7 +10,7 @@
 #define __FIELD_POKETCH_H__
 
 #include "field_common.h"
-#include "field\poketch.h"
+#include "field/poketch.h"
 
 
 extern void Field_SendPoketchInfo( FIELDSYS_WORK* fsys, FIELD_POKETCH_SEND_ID id, u32 value );

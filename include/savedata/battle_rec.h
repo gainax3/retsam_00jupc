@@ -16,7 +16,7 @@
 #include "savedata/savedata_def.h"
 #include "poketool/poke_tool.h"
 
-#include "battle\battle_common.h"
+#include "battle/battle_common.h"
 #include "savedata/gds_profile.h"	//GDS_PROFILE_PTR’è‹`
 
 #include "application/battle_recorder/gds_battle_rec.h"

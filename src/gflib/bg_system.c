@@ -12,7 +12,7 @@
 #include "display.h"
 #include "mmap_get.h"
 #include "gflib_os_print.h"
-#include "system\arc_tool.h"
+#include "system/arc_tool.h"
 
 #define	__BG_SYS_H_GLOBAL
 #include "bg_system.h"

@@ -3880,47 +3880,21 @@ static void WFLBY_ROOM_ListWin_Exit( WFLBY_ROOM_LISTWIN* p_wk, WFLBY_GRAPHICCONT
  *	@param	heapID		ƒq[ƒvID
  */
 //-----------------------------------------------------------------------------
-#ifdef NONEQUIVALENT
 static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID, u32 a3 )
 {
 	GF_ASSERT( p_wk->p_bmplist == NULL );
 	p_wk->p_bmplist		= BMP_MENULIST_Create( num, heapID );
 	p_wk->bmplistnum	= num;
+
+    //MatchComment: fill loop
+    {
+        int i;
+
+        for(i = 0; i < num; i++){
+            p_wk->p_bmplist[ i ].param = a3;
+        }
+    }
 }
-#else
-asm static void WFLBY_ROOM_ListWin_CreateBmpList( WFLBY_ROOM_LISTWIN* p_wk, u32 num, u32 heapID, u32 a3 )
-{
-	push {r3, r4, r5, r6, r7, lr}
-	add r5, r0, #0
-	ldr r0, [r5, #0x34]
-	add r4, r1, #0
-	add r7, r2, #0
-	add r6, r3, #0
-	cmp r0, #0
-	beq _0225EDBC
-	bl GF_AssertFailedWarningCall
-_0225EDBC:
-	add r0, r4, #0
-	add r1, r7, #0
-	bl BMP_MENULIST_Create
-	str r0, [r5, #0x34]
-	mov r1, #0
-	strh r4, [r5, #0x38]
-	cmp r4, #0
-	bls _0225EDDE
-	add r2, r1, #0
-_0225EDD0:
-	ldr r0, [r5, #0x34]
-	add r1, r1, #1
-	add r0, r0, r2
-	str r6, [r0, #4]
-	add r2, #8
-	cmp r1, r4
-	blo _0225EDD0
-_0225EDDE:
-	pop {r3, r4, r5, r6, r7, pc}
-}
-#endif
 
 //----------------------------------------------------------------------------
 /**

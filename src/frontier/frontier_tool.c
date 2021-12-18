@@ -18,7 +18,7 @@
 #include "gflib/strbuf_family.h"
 #include "system/msgdata.h"
 #include "poketool/poke_memo.h"
-#include "msgdata\msg.naix"
+#include "msgdata/msg.naix"
 #include "battle/wazano_def.h"
 #include "communication/comm_system.h"
 #include "communication/comm_info.h"

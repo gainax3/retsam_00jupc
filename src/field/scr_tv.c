@@ -25,8 +25,8 @@
 
 #include "ev_pokemon.h"
 
-#include "msgdata\msg.naix"			//NARC_msg_??_dat
-#include "msgdata\msg_tv_interview.h"
+#include "msgdata/msg.naix"			//NARC_msg_??_dat
+#include "msgdata/msg_tv_interview.h"
 
 #include "tv_define.h"
 

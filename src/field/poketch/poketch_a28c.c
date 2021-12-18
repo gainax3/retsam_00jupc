@@ -7,8 +7,8 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "system\lib_pack.h"
-#include "..\sway_grass_hist.h"
+#include "system/lib_pack.h"
+#include "../sway_grass_hist.h"
 
 #include "poketch_a28.h"
 #include "poketch_prv.h"

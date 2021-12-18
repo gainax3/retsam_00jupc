@@ -9,7 +9,7 @@
 #ifndef __PMS_WORD_H__
 #define __PMS_WORD_H__
 
-#include "system\pms_data.h"
+#include "system/pms_data.h"
 
 typedef struct _PMSW_MAN	PMSW_MAN;
 
@@ -31,7 +31,7 @@ extern BOOL GetWordSorceID( PMS_WORD pms_word, u32* fileID, u32* wordID );
 //===================================================================================
 // セーブデータ処理
 //===================================================================================
-#include "savedata\savedata.h"
+#include "savedata/savedata.h"
 
 typedef struct _PMSW_SAVEDATA	PMSW_SAVEDATA;
 

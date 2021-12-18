@@ -35,7 +35,7 @@
 #include "script.h"
 #include "scr_tool.h"
 #include "mapdefine.h"
-#include "..\fielddata\script\common_scr_def.h"		//SCRID_GAME_OVER_RECOVER_PC
+#include "../fielddata/script/common_scr_def.h"		//SCRID_GAME_OVER_RECOVER_PC
 #include "sysflag.h"
 #include "communication/communication.h"   // ‚Æ‚à‚¾‚¿Žè’ ‚Ö‚Ì‹L˜^‚Ì‚½‚ß
 //#include "comm_direct_counter.h"

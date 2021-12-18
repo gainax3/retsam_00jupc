@@ -19,7 +19,7 @@
 #include "system/snd_tool.h"
 #include "system/palanm.h"
 #include "battle/battle_common.h"
-#include "..\fielddata\script\connect_def.h"
+#include "../fielddata/script/connect_def.h"
 
 //============================================================================================
 //	ƒƒCƒ“

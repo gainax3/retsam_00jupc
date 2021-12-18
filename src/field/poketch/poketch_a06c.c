@@ -7,11 +7,11 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\touchpanel.h"
-#include "system\lib_pack.h"
-#include "system\savedata.h"
-#include "poketool\pokeicon.h"
-#include "poketool\pokeparty.h"
+#include "gflib/touchpanel.h"
+#include "system/lib_pack.h"
+#include "system/savedata.h"
+#include "poketool/pokeicon.h"
+#include "poketool/pokeparty.h"
 
 #include "poketch_a06.h"
 #include "poketch_prv.h"

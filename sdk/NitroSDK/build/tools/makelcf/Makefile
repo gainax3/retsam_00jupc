@@ -83,10 +83,19 @@ tlcf.yy.o:		tlcf.yy.c tlcf.tab.c makelcf.h
 tlcf.yy.c:		tlcf.l
 tlcf.tab.c:       	tlcf.y
 
+# Platform support note: Require GNU coreutils on MacOS
+SED := sed
+ifneq ($(OS),Windows_NT)
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+SED := gsed
+endif
+endif
+
 spec.yy.patched.o:	WARNING	+= -Wno-unused-label -Wno-unused-function
 
 spec.yy.patched.c:	spec.yy.c
-			sed 's/^#define YY_BUF_SIZE 16384/#define YY_BUF_SIZE (1024*1024)/' $< > $@
+			$(SED) 's/^#define YY_BUF_SIZE 16384/#define YY_BUF_SIZE (1024*1024)/' $< > $@
 
 version.h:		$(SOURCES) $(HEADERS) $(MAKEFILE)
 			@for i in $^ ;				\

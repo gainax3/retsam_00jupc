@@ -12,9 +12,9 @@
 
 #include <nitro/code16.h> 
 #include "system/pm_str.h"
-#include "system\msgdata.h"			//MSGMAN_GetString
+#include "system/msgdata.h"			//MSGMAN_GetString
 #include "system/brightness.h"		//ChangeBrightnessRequest
-#include "system\wordset.h"			//WordSet_RegistPlayerName
+#include "system/wordset.h"			//WordSet_RegistPlayerName
 #include "system/bmp_menu.h"
 #include "system/bmp_list.h"
 #include "system/get_text.h"
@@ -45,7 +45,7 @@
 #include "scrcmd_def.h"
 #include "ev_win.h"
 #include "ev_time.h"
-#include "msgdata\msg.naix"			//NARC_msg_??_dat
+#include "msgdata/msg.naix"			//NARC_msg_??_dat
 #include "wifi_autoregist.h"
 #include "application/wifi_p2pmatch.h"
 #include "application/namein.h"
@@ -120,7 +120,7 @@
 #include "scr_hideneff.h"
 #include "safari_train.h"
 #include "player.h"
-#include "demo\demo_dendou.h"
+#include "demo/demo_dendou.h"
 #include "scr_msg.h"
 #include "savedata/undergrounddata.h"
 #include "wifi/dwc_rap.h"
@@ -136,7 +136,7 @@
 #include "paso_anm.h"
 #include "ship_demo_call.h"
 #include "hill_back_poke.h"
-#include "..\application\p_status\ribbon.h"
+#include "../application/p_status/ribbon.h"
 #include "savedata/tv_work.h"
 #include "tv_topic.h"		//テレビトピック生成用
 #include "field/tvtopic_extern.h"
@@ -163,7 +163,7 @@
 #include "../frontier/stage_def.h"
 #include "../frontier/roulette_def.h"
 #include "field_villa.h"
-#include "field\field_gimmick_def.h"
+#include "field/field_gimmick_def.h"
 #include "demo/tengan/demo_tengan_main.h"
 #include "field_tornworld.h"	//tornworld
 
@@ -1958,7 +1958,7 @@ const VM_CMD ScriptCmdTbl[] = {
 	EvCmdCapitalizeName,
 	// ----------------------------------------------------------------------------
 
-    EvCmd_2048080, // plat_us_match (maybe)
+    EvCmdTobariDepartFloorNo, // plat_us_match (maybe)
 };
 
 
@@ -12781,7 +12781,7 @@ static BOOL EvCmdAusuItemCheck(VM_MACHINE * core)
 
 //=========================================================================================
 //=========================================================================================
-#include "msgdata\msg_fushigi_pwd.h"
+#include "msgdata/msg_fushigi_pwd.h"
 
 //-----------------------------------------------------------------------------
 /**

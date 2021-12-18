@@ -55,6 +55,13 @@ enum{
 	 POKE_NAME_SY			= (2*8),
 };
 
+// Message alignment param
+typedef enum CastleMsgAln{
+    CASTLE_MSG_ALN_LEFT,
+    CASTLE_MSG_ALN_CENTER,
+    CASTLE_MSG_ALN_RIGHT,
+} CastleMsgAln;
+
 //----------------------------------------------------------------------------------------------
 //アイコンの位置
 //----------------------------------------------------------------------------------------------
@@ -105,7 +112,7 @@ enum{
 
 	INFO_PLAYER_X			= (0), // MatchComment: 1 -> 0 
 	INFO_PLAYER_Y			= (0), // MatchComment: 1 -> 0
-	INFO_PLAYER_CP_X		= (7*8), 
+	INFO_PLAYER_CP_X		= (13*8),
 	INFO_PLAYER_CP_Y		= (INFO_PLAYER_Y),
 };
 

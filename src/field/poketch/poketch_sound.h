@@ -9,7 +9,7 @@
 #define __POKETCH_SOUND_H__
 
 
-#include "system\snd_tool.h"
+#include "system/snd_tool.h"
 
 enum {
 // Šî–{‘€ì

@@ -9,8 +9,8 @@
 #ifndef __BOX_H__
 #define __BOX_H__
 
-#include "system\procsys.h"
-#include "savedata\savedata_def.h"
+#include "system/procsys.h"
+#include "savedata/savedata_def.h"
 
 
 #include "box_mode.h"

@@ -35,11 +35,11 @@
 
 #include "system/procsys.h"
 #include "communication/wm_icon.h"
-#include "communication\comm_system.h"
-#include "communication\comm_state.h"
-#include "communication\comm_def.h"
+#include "communication/comm_system.h"
+#include "communication/comm_state.h"
+#include "communication/comm_def.h"
 
-#include "savedata\system_data.h"
+#include "savedata/system_data.h"
 
 #include "gds_rap.h"
 

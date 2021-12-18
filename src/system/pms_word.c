@@ -7,13 +7,13 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\strbuf.h"
-#include "system\msgdata.h"
-#include "msgdata\msg.naix"
+#include "gflib/strbuf.h"
+#include "system/msgdata.h"
+#include "msgdata/msg.naix"
 
-#include "system\pms_data.h"
-#include "system\pms_word.h"
-#include "application\pms_input_data.h"
+#include "system/pms_data.h"
+#include "system/pms_word.h"
+#include "application/pms_input_data.h"
 
 #define __PMS_WORD_RES__
 #include "pms_word.res"
@@ -188,7 +188,7 @@ BOOL GetWordSorceID( PMS_WORD pms_word, u32* fileID, u32* wordID )
 // セーブデータ管理
 //======================================================================================
 
-#include "savedata\savedata.h"
+#include "savedata/savedata.h"
 
 
 struct _PMSW_SAVEDATA{

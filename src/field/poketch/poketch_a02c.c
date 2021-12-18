@@ -7,10 +7,10 @@
 //============================================================================================
 #include <nitro/sinit.h>
 #include "common.h"
-#include "gflib\touchpanel.h"
-#include "system\lib_pack.h"
-#include "poketool\monsno.h"
-#include "savedata\zukanwork.h"
+#include "gflib/touchpanel.h"
+#include "system/lib_pack.h"
+#include "poketool/monsno.h"
+#include "savedata/zukanwork.h"
 
 #include "poketch_prv.h"
 #include "poketch_a02.h"

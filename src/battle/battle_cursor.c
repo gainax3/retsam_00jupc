@@ -7,10 +7,10 @@
  */
 //==============================================================================
 #include "common.h"
-#include "graphic\pl_batt_obj_def.h"
-#include "graphic\pl_batt_bg_def.h"
+#include "graphic/pl_batt_obj_def.h"
+#include "graphic/pl_batt_bg_def.h"
 #include "system/arc_tool.h"
-#include "system\arc_util.h"
+#include "system/arc_util.h"
 #include "system/clact_tool.h"
 #include "system/palanm.h"
 #include "battle/battle_tcb_pri.h"

@@ -9,7 +9,7 @@
  */
 //==============================================================================
 #include "common.h"
-#include "gflib\assert.h"
+#include "gflib/assert.h"
 
 #ifdef GF_ASSERT_ENABLED
 
@@ -23,9 +23,9 @@
 // この定義を有効にすると、デバッガ動作中でも強制的に情報を画面出力する
 //#define  FORCE_OUTPUT_LCD
 
-#include  "gflib\bg_system.h"
-#include  "gflib\strbuf_family.h"
-#include  "system\fontproc.h"
+#include  "gflib/bg_system.h"
+#include  "gflib/strbuf_family.h"
+#include  "system/fontproc.h"
 
 static u8 OutputLcdFlag = FALSE;
 static u8 ScreenInitializedFlag = FALSE;
@@ -403,8 +403,8 @@ void GF_AssertMsgProc( const char* filename, unsigned int line_no, const char* f
 //==============================================================================================
 //==============================================================================================
 
-#include "system\assert_warning_reset.h"
-#include "communication\comm_state.h"
+#include "system/assert_warning_reset.h"
+#include "communication/comm_state.h"
 
 void GF_AssertFailedWarningCall( void );	//ワーニング消し用のプロトタイプ宣言
 

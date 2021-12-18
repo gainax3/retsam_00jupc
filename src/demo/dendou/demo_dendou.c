@@ -7,25 +7,25 @@
  */
 //============================================================================================
 #include "common.h"
-#include "gflib\bg_system.h"
-#include "gflib\simple_3dgraphics.h"
-#include "gflib\strbuf.h"
-#include "system\arc_util.h"
-#include "system\clact_util.h"
-#include "system\render_oam.h"
-#include "system\wipe.h"
-#include "system\gra_tool.h"
-#include "system\wordset.h"
-#include "system\fontproc.h"
-#include "system\snd_tool.h"
-#include "battle\graphic\pl_batt_obj_def.h"
-#include "battle\trtype_def.h"
-#include "msgdata\msg.naix"
-#include "msgdata\msg_dendou_demo.h"
+#include "gflib/bg_system.h"
+#include "gflib/simple_3dgraphics.h"
+#include "gflib/strbuf.h"
+#include "system/arc_util.h"
+#include "system/clact_util.h"
+#include "system/render_oam.h"
+#include "system/wipe.h"
+#include "system/gra_tool.h"
+#include "system/wordset.h"
+#include "system/fontproc.h"
+#include "system/snd_tool.h"
+#include "battle/graphic/pl_batt_obj_def.h"
+#include "battle/trtype_def.h"
+#include "msgdata/msg.naix"
+#include "msgdata/msg_dendou_demo.h"
 
 
 
-#include  "demo\demo_dendou.h"
+#include  "demo/demo_dendou.h"
 #include  "dendou_demo.naix"
 
 

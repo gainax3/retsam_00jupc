@@ -9,7 +9,7 @@
 #ifndef __FRONTIER_TOOL_H__
 #define __FRONTIER_TOOL_H__
 
-#include "gflib\msg_print.h"	// STRCODE 定義のため(b_tower_data.h用)
+#include "gflib/msg_print.h"	// STRCODE 定義のため(b_tower_data.h用)
 #include "battle/battle_common.h"	//(b_tower_data.h用)
 #include "system/wordset.h"		//
 #include "system/buflen.h"		//(b_tower_data.h用)

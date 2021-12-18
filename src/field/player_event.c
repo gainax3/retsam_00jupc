@@ -32,7 +32,7 @@
 #include "field_gimmick_def.h"	//yabure
 #include "gym.h"	//ghost gym
 
-//#include "..\system/snd_tool.h"
+//#include "../system/snd_tool.h"
 
 //==============================================================================
 //	define
