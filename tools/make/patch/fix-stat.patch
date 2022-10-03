@@ -1,0 +1,17 @@
++++ glob/glob.c
+@@ -229,7 +229,6 @@
+ 
+ #endif
+ 
+-#ifndef __GNU_LIBRARY__
+ # define __stat stat
+ # ifdef STAT_MACROS_BROKEN
+ #  undef S_ISDIR
+@@ -237,7 +236,6 @@
+ # ifndef S_ISDIR
+ #  define S_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
+ # endif
+-#endif
+ 
+ #ifdef _LIBC
+ # undef strdup

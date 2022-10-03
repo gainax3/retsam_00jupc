@@ -13,6 +13,7 @@ patch -p0 < ../patch/eval-conditional.patch
 patch -p0 < ../patch/eval-crash.diff
 patch -p0 < ../patch/fix-strnicmp.patch
 patch -p0 < ../patch/fix-alloca.patch
+patch -p0 < ../patch/fix-stat.patch
 patch -p0 < ../patch/fix-cygwin64.patch
 ./configure --bindir="$cwd" --disable-nls
 make
