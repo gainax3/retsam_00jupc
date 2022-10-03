@@ -10,7 +10,7 @@ if [ ! -x tools/ruby/ruby -a ! -x tools/ruby/ruby.exe ]; then
 fi
 
 if [ ! -x tools/fixrom/fixrom -a ! -x tools/fixrom/fixrom.exe ]; then
-	(cd tools/fixrom; make)
+    (cd tools/fixrom; make)
 fi
 
 . ./env

@@ -440,12 +440,12 @@ else
 CW_VERSION ?= 2.0/sp2p2
 endif
 
-MWCC			:= $(WINE) $(CW_BINDIR)/$(CW_VERSION)/mwccarm.exe
+MWCC			 = $(WINE) $(CW_BINDIR)/$(CW_VERSION)/mwccarm.exe
 MWAS			:= $(WINE) $(CW_BINDIR)/mwasmarm.exe
 MWLD			:= $(WINE) $(CW_BINDIR)/mwldarm.exe
 MWAR			:= $(MWLD)
 
-CC			:= $(MWCC)
+CC			 = $(MWCC)
 AS			:= $(MWAS)
 LD			:= $(MWLD)
 AR			:= $(MWAR)
