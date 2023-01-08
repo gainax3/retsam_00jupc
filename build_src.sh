@@ -2,7 +2,6 @@
 set -e
 
 . ./env
-. ./env_path.sh
 
 export NITRO_FINALROM=yes
 export PM_VERSION

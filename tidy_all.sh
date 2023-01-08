@@ -2,9 +2,10 @@
 set -e
 
 . ./env
-(cd sdk/cw/ARM_EABI_Support; make clean)
 
-. ./env_path.sh
+export PATH="$OLD_PATH"
+(cd sdk/cw/ARM_EABI_Support; make clean)
+export PATH="$PATH_WITH_TOOLS"
 
 export MAKEFLAGS="-j$(nproc)"
 

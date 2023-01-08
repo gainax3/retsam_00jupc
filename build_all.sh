@@ -19,10 +19,6 @@ fi
 
 . ./env
 
-(cd sdk/cw/ARM_EABI_Support; make)
-
-. ./env_path.sh
-
 export NITRO_FINALROM=yes
 export PM_VERSION
 export PM_DEBUG
@@ -33,6 +29,10 @@ export BUILDING_SDK=1
 (cd sdk/NitroSystem; make)
 (cd sdk/NitroWiFi; make)
 (cd sdk/NitroDWC; make)
+
+export PATH="$OLD_PATH"
+(cd sdk/cw/ARM_EABI_Support; make)
+export PATH="$PATH_WITH_TOOLS"
 
 (cd platinum_rs; make)
 
