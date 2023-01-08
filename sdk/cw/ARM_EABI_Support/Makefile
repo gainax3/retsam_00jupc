@@ -16,11 +16,17 @@ MWAR = $(WINE) ../ARM_Tools/Command_Line_Tools/mwldarm.exe
 ARFLAGS = -msgstyle std -w on -library
 
 MSL_C_ARCHIVE_FILE := msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a
+MSL_EXTRAS_ARCHIVE_FILE := msl/MSL_Extras/MSL_ARM/Lib/MSL_Extras_NITRO_Ai_LE.a
 
 # MSL_C_FILES defined here
 include msl_c_files.mk
+MSL_EXTRAS_FILES := ./msl/MSL_Extras/MSL_Common/Src/extras.c
 
-MSL_OBJECT_FILES := $(MSL_C_FILES:%.c=%.o)
+MSL_C_OBJECT_FILES := $(MSL_C_FILES:%.c=%.o)
+MSL_EXTRAS_OBJECT_FILES := $(MSL_EXTRAS_FILES:%.c=%.o)
+
+MSL_C_DEPFILES := $(MSL_C_FILES:%.c=%.d)
+MSL_EXTRAS_DEPFILES := $(MSL_EXTRAS_FILES:%.c=%.d)
 
 ifneq ($(WINPATH),)
   PROJECT_ROOT_NT := $(shell $(WINPATH) -w $(PROJECT_ROOT) | $(SED) 's/\\/\//g')
@@ -40,10 +46,12 @@ endif
 .DELETE_ON_ERROR:
 .PHONY: all clean
 
-all: $(MSL_C_ARCHIVE_FILE)
+all: $(MSL_C_ARCHIVE_FILE) $(MSL_EXTRAS_ARCHIVE_FILE)
 
-DEPFILES := $(MSL_C_FILES:%.c=%.d)
-MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char signed -bool on -lang c -ipa file -gccinc
+DEPFILES := $(MSL_C_DEPFILES) $(MSL_EXTRAS_DEPFILES)
+
+MSL_C_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char signed -bool on -lang c -ipa file -gccinc
+MSL_EXTRAS_MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -requireprotos -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions off -strings reuse -inline on,noauto,bottomup -RTTI off -char unsigned -bool off -iso_templates on -lang c99 -ipa file -gccinc
 
 CW_INCLUDE_DIRS := ./msl/MSL_C/MSL_ARM/Include		\
 		  ./msl/MSL_C/MSL_Common/Include		\
@@ -58,16 +66,29 @@ INCLUDE_FLAGS := $(foreach dname,$(CW_INCLUDE_DIRS),-I$(dname))
 
 $(DEPFILES):
 
-$(MSL_OBJECT_FILES): %.o: %.c
-$(MSL_OBJECT_FILES): %.o: %.c %.d
-	$(MWCC) $(MWCFLAGS) $(INCLUDE_FLAGS) -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
+$(MSL_C_OBJECT_FILES): %.o: %.c
+$(MSL_C_OBJECT_FILES): %.o: %.c %.d
+	$(MWCC) $(MSL_C_MWCFLAGS) $(INCLUDE_FLAGS) -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
 	@$(call fixdep,$*.d)
 
-$(MSL_C_ARCHIVE_FILE): $(MSL_OBJECT_FILES)
+$(MSL_EXTRAS_OBJECT_FILES): %.o: %.c
+$(MSL_EXTRAS_OBJECT_FILES): %.o: %.c %.d
+	$(MWCC) $(MSL_EXTRAS_MWCFLAGS) $(INCLUDE_FLAGS) -I./msl/MSL_Extras/MSL_ARM/Include -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
+	@$(call fixdep,$*.d)
+
+$(MSL_C_ARCHIVE_FILE): $(MSL_C_OBJECT_FILES)
 	$(MWAR) $(ARFLAGS) $^ -o $@
+
+$(MSL_EXTRAS_ARCHIVE_FILE): $(MSL_EXTRAS_OBJECT_FILES)
+	$(MWAR) $(ARFLAGS) $^ -o $@
+
 
 include $(wildcard $(DEPFILES))
 
 
 clean:
-	rm -f $(MSL_C_ARCHIVE_FILE) $(DEPFILES) $(MSL_OBJECT_FILES)
+	rm -f $(MSL_C_ARCHIVE_FILE)
+	rm -f $(MSL_C_DEPFILES)
+	rm -f $(MSL_EXTRAS_DEPFILES)
+	rm -f $(MSL_C_OBJECT_FILES)
+	rm -f $(MSL_EXTRAS_OBJECT_FILES)
