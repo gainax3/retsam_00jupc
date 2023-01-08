@@ -1,0 +1,73 @@
+# PROJECT_ROOT defined in env
+
+SED := sed -r
+
+include ../../NitroSDK/build/buildtools/commondefs.wine
+
+ifeq ($(WINE),)
+WINPATH := wslpath
+else
+WINPATH := winepath
+endif
+
+MWCC = $(WINE) ../ARM_Tools/Command_Line_Tools/2.0/sp2/mwccarm.exe
+MWAR = $(WINE) ../ARM_Tools/Command_Line_Tools/mwldarm.exe
+
+ARFLAGS = -msgstyle std -w on -library
+
+MSL_C_ARCHIVE_FILE := msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a
+
+# MSL_C_FILES defined here
+include msl_c_files.mk
+
+MSL_OBJECT_FILES := $(MSL_C_FILES:%.c=%.o)
+
+ifneq ($(WINPATH),)
+  PROJECT_ROOT_NT := $(shell $(WINPATH) -w $(PROJECT_ROOT) | $(SED) 's/\\/\//g')
+  define fixdep
+    $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g; s#$(PROJECT_ROOT_NT)#$(PROJECT_ROOT)#g' $(1)
+    touch -r $(1:%.d=%.o) $(1)
+  endef
+else
+  define fixdep
+    $(SED) -i 's/\r//g; s/\\/\//g; s/\/$$/\\/g' $(1)
+    touch -r $(1:%.d=%.o) $(1)
+  endef
+endif
+
+.SECONDARY:
+.SECONDEXPANSION:
+.DELETE_ON_ERROR:
+.PHONY: all clean
+
+all: $(MSL_C_ARCHIVE_FILE)
+
+DEPFILES := $(MSL_C_FILES:%.c=%.d)
+MWCFLAGS := -O4 -opt speed -proc arm946e -interworking -trigraphs off -stdkeywords off -enum min -ansi off -wchar_t on -cpp_exceptions on -strings reuse -inline on,noauto,bottomup -RTTI on -char signed -bool on -lang c -ipa file -gccinc
+
+CW_INCLUDE_DIRS := ./msl/MSL_C/MSL_ARM/Include		\
+		  ./msl/MSL_C/MSL_Common/Include		\
+		  ./msl/MSL_C/MSL_Common_Embedded/Math/Include \
+		  ./msl/MSL_C++/MSL_ARM/Include		\
+		  ./msl/MSL_C++/MSL_Common/Include		\
+		  ./msl/MSL_Extras/MSL_Common/Include	\
+		  ./Profiler/include \
+		  ../../NitroSDK/include
+
+INCLUDE_FLAGS := $(foreach dname,$(CW_INCLUDE_DIRS),-I$(dname))
+
+$(DEPFILES):
+
+$(MSL_OBJECT_FILES): %.o: %.c
+$(MSL_OBJECT_FILES): %.o: %.c %.d
+	$(MWCC) $(MWCFLAGS) $(INCLUDE_FLAGS) -include PREFIX_NITRO.h -gccdep -MD -c -o $@ $<
+	@$(call fixdep,$*.d)
+
+$(MSL_C_ARCHIVE_FILE): $(MSL_OBJECT_FILES)
+	$(MWAR) $(ARFLAGS) $^ -o $@
+
+include $(wildcard $(DEPFILES))
+
+
+clean:
+	rm -f $(MSL_C_ARCHIVE_FILE) $(DEPFILES) $(MSL_OBJECT_FILES)

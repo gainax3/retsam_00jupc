@@ -13,15 +13,20 @@ if [ ! -x tools/fixrom/fixrom -a ! -x tools/fixrom/fixrom.exe ]; then
     (cd tools/fixrom; make)
 fi
 
+if [ "$1" == "-j" ]; then
+	export MAKEFLAGS="-j$(nproc)"
+fi
+
 . ./env
+
+(cd sdk/cw/ARM_EABI_Support; make)
+
+. ./env_path.sh
+
 export NITRO_FINALROM=yes
 export PM_VERSION
 export PM_DEBUG
 export PM_LANG
-
-if [ "$1" == "-j" ]; then
-	export MAKEFLAGS="-j$(nproc)"
-fi
 
 export BUILDING_SDK=1
 (cd sdk/NitroSDK; make)

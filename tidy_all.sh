@@ -2,6 +2,10 @@
 set -e
 
 . ./env
+(cd sdk/cw/ARM_EABI_Support; make clean)
+
+. ./env_path.sh
+
 export MAKEFLAGS="-j$(nproc)"
 
 make tidy

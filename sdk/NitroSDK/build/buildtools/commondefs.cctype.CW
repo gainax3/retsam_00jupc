@@ -632,7 +632,6 @@ STUBS_LIBS	+= libstubscw$(NITRO_LIBSUFFIX).a
 else #	($(CODEGEN_PROC),ARM7)
 STUBS_LIBS	+= libstubscw_sp$(NITRO_LIBSUFFIX).a
 endif
-	$(ECHO) "==== test";
 
 #----------------------------------------------------------------------------
 #  switch by codegen target
